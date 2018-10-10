@@ -6,7 +6,7 @@
   "author": "Jacob Bare <jacob@limit0.io>",
   "license": "MIT",
   "scripts": {
-    "lint": "node_modules/.bin/eslint src/**/**.js"
+    "lint": "node_modules/.bin/eslint src"
   },
   "dependencies": {
     "apollo-link": "^1.2.3",
