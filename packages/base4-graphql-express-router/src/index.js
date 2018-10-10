@@ -10,7 +10,7 @@ const router = Router();
 const create = async ({ endpoint, serverOpts } = {}) => {
   if (!endpoint) throw new Error('The mounted GraphQL endpoint must be provided.');
   const schema = await createSchema();
-  const playground = isProduction ? { endpoint } : false;
+  const playground = !isProduction ? { endpoint } : false;
   const server = new ApolloServer({ schema, playground, ...serverOpts });
   server.applyMiddleware({ app: router, path: '/' });
 };
