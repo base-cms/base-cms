@@ -1,0 +1,12 @@
+{
+  "name": "@base-cms/base4-graphql-middleware-express",
+  "version": "1.0.0",
+  "description": "Provides Express middleware (routing) for accessing the stitched Base4 GraphQL schema.",
+  "main": "src/index.js",
+  "author": "Jacob Bare <jacob@limit0.io>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/base-cms/base4-graphql-middleware-express.git"
+  },
+  "license": "MIT"
+}
