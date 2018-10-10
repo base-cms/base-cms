@@ -6,7 +6,9 @@
   "author": "Jacob Bare <jacob@limit0.io>",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.16.3"
+    "compression": "^1.7.3",
+    "express": "^4.16.3",
+    "helmet": "^3.14.0"
   },
   "devDependencies": {
     "eslint": "^5.6.1",
