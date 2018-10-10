@@ -1,7 +1,7 @@
 {
-  "name": "@base-cms/base4-graphql-middleware-express",
+  "name": "@base-cms/base4-graphql-express-router",
   "version": "1.0.0",
-  "description": "Provides Express middleware (routing) for accessing the stitched Base4 GraphQL schema.",
+  "description": "Provides an Express router for accessing the stitched Base4 GraphQL schema.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
   "repository": {
