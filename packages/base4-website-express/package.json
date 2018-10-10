@@ -1,13 +1,13 @@
 {
-  "name": "@base-cms/nextjs-website-server",
+  "name": "@base-cms/base4-website-express",
   "version": "0.1.0",
-  "description": "The core Base server components for a NextJS website",
+  "description": "Core Base4 website server components, using Express",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/base-cms/nextjs-website-server.git"
+    "url": "https://github.com/base-cms/base4-website-express.git"
   },
   "scripts": {
     "lint": "node_modules/.bin/eslint src"
