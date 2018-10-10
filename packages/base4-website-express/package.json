@@ -1,0 +1,16 @@
+{
+  "name": "@base-cms/nextjs-website-server",
+  "version": "0.1.0",
+  "description": "The core Base server components for a NextJS website",
+  "main": "src/index.js",
+  "author": "Jacob Bare <jacob@limit0.io>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "eslint": "^5.6.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0"
+  }
+}
