@@ -8,6 +8,9 @@
     "type": "git",
     "url": "https://github.com/base-cms/base4-graphql-stitching.git"
   },
+  "files": [
+    "src/link.js"
+  ],
   "license": "MIT",
   "scripts": {
     "lint": "node_modules/.bin/eslint src"
