@@ -35,6 +35,26 @@
     core-js "^2.5.7"
     regenerator-runtime "^0.12.0"
 
+"@base-cms/base4-graphql-express-router@https://github.com/base-cms/base4-graphql-express-router.git":
+  version "1.0.0"
+  resolved "https://github.com/base-cms/base4-graphql-express-router.git#0f8c054fd606bce47be80664d64f4868f5d3783d"
+  dependencies:
+    "@base-cms/base4-graphql-stitching" "https://github.com/base-cms/base4-graphql-stitching.git"
+    apollo-server-express "^2.1.0"
+
+"@base-cms/base4-graphql-stitching@https://github.com/base-cms/base4-graphql-stitching.git":
+  version "1.0.0"
+  resolved "https://github.com/base-cms/base4-graphql-stitching.git#5f6d0bfc4a60d7909e80cf5090bf6109a73cbbb2"
+  dependencies:
+    apollo-link "^1.2.3"
+    apollo-link-context "^1.0.9"
+    apollo-link-http "^1.5.5"
+    envalid "^4.1.4"
+    graphql "^14.0.2"
+    graphql-tools "^4.0.0"
+    isomorphic-unfetch "^3.0.0"
+    validator "^10.8.0"
+
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@protobufjs/aspromise/-/aspromise-1.1.2.tgz#9b8b0cc663d669a7d8f6f5d0893a14d348f30fbf"
