@@ -5,6 +5,9 @@
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
   "license": "MIT",
+  "scripts": {
+    "lint": "node_modules/.bin/eslint src/**/**.js"
+  },
   "dependencies": {
     "apollo-link": "^1.2.3",
     "apollo-link-context": "^1.0.9",
