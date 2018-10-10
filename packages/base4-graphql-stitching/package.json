@@ -9,7 +9,7 @@
     "url": "https://github.com/base-cms/base4-graphql-stitching.git"
   },
   "files": [
-    "src/link.js"
+    "./src/link.js"
   ],
   "license": "MIT",
   "scripts": {
