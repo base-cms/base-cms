@@ -10,7 +10,7 @@
   "author": "Jacob Bare <jacob@limit0.io>",
   "license": "MIT",
   "scripts": {
-    "lint": "node_modules/.bin/eslint src"
+    "lint": "node_modules/.bin/eslint src --ext .js --ext .jsx"
   },
   "devDependencies": {
     "eslint": "^5.6.1",
