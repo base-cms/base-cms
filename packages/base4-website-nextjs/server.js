@@ -3,13 +3,12 @@ const express = require('@base-cms/base4-website-express');
 const { resolve } = require('path');
 const routes = require('./routes');
 
-const { log } = console;
 const isFn = v => typeof v === 'function';
 
 module.exports = async ({
   dir,
   dev = process.env.NODE_ENV !== 'production',
-  port = 3033,
+  port = 3005,
   beforePrepare,
   beforeListen,
 } = {}) => {
@@ -34,6 +33,5 @@ module.exports = async ({
       if (err) { rej(err); } else { res(this); }
     });
   });
-  log(`> Ready on http://localhost:${port}`);
   return { app, server };
 };
