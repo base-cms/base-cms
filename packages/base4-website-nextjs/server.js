@@ -5,6 +5,15 @@ const routes = require('./routes');
 
 const isFn = v => typeof v === 'function';
 
+/**
+ *
+ * @param {object} options The server options.
+ * @param {string} options.dir The directory of the Next app.
+ * @param {boolean} [options.dev] Whether to run Next is dev mode.
+ * @param {number} [options.port=3005] The port to run the webserver on.
+ * @param {function} [options.beforePrepare]
+ * @param {function} [options.beforeListen]
+ */
 module.exports = async ({
   dir,
   dev = process.env.NODE_ENV !== 'production',
