@@ -2,6 +2,7 @@
   "name": "@base-cms/base4-website-nextjs",
   "version": "0.1.0",
   "main": "server.js",
+  "description": "Core NextJS components for Base4 websites",
   "author": "Jacob Bare <jacob@limit0.io>",
   "license": "MIT",
   "repository": {
