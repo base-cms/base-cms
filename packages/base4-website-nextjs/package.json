@@ -1,7 +1,7 @@
 {
   "name": "@base-cms/base4-website-nextjs",
   "version": "0.1.0",
-  "main": "index.js",
+  "main": "server.js",
   "author": "Jacob Bare <jacob@limit0.io>",
   "license": "MIT",
   "repository": {
@@ -10,7 +10,7 @@
   },
   "files": [
     "routes.js",
-    "server/"
+    "server.js"
   ],
   "dependencies": {
     "@base-cms/base4-website-express": "https://github.com/base-cms/base4-website-express.git",
