@@ -1,6 +1,7 @@
 {
   "name": "@base-cms/nextjs-website-starter",
   "version": "0.1.0",
+  "description": "A starter kit for creating Base4 websites using NextJS",
   "author": "Jacob Bare <jacob@limit0.io>",
   "license": "MIT",
   "repository": {
