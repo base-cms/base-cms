@@ -1,0 +1,21 @@
+{
+  "name": "@base-cms/nextjs-website-starter",
+  "version": "0.1.0",
+  "author": "Jacob Bare <jacob@limit0.io>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/base-cms/nextjs-website-starter.git"
+  },
+  "scripts": {
+    "dev": "NODE_ENV=development node server",
+    "build": "next build site",
+    "start": "NODE_ENV=production node server"
+  },
+  "dependencies": {
+    "next": "7.0.2",
+    "@base-cms/base4-website-nextjs": "https://github.com/base-cms/base4-website-nextjs.git",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2"
+  }
+}
