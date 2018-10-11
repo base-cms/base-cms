@@ -1,7 +1,7 @@
 {
   "name": "@base-cms/base4-nextjs-apollo",
   "version": "0.1.0",
-  "description": "Base4 Apollo GraphQL Client & HOC for NextJS",
+  "description": "Apollo GraphQL Client & HOC for Base4+NextJS apps",
   "main": "src/index.js",
   "repository": {
     "type": "git",
