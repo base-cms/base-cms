@@ -19,7 +19,8 @@
   "dependencies": {
     "@base-cms/base4-website-express": "https://github.com/base-cms/base4-website-express.git",
     "graphql": "^14.0.2",
-    "next-routes": "^1.4.2"
+    "next-routes": "^1.4.2",
+    "prop-types": "^15.6.2"
   },
   "peerDependencies": {
     "next": "7.0.2",
