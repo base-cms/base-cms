@@ -1,0 +1,22 @@
+{
+  "name": "@base-cms/base4-website-nextjs",
+  "version": "0.1.0",
+  "main": "index.js",
+  "author": "Jacob Bare <jacob@limit0.io>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/base-cms/base4-website-nextjs.git"
+  },
+  "files": [
+    "routes.js"
+  ],
+  "dependencies": {
+    "next-routes": "^1.4.2"
+  },
+  "peerDependencies": {
+    "next": "7.0.2",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
+  }
+}
