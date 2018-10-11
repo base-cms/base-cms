@@ -13,6 +13,9 @@
     "routes.js",
     "server.js"
   ],
+  "scripts": {
+    "lint": "node_modules/.bin/eslint ."
+  },
   "dependencies": {
     "@base-cms/base4-website-express": "https://github.com/base-cms/base4-website-express.git",
     "graphql": "^14.0.2",
