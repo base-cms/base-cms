@@ -9,9 +9,12 @@
     "url": "https://github.com/base-cms/base4-website-nextjs.git"
   },
   "files": [
-    "routes.js"
+    "routes.js",
+    "server/"
   ],
   "dependencies": {
+    "@base-cms/base4-website-express": "https://github.com/base-cms/base4-website-express.git",
+    "graphql": "^14.0.2",
     "next-routes": "^1.4.2"
   },
   "peerDependencies": {
