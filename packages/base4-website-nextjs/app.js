@@ -1,3 +1,1 @@
-const app = require('./pages/_app');
-
-module.exports = app;
+module.exports = require('./dist/site/pages/_app');

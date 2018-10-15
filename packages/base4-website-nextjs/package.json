@@ -10,6 +10,7 @@
     "url": "https://github.com/base-cms/base4-website-nextjs.git"
   },
   "scripts": {
+    "build": "taskr",
     "lint": "node_modules/.bin/eslint ."
   },
   "dependencies": {
@@ -29,6 +30,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
+    "@taskr/babel": "^1.1.0-next.1",
+    "@taskr/esnext": "^1.1.0",
     "apollo-client": "^2.4.2",
     "eslint": "^5.6.1",
     "eslint-config-airbnb": "^17.1.0",
@@ -41,9 +44,6 @@
     "react": "^16.5.2",
     "react-apollo": "^2.2.4",
     "react-dom": "^16.5.2",
-    "rollup": "^0.66.6",
-    "rollup-plugin-babel": "^4.0.3",
-    "rollup-plugin-commonjs": "^9.2.0",
-    "rollup-plugin-node-resolve": "^3.4.0"
+    "taskr": "^1.1.0"
   }
 }
