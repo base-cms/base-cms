@@ -10,7 +10,7 @@ var apolloLinkError = require('apollo-link-error');
 var fetch = _interopDefault(require('isomorphic-unfetch'));
 var React = _interopDefault(require('react'));
 var Head = _interopDefault(require('next/head'));
-var reactApollo = _interopDefault(require('react-apollo'));
+var reactApollo = require('react-apollo');
 
 function createCommonjsModule(fn, module) {
 	return module = { exports: {} }, fn(module, module.exports), module.exports;
@@ -1018,7 +1018,6 @@ var apolloConfig = (function (req) {
   };
 });
 
-var getDataFromTree = reactApollo.getDataFromTree;
 var _console$1 = console,
     log$1 = _console$1.log;
 var withApollo = (function (App) {
@@ -1101,7 +1100,7 @@ var withApollo = (function (App) {
 
                   _context.prev = 10;
                   _context.next = 13;
-                  return getDataFromTree(React.createElement(App, _extends({}, appProps, {
+                  return reactApollo.getDataFromTree(React.createElement(App, _extends({}, appProps, {
                     Component: Component,
                     router: router,
                     apollo: apollo

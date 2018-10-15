@@ -6,7 +6,7 @@ import { onError } from 'apollo-link-error';
 import fetch from 'isomorphic-unfetch';
 import React from 'react';
 import Head from 'next/head';
-import reactApollo from 'react-apollo';
+import { getDataFromTree } from 'react-apollo';
 
 function createCommonjsModule(fn, module) {
 	return module = { exports: {} }, fn(module, module.exports), module.exports;
@@ -1014,7 +1014,6 @@ var apolloConfig = (function (req) {
   };
 });
 
-var getDataFromTree = reactApollo.getDataFromTree;
 var _console$1 = console,
     log$1 = _console$1.log;
 var withApollo = (function (App) {
