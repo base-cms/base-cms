@@ -11,7 +11,7 @@
   },
   "scripts": {
     "build": "taskr",
-    "lint": "node_modules/.bin/eslint client server routes.js"
+    "lint": "node_modules/.bin/eslint site server routes.js"
   },
   "dependencies": {
     "@base-cms/base4-nextjs-apollo": "https://github.com/base-cms/base4-nextjs-apollo.git",
