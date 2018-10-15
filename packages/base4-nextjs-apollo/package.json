@@ -2,8 +2,9 @@
   "name": "@base-cms/base4-nextjs-apollo",
   "version": "0.1.0",
   "description": "Apollo GraphQL Client & HOC for Base4+NextJS apps",
-  "main": "dist/index.js",
-  "module": "dist/index.module.js",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "jsnext:main": "dist/index.esm.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/base-cms/base4-nextjs-apollo.git"
@@ -22,7 +23,6 @@
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
     "graphql": "^14.0.2",
-    "isomorphic-unfetch": "^3.0.0",
     "next": "^7.0.2",
     "react": "^16.5.2",
     "react-apollo": "^2.2.4",
@@ -39,12 +39,11 @@
     "apollo-client": "^2.4.2",
     "apollo-link": "^1.2.3",
     "apollo-link-error": "^1.1.1",
-    "apollo-link-http": "^1.5.5"
-
+    "apollo-link-http": "^1.5.5",
+    "isomorphic-unfetch": "^3.0.0"
   },
   "peerDependencies": {
     "graphql": "^14.0.0",
-    "isomorphic-unfetch": "^3.0.0",
     "next": "^7.0.0",
     "react": "^16.0.0",
     "react-apollo": "^2.2.0",
