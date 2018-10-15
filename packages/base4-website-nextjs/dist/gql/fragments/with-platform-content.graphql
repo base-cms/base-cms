@@ -1,0 +1,9 @@
+fragment WithPlatformContentFragment on PlatformContent {
+  id
+  name
+  type
+  teaser
+  body
+  redirectTo
+  canonicalPath(input: { fields: $canonicalFields })
+}
