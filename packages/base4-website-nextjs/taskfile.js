@@ -3,11 +3,11 @@ export async function build(task) {
 }
 
 export async function pages(task) {
-  await task.source('client/pages/*.jsx').babel().target('dist/pages');
+  await task.source('site/pages/*.jsx').babel().target('dist/pages');
 }
 
 export async function utils(task) {
-  await task.source('client/utils/*.js').babel().target('dist/utils');
+  await task.source('site/utils/*.js').babel().target('dist/utils');
 }
 
 export default async function (task) {
