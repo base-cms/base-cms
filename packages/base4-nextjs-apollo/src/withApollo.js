@@ -1,8 +1,10 @@
 import React from 'react';
 import Head from 'next/head';
-import { getDataFromTree } from 'react-apollo';
+import reactApollo from 'react-apollo';
 import initApollo from './init';
 import apolloConfig from './config';
+
+const { getDataFromTree } = reactApollo;
 
 const { log } = console;
 

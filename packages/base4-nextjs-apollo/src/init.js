@@ -2,6 +2,9 @@ import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import fragmentMatcher from './fragment-matcher';
 
+// const { ApolloClient } = apolloClientLib;
+// const { InMemoryCache } = apolloCache;
+
 // The client-side apollo client.
 // Will be initialized once.
 let apolloClient;
