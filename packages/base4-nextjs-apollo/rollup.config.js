@@ -23,7 +23,7 @@ export default {
   ],
   external: peerDependencies.concat(dependencies),
   plugins: [
-    resolve(),
+    resolve({ extensions: ['.js', '.jsx'] }),
     commonjs({ include: 'node_modules/**' }),
     babel({ exclude: 'node_modules/**' }),
     json({
