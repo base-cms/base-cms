@@ -16,7 +16,7 @@
     "@base-cms/base4-graphql-express-router": "https://github.com/base-cms/base4-graphql-express-router.git",
     "compression": "^1.7.3",
     "envalid": "^4.1.4",
-    "express": "^4.16.3",
+    "express": "^4.16.4",
     "helmet": "^3.14.0"
   },
   "peerDependencies": {
