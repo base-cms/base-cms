@@ -1,1 +1,1 @@
-module.exports = require('./dist/site/pages/_app');
+module.exports = require('./dist/site/pages/_app.jsx');
