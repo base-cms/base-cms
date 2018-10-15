@@ -14,9 +14,13 @@
     "start": "NODE_ENV=production node server"
   },
   "dependencies": {
-    "next": "7.0.2",
     "@base-cms/base4-website-nextjs": "https://github.com/base-cms/base4-website-nextjs.git",
+    "apollo-client": "^2.4.2",
+    "graphql": "^14.0.2",
+    "graphql-tag": "^2.10.0",
+    "next": "7.0.2",
     "react": "^16.5.2",
+    "react-apollo": "^2.2.4",
     "react-dom": "^16.5.2"
   }
 }
