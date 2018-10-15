@@ -1,11 +1,13 @@
 export async function build(task) {
-  await task.parallel(['site']);
+  await task.parallel(['pages', 'utils']);
 }
 
-export async function site(task) {
-  await task.source('site/**/*.jsx').babel({
-    presets: ['next/babel'],
-  }).target('dist/site');
+export async function pages(task) {
+  await task.source('client/pages/*.jsx').babel().target('dist/pages');
+}
+
+export async function utils(task) {
+  await task.source('client/utils/*.js').babel().target('dist/utils');
 }
 
 export default async function (task) {

@@ -1,7 +1,7 @@
 {
   "name": "@base-cms/base4-website-nextjs",
   "version": "0.1.0",
-  "main": "server.js",
+  "main": "server/index.js",
   "description": "Core NextJS components for Base4 websites",
   "author": "Jacob Bare <jacob@limit0.io>",
   "license": "MIT",
@@ -11,7 +11,7 @@
   },
   "scripts": {
     "build": "taskr",
-    "lint": "node_modules/.bin/eslint ."
+    "lint": "node_modules/.bin/eslint client server routes.js"
   },
   "dependencies": {
     "@base-cms/base4-nextjs-apollo": "https://github.com/base-cms/base4-nextjs-apollo.git",
