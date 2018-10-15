@@ -1,9 +1,17 @@
 export async function build(task) {
-  await task.parallel(['pages', 'utils']);
+  await task.parallel(['pages', 'utils', 'components', 'hoc']);
 }
 
 export async function pages(task) {
   await task.source('site/pages/*.jsx').babel().target('dist/pages');
+}
+
+export async function components(task) {
+  await task.source('site/components/*.jsx').babel().target('dist/components');
+}
+
+export async function hoc(task) {
+  await task.source('site/hoc/*.jsx').babel().target('dist/hoc');
 }
 
 export async function utils(task) {
