@@ -756,12 +756,12 @@
 
 "@base-cms/base4-website-express@https://github.com/base-cms/base4-website-express.git":
   version "0.1.0"
-  resolved "https://github.com/base-cms/base4-website-express.git#5f079322c3fe45ac157ba82397196bb388cdc01f"
+  resolved "https://github.com/base-cms/base4-website-express.git#ba303ee6e50a9c8d33cf3d96249c5e56ea077f93"
   dependencies:
     "@base-cms/base4-graphql-express-router" "https://github.com/base-cms/base4-graphql-express-router.git"
     compression "^1.7.3"
     envalid "^4.1.4"
-    express "^4.16.3"
+    express "^4.16.4"
     helmet "^3.14.0"
 
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
@@ -2793,7 +2793,7 @@ expect-ct@0.1.1:
   resolved "https://registry.yarnpkg.com/expect-ct/-/expect-ct-0.1.1.tgz#de84476a2dbcb85000d5903737e9bc8a5ba7b897"
   integrity sha512-ngXzTfoRGG7fYens3/RMb6yYoVLvLMfmsSllP/mZPxNHgFq41TmPSLF/nLY7fwoclI2vElvAmILFWGUYqdjfCg==
 
-express@^4.16.3:
+express@^4.16.4:
   version "4.16.4"
   resolved "https://registry.yarnpkg.com/express/-/express-4.16.4.tgz#fddef61926109e24c515ea97fd2f1bdbf62df12e"
   integrity sha512-j12Uuyb4FMrd/qQAm6uCHAkPtO8FDTRJZBDd5D2KOL2eLaz1yUNdUB/NOIyq0iU4q4cFarsUCrnFDPBcnksuOg==
