@@ -25,7 +25,7 @@ export default {
   plugins: [
     resolve({ extensions: ['.js', '.jsx'] }),
     commonjs({ include: 'node_modules/**' }),
-    babel({ exclude: 'node_modules/**' }),
+    babel(),
     json({
       include: 'node_modules/@base-cms/base4-graphql-stitching/fragment-types.json',
       compact: true,
