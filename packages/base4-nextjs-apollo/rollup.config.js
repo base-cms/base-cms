@@ -21,7 +21,7 @@ export default {
     'react',
     'react-dom',
     'react-apollo',
-    'next',
+    'next/head',
     'isomorphic-unfetch',
   ],
   plugins: [
