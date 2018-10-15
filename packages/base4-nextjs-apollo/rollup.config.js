@@ -26,11 +26,19 @@ export default {
   ],
   plugins: [
     resolve({
-      // main: true,
-      // jsnext: false,
-      // module: true,
+      main: true,
+      module: false,
     }),
-    commonjs({ include: 'node_modules/**' }),
+    commonjs({
+      include: 'node_modules/**',
+      namedExports: {
+        'node_modules/apollo-cache-inmemory/lib/bundle.umd.js': ['InMemoryCache', 'IntrospectionFragmentMatcher'],
+        'node_modules/apollo-client/bundle.umd.js': ['ApolloClient'],
+        'node_modules/apollo-link-error/lib/bundle.umd.js': ['onError'],
+        'node_modules/apollo-link-http/lib/bundle.umd.js': ['HttpLink'],
+        'node_modules/apollo-link/lib/bundle.umd.js': ['ApolloLink'],
+      },
+    }),
     babel({ exclude: 'node_modules/**' }),
     json({
       include: 'node_modules/@base-cms/base4-graphql-stitching/fragment-types.json',
