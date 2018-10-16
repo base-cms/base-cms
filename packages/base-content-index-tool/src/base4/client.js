@@ -36,6 +36,18 @@ class Base4 {
   }
 
   /**
+   *
+   * @param {string} modelName
+   * @param {object} [query={}]
+   * @param {object} [options]
+   */
+  async find(modelName, query, options) {
+    const coll = await this.collectionFor(modelName);
+    const cursor = await coll.find(query, options);
+    return cursor.toArray();
+  }
+
+  /**
    * Returns the collection for the provided model name.
    *
    * @param {string} modelName The namespaced model name, e.g. `platform.Content`
