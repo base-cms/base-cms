@@ -6,7 +6,7 @@ const env = require('../env');
 const run = require('./run');
 
 const { log } = console;
-const { TENANT, MONGO_DSN } = env;
+const { TENANT_KEY, MONGO_DSN } = env;
 
 const questions = [
   {
@@ -26,7 +26,7 @@ const questions = [
   {
     type: 'confirm',
     name: 'shouldRun',
-    message: `Proceed with indexing for '${TENANT}' from '${MONGO_DSN}'?`,
+    message: `Proceed with indexing for '${TENANT_KEY}' from '${MONGO_DSN}'?`,
     default: true,
   },
 ];
