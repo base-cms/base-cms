@@ -10,7 +10,8 @@
     "url": "https://github.com/cygnusb2b/base-content-index-tool.git"
   },
   "scripts": {
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "index": "node src/import"
   },
   "dependencies": {
     "async": "^2.6.1",
