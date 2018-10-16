@@ -1,6 +1,8 @@
 const env = require('../env');
-const Client = require('../mongodb/client');
+const Client = require('./client');
+const MongoClient = require('../mongodb/client');
 
-const { MONGO_DSN } = env;
+const { MONGO_DSN, TENANT_KEY } = env;
 
-module.exports = new Client(MONGO_DSN, { useNewUrlParser: true });
+const db = new MongoClient(MONGO_DSN, { useNewUrlParser: true });
+module.exports = new Client({ db, tenantKey: TENANT_KEY });
