@@ -10,8 +10,18 @@
     "url": "https://github.com/cygnusb2b/base-content-index-tool.git"
   },
   "scripts": {
+    "prestart": "$npm_package_docker_dev_install",
+    "start": "$npm_package_docker_dev_up",
+    "stop": "$npm_package_docker_dev_down",
     "lint": "eslint src",
-    "index": "node src/import"
+    "index": "docker exec -it base-content-analyzer_app_1 node src/import"
+  },
+  "docker": {
+    "dev": {
+      "install": "docker-compose -p base-content-analyzer run --no-deps --entrypoint yarn app",
+      "up": "docker-compose -p base-content-analyzer up",
+      "down": "docker-compose -p base-content-analyzer down"
+    }
   },
   "dependencies": {
     "async": "^2.6.1",
