@@ -17,6 +17,7 @@
     "async": "^2.6.1",
     "chalk": "^2.4.1",
     "clear": "^0.1.0",
+    "dataloader": "^1.4.0",
     "envalid": "^4.1.4",
     "figlet": "^1.2.1",
     "inquirer": "^6.2.0",
