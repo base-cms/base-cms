@@ -3,9 +3,10 @@ const figlet = require('figlet');
 const inquirer = require('inquirer');
 const clear = require('clear');
 const env = require('../env');
+const run = require('./run');
 
 const { log } = console;
-const { TENANT } = env;
+const { TENANT, MONGO_DSN } = env;
 
 const questions = [
   {
@@ -25,7 +26,7 @@ const questions = [
   {
     type: 'confirm',
     name: 'shouldRun',
-    message: `Proceed with indexing for '${TENANT}'?`,
+    message: `Proceed with indexing for '${TENANT}' from '${MONGO_DSN}'?`,
     default: true,
   },
 ];
@@ -33,19 +34,19 @@ const questions = [
 clear();
 log(chalk.blue(figlet.textSync('Content Indexer', { horizontalLayout: 'full' })));
 
-const run = async () => {
+const execute = async () => {
   const answers = await inquirer.prompt(questions);
 
-  const { shouldRun } = answers;
+  const { shouldRun, batchSize } = answers;
   if (shouldRun) {
-    log('GO!');
+    await run({ batchSize });
   } else {
     log(chalk.green('Exiting import.'));
     process.exit(0);
   }
 };
 
-run().then(() => process.exit()).catch((e) => {
+execute().then(() => process.exit()).catch((e) => {
   log(chalk.red('AN ERROR OCCURRED!'));
   log(e);
   process.exit(1);
