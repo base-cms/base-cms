@@ -1,4 +1,18 @@
-const { MongoClient } = require('mongodb');
+const { MongoClient, Logger } = require('mongodb');
+const once = require('../utils/once');
+const { MONGO_LOGGING } = require('../env');
+
+const { log } = console;
+
+const applyLogger = once(() => {
+  let logCount = 0;
+  Logger.setCurrentLogger((msg) => {
+    logCount += 1;
+    log(`MONGO DB REQUEST ${logCount}: ${msg}`);
+  });
+  Logger.setLevel('debug');
+  Logger.filter('class', ['Cursor']);
+});
 
 class Client {
   /**
@@ -49,6 +63,7 @@ class Client {
       this.promise = MongoClient.connect(this.dsn, this.options);
     }
     const client = await this.promise;
+    if (MONGO_LOGGING) applyLogger();
     return client;
   }
 }
