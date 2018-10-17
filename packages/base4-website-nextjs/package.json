@@ -1,7 +1,6 @@
 {
   "name": "@base-cms/base4-website-nextjs",
   "version": "0.1.0",
-  "main": "server/index.js",
   "description": "Core NextJS components for Base4 websites",
   "author": "Jacob Bare <jacob@limit0.io>",
   "license": "MIT",
@@ -10,7 +9,6 @@
     "url": "https://github.com/base-cms/base4-website-nextjs.git"
   },
   "scripts": {
-    "build": "taskr",
     "lint": "node_modules/.bin/eslint site server routes.js --ext .js --ext .jsx"
   },
   "dependencies": {
@@ -43,7 +41,6 @@
     "next": "7.0.2",
     "react": "^16.5.2",
     "react-apollo": "^2.2.4",
-    "react-dom": "^16.5.2",
-    "taskr": "^1.1.0"
+    "react-dom": "^16.5.2"
   }
 }

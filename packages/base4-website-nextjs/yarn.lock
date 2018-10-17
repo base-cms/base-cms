@@ -2011,11 +2011,6 @@ cli-width@^2.0.0:
   resolved "https://registry.yarnpkg.com/cli-width/-/cli-width-2.2.0.tgz#ff19ede8a9a5e579324147b0c11f0fbcbabed639"
   integrity sha1-/xnt6Kml5XkyQUewwR8PvLq+1jk=
 
-clor@^5.1.0:
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/clor/-/clor-5.2.0.tgz#9ddc74e7e86728cfcd05a80546ba58d317b81035"
-  integrity sha512-Z+jjxoF4lNUJQtsdz7d9HLz7yP49hnt4CH76AB7DLusHws14gOlVMl/ShtkMPfoFculqejaiQW5EG2Gt5/cCdg==
-
 code-point-at@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
@@ -4226,11 +4221,6 @@ mixin-deep@^1.2.0:
     for-in "^1.0.2"
     is-extendable "^1.0.1"
 
-mk-dirs@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/mk-dirs/-/mk-dirs-1.0.0.tgz#44ee67f82341c6762718e88e85e577882e1f67fd"
-  integrity sha1-RO5n+CNBxnYnGOiOheV3iC4fZ/0=
-
 mkdirp-then@1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/mkdirp-then/-/mkdirp-then-1.2.0.tgz#a492c879ca4d873f5ee45008f8f55fd0150de3c5"
@@ -4262,11 +4252,6 @@ move-concurrently@^1.0.1:
     mkdirp "^0.5.1"
     rimraf "^2.5.4"
     run-queue "^1.0.3"
-
-mri@^1.1.0:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/mri/-/mri-1.1.1.tgz#85aa26d3daeeeedf80dc5984af95cc5ca5cad9f1"
-  integrity sha1-haom09ru7t+A3FmEr5XMXKXK2fE=
 
 ms@2.0.0:
   version "2.0.0"
@@ -5913,18 +5898,6 @@ tar@^4:
     safe-buffer "^5.1.2"
     yallist "^3.0.2"
 
-taskr@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/taskr/-/taskr-1.1.0.tgz#4f29d0ace26f4deae9a478eabf9aa0432e884438"
-  integrity sha1-TynQrOJvTerppHjqv5qgQy6IRDg=
-  dependencies:
-    bluebird "^3.5.0"
-    clor "^5.1.0"
-    glob "^7.1.2"
-    mk-dirs "^1.0.0"
-    mri "^1.1.0"
-    tinydate "^1.0.0"
-
 terser-webpack-plugin@1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/terser-webpack-plugin/-/terser-webpack-plugin-1.0.2.tgz#b62dfdc4e59b0b5093665a765b234645b598d1a5"
@@ -5972,11 +5945,6 @@ timers-browserify@^2.0.4:
   integrity sha512-YvC1SV1XdOUaL6gx5CoGroT3Gu49pK9+TZ38ErPldOWW4j49GI1HKs9DV+KGq/w6y+LZ72W1c8cKz2vzY+qpzg==
   dependencies:
     setimmediate "^1.0.4"
-
-tinydate@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/tinydate/-/tinydate-1.0.0.tgz#20f31756a13959ef8c57ec133ba29b5ade042cac"
-  integrity sha1-IPMXVqE5We+MV+wTO6KbWt4ELKw=
 
 tmp@^0.0.33:
   version "0.0.33"
