@@ -32,6 +32,6 @@ export default (Page) => {
   WithRequestOrigin.propTypes = {
     ...Page.propTypes,
     requestOrigin: PropTypes.string.isRequired,
-  }
+  };
   return WithRequestOrigin;
 };

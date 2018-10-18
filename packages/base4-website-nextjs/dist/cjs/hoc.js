@@ -315,7 +315,7 @@ var withPlatformContent = (function (Page) {
       body: PropTypes.string,
       redirectTo: PropTypes.string,
       canonicalPath: PropTypes.string.isRequired
-    })
+    }).isRequired
   });
   return withRequestOrigin(WithPlatformContent);
 });

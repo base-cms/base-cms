@@ -126,7 +126,7 @@ export default (Page, options = {
       body: PropTypes.string,
       redirectTo: PropTypes.string,
       canonicalPath: PropTypes.string.isRequired,
-    }),
-  }
+    }).isRequired,
+  };
   return withRequestOrigin(WithPlatformContent);
 };

@@ -14,4 +14,9 @@ const redirect = (res, route, code = 301) => {
   }
 };
 
-export { routes, redirect, Link, Router };
+export {
+  routes,
+  redirect,
+  Link,
+  Router,
+};
