@@ -1,4 +1,4 @@
-require('../site/routes'); // This must be required for routing to function!
+const routeDefs = require('../site/routes.json');
 const startServer = require('@base-cms/base4-website-nextjs/server');
 
 const { log } = console;
@@ -6,7 +6,7 @@ const { log } = console;
 const dir = './site';
 const port = process.env.PORT || 3033;
 
-startServer({ dir, port }).then(() => {
+startServer({ dir, routeDefs, port }).then(() => {
   log(`> Ready on http://localhost:${port}`);
 }).catch((e) => {
   log(e.stack);
