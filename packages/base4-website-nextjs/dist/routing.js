@@ -7,6 +7,9 @@ function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'defau
 var createRoutes = _interopDefault(require('next-routes'));
 
 var routes = createRoutes();
+var Link = routes.Link,
+    Router = routes.Router;
+
 var redirect = function redirect(res, route) {
   var code = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 301;
 
@@ -18,14 +21,12 @@ var redirect = function redirect(res, route) {
     res.end();
   } else {
     // Client-side.
-    routes.Router.replaceRoute(route);
+    Router.replaceRoute(route);
   }
 };
-var Link = routes.Link;
-var Router = routes.Router;
 
 exports.routes = routes;
 exports.redirect = redirect;
 exports.Link = Link;
 exports.Router = Router;
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=routing.js.map

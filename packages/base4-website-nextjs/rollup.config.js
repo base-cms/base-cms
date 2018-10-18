@@ -22,13 +22,9 @@ export default {
   input: 'src/routing.js',
   output: [
     {
-      file: 'dist/routing/index.js',
+      file: 'dist/routing.js',
       format: 'cjs',
       sourcemap: true,
-    },
-    {
-      file: 'dist/routing/index.esm.js',
-      format: 'esm',
     },
   ],
   external: makeExternalPredicate(externals),
