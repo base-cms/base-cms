@@ -1,11 +1,13 @@
-const routing = require('./dist/routing');
+const routing = require('./src/routing');
 
 module.exports = routing;
 
-// import routes from 'nextjs/routes';
+// import { routes, redirect } from 'nextjs/routing';
 // import server from 'nextjs/server';
-// import { redirect, cleanPath } from 'nextjs/utils';
-// import { WebsiteApp, ContentPage } from 'nextjs/pages';
-// import { withWebsiteContent } from 'nextjs/hoc';
 
-// import { RelCanonical } from 'nextjs/components';
+// import { cleanPath } from 'nextjs/utils';
+
+// import { WebsiteApp, ContentPage } from 'nextjs/site/pages';
+// import { withWebsiteContent } from 'nextjs/site/hoc';
+
+// import { RelCanonical } from 'nextjs/site/components';
