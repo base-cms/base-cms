@@ -1,4 +1,4 @@
-const routes = require('@base-cms/base4-website-nextjs/routes');
+const { routes } = require('@base-cms/base4-website-nextjs/routing');
 
 routes.add({
   name: 'home',

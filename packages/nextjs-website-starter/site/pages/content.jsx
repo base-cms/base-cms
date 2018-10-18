@@ -1,5 +1,11 @@
 import React from 'react';
+import { withPlatformContent } from '@base-cms/base4-website-nextjs/hoc';
 
-export default () => (
-  <h1>Default Content Page</h1>
+const ContentPage = ({ content }) => (
+  <>
+    <h1>Default Content Page</h1>
+    <h2>{content.name}</h2>
+  </>
 );
+
+export default withPlatformContent(ContentPage);

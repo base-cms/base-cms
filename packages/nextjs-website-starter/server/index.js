@@ -1,3 +1,4 @@
+require('../site/routes'); // This must be required for routing to function!
 const startServer = require('@base-cms/base4-website-nextjs/server');
 
 const { log } = console;

@@ -1,4 +1,4 @@
-import WebsiteApp from '@base-cms/base4-website-nextjs/app';
+import { WebsiteApp } from '@base-cms/base4-website-nextjs/pages';
 
 class Site extends WebsiteApp {
 }
