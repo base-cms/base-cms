@@ -1,0 +1,6 @@
+{
+  "name": "server",
+  "private": true,
+  "main": "./dist/cjs/routing.js",
+  "module": "./dist/esm/routing.js"
+}

@@ -1,7 +1,7 @@
-const next = require('next');
-const baseWebsite = require('@base-cms/base4-website-express');
-const { resolve } = require('path');
-const { routes } = require('../routing');
+import next from 'next';
+import baseWebsite from '@base-cms/base4-website-express';
+import { resolve } from 'path';
+import { routes } from './routing';
 
 const isFn = v => typeof v === 'function';
 
@@ -15,7 +15,7 @@ const isFn = v => typeof v === 'function';
  * @param {function} [options.beforePrepare]
  * @param {function} [options.beforeListen]
  */
-module.exports = async ({
+export default async ({
   dir,
   dev = process.env.NODE_ENV !== 'production',
   port = 3005,

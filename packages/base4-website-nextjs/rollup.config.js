@@ -10,6 +10,7 @@ const { keys } = Object;
 const externals = [
   ...keys(pkg.dependencies || {}),
   ...keys(pkg.peerDependencies || {}),
+  'path',
 ];
 
 const makeExternalPredicate = (externalsArr) => {
@@ -22,6 +23,7 @@ export default {
   experimentalCodeSplitting: true,
   input: [
     'src/utils.js',
+    'src/server.js',
     'src/routing.js',
     'src/components.js',
     'src/pages.js',

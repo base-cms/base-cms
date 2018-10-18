@@ -151,11 +151,11 @@ function _taggedTemplateLiteral(strings, raw) {
   }));
 }
 
+exports._asyncToGenerator = _asyncToGenerator;
 exports._classCallCheck = _classCallCheck;
 exports._createClass = _createClass;
 exports._possibleConstructorReturn = _possibleConstructorReturn;
 exports._getPrototypeOf = _getPrototypeOf;
 exports._inherits = _inherits;
 exports._objectSpread = _objectSpread;
-exports._asyncToGenerator = _asyncToGenerator;
 exports._taggedTemplateLiteral = _taggedTemplateLiteral;
