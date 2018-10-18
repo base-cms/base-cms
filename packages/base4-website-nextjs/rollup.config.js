@@ -1,4 +1,3 @@
-import { resolve } from 'path';
 import babel from 'rollup-plugin-babel';
 import commonjs from 'rollup-plugin-commonjs';
 import graphql from 'rollup-plugin-graphql';
