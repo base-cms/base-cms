@@ -11,11 +11,11 @@ var React__default = _interopDefault(React);
 var PropTypes = _interopDefault(require('prop-types'));
 var __chunk_2 = require('./chunk-f0af9a84.js');
 var gql = _interopDefault(require('graphql-tag'));
-var Head = _interopDefault(require('next/head'));
 var routing = require('./routing.js');
-var __chunk_5 = require('./chunk-d4fdf81b.js');
+var __chunk_5 = require('./chunk-1ccc7e43.js');
 require('./chunk-c2e7f00c.js');
 require('next-routes');
+require('next/head');
 
 var extractFragmentName = (function (fragment) {
   var pattern = /fragment (.*) on/;
@@ -209,10 +209,11 @@ var withPlatformContent = (function (Page) {
             requestOrigin = _this$props.requestOrigin,
             canonicalPath = _this$props.canonicalPath,
             content = _this$props.content;
-        return React__default.createElement(React__default.Fragment, null, React__default.createElement(Head, null, React__default.createElement("title", null, content.seoTitle), React__default.createElement("meta", {
-          name: "description",
-          content: content.seoDescription
-        })), React__default.createElement(__chunk_5.RelCanonical, {
+        return React__default.createElement(React__default.Fragment, null, React__default.createElement(__chunk_5.Meta.Title, {
+          value: content.seoTitle
+        }), React__default.createElement(__chunk_5.Meta.Description, {
+          value: content.seoDescription
+        }), React__default.createElement(__chunk_5.RelCanonical, {
           origin: requestOrigin,
           pathname: canonicalPath
         }), React__default.createElement(Page, this.props));
@@ -389,10 +390,11 @@ var withWebsiteSection = (function (Page) {
             requestOrigin = _this$props.requestOrigin,
             canonicalPath = _this$props.canonicalPath,
             section = _this$props.section;
-        return React__default.createElement(React__default.Fragment, null, React__default.createElement(Head, null, React__default.createElement("title", null, section.seoTitle), React__default.createElement("meta", {
-          name: "description",
-          content: section.description
-        })), React__default.createElement(__chunk_5.RelCanonical, {
+        return React__default.createElement(React__default.Fragment, null, React__default.createElement(__chunk_5.Meta.Title, {
+          value: section.seoTitle
+        }), React__default.createElement(__chunk_5.Meta.Description, {
+          value: section.description
+        }), React__default.createElement(__chunk_5.RelCanonical, {
           origin: requestOrigin,
           pathname: canonicalPath
         }), React__default.createElement(Page, this.props));

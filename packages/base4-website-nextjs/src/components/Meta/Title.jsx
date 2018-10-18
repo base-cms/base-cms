@@ -1,9 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Head from 'next/head';
 
 const Title = ({ value, siteName, concateWith }) => {
   const title = siteName ? `${value} ${concateWith} ${siteName}` : value;
-  return <title>{title}</title>;
+  return (
+    <Head>
+      <title>{title}</title>
+    </Head>
+  );
 };
 
 Title.propTypes = {

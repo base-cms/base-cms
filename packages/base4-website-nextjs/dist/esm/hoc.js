@@ -4,11 +4,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { a as displayName, b as httpErrors, c as sectionPath } from './chunk-59977c9f.js';
 import gql from 'graphql-tag';
-import Head from 'next/head';
 import { redirect } from './routing.js';
-import { a as RelCanonical } from './chunk-c2a2fd6b.js';
+import { a as RelCanonical, b as Meta } from './chunk-4292eceb.js';
 import './chunk-5198f64a.js';
 import 'next-routes';
+import 'next/head';
 
 var extractFragmentName = (function (fragment) {
   var pattern = /fragment (.*) on/;
@@ -202,10 +202,11 @@ var withPlatformContent = (function (Page) {
             requestOrigin = _this$props.requestOrigin,
             canonicalPath = _this$props.canonicalPath,
             content = _this$props.content;
-        return React.createElement(React.Fragment, null, React.createElement(Head, null, React.createElement("title", null, content.seoTitle), React.createElement("meta", {
-          name: "description",
-          content: content.seoDescription
-        })), React.createElement(RelCanonical, {
+        return React.createElement(React.Fragment, null, React.createElement(Meta.Title, {
+          value: content.seoTitle
+        }), React.createElement(Meta.Description, {
+          value: content.seoDescription
+        }), React.createElement(RelCanonical, {
           origin: requestOrigin,
           pathname: canonicalPath
         }), React.createElement(Page, this.props));
@@ -382,10 +383,11 @@ var withWebsiteSection = (function (Page) {
             requestOrigin = _this$props.requestOrigin,
             canonicalPath = _this$props.canonicalPath,
             section = _this$props.section;
-        return React.createElement(React.Fragment, null, React.createElement(Head, null, React.createElement("title", null, section.seoTitle), React.createElement("meta", {
-          name: "description",
-          content: section.description
-        })), React.createElement(RelCanonical, {
+        return React.createElement(React.Fragment, null, React.createElement(Meta.Title, {
+          value: section.seoTitle
+        }), React.createElement(Meta.Description, {
+          value: section.description
+        }), React.createElement(RelCanonical, {
           origin: requestOrigin,
           pathname: canonicalPath
         }), React.createElement(Page, this.props));

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
-import Head from 'next/head';
 
 // Routing
 import { redirect } from '../routing';
@@ -20,6 +19,7 @@ import withRequestOrigin from './withRequestOrigin';
 
 // Components
 import RelCanonical from '../components/RelCanonical';
+import Meta from '../components/Meta';
 
 /**
  * Builds the website section GraphQL query.
@@ -98,10 +98,8 @@ export default (Page, options = {
       const { requestOrigin, canonicalPath, section } = this.props;
       return (
         <>
-          <Head>
-            <title>{section.seoTitle}</title>
-            <meta name="description" content={section.description} />
-          </Head>
+          <Meta.Title value={section.seoTitle} />
+          <Meta.Description value={section.description} />
           <RelCanonical origin={requestOrigin} pathname={canonicalPath} />
           <Page {...this.props} />
         </>

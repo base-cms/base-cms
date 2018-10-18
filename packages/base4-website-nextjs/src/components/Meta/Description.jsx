@@ -1,9 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Head from 'next/head';
 
 const Description = ({ value }) => {
   if (!value) return null;
-  return <meta name="description" content={value} />;
+  return (
+    <Head>
+      <meta name="description" content={value} />
+    </Head>
+  );
 };
 
 Description.propTypes = {

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
-import Head from 'next/head';
 
 // Routing
 import { redirect } from '../routing';
@@ -19,6 +18,7 @@ import withRequestOrigin from './withRequestOrigin';
 
 // Components
 import RelCanonical from '../components/RelCanonical';
+import Meta from '../components/Meta';
 
 /**
  *
@@ -112,10 +112,8 @@ export default (Page, options = {
       const { requestOrigin, canonicalPath, content } = this.props;
       return (
         <>
-          <Head>
-            <title>{content.seoTitle}</title>
-            <meta name="description" content={content.seoDescription} />
-          </Head>
+          <Meta.Title value={content.seoTitle} />
+          <Meta.Description value={content.seoDescription} />
           <RelCanonical origin={requestOrigin} pathname={canonicalPath} />
           <Page {...this.props} />
         </>
