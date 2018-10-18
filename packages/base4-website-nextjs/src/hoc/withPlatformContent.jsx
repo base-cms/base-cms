@@ -19,7 +19,6 @@ import withRequestOrigin from './withRequestOrigin';
 
 // Components
 import RelCanonical from '../components/RelCanonical';
-import Meta from '../components/Meta';
 
 /**
  *
@@ -114,8 +113,8 @@ export default (Page, options = {
       return (
         <>
           <Head>
-            <Meta.Title value={content.seoTitle} />
-            <Meta.Description value={content.seoDescription} />
+            <title>{content.seoTitle}</title>
+            <meta name="description" content={content.seoDescription} />
           </Head>
           <RelCanonical origin={requestOrigin} pathname={canonicalPath} />
           <Page {...this.props} />
