@@ -6,7 +6,7 @@ import { a as displayName, b as httpErrors, c as sectionPath } from './chunk-599
 import gql from 'graphql-tag';
 import Head from 'next/head';
 import { redirect } from './routing.js';
-import { a as RelCanonical } from './chunk-c2a2fd6b.js';
+import { a as RelCanonical, b as Meta } from './chunk-91197619.js';
 import './chunk-5198f64a.js';
 import 'next-routes';
 
@@ -202,9 +202,10 @@ var withPlatformContent = (function (Page) {
             requestOrigin = _this$props.requestOrigin,
             canonicalPath = _this$props.canonicalPath,
             content = _this$props.content;
-        return React.createElement(React.Fragment, null, React.createElement(Head, null, React.createElement("title", null, content.seoTitle), React.createElement("meta", {
-          name: "description",
-          content: content.seoDescription
+        return React.createElement(React.Fragment, null, React.createElement(Head, null, React.createElement(Meta.Title, {
+          value: content.seoTitle
+        }), React.createElement(Meta.Description, {
+          value: content.seoDescription
         })), React.createElement(RelCanonical, {
           origin: requestOrigin,
           pathname: canonicalPath
@@ -382,9 +383,10 @@ var withWebsiteSection = (function (Page) {
             requestOrigin = _this$props.requestOrigin,
             canonicalPath = _this$props.canonicalPath,
             section = _this$props.section;
-        return React.createElement(React.Fragment, null, React.createElement(Head, null, React.createElement("title", null, section.seoTitle), React.createElement("meta", {
-          name: "description",
-          content: section.description
+        return React.createElement(React.Fragment, null, React.createElement(Head, null, React.createElement(Meta.Title, {
+          value: section.seoTitle
+        }), React.createElement(Meta.Description, {
+          value: section.description
         })), React.createElement(RelCanonical, {
           origin: requestOrigin,
           pathname: canonicalPath

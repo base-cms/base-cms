@@ -20,6 +20,7 @@ import withRequestOrigin from './withRequestOrigin';
 
 // Components
 import RelCanonical from '../components/RelCanonical';
+import Meta from '../components/Meta';
 
 /**
  * Builds the website section GraphQL query.
@@ -99,8 +100,8 @@ export default (Page, options = {
       return (
         <>
           <Head>
-            <title>{section.seoTitle}</title>
-            <meta name="description" content={section.description} />
+            <Meta.Title value={section.seoTitle} />
+            <Meta.Description value={section.description} />
           </Head>
           <RelCanonical origin={requestOrigin} pathname={canonicalPath} />
           <Page {...this.props} />
