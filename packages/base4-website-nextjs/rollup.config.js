@@ -32,13 +32,33 @@ const buildConfig = ({ input, output }) => ({
 
 export default [
   buildConfig({
-    input: 'src/routing.js',
+    input: 'src/utils/index.js',
     output: [
       {
-        file: 'dist/routing.js',
+        file: 'dist/utils/index.js',
         format: 'cjs',
         sourcemap: true,
       },
-    ]
+      {
+        file: 'dist/utils/index.esm.js',
+        format: 'esm',
+        sourcemap: true,
+      }
+    ],
+  }),
+  buildConfig({
+    input: 'src/components/index.js',
+    output: [
+      {
+        file: 'dist/components/index.js',
+        format: 'cjs',
+        sourcemap: true,
+      },
+      {
+        file: 'dist/components/index.esm.js',
+        format: 'esm',
+        sourcemap: true,
+      }
+    ],
   }),
 ];
