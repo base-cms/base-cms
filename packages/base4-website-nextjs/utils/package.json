@@ -1,6 +1,6 @@
 {
   "name": "utils",
   "private": true,
-  "main": "./lib/utils.js",
-  "module": "./esm/utils.js"
+  "main": "./dist/cjs/utils.js",
+  "module": "./dist/esm/utils.js"
 }

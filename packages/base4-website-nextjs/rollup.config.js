@@ -23,10 +23,11 @@ export default {
   input: [
     'src/utils.js',
     'src/components.js',
+    'src/pages.js',
   ],
   output: [
-    { dir: 'lib', format: 'cjs' },
-    { dir: 'esm', format: 'esm' },
+    { dir: 'dist/cjs', format: 'cjs' },
+    { dir: 'dist/esm', format: 'esm' },
   ],
   external: makeExternalPredicate(externals),
   plugins: [
