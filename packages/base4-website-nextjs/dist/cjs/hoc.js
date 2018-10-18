@@ -243,10 +243,18 @@ var withPlatformContent = (function (Page) {
                 case 4:
                   fragment = options.fragment, canonicalFields = options.canonicalFields;
                   query = ctx.query, apollo = ctx.apollo; // Get the content id from the page query
-                  // Note: the content id is required for this HOC to function properly.
 
-                  id = query.id; // Query for the content object using the id, via the inject apollo client.
+                  id = query.id;
 
+                  if (id) {
+                    _context.next = 9;
+                    break;
+                  }
+
+                  throw __chunk_2.httpErrors.notFound('No content ID was provided.');
+
+                case 9:
+                  // Query for the content object using the id, via the inject apollo client.
                   input = {
                     id: Number(id)
                   }; // Pass the canonical args to generate the content's canonical (route) path.
@@ -255,7 +263,7 @@ var withPlatformContent = (function (Page) {
                     input: input,
                     canonicalFields: canonicalFields
                   };
-                  _context.next = 11;
+                  _context.next = 13;
                   return apollo.query({
                     query: buildQuery({
                       fragment: fragment
@@ -263,19 +271,19 @@ var withPlatformContent = (function (Page) {
                     variables: variables
                   });
 
-                case 11:
+                case 13:
                   _ref3 = _context.sent;
                   data = _ref3.data;
                   platformContent = data.platformContent;
 
                   if (platformContent) {
-                    _context.next = 16;
+                    _context.next = 18;
                     break;
                   }
 
                   throw __chunk_2.httpErrors.notFound("No content was found for id '".concat(id, "'"));
 
-                case 16:
+                case 18:
                   // Check content for internal/external redirects, etc.
                   checkContent(platformContent, ctx);
                   canonicalPath = platformContent.canonicalPath; // @todo TextAds and Promotions can use an external URL. We _must_ account for this
@@ -287,7 +295,7 @@ var withPlatformContent = (function (Page) {
                     canonicalPath: canonicalPath
                   }, pageProps));
 
-                case 19:
+                case 21:
                 case "end":
                   return _context.stop();
               }
@@ -411,15 +419,24 @@ var withWebsiteSection = (function (Page) {
                   query = ctx.query, apollo = ctx.apollo, res = ctx.res; // Get the section alias from the page query.
                   // Note: the section alias is required for this HOC to function properly.
 
-                  alias = query.alias; // Query for the website section using the alias, via the injected apollo client.
+                  alias = query.alias;
 
+                  if (alias) {
+                    _context.next = 9;
+                    break;
+                  }
+
+                  throw __chunk_2.httpErrors.notFound('No website section alias was provided.');
+
+                case 9:
+                  // Query for the website section using the alias, via the injected apollo client.
                   input = {
                     alias: alias
                   };
                   variables = {
                     input: input
                   };
-                  _context.next = 11;
+                  _context.next = 13;
                   return apollo.query({
                     query: buildQuery$1({
                       fragment: fragment
@@ -427,13 +444,13 @@ var withWebsiteSection = (function (Page) {
                     variables: variables
                   });
 
-                case 11:
+                case 13:
                   _ref2 = _context.sent;
                   data = _ref2.data;
                   websiteSectionAlias = data.websiteSectionAlias, websiteSectionRedirect = data.websiteSectionRedirect;
 
                   if (!websiteSectionAlias) {
-                    _context.next = 17;
+                    _context.next = 19;
                     break;
                   }
 
@@ -444,9 +461,9 @@ var withWebsiteSection = (function (Page) {
                     canonicalPath: canonicalPath
                   }, pageProps));
 
-                case 17:
+                case 19:
                   if (!(websiteSectionRedirect && websiteSectionRedirect.alias)) {
-                    _context.next = 22;
+                    _context.next = 24;
                     break;
                   }
 
@@ -459,10 +476,10 @@ var withWebsiteSection = (function (Page) {
                     canonicalPath: path
                   }, pageProps));
 
-                case 22:
+                case 24:
                   throw __chunk_2.httpErrors.notFound("No website section was found for alias '".concat(alias, "'"));
 
-                case 23:
+                case 25:
                 case "end":
                   return _context.stop();
               }

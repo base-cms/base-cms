@@ -79,8 +79,11 @@ export default (Page, options = {
       const { fragment, canonicalFields } = options;
       const { query, apollo } = ctx;
       // Get the content id from the page query
-      // Note: the content id is required for this HOC to function properly.
       const { id } = query;
+      if (!id) {
+        // No content id was provided. Return a 404.
+        throw httpErrors.notFound('No content ID was provided.');
+      }
 
       // Query for the content object using the id, via the inject apollo client.
       const input = { id: Number(id) };

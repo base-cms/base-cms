@@ -61,6 +61,10 @@ export default (Page, options = {
       // Get the section alias from the page query.
       // Note: the section alias is required for this HOC to function properly.
       const { alias } = query;
+      if (!alias) {
+        // No website alias was provided. Return a 404.
+        throw httpErrors.notFound('No website section alias was provided.');
+      }
 
       // Query for the website section using the alias, via the injected apollo client.
       const input = { alias };
