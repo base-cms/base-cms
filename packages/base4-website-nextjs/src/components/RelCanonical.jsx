@@ -4,15 +4,15 @@ import Head from 'next/head';
 
 import { cleanPath } from '../utils';
 
-const CanonicalURL = ({ origin, pathname }) => (
+const RelCanonical = ({ origin, pathname }) => (
   <Head>
     <link rel="canonical" href={`${origin}/${cleanPath(pathname)}`} />
   </Head>
 );
 
-CanonicalURL.propTypes = {
+RelCanonical.propTypes = {
   pathname: PropTypes.string.isRequired,
   origin: PropTypes.string.isRequired,
 };
 
-export default CanonicalURL;
+export default RelCanonical;

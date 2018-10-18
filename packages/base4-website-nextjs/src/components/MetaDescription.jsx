@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 
-const Description = ({ value }) => {
+const MetaDescription = ({ value }) => {
   if (!value) return null;
   return (
     <Head>
@@ -11,12 +11,12 @@ const Description = ({ value }) => {
   );
 };
 
-Description.propTypes = {
+MetaDescription.propTypes = {
   value: PropTypes.string,
 };
 
-Description.defaultProps = {
+MetaDescription.defaultProps = {
   value: null,
 };
 
-export default Description;
+export default MetaDescription;

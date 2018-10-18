@@ -71,7 +71,7 @@ HTML.defaultProps = {
   tag: 'div'
 };
 
-var Description = function Description(_ref) {
+var MetaDescription = function MetaDescription(_ref) {
   var value = _ref.value;
   if (!value) return null;
   return React__default.createElement(Head, null, React__default.createElement("meta", {
@@ -80,14 +80,14 @@ var Description = function Description(_ref) {
   }));
 };
 
-Description.propTypes = {
+MetaDescription.propTypes = {
   value: PropTypes.string
 };
-Description.defaultProps = {
+MetaDescription.defaultProps = {
   value: null
 };
 
-var Title = function Title(_ref) {
+var PageTitle = function PageTitle(_ref) {
   var value = _ref.value,
       siteName = _ref.siteName,
       concateWith = _ref.concateWith;
@@ -95,17 +95,17 @@ var Title = function Title(_ref) {
   return React__default.createElement(Head, null, React__default.createElement("title", null, title));
 };
 
-Title.propTypes = {
+PageTitle.propTypes = {
   value: PropTypes.string.isRequired,
   siteName: PropTypes.string,
   concateWith: PropTypes.string
 };
-Title.defaultProps = {
+PageTitle.defaultProps = {
   siteName: null,
   concateWith: '|'
 };
 
-var CanonicalURL = function CanonicalURL(_ref) {
+var RelCanonical = function RelCanonical(_ref) {
   var origin = _ref.origin,
       pathname = _ref.pathname;
   return React__default.createElement(Head, null, React__default.createElement("link", {
@@ -114,13 +114,13 @@ var CanonicalURL = function CanonicalURL(_ref) {
   }));
 };
 
-CanonicalURL.propTypes = {
+RelCanonical.propTypes = {
   pathname: PropTypes.string.isRequired,
   origin: PropTypes.string.isRequired
 };
 
 exports.FormatDate = FormatDate;
 exports.HTML = HTML;
-exports.MetaDescription = Description;
-exports.PageTitle = Title;
-exports.RelCanonical = CanonicalURL;
+exports.MetaDescription = MetaDescription;
+exports.PageTitle = PageTitle;
+exports.RelCanonical = RelCanonical;
