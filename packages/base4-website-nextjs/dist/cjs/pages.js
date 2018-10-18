@@ -4,7 +4,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var __chunk_4 = require('./chunk-0056f8e4.js');
+var __chunk_3 = require('./chunk-0056f8e4.js');
 var App = require('next/app');
 var App__default = _interopDefault(App);
 var React = require('react');
@@ -15,15 +15,15 @@ var withApollo = _interopDefault(require('@base-cms/base4-nextjs-apollo'));
 var WebsiteApp =
 /*#__PURE__*/
 function (_App) {
-  __chunk_4._inherits(WebsiteApp, _App);
+  __chunk_3._inherits(WebsiteApp, _App);
 
   function WebsiteApp() {
-    __chunk_4._classCallCheck(this, WebsiteApp);
+    __chunk_3._classCallCheck(this, WebsiteApp);
 
-    return __chunk_4._possibleConstructorReturn(this, __chunk_4._getPrototypeOf(WebsiteApp).apply(this, arguments));
+    return __chunk_3._possibleConstructorReturn(this, __chunk_3._getPrototypeOf(WebsiteApp).apply(this, arguments));
   }
 
-  __chunk_4._createClass(WebsiteApp, [{
+  __chunk_3._createClass(WebsiteApp, [{
     key: "render",
     value: function render() {
       var _this$props = this.props,

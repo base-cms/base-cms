@@ -2,12 +2,13 @@ import { a as _regeneratorRuntime } from './chunk-fd635e66.js';
 import { g as _objectSpread, a as _asyncToGenerator, b as _classCallCheck, c as _createClass, d as _possibleConstructorReturn, e as _getPrototypeOf, f as _inherits, h as _taggedTemplateLiteral } from './chunk-38cf2b6d.js';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { a as displayName, b as httpErrors, c as sectionPath } from './chunk-59977c9f.js';
+import { b as displayName, c as httpErrors, d as sectionPath } from './chunk-d4290549.js';
 import gql from 'graphql-tag';
 import { redirect } from './routing.js';
-import { a as RelCanonical, b as Meta } from './chunk-4292eceb.js';
-import './chunk-5198f64a.js';
+import { RelCanonical, PageTitle, MetaDescription } from './components.js';
 import 'next-routes';
+import 'moment';
+import './utils.js';
 import 'next/head';
 
 var extractFragmentName = (function (fragment) {
@@ -203,9 +204,9 @@ var withPlatformContent = (function (Page) {
             canonicalPath = _this$props.canonicalPath,
             content = _this$props.content;
         var metadata = content.metadata;
-        return React.createElement(React.Fragment, null, React.createElement(Meta.Title, {
+        return React.createElement(React.Fragment, null, React.createElement(PageTitle, {
           value: metadata.title
-        }), React.createElement(Meta.Description, {
+        }), React.createElement(MetaDescription, {
           value: metadata.description
         }), React.createElement(RelCanonical, {
           origin: requestOrigin,
@@ -384,9 +385,9 @@ var withWebsiteSection = (function (Page) {
             canonicalPath = _this$props.canonicalPath,
             section = _this$props.section;
         var metadata = section.metadata;
-        return React.createElement(React.Fragment, null, React.createElement(Meta.Title, {
+        return React.createElement(React.Fragment, null, React.createElement(PageTitle, {
           value: metadata.title
-        }), React.createElement(Meta.Description, {
+        }), React.createElement(MetaDescription, {
           value: metadata.description
         }), React.createElement(RelCanonical, {
           origin: requestOrigin,

@@ -1,6 +1,11 @@
 'use strict';
 
-var __chunk_1 = require('./chunk-c2e7f00c.js');
+var cleanPath = (function (path) {
+  if (!path) return '';
+  var trimmed = String(path).trim();
+  if (!trimmed.length) return '';
+  return trimmed.replace(/^\/+/, '').replace(/\/+$/, '');
+});
 
 var displayName = (function (Comp) {
   if (typeof Comp === 'string') return Comp;
@@ -24,7 +29,7 @@ var httpErrors = {
  */
 
 var shouldGoToIndex = function shouldGoToIndex(alias) {
-  var path = __chunk_1.cleanPath(alias);
+  var path = cleanPath(alias);
   if (path === 'home' || path === '') return true;
   return false;
 };
@@ -45,11 +50,12 @@ var shouldGoToIndex = function shouldGoToIndex(alias) {
 var sectionPath = (function (alias) {
   var routePrefix = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'section';
   if (shouldGoToIndex(alias)) return '/';
-  var path = __chunk_1.cleanPath(alias);
+  var path = cleanPath(alias);
   if (!routePrefix) return "/".concat(path);
-  return "/".concat(__chunk_1.cleanPath(routePrefix), "/").concat(path);
+  return "/".concat(cleanPath(routePrefix), "/").concat(path);
 });
 
+exports.cleanPath = cleanPath;
 exports.displayName = displayName;
 exports.httpErrors = httpErrors;
 exports.sectionPath = sectionPath;

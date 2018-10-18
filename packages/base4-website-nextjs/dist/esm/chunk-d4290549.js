@@ -1,4 +1,9 @@
-import { a as cleanPath } from './chunk-5198f64a.js';
+var cleanPath = (function (path) {
+  if (!path) return '';
+  var trimmed = String(path).trim();
+  if (!trimmed.length) return '';
+  return trimmed.replace(/^\/+/, '').replace(/\/+$/, '');
+});
 
 var displayName = (function (Comp) {
   if (typeof Comp === 'string') return Comp;
@@ -48,4 +53,4 @@ var sectionPath = (function (alias) {
   return "/".concat(cleanPath(routePrefix), "/").concat(path);
 });
 
-export { displayName as a, httpErrors as b, sectionPath as c };
+export { cleanPath as a, displayName as b, httpErrors as c, sectionPath as d };

@@ -2,13 +2,126 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var __chunk_5 = require('./chunk-1ccc7e43.js');
-require('react');
-require('prop-types');
-require('next/head');
-require('./chunk-c2e7f00c.js');
+function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
+var React = require('react');
+var React__default = _interopDefault(React);
+var PropTypes = _interopDefault(require('prop-types'));
+var moment = _interopDefault(require('moment'));
+var utils = require('./utils.js');
+var Head = _interopDefault(require('next/head'));
+require('./chunk-e4c26cd3.js');
 
+var formatValue = function formatValue(value, format) {
+  if (!value) return '';
+  var date = moment(value);
+  if (!date.isValid()) return '';
+  return moment(value).format(format);
+};
 
-exports.RelCanonical = __chunk_5.RelCanonical;
-exports.Meta = __chunk_5.index;
+var FormatDate = function FormatDate(_ref) {
+  var className = _ref.className,
+      collapsable = _ref.collapsable,
+      format = _ref.format,
+      Tag = _ref.tag,
+      value = _ref.value;
+  var formatted = formatValue(value, format);
+  if (collapsable && !formatted) return null;
+  return React__default.createElement(Tag, {
+    className: className
+  }, formatValue(value, format));
+};
+
+FormatDate.propTypes = {
+  className: PropTypes.string,
+  collapsable: PropTypes.bool,
+  format: PropTypes.string,
+  value: PropTypes.number,
+  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
+};
+FormatDate.defaultProps = {
+  className: null,
+  collapsable: true,
+  format: 'MMM Do, YYYY',
+  tag: 'span',
+  value: null
+};
+
+var HTML = function HTML(_ref) {
+  var className = _ref.className,
+      collapsable = _ref.collapsable,
+      html = _ref.html,
+      Tag = _ref.tag;
+  if (!html && collapsable) return null;
+  return React__default.createElement(Tag, {
+    className: className,
+    dangerouslySetInnerHTML: utils.createMarkup(html)
+  });
+};
+
+HTML.propTypes = {
+  className: PropTypes.string,
+  collapsable: PropTypes.bool,
+  html: PropTypes.string,
+  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
+};
+HTML.defaultProps = {
+  className: null,
+  collapsable: true,
+  html: '',
+  tag: 'div'
+};
+
+var Description = function Description(_ref) {
+  var value = _ref.value;
+  if (!value) return null;
+  return React__default.createElement(Head, null, React__default.createElement("meta", {
+    name: "description",
+    content: value
+  }));
+};
+
+Description.propTypes = {
+  value: PropTypes.string
+};
+Description.defaultProps = {
+  value: null
+};
+
+var Title = function Title(_ref) {
+  var value = _ref.value,
+      siteName = _ref.siteName,
+      concateWith = _ref.concateWith;
+  var title = siteName ? "".concat(value, " ").concat(concateWith, " ").concat(siteName) : value;
+  return React__default.createElement(Head, null, React__default.createElement("title", null, title));
+};
+
+Title.propTypes = {
+  value: PropTypes.string.isRequired,
+  siteName: PropTypes.string,
+  concateWith: PropTypes.string
+};
+Title.defaultProps = {
+  siteName: null,
+  concateWith: '|'
+};
+
+var CanonicalURL = function CanonicalURL(_ref) {
+  var origin = _ref.origin,
+      pathname = _ref.pathname;
+  return React__default.createElement(Head, null, React__default.createElement("link", {
+    rel: "canonical",
+    href: "".concat(origin, "/").concat(utils.cleanPath(pathname))
+  }));
+};
+
+CanonicalURL.propTypes = {
+  pathname: PropTypes.string.isRequired,
+  origin: PropTypes.string.isRequired
+};
+
+exports.FormatDate = FormatDate;
+exports.HTML = HTML;
+exports.MetaDescription = Description;
+exports.PageTitle = Title;
+exports.RelCanonical = CanonicalURL;

@@ -17,8 +17,7 @@ import defaultFragment from '../gql/fragments/with-platform-content.graphql';
 import withRequestOrigin from './withRequestOrigin';
 
 // Components
-import RelCanonical from '../components/RelCanonical';
-import Meta from '../components/Meta';
+import { RelCanonical, PageTitle, MetaDescription } from '../components';
 
 /**
  *
@@ -113,8 +112,8 @@ export default (Page, options = {
       const { metadata } = content;
       return (
         <>
-          <Meta.Title value={metadata.title} />
-          <Meta.Description value={metadata.description} />
+          <PageTitle value={metadata.title} />
+          <MetaDescription value={metadata.description} />
           <RelCanonical origin={requestOrigin} pathname={canonicalPath} />
           <Page {...this.props} />
         </>

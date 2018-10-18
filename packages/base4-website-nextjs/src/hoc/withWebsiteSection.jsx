@@ -18,8 +18,7 @@ import defaultFragment from '../gql/fragments/with-website-section.graphql';
 import withRequestOrigin from './withRequestOrigin';
 
 // Components
-import RelCanonical from '../components/RelCanonical';
-import Meta from '../components/Meta';
+import { RelCanonical, PageTitle, MetaDescription } from '../components';
 
 /**
  * Builds the website section GraphQL query.
@@ -99,8 +98,8 @@ export default (Page, options = {
       const { metadata } = section;
       return (
         <>
-          <Meta.Title value={metadata.title} />
-          <Meta.Description value={metadata.description} />
+          <PageTitle value={metadata.title} />
+          <MetaDescription value={metadata.description} />
           <RelCanonical origin={requestOrigin} pathname={canonicalPath} />
           <Page {...this.props} />
         </>

@@ -1,8 +1,13 @@
+import FormatDate from './components/FormatDate';
+import HTML from './components/HTML';
+import MetaDescription from './components/MetaDescription';
+import PageTitle from './components/PageTitle';
 import RelCanonical from './components/RelCanonical';
-import * as Meta from './components/Meta';
 
-// eslint-disable-next-line import/prefer-default-export
 export {
+  FormatDate,
+  HTML,
+  MetaDescription,
+  PageTitle,
   RelCanonical,
-  Meta,
 };
