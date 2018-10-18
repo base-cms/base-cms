@@ -18,15 +18,9 @@ const makeExternalPredicate = (externalsArr) => {
   return id => externalPattern.test(id);
 }
 
-export default {
-  input: 'src/routing.js',
-  output: [
-    {
-      file: 'dist/routing.js',
-      format: 'cjs',
-      sourcemap: true,
-    },
-  ],
+const buildConfig = ({ input, output }) => ({
+  input,
+  output,
   external: makeExternalPredicate(externals),
   plugins: [
     nodeResolve({ extensions: ['.js', '.jsx'] }),
@@ -34,4 +28,17 @@ export default {
     graphql(),
     babel({ exclude: 'node_modules/**' }),
   ],
-};
+});
+
+export default [
+  buildConfig({
+    input: 'src/routing.js',
+    output: [
+      {
+        file: 'dist/routing.js',
+        format: 'cjs',
+        sourcemap: true,
+      },
+    ]
+  }),
+];
