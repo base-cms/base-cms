@@ -16,6 +16,6 @@ var redirect = function redirect(res, route) {
   }
 };
 var Link = routes.Link;
-var Router = routes.Router; // import routes from 'nextjs/routes';
+var Router = routes.Router;
 
 export { routes, redirect, Link, Router };

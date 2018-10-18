@@ -22,7 +22,7 @@ var redirect = function redirect(res, route) {
   }
 };
 var Link = routes.Link;
-var Router = routes.Router; // import routes from 'nextjs/routes';
+var Router = routes.Router;
 
 exports.routes = routes;
 exports.redirect = redirect;
