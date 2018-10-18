@@ -1,0 +1,12 @@
+fragment WithDynamicPageFragment on PlatformContentPage {
+  id
+  name
+  type
+  teaser
+  alias
+  body
+  metadata {
+    title
+    description
+  }
+}
