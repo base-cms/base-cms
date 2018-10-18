@@ -26,7 +26,7 @@ import { RelCanonical, PageTitle, MetaDescription } from '../components';
 export const buildQuery = ({ fragment }) => {
   const { spreadFragmentName, processedFragment } = extractFragmentData({ fragment });
   return gql`
-    query ContentPage($input: RootPlatformContentQueryOne!, $canonicalFields: [PlatfromContentPathField]!) {
+    query WithPlatformContent($input: RootPlatformContentQueryOne!, $canonicalFields: [PlatfromContentPathField]!) {
       platformContent(input: $input) {
         ...WithPlatformContentFragment
         ${spreadFragmentName}
