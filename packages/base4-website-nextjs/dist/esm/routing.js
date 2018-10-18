@@ -17,6 +17,6 @@ var redirect = function redirect(res, route) {
     // Client-side.
     Router.replaceRoute(route);
   }
-};
+}; // @todo Override the normal Link component to support external links.
 
 export { routes, redirect, Link, Router };

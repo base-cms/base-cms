@@ -11,11 +11,11 @@ var React__default = _interopDefault(React);
 var PropTypes = _interopDefault(require('prop-types'));
 var __chunk_2 = require('./chunk-f0af9a84.js');
 var gql = _interopDefault(require('graphql-tag'));
+var Head = _interopDefault(require('next/head'));
 var routing = require('./routing.js');
 var __chunk_5 = require('./chunk-d4fdf81b.js');
 require('./chunk-c2e7f00c.js');
 require('next-routes');
-require('next/head');
 
 var extractFragmentName = (function (fragment) {
   var pattern = /fragment (.*) on/;
@@ -46,8 +46,8 @@ var extractFragmentData = (function (_ref) {
   };
 });
 
-var doc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"WithPlatformContentFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PlatformContent"}},"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"name"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"type"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"teaser"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"body"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"redirectTo"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"canonicalPath"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"fields"},"value":{"kind":"Variable","name":{"kind":"Name","value":"canonicalFields"}}}]}}],"directives":[]}]}}],"loc":{"start":0,"end":161}};
-    doc.loc.source = {"body":"fragment WithPlatformContentFragment on PlatformContent {\n  id\n  name\n  type\n  teaser\n  body\n  redirectTo\n  canonicalPath(input: { fields: $canonicalFields })\n}\n","name":"GraphQL request","locationOffset":{"line":1,"column":1}};
+var doc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"WithPlatformContentFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PlatformContent"}},"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"name"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"type"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"teaser"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"body"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"redirectTo"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"seoTitle"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"seoDescription"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"canonicalPath"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"fields"},"value":{"kind":"Variable","name":{"kind":"Name","value":"canonicalFields"}}}]}}],"directives":[]}]}}],"loc":{"start":0,"end":189}};
+    doc.loc.source = {"body":"fragment WithPlatformContentFragment on PlatformContent {\n  id\n  name\n  type\n  teaser\n  body\n  redirectTo\n  seoTitle\n  seoDescription\n  canonicalPath(input: { fields: $canonicalFields })\n}\n","name":"GraphQL request","locationOffset":{"line":1,"column":1}};
 
 var withRequestOrigin = (function (Page) {
   var WithRequestOrigin =
@@ -207,8 +207,12 @@ var withPlatformContent = (function (Page) {
       value: function render() {
         var _this$props = this.props,
             requestOrigin = _this$props.requestOrigin,
-            canonicalPath = _this$props.canonicalPath;
-        return React__default.createElement(React__default.Fragment, null, React__default.createElement(__chunk_5.RelCanonical, {
+            canonicalPath = _this$props.canonicalPath,
+            content = _this$props.content;
+        return React__default.createElement(React__default.Fragment, null, React__default.createElement(Head, null, React__default.createElement("title", null, content.seoTitle), React__default.createElement("meta", {
+          name: "description",
+          content: content.seoDescription
+        })), React__default.createElement(__chunk_5.RelCanonical, {
           origin: requestOrigin,
           pathname: canonicalPath
         }), React__default.createElement(Page, this.props));
@@ -322,6 +326,8 @@ var withPlatformContent = (function (Page) {
       teaser: PropTypes.string,
       body: PropTypes.string,
       redirectTo: PropTypes.string,
+      seoTitle: PropTypes.string,
+      seoDescription: PropTypes.string,
       canonicalPath: PropTypes.string.isRequired
     }).isRequired
   });
@@ -381,8 +387,12 @@ var withWebsiteSection = (function (Page) {
       value: function render() {
         var _this$props = this.props,
             requestOrigin = _this$props.requestOrigin,
-            canonicalPath = _this$props.canonicalPath;
-        return React__default.createElement(React__default.Fragment, null, React__default.createElement(__chunk_5.RelCanonical, {
+            canonicalPath = _this$props.canonicalPath,
+            section = _this$props.section;
+        return React__default.createElement(React__default.Fragment, null, React__default.createElement(Head, null, React__default.createElement("title", null, section.seoTitle), React__default.createElement("meta", {
+          name: "description",
+          content: section.description
+        })), React__default.createElement(__chunk_5.RelCanonical, {
           origin: requestOrigin,
           pathname: canonicalPath
         }), React__default.createElement(Page, this.props));

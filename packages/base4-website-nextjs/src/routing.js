@@ -14,6 +14,7 @@ const redirect = (res, route, code = 301) => {
   }
 };
 
+// @todo Override the normal Link component to support external links.
 export {
   routes,
   redirect,
