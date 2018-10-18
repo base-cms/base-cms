@@ -7,20 +7,14 @@ function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'defau
 var React = _interopDefault(require('react'));
 var PropTypes = _interopDefault(require('prop-types'));
 var Head = _interopDefault(require('next/head'));
-
-var cleanPath = (function (path) {
-  if (!path) return '';
-  var trimmed = String(path).trim();
-  if (!trimmed.length) return '';
-  return trimmed.replace(/^\/+/, '').replace(/\/+$/, '');
-});
+var __chunk_1 = require('./chunk-c2e7f00c.js');
 
 var RelCanonicalElement = function RelCanonicalElement(_ref) {
   var origin = _ref.origin,
       pathname = _ref.pathname;
   return React.createElement(Head, null, React.createElement("link", {
     rel: "canonical",
-    href: "".concat(origin, "/").concat(cleanPath(pathname))
+    href: "".concat(origin, "/").concat(__chunk_1.cleanPath(pathname))
   }));
 };
 
@@ -30,4 +24,3 @@ RelCanonicalElement.propTypes = {
 };
 
 exports.RelCanonical = RelCanonicalElement;
-//# sourceMappingURL=index.js.map

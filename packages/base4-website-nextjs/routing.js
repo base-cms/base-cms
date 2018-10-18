@@ -7,7 +7,7 @@ module.exports = routing;
 
 // import { cleanPath } from 'nextjs/utils';
 
-// import { WebsiteApp, ContentPage } from 'nextjs/site/pages';
-// import { withWebsiteContent } from 'nextjs/site/hoc';
+// import { WebsiteApp, ContentPage } from 'nextjs/pages';
+// import { withWebsiteContent } from 'nextjs/hoc';
 
-// import { RelCanonical } from 'nextjs/site/components';
+// import { RelCanonical } from 'nextjs/components';

@@ -18,9 +18,16 @@ const makeExternalPredicate = (externalsArr) => {
   return id => externalPattern.test(id);
 }
 
-const buildConfig = ({ input, output }) => ({
-  input,
-  output,
+export default {
+  experimentalCodeSplitting: true,
+  input: [
+    'src/utils.js',
+    'src/components.js',
+  ],
+  output: [
+    { dir: 'lib', format: 'cjs' },
+    { dir: 'esm', format: 'esm' },
+  ],
   external: makeExternalPredicate(externals),
   plugins: [
     nodeResolve({ extensions: ['.js', '.jsx'] }),
@@ -28,37 +35,4 @@ const buildConfig = ({ input, output }) => ({
     graphql(),
     babel({ exclude: 'node_modules/**' }),
   ],
-});
-
-export default [
-  buildConfig({
-    input: 'src/utils/index.js',
-    output: [
-      {
-        file: 'dist/utils/index.js',
-        format: 'cjs',
-        sourcemap: true,
-      },
-      {
-        file: 'dist/utils/index.esm.js',
-        format: 'esm',
-        sourcemap: true,
-      }
-    ],
-  }),
-  buildConfig({
-    input: 'src/components/index.js',
-    output: [
-      {
-        file: 'dist/components/index.js',
-        format: 'cjs',
-        sourcemap: true,
-      },
-      {
-        file: 'dist/components/index.esm.js',
-        format: 'esm',
-        sourcemap: true,
-      }
-    ],
-  }),
-];
+}

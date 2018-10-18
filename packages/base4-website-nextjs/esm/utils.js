@@ -1,9 +1,5 @@
-var cleanPath = (function (path) {
-  if (!path) return '';
-  var trimmed = String(path).trim();
-  if (!trimmed.length) return '';
-  return trimmed.replace(/^\/+/, '').replace(/\/+$/, '');
-});
+import { a as cleanPath } from './chunk-5198f64a.js';
+export { a as cleanPath } from './chunk-5198f64a.js';
 
 var componentDisplayName = (function (Comp) {
   if (typeof Comp === 'string') return Comp;
@@ -59,5 +55,4 @@ var sectionPath = (function (alias) {
   return "/".concat(cleanPath(routePrefix), "/").concat(path);
 });
 
-export { cleanPath, componentDisplayName, createMarkup, httpErrors, sectionPath };
-//# sourceMappingURL=index.esm.js.map
+export { componentDisplayName, createMarkup, httpErrors, sectionPath };

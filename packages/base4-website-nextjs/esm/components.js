@@ -1,13 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
-
-var cleanPath = (function (path) {
-  if (!path) return '';
-  var trimmed = String(path).trim();
-  if (!trimmed.length) return '';
-  return trimmed.replace(/^\/+/, '').replace(/\/+$/, '');
-});
+import { a as cleanPath } from './chunk-5198f64a.js';
 
 var RelCanonicalElement = function RelCanonicalElement(_ref) {
   var origin = _ref.origin,
@@ -24,4 +18,3 @@ RelCanonicalElement.propTypes = {
 };
 
 export { RelCanonicalElement as RelCanonical };
-//# sourceMappingURL=index.esm.js.map
