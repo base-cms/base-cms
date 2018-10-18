@@ -10,8 +10,10 @@
   },
   "scripts": {
     "dev": "NODE_ENV=development node server",
+    "dev:upgrade": "yarn upgrade:core && yarn dev",
     "build": "next build site",
-    "start": "NODE_ENV=production node server"
+    "start": "NODE_ENV=production node server",
+    "upgrade:core": "yarn upgrade @base-cms/base4-website-nextjs"
   },
   "dependencies": {
     "@base-cms/base4-website-nextjs": "https://github.com/base-cms/base4-website-nextjs.git",
