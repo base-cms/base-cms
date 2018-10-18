@@ -2,6 +2,9 @@ fragment WithWebsiteSectionFragment on WebsiteSection {
   id
   name
   description
-  seoTitle
   alias
+  metadata {
+    title
+    description
+  }
 }

@@ -96,10 +96,11 @@ export default (Page, options = {
      */
     render() {
       const { requestOrigin, canonicalPath, section } = this.props;
+      const { metadata } = section;
       return (
         <>
-          <Meta.Title value={section.seoTitle} />
-          <Meta.Description value={section.description} />
+          <Meta.Title value={metadata.title} />
+          <Meta.Description value={metadata.description} />
           <RelCanonical origin={requestOrigin} pathname={canonicalPath} />
           <Page {...this.props} />
         </>
