@@ -1,4 +1,9 @@
-import withRequestOrigin from './hoc/withRequestOrigin';
 import withPlatformContent from './hoc/withPlatformContent';
+import withRequestOrigin from './hoc/withRequestOrigin';
+import withWebsiteSection from './hoc/withWebsiteSection';
 
-export { withRequestOrigin, withPlatformContent };
+export {
+  withPlatformContent,
+  withRequestOrigin,
+  withWebsiteSection,
+};

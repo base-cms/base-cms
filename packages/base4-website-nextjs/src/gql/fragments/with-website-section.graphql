@@ -1,0 +1,7 @@
+fragment WithWebsiteSectionFragment on WebsiteSection {
+  id
+  name
+  description
+  seoTitle
+  alias
+}
