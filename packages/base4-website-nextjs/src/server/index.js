@@ -1,7 +1,7 @@
 const next = require('next');
 const baseWebsite = require('@base-cms/base4-website-express');
 const { resolve } = require('path');
-const routes = require('../../routes');
+const { routes } = require('../routing');
 
 const isFn = v => typeof v === 'function';
 

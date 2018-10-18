@@ -1,4 +1,4 @@
-import createRoutes from 'next-routes';
+const createRoutes = require('next-routes');
 
 const routes = createRoutes();
 const { Link, Router } = routes;
@@ -14,4 +14,7 @@ const redirect = (res, route, code = 301) => {
   }
 };
 
-export { routes, redirect, Link, Router };
+exports.routes = routes;
+exports.redirect = redirect;
+exports.Link = Link;
+exports.Router = Router;
