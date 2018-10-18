@@ -10,7 +10,7 @@ import {
   componentDisplayName,
   sectionPath,
   httpErrors,
-  extractFragmentData
+  extractFragmentData,
 } from '../utils';
 
 // GraphQL
