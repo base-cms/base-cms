@@ -6,9 +6,7 @@ import gql from 'graphql-tag';
 import { redirect } from '../routing';
 
 // Utilities
-import displayName from '../utils/component-display-name';
-import extractFragmentData from '../utils/extract-fragment-data';
-import httpErrors from '../utils/http-errors';
+import { componentDisplayName, extractFragmentData, httpErrors } from '../utils';
 
 // GraphQL
 import defaultFragment from '../gql/fragments/with-platform-content.graphql';
@@ -120,7 +118,7 @@ export default (Page, options = {
       );
     }
   }
-  WithPlatformContent.displayName = `WithPlatformContent(${displayName(Page)})`;
+  WithPlatformContent.displayName = `WithPlatformContent(${componentDisplayName(Page)})`;
   WithPlatformContent.propTypes = {
     ...Page.propTypes,
     canonicalPath: PropTypes.string.isRequired,

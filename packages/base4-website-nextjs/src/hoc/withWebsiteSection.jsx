@@ -6,10 +6,12 @@ import gql from 'graphql-tag';
 import { redirect } from '../routing';
 
 // Utilities
-import displayName from '../utils/component-display-name';
-import sectionPath from '../utils/section-path';
-import httpErrors from '../utils/http-errors';
-import extractFragmentData from '../utils/extract-fragment-data';
+import {
+  componentDisplayName,
+  sectionPath,
+  httpErrors,
+  extractFragmentData
+} from '../utils';
 
 // GraphQL
 import defaultFragment from '../gql/fragments/with-website-section.graphql';
@@ -106,7 +108,7 @@ export default (Page, options = {
       );
     }
   }
-  WithWebsiteSection.displayName = `WithWebsiteSection(${displayName(Page)})`;
+  WithWebsiteSection.displayName = `WithWebsiteSection(${componentDisplayName(Page)})`;
   WithWebsiteSection.propTypes = {
     ...Page.propTypes,
     canonicalPath: PropTypes.string.isRequired,

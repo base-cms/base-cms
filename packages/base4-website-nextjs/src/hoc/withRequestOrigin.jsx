@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import displayName from '../utils/component-display-name';
+import { componentDisplayName } from '../utils';
 
 export default (Page) => {
   class WithRequestOrigin extends Component {
@@ -28,7 +28,7 @@ export default (Page) => {
       return <Page {...this.props} />;
     }
   }
-  WithRequestOrigin.displayName = `WithRequestOrigin(${displayName(Page)})`;
+  WithRequestOrigin.displayName = `WithRequestOrigin(${componentDisplayName(Page)})`;
   WithRequestOrigin.propTypes = {
     ...Page.propTypes,
     requestOrigin: PropTypes.string.isRequired,

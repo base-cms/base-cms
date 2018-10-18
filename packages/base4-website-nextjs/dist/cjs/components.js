@@ -10,7 +10,6 @@ var PropTypes = _interopDefault(require('prop-types'));
 var moment = _interopDefault(require('moment'));
 var utils = require('./utils.js');
 var Head = _interopDefault(require('next/head'));
-require('./chunk-e4c26cd3.js');
 
 var formatValue = function formatValue(value, format) {
   if (!value) return '';

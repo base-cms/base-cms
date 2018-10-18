@@ -2,43 +2,13 @@ import { a as _regeneratorRuntime } from './chunk-fd635e66.js';
 import { g as _objectSpread, a as _asyncToGenerator, b as _classCallCheck, c as _createClass, d as _possibleConstructorReturn, e as _getPrototypeOf, f as _inherits, h as _taggedTemplateLiteral } from './chunk-38cf2b6d.js';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { b as displayName, c as httpErrors, d as sectionPath } from './chunk-d4290549.js';
+import { componentDisplayName, extractFragmentData, httpErrors, sectionPath } from './utils.js';
 import gql from 'graphql-tag';
 import { redirect } from './routing.js';
 import { RelCanonical, PageTitle, MetaDescription } from './components.js';
 import 'next-routes';
 import 'moment';
-import './utils.js';
 import 'next/head';
-
-var extractFragmentName = (function (fragment) {
-  var pattern = /fragment (.*) on/;
-  if (typeof fragment === 'string') return fragment.match(pattern)[1];
-
-  if (fragment && fragment.kind && fragment.kind === 'Document') {
-    return fragment.loc.source.body.match(pattern)[1];
-  }
-
-  return null;
-});
-
-var extractFragmentData = (function (_ref) {
-  var fragment = _ref.fragment;
-  var spreadFragmentName = '';
-  var processedFragment = '';
-
-  if (fragment) {
-    var fragmentName = extractFragmentName(fragment);
-    if (!fragmentName) throw new Error('Unable to extract a fragment name.');
-    processedFragment = fragment;
-    spreadFragmentName = "...".concat(fragmentName);
-  }
-
-  return {
-    processedFragment: processedFragment,
-    spreadFragmentName: spreadFragmentName
-  };
-});
 
 var doc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"WithPlatformContentFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PlatformContent"}},"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"name"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"type"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"teaser"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"body"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"redirectTo"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"canonicalPath"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"fields"},"value":{"kind":"Variable","name":{"kind":"Name","value":"canonicalFields"}}}]}}],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"metadata"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"description"},"arguments":[],"directives":[]}]}}]}}],"loc":{"start":0,"end":204}};
     doc.loc.source = {"body":"fragment WithPlatformContentFragment on PlatformContent {\n  id\n  name\n  type\n  teaser\n  body\n  redirectTo\n  canonicalPath(input: { fields: $canonicalFields })\n  metadata {\n    title\n    description\n  }\n}\n","name":"GraphQL request","locationOffset":{"line":1,"column":1}};
@@ -114,7 +84,7 @@ var withRequestOrigin = (function (Page) {
     return WithRequestOrigin;
   }(Component);
 
-  WithRequestOrigin.displayName = "WithRequestOrigin(".concat(displayName(Page), ")");
+  WithRequestOrigin.displayName = "WithRequestOrigin(".concat(componentDisplayName(Page), ")");
   WithRequestOrigin.propTypes = _objectSpread({}, Page.propTypes, {
     requestOrigin: PropTypes.string.isRequired
   });
@@ -312,7 +282,7 @@ var withPlatformContent = (function (Page) {
     return WithPlatformContent;
   }(Component);
 
-  WithPlatformContent.displayName = "WithPlatformContent(".concat(displayName(Page), ")");
+  WithPlatformContent.displayName = "WithPlatformContent(".concat(componentDisplayName(Page), ")");
   WithPlatformContent.propTypes = _objectSpread({}, Page.propTypes, {
     canonicalPath: PropTypes.string.isRequired,
     content: PropTypes.shape({
@@ -503,7 +473,7 @@ var withWebsiteSection = (function (Page) {
     return WithWebsiteSection;
   }(Component);
 
-  WithWebsiteSection.displayName = "WithWebsiteSection(".concat(displayName(Page), ")");
+  WithWebsiteSection.displayName = "WithWebsiteSection(".concat(componentDisplayName(Page), ")");
   WithWebsiteSection.propTypes = _objectSpread({}, Page.propTypes, {
     canonicalPath: PropTypes.string.isRequired,
     section: PropTypes.shape({

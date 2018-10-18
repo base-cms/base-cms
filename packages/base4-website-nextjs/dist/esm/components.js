@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import { createMarkup, cleanPath } from './utils.js';
 import Head from 'next/head';
-import './chunk-d4290549.js';
 
 var formatValue = function formatValue(value, format) {
   if (!value) return '';
