@@ -110,10 +110,11 @@ export default (Page, options = {
      */
     render() {
       const { requestOrigin, canonicalPath, content } = this.props;
+      const { metadata } = content;
       return (
         <>
-          <Meta.Title value={content.seoTitle} />
-          <Meta.Description value={content.seoDescription} />
+          <Meta.Title value={metadata.title} />
+          <Meta.Description value={metadata.description} />
           <RelCanonical origin={requestOrigin} pathname={canonicalPath} />
           <Page {...this.props} />
         </>
@@ -131,8 +132,7 @@ export default (Page, options = {
       teaser: PropTypes.string,
       body: PropTypes.string,
       redirectTo: PropTypes.string,
-      seoTitle: PropTypes.string,
-      seoDescription: PropTypes.string,
+      metadata: PropTypes.object,
       canonicalPath: PropTypes.string.isRequired,
     }).isRequired,
   };

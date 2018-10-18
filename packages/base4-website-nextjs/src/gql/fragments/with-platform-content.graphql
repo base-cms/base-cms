@@ -5,7 +5,9 @@ fragment WithPlatformContentFragment on PlatformContent {
   teaser
   body
   redirectTo
-  seoTitle
-  seoDescription
   canonicalPath(input: { fields: $canonicalFields })
+  metadata {
+    title
+    description
+  }
 }
