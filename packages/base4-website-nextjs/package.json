@@ -9,6 +9,7 @@
     "url": "https://github.com/base-cms/base4-website-nextjs.git"
   },
   "scripts": {
+    "build": "rollup -c",
     "lint": "node_modules/.bin/eslint site server routes.js --ext .js --ext .jsx"
   },
   "dependencies": {
@@ -41,6 +42,12 @@
     "next": "7.0.2",
     "react": "^16.5.2",
     "react-apollo": "^2.2.4",
-    "react-dom": "^16.5.2"
+    "react-dom": "^16.5.2",
+    "rollup": "^0.66.6",
+    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-graphql": "^0.1.0",
+    "rollup-plugin-includepaths": "^0.2.3",
+    "rollup-plugin-node-resolve": "^3.4.0"
   }
 }
