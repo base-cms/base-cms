@@ -1,5 +1,11 @@
 import React from 'react';
+import { withWebsiteSection } from '@base-cms/base4-website-nextjs/hoc';
 
-export default () => (
-  <h1>Default Section Page</h1>
+const SectionPage = ({ section }) => (
+  <>
+    <h1>Default Section Page</h1>
+    <h2>{section.name}</h2>
+  </>
 );
+
+export default withWebsiteSection(SectionPage);
