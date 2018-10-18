@@ -1,26 +1,13 @@
 import { a as cleanPath } from './chunk-5198f64a.js';
 export { a as cleanPath } from './chunk-5198f64a.js';
-
-var componentDisplayName = (function (Comp) {
-  if (typeof Comp === 'string') return Comp;
-  return Comp.displayName || Comp.name || 'Unknown';
-});
+import { a as displayName, b as httpErrors } from './chunk-0fb8a91e.js';
+export { a as componentDisplayName, b as httpErrors } from './chunk-0fb8a91e.js';
 
 var createMarkup = (function (html) {
   return {
     __html: html
   };
 });
-
-var httpErrors = {
-  notFound: function notFound() {
-    var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'No record found.';
-    var e = new Error(message);
-    e.code = 'ENOENT';
-    e.statusCode = 404;
-    return e;
-  }
-};
 
 /**
  * Determines if an alias should go to the index/home page.
@@ -55,4 +42,4 @@ var sectionPath = (function (alias) {
   return "/".concat(cleanPath(routePrefix), "/").concat(path);
 });
 
-export { componentDisplayName, createMarkup, httpErrors, sectionPath };
+export { createMarkup, sectionPath };

@@ -4,102 +4,35 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
+var __chunk_4 = require('./chunk-0056f8e4.js');
 var App = require('next/app');
 var App__default = _interopDefault(App);
-var React = _interopDefault(require('react'));
+var React = require('react');
+var React__default = _interopDefault(React);
 var reactApollo = require('react-apollo');
 var withApollo = _interopDefault(require('@base-cms/base4-nextjs-apollo'));
-
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-
-function _defineProperties(target, props) {
-  for (var i = 0; i < props.length; i++) {
-    var descriptor = props[i];
-    descriptor.enumerable = descriptor.enumerable || false;
-    descriptor.configurable = true;
-    if ("value" in descriptor) descriptor.writable = true;
-    Object.defineProperty(target, descriptor.key, descriptor);
-  }
-}
-
-function _createClass(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties(Constructor, staticProps);
-  return Constructor;
-}
-
-function _inherits(subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function");
-  }
-
-  subClass.prototype = Object.create(superClass && superClass.prototype, {
-    constructor: {
-      value: subClass,
-      writable: true,
-      configurable: true
-    }
-  });
-  if (superClass) _setPrototypeOf(subClass, superClass);
-}
-
-function _getPrototypeOf(o) {
-  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
-    return o.__proto__ || Object.getPrototypeOf(o);
-  };
-  return _getPrototypeOf(o);
-}
-
-function _setPrototypeOf(o, p) {
-  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
-    o.__proto__ = p;
-    return o;
-  };
-
-  return _setPrototypeOf(o, p);
-}
-
-function _assertThisInitialized(self) {
-  if (self === void 0) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-
-  return self;
-}
-
-function _possibleConstructorReturn(self, call) {
-  if (call && (typeof call === "object" || typeof call === "function")) {
-    return call;
-  }
-
-  return _assertThisInitialized(self);
-}
 
 var WebsiteApp =
 /*#__PURE__*/
 function (_App) {
-  _inherits(WebsiteApp, _App);
+  __chunk_4._inherits(WebsiteApp, _App);
 
   function WebsiteApp() {
-    _classCallCheck(this, WebsiteApp);
+    __chunk_4._classCallCheck(this, WebsiteApp);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(WebsiteApp).apply(this, arguments));
+    return __chunk_4._possibleConstructorReturn(this, __chunk_4._getPrototypeOf(WebsiteApp).apply(this, arguments));
   }
 
-  _createClass(WebsiteApp, [{
+  __chunk_4._createClass(WebsiteApp, [{
     key: "render",
     value: function render() {
       var _this$props = this.props,
           Component = _this$props.Component,
           pageProps = _this$props.pageProps,
           apollo = _this$props.apollo;
-      return React.createElement(App.Container, null, React.createElement(reactApollo.ApolloProvider, {
+      return React__default.createElement(App.Container, null, React__default.createElement(reactApollo.ApolloProvider, {
         client: apollo
-      }, React.createElement(Component, pageProps)));
+      }, React__default.createElement(Component, pageProps)));
     }
   }]);
 

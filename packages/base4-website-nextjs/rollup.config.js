@@ -22,8 +22,10 @@ export default {
   experimentalCodeSplitting: true,
   input: [
     'src/utils.js',
+    'src/routing.js',
     'src/components.js',
     'src/pages.js',
+    'src/hoc.js',
   ],
   output: [
     { dir: 'dist/cjs', format: 'cjs' },

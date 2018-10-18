@@ -3,27 +3,13 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 var __chunk_1 = require('./chunk-c2e7f00c.js');
-
-var componentDisplayName = (function (Comp) {
-  if (typeof Comp === 'string') return Comp;
-  return Comp.displayName || Comp.name || 'Unknown';
-});
+var __chunk_2 = require('./chunk-9b172cca.js');
 
 var createMarkup = (function (html) {
   return {
     __html: html
   };
 });
-
-var httpErrors = {
-  notFound: function notFound() {
-    var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'No record found.';
-    var e = new Error(message);
-    e.code = 'ENOENT';
-    e.statusCode = 404;
-    return e;
-  }
-};
 
 /**
  * Determines if an alias should go to the index/home page.
@@ -59,7 +45,7 @@ var sectionPath = (function (alias) {
 });
 
 exports.cleanPath = __chunk_1.cleanPath;
-exports.componentDisplayName = componentDisplayName;
+exports.componentDisplayName = __chunk_2.displayName;
+exports.httpErrors = __chunk_2.httpErrors;
 exports.createMarkup = createMarkup;
-exports.httpErrors = httpErrors;
 exports.sectionPath = sectionPath;

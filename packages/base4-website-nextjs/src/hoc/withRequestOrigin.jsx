@@ -3,11 +3,7 @@ import PropTypes from 'prop-types';
 
 import displayName from '../utils/component-display-name';
 
-export const withRequestOriginPropTypes = {
-  requestOrigin: PropTypes.string.isRequired,
-};
-
-export const withRequestOrigin = (Page) => {
+export default (Page) => {
   class WithRequestOrigin extends Component {
     /**
      *
@@ -33,5 +29,9 @@ export const withRequestOrigin = (Page) => {
     }
   }
   WithRequestOrigin.displayName = `WithRequestOrigin(${displayName(Page)})`;
+  WithRequestOrigin.propTypes = {
+    ...Page.propTypes,
+    requestOrigin: PropTypes.string.isRequired,
+  }
   return WithRequestOrigin;
 };

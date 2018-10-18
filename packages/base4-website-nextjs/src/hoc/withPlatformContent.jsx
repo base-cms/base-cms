@@ -2,30 +2,22 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 
+// Routing
+import { redirect } from '../routing';
+
+// Utilities
 import displayName from '../utils/component-display-name';
 import extractFragmentData from '../utils/extract-fragment-data';
 import httpErrors from '../utils/http-errors';
-import redirect from '../utils/redirect';
 
+// GraphQL
 import defaultFragment from '../gql/fragments/with-platform-content.graphql';
 
-import { withRequestOrigin, withRequestOriginPropTypes } from './withRequestOrigin';
+// HOCs
+import withRequestOrigin from './withRequestOrigin';
 
+// Components
 import RelCanonical from '../components/RelCanonical';
-
-export const withPlatformContentPropTypes = {
-  canonicalPath: PropTypes.string.isRequired,
-  content: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    teaser: PropTypes.string,
-    body: PropTypes.string,
-    redirectTo: PropTypes.string,
-    canonicalPath: PropTypes.string.isRequired,
-  }),
-  ...withRequestOriginPropTypes,
-};
 
 /**
  *
@@ -69,7 +61,7 @@ export const checkContent = (content, { res, asPath }) => {
  * @param {object} options
  * @param {?string|object} options.fragment
  */
-export const withPlatformContent = (Page, options = {
+export default (Page, options = {
   fragment: null,
   canonicalFields: ['sectionAlias', 'type', 'id', 'slug'],
 }) => {
@@ -123,5 +115,18 @@ export const withPlatformContent = (Page, options = {
     }
   }
   WithPlatformContent.displayName = `WithPlatformContent(${displayName(Page)})`;
+  WithPlatformContent.propTypes = {
+    ...Page.propTypes,
+    canonicalPath: PropTypes.string.isRequired,
+    content: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      type: PropTypes.string.isRequired,
+      teaser: PropTypes.string,
+      body: PropTypes.string,
+      redirectTo: PropTypes.string,
+      canonicalPath: PropTypes.string.isRequired,
+    }),
+  }
   return withRequestOrigin(WithPlatformContent);
 };

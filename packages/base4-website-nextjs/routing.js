@@ -1,9 +1,9 @@
-const routing = require('./src/routing');
+const routing = require('./dist/cjs/routing');
 
 module.exports = routing;
 
 // import { routes, redirect } from 'nextjs/routing';
-// import server from 'nextjs/server';
+// const server = require('nextjs/server');
 
 // import { cleanPath } from 'nextjs/utils';
 
