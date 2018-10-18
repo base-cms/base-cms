@@ -9,7 +9,8 @@
     "url": "https://github.com/base-cms/base4-website-nextjs.git"
   },
   "scripts": {
-    "build": "rollup -c",
+    "clean": "rimraf dist",
+    "build": "yarn clean && rollup -c",
     "lint": "node_modules/.bin/eslint src --ext .js --ext .jsx"
   },
   "dependencies": {
@@ -43,6 +44,7 @@
     "react": "^16.5.2",
     "react-apollo": "^2.2.4",
     "react-dom": "^16.5.2",
+    "rimraf": "^2.6.2",
     "rollup": "^0.66.6",
     "rollup-plugin-babel": "^4.0.3",
     "rollup-plugin-commonjs": "^9.2.0",
