@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { get } from 'object-path';
 import HTML from './HTML';
 import { isFunction as isFn } from '../utils';
 
@@ -8,7 +9,7 @@ const propTypes = {
   children: PropTypes.func,
   collapsable: PropTypes.bool,
   data: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-  prop: PropTypes.string.isRequired,
+  path: PropTypes.string.isRequired,
   tag: PropTypes.string,
 };
 
@@ -25,12 +26,12 @@ const FieldValue = ({
   children,
   collapsable,
   data,
-  prop,
+  path,
   tag: Tag,
   ...attrs
 }) => {
-  // Extract the value off the data object, if possible.
-  const value = data && data[prop] ? data[prop] : null;
+  // Extract the value off the data object.
+  const value = get(data, path, null);
   // Protect the child render function.
   const render = isFn(children) ? children : defaultProps.children;
   // Return as an innerHTML element, if requested.

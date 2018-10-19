@@ -5,16 +5,17 @@ import { componentDisplayName } from '../utils';
 
 export default modelType => (Component) => {
   const WithModelFieldClass = ({
-    prop,
+    path,
     className,
     ...rest
-  }) => (
-    <Component className={classNames(`${modelType}__${prop}`, className)} prop={prop} {...rest} />
-  );
+  }) => {
+    const elementType = String(path).replace('.', '-');
+    return <Component className={classNames(`${modelType}__${elementType}`, className)} path={path} {...rest} />;
+  };
   WithModelFieldClass.displayName = `WithModelFieldClass(${componentDisplayName(Component)})[${modelType}]`;
   WithModelFieldClass.propTypes = {
     ...Component.propTypes,
-    prop: PropTypes.string.isRequired,
+    path: PropTypes.string.isRequired,
   };
   return WithModelFieldClass;
 };
