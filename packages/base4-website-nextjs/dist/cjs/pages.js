@@ -4,7 +4,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var __chunk_2 = require('./chunk-0056f8e4.js');
+var __chunk_2 = require('./chunk-2c19305a.js');
 var App = require('next/app');
 var App__default = _interopDefault(App);
 var React = require('react');

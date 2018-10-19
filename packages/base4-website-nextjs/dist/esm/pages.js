@@ -1,4 +1,4 @@
-import { b as _classCallCheck, c as _createClass, d as _possibleConstructorReturn, e as _getPrototypeOf, f as _inherits } from './chunk-38cf2b6d.js';
+import { d as _classCallCheck, e as _createClass, f as _possibleConstructorReturn, g as _getPrototypeOf, h as _inherits } from './chunk-cfc9ba70.js';
 import App, { Container } from 'next/app';
 import React from 'react';
 import { ApolloProvider } from 'react-apollo';

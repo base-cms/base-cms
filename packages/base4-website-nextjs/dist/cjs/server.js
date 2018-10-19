@@ -3,11 +3,13 @@
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
 var __chunk_1 = require('./chunk-efb9fd9b.js');
-var __chunk_2 = require('./chunk-0056f8e4.js');
+var __chunk_2 = require('./chunk-2c19305a.js');
 var next = _interopDefault(require('next'));
 var baseWebsite = _interopDefault(require('@base-cms/base4-website-express'));
 var path = require('path');
 var routing = require('./routing.js');
+require('react');
+require('./utils.js');
 require('next-routes');
 
 var isFn = function isFn(v) {
