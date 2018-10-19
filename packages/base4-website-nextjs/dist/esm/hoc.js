@@ -1,13 +1,16 @@
 import { a as _regeneratorRuntime } from './chunk-fd635e66.js';
-import { i as _objectSpread, c as _asyncToGenerator, d as _classCallCheck, e as _createClass, f as _possibleConstructorReturn, g as _getPrototypeOf, h as _inherits, j as _taggedTemplateLiteral } from './chunk-cfc9ba70.js';
+import { d as _objectSpread, c as _asyncToGenerator, e as _classCallCheck, f as _createClass, g as _possibleConstructorReturn, h as _getPrototypeOf, i as _inherits, j as _taggedTemplateLiteral } from './chunk-cfc9ba70.js';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { componentDisplayName, extractFragmentData, httpErrors, sectionPath } from './utils.js';
 import gql from 'graphql-tag';
 import { RelCanonical, PageTitle, MetaDescription } from './components.js';
 import { redirect } from './routing.js';
+import { a as withModelFieldName } from './chunk-eb72b5a9.js';
+export { a as withModelFieldName } from './chunk-eb72b5a9.js';
 import 'moment';
 import 'next/head';
+import 'classnames';
 import 'next-routes';
 
 var doc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"WithDynamicPageFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PlatformContentPage"}},"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"name"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"type"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"teaser"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"alias"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"body"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"metadata"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"description"},"arguments":[],"directives":[]}]}}]}}],"loc":{"start":0,"end":146}};

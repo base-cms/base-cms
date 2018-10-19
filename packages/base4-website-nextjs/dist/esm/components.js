@@ -1,8 +1,48 @@
+import { a as _extends, b as _objectWithoutProperties } from './chunk-cfc9ba70.js';
 import React from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
 import { createMarkup, cleanPath } from './utils.js';
+import { a as withModelFieldName } from './chunk-eb72b5a9.js';
+import moment from 'moment';
 import Head from 'next/head';
+import 'classnames';
+
+var propTypes = {
+  asHTML: PropTypes.bool,
+  children: PropTypes.node,
+  className: PropTypes.string,
+  tag: PropTypes.string
+};
+var defaultProps = {
+  asHTML: false,
+  children: null,
+  className: null,
+  tag: 'span'
+};
+
+var Field = function Field(_ref) {
+  var asHTML = _ref.asHTML,
+      children = _ref.children,
+      className = _ref.className,
+      Tag = _ref.tag,
+      attrs = _objectWithoutProperties(_ref, ["asHTML", "children", "className", "tag"]);
+
+  var html = asHTML && typeof children === 'string' ? children : null;
+  return html ? React.createElement(Tag, _extends({
+    className: className
+  }, attrs, {
+    dangerouslySetInnerHTML: createMarkup(html)
+  })) : React.createElement(Tag, _extends({
+    className: className
+  }, attrs), children);
+};
+
+Field.propTypes = propTypes;
+Field.defaultProps = defaultProps;
+
+var Field$1 = withModelFieldName(Field, {
+  modelType: 'content'
+});
 
 var formatValue = function formatValue(value, format) {
   if (!value) return '';
@@ -112,4 +152,4 @@ RelCanonical.propTypes = {
   origin: PropTypes.string.isRequired
 };
 
-export { FormatDate, HTML, MetaDescription, PageTitle, RelCanonical };
+export { Field$1 as ContentField, Field, FormatDate, HTML, MetaDescription, PageTitle, RelCanonical };

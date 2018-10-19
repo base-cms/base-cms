@@ -4,12 +4,52 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
+var __chunk_2 = require('./chunk-2c19305a.js');
 var React = require('react');
 var React__default = _interopDefault(React);
 var PropTypes = _interopDefault(require('prop-types'));
-var moment = _interopDefault(require('moment'));
 var utils = require('./utils.js');
+var __chunk_3 = require('./chunk-b0b75b5b.js');
+var moment = _interopDefault(require('moment'));
 var Head = _interopDefault(require('next/head'));
+require('classnames');
+
+var propTypes = {
+  asHTML: PropTypes.bool,
+  children: PropTypes.node,
+  className: PropTypes.string,
+  tag: PropTypes.string
+};
+var defaultProps = {
+  asHTML: false,
+  children: null,
+  className: null,
+  tag: 'span'
+};
+
+var Field = function Field(_ref) {
+  var asHTML = _ref.asHTML,
+      children = _ref.children,
+      className = _ref.className,
+      Tag = _ref.tag,
+      attrs = __chunk_2._objectWithoutProperties(_ref, ["asHTML", "children", "className", "tag"]);
+
+  var html = asHTML && typeof children === 'string' ? children : null;
+  return html ? React__default.createElement(Tag, __chunk_2._extends({
+    className: className
+  }, attrs, {
+    dangerouslySetInnerHTML: utils.createMarkup(html)
+  })) : React__default.createElement(Tag, __chunk_2._extends({
+    className: className
+  }, attrs), children);
+};
+
+Field.propTypes = propTypes;
+Field.defaultProps = defaultProps;
+
+var Field$1 = __chunk_3.withModelFieldName(Field, {
+  modelType: 'content'
+});
 
 var formatValue = function formatValue(value, format) {
   if (!value) return '';
@@ -119,6 +159,8 @@ RelCanonical.propTypes = {
   origin: PropTypes.string.isRequired
 };
 
+exports.ContentField = Field$1;
+exports.Field = Field;
 exports.FormatDate = FormatDate;
 exports.HTML = HTML;
 exports.MetaDescription = MetaDescription;
