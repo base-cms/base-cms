@@ -766,10 +766,11 @@
 
 "@base-cms/base4-website-nextjs@https://github.com/base-cms/base4-website-nextjs.git":
   version "0.1.0"
-  resolved "https://github.com/base-cms/base4-website-nextjs.git#a681295014bba08e5574d457a5eeff39c9da1c3f"
+  resolved "https://github.com/base-cms/base4-website-nextjs.git#f2a48489e35a32437b0494b99a0d26cb73c762c0"
   dependencies:
     "@base-cms/base4-nextjs-apollo" "https://github.com/base-cms/base4-nextjs-apollo.git"
     "@base-cms/base4-website-express" "https://github.com/base-cms/base4-website-express.git"
+    classnames "^2.2.6"
     next-routes "^1.4.2"
     prop-types "^15.6.2"
 
@@ -1906,6 +1907,11 @@ class-utils@^0.3.5:
     define-property "^0.2.5"
     isobject "^3.0.0"
     static-extend "^0.1.1"
+
+classnames@^2.2.6:
+  version "2.2.6"
+  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
+  integrity sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
 
 cli-cursor@^2.0.0:
   version "2.1.0"
