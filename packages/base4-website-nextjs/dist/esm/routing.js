@@ -2,6 +2,7 @@ import { a as _extends, b as _objectWithoutProperties } from './chunk-cfc9ba70.j
 import React from 'react';
 import { componentDisplayName } from './utils.js';
 import createRoutes from 'next-routes';
+import 'moment';
 
 var withExternalLink = (function (Link) {
   var WithExternalLink = function WithExternalLink(props) {

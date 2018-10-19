@@ -11,6 +11,7 @@ var PropTypes = _interopDefault(require('prop-types'));
 var reactApollo = require('react-apollo');
 var gql = _interopDefault(require('graphql-tag'));
 var utils = require('./utils.js');
+require('moment');
 
 function _templateObject() {
   var data = __chunk_2._taggedTemplateLiteral(["\n    query WebsiteScheduledContent($input: WebsiteScheduledPlatformContentQuery!) {\n      websiteScheduledPlatformContent(input: $input) {\n        edges {\n          node {\n            id\n            ", "\n          }\n        }\n      }\n    }\n    ", "\n  "]);

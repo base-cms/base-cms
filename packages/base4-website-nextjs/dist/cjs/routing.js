@@ -9,6 +9,7 @@ var React = require('react');
 var React__default = _interopDefault(React);
 var utils = require('./utils.js');
 var createRoutes = _interopDefault(require('next-routes'));
+require('moment');
 
 var withExternalLink = (function (Link) {
   var WithExternalLink = function WithExternalLink(props) {

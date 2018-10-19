@@ -10,6 +10,7 @@ var path = require('path');
 var routing = require('./routing.js');
 require('react');
 require('./utils.js');
+require('moment');
 require('next-routes');
 
 var isFn = function isFn(v) {

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import { extractFragmentData } from './utils.js';
+import 'moment';
 
 function _templateObject() {
   var data = _taggedTemplateLiteral(["\n    query WebsiteScheduledContent($input: WebsiteScheduledPlatformContentQuery!) {\n      websiteScheduledPlatformContent(input: $input) {\n        edges {\n          node {\n            id\n            ", "\n          }\n        }\n      }\n    }\n    ", "\n  "]);

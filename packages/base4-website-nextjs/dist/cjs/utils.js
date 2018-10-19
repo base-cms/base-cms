@@ -2,6 +2,10 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
+function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+
+var moment = _interopDefault(require('moment'));
+
 var cleanPath = (function (path) {
   if (!path) return '';
   var trimmed = String(path).trim();
@@ -49,6 +53,12 @@ var extractFragmentData = (function (_ref) {
   };
 });
 
+var formatDate = (function (value, format) {
+  if (!value) return '';
+  var date = moment(value);
+  return date.isValid() ? date.format(format) : '';
+});
+
 var httpErrors = {
   notFound: function notFound() {
     var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'No record found.';
@@ -58,6 +68,10 @@ var httpErrors = {
     return e;
   }
 };
+
+var isFn = (function (v) {
+  return typeof v === 'function';
+});
 
 /**
  * Determines if an alias should go to the index/home page.
@@ -97,5 +111,7 @@ exports.componentDisplayName = componentDisplayName;
 exports.createMarkup = createMarkup;
 exports.extractFragmentData = extractFragmentData;
 exports.extractFragmentName = extractFragmentName;
+exports.formatDate = formatDate;
 exports.httpErrors = httpErrors;
+exports.isFunction = isFn;
 exports.sectionPath = sectionPath;

@@ -6,6 +6,7 @@ import { resolve } from 'path';
 import { routes } from './routing.js';
 import 'react';
 import './utils.js';
+import 'moment';
 import 'next-routes';
 
 var isFn = function isFn(v) {

@@ -1,107 +1,128 @@
-import { a as _extends, b as _objectWithoutProperties } from './chunk-cfc9ba70.js';
+import { a as _extends, b as _objectWithoutProperties, d as _objectSpread } from './chunk-cfc9ba70.js';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { createMarkup, cleanPath } from './utils.js';
-import { a as withModelFieldName } from './chunk-eb72b5a9.js';
-import moment from 'moment';
+import { createMarkup, isFunction as isFn, componentDisplayName, formatDate, cleanPath } from './utils.js';
+import classNames from 'classnames';
 import Head from 'next/head';
-import 'classnames';
+import 'moment';
 
 var propTypes = {
-  asHTML: PropTypes.bool,
-  children: PropTypes.node,
-  className: PropTypes.string,
-  tag: PropTypes.string
+  collapsable: PropTypes.bool,
+  tag: PropTypes.string,
+  value: PropTypes.string
 };
 var defaultProps = {
-  asHTML: false,
-  children: null,
-  className: null,
-  tag: 'span'
+  collapsable: false,
+  tag: 'div',
+  value: ''
 };
 
-var Field = function Field(_ref) {
+var HTML = function HTML(_ref) {
+  var collapsable = _ref.collapsable,
+      value = _ref.value,
+      Tag = _ref.tag,
+      attrs = _objectWithoutProperties(_ref, ["collapsable", "value", "tag"]);
+
+  if (!value && collapsable) return null;
+  return React.createElement(Tag, _extends({
+    dangerouslySetInnerHTML: createMarkup(value)
+  }, attrs));
+};
+
+HTML.propTypes = propTypes;
+HTML.defaultProps = defaultProps;
+
+var propTypes$1 = {
+  asHTML: PropTypes.bool,
+  children: PropTypes.func,
+  collapsable: PropTypes.bool,
+  data: PropTypes.object,
+  // eslint-disable-line react/forbid-prop-types
+  prop: PropTypes.string.isRequired,
+  tag: PropTypes.string
+};
+var defaultProps$1 = {
+  asHTML: false,
+  children: function children(v) {
+    return v;
+  },
+  collapsable: false,
+  data: {},
+  tag: 'div'
+};
+
+var FieldValue = function FieldValue(_ref) {
   var asHTML = _ref.asHTML,
       children = _ref.children,
-      className = _ref.className,
+      collapsable = _ref.collapsable,
+      data = _ref.data,
+      prop = _ref.prop,
       Tag = _ref.tag,
-      attrs = _objectWithoutProperties(_ref, ["asHTML", "children", "className", "tag"]);
+      attrs = _objectWithoutProperties(_ref, ["asHTML", "children", "collapsable", "data", "prop", "tag"]);
 
-  var html = asHTML && typeof children === 'string' ? children : null;
-  return html ? React.createElement(Tag, _extends({
-    className: className
-  }, attrs, {
-    dangerouslySetInnerHTML: createMarkup(html)
-  })) : React.createElement(Tag, _extends({
-    className: className
-  }, attrs), children);
+  // Extract the value off the data object, if possible.
+  var value = data && data[prop] ? data[prop] : null; // Protect the child render function.
+
+  var render = isFn(children) ? children : defaultProps$1.children; // Return as an innerHTML element, if requested.
+
+  if (asHTML) return React.createElement(HTML, _extends({
+    tag: Tag,
+    value: value,
+    collapsable: collapsable
+  }, attrs)); // Otherwise, wrap the value with the element and return (if not collapsable).
+
+  return !value && collapsable ? null : React.createElement(Tag, attrs, render(value));
 };
 
-Field.propTypes = propTypes;
-Field.defaultProps = defaultProps;
+FieldValue.propTypes = propTypes$1;
+FieldValue.defaultProps = defaultProps$1;
 
-var Field$1 = withModelFieldName(Field, {
-  modelType: 'content'
+var withModelFieldClass = (function (modelType) {
+  return function (Component) {
+    var WithModelFieldClass = function WithModelFieldClass(_ref) {
+      var prop = _ref.prop,
+          className = _ref.className,
+          rest = _objectWithoutProperties(_ref, ["prop", "className"]);
+
+      return React.createElement(Component, _extends({
+        className: classNames("".concat(modelType, "__").concat(prop), className),
+        prop: prop
+      }, rest));
+    };
+
+    WithModelFieldClass.displayName = "WithModelFieldClass(".concat(componentDisplayName(Component), ")[").concat(modelType, "]");
+    WithModelFieldClass.propTypes = _objectSpread({}, Component.propTypes, {
+      prop: PropTypes.string.isRequired
+    });
+    return WithModelFieldClass;
+  };
 });
 
-var formatValue = function formatValue(value, format) {
-  if (!value) return '';
-  var date = moment(value);
-  if (!date.isValid()) return '';
-  return moment(value).format(format);
-};
+var FieldValue$1 = withModelFieldClass('content')(FieldValue);
 
 var FormatDate = function FormatDate(_ref) {
-  var className = _ref.className,
-      collapsable = _ref.collapsable,
+  var collapsable = _ref.collapsable,
       format = _ref.format,
       Tag = _ref.tag,
-      value = _ref.value;
-  var formatted = formatValue(value, format);
+      value = _ref.value,
+      attrs = _objectWithoutProperties(_ref, ["collapsable", "format", "tag", "value"]);
+
+  var formatted = formatDate(value, format);
   if (collapsable && !formatted) return null;
-  return React.createElement(Tag, {
-    className: className
-  }, formatValue(value, format));
+  return React.createElement(Tag, attrs, formatted);
 };
 
 FormatDate.propTypes = {
-  className: PropTypes.string,
   collapsable: PropTypes.bool,
   format: PropTypes.string,
   value: PropTypes.number,
-  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
+  tag: PropTypes.string
 };
 FormatDate.defaultProps = {
-  className: null,
   collapsable: true,
   format: 'MMM Do, YYYY',
   tag: 'span',
   value: null
-};
-
-var HTML = function HTML(_ref) {
-  var className = _ref.className,
-      collapsable = _ref.collapsable,
-      html = _ref.html,
-      Tag = _ref.tag;
-  if (!html && collapsable) return null;
-  return React.createElement(Tag, {
-    className: className,
-    dangerouslySetInnerHTML: createMarkup(html)
-  });
-};
-
-HTML.propTypes = {
-  className: PropTypes.string,
-  collapsable: PropTypes.bool,
-  html: PropTypes.string,
-  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
-};
-HTML.defaultProps = {
-  className: null,
-  collapsable: true,
-  html: '',
-  tag: 'div'
 };
 
 var MetaDescription = function MetaDescription(_ref) {
@@ -152,4 +173,4 @@ RelCanonical.propTypes = {
   origin: PropTypes.string.isRequired
 };
 
-export { Field$1 as ContentField, Field, FormatDate, HTML, MetaDescription, PageTitle, RelCanonical };
+export { FieldValue$1 as ContentFieldValue, FieldValue, FormatDate, HTML, MetaDescription, PageTitle, RelCanonical };

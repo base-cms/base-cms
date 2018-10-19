@@ -13,10 +13,9 @@ var utils = require('./utils.js');
 var gql = _interopDefault(require('graphql-tag'));
 var components = require('./components.js');
 var routing = require('./routing.js');
-var __chunk_3 = require('./chunk-b0b75b5b.js');
 require('moment');
-require('next/head');
 require('classnames');
+require('next/head');
 require('next-routes');
 
 var doc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"WithDynamicPageFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PlatformContentPage"}},"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"name"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"type"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"teaser"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"alias"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"body"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"metadata"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"description"},"arguments":[],"directives":[]}]}}]}}],"loc":{"start":0,"end":146}};
@@ -675,7 +674,6 @@ var withWebsiteSection = (function (Page) {
   return withRequestOrigin(WithWebsiteSection);
 });
 
-exports.withModelFieldName = __chunk_3.withModelFieldName;
 exports.withDynamicPage = withDynamicPage;
 exports.withPlatformContent = withPlatformContent;
 exports.withRequestOrigin = withRequestOrigin;
