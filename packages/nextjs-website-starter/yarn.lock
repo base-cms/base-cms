@@ -766,12 +766,13 @@
 
 "@base-cms/base4-website-nextjs@https://github.com/base-cms/base4-website-nextjs.git":
   version "0.1.0"
-  resolved "https://github.com/base-cms/base4-website-nextjs.git#b7b33befcb78e85cc4f213ac1fc387def8cde15e"
+  resolved "https://github.com/base-cms/base4-website-nextjs.git#ef06f79dfd45a8b9398814ae95270009a0298dcf"
   dependencies:
     "@base-cms/base4-nextjs-apollo" "https://github.com/base-cms/base4-nextjs-apollo.git"
     "@base-cms/base4-website-express" "https://github.com/base-cms/base4-website-express.git"
     classnames "^2.2.6"
     next-routes "^1.4.2"
+    object-path "^0.11.4"
     prop-types "^15.6.2"
 
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
