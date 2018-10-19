@@ -12,6 +12,7 @@ const ContentPage = ({ content }) => (
         return <em>{value}</em>;
       }}
     </FieldValue>
+    <FieldValue path="primarySection.name" tag="h4" data={content} />
     <hr />
     <FieldValue path="body" tag="div" data={content} asHTML />
   </article>
