@@ -3,29 +3,29 @@ import PropTypes from 'prop-types';
 
 import { createMarkup } from '../utils';
 
+const propTypes = {
+  collapsable: PropTypes.bool,
+  tag: PropTypes.string,
+  value: PropTypes.string,
+};
+
+const defaultProps = {
+  collapsable: false,
+  tag: 'div',
+  value: '',
+};
+
 const HTML = ({
-  className,
   collapsable,
   value,
   tag: Tag,
   ...attrs
 }) => {
   if (!value && collapsable) return null;
-  return <Tag className={className} dangerouslySetInnerHTML={createMarkup(value)} {...attrs} />;
+  return <Tag dangerouslySetInnerHTML={createMarkup(value)} {...attrs} />;
 };
 
-HTML.propTypes = {
-  className: PropTypes.string,
-  collapsable: PropTypes.bool,
-  tag: PropTypes.string,
-  value: PropTypes.string,
-};
-
-HTML.defaultProps = {
-  className: null,
-  collapsable: true,
-  tag: 'div',
-  value: '',
-};
+HTML.propTypes = propTypes;
+HTML.defaultProps = defaultProps;
 
 export default HTML;
