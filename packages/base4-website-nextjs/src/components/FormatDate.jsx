@@ -1,13 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
-
-const formatValue = (value, format) => {
-  if (!value) return '';
-  const date = moment(value);
-  if (!date.isValid()) return '';
-  return moment(value).format(format);
-};
+import { formatDate } from '../utils';
 
 const FormatDate = ({
   className,
@@ -16,9 +9,9 @@ const FormatDate = ({
   tag: Tag,
   value,
 }) => {
-  const formatted = formatValue(value, format);
+  const formatted = formatDate(value, format);
   if (collapsable && !formatted) return null;
-  return <Tag className={className}>{formatValue(value, format)}</Tag>;
+  return <Tag className={className}>{formatted}</Tag>;
 };
 
 FormatDate.propTypes = {
@@ -26,7 +19,7 @@ FormatDate.propTypes = {
   collapsable: PropTypes.bool,
   format: PropTypes.string,
   value: PropTypes.number,
-  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  tag: PropTypes.string,
 };
 
 FormatDate.defaultProps = {
