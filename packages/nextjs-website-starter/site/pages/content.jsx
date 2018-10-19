@@ -9,7 +9,7 @@ const ContentPage = ({ content }) => (
     <FieldValue prop="teaser" tag="h3" data={content} style={{ color: 'gray' }}>
       {(value) => {
         // Custom render.
-        return <ul><li>{value}</li></ul>;
+        return <em>{value}</em>;
       }}
     </FieldValue>
     <hr />
