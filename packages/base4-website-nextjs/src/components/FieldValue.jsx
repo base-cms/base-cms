@@ -26,9 +26,7 @@ const FieldValue = ({
   ...attrs
 }) => {
   const value = data && data[prop] ? data[prop] : null;
-  if (asHTML) {
-    return <HTML tag={Tag} value={value} collapsable={collapsable} {...attrs} />;
-  }
+  if (asHTML) return <HTML tag={Tag} value={value} collapsable={collapsable} {...attrs} />;
   return !value && collapsable ? null : (
     <Tag {...attrs}>
       {value}
