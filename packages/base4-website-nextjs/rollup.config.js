@@ -28,6 +28,7 @@ export default {
     'src/components.js',
     'src/pages.js',
     'src/hoc.js',
+    'src/queries.js',
   ],
   output: [
     { dir: 'dist/cjs', format: 'cjs' },

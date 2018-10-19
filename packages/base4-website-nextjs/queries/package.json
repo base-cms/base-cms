@@ -1,0 +1,6 @@
+{
+  "name": "queries",
+  "private": true,
+  "main": "../dist/cjs/queries.js",
+  "module": "../dist/esm/queries.js"
+}
