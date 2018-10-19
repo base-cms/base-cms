@@ -9,8 +9,12 @@ export default modelType => (Component) => {
     className,
     ...rest
   }) => {
-    const elementType = String(path).replace('.', '-');
-    return <Component className={classNames(`${modelType}__${elementType}`, className)} path={path} {...rest} />;
+    const types = String(path).split('.');
+    const elementTypes = types.shift();
+    const elementClass = `${modelType}__${elementTypes}`;
+    const classes = [elementClass];
+    types.forEach(type => classes.push(`${elementClass}--${type}`));
+    return <Component className={classNames(classes, className)} path={path} {...rest} />;
   };
   WithModelFieldClass.displayName = `WithModelFieldClass(${componentDisplayName(Component)})[${modelType}]`;
   WithModelFieldClass.propTypes = {

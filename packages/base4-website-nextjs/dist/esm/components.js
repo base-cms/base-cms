@@ -85,9 +85,15 @@ var withModelFieldClass = (function (modelType) {
           className = _ref.className,
           rest = _objectWithoutProperties(_ref, ["path", "className"]);
 
-      var elementType = String(path).replace('.', '-');
+      var types = String(path).split('.');
+      var elementTypes = types.shift();
+      var elementClass = "".concat(modelType, "__").concat(elementTypes);
+      var classes = [elementClass];
+      types.forEach(function (type) {
+        return classes.push("".concat(elementClass, "--").concat(type));
+      });
       return React.createElement(Component, _extends({
-        className: classNames("".concat(modelType, "__").concat(elementType), className),
+        className: classNames(classes, className),
         path: path
       }, rest));
     };
