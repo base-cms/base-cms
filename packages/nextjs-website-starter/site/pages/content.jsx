@@ -6,7 +6,13 @@ import { ContentFieldValue as FieldValue } from '@base-cms/base4-website-nextjs/
 const ContentPage = ({ content }) => (
   <article data-id={content.id} className={classNames('content', 'content--display', `content--${content.type}`)}>
     <FieldValue prop="name" tag="h1" data={content} className="my-class" />
-    <FieldValue prop="teaser" tag="h3" data={content} />
+    <FieldValue prop="teaser" tag="h3" data={content} style={{ color: 'gray' }}>
+      {(value) => {
+        // Custom render.
+        return <ul><li>{value}</li></ul>;
+      }}
+    </FieldValue>
+    <hr />
     <FieldValue prop="body" tag="div" data={content} asHTML />
   </article>
 );
