@@ -25,8 +25,11 @@ const FieldValue = ({
   tag: Tag,
   ...attrs
 }) => {
+  // Extract the value off the data object, if possible.
   const value = data && data[prop] ? data[prop] : null;
+  // Return as an innerHTML element, if requested.
   if (asHTML) return <HTML tag={Tag} value={value} collapsable={collapsable} {...attrs} />;
+  // Otherwise, wrap the value with the element and return (if not collapsable).
   return !value && collapsable ? null : (
     <Tag {...attrs}>
       {value}
