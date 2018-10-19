@@ -30,11 +30,7 @@ const FieldValue = ({
   // Return as an innerHTML element, if requested.
   if (asHTML) return <HTML tag={Tag} value={value} collapsable={collapsable} {...attrs} />;
   // Otherwise, wrap the value with the element and return (if not collapsable).
-  return !value && collapsable ? null : (
-    <Tag {...attrs}>
-      {value}
-    </Tag>
-  );
+  return !value && collapsable ? null : <Tag {...attrs}>{value}</Tag>;
 };
 
 FieldValue.propTypes = propTypes;
