@@ -10,4 +10,9 @@ fragment WithPlatformContentFragment on PlatformContent {
     title
     description
   }
+  primarySection {
+    id
+    name
+    alias
+  }
 }
