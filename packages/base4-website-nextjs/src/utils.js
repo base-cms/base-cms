@@ -5,6 +5,7 @@ import extractFragmentData from './utils/extract-fragment-data';
 import extractFragmentName from './utils/extract-fragment-name';
 import formatDate from './utils/format-date';
 import httpErrors from './utils/http-errors';
+import isFunction from './utils/is-function';
 import sectionPath from './utils/section-path';
 
 export {
@@ -15,5 +16,6 @@ export {
   extractFragmentName,
   formatDate,
   httpErrors,
+  isFunction,
   sectionPath,
 };
