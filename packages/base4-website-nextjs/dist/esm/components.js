@@ -2,6 +2,7 @@ import { a as _extends, b as _objectWithoutProperties, d as _objectSpread } from
 import React from 'react';
 import PropTypes from 'prop-types';
 import { createMarkup, isFunction as isFn, componentDisplayName, formatDate, cleanPath } from './utils.js';
+import { get } from 'object-path';
 import classNames from 'classnames';
 import Head from 'next/head';
 import 'moment';
@@ -38,7 +39,7 @@ var propTypes$1 = {
   collapsable: PropTypes.bool,
   data: PropTypes.object,
   // eslint-disable-line react/forbid-prop-types
-  prop: PropTypes.string.isRequired,
+  path: PropTypes.string.isRequired,
   tag: PropTypes.string
 };
 var defaultProps$1 = {
@@ -56,12 +57,12 @@ var FieldValue = function FieldValue(_ref) {
       children = _ref.children,
       collapsable = _ref.collapsable,
       data = _ref.data,
-      prop = _ref.prop,
+      path = _ref.path,
       Tag = _ref.tag,
-      attrs = _objectWithoutProperties(_ref, ["asHTML", "children", "collapsable", "data", "prop", "tag"]);
+      attrs = _objectWithoutProperties(_ref, ["asHTML", "children", "collapsable", "data", "path", "tag"]);
 
-  // Extract the value off the data object, if possible.
-  var value = data && data[prop] ? data[prop] : null; // Protect the child render function.
+  // Extract the value off the data object.
+  var value = get(data, path, null); // Protect the child render function.
 
   var render = isFn(children) ? children : defaultProps$1.children; // Return as an innerHTML element, if requested.
 
@@ -80,19 +81,20 @@ FieldValue.defaultProps = defaultProps$1;
 var withModelFieldClass = (function (modelType) {
   return function (Component) {
     var WithModelFieldClass = function WithModelFieldClass(_ref) {
-      var prop = _ref.prop,
+      var path = _ref.path,
           className = _ref.className,
-          rest = _objectWithoutProperties(_ref, ["prop", "className"]);
+          rest = _objectWithoutProperties(_ref, ["path", "className"]);
 
+      var elementType = String(path).replace('.', '-');
       return React.createElement(Component, _extends({
-        className: classNames("".concat(modelType, "__").concat(prop), className),
-        prop: prop
+        className: classNames("".concat(modelType, "__").concat(elementType), className),
+        path: path
       }, rest));
     };
 
     WithModelFieldClass.displayName = "WithModelFieldClass(".concat(componentDisplayName(Component), ")[").concat(modelType, "]");
     WithModelFieldClass.propTypes = _objectSpread({}, Component.propTypes, {
-      prop: PropTypes.string.isRequired
+      path: PropTypes.string.isRequired
     });
     return WithModelFieldClass;
   };

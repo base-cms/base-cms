@@ -9,6 +9,7 @@ var React = require('react');
 var React__default = _interopDefault(React);
 var PropTypes = _interopDefault(require('prop-types'));
 var utils = require('./utils.js');
+var objectPath = require('object-path');
 var classNames = _interopDefault(require('classnames'));
 var Head = _interopDefault(require('next/head'));
 require('moment');
@@ -45,7 +46,7 @@ var propTypes$1 = {
   collapsable: PropTypes.bool,
   data: PropTypes.object,
   // eslint-disable-line react/forbid-prop-types
-  prop: PropTypes.string.isRequired,
+  path: PropTypes.string.isRequired,
   tag: PropTypes.string
 };
 var defaultProps$1 = {
@@ -63,12 +64,12 @@ var FieldValue = function FieldValue(_ref) {
       children = _ref.children,
       collapsable = _ref.collapsable,
       data = _ref.data,
-      prop = _ref.prop,
+      path = _ref.path,
       Tag = _ref.tag,
-      attrs = __chunk_2._objectWithoutProperties(_ref, ["asHTML", "children", "collapsable", "data", "prop", "tag"]);
+      attrs = __chunk_2._objectWithoutProperties(_ref, ["asHTML", "children", "collapsable", "data", "path", "tag"]);
 
-  // Extract the value off the data object, if possible.
-  var value = data && data[prop] ? data[prop] : null; // Protect the child render function.
+  // Extract the value off the data object.
+  var value = objectPath.get(data, path, null); // Protect the child render function.
 
   var render = utils.isFunction(children) ? children : defaultProps$1.children; // Return as an innerHTML element, if requested.
 
@@ -87,19 +88,20 @@ FieldValue.defaultProps = defaultProps$1;
 var withModelFieldClass = (function (modelType) {
   return function (Component) {
     var WithModelFieldClass = function WithModelFieldClass(_ref) {
-      var prop = _ref.prop,
+      var path = _ref.path,
           className = _ref.className,
-          rest = __chunk_2._objectWithoutProperties(_ref, ["prop", "className"]);
+          rest = __chunk_2._objectWithoutProperties(_ref, ["path", "className"]);
 
+      var elementType = String(path).replace('.', '-');
       return React__default.createElement(Component, __chunk_2._extends({
-        className: classNames("".concat(modelType, "__").concat(prop), className),
-        prop: prop
+        className: classNames("".concat(modelType, "__").concat(elementType), className),
+        path: path
       }, rest));
     };
 
     WithModelFieldClass.displayName = "WithModelFieldClass(".concat(utils.componentDisplayName(Component), ")[").concat(modelType, "]");
     WithModelFieldClass.propTypes = __chunk_2._objectSpread({}, Component.propTypes, {
-      prop: PropTypes.string.isRequired
+      path: PropTypes.string.isRequired
     });
     return WithModelFieldClass;
   };
