@@ -1,5 +1,5 @@
-import ContentField from './components/Content/Field';
-import Field from './components/Field';
+import ContentFieldValue from './components/Content/FieldValue';
+import FieldValue from './components/FieldValue';
 import FormatDate from './components/FormatDate';
 import HTML from './components/HTML';
 import MetaDescription from './components/MetaDescription';
@@ -7,8 +7,8 @@ import PageTitle from './components/PageTitle';
 import RelCanonical from './components/RelCanonical';
 
 export {
-  ContentField,
-  Field,
+  ContentFieldValue,
+  FieldValue,
   FormatDate,
   HTML,
   MetaDescription,
