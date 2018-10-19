@@ -6,25 +6,26 @@ import { createMarkup } from '../utils';
 const HTML = ({
   className,
   collapsable,
-  html,
+  value,
   tag: Tag,
+  ...attrs
 }) => {
-  if (!html && collapsable) return null;
-  return <Tag className={className} dangerouslySetInnerHTML={createMarkup(html)} />;
+  if (!value && collapsable) return null;
+  return <Tag className={className} dangerouslySetInnerHTML={createMarkup(value)} {...attrs} />;
 };
 
 HTML.propTypes = {
   className: PropTypes.string,
   collapsable: PropTypes.bool,
-  html: PropTypes.string,
-  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+  tag: PropTypes.string,
+  value: PropTypes.string,
 };
 
 HTML.defaultProps = {
   className: null,
   collapsable: true,
-  html: '',
   tag: 'div',
+  value: '',
 };
 
 export default HTML;
