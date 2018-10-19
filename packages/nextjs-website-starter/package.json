@@ -10,7 +10,7 @@
   },
   "scripts": {
     "dev": "NODE_ENV=development node server",
-    "dev:upgrade": "yarn upgrade:core && yarn dev",
+    "dev+upgrade": "yarn upgrade:core && yarn dev",
     "build": "next build site",
     "start": "NODE_ENV=production node server",
     "upgrade:core": "yarn upgrade @base-cms/base4-website-nextjs"
