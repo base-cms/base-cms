@@ -41,10 +41,22 @@ class Base4 {
    * @param {object} [query={}]
    * @param {object} [options]
    */
-  async find(modelName, query, options) {
+  async find(modelName, query, options, forceArray) {
     const coll = await this.collectionFor(modelName);
     const cursor = await coll.find(query, options);
-    return cursor.toArray();
+    if (forceArray) return cursor.toArray();
+    return cursor;
+  }
+
+  /**
+   *
+   * @param {string} modelName
+   * @param {object} [query={}]
+   * @param {object} [options]
+   */
+  async count(modelName, query, options) {
+    const coll = await this.collectionFor(modelName);
+    return coll.countDocuments(query, options);
   }
 
   /**
