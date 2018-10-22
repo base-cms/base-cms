@@ -1,4 +1,7 @@
+const chalk = require('chalk');
+const base4 = require('../base4');
 const elastic = require('../elastic');
+const { whilstPromise } = require('../utils/async');
 const { filter, analyzer } = require('../elastic/index-settings');
 
 const { log } = console;
@@ -8,12 +11,13 @@ const esOptions = {
   type: 'content',
 };
 
-module.exports = async ({ batchSize, recreateIndex }) => {
+module.exports = async ({ batchSize }) => {
   const { index, type } = esOptions;
-  if (recreateIndex) {
-    // Delete the index.
-    await elastic.deleteIndex(index);
-  }
+  log(chalk`{blue Setup Elasticsearch...}`);
+
+  // Delete the index.
+  await elastic.deleteIndex(index);
+  log(chalk`{gray Index removed.}`);
 
   const exists = await elastic.indexExists(index);
   if (!exists) {
@@ -27,8 +31,9 @@ module.exports = async ({ batchSize, recreateIndex }) => {
             default_search: analyzer,
           },
         },
-      }
+      },
     });
+    log(chalk`{gray Index created.}`);
     // Create mappings.
     await elastic.putMapping(index, type, {
       properties: {
@@ -38,44 +43,65 @@ module.exports = async ({ batchSize, recreateIndex }) => {
         taxonomy: { type: 'text' },
       },
     });
+    log(chalk`{gray Index mappings created.}`);
   }
+  log(chalk`{blue Elasticsearch setup} {green complete}`);
 
-  // const docs = await base4.find('platform.Content', {
-  //   type: { $in: ['Article', 'MediaGallery'] }
-  // }, {
-  //   projection: {
-  //     name: 1,
-  //     deck: 1,
-  //     body: 1,
-  //     taxonomy: 1,
-  //   },
-  //   limit: 20,
-  //   sort: { _id: 1 },
-  // });
+  log(chalk`{blue Begin bulk import...}`);
 
-  // const getTokens = (result) => {
-  //   if (!result || !isArray(result.tokens)) return [];
-  //   return result.tokens.map(t => t.token);
-  // }
+  const criteria = { type: { $in: ['Article', 'MediaGallery'] } };
+  const projection = {
+    name: 1,
+    deck: 1,
+    body: 1,
+    taxonomy: 1,
+  };
 
-  // await eachPromise(docs, async (doc) => {
-    // log(doc);
-    // const ids = Base4.extractRefIds(taxonomy);
-    // if (ids.length) {
-    //   const taxonomyDocs = await taxonomyLoader.loadMany(ids);
-    //   log(taxonomyDocs.length);
-    // }
+  const count = await base4.count('platform.Content', criteria);
+  log(chalk`{gray Found} {white ${count}} {gray documents in MongoDB}`);
 
-    // const [nameRes, bodyRes] = await Promise.all([
-    //   elastic.analyze(undefined, buildAnalyzeBody(doc.name)),
-    //   doc.body ? elastic.analyze(undefined, buildAnalyzeBody(doc.body)) : {},
-    // ]);
+  let offset = 0;
+  let hasMore = count > offset;
+  await whilstPromise(() => hasMore === true, async () => {
+    const bulkBody = [];
+    log(chalk`{gray Starting from offset} {white ${offset}}`);
+    const cursor = await base4.find('platform.Content', criteria, {
+      projection,
+      skip: offset,
+      limit: batchSize,
+      sort: { _id: 1 },
+    });
+    const length = await cursor.count(true);
 
-    // log(getTokens(bodyRes));
+    log(chalk`{gray Retrieved} {white ${length}} {gray documents from MongoDB.}`);
 
-    // log({
-    //   name: { text: doc.name, tokens: getTokens(nameTokens) },
-    //   deck: { text: doc.deck, tokens: getTokens(deckTokens) },
-    // });
-  // });
+    let firstDoc;
+    await new Promise((resolve, reject) => {
+      cursor.forEach((doc) => {
+        if (!firstDoc) {
+          firstDoc = doc;
+          log(chalk`{gray Beginning bulk body creation at ID} {white ${doc._id}}`);
+        }
+        bulkBody.push({ index: { _index: index, _type: type, _id: doc._id } });
+        bulkBody.push({ name: doc.name || '', body: doc.body || '' });
+      }, (err) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve();
+        }
+      });
+    });
+
+    await cursor.close();
+
+    const bulkRes = await elastic.bulk({ body: bulkBody });
+    log(chalk`{gray Bulk indexed} {white ${length}} {gray documents in Elasticsearch (${bulkRes.took}ms).}`);
+
+    offset += length;
+    hasMore = count > offset;
+
+    log(chalk`{gray Has more?} ${hasMore ? chalk`{green Yes}` : chalk`{yellow No}`}`);
+  });
+  log(chalk`{blue Bulk import} {green complete}`);
 };

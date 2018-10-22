@@ -12,7 +12,7 @@ const questions = [
   {
     type: 'input',
     name: 'batchSize',
-    default: 500,
+    default: 100,
     message: 'The batch size.',
     validate: (v) => {
       const num = parseInt(v, 10);
@@ -22,12 +22,6 @@ const questions = [
       return true;
     },
     filter: v => parseInt(v, 10),
-  },
-  {
-    type: 'confirm',
-    name: 'recreateIndex',
-    message: `Delete and re-create Elastic index?`,
-    default: false,
   },
   {
     type: 'confirm',
@@ -43,9 +37,9 @@ log(chalk.blue(figlet.textSync('Content Indexer', { horizontalLayout: 'full' }))
 const execute = async () => {
   const answers = await inquirer.prompt(questions);
 
-  const { shouldRun, batchSize, recreateIndex } = answers;
+  const { shouldRun, batchSize } = answers;
   if (shouldRun) {
-    await run({ batchSize, recreateIndex });
+    await run({ batchSize });
   } else {
     log(chalk.green('Exiting import.'));
     process.exit(0);
