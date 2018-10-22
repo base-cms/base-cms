@@ -51,6 +51,21 @@ const ElasticClient = (options) => {
       return this.client.indices.putSettings({ index, body });
     },
 
+    async putMapping(index, type, body) {
+      await this.connect();
+      return this.client.indices.putMapping({ index, type, body });
+    },
+
+    async closeIndex(index, body) {
+      await this.connect();
+      return this.client.indices.close({ index, body });
+    },
+
+    async openIndex(index, body) {
+      await this.connect();
+      return this.client.indices.open({ index, body });
+    },
+
     async analyze(index, body, opts = {}) {
       await this.connect();
       const params = {
