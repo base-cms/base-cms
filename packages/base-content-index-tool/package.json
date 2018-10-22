@@ -13,6 +13,7 @@
     "prestart": "$npm_package_docker_dev_install",
     "start": "$npm_package_docker_dev_up",
     "stop": "$npm_package_docker_dev_down",
+    "terminal": "docker exec -it base-content-analyzer_app_1 /bin/bash",
     "lint": "eslint src",
     "index": "docker exec -it base-content-analyzer_app_1 node src/import"
   },
@@ -28,6 +29,7 @@
     "chalk": "^2.4.1",
     "clear": "^0.1.0",
     "dataloader": "^1.4.0",
+    "elasticsearch": "^15.1.1",
     "envalid": "^4.1.4",
     "figlet": "^1.2.1",
     "inquirer": "^6.2.0",
