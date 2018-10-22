@@ -31,6 +31,19 @@ const ElasticClient = (options) => {
       return this.client.close();
     },
 
+    async bulk(params) {
+      await this.connect();
+      return new Promise((resolve, reject) => {
+        client.bulk(params, (err, resp) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(resp);
+          }
+        });
+      });
+    },
+
     async indexExists(index) {
       await this.connect();
       return this.client.indices.exists({ index });
