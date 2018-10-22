@@ -25,6 +25,12 @@ const questions = [
   },
   {
     type: 'confirm',
+    name: 'populate',
+    message: 'Populate the Elasticsearch index (will overwrite existing data)?',
+    default: false,
+  },
+  {
+    type: 'confirm',
     name: 'shouldRun',
     message: `Proceed with indexing for '${TENANT_KEY}' from '${MONGO_DSN}'?`,
     default: true,
@@ -37,9 +43,9 @@ log(chalk.blue(figlet.textSync('Content Indexer', { horizontalLayout: 'full' }))
 const execute = async () => {
   const answers = await inquirer.prompt(questions);
 
-  const { shouldRun, batchSize } = answers;
+  const { shouldRun, batchSize, populate } = answers;
   if (shouldRun) {
-    await run({ batchSize });
+    await run({ batchSize, populate });
   } else {
     log(chalk.green('Exiting import.'));
     process.exit(0);

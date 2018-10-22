@@ -1,9 +1,12 @@
 const chalk = require('chalk');
+const path = require('path');
+const fs = require('fs');
+const yaml = require('js-yaml');
 const base4 = require('../base4');
 const Base4 = require('../base4/client');
 const elastic = require('../elastic');
 const { taxonomyLoader } = require('../base4/loaders');
-const { whilstPromise } = require('../utils/async');
+const { whilstPromise, eachSeriesPromise } = require('../utils/async');
 const { filter, analyzer } = require('../elastic/index-settings');
 
 const { log } = console;
@@ -13,13 +16,15 @@ const esOptions = {
   type: 'content',
 };
 
-module.exports = async ({ batchSize }) => {
+const setupElastic = async (populate) => {
   const { index, type } = esOptions;
   log(chalk`{blue Setup Elasticsearch...}`);
 
   // Delete the index.
-  await elastic.deleteIndex(index);
-  log(chalk`{gray Index removed.}`);
+  if (populate) {
+    await elastic.deleteIndex(index);
+    log(chalk`{gray Index removed.}`);
+  }
 
   const exists = await elastic.indexExists(index);
   if (!exists) {
@@ -61,7 +66,10 @@ module.exports = async ({ batchSize }) => {
     log(chalk`{gray Index mappings created.}`);
   }
   log(chalk`{blue Elasticsearch setup} {green complete}`);
+};
 
+const popluateIndex = async (batchSize) => {
+  const { index, type } = esOptions;
   log(chalk`{blue Begin bulk import...}`);
 
   const criteria = { type: { $in: ['Article', 'MediaGallery'] } };
@@ -132,4 +140,89 @@ module.exports = async ({ batchSize }) => {
     log(chalk`{gray Has more?} ${hasMore ? chalk`{green Yes}` : chalk`{yellow No}`}`);
   });
   log(chalk`{blue Bulk import} {green complete}`);
+};
+
+const buildQuery = (phrases) => {
+  const should = phrases.map((phrase) => ({
+    multi_match: {
+      query: phrase,
+      fields: ['taxonomy^1.5', 'name^1.5', 'teaser^1.2', 'body'],
+      type: 'phrase',
+      tie_breaker: 0.5,
+      _name: phrase,
+    },
+  }));
+  return { bool: { should } };
+};
+
+module.exports = async ({ batchSize, populate }) => {
+  const { index, type } = esOptions;
+  await setupElastic(populate);
+  if (populate) {
+    await popluateIndex(batchSize);
+  }
+  const keywords = yaml.safeLoad(fs.readFileSync(path.resolve(__dirname, '../../keywords.yml')));
+
+
+  await eachSeriesPromise(Object.keys(keywords), async (channel) => {
+    const phrases = keywords[channel];
+    const query = buildQuery(phrases);
+
+    const buildBody = (search_after) => ({
+      query,
+      size: batchSize,
+      _source: false,
+      sort: [
+        { _score: 'desc' },
+        { _id: 'asc' },
+      ],
+      search_after,
+    });
+
+    log(chalk`{gray Begin index analysis for the} {blue ${channel}} {gray keyword group...}`);
+
+    const { count } = await elastic.count(index, type, { query });
+    log(chalk`{gray Found} {white ${count}} {gray total hits for} {blue ${channel}}`);
+
+    let maxScore = 0;
+    let offset = 0;
+    let hasMore = count > offset;
+    let after;
+    let i = 0;
+    const totalPages = Math.floor(count / batchSize);
+
+    const collection = await base4.collectionFor('platform.Content');
+
+    await whilstPromise(() => hasMore === true, async () => {
+      const body = buildBody(after);
+      const { hits: results } = await elastic.search(index, type, body, { searchType: 'dfs_query_then_fetch' });
+
+      if (!maxScore) maxScore = results.hits[0]._score;
+
+      const bulkOpts = [];
+      const length = await results.hits.length;
+      results.hits.forEach((hit) => {
+        const {
+          _id,
+          _score: score,
+          sort,
+          matched_queries: matched,
+        } = hit;
+        const strength = maxScore > 0 ? score / maxScore : 0;
+        const $addToSet = { elastic: { channel, score, strength, matched } };
+        after = sort;
+
+        bulkOpts.push({ updateOne: { filter: { _id: Number(_id) }, update: { $addToSet } } });
+      });
+      await collection.bulkWrite(bulkOpts);
+      log(chalk`{gray Mapped} {white ${length}} {gray document scores [${i} of ${totalPages}]}`);
+
+      i += 1;
+      offset += length;
+      hasMore = count > offset;
+
+      log(chalk`{gray Has more?} ${hasMore ? chalk`{green Yes}` : chalk`{yellow No}`}`);
+    });
+    log(chalk`{gray Index analysis for} {blue ${channel}} {gray complete.}`);
+  });
 };
