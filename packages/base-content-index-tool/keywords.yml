@@ -1,7 +1,6 @@
 corporate:
-  - meetings
+  - meeting
   - company
-  - companies
   - conference
   - corporate
   - brand
@@ -24,7 +23,7 @@ association:
   - exhibit hall
   - booth
   - convention
-  - meetings
+  - meeting
   - tradeshow
 nonprofit:
   - gala
@@ -36,22 +35,20 @@ nonprofit:
   - nonprofit
   - raised
   - fund-raiser
-  - benefits
   - parade
   - fundraiser
   - fundraising
   - non-profit
 social_events:
   - wedding
-  - social events
+  - social event
   - wedding planner
   - anniversary
-  - anniversaries
   - baby shower
   - birthday
   - mitzvah
   - cake
-  - personal celebrations
+  - personal celebration
 experiential:
   - brand
   - social media
@@ -72,6 +69,6 @@ experiential:
 bizbash_lists:
   - list
   - top 10
-  - new venues
+  - new venue
   - top 100
   - top 500
