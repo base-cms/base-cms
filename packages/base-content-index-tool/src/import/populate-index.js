@@ -63,8 +63,8 @@ module.exports = async (batchSize) => {
       let terms = [];
       if (taxonomyIds.length) {
         const taxonomies = await taxonomyLoader.loadMany(taxonomyIds);
-        taxonomy = taxonomies.map(t => t.name.replace('-', '').replace(/\W/g, ' ')).join(', ');
-        terms = taxonomies.map(t => stripHtml(t.name));
+        taxonomy = [...new Set(taxonomies.map(t => t.name.replace('-', '').replace(/\W/g, ' ')))].join(', ');
+        terms = [...new Set(taxonomies.map(t => stripHtml(t.name)))];
       }
 
       bulkBody.push({ index: { _index: ELASTIC_INDEX, _type: ELASTIC_TYPE, _id: doc._id } });
