@@ -27,8 +27,6 @@ module.exports = async (populate) => {
         analysis: {
           filter,
           analyzer: {
-            english: 'english',
-            english_search: 'english',
             default: analyzer,
             default_search: analyzer,
           },
