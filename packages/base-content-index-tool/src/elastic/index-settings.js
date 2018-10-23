@@ -1,18 +1,27 @@
 module.exports = {
   filter: {
-    word_delimiter_catenate: { type: 'word_delimiter', generate_word_parts: false, catenate_all: true },
+    word_delimiter_catenate: {
+      type: 'word_delimiter',
+      generate_word_parts: false,
+      generate_number_parts: false,
+      catenate_all: true,
+      split_on_case_change: false,
+      split_on_numerics: false,
+      stem_english_possessive: false,
+    },
     english_stop: { type: 'stop', stopwords: '_english_' },
-    english_stem: { type: 'stemmer', name: 'english' },
+    english_stemmer: { type: 'stemmer', language: 'english' },
+    english_possessive_stemmer: { type: 'stemmer', lanaguage: 'possessive_english' },
   },
   analyzer: {
-    tokenizer: 'classic',
+    tokenizer: 'whitespace',
     filter: [
+      'english_possessive_stemmer',
       'word_delimiter_catenate',
-      'lowercase',
       'asciifolding',
+      'lowercase',
       'english_stop',
-      'english_stem',
+      'english_stemmer',
     ],
-    char_filter: ['html_strip'],
   },
 };

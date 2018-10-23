@@ -6,6 +6,7 @@ const Base4 = require('../base4/client');
 const env = require('../env');
 const { taxonomyLoader } = require('../base4/loaders');
 const { whilstPromise } = require('../utils/async');
+const stripHtml = require('../utils/strip-html');
 
 const { ELASTIC_INDEX, ELASTIC_TYPE } = env;
 const { log } = console;
@@ -59,18 +60,21 @@ module.exports = async (batchSize) => {
       }
       const taxonomyIds = Base4.extractRefIds(doc.taxonomy);
       let taxonomy;
+      let terms = [];
       if (taxonomyIds.length) {
         const taxonomies = await taxonomyLoader.loadMany(taxonomyIds);
         taxonomy = taxonomies.map(t => t.name.replace('-', '').replace(/\W/g, ' ')).join(', ');
+        terms = taxonomies.map(t => stripHtml(t.name));
       }
 
       bulkBody.push({ index: { _index: ELASTIC_INDEX, _type: ELASTIC_TYPE, _id: doc._id } });
       bulkBody.push({
-        name: doc.name || undefined,
-        body: doc.body || undefined,
-        teaser: doc.teaser || doc.deck || undefined,
-        type: doc.type || undefined,
-        taxonomy,
+        name: stripHtml(doc.name),
+        body: stripHtml(doc.body),
+        teaser: stripHtml(doc.teaser) || stripHtml(doc.deck),
+        type: doc.type,
+        taxonomy: stripHtml(taxonomy),
+        terms,
       });
     }
 

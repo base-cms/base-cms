@@ -27,6 +27,8 @@ module.exports = async (populate) => {
         analysis: {
           filter,
           analyzer: {
+            english: 'english',
+            english_search: 'english',
             default: analyzer,
             default_search: analyzer,
           },
@@ -39,21 +41,38 @@ module.exports = async (populate) => {
       properties: {
         name: {
           type: 'text',
-          fields: { boolsim: { type: 'text', similarity: 'boolean' } },
+          term_vector: 'with_positions_offsets',
+          fields: {
+            boolsim: { type: 'text', similarity: 'boolean' },
+            english: { type: 'text', analyzer: 'english' },
+          },
         },
         type: { type: 'keyword' },
         body: {
           type: 'text',
-          fields: { boolsim: { type: 'text', similarity: 'boolean' } },
+          term_vector: 'with_positions_offsets',
+          fields: {
+            boolsim: { type: 'text', similarity: 'boolean' },
+            english: { type: 'text', analyzer: 'english' },
+          },
         },
         teaser: {
           type: 'text',
-          fields: { boolsim: { type: 'text', similarity: 'boolean' } },
+          term_vector: 'with_positions_offsets',
+          fields: {
+            boolsim: { type: 'text', similarity: 'boolean' },
+            english: { type: 'text', analyzer: 'english' },
+          },
         },
         taxonomy: {
           type: 'text',
-          fields: { boolsim: { type: 'text', similarity: 'boolean' } },
+          term_vector: 'with_positions_offsets',
+          fields: {
+            boolsim: { type: 'text', similarity: 'boolean' },
+            english: { type: 'text', analyzer: 'english' },
+          },
         },
+        terms: { type: 'keyword' },
       },
     });
     log(chalk`{gray Index mappings created.}`);
