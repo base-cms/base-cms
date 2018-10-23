@@ -22,9 +22,9 @@ const buildBody = (query, size, after) => ({
 });
 
 const mongoIndexes = [
-  { key: { contentId: 1 }, name: 'contentId' },
-  { key: { channel: 1 }, name: 'channel' },
-  { key: { score: 1 }, name: 'score' },
+  { key: { 'matches.channel': 1 }, name: 'channel' },
+  { key: { 'matches.score': 1 }, name: 'score' },
+  { key: { 'matches.strengh': 1 }, name: 'strength' },
 ];
 
 /**
