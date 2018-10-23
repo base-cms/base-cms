@@ -31,6 +31,12 @@ const questions = [
   },
   {
     type: 'confirm',
+    name: 'saveToMongo',
+    message: 'Populate MongoDB with score results (will overwrite existing data)?',
+    default: false,
+  },
+  {
+    type: 'confirm',
     name: 'shouldRun',
     message: `Proceed with indexing for '${TENANT_KEY}' from '${MONGO_DSN}'?`,
     default: true,
@@ -43,9 +49,14 @@ log(chalk.blue(figlet.textSync('Content Indexer', { horizontalLayout: 'full' }))
 const execute = async () => {
   const answers = await inquirer.prompt(questions);
 
-  const { shouldRun, batchSize, populate } = answers;
+  const {
+    shouldRun,
+    batchSize,
+    populate,
+    saveToMongo,
+  } = answers;
   if (shouldRun) {
-    await run({ batchSize, populate });
+    await run({ batchSize, populate, saveToMongo });
   } else {
     log(chalk.green('Exiting import.'));
     process.exit(0);

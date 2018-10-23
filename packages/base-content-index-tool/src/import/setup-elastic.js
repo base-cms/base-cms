@@ -41,7 +41,6 @@ module.exports = async (populate) => {
           type: 'text',
           term_vector: 'with_positions_offsets',
           fields: {
-            boolsim: { type: 'text', similarity: 'boolean' },
             english: { type: 'text', analyzer: 'english' },
           },
         },
@@ -50,7 +49,6 @@ module.exports = async (populate) => {
           type: 'text',
           term_vector: 'with_positions_offsets',
           fields: {
-            boolsim: { type: 'text', similarity: 'boolean' },
             english: { type: 'text', analyzer: 'english' },
           },
         },
@@ -58,7 +56,6 @@ module.exports = async (populate) => {
           type: 'text',
           term_vector: 'with_positions_offsets',
           fields: {
-            boolsim: { type: 'text', similarity: 'boolean' },
             english: { type: 'text', analyzer: 'english' },
           },
         },
@@ -66,7 +63,6 @@ module.exports = async (populate) => {
           type: 'text',
           term_vector: 'with_positions_offsets',
           fields: {
-            boolsim: { type: 'text', similarity: 'boolean' },
             english: { type: 'text', analyzer: 'english' },
           },
         },

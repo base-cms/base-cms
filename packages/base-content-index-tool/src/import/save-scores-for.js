@@ -1,8 +1,9 @@
 const chalk = require('chalk');
+const ProgressBar = require('progress');
 const env = require('../env');
 const base4 = require('../base4');
 const elastic = require('../elastic');
-const { whilstPromise, eachSeriesPromise } = require('../utils/async');
+const { whilstPromise, eachSeriesPromise, eachPromise } = require('../utils/async');
 const buildQuery = require('./build-elastic-query');
 
 const { ELASTIC_INDEX, ELASTIC_TYPE } = env;
@@ -12,7 +13,7 @@ const buildBody = (query, size, after) => ({
   query,
   size,
   _source: {
-    includes: ['name', 'teaser', 'body'],
+    includes: ['name', 'teaser', 'body', 'terms'],
   },
   sort: [
     { _score: 'desc' },
@@ -27,6 +28,16 @@ const mongoIndexes = [
   { key: { 'matches.strengh': 1 }, name: 'strength' },
 ];
 
+const makeUniquePhrases = async (phrases) => {
+  const tokenizedPhrases = [];
+  await eachPromise(phrases, async (phrase) => {
+    const { tokens } = await elastic.analyze(ELASTIC_INDEX, { text: phrase });
+    const tokenizedPhrase = tokens.map(t => t.token).join(' ');
+    if (tokenizedPhrase) tokenizedPhrases.push(tokenizedPhrase);
+  });
+  return [...new Set(tokenizedPhrases)];
+};
+
 /**
  *
  * @param {object} keywordMap
@@ -37,11 +48,18 @@ module.exports = async (keywordMap, batchSize) => {
   await collection.createIndexes(mongoIndexes);
   log(chalk`{gray Cleared destination Mongo collection.}`);
 
-
   await eachSeriesPromise(Object.keys(keywordMap), async (channel) => {
-    const phrases = keywordMap[channel];
+    const phrases = await makeUniquePhrases(keywordMap[channel]);
+
+    if (!phrases.length) {
+      log(chalk`{yellow NO SEARCH PHRASES FOUND.}`);
+      return;
+    }
+
     const query = buildQuery(phrases);
     log(chalk`{gray Begin index analysis for the} {blue ${channel}} {gray keyword group...}`);
+    log(chalk`{gray Using search phrases...}`);
+    log(chalk`{white ${phrases.join(' ')}}`);
 
     const { count } = await elastic.count(ELASTIC_INDEX, ELASTIC_TYPE, { query });
     log(chalk`{gray Found} {white ${count}} {gray total hits for} {blue ${channel}}`);
@@ -50,8 +68,10 @@ module.exports = async (keywordMap, batchSize) => {
     let offset = 0;
     let hasMore = count > offset;
     let after;
-    let i = 1;
     const totalPages = Math.ceil(count / batchSize);
+    const bar = new ProgressBar('[:current/:total] Complete :percent (ETA: :etas)', {
+      total: totalPages,
+    });
 
     await whilstPromise(() => hasMore === true, async () => {
       const body = buildBody(query, batchSize, after);
@@ -93,13 +113,10 @@ module.exports = async (keywordMap, batchSize) => {
         after = sort;
       });
       await collection.bulkWrite(bulkOps);
-      log(chalk`{gray Mapped} {white ${length}} {gray document scores [${i} of ${totalPages}]}`);
 
-      i += 1;
       offset += length;
       hasMore = count > offset;
-
-      log(chalk`{gray Has more?} ${hasMore ? chalk`{green Yes}` : chalk`{yellow No}`}`);
+      bar.tick();
     });
     log(chalk`{gray Index analysis for} {blue ${channel}} {gray complete.}`);
   });

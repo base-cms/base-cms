@@ -1,5 +1,6 @@
 /* eslint-disable no-await-in-loop */
 const chalk = require('chalk');
+const ProgressBar = require('progress');
 const elastic = require('../elastic');
 const base4 = require('../base4');
 const Base4 = require('../base4/client');
@@ -38,9 +39,14 @@ module.exports = async (batchSize) => {
 
   let offset = 0;
   let hasMore = count > offset;
+
+  const totalPages = Math.ceil(count / batchSize);
+  const bar = new ProgressBar('[:current/:total] Complete :percent (ETA: :etas)', {
+    total: totalPages,
+  });
+
   await whilstPromise(() => hasMore === true, async () => {
     const bulkBody = [];
-    log(chalk`{gray Starting from offset} {white ${offset}}`);
     const cursor = await base4.find('platform.Content', criteria, {
       projection,
       skip: offset,
@@ -49,15 +55,8 @@ module.exports = async (batchSize) => {
     });
     const length = await cursor.count(true);
 
-    log(chalk`{gray Retrieved} {white ${length}} {gray documents from MongoDB.}`);
-
-    let firstDoc;
     while (await cursor.hasNext()) {
       const doc = await cursor.next();
-      if (!firstDoc) {
-        firstDoc = doc;
-        log(chalk`{gray Beginning bulk body creation at ID} {white ${doc._id}}`);
-      }
       const taxonomyIds = Base4.extractRefIds(doc.taxonomy);
       let taxonomy;
       let terms = [];
@@ -78,15 +77,14 @@ module.exports = async (batchSize) => {
       });
     }
 
-    await cursor.close();
-
-    const bulkRes = await elastic.bulk({ body: bulkBody });
-    log(chalk`{gray Bulk indexed} {white ${length}} {gray documents in Elasticsearch (${bulkRes.took}ms).}`);
+    await Promise.all([
+      cursor.close(),
+      elastic.bulk({ body: bulkBody }),
+    ]);
 
     offset += length;
     hasMore = count > offset;
-
-    log(chalk`{gray Has more?} ${hasMore ? chalk`{green Yes}` : chalk`{yellow No}`}`);
+    bar.tick();
   });
   log(chalk`{blue Bulk import} {green complete}`);
 };

@@ -10,8 +10,8 @@ module.exports = {
       stem_english_possessive: false,
     },
     english_stop: { type: 'stop', stopwords: '_english_' },
-    english_stemmer: { type: 'stemmer', language: 'english' },
-    english_possessive_stemmer: { type: 'stemmer', lanaguage: 'possessive_english' },
+    english_stemmer_light: { type: 'stemmer', name: 'light_english' },
+    english_possessive_stemmer: { type: 'stemmer', name: 'possessive_english' },
   },
   analyzer: {
     tokenizer: 'whitespace',
@@ -21,7 +21,7 @@ module.exports = {
       'asciifolding',
       'lowercase',
       'english_stop',
-      'english_stemmer',
+      'english_stemmer_light',
     ],
   },
 };

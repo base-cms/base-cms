@@ -3,11 +3,13 @@ const popluateIndex = require('./populate-index');
 const loadKeywords = require('./load-keywords');
 const saveScoresFor = require('./save-scores-for');
 
-module.exports = async ({ batchSize, populate }) => {
+module.exports = async ({ batchSize, populate, saveToMongo }) => {
   await setupElastic(populate);
   if (populate) {
     await popluateIndex(batchSize);
   }
-  const keywordMap = loadKeywords();
-  await saveScoresFor(keywordMap, batchSize);
+  if (saveToMongo) {
+    const keywordMap = loadKeywords();
+    await saveScoresFor(keywordMap, batchSize);
+  }
 };
