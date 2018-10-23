@@ -12,9 +12,7 @@ const { log } = console;
 const buildBody = (query, size, after) => ({
   query,
   size,
-  _source: {
-    includes: ['name', 'teaser', 'body', 'terms'],
-  },
+  _source: false,
   sort: [
     { _score: 'desc' },
     { _id: 'asc' },
@@ -23,9 +21,10 @@ const buildBody = (query, size, after) => ({
 });
 
 const mongoIndexes = [
-  { key: { 'matches.channel': 1 }, name: 'channel' },
-  { key: { 'matches.score': 1 }, name: 'score' },
-  { key: { 'matches.strengh': 1 }, name: 'strength' },
+  { key: { 'contentId': 1 }, name: 'contentId' },
+  { key: { 'channel': 1 }, name: 'channel' },
+  { key: { 'score': 1 }, name: 'score' },
+  { key: { 'strengh': 1 }, name: 'strength' },
 ];
 
 const makeUniquePhrases = async (phrases) => {
@@ -81,38 +80,28 @@ module.exports = async (keywordMap, batchSize) => {
       if (!maxScore) maxScore = firstScore;
 
       const length = await results.hits.length;
-      const bulkOps = [];
+      const toInsert = [];
       results.hits.forEach((hit) => {
         const {
           _id,
           _score: score,
-          _source: source,
           sort,
           matched_queries: matched,
         } = hit;
         const contentId = Number(_id);
         const strength = maxScore > 0 ? score / maxScore : 0;
 
-        bulkOps.push({
-          updateOne: {
-            filter: { _id: contentId },
-            update: {
-              $setOnInsert: { _id: contentId, source },
-              $push: {
-                matches: {
-                  channel,
-                  score,
-                  strength,
-                  matched,
-                },
-              },
-            },
-            upsert: true,
-          },
+        toInsert.push({
+          contentId,
+          channel,
+          score,
+          strength,
+          matched,
         });
+
         after = sort;
       });
-      await collection.bulkWrite(bulkOps);
+      await collection.insertMany(toInsert);
 
       offset += length;
       hasMore = count > offset;
