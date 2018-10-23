@@ -11,7 +11,9 @@ const { log } = console;
 const buildBody = (query, size, after) => ({
   query,
   size,
-  _source: false,
+  _source: {
+    includes: ['name', 'teaser', 'body'],
+  },
   sort: [
     { _score: 'desc' },
     { _id: 'asc' },
@@ -59,25 +61,38 @@ module.exports = async (keywordMap, batchSize) => {
       if (!maxScore) maxScore = firstScore;
 
       const length = await results.hits.length;
-      const toInsert = [];
+      const bulkOps = [];
       results.hits.forEach((hit) => {
         const {
           _id,
           _score: score,
+          _source: source,
           sort,
           matched_queries: matched,
         } = hit;
+        const contentId = Number(_id);
         const strength = maxScore > 0 ? score / maxScore : 0;
-        toInsert.push({
-          contentId: Number(_id),
-          channel,
-          score,
-          strength,
-          matched,
+
+        bulkOps.push({
+          updateOne: {
+            filter: { _id: contentId },
+            update: {
+              $setOnInsert: { _id: contentId, source },
+              $push: {
+                matches: {
+                  channel,
+                  score,
+                  strength,
+                  matched,
+                },
+              },
+            },
+            upsert: true,
+          },
         });
         after = sort;
       });
-      await collection.insertMany(toInsert);
+      await collection.bulkWrite(bulkOps);
       log(chalk`{gray Mapped} {white ${length}} {gray document scores [${i} of ${totalPages}]}`);
 
       i += 1;
