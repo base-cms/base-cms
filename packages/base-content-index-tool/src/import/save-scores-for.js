@@ -19,11 +19,23 @@ const buildBody = (query, size, after) => ({
   search_after: after,
 });
 
+const mongoIndexes = [
+  { key: { contentId: 1 }, name: 'contentId' },
+  { key: { channel: 1 }, name: 'channel' },
+  { key: { score: 1 }, name: 'score' },
+];
+
 /**
  *
  * @param {object} keywordMap
  */
 module.exports = async (keywordMap, batchSize) => {
+  const collection = await base4.collectionFor('platform.KeywordAnalysis');
+  await collection.deleteMany();
+  await collection.createIndexes(mongoIndexes);
+  log(chalk`{gray Cleared destination Mongo collection.}`);
+
+
   await eachSeriesPromise(Object.keys(keywordMap), async (channel) => {
     const phrases = keywordMap[channel];
     const query = buildQuery(phrases);
@@ -38,10 +50,6 @@ module.exports = async (keywordMap, batchSize) => {
     let after;
     let i = 1;
     const totalPages = Math.ceil(count / batchSize);
-
-    const collection = await base4.collectionFor('platform.KeywordAnalysis');
-    await collection.deleteMany();
-    log(chalk`{gray Cleared destination Mongo collection.}`);
 
     await whilstPromise(() => hasMore === true, async () => {
       const body = buildBody(query, batchSize, after);
@@ -61,7 +69,7 @@ module.exports = async (keywordMap, batchSize) => {
         } = hit;
         const strength = maxScore > 0 ? score / maxScore : 0;
         toInsert.push({
-          _id: Number(_id),
+          contentId: Number(_id),
           channel,
           score,
           strength,
