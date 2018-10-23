@@ -21,10 +21,10 @@ const buildBody = (query, size, after) => ({
 });
 
 const mongoIndexes = [
-  { key: { 'contentId': 1 }, name: 'contentId' },
-  { key: { 'channel': 1 }, name: 'channel' },
-  { key: { 'score': 1 }, name: 'score' },
-  { key: { 'strengh': 1 }, name: 'strength' },
+  { key: { contentId: 1 }, name: 'contentId' },
+  { key: { channel: 1 }, name: 'channel' },
+  { key: { score: 1 }, name: 'score' },
+  { key: { strengh: 1 }, name: 'strength' },
 ];
 
 const makeUniquePhrases = async (phrases) => {
