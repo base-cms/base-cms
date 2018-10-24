@@ -1,8 +1,7 @@
 import createRoutes from 'next-routes';
-import withExternalLink from './routing/withExternalLink';
 
 const routes = createRoutes();
-const { Link: NextLink, Router } = routes;
+const { Link, Router } = routes;
 
 const redirect = (res, route, code = 301) => {
   if (res) {
@@ -14,9 +13,6 @@ const redirect = (res, route, code = 301) => {
     Router.replaceRoute(route);
   }
 };
-
-// Add support for external URLs.
-const Link = withExternalLink(NextLink);
 
 export {
   routes,
