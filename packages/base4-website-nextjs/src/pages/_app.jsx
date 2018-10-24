@@ -2,6 +2,7 @@ import App, { Container } from 'next/app';
 import React from 'react';
 import { ApolloProvider } from 'react-apollo';
 import withApollo from '@base-cms/base4-nextjs-apollo';
+import withRouting from './withRouting';
 import RoutingContext from '../routing/context';
 
 class WebsiteApp extends App {
@@ -24,4 +25,5 @@ class WebsiteApp extends App {
   }
 }
 
-export default withApollo(WebsiteApp);
+export { withApollo, withRouting };
+export default WebsiteApp;
