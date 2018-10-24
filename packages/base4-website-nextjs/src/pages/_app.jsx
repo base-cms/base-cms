@@ -4,24 +4,26 @@ import { ApolloProvider } from 'react-apollo';
 import withApollo from '@base-cms/base4-nextjs-apollo';
 import RoutingContext from '../routing/context';
 
-class WebsiteApp extends App {
-  render() {
-    const {
-      Component,
-      pageProps,
-      apollo,
-      routeDefinitions,
-    } = this.props;
-    return (
-      <Container>
-        <ApolloProvider client={apollo}>
-          <RoutingContext.Provider value={routeDefinitions}>
-            <Component {...pageProps} />
+const app = (routes) => {
+  class WebsiteApp extends App {
+    render() {
+      const {
+        Component,
+        pageProps,
+        apollo,
+      } = this.props;
+      return (
+        <Container>
+          <RoutingContext.Provider value={routes}>
+            <ApolloProvider client={apollo}>
+              <Component {...pageProps} />
+            </ApolloProvider>
           </RoutingContext.Provider>
-        </ApolloProvider>
-      </Container>
-    );
+        </Container>
+      );
+    }
   }
-}
+  return withApollo(WebsiteApp);
+};
 
-export default withApollo(WebsiteApp);
+export default app;
