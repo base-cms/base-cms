@@ -14,7 +14,11 @@ const once = (fn) => {
   };
 };
 
-const createRoutes = once(value => nextRoutes(value));
+const createRoutes = once((defs) => {
+  const routes = nextRoutes();
+  defs.forEach(def => routes.add(def));
+  return routes;
+});
 
 const Link = props => (
   <RoutingContext.Consumer>
