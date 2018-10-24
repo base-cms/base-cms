@@ -13,37 +13,53 @@ var reactApollo = require('react-apollo');
 var withApollo = _interopDefault(require('@base-cms/base4-nextjs-apollo'));
 var __chunk_3 = require('./chunk-5ea90bae.js');
 
-var app = function app(routes) {
-  var WebsiteApp =
-  /*#__PURE__*/
-  function (_App) {
-    __chunk_2._inherits(WebsiteApp, _App);
+var routes = [{
+  name: 'home',
+  pattern: '/',
+  page: 'index'
+}, {
+  name: 'section',
+  pattern: '/section/:alias(.*)',
+  page: 'section'
+}, {
+  name: 'page',
+  pattern: '/page/:alias',
+  page: 'page'
+}, {
+  name: 'content',
+  pattern: '/:prefix(.*):id(\\d{8}):suffix(.*)',
+  page: 'content'
+}];
 
-    function WebsiteApp() {
-      __chunk_2._classCallCheck(this, WebsiteApp);
+var WebsiteApp =
+/*#__PURE__*/
+function (_App) {
+  __chunk_2._inherits(WebsiteApp, _App);
 
-      return __chunk_2._possibleConstructorReturn(this, __chunk_2._getPrototypeOf(WebsiteApp).apply(this, arguments));
+  function WebsiteApp() {
+    __chunk_2._classCallCheck(this, WebsiteApp);
+
+    return __chunk_2._possibleConstructorReturn(this, __chunk_2._getPrototypeOf(WebsiteApp).apply(this, arguments));
+  }
+
+  __chunk_2._createClass(WebsiteApp, [{
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          Component = _this$props.Component,
+          pageProps = _this$props.pageProps,
+          apollo = _this$props.apollo;
+      return React__default.createElement(App.Container, null, React__default.createElement(__chunk_3.RoutingContext.Provider, {
+        value: routes
+      }, React__default.createElement(reactApollo.ApolloProvider, {
+        client: apollo
+      }, React__default.createElement(Component, pageProps))));
     }
+  }]);
 
-    __chunk_2._createClass(WebsiteApp, [{
-      key: "render",
-      value: function render() {
-        var _this$props = this.props,
-            Component = _this$props.Component,
-            pageProps = _this$props.pageProps,
-            apollo = _this$props.apollo;
-        return React__default.createElement(App.Container, null, React__default.createElement(__chunk_3.RoutingContext.Provider, {
-          value: routes
-        }, React__default.createElement(reactApollo.ApolloProvider, {
-          client: apollo
-        }, React__default.createElement(Component, pageProps))));
-      }
-    }]);
+  return WebsiteApp;
+}(App__default);
 
-    return WebsiteApp;
-  }(App__default);
+var _app = withApollo(WebsiteApp);
 
-  return withApollo(WebsiteApp);
-};
-
-exports.WebsiteApp = app;
+exports.WebsiteApp = _app;
