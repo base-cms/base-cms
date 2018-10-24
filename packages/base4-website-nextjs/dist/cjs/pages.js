@@ -13,24 +13,6 @@ var reactApollo = require('react-apollo');
 var withApollo = _interopDefault(require('@base-cms/base4-nextjs-apollo'));
 var __chunk_3 = require('./chunk-5ea90bae.js');
 
-var routes = [{
-  name: 'home',
-  pattern: '/',
-  page: 'index'
-}, {
-  name: 'section',
-  pattern: '/section/:alias(.*)',
-  page: 'section'
-}, {
-  name: 'page',
-  pattern: '/page/:alias',
-  page: 'page'
-}, {
-  name: 'content',
-  pattern: '/:prefix(.*):id(\\d{8}):suffix(.*)',
-  page: 'content'
-}];
-
 var WebsiteApp =
 /*#__PURE__*/
 function (_App) {
@@ -48,9 +30,10 @@ function (_App) {
       var _this$props = this.props,
           Component = _this$props.Component,
           pageProps = _this$props.pageProps,
-          apollo = _this$props.apollo;
+          apollo = _this$props.apollo,
+          routeDefs = _this$props.routeDefs;
       return React__default.createElement(App.Container, null, React__default.createElement(__chunk_3.RoutingContext.Provider, {
-        value: routes
+        value: routeDefs
       }, React__default.createElement(reactApollo.ApolloProvider, {
         client: apollo
       }, React__default.createElement(Component, pageProps))));
