@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'object-path';
-import HTML from './HTML';
-import { isFunction as isFn } from '../utils';
+import HTMLElement from './HTMLElement';
+import Element from './Element';
 
 const propTypes = {
   asHTML: PropTypes.bool,
@@ -15,7 +15,7 @@ const propTypes = {
 
 const defaultProps = {
   asHTML: false,
-  children: v => v,
+  children: null,
   collapsable: false,
   data: {},
   tag: 'div',
@@ -23,21 +23,14 @@ const defaultProps = {
 
 const FieldValue = ({
   asHTML,
-  children,
-  collapsable,
   data,
   path,
-  tag: Tag,
-  ...attrs
+  ...rest
 }) => {
   // Extract the value off the data object.
   const value = get(data, path, null);
-  // Protect the child render function.
-  const render = isFn(children) ? children : defaultProps.children;
-  // Return as an innerHTML element, if requested.
-  if (asHTML) return <HTML tag={Tag} value={value} collapsable={collapsable} {...attrs} />;
-  // Otherwise, wrap the value with the element and return (if not collapsable).
-  return !value && collapsable ? null : <Tag {...attrs}>{render(value)}</Tag>;
+  // Return as either an innerHTML or regular element.
+  return asHTML ? <HTMLElement value={value} {...rest} /> : <Element value={value} {...rest} />;
 };
 
 FieldValue.propTypes = propTypes;

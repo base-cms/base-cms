@@ -13,7 +13,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  children: v => v,
+  children: null,
   collapsable: false,
   data: {},
   format: 'MMM Do, YYYY',

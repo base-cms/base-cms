@@ -15,7 +15,7 @@ const defaultProps = {
   value: '',
 };
 
-const HTML = ({
+const HTMLElement = ({
   collapsable,
   value,
   tag: Tag,
@@ -25,7 +25,7 @@ const HTML = ({
   return <Tag dangerouslySetInnerHTML={createMarkup(value)} {...attrs} />;
 };
 
-HTML.propTypes = propTypes;
-HTML.defaultProps = defaultProps;
+HTMLElement.propTypes = propTypes;
+HTMLElement.defaultProps = defaultProps;
 
-export default HTML;
+export default HTMLElement;

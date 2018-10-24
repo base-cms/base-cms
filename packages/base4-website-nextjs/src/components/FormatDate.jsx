@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { isFunction as isFn, formatDate } from '../utils';
+import Element from './Element';
+import { formatDate } from '../utils';
 
 const propTypes = {
   children: PropTypes.func,
@@ -16,26 +17,20 @@ const propTypes = {
 
 const defaultProps = {
   collapsable: true,
-  children: v => v,
+  children: null,
   format: 'MMM Do, YYYY',
   tag: 'span',
   value: null,
 };
 
 const FormatDate = ({
-  children,
-  collapsable,
   format,
-  tag: Tag,
-  value,
-  ...attrs
+  value: raw,
+  ...rest
 }) => {
   // Format the date. Will return null on an invalid date value.
-  const formatted = formatDate(value, format);
-  // Protect the child render function.
-  const render = isFn(children) ? children : defaultProps.children;
-  // Wrap the value with the element and return (if not collapsable).
-  return !formatted && collapsable ? null : <Tag {...attrs}>{render(formatted)}</Tag>;
+  const value = formatDate(raw, format);
+  return <Element value={value} {...rest} />;
 };
 
 FormatDate.propTypes = propTypes;
