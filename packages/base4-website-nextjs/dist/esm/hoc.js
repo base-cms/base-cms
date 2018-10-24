@@ -1,5 +1,5 @@
 import { a as _regeneratorRuntime } from './chunk-fd635e66.js';
-import { d as _objectSpread, c as _asyncToGenerator, e as _classCallCheck, f as _createClass, g as _possibleConstructorReturn, h as _getPrototypeOf, i as _inherits, j as _taggedTemplateLiteral } from './chunk-cfc9ba70.js';
+import { d as _objectSpread, a as _asyncToGenerator, e as _classCallCheck, f as _createClass, g as _possibleConstructorReturn, h as _getPrototypeOf, i as _inherits, j as _taggedTemplateLiteral } from './chunk-cfc9ba70.js';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { componentDisplayName, extractFragmentData, httpErrors, sectionPath } from './utils.js';

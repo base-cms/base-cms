@@ -1,11 +1,13 @@
-import { b as _objectWithoutProperties, a as _extends, d as _objectSpread } from './chunk-cfc9ba70.js';
+import { b as _objectWithoutProperties, c as _extends, d as _objectSpread } from './chunk-cfc9ba70.js';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { isFunction as isFn, formatDate, componentDisplayName, createMarkup, cleanPath } from './utils.js';
 import { get } from 'object-path';
 import classNames from 'classnames';
+import { Link } from './routing.js';
 import Head from 'next/head';
 import 'moment';
+import 'next-routes';
 
 var propTypes = {
   children: PropTypes.func,
@@ -195,6 +197,22 @@ FieldValue.defaultProps = defaultProps$4;
 
 var FieldValue$1 = withModelFieldClass('content')(FieldValue);
 
+var propTypes$5 = {
+  // Whether to render the `value` prop as HTML.
+  asHTML: PropTypes.bool,
+  // A child function to custom render the `value` prop.
+  children: PropTypes.func,
+  // Whether the entire component should collapse on an empty value.
+  collapsable: PropTypes.bool,
+  // Optional parameters for named routes.
+  params: PropTypes.object,
+  // eslint-disable-line react/forbid-prop-types
+  // Route name or URL to match (per `next-routes`).
+  to: PropTypes.string.isRequired,
+  // The inner value to render by default.
+  value: PropTypes.node
+};
+
 var MetaDescription = function MetaDescription(_ref) {
   var value = _ref.value;
   if (!value) return null;
@@ -211,23 +229,29 @@ MetaDescription.defaultProps = {
   value: null
 };
 
-var PageTitle = function PageTitle(_ref) {
-  var value = _ref.value,
-      siteName = _ref.siteName,
-      concateWith = _ref.concateWith;
-  var title = siteName ? "".concat(value, " ").concat(concateWith, " ").concat(siteName) : value;
-  return React.createElement(Head, null, React.createElement("title", null, title));
+var propTypes$6 = {
+  children: PropTypes.func,
+  concateWith: PropTypes.string,
+  siteName: PropTypes.string,
+  value: PropTypes.string.isRequired
+};
+var defaultProps$6 = {
+  children: undefined,
+  concateWith: '|',
+  siteName: null
 };
 
-PageTitle.propTypes = {
-  value: PropTypes.string.isRequired,
-  siteName: PropTypes.string,
-  concateWith: PropTypes.string
+var PageTitle = function PageTitle(_ref) {
+  var render = _ref.children,
+      concateWith = _ref.concateWith,
+      siteName = _ref.siteName,
+      value = _ref.value;
+  var title = siteName ? "".concat(value, " ").concat(concateWith, " ").concat(siteName) : value;
+  return React.createElement(Head, null, React.createElement("title", null, isFn(render) ? render() : title));
 };
-PageTitle.defaultProps = {
-  siteName: null,
-  concateWith: '|'
-};
+
+PageTitle.propTypes = propTypes$6;
+PageTitle.defaultProps = defaultProps$6;
 
 var RelCanonical = function RelCanonical(_ref) {
   var origin = _ref.origin,
@@ -243,4 +267,4 @@ RelCanonical.propTypes = {
   origin: PropTypes.string.isRequired
 };
 
-export { DateFieldValue$1 as ContentDateFieldValue, FieldValue$1 as ContentFieldValue, Element, FieldValue, FormatDate, HTMLElement, MetaDescription, PageTitle, RelCanonical };
+export { DateFieldValue$1 as ContentDateFieldValue, FieldValue$1 as ContentFieldValue, Element, FieldValue, FormatDate, HTMLElement, Link as LinkElement, MetaDescription, PageTitle, RelCanonical };

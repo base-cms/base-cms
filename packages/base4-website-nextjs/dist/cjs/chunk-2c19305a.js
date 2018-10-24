@@ -205,9 +205,9 @@ function _taggedTemplateLiteral(strings, raw) {
   }));
 }
 
-exports._extends = _extends;
-exports._objectWithoutProperties = _objectWithoutProperties;
 exports._asyncToGenerator = _asyncToGenerator;
+exports._objectWithoutProperties = _objectWithoutProperties;
+exports._extends = _extends;
 exports._objectSpread = _objectSpread;
 exports._classCallCheck = _classCallCheck;
 exports._createClass = _createClass;

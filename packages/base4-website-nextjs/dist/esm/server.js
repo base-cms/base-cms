@@ -1,12 +1,9 @@
 import { a as _regeneratorRuntime } from './chunk-fd635e66.js';
-import { c as _asyncToGenerator } from './chunk-cfc9ba70.js';
+import { a as _asyncToGenerator } from './chunk-cfc9ba70.js';
 import next from 'next';
 import baseWebsite from '@base-cms/base4-website-express';
 import { resolve } from 'path';
 import { routes } from './routing.js';
-import 'react';
-import './utils.js';
-import 'moment';
 import 'next-routes';
 
 var isFn = function isFn(v) {
