@@ -60,7 +60,10 @@ __chunk_1._regeneratorRuntime.mark(function _callee() {
           throw new Error('No route definitions were provided!');
 
         case 3:
-          routes = nextRoutes(routeDefs); // Create the NextJS app.
+          routes = nextRoutes();
+          routeDefs.forEach(function (def) {
+            return routes.add(def);
+          }); // Create the NextJS app.
 
           app = next({
             dev: dev,
@@ -68,31 +71,31 @@ __chunk_1._regeneratorRuntime.mark(function _callee() {
           }); // Call the `beforePrepare` hook, if specified.
 
           if (!isFn(beforePrepare)) {
-            _context.next = 8;
+            _context.next = 9;
             break;
           }
 
-          _context.next = 8;
+          _context.next = 9;
           return beforePrepare(app);
 
-        case 8:
-          _context.next = 10;
+        case 9:
+          _context.next = 11;
           return app.prepare();
 
-        case 10:
+        case 11:
           // Create the Base4 Express server (but do not listen).
           webserver = baseWebsite(webServerOpts).use(routes.getRequestHandler(app)); // Call the `beforeListen` hook, if specified.
 
           if (!isFn(beforeListen)) {
-            _context.next = 14;
+            _context.next = 15;
             break;
           }
 
-          _context.next = 14;
+          _context.next = 15;
           return beforeListen(webserver, app);
 
-        case 14:
-          _context.next = 16;
+        case 15:
+          _context.next = 17;
           return new Promise(function (res, rej) {
             webserver.listen(port, function listen(err) {
               if (err) {
@@ -103,14 +106,14 @@ __chunk_1._regeneratorRuntime.mark(function _callee() {
             });
           });
 
-        case 16:
+        case 17:
           server = _context.sent;
           return _context.abrupt("return", {
             app: app,
             server: server
           });
 
-        case 18:
+        case 19:
         case "end":
           return _context.stop();
       }
