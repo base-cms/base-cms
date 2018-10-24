@@ -22,8 +22,12 @@ var once = function once(fn) {
   };
 };
 
-var createRoutes = once(function (value) {
-  return nextRoutes(value);
+var createRoutes = once(function (defs) {
+  var routes = nextRoutes();
+  defs.forEach(function (def) {
+    return routes.add(def);
+  });
+  return routes;
 });
 
 var Link = function Link(props) {
