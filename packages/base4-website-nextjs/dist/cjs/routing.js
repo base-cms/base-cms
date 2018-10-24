@@ -7,7 +7,8 @@ function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'defau
 var React = require('react');
 var React__default = _interopDefault(React);
 var nextRoutes = _interopDefault(require('next-routes'));
-var __chunk_3 = require('./chunk-5ea90bae.js');
+
+var RoutingContext = React__default.createContext([]);
 
 var once = function once(fn) {
   var called = false;
@@ -31,7 +32,7 @@ var createRoutes = once(function (defs) {
 });
 
 var Link = function Link(props) {
-  return React__default.createElement(__chunk_3.RoutingContext.Consumer, null, function (definitions) {
+  return React__default.createElement(RoutingContext.Consumer, null, function (definitions) {
     var routes = createRoutes(definitions);
     var NextLink = routes.Link;
     return React__default.createElement(NextLink, props);
@@ -39,7 +40,7 @@ var Link = function Link(props) {
 };
 
 var Router = function Router(props) {
-  return React__default.createElement(__chunk_3.RoutingContext.Consumer, null, function (definitions) {
+  return React__default.createElement(RoutingContext.Consumer, null, function (definitions) {
     var routes = createRoutes(definitions);
     var NextRouter = routes.Router;
     return React__default.createElement(NextRouter, props);
@@ -61,6 +62,7 @@ var redirect = function redirect(router, res, route) {
   }
 };
 
+exports.RoutingContext = RoutingContext;
 exports.redirect = redirect;
 exports.Link = Link;
 exports.Router = Router;

@@ -15,7 +15,6 @@ var routing = require('./routing.js');
 var Head = _interopDefault(require('next/head'));
 require('moment');
 require('next-routes');
-require('./chunk-5ea90bae.js');
 
 var propTypes = {
   children: PropTypes.func,

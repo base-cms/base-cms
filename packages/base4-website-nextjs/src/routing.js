@@ -12,8 +12,8 @@ const redirect = (router, res, route, code = 301) => {
   }
 };
 
-export default RoutingContext;
 export {
+  RoutingContext,
   redirect,
   Link,
   Router,
