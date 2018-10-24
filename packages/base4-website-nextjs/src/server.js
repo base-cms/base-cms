@@ -28,7 +28,8 @@ export default async ({
 } = {}) => {
   // Load route definitions.
   if (!isArray(routeDefs)) throw new Error('No route definitions were provided!');
-  const routes = nextRoutes(routeDefs);
+  const routes = nextRoutes();
+  routeDefs.forEach(def => routes.add(def));
 
   // Create the NextJS app.
   const app = next({ dev, dir: resolve(dir) });
