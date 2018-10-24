@@ -1,3 +1,4 @@
+import ContentDateFieldValue from './components/Content/DateFieldValue';
 import ContentFieldValue from './components/Content/FieldValue';
 import Element from './components/Element';
 import FieldValue from './components/FieldValue';
@@ -8,6 +9,7 @@ import PageTitle from './components/PageTitle';
 import RelCanonical from './components/RelCanonical';
 
 export {
+  ContentDateFieldValue,
   ContentFieldValue,
   Element,
   FieldValue,
