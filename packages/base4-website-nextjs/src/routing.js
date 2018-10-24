@@ -1,21 +1,17 @@
-import createRoutes from 'next-routes';
+import { Link, Router } from './routing/Components';
 
-const routes = createRoutes();
-const { Link, Router } = routes;
-
-const redirect = (res, route, code = 301) => {
+const redirect = (router, res, route, code = 301) => {
   if (res) {
     // Server-side only.
     res.writeHead(code, { Location: route });
     res.end();
   } else {
     // Client-side.
-    Router.replaceRoute(route);
+    router.replaceRoute(route);
   }
 };
 
 export {
-  routes,
   redirect,
   Link,
   Router,

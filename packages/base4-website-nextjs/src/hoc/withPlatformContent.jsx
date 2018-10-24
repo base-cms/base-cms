@@ -94,7 +94,8 @@ export default (Page, options = {
         throw httpErrors.notFound(`No content was found for id '${id}'`);
       }
       // Check content for internal/external redirects, etc.
-      checkContent(platformContent, ctx);
+      // @todo Re-enabled this.
+      // checkContent(platformContent, ctx);
       const { canonicalPath } = platformContent;
       // @todo TextAds and Promotions can use an external URL. We _must_ account for this
       // when using the `next-routes::Link` component, as external URLs do not inherently

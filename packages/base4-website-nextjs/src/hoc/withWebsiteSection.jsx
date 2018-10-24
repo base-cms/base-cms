@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 
-// Routing
-import { redirect } from '../routing';
-
 // Utilities
 import {
   componentDisplayName,
@@ -21,6 +18,11 @@ import withRequestOrigin from './withRequestOrigin';
 
 // Components
 import { RelCanonical, PageTitle, MetaDescription } from '../components';
+
+// Routing
+// @todo Reenable this!
+// import { redirect } from '../routing';
+const redirect = () => {};
 
 /**
  * Builds the website section GraphQL query.
@@ -84,8 +86,10 @@ export default (Page, options = {
         // A redirect was found for this section alias. Force a redirect.
         const { alias: redirectAlias } = websiteSectionRedirect;
         const path = sectionPath(redirectAlias, routePrefix);
+
+        // @todo Re-enable this!
         redirect(res, path);
-        return { section: {}, canonicalPath: path, ...pageProps };
+        // return { section: {}, canonicalPath: path, ...pageProps };
       }
 
       // No website section or redirect was found for this alias. Return a 404.

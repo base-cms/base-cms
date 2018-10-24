@@ -1,0 +1,5 @@
+{
+  "name": "routing",
+  "private": true,
+  "main": "../dist/cjs/routing.js"
+}

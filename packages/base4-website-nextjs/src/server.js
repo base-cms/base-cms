@@ -1,7 +1,7 @@
 import next from 'next';
 import baseWebsite from '@base-cms/base4-website-express';
 import { resolve } from 'path';
-import { routes } from './routing';
+import nextRoutes from 'next-routes';
 
 const isFn = v => typeof v === 'function';
 const { isArray } = Array;
@@ -28,7 +28,7 @@ export default async ({
 } = {}) => {
   // Load route definitions.
   if (!isArray(routeDefs)) throw new Error('No route definitions were provided!');
-  routeDefs.forEach(def => routes.add(def));
+  const routes = nextRoutes(routeDefs);
 
   // Create the NextJS app.
   const app = next({ dev, dir: resolve(dir) });
