@@ -16,6 +16,7 @@
     "upgrade:core": "yarn upgrade @base-cms/base4-website-nextjs"
   },
   "dependencies": {
+    "@base-cms/base4-nextjs-apollo": "https://github.com/base-cms/base4-nextjs-apollo.git",
     "@base-cms/base4-website-nextjs": "https://github.com/base-cms/base4-website-nextjs.git",
     "apollo-client": "^2.4.2",
     "classnames": "^2.2.6",
