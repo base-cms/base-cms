@@ -1,7 +1,7 @@
 import next from 'next';
 import baseWebsite from '@base-cms/base4-website-express';
 import { resolve } from 'path';
-import { routes } from './routing';
+import routes from './routes';
 
 const isFn = v => typeof v === 'function';
 const { isArray } = Array;
