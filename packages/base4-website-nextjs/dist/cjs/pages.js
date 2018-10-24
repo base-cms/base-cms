@@ -32,10 +32,10 @@ var app = function app(routes) {
             Component = _this$props.Component,
             pageProps = _this$props.pageProps,
             apollo = _this$props.apollo;
-        return React__default.createElement(App.Container, null, React__default.createElement(reactApollo.ApolloProvider, {
-          client: apollo
-        }, React__default.createElement(__chunk_3.RoutingContext.Provider, {
+        return React__default.createElement(App.Container, null, React__default.createElement(__chunk_3.RoutingContext.Provider, {
           value: routes
+        }, React__default.createElement(reactApollo.ApolloProvider, {
+          client: apollo
         }, React__default.createElement(Component, pageProps))));
       }
     }]);
