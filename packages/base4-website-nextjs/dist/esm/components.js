@@ -1,82 +1,106 @@
-import { a as _extends, b as _objectWithoutProperties, d as _objectSpread } from './chunk-cfc9ba70.js';
+import { b as _objectWithoutProperties, a as _extends, d as _objectSpread } from './chunk-cfc9ba70.js';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { createMarkup, isFunction as isFn, componentDisplayName, formatDate, cleanPath } from './utils.js';
+import { isFunction as isFn, formatDate, componentDisplayName, createMarkup, cleanPath } from './utils.js';
 import { get } from 'object-path';
 import classNames from 'classnames';
 import Head from 'next/head';
 import 'moment';
 
 var propTypes = {
-  collapsable: PropTypes.bool,
-  tag: PropTypes.string,
-  value: PropTypes.string
-};
-var defaultProps = {
-  collapsable: false,
-  tag: 'div',
-  value: ''
-};
-
-var HTML = function HTML(_ref) {
-  var collapsable = _ref.collapsable,
-      value = _ref.value,
-      Tag = _ref.tag,
-      attrs = _objectWithoutProperties(_ref, ["collapsable", "value", "tag"]);
-
-  if (!value && collapsable) return null;
-  return React.createElement(Tag, _extends({
-    dangerouslySetInnerHTML: createMarkup(value)
-  }, attrs));
-};
-
-HTML.propTypes = propTypes;
-HTML.defaultProps = defaultProps;
-
-var propTypes$1 = {
-  asHTML: PropTypes.bool,
   children: PropTypes.func,
   collapsable: PropTypes.bool,
-  data: PropTypes.object,
-  // eslint-disable-line react/forbid-prop-types
-  path: PropTypes.string.isRequired,
-  tag: PropTypes.string
+  tag: PropTypes.string,
+  value: PropTypes.node
 };
-var defaultProps$1 = {
-  asHTML: false,
+var defaultProps = {
   children: function children(v) {
     return v;
   },
   collapsable: false,
-  data: {},
-  tag: 'div'
+  tag: 'div',
+  value: null
 };
 
-var FieldValue = function FieldValue(_ref) {
-  var asHTML = _ref.asHTML,
-      children = _ref.children,
+var Element = function Element(_ref) {
+  var children = _ref.children,
       collapsable = _ref.collapsable,
-      data = _ref.data,
-      path = _ref.path,
       Tag = _ref.tag,
-      attrs = _objectWithoutProperties(_ref, ["asHTML", "children", "collapsable", "data", "path", "tag"]);
+      value = _ref.value,
+      attrs = _objectWithoutProperties(_ref, ["children", "collapsable", "tag", "value"]);
 
-  // Extract the value off the data object.
-  var value = get(data, path, null); // Protect the child render function.
-
-  var render = isFn(children) ? children : defaultProps$1.children; // Return as an innerHTML element, if requested.
-
-  if (asHTML) return React.createElement(HTML, _extends({
-    tag: Tag,
-    value: value,
-    collapsable: collapsable
-  }, attrs)); // Otherwise, wrap the value with the element and return (if not collapsable).
+  // Protect the child render function.
+  var render = isFn(children) ? children : defaultProps.children; // Wrap the value with the element and return (if not collapsable).
 
   return !value && collapsable ? null : React.createElement(Tag, attrs, render(value));
 };
 
-FieldValue.propTypes = propTypes$1;
-FieldValue.defaultProps = defaultProps$1;
+Element.propTypes = propTypes;
+Element.defaultProps = defaultProps;
+
+var propTypes$1 = {
+  children: PropTypes.func,
+  collapsable: PropTypes.bool,
+  format: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string, // Must adhere to moment date string reqs.
+  PropTypes.objectOf(Date)]),
+  tag: PropTypes.string
+};
+var defaultProps$1 = {
+  collapsable: true,
+  children: null,
+  format: 'MMM Do, YYYY',
+  tag: 'span',
+  value: null
+};
+
+var FormatDate = function FormatDate(_ref) {
+  var format = _ref.format,
+      raw = _ref.value,
+      rest = _objectWithoutProperties(_ref, ["format", "value"]);
+
+  // Format the date. Will return null on an invalid date value.
+  var value = formatDate(raw, format);
+  return React.createElement(Element, _extends({
+    value: value
+  }, rest));
+};
+
+FormatDate.propTypes = propTypes$1;
+FormatDate.defaultProps = defaultProps$1;
+
+var propTypes$2 = {
+  children: PropTypes.func,
+  collapsable: PropTypes.bool,
+  data: PropTypes.object,
+  // eslint-disable-line react/forbid-prop-types
+  format: PropTypes.string,
+  path: PropTypes.string.isRequired,
+  tag: PropTypes.string
+};
+var defaultProps$2 = {
+  children: null,
+  collapsable: false,
+  data: {},
+  format: 'MMM Do, YYYY',
+  tag: 'div'
+};
+
+var DateFieldValue = function DateFieldValue(_ref) {
+  var data = _ref.data,
+      path = _ref.path,
+      rest = _objectWithoutProperties(_ref, ["data", "path"]);
+
+  // Extract the value off the data object.
+  var value = get(data, path, null); // Defer to the FormatDate component.
+
+  return React.createElement(FormatDate, _extends({
+    value: value
+  }, rest));
+};
+
+DateFieldValue.propTypes = propTypes$2;
+DateFieldValue.defaultProps = defaultProps$2;
 
 var withModelFieldClass = (function (modelType) {
   return function (Component) {
@@ -106,32 +130,71 @@ var withModelFieldClass = (function (modelType) {
   };
 });
 
-var FieldValue$1 = withModelFieldClass('content')(FieldValue);
+var DateFieldValue$1 = withModelFieldClass('content')(DateFieldValue);
 
-var FormatDate = function FormatDate(_ref) {
-  var collapsable = _ref.collapsable,
-      format = _ref.format,
-      Tag = _ref.tag,
-      value = _ref.value,
-      attrs = _objectWithoutProperties(_ref, ["collapsable", "format", "tag", "value"]);
-
-  var formatted = formatDate(value, format);
-  if (collapsable && !formatted) return null;
-  return React.createElement(Tag, attrs, formatted);
+var propTypes$3 = {
+  collapsable: PropTypes.bool,
+  tag: PropTypes.string,
+  value: PropTypes.string
+};
+var defaultProps$3 = {
+  collapsable: false,
+  tag: 'div',
+  value: ''
 };
 
-FormatDate.propTypes = {
+var HTMLElement = function HTMLElement(_ref) {
+  var collapsable = _ref.collapsable,
+      value = _ref.value,
+      Tag = _ref.tag,
+      attrs = _objectWithoutProperties(_ref, ["collapsable", "value", "tag"]);
+
+  if (!value && collapsable) return null;
+  return React.createElement(Tag, _extends({
+    dangerouslySetInnerHTML: createMarkup(value)
+  }, attrs));
+};
+
+HTMLElement.propTypes = propTypes$3;
+HTMLElement.defaultProps = defaultProps$3;
+
+var propTypes$4 = {
+  asHTML: PropTypes.bool,
+  children: PropTypes.func,
   collapsable: PropTypes.bool,
-  format: PropTypes.string,
-  value: PropTypes.number,
+  data: PropTypes.object,
+  // eslint-disable-line react/forbid-prop-types
+  path: PropTypes.string.isRequired,
   tag: PropTypes.string
 };
-FormatDate.defaultProps = {
-  collapsable: true,
-  format: 'MMM Do, YYYY',
-  tag: 'span',
-  value: null
+var defaultProps$4 = {
+  asHTML: false,
+  children: null,
+  collapsable: false,
+  data: {},
+  tag: 'div'
 };
+
+var FieldValue = function FieldValue(_ref) {
+  var asHTML = _ref.asHTML,
+      data = _ref.data,
+      path = _ref.path,
+      rest = _objectWithoutProperties(_ref, ["asHTML", "data", "path"]);
+
+  // Extract the value off the data object.
+  var value = get(data, path, null); // Return as either an innerHTML or regular element.
+
+  return asHTML ? React.createElement(HTMLElement, _extends({
+    value: value
+  }, rest)) : React.createElement(Element, _extends({
+    value: value
+  }, rest));
+};
+
+FieldValue.propTypes = propTypes$4;
+FieldValue.defaultProps = defaultProps$4;
+
+var FieldValue$1 = withModelFieldClass('content')(FieldValue);
 
 var MetaDescription = function MetaDescription(_ref) {
   var value = _ref.value;
@@ -181,4 +244,4 @@ RelCanonical.propTypes = {
   origin: PropTypes.string.isRequired
 };
 
-export { FieldValue$1 as ContentFieldValue, FieldValue, FormatDate, HTML, MetaDescription, PageTitle, RelCanonical };
+export { DateFieldValue$1 as ContentDateFieldValue, FieldValue$1 as ContentFieldValue, Element, FieldValue, FormatDate, HTMLElement, MetaDescription, PageTitle, RelCanonical };
