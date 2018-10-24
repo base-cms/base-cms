@@ -17,7 +17,7 @@ const propTypes = {
 
 const defaultProps = {
   collapsable: true,
-  children: null,
+  children: undefined,
   format: 'MMM Do, YYYY',
   tag: 'span',
   value: null,

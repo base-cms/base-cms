@@ -48,7 +48,7 @@ var propTypes$1 = {
 };
 var defaultProps$1 = {
   collapsable: true,
-  children: null,
+  children: undefined,
   format: 'MMM Do, YYYY',
   tag: 'span',
   value: null
@@ -79,7 +79,7 @@ var propTypes$2 = {
   tag: PropTypes.string
 };
 var defaultProps$2 = {
-  children: null,
+  children: undefined,
   collapsable: false,
   data: {},
   format: 'MMM Do, YYYY',
@@ -92,8 +92,7 @@ var DateFieldValue = function DateFieldValue(_ref) {
       rest = _objectWithoutProperties(_ref, ["data", "path"]);
 
   // Extract the value off the data object.
-  var value = get(data, path, null); // Defer to the FormatDate component.
-
+  var value = get(data, path, null);
   return React.createElement(FormatDate, _extends({
     value: value
   }, rest));
@@ -169,7 +168,7 @@ var propTypes$4 = {
 };
 var defaultProps$4 = {
   asHTML: false,
-  children: null,
+  children: undefined,
   collapsable: false,
   data: {},
   tag: 'div'

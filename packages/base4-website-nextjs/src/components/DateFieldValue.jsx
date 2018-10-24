@@ -13,7 +13,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  children: null,
+  children: undefined,
   collapsable: false,
   data: {},
   format: 'MMM Do, YYYY',
@@ -27,7 +27,6 @@ const DateFieldValue = ({
 }) => {
   // Extract the value off the data object.
   const value = get(data, path, null);
-  // Defer to the FormatDate component.
   return <FormatDate value={value} {...rest} />;
 };
 
