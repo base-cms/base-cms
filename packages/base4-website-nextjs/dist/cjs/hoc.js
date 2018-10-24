@@ -18,6 +18,7 @@ require('object-path');
 require('classnames');
 require('next/head');
 require('next-routes');
+require('./chunk-5ea90bae.js');
 
 var doc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"WithDynamicPageFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PlatformContentPage"}},"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"name"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"type"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"teaser"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"alias"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"body"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"metadata"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"description"},"arguments":[],"directives":[]}]}}]}}],"loc":{"start":0,"end":146}};
     doc.loc.source = {"body":"fragment WithDynamicPageFragment on PlatformContentPage {\n  id\n  name\n  type\n  teaser\n  alias\n  body\n  metadata {\n    title\n    description\n  }\n}\n","name":"GraphQL request","locationOffset":{"line":1,"column":1}};
@@ -308,26 +309,6 @@ var buildQuery$1 = function buildQuery(_ref) {
 };
 /**
  *
- * @param {object} content
- * @param {object} ctx
- * @param {?object} ctx.res
- * @param {string} ctx.asPath
- */
-
-var checkContent = function checkContent(content, _ref2) {
-  var res = _ref2.res,
-      asPath = _ref2.asPath;
-  var redirectTo = content.redirectTo,
-      canonicalPath = content.canonicalPath;
-
-  if (redirectTo) {
-    routing.redirect(res, redirectTo);
-  } else if (canonicalPath !== asPath) {
-    routing.redirect(res, canonicalPath);
-  }
-};
-/**
- *
  * @param {object} Page
  * @param {object} options
  * @param {?string|object} options.fragment
@@ -443,7 +424,8 @@ var withPlatformContent = (function (Page) {
 
                 case 18:
                   // Check content for internal/external redirects, etc.
-                  checkContent(platformContent, ctx);
+                  // @todo Re-enabled this.
+                  // checkContent(platformContent, ctx);
                   canonicalPath = platformContent.canonicalPath; // @todo TextAds and Promotions can use an external URL. We _must_ account for this
                   // when using the `next-routes::Link` component, as external URLs do not inherently
                   // work.
@@ -453,7 +435,7 @@ var withPlatformContent = (function (Page) {
                     canonicalPath: canonicalPath
                   }, pageProps));
 
-                case 21:
+                case 20:
                 case "end":
                   return _context.stop();
               }
@@ -502,6 +484,7 @@ function _templateObject$2() {
 /**
  * Builds the website section GraphQL query.
  */
+
 
 var buildQuery$2 = function buildQuery(_ref) {
   var fragment = _ref.fragment;
@@ -627,24 +610,16 @@ var withWebsiteSection = (function (Page) {
                   }, pageProps));
 
                 case 19:
-                  if (!(websiteSectionRedirect && websiteSectionRedirect.alias)) {
-                    _context.next = 24;
-                    break;
-                  }
+                  if (websiteSectionRedirect && websiteSectionRedirect.alias) {
+                    // A redirect was found for this section alias. Force a redirect.
+                    redirectAlias = websiteSectionRedirect.alias;
+                    path = utils.sectionPath(redirectAlias, routePrefix); // @todo Re-enable this!
+                  } // No website section or redirect was found for this alias. Return a 404.
 
-                  // A redirect was found for this section alias. Force a redirect.
-                  redirectAlias = websiteSectionRedirect.alias;
-                  path = utils.sectionPath(redirectAlias, routePrefix);
-                  routing.redirect(res, path);
-                  return _context.abrupt("return", __chunk_2._objectSpread({
-                    section: {},
-                    canonicalPath: path
-                  }, pageProps));
 
-                case 24:
                   throw utils.httpErrors.notFound("No website section was found for alias '".concat(alias, "'"));
 
-                case 25:
+                case 21:
                 case "end":
                   return _context.stop();
               }

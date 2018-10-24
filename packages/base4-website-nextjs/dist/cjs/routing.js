@@ -4,14 +4,46 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var createRoutes = _interopDefault(require('next-routes'));
+var React = require('react');
+var React__default = _interopDefault(React);
+var nextRoutes = _interopDefault(require('next-routes'));
+var __chunk_3 = require('./chunk-5ea90bae.js');
 
-var routes = createRoutes();
-var Link = routes.Link,
-    Router = routes.Router;
+var once = function once(fn) {
+  var called = false;
+  var result;
+  return function () {
+    if (!called) {
+      called = true;
+      result = fn.apply(void 0, arguments);
+    }
 
-var redirect = function redirect(res, route) {
-  var code = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 301;
+    return result;
+  };
+};
+
+var createRoutes = once(function (value) {
+  return nextRoutes(value);
+});
+
+var Link = function Link(props) {
+  return React__default.createElement(__chunk_3.RoutingContext.Consumer, null, function (definitions) {
+    var routes = createRoutes(definitions);
+    var NextLink = routes.Link;
+    return React__default.createElement(NextLink, props);
+  });
+};
+
+var Router = function Router(props) {
+  return React__default.createElement(__chunk_3.RoutingContext.Consumer, null, function (definitions) {
+    var routes = createRoutes(definitions);
+    var NextRouter = routes.Router;
+    return React__default.createElement(NextRouter, props);
+  });
+};
+
+var redirect = function redirect(router, res, route) {
+  var code = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 301;
 
   if (res) {
     // Server-side only.
@@ -21,11 +53,10 @@ var redirect = function redirect(res, route) {
     res.end();
   } else {
     // Client-side.
-    Router.replaceRoute(route);
+    router.replaceRoute(route);
   }
 };
 
-exports.routes = routes;
 exports.redirect = redirect;
 exports.Link = Link;
 exports.Router = Router;
