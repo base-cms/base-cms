@@ -26,7 +26,6 @@ export default {
     'src/server.js',
     'src/routing.js',
     'src/components.js',
-    'src/pages.js',
     'src/hoc.js',
     'src/queries.js',
   ],

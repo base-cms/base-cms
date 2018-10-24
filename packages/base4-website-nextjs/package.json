@@ -14,7 +14,6 @@
     "lint": "node_modules/.bin/eslint src --ext .js --ext .jsx"
   },
   "dependencies": {
-    "@base-cms/base4-nextjs-apollo": "https://github.com/base-cms/base4-nextjs-apollo.git",
     "@base-cms/base4-website-express": "https://github.com/base-cms/base4-website-express.git",
     "classnames": "^2.2.6",
     "next-routes": "^1.4.2",
@@ -23,6 +22,7 @@
   },
   "peerDependencies": {
     "apollo-client": "^2.3.0",
+    "@base-cms/base4-nextjs-apollo": "https://github.com/base-cms/base4-nextjs-apollo.git",
     "graphql": "^14.0.0",
     "graphql-tag": "^2.10.0",
     "moment": "^2.20.0",
@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
+    "@base-cms/base4-nextjs-apollo": "https://github.com/base-cms/base4-nextjs-apollo.git",
     "@taskr/babel": "^1.1.0-next.1",
     "@taskr/esnext": "^1.1.0",
     "apollo-client": "^2.4.2",
