@@ -1,5 +1,6 @@
-import routes from './routes';
+import createRoutes from 'next-routes';
 
+const routes = createRoutes();
 const { Link, Router } = routes;
 
 const redirect = (res, route, code = 301) => {

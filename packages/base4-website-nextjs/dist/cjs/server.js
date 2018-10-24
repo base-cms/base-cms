@@ -7,7 +7,7 @@ var __chunk_2 = require('./chunk-2c19305a.js');
 var next = _interopDefault(require('next'));
 var baseWebsite = _interopDefault(require('@base-cms/base4-website-express'));
 var path = require('path');
-var __chunk_3 = require('./chunk-163d7d62.js');
+var routing = require('./routing.js');
 require('next-routes');
 
 var isFn = function isFn(v) {
@@ -61,7 +61,7 @@ __chunk_1._regeneratorRuntime.mark(function _callee() {
 
         case 3:
           routeDefs.forEach(function (def) {
-            return __chunk_3.routes.add(def);
+            return routing.routes.add(def);
           }); // Create the NextJS app.
 
           app = next({
@@ -83,7 +83,7 @@ __chunk_1._regeneratorRuntime.mark(function _callee() {
 
         case 10:
           // Create the Base4 Express server (but do not listen).
-          webserver = baseWebsite(webServerOpts).use(__chunk_3.routes.getRequestHandler(app)); // Call the `beforeListen` hook, if specified.
+          webserver = baseWebsite(webServerOpts).use(routing.routes.getRequestHandler(app)); // Call the `beforeListen` hook, if specified.
 
           if (!isFn(beforeListen)) {
             _context.next = 14;
