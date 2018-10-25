@@ -22,12 +22,13 @@ const makeExternalPredicate = (externalsArr) => {
 export default {
   experimentalCodeSplitting: true,
   input: [
-    'src/utils.js',
-    'src/server.js',
-    'src/routing.js',
     'src/components.js',
     'src/hoc.js',
+    'src/pages.js',
     'src/queries.js',
+    'src/routing.js',
+    'src/server.js',
+    'src/utils.js',
   ],
   output: [
     { dir: 'dist/cjs', format: 'cjs' },

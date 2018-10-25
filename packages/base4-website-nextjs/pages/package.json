@@ -1,0 +1,5 @@
+{
+  "name": "pages",
+  "private": true,
+  "main": "../dist/cjs/pages.js"
+}

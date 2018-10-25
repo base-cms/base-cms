@@ -1,4 +1,3 @@
-import RoutingContext from './routing/context';
 import { Link, Router } from './routing/Components';
 
 const redirect = (router, res, route, code = 301) => {
@@ -13,7 +12,6 @@ const redirect = (router, res, route, code = 301) => {
 };
 
 export {
-  RoutingContext,
   redirect,
   Link,
   Router,
