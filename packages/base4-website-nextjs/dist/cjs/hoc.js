@@ -4,8 +4,8 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var __chunk_1 = require('./chunk-efb9fd9b.js');
-var __chunk_2 = require('./chunk-2c19305a.js');
+var __chunk_3 = require('./chunk-efb9fd9b.js');
+var __chunk_1 = require('./chunk-2c19305a.js');
 var React = require('react');
 var React__default = _interopDefault(React);
 var PropTypes = _interopDefault(require('prop-types'));
@@ -17,7 +17,7 @@ require('moment');
 require('object-path');
 require('classnames');
 require('next/head');
-require('next-routes');
+require('./chunk-5ea90bae.js');
 
 var doc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"WithDynamicPageFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PlatformContentPage"}},"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"name"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"type"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"teaser"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"alias"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"body"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"metadata"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"description"},"arguments":[],"directives":[]}]}}]}}],"loc":{"start":0,"end":146}};
     doc.loc.source = {"body":"fragment WithDynamicPageFragment on PlatformContentPage {\n  id\n  name\n  type\n  teaser\n  alias\n  body\n  metadata {\n    title\n    description\n  }\n}\n","name":"GraphQL request","locationOffset":{"line":1,"column":1}};
@@ -26,15 +26,15 @@ var withRequestOrigin = (function (Page) {
   var WithRequestOrigin =
   /*#__PURE__*/
   function (_Component) {
-    __chunk_2._inherits(WithRequestOrigin, _Component);
+    __chunk_1._inherits(WithRequestOrigin, _Component);
 
     function WithRequestOrigin() {
-      __chunk_2._classCallCheck(this, WithRequestOrigin);
+      __chunk_1._classCallCheck(this, WithRequestOrigin);
 
-      return __chunk_2._possibleConstructorReturn(this, __chunk_2._getPrototypeOf(WithRequestOrigin).apply(this, arguments));
+      return __chunk_1._possibleConstructorReturn(this, __chunk_1._getPrototypeOf(WithRequestOrigin).apply(this, arguments));
     }
 
-    __chunk_2._createClass(WithRequestOrigin, [{
+    __chunk_1._createClass(WithRequestOrigin, [{
       key: "render",
 
       /**
@@ -50,11 +50,11 @@ var withRequestOrigin = (function (Page) {
        *
        */
       value: function () {
-        var _getInitialProps = __chunk_2._asyncToGenerator(
+        var _getInitialProps = __chunk_1._asyncToGenerator(
         /*#__PURE__*/
-        __chunk_1._regeneratorRuntime.mark(function _callee(ctx) {
+        __chunk_3._regeneratorRuntime.mark(function _callee(ctx) {
           var pageProps, req, requestOrigin;
-          return __chunk_1._regeneratorRuntime.wrap(function _callee$(_context) {
+          return __chunk_3._regeneratorRuntime.wrap(function _callee$(_context) {
             while (1) {
               switch (_context.prev = _context.next) {
                 case 0:
@@ -72,7 +72,7 @@ var withRequestOrigin = (function (Page) {
                 case 4:
                   req = ctx.req;
                   requestOrigin = req ? "".concat(req.protocol, "://").concat(req.get('host')) : "".concat(window.location.protocol, "//").concat(window.location.host);
-                  return _context.abrupt("return", __chunk_2._objectSpread({}, pageProps, {
+                  return _context.abrupt("return", __chunk_1._objectSpread({}, pageProps, {
                     requestOrigin: requestOrigin
                   }));
 
@@ -94,14 +94,14 @@ var withRequestOrigin = (function (Page) {
   }(React.Component);
 
   WithRequestOrigin.displayName = "WithRequestOrigin(".concat(utils.componentDisplayName(Page), ")");
-  WithRequestOrigin.propTypes = __chunk_2._objectSpread({}, Page.propTypes, {
+  WithRequestOrigin.propTypes = __chunk_1._objectSpread({}, Page.propTypes, {
     requestOrigin: PropTypes.string.isRequired
   });
   return WithRequestOrigin;
 });
 
 function _templateObject() {
-  var data = __chunk_2._taggedTemplateLiteral(["\n    query WithDynamicPage($input: PlatformContentPageQueryOne!) {\n      platformContentPage(input: $input) {\n        ...WithDynamicPageFragment\n        ", "\n      }\n    }\n    ", "\n    ", "\n  "]);
+  var data = __chunk_1._taggedTemplateLiteral(["\n    query WithDynamicPage($input: PlatformContentPageQueryOne!) {\n      platformContentPage(input: $input) {\n        ...WithDynamicPageFragment\n        ", "\n      }\n    }\n    ", "\n    ", "\n  "]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -142,15 +142,15 @@ var withDynamicPage = (function (Page) {
   var WithDynamicPage =
   /*#__PURE__*/
   function (_Component) {
-    __chunk_2._inherits(WithDynamicPage, _Component);
+    __chunk_1._inherits(WithDynamicPage, _Component);
 
     function WithDynamicPage() {
-      __chunk_2._classCallCheck(this, WithDynamicPage);
+      __chunk_1._classCallCheck(this, WithDynamicPage);
 
-      return __chunk_2._possibleConstructorReturn(this, __chunk_2._getPrototypeOf(WithDynamicPage).apply(this, arguments));
+      return __chunk_1._possibleConstructorReturn(this, __chunk_1._getPrototypeOf(WithDynamicPage).apply(this, arguments));
     }
 
-    __chunk_2._createClass(WithDynamicPage, [{
+    __chunk_1._createClass(WithDynamicPage, [{
       key: "render",
 
       /**
@@ -178,12 +178,12 @@ var withDynamicPage = (function (Page) {
        *
        */
       value: function () {
-        var _getInitialProps = __chunk_2._asyncToGenerator(
+        var _getInitialProps = __chunk_1._asyncToGenerator(
         /*#__PURE__*/
-        __chunk_1._regeneratorRuntime.mark(function _callee(ctx) {
+        __chunk_3._regeneratorRuntime.mark(function _callee(ctx) {
           var pageProps, fragment, query, apollo, alias, input, variables, _ref2, data, platformContentPage;
 
-          return __chunk_1._regeneratorRuntime.wrap(function _callee$(_context) {
+          return __chunk_3._regeneratorRuntime.wrap(function _callee$(_context) {
             while (1) {
               switch (_context.prev = _context.next) {
                 case 0:
@@ -240,7 +240,7 @@ var withDynamicPage = (function (Page) {
                   throw utils.httpErrors.notFound("No content page was found for alias '".concat(alias, "'"));
 
                 case 18:
-                  return _context.abrupt("return", __chunk_2._objectSpread({
+                  return _context.abrupt("return", __chunk_1._objectSpread({
                     page: platformContentPage
                   }, pageProps));
 
@@ -262,7 +262,7 @@ var withDynamicPage = (function (Page) {
   }(React.Component);
 
   WithDynamicPage.displayName = "WithDynamicPage(".concat(utils.componentDisplayName(Page), ")");
-  WithDynamicPage.propTypes = __chunk_2._objectSpread({}, Page.propTypes, {
+  WithDynamicPage.propTypes = __chunk_1._objectSpread({}, Page.propTypes, {
     page: PropTypes.shape({
       id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
@@ -280,7 +280,7 @@ var doc$1 = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name
     doc$1.loc.source = {"body":"fragment WithPlatformContentFragment on PlatformContent {\n  id\n  name\n  type\n  teaser\n  body\n  redirectTo\n  canonicalPath(input: { fields: $canonicalFields })\n  metadata {\n    title\n    description\n  }\n  primarySection {\n    id\n    name\n    alias\n  }\n}\n","name":"GraphQL request","locationOffset":{"line":1,"column":1}};
 
 function _templateObject$1() {
-  var data = __chunk_2._taggedTemplateLiteral(["\n    query WithPlatformContent($input: RootPlatformContentQueryOne!, $canonicalFields: [PlatfromContentPathField]!) {\n      platformContent(input: $input) {\n        ...WithPlatformContentFragment\n        ", "\n      }\n    }\n    ", "\n    ", "\n  "]);
+  var data = __chunk_1._taggedTemplateLiteral(["\n    query WithPlatformContent($input: RootPlatformContentQueryOne!, $canonicalFields: [PlatfromContentPathField]!) {\n      platformContent(input: $input) {\n        ...WithPlatformContentFragment\n        ", "\n      }\n    }\n    ", "\n    ", "\n  "]);
 
   _templateObject$1 = function _templateObject() {
     return data;
@@ -322,15 +322,15 @@ var withPlatformContent = (function (Page) {
   var WithPlatformContent =
   /*#__PURE__*/
   function (_Component) {
-    __chunk_2._inherits(WithPlatformContent, _Component);
+    __chunk_1._inherits(WithPlatformContent, _Component);
 
     function WithPlatformContent() {
-      __chunk_2._classCallCheck(this, WithPlatformContent);
+      __chunk_1._classCallCheck(this, WithPlatformContent);
 
-      return __chunk_2._possibleConstructorReturn(this, __chunk_2._getPrototypeOf(WithPlatformContent).apply(this, arguments));
+      return __chunk_1._possibleConstructorReturn(this, __chunk_1._getPrototypeOf(WithPlatformContent).apply(this, arguments));
     }
 
-    __chunk_2._createClass(WithPlatformContent, [{
+    __chunk_1._createClass(WithPlatformContent, [{
       key: "render",
 
       /**
@@ -358,12 +358,12 @@ var withPlatformContent = (function (Page) {
        *
        */
       value: function () {
-        var _getInitialProps = __chunk_2._asyncToGenerator(
+        var _getInitialProps = __chunk_1._asyncToGenerator(
         /*#__PURE__*/
-        __chunk_1._regeneratorRuntime.mark(function _callee(ctx) {
+        __chunk_3._regeneratorRuntime.mark(function _callee(ctx) {
           var pageProps, fragment, canonicalFields, query, apollo, id, input, variables, _ref3, data, platformContent, canonicalPath;
 
-          return __chunk_1._regeneratorRuntime.wrap(function _callee$(_context) {
+          return __chunk_3._regeneratorRuntime.wrap(function _callee$(_context) {
             while (1) {
               switch (_context.prev = _context.next) {
                 case 0:
@@ -429,7 +429,7 @@ var withPlatformContent = (function (Page) {
                   // when using the `next-routes::Link` component, as external URLs do not inherently
                   // work.
 
-                  return _context.abrupt("return", __chunk_2._objectSpread({
+                  return _context.abrupt("return", __chunk_1._objectSpread({
                     content: platformContent,
                     canonicalPath: canonicalPath
                   }, pageProps));
@@ -452,7 +452,7 @@ var withPlatformContent = (function (Page) {
   }(React.Component);
 
   WithPlatformContent.displayName = "WithPlatformContent(".concat(utils.componentDisplayName(Page), ")");
-  WithPlatformContent.propTypes = __chunk_2._objectSpread({}, Page.propTypes, {
+  WithPlatformContent.propTypes = __chunk_1._objectSpread({}, Page.propTypes, {
     canonicalPath: PropTypes.string.isRequired,
     content: PropTypes.shape({
       id: PropTypes.number.isRequired,
@@ -472,7 +472,7 @@ var doc$2 = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name
     doc$2.loc.source = {"body":"fragment WithWebsiteSectionFragment on WebsiteSection {\n  id\n  name\n  description\n  alias\n  metadata {\n    title\n    description\n  }\n}\n","name":"GraphQL request","locationOffset":{"line":1,"column":1}};
 
 function _templateObject$2() {
-  var data = __chunk_2._taggedTemplateLiteral(["\n    query WithWebsiteSection($input: WebsiteSectionAliasQueryInput!) {\n      websiteSectionAlias(input: $input) {\n        ...WithWebsiteSectionFragment\n        ", "\n      }\n      websiteSectionRedirect(input: $input) {\n        id\n        alias\n      }\n    }\n    ", "\n    ", "\n  "]);
+  var data = __chunk_1._taggedTemplateLiteral(["\n    query WithWebsiteSection($input: WebsiteSectionAliasQueryInput!) {\n      websiteSectionAlias(input: $input) {\n        ...WithWebsiteSectionFragment\n        ", "\n      }\n      websiteSectionRedirect(input: $input) {\n        id\n        alias\n      }\n    }\n    ", "\n    ", "\n  "]);
 
   _templateObject$2 = function _templateObject() {
     return data;
@@ -505,15 +505,15 @@ var withWebsiteSection = (function (Page) {
   var WithWebsiteSection =
   /*#__PURE__*/
   function (_Component) {
-    __chunk_2._inherits(WithWebsiteSection, _Component);
+    __chunk_1._inherits(WithWebsiteSection, _Component);
 
     function WithWebsiteSection() {
-      __chunk_2._classCallCheck(this, WithWebsiteSection);
+      __chunk_1._classCallCheck(this, WithWebsiteSection);
 
-      return __chunk_2._possibleConstructorReturn(this, __chunk_2._getPrototypeOf(WithWebsiteSection).apply(this, arguments));
+      return __chunk_1._possibleConstructorReturn(this, __chunk_1._getPrototypeOf(WithWebsiteSection).apply(this, arguments));
     }
 
-    __chunk_2._createClass(WithWebsiteSection, [{
+    __chunk_1._createClass(WithWebsiteSection, [{
       key: "render",
 
       /**
@@ -541,12 +541,12 @@ var withWebsiteSection = (function (Page) {
        *
        */
       value: function () {
-        var _getInitialProps = __chunk_2._asyncToGenerator(
+        var _getInitialProps = __chunk_1._asyncToGenerator(
         /*#__PURE__*/
-        __chunk_1._regeneratorRuntime.mark(function _callee(ctx) {
+        __chunk_3._regeneratorRuntime.mark(function _callee(ctx) {
           var pageProps, fragment, routePrefix, query, apollo, res, alias, input, variables, _ref2, data, websiteSectionAlias, websiteSectionRedirect, canonicalPath, redirectAlias, path;
 
-          return __chunk_1._regeneratorRuntime.wrap(function _callee$(_context) {
+          return __chunk_3._regeneratorRuntime.wrap(function _callee$(_context) {
             while (1) {
               switch (_context.prev = _context.next) {
                 case 0:
@@ -603,7 +603,7 @@ var withWebsiteSection = (function (Page) {
 
                   // The website section was found. Return it allong with the page props.
                   canonicalPath = utils.sectionPath(alias, routePrefix);
-                  return _context.abrupt("return", __chunk_2._objectSpread({
+                  return _context.abrupt("return", __chunk_1._objectSpread({
                     section: websiteSectionAlias,
                     canonicalPath: canonicalPath
                   }, pageProps));
@@ -636,7 +636,7 @@ var withWebsiteSection = (function (Page) {
   }(React.Component);
 
   WithWebsiteSection.displayName = "WithWebsiteSection(".concat(utils.componentDisplayName(Page), ")");
-  WithWebsiteSection.propTypes = __chunk_2._objectSpread({}, Page.propTypes, {
+  WithWebsiteSection.propTypes = __chunk_1._objectSpread({}, Page.propTypes, {
     canonicalPath: PropTypes.string.isRequired,
     section: PropTypes.shape({
       id: PropTypes.number.isRequired,

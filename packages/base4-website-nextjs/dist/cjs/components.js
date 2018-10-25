@@ -4,7 +4,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var __chunk_2 = require('./chunk-2c19305a.js');
+var __chunk_1 = require('./chunk-2c19305a.js');
 var React = require('react');
 var React__default = _interopDefault(React);
 var PropTypes = _interopDefault(require('prop-types'));
@@ -14,7 +14,7 @@ var classNames = _interopDefault(require('classnames'));
 var routing = require('./routing.js');
 var Head = _interopDefault(require('next/head'));
 require('moment');
-require('next-routes');
+require('./chunk-5ea90bae.js');
 
 var propTypes = {
   children: PropTypes.func,
@@ -36,7 +36,7 @@ var Element = function Element(_ref) {
       collapsable = _ref.collapsable,
       Tag = _ref.tag,
       value = _ref.value,
-      attrs = __chunk_2._objectWithoutProperties(_ref, ["children", "collapsable", "tag", "value"]);
+      attrs = __chunk_1._objectWithoutProperties(_ref, ["children", "collapsable", "tag", "value"]);
 
   // Protect the child render function.
   var render = utils.isFunction(children) ? children : defaultProps.children; // Wrap the value with the element and return (if not collapsable).
@@ -66,11 +66,11 @@ var defaultProps$1 = {
 var FormatDate = function FormatDate(_ref) {
   var format = _ref.format,
       raw = _ref.value,
-      rest = __chunk_2._objectWithoutProperties(_ref, ["format", "value"]);
+      rest = __chunk_1._objectWithoutProperties(_ref, ["format", "value"]);
 
   // Format the date. Will return null on an invalid date value.
   var value = utils.formatDate(raw, format);
-  return React__default.createElement(Element, __chunk_2._extends({
+  return React__default.createElement(Element, __chunk_1._extends({
     value: value
   }, rest));
 };
@@ -98,11 +98,11 @@ var defaultProps$2 = {
 var DateFieldValue = function DateFieldValue(_ref) {
   var data = _ref.data,
       path = _ref.path,
-      rest = __chunk_2._objectWithoutProperties(_ref, ["data", "path"]);
+      rest = __chunk_1._objectWithoutProperties(_ref, ["data", "path"]);
 
   // Extract the value off the data object.
   var value = objectPath.get(data, path, null);
-  return React__default.createElement(FormatDate, __chunk_2._extends({
+  return React__default.createElement(FormatDate, __chunk_1._extends({
     value: value
   }, rest));
 };
@@ -115,7 +115,7 @@ var withModelFieldClass = (function (modelType) {
     var WithModelFieldClass = function WithModelFieldClass(_ref) {
       var path = _ref.path,
           className = _ref.className,
-          rest = __chunk_2._objectWithoutProperties(_ref, ["path", "className"]);
+          rest = __chunk_1._objectWithoutProperties(_ref, ["path", "className"]);
 
       var types = String(path).split('.');
       var elementTypes = types.shift();
@@ -124,14 +124,14 @@ var withModelFieldClass = (function (modelType) {
       types.forEach(function (type) {
         return classes.push("".concat(elementClass, "--").concat(type));
       });
-      return React__default.createElement(Component, __chunk_2._extends({
+      return React__default.createElement(Component, __chunk_1._extends({
         className: classNames(classes, className),
         path: path
       }, rest));
     };
 
     WithModelFieldClass.displayName = "WithModelFieldClass(".concat(utils.componentDisplayName(Component), ")[").concat(modelType, "]");
-    WithModelFieldClass.propTypes = __chunk_2._objectSpread({}, Component.propTypes, {
+    WithModelFieldClass.propTypes = __chunk_1._objectSpread({}, Component.propTypes, {
       path: PropTypes.string.isRequired
     });
     return WithModelFieldClass;
@@ -155,10 +155,10 @@ var HTMLElement = function HTMLElement(_ref) {
   var collapsable = _ref.collapsable,
       value = _ref.value,
       Tag = _ref.tag,
-      attrs = __chunk_2._objectWithoutProperties(_ref, ["collapsable", "value", "tag"]);
+      attrs = __chunk_1._objectWithoutProperties(_ref, ["collapsable", "value", "tag"]);
 
   if (!value && collapsable) return null;
-  return React__default.createElement(Tag, __chunk_2._extends({
+  return React__default.createElement(Tag, __chunk_1._extends({
     dangerouslySetInnerHTML: utils.createMarkup(value)
   }, attrs));
 };
@@ -187,14 +187,14 @@ var FieldValue = function FieldValue(_ref) {
   var asHTML = _ref.asHTML,
       data = _ref.data,
       path = _ref.path,
-      rest = __chunk_2._objectWithoutProperties(_ref, ["asHTML", "data", "path"]);
+      rest = __chunk_1._objectWithoutProperties(_ref, ["asHTML", "data", "path"]);
 
   // Extract the value off the data object.
   var value = objectPath.get(data, path, null); // Return as either an innerHTML or regular element.
 
-  return asHTML ? React__default.createElement(HTMLElement, __chunk_2._extends({
+  return asHTML ? React__default.createElement(HTMLElement, __chunk_1._extends({
     value: value
-  }, rest)) : React__default.createElement(Element, __chunk_2._extends({
+  }, rest)) : React__default.createElement(Element, __chunk_1._extends({
     value: value
   }, rest));
 };
