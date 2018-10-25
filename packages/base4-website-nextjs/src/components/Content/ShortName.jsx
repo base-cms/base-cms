@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import gql from 'graphql-tag';
 import FieldValue from './FieldValue';
 
 const propTypes = {
@@ -22,5 +23,12 @@ const ContentShortName = ({ content, ...rest }) => (
 
 ContentShortName.propTypes = propTypes;
 ContentShortName.defaultProps = defaultProps;
+ContentShortName.fragments = {
+  content: gql`
+    fragment PlatformContentShortName on PlatformContent {
+      shortName
+    }
+  `,
+};
 
 export default ContentShortName;

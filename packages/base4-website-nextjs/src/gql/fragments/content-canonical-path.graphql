@@ -1,0 +1,3 @@
+fragment ContentCanonicalPath on PlatformContent {
+  canonicalPath(input: { fields: $canonicalFields })
+}

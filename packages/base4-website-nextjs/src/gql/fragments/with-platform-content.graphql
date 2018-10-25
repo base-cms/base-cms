@@ -1,11 +1,13 @@
+# import './content-canonical-path.graphql'
+
 fragment WithPlatformContentFragment on PlatformContent {
+  ...ContentCanonicalPath
   id
   name
   type
   teaser
   body
   redirectTo
-  canonicalPath(input: { fields: $canonicalFields })
   metadata {
     title
     description
