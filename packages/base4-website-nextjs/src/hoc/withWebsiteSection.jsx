@@ -63,7 +63,6 @@ export default (Page, options = {
         query,
         apollo,
         res,
-        router,
       } = ctx;
       // Get the section alias from the page query.
       // Note: the section alias is required for this HOC to function properly.
@@ -90,7 +89,7 @@ export default (Page, options = {
         const { alias: redirectAlias } = websiteSectionRedirect;
         const path = sectionPath(redirectAlias, routePrefix);
 
-        redirect({ res, router, route: path });
+        redirect({ res, router: null, route: path });
         return { section: {}, canonicalPath: path, ...pageProps };
       }
 

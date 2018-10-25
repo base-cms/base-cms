@@ -30,7 +30,6 @@ export default definitions => (ComposedComponent) => {
      * @param {object} args
      */
     static async getInitialProps(args) {
-      console.log('withRouting getInitialProps', args);
       if (!isArray(definitions)) {
         throw new Error('No route definitions were provided!');
       }
