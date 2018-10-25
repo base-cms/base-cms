@@ -1,3 +1,4 @@
+import RoutingContext from './routing/context';
 import { Link, Router } from './routing/Components';
 
 const redirect = ({
@@ -19,5 +20,6 @@ const redirect = ({
 export {
   Link,
   Router,
+  RoutingContext,
   redirect,
 };
