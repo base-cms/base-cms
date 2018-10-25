@@ -24,11 +24,6 @@ const createRoutes = once((definitions) => {
 });
 
 export default definitions => (ComposedComponent) => {
-  if (!isArray(definitions)) {
-    throw new Error('No route definitions were provided!');
-  }
-  const routes = createRoutes(definitions);
-
   class WithRouting extends React.Component {
     /**
      *
@@ -36,6 +31,9 @@ export default definitions => (ComposedComponent) => {
      */
     static async getInitialProps(args) {
       console.log('withRouting getInitialProps', args);
+      if (!isArray(definitions)) {
+        throw new Error('No route definitions were provided!');
+      }
 
       let composedInitialProps = {};
       if (ComposedComponent.getInitialProps) {
@@ -48,6 +46,7 @@ export default definitions => (ComposedComponent) => {
      *
      */
     render() {
+      const routes = createRoutes(definitions);
       return (
         <RoutingContext.Provider value={routes}>
           <ComposedComponent {...this.props} />

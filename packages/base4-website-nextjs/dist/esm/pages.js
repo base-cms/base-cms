@@ -33,12 +33,6 @@ var createRoutes = once(function (definitions) {
 });
 var withRouting = (function (definitions) {
   return function (ComposedComponent) {
-    if (!isArray(definitions)) {
-      throw new Error('No route definitions were provided!');
-    }
-
-    var routes = createRoutes(definitions);
-
     var WithRouting =
     /*#__PURE__*/
     function (_React$Component) {
@@ -57,6 +51,7 @@ var withRouting = (function (definitions) {
          *
          */
         value: function render() {
+          var routes = createRoutes(definitions);
           return React.createElement(RoutingContext.Provider, {
             value: routes
           }, React.createElement(ComposedComponent, this.props));
@@ -78,23 +73,32 @@ var withRouting = (function (definitions) {
                 switch (_context.prev = _context.next) {
                   case 0:
                     console.log('withRouting getInitialProps', args);
-                    composedInitialProps = {};
 
-                    if (!ComposedComponent.getInitialProps) {
-                      _context.next = 6;
+                    if (isArray(definitions)) {
+                      _context.next = 3;
                       break;
                     }
 
-                    _context.next = 5;
+                    throw new Error('No route definitions were provided!');
+
+                  case 3:
+                    composedInitialProps = {};
+
+                    if (!ComposedComponent.getInitialProps) {
+                      _context.next = 8;
+                      break;
+                    }
+
+                    _context.next = 7;
                     return ComposedComponent.getInitialProps(args);
 
-                  case 5:
+                  case 7:
                     composedInitialProps = _context.sent;
 
-                  case 6:
+                  case 8:
                     return _context.abrupt("return", _objectSpread({}, composedInitialProps));
 
-                  case 7:
+                  case 9:
                   case "end":
                     return _context.stop();
                 }
