@@ -32,7 +32,7 @@ export default {
   ],
   output: [
     { dir: 'dist/cjs', format: 'cjs' },
-    // { dir: 'dist/esm', format: 'esm' },
+    { dir: 'dist/esm', format: 'esm' },
   ],
   external: makeExternalPredicate(externals),
   plugins: [
