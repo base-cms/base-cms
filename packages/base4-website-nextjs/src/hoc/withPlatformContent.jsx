@@ -63,10 +63,10 @@ export const checkContent = (content, { Router, res, asPath }) => {
  * @param {object} options
  * @param {?string|object} options.fragment
  */
-export default (Page, options = {
-  fragment: null,
-  canonicalFields: ['sectionAlias', 'type', 'id', 'slug'],
-}) => {
+export default ({
+  fragment = null,
+  canonicalFields = ['sectionAlias', 'type', 'id', 'slug'],
+} = {}) => (Page) => {
   class WithPlatformContent extends Component {
     /**
      *
@@ -78,7 +78,6 @@ export default (Page, options = {
         pageProps = await Page.getInitialProps(ctx);
       }
 
-      const { fragment, canonicalFields } = options;
       const { query, apollo } = ctx;
       // Get the content id from the page query
       const { id } = query;

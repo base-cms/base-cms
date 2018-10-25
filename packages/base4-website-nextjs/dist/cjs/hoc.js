@@ -344,155 +344,157 @@ var checkContent = function checkContent(content, _ref2) {
  * @param {?string|object} options.fragment
  */
 
-var withPlatformContent = (function (Page) {
-  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {
-    fragment: null,
-    canonicalFields: ['sectionAlias', 'type', 'id', 'slug']
-  };
+var withPlatformContent = (function () {
+  var _ref3 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      _ref3$fragment = _ref3.fragment,
+      fragment = _ref3$fragment === void 0 ? null : _ref3$fragment,
+      _ref3$canonicalFields = _ref3.canonicalFields,
+      canonicalFields = _ref3$canonicalFields === void 0 ? ['sectionAlias', 'type', 'id', 'slug'] : _ref3$canonicalFields;
 
-  var WithPlatformContent =
-  /*#__PURE__*/
-  function (_Component) {
-    __chunk_1._inherits(WithPlatformContent, _Component);
+  return function (Page) {
+    var WithPlatformContent =
+    /*#__PURE__*/
+    function (_Component) {
+      __chunk_1._inherits(WithPlatformContent, _Component);
 
-    function WithPlatformContent() {
-      __chunk_1._classCallCheck(this, WithPlatformContent);
+      function WithPlatformContent() {
+        __chunk_1._classCallCheck(this, WithPlatformContent);
 
-      return __chunk_1._possibleConstructorReturn(this, __chunk_1._getPrototypeOf(WithPlatformContent).apply(this, arguments));
-    }
-
-    __chunk_1._createClass(WithPlatformContent, [{
-      key: "render",
-
-      /**
-       *
-       */
-      value: function render() {
-        var _this$props = this.props,
-            requestOrigin = _this$props.requestOrigin,
-            canonicalPath = _this$props.canonicalPath,
-            content = _this$props.content;
-        var metadata = content.metadata;
-        return React__default.createElement(React__default.Fragment, null, React__default.createElement(components.PageTitle, {
-          value: metadata.title
-        }), React__default.createElement(components.MetaDescription, {
-          value: metadata.description
-        }), React__default.createElement(components.RelCanonical, {
-          origin: requestOrigin,
-          pathname: canonicalPath
-        }), React__default.createElement(Page, this.props));
+        return __chunk_1._possibleConstructorReturn(this, __chunk_1._getPrototypeOf(WithPlatformContent).apply(this, arguments));
       }
-    }], [{
-      key: "getInitialProps",
 
-      /**
-       *
-       */
-      value: function () {
-        var _getInitialProps = __chunk_1._asyncToGenerator(
-        /*#__PURE__*/
-        __chunk_4._regeneratorRuntime.mark(function _callee(ctx) {
-          var pageProps, fragment, canonicalFields, query, apollo, id, input, variables, _ref3, data, platformContent, canonicalPath;
+      __chunk_1._createClass(WithPlatformContent, [{
+        key: "render",
 
-          return __chunk_4._regeneratorRuntime.wrap(function _callee$(_context) {
-            while (1) {
-              switch (_context.prev = _context.next) {
-                case 0:
-                  if (!Page.getInitialProps) {
-                    _context.next = 4;
-                    break;
-                  }
+        /**
+         *
+         */
+        value: function render() {
+          var _this$props = this.props,
+              requestOrigin = _this$props.requestOrigin,
+              canonicalPath = _this$props.canonicalPath,
+              content = _this$props.content;
+          var metadata = content.metadata;
+          return React__default.createElement(React__default.Fragment, null, React__default.createElement(components.PageTitle, {
+            value: metadata.title
+          }), React__default.createElement(components.MetaDescription, {
+            value: metadata.description
+          }), React__default.createElement(components.RelCanonical, {
+            origin: requestOrigin,
+            pathname: canonicalPath
+          }), React__default.createElement(Page, this.props));
+        }
+      }], [{
+        key: "getInitialProps",
 
-                  _context.next = 3;
-                  return Page.getInitialProps(ctx);
+        /**
+         *
+         */
+        value: function () {
+          var _getInitialProps = __chunk_1._asyncToGenerator(
+          /*#__PURE__*/
+          __chunk_4._regeneratorRuntime.mark(function _callee(ctx) {
+            var pageProps, query, apollo, id, input, variables, _ref4, data, platformContent, canonicalPath;
 
-                case 3:
-                  pageProps = _context.sent;
+            return __chunk_4._regeneratorRuntime.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    if (!Page.getInitialProps) {
+                      _context.next = 4;
+                      break;
+                    }
 
-                case 4:
-                  fragment = options.fragment, canonicalFields = options.canonicalFields;
-                  query = ctx.query, apollo = ctx.apollo; // Get the content id from the page query
+                    _context.next = 3;
+                    return Page.getInitialProps(ctx);
 
-                  id = query.id;
+                  case 3:
+                    pageProps = _context.sent;
 
-                  if (id) {
-                    _context.next = 9;
-                    break;
-                  }
+                  case 4:
+                    query = ctx.query, apollo = ctx.apollo; // Get the content id from the page query
 
-                  throw utils.httpErrors.notFound('No content ID was provided.');
+                    id = query.id;
 
-                case 9:
-                  // Query for the content object using the id, via the inject apollo client.
-                  input = {
-                    id: Number(id)
-                  }; // Pass the canonical args to generate the content's canonical (route) path.
+                    if (id) {
+                      _context.next = 8;
+                      break;
+                    }
 
-                  variables = {
-                    input: input,
-                    canonicalFields: canonicalFields
-                  };
-                  _context.next = 13;
-                  return apollo.query({
-                    query: buildQuery$1({
-                      fragment: fragment
-                    }),
-                    variables: variables
-                  });
+                    throw utils.httpErrors.notFound('No content ID was provided.');
 
-                case 13:
-                  _ref3 = _context.sent;
-                  data = _ref3.data;
-                  platformContent = data.platformContent;
+                  case 8:
+                    // Query for the content object using the id, via the inject apollo client.
+                    input = {
+                      id: Number(id)
+                    }; // Pass the canonical args to generate the content's canonical (route) path.
 
-                  if (platformContent) {
-                    _context.next = 18;
-                    break;
-                  }
+                    variables = {
+                      input: input,
+                      canonicalFields: canonicalFields
+                    };
+                    _context.next = 12;
+                    return apollo.query({
+                      query: buildQuery$1({
+                        fragment: fragment
+                      }),
+                      variables: variables
+                    });
 
-                  throw utils.httpErrors.notFound("No content was found for id '".concat(id, "'"));
+                  case 12:
+                    _ref4 = _context.sent;
+                    data = _ref4.data;
+                    platformContent = data.platformContent;
 
-                case 18:
-                  // Check content for internal/external redirects, etc.
-                  checkContent(platformContent, ctx);
-                  canonicalPath = platformContent.canonicalPath;
-                  return _context.abrupt("return", __chunk_1._objectSpread({
-                    content: platformContent,
-                    canonicalPath: canonicalPath
-                  }, pageProps));
+                    if (platformContent) {
+                      _context.next = 17;
+                      break;
+                    }
 
-                case 21:
-                case "end":
-                  return _context.stop();
+                    throw utils.httpErrors.notFound("No content was found for id '".concat(id, "'"));
+
+                  case 17:
+                    // Check content for internal/external redirects, etc.
+                    checkContent(platformContent, ctx);
+                    canonicalPath = platformContent.canonicalPath;
+                    return _context.abrupt("return", __chunk_1._objectSpread({
+                      content: platformContent,
+                      canonicalPath: canonicalPath
+                    }, pageProps));
+
+                  case 20:
+                  case "end":
+                    return _context.stop();
+                }
               }
-            }
-          }, _callee, this);
-        }));
+            }, _callee, this);
+          }));
 
-        return function getInitialProps(_x) {
-          return _getInitialProps.apply(this, arguments);
-        };
-      }()
-    }]);
+          return function getInitialProps(_x) {
+            return _getInitialProps.apply(this, arguments);
+          };
+        }()
+      }]);
 
-    return WithPlatformContent;
-  }(React.Component);
+      return WithPlatformContent;
+    }(React.Component);
 
-  WithPlatformContent.displayName = "WithPlatformContent(".concat(utils.componentDisplayName(Page), ")");
-  WithPlatformContent.propTypes = __chunk_1._objectSpread({}, Page.propTypes, {
-    canonicalPath: PropTypes.string.isRequired,
-    content: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      type: PropTypes.string.isRequired,
-      teaser: PropTypes.string,
-      body: PropTypes.string,
-      redirectTo: PropTypes.string,
-      metadata: PropTypes.object,
-      canonicalPath: PropTypes.string.isRequired
-    }).isRequired
-  });
-  return withRequestOrigin(WithPlatformContent);
+    WithPlatformContent.displayName = "WithPlatformContent(".concat(utils.componentDisplayName(Page), ")");
+    WithPlatformContent.propTypes = __chunk_1._objectSpread({}, Page.propTypes, {
+      canonicalPath: PropTypes.string.isRequired,
+      content: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        type: PropTypes.string.isRequired,
+        teaser: PropTypes.string,
+        body: PropTypes.string,
+        redirectTo: PropTypes.string,
+        metadata: PropTypes.object,
+        canonicalPath: PropTypes.string.isRequired
+      }).isRequired
+    });
+    return withRequestOrigin(WithPlatformContent);
+  };
 });
 
 var doc$2 = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"WithWebsiteSectionFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"WebsiteSection"}},"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"name"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"description"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"alias"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"metadata"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"description"},"arguments":[],"directives":[]}]}}]}}],"loc":{"start":0,"end":135}};
