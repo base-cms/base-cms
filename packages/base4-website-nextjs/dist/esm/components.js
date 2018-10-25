@@ -212,6 +212,45 @@ var propTypes$5 = {
   // The inner value to render by default.
   value: PropTypes.node
 };
+var defaultProps$5 = {
+  asHTML: false,
+  children: undefined,
+  collapsable: false,
+  params: undefined,
+  value: null
+};
+
+var LinkElement = function LinkElement(_ref) {
+  var asHTML = _ref.asHTML,
+      children = _ref.children,
+      collapsable = _ref.collapsable,
+      params = _ref.params,
+      to = _ref.to,
+      value = _ref.value,
+      attrs = _objectWithoutProperties(_ref, ["asHTML", "children", "collapsable", "params", "to", "value"]);
+
+  var href = String(to || '');
+  var isExternal = href.match(/^(http:|https:|ftp:|mailto:|\/\/)/i);
+
+  var props = _objectSpread({}, attrs, {
+    children: children,
+    collapsable: collapsable,
+    href: isExternal ? href : undefined,
+    tag: 'a',
+    value: value
+  });
+
+  var child = asHTML ? React.createElement(HTMLElement, props) : React.createElement(Element, props);
+  if (isExternal) return child;
+  return React.createElement(Link, {
+    route: href,
+    params: params,
+    passHref: true
+  }, child);
+};
+
+LinkElement.propTypes = propTypes$5;
+LinkElement.defaultProps = defaultProps$5;
 
 var MetaDescription = function MetaDescription(_ref) {
   var value = _ref.value;
@@ -267,4 +306,4 @@ RelCanonical.propTypes = {
   origin: PropTypes.string.isRequired
 };
 
-export { DateFieldValue$1 as ContentDateFieldValue, FieldValue$1 as ContentFieldValue, Element, FieldValue, FormatDate, HTMLElement, Link as LinkElement, MetaDescription, PageTitle, RelCanonical };
+export { DateFieldValue$1 as ContentDateFieldValue, FieldValue$1 as ContentFieldValue, Element, FieldValue, FormatDate, HTMLElement, LinkElement, MetaDescription, PageTitle, RelCanonical };

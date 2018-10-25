@@ -55,4 +55,4 @@ const LinkElement = ({
 LinkElement.propTypes = propTypes;
 LinkElement.defaultProps = defaultProps;
 
-export default Link;
+export default LinkElement;

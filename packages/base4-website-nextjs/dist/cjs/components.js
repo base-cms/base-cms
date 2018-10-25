@@ -219,6 +219,45 @@ var propTypes$5 = {
   // The inner value to render by default.
   value: PropTypes.node
 };
+var defaultProps$5 = {
+  asHTML: false,
+  children: undefined,
+  collapsable: false,
+  params: undefined,
+  value: null
+};
+
+var LinkElement = function LinkElement(_ref) {
+  var asHTML = _ref.asHTML,
+      children = _ref.children,
+      collapsable = _ref.collapsable,
+      params = _ref.params,
+      to = _ref.to,
+      value = _ref.value,
+      attrs = __chunk_1._objectWithoutProperties(_ref, ["asHTML", "children", "collapsable", "params", "to", "value"]);
+
+  var href = String(to || '');
+  var isExternal = href.match(/^(http:|https:|ftp:|mailto:|\/\/)/i);
+
+  var props = __chunk_1._objectSpread({}, attrs, {
+    children: children,
+    collapsable: collapsable,
+    href: isExternal ? href : undefined,
+    tag: 'a',
+    value: value
+  });
+
+  var child = asHTML ? React__default.createElement(HTMLElement, props) : React__default.createElement(Element, props);
+  if (isExternal) return child;
+  return React__default.createElement(routing.Link, {
+    route: href,
+    params: params,
+    passHref: true
+  }, child);
+};
+
+LinkElement.propTypes = propTypes$5;
+LinkElement.defaultProps = defaultProps$5;
 
 var MetaDescription = function MetaDescription(_ref) {
   var value = _ref.value;
@@ -280,7 +319,7 @@ exports.Element = Element;
 exports.FieldValue = FieldValue;
 exports.FormatDate = FormatDate;
 exports.HTMLElement = HTMLElement;
-exports.LinkElement = routing.Link;
+exports.LinkElement = LinkElement;
 exports.MetaDescription = MetaDescription;
 exports.PageTitle = PageTitle;
 exports.RelCanonical = RelCanonical;
