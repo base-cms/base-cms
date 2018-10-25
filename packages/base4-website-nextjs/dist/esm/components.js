@@ -8,8 +8,6 @@ import { Link } from './routing.js';
 import Head from 'next/head';
 import 'moment';
 import './chunk-e05239f9.js';
-import './chunk-fd635e66.js';
-import 'hoist-non-react-statics';
 
 var propTypes = {
   children: PropTypes.func,
