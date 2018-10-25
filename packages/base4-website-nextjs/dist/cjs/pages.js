@@ -79,33 +79,31 @@ var withRouting = (function (definitions) {
               while (1) {
                 switch (_context.prev = _context.next) {
                   case 0:
-                    console.log('withRouting getInitialProps', args);
-
                     if (isArray(definitions)) {
-                      _context.next = 3;
+                      _context.next = 2;
                       break;
                     }
 
                     throw new Error('No route definitions were provided!');
 
-                  case 3:
+                  case 2:
                     composedInitialProps = {};
 
                     if (!ComposedComponent.getInitialProps) {
-                      _context.next = 8;
+                      _context.next = 7;
                       break;
                     }
 
-                    _context.next = 7;
+                    _context.next = 6;
                     return ComposedComponent.getInitialProps(args);
 
-                  case 7:
+                  case 6:
                     composedInitialProps = _context.sent;
 
-                  case 8:
+                  case 7:
                     return _context.abrupt("return", __chunk_1._objectSpread({}, composedInitialProps));
 
-                  case 9:
+                  case 8:
                   case "end":
                     return _context.stop();
                 }

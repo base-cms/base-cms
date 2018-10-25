@@ -304,28 +304,23 @@ var buildQuery$1 = function buildQuery(_ref) {
  * @param {object} content
  * @param {object} ctx
  * @param {?object} ctx.res
- * @param {?object} ctx.router
  * @param {string} ctx.asPath
  */
 
 var checkContent = function checkContent(content, _ref2) {
   var res = _ref2.res,
-      router = _ref2.router,
       asPath = _ref2.asPath;
-  console.log('checkContent', router);
   var redirectTo = content.redirectTo,
       canonicalPath = content.canonicalPath;
 
   if (redirectTo) {
     redirect({
       res: res,
-      router: router,
       route: redirectTo
     });
   } else if (canonicalPath !== asPath) {
     redirect({
       res: res,
-      router: router,
       route: canonicalPath
     });
   }
@@ -563,7 +558,7 @@ var withWebsiteSection = (function (Page) {
         var _getInitialProps = _asyncToGenerator(
         /*#__PURE__*/
         _regeneratorRuntime.mark(function _callee(ctx) {
-          var pageProps, fragment, routePrefix, query, apollo, res, router, alias, input, variables, _ref2, data, websiteSectionAlias, websiteSectionRedirect, canonicalPath, redirectAlias, path;
+          var pageProps, fragment, routePrefix, query, apollo, res, alias, input, variables, _ref2, data, websiteSectionAlias, websiteSectionRedirect, canonicalPath, redirectAlias, path;
 
           return _regeneratorRuntime.wrap(function _callee$(_context) {
             while (1) {
@@ -582,7 +577,7 @@ var withWebsiteSection = (function (Page) {
 
                 case 4:
                   fragment = options.fragment, routePrefix = options.routePrefix;
-                  query = ctx.query, apollo = ctx.apollo, res = ctx.res, router = ctx.router; // Get the section alias from the page query.
+                  query = ctx.query, apollo = ctx.apollo, res = ctx.res; // Get the section alias from the page query.
                   // Note: the section alias is required for this HOC to function properly.
 
                   alias = query.alias;
@@ -638,7 +633,7 @@ var withWebsiteSection = (function (Page) {
                   path = sectionPath(redirectAlias, routePrefix);
                   redirect({
                     res: res,
-                    router: router,
+                    router: null,
                     route: path
                   });
                   return _context.abrupt("return", _objectSpread({
