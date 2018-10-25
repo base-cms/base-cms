@@ -1,6 +1,5 @@
 {
   "name": "hoc",
   "private": true,
-  "main": "../dist/cjs/hoc.js",
-  "module": "../dist/esm/hoc.js"
+  "main": "../dist/cjs/hoc.js"
 }

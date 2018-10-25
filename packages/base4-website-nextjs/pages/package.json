@@ -1,6 +1,5 @@
 {
   "name": "pages",
   "private": true,
-  "main": "../dist/cjs/pages.js",
-  "module": "../dist/esm/pages.js"
+  "main": "../dist/cjs/pages.js"
 }
