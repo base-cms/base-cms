@@ -36,7 +36,7 @@ export default (ComposedComponent) => {
       ctx.apollo = apollo;
 
       // Await the App's initial props.
-      let composedInitialProps = { Component, router };
+      let composedInitialProps = {};
       if (ComposedComponent.getInitialProps) {
         composedInitialProps = await ComposedComponent.getInitialProps(args);
       }
@@ -48,7 +48,7 @@ export default (ComposedComponent) => {
           // Run queries in the tree.
           await getDataFromTree(
             <ApolloProvider client={apollo}>
-              <ComposedComponent {...composedInitialProps} />
+              <ComposedComponent router={router} Component={Component} {...composedInitialProps} />
             </ApolloProvider>,
           );
         } catch (e) {
