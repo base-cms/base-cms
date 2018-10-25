@@ -17,7 +17,7 @@ require('moment');
 require('object-path');
 require('classnames');
 require('next/head');
-require('./chunk-5ea90bae.js');
+require('./chunk-4b678d5c.js');
 
 var doc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"WithDynamicPageFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PlatformContentPage"}},"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"name"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"type"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"teaser"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"alias"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"body"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"metadata"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"description"},"arguments":[],"directives":[]}]}}]}}],"loc":{"start":0,"end":146}};
     doc.loc.source = {"body":"fragment WithDynamicPageFragment on PlatformContentPage {\n  id\n  name\n  type\n  teaser\n  alias\n  body\n  metadata {\n    title\n    description\n  }\n}\n","name":"GraphQL request","locationOffset":{"line":1,"column":1}};
@@ -310,23 +310,27 @@ var buildQuery$1 = function buildQuery(_ref) {
  *
  * @param {object} content
  * @param {object} ctx
+ * @param {object} ctx.Router
  * @param {?object} ctx.res
  * @param {string} ctx.asPath
  */
 
 var checkContent = function checkContent(content, _ref2) {
-  var res = _ref2.res,
+  var Router = _ref2.Router,
+      res = _ref2.res,
       asPath = _ref2.asPath;
   var redirectTo = content.redirectTo,
       canonicalPath = content.canonicalPath;
 
   if (redirectTo) {
     routing.redirect({
+      Router: Router,
       res: res,
       route: redirectTo
     });
   } else if (canonicalPath !== asPath) {
     routing.redirect({
+      Router: Router,
       res: res,
       route: canonicalPath
     });
@@ -565,7 +569,7 @@ var withWebsiteSection = (function (Page) {
         var _getInitialProps = __chunk_1._asyncToGenerator(
         /*#__PURE__*/
         __chunk_3._regeneratorRuntime.mark(function _callee(ctx) {
-          var pageProps, fragment, routePrefix, query, apollo, res, alias, input, variables, _ref2, data, websiteSectionAlias, websiteSectionRedirect, canonicalPath, redirectAlias, path;
+          var pageProps, fragment, routePrefix, query, apollo, res, Router, alias, input, variables, _ref2, data, websiteSectionAlias, websiteSectionRedirect, canonicalPath, redirectAlias, path;
 
           return __chunk_3._regeneratorRuntime.wrap(function _callee$(_context) {
             while (1) {
@@ -584,7 +588,7 @@ var withWebsiteSection = (function (Page) {
 
                 case 4:
                   fragment = options.fragment, routePrefix = options.routePrefix;
-                  query = ctx.query, apollo = ctx.apollo, res = ctx.res; // Get the section alias from the page query.
+                  query = ctx.query, apollo = ctx.apollo, res = ctx.res, Router = ctx.Router; // Get the section alias from the page query.
                   // Note: the section alias is required for this HOC to function properly.
 
                   alias = query.alias;
@@ -639,8 +643,8 @@ var withWebsiteSection = (function (Page) {
                   redirectAlias = websiteSectionRedirect.alias;
                   path = utils.sectionPath(redirectAlias, routePrefix);
                   routing.redirect({
+                    Router: Router,
                     res: res,
-                    router: null,
                     route: path
                   });
                   return _context.abrupt("return", __chunk_1._objectSpread({

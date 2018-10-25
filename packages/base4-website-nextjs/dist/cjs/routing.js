@@ -6,25 +6,18 @@ function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'defau
 
 var React = require('react');
 var React__default = _interopDefault(React);
-var __chunk_2 = require('./chunk-5ea90bae.js');
+var __chunk_2 = require('./chunk-4b678d5c.js');
 
-var Link = function Link(props) {
+var Link = (function (props) {
   return React__default.createElement(__chunk_2.RoutingContext.Consumer, null, function (_ref) {
     var NextLink = _ref.Link;
     return React__default.createElement(NextLink, props);
   });
-};
-
-var Router = function Router(props) {
-  return React__default.createElement(__chunk_2.RoutingContext.Consumer, null, function (_ref2) {
-    var NextRouter = _ref2.Router;
-    return React__default.createElement(NextRouter, props);
-  });
-};
+});
 
 var redirect = function redirect() {
   var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-      router = _ref.router,
+      Router = _ref.Router,
       res = _ref.res,
       route = _ref.route,
       _ref$code = _ref.code,
@@ -36,13 +29,12 @@ var redirect = function redirect() {
       Location: route
     });
     res.end();
-  } else if (router) {
+  } else if (Router) {
     // Client-side.
-    router.replaceRoute(route);
+    Router.replaceRoute(route);
   }
 };
 
 exports.RoutingContext = __chunk_2.RoutingContext;
 exports.Link = Link;
-exports.Router = Router;
 exports.redirect = redirect;

@@ -14,7 +14,7 @@ var classNames = _interopDefault(require('classnames'));
 var routing = require('./routing.js');
 var Head = _interopDefault(require('next/head'));
 require('moment');
-require('./chunk-5ea90bae.js');
+require('./chunk-4b678d5c.js');
 
 var propTypes = {
   children: PropTypes.func,
