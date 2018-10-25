@@ -1007,8 +1007,10 @@ var withApollo = (function (ComposedComponent) {
       return _this;
     }
     /**
+     * The _app page's getInitialProps hook.
+     * This provides slightly different args than a "regular" page.
      *
-     * @param {object} context
+     * @param {object} args
      */
 
 
@@ -1029,73 +1031,75 @@ var withApollo = (function (ComposedComponent) {
         var _getInitialProps = _asyncToGenerator(
         /*#__PURE__*/
         regenerator.mark(function _callee(args) {
-          var _args$ctx, req, res, apollo, composedInitialProps, apolloState;
-
+          var Component, router, ctx, req, res, apollo, composedInitialProps, apolloState;
           return regenerator.wrap(function _callee$(_context) {
             while (1) {
               switch (_context.prev = _context.next) {
                 case 0:
-                  _args$ctx = args.ctx, req = _args$ctx.req, res = _args$ctx.res; // Create the apollo client and expose it within the context.
+                  Component = args.Component, router = args.router, ctx = args.ctx;
+                  req = ctx.req, res = ctx.res; // Create the apollo client and expose it within the context.
                   // This allows the "raw" client to be accessed within page `getInitialProps`
 
                   apollo = initApollo(apolloConfig, {}, req);
-                  args.ctx.apollo = apollo; // eslint-disable-line no-param-reassign
-                  // Await the App's initial props.
+                  ctx.apollo = apollo; // Await the App's initial props.
 
-                  composedInitialProps = {};
+                  composedInitialProps = {
+                    Component: Component,
+                    router: router
+                  };
 
                   if (!ComposedComponent.getInitialProps) {
-                    _context.next = 8;
+                    _context.next = 9;
                     break;
                   }
 
-                  _context.next = 7;
+                  _context.next = 8;
                   return ComposedComponent.getInitialProps(args);
 
-                case 7:
+                case 8:
                   composedInitialProps = _context.sent;
 
-                case 8:
+                case 9:
                   if (!(!process.browser && !res.headersSent)) {
-                    _context.next = 18;
+                    _context.next = 19;
                     break;
                   }
 
-                  _context.prev = 9;
-                  _context.next = 12;
+                  _context.prev = 10;
+                  _context.next = 13;
                   return reactApollo.getDataFromTree(React.createElement(reactApollo.ApolloProvider, {
                     client: apollo
                   }, React.createElement(ComposedComponent, composedInitialProps)));
 
-                case 12:
-                  _context.next = 17;
+                case 13:
+                  _context.next = 18;
                   break;
 
-                case 14:
-                  _context.prev = 14;
-                  _context.t0 = _context["catch"](9);
+                case 15:
+                  _context.prev = 15;
+                  _context.t0 = _context["catch"](10);
                   // Prevent errors from crashing SSR.
                   // Handle the error in components via data.error prop.
                   // @see http://dev.apollodata.com/react/api-queries.html#graphql-query-data-error
                   log$1('SERVER ERROR in getDataFromTree', _context.t0);
 
-                case 17:
+                case 18:
                   // Clear the head state so duplicate head data is prevented.
                   Head.rewind();
 
-                case 18:
+                case 19:
                   // Extract the Apollo query data.
                   apolloState = apollo.cache.extract();
                   return _context.abrupt("return", _objectSpread({}, composedInitialProps, {
                     apolloState: apolloState
                   }));
 
-                case 20:
+                case 21:
                 case "end":
                   return _context.stop();
               }
             }
-          }, _callee, this, [[9, 14]]);
+          }, _callee, this, [[10, 15]]);
         }));
 
         return function getInitialProps(_x) {
