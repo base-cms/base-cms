@@ -6,7 +6,7 @@ import { onError } from 'apollo-link-error';
 import fetch from 'isomorphic-unfetch';
 import React from 'react';
 import Head from 'next/head';
-import { getDataFromTree } from 'react-apollo';
+import { ApolloProvider, getDataFromTree } from 'react-apollo';
 
 function createCommonjsModule(fn, module) {
 	return module = { exports: {} }, fn(module, module.exports), module.exports;
@@ -825,24 +825,6 @@ function _defineProperty(obj, key, value) {
   return obj;
 }
 
-function _extends() {
-  _extends = Object.assign || function (target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i];
-
-      for (var key in source) {
-        if (Object.prototype.hasOwnProperty.call(source, key)) {
-          target[key] = source[key];
-        }
-      }
-    }
-
-    return target;
-  };
-
-  return _extends.apply(this, arguments);
-}
-
 function _objectSpread(target) {
   for (var i = 1; i < arguments.length; i++) {
     var source = arguments[i] != null ? arguments[i] : {};
@@ -995,7 +977,12 @@ var apolloConfig = (function (req) {
 
 var _console$1 = console,
     log$1 = _console$1.log;
-var withApollo = (function (App) {
+
+var getDisplayName = function getDisplayName(Component) {
+  return Component.displayName || Component.name || 'Unknown';
+};
+
+var withApollo = (function (ComposedComponent) {
   var WithApollo =
   /*#__PURE__*/
   function (_React$Component) {
@@ -1017,7 +1004,7 @@ var withApollo = (function (App) {
     }
     /**
      *
-     * @param {*} ctx
+     * @param {object} context
      */
 
 
@@ -1028,88 +1015,83 @@ var withApollo = (function (App) {
        *
        */
       value: function render() {
-        return React.createElement(App, _extends({}, this.props, {
-          apollo: this.apollo
-        }));
+        return React.createElement(ApolloProvider, {
+          client: this.apollo
+        }, React.createElement(ComposedComponent, this.props));
       }
     }], [{
       key: "getInitialProps",
       value: function () {
         var _getInitialProps = _asyncToGenerator(
         /*#__PURE__*/
-        regenerator.mark(function _callee(_ref) {
-          var Component, router, ctx, rest, req, res, apollo, appProps, apolloState;
+        regenerator.mark(function _callee(args) {
+          var _args$ctx, req, res, apollo, composedInitialProps, apolloState;
+
           return regenerator.wrap(function _callee$(_context) {
             while (1) {
               switch (_context.prev = _context.next) {
                 case 0:
-                  Component = _ref.Component, router = _ref.router, ctx = _ref.ctx, rest = _ref.rest;
-                  req = ctx.req, res = ctx.res; // Create the apollo client and expose it within the context.
-                  // This allows the "raw" client to be accessed within `getInitialProps`
+                  _args$ctx = args.ctx, req = _args$ctx.req, res = _args$ctx.res; // Create the apollo client and expose it within the context.
+                  // This allows the "raw" client to be accessed within page `getInitialProps`
 
                   apollo = initApollo(apolloConfig, {}, req);
-                  ctx.apollo = apollo; // Await the App's initial props.
+                  args.ctx.apollo = apollo; // eslint-disable-line no-param-reassign
+                  // Await the App's initial props.
 
-                  appProps = {};
+                  composedInitialProps = {};
 
-                  if (!App.getInitialProps) {
-                    _context.next = 9;
+                  if (!ComposedComponent.getInitialProps) {
+                    _context.next = 8;
                     break;
                   }
 
-                  _context.next = 8;
-                  return App.getInitialProps(_objectSpread({
-                    Component: Component,
-                    router: router,
-                    ctx: ctx
-                  }, rest));
+                  _context.next = 7;
+                  return ComposedComponent.getInitialProps(args);
+
+                case 7:
+                  composedInitialProps = _context.sent;
 
                 case 8:
-                  appProps = _context.sent;
-
-                case 9:
                   if (!(!process.browser && !res.headersSent)) {
-                    _context.next = 19;
+                    _context.next = 18;
                     break;
                   }
 
-                  _context.prev = 10;
-                  _context.next = 13;
-                  return getDataFromTree(React.createElement(App, _extends({}, appProps, {
-                    Component: Component,
-                    router: router,
-                    apollo: apollo
-                  })));
+                  _context.prev = 9;
+                  _context.next = 12;
+                  return getDataFromTree(React.createElement(ApolloProvider, {
+                    client: apollo
+                  }, React.createElement(ComposedComponent, composedInitialProps)));
 
-                case 13:
-                  _context.next = 18;
+                case 12:
+                  _context.next = 17;
                   break;
 
-                case 15:
-                  _context.prev = 15;
-                  _context.t0 = _context["catch"](10);
+                case 14:
+                  _context.prev = 14;
+                  _context.t0 = _context["catch"](9);
                   // Prevent errors from crashing SSR.
                   // Handle the error in components via data.error prop.
                   // @see http://dev.apollodata.com/react/api-queries.html#graphql-query-data-error
                   log$1('SERVER ERROR in getDataFromTree', _context.t0);
 
-                case 18:
+                case 17:
                   // Clear the head state so duplicate head data is prevented.
                   Head.rewind();
 
-                case 19:
+                case 18:
                   // Extract the Apollo query data.
                   apolloState = apollo.cache.extract();
-                  return _context.abrupt("return", _objectSpread({}, appProps, {
+                  return _context.abrupt("return", _objectSpread({}, composedInitialProps, {
                     apolloState: apolloState
                   }));
 
-                case 21:
+                case 20:
                 case "end":
                   return _context.stop();
               }
             }
-          }, _callee, this, [[10, 15]]);
+          }, _callee, this, [[9, 14]]);
         }));
 
         return function getInitialProps(_x) {
@@ -1121,7 +1103,7 @@ var withApollo = (function (App) {
     return WithApollo;
   }(React.Component);
 
-  WithApollo.displayName = 'WithApollo(App)';
+  WithApollo.displayName = "withApollo(".concat(getDisplayName(ComposedComponent), ")");
   return WithApollo;
 });
 
