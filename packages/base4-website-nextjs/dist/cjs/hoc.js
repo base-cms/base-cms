@@ -4,7 +4,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var __chunk_3 = require('./chunk-efb9fd9b.js');
+var __chunk_4 = require('./chunk-efb9fd9b.js');
 var __chunk_1 = require('./chunk-2c19305a.js');
 var React = require('react');
 var React__default = _interopDefault(React);
@@ -12,6 +12,7 @@ var PropTypes = _interopDefault(require('prop-types'));
 var utils = require('./utils.js');
 var gql = _interopDefault(require('graphql-tag'));
 var components = require('./components.js');
+var __chunk_3 = require('./chunk-60378f3f.js');
 var routing = require('./routing.js');
 require('moment');
 require('object-path');
@@ -52,9 +53,9 @@ var withRequestOrigin = (function (Page) {
       value: function () {
         var _getInitialProps = __chunk_1._asyncToGenerator(
         /*#__PURE__*/
-        __chunk_3._regeneratorRuntime.mark(function _callee(ctx) {
+        __chunk_4._regeneratorRuntime.mark(function _callee(ctx) {
           var pageProps, req, requestOrigin;
-          return __chunk_3._regeneratorRuntime.wrap(function _callee$(_context) {
+          return __chunk_4._regeneratorRuntime.wrap(function _callee$(_context) {
             while (1) {
               switch (_context.prev = _context.next) {
                 case 0:
@@ -180,10 +181,10 @@ var withDynamicPage = (function (Page) {
       value: function () {
         var _getInitialProps = __chunk_1._asyncToGenerator(
         /*#__PURE__*/
-        __chunk_3._regeneratorRuntime.mark(function _callee(ctx) {
+        __chunk_4._regeneratorRuntime.mark(function _callee(ctx) {
           var pageProps, fragment, query, apollo, alias, input, variables, _ref2, data, platformContentPage;
 
-          return __chunk_3._regeneratorRuntime.wrap(function _callee$(_context) {
+          return __chunk_4._regeneratorRuntime.wrap(function _callee$(_context) {
             while (1) {
               switch (_context.prev = _context.next) {
                 case 0:
@@ -276,8 +277,26 @@ var withDynamicPage = (function (Page) {
   return withRequestOrigin(WithDynamicPage);
 });
 
-var doc$1 = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"WithPlatformContentFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PlatformContent"}},"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContentCanonicalPath"},"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"name"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"type"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"teaser"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"body"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"redirectTo"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"metadata"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"description"},"arguments":[],"directives":[]}]}},{"kind":"Field","name":{"kind":"Name","value":"primarySection"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"name"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"alias"},"arguments":[],"directives":[]}]}}]}}],"loc":{"start":0,"end":271}};
-    doc$1.loc.source = {"body":"# import './content-canonical-path.graphql'\n\nfragment WithPlatformContentFragment on PlatformContent {\n  ...ContentCanonicalPath\n  id\n  name\n  type\n  teaser\n  body\n  redirectTo\n  metadata {\n    title\n    description\n  }\n  primarySection {\n    id\n    name\n    alias\n  }\n}\n","name":"GraphQL request","locationOffset":{"line":1,"column":1}};
+var doc$1 = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"WithPlatformContentFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PlatformContent"}},"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContentCanonicalPath"},"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"name"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"type"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"teaser"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"body"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"redirectTo"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"metadata"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"description"},"arguments":[],"directives":[]}]}},{"kind":"Field","name":{"kind":"Name","value":"primarySection"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"name"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"alias"},"arguments":[],"directives":[]}]}}]}}],"loc":{"start":0,"end":270}};
+    doc$1.loc.source = {"body":"#import './content-canonical-path.graphql'\n\nfragment WithPlatformContentFragment on PlatformContent {\n  ...ContentCanonicalPath\n  id\n  name\n  type\n  teaser\n  body\n  redirectTo\n  metadata {\n    title\n    description\n  }\n  primarySection {\n    id\n    name\n    alias\n  }\n}\n","name":"GraphQL request","locationOffset":{"line":1,"column":1}};
+  
+
+    var names$1 = {};
+    function unique$1(defs) {
+      return defs.filter(
+        function(def) {
+          if (def.kind !== 'FragmentDefinition') return true;
+          var name = def.name.value;
+          if (names$1[name]) {
+            return false;
+          } else {
+            names$1[name] = true;
+            return true;
+          }
+        }
+      )
+    }
+  doc$1.definitions = doc$1.definitions.concat(unique$1(__chunk_3.frgmt1.definitions));
 
 function _templateObject$1() {
   var data = __chunk_1._taggedTemplateLiteral(["\n    query WithPlatformContent($input: RootPlatformContentQueryOne!, $canonicalFields: [PlatfromContentPathField]!) {\n      platformContent(input: $input) {\n        ...WithPlatformContentFragment\n        ", "\n      }\n    }\n    ", "\n    ", "\n  "]);
@@ -390,10 +409,10 @@ var withPlatformContent = (function (Page) {
       value: function () {
         var _getInitialProps = __chunk_1._asyncToGenerator(
         /*#__PURE__*/
-        __chunk_3._regeneratorRuntime.mark(function _callee(ctx) {
+        __chunk_4._regeneratorRuntime.mark(function _callee(ctx) {
           var pageProps, fragment, canonicalFields, query, apollo, id, input, variables, _ref3, data, platformContent, canonicalPath;
 
-          return __chunk_3._regeneratorRuntime.wrap(function _callee$(_context) {
+          return __chunk_4._regeneratorRuntime.wrap(function _callee$(_context) {
             while (1) {
               switch (_context.prev = _context.next) {
                 case 0:
@@ -568,10 +587,10 @@ var withWebsiteSection = (function (Page) {
       value: function () {
         var _getInitialProps = __chunk_1._asyncToGenerator(
         /*#__PURE__*/
-        __chunk_3._regeneratorRuntime.mark(function _callee(ctx) {
+        __chunk_4._regeneratorRuntime.mark(function _callee(ctx) {
           var pageProps, fragment, routePrefix, query, apollo, res, Router, alias, input, variables, _ref2, data, websiteSectionAlias, websiteSectionRedirect, canonicalPath, redirectAlias, path;
 
-          return __chunk_3._regeneratorRuntime.wrap(function _callee$(_context) {
+          return __chunk_4._regeneratorRuntime.wrap(function _callee$(_context) {
             while (1) {
               switch (_context.prev = _context.next) {
                 case 0:

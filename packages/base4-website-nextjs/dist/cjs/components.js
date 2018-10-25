@@ -13,6 +13,7 @@ var objectPath = require('object-path');
 var classNames = _interopDefault(require('classnames'));
 var routing = require('./routing.js');
 var gql = _interopDefault(require('graphql-tag'));
+var __chunk_3 = require('./chunk-60378f3f.js');
 var Head = _interopDefault(require('next/head'));
 require('moment');
 require('./chunk-4b678d5c.js');
@@ -296,9 +297,6 @@ var ContentLink = function ContentLink(_ref) {
 ContentLink.propTypes = propTypes$6;
 ContentLink.defaultProps = defaultProps$6;
 
-var doc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ContentCanonicalPath"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PlatformContent"}},"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"canonicalPath"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"fields"},"value":{"kind":"Variable","name":{"kind":"Name","value":"canonicalFields"}}}]}}],"directives":[]}]}}],"loc":{"start":0,"end":106}};
-    doc.loc.source = {"body":"fragment ContentCanonicalPath on PlatformContent {\n  canonicalPath(input: { fields: $canonicalFields })\n}\n","name":"GraphQL request","locationOffset":{"line":1,"column":1}};
-
 function _templateObject() {
   var data = __chunk_1._taggedTemplateLiteral(["\n    fragment PlatformContentLinkShortName on PlatformContent {\n      shortName\n      ...ContentCanonicalPath\n    }\n    ", "\n  "]);
 
@@ -347,7 +345,7 @@ var ContentLinkShortName = function ContentLinkShortName(_ref) {
 ContentLinkShortName.propTypes = propTypes$7;
 ContentLinkShortName.defaultProps = defaultProps$7;
 ContentLinkShortName.fragments = {
-  content: gql(_templateObject(), doc)
+  content: gql(_templateObject(), __chunk_3.frgmt1)
 };
 
 var propTypes$8 = {
