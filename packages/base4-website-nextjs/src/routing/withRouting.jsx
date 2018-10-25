@@ -35,12 +35,12 @@ export default definitions => (ComposedComponent) => {
      * @param {object} args
      */
     static async getInitialProps(args) {
-      const { Component, router } = args;
+      const { router } = args;
 
       console.log('routes', Object.keys(routes));
       console.log('router', Object.keys(router));
 
-      let composedInitialProps = { Component, router };
+      let composedInitialProps = {};
       if (ComposedComponent.getInitialProps) {
         composedInitialProps = await ComposedComponent.getInitialProps(args);
       }
