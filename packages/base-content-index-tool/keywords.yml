@@ -26,7 +26,7 @@ association:
   - convention
   - meetings
   - tradeshow
-nonprofit:
+non-profit:
   - gala
   - fund-raising
   - benefit
@@ -41,7 +41,7 @@ nonprofit:
   - fundraiser
   - fundraising
   - non-profit
-social_events:
+social-events:
   - wedding
   - social events
   - wedding planner
