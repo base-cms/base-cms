@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 
+// Routing
+import { redirect, withRouter } from '../routing';
+
 // Utilities
 import {
   componentDisplayName,
@@ -18,11 +21,6 @@ import withRequestOrigin from './withRequestOrigin';
 
 // Components
 import { RelCanonical, PageTitle, MetaDescription } from '../components';
-
-// Routing
-// @todo Reenable this!
-// import { redirect } from '../routing';
-const redirect = () => {};
 
 /**
  * Builds the website section GraphQL query.
@@ -61,7 +59,12 @@ export default (Page, options = {
       }
 
       const { fragment, routePrefix } = options;
-      const { query, apollo, res } = ctx;
+      const {
+        query,
+        apollo,
+        res,
+        router,
+      } = ctx;
       // Get the section alias from the page query.
       // Note: the section alias is required for this HOC to function properly.
       const { alias } = query;
@@ -87,9 +90,8 @@ export default (Page, options = {
         const { alias: redirectAlias } = websiteSectionRedirect;
         const path = sectionPath(redirectAlias, routePrefix);
 
-        // @todo Re-enable this!
-        redirect(res, path);
-        // return { section: {}, canonicalPath: path, ...pageProps };
+        redirect({ res, router, route: path });
+        return { section: {}, canonicalPath: path, ...pageProps };
       }
 
       // No website section or redirect was found for this alias. Return a 404.
@@ -124,5 +126,5 @@ export default (Page, options = {
       seoTitle: PropTypes.string,
     }).isRequired,
   };
-  return withRequestOrigin(WithWebsiteSection);
+  return withRequestOrigin(withRouter(WithWebsiteSection));
 };

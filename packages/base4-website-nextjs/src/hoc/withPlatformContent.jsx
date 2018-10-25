@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 
 // Routing
-import { redirect } from '../routing';
+import { redirect, withRouter } from '../routing';
 
 // Utilities
 import { componentDisplayName, extractFragmentData, httpErrors } from '../utils';
@@ -42,14 +42,16 @@ export const buildQuery = ({ fragment }) => {
  * @param {object} content
  * @param {object} ctx
  * @param {?object} ctx.res
+ * @param {?object} ctx.router
  * @param {string} ctx.asPath
  */
-export const checkContent = (content, { res, asPath }) => {
+export const checkContent = (content, { res, router, asPath }) => {
+  console.log('checkContent', router);
   const { redirectTo, canonicalPath } = content;
   if (redirectTo) {
-    redirect(res, redirectTo);
+    redirect({ res, router, route: redirectTo });
   } else if (canonicalPath !== asPath) {
-    redirect(res, canonicalPath);
+    redirect({ res, router, route: canonicalPath });
   }
 };
 
@@ -94,12 +96,8 @@ export default (Page, options = {
         throw httpErrors.notFound(`No content was found for id '${id}'`);
       }
       // Check content for internal/external redirects, etc.
-      // @todo Re-enabled this.
-      // checkContent(platformContent, ctx);
+      checkContent(platformContent, ctx);
       const { canonicalPath } = platformContent;
-      // @todo TextAds and Promotions can use an external URL. We _must_ account for this
-      // when using the `next-routes::Link` component, as external URLs do not inherently
-      // work.
       return { content: platformContent, canonicalPath, ...pageProps };
     }
 
@@ -134,5 +132,5 @@ export default (Page, options = {
       canonicalPath: PropTypes.string.isRequired,
     }).isRequired,
   };
-  return withRequestOrigin(WithPlatformContent);
+  return withRequestOrigin(withRouter(WithPlatformContent));
 };
