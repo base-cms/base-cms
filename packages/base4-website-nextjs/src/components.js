@@ -5,9 +5,9 @@ import FieldValue from './components/FieldValue';
 import FormatDate from './components/FormatDate';
 import HTMLElement from './components/HTMLElement';
 import LinkElement from './components/LinkElement';
-import MetaDescription from './components/MetaDescription';
-import PageTitle from './components/PageTitle';
-import RelCanonical from './components/RelCanonical';
+import MetaDescription from './components/Head/MetaDescription';
+import PageTitle from './components/Head/PageTitle';
+import RelCanonical from './components/Head/RelCanonical';
 
 export {
   ContentDateFieldValue,

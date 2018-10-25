@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 
-import { cleanPath } from '../utils';
+import { cleanPath } from '../../utils';
 
 const RelCanonical = ({ origin, pathname }) => (
   <Head>
