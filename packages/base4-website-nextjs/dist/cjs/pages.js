@@ -79,14 +79,15 @@ var withRouting = (function (definitions) {
           var _getInitialProps = __chunk_1._asyncToGenerator(
           /*#__PURE__*/
           __chunk_3._regeneratorRuntime.mark(function _callee(args) {
-            var router, composedInitialProps;
+            var ctx, Router, composedInitialProps;
             return __chunk_3._regeneratorRuntime.wrap(function _callee$(_context) {
               while (1) {
                 switch (_context.prev = _context.next) {
                   case 0:
-                    router = args.router;
-                    console.log('routes', Object.keys(routes));
-                    console.log('router', Object.keys(router));
+                    ctx = args.ctx;
+                    Router = routes.Router; // Add the `next-routes` Router to the page context.
+
+                    ctx.Router = Router;
                     composedInitialProps = {};
 
                     if (!ComposedComponent.getInitialProps) {
