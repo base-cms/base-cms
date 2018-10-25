@@ -1,5 +1,6 @@
 import React from 'react';
 import { a as RoutingContext } from './chunk-e05239f9.js';
+export { a as RoutingContext } from './chunk-e05239f9.js';
 
 var Link = function Link(props) {
   return React.createElement(RoutingContext.Consumer, null, function (_ref) {
