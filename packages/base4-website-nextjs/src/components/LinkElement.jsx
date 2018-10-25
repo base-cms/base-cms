@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Element from './Element';
 import HTMLElement from './HTMLElement';
 import { Link } from '../routing';
+import { cleanPath } from '../utils';
 
 const propTypes = {
   // Whether to render the `value` prop as HTML.
@@ -49,7 +50,7 @@ const LinkElement = ({
   };
   const child = asHTML ? <HTMLElement {...props} /> : <Element {...props} />;
   if (isExternal) return child;
-  return <Link route={href} params={params} passHref>{child}</Link>;
+  return <Link route={`/${cleanPath(href)}`} params={params} passHref>{child}</Link>;
 };
 
 LinkElement.propTypes = propTypes;
