@@ -8,4 +8,4 @@ const SectionPage = ({ section }) => (
   </>
 );
 
-export default withWebsiteSection(SectionPage);
+export default withWebsiteSection()(SectionPage);
