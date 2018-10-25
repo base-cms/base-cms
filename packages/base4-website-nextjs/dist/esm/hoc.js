@@ -5,12 +5,13 @@ import PropTypes from 'prop-types';
 import { componentDisplayName, extractFragmentData, httpErrors, sectionPath } from './utils.js';
 import gql from 'graphql-tag';
 import { RelCanonical, PageTitle, MetaDescription } from './components.js';
-import { redirect } from './routing.js';
+import { redirect, withRouter } from './routing.js';
 import 'moment';
 import 'object-path';
 import 'classnames';
 import 'next/head';
 import './chunk-e05239f9.js';
+import 'hoist-non-react-statics';
 
 var doc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"WithDynamicPageFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PlatformContentPage"}},"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"name"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"type"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"teaser"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"alias"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"body"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"metadata"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"description"},"arguments":[],"directives":[]}]}}]}}],"loc":{"start":0,"end":146}};
     doc.loc.source = {"body":"fragment WithDynamicPageFragment on PlatformContentPage {\n  id\n  name\n  type\n  teaser\n  alias\n  body\n  metadata {\n    title\n    description\n  }\n}\n","name":"GraphQL request","locationOffset":{"line":1,"column":1}};
@@ -301,6 +302,37 @@ var buildQuery$1 = function buildQuery(_ref) {
 };
 /**
  *
+ * @param {object} content
+ * @param {object} ctx
+ * @param {?object} ctx.res
+ * @param {?object} ctx.router
+ * @param {string} ctx.asPath
+ */
+
+var checkContent = function checkContent(content, _ref2) {
+  var res = _ref2.res,
+      router = _ref2.router,
+      asPath = _ref2.asPath;
+  console.log('checkContent', router);
+  var redirectTo = content.redirectTo,
+      canonicalPath = content.canonicalPath;
+
+  if (redirectTo) {
+    redirect({
+      res: res,
+      router: router,
+      route: redirectTo
+    });
+  } else if (canonicalPath !== asPath) {
+    redirect({
+      res: res,
+      router: router,
+      route: canonicalPath
+    });
+  }
+};
+/**
+ *
  * @param {object} Page
  * @param {object} options
  * @param {?string|object} options.fragment
@@ -416,18 +448,14 @@ var withPlatformContent = (function (Page) {
 
                 case 18:
                   // Check content for internal/external redirects, etc.
-                  // @todo Re-enabled this.
-                  // checkContent(platformContent, ctx);
-                  canonicalPath = platformContent.canonicalPath; // @todo TextAds and Promotions can use an external URL. We _must_ account for this
-                  // when using the `next-routes::Link` component, as external URLs do not inherently
-                  // work.
-
+                  checkContent(platformContent, ctx);
+                  canonicalPath = platformContent.canonicalPath;
                   return _context.abrupt("return", _objectSpread({
                     content: platformContent,
                     canonicalPath: canonicalPath
                   }, pageProps));
 
-                case 20:
+                case 21:
                 case "end":
                   return _context.stop();
               }
@@ -458,7 +486,7 @@ var withPlatformContent = (function (Page) {
       canonicalPath: PropTypes.string.isRequired
     }).isRequired
   });
-  return withRequestOrigin(WithPlatformContent);
+  return withRequestOrigin(withRouter(WithPlatformContent));
 });
 
 var doc$2 = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"WithWebsiteSectionFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"WebsiteSection"}},"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"name"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"description"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"alias"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"metadata"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"description"},"arguments":[],"directives":[]}]}}]}}],"loc":{"start":0,"end":135}};
@@ -476,7 +504,6 @@ function _templateObject$2() {
 /**
  * Builds the website section GraphQL query.
  */
-
 
 var buildQuery$2 = function buildQuery(_ref) {
   var fragment = _ref.fragment;
@@ -537,7 +564,7 @@ var withWebsiteSection = (function (Page) {
         var _getInitialProps = _asyncToGenerator(
         /*#__PURE__*/
         _regeneratorRuntime.mark(function _callee(ctx) {
-          var pageProps, fragment, routePrefix, query, apollo, res, alias, input, variables, _ref2, data, websiteSectionAlias, websiteSectionRedirect, canonicalPath, redirectAlias, path;
+          var pageProps, fragment, routePrefix, query, apollo, res, router, alias, input, variables, _ref2, data, websiteSectionAlias, websiteSectionRedirect, canonicalPath, redirectAlias, path;
 
           return _regeneratorRuntime.wrap(function _callee$(_context) {
             while (1) {
@@ -556,7 +583,7 @@ var withWebsiteSection = (function (Page) {
 
                 case 4:
                   fragment = options.fragment, routePrefix = options.routePrefix;
-                  query = ctx.query, apollo = ctx.apollo, res = ctx.res; // Get the section alias from the page query.
+                  query = ctx.query, apollo = ctx.apollo, res = ctx.res, router = ctx.router; // Get the section alias from the page query.
                   // Note: the section alias is required for this HOC to function properly.
 
                   alias = query.alias;
@@ -602,16 +629,28 @@ var withWebsiteSection = (function (Page) {
                   }, pageProps));
 
                 case 19:
-                  if (websiteSectionRedirect && websiteSectionRedirect.alias) {
-                    // A redirect was found for this section alias. Force a redirect.
-                    redirectAlias = websiteSectionRedirect.alias;
-                    path = sectionPath(redirectAlias, routePrefix); // @todo Re-enable this!
-                  } // No website section or redirect was found for this alias. Return a 404.
+                  if (!(websiteSectionRedirect && websiteSectionRedirect.alias)) {
+                    _context.next = 24;
+                    break;
+                  }
 
+                  // A redirect was found for this section alias. Force a redirect.
+                  redirectAlias = websiteSectionRedirect.alias;
+                  path = sectionPath(redirectAlias, routePrefix);
+                  redirect({
+                    res: res,
+                    router: router,
+                    route: path
+                  });
+                  return _context.abrupt("return", _objectSpread({
+                    section: {},
+                    canonicalPath: path
+                  }, pageProps));
 
+                case 24:
                   throw httpErrors.notFound("No website section was found for alias '".concat(alias, "'"));
 
-                case 21:
+                case 25:
                 case "end":
                   return _context.stop();
               }
@@ -639,7 +678,7 @@ var withWebsiteSection = (function (Page) {
       seoTitle: PropTypes.string
     }).isRequired
   });
-  return withRequestOrigin(WithWebsiteSection);
+  return withRequestOrigin(withRouter(WithWebsiteSection));
 });
 
 export { withDynamicPage, withPlatformContent, withRequestOrigin, withWebsiteSection };
