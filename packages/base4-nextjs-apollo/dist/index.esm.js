@@ -825,6 +825,24 @@ function _defineProperty(obj, key, value) {
   return obj;
 }
 
+function _extends() {
+  _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
 function _objectSpread(target) {
   for (var i = 1; i < arguments.length; i++) {
     var source = arguments[i] != null ? arguments[i] : {};
@@ -1039,10 +1057,7 @@ var withApollo = (function (ComposedComponent) {
                   apollo = initApollo(apolloConfig, {}, req);
                   ctx.apollo = apollo; // Await the App's initial props.
 
-                  composedInitialProps = {
-                    Component: Component,
-                    router: router
-                  };
+                  composedInitialProps = {};
 
                   if (!ComposedComponent.getInitialProps) {
                     _context.next = 9;
@@ -1065,7 +1080,10 @@ var withApollo = (function (ComposedComponent) {
                   _context.next = 13;
                   return getDataFromTree(React.createElement(ApolloProvider, {
                     client: apollo
-                  }, React.createElement(ComposedComponent, composedInitialProps)));
+                  }, React.createElement(ComposedComponent, _extends({
+                    router: router,
+                    Component: Component
+                  }, composedInitialProps))));
 
                 case 13:
                   _context.next = 18;
