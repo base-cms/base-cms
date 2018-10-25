@@ -9,7 +9,7 @@ const propTypes = {
   data: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   format: PropTypes.string,
   path: PropTypes.string.isRequired,
-  tag: PropTypes.string,
+  tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
 };
 
 const defaultProps = {

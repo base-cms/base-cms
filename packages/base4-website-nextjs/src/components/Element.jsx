@@ -5,7 +5,7 @@ import { isFunction as isFn } from '../utils';
 const propTypes = {
   children: PropTypes.func,
   collapsable: PropTypes.bool,
-  tag: PropTypes.string,
+  tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   value: PropTypes.node,
 };
 

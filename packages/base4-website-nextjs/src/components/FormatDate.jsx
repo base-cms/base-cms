@@ -12,7 +12,7 @@ const propTypes = {
     PropTypes.string, // Must adhere to moment date string reqs.
     PropTypes.objectOf(Date),
   ]),
-  tag: PropTypes.string,
+  tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
 };
 
 const defaultProps = {

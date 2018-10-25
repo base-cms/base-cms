@@ -5,7 +5,7 @@ import { createMarkup } from '../utils';
 
 const propTypes = {
   collapsable: PropTypes.bool,
-  tag: PropTypes.string,
+  tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   value: PropTypes.string,
 };
 
