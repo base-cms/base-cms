@@ -12,6 +12,7 @@ var utils = require('./utils.js');
 var objectPath = require('object-path');
 var classNames = _interopDefault(require('classnames'));
 var routing = require('./routing.js');
+var gql = _interopDefault(require('graphql-tag'));
 var Head = _interopDefault(require('next/head'));
 require('moment');
 require('./chunk-4b678d5c.js');
@@ -19,7 +20,7 @@ require('./chunk-4b678d5c.js');
 var propTypes = {
   children: PropTypes.func,
   collapsable: PropTypes.bool,
-  tag: PropTypes.string,
+  tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   value: PropTypes.node
 };
 var defaultProps = {
@@ -53,7 +54,7 @@ var propTypes$1 = {
   format: PropTypes.string,
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string, // Must adhere to moment date string reqs.
   PropTypes.objectOf(Date)]),
-  tag: PropTypes.string
+  tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
 };
 var defaultProps$1 = {
   collapsable: true,
@@ -85,7 +86,7 @@ var propTypes$2 = {
   // eslint-disable-line react/forbid-prop-types
   format: PropTypes.string,
   path: PropTypes.string.isRequired,
-  tag: PropTypes.string
+  tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
 };
 var defaultProps$2 = {
   children: undefined,
@@ -142,7 +143,7 @@ var DateFieldValue$1 = withModelFieldClass('content')(DateFieldValue);
 
 var propTypes$3 = {
   collapsable: PropTypes.bool,
-  tag: PropTypes.string,
+  tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   value: PropTypes.string
 };
 var defaultProps$3 = {
@@ -173,7 +174,7 @@ var propTypes$4 = {
   data: PropTypes.object,
   // eslint-disable-line react/forbid-prop-types
   path: PropTypes.string.isRequired,
-  tag: PropTypes.string
+  tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
 };
 var defaultProps$4 = {
   asHTML: false,
@@ -250,7 +251,7 @@ var LinkElement = function LinkElement(_ref) {
   var child = asHTML ? React__default.createElement(HTMLElement, props) : React__default.createElement(Element, props);
   if (isExternal) return child;
   return React__default.createElement(routing.Link, {
-    route: href,
+    route: "/".concat(utils.cleanPath(href)),
     params: params,
     passHref: true
   }, child);
@@ -258,6 +259,159 @@ var LinkElement = function LinkElement(_ref) {
 
 LinkElement.propTypes = propTypes$5;
 LinkElement.defaultProps = defaultProps$5;
+
+var propTypes$6 = {
+  // Whether to render the `value` prop as HTML.
+  asHTML: PropTypes.bool,
+  // The content canonical path.
+  canonicalPath: PropTypes.string.isRequired,
+  // A child function to custom render the `value` prop.
+  children: PropTypes.func,
+  // Whether the entire component should collapse on an empty value.
+  collapsable: PropTypes.bool,
+  // Optional parameters for named routes.
+  params: PropTypes.object,
+  // eslint-disable-line react/forbid-prop-types
+  // The inner value to render by default.
+  value: PropTypes.node
+};
+var defaultProps$6 = {
+  asHTML: false,
+  children: undefined,
+  collapsable: false,
+  params: undefined,
+  value: null
+};
+
+var ContentLink = function ContentLink(_ref) {
+  var canonicalPath = _ref.canonicalPath,
+      rest = __chunk_1._objectWithoutProperties(_ref, ["canonicalPath"]);
+
+  return React__default.createElement(LinkElement, __chunk_1._extends({
+    to: canonicalPath,
+    className: "content__link"
+  }, rest));
+};
+
+ContentLink.propTypes = propTypes$6;
+ContentLink.defaultProps = defaultProps$6;
+
+var doc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ContentCanonicalPath"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PlatformContent"}},"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"canonicalPath"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"fields"},"value":{"kind":"Variable","name":{"kind":"Name","value":"canonicalFields"}}}]}}],"directives":[]}]}}],"loc":{"start":0,"end":106}};
+    doc.loc.source = {"body":"fragment ContentCanonicalPath on PlatformContent {\n  canonicalPath(input: { fields: $canonicalFields })\n}\n","name":"GraphQL request","locationOffset":{"line":1,"column":1}};
+
+function _templateObject() {
+  var data = __chunk_1._taggedTemplateLiteral(["\n    fragment PlatformContentLinkShortName on PlatformContent {\n      shortName\n      ...ContentCanonicalPath\n    }\n    ", "\n  "]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+var propTypes$7 = {
+  collapsable: PropTypes.bool,
+  content: PropTypes.shape({
+    shortName: PropTypes.string,
+    canonicalPath: PropTypes.string
+  }),
+  linkAttrs: PropTypes.object,
+  // eslint-disable-line react/forbid-prop-types
+  tag: PropTypes.string
+};
+var defaultProps$7 = {
+  collapsable: false,
+  content: {},
+  linkAttrs: {},
+  tag: 'h5'
+};
+
+var ContentLinkShortName = function ContentLinkShortName(_ref) {
+  var content = _ref.content,
+      linkAttrs = _ref.linkAttrs,
+      attrs = __chunk_1._objectWithoutProperties(_ref, ["content", "linkAttrs"]);
+
+  return React__default.createElement(FieldValue$1, __chunk_1._extends({
+    path: "shortName",
+    data: content
+  }, attrs), function (value) {
+    var canonicalPath = objectPath.get(content, 'canonicalPath');
+    if (!canonicalPath) return null;
+    return React__default.createElement(ContentLink, __chunk_1._extends({
+      asHTML: true,
+      canonicalPath: canonicalPath,
+      value: value
+    }, linkAttrs));
+  });
+};
+
+ContentLinkShortName.propTypes = propTypes$7;
+ContentLinkShortName.defaultProps = defaultProps$7;
+ContentLinkShortName.fragments = {
+  content: gql(_templateObject(), doc)
+};
+
+var propTypes$8 = {
+  children: PropTypes.node.isRequired,
+  className: PropTypes.string,
+  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
+};
+var defaultProps$8 = {
+  className: null,
+  tag: 'div'
+};
+
+var ContentRow = function ContentRow(_ref) {
+  var children = _ref.children,
+      className = _ref.className,
+      Tag = _ref.tag,
+      attrs = __chunk_1._objectWithoutProperties(_ref, ["children", "className", "tag"]);
+
+  return React__default.createElement(Tag, __chunk_1._extends({
+    className: classNames('content__element-row', className)
+  }, attrs), children);
+};
+
+ContentRow.propTypes = propTypes$8;
+ContentRow.defaultProps = defaultProps$8;
+
+function _templateObject$1() {
+  var data = __chunk_1._taggedTemplateLiteral(["\n    fragment PlatformContentShortName on PlatformContent {\n      shortName\n    }\n  "]);
+
+  _templateObject$1 = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+var propTypes$9 = {
+  collapsable: PropTypes.bool,
+  content: PropTypes.shape({
+    shortName: PropTypes.string
+  }),
+  tag: PropTypes.string
+};
+var defaultProps$9 = {
+  collapsable: false,
+  content: {},
+  tag: 'h5'
+};
+
+var ContentShortName = function ContentShortName(_ref) {
+  var content = _ref.content,
+      rest = __chunk_1._objectWithoutProperties(_ref, ["content"]);
+
+  return React__default.createElement(FieldValue$1, __chunk_1._extends({
+    asHTML: true,
+    path: "shortName",
+    data: content
+  }, rest));
+};
+
+ContentShortName.propTypes = propTypes$9;
+ContentShortName.defaultProps = defaultProps$9;
+ContentShortName.fragments = {
+  content: gql(_templateObject$1())
+};
 
 var MetaDescription = function MetaDescription(_ref) {
   var value = _ref.value;
@@ -275,13 +429,13 @@ MetaDescription.defaultProps = {
   value: null
 };
 
-var propTypes$6 = {
+var propTypes$a = {
   children: PropTypes.func,
   concateWith: PropTypes.string,
   siteName: PropTypes.string,
   value: PropTypes.string.isRequired
 };
-var defaultProps$6 = {
+var defaultProps$a = {
   children: undefined,
   concateWith: '|',
   siteName: null
@@ -296,8 +450,8 @@ var PageTitle = function PageTitle(_ref) {
   return React__default.createElement(Head, null, React__default.createElement("title", null, utils.isFunction(render) ? render() : title));
 };
 
-PageTitle.propTypes = propTypes$6;
-PageTitle.defaultProps = defaultProps$6;
+PageTitle.propTypes = propTypes$a;
+PageTitle.defaultProps = defaultProps$a;
 
 var RelCanonical = function RelCanonical(_ref) {
   var origin = _ref.origin,
@@ -315,6 +469,10 @@ RelCanonical.propTypes = {
 
 exports.ContentDateFieldValue = DateFieldValue$1;
 exports.ContentFieldValue = FieldValue$1;
+exports.ContentLink = ContentLink;
+exports.ContentLinkShortName = ContentLinkShortName;
+exports.ContentRow = ContentRow;
+exports.ContentShortName = ContentShortName;
 exports.Element = Element;
 exports.FieldValue = FieldValue;
 exports.FormatDate = FormatDate;
