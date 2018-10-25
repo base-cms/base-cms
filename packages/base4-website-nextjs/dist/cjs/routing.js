@@ -42,7 +42,6 @@ var redirect = function redirect() {
   }
 };
 
-exports.RoutingContext = __chunk_2.RoutingContext;
 exports.Link = Link;
 exports.Router = Router;
 exports.redirect = redirect;
