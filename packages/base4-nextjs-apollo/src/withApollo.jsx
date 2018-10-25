@@ -21,19 +21,22 @@ export default (ComposedComponent) => {
     }
 
     /**
+     * The _app page's getInitialProps hook.
+     * This provides slightly different args than a "regular" page.
      *
-     * @param {object} context
+     * @param {object} args
      */
     static async getInitialProps(args) {
-      const { req, res } = args.ctx;
+      const { Component, router, ctx } = args;
+      const { req, res } = ctx;
 
       // Create the apollo client and expose it within the context.
       // This allows the "raw" client to be accessed within page `getInitialProps`
       const apollo = initApollo(apolloConfig, {}, req);
-      args.ctx.apollo = apollo; // eslint-disable-line no-param-reassign
+      ctx.apollo = apollo;
 
       // Await the App's initial props.
-      let composedInitialProps = {};
+      let composedInitialProps = { Component, router };
       if (ComposedComponent.getInitialProps) {
         composedInitialProps = await ComposedComponent.getInitialProps(args);
       }
