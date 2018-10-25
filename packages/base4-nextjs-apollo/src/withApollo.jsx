@@ -1,12 +1,14 @@
 import React from 'react';
 import Head from 'next/head';
-import { getDataFromTree } from 'react-apollo';
+import { ApolloProvider, getDataFromTree } from 'react-apollo';
 import initApollo from './init';
 import apolloConfig from './config';
 
 const { log } = console;
 
-export default (App) => {
+const getDisplayName = Component => Component.displayName || Component.name || 'Unknown';
+
+export default (ComposedComponent) => {
   class WithApollo extends React.Component {
     /**
      *
@@ -20,44 +22,32 @@ export default (App) => {
 
     /**
      *
-     * @param {*} ctx
+     * @param {object} context
      */
-    static async getInitialProps({
-      Component,
-      router,
-      ctx,
-      rest,
-    }) {
-      const { req, res } = ctx;
+    static async getInitialProps(args) {
+      const { req, res } = args.ctx;
 
       // Create the apollo client and expose it within the context.
-      // This allows the "raw" client to be accessed within `getInitialProps`
+      // This allows the "raw" client to be accessed within page `getInitialProps`
       const apollo = initApollo(apolloConfig, {}, req);
-      ctx.apollo = apollo;
+      args.ctx.apollo = apollo; // eslint-disable-line no-param-reassign
 
       // Await the App's initial props.
-      let appProps = {};
-      if (App.getInitialProps) {
-        appProps = await App.getInitialProps({
-          Component,
-          router,
-          ctx,
-          ...rest,
-        });
+      let composedInitialProps = {};
+      if (ComposedComponent.getInitialProps) {
+        composedInitialProps = await ComposedComponent.getInitialProps(args);
       }
 
-
       // Run all GraphQL queries in tree and extract the data.
-      // All run on the server and if headers have not been sent (e.g. the response is redirecting).
+      // Only run on the server and if headers have not been sent.
       if (!process.browser && !res.headersSent) {
         try {
           // Run queries in the tree.
-          await getDataFromTree(<App
-            {...appProps}
-            Component={Component}
-            router={router}
-            apollo={apollo}
-          />);
+          await getDataFromTree(
+            <ApolloProvider client={apollo}>
+              <ComposedComponent {...composedInitialProps} />
+            </ApolloProvider>,
+          );
         } catch (e) {
           // Prevent errors from crashing SSR.
           // Handle the error in components via data.error prop.
@@ -72,7 +62,7 @@ export default (App) => {
       const apolloState = apollo.cache.extract();
 
       return {
-        ...appProps,
+        ...composedInitialProps,
         apolloState,
       };
     }
@@ -81,10 +71,14 @@ export default (App) => {
      *
      */
     render() {
-      return <App {...this.props} apollo={this.apollo} />;
+      return (
+        <ApolloProvider client={this.apollo}>
+          <ComposedComponent {...this.props} />
+        </ApolloProvider>
+      );
     }
   }
 
-  WithApollo.displayName = 'WithApollo(App)';
+  WithApollo.displayName = `withApollo(${getDisplayName(ComposedComponent)})`;
   return WithApollo;
 };
