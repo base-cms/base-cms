@@ -35,10 +35,10 @@ export default definitions => (ComposedComponent) => {
      * @param {object} args
      */
     static async getInitialProps(args) {
-      const { router } = args;
-
-      console.log('routes', Object.keys(routes));
-      console.log('router', Object.keys(router));
+      const { ctx } = args;
+      const { Router } = routes;
+      // Add the `next-routes` Router to the page context.
+      ctx.Router = Router;
 
       let composedInitialProps = {};
       if (ComposedComponent.getInitialProps) {
