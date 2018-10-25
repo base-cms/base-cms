@@ -1,7 +1,5 @@
-#import './content-canonical-path.graphql'
 
 fragment WithPlatformContentFragment on PlatformContent {
-  ...ContentCanonicalPath
   id
   name
   type

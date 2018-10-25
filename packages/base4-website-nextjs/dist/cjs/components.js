@@ -345,7 +345,7 @@ var ContentLinkShortName = function ContentLinkShortName(_ref) {
 ContentLinkShortName.propTypes = propTypes$7;
 ContentLinkShortName.defaultProps = defaultProps$7;
 ContentLinkShortName.fragments = {
-  content: gql(_templateObject(), __chunk_3.frgmt1)
+  content: gql(_templateObject(), __chunk_3.canonicalPathFrag)
 };
 
 var propTypes$8 = {

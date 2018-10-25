@@ -10,6 +10,7 @@ import { componentDisplayName, extractFragmentData, httpErrors } from '../utils'
 
 // GraphQL
 import defaultFragment from '../gql/fragments/with-platform-content.graphql';
+import canonicalPathFrag from '../gql/fragments/content-canonical-path.graphql';
 
 // HOCs
 import withRequestOrigin from './withRequestOrigin';
@@ -29,10 +30,12 @@ export const buildQuery = ({ fragment }) => {
     query WithPlatformContent($input: RootPlatformContentQueryOne!, $canonicalFields: [PlatfromContentPathField]!) {
       platformContent(input: $input) {
         ...WithPlatformContentFragment
+        ...ContentCanonicalPath
         ${spreadFragmentName}
       }
     }
     ${defaultFragment}
+    ${canonicalPathFrag}
     ${processedFragment}
   `;
 };
