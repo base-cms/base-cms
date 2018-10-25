@@ -45,7 +45,6 @@ export const buildQuery = ({ fragment }) => {
  * @param {string} ctx.asPath
  */
 export const checkContent = (content, { res, asPath }) => {
-  console.log('checkContent', router);
   const { redirectTo, canonicalPath } = content;
   if (redirectTo) {
     redirect({ res, route: redirectTo });
