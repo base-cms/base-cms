@@ -41,15 +41,16 @@ export const buildQuery = ({ fragment }) => {
  *
  * @param {object} content
  * @param {object} ctx
+ * @param {object} ctx.Router
  * @param {?object} ctx.res
  * @param {string} ctx.asPath
  */
-export const checkContent = (content, { res, asPath }) => {
+export const checkContent = (content, { Router, res, asPath }) => {
   const { redirectTo, canonicalPath } = content;
   if (redirectTo) {
-    redirect({ res, route: redirectTo });
+    redirect({ Router, res, route: redirectTo });
   } else if (canonicalPath !== asPath) {
-    redirect({ res, route: canonicalPath });
+    redirect({ Router, res, route: canonicalPath });
   }
 };
 

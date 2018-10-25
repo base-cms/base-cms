@@ -1,8 +1,8 @@
 import RoutingContext from './routing/context';
-import { Link, Router } from './routing/Components';
+import Link from './routing/Link';
 
 const redirect = ({
-  router,
+  Router,
   res,
   route,
   code = 301,
@@ -11,15 +11,14 @@ const redirect = ({
     // Server-side.
     res.writeHead(code, { Location: route });
     res.end();
-  } else if (router) {
+  } else if (Router) {
     // Client-side.
-    router.replaceRoute(route);
+    Router.replaceRoute(route);
   }
 };
 
 export {
   Link,
-  Router,
   RoutingContext,
   redirect,
 };
