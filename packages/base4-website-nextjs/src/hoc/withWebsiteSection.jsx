@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 
 // Routing
-import { redirect, withRouter } from '../routing';
+import { redirect } from '../routing';
 
 // Utilities
 import {
@@ -126,5 +126,5 @@ export default (Page, options = {
       seoTitle: PropTypes.string,
     }).isRequired,
   };
-  return withRequestOrigin(withRouter(WithWebsiteSection));
+  return withRequestOrigin(WithWebsiteSection);
 };

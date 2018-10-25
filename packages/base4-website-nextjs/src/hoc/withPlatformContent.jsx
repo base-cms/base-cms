@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 
 // Routing
-import { redirect, withRouter } from '../routing';
+import { redirect } from '../routing';
 
 // Utilities
 import { componentDisplayName, extractFragmentData, httpErrors } from '../utils';
@@ -132,5 +132,5 @@ export default (Page, options = {
       canonicalPath: PropTypes.string.isRequired,
     }).isRequired,
   };
-  return withRequestOrigin(withRouter(WithPlatformContent));
+  return withRequestOrigin(WithPlatformContent);
 };
