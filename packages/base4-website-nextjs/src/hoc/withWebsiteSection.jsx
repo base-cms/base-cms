@@ -43,10 +43,10 @@ export const buildQuery = ({ fragment }) => {
   `;
 };
 
-export default (Page, options = {
-  routePrefix: 'section',
-  fragment: null,
-}) => {
+export default ({
+  routePrefix = 'section',
+  fragment = null,
+} = {}) => (Page) => {
   class WithWebsiteSection extends Component {
     /**
      *
@@ -58,7 +58,6 @@ export default (Page, options = {
         pageProps = await Page.getInitialProps(ctx);
       }
 
-      const { fragment, routePrefix } = options;
       const {
         query,
         apollo,
