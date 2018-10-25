@@ -15,7 +15,7 @@ const ContentPage = ({ content }) => (
     <FieldValue path="primarySection.name" tag="h4" data={content}>
       {(value) => {
         // With a generic link element.
-        const to = `/section/${content.primarySection.alias}`;;
+        const to = `/section/${content.primarySection.alias}`;
         return <LinkElement to={to} value={`<em>${value}</em>`} asHTML />;
       }}
     </FieldValue>
