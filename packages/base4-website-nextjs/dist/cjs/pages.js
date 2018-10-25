@@ -40,6 +40,12 @@ var createRoutes = once(function (definitions) {
 });
 var withRouting = (function (definitions) {
   return function (ComposedComponent) {
+    if (!isArray(definitions)) {
+      throw new Error('No route definitions were provided!');
+    }
+
+    var routes = createRoutes(definitions);
+
     var WithRouting =
     /*#__PURE__*/
     function (_React$Component) {
@@ -58,7 +64,6 @@ var withRouting = (function (definitions) {
          *
          */
         value: function render() {
-          var routes = createRoutes(definitions);
           return React__default.createElement(__chunk_2.RoutingContext.Provider, {
             value: routes
           }, React__default.createElement(ComposedComponent, this.props));
@@ -74,36 +79,34 @@ var withRouting = (function (definitions) {
           var _getInitialProps = __chunk_1._asyncToGenerator(
           /*#__PURE__*/
           __chunk_3._regeneratorRuntime.mark(function _callee(args) {
-            var composedInitialProps;
+            var Component, router, composedInitialProps;
             return __chunk_3._regeneratorRuntime.wrap(function _callee$(_context) {
               while (1) {
                 switch (_context.prev = _context.next) {
                   case 0:
-                    if (isArray(definitions)) {
-                      _context.next = 2;
-                      break;
-                    }
-
-                    throw new Error('No route definitions were provided!');
-
-                  case 2:
-                    composedInitialProps = {};
+                    Component = args.Component, router = args.router;
+                    console.log('routes', Object.keys(routes));
+                    console.log('router', Object.keys(router));
+                    composedInitialProps = {
+                      Component: Component,
+                      router: router
+                    };
 
                     if (!ComposedComponent.getInitialProps) {
-                      _context.next = 7;
+                      _context.next = 8;
                       break;
                     }
 
-                    _context.next = 6;
+                    _context.next = 7;
                     return ComposedComponent.getInitialProps(args);
 
-                  case 6:
+                  case 7:
                     composedInitialProps = _context.sent;
 
-                  case 7:
+                  case 8:
                     return _context.abrupt("return", __chunk_1._objectSpread({}, composedInitialProps));
 
-                  case 8:
+                  case 9:
                   case "end":
                     return _context.stop();
                 }
