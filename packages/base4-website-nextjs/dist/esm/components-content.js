@@ -336,7 +336,7 @@ var defaultProps$9 = {
   tag: 'span'
 };
 
-var ContentName$1 = function ContentName(_ref) {
+var ContentType = function ContentType(_ref) {
   var content = _ref.content,
       children = _ref.children,
       rest = _objectWithoutProperties(_ref, ["content", "children"]);
@@ -347,11 +347,11 @@ var ContentName$1 = function ContentName(_ref) {
   }, rest), function (value) {
     var titleized = titleizeType(value);
     if (isFn(children)) return children(titleized);
-    return value;
+    return titleized;
   });
 };
 
-ContentName$1.propTypes = propTypes$9;
-ContentName$1.defaultProps = defaultProps$9;
+ContentType.propTypes = propTypes$9;
+ContentType.defaultProps = defaultProps$9;
 
-export { ContentBody as Body, DateFieldValue$1 as DateFieldValue, FieldValue$1 as FieldValue, ContentLink as Link, ContentName as Name, ContentPublishedDate as PublishedDate, ContentRow as Row, ContentShortName as ShortName, ContentLinkShortName as ShortNameLink, ContentTeaser as Teaser, ContentName$1 as Type };
+export { ContentBody as Body, DateFieldValue$1 as DateFieldValue, FieldValue$1 as FieldValue, ContentLink as Link, ContentName as Name, ContentPublishedDate as PublishedDate, ContentRow as Row, ContentShortName as ShortName, ContentLinkShortName as ShortNameLink, ContentTeaser as Teaser, ContentType as Type };

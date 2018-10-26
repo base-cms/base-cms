@@ -343,7 +343,7 @@ var defaultProps$9 = {
   tag: 'span'
 };
 
-var ContentName$1 = function ContentName(_ref) {
+var ContentType = function ContentType(_ref) {
   var content = _ref.content,
       children = _ref.children,
       rest = __chunk_1._objectWithoutProperties(_ref, ["content", "children"]);
@@ -354,12 +354,12 @@ var ContentName$1 = function ContentName(_ref) {
   }, rest), function (value) {
     var titleized = utils.titleizeType(value);
     if (utils.isFunction(children)) return children(titleized);
-    return value;
+    return titleized;
   });
 };
 
-ContentName$1.propTypes = propTypes$9;
-ContentName$1.defaultProps = defaultProps$9;
+ContentType.propTypes = propTypes$9;
+ContentType.defaultProps = defaultProps$9;
 
 exports.Body = ContentBody;
 exports.DateFieldValue = DateFieldValue$1;
@@ -371,4 +371,4 @@ exports.Row = ContentRow;
 exports.ShortName = ContentShortName;
 exports.ShortNameLink = ContentLinkShortName;
 exports.Teaser = ContentTeaser;
-exports.Type = ContentName$1;
+exports.Type = ContentType;
