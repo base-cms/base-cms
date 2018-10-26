@@ -8,7 +8,7 @@ const propTypes = {
   children: PropTypes.func,
   collapsible: PropTypes.bool,
   content: PropTypes.shape({
-    published: PropTypes.string,
+    published: PropTypes.number,
   }),
   format: PropTypes.string,
   prefix: PropTypes.string,
