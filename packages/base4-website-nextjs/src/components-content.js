@@ -3,6 +3,7 @@ import DateFieldValue from './components/content/Elements/DateFieldValue';
 import FieldValue from './components/content/Elements/FieldValue';
 import Link from './components/content/Link';
 import Name from './components/content/Elements/Name';
+import PrimarySectionLink from './components/content/Links/PrimarySection';
 import PublishedDate from './components/content/Elements/PublishedDate';
 import Row from './components/content/Elements/Row';
 import ShortName from './components/content/Elements/ShortName';
@@ -17,6 +18,7 @@ export {
   FieldValue,
   Link,
   Name,
+  PrimarySectionLink,
   PublishedDate,
   Row,
   ShortName,
