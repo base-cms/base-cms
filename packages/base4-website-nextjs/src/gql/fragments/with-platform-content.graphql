@@ -1,10 +1,10 @@
-
 fragment WithPlatformContentFragment on PlatformContent {
   id
   name
   type
   teaser
   body
+  published
   redirectTo
   metadata {
     title
