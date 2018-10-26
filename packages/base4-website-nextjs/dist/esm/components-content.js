@@ -2,12 +2,17 @@ import { c as _objectSpread, a as _extends, b as _objectWithoutProperties } from
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { underscore, dasherize } from 'inflected';
 import { componentDisplayName, isFunction as isFn, formatDate, titleizeType } from './utils.js';
 import { a as FieldValue, b as FormatDate, c as LinkElement } from './chunk-45c0288e.js';
 import { get } from 'object-path';
 import 'moment';
 import './routing.js';
 import './chunk-7976a9a0.js';
+
+var inflect = function inflect(value) {
+  return dasherize(underscore(value));
+};
 
 var withModelFieldClass = (function (modelType) {
   return function (Component) {
@@ -18,10 +23,10 @@ var withModelFieldClass = (function (modelType) {
 
       var types = String(path).split('.');
       var elementTypes = types.shift();
-      var elementClass = "".concat(modelType, "__").concat(elementTypes);
+      var elementClass = "".concat(modelType, "__").concat(inflect(elementTypes));
       var classes = [elementClass];
       types.forEach(function (type) {
-        return classes.push("".concat(elementClass, "--").concat(type));
+        return classes.push("".concat(elementClass, "--").concat(inflect(type)));
       });
       return React.createElement(Component, _extends({
         className: classNames(classes, className),

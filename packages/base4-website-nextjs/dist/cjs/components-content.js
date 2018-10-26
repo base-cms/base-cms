@@ -9,12 +9,17 @@ var React = require('react');
 var React__default = _interopDefault(React);
 var PropTypes = _interopDefault(require('prop-types'));
 var classNames = _interopDefault(require('classnames'));
+var inflected = require('inflected');
 var utils = require('./utils.js');
 var __chunk_2 = require('./chunk-46be7ac0.js');
 var objectPath = require('object-path');
 require('moment');
 require('./routing.js');
 require('./chunk-4b678d5c.js');
+
+var inflect = function inflect(value) {
+  return inflected.dasherize(inflected.underscore(value));
+};
 
 var withModelFieldClass = (function (modelType) {
   return function (Component) {
@@ -25,10 +30,10 @@ var withModelFieldClass = (function (modelType) {
 
       var types = String(path).split('.');
       var elementTypes = types.shift();
-      var elementClass = "".concat(modelType, "__").concat(elementTypes);
+      var elementClass = "".concat(modelType, "__").concat(inflect(elementTypes));
       var classes = [elementClass];
       types.forEach(function (type) {
-        return classes.push("".concat(elementClass, "--").concat(type));
+        return classes.push("".concat(elementClass, "--").concat(inflect(type)));
       });
       return React__default.createElement(Component, __chunk_1._extends({
         className: classNames(classes, className),
