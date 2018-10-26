@@ -1,5 +1,5 @@
-import { a as Link } from './chunk-b82ad778.js';
-export { a as Link } from './chunk-b82ad778.js';
+import { a as Link } from './chunk-9eb326db.js';
+export { a as Link } from './chunk-9eb326db.js';
 import './chunk-cfc9ba70.js';
 import 'react';
 import 'prop-types';

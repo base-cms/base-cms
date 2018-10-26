@@ -1,13 +1,8 @@
-'use strict';
-
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-var __chunk_1 = require('./chunk-2c19305a.js');
-var React = require('react');
-var React__default = _interopDefault(React);
-var PropTypes = _interopDefault(require('prop-types'));
-var __chunk_2 = require('./chunk-5dc5312d.js');
-var utils = require('./utils.js');
+import { a as _extends, b as _objectWithoutProperties } from './chunk-cfc9ba70.js';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { c as LinkElement } from './chunk-742fd19b.js';
+import { cleanPath } from './utils.js';
 
 var propTypes = {
   // The website section alias.
@@ -37,11 +32,11 @@ var defaultProps = {
 
 var WebsiteSectionLink = function WebsiteSectionLink(_ref) {
   var alias = _ref.alias,
-      routePrefx = _ref.routePrefx,
-      rest = __chunk_1._objectWithoutProperties(_ref, ["alias", "routePrefx"]);
+      routePrefix = _ref.routePrefix,
+      rest = _objectWithoutProperties(_ref, ["alias", "routePrefix"]);
 
-  var to = routePrefx ? "".concat(routePrefx, "/").concat(utils.cleanPath(alias)) : alias;
-  return React__default.createElement(__chunk_2.LinkElement, __chunk_1._extends({
+  var to = routePrefix ? "".concat(routePrefix, "/").concat(cleanPath(alias)) : alias;
+  return React.createElement(LinkElement, _extends({
     to: to,
     className: "website-section__link"
   }, rest));
@@ -50,4 +45,4 @@ var WebsiteSectionLink = function WebsiteSectionLink(_ref) {
 WebsiteSectionLink.propTypes = propTypes;
 WebsiteSectionLink.defaultProps = defaultProps;
 
-exports.Link = WebsiteSectionLink;
+export { WebsiteSectionLink as a };

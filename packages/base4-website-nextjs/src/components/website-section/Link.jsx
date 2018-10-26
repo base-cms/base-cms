@@ -29,8 +29,8 @@ const defaultProps = {
   value: null,
 };
 // @todo Do not make this clickable if the canonicalPath matches the route.
-const WebsiteSectionLink = ({ alias, routePrefx, ...rest }) => {
-  const to = routePrefx ? `${routePrefx}/${cleanPath(alias)}` : alias;
+const WebsiteSectionLink = ({ alias, routePrefix, ...rest }) => {
+  const to = routePrefix ? `${routePrefix}/${cleanPath(alias)}` : alias;
   return (
     <LinkElement to={to} className="website-section__link" {...rest} />
   );

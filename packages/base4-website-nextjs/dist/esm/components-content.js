@@ -7,7 +7,7 @@ import { componentDisplayName, isFunction as isFn, formatDate, titleizeType } fr
 import { a as FieldValue, b as FormatDate } from './chunk-425c66d6.js';
 import { get } from 'object-path';
 import { c as LinkElement } from './chunk-742fd19b.js';
-import { a as Link } from './chunk-b82ad778.js';
+import { a as Link } from './chunk-9eb326db.js';
 import 'moment';
 import './routing.js';
 import './chunk-7976a9a0.js';
