@@ -4,8 +4,10 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { underscore, dasherize } from 'inflected';
 import { componentDisplayName, isFunction as isFn, formatDate, titleizeType } from './utils.js';
-import { a as FieldValue, b as FormatDate, c as LinkElement } from './chunk-45c0288e.js';
+import { a as FieldValue, b as FormatDate } from './chunk-425c66d6.js';
 import { get } from 'object-path';
+import { c as LinkElement } from './chunk-742fd19b.js';
+import { a as Link } from './chunk-b82ad778.js';
 import 'moment';
 import './routing.js';
 import './chunk-7976a9a0.js';
@@ -171,13 +173,60 @@ var propTypes$4 = {
   children: PropTypes.func,
   collapsible: PropTypes.bool,
   content: PropTypes.shape({
+    primarySection: PropTypes.shape({
+      alias: PropTypes.string,
+      name: PropTypes.string
+    })
+  }),
+  linkAttrs: PropTypes.object,
+  // eslint-disable-line react/forbid-prop-types
+  sectionRoutePrefix: PropTypes.string,
+  tag: PropTypes.string
+};
+var defaultProps$4 = {
+  children: undefined,
+  collapsible: true,
+  content: {},
+  linkAttrs: {},
+  sectionRoutePrefix: undefined,
+  tag: 'div'
+};
+
+var ContentLinkPrimarySection = function ContentLinkPrimarySection(_ref) {
+  var children = _ref.children,
+      content = _ref.content,
+      sectionRoutePrefix = _ref.sectionRoutePrefix,
+      linkAttrs = _ref.linkAttrs,
+      attrs = _objectWithoutProperties(_ref, ["children", "content", "sectionRoutePrefix", "linkAttrs"]);
+
+  return React.createElement(FieldValue$1, _extends({
+    path: "primarySection.name",
+    data: content
+  }, attrs), function (value) {
+    var alias = get(content, 'primarySection.alias');
+    if (!alias) return null;
+    return React.createElement(Link, _extends({
+      routePrefix: sectionRoutePrefix,
+      alias: alias,
+      value: value
+    }, linkAttrs), children);
+  });
+};
+
+ContentLinkPrimarySection.propTypes = propTypes$4;
+ContentLinkPrimarySection.defaultProps = defaultProps$4;
+
+var propTypes$5 = {
+  children: PropTypes.func,
+  collapsible: PropTypes.bool,
+  content: PropTypes.shape({
     published: PropTypes.number
   }),
   format: PropTypes.string,
   prefix: PropTypes.string,
   tag: PropTypes.string
 };
-var defaultProps$4 = {
+var defaultProps$5 = {
   children: undefined,
   collapsible: true,
   content: {},
@@ -206,15 +255,15 @@ var ContentPublishedDate = function ContentPublishedDate(_ref) {
   });
 };
 
-ContentPublishedDate.propTypes = propTypes$4;
-ContentPublishedDate.defaultProps = defaultProps$4;
+ContentPublishedDate.propTypes = propTypes$5;
+ContentPublishedDate.defaultProps = defaultProps$5;
 
-var propTypes$5 = {
+var propTypes$6 = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
 };
-var defaultProps$5 = {
+var defaultProps$6 = {
   className: null,
   tag: 'div'
 };
@@ -230,17 +279,17 @@ var ContentRow = function ContentRow(_ref) {
   }, attrs), children);
 };
 
-ContentRow.propTypes = propTypes$5;
-ContentRow.defaultProps = defaultProps$5;
+ContentRow.propTypes = propTypes$6;
+ContentRow.defaultProps = defaultProps$6;
 
-var propTypes$6 = {
+var propTypes$7 = {
   collapsible: PropTypes.bool,
   content: PropTypes.shape({
     shortName: PropTypes.string
   }),
   tag: PropTypes.string
 };
-var defaultProps$6 = {
+var defaultProps$7 = {
   collapsible: true,
   content: {},
   tag: 'h5'
@@ -257,10 +306,10 @@ var ContentShortName = function ContentShortName(_ref) {
   }, rest));
 };
 
-ContentShortName.propTypes = propTypes$6;
-ContentShortName.defaultProps = defaultProps$6;
+ContentShortName.propTypes = propTypes$7;
+ContentShortName.defaultProps = defaultProps$7;
 
-var propTypes$7 = {
+var propTypes$8 = {
   collapsible: PropTypes.bool,
   content: PropTypes.shape({
     shortName: PropTypes.string,
@@ -270,7 +319,7 @@ var propTypes$7 = {
   // eslint-disable-line react/forbid-prop-types
   tag: PropTypes.string
 };
-var defaultProps$7 = {
+var defaultProps$8 = {
   collapsible: true,
   content: {},
   linkAttrs: {},
@@ -296,17 +345,17 @@ var ContentLinkShortName = function ContentLinkShortName(_ref) {
   });
 };
 
-ContentLinkShortName.propTypes = propTypes$7;
-ContentLinkShortName.defaultProps = defaultProps$7;
+ContentLinkShortName.propTypes = propTypes$8;
+ContentLinkShortName.defaultProps = defaultProps$8;
 
-var propTypes$8 = {
+var propTypes$9 = {
   collapsible: PropTypes.bool,
   content: PropTypes.shape({
     teaser: PropTypes.string
   }),
   tag: PropTypes.string
 };
-var defaultProps$8 = {
+var defaultProps$9 = {
   collapsible: true,
   content: {},
   tag: 'div'
@@ -323,10 +372,10 @@ var ContentTeaser = function ContentTeaser(_ref) {
   }, rest));
 };
 
-ContentTeaser.propTypes = propTypes$8;
-ContentTeaser.defaultProps = defaultProps$8;
+ContentTeaser.propTypes = propTypes$9;
+ContentTeaser.defaultProps = defaultProps$9;
 
-var propTypes$9 = {
+var propTypes$a = {
   children: PropTypes.func,
   collapsible: PropTypes.bool,
   content: PropTypes.shape({
@@ -334,7 +383,7 @@ var propTypes$9 = {
   }),
   tag: PropTypes.string
 };
-var defaultProps$9 = {
+var defaultProps$a = {
   children: undefined,
   collapsible: true,
   content: {},
@@ -356,10 +405,10 @@ var ContentType = function ContentType(_ref) {
   });
 };
 
-ContentType.propTypes = propTypes$9;
-ContentType.defaultProps = defaultProps$9;
+ContentType.propTypes = propTypes$a;
+ContentType.defaultProps = defaultProps$a;
 
-var propTypes$a = {
+var propTypes$b = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   content: PropTypes.shape({
@@ -368,7 +417,7 @@ var propTypes$a = {
   }),
   tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
 };
-var defaultProps$a = {
+var defaultProps$b = {
   className: null,
   content: {},
   tag: 'article'
@@ -391,7 +440,7 @@ var ContentWrapper = function ContentWrapper(_ref) {
   }, attrs), children);
 };
 
-ContentWrapper.propTypes = propTypes$a;
-ContentWrapper.defaultProps = defaultProps$a;
+ContentWrapper.propTypes = propTypes$b;
+ContentWrapper.defaultProps = defaultProps$b;
 
-export { ContentBody as Body, DateFieldValue$1 as DateFieldValue, FieldValue$1 as FieldValue, ContentLink as Link, ContentName as Name, ContentPublishedDate as PublishedDate, ContentRow as Row, ContentShortName as ShortName, ContentLinkShortName as ShortNameLink, ContentTeaser as Teaser, ContentType as Type, ContentWrapper as Wrapper };
+export { ContentBody as Body, DateFieldValue$1 as DateFieldValue, FieldValue$1 as FieldValue, ContentLink as Link, ContentName as Name, ContentLinkPrimarySection as PrimarySectionLink, ContentPublishedDate as PublishedDate, ContentRow as Row, ContentShortName as ShortName, ContentLinkShortName as ShortNameLink, ContentTeaser as Teaser, ContentType as Type, ContentWrapper as Wrapper };

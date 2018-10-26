@@ -6,10 +6,10 @@ function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'defau
 
 var React = require('react');
 var React__default = _interopDefault(React);
-var __chunk_3 = require('./chunk-4b678d5c.js');
+var __chunk_4 = require('./chunk-4b678d5c.js');
 
 var Link = (function (props) {
-  return React__default.createElement(__chunk_3.RoutingContext.Consumer, null, function (_ref) {
+  return React__default.createElement(__chunk_4.RoutingContext.Consumer, null, function (_ref) {
     var NextLink = _ref.Link;
     return React__default.createElement(NextLink, props);
   });
@@ -35,6 +35,6 @@ var redirect = function redirect() {
   }
 };
 
-exports.RoutingContext = __chunk_3.RoutingContext;
+exports.RoutingContext = __chunk_4.RoutingContext;
 exports.Link = Link;
 exports.redirect = redirect;

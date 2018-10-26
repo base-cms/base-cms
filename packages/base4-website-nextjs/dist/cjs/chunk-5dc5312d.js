@@ -7,7 +7,6 @@ var React = require('react');
 var React__default = _interopDefault(React);
 var PropTypes = _interopDefault(require('prop-types'));
 var utils = require('./utils.js');
-var objectPath = require('object-path');
 var routing = require('./routing.js');
 
 var propTypes = {
@@ -68,73 +67,6 @@ Element.propTypes = propTypes$1;
 Element.defaultProps = defaultProps$1;
 
 var propTypes$2 = {
-  asHTML: PropTypes.bool,
-  children: PropTypes.func,
-  collapsible: PropTypes.bool,
-  data: PropTypes.object,
-  // eslint-disable-line react/forbid-prop-types
-  path: PropTypes.string.isRequired,
-  tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
-};
-var defaultProps$2 = {
-  asHTML: false,
-  children: undefined,
-  collapsible: true,
-  data: {},
-  tag: 'div'
-};
-
-var FieldValue = function FieldValue(_ref) {
-  var asHTML = _ref.asHTML,
-      data = _ref.data,
-      path = _ref.path,
-      rest = __chunk_1._objectWithoutProperties(_ref, ["asHTML", "data", "path"]);
-
-  // Extract the value off the data object.
-  var value = objectPath.get(data, path, null); // Return as either an innerHTML or regular element.
-
-  return asHTML ? React__default.createElement(HTMLElement, __chunk_1._extends({
-    value: value
-  }, rest)) : React__default.createElement(Element, __chunk_1._extends({
-    value: value
-  }, rest));
-};
-
-FieldValue.propTypes = propTypes$2;
-FieldValue.defaultProps = defaultProps$2;
-
-var propTypes$3 = {
-  children: PropTypes.func,
-  collapsible: PropTypes.bool,
-  format: PropTypes.string,
-  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string, // Must adhere to moment date string reqs.
-  PropTypes.objectOf(Date)]),
-  tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
-};
-var defaultProps$3 = {
-  collapsible: true,
-  children: undefined,
-  format: 'MMM Do, YYYY',
-  tag: 'span',
-  value: null
-};
-
-var FormatDate = function FormatDate(_ref) {
-  var format = _ref.format,
-      raw = _ref.value,
-      rest = __chunk_1._objectWithoutProperties(_ref, ["format", "value"]);
-
-  // Format the date. Will return null on an invalid date value.
-  var value = utils.formatDate(raw, format);
-  return React__default.createElement(Element, __chunk_1._extends({
-    value: value
-  }, rest));
-};
-
-FormatDate.propTypes = propTypes$3;
-FormatDate.defaultProps = defaultProps$3;
-
-var propTypes$4 = {
   // Whether to render the `value` prop as HTML.
   asHTML: PropTypes.bool,
   // A child function to custom render the `value` prop.
@@ -149,7 +81,7 @@ var propTypes$4 = {
   // The inner value to render by default.
   value: PropTypes.node
 };
-var defaultProps$4 = {
+var defaultProps$2 = {
   asHTML: false,
   children: undefined,
   collapsible: true,
@@ -186,11 +118,9 @@ var LinkElement = function LinkElement(_ref) {
   }, child);
 };
 
-LinkElement.propTypes = propTypes$4;
-LinkElement.defaultProps = defaultProps$4;
+LinkElement.propTypes = propTypes$2;
+LinkElement.defaultProps = defaultProps$2;
 
-exports.FieldValue = FieldValue;
-exports.FormatDate = FormatDate;
-exports.LinkElement = LinkElement;
-exports.Element = Element;
 exports.HTMLElement = HTMLElement;
+exports.Element = Element;
+exports.LinkElement = LinkElement;

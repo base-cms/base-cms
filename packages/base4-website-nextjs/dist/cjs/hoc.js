@@ -4,7 +4,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var __chunk_4 = require('./chunk-efb9fd9b.js');
+var __chunk_6 = require('./chunk-efb9fd9b.js');
 var __chunk_1 = require('./chunk-2c19305a.js');
 var React = require('react');
 var React__default = _interopDefault(React);
@@ -50,9 +50,9 @@ var withRequestOrigin = (function (Page) {
       value: function () {
         var _getInitialProps = __chunk_1._asyncToGenerator(
         /*#__PURE__*/
-        __chunk_4._regeneratorRuntime.mark(function _callee(ctx) {
+        __chunk_6._regeneratorRuntime.mark(function _callee(ctx) {
           var pageProps, req, requestOrigin;
-          return __chunk_4._regeneratorRuntime.wrap(function _callee$(_context) {
+          return __chunk_6._regeneratorRuntime.wrap(function _callee$(_context) {
             while (1) {
               switch (_context.prev = _context.next) {
                 case 0:
@@ -178,10 +178,10 @@ var withDynamicPage = (function (Page) {
       value: function () {
         var _getInitialProps = __chunk_1._asyncToGenerator(
         /*#__PURE__*/
-        __chunk_4._regeneratorRuntime.mark(function _callee(ctx) {
+        __chunk_6._regeneratorRuntime.mark(function _callee(ctx) {
           var pageProps, fragment, query, apollo, alias, input, variables, _ref2, data, platformContentPage;
 
-          return __chunk_4._regeneratorRuntime.wrap(function _callee$(_context) {
+          return __chunk_6._regeneratorRuntime.wrap(function _callee$(_context) {
             while (1) {
               switch (_context.prev = _context.next) {
                 case 0:
@@ -393,10 +393,10 @@ var withPlatformContent = (function () {
         value: function () {
           var _getInitialProps = __chunk_1._asyncToGenerator(
           /*#__PURE__*/
-          __chunk_4._regeneratorRuntime.mark(function _callee(ctx) {
+          __chunk_6._regeneratorRuntime.mark(function _callee(ctx) {
             var pageProps, query, apollo, id, input, variables, _ref4, data, platformContent, canonicalPath;
 
-            return __chunk_4._regeneratorRuntime.wrap(function _callee$(_context) {
+            return __chunk_6._regeneratorRuntime.wrap(function _callee$(_context) {
               while (1) {
                 switch (_context.prev = _context.next) {
                   case 0:
@@ -573,10 +573,10 @@ var withWebsiteSection = (function () {
         value: function () {
           var _getInitialProps = __chunk_1._asyncToGenerator(
           /*#__PURE__*/
-          __chunk_4._regeneratorRuntime.mark(function _callee(ctx) {
+          __chunk_6._regeneratorRuntime.mark(function _callee(ctx) {
             var pageProps, query, apollo, res, Router, alias, input, variables, _ref3, data, websiteSectionAlias, websiteSectionRedirect, canonicalPath, redirectAlias, path;
 
-            return __chunk_4._regeneratorRuntime.wrap(function _callee$(_context) {
+            return __chunk_6._regeneratorRuntime.wrap(function _callee$(_context) {
               while (1) {
                 switch (_context.prev = _context.next) {
                   case 0:
