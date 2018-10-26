@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 import FieldValue from './FieldValue';
 
 const propTypes = {
-  collapsable: PropTypes.bool,
+  collapsible: PropTypes.bool,
   content: PropTypes.shape({
     shortName: PropTypes.string,
   }),
@@ -12,7 +12,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  collapsable: false,
+  collapsible: false,
   content: {},
   tag: 'h5',
 };

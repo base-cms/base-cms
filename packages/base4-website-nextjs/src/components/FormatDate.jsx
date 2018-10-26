@@ -5,7 +5,7 @@ import { formatDate } from '../utils';
 
 const propTypes = {
   children: PropTypes.func,
-  collapsable: PropTypes.bool,
+  collapsible: PropTypes.bool,
   format: PropTypes.string,
   value: PropTypes.oneOfType([
     PropTypes.number,
@@ -16,7 +16,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  collapsable: true,
+  collapsible: true,
   children: undefined,
   format: 'MMM Do, YYYY',
   tag: 'span',

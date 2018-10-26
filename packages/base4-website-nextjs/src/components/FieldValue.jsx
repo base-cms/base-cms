@@ -7,7 +7,7 @@ import Element from './Element';
 const propTypes = {
   asHTML: PropTypes.bool,
   children: PropTypes.func,
-  collapsable: PropTypes.bool,
+  collapsible: PropTypes.bool,
   data: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   path: PropTypes.string.isRequired,
   tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
@@ -16,7 +16,7 @@ const propTypes = {
 const defaultProps = {
   asHTML: false,
   children: undefined,
-  collapsable: false,
+  collapsible: false,
   data: {},
   tag: 'div',
 };

@@ -7,7 +7,7 @@ import Link from '../Link';
 import canonicalPathFragment from '../../../gql/fragments/content-canonical-path.graphql';
 
 const propTypes = {
-  collapsable: PropTypes.bool,
+  collapsible: PropTypes.bool,
   content: PropTypes.shape({
     shortName: PropTypes.string,
     canonicalPath: PropTypes.string,
@@ -17,7 +17,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  collapsable: false,
+  collapsible: false,
   content: {},
   linkAttrs: {},
   tag: 'h5',

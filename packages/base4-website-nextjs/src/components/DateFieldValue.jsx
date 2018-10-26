@@ -5,7 +5,7 @@ import FormatDate from './FormatDate';
 
 const propTypes = {
   children: PropTypes.func,
-  collapsable: PropTypes.bool,
+  collapsible: PropTypes.bool,
   data: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   format: PropTypes.string,
   path: PropTypes.string.isRequired,
@@ -14,7 +14,7 @@ const propTypes = {
 
 const defaultProps = {
   children: undefined,
-  collapsable: false,
+  collapsible: false,
   data: {},
   format: 'MMM Do, YYYY',
   tag: 'div',

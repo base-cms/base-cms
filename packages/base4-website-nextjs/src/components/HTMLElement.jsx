@@ -4,24 +4,24 @@ import PropTypes from 'prop-types';
 import { createMarkup } from '../utils';
 
 const propTypes = {
-  collapsable: PropTypes.bool,
+  collapsible: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   value: PropTypes.string,
 };
 
 const defaultProps = {
-  collapsable: false,
+  collapsible: false,
   tag: 'div',
   value: '',
 };
 
 const HTMLElement = ({
-  collapsable,
+  collapsible,
   value,
   tag: Tag,
   ...attrs
 }) => {
-  if (!value && collapsable) return null;
+  if (!value && collapsible) return null;
   return <Tag dangerouslySetInnerHTML={createMarkup(value)} {...attrs} />;
 };
 
