@@ -19,17 +19,17 @@ const defaultProps = {
   tag: 'span',
 };
 
-const ContentName = ({ content, children, ...rest }) => (
+const ContentType = ({ content, children, ...rest }) => (
   <FieldValue path="type" data={content} {...rest}>
     {(value) => {
       const titleized = titleizeType(value);
       if (isFn(children)) return children(titleized);
-      return value;
+      return titleized;
     }}
   </FieldValue>
 );
 
-ContentName.propTypes = propTypes;
-ContentName.defaultProps = defaultProps;
+ContentType.propTypes = propTypes;
+ContentType.defaultProps = defaultProps;
 
-export default ContentName;
+export default ContentType;
