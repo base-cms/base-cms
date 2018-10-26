@@ -24,7 +24,7 @@ const defaultProps = {
   content: {},
   linkAttrs: {},
   sectionRoutePrefix: 'section',
-  tag: 'div',
+  tag: 'span',
 };
 
 const ContentLinkPrimarySection = ({
