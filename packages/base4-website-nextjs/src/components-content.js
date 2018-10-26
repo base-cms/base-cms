@@ -1,31 +1,34 @@
-import Body from './components/content/Elements/Body';
-import CompanyNameLink from './components/content/Links/CompanyName';
-import DateFieldValue from './components/content/Elements/DateFieldValue';
-import FieldValue from './components/content/Elements/FieldValue';
 import Link from './components/content/Link';
+import Wrapper from './components/content/Wrapper';
+
+import Body from './components/content/Elements/Body';
 import Name from './components/content/Elements/Name';
-import PrimarySectionNameLink from './components/content/Links/PrimarySectionName';
+import ObjectValue from './components/content/Elements/ObjectValue';
 import PublishedDate from './components/content/Elements/PublishedDate';
 import Row from './components/content/Elements/Row';
 import ShortName from './components/content/Elements/ShortName';
-import ShortNameLink from './components/content/Links/ShortName';
 import Teaser from './components/content/Elements/Teaser';
 import Type from './components/content/Elements/Type';
-import Wrapper from './components/content/Wrapper';
+
+import CompanyNameLink from './components/content/Links/CompanyName';
+import PrimarySectionNameLink from './components/content/Links/PrimarySectionName';
+import ShortNameLink from './components/content/Links/ShortName';
 
 export {
-  Body,
-  CompanyNameLink,
-  DateFieldValue,
-  FieldValue,
+  // Root
   Link,
+  Wrapper,
+  // Elements
+  Body,
   Name,
-  PrimarySectionNameLink,
+  ObjectValue,
   PublishedDate,
   Row,
   ShortName,
-  ShortNameLink,
   Teaser,
   Type,
-  Wrapper,
+  // Links
+  CompanyNameLink,
+  PrimarySectionNameLink,
+  ShortNameLink,
 };

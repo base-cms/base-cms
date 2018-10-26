@@ -1,13 +1,13 @@
-import Element from './components/core/Element';
-import FieldValue from './components/core/FieldValue';
-import FormatDate from './components/core/FormatDate';
-import HTMLElement from './components/core/HTMLElement';
-import LinkElement from './components/core/LinkElement';
+import DateElement from './components/core/Elements/Date';
+import HTMLElement from './components/core/Elements/HTML';
+import LinkElement from './components/core/Elements/Link';
+import ObjectValueElement from './components/core/Elements/ObjectValue';
+import ValueElement from './components/core/Elements/Value';
 
 export {
-  Element,
-  FieldValue,
-  FormatDate,
+  DateElement,
   HTMLElement,
   LinkElement,
+  ObjectValueElement,
+  ValueElement,
 };
