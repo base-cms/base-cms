@@ -27,7 +27,7 @@ const defaultProps = {
   tag: 'span',
 };
 
-const ContentLinkPrimarySection = ({
+const ContentLinkPrimarySectionName = ({
   children,
   content,
   sectionRoutePrefix,
@@ -47,7 +47,7 @@ const ContentLinkPrimarySection = ({
   </FieldValue>
 );
 
-ContentLinkPrimarySection.propTypes = propTypes;
-ContentLinkPrimarySection.defaultProps = defaultProps;
+ContentLinkPrimarySectionName.propTypes = propTypes;
+ContentLinkPrimarySectionName.defaultProps = defaultProps;
 
-export default ContentLinkPrimarySection;
+export default ContentLinkPrimarySectionName;
