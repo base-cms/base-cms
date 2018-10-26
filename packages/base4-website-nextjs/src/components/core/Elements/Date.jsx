@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import Value from './Value';
 import { formatDate } from '../../../utils';
 
-const displayName = 'Core/Elements/Date';
-
 const propTypes = {
   children: PropTypes.func,
   collapsible: PropTypes.bool,
@@ -35,7 +33,7 @@ const DateElement = ({
   return <Value value={value} {...rest} />;
 };
 
-DateElement.propTypes = displayName;
+DateElement.propTypes = 'Core/Elements/Date';
 DateElement.propTypes = propTypes;
 DateElement.defaultProps = defaultProps;
 

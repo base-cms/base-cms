@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { createMarkup } from '../../../utils';
 
-const displayName = 'Core/Elements/HTML';
-
 const propTypes = {
   collapsible: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
@@ -26,7 +24,7 @@ const HTMLElement = ({
   return <Tag dangerouslySetInnerHTML={createMarkup(value)} {...attrs} />;
 };
 
-HTMLElement.displayName = displayName;
+HTMLElement.displayName = 'Core/Elements/HTML';
 HTMLElement.propTypes = propTypes;
 HTMLElement.defaultProps = defaultProps;
 

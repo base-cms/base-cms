@@ -5,8 +5,6 @@ import HTML from './HTML';
 import { Link } from '../../../routing';
 import { cleanPath } from '../../../utils';
 
-const displayName = 'Core/Elements/Link';
-
 const propTypes = {
   // Whether to render the `value` prop as HTML.
   asHTML: PropTypes.bool,
@@ -55,7 +53,7 @@ const LinkElement = ({
   return <Link route={`/${cleanPath(href)}`} params={params} passHref>{child}</Link>;
 };
 
-LinkElement.displayName = displayName;
+LinkElement.displayName = 'Core/Elements/Link';
 LinkElement.propTypes = propTypes;
 LinkElement.defaultProps = defaultProps;
 

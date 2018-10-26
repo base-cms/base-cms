@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { isFunction as isFn } from '../../../utils';
 
-const displayName = 'Core/Elements/Value';
-
 const propTypes = {
   children: PropTypes.func,
   collapsible: PropTypes.bool,
@@ -31,7 +29,7 @@ const ValueElement = ({
   return !value && collapsible ? null : <Tag {...attrs}>{render(value)}</Tag>;
 };
 
-ValueElement.displayName = displayName;
+ValueElement.displayName = 'Core/Elements/Value';
 ValueElement.propTypes = propTypes;
 ValueElement.defaultProps = defaultProps;
 
