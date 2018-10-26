@@ -7,6 +7,7 @@ import formatDate from './utils/format-date';
 import httpErrors from './utils/http-errors';
 import isFunction from './utils/is-function';
 import sectionPath from './utils/section-path';
+import titleizeType from './utils/titleize-type';
 
 export {
   cleanPath,
@@ -18,4 +19,5 @@ export {
   httpErrors,
   isFunction,
   sectionPath,
+  titleizeType,
 };
