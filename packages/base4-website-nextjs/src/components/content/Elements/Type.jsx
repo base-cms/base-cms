@@ -4,8 +4,8 @@ import FieldValue from './FieldValue';
 import { titleizeType, isFunction as isFn } from '../../../utils';
 
 const propTypes = {
-  collapsible: PropTypes.bool,
   children: PropTypes.func,
+  collapsible: PropTypes.bool,
   content: PropTypes.shape({
     type: PropTypes.string,
   }),
@@ -13,8 +13,8 @@ const propTypes = {
 };
 
 const defaultProps = {
-  collapsible: true,
   children: undefined,
+  collapsible: true,
   content: {},
   tag: 'h1',
 };
@@ -22,9 +22,9 @@ const defaultProps = {
 const ContentName = ({ content, children, ...rest }) => (
   <FieldValue path="type" data={content} {...rest}>
     {(value) => {
-      const titleized = titleizeType();
+      const titleized = titleizeType(value);
       if (isFn(children)) return children(titleized);
-      return <>{value}</>;
+      return value;
     }}
   </FieldValue>
 );
