@@ -25,6 +25,7 @@ export default {
     'src/components-content.js',
     'src/components-core.js',
     'src/components-head.js',
+    'src/components-website-section.js',
     'src/hoc.js',
     'src/pages.js',
     'src/queries.js',
