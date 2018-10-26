@@ -173,7 +173,7 @@ var propTypes$4 = {
   children: PropTypes.func,
   collapsible: PropTypes.bool,
   content: PropTypes.shape({
-    published: PropTypes.string
+    published: PropTypes.number
   }),
   format: PropTypes.string,
   prefix: PropTypes.string,
@@ -196,11 +196,11 @@ var ContentPublishedDate = function ContentPublishedDate(_ref) {
 
   // Create the `datetime` element attribute
   // @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time
-  var datetime = utils.formatDate(objectPath.get(content, 'published'));
+  var dateTime = utils.formatDate(objectPath.get(content, 'published'));
   return React__default.createElement(DateFieldValue$1, __chunk_1._extends({
     path: "published",
     data: content,
-    datetime: datetime
+    dateTime: dateTime
   }, rest), function (value) {
     var formatted = prefix ? "".concat(prefix, " ").concat(value) : value;
     if (utils.isFunction(children)) return children(formatted);
