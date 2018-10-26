@@ -23,7 +23,7 @@ const defaultProps = {
   collapsible: true,
   content: {},
   linkAttrs: {},
-  sectionRoutePrefix: undefined,
+  sectionRoutePrefix: 'section',
   tag: 'div',
 };
 

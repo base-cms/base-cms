@@ -188,7 +188,7 @@ var defaultProps$4 = {
   collapsible: true,
   content: {},
   linkAttrs: {},
-  sectionRoutePrefix: undefined,
+  sectionRoutePrefix: 'section',
   tag: 'div'
 };
 
