@@ -1,5 +1,5 @@
 {
   "name": "components-head",
   "private": true,
-  "main": "../dist/cjs/components-head.js"
+  "main": "../../dist/cjs/components-head.js"
 }
