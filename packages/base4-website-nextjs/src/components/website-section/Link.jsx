@@ -47,6 +47,7 @@ const WebsiteSectionLink = ({
   );
 };
 
+WebsiteSectionLink.displayName = 'WebsiteSection/Link';
 WebsiteSectionLink.propTypes = propTypes;
 WebsiteSectionLink.defaultProps = defaultProps;
 

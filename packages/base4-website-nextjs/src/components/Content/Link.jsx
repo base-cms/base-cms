@@ -29,6 +29,7 @@ const ContentLink = ({ canonicalPath, ...rest }) => (
   <LinkElement to={canonicalPath} className="content__link" {...rest} />
 );
 
+ContentLink.displayName = 'Content/Link';
 ContentLink.propTypes = propTypes;
 ContentLink.defaultProps = defaultProps;
 

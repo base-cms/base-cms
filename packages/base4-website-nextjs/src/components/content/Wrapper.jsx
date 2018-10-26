@@ -33,6 +33,7 @@ const ContentWrapper = ({
   );
 };
 
+ContentWrapper.displayName = 'Content/Wrapper';
 ContentWrapper.propTypes = propTypes;
 ContentWrapper.defaultProps = defaultProps;
 
