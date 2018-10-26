@@ -32,9 +32,9 @@ const ContentPublishedDate = ({
 }) => {
   // Create the `datetime` element attribute
   // @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time
-  const datetime = formatDate(get(content, 'published'));
+  const dateTime = formatDate(get(content, 'published'));
   return (
-    <DateFieldValue path="published" data={content} datetime={datetime} {...rest}>
+    <DateFieldValue path="published" data={content} dateTime={dateTime} {...rest}>
       {(value) => {
         const formatted = prefix ? `${prefix} ${value}` : value;
         if (isFn(children)) return children(formatted);
