@@ -100,4 +100,13 @@ var sectionPath = (function (alias) {
   return "/".concat(cleanPath(routePrefix), "/").concat(path);
 });
 
-export { cleanPath, componentDisplayName, createMarkup, extractFragmentData, extractFragmentName, formatDate, httpErrors, isFn as isFunction, sectionPath };
+var titleizeType = (function (type) {
+  if (!type) return '';
+  return type.split('-').map(function (lower) {
+    return lower.replace(/^\w/, function (c) {
+      return c.toUpperCase();
+    });
+  }).join(' ');
+});
+
+export { cleanPath, componentDisplayName, createMarkup, extractFragmentData, extractFragmentName, formatDate, httpErrors, isFn as isFunction, sectionPath, titleizeType };

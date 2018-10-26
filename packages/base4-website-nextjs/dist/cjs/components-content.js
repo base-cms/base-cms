@@ -8,45 +8,13 @@ var __chunk_1 = require('./chunk-2c19305a.js');
 var React = require('react');
 var React__default = _interopDefault(React);
 var PropTypes = _interopDefault(require('prop-types'));
-var objectPath = require('object-path');
-var __chunk_2 = require('./chunk-5cbb8258.js');
 var classNames = _interopDefault(require('classnames'));
 var utils = require('./utils.js');
+var __chunk_2 = require('./chunk-46be7ac0.js');
+var objectPath = require('object-path');
+require('moment');
 require('./routing.js');
 require('./chunk-4b678d5c.js');
-require('moment');
-
-var propTypes = {
-  children: PropTypes.func,
-  collapsible: PropTypes.bool,
-  data: PropTypes.object,
-  // eslint-disable-line react/forbid-prop-types
-  format: PropTypes.string,
-  path: PropTypes.string.isRequired,
-  tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
-};
-var defaultProps = {
-  children: undefined,
-  collapsible: true,
-  data: {},
-  format: 'MMM Do, YYYY',
-  tag: 'div'
-};
-
-var DateFieldValue = function DateFieldValue(_ref) {
-  var data = _ref.data,
-      path = _ref.path,
-      rest = __chunk_1._objectWithoutProperties(_ref, ["data", "path"]);
-
-  // Extract the value off the data object.
-  var value = objectPath.get(data, path, null);
-  return React__default.createElement(__chunk_2.FormatDate, __chunk_1._extends({
-    value: value
-  }, rest));
-};
-
-DateFieldValue.propTypes = propTypes;
-DateFieldValue.defaultProps = defaultProps;
 
 var withModelFieldClass = (function (modelType) {
   return function (Component) {
@@ -76,11 +44,70 @@ var withModelFieldClass = (function (modelType) {
   };
 });
 
-var DateFieldValue$1 = withModelFieldClass('content')(DateFieldValue);
-
 var FieldValue = withModelFieldClass('content')(__chunk_2.FieldValue);
 
+var propTypes = {
+  collapsible: PropTypes.bool,
+  content: PropTypes.shape({
+    body: PropTypes.string
+  }),
+  tag: PropTypes.string
+};
+var defaultProps = {
+  collapsible: true,
+  content: {},
+  tag: 'div'
+};
+
+var ContentBody = function ContentBody(_ref) {
+  var content = _ref.content,
+      rest = __chunk_1._objectWithoutProperties(_ref, ["content"]);
+
+  return React__default.createElement(FieldValue, __chunk_1._extends({
+    asHTML: true,
+    path: "body",
+    data: content
+  }, rest));
+};
+
+ContentBody.propTypes = propTypes;
+ContentBody.defaultProps = defaultProps;
+
 var propTypes$1 = {
+  children: PropTypes.func,
+  collapsible: PropTypes.bool,
+  data: PropTypes.object,
+  // eslint-disable-line react/forbid-prop-types
+  format: PropTypes.string,
+  path: PropTypes.string.isRequired,
+  tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
+};
+var defaultProps$1 = {
+  children: undefined,
+  collapsible: true,
+  data: {},
+  format: 'MMM Do, YYYY',
+  tag: 'div'
+};
+
+var DateFieldValue = function DateFieldValue(_ref) {
+  var data = _ref.data,
+      path = _ref.path,
+      rest = __chunk_1._objectWithoutProperties(_ref, ["data", "path"]);
+
+  // Extract the value off the data object.
+  var value = objectPath.get(data, path, null);
+  return React__default.createElement(__chunk_2.FormatDate, __chunk_1._extends({
+    value: value
+  }, rest));
+};
+
+DateFieldValue.propTypes = propTypes$1;
+DateFieldValue.defaultProps = defaultProps$1;
+
+var DateFieldValue$1 = withModelFieldClass('content')(DateFieldValue);
+
+var propTypes$2 = {
   // Whether to render the `value` prop as HTML.
   asHTML: PropTypes.bool,
   // The content canonical path.
@@ -95,7 +122,7 @@ var propTypes$1 = {
   // The inner value to render by default.
   value: PropTypes.node
 };
-var defaultProps$1 = {
+var defaultProps$2 = {
   asHTML: false,
   children: undefined,
   collapsible: true,
@@ -113,15 +140,79 @@ var ContentLink = function ContentLink(_ref) {
   }, rest));
 };
 
-ContentLink.propTypes = propTypes$1;
-ContentLink.defaultProps = defaultProps$1;
+ContentLink.propTypes = propTypes$2;
+ContentLink.defaultProps = defaultProps$2;
 
-var propTypes$2 = {
+var propTypes$3 = {
+  collapsible: PropTypes.bool,
+  content: PropTypes.shape({
+    name: PropTypes.string
+  }),
+  tag: PropTypes.string
+};
+var defaultProps$3 = {
+  collapsible: true,
+  content: {},
+  tag: 'h1'
+};
+
+var ContentName = function ContentName(_ref) {
+  var content = _ref.content,
+      rest = __chunk_1._objectWithoutProperties(_ref, ["content"]);
+
+  return React__default.createElement(FieldValue, __chunk_1._extends({
+    path: "name",
+    data: content
+  }, rest));
+};
+
+ContentName.propTypes = propTypes$3;
+ContentName.defaultProps = defaultProps$3;
+
+var propTypes$4 = {
+  children: PropTypes.func,
+  collapsible: PropTypes.bool,
+  content: PropTypes.shape({
+    published: PropTypes.string
+  }),
+  format: PropTypes.string,
+  prefix: PropTypes.string,
+  tag: PropTypes.string
+};
+var defaultProps$4 = {
+  children: undefined,
+  collapsible: true,
+  content: {},
+  format: 'MMM Do, YYYY',
+  prefix: '',
+  tag: 'div'
+};
+
+var ContentPublishedDate = function ContentPublishedDate(_ref) {
+  var content = _ref.content,
+      children = _ref.children,
+      prefix = _ref.prefix,
+      rest = __chunk_1._objectWithoutProperties(_ref, ["content", "children", "prefix"]);
+
+  return React__default.createElement(DateFieldValue$1, __chunk_1._extends({
+    path: "published",
+    data: content
+  }, rest), function (value) {
+    var formatted = prefix ? "".concat(prefix, " ").concat(value) : value;
+    if (utils.isFunction(children)) return children(formatted);
+    return formatted;
+  });
+};
+
+ContentPublishedDate.propTypes = propTypes$4;
+ContentPublishedDate.defaultProps = defaultProps$4;
+
+var propTypes$5 = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
 };
-var defaultProps$2 = {
+var defaultProps$5 = {
   className: null,
   tag: 'div'
 };
@@ -137,17 +228,17 @@ var ContentRow = function ContentRow(_ref) {
   }, attrs), children);
 };
 
-ContentRow.propTypes = propTypes$2;
-ContentRow.defaultProps = defaultProps$2;
+ContentRow.propTypes = propTypes$5;
+ContentRow.defaultProps = defaultProps$5;
 
-var propTypes$3 = {
+var propTypes$6 = {
   collapsible: PropTypes.bool,
   content: PropTypes.shape({
     shortName: PropTypes.string
   }),
   tag: PropTypes.string
 };
-var defaultProps$3 = {
+var defaultProps$6 = {
   collapsible: true,
   content: {},
   tag: 'h5'
@@ -164,10 +255,10 @@ var ContentShortName = function ContentShortName(_ref) {
   }, rest));
 };
 
-ContentShortName.propTypes = propTypes$3;
-ContentShortName.defaultProps = defaultProps$3;
+ContentShortName.propTypes = propTypes$6;
+ContentShortName.defaultProps = defaultProps$6;
 
-var propTypes$4 = {
+var propTypes$7 = {
   collapsible: PropTypes.bool,
   content: PropTypes.shape({
     shortName: PropTypes.string,
@@ -177,7 +268,7 @@ var propTypes$4 = {
   // eslint-disable-line react/forbid-prop-types
   tag: PropTypes.string
 };
-var defaultProps$4 = {
+var defaultProps$7 = {
   collapsible: true,
   content: {},
   linkAttrs: {},
@@ -203,17 +294,17 @@ var ContentLinkShortName = function ContentLinkShortName(_ref) {
   });
 };
 
-ContentLinkShortName.propTypes = propTypes$4;
-ContentLinkShortName.defaultProps = defaultProps$4;
+ContentLinkShortName.propTypes = propTypes$7;
+ContentLinkShortName.defaultProps = defaultProps$7;
 
-var propTypes$5 = {
+var propTypes$8 = {
   collapsible: PropTypes.bool,
   content: PropTypes.shape({
     teaser: PropTypes.string
   }),
   tag: PropTypes.string
 };
-var defaultProps$5 = {
+var defaultProps$8 = {
   collapsible: true,
   content: {},
   tag: 'div'
@@ -230,13 +321,50 @@ var ContentTeaser = function ContentTeaser(_ref) {
   }, rest));
 };
 
-ContentTeaser.propTypes = propTypes$5;
-ContentTeaser.defaultProps = defaultProps$5;
+ContentTeaser.propTypes = propTypes$8;
+ContentTeaser.defaultProps = defaultProps$8;
 
+var propTypes$9 = {
+  children: PropTypes.func,
+  collapsible: PropTypes.bool,
+  content: PropTypes.shape({
+    type: PropTypes.string
+  }),
+  tag: PropTypes.string
+};
+var defaultProps$9 = {
+  children: undefined,
+  collapsible: true,
+  content: {},
+  tag: 'h1'
+};
+
+var ContentName$1 = function ContentName(_ref) {
+  var content = _ref.content,
+      children = _ref.children,
+      rest = __chunk_1._objectWithoutProperties(_ref, ["content", "children"]);
+
+  return React__default.createElement(FieldValue, __chunk_1._extends({
+    path: "type",
+    data: content
+  }, rest), function (value) {
+    var titleized = utils.titleizeType(value);
+    if (utils.isFunction(children)) return children(titleized);
+    return value;
+  });
+};
+
+ContentName$1.propTypes = propTypes$9;
+ContentName$1.defaultProps = defaultProps$9;
+
+exports.Body = ContentBody;
 exports.DateFieldValue = DateFieldValue$1;
 exports.FieldValue = FieldValue;
 exports.Link = ContentLink;
+exports.Name = ContentName;
+exports.PublishedDate = ContentPublishedDate;
 exports.Row = ContentRow;
 exports.ShortName = ContentShortName;
 exports.ShortNameLink = ContentLinkShortName;
 exports.Teaser = ContentTeaser;
+exports.Type = ContentName$1;

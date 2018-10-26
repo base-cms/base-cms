@@ -11,73 +11,11 @@ var objectPath = require('object-path');
 var routing = require('./routing.js');
 
 var propTypes = {
-  children: PropTypes.func,
-  collapsible: PropTypes.bool,
-  tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-  value: PropTypes.node
-};
-var defaultProps = {
-  children: function children(v) {
-    return v;
-  },
-  collapsible: true,
-  tag: 'div',
-  value: null
-};
-
-var Element = function Element(_ref) {
-  var children = _ref.children,
-      collapsible = _ref.collapsible,
-      Tag = _ref.tag,
-      value = _ref.value,
-      attrs = __chunk_1._objectWithoutProperties(_ref, ["children", "collapsible", "tag", "value"]);
-
-  // Protect the child render function.
-  var render = utils.isFunction(children) ? children : defaultProps.children; // Wrap the value with the element and return (if not collapsible).
-
-  return !value && collapsible ? null : React__default.createElement(Tag, attrs, render(value));
-};
-
-Element.propTypes = propTypes;
-Element.defaultProps = defaultProps;
-
-var propTypes$1 = {
-  children: PropTypes.func,
-  collapsible: PropTypes.bool,
-  format: PropTypes.string,
-  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string, // Must adhere to moment date string reqs.
-  PropTypes.objectOf(Date)]),
-  tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
-};
-var defaultProps$1 = {
-  collapsible: true,
-  children: undefined,
-  format: 'MMM Do, YYYY',
-  tag: 'span',
-  value: null
-};
-
-var FormatDate = function FormatDate(_ref) {
-  var format = _ref.format,
-      raw = _ref.value,
-      rest = __chunk_1._objectWithoutProperties(_ref, ["format", "value"]);
-
-  // Format the date. Will return null on an invalid date value.
-  var value = utils.formatDate(raw, format);
-  return React__default.createElement(Element, __chunk_1._extends({
-    value: value
-  }, rest));
-};
-
-FormatDate.propTypes = propTypes$1;
-FormatDate.defaultProps = defaultProps$1;
-
-var propTypes$2 = {
   collapsible: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   value: PropTypes.string
 };
-var defaultProps$2 = {
+var defaultProps = {
   collapsible: true,
   tag: 'div',
   value: ''
@@ -95,10 +33,41 @@ var HTMLElement = function HTMLElement(_ref) {
   }, attrs));
 };
 
-HTMLElement.propTypes = propTypes$2;
-HTMLElement.defaultProps = defaultProps$2;
+HTMLElement.propTypes = propTypes;
+HTMLElement.defaultProps = defaultProps;
 
-var propTypes$3 = {
+var propTypes$1 = {
+  children: PropTypes.func,
+  collapsible: PropTypes.bool,
+  tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  value: PropTypes.node
+};
+var defaultProps$1 = {
+  children: function children(v) {
+    return v;
+  },
+  collapsible: true,
+  tag: 'div',
+  value: null
+};
+
+var Element = function Element(_ref) {
+  var children = _ref.children,
+      collapsible = _ref.collapsible,
+      Tag = _ref.tag,
+      value = _ref.value,
+      attrs = __chunk_1._objectWithoutProperties(_ref, ["children", "collapsible", "tag", "value"]);
+
+  // Protect the child render function.
+  var render = utils.isFunction(children) ? children : defaultProps$1.children; // Wrap the value with the element and return (if not collapsible).
+
+  return !value && collapsible ? null : React__default.createElement(Tag, attrs, render(value));
+};
+
+Element.propTypes = propTypes$1;
+Element.defaultProps = defaultProps$1;
+
+var propTypes$2 = {
   asHTML: PropTypes.bool,
   children: PropTypes.func,
   collapsible: PropTypes.bool,
@@ -107,7 +76,7 @@ var propTypes$3 = {
   path: PropTypes.string.isRequired,
   tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
 };
-var defaultProps$3 = {
+var defaultProps$2 = {
   asHTML: false,
   children: undefined,
   collapsible: true,
@@ -131,8 +100,39 @@ var FieldValue = function FieldValue(_ref) {
   }, rest));
 };
 
-FieldValue.propTypes = propTypes$3;
-FieldValue.defaultProps = defaultProps$3;
+FieldValue.propTypes = propTypes$2;
+FieldValue.defaultProps = defaultProps$2;
+
+var propTypes$3 = {
+  children: PropTypes.func,
+  collapsible: PropTypes.bool,
+  format: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string, // Must adhere to moment date string reqs.
+  PropTypes.objectOf(Date)]),
+  tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
+};
+var defaultProps$3 = {
+  collapsible: true,
+  children: undefined,
+  format: 'MMM Do, YYYY',
+  tag: 'span',
+  value: null
+};
+
+var FormatDate = function FormatDate(_ref) {
+  var format = _ref.format,
+      raw = _ref.value,
+      rest = __chunk_1._objectWithoutProperties(_ref, ["format", "value"]);
+
+  // Format the date. Will return null on an invalid date value.
+  var value = utils.formatDate(raw, format);
+  return React__default.createElement(Element, __chunk_1._extends({
+    value: value
+  }, rest));
+};
+
+FormatDate.propTypes = propTypes$3;
+FormatDate.defaultProps = defaultProps$3;
 
 var propTypes$4 = {
   // Whether to render the `value` prop as HTML.
@@ -189,8 +189,8 @@ var LinkElement = function LinkElement(_ref) {
 LinkElement.propTypes = propTypes$4;
 LinkElement.defaultProps = defaultProps$4;
 
-exports.FormatDate = FormatDate;
 exports.FieldValue = FieldValue;
+exports.FormatDate = FormatDate;
 exports.LinkElement = LinkElement;
 exports.Element = Element;
 exports.HTMLElement = HTMLElement;
