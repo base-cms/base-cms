@@ -12,6 +12,7 @@ import {
   Row,
   Teaser,
   Type,
+  Wrapper,
 } from '@base-cms/base4-website-nextjs/components/content';
 
 const fragment = gql`
@@ -22,7 +23,7 @@ const fragment = gql`
 `;
 
 const ContentPage = ({ content }) => (
-  <article data-id={content.id} className={classNames('content', 'content--display', `content--${content.type}`)}>
+  <Wrapper content={content}>
     <Name content={content} />
     <ShortNameLink content={content} />
     <Teaser tag="h3" content={content} />
@@ -43,7 +44,7 @@ const ContentPage = ({ content }) => (
     </Row>
     <hr />
     <Body content={content} />
-  </article>
+  </Wrapper>
 );
 
 export default withPlatformContent({ fragment })(ContentPage);
