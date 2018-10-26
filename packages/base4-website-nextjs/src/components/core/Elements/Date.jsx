@@ -7,12 +7,12 @@ const propTypes = {
   children: PropTypes.func,
   collapsible: PropTypes.bool,
   format: PropTypes.string,
+  tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   value: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string, // Must adhere to moment date string reqs.
     PropTypes.objectOf(Date),
   ]),
-  tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
 };
 
 const defaultProps = {
