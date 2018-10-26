@@ -9,6 +9,7 @@ const propTypes = {
   collapsible: PropTypes.bool,
   content: PropTypes.shape({
     primarySection: PropTypes.shape({
+      id: PropTypes.number,
       alias: PropTypes.string,
       name: PropTypes.string,
     }),
@@ -36,10 +37,11 @@ const ContentLinkPrimarySectionName = ({
 }) => (
   <FieldValue path="primarySection.name" data={content} {...attrs}>
     {(value) => {
+      const id = get(content, 'primarySection.id');
       const alias = get(content, 'primarySection.alias');
-      if (!alias) return null;
+      if (!id || !alias) return null;
       return (
-        <Link routePrefix={sectionRoutePrefix} alias={alias} value={value} {...linkAttrs}>
+        <Link routePrefix={sectionRoutePrefix} id={id} alias={alias} value={value} {...linkAttrs}>
           {children}
         </Link>
       );
