@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import gql from 'graphql-tag';
 import { get } from 'object-path';
 import FieldValue from '../FieldValue';
 import Link from '../Link';
-import canonicalPathFragment from '../../../gql/fragments/content-canonical-path.graphql';
 
 const propTypes = {
   collapsible: PropTypes.bool,
@@ -35,14 +33,5 @@ const ContentLinkShortName = ({ content, linkAttrs, ...attrs }) => (
 
 ContentLinkShortName.propTypes = propTypes;
 ContentLinkShortName.defaultProps = defaultProps;
-ContentLinkShortName.fragments = {
-  content: gql`
-    fragment PlatformContentLinkShortName on PlatformContent {
-      shortName
-      ...ContentCanonicalPath
-    }
-    ${canonicalPathFragment}
-  `,
-};
 
 export default ContentLinkShortName;
