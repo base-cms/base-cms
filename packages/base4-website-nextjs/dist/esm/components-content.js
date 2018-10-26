@@ -2,7 +2,7 @@ import { c as _objectSpread, a as _extends, b as _objectWithoutProperties } from
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { componentDisplayName, isFunction as isFn, titleizeType } from './utils.js';
+import { componentDisplayName, isFunction as isFn, formatDate, titleizeType } from './utils.js';
 import { a as FieldValue, b as FormatDate, c as LinkElement } from './chunk-45c0288e.js';
 import { get } from 'object-path';
 import 'moment';
@@ -178,7 +178,7 @@ var defaultProps$4 = {
   content: {},
   format: 'MMM Do, YYYY',
   prefix: '',
-  tag: 'div'
+  tag: 'time'
 };
 
 var ContentPublishedDate = function ContentPublishedDate(_ref) {
@@ -187,9 +187,13 @@ var ContentPublishedDate = function ContentPublishedDate(_ref) {
       prefix = _ref.prefix,
       rest = _objectWithoutProperties(_ref, ["content", "children", "prefix"]);
 
+  // Create the `datetime` element attribute
+  // @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time
+  var datetime = formatDate(get(content, 'published'));
   return React.createElement(DateFieldValue$1, _extends({
     path: "published",
-    data: content
+    data: content,
+    datetime: datetime
   }, rest), function (value) {
     var formatted = prefix ? "".concat(prefix, " ").concat(value) : value;
     if (isFn(children)) return children(formatted);
@@ -329,7 +333,7 @@ var defaultProps$9 = {
   children: undefined,
   collapsible: true,
   content: {},
-  tag: 'h1'
+  tag: 'span'
 };
 
 var ContentName$1 = function ContentName(_ref) {

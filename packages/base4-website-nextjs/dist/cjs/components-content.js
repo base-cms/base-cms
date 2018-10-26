@@ -185,7 +185,7 @@ var defaultProps$4 = {
   content: {},
   format: 'MMM Do, YYYY',
   prefix: '',
-  tag: 'div'
+  tag: 'time'
 };
 
 var ContentPublishedDate = function ContentPublishedDate(_ref) {
@@ -194,9 +194,13 @@ var ContentPublishedDate = function ContentPublishedDate(_ref) {
       prefix = _ref.prefix,
       rest = __chunk_1._objectWithoutProperties(_ref, ["content", "children", "prefix"]);
 
+  // Create the `datetime` element attribute
+  // @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time
+  var datetime = utils.formatDate(objectPath.get(content, 'published'));
   return React__default.createElement(DateFieldValue$1, __chunk_1._extends({
     path: "published",
-    data: content
+    data: content,
+    datetime: datetime
   }, rest), function (value) {
     var formatted = prefix ? "".concat(prefix, " ").concat(value) : value;
     if (utils.isFunction(children)) return children(formatted);
@@ -336,7 +340,7 @@ var defaultProps$9 = {
   children: undefined,
   collapsible: true,
   content: {},
-  tag: 'h1'
+  tag: 'span'
 };
 
 var ContentName$1 = function ContentName(_ref) {
