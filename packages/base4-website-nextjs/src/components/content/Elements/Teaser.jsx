@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FieldValue from './FieldValue';
+import ObjectValue from './ObjectValue';
 
 const propTypes = {
   collapsible: PropTypes.bool,
@@ -17,9 +17,10 @@ const defaultProps = {
 };
 
 const ContentTeaser = ({ content, ...rest }) => (
-  <FieldValue asHTML path="teaser" data={content} {...rest} />
+  <ObjectValue asHTML path="teaser" obj={content} {...rest} />
 );
 
+ContentTeaser.displayName = 'Content/Elements/Teaser';
 ContentTeaser.propTypes = propTypes;
 ContentTeaser.defaultProps = defaultProps;
 

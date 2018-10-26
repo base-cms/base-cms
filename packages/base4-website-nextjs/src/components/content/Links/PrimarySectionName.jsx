@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'object-path';
-import FieldValue from '../Elements/FieldValue';
+import ObjectValue from '../Elements/ObjectValue';
 import Link from '../../website-section/Link';
 
 const propTypes = {
@@ -28,14 +28,14 @@ const defaultProps = {
   tag: 'span',
 };
 
-const ContentLinkPrimarySectionName = ({
+const PrimarySectionNameLink = ({
   children,
   content,
   sectionRoutePrefix,
   linkAttrs,
   ...attrs
 }) => (
-  <FieldValue path="primarySection.name" data={content} {...attrs}>
+  <ObjectValue path="primarySection.name" obj={content} {...attrs}>
     {(value) => {
       const id = get(content, 'primarySection.id');
       const alias = get(content, 'primarySection.alias');
@@ -46,10 +46,11 @@ const ContentLinkPrimarySectionName = ({
         </Link>
       );
     }}
-  </FieldValue>
+  </ObjectValue>
 );
 
-ContentLinkPrimarySectionName.propTypes = propTypes;
-ContentLinkPrimarySectionName.defaultProps = defaultProps;
+PrimarySectionNameLink.propTypes = 'Content/Links/PrimarySectionName';
+PrimarySectionNameLink.propTypes = propTypes;
+PrimarySectionNameLink.defaultProps = defaultProps;
 
-export default ContentLinkPrimarySectionName;
+export default PrimarySectionNameLink;

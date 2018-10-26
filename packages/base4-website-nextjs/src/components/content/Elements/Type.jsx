@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FieldValue from './FieldValue';
+import ObjectValue from './ObjectValue';
 import { titleizeType, isFunction as isFn } from '../../../utils';
 
 const propTypes = {
@@ -20,15 +20,16 @@ const defaultProps = {
 };
 
 const ContentType = ({ content, children, ...rest }) => (
-  <FieldValue path="type" data={content} {...rest}>
+  <ObjectValue path="type" obj={content} {...rest}>
     {(value) => {
       const titleized = titleizeType(value);
       if (isFn(children)) return children(titleized);
       return titleized;
     }}
-  </FieldValue>
+  </ObjectValue>
 );
 
+ContentType.displayName = 'Content/Elements/Type';
 ContentType.propTypes = propTypes;
 ContentType.defaultProps = defaultProps;
 

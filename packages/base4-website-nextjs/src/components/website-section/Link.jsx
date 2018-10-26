@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import LinkElement from '../core/LinkElement';
+import LinkElement from '../core/Elements/Link';
 import { cleanPath } from '../../utils';
 
 const propTypes = {

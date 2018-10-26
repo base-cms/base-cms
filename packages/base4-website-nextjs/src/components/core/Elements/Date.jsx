@@ -19,7 +19,7 @@ const defaultProps = {
   collapsible: true,
   children: undefined,
   format: 'MMM Do, YYYY',
-  tag: 'span',
+  tag: 'time',
   value: null,
 };
 
@@ -30,7 +30,10 @@ const DateElement = ({
 }) => {
   // Format the date. Will return null on an invalid date value.
   const value = formatDate(raw, format);
-  return <Value value={value} {...rest} />;
+  // Create the `datetime` element attribute
+  // @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time
+  const dateTime = formatDate(raw);
+  return <Value value={value} dateTime={dateTime} {...rest} />;
 };
 
 DateElement.propTypes = 'Core/Elements/Date';

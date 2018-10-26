@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import LinkElement from '../core/LinkElement';
+import LinkElement from '../core/Elements/Link';
 
 const propTypes = {
   // Whether to render the `value` prop as HTML.

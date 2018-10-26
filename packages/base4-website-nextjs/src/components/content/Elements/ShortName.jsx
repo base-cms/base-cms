@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FieldValue from './FieldValue';
+import ObjectValue from './ObjectValue';
 
 const propTypes = {
   collapsible: PropTypes.bool,
@@ -17,9 +17,10 @@ const defaultProps = {
 };
 
 const ContentShortName = ({ content, ...rest }) => (
-  <FieldValue asHTML path="shortName" data={content} {...rest} />
+  <ObjectValue asHTML path="shortName" obj={content} {...rest} />
 );
 
+ContentShortName.displayName = 'Content/Elements/ShortName';
 ContentShortName.propTypes = propTypes;
 ContentShortName.defaultProps = defaultProps;
 

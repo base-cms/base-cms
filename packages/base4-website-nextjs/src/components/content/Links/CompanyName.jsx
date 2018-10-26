@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'object-path';
-import FieldValue from '../Elements/FieldValue';
+import ObjectValue from '../Elements/ObjectValue';
 import Link from '../Link';
 
 const propTypes = {
@@ -23,13 +23,13 @@ const defaultProps = {
   tag: 'span',
 };
 
-const ContentLinkCompanyName = ({
+const CompanyNameLink = ({
   children,
   content,
   linkAttrs,
   ...attrs
 }) => (
-  <FieldValue path="company.name" data={content} {...attrs}>
+  <ObjectValue path="company.name" obj={content} {...attrs}>
     {(value) => {
       const canonicalPath = get(content, 'company.canonicalPath');
       if (!canonicalPath) return null;
@@ -39,10 +39,11 @@ const ContentLinkCompanyName = ({
         </Link>
       );
     }}
-  </FieldValue>
+  </ObjectValue>
 );
 
-ContentLinkCompanyName.propTypes = propTypes;
-ContentLinkCompanyName.defaultProps = defaultProps;
+CompanyNameLink.displayName = 'Content/Links/CompanyName';
+CompanyNameLink.propTypes = propTypes;
+CompanyNameLink.defaultProps = defaultProps;
 
-export default ContentLinkCompanyName;
+export default CompanyNameLink;

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FieldValue from './FieldValue';
+import ObjectValue from './ObjectValue';
 
 const propTypes = {
   collapsible: PropTypes.bool,
@@ -17,9 +17,10 @@ const defaultProps = {
 };
 
 const ContentName = ({ content, ...rest }) => (
-  <FieldValue path="name" data={content} {...rest} />
+  <ObjectValue path="name" obj={content} {...rest} />
 );
 
+ContentName.displayName = 'Content/Elements/Name';
 ContentName.propTypes = propTypes;
 ContentName.defaultProps = defaultProps;
 

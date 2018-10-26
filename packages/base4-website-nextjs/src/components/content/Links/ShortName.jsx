@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'object-path';
-import FieldValue from '../Elements/FieldValue';
+import ObjectValue from '../Elements/ObjectValue';
 import Link from '../Link';
 
 const propTypes = {
@@ -21,17 +21,18 @@ const defaultProps = {
   tag: 'h5',
 };
 
-const ContentLinkShortName = ({ content, linkAttrs, ...attrs }) => (
-  <FieldValue path="shortName" data={content} {...attrs}>
+const ShortNameLink = ({ content, linkAttrs, ...attrs }) => (
+  <ObjectValue path="shortName" obj={content} {...attrs}>
     {(value) => {
       const canonicalPath = get(content, 'canonicalPath');
       if (!canonicalPath) return null;
       return <Link asHTML canonicalPath={canonicalPath} value={value} {...linkAttrs} />;
     }}
-  </FieldValue>
+  </ObjectValue>
 );
 
-ContentLinkShortName.propTypes = propTypes;
-ContentLinkShortName.defaultProps = defaultProps;
+ShortNameLink.displayName = 'Content/Links/ShortName';
+ShortNameLink.propTypes = propTypes;
+ShortNameLink.defaultProps = defaultProps;
 
-export default ContentLinkShortName;
+export default ShortNameLink;
