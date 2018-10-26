@@ -6,7 +6,8 @@ var __chunk_1 = require('./chunk-2c19305a.js');
 var React = require('react');
 var React__default = _interopDefault(React);
 var PropTypes = _interopDefault(require('prop-types'));
-var __chunk_2 = require('./chunk-5dc5312d.js');
+var classNames = _interopDefault(require('classnames'));
+var __chunk_2 = require('./chunk-30f9615d.js');
 var utils = require('./utils.js');
 
 var propTypes = {
@@ -16,8 +17,11 @@ var propTypes = {
   asHTML: PropTypes.bool,
   // A child function to custom render the `value` prop.
   children: PropTypes.func,
+  className: PropTypes.string,
   // Whether the entire component should collapse on an empty value.
   collapsible: PropTypes.bool,
+  // The section id.
+  id: PropTypes.number.isRequired,
   // Optional parameters for named routes.
   params: PropTypes.object,
   // eslint-disable-line react/forbid-prop-types
@@ -29,6 +33,7 @@ var propTypes = {
 var defaultProps = {
   asHTML: false,
   children: undefined,
+  className: null,
   collapsible: true,
   params: undefined,
   routePrefix: 'section',
@@ -37,16 +42,19 @@ var defaultProps = {
 
 var WebsiteSectionLink = function WebsiteSectionLink(_ref) {
   var alias = _ref.alias,
+      className = _ref.className,
+      id = _ref.id,
       routePrefix = _ref.routePrefix,
-      rest = __chunk_1._objectWithoutProperties(_ref, ["alias", "routePrefix"]);
+      rest = __chunk_1._objectWithoutProperties(_ref, ["alias", "className", "id", "routePrefix"]);
 
   var to = routePrefix ? "".concat(routePrefix, "/").concat(utils.cleanPath(alias)) : alias;
   return React__default.createElement(__chunk_2.LinkElement, __chunk_1._extends({
     to: to,
-    className: "website-section__link"
+    className: classNames('website-section__link', "website-section__link--".concat(id), className)
   }, rest));
 };
 
+WebsiteSectionLink.displayName = 'WebsiteSection/Link';
 WebsiteSectionLink.propTypes = propTypes;
 WebsiteSectionLink.defaultProps = defaultProps;
 

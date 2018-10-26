@@ -9,7 +9,7 @@ var __chunk_1 = require('./chunk-2c19305a.js');
 var React = require('react');
 var React__default = _interopDefault(React);
 var nextRoutes = _interopDefault(require('next-routes'));
-var __chunk_4 = require('./chunk-4b678d5c.js');
+var __chunk_3 = require('./chunk-4b678d5c.js');
 var utils = require('./utils.js');
 var App = require('next/app');
 var App__default = _interopDefault(App);
@@ -64,7 +64,7 @@ var withRouting = (function (definitions) {
          *
          */
         value: function render() {
-          return React__default.createElement(__chunk_4.RoutingContext.Provider, {
+          return React__default.createElement(__chunk_3.RoutingContext.Provider, {
             value: routes
           }, React__default.createElement(ComposedComponent, this.props));
         }

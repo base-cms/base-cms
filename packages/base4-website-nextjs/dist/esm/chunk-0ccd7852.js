@@ -1,15 +1,47 @@
-import { a as _extends, b as _objectWithoutProperties, c as _objectSpread } from './chunk-cfc9ba70.js';
+import { a as _objectWithoutProperties, b as _extends, c as _objectSpread } from './chunk-cfc9ba70.js';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { createMarkup, isFunction as isFn, cleanPath } from './utils.js';
+import { isFunction as isFn, createMarkup, cleanPath } from './utils.js';
 import { Link } from './routing.js';
 
 var propTypes = {
+  children: PropTypes.func,
+  collapsible: PropTypes.bool,
+  tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  value: PropTypes.node
+};
+var defaultProps = {
+  children: function children(v) {
+    return v;
+  },
+  collapsible: true,
+  tag: 'div',
+  value: null
+};
+
+var ValueElement = function ValueElement(_ref) {
+  var children = _ref.children,
+      collapsible = _ref.collapsible,
+      Tag = _ref.tag,
+      value = _ref.value,
+      attrs = _objectWithoutProperties(_ref, ["children", "collapsible", "tag", "value"]);
+
+  // Protect the child render function.
+  var render = isFn(children) ? children : defaultProps.children; // Wrap the value with the element and return (if not collapsible).
+
+  return !value && collapsible ? null : React.createElement(Tag, attrs, render(value));
+};
+
+ValueElement.displayName = 'Core/Elements/Value';
+ValueElement.propTypes = propTypes;
+ValueElement.defaultProps = defaultProps;
+
+var propTypes$1 = {
   collapsible: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   value: PropTypes.string
 };
-var defaultProps = {
+var defaultProps$1 = {
   collapsible: true,
   tag: 'div',
   value: ''
@@ -27,39 +59,9 @@ var HTMLElement = function HTMLElement(_ref) {
   }, attrs));
 };
 
-HTMLElement.propTypes = propTypes;
-HTMLElement.defaultProps = defaultProps;
-
-var propTypes$1 = {
-  children: PropTypes.func,
-  collapsible: PropTypes.bool,
-  tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-  value: PropTypes.node
-};
-var defaultProps$1 = {
-  children: function children(v) {
-    return v;
-  },
-  collapsible: true,
-  tag: 'div',
-  value: null
-};
-
-var Element = function Element(_ref) {
-  var children = _ref.children,
-      collapsible = _ref.collapsible,
-      Tag = _ref.tag,
-      value = _ref.value,
-      attrs = _objectWithoutProperties(_ref, ["children", "collapsible", "tag", "value"]);
-
-  // Protect the child render function.
-  var render = isFn(children) ? children : defaultProps$1.children; // Wrap the value with the element and return (if not collapsible).
-
-  return !value && collapsible ? null : React.createElement(Tag, attrs, render(value));
-};
-
-Element.propTypes = propTypes$1;
-Element.defaultProps = defaultProps$1;
+HTMLElement.displayName = 'Core/Elements/HTML';
+HTMLElement.propTypes = propTypes$1;
+HTMLElement.defaultProps = defaultProps$1;
 
 var propTypes$2 = {
   // Whether to render the `value` prop as HTML.
@@ -104,7 +106,7 @@ var LinkElement = function LinkElement(_ref) {
     value: value
   });
 
-  var child = asHTML ? React.createElement(HTMLElement, props) : React.createElement(Element, props);
+  var child = asHTML ? React.createElement(HTMLElement, props) : React.createElement(ValueElement, props);
   if (isExternal) return child;
   return React.createElement(Link, {
     route: "/".concat(cleanPath(href)),
@@ -113,7 +115,8 @@ var LinkElement = function LinkElement(_ref) {
   }, child);
 };
 
+LinkElement.displayName = 'Core/Elements/Link';
 LinkElement.propTypes = propTypes$2;
 LinkElement.defaultProps = defaultProps$2;
 
-export { HTMLElement as a, Element as b, LinkElement as c };
+export { LinkElement as a, ValueElement as b, HTMLElement as c };

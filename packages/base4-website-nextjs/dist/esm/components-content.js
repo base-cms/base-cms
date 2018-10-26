@@ -1,16 +1,89 @@
-import { c as _objectSpread, a as _extends, b as _objectWithoutProperties } from './chunk-cfc9ba70.js';
+import { b as _extends, a as _objectWithoutProperties, c as _objectSpread } from './chunk-cfc9ba70.js';
 import React from 'react';
 import PropTypes from 'prop-types';
+import { a as LinkElement } from './chunk-0ccd7852.js';
 import classNames from 'classnames';
 import { underscore, dasherize } from 'inflected';
-import { componentDisplayName, isFunction as isFn, formatDate, titleizeType } from './utils.js';
-import { a as FieldValue, b as FormatDate } from './chunk-425c66d6.js';
+import { componentDisplayName, isFunction as isFn, titleizeType } from './utils.js';
+import { a as ObjectValue } from './chunk-a66728f3.js';
 import { get } from 'object-path';
-import { c as LinkElement } from './chunk-742fd19b.js';
-import { a as Link } from './chunk-9eb326db.js';
-import 'moment';
+import { a as Link } from './chunk-04e4878f.js';
 import './routing.js';
 import './chunk-7976a9a0.js';
+import 'moment';
+
+var propTypes = {
+  // Whether to render the `value` prop as HTML.
+  asHTML: PropTypes.bool,
+  // The content canonical path.
+  canonicalPath: PropTypes.string.isRequired,
+  // A child function to custom render the `value` prop.
+  children: PropTypes.func,
+  // Whether the entire component should collapse on an empty value.
+  collapsible: PropTypes.bool,
+  // Optional parameters for named routes.
+  params: PropTypes.object,
+  // eslint-disable-line react/forbid-prop-types
+  // The inner value to render by default.
+  value: PropTypes.node
+};
+var defaultProps = {
+  asHTML: false,
+  children: undefined,
+  collapsible: true,
+  params: undefined,
+  value: null
+}; // @todo Do not make this clickable if the canonicalPath matches the route.
+
+var ContentLink = function ContentLink(_ref) {
+  var canonicalPath = _ref.canonicalPath,
+      rest = _objectWithoutProperties(_ref, ["canonicalPath"]);
+
+  return React.createElement(LinkElement, _extends({
+    to: canonicalPath,
+    className: "content__link"
+  }, rest));
+};
+
+ContentLink.displayName = 'Content/Link';
+ContentLink.propTypes = propTypes;
+ContentLink.defaultProps = defaultProps;
+
+var propTypes$1 = {
+  children: PropTypes.node.isRequired,
+  className: PropTypes.string,
+  content: PropTypes.shape({
+    id: PropTypes.number,
+    type: PropTypes.string
+  }),
+  tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
+};
+var defaultProps$1 = {
+  className: null,
+  content: {},
+  tag: 'article'
+};
+
+var ContentWrapper = function ContentWrapper(_ref) {
+  var children = _ref.children,
+      className = _ref.className,
+      content = _ref.content,
+      Tag = _ref.tag,
+      attrs = _objectWithoutProperties(_ref, ["children", "className", "content", "tag"]);
+
+  var _ref2 = content || {},
+      id = _ref2.id,
+      type = _ref2.type;
+
+  return React.createElement(Tag, _extends({
+    "data-id": id,
+    className: classNames('content', 'content--display', "content--".concat(type), className)
+  }, attrs), children);
+};
+
+ContentWrapper.displayName = 'Content/Wrapper';
+ContentWrapper.propTypes = propTypes$1;
+ContentWrapper.defaultProps = defaultProps$1;
 
 var inflect = function inflect(value) {
   return dasherize(underscore(value));
@@ -44,16 +117,16 @@ var withModelFieldClass = (function (modelType) {
   };
 });
 
-var FieldValue$1 = withModelFieldClass('content')(FieldValue);
+var ObjectValue$1 = withModelFieldClass('content')(ObjectValue);
 
-var propTypes = {
+var propTypes$2 = {
   collapsible: PropTypes.bool,
   content: PropTypes.shape({
     body: PropTypes.string
   }),
   tag: PropTypes.string
 };
-var defaultProps = {
+var defaultProps$2 = {
   collapsible: true,
   content: {},
   tag: 'div'
@@ -63,85 +136,16 @@ var ContentBody = function ContentBody(_ref) {
   var content = _ref.content,
       rest = _objectWithoutProperties(_ref, ["content"]);
 
-  return React.createElement(FieldValue$1, _extends({
+  return React.createElement(ObjectValue$1, _extends({
     asHTML: true,
     path: "body",
-    data: content
+    obj: content
   }, rest));
 };
 
-ContentBody.propTypes = propTypes;
-ContentBody.defaultProps = defaultProps;
-
-var propTypes$1 = {
-  children: PropTypes.func,
-  collapsible: PropTypes.bool,
-  data: PropTypes.object,
-  // eslint-disable-line react/forbid-prop-types
-  format: PropTypes.string,
-  path: PropTypes.string.isRequired,
-  tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
-};
-var defaultProps$1 = {
-  children: undefined,
-  collapsible: true,
-  data: {},
-  format: 'MMM Do, YYYY',
-  tag: 'div'
-};
-
-var DateFieldValue = function DateFieldValue(_ref) {
-  var data = _ref.data,
-      path = _ref.path,
-      rest = _objectWithoutProperties(_ref, ["data", "path"]);
-
-  // Extract the value off the data object.
-  var value = get(data, path, null);
-  return React.createElement(FormatDate, _extends({
-    value: value
-  }, rest));
-};
-
-DateFieldValue.propTypes = propTypes$1;
-DateFieldValue.defaultProps = defaultProps$1;
-
-var DateFieldValue$1 = withModelFieldClass('content')(DateFieldValue);
-
-var propTypes$2 = {
-  // Whether to render the `value` prop as HTML.
-  asHTML: PropTypes.bool,
-  // The content canonical path.
-  canonicalPath: PropTypes.string.isRequired,
-  // A child function to custom render the `value` prop.
-  children: PropTypes.func,
-  // Whether the entire component should collapse on an empty value.
-  collapsible: PropTypes.bool,
-  // Optional parameters for named routes.
-  params: PropTypes.object,
-  // eslint-disable-line react/forbid-prop-types
-  // The inner value to render by default.
-  value: PropTypes.node
-};
-var defaultProps$2 = {
-  asHTML: false,
-  children: undefined,
-  collapsible: true,
-  params: undefined,
-  value: null
-}; // @todo Do not make this clickable if the canonicalPath matches the route.
-
-var ContentLink = function ContentLink(_ref) {
-  var canonicalPath = _ref.canonicalPath,
-      rest = _objectWithoutProperties(_ref, ["canonicalPath"]);
-
-  return React.createElement(LinkElement, _extends({
-    to: canonicalPath,
-    className: "content__link"
-  }, rest));
-};
-
-ContentLink.propTypes = propTypes$2;
-ContentLink.defaultProps = defaultProps$2;
+ContentBody.displayName = 'Content/Elements/Body';
+ContentBody.propTypes = propTypes$2;
+ContentBody.defaultProps = defaultProps$2;
 
 var propTypes$3 = {
   collapsible: PropTypes.bool,
@@ -160,63 +164,17 @@ var ContentName = function ContentName(_ref) {
   var content = _ref.content,
       rest = _objectWithoutProperties(_ref, ["content"]);
 
-  return React.createElement(FieldValue$1, _extends({
+  return React.createElement(ObjectValue$1, _extends({
     path: "name",
-    data: content
+    obj: content
   }, rest));
 };
 
+ContentName.displayName = 'Content/Elements/Name';
 ContentName.propTypes = propTypes$3;
 ContentName.defaultProps = defaultProps$3;
 
 var propTypes$4 = {
-  children: PropTypes.func,
-  collapsible: PropTypes.bool,
-  content: PropTypes.shape({
-    primarySection: PropTypes.shape({
-      alias: PropTypes.string,
-      name: PropTypes.string
-    })
-  }),
-  linkAttrs: PropTypes.object,
-  // eslint-disable-line react/forbid-prop-types
-  sectionRoutePrefix: PropTypes.string,
-  tag: PropTypes.string
-};
-var defaultProps$4 = {
-  children: undefined,
-  collapsible: true,
-  content: {},
-  linkAttrs: {},
-  sectionRoutePrefix: 'section',
-  tag: 'div'
-};
-
-var ContentLinkPrimarySection = function ContentLinkPrimarySection(_ref) {
-  var children = _ref.children,
-      content = _ref.content,
-      sectionRoutePrefix = _ref.sectionRoutePrefix,
-      linkAttrs = _ref.linkAttrs,
-      attrs = _objectWithoutProperties(_ref, ["children", "content", "sectionRoutePrefix", "linkAttrs"]);
-
-  return React.createElement(FieldValue$1, _extends({
-    path: "primarySection.name",
-    data: content
-  }, attrs), function (value) {
-    var alias = get(content, 'primarySection.alias');
-    if (!alias) return null;
-    return React.createElement(Link, _extends({
-      routePrefix: sectionRoutePrefix,
-      alias: alias,
-      value: value
-    }, linkAttrs), children);
-  });
-};
-
-ContentLinkPrimarySection.propTypes = propTypes$4;
-ContentLinkPrimarySection.defaultProps = defaultProps$4;
-
-var propTypes$5 = {
   children: PropTypes.func,
   collapsible: PropTypes.bool,
   content: PropTypes.shape({
@@ -226,7 +184,7 @@ var propTypes$5 = {
   prefix: PropTypes.string,
   tag: PropTypes.string
 };
-var defaultProps$5 = {
+var defaultProps$4 = {
   children: undefined,
   collapsible: true,
   content: {},
@@ -238,16 +196,15 @@ var defaultProps$5 = {
 var ContentPublishedDate = function ContentPublishedDate(_ref) {
   var content = _ref.content,
       children = _ref.children,
+      format = _ref.format,
       prefix = _ref.prefix,
-      rest = _objectWithoutProperties(_ref, ["content", "children", "prefix"]);
+      rest = _objectWithoutProperties(_ref, ["content", "children", "format", "prefix"]);
 
-  // Create the `datetime` element attribute
-  // @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time
-  var dateTime = formatDate(get(content, 'published'));
-  return React.createElement(DateFieldValue$1, _extends({
+  return React.createElement(ObjectValue$1, _extends({
+    asDate: true,
+    dateFormat: format,
     path: "published",
-    data: content,
-    dateTime: dateTime
+    obj: content
   }, rest), function (value) {
     var formatted = prefix ? "".concat(prefix, " ").concat(value) : value;
     if (isFn(children)) return children(formatted);
@@ -255,15 +212,16 @@ var ContentPublishedDate = function ContentPublishedDate(_ref) {
   });
 };
 
-ContentPublishedDate.propTypes = propTypes$5;
-ContentPublishedDate.defaultProps = defaultProps$5;
+ContentPublishedDate.displayName = 'Content/Elements/PublishedDate';
+ContentPublishedDate.propTypes = propTypes$4;
+ContentPublishedDate.defaultProps = defaultProps$4;
 
-var propTypes$6 = {
+var propTypes$5 = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
 };
-var defaultProps$6 = {
+var defaultProps$5 = {
   className: null,
   tag: 'div'
 };
@@ -279,17 +237,17 @@ var ContentRow = function ContentRow(_ref) {
   }, attrs), children);
 };
 
-ContentRow.propTypes = propTypes$6;
-ContentRow.defaultProps = defaultProps$6;
+ContentRow.propTypes = propTypes$5;
+ContentRow.defaultProps = defaultProps$5;
 
-var propTypes$7 = {
+var propTypes$6 = {
   collapsible: PropTypes.bool,
   content: PropTypes.shape({
     shortName: PropTypes.string
   }),
   tag: PropTypes.string
 };
-var defaultProps$7 = {
+var defaultProps$6 = {
   collapsible: true,
   content: {},
   tag: 'h5'
@@ -299,63 +257,25 @@ var ContentShortName = function ContentShortName(_ref) {
   var content = _ref.content,
       rest = _objectWithoutProperties(_ref, ["content"]);
 
-  return React.createElement(FieldValue$1, _extends({
+  return React.createElement(ObjectValue$1, _extends({
     asHTML: true,
     path: "shortName",
-    data: content
+    obj: content
   }, rest));
 };
 
-ContentShortName.propTypes = propTypes$7;
-ContentShortName.defaultProps = defaultProps$7;
+ContentShortName.displayName = 'Content/Elements/ShortName';
+ContentShortName.propTypes = propTypes$6;
+ContentShortName.defaultProps = defaultProps$6;
 
-var propTypes$8 = {
-  collapsible: PropTypes.bool,
-  content: PropTypes.shape({
-    shortName: PropTypes.string,
-    canonicalPath: PropTypes.string
-  }),
-  linkAttrs: PropTypes.object,
-  // eslint-disable-line react/forbid-prop-types
-  tag: PropTypes.string
-};
-var defaultProps$8 = {
-  collapsible: true,
-  content: {},
-  linkAttrs: {},
-  tag: 'h5'
-};
-
-var ContentLinkShortName = function ContentLinkShortName(_ref) {
-  var content = _ref.content,
-      linkAttrs = _ref.linkAttrs,
-      attrs = _objectWithoutProperties(_ref, ["content", "linkAttrs"]);
-
-  return React.createElement(FieldValue$1, _extends({
-    path: "shortName",
-    data: content
-  }, attrs), function (value) {
-    var canonicalPath = get(content, 'canonicalPath');
-    if (!canonicalPath) return null;
-    return React.createElement(ContentLink, _extends({
-      asHTML: true,
-      canonicalPath: canonicalPath,
-      value: value
-    }, linkAttrs));
-  });
-};
-
-ContentLinkShortName.propTypes = propTypes$8;
-ContentLinkShortName.defaultProps = defaultProps$8;
-
-var propTypes$9 = {
+var propTypes$7 = {
   collapsible: PropTypes.bool,
   content: PropTypes.shape({
     teaser: PropTypes.string
   }),
   tag: PropTypes.string
 };
-var defaultProps$9 = {
+var defaultProps$7 = {
   collapsible: true,
   content: {},
   tag: 'div'
@@ -365,17 +285,18 @@ var ContentTeaser = function ContentTeaser(_ref) {
   var content = _ref.content,
       rest = _objectWithoutProperties(_ref, ["content"]);
 
-  return React.createElement(FieldValue$1, _extends({
+  return React.createElement(ObjectValue$1, _extends({
     asHTML: true,
     path: "teaser",
-    data: content
+    obj: content
   }, rest));
 };
 
-ContentTeaser.propTypes = propTypes$9;
-ContentTeaser.defaultProps = defaultProps$9;
+ContentTeaser.displayName = 'Content/Elements/Teaser';
+ContentTeaser.propTypes = propTypes$7;
+ContentTeaser.defaultProps = defaultProps$7;
 
-var propTypes$a = {
+var propTypes$8 = {
   children: PropTypes.func,
   collapsible: PropTypes.bool,
   content: PropTypes.shape({
@@ -383,7 +304,7 @@ var propTypes$a = {
   }),
   tag: PropTypes.string
 };
-var defaultProps$a = {
+var defaultProps$8 = {
   children: undefined,
   collapsible: true,
   content: {},
@@ -395,9 +316,9 @@ var ContentType = function ContentType(_ref) {
       children = _ref.children,
       rest = _objectWithoutProperties(_ref, ["content", "children"]);
 
-  return React.createElement(FieldValue$1, _extends({
+  return React.createElement(ObjectValue$1, _extends({
     path: "type",
-    data: content
+    obj: content
   }, rest), function (value) {
     var titleized = titleizeType(value);
     if (isFn(children)) return children(titleized);
@@ -405,42 +326,141 @@ var ContentType = function ContentType(_ref) {
   });
 };
 
-ContentType.propTypes = propTypes$a;
-ContentType.defaultProps = defaultProps$a;
+ContentType.displayName = 'Content/Elements/Type';
+ContentType.propTypes = propTypes$8;
+ContentType.defaultProps = defaultProps$8;
+
+var propTypes$9 = {
+  children: PropTypes.func,
+  collapsible: PropTypes.bool,
+  content: PropTypes.shape({
+    shortName: PropTypes.string,
+    canonicalPath: PropTypes.string
+  }),
+  linkAttrs: PropTypes.object,
+  // eslint-disable-line react/forbid-prop-types
+  tag: PropTypes.string
+};
+var defaultProps$9 = {
+  children: undefined,
+  collapsible: true,
+  content: {},
+  linkAttrs: {},
+  tag: 'span'
+};
+
+var CompanyNameLink = function CompanyNameLink(_ref) {
+  var children = _ref.children,
+      content = _ref.content,
+      linkAttrs = _ref.linkAttrs,
+      attrs = _objectWithoutProperties(_ref, ["children", "content", "linkAttrs"]);
+
+  return React.createElement(ObjectValue$1, _extends({
+    path: "company.name",
+    obj: content
+  }, attrs), function (value) {
+    var canonicalPath = get(content, 'company.canonicalPath');
+    if (!canonicalPath) return null;
+    return React.createElement(ContentLink, _extends({
+      canonicalPath: canonicalPath,
+      value: value
+    }, linkAttrs), children);
+  });
+};
+
+CompanyNameLink.displayName = 'Content/Links/CompanyName';
+CompanyNameLink.propTypes = propTypes$9;
+CompanyNameLink.defaultProps = defaultProps$9;
+
+var propTypes$a = {
+  children: PropTypes.func,
+  collapsible: PropTypes.bool,
+  content: PropTypes.shape({
+    primarySection: PropTypes.shape({
+      id: PropTypes.number,
+      alias: PropTypes.string,
+      name: PropTypes.string
+    })
+  }),
+  linkAttrs: PropTypes.object,
+  // eslint-disable-line react/forbid-prop-types
+  sectionRoutePrefix: PropTypes.string,
+  tag: PropTypes.string
+};
+var defaultProps$a = {
+  children: undefined,
+  collapsible: true,
+  content: {},
+  linkAttrs: {},
+  sectionRoutePrefix: 'section',
+  tag: 'span'
+};
+
+var PrimarySectionNameLink = function PrimarySectionNameLink(_ref) {
+  var children = _ref.children,
+      content = _ref.content,
+      sectionRoutePrefix = _ref.sectionRoutePrefix,
+      linkAttrs = _ref.linkAttrs,
+      attrs = _objectWithoutProperties(_ref, ["children", "content", "sectionRoutePrefix", "linkAttrs"]);
+
+  return React.createElement(ObjectValue$1, _extends({
+    path: "primarySection.name",
+    obj: content
+  }, attrs), function (value) {
+    var id = get(content, 'primarySection.id');
+    var alias = get(content, 'primarySection.alias');
+    if (!id || !alias) return null;
+    return React.createElement(Link, _extends({
+      routePrefix: sectionRoutePrefix,
+      id: id,
+      alias: alias,
+      value: value
+    }, linkAttrs), children);
+  });
+};
+
+PrimarySectionNameLink.propTypes = 'Content/Links/PrimarySectionName';
+PrimarySectionNameLink.propTypes = propTypes$a;
+PrimarySectionNameLink.defaultProps = defaultProps$a;
 
 var propTypes$b = {
-  children: PropTypes.node.isRequired,
-  className: PropTypes.string,
+  collapsible: PropTypes.bool,
   content: PropTypes.shape({
-    id: PropTypes.number,
-    type: PropTypes.string
+    shortName: PropTypes.string,
+    canonicalPath: PropTypes.string
   }),
-  tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
+  linkAttrs: PropTypes.object,
+  // eslint-disable-line react/forbid-prop-types
+  tag: PropTypes.string
 };
 var defaultProps$b = {
-  className: null,
+  collapsible: true,
   content: {},
-  tag: 'article'
+  linkAttrs: {},
+  tag: 'h5'
 };
 
-var ContentWrapper = function ContentWrapper(_ref) {
-  var children = _ref.children,
-      className = _ref.className,
-      content = _ref.content,
-      Tag = _ref.tag,
-      attrs = _objectWithoutProperties(_ref, ["children", "className", "content", "tag"]);
+var ShortNameLink = function ShortNameLink(_ref) {
+  var content = _ref.content,
+      linkAttrs = _ref.linkAttrs,
+      attrs = _objectWithoutProperties(_ref, ["content", "linkAttrs"]);
 
-  var _ref2 = content || {},
-      id = _ref2.id,
-      type = _ref2.type;
-
-  return React.createElement(Tag, _extends({
-    "data-id": id,
-    className: classNames('content', 'content--display', "content--".concat(type), className)
-  }, attrs), children);
+  return React.createElement(ObjectValue$1, _extends({
+    path: "shortName",
+    obj: content
+  }, attrs), function (value) {
+    var canonicalPath = get(content, 'canonicalPath');
+    if (!canonicalPath) return null;
+    return React.createElement(ContentLink, _extends({
+      asHTML: true,
+      canonicalPath: canonicalPath,
+      value: value
+    }, linkAttrs));
+  });
 };
 
-ContentWrapper.propTypes = propTypes$b;
-ContentWrapper.defaultProps = defaultProps$b;
+ShortNameLink.displayName = 'Content/Links/ShortName';
+ShortNameLink.propTypes = propTypes$b;
+ShortNameLink.defaultProps = defaultProps$b;
 
-export { ContentBody as Body, DateFieldValue$1 as DateFieldValue, FieldValue$1 as FieldValue, ContentLink as Link, ContentName as Name, ContentLinkPrimarySection as PrimarySectionLink, ContentPublishedDate as PublishedDate, ContentRow as Row, ContentShortName as ShortName, ContentLinkShortName as ShortNameLink, ContentTeaser as Teaser, ContentType as Type, ContentWrapper as Wrapper };
+export { ContentLink as Link, ContentWrapper as Wrapper, ContentBody as Body, ContentName as Name, ObjectValue$1 as ObjectValue, ContentPublishedDate as PublishedDate, ContentRow as Row, ContentShortName as ShortName, ContentTeaser as Teaser, ContentType as Type, CompanyNameLink, PrimarySectionNameLink, ShortNameLink };

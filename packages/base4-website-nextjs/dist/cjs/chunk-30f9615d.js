@@ -10,11 +10,43 @@ var utils = require('./utils.js');
 var routing = require('./routing.js');
 
 var propTypes = {
+  children: PropTypes.func,
+  collapsible: PropTypes.bool,
+  tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  value: PropTypes.node
+};
+var defaultProps = {
+  children: function children(v) {
+    return v;
+  },
+  collapsible: true,
+  tag: 'div',
+  value: null
+};
+
+var ValueElement = function ValueElement(_ref) {
+  var children = _ref.children,
+      collapsible = _ref.collapsible,
+      Tag = _ref.tag,
+      value = _ref.value,
+      attrs = __chunk_1._objectWithoutProperties(_ref, ["children", "collapsible", "tag", "value"]);
+
+  // Protect the child render function.
+  var render = utils.isFunction(children) ? children : defaultProps.children; // Wrap the value with the element and return (if not collapsible).
+
+  return !value && collapsible ? null : React__default.createElement(Tag, attrs, render(value));
+};
+
+ValueElement.displayName = 'Core/Elements/Value';
+ValueElement.propTypes = propTypes;
+ValueElement.defaultProps = defaultProps;
+
+var propTypes$1 = {
   collapsible: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   value: PropTypes.string
 };
-var defaultProps = {
+var defaultProps$1 = {
   collapsible: true,
   tag: 'div',
   value: ''
@@ -32,39 +64,9 @@ var HTMLElement = function HTMLElement(_ref) {
   }, attrs));
 };
 
-HTMLElement.propTypes = propTypes;
-HTMLElement.defaultProps = defaultProps;
-
-var propTypes$1 = {
-  children: PropTypes.func,
-  collapsible: PropTypes.bool,
-  tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-  value: PropTypes.node
-};
-var defaultProps$1 = {
-  children: function children(v) {
-    return v;
-  },
-  collapsible: true,
-  tag: 'div',
-  value: null
-};
-
-var Element = function Element(_ref) {
-  var children = _ref.children,
-      collapsible = _ref.collapsible,
-      Tag = _ref.tag,
-      value = _ref.value,
-      attrs = __chunk_1._objectWithoutProperties(_ref, ["children", "collapsible", "tag", "value"]);
-
-  // Protect the child render function.
-  var render = utils.isFunction(children) ? children : defaultProps$1.children; // Wrap the value with the element and return (if not collapsible).
-
-  return !value && collapsible ? null : React__default.createElement(Tag, attrs, render(value));
-};
-
-Element.propTypes = propTypes$1;
-Element.defaultProps = defaultProps$1;
+HTMLElement.displayName = 'Core/Elements/HTML';
+HTMLElement.propTypes = propTypes$1;
+HTMLElement.defaultProps = defaultProps$1;
 
 var propTypes$2 = {
   // Whether to render the `value` prop as HTML.
@@ -109,7 +111,7 @@ var LinkElement = function LinkElement(_ref) {
     value: value
   });
 
-  var child = asHTML ? React__default.createElement(HTMLElement, props) : React__default.createElement(Element, props);
+  var child = asHTML ? React__default.createElement(HTMLElement, props) : React__default.createElement(ValueElement, props);
   if (isExternal) return child;
   return React__default.createElement(routing.Link, {
     route: "/".concat(utils.cleanPath(href)),
@@ -118,9 +120,10 @@ var LinkElement = function LinkElement(_ref) {
   }, child);
 };
 
+LinkElement.displayName = 'Core/Elements/Link';
 LinkElement.propTypes = propTypes$2;
 LinkElement.defaultProps = defaultProps$2;
 
-exports.HTMLElement = HTMLElement;
-exports.Element = Element;
 exports.LinkElement = LinkElement;
+exports.Value = ValueElement;
+exports.HTML = HTMLElement;

@@ -1,7 +1,8 @@
-import { a as _extends, b as _objectWithoutProperties } from './chunk-cfc9ba70.js';
+import { b as _extends, a as _objectWithoutProperties } from './chunk-cfc9ba70.js';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { c as LinkElement } from './chunk-742fd19b.js';
+import classNames from 'classnames';
+import { a as LinkElement } from './chunk-0ccd7852.js';
 import { cleanPath } from './utils.js';
 
 var propTypes = {
@@ -11,8 +12,11 @@ var propTypes = {
   asHTML: PropTypes.bool,
   // A child function to custom render the `value` prop.
   children: PropTypes.func,
+  className: PropTypes.string,
   // Whether the entire component should collapse on an empty value.
   collapsible: PropTypes.bool,
+  // The section id.
+  id: PropTypes.number.isRequired,
   // Optional parameters for named routes.
   params: PropTypes.object,
   // eslint-disable-line react/forbid-prop-types
@@ -24,6 +28,7 @@ var propTypes = {
 var defaultProps = {
   asHTML: false,
   children: undefined,
+  className: null,
   collapsible: true,
   params: undefined,
   routePrefix: 'section',
@@ -32,16 +37,19 @@ var defaultProps = {
 
 var WebsiteSectionLink = function WebsiteSectionLink(_ref) {
   var alias = _ref.alias,
+      className = _ref.className,
+      id = _ref.id,
       routePrefix = _ref.routePrefix,
-      rest = _objectWithoutProperties(_ref, ["alias", "routePrefix"]);
+      rest = _objectWithoutProperties(_ref, ["alias", "className", "id", "routePrefix"]);
 
   var to = routePrefix ? "".concat(routePrefix, "/").concat(cleanPath(alias)) : alias;
   return React.createElement(LinkElement, _extends({
     to: to,
-    className: "website-section__link"
+    className: classNames('website-section__link', "website-section__link--".concat(id), className)
   }, rest));
 };
 
+WebsiteSectionLink.displayName = 'WebsiteSection/Link';
 WebsiteSectionLink.propTypes = propTypes;
 WebsiteSectionLink.defaultProps = defaultProps;
 
