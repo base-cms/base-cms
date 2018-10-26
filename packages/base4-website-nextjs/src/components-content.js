@@ -1,4 +1,5 @@
 import Body from './components/content/Elements/Body';
+import CompanyNameLink from './components/content/Links/CompanyName';
 import DateFieldValue from './components/content/Elements/DateFieldValue';
 import FieldValue from './components/content/Elements/FieldValue';
 import Link from './components/content/Link';
@@ -14,6 +15,7 @@ import Wrapper from './components/content/Wrapper';
 
 export {
   Body,
+  CompanyNameLink,
   DateFieldValue,
   FieldValue,
   Link,
