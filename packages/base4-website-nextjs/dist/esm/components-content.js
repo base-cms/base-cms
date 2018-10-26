@@ -354,4 +354,39 @@ var ContentType = function ContentType(_ref) {
 ContentType.propTypes = propTypes$9;
 ContentType.defaultProps = defaultProps$9;
 
-export { ContentBody as Body, DateFieldValue$1 as DateFieldValue, FieldValue$1 as FieldValue, ContentLink as Link, ContentName as Name, ContentPublishedDate as PublishedDate, ContentRow as Row, ContentShortName as ShortName, ContentLinkShortName as ShortNameLink, ContentTeaser as Teaser, ContentType as Type };
+var propTypes$a = {
+  children: PropTypes.node.isRequired,
+  className: PropTypes.string,
+  content: PropTypes.shape({
+    id: PropTypes.number,
+    type: PropTypes.string
+  }),
+  tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
+};
+var defaultProps$a = {
+  className: null,
+  content: {},
+  tag: 'article'
+};
+
+var ContentWrapper = function ContentWrapper(_ref) {
+  var children = _ref.children,
+      className = _ref.className,
+      content = _ref.content,
+      Tag = _ref.tag,
+      attrs = _objectWithoutProperties(_ref, ["children", "className", "content", "tag"]);
+
+  var _ref2 = content || {},
+      id = _ref2.id,
+      type = _ref2.type;
+
+  return React.createElement(Tag, _extends({
+    "data-id": id,
+    className: classNames('content', 'content--display', "content--".concat(type), className)
+  }, attrs), children);
+};
+
+ContentWrapper.propTypes = propTypes$a;
+ContentWrapper.defaultProps = defaultProps$a;
+
+export { ContentBody as Body, DateFieldValue$1 as DateFieldValue, FieldValue$1 as FieldValue, ContentLink as Link, ContentName as Name, ContentPublishedDate as PublishedDate, ContentRow as Row, ContentShortName as ShortName, ContentLinkShortName as ShortNameLink, ContentTeaser as Teaser, ContentType as Type, ContentWrapper as Wrapper };
