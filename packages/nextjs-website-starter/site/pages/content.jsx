@@ -3,24 +3,29 @@ import classNames from 'classnames';
 import gql from 'graphql-tag';
 import { withPlatformContent } from '@base-cms/base4-website-nextjs/hoc';
 import { LinkElement } from '@base-cms/base4-website-nextjs/components/core';
-import { ShortNameLink, FieldValue } from '@base-cms/base4-website-nextjs/components/content';
+import {
+  Body,
+  FieldValue,
+  Name,
+  PublishedDate,
+  ShortNameLink,
+  Row,
+  Teaser,
+  Type,
+} from '@base-cms/base4-website-nextjs/components/content';
 
 const fragment = gql`
   fragment ContentPageFragment on PlatformContent {
     shortName
+    published
   }
 `;
 
 const ContentPage = ({ content }) => (
   <article data-id={content.id} className={classNames('content', 'content--display', `content--${content.type}`)}>
-    <FieldValue path="name" tag="h1" data={content} className="my-class" />
+    <Name content={content} />
     <ShortNameLink content={content} />
-    <FieldValue path="teaser" tag="h3" data={content} style={{ color: 'gray' }}>
-      {(value) => {
-        // Custom render.
-        return <em>{value}</em>;
-      }}
-    </FieldValue>
+    <Teaser tag="h3" content={content} />
     <FieldValue path="primarySection.name" tag="h4" data={content}>
       {(value) => {
         // With a generic link element.
@@ -29,7 +34,15 @@ const ContentPage = ({ content }) => (
       }}
     </FieldValue>
     <hr />
-    <FieldValue path="body" tag="div" data={content} asHTML />
+    <Row>
+      <Type content={content}>
+        {(value) => <>Type: {value}</>}
+      </Type>
+      {' | '}
+      <PublishedDate prefix="Published: " content={content} />
+    </Row>
+    <hr />
+    <Body content={content} />
   </article>
 );
 
