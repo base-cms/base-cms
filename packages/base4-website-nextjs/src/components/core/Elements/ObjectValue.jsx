@@ -5,8 +5,6 @@ import Date from './Date';
 import HTML from './HTML';
 import Value from './Value';
 
-const displayName = 'Core/Elements/Object';
-
 const propTypes = {
   asDate: PropTypes.bool,
   asHTML: PropTypes.bool,
@@ -28,7 +26,7 @@ const defaultProps = {
   tag: 'div',
 };
 
-const ObjectElement = ({
+const ObjectValueElement = ({
   asDate,
   asHTML,
   obj,
@@ -44,8 +42,8 @@ const ObjectElement = ({
   return asHTML ? <HTML value={value} {...rest} /> : <Value value={value} {...rest} />;
 };
 
-ObjectElement.displayName = displayName;
-ObjectElement.propTypes = propTypes;
-ObjectElement.defaultProps = defaultProps;
+ObjectValueElement.displayName = 'Core/Elements/ObjectValue';
+ObjectValueElement.propTypes = propTypes;
+ObjectValueElement.defaultProps = defaultProps;
 
-export default ObjectElement;
+export default ObjectValueElement;
