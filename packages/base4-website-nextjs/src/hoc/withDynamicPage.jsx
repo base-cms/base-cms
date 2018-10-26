@@ -12,7 +12,7 @@ import defaultFragment from '../gql/fragments/with-dynamic-page.graphql';
 import withRequestOrigin from './withRequestOrigin';
 
 // Components
-import { RelCanonical, PageTitle, MetaDescription } from '../components';
+import { RelCanonical, PageTitle, MetaDescription } from '../components-head';
 
 /**
  *

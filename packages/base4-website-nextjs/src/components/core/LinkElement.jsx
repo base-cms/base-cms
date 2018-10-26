@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Element from './Element';
 import HTMLElement from './HTMLElement';
-import { Link } from '../routing';
-import { cleanPath } from '../utils';
+import { Link } from '../../routing';
+import { cleanPath } from '../../utils';
 
 const propTypes = {
   // Whether to render the `value` prop as HTML.

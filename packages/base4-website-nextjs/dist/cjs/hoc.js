@@ -11,12 +11,9 @@ var React__default = _interopDefault(React);
 var PropTypes = _interopDefault(require('prop-types'));
 var utils = require('./utils.js');
 var gql = _interopDefault(require('graphql-tag'));
-var components = require('./components.js');
+var componentsHead = require('./components-head.js');
 var routing = require('./routing.js');
-var __chunk_3 = require('./chunk-60378f3f.js');
 require('moment');
-require('object-path');
-require('classnames');
 require('next/head');
 require('./chunk-4b678d5c.js');
 
@@ -163,11 +160,11 @@ var withDynamicPage = (function (Page) {
             page = _this$props.page;
         var metadata = page.metadata,
             alias = page.alias;
-        return React__default.createElement(React__default.Fragment, null, React__default.createElement(components.PageTitle, {
+        return React__default.createElement(React__default.Fragment, null, React__default.createElement(componentsHead.PageTitle, {
           value: metadata.title
-        }), React__default.createElement(components.MetaDescription, {
+        }), React__default.createElement(componentsHead.MetaDescription, {
           value: metadata.description
-        }), React__default.createElement(components.RelCanonical, {
+        }), React__default.createElement(componentsHead.RelCanonical, {
           origin: requestOrigin,
           pathname: alias
         }), React__default.createElement(Page, this.props));
@@ -280,6 +277,9 @@ var withDynamicPage = (function (Page) {
 var doc$1 = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"WithPlatformContentFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PlatformContent"}},"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"name"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"type"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"teaser"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"body"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"redirectTo"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"metadata"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"description"},"arguments":[],"directives":[]}]}},{"kind":"Field","name":{"kind":"Name","value":"primarySection"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"name"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"alias"},"arguments":[],"directives":[]}]}}]}}],"loc":{"start":0,"end":201}};
     doc$1.loc.source = {"body":"\nfragment WithPlatformContentFragment on PlatformContent {\n  id\n  name\n  type\n  teaser\n  body\n  redirectTo\n  metadata {\n    title\n    description\n  }\n  primarySection {\n    id\n    name\n    alias\n  }\n}\n","name":"GraphQL request","locationOffset":{"line":1,"column":1}};
 
+var doc$2 = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ContentCanonicalPath"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PlatformContent"}},"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"canonicalPath"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"fields"},"value":{"kind":"Variable","name":{"kind":"Name","value":"canonicalFields"}}}]}}],"directives":[]}]}}],"loc":{"start":0,"end":106}};
+    doc$2.loc.source = {"body":"fragment ContentCanonicalPath on PlatformContent {\n  canonicalPath(input: { fields: $canonicalFields })\n}\n","name":"GraphQL request","locationOffset":{"line":1,"column":1}};
+
 function _templateObject$1() {
   var data = __chunk_1._taggedTemplateLiteral(["\n    query WithPlatformContent($input: RootPlatformContentQueryOne!, $canonicalFields: [PlatfromContentPathField]!) {\n      platformContent(input: $input) {\n        ...WithPlatformContentFragment\n        ...ContentCanonicalPath\n        ", "\n      }\n    }\n    ", "\n    ", "\n    ", "\n  "]);
 
@@ -305,7 +305,7 @@ var buildQuery$1 = function buildQuery(_ref) {
       spreadFragmentName = _extractFragmentData.spreadFragmentName,
       processedFragment = _extractFragmentData.processedFragment;
 
-  return gql(_templateObject$1(), spreadFragmentName, doc$1, __chunk_3.canonicalPathFrag, processedFragment);
+  return gql(_templateObject$1(), spreadFragmentName, doc$1, doc$2, processedFragment);
 };
 /**
  *
@@ -375,11 +375,11 @@ var withPlatformContent = (function () {
               canonicalPath = _this$props.canonicalPath,
               content = _this$props.content;
           var metadata = content.metadata;
-          return React__default.createElement(React__default.Fragment, null, React__default.createElement(components.PageTitle, {
+          return React__default.createElement(React__default.Fragment, null, React__default.createElement(componentsHead.PageTitle, {
             value: metadata.title
-          }), React__default.createElement(components.MetaDescription, {
+          }), React__default.createElement(componentsHead.MetaDescription, {
             value: metadata.description
-          }), React__default.createElement(components.RelCanonical, {
+          }), React__default.createElement(componentsHead.RelCanonical, {
             origin: requestOrigin,
             pathname: canonicalPath
           }), React__default.createElement(Page, this.props));
@@ -497,8 +497,8 @@ var withPlatformContent = (function () {
   };
 });
 
-var doc$2 = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"WithWebsiteSectionFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"WebsiteSection"}},"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"name"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"description"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"alias"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"metadata"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"description"},"arguments":[],"directives":[]}]}}]}}],"loc":{"start":0,"end":135}};
-    doc$2.loc.source = {"body":"fragment WithWebsiteSectionFragment on WebsiteSection {\n  id\n  name\n  description\n  alias\n  metadata {\n    title\n    description\n  }\n}\n","name":"GraphQL request","locationOffset":{"line":1,"column":1}};
+var doc$3 = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"WithWebsiteSectionFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"WebsiteSection"}},"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"name"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"description"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"alias"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"metadata"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"description"},"arguments":[],"directives":[]}]}}]}}],"loc":{"start":0,"end":135}};
+    doc$3.loc.source = {"body":"fragment WithWebsiteSectionFragment on WebsiteSection {\n  id\n  name\n  description\n  alias\n  metadata {\n    title\n    description\n  }\n}\n","name":"GraphQL request","locationOffset":{"line":1,"column":1}};
 
 function _templateObject$2() {
   var data = __chunk_1._taggedTemplateLiteral(["\n    query WithWebsiteSection($input: WebsiteSectionAliasQueryInput!) {\n      websiteSectionAlias(input: $input) {\n        ...WithWebsiteSectionFragment\n        ", "\n      }\n      websiteSectionRedirect(input: $input) {\n        id\n        alias\n      }\n    }\n    ", "\n    ", "\n  "]);
@@ -522,7 +522,7 @@ var buildQuery$2 = function buildQuery(_ref) {
       spreadFragmentName = _extractFragmentData.spreadFragmentName,
       processedFragment = _extractFragmentData.processedFragment;
 
-  return gql(_templateObject$2(), spreadFragmentName, doc$2, processedFragment);
+  return gql(_templateObject$2(), spreadFragmentName, doc$3, processedFragment);
 };
 var withWebsiteSection = (function () {
   var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
@@ -555,11 +555,11 @@ var withWebsiteSection = (function () {
               canonicalPath = _this$props.canonicalPath,
               section = _this$props.section;
           var metadata = section.metadata;
-          return React__default.createElement(React__default.Fragment, null, React__default.createElement(components.PageTitle, {
+          return React__default.createElement(React__default.Fragment, null, React__default.createElement(componentsHead.PageTitle, {
             value: metadata.title
-          }), React__default.createElement(components.MetaDescription, {
+          }), React__default.createElement(componentsHead.MetaDescription, {
             value: metadata.description
-          }), React__default.createElement(components.RelCanonical, {
+          }), React__default.createElement(componentsHead.RelCanonical, {
             origin: requestOrigin,
             pathname: canonicalPath
           }), React__default.createElement(Page, this.props));

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { createMarkup } from '../utils';
+import { createMarkup } from '../../utils';
 
 const propTypes = {
   collapsible: PropTypes.bool,

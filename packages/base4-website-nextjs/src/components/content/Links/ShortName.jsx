@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'object-path';
-import FieldValue from '../FieldValue';
+import FieldValue from '../Elements/FieldValue';
 import Link from '../Link';
 
 const propTypes = {

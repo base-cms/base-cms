@@ -1,5 +1,0 @@
-{
-  "name": "components",
-  "private": true,
-  "main": "../dist/cjs/components.js"
-}

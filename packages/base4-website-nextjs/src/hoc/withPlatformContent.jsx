@@ -16,7 +16,7 @@ import canonicalPathFrag from '../gql/fragments/content-canonical-path.graphql';
 import withRequestOrigin from './withRequestOrigin';
 
 // Components
-import { RelCanonical, PageTitle, MetaDescription } from '../components';
+import { RelCanonical, PageTitle, MetaDescription } from '../components-head';
 
 /**
  *

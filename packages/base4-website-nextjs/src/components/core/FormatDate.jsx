@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Element from './Element';
-import { formatDate } from '../utils';
+import { formatDate } from '../../utils';
 
 const propTypes = {
   children: PropTypes.func,

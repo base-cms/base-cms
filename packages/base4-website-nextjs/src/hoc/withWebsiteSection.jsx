@@ -20,7 +20,7 @@ import defaultFragment from '../gql/fragments/with-website-section.graphql';
 import withRequestOrigin from './withRequestOrigin';
 
 // Components
-import { RelCanonical, PageTitle, MetaDescription } from '../components';
+import { RelCanonical, PageTitle, MetaDescription } from '../components-head';
 
 /**
  * Builds the website section GraphQL query.

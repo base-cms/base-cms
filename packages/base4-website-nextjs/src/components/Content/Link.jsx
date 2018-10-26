@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import LinkElement from '../LinkElement';
+import LinkElement from '../core/LinkElement';
 
 const propTypes = {
   // Whether to render the `value` prop as HTML.
@@ -24,7 +24,7 @@ const defaultProps = {
   params: undefined,
   value: null,
 };
-
+// @todo Do not make this clickable if the canonicalPath matches the route.
 const ContentLink = ({ canonicalPath, ...rest }) => (
   <LinkElement to={canonicalPath} className="content__link" {...rest} />
 );

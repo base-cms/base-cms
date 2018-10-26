@@ -1,0 +1,5 @@
+{
+  "name": "components-core",
+  "private": true,
+  "main": "../dist/cjs/components-core.js"
+}
