@@ -2,7 +2,8 @@ import React from 'react';
 import classNames from 'classnames';
 import gql from 'graphql-tag';
 import { withPlatformContent } from '@base-cms/base4-website-nextjs/hoc';
-import { ContentFieldValue as FieldValue, LinkElement, ContentLinkShortName } from '@base-cms/base4-website-nextjs/components';
+import { LinkElement } from '@base-cms/base4-website-nextjs/components/core';
+import { ShortNameLink, FieldValue } from '@base-cms/base4-website-nextjs/components/content';
 
 const fragment = gql`
   fragment ContentPageFragment on PlatformContent {
@@ -13,7 +14,7 @@ const fragment = gql`
 const ContentPage = ({ content }) => (
   <article data-id={content.id} className={classNames('content', 'content--display', `content--${content.type}`)}>
     <FieldValue path="name" tag="h1" data={content} className="my-class" />
-    <ContentLinkShortName content={content} />
+    <ShortNameLink content={content} />
     <FieldValue path="teaser" tag="h3" data={content} style={{ color: 'gray' }}>
       {(value) => {
         // Custom render.
