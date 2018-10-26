@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { get } from 'object-path';
 import DateFieldValue from './DateFieldValue';
-import { isFunction as isFn } from '../../../utils';
+import { isFunction as isFn, formatDate } from '../../../utils';
 
 const propTypes = {
   children: PropTypes.func,
@@ -20,7 +21,7 @@ const defaultProps = {
   content: {},
   format: 'MMM Do, YYYY',
   prefix: '',
-  tag: 'div',
+  tag: 'time',
 };
 
 const ContentPublishedDate = ({
@@ -28,15 +29,20 @@ const ContentPublishedDate = ({
   children,
   prefix,
   ...rest
-}) => (
-  <DateFieldValue path="published" data={content} {...rest}>
-    {(value) => {
-      const formatted = prefix ? `${prefix} ${value}` : value;
-      if (isFn(children)) return children(formatted);
-      return formatted;
-    }}
-  </DateFieldValue>
-);
+}) => {
+  // Create the `datetime` element attribute
+  // @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time
+  const datetime = formatDate(get(content, 'published'));
+  return (
+    <DateFieldValue path="published" data={content} datetime={datetime} {...rest}>
+      {(value) => {
+        const formatted = prefix ? `${prefix} ${value}` : value;
+        if (isFn(children)) return children(formatted);
+        return formatted;
+      }}
+    </DateFieldValue>
+  );
+};
 
 ContentPublishedDate.propTypes = propTypes;
 ContentPublishedDate.defaultProps = defaultProps;
