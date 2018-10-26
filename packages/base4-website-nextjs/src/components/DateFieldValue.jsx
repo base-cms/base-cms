@@ -14,7 +14,7 @@ const propTypes = {
 
 const defaultProps = {
   children: undefined,
-  collapsible: false,
+  collapsible: true,
   data: {},
   format: 'MMM Do, YYYY',
   tag: 'div',

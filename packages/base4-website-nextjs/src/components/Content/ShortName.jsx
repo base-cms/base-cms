@@ -12,7 +12,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  collapsible: false,
+  collapsible: true,
   content: {},
   tag: 'h5',
 };

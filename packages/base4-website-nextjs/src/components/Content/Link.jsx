@@ -20,7 +20,7 @@ const propTypes = {
 const defaultProps = {
   asHTML: false,
   children: undefined,
-  collapsible: false,
+  collapsible: true,
   params: undefined,
   value: null,
 };

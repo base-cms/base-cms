@@ -10,7 +10,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  collapsible: false,
+  collapsible: true,
   tag: 'div',
   value: '',
 };

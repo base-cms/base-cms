@@ -16,7 +16,7 @@ const propTypes = {
 const defaultProps = {
   asHTML: false,
   children: undefined,
-  collapsible: false,
+  collapsible: true,
   data: {},
   tag: 'div',
 };

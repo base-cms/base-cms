@@ -11,7 +11,7 @@ const propTypes = {
 
 const defaultProps = {
   children: v => v,
-  collapsible: false,
+  collapsible: true,
   tag: 'div',
   value: null,
 };

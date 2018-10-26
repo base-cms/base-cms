@@ -17,7 +17,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  collapsible: false,
+  collapsible: true,
   content: {},
   linkAttrs: {},
   tag: 'h5',
