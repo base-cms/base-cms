@@ -12,7 +12,7 @@ var __chunk_2 = require('./chunk-30f9615d.js');
 var classNames = _interopDefault(require('classnames'));
 var inflected = require('inflected');
 var utils = require('./utils.js');
-var __chunk_4 = require('./chunk-bfb2fae3.js');
+var __chunk_4 = require('./chunk-952e091c.js');
 var objectPath = require('object-path');
 var __chunk_5 = require('./chunk-44287ce2.js');
 require('./routing.js');

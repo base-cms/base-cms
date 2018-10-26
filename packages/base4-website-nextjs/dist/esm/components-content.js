@@ -5,7 +5,7 @@ import { a as LinkElement } from './chunk-0ccd7852.js';
 import classNames from 'classnames';
 import { underscore, dasherize } from 'inflected';
 import { componentDisplayName, isFunction as isFn, titleizeType } from './utils.js';
-import { a as ObjectValue } from './chunk-a66728f3.js';
+import { a as ObjectValue } from './chunk-36ac9986.js';
 import { get } from 'object-path';
 import { a as Link } from './chunk-04e4878f.js';
 import './routing.js';
