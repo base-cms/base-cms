@@ -9,6 +9,7 @@ import ShortName from './components/content/Elements/ShortName';
 import ShortNameLink from './components/content/Links/ShortName';
 import Teaser from './components/content/Elements/Teaser';
 import Type from './components/content/Elements/Type';
+import Wrapper from './components/content/Wrapper';
 
 export {
   Body,
@@ -22,4 +23,5 @@ export {
   ShortNameLink,
   Teaser,
   Type,
+  Wrapper,
 };
