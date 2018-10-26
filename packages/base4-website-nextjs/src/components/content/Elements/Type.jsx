@@ -16,7 +16,7 @@ const defaultProps = {
   children: undefined,
   collapsible: true,
   content: {},
-  tag: 'h1',
+  tag: 'span',
 };
 
 const ContentName = ({ content, children, ...rest }) => (
