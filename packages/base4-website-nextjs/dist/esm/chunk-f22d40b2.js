@@ -1,8 +1,7 @@
-import { b as _objectWithoutProperties, c as _extends, d as _objectSpread } from './chunk-1a4eb17c.js';
+import { b as _objectWithoutProperties, c as _extends } from './chunk-1a4eb17c.js';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { isFunction as isFn, createMarkup, cleanPath, formatDate } from './utils.js';
-import { Link } from './routing.js';
+import { isFunction as isFn, createMarkup, formatDate } from './utils.js';
 import { get } from 'object-path';
 
 var propTypes = {
@@ -70,62 +69,6 @@ HTMLElement.propTypes = propTypes$1;
 HTMLElement.defaultProps = defaultProps$1;
 
 var propTypes$2 = {
-  // Whether to render the `value` prop as HTML.
-  asHTML: PropTypes.bool,
-  // A child function to custom render the `value` prop.
-  children: PropTypes.func,
-  // Whether the entire component should collapse on an empty value.
-  collapsible: PropTypes.bool,
-  // Optional parameters for named routes.
-  params: PropTypes.object,
-  // eslint-disable-line react/forbid-prop-types
-  // Route name or URL to match (per `next-routes`).
-  to: PropTypes.string.isRequired,
-  // The inner value to render by default.
-  value: PropTypes.node
-};
-var defaultProps$2 = {
-  asHTML: false,
-  children: undefined,
-  collapsible: true,
-  params: undefined,
-  value: null
-};
-
-var LinkElement = function LinkElement(_ref) {
-  var asHTML = _ref.asHTML,
-      children = _ref.children,
-      collapsible = _ref.collapsible,
-      params = _ref.params,
-      to = _ref.to,
-      value = _ref.value,
-      attrs = _objectWithoutProperties(_ref, ["asHTML", "children", "collapsible", "params", "to", "value"]);
-
-  var href = String(to || '');
-  var isExternal = href.match(/^(http:|https:|ftp:|mailto:|\/\/)/i);
-
-  var props = _objectSpread({}, attrs, {
-    children: children,
-    collapsible: collapsible,
-    href: isExternal ? href : undefined,
-    tag: 'a',
-    value: value
-  });
-
-  var child = asHTML ? React.createElement(HTMLElement, props) : React.createElement(ValueElement, props);
-  if (isExternal) return child;
-  return React.createElement(Link, {
-    route: "/".concat(cleanPath(href)),
-    params: params,
-    passHref: true
-  }, child);
-};
-
-LinkElement.displayName = 'Core/Elements/Link';
-LinkElement.propTypes = propTypes$2;
-LinkElement.defaultProps = defaultProps$2;
-
-var propTypes$3 = {
   children: PropTypes.func,
   collapsible: PropTypes.bool,
   // optional context object to send to children callback.
@@ -136,7 +79,7 @@ var propTypes$3 = {
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string, // Must adhere to moment date string reqs.
   PropTypes.objectOf(Date)])
 };
-var defaultProps$3 = {
+var defaultProps$2 = {
   collapsible: true,
   children: undefined,
   context: {},
@@ -162,10 +105,10 @@ var DateElement = function DateElement(_ref) {
 };
 
 DateElement.propTypes = 'Core/Elements/Date';
-DateElement.propTypes = propTypes$3;
-DateElement.defaultProps = defaultProps$3;
+DateElement.propTypes = propTypes$2;
+DateElement.defaultProps = defaultProps$2;
 
-var propTypes$4 = {
+var propTypes$3 = {
   asDate: PropTypes.bool,
   asHTML: PropTypes.bool,
   children: PropTypes.func,
@@ -176,7 +119,7 @@ var propTypes$4 = {
   path: PropTypes.string.isRequired,
   tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
 };
-var defaultProps$4 = {
+var defaultProps$3 = {
   asDate: false,
   asHTML: false,
   children: undefined,
@@ -214,7 +157,7 @@ var ObjectValueElement = function ObjectValueElement(_ref) {
 };
 
 ObjectValueElement.displayName = 'Core/Elements/ObjectValue';
-ObjectValueElement.propTypes = propTypes$4;
-ObjectValueElement.defaultProps = defaultProps$4;
+ObjectValueElement.propTypes = propTypes$3;
+ObjectValueElement.defaultProps = defaultProps$3;
 
-export { LinkElement as a, ObjectValueElement as b, DateElement as c, HTMLElement as d, ValueElement as e };
+export { ValueElement as a, HTMLElement as b, ObjectValueElement as c, DateElement as d };

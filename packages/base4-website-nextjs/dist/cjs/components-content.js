@@ -8,11 +8,13 @@ var __chunk_1 = require('./chunk-9e05845b.js');
 var React = require('react');
 var React__default = _interopDefault(React);
 var PropTypes = _interopDefault(require('prop-types'));
-var __chunk_2 = require('./chunk-418210bf.js');
+var __chunk_4 = require('./chunk-60bb28a4.js');
 var classNames = _interopDefault(require('classnames'));
-var __chunk_4 = require('./chunk-dbea994f.js');
+var __chunk_2 = require('./chunk-cf20d45d.js');
+var __chunk_5 = require('./chunk-adb978b5.js');
 var utils = require('./utils.js');
 var objectPath = require('object-path');
+var __chunk_6 = require('./chunk-bee31e8d.js');
 require('./routing.js');
 require('./chunk-4b678d5c.js');
 require('inflected');
@@ -45,7 +47,7 @@ var ContentLink = function ContentLink(_ref) {
   var canonicalPath = _ref.canonicalPath,
       rest = __chunk_1._objectWithoutProperties(_ref, ["canonicalPath"]);
 
-  return React__default.createElement(__chunk_2.LinkElement, __chunk_1._extends({
+  return React__default.createElement(__chunk_4.LinkElement, __chunk_1._extends({
     to: canonicalPath,
     className: "content__link"
   }, rest));
@@ -91,7 +93,7 @@ ContentWrapper.displayName = 'Content/Wrapper';
 ContentWrapper.propTypes = propTypes$1;
 ContentWrapper.defaultProps = defaultProps$1;
 
-var ObjectValue = __chunk_4.withModelFieldClass('content')(__chunk_2.ObjectValue);
+var ObjectValue = __chunk_5.withModelFieldClass('content')(__chunk_2.ObjectValue);
 
 var propTypes$2 = {
   collapsible: PropTypes.bool,
@@ -530,7 +532,7 @@ var PrimarySectionNameLink = function PrimarySectionNameLink(_ref) {
     var id = objectPath.get(content, 'primarySection.id');
     var alias = objectPath.get(content, 'primarySection.alias');
     if (!id || !alias) return null;
-    return React__default.createElement(__chunk_4.Link, __chunk_1._extends({
+    return React__default.createElement(__chunk_6.Link, __chunk_1._extends({
       routePrefix: sectionRoutePrefix,
       id: id,
       alias: alias,

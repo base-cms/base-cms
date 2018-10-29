@@ -7,7 +7,6 @@ var React = require('react');
 var React__default = _interopDefault(React);
 var PropTypes = _interopDefault(require('prop-types'));
 var utils = require('./utils.js');
-var routing = require('./routing.js');
 var objectPath = require('object-path');
 
 var propTypes = {
@@ -75,62 +74,6 @@ HTMLElement.propTypes = propTypes$1;
 HTMLElement.defaultProps = defaultProps$1;
 
 var propTypes$2 = {
-  // Whether to render the `value` prop as HTML.
-  asHTML: PropTypes.bool,
-  // A child function to custom render the `value` prop.
-  children: PropTypes.func,
-  // Whether the entire component should collapse on an empty value.
-  collapsible: PropTypes.bool,
-  // Optional parameters for named routes.
-  params: PropTypes.object,
-  // eslint-disable-line react/forbid-prop-types
-  // Route name or URL to match (per `next-routes`).
-  to: PropTypes.string.isRequired,
-  // The inner value to render by default.
-  value: PropTypes.node
-};
-var defaultProps$2 = {
-  asHTML: false,
-  children: undefined,
-  collapsible: true,
-  params: undefined,
-  value: null
-};
-
-var LinkElement = function LinkElement(_ref) {
-  var asHTML = _ref.asHTML,
-      children = _ref.children,
-      collapsible = _ref.collapsible,
-      params = _ref.params,
-      to = _ref.to,
-      value = _ref.value,
-      attrs = __chunk_1._objectWithoutProperties(_ref, ["asHTML", "children", "collapsible", "params", "to", "value"]);
-
-  var href = String(to || '');
-  var isExternal = href.match(/^(http:|https:|ftp:|mailto:|\/\/)/i);
-
-  var props = __chunk_1._objectSpread({}, attrs, {
-    children: children,
-    collapsible: collapsible,
-    href: isExternal ? href : undefined,
-    tag: 'a',
-    value: value
-  });
-
-  var child = asHTML ? React__default.createElement(HTMLElement, props) : React__default.createElement(ValueElement, props);
-  if (isExternal) return child;
-  return React__default.createElement(routing.Link, {
-    route: "/".concat(utils.cleanPath(href)),
-    params: params,
-    passHref: true
-  }, child);
-};
-
-LinkElement.displayName = 'Core/Elements/Link';
-LinkElement.propTypes = propTypes$2;
-LinkElement.defaultProps = defaultProps$2;
-
-var propTypes$3 = {
   children: PropTypes.func,
   collapsible: PropTypes.bool,
   // optional context object to send to children callback.
@@ -141,7 +84,7 @@ var propTypes$3 = {
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string, // Must adhere to moment date string reqs.
   PropTypes.objectOf(Date)])
 };
-var defaultProps$3 = {
+var defaultProps$2 = {
   collapsible: true,
   children: undefined,
   context: {},
@@ -167,10 +110,10 @@ var DateElement = function DateElement(_ref) {
 };
 
 DateElement.propTypes = 'Core/Elements/Date';
-DateElement.propTypes = propTypes$3;
-DateElement.defaultProps = defaultProps$3;
+DateElement.propTypes = propTypes$2;
+DateElement.defaultProps = defaultProps$2;
 
-var propTypes$4 = {
+var propTypes$3 = {
   asDate: PropTypes.bool,
   asHTML: PropTypes.bool,
   children: PropTypes.func,
@@ -181,7 +124,7 @@ var propTypes$4 = {
   path: PropTypes.string.isRequired,
   tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
 };
-var defaultProps$4 = {
+var defaultProps$3 = {
   asDate: false,
   asHTML: false,
   children: undefined,
@@ -219,11 +162,10 @@ var ObjectValueElement = function ObjectValueElement(_ref) {
 };
 
 ObjectValueElement.displayName = 'Core/Elements/ObjectValue';
-ObjectValueElement.propTypes = propTypes$4;
-ObjectValueElement.defaultProps = defaultProps$4;
+ObjectValueElement.propTypes = propTypes$3;
+ObjectValueElement.defaultProps = defaultProps$3;
 
-exports.LinkElement = LinkElement;
+exports.Value = ValueElement;
+exports.HTML = HTMLElement;
 exports.ObjectValue = ObjectValueElement;
 exports.DateElement = DateElement;
-exports.HTML = HTMLElement;
-exports.Value = ValueElement;
