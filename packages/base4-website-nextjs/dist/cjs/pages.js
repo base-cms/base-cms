@@ -4,7 +4,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var __chunk_6 = require('./chunk-efb9fd9b.js');
+var __chunk_5 = require('./chunk-efb9fd9b.js');
 var __chunk_1 = require('./chunk-9e05845b.js');
 var React = require('react');
 var React__default = _interopDefault(React);
@@ -80,9 +80,9 @@ var withRouting = (function (definitions) {
         value: function () {
           var _getInitialProps = __chunk_1._asyncToGenerator(
           /*#__PURE__*/
-          __chunk_6._regeneratorRuntime.mark(function _callee(args) {
+          __chunk_5._regeneratorRuntime.mark(function _callee(args) {
             var ctx, Router, composedInitialProps;
-            return __chunk_6._regeneratorRuntime.wrap(function _callee$(_context) {
+            return __chunk_5._regeneratorRuntime.wrap(function _callee$(_context) {
               while (1) {
                 switch (_context.prev = _context.next) {
                   case 0:

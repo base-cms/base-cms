@@ -8,8 +8,7 @@ var __chunk_1 = require('./chunk-9e05845b.js');
 var React = require('react');
 var React__default = _interopDefault(React);
 var PropTypes = _interopDefault(require('prop-types'));
-var __chunk_4 = require('./chunk-bf87eee3.js');
-var __chunk_2 = require('./chunk-d83335f1.js');
+var __chunk_2 = require('./chunk-418210bf.js');
 require('./utils.js');
 require('inflected');
 require('moment');
@@ -39,7 +38,7 @@ var DateCollection = function DateCollection(_ref) {
 
   var arr = Array.isArray(values) ? values : [];
   return React__default.createElement(React__default.Fragment, null, arr.map(function (value, index) {
-    return React__default.createElement(__chunk_4.DateElement, __chunk_1._extends({
+    return React__default.createElement(__chunk_2.DateElement, __chunk_1._extends({
       key: index,
       value: value
     }, rest));
@@ -104,7 +103,7 @@ var ObjectValueCollection = function ObjectValueCollection(_ref) {
 
   var arr = Array.isArray(objs) ? objs : [];
   return React__default.createElement(React__default.Fragment, null, arr.map(function (obj, index) {
-    return React__default.createElement(__chunk_4.ObjectValue, __chunk_1._extends({
+    return React__default.createElement(__chunk_2.ObjectValue, __chunk_1._extends({
       key: index,
       obj: obj
     }, rest));
@@ -145,10 +144,10 @@ ValueCollection.displayName = 'Core/Collections/Value';
 ValueCollection.propTypes = propTypes$3;
 ValueCollection.defaultProps = defaultProps$3;
 
-exports.DateElement = __chunk_4.DateElement;
-exports.ObjectValueElement = __chunk_4.ObjectValue;
+exports.DateElement = __chunk_2.DateElement;
 exports.HTMLElement = __chunk_2.HTML;
 exports.LinkElement = __chunk_2.LinkElement;
+exports.ObjectValueElement = __chunk_2.ObjectValue;
 exports.ValueElement = __chunk_2.Value;
 exports.DateCollection = DateCollection;
 exports.HTMLCollection = HTMLCollection;

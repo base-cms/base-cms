@@ -9,8 +9,8 @@ var React = require('react');
 var React__default = _interopDefault(React);
 var PropTypes = _interopDefault(require('prop-types'));
 var classNames = _interopDefault(require('classnames'));
-var __chunk_5 = require('./chunk-dc3061c0.js');
-require('./chunk-d83335f1.js');
+var __chunk_2 = require('./chunk-418210bf.js');
+var __chunk_4 = require('./chunk-dbea994f.js');
 require('./utils.js');
 require('inflected');
 require('moment');
@@ -47,13 +47,44 @@ var WebsiteSectionWrapper = function WebsiteSectionWrapper(_ref) {
   var type = alias ? alias.replace('/', '-') : alias;
   return React__default.createElement(Tag, __chunk_1._extends({
     "data-id": id,
-    className: classNames('website-section', 'website-section--display', "content--".concat(type), className)
+    className: classNames('website-section', 'website-section--display', "website-section--".concat(type), className)
   }, attrs), children);
 };
 
-WebsiteSectionWrapper.displayName = 'Content/Wrapper';
+WebsiteSectionWrapper.displayName = 'WebsiteSection/Wrapper';
 WebsiteSectionWrapper.propTypes = propTypes;
 WebsiteSectionWrapper.defaultProps = defaultProps;
 
-exports.Link = __chunk_5.Link;
+var ObjectValue = __chunk_4.withModelFieldClass('website-section')(__chunk_2.ObjectValue);
+
+var propTypes$1 = {
+  collapsible: PropTypes.bool,
+  section: PropTypes.shape({
+    name: PropTypes.string
+  }),
+  tag: PropTypes.string
+};
+var defaultProps$1 = {
+  collapsible: true,
+  section: {},
+  tag: 'h1'
+};
+
+var WebsiteSectionName = function WebsiteSectionName(_ref) {
+  var section = _ref.section,
+      rest = __chunk_1._objectWithoutProperties(_ref, ["section"]);
+
+  return React__default.createElement(ObjectValue, __chunk_1._extends({
+    path: "name",
+    obj: section
+  }, rest));
+};
+
+WebsiteSectionName.displayName = 'WebsiteSection/Elements/Name';
+WebsiteSectionName.propTypes = propTypes$1;
+WebsiteSectionName.defaultProps = defaultProps$1;
+
+exports.Link = __chunk_4.Link;
 exports.Wrapper = WebsiteSectionWrapper;
+exports.Name = WebsiteSectionName;
+exports.ObjectValue = ObjectValue;

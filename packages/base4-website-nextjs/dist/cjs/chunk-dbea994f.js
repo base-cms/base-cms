@@ -7,8 +7,30 @@ var React = require('react');
 var React__default = _interopDefault(React);
 var PropTypes = _interopDefault(require('prop-types'));
 var classNames = _interopDefault(require('classnames'));
-var __chunk_2 = require('./chunk-d83335f1.js');
 var utils = require('./utils.js');
+var __chunk_2 = require('./chunk-418210bf.js');
+
+var withModelFieldClass = (function (modelType) {
+  return function (Component) {
+    var WithModelFieldClass = function WithModelFieldClass(_ref) {
+      var path = _ref.path,
+          className = _ref.className,
+          rest = __chunk_1._objectWithoutProperties(_ref, ["path", "className"]);
+
+      var classes = utils.modelClassNames(modelType, path);
+      return React__default.createElement(Component, __chunk_1._extends({
+        className: classNames(classes, className),
+        path: path
+      }, rest));
+    };
+
+    WithModelFieldClass.displayName = "WithModelFieldClass(".concat(utils.componentDisplayName(Component), ")[").concat(modelType, "]");
+    WithModelFieldClass.propTypes = __chunk_1._objectSpread({}, Component.propTypes, {
+      path: PropTypes.string.isRequired
+    });
+    return WithModelFieldClass;
+  };
+});
 
 var propTypes = {
   // The website section alias.
@@ -58,4 +80,5 @@ WebsiteSectionLink.displayName = 'WebsiteSection/Link';
 WebsiteSectionLink.propTypes = propTypes;
 WebsiteSectionLink.defaultProps = defaultProps;
 
+exports.withModelFieldClass = withModelFieldClass;
 exports.Link = WebsiteSectionLink;

@@ -1,12 +1,11 @@
-import { c as _extends, b as _objectWithoutProperties, d as _objectSpread } from './chunk-1a4eb17c.js';
+import { c as _extends, b as _objectWithoutProperties } from './chunk-1a4eb17c.js';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { a as LinkElement } from './chunk-59d72e94.js';
+import { a as LinkElement, b as ObjectValue } from './chunk-f785d688.js';
 import classNames from 'classnames';
-import { componentDisplayName, modelClassNames, isFunction as isFn, titleizeType, getAsArray } from './utils.js';
-import { a as ObjectValue } from './chunk-b60bce7b.js';
+import { a as withModelFieldClass, b as Link } from './chunk-79aaaca5.js';
+import { isFunction as isFn, titleizeType, getAsArray, modelClassNames } from './utils.js';
 import { get } from 'object-path';
-import { a as Link } from './chunk-2623c9a7.js';
 import './routing.js';
 import './chunk-7976a9a0.js';
 import 'inflected';
@@ -84,28 +83,6 @@ var ContentWrapper = function ContentWrapper(_ref) {
 ContentWrapper.displayName = 'Content/Wrapper';
 ContentWrapper.propTypes = propTypes$1;
 ContentWrapper.defaultProps = defaultProps$1;
-
-var withModelFieldClass = (function (modelType) {
-  return function (Component) {
-    var WithModelFieldClass = function WithModelFieldClass(_ref) {
-      var path = _ref.path,
-          className = _ref.className,
-          rest = _objectWithoutProperties(_ref, ["path", "className"]);
-
-      var classes = modelClassNames(modelType, path);
-      return React.createElement(Component, _extends({
-        className: classNames(classes, className),
-        path: path
-      }, rest));
-    };
-
-    WithModelFieldClass.displayName = "WithModelFieldClass(".concat(componentDisplayName(Component), ")[").concat(modelType, "]");
-    WithModelFieldClass.propTypes = _objectSpread({}, Component.propTypes, {
-      path: PropTypes.string.isRequired
-    });
-    return WithModelFieldClass;
-  };
-});
 
 var ObjectValue$1 = withModelFieldClass('content')(ObjectValue);
 

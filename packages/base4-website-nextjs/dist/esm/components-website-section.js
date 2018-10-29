@@ -2,9 +2,9 @@ import { c as _extends, b as _objectWithoutProperties } from './chunk-1a4eb17c.j
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { a as Link } from './chunk-2623c9a7.js';
-export { a as Link } from './chunk-2623c9a7.js';
-import './chunk-59d72e94.js';
+import { b as ObjectValue } from './chunk-f785d688.js';
+import { a as withModelFieldClass, b as Link } from './chunk-79aaaca5.js';
+export { b as Link } from './chunk-79aaaca5.js';
 import './utils.js';
 import 'inflected';
 import 'moment';
@@ -41,12 +41,41 @@ var WebsiteSectionWrapper = function WebsiteSectionWrapper(_ref) {
   var type = alias ? alias.replace('/', '-') : alias;
   return React.createElement(Tag, _extends({
     "data-id": id,
-    className: classNames('website-section', 'website-section--display', "content--".concat(type), className)
+    className: classNames('website-section', 'website-section--display', "website-section--".concat(type), className)
   }, attrs), children);
 };
 
-WebsiteSectionWrapper.displayName = 'Content/Wrapper';
+WebsiteSectionWrapper.displayName = 'WebsiteSection/Wrapper';
 WebsiteSectionWrapper.propTypes = propTypes;
 WebsiteSectionWrapper.defaultProps = defaultProps;
 
-export { WebsiteSectionWrapper as Wrapper };
+var ObjectValue$1 = withModelFieldClass('website-section')(ObjectValue);
+
+var propTypes$1 = {
+  collapsible: PropTypes.bool,
+  section: PropTypes.shape({
+    name: PropTypes.string
+  }),
+  tag: PropTypes.string
+};
+var defaultProps$1 = {
+  collapsible: true,
+  section: {},
+  tag: 'h1'
+};
+
+var WebsiteSectionName = function WebsiteSectionName(_ref) {
+  var section = _ref.section,
+      rest = _objectWithoutProperties(_ref, ["section"]);
+
+  return React.createElement(ObjectValue$1, _extends({
+    path: "name",
+    obj: section
+  }, rest));
+};
+
+WebsiteSectionName.displayName = 'WebsiteSection/Elements/Name';
+WebsiteSectionName.propTypes = propTypes$1;
+WebsiteSectionName.defaultProps = defaultProps$1;
+
+export { WebsiteSectionWrapper as Wrapper, WebsiteSectionName as Name, ObjectValue$1 as ObjectValue };

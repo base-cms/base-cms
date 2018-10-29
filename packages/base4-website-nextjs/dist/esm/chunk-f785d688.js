@@ -1,8 +1,9 @@
 import { b as _objectWithoutProperties, c as _extends, d as _objectSpread } from './chunk-1a4eb17c.js';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { isFunction as isFn, createMarkup, cleanPath } from './utils.js';
+import { isFunction as isFn, createMarkup, cleanPath, formatDate } from './utils.js';
 import { Link } from './routing.js';
+import { get } from 'object-path';
 
 var propTypes = {
   children: PropTypes.func,
@@ -124,4 +125,96 @@ LinkElement.displayName = 'Core/Elements/Link';
 LinkElement.propTypes = propTypes$2;
 LinkElement.defaultProps = defaultProps$2;
 
-export { LinkElement as a, ValueElement as b, HTMLElement as c };
+var propTypes$3 = {
+  children: PropTypes.func,
+  collapsible: PropTypes.bool,
+  // optional context object to send to children callback.
+  context: PropTypes.object,
+  // eslint-disable-line react/forbid-prop-types
+  format: PropTypes.string,
+  tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string, // Must adhere to moment date string reqs.
+  PropTypes.objectOf(Date)])
+};
+var defaultProps$3 = {
+  collapsible: true,
+  children: undefined,
+  context: {},
+  format: 'MMM Do, YYYY',
+  tag: 'time',
+  value: null
+};
+
+var DateElement = function DateElement(_ref) {
+  var format = _ref.format,
+      raw = _ref.value,
+      rest = _objectWithoutProperties(_ref, ["format", "value"]);
+
+  // Format the date. Will return null on an invalid date value.
+  var value = formatDate(raw, format); // Create the `datetime` element attribute
+  // @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time
+
+  var dateTime = formatDate(raw);
+  return React.createElement(ValueElement, _extends({
+    value: value,
+    dateTime: dateTime
+  }, rest));
+};
+
+DateElement.propTypes = 'Core/Elements/Date';
+DateElement.propTypes = propTypes$3;
+DateElement.defaultProps = defaultProps$3;
+
+var propTypes$4 = {
+  asDate: PropTypes.bool,
+  asHTML: PropTypes.bool,
+  children: PropTypes.func,
+  collapsible: PropTypes.bool,
+  dateFormat: PropTypes.string,
+  obj: PropTypes.object,
+  // eslint-disable-line react/forbid-prop-types
+  path: PropTypes.string.isRequired,
+  tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
+};
+var defaultProps$4 = {
+  asDate: false,
+  asHTML: false,
+  children: undefined,
+  collapsible: true,
+  dateFormat: 'MMM Do, YYYY',
+  obj: {},
+  tag: 'span'
+};
+
+var ObjectValueElement = function ObjectValueElement(_ref) {
+  var asDate = _ref.asDate,
+      asHTML = _ref.asHTML,
+      obj = _ref.obj,
+      dateFormat = _ref.dateFormat,
+      path = _ref.path,
+      rest = _objectWithoutProperties(_ref, ["asDate", "asHTML", "obj", "dateFormat", "path"]);
+
+  // Extract the value off the object.
+  var value = get(obj, path, null); // Return as a date, if applicable.
+
+  if (asDate) return React.createElement(DateElement, _extends({
+    format: dateFormat,
+    value: value
+  }, rest));
+  if (asHTML) return React.createElement(HTMLElement, _extends({
+    value: value
+  }, rest));
+  return React.createElement(ValueElement, _extends({
+    value: value,
+    context: {
+      obj: obj,
+      path: path
+    }
+  }, rest));
+};
+
+ObjectValueElement.displayName = 'Core/Elements/ObjectValue';
+ObjectValueElement.propTypes = propTypes$4;
+ObjectValueElement.defaultProps = defaultProps$4;
+
+export { LinkElement as a, ObjectValueElement as b, DateElement as c, HTMLElement as d, ValueElement as e };

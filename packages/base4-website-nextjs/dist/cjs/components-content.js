@@ -8,12 +8,11 @@ var __chunk_1 = require('./chunk-9e05845b.js');
 var React = require('react');
 var React__default = _interopDefault(React);
 var PropTypes = _interopDefault(require('prop-types'));
-var __chunk_2 = require('./chunk-d83335f1.js');
+var __chunk_2 = require('./chunk-418210bf.js');
 var classNames = _interopDefault(require('classnames'));
+var __chunk_4 = require('./chunk-dbea994f.js');
 var utils = require('./utils.js');
-var __chunk_4 = require('./chunk-bf87eee3.js');
 var objectPath = require('object-path');
-var __chunk_5 = require('./chunk-dc3061c0.js');
 require('./routing.js');
 require('./chunk-4b678d5c.js');
 require('inflected');
@@ -92,29 +91,7 @@ ContentWrapper.displayName = 'Content/Wrapper';
 ContentWrapper.propTypes = propTypes$1;
 ContentWrapper.defaultProps = defaultProps$1;
 
-var withModelFieldClass = (function (modelType) {
-  return function (Component) {
-    var WithModelFieldClass = function WithModelFieldClass(_ref) {
-      var path = _ref.path,
-          className = _ref.className,
-          rest = __chunk_1._objectWithoutProperties(_ref, ["path", "className"]);
-
-      var classes = utils.modelClassNames(modelType, path);
-      return React__default.createElement(Component, __chunk_1._extends({
-        className: classNames(classes, className),
-        path: path
-      }, rest));
-    };
-
-    WithModelFieldClass.displayName = "WithModelFieldClass(".concat(utils.componentDisplayName(Component), ")[").concat(modelType, "]");
-    WithModelFieldClass.propTypes = __chunk_1._objectSpread({}, Component.propTypes, {
-      path: PropTypes.string.isRequired
-    });
-    return WithModelFieldClass;
-  };
-});
-
-var ObjectValue = withModelFieldClass('content')(__chunk_4.ObjectValue);
+var ObjectValue = __chunk_4.withModelFieldClass('content')(__chunk_2.ObjectValue);
 
 var propTypes$2 = {
   collapsible: PropTypes.bool,
@@ -553,7 +530,7 @@ var PrimarySectionNameLink = function PrimarySectionNameLink(_ref) {
     var id = objectPath.get(content, 'primarySection.id');
     var alias = objectPath.get(content, 'primarySection.alias');
     if (!id || !alias) return null;
-    return React__default.createElement(__chunk_5.Link, __chunk_1._extends({
+    return React__default.createElement(__chunk_4.Link, __chunk_1._extends({
       routePrefix: sectionRoutePrefix,
       id: id,
       alias: alias,
