@@ -1,4 +1,4 @@
-const routeDefs = require('../site/routes.json');
+const routeDefs = require('../site/routes');
 const startServer = require('@base-cms/base4-website-nextjs/server');
 
 const { log } = console;
