@@ -1,12 +1,16 @@
 import React from 'react';
 import { withDynamicPage } from '@base-cms/base4-website-nextjs/hoc';
-import { createMarkup } from '@base-cms/base4-website-nextjs/utils';
+import {
+  Body,
+  Name,
+  Wrapper,
+} from '@base-cms/base4-website-nextjs/components/dynamic-page';
 
 const DynamicPage = ({ page }) => (
-  <>
-    <h1>{page.name}</h1>
-    <div dangerouslySetInnerHTML={createMarkup(page.body)} />
-  </>
+  <Wrapper page={page}>
+    <Name page={page} />
+    <Body page={page} />
+  </Wrapper>
 );
 
 export default withDynamicPage(DynamicPage);
