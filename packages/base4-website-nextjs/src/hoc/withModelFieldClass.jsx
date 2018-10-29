@@ -1,10 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { underscore, dasherize } from 'inflected';
-import { componentDisplayName } from '../utils';
-
-const inflect = value => dasherize(underscore(value));
+import { componentDisplayName, modelClassNames } from '../utils';
 
 export default modelType => (Component) => {
   const WithModelFieldClass = ({
@@ -12,11 +9,7 @@ export default modelType => (Component) => {
     className,
     ...rest
   }) => {
-    const types = String(path).split('.');
-    const elementTypes = types.shift();
-    const elementClass = `${modelType}__${inflect(elementTypes)}`;
-    const classes = [elementClass];
-    types.forEach(type => classes.push(`${elementClass}--${inflect(type)}`));
+    const classes = modelClassNames(modelType, path);
     return <Component className={classNames(classes, className)} path={path} {...rest} />;
   };
   WithModelFieldClass.displayName = `WithModelFieldClass(${componentDisplayName(Component)})[${modelType}]`;
