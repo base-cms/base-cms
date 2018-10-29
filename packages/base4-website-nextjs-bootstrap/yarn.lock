@@ -786,7 +786,7 @@
 
 "@base-cms/base4-website-nextjs@https://github.com/base-cms/base4-website-nextjs.git":
   version "0.1.0"
-  resolved "https://github.com/base-cms/base4-website-nextjs.git#18c6e12d21837e3726c30b55af3a261ae6fcbb67"
+  resolved "https://github.com/base-cms/base4-website-nextjs.git#88abe0db15c511849fec5ca3f5b4eeb7972440ca"
   dependencies:
     "@base-cms/base4-nextjs-apollo" "https://github.com/base-cms/base4-nextjs-apollo.git"
     "@base-cms/base4-website-express" "https://github.com/base-cms/base4-website-express.git"
