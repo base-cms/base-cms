@@ -15,7 +15,7 @@ const defaultProps = {
   children: v => v,
   collapsible: true,
   context: {},
-  tag: 'div',
+  tag: 'span',
   value: null,
 };
 

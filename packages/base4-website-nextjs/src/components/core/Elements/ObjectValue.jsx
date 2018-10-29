@@ -23,7 +23,7 @@ const defaultProps = {
   collapsible: true,
   dateFormat: 'MMM Do, YYYY',
   obj: {},
-  tag: 'div',
+  tag: 'span',
 };
 
 const ObjectValueElement = ({
