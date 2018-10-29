@@ -1,0 +1,6 @@
+{
+  "name": "app",
+  "private": true,
+  "main": "../dist/cjs/app.js",
+  "module": "../dist/esm/app.js"
+}

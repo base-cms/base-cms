@@ -1,5 +1,6 @@
 import RoutingContext from './routing/context';
 import Link from './routing/Link';
+import withRouting from './routing/withRouting';
 
 const redirect = ({
   Router,
@@ -21,4 +22,5 @@ export {
   Link,
   RoutingContext,
   redirect,
+  withRouting,
 };

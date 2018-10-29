@@ -27,6 +27,7 @@ export default {
     'src/components-dynamic-page.js',
     'src/components-head.js',
     'src/components-website-section.js',
+    'src/config.js',
     'src/hoc.js',
     'src/pages.js',
     'src/queries.js',

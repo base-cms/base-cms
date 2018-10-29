@@ -58,6 +58,6 @@ export default definitions => (ComposedComponent) => {
       );
     }
   }
-  WithRouting.displayName = `withRouting(${componentDisplayName(ComposedComponent)})`;
+  WithRouting.displayName = `WithRouting(${componentDisplayName(ComposedComponent)})`;
   return WithRouting;
 };
