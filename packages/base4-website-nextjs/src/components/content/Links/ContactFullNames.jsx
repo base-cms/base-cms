@@ -13,6 +13,7 @@ const propTypes = {
   elementAttrs: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   linkAttrs: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   path: PropTypes.oneOf(['authors', 'contributors', 'photographers']).isRequired,
+  prefix: PropTypes.string,
   tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
 };
 
@@ -22,6 +23,7 @@ const defaultProps = {
   collapsible: true,
   elementAttrs: {},
   linkAttrs: {},
+  prefix: null,
   tag: 'div',
 };
 
@@ -31,6 +33,7 @@ const ContactFullNameLinks = ({
   collapsible,
   content,
   path,
+  prefix,
   elementAttrs,
   linkAttrs,
   tag: Tag,
@@ -41,6 +44,7 @@ const ContactFullNameLinks = ({
   if (collapsible && !edges.length) return null;
   return (
     <Tag className={classNames(modelClassNames('content', edgesPath), className)} {...attrs}>
+      {prefix && `${prefix}`}
       {edges.map((edge) => {
         const key = get(edge, 'node.id');
         const canonicalPath = get(edge, 'node.canonicalPath');
