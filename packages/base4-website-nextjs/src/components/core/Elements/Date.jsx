@@ -4,10 +4,10 @@ import Value from './Value';
 import { formatDate } from '../../../utils';
 
 const propTypes = {
-  // additional arguments to send to the render function.
-  args: PropTypes.array,
   children: PropTypes.func,
   collapsible: PropTypes.bool,
+  // optional context object to send to children callback.
+  context: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   format: PropTypes.string,
   tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   value: PropTypes.oneOfType([
@@ -18,16 +18,15 @@ const propTypes = {
 };
 
 const defaultProps = {
-  args: [],
   collapsible: true,
   children: undefined,
+  context: {},
   format: 'MMM Do, YYYY',
   tag: 'time',
   value: null,
 };
 
 const DateElement = ({
-  args,
   format,
   value: raw,
   ...rest
@@ -37,7 +36,7 @@ const DateElement = ({
   // Create the `datetime` element attribute
   // @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time
   const dateTime = formatDate(raw);
-  return <Value value={value} dateTime={dateTime} args={args} {...rest} />;
+  return <Value value={value} dateTime={dateTime} {...rest} />;
 };
 
 DateElement.propTypes = 'Core/Elements/Date';

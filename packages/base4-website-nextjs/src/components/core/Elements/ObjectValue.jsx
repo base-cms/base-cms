@@ -39,7 +39,7 @@ const ObjectValueElement = ({
   // Return as a date, if applicable.
   if (asDate) return <Date format={dateFormat} value={value} {...rest} />;
   if (asHTML) return <HTML value={value} {...rest} />;
-  return <Value value={value} args={[obj, path]} {...rest} />;
+  return <Value value={value} context={{ obj, path }} {...rest} />;
 };
 
 ObjectValueElement.displayName = 'Core/Elements/ObjectValue';
