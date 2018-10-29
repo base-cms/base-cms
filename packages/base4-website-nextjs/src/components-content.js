@@ -14,6 +14,7 @@ import Type from './components/content/Elements/Type';
 import AuthorFullNameLinks from './components/content/Links/AuthorFullNames';
 import CompanyNameLink from './components/content/Links/CompanyName';
 import ContactFullNameLinks from './components/content/Links/ContactFullNames';
+import ContributorFullNameLinks from './components/content/Links/ContributorFullNames';
 import PrimarySectionNameLink from './components/content/Links/PrimarySectionName';
 import ShortNameLink from './components/content/Links/ShortName';
 
@@ -35,6 +36,7 @@ export {
   AuthorFullNameLinks,
   CompanyNameLink,
   ContactFullNameLinks,
+  ContributorFullNameLinks,
   PrimarySectionNameLink,
   ShortNameLink,
 };
