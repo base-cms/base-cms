@@ -5,6 +5,9 @@ import gql from 'graphql-tag';
 // Utilities
 import { componentDisplayName, extractFragmentData, httpErrors } from '../utils';
 
+// Config
+import { SiteConfigContext } from '../config';
+
 // GraphQL
 import defaultFragment from '../gql/fragments/with-dynamic-page.graphql';
 
@@ -83,7 +86,9 @@ export default (Page, options = {
       const { metadata, alias } = page;
       return (
         <>
-          <PageTitle value={metadata.title} />
+          <SiteConfigContext.Consumer>
+            {config => <PageTitle value={metadata.title} siteName={(config || {}).name} />}
+          </SiteConfigContext.Consumer>
           <MetaDescription value={metadata.description} />
           <RelCanonical origin={requestOrigin} pathname={alias} />
           <Page {...this.props} />

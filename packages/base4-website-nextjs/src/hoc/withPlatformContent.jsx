@@ -8,6 +8,9 @@ import { redirect } from '../routing';
 // Utilities
 import { componentDisplayName, extractFragmentData, httpErrors } from '../utils';
 
+// Config
+import { SiteConfigContext } from '../config';
+
 // GraphQL
 import defaultFragment from '../gql/fragments/with-platform-content.graphql';
 import canonicalPathFrag from '../gql/fragments/content-canonical-path.graphql';
@@ -110,7 +113,9 @@ export default ({
       const { metadata } = content;
       return (
         <>
-          <PageTitle value={metadata.title} />
+          <SiteConfigContext.Consumer>
+            {config => <PageTitle value={metadata.title} siteName={(config || {}).name} />}
+          </SiteConfigContext.Consumer>
           <MetaDescription value={metadata.description} />
           <RelCanonical origin={requestOrigin} pathname={canonicalPath} />
           <Page {...this.props} />
