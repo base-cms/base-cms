@@ -34,7 +34,7 @@ const WebsiteSectionWrapper = ({
   );
 };
 
-WebsiteSectionWrapper.displayName = 'Content/Wrapper';
+WebsiteSectionWrapper.displayName = 'WebsiteSection/Wrapper';
 WebsiteSectionWrapper.propTypes = propTypes;
 WebsiteSectionWrapper.defaultProps = defaultProps;
 
