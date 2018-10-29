@@ -11,6 +11,7 @@ import Teaser from './components/content/Elements/Teaser';
 import Type from './components/content/Elements/Type';
 
 import CompanyNameLink from './components/content/Links/CompanyName';
+import ContactFullNameLinks from './components/content/Links/ContactFullNames';
 import PrimarySectionNameLink from './components/content/Links/PrimarySectionName';
 import ShortNameLink from './components/content/Links/ShortName';
 
@@ -29,6 +30,7 @@ export {
   Type,
   // Links
   CompanyNameLink,
+  ContactFullNameLinks,
   PrimarySectionNameLink,
   ShortNameLink,
 };
