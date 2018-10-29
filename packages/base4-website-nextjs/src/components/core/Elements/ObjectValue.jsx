@@ -38,8 +38,8 @@ const ObjectValueElement = ({
   const value = get(obj, path, null);
   // Return as a date, if applicable.
   if (asDate) return <Date format={dateFormat} value={value} {...rest} />;
-  // Return as either an innerHTML or regular element.
-  return asHTML ? <HTML value={value} {...rest} /> : <Value value={value} {...rest} />;
+  if (asHTML) return <HTML value={value} {...rest} />;
+  return <Value value={value} args={[obj, path]} {...rest} />;
 };
 
 ObjectValueElement.displayName = 'Core/Elements/ObjectValue';

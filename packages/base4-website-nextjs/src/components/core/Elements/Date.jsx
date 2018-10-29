@@ -4,6 +4,8 @@ import Value from './Value';
 import { formatDate } from '../../../utils';
 
 const propTypes = {
+  // additional arguments to send to the render function.
+  args: PropTypes.arrayOf(PropTypes.node),
   children: PropTypes.func,
   collapsible: PropTypes.bool,
   format: PropTypes.string,
@@ -16,6 +18,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+  args: [],
   collapsible: true,
   children: undefined,
   format: 'MMM Do, YYYY',
@@ -24,6 +27,7 @@ const defaultProps = {
 };
 
 const DateElement = ({
+  args,
   format,
   value: raw,
   ...rest
@@ -33,7 +37,7 @@ const DateElement = ({
   // Create the `datetime` element attribute
   // @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time
   const dateTime = formatDate(raw);
-  return <Value value={value} dateTime={dateTime} {...rest} />;
+  return <Value value={value} dateTime={dateTime} args={args} {...rest} />;
 };
 
 DateElement.propTypes = 'Core/Elements/Date';
