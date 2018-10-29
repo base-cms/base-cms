@@ -1,5 +1,5 @@
 import { a as _regeneratorRuntime } from './chunk-fd635e66.js';
-import { c as _objectSpread, d as _asyncToGenerator, e as _classCallCheck, f as _createClass, g as _possibleConstructorReturn, h as _getPrototypeOf, i as _inherits } from './chunk-cfc9ba70.js';
+import { d as _objectSpread, e as _asyncToGenerator, f as _classCallCheck, g as _createClass, h as _possibleConstructorReturn, i as _getPrototypeOf, j as _inherits } from './chunk-b6566c55.js';
 import React from 'react';
 import nextRoutes from 'next-routes';
 import { a as RoutingContext } from './chunk-7976a9a0.js';

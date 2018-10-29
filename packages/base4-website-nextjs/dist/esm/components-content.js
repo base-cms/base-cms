@@ -1,13 +1,13 @@
-import { b as _extends, a as _objectWithoutProperties, c as _objectSpread } from './chunk-cfc9ba70.js';
+import { c as _extends, b as _objectWithoutProperties, d as _objectSpread } from './chunk-b6566c55.js';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { a as LinkElement } from './chunk-0ccd7852.js';
+import { a as LinkElement } from './chunk-0f5b0a48.js';
 import classNames from 'classnames';
 import { underscore, dasherize } from 'inflected';
 import { componentDisplayName, isFunction as isFn, titleizeType } from './utils.js';
-import { a as ObjectValue } from './chunk-36ac9986.js';
+import { a as ObjectValue, b as ObjectValueCollection } from './chunk-64c6200f.js';
 import { get } from 'object-path';
-import { a as Link } from './chunk-04e4878f.js';
+import { a as Link } from './chunk-c8bd1b56.js';
 import './routing.js';
 import './chunk-7976a9a0.js';
 import 'moment';
@@ -375,6 +375,17 @@ CompanyNameLink.defaultProps = defaultProps$9;
 var propTypes$a = {
   children: PropTypes.func,
   collapsible: PropTypes.bool,
+  elementAttrs: PropTypes.object,
+  // eslint-disable-line react/forbid-prop-types
+  linkAttrs: PropTypes.object,
+  // eslint-disable-line react/forbid-prop-types
+  path: PropTypes.oneOf(['authors', 'contributors', 'photographers']).isRequired,
+  tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
+};
+
+var propTypes$b = {
+  children: PropTypes.func,
+  collapsible: PropTypes.bool,
   content: PropTypes.shape({
     primarySection: PropTypes.shape({
       id: PropTypes.number,
@@ -387,7 +398,7 @@ var propTypes$a = {
   sectionRoutePrefix: PropTypes.string,
   tag: PropTypes.string
 };
-var defaultProps$a = {
+var defaultProps$b = {
   children: undefined,
   collapsible: true,
   content: {},
@@ -420,10 +431,10 @@ var PrimarySectionNameLink = function PrimarySectionNameLink(_ref) {
 };
 
 PrimarySectionNameLink.propTypes = 'Content/Links/PrimarySectionName';
-PrimarySectionNameLink.propTypes = propTypes$a;
-PrimarySectionNameLink.defaultProps = defaultProps$a;
+PrimarySectionNameLink.propTypes = propTypes$b;
+PrimarySectionNameLink.defaultProps = defaultProps$b;
 
-var propTypes$b = {
+var propTypes$c = {
   collapsible: PropTypes.bool,
   content: PropTypes.shape({
     shortName: PropTypes.string,
@@ -433,7 +444,7 @@ var propTypes$b = {
   // eslint-disable-line react/forbid-prop-types
   tag: PropTypes.string
 };
-var defaultProps$b = {
+var defaultProps$c = {
   collapsible: true,
   content: {},
   linkAttrs: {},
@@ -460,7 +471,7 @@ var ShortNameLink = function ShortNameLink(_ref) {
 };
 
 ShortNameLink.displayName = 'Content/Links/ShortName';
-ShortNameLink.propTypes = propTypes$b;
-ShortNameLink.defaultProps = defaultProps$b;
+ShortNameLink.propTypes = propTypes$c;
+ShortNameLink.defaultProps = defaultProps$c;
 
-export { ContentLink as Link, ContentWrapper as Wrapper, ContentBody as Body, ContentName as Name, ObjectValue$1 as ObjectValue, ContentPublishedDate as PublishedDate, ContentRow as Row, ContentShortName as ShortName, ContentTeaser as Teaser, ContentType as Type, CompanyNameLink, PrimarySectionNameLink, ShortNameLink };
+export { ContentLink as Link, ContentWrapper as Wrapper, ContentBody as Body, ContentName as Name, ObjectValue$1 as ObjectValue, ContentPublishedDate as PublishedDate, ContentRow as Row, ContentShortName as ShortName, ContentTeaser as Teaser, ContentType as Type, CompanyNameLink, ObjectValueCollection as ContactFullNameLinks, PrimarySectionNameLink, ShortNameLink };

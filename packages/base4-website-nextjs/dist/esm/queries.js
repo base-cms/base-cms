@@ -1,4 +1,4 @@
-import { j as _taggedTemplateLiteral } from './chunk-cfc9ba70.js';
+import { k as _taggedTemplateLiteral } from './chunk-b6566c55.js';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';

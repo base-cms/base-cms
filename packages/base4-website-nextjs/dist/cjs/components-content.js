@@ -4,17 +4,17 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var __chunk_1 = require('./chunk-2c19305a.js');
+var __chunk_1 = require('./chunk-ef1c5e57.js');
 var React = require('react');
 var React__default = _interopDefault(React);
 var PropTypes = _interopDefault(require('prop-types'));
-var __chunk_2 = require('./chunk-30f9615d.js');
+var __chunk_2 = require('./chunk-f20cadca.js');
 var classNames = _interopDefault(require('classnames'));
 var inflected = require('inflected');
 var utils = require('./utils.js');
-var __chunk_4 = require('./chunk-952e091c.js');
+var __chunk_4 = require('./chunk-dbdb03af.js');
 var objectPath = require('object-path');
-var __chunk_5 = require('./chunk-44287ce2.js');
+var __chunk_5 = require('./chunk-5685df41.js');
 require('./routing.js');
 require('./chunk-4b678d5c.js');
 require('moment');
@@ -382,6 +382,17 @@ CompanyNameLink.defaultProps = defaultProps$9;
 var propTypes$a = {
   children: PropTypes.func,
   collapsible: PropTypes.bool,
+  elementAttrs: PropTypes.object,
+  // eslint-disable-line react/forbid-prop-types
+  linkAttrs: PropTypes.object,
+  // eslint-disable-line react/forbid-prop-types
+  path: PropTypes.oneOf(['authors', 'contributors', 'photographers']).isRequired,
+  tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
+};
+
+var propTypes$b = {
+  children: PropTypes.func,
+  collapsible: PropTypes.bool,
   content: PropTypes.shape({
     primarySection: PropTypes.shape({
       id: PropTypes.number,
@@ -394,7 +405,7 @@ var propTypes$a = {
   sectionRoutePrefix: PropTypes.string,
   tag: PropTypes.string
 };
-var defaultProps$a = {
+var defaultProps$b = {
   children: undefined,
   collapsible: true,
   content: {},
@@ -427,10 +438,10 @@ var PrimarySectionNameLink = function PrimarySectionNameLink(_ref) {
 };
 
 PrimarySectionNameLink.propTypes = 'Content/Links/PrimarySectionName';
-PrimarySectionNameLink.propTypes = propTypes$a;
-PrimarySectionNameLink.defaultProps = defaultProps$a;
+PrimarySectionNameLink.propTypes = propTypes$b;
+PrimarySectionNameLink.defaultProps = defaultProps$b;
 
-var propTypes$b = {
+var propTypes$c = {
   collapsible: PropTypes.bool,
   content: PropTypes.shape({
     shortName: PropTypes.string,
@@ -440,7 +451,7 @@ var propTypes$b = {
   // eslint-disable-line react/forbid-prop-types
   tag: PropTypes.string
 };
-var defaultProps$b = {
+var defaultProps$c = {
   collapsible: true,
   content: {},
   linkAttrs: {},
@@ -467,8 +478,8 @@ var ShortNameLink = function ShortNameLink(_ref) {
 };
 
 ShortNameLink.displayName = 'Content/Links/ShortName';
-ShortNameLink.propTypes = propTypes$b;
-ShortNameLink.defaultProps = defaultProps$b;
+ShortNameLink.propTypes = propTypes$c;
+ShortNameLink.defaultProps = defaultProps$c;
 
 exports.Link = ContentLink;
 exports.Wrapper = ContentWrapper;
@@ -481,5 +492,6 @@ exports.ShortName = ContentShortName;
 exports.Teaser = ContentTeaser;
 exports.Type = ContentType;
 exports.CompanyNameLink = CompanyNameLink;
+exports.ContactFullNameLinks = __chunk_4.ObjectValueCollection;
 exports.PrimarySectionNameLink = PrimarySectionNameLink;
 exports.ShortNameLink = ShortNameLink;

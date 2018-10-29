@@ -1,5 +1,3 @@
-'use strict';
-
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
   try {
     var info = gen[key](arg);
@@ -205,13 +203,24 @@ function _taggedTemplateLiteral(strings, raw) {
   }));
 }
 
-exports._objectWithoutProperties = _objectWithoutProperties;
-exports._extends = _extends;
-exports._objectSpread = _objectSpread;
-exports._asyncToGenerator = _asyncToGenerator;
-exports._classCallCheck = _classCallCheck;
-exports._createClass = _createClass;
-exports._possibleConstructorReturn = _possibleConstructorReturn;
-exports._getPrototypeOf = _getPrototypeOf;
-exports._inherits = _inherits;
-exports._taggedTemplateLiteral = _taggedTemplateLiteral;
+function _toConsumableArray(arr) {
+  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread();
+}
+
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) {
+    for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
+
+    return arr2;
+  }
+}
+
+function _iterableToArray(iter) {
+  if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
+}
+
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance");
+}
+
+export { _toConsumableArray as a, _objectWithoutProperties as b, _extends as c, _objectSpread as d, _asyncToGenerator as e, _classCallCheck as f, _createClass as g, _possibleConstructorReturn as h, _getPrototypeOf as i, _inherits as j, _taggedTemplateLiteral as k };
