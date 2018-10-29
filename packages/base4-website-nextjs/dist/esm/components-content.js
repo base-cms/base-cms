@@ -1,12 +1,12 @@
 import { c as _extends, b as _objectWithoutProperties, d as _objectSpread } from './chunk-1a4eb17c.js';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { a as LinkElement } from './chunk-d8f31346.js';
+import { a as LinkElement } from './chunk-59d72e94.js';
 import classNames from 'classnames';
 import { componentDisplayName, modelClassNames, isFunction as isFn, titleizeType, getAsArray } from './utils.js';
-import { a as ObjectValue } from './chunk-a70669c0.js';
+import { a as ObjectValue } from './chunk-b60bce7b.js';
 import { get } from 'object-path';
-import { a as Link } from './chunk-dcc4d5cc.js';
+import { a as Link } from './chunk-2623c9a7.js';
 import './routing.js';
 import './chunk-7976a9a0.js';
 import 'inflected';

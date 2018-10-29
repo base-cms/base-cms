@@ -1,7 +1,7 @@
 import { c as _extends, b as _objectWithoutProperties } from './chunk-1a4eb17c.js';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { b as Value, c as HTML } from './chunk-d8f31346.js';
+import { b as Value, c as HTML } from './chunk-59d72e94.js';
 import { formatDate } from './utils.js';
 import { get } from 'object-path';
 
@@ -63,7 +63,7 @@ var defaultProps$1 = {
   collapsible: true,
   dateFormat: 'MMM Do, YYYY',
   obj: {},
-  tag: 'div'
+  tag: 'span'
 };
 
 var ObjectValueElement = function ObjectValueElement(_ref) {
