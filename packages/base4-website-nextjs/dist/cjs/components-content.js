@@ -389,6 +389,46 @@ var propTypes$a = {
   path: PropTypes.oneOf(['authors', 'contributors', 'photographers']).isRequired,
   tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
 };
+var defaultProps$a = {
+  children: undefined,
+  collapsible: true,
+  elementAttrs: {},
+  linkAttrs: {},
+  tag: 'div'
+};
+
+var ContactFullNameLinks = function ContactFullNameLinks(_ref) {
+  var children = _ref.children,
+      collapsible = _ref.collapsible,
+      content = _ref.content,
+      path = _ref.path,
+      elementAttrs = _ref.elementAttrs,
+      linkAttrs = _ref.linkAttrs,
+      attrs = __chunk_1._objectWithoutProperties(_ref, ["children", "collapsible", "content", "path", "elementAttrs", "linkAttrs"]);
+
+  return React__default.createElement(ObjectValue, __chunk_1._extends({
+    path: "".concat(path, ".edges"),
+    obj: content,
+    collapsible: collapsible
+  }, attrs), function (edges) {
+    return React__default.createElement(__chunk_4.ObjectValueCollection, __chunk_1._extends({
+      path: "node.fullName",
+      objs: edges,
+      collapsible: collapsible
+    }, elementAttrs), function (fullName, contact) {
+      var canonicalPath = objectPath.get(contact, 'canonicalPath');
+      if (!canonicalPath) return null;
+      return React__default.createElement(ContentLink, __chunk_1._extends({
+        canonicalPath: canonicalPath,
+        value: fullName
+      }, linkAttrs), children);
+    });
+  });
+};
+
+ContactFullNameLinks.displayName = 'Content/Links/ContactFullNames';
+ContactFullNameLinks.propTypes = propTypes$a;
+ContactFullNameLinks.defaultProps = defaultProps$a;
 
 var propTypes$b = {
   children: PropTypes.func,
@@ -492,6 +532,6 @@ exports.ShortName = ContentShortName;
 exports.Teaser = ContentTeaser;
 exports.Type = ContentType;
 exports.CompanyNameLink = CompanyNameLink;
-exports.ContactFullNameLinks = __chunk_4.ObjectValueCollection;
+exports.ContactFullNameLinks = ContactFullNameLinks;
 exports.PrimarySectionNameLink = PrimarySectionNameLink;
 exports.ShortNameLink = ShortNameLink;

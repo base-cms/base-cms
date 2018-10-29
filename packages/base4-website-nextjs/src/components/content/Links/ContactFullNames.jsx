@@ -52,4 +52,4 @@ ContactFullNameLinks.displayName = 'Content/Links/ContactFullNames';
 ContactFullNameLinks.propTypes = propTypes;
 ContactFullNameLinks.defaultProps = defaultProps;
 
-export default ObjectValueCollection;
+export default ContactFullNameLinks;

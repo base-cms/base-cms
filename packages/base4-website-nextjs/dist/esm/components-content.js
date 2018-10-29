@@ -382,6 +382,46 @@ var propTypes$a = {
   path: PropTypes.oneOf(['authors', 'contributors', 'photographers']).isRequired,
   tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
 };
+var defaultProps$a = {
+  children: undefined,
+  collapsible: true,
+  elementAttrs: {},
+  linkAttrs: {},
+  tag: 'div'
+};
+
+var ContactFullNameLinks = function ContactFullNameLinks(_ref) {
+  var children = _ref.children,
+      collapsible = _ref.collapsible,
+      content = _ref.content,
+      path = _ref.path,
+      elementAttrs = _ref.elementAttrs,
+      linkAttrs = _ref.linkAttrs,
+      attrs = _objectWithoutProperties(_ref, ["children", "collapsible", "content", "path", "elementAttrs", "linkAttrs"]);
+
+  return React.createElement(ObjectValue$1, _extends({
+    path: "".concat(path, ".edges"),
+    obj: content,
+    collapsible: collapsible
+  }, attrs), function (edges) {
+    return React.createElement(ObjectValueCollection, _extends({
+      path: "node.fullName",
+      objs: edges,
+      collapsible: collapsible
+    }, elementAttrs), function (fullName, contact) {
+      var canonicalPath = get(contact, 'canonicalPath');
+      if (!canonicalPath) return null;
+      return React.createElement(ContentLink, _extends({
+        canonicalPath: canonicalPath,
+        value: fullName
+      }, linkAttrs), children);
+    });
+  });
+};
+
+ContactFullNameLinks.displayName = 'Content/Links/ContactFullNames';
+ContactFullNameLinks.propTypes = propTypes$a;
+ContactFullNameLinks.defaultProps = defaultProps$a;
 
 var propTypes$b = {
   children: PropTypes.func,
@@ -474,4 +514,4 @@ ShortNameLink.displayName = 'Content/Links/ShortName';
 ShortNameLink.propTypes = propTypes$c;
 ShortNameLink.defaultProps = defaultProps$c;
 
-export { ContentLink as Link, ContentWrapper as Wrapper, ContentBody as Body, ContentName as Name, ObjectValue$1 as ObjectValue, ContentPublishedDate as PublishedDate, ContentRow as Row, ContentShortName as ShortName, ContentTeaser as Teaser, ContentType as Type, CompanyNameLink, ObjectValueCollection as ContactFullNameLinks, PrimarySectionNameLink, ShortNameLink };
+export { ContentLink as Link, ContentWrapper as Wrapper, ContentBody as Body, ContentName as Name, ObjectValue$1 as ObjectValue, ContentPublishedDate as PublishedDate, ContentRow as Row, ContentShortName as ShortName, ContentTeaser as Teaser, ContentType as Type, CompanyNameLink, ContactFullNameLinks, PrimarySectionNameLink, ShortNameLink };
