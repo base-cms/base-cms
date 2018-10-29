@@ -1,5 +1,5 @@
 import React from 'react';
-import ConfigContext from './context';
+import SiteConfigContext from './context';
 import { componentDisplayName } from '../utils';
 
 export default siteConfig => (ComposedComponent) => {
@@ -25,9 +25,9 @@ export default siteConfig => (ComposedComponent) => {
      */
     render() {
       return (
-        <ConfigContext.Provider value={siteConfig}>
+        <SiteConfigContext.Provider value={siteConfig}>
           <ComposedComponent {...this.props} />
-        </ConfigContext.Provider>
+        </SiteConfigContext.Provider>
       );
     }
   }

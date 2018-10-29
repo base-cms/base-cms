@@ -1,7 +1,7 @@
-import ConfigContext from './config/context';
+import SiteConfigContext from './config/context';
 import withSiteConfig from './config/withSiteConfig';
 
 export {
-  ConfigContext,
+  SiteConfigContext,
   withSiteConfig,
 };
