@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'object-path';
+import classNames from 'classnames';
 import ObjectValue from '../Elements/ObjectValue';
-import ObjectValueCollection from '../../core/Collections/ObjectValue';
 import Link from '../Link';
+import { getAsArray, modelClassNames } from '../../../utils';
 
 const propTypes = {
   children: PropTypes.func,
+  className: PropTypes.string,
   collapsible: PropTypes.bool,
   elementAttrs: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   linkAttrs: PropTypes.object, // eslint-disable-line react/forbid-prop-types
@@ -16,6 +18,7 @@ const propTypes = {
 
 const defaultProps = {
   children: undefined,
+  className: null,
   collapsible: true,
   elementAttrs: {},
   linkAttrs: {},
@@ -24,29 +27,37 @@ const defaultProps = {
 
 const ContactFullNameLinks = ({
   children,
+  className,
   collapsible,
   content,
   path,
   elementAttrs,
   linkAttrs,
+  tag: Tag,
   ...attrs
-}) => (
-  <ObjectValue path={`${path}.edges`} obj={content} collapsible={collapsible} {...attrs}>
-    {edges => (
-      <ObjectValueCollection path="node.fullName" objs={edges} collapsible={collapsible} {...elementAttrs}>
-        {(fullName, contact) => {
-          const canonicalPath = get(contact, 'node.canonicalPath');
-          if (!canonicalPath) return null;
-          return (
-            <Link canonicalPath={canonicalPath} value={fullName} {...linkAttrs}>
-              {children}
-            </Link>
-          );
-        }}
-      </ObjectValueCollection>
-    )}
-  </ObjectValue>
-);
+}) => {
+  const edgesPath = `${path}.edges`;
+  const edges = getAsArray(content, edgesPath);
+  if (collapsible && !edges.length) return null;
+  return (
+    <Tag className={classNames(modelClassNames('content', edgesPath), className)} {...attrs}>
+      {edges.map((edge) => {
+        const key = get(edge, 'node.id');
+        const canonicalPath = get(edge, 'node.canonicalPath');
+        if (collapsible && !canonicalPath) return null;
+        return (
+          <ObjectValue key={key} path="node.fullName" obj={edge} collapsible={collapsible} {...elementAttrs}>
+            {fullName => (
+              <Link canonicalPath={canonicalPath} value={fullName} {...linkAttrs}>
+                {children}
+              </Link>
+            )}
+          </ObjectValue>
+        );
+      })}
+    </Tag>
+  );
+};
 
 ContactFullNameLinks.displayName = 'Content/Links/ContactFullNames';
 ContactFullNameLinks.propTypes = propTypes;
