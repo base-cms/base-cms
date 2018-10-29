@@ -7,4 +7,4 @@ export default (modelName, path) => {
   const classes = [elementClass];
   types.forEach(type => classes.push(`${elementClass}--${dasherize(type)}`));
   return types;
-}
+};
