@@ -1,0 +1,19 @@
+{
+  "name": "@base-cms/base4-website-nextjs-bootstrap",
+  "version": "0.1.0",
+  "description": "Base4 Website Boostrap Design Components",
+  "main": "src/index.js",
+  "author": "Jacob Bare <jacob@limit0.io>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/base-cms/base4-website-nextjs-bootstrap.git"
+  },
+  "devDependencies": {
+    "eslint": "^5.6.1",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.11.1"
+  }
+}
