@@ -60,11 +60,39 @@ var ObjectValue = __chunk_4.withModelFieldClass('website-section')(__chunk_2.Obj
 var propTypes$1 = {
   collapsible: PropTypes.bool,
   section: PropTypes.shape({
-    name: PropTypes.string
+    description: PropTypes.string
   }),
   tag: PropTypes.string
 };
 var defaultProps$1 = {
+  collapsible: true,
+  section: {},
+  tag: 'div'
+};
+
+var WebsiteSectionDescription = function WebsiteSectionDescription(_ref) {
+  var section = _ref.section,
+      rest = __chunk_1._objectWithoutProperties(_ref, ["section"]);
+
+  return React__default.createElement(ObjectValue, __chunk_1._extends({
+    asHTML: true,
+    path: "description",
+    obj: section
+  }, rest));
+};
+
+WebsiteSectionDescription.displayName = 'WebsiteSection/Elements/Description';
+WebsiteSectionDescription.propTypes = propTypes$1;
+WebsiteSectionDescription.defaultProps = defaultProps$1;
+
+var propTypes$2 = {
+  collapsible: PropTypes.bool,
+  section: PropTypes.shape({
+    name: PropTypes.string
+  }),
+  tag: PropTypes.string
+};
+var defaultProps$2 = {
   collapsible: true,
   section: {},
   tag: 'h1'
@@ -81,10 +109,11 @@ var WebsiteSectionName = function WebsiteSectionName(_ref) {
 };
 
 WebsiteSectionName.displayName = 'WebsiteSection/Elements/Name';
-WebsiteSectionName.propTypes = propTypes$1;
-WebsiteSectionName.defaultProps = defaultProps$1;
+WebsiteSectionName.propTypes = propTypes$2;
+WebsiteSectionName.defaultProps = defaultProps$2;
 
 exports.Link = __chunk_4.Link;
 exports.Wrapper = WebsiteSectionWrapper;
+exports.Description = WebsiteSectionDescription;
 exports.Name = WebsiteSectionName;
 exports.ObjectValue = ObjectValue;

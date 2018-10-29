@@ -54,11 +54,39 @@ var ObjectValue$1 = withModelFieldClass('website-section')(ObjectValue);
 var propTypes$1 = {
   collapsible: PropTypes.bool,
   section: PropTypes.shape({
-    name: PropTypes.string
+    description: PropTypes.string
   }),
   tag: PropTypes.string
 };
 var defaultProps$1 = {
+  collapsible: true,
+  section: {},
+  tag: 'div'
+};
+
+var WebsiteSectionDescription = function WebsiteSectionDescription(_ref) {
+  var section = _ref.section,
+      rest = _objectWithoutProperties(_ref, ["section"]);
+
+  return React.createElement(ObjectValue$1, _extends({
+    asHTML: true,
+    path: "description",
+    obj: section
+  }, rest));
+};
+
+WebsiteSectionDescription.displayName = 'WebsiteSection/Elements/Description';
+WebsiteSectionDescription.propTypes = propTypes$1;
+WebsiteSectionDescription.defaultProps = defaultProps$1;
+
+var propTypes$2 = {
+  collapsible: PropTypes.bool,
+  section: PropTypes.shape({
+    name: PropTypes.string
+  }),
+  tag: PropTypes.string
+};
+var defaultProps$2 = {
   collapsible: true,
   section: {},
   tag: 'h1'
@@ -75,7 +103,7 @@ var WebsiteSectionName = function WebsiteSectionName(_ref) {
 };
 
 WebsiteSectionName.displayName = 'WebsiteSection/Elements/Name';
-WebsiteSectionName.propTypes = propTypes$1;
-WebsiteSectionName.defaultProps = defaultProps$1;
+WebsiteSectionName.propTypes = propTypes$2;
+WebsiteSectionName.defaultProps = defaultProps$2;
 
-export { WebsiteSectionWrapper as Wrapper, WebsiteSectionName as Name, ObjectValue$1 as ObjectValue };
+export { WebsiteSectionWrapper as Wrapper, WebsiteSectionDescription as Description, WebsiteSectionName as Name, ObjectValue$1 as ObjectValue };
