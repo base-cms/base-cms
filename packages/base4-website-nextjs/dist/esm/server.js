@@ -1,5 +1,5 @@
 import { a as _regeneratorRuntime } from './chunk-fd635e66.js';
-import { e as _asyncToGenerator } from './chunk-1a4eb17c.js';
+import { j as _asyncToGenerator } from './chunk-1a4eb17c.js';
 import next from 'next';
 import baseWebsite from '@base-cms/base4-website-express';
 import { resolve } from 'path';

@@ -11,14 +11,15 @@ var PropTypes = _interopDefault(require('prop-types'));
 var classNames = _interopDefault(require('classnames'));
 var __chunk_2 = require('./chunk-cf20d45d.js');
 var __chunk_5 = require('./chunk-adb978b5.js');
-var __chunk_6 = require('./chunk-bee31e8d.js');
+var __chunk_6 = require('./chunk-e8a33268.js');
 require('./utils.js');
 require('inflected');
 require('moment');
 require('object-path');
-require('./chunk-60bb28a4.js');
+require('./chunk-b2531be5.js');
 require('./routing.js');
-require('./chunk-4b678d5c.js');
+require('./chunk-efb9fd9b.js');
+require('next-routes');
 
 var propTypes = {
   children: PropTypes.node.isRequired,

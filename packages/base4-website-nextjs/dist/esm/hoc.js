@@ -1,16 +1,17 @@
 import { a as _regeneratorRuntime } from './chunk-fd635e66.js';
-import { d as _objectSpread, e as _asyncToGenerator, f as _classCallCheck, g as _createClass, h as _possibleConstructorReturn, i as _getPrototypeOf, j as _inherits, k as _taggedTemplateLiteral } from './chunk-1a4eb17c.js';
+import { i as _objectSpread, j as _asyncToGenerator, a as _classCallCheck, b as _createClass, c as _possibleConstructorReturn, d as _getPrototypeOf, e as _inherits, k as _taggedTemplateLiteral } from './chunk-1a4eb17c.js';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { componentDisplayName, extractFragmentData, httpErrors, sectionPath } from './utils.js';
 import gql from 'graphql-tag';
+import { SiteConfigContext } from './config.js';
 import { RelCanonical, PageTitle, MetaDescription } from './components-head.js';
 import { redirect } from './routing.js';
 import 'inflected';
 import 'moment';
 import 'object-path';
 import 'next/head';
-import './chunk-7976a9a0.js';
+import 'next-routes';
 
 var doc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"WithDynamicPageFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PlatformContentPage"}},"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"name"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"type"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"teaser"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"alias"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"body"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"metadata"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"description"},"arguments":[],"directives":[]}]}}]}}],"loc":{"start":0,"end":146}};
     doc.loc.source = {"body":"fragment WithDynamicPageFragment on PlatformContentPage {\n  id\n  name\n  type\n  teaser\n  alias\n  body\n  metadata {\n    title\n    description\n  }\n}\n","name":"GraphQL request","locationOffset":{"line":1,"column":1}};
@@ -155,8 +156,11 @@ var withDynamicPage = (function (Page) {
             page = _this$props.page;
         var metadata = page.metadata,
             alias = page.alias;
-        return React.createElement(React.Fragment, null, React.createElement(PageTitle, {
-          value: metadata.title
+        return React.createElement(React.Fragment, null, React.createElement(SiteConfigContext.Consumer, null, function (config) {
+          return React.createElement(PageTitle, {
+            value: metadata.title,
+            siteName: (config || {}).name
+          });
         }), React.createElement(MetaDescription, {
           value: metadata.description
         }), React.createElement(RelCanonical, {
@@ -370,8 +374,11 @@ var withPlatformContent = (function () {
               canonicalPath = _this$props.canonicalPath,
               content = _this$props.content;
           var metadata = content.metadata;
-          return React.createElement(React.Fragment, null, React.createElement(PageTitle, {
-            value: metadata.title
+          return React.createElement(React.Fragment, null, React.createElement(SiteConfigContext.Consumer, null, function (config) {
+            return React.createElement(PageTitle, {
+              value: metadata.title,
+              siteName: (config || {}).name
+            });
           }), React.createElement(MetaDescription, {
             value: metadata.description
           }), React.createElement(RelCanonical, {
@@ -550,8 +557,11 @@ var withWebsiteSection = (function () {
               canonicalPath = _this$props.canonicalPath,
               section = _this$props.section;
           var metadata = section.metadata;
-          return React.createElement(React.Fragment, null, React.createElement(PageTitle, {
-            value: metadata.title
+          return React.createElement(React.Fragment, null, React.createElement(SiteConfigContext.Consumer, null, function (config) {
+            return React.createElement(PageTitle, {
+              value: metadata.title,
+              siteName: (config || {}).name
+            });
           }), React.createElement(MetaDescription, {
             value: metadata.description
           }), React.createElement(RelCanonical, {

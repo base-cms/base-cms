@@ -168,4 +168,4 @@ ObjectValueElement.defaultProps = defaultProps$3;
 exports.Value = ValueElement;
 exports.HTML = HTMLElement;
 exports.ObjectValue = ObjectValueElement;
-exports.DateElement = DateElement;
+exports.Date = DateElement;
