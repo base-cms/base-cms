@@ -1,7 +1,7 @@
 import React from 'react';
 import { a as _regeneratorRuntime } from './chunk-fd635e66.js';
 import { i as _objectSpread, j as _asyncToGenerator, a as _classCallCheck, b as _createClass, c as _possibleConstructorReturn, d as _getPrototypeOf, e as _inherits } from './chunk-1a4eb17c.js';
-import { componentDisplayName } from './utils.js';
+import { componentDisplayName, isObject } from './utils.js';
 import 'inflected';
 import 'moment';
 import 'object-path';
@@ -10,6 +10,8 @@ var ConfigContext = React.createContext({});
 
 var withSiteConfig = (function (siteConfig) {
   return function (ComposedComponent) {
+    var config = isObject(siteConfig) ? siteConfig : {};
+
     var WithSiteConfig =
     /*#__PURE__*/
     function (_React$Component) {
@@ -29,7 +31,7 @@ var withSiteConfig = (function (siteConfig) {
          */
         value: function render() {
           return React.createElement(ConfigContext.Provider, {
-            value: siteConfig
+            value: config
           }, React.createElement(ComposedComponent, this.props));
         }
       }], [{
@@ -50,7 +52,7 @@ var withSiteConfig = (function (siteConfig) {
                   case 0:
                     ctx = args.ctx; // Add the config to the page context.
 
-                    ctx.siteConfig = siteConfig;
+                    ctx.siteConfig = config;
                     composedInitialProps = {};
 
                     if (!ComposedComponent.getInitialProps) {

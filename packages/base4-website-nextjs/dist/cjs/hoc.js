@@ -166,7 +166,7 @@ var withDynamicPage = (function (Page) {
         return React__default.createElement(React__default.Fragment, null, React__default.createElement(config.SiteConfigContext.Consumer, null, function (config$$1) {
           return React__default.createElement(componentsHead.PageTitle, {
             value: metadata.title,
-            siteName: (config$$1 || {}).name
+            siteName: config$$1.name
           });
         }), React__default.createElement(componentsHead.MetaDescription, {
           value: metadata.description
@@ -384,7 +384,7 @@ var withPlatformContent = (function () {
           return React__default.createElement(React__default.Fragment, null, React__default.createElement(config.SiteConfigContext.Consumer, null, function (config$$1) {
             return React__default.createElement(componentsHead.PageTitle, {
               value: metadata.title,
-              siteName: (config$$1 || {}).name
+              siteName: config$$1.name
             });
           }), React__default.createElement(componentsHead.MetaDescription, {
             value: metadata.description
@@ -567,7 +567,7 @@ var withWebsiteSection = (function () {
           return React__default.createElement(React__default.Fragment, null, React__default.createElement(config.SiteConfigContext.Consumer, null, function (config$$1) {
             return React__default.createElement(componentsHead.PageTitle, {
               value: metadata.title,
-              siteName: (config$$1 || {}).name
+              siteName: config$$1.name
             });
           }), React__default.createElement(componentsHead.MetaDescription, {
             value: metadata.description

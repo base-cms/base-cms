@@ -17,6 +17,8 @@ var ConfigContext = React__default.createContext({});
 
 var withSiteConfig = (function (siteConfig) {
   return function (ComposedComponent) {
+    var config = utils.isObject(siteConfig) ? siteConfig : {};
+
     var WithSiteConfig =
     /*#__PURE__*/
     function (_React$Component) {
@@ -36,7 +38,7 @@ var withSiteConfig = (function (siteConfig) {
          */
         value: function render() {
           return React__default.createElement(ConfigContext.Provider, {
-            value: siteConfig
+            value: config
           }, React__default.createElement(ComposedComponent, this.props));
         }
       }], [{
@@ -57,7 +59,7 @@ var withSiteConfig = (function (siteConfig) {
                   case 0:
                     ctx = args.ctx; // Add the config to the page context.
 
-                    ctx.siteConfig = siteConfig;
+                    ctx.siteConfig = config;
                     composedInitialProps = {};
 
                     if (!ComposedComponent.getInitialProps) {

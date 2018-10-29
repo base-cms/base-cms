@@ -159,7 +159,7 @@ var withDynamicPage = (function (Page) {
         return React.createElement(React.Fragment, null, React.createElement(SiteConfigContext.Consumer, null, function (config) {
           return React.createElement(PageTitle, {
             value: metadata.title,
-            siteName: (config || {}).name
+            siteName: config.name
           });
         }), React.createElement(MetaDescription, {
           value: metadata.description
@@ -377,7 +377,7 @@ var withPlatformContent = (function () {
           return React.createElement(React.Fragment, null, React.createElement(SiteConfigContext.Consumer, null, function (config) {
             return React.createElement(PageTitle, {
               value: metadata.title,
-              siteName: (config || {}).name
+              siteName: config.name
             });
           }), React.createElement(MetaDescription, {
             value: metadata.description
@@ -560,7 +560,7 @@ var withWebsiteSection = (function () {
           return React.createElement(React.Fragment, null, React.createElement(SiteConfigContext.Consumer, null, function (config) {
             return React.createElement(PageTitle, {
               value: metadata.title,
-              siteName: (config || {}).name
+              siteName: config.name
             });
           }), React.createElement(MetaDescription, {
             value: metadata.description
