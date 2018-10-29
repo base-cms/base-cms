@@ -40,7 +40,7 @@ ContentListGroupItem.propTypes = propTypes;
 ContentListGroupItem.defaultProps = defaultProps;
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n    fragment ContentListGroupItemStyleA on PlatformContent {\n      id\n      type\n      shortName\n      published\n      canonicalPath(input: { fields: $canonicalFields })\n      primarySection {\n        id\n        name\n        alias\n      }\n      ... on PlatformContentProduct {\n        company {\n          id\n          name\n          canonicalPath(input: { fields: $canonicalFields })\n        }\n      }\n    }\n  "]);
+  var data = _taggedTemplateLiteral(["\n    fragment ContentListGroupItemStyleA on PlatformContent {\n      id\n      type\n      shortName\n      published\n      canonicalPath\n      primarySection {\n        id\n        name\n        alias\n      }\n      ... on PlatformContentProduct {\n        company {\n          id\n          name\n          canonicalPath\n        }\n      }\n    }\n  "]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -93,7 +93,9 @@ var ListGroupItemStyleA = function ListGroupItemStyleA(_ref) {
   }), React.createElement(PublishedDate, {
     content: content
   })));
-};
+}; // @todo determine how to pass canonical field args...
+// canonicalPath(input: { fields: $canonicalFields })
+
 
 ListGroupItemStyleA.displayName = 'Content/ListGroupItem/StyleA';
 ListGroupItemStyleA.propTypes = propTypes$1;

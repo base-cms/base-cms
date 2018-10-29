@@ -45,6 +45,8 @@ const ListGroupItemStyleA = ({ content, ...attr }) => (
   </ListGroupItem>
 );
 
+// @todo determine how to pass canonical field args...
+// canonicalPath(input: { fields: $canonicalFields })
 ListGroupItemStyleA.displayName = 'Content/ListGroupItem/StyleA';
 ListGroupItemStyleA.propTypes = propTypes;
 ListGroupItemStyleA.defaultProps = defaultProps;
@@ -55,7 +57,7 @@ ListGroupItemStyleA.fragments = {
       type
       shortName
       published
-      canonicalPath(input: { fields: $canonicalFields })
+      canonicalPath
       primarySection {
         id
         name
@@ -65,7 +67,7 @@ ListGroupItemStyleA.fragments = {
         company {
           id
           name
-          canonicalPath(input: { fields: $canonicalFields })
+          canonicalPath
         }
       }
     }
