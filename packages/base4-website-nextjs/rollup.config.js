@@ -24,6 +24,7 @@ export default {
   input: [
     'src/components-content.js',
     'src/components-core.js',
+    'src/components-dynamic-page.js',
     'src/components-head.js',
     'src/components-website-section.js',
     'src/hoc.js',

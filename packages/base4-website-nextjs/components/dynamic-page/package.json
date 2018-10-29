@@ -1,0 +1,6 @@
+{
+  "name": "components-dynamic-page",
+  "private": true,
+  "main": "../../dist/cjs/components-dynamic-page.js",
+  "module": "../../dist/esm/components-dynamic-page.js"
+}
