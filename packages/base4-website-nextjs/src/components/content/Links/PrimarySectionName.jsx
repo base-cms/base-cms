@@ -44,12 +44,9 @@ const PrimarySectionNameLink = ({
       const alias = get(content, 'primarySection.alias');
       if (!id || !alias) return null;
       return (
-        <>
-          {prefix && `${prefix}`}
-          <Link routePrefix={sectionRoutePrefix} id={id} alias={alias} value={value} {...linkAttrs}>
-            {children}
-          </Link>
-        </>
+        <Link routePrefix={sectionRoutePrefix} id={id} alias={alias} value={value} {...linkAttrs}>
+          {children}
+        </Link>
       );
     }}
   </ObjectValue>

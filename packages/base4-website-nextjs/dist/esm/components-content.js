@@ -532,12 +532,12 @@ var PrimarySectionNameLink = function PrimarySectionNameLink(_ref) {
     var id = get(content, 'primarySection.id');
     var alias = get(content, 'primarySection.alias');
     if (!id || !alias) return null;
-    return React.createElement(React.Fragment, null, prefix && "".concat(prefix), React.createElement(Link, _extends({
+    return React.createElement(Link, _extends({
       routePrefix: sectionRoutePrefix,
       id: id,
       alias: alias,
       value: value
-    }, linkAttrs), children));
+    }, linkAttrs), children);
   });
 };
 

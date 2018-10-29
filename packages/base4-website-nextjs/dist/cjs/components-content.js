@@ -539,12 +539,12 @@ var PrimarySectionNameLink = function PrimarySectionNameLink(_ref) {
     var id = objectPath.get(content, 'primarySection.id');
     var alias = objectPath.get(content, 'primarySection.alias');
     if (!id || !alias) return null;
-    return React__default.createElement(React__default.Fragment, null, prefix && "".concat(prefix), React__default.createElement(__chunk_6.Link, __chunk_1._extends({
+    return React__default.createElement(__chunk_6.Link, __chunk_1._extends({
       routePrefix: sectionRoutePrefix,
       id: id,
       alias: alias,
       value: value
-    }, linkAttrs), children));
+    }, linkAttrs), children);
   });
 };
 
