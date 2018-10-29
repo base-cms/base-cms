@@ -1,10 +1,12 @@
-import { k as _taggedTemplateLiteral } from './chunk-b6566c55.js';
+import { k as _taggedTemplateLiteral } from './chunk-1a4eb17c.js';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import { extractFragmentData } from './utils.js';
+import 'inflected';
 import 'moment';
+import 'object-path';
 
 function _templateObject() {
   var data = _taggedTemplateLiteral(["\n    query WebsiteScheduledContent($input: WebsiteScheduledPlatformContentQuery!) {\n      websiteScheduledPlatformContent(input: $input) {\n        edges {\n          node {\n            id\n            ", "\n          }\n        }\n      }\n    }\n    ", "\n  "]);

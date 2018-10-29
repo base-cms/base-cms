@@ -1,15 +1,15 @@
-import { c as _extends, b as _objectWithoutProperties, d as _objectSpread } from './chunk-b6566c55.js';
+import { c as _extends, b as _objectWithoutProperties, d as _objectSpread } from './chunk-1a4eb17c.js';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { a as LinkElement } from './chunk-f9ad4ea6.js';
+import { a as LinkElement } from './chunk-adf3fd6e.js';
 import classNames from 'classnames';
-import { underscore, dasherize } from 'inflected';
-import { componentDisplayName, isFunction as isFn, titleizeType } from './utils.js';
-import { a as ObjectValue, b as ObjectValueCollection } from './chunk-23ad3a70.js';
+import { componentDisplayName, modelClassNames, isFunction as isFn, titleizeType, getAsArray } from './utils.js';
+import { a as ObjectValue } from './chunk-7dde809b.js';
 import { get } from 'object-path';
-import { a as Link } from './chunk-b60feb8b.js';
+import { a as Link } from './chunk-637d34e9.js';
 import './routing.js';
 import './chunk-7976a9a0.js';
+import 'inflected';
 import 'moment';
 
 var propTypes = {
@@ -85,10 +85,6 @@ ContentWrapper.displayName = 'Content/Wrapper';
 ContentWrapper.propTypes = propTypes$1;
 ContentWrapper.defaultProps = defaultProps$1;
 
-var inflect = function inflect(value) {
-  return dasherize(underscore(value));
-};
-
 var withModelFieldClass = (function (modelType) {
   return function (Component) {
     var WithModelFieldClass = function WithModelFieldClass(_ref) {
@@ -96,13 +92,7 @@ var withModelFieldClass = (function (modelType) {
           className = _ref.className,
           rest = _objectWithoutProperties(_ref, ["path", "className"]);
 
-      var types = String(path).split('.');
-      var elementTypes = types.shift();
-      var elementClass = "".concat(modelType, "__").concat(inflect(elementTypes));
-      var classes = [elementClass];
-      types.forEach(function (type) {
-        return classes.push("".concat(elementClass, "--").concat(inflect(type)));
-      });
+      var classes = modelClassNames(modelType, path);
       return React.createElement(Component, _extends({
         className: classNames(classes, className),
         path: path
@@ -374,6 +364,7 @@ CompanyNameLink.defaultProps = defaultProps$9;
 
 var propTypes$a = {
   children: PropTypes.func,
+  className: PropTypes.string,
   collapsible: PropTypes.bool,
   elementAttrs: PropTypes.object,
   // eslint-disable-line react/forbid-prop-types
@@ -384,6 +375,7 @@ var propTypes$a = {
 };
 var defaultProps$a = {
   children: undefined,
+  className: null,
   collapsible: true,
   elementAttrs: {},
   linkAttrs: {},
@@ -392,31 +384,36 @@ var defaultProps$a = {
 
 var ContactFullNameLinks = function ContactFullNameLinks(_ref) {
   var children = _ref.children,
+      className = _ref.className,
       collapsible = _ref.collapsible,
       content = _ref.content,
       path = _ref.path,
       elementAttrs = _ref.elementAttrs,
       linkAttrs = _ref.linkAttrs,
-      attrs = _objectWithoutProperties(_ref, ["children", "collapsible", "content", "path", "elementAttrs", "linkAttrs"]);
+      Tag = _ref.tag,
+      attrs = _objectWithoutProperties(_ref, ["children", "className", "collapsible", "content", "path", "elementAttrs", "linkAttrs", "tag"]);
 
-  return React.createElement(ObjectValue$1, _extends({
-    path: "".concat(path, ".edges"),
-    obj: content,
-    collapsible: collapsible
-  }, attrs), function (edges) {
-    return React.createElement(ObjectValueCollection, _extends({
+  var edgesPath = "".concat(path, ".edges");
+  var edges = getAsArray(content, edgesPath);
+  if (collapsible && !edges.length) return null;
+  return React.createElement(Tag, _extends({
+    className: classNames(modelClassNames('content', edgesPath), className)
+  }, attrs), edges.map(function (edge) {
+    var key = get(edge, 'node.id');
+    var canonicalPath = get(edge, 'node.canonicalPath');
+    if (collapsible && !canonicalPath) return null;
+    return React.createElement(ObjectValue$1, _extends({
+      key: key,
       path: "node.fullName",
-      objs: edges,
+      obj: edge,
       collapsible: collapsible
-    }, elementAttrs), function (fullName, contact) {
-      var canonicalPath = get(contact, 'node.canonicalPath');
-      if (!canonicalPath) return null;
+    }, elementAttrs), function (fullName) {
       return React.createElement(ContentLink, _extends({
         canonicalPath: canonicalPath,
         value: fullName
       }, linkAttrs), children);
     });
-  });
+  }));
 };
 
 ContactFullNameLinks.displayName = 'Content/Links/ContactFullNames';

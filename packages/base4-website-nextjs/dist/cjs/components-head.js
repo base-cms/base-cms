@@ -9,7 +9,10 @@ var React__default = _interopDefault(React);
 var PropTypes = _interopDefault(require('prop-types'));
 var Head = _interopDefault(require('next/head'));
 var utils = require('./utils.js');
+require('./chunk-9e05845b.js');
+require('inflected');
 require('moment');
+require('object-path');
 
 var MetaDescription = function MetaDescription(_ref) {
   var value = _ref.value;

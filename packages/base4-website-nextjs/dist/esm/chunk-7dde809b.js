@@ -1,34 +1,34 @@
-import { c as _extends, b as _objectWithoutProperties } from './chunk-b6566c55.js';
+import { c as _extends, b as _objectWithoutProperties } from './chunk-1a4eb17c.js';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { b as Value, c as HTML } from './chunk-f9ad4ea6.js';
+import { b as Value, c as HTML } from './chunk-adf3fd6e.js';
 import { formatDate } from './utils.js';
 import { get } from 'object-path';
 
 var propTypes = {
-  // additional arguments to send to the render function.
-  args: PropTypes.array,
   children: PropTypes.func,
   collapsible: PropTypes.bool,
+  // optional context object to send to children callback.
+  context: PropTypes.object,
+  // eslint-disable-line react/forbid-prop-types
   format: PropTypes.string,
   tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string, // Must adhere to moment date string reqs.
   PropTypes.objectOf(Date)])
 };
 var defaultProps = {
-  args: [],
   collapsible: true,
   children: undefined,
+  context: {},
   format: 'MMM Do, YYYY',
   tag: 'time',
   value: null
 };
 
 var DateElement = function DateElement(_ref) {
-  var args = _ref.args,
-      format = _ref.format,
+  var format = _ref.format,
       raw = _ref.value,
-      rest = _objectWithoutProperties(_ref, ["args", "format", "value"]);
+      rest = _objectWithoutProperties(_ref, ["format", "value"]);
 
   // Format the date. Will return null on an invalid date value.
   var value = formatDate(raw, format); // Create the `datetime` element attribute
@@ -37,8 +37,7 @@ var DateElement = function DateElement(_ref) {
   var dateTime = formatDate(raw);
   return React.createElement(Value, _extends({
     value: value,
-    dateTime: dateTime,
-    args: args
+    dateTime: dateTime
   }, rest));
 };
 
@@ -87,7 +86,10 @@ var ObjectValueElement = function ObjectValueElement(_ref) {
   }, rest));
   return React.createElement(Value, _extends({
     value: value,
-    args: [obj, path]
+    context: {
+      obj: obj,
+      path: path
+    }
   }, rest));
 };
 
@@ -95,41 +97,4 @@ ObjectValueElement.displayName = 'Core/Elements/ObjectValue';
 ObjectValueElement.propTypes = propTypes$1;
 ObjectValueElement.defaultProps = defaultProps$1;
 
-var propTypes$2 = {
-  asDate: PropTypes.bool,
-  asHTML: PropTypes.bool,
-  children: PropTypes.func,
-  collapsible: PropTypes.bool,
-  dateFormat: PropTypes.string,
-  objs: PropTypes.arrayOf(PropTypes.object),
-  path: PropTypes.string.isRequired,
-  tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
-};
-var defaultProps$2 = {
-  asDate: false,
-  asHTML: false,
-  children: undefined,
-  collapsible: true,
-  dateFormat: 'MMM Do, YYYY',
-  objs: [],
-  tag: 'span'
-};
-
-var ObjectValueCollection = function ObjectValueCollection(_ref) {
-  var objs = _ref.objs,
-      rest = _objectWithoutProperties(_ref, ["objs"]);
-
-  var arr = Array.isArray(objs) ? objs : [];
-  return React.createElement(React.Fragment, null, arr.map(function (obj, index) {
-    return React.createElement(ObjectValueElement, _extends({
-      key: index,
-      obj: obj
-    }, rest));
-  }));
-};
-
-ObjectValueCollection.displayName = 'Core/Collections/ObjectValue';
-ObjectValueCollection.propTypes = propTypes$2;
-ObjectValueCollection.defaultProps = defaultProps$2;
-
-export { ObjectValueElement as a, ObjectValueCollection as b, DateElement as c };
+export { ObjectValueElement as a, DateElement as b };

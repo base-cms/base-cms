@@ -4,19 +4,19 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var __chunk_1 = require('./chunk-ef1c5e57.js');
+var __chunk_1 = require('./chunk-9e05845b.js');
 var React = require('react');
 var React__default = _interopDefault(React);
 var PropTypes = _interopDefault(require('prop-types'));
-var __chunk_2 = require('./chunk-d64f6f34.js');
+var __chunk_2 = require('./chunk-b3c525d3.js');
 var classNames = _interopDefault(require('classnames'));
-var inflected = require('inflected');
 var utils = require('./utils.js');
-var __chunk_4 = require('./chunk-dfcac77a.js');
+var __chunk_4 = require('./chunk-c748195e.js');
 var objectPath = require('object-path');
-var __chunk_5 = require('./chunk-8fac8eb7.js');
+var __chunk_5 = require('./chunk-dbb701c6.js');
 require('./routing.js');
 require('./chunk-4b678d5c.js');
+require('inflected');
 require('moment');
 
 var propTypes = {
@@ -92,10 +92,6 @@ ContentWrapper.displayName = 'Content/Wrapper';
 ContentWrapper.propTypes = propTypes$1;
 ContentWrapper.defaultProps = defaultProps$1;
 
-var inflect = function inflect(value) {
-  return inflected.dasherize(inflected.underscore(value));
-};
-
 var withModelFieldClass = (function (modelType) {
   return function (Component) {
     var WithModelFieldClass = function WithModelFieldClass(_ref) {
@@ -103,13 +99,7 @@ var withModelFieldClass = (function (modelType) {
           className = _ref.className,
           rest = __chunk_1._objectWithoutProperties(_ref, ["path", "className"]);
 
-      var types = String(path).split('.');
-      var elementTypes = types.shift();
-      var elementClass = "".concat(modelType, "__").concat(inflect(elementTypes));
-      var classes = [elementClass];
-      types.forEach(function (type) {
-        return classes.push("".concat(elementClass, "--").concat(inflect(type)));
-      });
+      var classes = utils.modelClassNames(modelType, path);
       return React__default.createElement(Component, __chunk_1._extends({
         className: classNames(classes, className),
         path: path
@@ -381,6 +371,7 @@ CompanyNameLink.defaultProps = defaultProps$9;
 
 var propTypes$a = {
   children: PropTypes.func,
+  className: PropTypes.string,
   collapsible: PropTypes.bool,
   elementAttrs: PropTypes.object,
   // eslint-disable-line react/forbid-prop-types
@@ -391,6 +382,7 @@ var propTypes$a = {
 };
 var defaultProps$a = {
   children: undefined,
+  className: null,
   collapsible: true,
   elementAttrs: {},
   linkAttrs: {},
@@ -399,31 +391,36 @@ var defaultProps$a = {
 
 var ContactFullNameLinks = function ContactFullNameLinks(_ref) {
   var children = _ref.children,
+      className = _ref.className,
       collapsible = _ref.collapsible,
       content = _ref.content,
       path = _ref.path,
       elementAttrs = _ref.elementAttrs,
       linkAttrs = _ref.linkAttrs,
-      attrs = __chunk_1._objectWithoutProperties(_ref, ["children", "collapsible", "content", "path", "elementAttrs", "linkAttrs"]);
+      Tag = _ref.tag,
+      attrs = __chunk_1._objectWithoutProperties(_ref, ["children", "className", "collapsible", "content", "path", "elementAttrs", "linkAttrs", "tag"]);
 
-  return React__default.createElement(ObjectValue, __chunk_1._extends({
-    path: "".concat(path, ".edges"),
-    obj: content,
-    collapsible: collapsible
-  }, attrs), function (edges) {
-    return React__default.createElement(__chunk_4.ObjectValueCollection, __chunk_1._extends({
+  var edgesPath = "".concat(path, ".edges");
+  var edges = utils.getAsArray(content, edgesPath);
+  if (collapsible && !edges.length) return null;
+  return React__default.createElement(Tag, __chunk_1._extends({
+    className: classNames(utils.modelClassNames('content', edgesPath), className)
+  }, attrs), edges.map(function (edge) {
+    var key = objectPath.get(edge, 'node.id');
+    var canonicalPath = objectPath.get(edge, 'node.canonicalPath');
+    if (collapsible && !canonicalPath) return null;
+    return React__default.createElement(ObjectValue, __chunk_1._extends({
+      key: key,
       path: "node.fullName",
-      objs: edges,
+      obj: edge,
       collapsible: collapsible
-    }, elementAttrs), function (fullName, contact) {
-      var canonicalPath = objectPath.get(contact, 'node.canonicalPath');
-      if (!canonicalPath) return null;
+    }, elementAttrs), function (fullName) {
       return React__default.createElement(ContentLink, __chunk_1._extends({
         canonicalPath: canonicalPath,
         value: fullName
       }, linkAttrs), children);
     });
-  });
+  }));
 };
 
 ContactFullNameLinks.displayName = 'Content/Links/ContactFullNames';

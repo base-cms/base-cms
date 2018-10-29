@@ -3,7 +3,7 @@
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
 var __chunk_6 = require('./chunk-efb9fd9b.js');
-var __chunk_1 = require('./chunk-ef1c5e57.js');
+var __chunk_1 = require('./chunk-9e05845b.js');
 var next = _interopDefault(require('next'));
 var baseWebsite = _interopDefault(require('@base-cms/base4-website-express'));
 var path = require('path');

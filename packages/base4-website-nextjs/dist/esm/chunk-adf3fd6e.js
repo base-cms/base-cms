@@ -1,39 +1,40 @@
-import { a as _toConsumableArray, b as _objectWithoutProperties, c as _extends, d as _objectSpread } from './chunk-b6566c55.js';
+import { b as _objectWithoutProperties, c as _extends, d as _objectSpread } from './chunk-1a4eb17c.js';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { isFunction as isFn, createMarkup, cleanPath } from './utils.js';
 import { Link } from './routing.js';
 
 var propTypes = {
-  // additional arguments to send to the render function.
-  args: PropTypes.array,
   children: PropTypes.func,
   collapsible: PropTypes.bool,
+  // optional context object to send to children callback.
+  context: PropTypes.object,
+  // eslint-disable-line react/forbid-prop-types
   tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   value: PropTypes.node
 };
 var defaultProps = {
-  args: [],
   children: function children(v) {
     return v;
   },
   collapsible: true,
+  context: {},
   tag: 'div',
   value: null
 };
 
 var ValueElement = function ValueElement(_ref) {
-  var args = _ref.args,
-      children = _ref.children,
+  var children = _ref.children,
       collapsible = _ref.collapsible,
+      context = _ref.context,
       Tag = _ref.tag,
       value = _ref.value,
-      attrs = _objectWithoutProperties(_ref, ["args", "children", "collapsible", "tag", "value"]);
+      attrs = _objectWithoutProperties(_ref, ["children", "collapsible", "context", "tag", "value"]);
 
   // Protect the child render function.
   var render = isFn(children) ? children : defaultProps.children; // Wrap the value with the element and return (if not collapsible).
 
-  return !value && collapsible ? null : React.createElement(Tag, attrs, render.apply(void 0, [value].concat(_toConsumableArray(args))));
+  return !value && collapsible ? null : React.createElement(Tag, attrs, render(value, context));
 };
 
 ValueElement.displayName = 'Core/Elements/Value';

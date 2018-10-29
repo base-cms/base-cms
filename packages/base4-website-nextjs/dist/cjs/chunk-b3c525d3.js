@@ -2,7 +2,7 @@
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var __chunk_1 = require('./chunk-ef1c5e57.js');
+var __chunk_1 = require('./chunk-9e05845b.js');
 var React = require('react');
 var React__default = _interopDefault(React);
 var PropTypes = _interopDefault(require('prop-types'));
@@ -10,35 +10,36 @@ var utils = require('./utils.js');
 var routing = require('./routing.js');
 
 var propTypes = {
-  // additional arguments to send to the render function.
-  args: PropTypes.array,
   children: PropTypes.func,
   collapsible: PropTypes.bool,
+  // optional context object to send to children callback.
+  context: PropTypes.object,
+  // eslint-disable-line react/forbid-prop-types
   tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   value: PropTypes.node
 };
 var defaultProps = {
-  args: [],
   children: function children(v) {
     return v;
   },
   collapsible: true,
+  context: {},
   tag: 'div',
   value: null
 };
 
 var ValueElement = function ValueElement(_ref) {
-  var args = _ref.args,
-      children = _ref.children,
+  var children = _ref.children,
       collapsible = _ref.collapsible,
+      context = _ref.context,
       Tag = _ref.tag,
       value = _ref.value,
-      attrs = __chunk_1._objectWithoutProperties(_ref, ["args", "children", "collapsible", "tag", "value"]);
+      attrs = __chunk_1._objectWithoutProperties(_ref, ["children", "collapsible", "context", "tag", "value"]);
 
   // Protect the child render function.
   var render = utils.isFunction(children) ? children : defaultProps.children; // Wrap the value with the element and return (if not collapsible).
 
-  return !value && collapsible ? null : React__default.createElement(Tag, attrs, render.apply(void 0, [value].concat(__chunk_1._toConsumableArray(args))));
+  return !value && collapsible ? null : React__default.createElement(Tag, attrs, render(value, context));
 };
 
 ValueElement.displayName = 'Core/Elements/Value';

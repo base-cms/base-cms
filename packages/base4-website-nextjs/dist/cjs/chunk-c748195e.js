@@ -2,38 +2,38 @@
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var __chunk_1 = require('./chunk-ef1c5e57.js');
+var __chunk_1 = require('./chunk-9e05845b.js');
 var React = require('react');
 var React__default = _interopDefault(React);
 var PropTypes = _interopDefault(require('prop-types'));
-var __chunk_2 = require('./chunk-d64f6f34.js');
+var __chunk_2 = require('./chunk-b3c525d3.js');
 var utils = require('./utils.js');
 var objectPath = require('object-path');
 
 var propTypes = {
-  // additional arguments to send to the render function.
-  args: PropTypes.array,
   children: PropTypes.func,
   collapsible: PropTypes.bool,
+  // optional context object to send to children callback.
+  context: PropTypes.object,
+  // eslint-disable-line react/forbid-prop-types
   format: PropTypes.string,
   tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string, // Must adhere to moment date string reqs.
   PropTypes.objectOf(Date)])
 };
 var defaultProps = {
-  args: [],
   collapsible: true,
   children: undefined,
+  context: {},
   format: 'MMM Do, YYYY',
   tag: 'time',
   value: null
 };
 
 var DateElement = function DateElement(_ref) {
-  var args = _ref.args,
-      format = _ref.format,
+  var format = _ref.format,
       raw = _ref.value,
-      rest = __chunk_1._objectWithoutProperties(_ref, ["args", "format", "value"]);
+      rest = __chunk_1._objectWithoutProperties(_ref, ["format", "value"]);
 
   // Format the date. Will return null on an invalid date value.
   var value = utils.formatDate(raw, format); // Create the `datetime` element attribute
@@ -42,8 +42,7 @@ var DateElement = function DateElement(_ref) {
   var dateTime = utils.formatDate(raw);
   return React__default.createElement(__chunk_2.Value, __chunk_1._extends({
     value: value,
-    dateTime: dateTime,
-    args: args
+    dateTime: dateTime
   }, rest));
 };
 
@@ -92,7 +91,10 @@ var ObjectValueElement = function ObjectValueElement(_ref) {
   }, rest));
   return React__default.createElement(__chunk_2.Value, __chunk_1._extends({
     value: value,
-    args: [obj, path]
+    context: {
+      obj: obj,
+      path: path
+    }
   }, rest));
 };
 
@@ -100,43 +102,5 @@ ObjectValueElement.displayName = 'Core/Elements/ObjectValue';
 ObjectValueElement.propTypes = propTypes$1;
 ObjectValueElement.defaultProps = defaultProps$1;
 
-var propTypes$2 = {
-  asDate: PropTypes.bool,
-  asHTML: PropTypes.bool,
-  children: PropTypes.func,
-  collapsible: PropTypes.bool,
-  dateFormat: PropTypes.string,
-  objs: PropTypes.arrayOf(PropTypes.object),
-  path: PropTypes.string.isRequired,
-  tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
-};
-var defaultProps$2 = {
-  asDate: false,
-  asHTML: false,
-  children: undefined,
-  collapsible: true,
-  dateFormat: 'MMM Do, YYYY',
-  objs: [],
-  tag: 'span'
-};
-
-var ObjectValueCollection = function ObjectValueCollection(_ref) {
-  var objs = _ref.objs,
-      rest = __chunk_1._objectWithoutProperties(_ref, ["objs"]);
-
-  var arr = Array.isArray(objs) ? objs : [];
-  return React__default.createElement(React__default.Fragment, null, arr.map(function (obj, index) {
-    return React__default.createElement(ObjectValueElement, __chunk_1._extends({
-      key: index,
-      obj: obj
-    }, rest));
-  }));
-};
-
-ObjectValueCollection.displayName = 'Core/Collections/ObjectValue';
-ObjectValueCollection.propTypes = propTypes$2;
-ObjectValueCollection.defaultProps = defaultProps$2;
-
 exports.ObjectValue = ObjectValueElement;
-exports.ObjectValueCollection = ObjectValueCollection;
 exports.DateElement = DateElement;

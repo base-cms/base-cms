@@ -1,11 +1,12 @@
-import { c as _extends, b as _objectWithoutProperties } from './chunk-b6566c55.js';
+import { c as _extends, b as _objectWithoutProperties } from './chunk-1a4eb17c.js';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { c as DateElement, a as ObjectValue, b as ObjectValueCollection } from './chunk-23ad3a70.js';
-export { c as DateElement, a as ObjectValueElement, b as ObjectValueCollection } from './chunk-23ad3a70.js';
-import { c as HTML, b as Value, a as LinkElement } from './chunk-f9ad4ea6.js';
-export { c as HTMLElement, a as LinkElement, b as ValueElement } from './chunk-f9ad4ea6.js';
+import { b as DateElement, a as ObjectValue } from './chunk-7dde809b.js';
+export { b as DateElement, a as ObjectValueElement } from './chunk-7dde809b.js';
+import { c as HTML, b as Value, a as LinkElement } from './chunk-adf3fd6e.js';
+export { c as HTMLElement, a as LinkElement, b as ValueElement } from './chunk-adf3fd6e.js';
 import './utils.js';
+import 'inflected';
 import 'moment';
 import 'object-path';
 import './routing.js';
@@ -73,12 +74,49 @@ HTMLCollection.propTypes = propTypes$1;
 HTMLCollection.defaultProps = defaultProps$1;
 
 var propTypes$2 = {
+  asDate: PropTypes.bool,
+  asHTML: PropTypes.bool,
+  children: PropTypes.func,
+  collapsible: PropTypes.bool,
+  dateFormat: PropTypes.string,
+  objs: PropTypes.arrayOf(PropTypes.object),
+  path: PropTypes.string.isRequired,
+  tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
+};
+var defaultProps$2 = {
+  asDate: false,
+  asHTML: false,
+  children: undefined,
+  collapsible: true,
+  dateFormat: 'MMM Do, YYYY',
+  objs: [],
+  tag: 'span'
+};
+
+var ObjectValueCollection = function ObjectValueCollection(_ref) {
+  var objs = _ref.objs,
+      rest = _objectWithoutProperties(_ref, ["objs"]);
+
+  var arr = Array.isArray(objs) ? objs : [];
+  return React.createElement(React.Fragment, null, arr.map(function (obj, index) {
+    return React.createElement(ObjectValue, _extends({
+      key: index,
+      obj: obj
+    }, rest));
+  }));
+};
+
+ObjectValueCollection.displayName = 'Core/Collections/ObjectValue';
+ObjectValueCollection.propTypes = propTypes$2;
+ObjectValueCollection.defaultProps = defaultProps$2;
+
+var propTypes$3 = {
   children: PropTypes.func,
   collapsible: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   values: PropTypes.arrayOf(PropTypes.node)
 };
-var defaultProps$2 = {
+var defaultProps$3 = {
   children: undefined,
   collapsible: true,
   tag: 'span',
@@ -99,7 +137,7 @@ var ValueCollection = function ValueCollection(_ref) {
 };
 
 ValueCollection.displayName = 'Core/Collections/Value';
-ValueCollection.propTypes = propTypes$2;
-ValueCollection.defaultProps = defaultProps$2;
+ValueCollection.propTypes = propTypes$3;
+ValueCollection.defaultProps = defaultProps$3;
 
-export { DateCollection, HTMLCollection, ValueCollection };
+export { DateCollection, HTMLCollection, ObjectValueCollection, ValueCollection };

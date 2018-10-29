@@ -1,5 +1,5 @@
 import { a as _regeneratorRuntime } from './chunk-fd635e66.js';
-import { d as _objectSpread, e as _asyncToGenerator, f as _classCallCheck, g as _createClass, h as _possibleConstructorReturn, i as _getPrototypeOf, j as _inherits } from './chunk-b6566c55.js';
+import { d as _objectSpread, e as _asyncToGenerator, f as _classCallCheck, g as _createClass, h as _possibleConstructorReturn, i as _getPrototypeOf, j as _inherits } from './chunk-1a4eb17c.js';
 import React from 'react';
 import nextRoutes from 'next-routes';
 import { a as RoutingContext } from './chunk-7976a9a0.js';
@@ -7,7 +7,9 @@ import { componentDisplayName } from './utils.js';
 import App, { Container } from 'next/app';
 import base4NextjsApollo from '@base-cms/base4-nextjs-apollo';
 export { default as withApollo } from '@base-cms/base4-nextjs-apollo';
+import 'inflected';
 import 'moment';
+import 'object-path';
 
 var isArray = Array.isArray;
 

@@ -4,7 +4,23 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
+var __chunk_1 = require('./chunk-9e05845b.js');
+var inflected = require('inflected');
 var moment = _interopDefault(require('moment'));
+var objectPath = require('object-path');
+
+var isArray = Array.isArray;
+var asArray = (function (v) {
+  return isArray(v) ? v : [];
+});
+
+var isObject = (function (v) {
+  return v && __chunk_1._typeof(v) === 'object';
+});
+
+var asObject = (function (v) {
+  return isObject(v) ? v : {};
+});
 
 var cleanPath = (function (path) {
   if (!path) return '';
@@ -22,6 +38,10 @@ var createMarkup = (function (html) {
   return {
     __html: html
   };
+});
+
+var dasherize = (function (value) {
+  return inflected.dasherize(inflected.underscore(value));
 });
 
 var extractFragmentName = (function (fragment) {
@@ -59,6 +79,14 @@ var formatDate = (function (value, format) {
   return date.isValid() ? date.format(format) : '';
 });
 
+var getAsArray = (function (obj, path) {
+  return asArray(objectPath.get(obj, path, []));
+});
+
+var getAsObject = (function (obj, path) {
+  return asObject(objectPath.get(obj, path, {}));
+});
+
 var httpErrors = {
   notFound: function notFound() {
     var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'No record found.';
@@ -71,6 +99,17 @@ var httpErrors = {
 
 var isFn = (function (v) {
   return typeof v === 'function';
+});
+
+var modelClassNames = (function (modelName, path) {
+  var types = String(path).split('.');
+  var elementTypes = types.shift();
+  var elementClass = "".concat(modelName, "__").concat(dasherize(elementTypes));
+  var classes = [elementClass];
+  types.forEach(function (type) {
+    return classes.push("".concat(elementClass, "--").concat(dasherize(type)));
+  });
+  return types;
 });
 
 /**
@@ -115,13 +154,20 @@ var titleizeType = (function (type) {
   }).join(' ');
 });
 
+exports.asArray = asArray;
+exports.asObject = asObject;
 exports.cleanPath = cleanPath;
 exports.componentDisplayName = componentDisplayName;
 exports.createMarkup = createMarkup;
+exports.dasherize = dasherize;
 exports.extractFragmentData = extractFragmentData;
 exports.extractFragmentName = extractFragmentName;
 exports.formatDate = formatDate;
+exports.getAsArray = getAsArray;
+exports.getAsObject = getAsObject;
 exports.httpErrors = httpErrors;
 exports.isFunction = isFn;
+exports.isObject = isObject;
+exports.modelClassNames = modelClassNames;
 exports.sectionPath = sectionPath;
 exports.titleizeType = titleizeType;

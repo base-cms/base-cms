@@ -4,13 +4,14 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var __chunk_1 = require('./chunk-ef1c5e57.js');
+var __chunk_1 = require('./chunk-9e05845b.js');
 var React = require('react');
 var React__default = _interopDefault(React);
 var PropTypes = _interopDefault(require('prop-types'));
-var __chunk_4 = require('./chunk-dfcac77a.js');
-var __chunk_2 = require('./chunk-d64f6f34.js');
+var __chunk_4 = require('./chunk-c748195e.js');
+var __chunk_2 = require('./chunk-b3c525d3.js');
 require('./utils.js');
+require('inflected');
 require('moment');
 require('object-path');
 require('./routing.js');
@@ -78,12 +79,49 @@ HTMLCollection.propTypes = propTypes$1;
 HTMLCollection.defaultProps = defaultProps$1;
 
 var propTypes$2 = {
+  asDate: PropTypes.bool,
+  asHTML: PropTypes.bool,
+  children: PropTypes.func,
+  collapsible: PropTypes.bool,
+  dateFormat: PropTypes.string,
+  objs: PropTypes.arrayOf(PropTypes.object),
+  path: PropTypes.string.isRequired,
+  tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
+};
+var defaultProps$2 = {
+  asDate: false,
+  asHTML: false,
+  children: undefined,
+  collapsible: true,
+  dateFormat: 'MMM Do, YYYY',
+  objs: [],
+  tag: 'span'
+};
+
+var ObjectValueCollection = function ObjectValueCollection(_ref) {
+  var objs = _ref.objs,
+      rest = __chunk_1._objectWithoutProperties(_ref, ["objs"]);
+
+  var arr = Array.isArray(objs) ? objs : [];
+  return React__default.createElement(React__default.Fragment, null, arr.map(function (obj, index) {
+    return React__default.createElement(__chunk_4.ObjectValue, __chunk_1._extends({
+      key: index,
+      obj: obj
+    }, rest));
+  }));
+};
+
+ObjectValueCollection.displayName = 'Core/Collections/ObjectValue';
+ObjectValueCollection.propTypes = propTypes$2;
+ObjectValueCollection.defaultProps = defaultProps$2;
+
+var propTypes$3 = {
   children: PropTypes.func,
   collapsible: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   values: PropTypes.arrayOf(PropTypes.node)
 };
-var defaultProps$2 = {
+var defaultProps$3 = {
   children: undefined,
   collapsible: true,
   tag: 'span',
@@ -104,15 +142,15 @@ var ValueCollection = function ValueCollection(_ref) {
 };
 
 ValueCollection.displayName = 'Core/Collections/Value';
-ValueCollection.propTypes = propTypes$2;
-ValueCollection.defaultProps = defaultProps$2;
+ValueCollection.propTypes = propTypes$3;
+ValueCollection.defaultProps = defaultProps$3;
 
 exports.DateElement = __chunk_4.DateElement;
 exports.ObjectValueElement = __chunk_4.ObjectValue;
-exports.ObjectValueCollection = __chunk_4.ObjectValueCollection;
 exports.HTMLElement = __chunk_2.HTML;
 exports.LinkElement = __chunk_2.LinkElement;
 exports.ValueElement = __chunk_2.Value;
 exports.DateCollection = DateCollection;
 exports.HTMLCollection = HTMLCollection;
+exports.ObjectValueCollection = ObjectValueCollection;
 exports.ValueCollection = ValueCollection;

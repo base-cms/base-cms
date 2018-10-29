@@ -1,4 +1,20 @@
+import { a as _typeof } from './chunk-1a4eb17c.js';
+import { underscore, dasherize } from 'inflected';
 import moment from 'moment';
+import { get } from 'object-path';
+
+var isArray = Array.isArray;
+var asArray = (function (v) {
+  return isArray(v) ? v : [];
+});
+
+var isObject = (function (v) {
+  return v && _typeof(v) === 'object';
+});
+
+var asObject = (function (v) {
+  return isObject(v) ? v : {};
+});
 
 var cleanPath = (function (path) {
   if (!path) return '';
@@ -16,6 +32,10 @@ var createMarkup = (function (html) {
   return {
     __html: html
   };
+});
+
+var dasherize$1 = (function (value) {
+  return dasherize(underscore(value));
 });
 
 var extractFragmentName = (function (fragment) {
@@ -53,6 +73,14 @@ var formatDate = (function (value, format) {
   return date.isValid() ? date.format(format) : '';
 });
 
+var getAsArray = (function (obj, path) {
+  return asArray(get(obj, path, []));
+});
+
+var getAsObject = (function (obj, path) {
+  return asObject(get(obj, path, {}));
+});
+
 var httpErrors = {
   notFound: function notFound() {
     var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'No record found.';
@@ -65,6 +93,17 @@ var httpErrors = {
 
 var isFn = (function (v) {
   return typeof v === 'function';
+});
+
+var modelClassNames = (function (modelName, path) {
+  var types = String(path).split('.');
+  var elementTypes = types.shift();
+  var elementClass = "".concat(modelName, "__").concat(dasherize$1(elementTypes));
+  var classes = [elementClass];
+  types.forEach(function (type) {
+    return classes.push("".concat(elementClass, "--").concat(dasherize$1(type)));
+  });
+  return types;
 });
 
 /**
@@ -109,4 +148,4 @@ var titleizeType = (function (type) {
   }).join(' ');
 });
 
-export { cleanPath, componentDisplayName, createMarkup, extractFragmentData, extractFragmentName, formatDate, httpErrors, isFn as isFunction, sectionPath, titleizeType };
+export { asArray, asObject, cleanPath, componentDisplayName, createMarkup, dasherize$1 as dasherize, extractFragmentData, extractFragmentName, formatDate, getAsArray, getAsObject, httpErrors, isFn as isFunction, isObject, modelClassNames, sectionPath, titleizeType };
