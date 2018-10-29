@@ -1,6 +1,8 @@
 import React from 'react';
+import gql from 'graphql-tag';
 import { withPlatformContent } from '@base-cms/base4-website-nextjs/hoc';
 import {
+  AuthorFullNameLinks,
   Body,
   Name,
   PrimarySectionNameLink,
@@ -11,7 +13,23 @@ import {
   Wrapper,
 } from '@base-cms/base4-website-nextjs/components/content';
 
-const ContentPage = ({ content }) => (
+const fragment = gql`
+  fragment ContentArticlePage on PlatformContent {
+    ... on PlatformContentArticle {
+			authors(input: { sort: { field: lastName }, pagination: { first: 2 } }) {
+				edges {
+					node {
+						id
+						fullName
+						canonicalPath
+					}
+				}
+			}
+		}
+  }
+`;
+
+const ContentArticlePage = ({ content }) => (
   <Wrapper content={content}>
     <Name content={content} />
     <Teaser tag="h3" content={content} />
@@ -25,9 +43,10 @@ const ContentPage = ({ content }) => (
       {' | '}
       <PublishedDate prefix="Published " content={content} />
     </Row>
+    <AuthorFullNameLinks prefix="By " content={content} />
     <hr />
     <Body content={content} />
   </Wrapper>
 );
 
-export default withPlatformContent()(ContentPage);
+export default withPlatformContent({ fragment })(ContentArticlePage);

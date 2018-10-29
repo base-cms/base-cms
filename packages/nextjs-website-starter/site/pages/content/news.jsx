@@ -1,4 +1,5 @@
 import React from 'react';
+import gql from 'graphql-tag';
 import { withPlatformContent } from '@base-cms/base4-website-nextjs/hoc';
 import {
   Body,
@@ -6,12 +7,23 @@ import {
   PrimarySectionNameLink,
   PublishedDate,
   Row,
+  Source,
   Teaser,
   Type,
   Wrapper,
 } from '@base-cms/base4-website-nextjs/components/content';
 
-const ContentPage = ({ content }) => (
+const fragment = gql`
+  fragment ContentNewsPage on PlatformContent {
+    shortName
+    published
+    ... on PlatformContentNews {
+      source
+    }
+  }
+`;
+
+const ContentNewsPage = ({ content }) => (
   <Wrapper content={content}>
     <Name content={content} />
     <Teaser tag="h3" content={content} />
@@ -25,9 +37,10 @@ const ContentPage = ({ content }) => (
       {' | '}
       <PublishedDate prefix="Published " content={content} />
     </Row>
+    <Source tag="div" content={content} />
     <hr />
     <Body content={content} />
   </Wrapper>
 );
 
-export default withPlatformContent()(ContentPage);
+export default withPlatformContent({ fragment })(ContentNewsPage);
