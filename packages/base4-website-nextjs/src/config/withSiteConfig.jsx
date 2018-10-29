@@ -1,8 +1,9 @@
 import React from 'react';
 import SiteConfigContext from './context';
-import { componentDisplayName } from '../utils';
+import { componentDisplayName, isObject } from '../utils';
 
 export default siteConfig => (ComposedComponent) => {
+  const config = isObject(siteConfig) ? siteConfig : {};
   class WithSiteConfig extends React.Component {
     /**
      *
@@ -11,7 +12,7 @@ export default siteConfig => (ComposedComponent) => {
     static async getInitialProps(args) {
       const { ctx } = args;
       // Add the config to the page context.
-      ctx.siteConfig = siteConfig;
+      ctx.siteConfig = config;
 
       let composedInitialProps = {};
       if (ComposedComponent.getInitialProps) {
@@ -25,7 +26,7 @@ export default siteConfig => (ComposedComponent) => {
      */
     render() {
       return (
-        <SiteConfigContext.Provider value={siteConfig}>
+        <SiteConfigContext.Provider value={config}>
           <ComposedComponent {...this.props} />
         </SiteConfigContext.Provider>
       );
