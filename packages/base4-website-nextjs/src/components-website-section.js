@@ -1,5 +1,7 @@
 import Link from './components/website-section/Link';
+import Wrapper from './components/website-section/Wrapper';
 
 export {
-  Link, // eslint-disable-line import/prefer-default-export
+  Link,
+  Wrapper,
 };
