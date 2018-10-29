@@ -34,22 +34,18 @@ const defaultProps = {
   content: {},
 };
 
-const ListGroupItemStyleA = ({ content }) => {
-  const node = content || {};
-  const { id, type } = node;
-  return content.id ? (
-    <ListGroupItem id={id} type={type}>
-      <ShortNameLink content={node} className="mb-1" />
-      <CompanyLink content={node} tag="small" className="d-block" prefix="From " />
-      <Row tag="small">
-        <PrimarySectionNameLink content={node} className="mr-2" />
-        <PublishedDate content={node} />
-      </Row>
-    </ListGroupItem>
-  ) : null;
-};
+const ListGroupItemStyleA = ({ content, ...attr }) => (
+  <ListGroupItem content={content} {...attr}>
+    <ShortNameLink content={content} className="mb-1" />
+    <CompanyLink content={content} tag="small" className="d-block" prefix="From " />
+    <Row tag="small">
+      <PrimarySectionNameLink content={content} className="mr-2" />
+      <PublishedDate content={content} />
+    </Row>
+  </ListGroupItem>
+);
 
-ListGroupItemStyleA.displayName = 'Content/Flows/ListGroupItem/StyleA';
+ListGroupItemStyleA.displayName = 'Content/ListGroupItem/StyleA';
 ListGroupItemStyleA.propTypes = propTypes;
 ListGroupItemStyleA.defaultProps = defaultProps;
 ListGroupItemStyleA.fragments = {
