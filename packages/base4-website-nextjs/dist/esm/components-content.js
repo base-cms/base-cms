@@ -426,6 +426,7 @@ var propTypes$c = {
   }),
   linkAttrs: PropTypes.object,
   // eslint-disable-line react/forbid-prop-types
+  prefix: PropTypes.string,
   tag: PropTypes.string
 };
 var defaultProps$c = {
@@ -433,6 +434,7 @@ var defaultProps$c = {
   collapsible: true,
   content: {},
   linkAttrs: {},
+  prefix: null,
   tag: 'span'
 };
 
@@ -440,12 +442,13 @@ var CompanyNameLink = function CompanyNameLink(_ref) {
   var children = _ref.children,
       content = _ref.content,
       linkAttrs = _ref.linkAttrs,
-      attrs = _objectWithoutProperties(_ref, ["children", "content", "linkAttrs"]);
+      prefix = _ref.prefix,
+      attrs = _objectWithoutProperties(_ref, ["children", "content", "linkAttrs", "prefix"]);
 
   return React.createElement(ObjectValue$1, _extends({
     path: "company.name",
     obj: content
-  }, attrs), function (value) {
+  }, attrs), prefix && "".concat(prefix), function (value) {
     var canonicalPath = get(content, 'company.canonicalPath');
     if (!canonicalPath) return null;
     return React.createElement(ContentLink, _extends({
@@ -500,6 +503,7 @@ var propTypes$e = {
   }),
   linkAttrs: PropTypes.object,
   // eslint-disable-line react/forbid-prop-types
+  prefix: PropTypes.string,
   sectionRoutePrefix: PropTypes.string,
   tag: PropTypes.string
 };
@@ -508,6 +512,7 @@ var defaultProps$e = {
   collapsible: true,
   content: {},
   linkAttrs: {},
+  prefix: null,
   sectionRoutePrefix: 'section',
   tag: 'span'
 };
@@ -515,14 +520,15 @@ var defaultProps$e = {
 var PrimarySectionNameLink = function PrimarySectionNameLink(_ref) {
   var children = _ref.children,
       content = _ref.content,
+      prefix = _ref.prefix,
       sectionRoutePrefix = _ref.sectionRoutePrefix,
       linkAttrs = _ref.linkAttrs,
-      attrs = _objectWithoutProperties(_ref, ["children", "content", "sectionRoutePrefix", "linkAttrs"]);
+      attrs = _objectWithoutProperties(_ref, ["children", "content", "prefix", "sectionRoutePrefix", "linkAttrs"]);
 
   return React.createElement(ObjectValue$1, _extends({
     path: "primarySection.name",
     obj: content
-  }, attrs), function (value) {
+  }, attrs), prefix && "".concat(prefix), function (value) {
     var id = get(content, 'primarySection.id');
     var alias = get(content, 'primarySection.alias');
     if (!id || !alias) return null;
