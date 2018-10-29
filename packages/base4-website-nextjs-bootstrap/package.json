@@ -9,6 +9,8 @@
     "url": "https://github.com/base-cms/base4-website-nextjs-bootstrap.git"
   },
   "scripts": {
+    "clean": "rimraf dist",
+    "build": "yarn clean && rollup -c",
     "lint": "node_modules/.bin/eslint src --ext .js --ext .jsx"
   },
   "peerDependencies": {
