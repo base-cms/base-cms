@@ -5,7 +5,7 @@ import { formatDate } from '../../../utils';
 
 const propTypes = {
   // additional arguments to send to the render function.
-  args: PropTypes.arrayOf(PropTypes.node),
+  args: PropTypes.array,
   children: PropTypes.func,
   collapsible: PropTypes.bool,
   format: PropTypes.string,

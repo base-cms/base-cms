@@ -4,7 +4,7 @@ import { isFunction as isFn } from '../../../utils';
 
 const propTypes = {
   // additional arguments to send to the render function.
-  args: PropTypes.arrayOf(PropTypes.node),
+  args: PropTypes.array,
   children: PropTypes.func,
   collapsible: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
