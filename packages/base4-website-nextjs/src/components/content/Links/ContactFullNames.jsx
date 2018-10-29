@@ -35,7 +35,7 @@ const ContactFullNameLinks = ({
     {edges => (
       <ObjectValueCollection path="node.fullName" objs={edges} collapsible={collapsible} {...elementAttrs}>
         {(fullName, contact) => {
-          const canonicalPath = get(contact, 'canonicalPath');
+          const canonicalPath = get(contact, 'node.canonicalPath');
           if (!canonicalPath) return null;
           return (
             <Link canonicalPath={canonicalPath} value={fullName} {...linkAttrs}>
