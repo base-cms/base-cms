@@ -8,7 +8,7 @@ var __chunk_1 = require('./chunk-1c32c684.js');
 var React = _interopDefault(require('react'));
 var PropTypes = _interopDefault(require('prop-types'));
 var queries = require('@base-cms/base4-website-nextjs/queries');
-var __chunk_2 = require('./chunk-ac988b92.js');
+var __chunk_2 = require('./chunk-86834038.js');
 require('classnames');
 require('graphql-tag');
 require('@base-cms/base4-website-nextjs/components/content');

@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 import {
-  CompanyNameLink,
   PrimarySectionNameLink,
   PublishedDate,
   Row,
@@ -37,7 +36,6 @@ const defaultProps = {
 const ListGroupItemStyleA = ({ content, ...attr }) => (
   <ListGroupItem content={content} {...attr}>
     <ShortNameLink content={content} className="mb-1" />
-    <CompanyNameLink content={content} tag="small" className="d-block" prefix="From " />
     <Row tag="small">
       <PrimarySectionNameLink content={content} className="mr-2" />
       <PublishedDate content={content} />
