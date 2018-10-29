@@ -2,11 +2,13 @@ import React from 'react';
 import gql from 'graphql-tag';
 import { withPlatformContent } from '@base-cms/base4-website-nextjs/hoc';
 import {
+  AuthorFullNameLinks,
   Body,
   Name,
   PrimarySectionNameLink,
   PublishedDate,
   Row,
+  Source,
   Teaser,
   Type,
   Wrapper,
@@ -16,6 +18,20 @@ const fragment = gql`
   fragment ContentPageFragment on PlatformContent {
     shortName
     published
+    ... on PlatformContentNews {
+      source
+    }
+    ... on PlatformContentArticle {
+			authors(input: { sort: { field: lastName }, pagination: { first: 2 } }) {
+				edges {
+					node {
+						id
+						fullName
+						canonicalPath
+					}
+				}
+			}
+		}
   }
 `;
 
@@ -33,6 +49,8 @@ const ContentPage = ({ content }) => (
       {' | '}
       <PublishedDate prefix="Published " content={content} />
     </Row>
+    <AuthorFullNameLinks prefix="By " content={content} />
+    <Source tag="div" content={content} />
     <hr />
     <Body content={content} />
   </Wrapper>
