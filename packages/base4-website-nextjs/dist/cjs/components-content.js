@@ -416,7 +416,7 @@ var ContactFullNameLinks = function ContactFullNameLinks(_ref) {
       objs: edges,
       collapsible: collapsible
     }, elementAttrs), function (fullName, contact) {
-      var canonicalPath = objectPath.get(contact, 'canonicalPath');
+      var canonicalPath = objectPath.get(contact, 'node.canonicalPath');
       if (!canonicalPath) return null;
       return React__default.createElement(ContentLink, __chunk_1._extends({
         canonicalPath: canonicalPath,
