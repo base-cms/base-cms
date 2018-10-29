@@ -1,0 +1,6 @@
+{
+  "name": "website-scheduled-content",
+  "private": true,
+  "main": "../dist/cjs/website-scheduled-content.js",
+  "module": "../dist/esm/website-scheduled-content.js"
+}

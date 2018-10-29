@@ -1,0 +1,6 @@
+{
+  "name": "core",
+  "private": true,
+  "main": "../dist/cjs/core.js",
+  "module": "../dist/esm/core.js"
+}
