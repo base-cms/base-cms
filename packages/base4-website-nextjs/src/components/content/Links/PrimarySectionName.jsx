@@ -15,6 +15,7 @@ const propTypes = {
     }),
   }),
   linkAttrs: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  prefix: PropTypes.string,
   sectionRoutePrefix: PropTypes.string,
   tag: PropTypes.string,
 };
@@ -24,6 +25,7 @@ const defaultProps = {
   collapsible: true,
   content: {},
   linkAttrs: {},
+  prefix: null,
   sectionRoutePrefix: 'section',
   tag: 'span',
 };
@@ -31,11 +33,13 @@ const defaultProps = {
 const PrimarySectionNameLink = ({
   children,
   content,
+  prefix,
   sectionRoutePrefix,
   linkAttrs,
   ...attrs
 }) => (
   <ObjectValue path="primarySection.name" obj={content} {...attrs}>
+    {prefix && `${prefix}`}
     {(value) => {
       const id = get(content, 'primarySection.id');
       const alias = get(content, 'primarySection.alias');
