@@ -1,9 +1,14 @@
-import { c as _extends, b as _objectWithoutProperties } from './chunk-1a4eb17c.js';
-import React from 'react';
-import PropTypes from 'prop-types';
-import { b as Value, c as HTML } from './chunk-adf3fd6e.js';
-import { formatDate } from './utils.js';
-import { get } from 'object-path';
+'use strict';
+
+function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+
+var __chunk_1 = require('./chunk-9e05845b.js');
+var React = require('react');
+var React__default = _interopDefault(React);
+var PropTypes = _interopDefault(require('prop-types'));
+var __chunk_2 = require('./chunk-9c6b735c.js');
+var utils = require('./utils.js');
+var objectPath = require('object-path');
 
 var propTypes = {
   children: PropTypes.func,
@@ -28,14 +33,14 @@ var defaultProps = {
 var DateElement = function DateElement(_ref) {
   var format = _ref.format,
       raw = _ref.value,
-      rest = _objectWithoutProperties(_ref, ["format", "value"]);
+      rest = __chunk_1._objectWithoutProperties(_ref, ["format", "value"]);
 
   // Format the date. Will return null on an invalid date value.
-  var value = formatDate(raw, format); // Create the `datetime` element attribute
+  var value = utils.formatDate(raw, format); // Create the `datetime` element attribute
   // @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time
 
-  var dateTime = formatDate(raw);
-  return React.createElement(Value, _extends({
+  var dateTime = utils.formatDate(raw);
+  return React__default.createElement(__chunk_2.Value, __chunk_1._extends({
     value: value,
     dateTime: dateTime
   }, rest));
@@ -72,19 +77,19 @@ var ObjectValueElement = function ObjectValueElement(_ref) {
       obj = _ref.obj,
       dateFormat = _ref.dateFormat,
       path = _ref.path,
-      rest = _objectWithoutProperties(_ref, ["asDate", "asHTML", "obj", "dateFormat", "path"]);
+      rest = __chunk_1._objectWithoutProperties(_ref, ["asDate", "asHTML", "obj", "dateFormat", "path"]);
 
   // Extract the value off the object.
-  var value = get(obj, path, null); // Return as a date, if applicable.
+  var value = objectPath.get(obj, path, null); // Return as a date, if applicable.
 
-  if (asDate) return React.createElement(DateElement, _extends({
+  if (asDate) return React__default.createElement(DateElement, __chunk_1._extends({
     format: dateFormat,
     value: value
   }, rest));
-  if (asHTML) return React.createElement(HTML, _extends({
+  if (asHTML) return React__default.createElement(__chunk_2.HTML, __chunk_1._extends({
     value: value
   }, rest));
-  return React.createElement(Value, _extends({
+  return React__default.createElement(__chunk_2.Value, __chunk_1._extends({
     value: value,
     context: {
       obj: obj,
@@ -97,4 +102,5 @@ ObjectValueElement.displayName = 'Core/Elements/ObjectValue';
 ObjectValueElement.propTypes = propTypes$1;
 ObjectValueElement.defaultProps = defaultProps$1;
 
-export { ObjectValueElement as a, DateElement as b };
+exports.ObjectValue = ObjectValueElement;
+exports.DateElement = DateElement;

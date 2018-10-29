@@ -103,7 +103,7 @@ var modelClassNames = (function (modelName, path) {
   types.forEach(function (type) {
     return classes.push("".concat(elementClass, "--").concat(dasherize$1(type)));
   });
-  return types;
+  return classes;
 });
 
 /**
