@@ -44,19 +44,21 @@ const ContactFullNameLinks = ({
   if (collapsible && !edges.length) return null;
   return (
     <Tag className={classNames(modelClassNames('content', edgesPath), className)} {...attrs}>
-      {prefix && `${prefix}`}
-      {edges.map((edge) => {
+      {edges.map((edge, index) => {
         const key = get(edge, 'node.id');
         const canonicalPath = get(edge, 'node.canonicalPath');
         if (collapsible && !canonicalPath) return null;
         return (
-          <ObjectValue key={key} path="node.fullName" obj={edge} collapsible={collapsible} {...elementAttrs}>
-            {fullName => (
-              <Link canonicalPath={canonicalPath} value={fullName} {...linkAttrs}>
-                {children}
-              </Link>
-            )}
-          </ObjectValue>
+          <>
+            {prefix && index === 0 && `${prefix}`}
+            <ObjectValue key={key} path="node.fullName" obj={edge} collapsible={collapsible} {...elementAttrs}>
+              {fullName => (
+                <Link canonicalPath={canonicalPath} value={fullName} {...linkAttrs}>
+                  {children}
+                </Link>
+              )}
+            </ObjectValue>
+          </>
         );
       })}
     </Tag>

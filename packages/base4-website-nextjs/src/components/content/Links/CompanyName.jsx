@@ -33,14 +33,16 @@ const CompanyNameLink = ({
   ...attrs
 }) => (
   <ObjectValue path="company.name" obj={content} {...attrs}>
-    {prefix && `${prefix}`}
     {(value) => {
       const canonicalPath = get(content, 'company.canonicalPath');
       if (!canonicalPath) return null;
       return (
-        <Link canonicalPath={canonicalPath} value={value} {...linkAttrs}>
-          {children}
-        </Link>
+        <>
+          {prefix && `${prefix}`}
+          <Link canonicalPath={canonicalPath} value={value} {...linkAttrs}>
+            {children}
+          </Link>
+        </>
       );
     }}
   </ObjectValue>

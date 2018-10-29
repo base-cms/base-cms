@@ -39,15 +39,17 @@ const PrimarySectionNameLink = ({
   ...attrs
 }) => (
   <ObjectValue path="primarySection.name" obj={content} {...attrs}>
-    {prefix && `${prefix}`}
     {(value) => {
       const id = get(content, 'primarySection.id');
       const alias = get(content, 'primarySection.alias');
       if (!id || !alias) return null;
       return (
-        <Link routePrefix={sectionRoutePrefix} id={id} alias={alias} value={value} {...linkAttrs}>
-          {children}
-        </Link>
+        <>
+          {prefix && `${prefix}`}
+          <Link routePrefix={sectionRoutePrefix} id={id} alias={alias} value={value} {...linkAttrs}>
+            {children}
+          </Link>
+        </>
       );
     }}
   </ObjectValue>
