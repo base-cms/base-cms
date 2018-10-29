@@ -28,7 +28,7 @@ const WebsiteSectionWrapper = ({
   const { id, alias } = section || {};
   const type = alias ? alias.replace('/', '-') : alias;
   return (
-    <Tag data-id={id} className={classNames('website-section', 'website-section--display', `content--${type}`, className)} {...attrs}>
+    <Tag data-id={id} className={classNames('website-section', 'website-section--display', `website-section--${type}`, className)} {...attrs}>
       {children}
     </Tag>
   );
