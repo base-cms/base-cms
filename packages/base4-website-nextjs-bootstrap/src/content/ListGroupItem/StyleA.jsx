@@ -65,7 +65,7 @@ ListGroupItemStyleA.fragments = {
         company {
           id
           name
-          canonicalPath(input: { fields: $canonicalFields }) })
+          canonicalPath(input: { fields: $canonicalFields })
         }
       }
     }

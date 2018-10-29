@@ -44,7 +44,7 @@ ContentListGroupItem.propTypes = propTypes;
 ContentListGroupItem.defaultProps = defaultProps;
 
 function _templateObject() {
-  var data = __chunk_1._taggedTemplateLiteral(["\n    fragment ContentListGroupItemStyleA on PlatformContent {\n      id\n      type\n      shortName\n      published\n      canonicalPath(input: { fields: $canonicalFields })\n      primarySection {\n        id\n        name\n        alias\n      }\n      ... on PlatformContentProduct {\n        company {\n          id\n          name\n          canonicalPath(input: { fields: $canonicalFields }) })\n        }\n      }\n    }\n  "]);
+  var data = __chunk_1._taggedTemplateLiteral(["\n    fragment ContentListGroupItemStyleA on PlatformContent {\n      id\n      type\n      shortName\n      published\n      canonicalPath(input: { fields: $canonicalFields })\n      primarySection {\n        id\n        name\n        alias\n      }\n      ... on PlatformContentProduct {\n        company {\n          id\n          name\n          canonicalPath(input: { fields: $canonicalFields })\n        }\n      }\n    }\n  "]);
 
   _templateObject = function _templateObject() {
     return data;
