@@ -366,11 +366,11 @@ var ContactFullNameLinks = function ContactFullNameLinks(_ref) {
   if (collapsible && !edges.length) return null;
   return React.createElement(Tag, _extends({
     className: classNames(modelClassNames('content', edgesPath), className)
-  }, attrs), prefix && "".concat(prefix), edges.map(function (edge) {
+  }, attrs), edges.map(function (edge, index) {
     var key = get(edge, 'node.id');
     var canonicalPath = get(edge, 'node.canonicalPath');
     if (collapsible && !canonicalPath) return null;
-    return React.createElement(ObjectValue$1, _extends({
+    return React.createElement(React.Fragment, null, prefix && index === 0 && "".concat(prefix), React.createElement(ObjectValue$1, _extends({
       key: key,
       path: "node.fullName",
       obj: edge,
@@ -380,7 +380,7 @@ var ContactFullNameLinks = function ContactFullNameLinks(_ref) {
         canonicalPath: canonicalPath,
         value: fullName
       }, linkAttrs), children);
-    });
+    }));
   }));
 };
 
@@ -448,13 +448,13 @@ var CompanyNameLink = function CompanyNameLink(_ref) {
   return React.createElement(ObjectValue$1, _extends({
     path: "company.name",
     obj: content
-  }, attrs), prefix && "".concat(prefix), function (value) {
+  }, attrs), function (value) {
     var canonicalPath = get(content, 'company.canonicalPath');
     if (!canonicalPath) return null;
-    return React.createElement(ContentLink, _extends({
+    return React.createElement(React.Fragment, null, prefix && "".concat(prefix), React.createElement(ContentLink, _extends({
       canonicalPath: canonicalPath,
       value: value
-    }, linkAttrs), children);
+    }, linkAttrs), children));
   });
 };
 
@@ -528,16 +528,16 @@ var PrimarySectionNameLink = function PrimarySectionNameLink(_ref) {
   return React.createElement(ObjectValue$1, _extends({
     path: "primarySection.name",
     obj: content
-  }, attrs), prefix && "".concat(prefix), function (value) {
+  }, attrs), function (value) {
     var id = get(content, 'primarySection.id');
     var alias = get(content, 'primarySection.alias');
     if (!id || !alias) return null;
-    return React.createElement(Link, _extends({
+    return React.createElement(React.Fragment, null, prefix && "".concat(prefix), React.createElement(Link, _extends({
       routePrefix: sectionRoutePrefix,
       id: id,
       alias: alias,
       value: value
-    }, linkAttrs), children);
+    }, linkAttrs), children));
   });
 };
 

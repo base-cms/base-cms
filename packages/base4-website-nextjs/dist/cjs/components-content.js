@@ -373,11 +373,11 @@ var ContactFullNameLinks = function ContactFullNameLinks(_ref) {
   if (collapsible && !edges.length) return null;
   return React__default.createElement(Tag, __chunk_1._extends({
     className: classNames(utils.modelClassNames('content', edgesPath), className)
-  }, attrs), prefix && "".concat(prefix), edges.map(function (edge) {
+  }, attrs), edges.map(function (edge, index) {
     var key = objectPath.get(edge, 'node.id');
     var canonicalPath = objectPath.get(edge, 'node.canonicalPath');
     if (collapsible && !canonicalPath) return null;
-    return React__default.createElement(ObjectValue, __chunk_1._extends({
+    return React__default.createElement(React__default.Fragment, null, prefix && index === 0 && "".concat(prefix), React__default.createElement(ObjectValue, __chunk_1._extends({
       key: key,
       path: "node.fullName",
       obj: edge,
@@ -387,7 +387,7 @@ var ContactFullNameLinks = function ContactFullNameLinks(_ref) {
         canonicalPath: canonicalPath,
         value: fullName
       }, linkAttrs), children);
-    });
+    }));
   }));
 };
 
@@ -455,13 +455,13 @@ var CompanyNameLink = function CompanyNameLink(_ref) {
   return React__default.createElement(ObjectValue, __chunk_1._extends({
     path: "company.name",
     obj: content
-  }, attrs), prefix && "".concat(prefix), function (value) {
+  }, attrs), function (value) {
     var canonicalPath = objectPath.get(content, 'company.canonicalPath');
     if (!canonicalPath) return null;
-    return React__default.createElement(ContentLink, __chunk_1._extends({
+    return React__default.createElement(React__default.Fragment, null, prefix && "".concat(prefix), React__default.createElement(ContentLink, __chunk_1._extends({
       canonicalPath: canonicalPath,
       value: value
-    }, linkAttrs), children);
+    }, linkAttrs), children));
   });
 };
 
@@ -535,16 +535,16 @@ var PrimarySectionNameLink = function PrimarySectionNameLink(_ref) {
   return React__default.createElement(ObjectValue, __chunk_1._extends({
     path: "primarySection.name",
     obj: content
-  }, attrs), prefix && "".concat(prefix), function (value) {
+  }, attrs), function (value) {
     var id = objectPath.get(content, 'primarySection.id');
     var alias = objectPath.get(content, 'primarySection.alias');
     if (!id || !alias) return null;
-    return React__default.createElement(__chunk_6.Link, __chunk_1._extends({
+    return React__default.createElement(React__default.Fragment, null, prefix && "".concat(prefix), React__default.createElement(__chunk_6.Link, __chunk_1._extends({
       routePrefix: sectionRoutePrefix,
       id: id,
       alias: alias,
       value: value
-    }, linkAttrs), children);
+    }, linkAttrs), children));
   });
 };
 
