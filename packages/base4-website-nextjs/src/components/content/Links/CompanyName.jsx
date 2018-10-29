@@ -12,6 +12,7 @@ const propTypes = {
     canonicalPath: PropTypes.string,
   }),
   linkAttrs: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  prefix: PropTypes.string,
   tag: PropTypes.string,
 };
 
@@ -20,6 +21,7 @@ const defaultProps = {
   collapsible: true,
   content: {},
   linkAttrs: {},
+  prefix: null,
   tag: 'span',
 };
 
@@ -27,9 +29,11 @@ const CompanyNameLink = ({
   children,
   content,
   linkAttrs,
+  prefix,
   ...attrs
 }) => (
   <ObjectValue path="company.name" obj={content} {...attrs}>
+    {prefix && `${prefix}`}
     {(value) => {
       const canonicalPath = get(content, 'company.canonicalPath');
       if (!canonicalPath) return null;
