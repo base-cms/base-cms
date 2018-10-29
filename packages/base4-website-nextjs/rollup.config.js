@@ -22,6 +22,7 @@ const makeExternalPredicate = (externalsArr) => {
 export default {
   experimentalCodeSplitting: true,
   input: [
+    'src/app.js',
     'src/components-content.js',
     'src/components-core.js',
     'src/components-dynamic-page.js',
@@ -29,7 +30,6 @@ export default {
     'src/components-website-section.js',
     'src/config.js',
     'src/hoc.js',
-    'src/pages.js',
     'src/queries.js',
     'src/routing.js',
     'src/server.js',
