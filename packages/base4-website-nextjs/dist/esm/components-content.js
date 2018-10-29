@@ -261,11 +261,38 @@ ContentShortName.defaultProps = defaultProps$6;
 var propTypes$7 = {
   collapsible: PropTypes.bool,
   content: PropTypes.shape({
-    teaser: PropTypes.string
+    name: PropTypes.string
   }),
   tag: PropTypes.string
 };
 var defaultProps$7 = {
+  collapsible: true,
+  content: {},
+  tag: 'span'
+};
+
+var ContentSource = function ContentSource(_ref) {
+  var content = _ref.content,
+      rest = _objectWithoutProperties(_ref, ["content"]);
+
+  return React.createElement(ObjectValue$1, _extends({
+    path: "source",
+    obj: content
+  }, rest));
+};
+
+ContentSource.displayName = 'Content/Elements/Source';
+ContentSource.propTypes = propTypes$7;
+ContentSource.defaultProps = defaultProps$7;
+
+var propTypes$8 = {
+  collapsible: PropTypes.bool,
+  content: PropTypes.shape({
+    teaser: PropTypes.string
+  }),
+  tag: PropTypes.string
+};
+var defaultProps$8 = {
   collapsible: true,
   content: {},
   tag: 'div'
@@ -283,10 +310,10 @@ var ContentTeaser = function ContentTeaser(_ref) {
 };
 
 ContentTeaser.displayName = 'Content/Elements/Teaser';
-ContentTeaser.propTypes = propTypes$7;
-ContentTeaser.defaultProps = defaultProps$7;
+ContentTeaser.propTypes = propTypes$8;
+ContentTeaser.defaultProps = defaultProps$8;
 
-var propTypes$8 = {
+var propTypes$9 = {
   children: PropTypes.func,
   collapsible: PropTypes.bool,
   content: PropTypes.shape({
@@ -294,7 +321,7 @@ var propTypes$8 = {
   }),
   tag: PropTypes.string
 };
-var defaultProps$8 = {
+var defaultProps$9 = {
   children: undefined,
   collapsible: true,
   content: {},
@@ -317,10 +344,100 @@ var ContentType = function ContentType(_ref) {
 };
 
 ContentType.displayName = 'Content/Elements/Type';
-ContentType.propTypes = propTypes$8;
-ContentType.defaultProps = defaultProps$8;
+ContentType.propTypes = propTypes$9;
+ContentType.defaultProps = defaultProps$9;
 
-var propTypes$9 = {
+var propTypes$a = {
+  children: PropTypes.func,
+  className: PropTypes.string,
+  collapsible: PropTypes.bool,
+  elementAttrs: PropTypes.object,
+  // eslint-disable-line react/forbid-prop-types
+  linkAttrs: PropTypes.object,
+  // eslint-disable-line react/forbid-prop-types
+  path: PropTypes.oneOf(['authors', 'contributors', 'photographers']).isRequired,
+  prefix: PropTypes.string,
+  tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
+};
+var defaultProps$a = {
+  children: undefined,
+  className: null,
+  collapsible: true,
+  elementAttrs: {},
+  linkAttrs: {},
+  prefix: null,
+  tag: 'div'
+};
+
+var ContactFullNameLinks = function ContactFullNameLinks(_ref) {
+  var children = _ref.children,
+      className = _ref.className,
+      collapsible = _ref.collapsible,
+      content = _ref.content,
+      path = _ref.path,
+      prefix = _ref.prefix,
+      elementAttrs = _ref.elementAttrs,
+      linkAttrs = _ref.linkAttrs,
+      Tag = _ref.tag,
+      attrs = _objectWithoutProperties(_ref, ["children", "className", "collapsible", "content", "path", "prefix", "elementAttrs", "linkAttrs", "tag"]);
+
+  var edgesPath = "".concat(path, ".edges");
+  var edges = getAsArray(content, edgesPath);
+  if (collapsible && !edges.length) return null;
+  return React.createElement(Tag, _extends({
+    className: classNames(modelClassNames('content', edgesPath), className)
+  }, attrs), prefix && "".concat(prefix), edges.map(function (edge) {
+    var key = get(edge, 'node.id');
+    var canonicalPath = get(edge, 'node.canonicalPath');
+    if (collapsible && !canonicalPath) return null;
+    return React.createElement(ObjectValue$1, _extends({
+      key: key,
+      path: "node.fullName",
+      obj: edge,
+      collapsible: collapsible
+    }, elementAttrs), function (fullName) {
+      return React.createElement(ContentLink, _extends({
+        canonicalPath: canonicalPath,
+        value: fullName
+      }, linkAttrs), children);
+    });
+  }));
+};
+
+ContactFullNameLinks.displayName = 'Content/Links/ContactFullNames';
+ContactFullNameLinks.propTypes = propTypes$a;
+ContactFullNameLinks.defaultProps = defaultProps$a;
+
+var propTypes$b = {
+  children: PropTypes.func,
+  collapsible: PropTypes.bool,
+  elementAttrs: PropTypes.object,
+  // eslint-disable-line react/forbid-prop-types
+  linkAttrs: PropTypes.object,
+  // eslint-disable-line react/forbid-prop-types
+  prefix: PropTypes.string,
+  tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
+};
+var defaultProps$b = {
+  children: undefined,
+  collapsible: true,
+  elementAttrs: {},
+  linkAttrs: {},
+  prefix: null,
+  tag: 'div'
+};
+
+var AuthorFullNameLinks = function AuthorFullNameLinks(props) {
+  return React.createElement(ContactFullNameLinks, _extends({
+    path: "authors"
+  }, props));
+};
+
+AuthorFullNameLinks.displayName = 'Content/Links/AuthorFullNames';
+AuthorFullNameLinks.propTypes = propTypes$b;
+AuthorFullNameLinks.defaultProps = defaultProps$b;
+
+var propTypes$c = {
   children: PropTypes.func,
   collapsible: PropTypes.bool,
   content: PropTypes.shape({
@@ -331,7 +448,7 @@ var propTypes$9 = {
   // eslint-disable-line react/forbid-prop-types
   tag: PropTypes.string
 };
-var defaultProps$9 = {
+var defaultProps$c = {
   children: undefined,
   collapsible: true,
   content: {},
@@ -359,68 +476,39 @@ var CompanyNameLink = function CompanyNameLink(_ref) {
 };
 
 CompanyNameLink.displayName = 'Content/Links/CompanyName';
-CompanyNameLink.propTypes = propTypes$9;
-CompanyNameLink.defaultProps = defaultProps$9;
+CompanyNameLink.propTypes = propTypes$c;
+CompanyNameLink.defaultProps = defaultProps$c;
 
-var propTypes$a = {
+var propTypes$d = {
   children: PropTypes.func,
-  className: PropTypes.string,
   collapsible: PropTypes.bool,
   elementAttrs: PropTypes.object,
   // eslint-disable-line react/forbid-prop-types
   linkAttrs: PropTypes.object,
   // eslint-disable-line react/forbid-prop-types
-  path: PropTypes.oneOf(['authors', 'contributors', 'photographers']).isRequired,
+  prefix: PropTypes.string,
   tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
 };
-var defaultProps$a = {
+var defaultProps$d = {
   children: undefined,
-  className: null,
   collapsible: true,
   elementAttrs: {},
   linkAttrs: {},
+  prefix: null,
   tag: 'div'
 };
 
-var ContactFullNameLinks = function ContactFullNameLinks(_ref) {
-  var children = _ref.children,
-      className = _ref.className,
-      collapsible = _ref.collapsible,
-      content = _ref.content,
-      path = _ref.path,
-      elementAttrs = _ref.elementAttrs,
-      linkAttrs = _ref.linkAttrs,
-      Tag = _ref.tag,
-      attrs = _objectWithoutProperties(_ref, ["children", "className", "collapsible", "content", "path", "elementAttrs", "linkAttrs", "tag"]);
-
-  var edgesPath = "".concat(path, ".edges");
-  var edges = getAsArray(content, edgesPath);
-  if (collapsible && !edges.length) return null;
-  return React.createElement(Tag, _extends({
-    className: classNames(modelClassNames('content', edgesPath), className)
-  }, attrs), edges.map(function (edge) {
-    var key = get(edge, 'node.id');
-    var canonicalPath = get(edge, 'node.canonicalPath');
-    if (collapsible && !canonicalPath) return null;
-    return React.createElement(ObjectValue$1, _extends({
-      key: key,
-      path: "node.fullName",
-      obj: edge,
-      collapsible: collapsible
-    }, elementAttrs), function (fullName) {
-      return React.createElement(ContentLink, _extends({
-        canonicalPath: canonicalPath,
-        value: fullName
-      }, linkAttrs), children);
-    });
-  }));
+var ContributorFullNameLinks = function ContributorFullNameLinks(props) {
+  return React.createElement(ContactFullNameLinks, _extends({
+    path: "contributors"
+  }, props));
 };
 
-ContactFullNameLinks.displayName = 'Content/Links/ContactFullNames';
-ContactFullNameLinks.propTypes = propTypes$a;
-ContactFullNameLinks.defaultProps = defaultProps$a;
+ContributorFullNameLinks.displayName = 'Content/Links/ContributorFullNames';
+ContributorFullNameLinks.propTypes = propTypes$d;
+ContributorFullNameLinks.defaultProps = defaultProps$d;
 
-var propTypes$b = {
+var propTypes$e = {
   children: PropTypes.func,
   collapsible: PropTypes.bool,
   content: PropTypes.shape({
@@ -435,7 +523,7 @@ var propTypes$b = {
   sectionRoutePrefix: PropTypes.string,
   tag: PropTypes.string
 };
-var defaultProps$b = {
+var defaultProps$e = {
   children: undefined,
   collapsible: true,
   content: {},
@@ -468,10 +556,10 @@ var PrimarySectionNameLink = function PrimarySectionNameLink(_ref) {
 };
 
 PrimarySectionNameLink.propTypes = 'Content/Links/PrimarySectionName';
-PrimarySectionNameLink.propTypes = propTypes$b;
-PrimarySectionNameLink.defaultProps = defaultProps$b;
+PrimarySectionNameLink.propTypes = propTypes$e;
+PrimarySectionNameLink.defaultProps = defaultProps$e;
 
-var propTypes$c = {
+var propTypes$f = {
   collapsible: PropTypes.bool,
   content: PropTypes.shape({
     shortName: PropTypes.string,
@@ -481,7 +569,7 @@ var propTypes$c = {
   // eslint-disable-line react/forbid-prop-types
   tag: PropTypes.string
 };
-var defaultProps$c = {
+var defaultProps$f = {
   collapsible: true,
   content: {},
   linkAttrs: {},
@@ -508,7 +596,7 @@ var ShortNameLink = function ShortNameLink(_ref) {
 };
 
 ShortNameLink.displayName = 'Content/Links/ShortName';
-ShortNameLink.propTypes = propTypes$c;
-ShortNameLink.defaultProps = defaultProps$c;
+ShortNameLink.propTypes = propTypes$f;
+ShortNameLink.defaultProps = defaultProps$f;
 
-export { ContentLink as Link, ContentWrapper as Wrapper, ContentBody as Body, ContentName as Name, ObjectValue$1 as ObjectValue, ContentPublishedDate as PublishedDate, ContentRow as Row, ContentShortName as ShortName, ContentTeaser as Teaser, ContentType as Type, CompanyNameLink, ContactFullNameLinks, PrimarySectionNameLink, ShortNameLink };
+export { ContentLink as Link, ContentWrapper as Wrapper, ContentBody as Body, ContentName as Name, ObjectValue$1 as ObjectValue, ContentPublishedDate as PublishedDate, ContentRow as Row, ContentShortName as ShortName, ContentSource as Source, ContentTeaser as Teaser, ContentType as Type, AuthorFullNameLinks, CompanyNameLink, ContactFullNameLinks, ContributorFullNameLinks, PrimarySectionNameLink, ShortNameLink };
