@@ -11,6 +11,7 @@ import Source from './components/content/Elements/Source';
 import Teaser from './components/content/Elements/Teaser';
 import Type from './components/content/Elements/Type';
 
+import AuthorFullNameLinks from './components/content/Links/AuthorFullNames';
 import CompanyNameLink from './components/content/Links/CompanyName';
 import ContactFullNameLinks from './components/content/Links/ContactFullNames';
 import PrimarySectionNameLink from './components/content/Links/PrimarySectionName';
@@ -31,6 +32,7 @@ export {
   Teaser,
   Type,
   // Links
+  AuthorFullNameLinks,
   CompanyNameLink,
   ContactFullNameLinks,
   PrimarySectionNameLink,
