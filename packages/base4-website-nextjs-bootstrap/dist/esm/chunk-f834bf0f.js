@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import gql from 'graphql-tag';
-import { CompanyLink, PrimarySectionNameLink, PublishedDate, Row, ShortNameLink } from '@base-cms/base4-website-nextjs/components/content';
+import { CompanyNameLink, PrimarySectionNameLink, PublishedDate, Row, ShortNameLink } from '@base-cms/base4-website-nextjs/components/content';
 import { asArray } from '@base-cms/base4-website-nextjs/utils';
 
 var propTypes = {
@@ -80,7 +80,7 @@ var ListGroupItemStyleA = function ListGroupItemStyleA(_ref) {
   }, attr), React.createElement(ShortNameLink, {
     content: content,
     className: "mb-1"
-  }), React.createElement(CompanyLink, {
+  }), React.createElement(CompanyNameLink, {
     content: content,
     tag: "small",
     className: "d-block",

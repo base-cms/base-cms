@@ -84,7 +84,7 @@ var ListGroupItemStyleA = function ListGroupItemStyleA(_ref) {
   }, attr), React.createElement(content.ShortNameLink, {
     content: content$$1,
     className: "mb-1"
-  }), React.createElement(content.CompanyLink, {
+  }), React.createElement(content.CompanyNameLink, {
     content: content$$1,
     tag: "small",
     className: "d-block",

@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var __chunk_2 = require('./chunk-007fe0ac.js');
+var __chunk_2 = require('./chunk-266814f5.js');
 require('./chunk-1c32c684.js');
 require('react');
 require('prop-types');
