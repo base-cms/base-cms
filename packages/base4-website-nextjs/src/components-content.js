@@ -7,6 +7,7 @@ import ObjectValue from './components/content/Elements/ObjectValue';
 import PublishedDate from './components/content/Elements/PublishedDate';
 import Row from './components/content/Elements/Row';
 import ShortName from './components/content/Elements/ShortName';
+import Source from './components/content/Elements/Source';
 import Teaser from './components/content/Elements/Teaser';
 import Type from './components/content/Elements/Type';
 
@@ -26,6 +27,7 @@ export {
   PublishedDate,
   Row,
   ShortName,
+  Source,
   Teaser,
   Type,
   // Links
