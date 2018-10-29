@@ -1,13 +1,18 @@
-import { c as _extends, b as _objectWithoutProperties } from './chunk-b6566c55.js';
-import React from 'react';
-import PropTypes from 'prop-types';
-import { b as Value, c as HTML } from './chunk-0f5b0a48.js';
-import { formatDate } from './utils.js';
-import { get } from 'object-path';
+'use strict';
+
+function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+
+var __chunk_1 = require('./chunk-ef1c5e57.js');
+var React = require('react');
+var React__default = _interopDefault(React);
+var PropTypes = _interopDefault(require('prop-types'));
+var __chunk_2 = require('./chunk-d64f6f34.js');
+var utils = require('./utils.js');
+var objectPath = require('object-path');
 
 var propTypes = {
   // additional arguments to send to the render function.
-  args: PropTypes.arrayOf(PropTypes.node),
+  args: PropTypes.array,
   children: PropTypes.func,
   collapsible: PropTypes.bool,
   format: PropTypes.string,
@@ -28,14 +33,14 @@ var DateElement = function DateElement(_ref) {
   var args = _ref.args,
       format = _ref.format,
       raw = _ref.value,
-      rest = _objectWithoutProperties(_ref, ["args", "format", "value"]);
+      rest = __chunk_1._objectWithoutProperties(_ref, ["args", "format", "value"]);
 
   // Format the date. Will return null on an invalid date value.
-  var value = formatDate(raw, format); // Create the `datetime` element attribute
+  var value = utils.formatDate(raw, format); // Create the `datetime` element attribute
   // @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time
 
-  var dateTime = formatDate(raw);
-  return React.createElement(Value, _extends({
+  var dateTime = utils.formatDate(raw);
+  return React__default.createElement(__chunk_2.Value, __chunk_1._extends({
     value: value,
     dateTime: dateTime,
     args: args
@@ -73,19 +78,19 @@ var ObjectValueElement = function ObjectValueElement(_ref) {
       obj = _ref.obj,
       dateFormat = _ref.dateFormat,
       path = _ref.path,
-      rest = _objectWithoutProperties(_ref, ["asDate", "asHTML", "obj", "dateFormat", "path"]);
+      rest = __chunk_1._objectWithoutProperties(_ref, ["asDate", "asHTML", "obj", "dateFormat", "path"]);
 
   // Extract the value off the object.
-  var value = get(obj, path, null); // Return as a date, if applicable.
+  var value = objectPath.get(obj, path, null); // Return as a date, if applicable.
 
-  if (asDate) return React.createElement(DateElement, _extends({
+  if (asDate) return React__default.createElement(DateElement, __chunk_1._extends({
     format: dateFormat,
     value: value
   }, rest));
-  if (asHTML) return React.createElement(HTML, _extends({
+  if (asHTML) return React__default.createElement(__chunk_2.HTML, __chunk_1._extends({
     value: value
   }, rest));
-  return React.createElement(Value, _extends({
+  return React__default.createElement(__chunk_2.Value, __chunk_1._extends({
     value: value,
     args: [obj, path]
   }, rest));
@@ -117,12 +122,12 @@ var defaultProps$2 = {
 
 var ObjectValueCollection = function ObjectValueCollection(_ref) {
   var objs = _ref.objs,
-      rest = _objectWithoutProperties(_ref, ["objs"]);
+      rest = __chunk_1._objectWithoutProperties(_ref, ["objs"]);
 
   var arr = Array.isArray(objs) ? objs : [];
-  return React.createElement(React.Fragment, null, arr.map(function (obj, index) {
-    return React.createElement(ObjectValueElement, _extends({
-      key: Symbol(index),
+  return React__default.createElement(React__default.Fragment, null, arr.map(function (obj, index) {
+    return React__default.createElement(ObjectValueElement, __chunk_1._extends({
+      key: index,
       obj: obj
     }, rest));
   }));
@@ -132,4 +137,6 @@ ObjectValueCollection.displayName = 'Core/Collections/ObjectValue';
 ObjectValueCollection.propTypes = propTypes$2;
 ObjectValueCollection.defaultProps = defaultProps$2;
 
-export { ObjectValueElement as a, ObjectValueCollection as b, DateElement as c };
+exports.ObjectValue = ObjectValueElement;
+exports.ObjectValueCollection = ObjectValueCollection;
+exports.DateElement = DateElement;

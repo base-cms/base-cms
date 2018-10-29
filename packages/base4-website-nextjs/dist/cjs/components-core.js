@@ -8,8 +8,8 @@ var __chunk_1 = require('./chunk-ef1c5e57.js');
 var React = require('react');
 var React__default = _interopDefault(React);
 var PropTypes = _interopDefault(require('prop-types'));
-var __chunk_4 = require('./chunk-dbdb03af.js');
-var __chunk_2 = require('./chunk-f20cadca.js');
+var __chunk_4 = require('./chunk-dfcac77a.js');
+var __chunk_2 = require('./chunk-d64f6f34.js');
 require('./utils.js');
 require('moment');
 require('object-path');
@@ -39,7 +39,7 @@ var DateCollection = function DateCollection(_ref) {
   var arr = Array.isArray(values) ? values : [];
   return React__default.createElement(React__default.Fragment, null, arr.map(function (value, index) {
     return React__default.createElement(__chunk_4.DateElement, __chunk_1._extends({
-      key: Symbol(index),
+      key: index,
       value: value
     }, rest));
   }));
@@ -67,7 +67,7 @@ var HTMLCollection = function HTMLCollection(_ref) {
   var arr = Array.isArray(values) ? values : [];
   return React__default.createElement(React__default.Fragment, null, arr.map(function (value, index) {
     return React__default.createElement(__chunk_2.HTML, __chunk_1._extends({
-      key: Symbol(index),
+      key: index,
       value: value
     }, rest));
   }));
@@ -97,7 +97,7 @@ var ValueCollection = function ValueCollection(_ref) {
   var arr = Array.isArray(values) ? values : [];
   return React__default.createElement(React__default.Fragment, null, arr.map(function (value, index) {
     return React__default.createElement(__chunk_2.Value, __chunk_1._extends({
-      key: Symbol(index),
+      key: index,
       value: value
     }, rest));
   }));

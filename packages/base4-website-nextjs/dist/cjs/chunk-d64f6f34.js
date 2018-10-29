@@ -1,12 +1,17 @@
-import { a as _toConsumableArray, b as _objectWithoutProperties, c as _extends, d as _objectSpread } from './chunk-b6566c55.js';
-import React from 'react';
-import PropTypes from 'prop-types';
-import { isFunction as isFn, createMarkup, cleanPath } from './utils.js';
-import { Link } from './routing.js';
+'use strict';
+
+function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+
+var __chunk_1 = require('./chunk-ef1c5e57.js');
+var React = require('react');
+var React__default = _interopDefault(React);
+var PropTypes = _interopDefault(require('prop-types'));
+var utils = require('./utils.js');
+var routing = require('./routing.js');
 
 var propTypes = {
   // additional arguments to send to the render function.
-  args: PropTypes.arrayOf(PropTypes.node),
+  args: PropTypes.array,
   children: PropTypes.func,
   collapsible: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
@@ -28,12 +33,12 @@ var ValueElement = function ValueElement(_ref) {
       collapsible = _ref.collapsible,
       Tag = _ref.tag,
       value = _ref.value,
-      attrs = _objectWithoutProperties(_ref, ["args", "children", "collapsible", "tag", "value"]);
+      attrs = __chunk_1._objectWithoutProperties(_ref, ["args", "children", "collapsible", "tag", "value"]);
 
   // Protect the child render function.
-  var render = isFn(children) ? children : defaultProps.children; // Wrap the value with the element and return (if not collapsible).
+  var render = utils.isFunction(children) ? children : defaultProps.children; // Wrap the value with the element and return (if not collapsible).
 
-  return !value && collapsible ? null : React.createElement(Tag, attrs, render.apply(void 0, [value].concat(_toConsumableArray(args))));
+  return !value && collapsible ? null : React__default.createElement(Tag, attrs, render.apply(void 0, [value].concat(__chunk_1._toConsumableArray(args))));
 };
 
 ValueElement.displayName = 'Core/Elements/Value';
@@ -55,11 +60,11 @@ var HTMLElement = function HTMLElement(_ref) {
   var collapsible = _ref.collapsible,
       value = _ref.value,
       Tag = _ref.tag,
-      attrs = _objectWithoutProperties(_ref, ["collapsible", "value", "tag"]);
+      attrs = __chunk_1._objectWithoutProperties(_ref, ["collapsible", "value", "tag"]);
 
   if (!value && collapsible) return null;
-  return React.createElement(Tag, _extends({
-    dangerouslySetInnerHTML: createMarkup(value)
+  return React__default.createElement(Tag, __chunk_1._extends({
+    dangerouslySetInnerHTML: utils.createMarkup(value)
   }, attrs));
 };
 
@@ -97,12 +102,12 @@ var LinkElement = function LinkElement(_ref) {
       params = _ref.params,
       to = _ref.to,
       value = _ref.value,
-      attrs = _objectWithoutProperties(_ref, ["asHTML", "children", "collapsible", "params", "to", "value"]);
+      attrs = __chunk_1._objectWithoutProperties(_ref, ["asHTML", "children", "collapsible", "params", "to", "value"]);
 
   var href = String(to || '');
   var isExternal = href.match(/^(http:|https:|ftp:|mailto:|\/\/)/i);
 
-  var props = _objectSpread({}, attrs, {
+  var props = __chunk_1._objectSpread({}, attrs, {
     children: children,
     collapsible: collapsible,
     href: isExternal ? href : undefined,
@@ -110,10 +115,10 @@ var LinkElement = function LinkElement(_ref) {
     value: value
   });
 
-  var child = asHTML ? React.createElement(HTMLElement, props) : React.createElement(ValueElement, props);
+  var child = asHTML ? React__default.createElement(HTMLElement, props) : React__default.createElement(ValueElement, props);
   if (isExternal) return child;
-  return React.createElement(Link, {
-    route: "/".concat(cleanPath(href)),
+  return React__default.createElement(routing.Link, {
+    route: "/".concat(utils.cleanPath(href)),
     params: params,
     passHref: true
   }, child);
@@ -123,4 +128,6 @@ LinkElement.displayName = 'Core/Elements/Link';
 LinkElement.propTypes = propTypes$2;
 LinkElement.defaultProps = defaultProps$2;
 
-export { LinkElement as a, ValueElement as b, HTMLElement as c };
+exports.LinkElement = LinkElement;
+exports.Value = ValueElement;
+exports.HTML = HTMLElement;

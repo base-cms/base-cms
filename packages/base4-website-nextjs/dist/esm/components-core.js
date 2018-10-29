@@ -1,10 +1,10 @@
 import { c as _extends, b as _objectWithoutProperties } from './chunk-b6566c55.js';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { c as DateElement, a as ObjectValue, b as ObjectValueCollection } from './chunk-64c6200f.js';
-export { c as DateElement, a as ObjectValueElement, b as ObjectValueCollection } from './chunk-64c6200f.js';
-import { c as HTML, b as Value, a as LinkElement } from './chunk-0f5b0a48.js';
-export { c as HTMLElement, a as LinkElement, b as ValueElement } from './chunk-0f5b0a48.js';
+import { c as DateElement, a as ObjectValue, b as ObjectValueCollection } from './chunk-23ad3a70.js';
+export { c as DateElement, a as ObjectValueElement, b as ObjectValueCollection } from './chunk-23ad3a70.js';
+import { c as HTML, b as Value, a as LinkElement } from './chunk-f9ad4ea6.js';
+export { c as HTMLElement, a as LinkElement, b as ValueElement } from './chunk-f9ad4ea6.js';
 import './utils.js';
 import 'moment';
 import 'object-path';
@@ -34,7 +34,7 @@ var DateCollection = function DateCollection(_ref) {
   var arr = Array.isArray(values) ? values : [];
   return React.createElement(React.Fragment, null, arr.map(function (value, index) {
     return React.createElement(DateElement, _extends({
-      key: Symbol(index),
+      key: index,
       value: value
     }, rest));
   }));
@@ -62,7 +62,7 @@ var HTMLCollection = function HTMLCollection(_ref) {
   var arr = Array.isArray(values) ? values : [];
   return React.createElement(React.Fragment, null, arr.map(function (value, index) {
     return React.createElement(HTML, _extends({
-      key: Symbol(index),
+      key: index,
       value: value
     }, rest));
   }));
@@ -92,7 +92,7 @@ var ValueCollection = function ValueCollection(_ref) {
   var arr = Array.isArray(values) ? values : [];
   return React.createElement(React.Fragment, null, arr.map(function (value, index) {
     return React.createElement(Value, _extends({
-      key: Symbol(index),
+      key: index,
       value: value
     }, rest));
   }));
