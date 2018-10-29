@@ -30,7 +30,7 @@ const ObjectValueCollection = ({
   const arr = Array.isArray(objs) ? objs : [];
   return (
     <>
-      {arr.map((obj, index) => <ObjectValue key={Symbol(index)} obj={obj} {...rest} />)}
+      {arr.map((obj, index) => <ObjectValue key={index} obj={obj} {...rest} />)}
     </>
   );
 };

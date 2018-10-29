@@ -23,7 +23,7 @@ const ValueCollection = ({
   const arr = Array.isArray(values) ? values : [];
   return (
     <>
-      {arr.map((value, index) => <Value key={Symbol(index)} value={value} {...rest} />)}
+      {arr.map((value, index) => <Value key={index} value={value} {...rest} />)}
     </>
   );
 };

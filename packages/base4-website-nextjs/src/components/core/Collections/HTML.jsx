@@ -21,7 +21,7 @@ const HTMLCollection = ({
   const arr = Array.isArray(values) ? values : [];
   return (
     <>
-      {arr.map((value, index) => <HTML key={Symbol(index)} value={value} {...rest} />)}
+      {arr.map((value, index) => <HTML key={index} value={value} {...rest} />)}
     </>
   );
 };
