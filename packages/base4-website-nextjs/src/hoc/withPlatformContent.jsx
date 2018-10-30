@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
-import getConfig from 'next/config';
 
 // Routing
 import { redirect } from '../routing';
 
 // Utilities
-import { componentDisplayName, extractFragmentData, httpErrors } from '../utils';
+import {
+  componentDisplayName,
+  contentCanonicalPaths,
+  extractFragmentData,
+  httpErrors,
+} from '../utils';
 
 // Config
 import { SiteConfigContext } from '../config';
@@ -69,15 +73,12 @@ export const checkContent = (content, { Router, res, asPath }) => {
  */
 export default ({
   fragment = null,
-  canonicalFields = ['sectionAlias', 'type', 'id', 'slug'],
 } = {}) => (Page) => {
   class WithPlatformContent extends Component {
     /**
      *
      */
     static async getInitialProps(ctx) {
-      const { publicRuntimeConfig } = getConfig();
-      console.log(publicRuntimeConfig);
       // Await the props of the Page
       let pageProps;
       if (Page.getInitialProps) {
@@ -95,7 +96,7 @@ export default ({
       // Query for the content object using the id, via the inject apollo client.
       const input = { id: Number(id) };
       // Pass the canonical args to generate the content's canonical (route) path.
-      const variables = { input, canonicalFields };
+      const variables = { input, canonicalFields: contentCanonicalPaths() };
       const { data } = await apollo.query({ query: buildQuery({ fragment }), variables });
       const { platformContent } = data;
       if (!platformContent) {

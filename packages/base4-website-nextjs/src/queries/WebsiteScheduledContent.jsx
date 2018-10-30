@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-import { extractFragmentData } from '../utils';
+import { contentCanonicalPaths, extractFragmentData } from '../utils';
 
 export const buildQuery = ({ fragment }) => {
   const { spreadFragmentName, processedFragment } = extractFragmentData({ fragment });
@@ -46,7 +46,7 @@ const WebsiteScheduledContent = ({
     sectionBubbling,
     sectionId,
   };
-  const canonicalFields = ['sectionAlias', 'type', 'id', 'slug'];
+  const canonicalFields = contentCanonicalPaths();
   const query = buildQuery({ fragment });
   return (
     <Query query={query} variables={{ input, canonicalFields }}>
