@@ -45,7 +45,11 @@
     "rollup-plugin-node-resolve": "^3.4.0"
   },
   "dependencies": {
+    "@zeit/next-sass": "^1.0.1",
+    "autoprefixer": "^9.3.1",
     "classnames": "^2.2.6",
+    "node-sass": "^4.9.4",
+    "precss": "^3.1.2",
     "prop-types": "^15.6.2",
     "rollup-plugin-graphql": "^0.1.0"
   }
