@@ -1,4 +1,4 @@
-const { DefinePlugin } = require('webpack');
+const { EnvironmentPlugin } = require('webpack');
 
 module.exports = (nextConfig = {}) => Object.assign({}, nextConfig, {
   /**
@@ -7,9 +7,7 @@ module.exports = (nextConfig = {}) => Object.assign({}, nextConfig, {
    * @param {*} options
    */
   webpack(config, options) {
-    config.plugins.push(new DefinePlugin({
-      'process.env.CONTENT_CANONICAL_PATHS': JSON.stringify(['sectionAlias', 'type', 'id', 'slug'])
-    }));
+    config.plugins.push(new EnvironmentPlugin(['CONTENT_CANONICAL_PATHS', 'NODE_ENV']));
 
     config.module.rules.push({
       test: /\.(graphql|gql)$/,
