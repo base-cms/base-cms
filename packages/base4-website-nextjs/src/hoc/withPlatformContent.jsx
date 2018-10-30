@@ -75,7 +75,7 @@ export default ({
      *
      */
     static async getInitialProps(ctx) {
-      console.log(CONTENT_CANONICAL_PATHS);
+      console.log(process.env.CONTENT_CANONICAL_PATHS);
       // Await the props of the Page
       let pageProps;
       if (Page.getInitialProps) {

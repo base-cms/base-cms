@@ -402,7 +402,7 @@ var withPlatformContent = (function () {
               while (1) {
                 switch (_context.prev = _context.next) {
                   case 0:
-                    console.log(CONTENT_CANONICAL_PATHS); // Await the props of the Page
+                    console.log(process.env.CONTENT_CANONICAL_PATHS); // Await the props of the Page
 
                     if (!Page.getInitialProps) {
                       _context.next = 5;
