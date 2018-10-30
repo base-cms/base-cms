@@ -2,7 +2,6 @@ import next from 'next';
 import baseWebsite from '@base-cms/base4-website-express';
 import { resolve } from 'path';
 import nextRoutes from 'next-routes';
-import './env';
 
 const isFn = v => typeof v === 'function';
 const { isArray } = Array;
