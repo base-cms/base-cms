@@ -786,13 +786,14 @@
 
 "@base-cms/base4-website-nextjs@https://github.com/base-cms/base4-website-nextjs.git":
   version "0.1.0"
-  resolved "https://github.com/base-cms/base4-website-nextjs.git#88abe0db15c511849fec5ca3f5b4eeb7972440ca"
+  resolved "https://github.com/base-cms/base4-website-nextjs.git#77c697efa7d02c97be7bff020fa476c92ec6738d"
   dependencies:
     "@base-cms/base4-nextjs-apollo" "https://github.com/base-cms/base4-nextjs-apollo.git"
     "@base-cms/base4-website-express" "https://github.com/base-cms/base4-website-express.git"
     classnames "^2.2.6"
     hoist-non-react-statics "^3.0.1"
     inflected "^2.0.4"
+    moment "^2.22.2"
     next-routes "^1.4.2"
     object-path "^0.11.4"
     prop-types "^15.6.2"
@@ -3502,10 +3503,17 @@ hoist-non-react-statics@2.5.5:
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.5.5.tgz#c5903cf409c0dfd908f388e619d86b9c1174cb47"
   integrity sha512-rqcy4pJo55FTTLWt+bU8ukscqHeE/e9KWvsOW2b/a3afxQZhwkQdT1rPPCJ0rYXdj4vNcasY8zHTH+jF/qStxw==
 
-hoist-non-react-statics@^3.0.0, hoist-non-react-statics@^3.0.1:
+hoist-non-react-statics@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.0.1.tgz#fba3e7df0210eb9447757ca1a7cb607162f0a364"
   integrity sha512-1kXwPsOi0OGQIZNVMPvgWJ9tSnGMiMfJdihqEzrPEXlHOBh9AAHXX/QYmAJTXztnz/K+PQ8ryCb4eGaN6HlGbQ==
+  dependencies:
+    react-is "^16.3.2"
+
+hoist-non-react-statics@^3.0.1:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.1.0.tgz#42414ccdfff019cd2168168be998c7b3bd5245c0"
+  integrity sha512-MYcYuROh7SBM69xHGqXEwQqDux34s9tz+sCnxJmN18kgWh6JFdTw/5YdZtqsOdZJXddE/wUpCzfEdDrJj8p0Iw==
   dependencies:
     react-is "^16.3.2"
 
