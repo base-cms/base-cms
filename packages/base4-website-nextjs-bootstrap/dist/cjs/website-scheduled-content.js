@@ -9,7 +9,7 @@ var React = require('react');
 var React__default = _interopDefault(React);
 var PropTypes = _interopDefault(require('prop-types'));
 var queries = require('@base-cms/base4-website-nextjs/queries');
-var __chunk_3 = require('./chunk-4790ccf4.js');
+var __chunk_3 = require('./chunk-3fa0fc7f.js');
 require('classnames');
 require('./chunk-ec0103f6.js');
 require('@base-cms/base4-website-nextjs/components/content');
