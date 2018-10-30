@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 import {
+  CompanyNameLink,
   PrimarySectionNameLink,
   PublishedDate,
   Row,
@@ -36,6 +37,7 @@ const defaultProps = {
 const ListGroupItemStyleA = ({ content, ...attr }) => (
   <ListGroupItem content={content} {...attr}>
     <ShortNameLink content={content} className="mb-1" />
+    <CompanyNameLink content={content} tag="small" className="d-block" prefix="From " />
     <Row tag="small">
       <PrimarySectionNameLink content={content} className="mr-2" />
       <PublishedDate content={content} />
@@ -43,8 +45,6 @@ const ListGroupItemStyleA = ({ content, ...attr }) => (
   </ListGroupItem>
 );
 
-// @todo determine how to pass canonical field args...
-// canonicalPath(input: { fields: $canonicalFields })
 ListGroupItemStyleA.displayName = 'Content/ListGroupItem/StyleA';
 ListGroupItemStyleA.propTypes = propTypes;
 ListGroupItemStyleA.defaultProps = defaultProps;
@@ -55,7 +55,7 @@ ListGroupItemStyleA.fragments = {
       type
       shortName
       published
-      canonicalPath
+      canonicalPath(input: { fields: $canonicalFields })
       primarySection {
         id
         name
@@ -65,7 +65,7 @@ ListGroupItemStyleA.fragments = {
         company {
           id
           name
-          canonicalPath
+          canonicalPath(input: { fields: $canonicalFields })
         }
       }
     }
