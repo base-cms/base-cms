@@ -42,7 +42,7 @@
 
 "@base-cms/base4-graphql-stitching@https://github.com/base-cms/base4-graphql-stitching.git":
   version "1.0.0"
-  resolved "https://github.com/base-cms/base4-graphql-stitching.git#74563edbcf3c076bfc19d99b9883d16a4e4d0aec"
+  resolved "https://github.com/base-cms/base4-graphql-stitching.git#16907bbccc4f2f3b937e800b7b3dd8eba1f6b908"
   dependencies:
     apollo-link "^1.2.3"
     apollo-link-context "^1.0.9"
