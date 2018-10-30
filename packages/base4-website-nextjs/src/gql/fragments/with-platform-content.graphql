@@ -6,6 +6,7 @@ fragment WithPlatformContentFragment on PlatformContent {
   body
   published
   redirectTo
+  canonicalPath
   metadata {
     title
     description
