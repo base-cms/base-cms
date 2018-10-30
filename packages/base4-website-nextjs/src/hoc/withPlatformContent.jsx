@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
+import getConfig from 'next/config';
 
 // Routing
 import { redirect } from '../routing';
@@ -75,7 +76,8 @@ export default ({
      *
      */
     static async getInitialProps(ctx) {
-      console.log(process.env.CONTENT_CANONICAL_PATHS);
+      const { publicRuntimeConfig } = getConfig();
+      console.log(publicRuntimeConfig);
       // Await the props of the Page
       let pageProps;
       if (Page.getInitialProps) {

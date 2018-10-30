@@ -1,14 +1,18 @@
-const { EnvironmentPlugin } = require('webpack');
-
 module.exports = (nextConfig = {}) => Object.assign({}, nextConfig, {
+  /**
+   *
+   */
+  publicRuntimeConfig: {
+    contentCanonicalPath: ['sectionAlias', 'type', 'id', 'slug'],
+    ...nextConfig.publicRuntimeConfig,
+  },
+
   /**
    *
    * @param {*} config
    * @param {*} options
    */
   webpack(config, options) {
-    config.plugins.push(new EnvironmentPlugin(['CONTENT_CANONICAL_PATHS', 'NODE_ENV']));
-
     config.module.rules.push({
       test: /\.(graphql|gql)$/,
       exclude: /node_modules/,
