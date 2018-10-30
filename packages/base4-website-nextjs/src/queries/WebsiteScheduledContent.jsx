@@ -7,7 +7,7 @@ import { extractFragmentData } from '../utils';
 export const buildQuery = ({ fragment }) => {
   const { spreadFragmentName, processedFragment } = extractFragmentData({ fragment });
   return gql`
-    query WebsiteScheduledContent($input: WebsiteScheduledPlatformContentQuery!) {
+    query WebsiteScheduledContent($input: WebsiteScheduledPlatformContentQuery!, $canonicalFields: [PlatfromContentPathField]!) {
       websiteScheduledPlatformContent(input: $input) {
         edges {
           node {

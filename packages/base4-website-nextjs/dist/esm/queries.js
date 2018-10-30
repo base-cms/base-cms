@@ -9,7 +9,7 @@ import 'moment';
 import 'object-path';
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n    query WebsiteScheduledContent($input: WebsiteScheduledPlatformContentQuery!) {\n      websiteScheduledPlatformContent(input: $input) {\n        edges {\n          node {\n            id\n            ", "\n          }\n        }\n      }\n    }\n    ", "\n  "]);
+  var data = _taggedTemplateLiteral(["\n    query WebsiteScheduledContent($input: WebsiteScheduledPlatformContentQuery!, $canonicalFields: [PlatfromContentPathField]!) {\n      websiteScheduledPlatformContent(input: $input) {\n        edges {\n          node {\n            id\n            ", "\n          }\n        }\n      }\n    }\n    ", "\n  "]);
 
   _templateObject = function _templateObject() {
     return data;
