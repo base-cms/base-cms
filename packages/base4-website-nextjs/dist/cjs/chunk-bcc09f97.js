@@ -1,9 +1,14 @@
-import { j as _extends, i as _objectWithoutProperties } from './chunk-1a4eb17c.js';
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { a as LinkElement } from './chunk-ad699e77.js';
-import { sectionPath } from './utils.js';
+'use strict';
+
+function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+
+var __chunk_1 = require('./chunk-9e05845b.js');
+var React = require('react');
+var React__default = _interopDefault(React);
+var PropTypes = _interopDefault(require('prop-types'));
+var classNames = _interopDefault(require('classnames'));
+var __chunk_6 = require('./chunk-ee8dba1a.js');
+var utils = require('./utils.js');
 
 var propTypes = {
   // The website section alias.
@@ -37,10 +42,10 @@ var WebsiteSectionLink = function WebsiteSectionLink(_ref) {
       className = _ref.className,
       id = _ref.id,
       routePrefix = _ref.routePrefix,
-      rest = _objectWithoutProperties(_ref, ["alias", "className", "id", "routePrefix"]);
+      rest = __chunk_1._objectWithoutProperties(_ref, ["alias", "className", "id", "routePrefix"]);
 
-  return React.createElement(LinkElement, _extends({
-    to: sectionPath(alias),
+  return React__default.createElement(__chunk_6.LinkElement, __chunk_1._extends({
+    to: utils.sectionPath(alias),
     className: classNames('website-section__link', "website-section__link--".concat(id), className)
   }, rest));
 };
@@ -49,4 +54,4 @@ WebsiteSectionLink.displayName = 'WebsiteSection/Link';
 WebsiteSectionLink.propTypes = propTypes;
 WebsiteSectionLink.defaultProps = defaultProps;
 
-export { WebsiteSectionLink as a };
+exports.Link = WebsiteSectionLink;

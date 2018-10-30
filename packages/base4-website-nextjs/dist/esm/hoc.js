@@ -2,14 +2,14 @@ import { a as _regeneratorRuntime } from './chunk-fd635e66.js';
 import { f as _objectSpread, g as _asyncToGenerator, a as _classCallCheck, b as _createClass, c as _possibleConstructorReturn, d as _getPrototypeOf, e as _inherits, k as _taggedTemplateLiteral } from './chunk-1a4eb17c.js';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { componentDisplayName, extractFragmentData, httpErrors, contentCanonicalPaths, sectionPath } from './utils.js';
+import { componentDisplayName, extractFragmentData, httpErrors, sectionPath } from './utils.js';
 import gql from 'graphql-tag';
 import { RelCanonical, PageTitle, MetaDescription } from './components-head.js';
 import { redirect } from './routing.js';
-import 'next/config';
 import 'inflected';
 import 'moment';
 import 'object-path';
+import 'next/config';
 import { a as SiteConfigContext } from './chunk-b0ac8f34.js';
 import 'next/head';
 import './chunk-7976a9a0.js';
@@ -277,11 +277,8 @@ var withDynamicPage = (function (Page) {
 var doc$1 = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"WithPlatformContentFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PlatformContent"}},"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"name"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"type"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"teaser"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"body"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"published"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"redirectTo"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"metadata"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"description"},"arguments":[],"directives":[]}]}},{"kind":"Field","name":{"kind":"Name","value":"primarySection"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"name"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"alias"},"arguments":[],"directives":[]}]}}]}}],"loc":{"start":0,"end":212}};
     doc$1.loc.source = {"body":"fragment WithPlatformContentFragment on PlatformContent {\n  id\n  name\n  type\n  teaser\n  body\n  published\n  redirectTo\n  metadata {\n    title\n    description\n  }\n  primarySection {\n    id\n    name\n    alias\n  }\n}\n","name":"GraphQL request","locationOffset":{"line":1,"column":1}};
 
-var doc$2 = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ContentCanonicalPath"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PlatformContent"}},"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"canonicalPath"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"fields"},"value":{"kind":"Variable","name":{"kind":"Name","value":"canonicalFields"}}}]}}],"directives":[]}]}}],"loc":{"start":0,"end":106}};
-    doc$2.loc.source = {"body":"fragment ContentCanonicalPath on PlatformContent {\n  canonicalPath(input: { fields: $canonicalFields })\n}\n","name":"GraphQL request","locationOffset":{"line":1,"column":1}};
-
 function _templateObject$1() {
-  var data = _taggedTemplateLiteral(["\n    query WithPlatformContent($input: RootPlatformContentQueryOne!, $canonicalFields: [PlatfromContentPathField]!) {\n      platformContent(input: $input) {\n        ...WithPlatformContentFragment\n        ...ContentCanonicalPath\n        ", "\n      }\n    }\n    ", "\n    ", "\n    ", "\n  "]);
+  var data = _taggedTemplateLiteral(["\n    query WithPlatformContent($input: RootPlatformContentQueryOne!) {\n      platformContent(input: $input) {\n        ...WithPlatformContentFragment\n        ...ContentCanonicalPath\n        ", "\n      }\n    }\n    ", "\n    ", "\n  "]);
 
   _templateObject$1 = function _templateObject() {
     return data;
@@ -305,7 +302,7 @@ var buildQuery$1 = function buildQuery(_ref) {
       spreadFragmentName = _extractFragmentData.spreadFragmentName,
       processedFragment = _extractFragmentData.processedFragment;
 
-  return gql(_templateObject$1(), spreadFragmentName, doc$1, doc$2, processedFragment);
+  return gql(_templateObject$1(), spreadFragmentName, doc$1, processedFragment);
 };
 /**
  *
@@ -428,11 +425,9 @@ var withPlatformContent = (function () {
                     // Query for the content object using the id, via the inject apollo client.
                     input = {
                       id: Number(id)
-                    }; // Pass the canonical args to generate the content's canonical (route) path.
-
+                    };
                     variables = {
-                      input: input,
-                      canonicalFields: contentCanonicalPaths()
+                      input: input
                     };
                     _context.next = 12;
                     return apollo.query({
@@ -498,8 +493,8 @@ var withPlatformContent = (function () {
   };
 });
 
-var doc$3 = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"WithWebsiteSectionFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"WebsiteSection"}},"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"name"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"description"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"alias"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"metadata"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"description"},"arguments":[],"directives":[]}]}}]}}],"loc":{"start":0,"end":135}};
-    doc$3.loc.source = {"body":"fragment WithWebsiteSectionFragment on WebsiteSection {\n  id\n  name\n  description\n  alias\n  metadata {\n    title\n    description\n  }\n}\n","name":"GraphQL request","locationOffset":{"line":1,"column":1}};
+var doc$2 = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"WithWebsiteSectionFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"WebsiteSection"}},"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"name"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"description"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"alias"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"metadata"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"description"},"arguments":[],"directives":[]}]}}]}}],"loc":{"start":0,"end":135}};
+    doc$2.loc.source = {"body":"fragment WithWebsiteSectionFragment on WebsiteSection {\n  id\n  name\n  description\n  alias\n  metadata {\n    title\n    description\n  }\n}\n","name":"GraphQL request","locationOffset":{"line":1,"column":1}};
 
 function _templateObject$2() {
   var data = _taggedTemplateLiteral(["\n    query WithWebsiteSection($input: WebsiteSectionAliasQueryInput!) {\n      websiteSectionAlias(input: $input) {\n        ...WithWebsiteSectionFragment\n        ", "\n      }\n      websiteSectionRedirect(input: $input) {\n        id\n        alias\n      }\n    }\n    ", "\n    ", "\n  "]);
@@ -523,7 +518,7 @@ var buildQuery$2 = function buildQuery(_ref) {
       spreadFragmentName = _extractFragmentData.spreadFragmentName,
       processedFragment = _extractFragmentData.processedFragment;
 
-  return gql(_templateObject$2(), spreadFragmentName, doc$3, processedFragment);
+  return gql(_templateObject$2(), spreadFragmentName, doc$2, processedFragment);
 };
 var withWebsiteSection = (function () {
   var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},

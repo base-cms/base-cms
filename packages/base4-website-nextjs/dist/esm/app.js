@@ -8,10 +8,10 @@ import nextRoutes from 'next-routes';
 import { a as RoutingContext } from './chunk-7976a9a0.js';
 import { componentDisplayName, isObject } from './utils.js';
 import { a as SiteConfigContext } from './chunk-b0ac8f34.js';
-import 'next/config';
 import 'inflected';
 import 'moment';
 import 'object-path';
+import 'next/config';
 
 var WebsiteApp =
 /*#__PURE__*/

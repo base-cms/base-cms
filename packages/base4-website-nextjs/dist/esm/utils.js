@@ -1,8 +1,8 @@
 import { h as _typeof } from './chunk-1a4eb17c.js';
-import getConfig from 'next/config';
 import { underscore, dasherize } from 'inflected';
 import moment from 'moment';
 import { get } from 'object-path';
+import getConfig from 'next/config';
 
 var isArray = Array.isArray;
 var asArray = (function (v) {
@@ -27,15 +27,6 @@ var cleanPath = (function (path) {
 var componentDisplayName = (function (Comp) {
   if (typeof Comp === 'string') return Comp;
   return Comp.displayName || Comp.name || 'Unknown';
-});
-
-var contentCanonicalPaths = (function () {
-  // Load the canonical path fields.
-  var _getConfig = getConfig(),
-      publicRuntimeConfig = _getConfig.publicRuntimeConfig;
-
-  var contentCanonicalPathFields = publicRuntimeConfig.contentCanonicalPathFields;
-  return contentCanonicalPathFields;
 });
 
 var createMarkup = (function (html) {
@@ -158,4 +149,4 @@ var titleizeType = (function (type) {
   }).join(' ');
 });
 
-export { asArray, asObject, cleanPath, componentDisplayName, contentCanonicalPaths, createMarkup, dasherize$1 as dasherize, extractFragmentData, extractFragmentName, formatDate, getAsArray, getAsObject, httpErrors, isFn as isFunction, isObject, modelClassNames, sectionPath, titleizeType };
+export { asArray, asObject, cleanPath, componentDisplayName, createMarkup, dasherize$1 as dasherize, extractFragmentData, extractFragmentName, formatDate, getAsArray, getAsObject, httpErrors, isFn as isFunction, isObject, modelClassNames, sectionPath, titleizeType };

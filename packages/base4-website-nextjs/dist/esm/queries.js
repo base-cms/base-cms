@@ -3,14 +3,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-import { contentCanonicalPaths, extractFragmentData } from './utils.js';
-import 'next/config';
+import { extractFragmentData } from './utils.js';
 import 'inflected';
 import 'moment';
 import 'object-path';
+import 'next/config';
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n    query WebsiteScheduledContent($input: WebsiteScheduledPlatformContentQuery!, $canonicalFields: [PlatfromContentPathField]!) {\n      websiteScheduledPlatformContent(input: $input) {\n        edges {\n          node {\n            id\n            ", "\n          }\n        }\n      }\n    }\n    ", "\n  "]);
+  var data = _taggedTemplateLiteral(["\n    query WebsiteScheduledContent($input: WebsiteScheduledPlatformContentQuery!) {\n      websiteScheduledPlatformContent(input: $input) {\n        edges {\n          node {\n            id\n            ", "\n          }\n        }\n      }\n    }\n    ", "\n  "]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -57,15 +57,13 @@ var WebsiteScheduledContent = function WebsiteScheduledContent(_ref2) {
     sectionBubbling: sectionBubbling,
     sectionId: sectionId
   };
-  var canonicalFields = contentCanonicalPaths();
   var query = buildQuery({
     fragment: fragment
   });
   return React.createElement(Query, {
     query: query,
     variables: {
-      input: input,
-      canonicalFields: canonicalFields
+      input: input
     }
   }, function (_ref3) {
     var loading = _ref3.loading,

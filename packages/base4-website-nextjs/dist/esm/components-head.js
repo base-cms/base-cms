@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { isFunction as isFn, cleanPath } from './utils.js';
 import './chunk-1a4eb17c.js';
-import 'next/config';
 import 'inflected';
 import 'moment';
 import 'object-path';
+import 'next/config';
 
 var MetaDescription = function MetaDescription(_ref) {
   var value = _ref.value;

@@ -10,10 +10,10 @@ var PropTypes = _interopDefault(require('prop-types'));
 var Head = _interopDefault(require('next/head'));
 var utils = require('./utils.js');
 require('./chunk-9e05845b.js');
-require('next/config');
 require('inflected');
 require('moment');
 require('object-path');
+require('next/config');
 
 var MetaDescription = function MetaDescription(_ref) {
   var value = _ref.value;

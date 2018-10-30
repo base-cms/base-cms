@@ -9,13 +9,13 @@ var React = require('react');
 var React__default = _interopDefault(React);
 var PropTypes = _interopDefault(require('prop-types'));
 var classNames = _interopDefault(require('classnames'));
-var __chunk_5 = require('./chunk-51ce3b52.js');
-var __chunk_7 = require('./chunk-aaf2f7ef.js');
+var __chunk_5 = require('./chunk-59e5b346.js');
+var __chunk_7 = require('./chunk-4f9b5a2b.js');
 require('./utils.js');
-require('next/config');
 require('inflected');
 require('moment');
 require('object-path');
+require('next/config');
 
 var propTypes = {
   children: PropTypes.node.isRequired,

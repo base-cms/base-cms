@@ -5,10 +5,10 @@ Object.defineProperty(exports, '__esModule', { value: true });
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
 var __chunk_1 = require('./chunk-9e05845b.js');
-var getConfig = _interopDefault(require('next/config'));
 var inflected = require('inflected');
 var moment = _interopDefault(require('moment'));
 var objectPath = require('object-path');
+var getConfig = _interopDefault(require('next/config'));
 
 var isArray = Array.isArray;
 var asArray = (function (v) {
@@ -33,15 +33,6 @@ var cleanPath = (function (path) {
 var componentDisplayName = (function (Comp) {
   if (typeof Comp === 'string') return Comp;
   return Comp.displayName || Comp.name || 'Unknown';
-});
-
-var contentCanonicalPaths = (function () {
-  // Load the canonical path fields.
-  var _getConfig = getConfig(),
-      publicRuntimeConfig = _getConfig.publicRuntimeConfig;
-
-  var contentCanonicalPathFields = publicRuntimeConfig.contentCanonicalPathFields;
-  return contentCanonicalPathFields;
 });
 
 var createMarkup = (function (html) {
@@ -168,7 +159,6 @@ exports.asArray = asArray;
 exports.asObject = asObject;
 exports.cleanPath = cleanPath;
 exports.componentDisplayName = componentDisplayName;
-exports.contentCanonicalPaths = contentCanonicalPaths;
 exports.createMarkup = createMarkup;
 exports.dasherize = dasherize;
 exports.extractFragmentData = extractFragmentData;
