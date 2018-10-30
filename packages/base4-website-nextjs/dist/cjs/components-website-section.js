@@ -9,17 +9,16 @@ var React = require('react');
 var React__default = _interopDefault(React);
 var PropTypes = _interopDefault(require('prop-types'));
 var classNames = _interopDefault(require('classnames'));
-var __chunk_2 = require('./chunk-cf20d45d.js');
-var __chunk_5 = require('./chunk-adb978b5.js');
-var __chunk_6 = require('./chunk-e8a33268.js');
+var __chunk_5 = require('./chunk-cf20d45d.js');
+var __chunk_7 = require('./chunk-adb978b5.js');
+var __chunk_8 = require('./chunk-2e11f9c3.js');
 require('./utils.js');
 require('inflected');
 require('moment');
 require('object-path');
-require('./chunk-b2531be5.js');
+require('./chunk-f9da1e4c.js');
 require('./routing.js');
-require('./chunk-efb9fd9b.js');
-require('next-routes');
+require('./chunk-4b678d5c.js');
 
 var propTypes = {
   children: PropTypes.node.isRequired,
@@ -58,7 +57,7 @@ WebsiteSectionWrapper.displayName = 'WebsiteSection/Wrapper';
 WebsiteSectionWrapper.propTypes = propTypes;
 WebsiteSectionWrapper.defaultProps = defaultProps;
 
-var ObjectValue = __chunk_5.withModelFieldClass('website-section')(__chunk_2.ObjectValue);
+var ObjectValue = __chunk_7.withModelFieldClass('website-section')(__chunk_5.ObjectValue);
 
 var propTypes$1 = {
   collapsible: PropTypes.bool,
@@ -115,7 +114,7 @@ WebsiteSectionName.displayName = 'WebsiteSection/Elements/Name';
 WebsiteSectionName.propTypes = propTypes$2;
 WebsiteSectionName.defaultProps = defaultProps$2;
 
-exports.Link = __chunk_6.Link;
+exports.Link = __chunk_8.Link;
 exports.Wrapper = WebsiteSectionWrapper;
 exports.Description = WebsiteSectionDescription;
 exports.Name = WebsiteSectionName;

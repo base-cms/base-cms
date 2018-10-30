@@ -9,8 +9,8 @@ var React = require('react');
 var React__default = _interopDefault(React);
 var PropTypes = _interopDefault(require('prop-types'));
 var classNames = _interopDefault(require('classnames'));
-var __chunk_2 = require('./chunk-cf20d45d.js');
-var __chunk_5 = require('./chunk-adb978b5.js');
+var __chunk_5 = require('./chunk-cf20d45d.js');
+var __chunk_7 = require('./chunk-adb978b5.js');
 require('./utils.js');
 require('inflected');
 require('moment');
@@ -53,7 +53,7 @@ DynamicPageWrapper.displayName = 'DynamicPage/Wrapper';
 DynamicPageWrapper.propTypes = propTypes;
 DynamicPageWrapper.defaultProps = defaultProps;
 
-var ObjectValue = __chunk_5.withModelFieldClass('dynamic-page')(__chunk_2.ObjectValue);
+var ObjectValue = __chunk_7.withModelFieldClass('dynamic-page')(__chunk_5.ObjectValue);
 
 var propTypes$1 = {
   collapsible: PropTypes.bool,

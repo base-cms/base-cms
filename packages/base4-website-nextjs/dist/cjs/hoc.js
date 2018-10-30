@@ -4,21 +4,21 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var __chunk_3 = require('./chunk-efb9fd9b.js');
+var __chunk_2 = require('./chunk-efb9fd9b.js');
 var __chunk_1 = require('./chunk-9e05845b.js');
 var React = require('react');
 var React__default = _interopDefault(React);
 var PropTypes = _interopDefault(require('prop-types'));
 var utils = require('./utils.js');
 var gql = _interopDefault(require('graphql-tag'));
-var config = require('./config.js');
 var componentsHead = require('./components-head.js');
 var routing = require('./routing.js');
 require('inflected');
 require('moment');
 require('object-path');
+var __chunk_4 = require('./chunk-4bddce20.js');
 require('next/head');
-require('next-routes');
+require('./chunk-4b678d5c.js');
 
 var doc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"WithDynamicPageFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PlatformContentPage"}},"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"name"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"type"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"teaser"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"alias"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"body"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"metadata"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"description"},"arguments":[],"directives":[]}]}}]}}],"loc":{"start":0,"end":146}};
     doc.loc.source = {"body":"fragment WithDynamicPageFragment on PlatformContentPage {\n  id\n  name\n  type\n  teaser\n  alias\n  body\n  metadata {\n    title\n    description\n  }\n}\n","name":"GraphQL request","locationOffset":{"line":1,"column":1}};
@@ -53,9 +53,9 @@ var withRequestOrigin = (function (Page) {
       value: function () {
         var _getInitialProps = __chunk_1._asyncToGenerator(
         /*#__PURE__*/
-        __chunk_3._regeneratorRuntime.mark(function _callee(ctx) {
+        __chunk_2._regeneratorRuntime.mark(function _callee(ctx) {
           var pageProps, req, requestOrigin;
-          return __chunk_3._regeneratorRuntime.wrap(function _callee$(_context) {
+          return __chunk_2._regeneratorRuntime.wrap(function _callee$(_context) {
             while (1) {
               switch (_context.prev = _context.next) {
                 case 0:
@@ -163,10 +163,10 @@ var withDynamicPage = (function (Page) {
             page = _this$props.page;
         var metadata = page.metadata,
             alias = page.alias;
-        return React__default.createElement(React__default.Fragment, null, React__default.createElement(config.SiteConfigContext.Consumer, null, function (config$$1) {
+        return React__default.createElement(React__default.Fragment, null, React__default.createElement(__chunk_4.SiteConfigContext.Consumer, null, function (config) {
           return React__default.createElement(componentsHead.PageTitle, {
             value: metadata.title,
-            siteName: config$$1.name
+            siteName: config.name
           });
         }), React__default.createElement(componentsHead.MetaDescription, {
           value: metadata.description
@@ -184,10 +184,10 @@ var withDynamicPage = (function (Page) {
       value: function () {
         var _getInitialProps = __chunk_1._asyncToGenerator(
         /*#__PURE__*/
-        __chunk_3._regeneratorRuntime.mark(function _callee(ctx) {
+        __chunk_2._regeneratorRuntime.mark(function _callee(ctx) {
           var pageProps, fragment, query, apollo, alias, input, variables, _ref2, data, platformContentPage;
 
-          return __chunk_3._regeneratorRuntime.wrap(function _callee$(_context) {
+          return __chunk_2._regeneratorRuntime.wrap(function _callee$(_context) {
             while (1) {
               switch (_context.prev = _context.next) {
                 case 0:
@@ -381,10 +381,10 @@ var withPlatformContent = (function () {
               canonicalPath = _this$props.canonicalPath,
               content = _this$props.content;
           var metadata = content.metadata;
-          return React__default.createElement(React__default.Fragment, null, React__default.createElement(config.SiteConfigContext.Consumer, null, function (config$$1) {
+          return React__default.createElement(React__default.Fragment, null, React__default.createElement(__chunk_4.SiteConfigContext.Consumer, null, function (config) {
             return React__default.createElement(componentsHead.PageTitle, {
               value: metadata.title,
-              siteName: config$$1.name
+              siteName: config.name
             });
           }), React__default.createElement(componentsHead.MetaDescription, {
             value: metadata.description
@@ -402,10 +402,10 @@ var withPlatformContent = (function () {
         value: function () {
           var _getInitialProps = __chunk_1._asyncToGenerator(
           /*#__PURE__*/
-          __chunk_3._regeneratorRuntime.mark(function _callee(ctx) {
+          __chunk_2._regeneratorRuntime.mark(function _callee(ctx) {
             var pageProps, query, apollo, id, input, variables, _ref4, data, platformContent, canonicalPath;
 
-            return __chunk_3._regeneratorRuntime.wrap(function _callee$(_context) {
+            return __chunk_2._regeneratorRuntime.wrap(function _callee$(_context) {
               while (1) {
                 switch (_context.prev = _context.next) {
                   case 0:
@@ -564,10 +564,10 @@ var withWebsiteSection = (function () {
               canonicalPath = _this$props.canonicalPath,
               section = _this$props.section;
           var metadata = section.metadata;
-          return React__default.createElement(React__default.Fragment, null, React__default.createElement(config.SiteConfigContext.Consumer, null, function (config$$1) {
+          return React__default.createElement(React__default.Fragment, null, React__default.createElement(__chunk_4.SiteConfigContext.Consumer, null, function (config) {
             return React__default.createElement(componentsHead.PageTitle, {
               value: metadata.title,
-              siteName: config$$1.name
+              siteName: config.name
             });
           }), React__default.createElement(componentsHead.MetaDescription, {
             value: metadata.description
@@ -585,10 +585,10 @@ var withWebsiteSection = (function () {
         value: function () {
           var _getInitialProps = __chunk_1._asyncToGenerator(
           /*#__PURE__*/
-          __chunk_3._regeneratorRuntime.mark(function _callee(ctx) {
+          __chunk_2._regeneratorRuntime.mark(function _callee(ctx) {
             var pageProps, query, apollo, res, Router, alias, input, variables, _ref3, data, websiteSectionAlias, websiteSectionRedirect, canonicalPath, redirectAlias, path;
 
-            return __chunk_3._regeneratorRuntime.wrap(function _callee$(_context) {
+            return __chunk_2._regeneratorRuntime.wrap(function _callee$(_context) {
               while (1) {
                 switch (_context.prev = _context.next) {
                   case 0:

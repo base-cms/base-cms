@@ -1,4 +1,4 @@
-import { f as _typeof } from './chunk-1a4eb17c.js';
+import { h as _typeof } from './chunk-1a4eb17c.js';
 import { underscore, dasherize } from 'inflected';
 import moment from 'moment';
 import { get } from 'object-path';

@@ -1,17 +1,17 @@
 import { a as _regeneratorRuntime } from './chunk-fd635e66.js';
-import { i as _objectSpread, j as _asyncToGenerator, a as _classCallCheck, b as _createClass, c as _possibleConstructorReturn, d as _getPrototypeOf, e as _inherits, k as _taggedTemplateLiteral } from './chunk-1a4eb17c.js';
+import { f as _objectSpread, g as _asyncToGenerator, a as _classCallCheck, b as _createClass, c as _possibleConstructorReturn, d as _getPrototypeOf, e as _inherits, k as _taggedTemplateLiteral } from './chunk-1a4eb17c.js';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { componentDisplayName, extractFragmentData, httpErrors, sectionPath } from './utils.js';
 import gql from 'graphql-tag';
-import { SiteConfigContext } from './config.js';
 import { RelCanonical, PageTitle, MetaDescription } from './components-head.js';
 import { redirect } from './routing.js';
 import 'inflected';
 import 'moment';
 import 'object-path';
+import { a as SiteConfigContext } from './chunk-b0ac8f34.js';
 import 'next/head';
-import 'next-routes';
+import './chunk-7976a9a0.js';
 
 var doc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"WithDynamicPageFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PlatformContentPage"}},"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"name"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"type"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"teaser"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"alias"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"body"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"metadata"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"description"},"arguments":[],"directives":[]}]}}]}}],"loc":{"start":0,"end":146}};
     doc.loc.source = {"body":"fragment WithDynamicPageFragment on PlatformContentPage {\n  id\n  name\n  type\n  teaser\n  alias\n  body\n  metadata {\n    title\n    description\n  }\n}\n","name":"GraphQL request","locationOffset":{"line":1,"column":1}};
