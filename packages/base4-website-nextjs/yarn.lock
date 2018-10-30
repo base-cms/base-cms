@@ -744,14 +744,14 @@
 
 "@base-cms/base4-graphql-express-router@https://github.com/base-cms/base4-graphql-express-router.git":
   version "1.0.0"
-  resolved "https://github.com/base-cms/base4-graphql-express-router.git#6e8169bccbde2b2505b5acd7b0ebb1ad1563a507"
+  resolved "https://github.com/base-cms/base4-graphql-express-router.git#e7725a4698a4a5654f7ef0adcd8932bbf1e5bb36"
   dependencies:
     "@base-cms/base4-graphql-stitching" "https://github.com/base-cms/base4-graphql-stitching.git"
     apollo-server-express "^2.2.0-alpha.0"
 
 "@base-cms/base4-graphql-stitching@https://github.com/base-cms/base4-graphql-stitching.git":
   version "1.0.0"
-  resolved "https://github.com/base-cms/base4-graphql-stitching.git#74563edbcf3c076bfc19d99b9883d16a4e4d0aec"
+  resolved "https://github.com/base-cms/base4-graphql-stitching.git#16907bbccc4f2f3b937e800b7b3dd8eba1f6b908"
   dependencies:
     apollo-link "^1.2.3"
     apollo-link-context "^1.0.9"
@@ -776,7 +776,7 @@
 
 "@base-cms/base4-website-express@https://github.com/base-cms/base4-website-express.git":
   version "0.1.0"
-  resolved "https://github.com/base-cms/base4-website-express.git#d64cf6ac10b881d3f5970ab354b1265ac49c67d5"
+  resolved "https://github.com/base-cms/base4-website-express.git#d462effbf1d5cc7f9a1a3ceefbe273c8ade134eb"
   dependencies:
     "@base-cms/base4-graphql-express-router" "https://github.com/base-cms/base4-graphql-express-router.git"
     compression "^1.7.3"
