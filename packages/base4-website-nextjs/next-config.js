@@ -5,7 +5,6 @@ module.exports = (nextConfig = {}) => Object.assign({}, nextConfig, {
    *
    */
   publicRuntimeConfig: {
-    contentCanonicalPathFields: ['sectionAlias', 'type', 'id', 'slug'],
     sectionRoutePrefix: 'section',
     ...nextConfig.publicRuntimeConfig,
   },

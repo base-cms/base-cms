@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-import { contentCanonicalPaths, extractFragmentData } from '../utils';
+import { extractFragmentData } from '../utils';
 
 export const buildQuery = ({ fragment }) => {
   const { spreadFragmentName, processedFragment } = extractFragmentData({ fragment });
   return gql`
-    query WebsiteScheduledContent($input: WebsiteScheduledPlatformContentQuery!, $canonicalFields: [PlatfromContentPathField]!) {
+    query WebsiteScheduledContent($input: WebsiteScheduledPlatformContentQuery!) {
       websiteScheduledPlatformContent(input: $input) {
         edges {
           node {
@@ -46,10 +46,9 @@ const WebsiteScheduledContent = ({
     sectionBubbling,
     sectionId,
   };
-  const canonicalFields = contentCanonicalPaths();
   const query = buildQuery({ fragment });
   return (
-    <Query query={query} variables={{ input, canonicalFields }}>
+    <Query query={query} variables={{ input }}>
       {({ loading, error, data }) => {
         let items = [];
         if (data && data.websiteScheduledPlatformContent) {

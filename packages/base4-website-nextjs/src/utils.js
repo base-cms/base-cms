@@ -2,7 +2,6 @@ import asArray from './utils/as-array';
 import asObject from './utils/as-object';
 import cleanPath from './utils/clean-path';
 import componentDisplayName from './utils/component-display-name';
-import contentCanonicalPaths from './utils/content-canonical-paths';
 import createMarkup from './utils/create-markup';
 import dasherize from './utils/dasherize';
 import extractFragmentData from './utils/extract-fragment-data';
@@ -22,7 +21,6 @@ export {
   asObject,
   cleanPath,
   componentDisplayName,
-  contentCanonicalPaths,
   createMarkup,
   dasherize,
   extractFragmentData,

@@ -8,7 +8,6 @@ import { redirect } from '../routing';
 // Utilities
 import {
   componentDisplayName,
-  contentCanonicalPaths,
   extractFragmentData,
   httpErrors,
 } from '../utils';
@@ -18,7 +17,6 @@ import { SiteConfigContext } from '../config';
 
 // GraphQL
 import defaultFragment from '../gql/fragments/with-platform-content.graphql';
-import canonicalPathFrag from '../gql/fragments/content-canonical-path.graphql';
 
 // HOCs
 import withRequestOrigin from './withRequestOrigin';
@@ -35,7 +33,7 @@ import { RelCanonical, PageTitle, MetaDescription } from '../components-head';
 export const buildQuery = ({ fragment }) => {
   const { spreadFragmentName, processedFragment } = extractFragmentData({ fragment });
   return gql`
-    query WithPlatformContent($input: RootPlatformContentQueryOne!, $canonicalFields: [PlatfromContentPathField]!) {
+    query WithPlatformContent($input: RootPlatformContentQueryOne!) {
       platformContent(input: $input) {
         ...WithPlatformContentFragment
         ...ContentCanonicalPath
@@ -43,7 +41,6 @@ export const buildQuery = ({ fragment }) => {
       }
     }
     ${defaultFragment}
-    ${canonicalPathFrag}
     ${processedFragment}
   `;
 };
@@ -95,8 +92,7 @@ export default ({
 
       // Query for the content object using the id, via the inject apollo client.
       const input = { id: Number(id) };
-      // Pass the canonical args to generate the content's canonical (route) path.
-      const variables = { input, canonicalFields: contentCanonicalPaths() };
+      const variables = { input };
       const { data } = await apollo.query({ query: buildQuery({ fragment }), variables });
       const { platformContent } = data;
       if (!platformContent) {
