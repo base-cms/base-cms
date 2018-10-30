@@ -744,14 +744,14 @@
 
 "@base-cms/base4-graphql-express-router@https://github.com/base-cms/base4-graphql-express-router.git":
   version "1.0.0"
-  resolved "https://github.com/base-cms/base4-graphql-express-router.git#e4073649993d10d43ce740b4df1513c60eaf962e"
+  resolved "https://github.com/base-cms/base4-graphql-express-router.git#e7725a4698a4a5654f7ef0adcd8932bbf1e5bb36"
   dependencies:
     "@base-cms/base4-graphql-stitching" "https://github.com/base-cms/base4-graphql-stitching.git"
     apollo-server-express "^2.2.0-alpha.0"
 
 "@base-cms/base4-graphql-stitching@https://github.com/base-cms/base4-graphql-stitching.git":
   version "1.0.0"
-  resolved "https://github.com/base-cms/base4-graphql-stitching.git#b83db23868a07a073a58318e55ef6344c562624c"
+  resolved "https://github.com/base-cms/base4-graphql-stitching.git#16907bbccc4f2f3b937e800b7b3dd8eba1f6b908"
   dependencies:
     apollo-link "^1.2.3"
     apollo-link-context "^1.0.9"
@@ -776,7 +776,7 @@
 
 "@base-cms/base4-website-express@https://github.com/base-cms/base4-website-express.git":
   version "0.1.0"
-  resolved "https://github.com/base-cms/base4-website-express.git#ba303ee6e50a9c8d33cf3d96249c5e56ea077f93"
+  resolved "https://github.com/base-cms/base4-website-express.git#d462effbf1d5cc7f9a1a3ceefbe273c8ade134eb"
   dependencies:
     "@base-cms/base4-graphql-express-router" "https://github.com/base-cms/base4-graphql-express-router.git"
     compression "^1.7.3"
@@ -786,7 +786,7 @@
 
 "@base-cms/base4-website-nextjs@https://github.com/base-cms/base4-website-nextjs.git":
   version "0.1.0"
-  resolved "https://github.com/base-cms/base4-website-nextjs.git#77c697efa7d02c97be7bff020fa476c92ec6738d"
+  resolved "https://github.com/base-cms/base4-website-nextjs.git#bdfce3df2f4ed830d076d9c8d7e06191b949fe56"
   dependencies:
     "@base-cms/base4-nextjs-apollo" "https://github.com/base-cms/base4-nextjs-apollo.git"
     "@base-cms/base4-website-express" "https://github.com/base-cms/base4-website-express.git"
@@ -1274,20 +1274,27 @@ apollo-cache-control@0.3.0-register.2195+e44b5bd:
     graphql-extensions "0.3.0-register.2195+e44b5bd"
 
 apollo-cache-inmemory@^1.3.5:
-  version "1.3.7"
-  resolved "https://registry.yarnpkg.com/apollo-cache-inmemory/-/apollo-cache-inmemory-1.3.7.tgz#a9dabead5939e19068040c97c7c1009619a9df37"
-  integrity sha512-7AKGBuVRfgsjtq1yxcTWgpzi0WDVpjX2HJU9GFoYd+j7I253bSRn7YbwCNwkxyrH6ilSDU6JKm8DQ3QMA/z7rQ==
+  version "1.3.8"
+  resolved "https://registry.yarnpkg.com/apollo-cache-inmemory/-/apollo-cache-inmemory-1.3.8.tgz#5529a58b7b72b4bb133ce11ab22a012951297bb7"
+  integrity sha512-bT1v8+kKgM9u8NvCODOZ2qKxdufsmBaUsnLp7s5+kv0Zq5u/Bw4Ltb3DxrYFQoqZYrKJKy1iMJE3MV2J/Dthjg==
   dependencies:
-    apollo-cache "^1.1.19"
-    apollo-utilities "^1.0.24"
+    apollo-cache "^1.1.20"
+    apollo-utilities "^1.0.25"
     optimism "^0.6.6"
 
-apollo-cache@1.1.19, apollo-cache@^1.1.19:
+apollo-cache@1.1.19:
   version "1.1.19"
   resolved "https://registry.yarnpkg.com/apollo-cache/-/apollo-cache-1.1.19.tgz#a9ff2b6c70ab888c29ea038d8642b5698f115a3a"
   integrity sha512-p163+GVne1Gyw2v9L5kHEQhUhih7btWvyUFOl4uKf7brieqd4tHZt8ZA3vT1SaXbCeQZNSp/tFI3yFyi8RPKzw==
   dependencies:
     apollo-utilities "^1.0.24"
+
+apollo-cache@^1.1.20:
+  version "1.1.20"
+  resolved "https://registry.yarnpkg.com/apollo-cache/-/apollo-cache-1.1.20.tgz#6152cc4baf6a63e376efee79f75de4f5c84bf90e"
+  integrity sha512-+Du0/4kUSuf5PjPx0+pvgMGV12ezbHA8/hubYuqRQoy/4AWb4faa61CgJNI6cKz2mhDd9m94VTNKTX11NntwkQ==
+  dependencies:
+    apollo-utilities "^1.0.25"
 
 apollo-client@^2.4.2:
   version "2.4.4"
@@ -1449,10 +1456,17 @@ apollo-tracing@0.3.0-register.2195+e44b5bd:
     apollo-server-env "2.1.0-register.2195+e44b5bd"
     graphql-extensions "0.3.0-register.2195+e44b5bd"
 
-apollo-utilities@1.0.24, apollo-utilities@^1.0.0, apollo-utilities@^1.0.1, apollo-utilities@^1.0.24:
+apollo-utilities@1.0.24:
   version "1.0.24"
   resolved "https://registry.yarnpkg.com/apollo-utilities/-/apollo-utilities-1.0.24.tgz#77d2d3008bb9ee52aa76b799ce7a8d6cb6cf8a1c"
   integrity sha512-cOXtrkio3wKfggp/zKCzQYxSZZRND/njNVmUksM1cckoJF3g/2o3bhh6z0HPhNhee8qzJzVXtl+3vmwXYGh0Gg==
+  dependencies:
+    fast-json-stable-stringify "^2.0.0"
+
+apollo-utilities@^1.0.0, apollo-utilities@^1.0.1, apollo-utilities@^1.0.24, apollo-utilities@^1.0.25:
+  version "1.0.25"
+  resolved "https://registry.yarnpkg.com/apollo-utilities/-/apollo-utilities-1.0.25.tgz#899b00f5f990fb451675adf84cb3de82eb6372ea"
+  integrity sha512-AXvqkhni3Ir1ffm4SA1QzXn8k8I5BBl4PVKEyak734i4jFdp+xgfUyi2VCqF64TJlFTA/B73TRDUvO2D+tKtZg==
   dependencies:
     fast-json-stable-stringify "^2.0.0"
 
