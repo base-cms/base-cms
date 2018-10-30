@@ -1,9 +1,19 @@
+import envalid from 'envalid';
 import { a as _regeneratorRuntime } from './chunk-fd635e66.js';
 import { g as _asyncToGenerator } from './chunk-1a4eb17c.js';
 import next from 'next';
 import baseWebsite from '@base-cms/base4-website-express';
 import { resolve } from 'path';
 import nextRoutes from 'next-routes';
+
+var json = envalid.json,
+    cleanEnv = envalid.cleanEnv;
+cleanEnv(process.env, {
+  CONTENT_CANONICAL_PATHS: json({
+    desc: 'The canonical path parts for generating content URLs.',
+    default: ['sectionAlias', 'type', 'id', 'slug']
+  })
+});
 
 var isFn = function isFn(v) {
   return typeof v === 'function';
