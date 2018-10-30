@@ -402,30 +402,32 @@ var withPlatformContent = (function () {
               while (1) {
                 switch (_context.prev = _context.next) {
                   case 0:
+                    console.log(CONTENT_CANONICAL_PATHS); // Await the props of the Page
+
                     if (!Page.getInitialProps) {
-                      _context.next = 4;
+                      _context.next = 5;
                       break;
                     }
 
-                    _context.next = 3;
+                    _context.next = 4;
                     return Page.getInitialProps(ctx);
 
-                  case 3:
+                  case 4:
                     pageProps = _context.sent;
 
-                  case 4:
+                  case 5:
                     query = ctx.query, apollo = ctx.apollo; // Get the content id from the page query
 
                     id = query.id;
 
                     if (id) {
-                      _context.next = 8;
+                      _context.next = 9;
                       break;
                     }
 
                     throw httpErrors.notFound('No content ID was provided.');
 
-                  case 8:
+                  case 9:
                     // Query for the content object using the id, via the inject apollo client.
                     input = {
                       id: Number(id)
@@ -435,7 +437,7 @@ var withPlatformContent = (function () {
                       input: input,
                       canonicalFields: canonicalFields
                     };
-                    _context.next = 12;
+                    _context.next = 13;
                     return apollo.query({
                       query: buildQuery$1({
                         fragment: fragment
@@ -443,19 +445,19 @@ var withPlatformContent = (function () {
                       variables: variables
                     });
 
-                  case 12:
+                  case 13:
                     _ref4 = _context.sent;
                     data = _ref4.data;
                     platformContent = data.platformContent;
 
                     if (platformContent) {
-                      _context.next = 17;
+                      _context.next = 18;
                       break;
                     }
 
                     throw httpErrors.notFound("No content was found for id '".concat(id, "'"));
 
-                  case 17:
+                  case 18:
                     // Check content for internal/external redirects, etc.
                     checkContent(platformContent, ctx);
                     canonicalPath = platformContent.canonicalPath;
@@ -464,7 +466,7 @@ var withPlatformContent = (function () {
                       canonicalPath: canonicalPath
                     }, pageProps));
 
-                  case 20:
+                  case 21:
                   case "end":
                     return _context.stop();
                 }

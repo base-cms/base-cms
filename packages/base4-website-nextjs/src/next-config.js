@@ -1,3 +1,5 @@
+const { DefinePlugin } = require('webpack');
+
 module.exports = (nextConfig = {}) => Object.assign({}, nextConfig, {
   /**
    *
@@ -5,6 +7,10 @@ module.exports = (nextConfig = {}) => Object.assign({}, nextConfig, {
    * @param {*} options
    */
   webpack(config, options) {
+    config.plugins.push(new DefinePlugin({
+      CONTENT_CANONICAL_PATHS: JSON.stringify(['sectionAlias', 'type', 'id', 'slug'])
+    }));
+
     config.module.rules.push({
       test: /\.(graphql|gql)$/,
       exclude: /node_modules/,
