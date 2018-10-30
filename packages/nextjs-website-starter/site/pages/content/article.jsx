@@ -22,7 +22,7 @@ const fragment = gql`
 					node {
 						id
 						fullName
-						canonicalPath(input: { fields: $canonicalFields })
+						canonicalPath
 					}
 				}
 			}
