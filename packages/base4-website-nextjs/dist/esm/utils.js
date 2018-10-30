@@ -2,6 +2,7 @@ import { h as _typeof } from './chunk-1a4eb17c.js';
 import { underscore, dasherize } from 'inflected';
 import moment from 'moment';
 import { get } from 'object-path';
+import getConfig from 'next/config';
 
 var isArray = Array.isArray;
 var asArray = (function (v) {
@@ -122,21 +123,21 @@ var shouldGoToIndex = function shouldGoToIndex(alias) {
  *
  * By default, if the section alias were `tactical/firearms`, this method
  * would generate `/section/tactical/firearms`.
- *
- * The `routePrefix` (the default is 'section') can also be overriden by passing a different value.
- * Keep in mind, if this is done, the root routes.js file will need modification.
- *
+ * *
  * @param {string} alias The website section alias
- * @param {string} [routePrefix=section] The section base path.
  */
 
 
 var sectionPath = (function (alias) {
-  var routePrefix = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'section';
   if (shouldGoToIndex(alias)) return '/';
-  var path = cleanPath(alias);
-  if (!routePrefix) return "/".concat(path);
-  return "/".concat(cleanPath(routePrefix), "/").concat(path);
+  var path = cleanPath(alias); // Load the section route prefix from the runtime config.
+
+  var _getConfig = getConfig(),
+      publicRuntimeConfig = _getConfig.publicRuntimeConfig;
+
+  var sectionRoutePrefix = publicRuntimeConfig.sectionRoutePrefix;
+  if (!sectionRoutePrefix) return "/".concat(path);
+  return "/".concat(cleanPath(sectionRoutePrefix), "/").concat(path);
 });
 
 var titleizeType = (function (type) {

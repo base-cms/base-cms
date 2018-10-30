@@ -13,6 +13,7 @@ require('./chunk-9e05845b.js');
 require('inflected');
 require('moment');
 require('object-path');
+require('next/config');
 
 var MetaDescription = function MetaDescription(_ref) {
   var value = _ref.value;

@@ -6,6 +6,7 @@ import './chunk-1a4eb17c.js';
 import 'inflected';
 import 'moment';
 import 'object-path';
+import 'next/config';
 
 var MetaDescription = function MetaDescription(_ref) {
   var value = _ref.value;

@@ -18,6 +18,7 @@ var __chunk_4 = require('./chunk-4bddce20.js');
 require('inflected');
 require('moment');
 require('object-path');
+require('next/config');
 
 var WebsiteApp =
 /*#__PURE__*/

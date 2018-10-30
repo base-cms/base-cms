@@ -11,6 +11,7 @@ import { a as SiteConfigContext } from './chunk-b0ac8f34.js';
 import 'inflected';
 import 'moment';
 import 'object-path';
+import 'next/config';
 
 var WebsiteApp =
 /*#__PURE__*/

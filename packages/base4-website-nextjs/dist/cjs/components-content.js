@@ -8,17 +8,18 @@ var __chunk_1 = require('./chunk-9e05845b.js');
 var React = require('react');
 var React__default = _interopDefault(React);
 var PropTypes = _interopDefault(require('prop-types'));
-var __chunk_6 = require('./chunk-f9da1e4c.js');
+var __chunk_6 = require('./chunk-ee8dba1a.js');
 var classNames = _interopDefault(require('classnames'));
-var __chunk_5 = require('./chunk-cf20d45d.js');
-var __chunk_7 = require('./chunk-adb978b5.js');
+var __chunk_5 = require('./chunk-59e5b346.js');
+var __chunk_7 = require('./chunk-4f9b5a2b.js');
 var utils = require('./utils.js');
 var objectPath = require('object-path');
-var __chunk_8 = require('./chunk-2e11f9c3.js');
+var __chunk_8 = require('./chunk-bcc09f97.js');
 require('./routing.js');
 require('./chunk-4b678d5c.js');
 require('inflected');
 require('moment');
+require('next/config');
 
 var propTypes = {
   // Whether to render the `value` prop as HTML.
@@ -511,7 +512,6 @@ var propTypes$e = {
   linkAttrs: PropTypes.object,
   // eslint-disable-line react/forbid-prop-types
   prefix: PropTypes.string,
-  sectionRoutePrefix: PropTypes.string,
   tag: PropTypes.string
 };
 var defaultProps$e = {
@@ -520,7 +520,6 @@ var defaultProps$e = {
   content: {},
   linkAttrs: {},
   prefix: null,
-  sectionRoutePrefix: 'section',
   tag: 'span'
 };
 
@@ -528,9 +527,8 @@ var PrimarySectionNameLink = function PrimarySectionNameLink(_ref) {
   var children = _ref.children,
       content = _ref.content,
       prefix = _ref.prefix,
-      sectionRoutePrefix = _ref.sectionRoutePrefix,
       linkAttrs = _ref.linkAttrs,
-      attrs = __chunk_1._objectWithoutProperties(_ref, ["children", "content", "prefix", "sectionRoutePrefix", "linkAttrs"]);
+      attrs = __chunk_1._objectWithoutProperties(_ref, ["children", "content", "prefix", "linkAttrs"]);
 
   return React__default.createElement(ObjectValue, __chunk_1._extends({
     path: "primarySection.name",
@@ -540,7 +538,6 @@ var PrimarySectionNameLink = function PrimarySectionNameLink(_ref) {
     var alias = objectPath.get(content, 'primarySection.alias');
     if (!id || !alias) return null;
     return React__default.createElement(__chunk_8.Link, __chunk_1._extends({
-      routePrefix: sectionRoutePrefix,
       id: id,
       alias: alias,
       value: value

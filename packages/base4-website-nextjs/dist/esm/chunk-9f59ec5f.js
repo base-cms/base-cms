@@ -1,14 +1,9 @@
-'use strict';
-
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-var __chunk_1 = require('./chunk-9e05845b.js');
-var React = require('react');
-var React__default = _interopDefault(React);
-var PropTypes = _interopDefault(require('prop-types'));
-var classNames = _interopDefault(require('classnames'));
-var __chunk_6 = require('./chunk-f9da1e4c.js');
-var utils = require('./utils.js');
+import { j as _extends, i as _objectWithoutProperties } from './chunk-1a4eb17c.js';
+import React from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import { a as LinkElement } from './chunk-fa6faa06.js';
+import { sectionPath } from './utils.js';
 
 var propTypes = {
   // The website section alias.
@@ -25,8 +20,6 @@ var propTypes = {
   // Optional parameters for named routes.
   params: PropTypes.object,
   // eslint-disable-line react/forbid-prop-types
-  // The route prefix to prepend to the alias.
-  routePrefix: PropTypes.string,
   // The inner value to render by default.
   value: PropTypes.node
 };
@@ -36,7 +29,6 @@ var defaultProps = {
   className: null,
   collapsible: true,
   params: undefined,
-  routePrefix: 'section',
   value: null
 }; // @todo Do not make this clickable if the canonicalPath matches the route.
 
@@ -45,11 +37,10 @@ var WebsiteSectionLink = function WebsiteSectionLink(_ref) {
       className = _ref.className,
       id = _ref.id,
       routePrefix = _ref.routePrefix,
-      rest = __chunk_1._objectWithoutProperties(_ref, ["alias", "className", "id", "routePrefix"]);
+      rest = _objectWithoutProperties(_ref, ["alias", "className", "id", "routePrefix"]);
 
-  var to = routePrefix ? "".concat(routePrefix, "/").concat(utils.cleanPath(alias)) : alias;
-  return React__default.createElement(__chunk_6.LinkElement, __chunk_1._extends({
-    to: to,
+  return React.createElement(LinkElement, _extends({
+    to: sectionPath(alias),
     className: classNames('website-section__link', "website-section__link--".concat(id), className)
   }, rest));
 };
@@ -58,4 +49,4 @@ WebsiteSectionLink.displayName = 'WebsiteSection/Link';
 WebsiteSectionLink.propTypes = propTypes;
 WebsiteSectionLink.defaultProps = defaultProps;
 
-exports.Link = WebsiteSectionLink;
+export { WebsiteSectionLink as a };

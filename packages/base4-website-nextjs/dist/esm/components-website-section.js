@@ -2,15 +2,16 @@ import { j as _extends, i as _objectWithoutProperties } from './chunk-1a4eb17c.j
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { c as ObjectValue } from './chunk-f22d40b2.js';
-import { a as withModelFieldClass } from './chunk-ed89f2e2.js';
-import { a as Link } from './chunk-78d0164d.js';
-export { a as Link } from './chunk-78d0164d.js';
+import { c as ObjectValue } from './chunk-7feea05c.js';
+import { a as withModelFieldClass } from './chunk-79f0241f.js';
+import { a as Link } from './chunk-9f59ec5f.js';
+export { a as Link } from './chunk-9f59ec5f.js';
 import './utils.js';
 import 'inflected';
 import 'moment';
 import 'object-path';
-import './chunk-435dde02.js';
+import 'next/config';
+import './chunk-fa6faa06.js';
 import './routing.js';
 import './chunk-7976a9a0.js';
 

@@ -2,12 +2,13 @@ import { j as _extends, i as _objectWithoutProperties } from './chunk-1a4eb17c.j
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { c as ObjectValue } from './chunk-f22d40b2.js';
-import { a as withModelFieldClass } from './chunk-ed89f2e2.js';
+import { c as ObjectValue } from './chunk-7feea05c.js';
+import { a as withModelFieldClass } from './chunk-79f0241f.js';
 import './utils.js';
 import 'inflected';
 import 'moment';
 import 'object-path';
+import 'next/config';
 
 var propTypes = {
   children: PropTypes.node.isRequired,

@@ -2,22 +2,12 @@
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var envalid = _interopDefault(require('envalid'));
 var __chunk_2 = require('./chunk-efb9fd9b.js');
 var __chunk_1 = require('./chunk-9e05845b.js');
 var next = _interopDefault(require('next'));
 var baseWebsite = _interopDefault(require('@base-cms/base4-website-express'));
 var path = require('path');
 var nextRoutes = _interopDefault(require('next-routes'));
-
-var json = envalid.json,
-    cleanEnv = envalid.cleanEnv;
-cleanEnv(process.env, {
-  CONTENT_CANONICAL_PATHS: json({
-    desc: 'The canonical path parts for generating content URLs.',
-    default: ['sectionAlias', 'type', 'id', 'slug']
-  })
-});
 
 var isFn = function isFn(v) {
   return typeof v === 'function';

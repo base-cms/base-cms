@@ -539,8 +539,6 @@ var buildQuery$2 = function buildQuery(_ref) {
 };
 var withWebsiteSection = (function () {
   var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-      _ref2$routePrefix = _ref2.routePrefix,
-      routePrefix = _ref2$routePrefix === void 0 ? 'section' : _ref2$routePrefix,
       _ref2$fragment = _ref2.fragment,
       fragment = _ref2$fragment === void 0 ? null : _ref2$fragment;
 
@@ -647,7 +645,7 @@ var withWebsiteSection = (function () {
                     }
 
                     // The website section was found. Return it allong with the page props.
-                    canonicalPath = utils.sectionPath(alias, routePrefix);
+                    canonicalPath = utils.sectionPath(alias);
                     return _context.abrupt("return", __chunk_1._objectSpread({
                       section: websiteSectionAlias,
                       canonicalPath: canonicalPath
@@ -661,7 +659,7 @@ var withWebsiteSection = (function () {
 
                     // A redirect was found for this section alias. Force a redirect.
                     redirectAlias = websiteSectionRedirect.alias;
-                    path = utils.sectionPath(redirectAlias, routePrefix);
+                    path = utils.sectionPath(redirectAlias);
                     routing.redirect({
                       Router: Router,
                       res: res,

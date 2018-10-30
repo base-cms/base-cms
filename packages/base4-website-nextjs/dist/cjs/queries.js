@@ -14,6 +14,7 @@ var utils = require('./utils.js');
 require('inflected');
 require('moment');
 require('object-path');
+require('next/config');
 
 function _templateObject() {
   var data = __chunk_1._taggedTemplateLiteral(["\n    query WebsiteScheduledContent($input: WebsiteScheduledPlatformContentQuery!, $canonicalFields: [PlatfromContentPathField]!) {\n      websiteScheduledPlatformContent(input: $input) {\n        edges {\n          node {\n            id\n            ", "\n          }\n        }\n      }\n    }\n    ", "\n  "]);

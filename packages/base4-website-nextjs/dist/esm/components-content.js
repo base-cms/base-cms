@@ -1,17 +1,18 @@
 import { j as _extends, i as _objectWithoutProperties } from './chunk-1a4eb17c.js';
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { a as LinkElement } from './chunk-435dde02.js';
+import { a as LinkElement } from './chunk-fa6faa06.js';
 import classNames from 'classnames';
-import { c as ObjectValue } from './chunk-f22d40b2.js';
-import { a as withModelFieldClass } from './chunk-ed89f2e2.js';
+import { c as ObjectValue } from './chunk-7feea05c.js';
+import { a as withModelFieldClass } from './chunk-79f0241f.js';
 import { isFunction as isFn, titleizeType, getAsArray, modelClassNames } from './utils.js';
 import { get } from 'object-path';
-import { a as Link } from './chunk-78d0164d.js';
+import { a as Link } from './chunk-9f59ec5f.js';
 import './routing.js';
 import './chunk-7976a9a0.js';
 import 'inflected';
 import 'moment';
+import 'next/config';
 
 var propTypes = {
   // Whether to render the `value` prop as HTML.
@@ -504,7 +505,6 @@ var propTypes$e = {
   linkAttrs: PropTypes.object,
   // eslint-disable-line react/forbid-prop-types
   prefix: PropTypes.string,
-  sectionRoutePrefix: PropTypes.string,
   tag: PropTypes.string
 };
 var defaultProps$e = {
@@ -513,7 +513,6 @@ var defaultProps$e = {
   content: {},
   linkAttrs: {},
   prefix: null,
-  sectionRoutePrefix: 'section',
   tag: 'span'
 };
 
@@ -521,9 +520,8 @@ var PrimarySectionNameLink = function PrimarySectionNameLink(_ref) {
   var children = _ref.children,
       content = _ref.content,
       prefix = _ref.prefix,
-      sectionRoutePrefix = _ref.sectionRoutePrefix,
       linkAttrs = _ref.linkAttrs,
-      attrs = _objectWithoutProperties(_ref, ["children", "content", "prefix", "sectionRoutePrefix", "linkAttrs"]);
+      attrs = _objectWithoutProperties(_ref, ["children", "content", "prefix", "linkAttrs"]);
 
   return React.createElement(ObjectValue$1, _extends({
     path: "primarySection.name",
@@ -533,7 +531,6 @@ var PrimarySectionNameLink = function PrimarySectionNameLink(_ref) {
     var alias = get(content, 'primarySection.alias');
     if (!id || !alias) return null;
     return React.createElement(Link, _extends({
-      routePrefix: sectionRoutePrefix,
       id: id,
       alias: alias,
       value: value
