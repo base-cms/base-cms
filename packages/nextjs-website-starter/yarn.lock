@@ -724,14 +724,14 @@
 
 "@base-cms/base4-graphql-express-router@https://github.com/base-cms/base4-graphql-express-router.git":
   version "1.0.0"
-  resolved "https://github.com/base-cms/base4-graphql-express-router.git#e4073649993d10d43ce740b4df1513c60eaf962e"
+  resolved "https://github.com/base-cms/base4-graphql-express-router.git#e7725a4698a4a5654f7ef0adcd8932bbf1e5bb36"
   dependencies:
     "@base-cms/base4-graphql-stitching" "https://github.com/base-cms/base4-graphql-stitching.git"
     apollo-server-express "^2.2.0-alpha.0"
 
 "@base-cms/base4-graphql-stitching@https://github.com/base-cms/base4-graphql-stitching.git":
   version "1.0.0"
-  resolved "https://github.com/base-cms/base4-graphql-stitching.git#b83db23868a07a073a58318e55ef6344c562624c"
+  resolved "https://github.com/base-cms/base4-graphql-stitching.git#16907bbccc4f2f3b937e800b7b3dd8eba1f6b908"
   dependencies:
     apollo-link "^1.2.3"
     apollo-link-context "^1.0.9"
@@ -756,7 +756,7 @@
 
 "@base-cms/base4-website-express@https://github.com/base-cms/base4-website-express.git":
   version "0.1.0"
-  resolved "https://github.com/base-cms/base4-website-express.git#ba303ee6e50a9c8d33cf3d96249c5e56ea077f93"
+  resolved "https://github.com/base-cms/base4-website-express.git#d462effbf1d5cc7f9a1a3ceefbe273c8ade134eb"
   dependencies:
     "@base-cms/base4-graphql-express-router" "https://github.com/base-cms/base4-graphql-express-router.git"
     compression "^1.7.3"
@@ -766,7 +766,7 @@
 
 "@base-cms/base4-website-nextjs-bootstrap@https://github.com/base-cms/base4-website-nextjs-bootstrap.git":
   version "0.1.0"
-  resolved "https://github.com/base-cms/base4-website-nextjs-bootstrap.git#1240abad5a6852d8a0ec1248e76f5ab64059d656"
+  resolved "https://github.com/base-cms/base4-website-nextjs-bootstrap.git#80963612c7ca0f3ea00b34b595d5bd042446e939"
   dependencies:
     "@zeit/next-sass" "^1.0.1"
     autoprefixer "^9.3.1"
@@ -778,7 +778,7 @@
 
 "@base-cms/base4-website-nextjs@https://github.com/base-cms/base4-website-nextjs.git":
   version "0.1.0"
-  resolved "https://github.com/base-cms/base4-website-nextjs.git#7cb373422ff6754f209424495b9b32c6fe10ee92"
+  resolved "https://github.com/base-cms/base4-website-nextjs.git#79c90b041ca6f2886c3298b6732fa1c2565410f0"
   dependencies:
     "@base-cms/base4-nextjs-apollo" "https://github.com/base-cms/base4-nextjs-apollo.git"
     "@base-cms/base4-website-express" "https://github.com/base-cms/base4-website-express.git"
