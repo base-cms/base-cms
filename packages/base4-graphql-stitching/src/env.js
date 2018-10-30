@@ -23,6 +23,6 @@ module.exports = cleanEnv(process.env, {
   BASE4_API_TOKEN: nonemptystr({ desc: 'The Base4 GraphQL API token.' }),
   BASE4_CONTENT_CANONICAL_PATHS: json({
     desc: 'A JSON array of content canonical path parts for generating content URLs',
-    default: ['sectionAlias', 'type', 'id', 'slug'],
+    default: '["sectionAlias", "type", "id", "slug"]',
   }),
 });
