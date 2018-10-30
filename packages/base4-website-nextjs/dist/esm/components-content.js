@@ -1,18 +1,18 @@
 import { j as _extends, i as _objectWithoutProperties } from './chunk-1a4eb17c.js';
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { a as LinkElement } from './chunk-fa6faa06.js';
+import { a as LinkElement } from './chunk-ad699e77.js';
 import classNames from 'classnames';
-import { c as ObjectValue } from './chunk-7feea05c.js';
-import { a as withModelFieldClass } from './chunk-79f0241f.js';
+import { c as ObjectValue } from './chunk-fccae53b.js';
+import { a as withModelFieldClass } from './chunk-440a5131.js';
 import { isFunction as isFn, titleizeType, getAsArray, modelClassNames } from './utils.js';
 import { get } from 'object-path';
-import { a as Link } from './chunk-9f59ec5f.js';
+import { a as Link } from './chunk-315fff38.js';
 import './routing.js';
 import './chunk-7976a9a0.js';
+import 'next/config';
 import 'inflected';
 import 'moment';
-import 'next/config';
 
 var propTypes = {
   // Whether to render the `value` prop as HTML.

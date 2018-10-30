@@ -3,11 +3,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-import { extractFragmentData } from './utils.js';
+import { contentCanonicalPaths, extractFragmentData } from './utils.js';
+import 'next/config';
 import 'inflected';
 import 'moment';
 import 'object-path';
-import 'next/config';
 
 function _templateObject() {
   var data = _taggedTemplateLiteral(["\n    query WebsiteScheduledContent($input: WebsiteScheduledPlatformContentQuery!, $canonicalFields: [PlatfromContentPathField]!) {\n      websiteScheduledPlatformContent(input: $input) {\n        edges {\n          node {\n            id\n            ", "\n          }\n        }\n      }\n    }\n    ", "\n  "]);
@@ -57,7 +57,7 @@ var WebsiteScheduledContent = function WebsiteScheduledContent(_ref2) {
     sectionBubbling: sectionBubbling,
     sectionId: sectionId
   };
-  var canonicalFields = ['sectionAlias', 'type', 'id', 'slug'];
+  var canonicalFields = contentCanonicalPaths();
   var query = buildQuery({
     fragment: fragment
   });

@@ -11,10 +11,10 @@ var PropTypes = _interopDefault(require('prop-types'));
 var reactApollo = require('react-apollo');
 var gql = _interopDefault(require('graphql-tag'));
 var utils = require('./utils.js');
+require('next/config');
 require('inflected');
 require('moment');
 require('object-path');
-require('next/config');
 
 function _templateObject() {
   var data = __chunk_1._taggedTemplateLiteral(["\n    query WebsiteScheduledContent($input: WebsiteScheduledPlatformContentQuery!, $canonicalFields: [PlatfromContentPathField]!) {\n      websiteScheduledPlatformContent(input: $input) {\n        edges {\n          node {\n            id\n            ", "\n          }\n        }\n      }\n    }\n    ", "\n  "]);
@@ -64,7 +64,7 @@ var WebsiteScheduledContent = function WebsiteScheduledContent(_ref2) {
     sectionBubbling: sectionBubbling,
     sectionId: sectionId
   };
-  var canonicalFields = ['sectionAlias', 'type', 'id', 'slug'];
+  var canonicalFields = utils.contentCanonicalPaths();
   var query = buildQuery({
     fragment: fragment
   });

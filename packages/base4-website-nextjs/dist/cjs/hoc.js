@@ -12,8 +12,8 @@ var PropTypes = _interopDefault(require('prop-types'));
 var utils = require('./utils.js');
 var gql = _interopDefault(require('graphql-tag'));
 var componentsHead = require('./components-head.js');
-var getConfig = _interopDefault(require('next/config'));
 var routing = require('./routing.js');
+require('next/config');
 require('inflected');
 require('moment');
 require('object-path');
@@ -354,9 +354,7 @@ var checkContent = function checkContent(content, _ref2) {
 var withPlatformContent = (function () {
   var _ref3 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
       _ref3$fragment = _ref3.fragment,
-      fragment = _ref3$fragment === void 0 ? null : _ref3$fragment,
-      _ref3$canonicalFields = _ref3.canonicalFields,
-      canonicalFields = _ref3$canonicalFields === void 0 ? ['sectionAlias', 'type', 'id', 'slug'] : _ref3$canonicalFields;
+      fragment = _ref3$fragment === void 0 ? null : _ref3$fragment;
 
   return function (Page) {
     var WithPlatformContent =
@@ -404,39 +402,36 @@ var withPlatformContent = (function () {
           var _getInitialProps = __chunk_1._asyncToGenerator(
           /*#__PURE__*/
           __chunk_2._regeneratorRuntime.mark(function _callee(ctx) {
-            var _getConfig, publicRuntimeConfig, pageProps, query, apollo, id, input, variables, _ref4, data, platformContent, canonicalPath;
+            var pageProps, query, apollo, id, input, variables, _ref4, data, platformContent, canonicalPath;
 
             return __chunk_2._regeneratorRuntime.wrap(function _callee$(_context) {
               while (1) {
                 switch (_context.prev = _context.next) {
                   case 0:
-                    _getConfig = getConfig(), publicRuntimeConfig = _getConfig.publicRuntimeConfig;
-                    console.log(publicRuntimeConfig); // Await the props of the Page
-
                     if (!Page.getInitialProps) {
-                      _context.next = 6;
+                      _context.next = 4;
                       break;
                     }
 
-                    _context.next = 5;
+                    _context.next = 3;
                     return Page.getInitialProps(ctx);
 
-                  case 5:
+                  case 3:
                     pageProps = _context.sent;
 
-                  case 6:
+                  case 4:
                     query = ctx.query, apollo = ctx.apollo; // Get the content id from the page query
 
                     id = query.id;
 
                     if (id) {
-                      _context.next = 10;
+                      _context.next = 8;
                       break;
                     }
 
                     throw utils.httpErrors.notFound('No content ID was provided.');
 
-                  case 10:
+                  case 8:
                     // Query for the content object using the id, via the inject apollo client.
                     input = {
                       id: Number(id)
@@ -444,9 +439,9 @@ var withPlatformContent = (function () {
 
                     variables = {
                       input: input,
-                      canonicalFields: canonicalFields
+                      canonicalFields: utils.contentCanonicalPaths()
                     };
-                    _context.next = 14;
+                    _context.next = 12;
                     return apollo.query({
                       query: buildQuery$1({
                         fragment: fragment
@@ -454,19 +449,19 @@ var withPlatformContent = (function () {
                       variables: variables
                     });
 
-                  case 14:
+                  case 12:
                     _ref4 = _context.sent;
                     data = _ref4.data;
                     platformContent = data.platformContent;
 
                     if (platformContent) {
-                      _context.next = 19;
+                      _context.next = 17;
                       break;
                     }
 
                     throw utils.httpErrors.notFound("No content was found for id '".concat(id, "'"));
 
-                  case 19:
+                  case 17:
                     // Check content for internal/external redirects, etc.
                     checkContent(platformContent, ctx);
                     canonicalPath = platformContent.canonicalPath;
@@ -475,7 +470,7 @@ var withPlatformContent = (function () {
                       canonicalPath: canonicalPath
                     }, pageProps));
 
-                  case 22:
+                  case 20:
                   case "end":
                     return _context.stop();
                 }

@@ -15,10 +15,10 @@ var nextRoutes = _interopDefault(require('next-routes'));
 var __chunk_3 = require('./chunk-4b678d5c.js');
 var utils = require('./utils.js');
 var __chunk_4 = require('./chunk-4bddce20.js');
+require('next/config');
 require('inflected');
 require('moment');
 require('object-path');
-require('next/config');
 
 var WebsiteApp =
 /*#__PURE__*/
