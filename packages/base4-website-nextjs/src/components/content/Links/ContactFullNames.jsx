@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'object-path';
 import classNames from 'classnames';
@@ -49,16 +49,16 @@ const ContactFullNameLinks = ({
         const canonicalPath = get(edge, 'node.canonicalPath');
         if (collapsible && !canonicalPath) return null;
         return (
-          <>
+          <Fragment key={key}>
             {prefix && index === 0 && `${prefix}`}
-            <ObjectValue key={key} path="node.fullName" obj={edge} collapsible={collapsible} {...elementAttrs}>
+            <ObjectValue path="node.fullName" obj={edge} collapsible={collapsible} {...elementAttrs}>
               {fullName => (
                 <Link canonicalPath={canonicalPath} value={fullName} {...linkAttrs}>
                   {children}
                 </Link>
               )}
             </ObjectValue>
-          </>
+          </Fragment>
         );
       })}
     </Tag>
