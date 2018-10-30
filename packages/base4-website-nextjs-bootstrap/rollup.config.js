@@ -1,5 +1,6 @@
 import babel from 'rollup-plugin-babel';
 import commonjs from 'rollup-plugin-commonjs';
+import graphql from 'rollup-plugin-graphql';
 import nodeResolve from 'rollup-plugin-node-resolve';
 
 import pkg from './package.json';
@@ -32,6 +33,7 @@ export default {
   plugins: [
     nodeResolve({ extensions: ['.js', '.jsx'] }),
     commonjs({ include: ['node_modules/**'] }),
+    graphql(),
     babel({ exclude: 'node_modules/**' }),
   ],
 }
