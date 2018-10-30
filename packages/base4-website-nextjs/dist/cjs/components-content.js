@@ -376,8 +376,9 @@ var ContactFullNameLinks = function ContactFullNameLinks(_ref) {
     var key = objectPath.get(edge, 'node.id');
     var canonicalPath = objectPath.get(edge, 'node.canonicalPath');
     if (collapsible && !canonicalPath) return null;
-    return React__default.createElement(React__default.Fragment, null, prefix && index === 0 && "".concat(prefix), React__default.createElement(ObjectValue, __chunk_1._extends({
-      key: key,
+    return React__default.createElement(React.Fragment, {
+      key: key
+    }, prefix && index === 0 && "".concat(prefix), React__default.createElement(ObjectValue, __chunk_1._extends({
       path: "node.fullName",
       obj: edge,
       collapsible: collapsible

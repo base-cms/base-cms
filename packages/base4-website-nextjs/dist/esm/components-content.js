@@ -1,5 +1,5 @@
 import { j as _extends, i as _objectWithoutProperties } from './chunk-1a4eb17c.js';
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { a as LinkElement } from './chunk-435dde02.js';
 import classNames from 'classnames';
@@ -369,8 +369,9 @@ var ContactFullNameLinks = function ContactFullNameLinks(_ref) {
     var key = get(edge, 'node.id');
     var canonicalPath = get(edge, 'node.canonicalPath');
     if (collapsible && !canonicalPath) return null;
-    return React.createElement(React.Fragment, null, prefix && index === 0 && "".concat(prefix), React.createElement(ObjectValue$1, _extends({
-      key: key,
+    return React.createElement(Fragment, {
+      key: key
+    }, prefix && index === 0 && "".concat(prefix), React.createElement(ObjectValue$1, _extends({
       path: "node.fullName",
       obj: edge,
       collapsible: collapsible
