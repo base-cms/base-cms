@@ -3,7 +3,7 @@ fragment ContentListGroupItemStyleA on PlatformContent {
   type
   shortName
   published
-  canonicalPath(input: { fields: $canonicalFields })
+  canonicalPath
   primarySection {
     id
     name
@@ -13,7 +13,7 @@ fragment ContentListGroupItemStyleA on PlatformContent {
     company {
       id
       name
-      canonicalPath(input: { fields: $canonicalFields })
+      canonicalPath
     }
   }
 }
