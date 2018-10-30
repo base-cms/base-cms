@@ -766,13 +766,14 @@
 
 "@base-cms/base4-website-nextjs@https://github.com/base-cms/base4-website-nextjs.git":
   version "0.1.0"
-  resolved "https://github.com/base-cms/base4-website-nextjs.git#4841e4ef16e8a6a8a19e3ad12b865d7a0a0ec084"
+  resolved "https://github.com/base-cms/base4-website-nextjs.git#77c697efa7d02c97be7bff020fa476c92ec6738d"
   dependencies:
     "@base-cms/base4-nextjs-apollo" "https://github.com/base-cms/base4-nextjs-apollo.git"
     "@base-cms/base4-website-express" "https://github.com/base-cms/base4-website-express.git"
     classnames "^2.2.6"
     hoist-non-react-statics "^3.0.1"
     inflected "^2.0.4"
+    moment "^2.22.2"
     next-routes "^1.4.2"
     object-path "^0.11.4"
     prop-types "^15.6.2"
@@ -3857,7 +3858,7 @@ mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0:
   dependencies:
     minimist "0.0.8"
 
-moment@^2.22.1:
+moment@^2.22.1, moment@^2.22.2:
   version "2.22.2"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.22.2.tgz#3c257f9839fc0e93ff53149632239eb90783ff66"
   integrity sha1-PCV/mDn8DpP/UxSWMiOeuQeD/2Y=
