@@ -1,6 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
+'use strict';
+
+function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+
+var React = _interopDefault(require('react'));
+var PropTypes = _interopDefault(require('prop-types'));
+var classNames = _interopDefault(require('classnames'));
 
 function _defineProperty(obj, key, value) {
   if (key in obj) {
@@ -90,18 +94,6 @@ function _objectWithoutProperties(source, excluded) {
   return target;
 }
 
-function _taggedTemplateLiteral(strings, raw) {
-  if (!raw) {
-    raw = strings.slice(0);
-  }
-
-  return Object.freeze(Object.defineProperties(strings, {
-    raw: {
-      value: Object.freeze(raw)
-    }
-  }));
-}
-
 var propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
@@ -155,4 +147,8 @@ ListGroupItem.displayName = 'Core/ListGroupItem';
 ListGroupItem.propTypes = propTypes$1;
 ListGroupItem.defaultProps = defaultProps$1;
 
-export { _extends as a, _objectWithoutProperties as b, ListGroupItem as c, _taggedTemplateLiteral as d, ListGroup as e, _objectSpread as f };
+exports._extends = _extends;
+exports._objectWithoutProperties = _objectWithoutProperties;
+exports.ListGroupItem = ListGroupItem;
+exports.ListGroup = ListGroup;
+exports._objectSpread = _objectSpread;

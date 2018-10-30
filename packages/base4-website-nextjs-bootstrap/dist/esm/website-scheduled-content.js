@@ -1,10 +1,9 @@
-import { a as _extends, f as _objectSpread, b as _objectWithoutProperties } from './chunk-3eb334fd.js';
+import { a as _extends, e as _objectSpread, b as _objectWithoutProperties } from './chunk-e66bd223.js';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { WebsiteScheduledContent } from '@base-cms/base4-website-nextjs/queries';
-import { a as ListGroupStyleA } from './chunk-e14e3313.js';
+import { a as ListGroupStyleA } from './chunk-562f2d96.js';
 import 'classnames';
-import 'graphql-tag';
 import '@base-cms/base4-website-nextjs/components/content';
 import '@base-cms/base4-website-nextjs/utils';
 

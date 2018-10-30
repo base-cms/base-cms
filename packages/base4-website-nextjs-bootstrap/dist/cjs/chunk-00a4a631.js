@@ -2,11 +2,10 @@
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var __chunk_1 = require('./chunk-1c32c684.js');
+var __chunk_1 = require('./chunk-f72273a7.js');
 var React = _interopDefault(require('react'));
 var PropTypes = _interopDefault(require('prop-types'));
 var classNames = _interopDefault(require('classnames'));
-var gql = _interopDefault(require('graphql-tag'));
 var content = require('@base-cms/base4-website-nextjs/components/content');
 var utils = require('@base-cms/base4-website-nextjs/utils');
 
@@ -43,15 +42,9 @@ ContentListGroupItem.displayName = 'Content/ListGroupItem';
 ContentListGroupItem.propTypes = propTypes;
 ContentListGroupItem.defaultProps = defaultProps;
 
-function _templateObject() {
-  var data = __chunk_1._taggedTemplateLiteral(["\n    fragment ContentListGroupItemStyleA on PlatformContent {\n      id\n      type\n      shortName\n      published\n      canonicalPath\n      primarySection {\n        id\n        name\n        alias\n      }\n      ... on PlatformContentProduct {\n        company {\n          id\n          name\n          canonicalPath\n        }\n      }\n    }\n  "]);
+var doc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ContentListGroupItemStyleA"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PlatformContent"}},"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"type"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"shortName"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"published"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"canonicalPath"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"fields"},"value":{"kind":"Variable","name":{"kind":"Name","value":"canonicalFields"}}}]}}],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"primarySection"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"name"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"alias"},"arguments":[],"directives":[]}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PlatformContentProduct"}},"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"company"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"name"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"canonicalPath"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"fields"},"value":{"kind":"Variable","name":{"kind":"Name","value":"canonicalFields"}}}]}}],"directives":[]}]}}]}}]}}],"loc":{"start":0,"end":332}};
+    doc.loc.source = {"body":"fragment ContentListGroupItemStyleA on PlatformContent {\n  id\n  type\n  shortName\n  published\n  canonicalPath(input: { fields: $canonicalFields })\n  primarySection {\n    id\n    name\n    alias\n  }\n  ... on PlatformContentProduct {\n    company {\n      id\n      name\n      canonicalPath(input: { fields: $canonicalFields })\n    }\n  }\n}\n","name":"GraphQL request","locationOffset":{"line":1,"column":1}};
 
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
 var propTypes$1 = {
   content: PropTypes.shape({
     id: PropTypes.number,
@@ -84,6 +77,11 @@ var ListGroupItemStyleA = function ListGroupItemStyleA(_ref) {
   }, attr), React.createElement(content.ShortNameLink, {
     content: content$$1,
     className: "mb-1"
+  }), React.createElement(content.CompanyNameLink, {
+    content: content$$1,
+    tag: "small",
+    className: "d-block",
+    prefix: "From "
   }), React.createElement(content.Row, {
     tag: "small"
   }, React.createElement(content.PrimarySectionNameLink, {
@@ -92,15 +90,13 @@ var ListGroupItemStyleA = function ListGroupItemStyleA(_ref) {
   }), React.createElement(content.PublishedDate, {
     content: content$$1
   })));
-}; // @todo determine how to pass canonical field args...
-// canonicalPath(input: { fields: $canonicalFields })
-
+};
 
 ListGroupItemStyleA.displayName = 'Content/ListGroupItem/StyleA';
 ListGroupItemStyleA.propTypes = propTypes$1;
 ListGroupItemStyleA.defaultProps = defaultProps$1;
 ListGroupItemStyleA.fragments = {
-  content: gql(_templateObject())
+  content: doc
 };
 
 var propTypes$2 = {

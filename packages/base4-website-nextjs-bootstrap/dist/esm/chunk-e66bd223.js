@@ -1,10 +1,6 @@
-'use strict';
-
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-var React = _interopDefault(require('react'));
-var PropTypes = _interopDefault(require('prop-types'));
-var classNames = _interopDefault(require('classnames'));
+import React from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 function _defineProperty(obj, key, value) {
   if (key in obj) {
@@ -94,18 +90,6 @@ function _objectWithoutProperties(source, excluded) {
   return target;
 }
 
-function _taggedTemplateLiteral(strings, raw) {
-  if (!raw) {
-    raw = strings.slice(0);
-  }
-
-  return Object.freeze(Object.defineProperties(strings, {
-    raw: {
-      value: Object.freeze(raw)
-    }
-  }));
-}
-
 var propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
@@ -159,9 +143,4 @@ ListGroupItem.displayName = 'Core/ListGroupItem';
 ListGroupItem.propTypes = propTypes$1;
 ListGroupItem.defaultProps = defaultProps$1;
 
-exports._extends = _extends;
-exports._objectWithoutProperties = _objectWithoutProperties;
-exports.ListGroupItem = ListGroupItem;
-exports._taggedTemplateLiteral = _taggedTemplateLiteral;
-exports.ListGroup = ListGroup;
-exports._objectSpread = _objectSpread;
+export { _extends as a, _objectWithoutProperties as b, ListGroupItem as c, ListGroup as d, _objectSpread as e };

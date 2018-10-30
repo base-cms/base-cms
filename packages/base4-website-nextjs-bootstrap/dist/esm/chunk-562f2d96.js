@@ -1,9 +1,8 @@
-import { a as _extends, b as _objectWithoutProperties, c as ListGroupItem, d as _taggedTemplateLiteral, e as ListGroup } from './chunk-3eb334fd.js';
+import { a as _extends, b as _objectWithoutProperties, c as ListGroupItem, d as ListGroup } from './chunk-e66bd223.js';
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import gql from 'graphql-tag';
-import { PrimarySectionNameLink, PublishedDate, Row, ShortNameLink } from '@base-cms/base4-website-nextjs/components/content';
+import { CompanyNameLink, PrimarySectionNameLink, PublishedDate, Row, ShortNameLink } from '@base-cms/base4-website-nextjs/components/content';
 import { asArray } from '@base-cms/base4-website-nextjs/utils';
 
 var propTypes = {
@@ -39,15 +38,9 @@ ContentListGroupItem.displayName = 'Content/ListGroupItem';
 ContentListGroupItem.propTypes = propTypes;
 ContentListGroupItem.defaultProps = defaultProps;
 
-function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n    fragment ContentListGroupItemStyleA on PlatformContent {\n      id\n      type\n      shortName\n      published\n      canonicalPath\n      primarySection {\n        id\n        name\n        alias\n      }\n      ... on PlatformContentProduct {\n        company {\n          id\n          name\n          canonicalPath\n        }\n      }\n    }\n  "]);
+var doc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ContentListGroupItemStyleA"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PlatformContent"}},"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"type"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"shortName"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"published"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"canonicalPath"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"fields"},"value":{"kind":"Variable","name":{"kind":"Name","value":"canonicalFields"}}}]}}],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"primarySection"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"name"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"alias"},"arguments":[],"directives":[]}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PlatformContentProduct"}},"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"company"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"name"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"canonicalPath"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"fields"},"value":{"kind":"Variable","name":{"kind":"Name","value":"canonicalFields"}}}]}}],"directives":[]}]}}]}}]}}],"loc":{"start":0,"end":332}};
+    doc.loc.source = {"body":"fragment ContentListGroupItemStyleA on PlatformContent {\n  id\n  type\n  shortName\n  published\n  canonicalPath(input: { fields: $canonicalFields })\n  primarySection {\n    id\n    name\n    alias\n  }\n  ... on PlatformContentProduct {\n    company {\n      id\n      name\n      canonicalPath(input: { fields: $canonicalFields })\n    }\n  }\n}\n","name":"GraphQL request","locationOffset":{"line":1,"column":1}};
 
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
 var propTypes$1 = {
   content: PropTypes.shape({
     id: PropTypes.number,
@@ -80,6 +73,11 @@ var ListGroupItemStyleA = function ListGroupItemStyleA(_ref) {
   }, attr), React.createElement(ShortNameLink, {
     content: content,
     className: "mb-1"
+  }), React.createElement(CompanyNameLink, {
+    content: content,
+    tag: "small",
+    className: "d-block",
+    prefix: "From "
   }), React.createElement(Row, {
     tag: "small"
   }, React.createElement(PrimarySectionNameLink, {
@@ -88,15 +86,13 @@ var ListGroupItemStyleA = function ListGroupItemStyleA(_ref) {
   }), React.createElement(PublishedDate, {
     content: content
   })));
-}; // @todo determine how to pass canonical field args...
-// canonicalPath(input: { fields: $canonicalFields })
-
+};
 
 ListGroupItemStyleA.displayName = 'Content/ListGroupItem/StyleA';
 ListGroupItemStyleA.propTypes = propTypes$1;
 ListGroupItemStyleA.defaultProps = defaultProps$1;
 ListGroupItemStyleA.fragments = {
-  content: gql(_templateObject())
+  content: doc
 };
 
 var propTypes$2 = {
