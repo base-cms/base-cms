@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import gql from 'graphql-tag';
 import {
   CompanyNameLink,
   PrimarySectionNameLink,
@@ -9,6 +8,7 @@ import {
   ShortNameLink,
 } from '@base-cms/base4-website-nextjs/components/content';
 import ListGroupItem from '../ListGroupItem';
+import fragment from './StyleA.graphql';
 
 const propTypes = {
   content: PropTypes.shape({
@@ -48,28 +48,6 @@ const ListGroupItemStyleA = ({ content, ...attr }) => (
 ListGroupItemStyleA.displayName = 'Content/ListGroupItem/StyleA';
 ListGroupItemStyleA.propTypes = propTypes;
 ListGroupItemStyleA.defaultProps = defaultProps;
-ListGroupItemStyleA.fragments = {
-  content: gql`
-    fragment ContentListGroupItemStyleA on PlatformContent {
-      id
-      type
-      shortName
-      published
-      canonicalPath(input: { fields: $canonicalFields })
-      primarySection {
-        id
-        name
-        alias
-      }
-      ... on PlatformContentProduct {
-        company {
-          id
-          name
-          canonicalPath(input: { fields: $canonicalFields })
-        }
-      }
-    }
-  `,
-};
+ListGroupItemStyleA.fragments = { content: fragment };
 
 export default ListGroupItemStyleA;

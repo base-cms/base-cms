@@ -1,0 +1,19 @@
+fragment ContentListGroupItemStyleA on PlatformContent {
+  id
+  type
+  shortName
+  published
+  canonicalPath(input: { fields: $canonicalFields })
+  primarySection {
+    id
+    name
+    alias
+  }
+  ... on PlatformContentProduct {
+    company {
+      id
+      name
+      canonicalPath(input: { fields: $canonicalFields })
+    }
+  }
+}
