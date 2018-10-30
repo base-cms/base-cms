@@ -56,13 +56,15 @@ var WebsiteScheduledContent = function WebsiteScheduledContent(_ref2) {
     sectionBubbling: sectionBubbling,
     sectionId: sectionId
   };
+  var canonicalFields = ['sectionAlias', 'type', 'id', 'slug'];
   var query = buildQuery({
     fragment: fragment
   });
   return React.createElement(Query, {
     query: query,
     variables: {
-      input: input
+      input: input,
+      canonicalFields: canonicalFields
     }
   }, function (_ref3) {
     var loading = _ref3.loading,

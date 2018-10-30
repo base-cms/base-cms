@@ -46,9 +46,10 @@ const WebsiteScheduledContent = ({
     sectionBubbling,
     sectionId,
   };
+  const canonicalFields = ['sectionAlias', 'type', 'id', 'slug'];
   const query = buildQuery({ fragment });
   return (
-    <Query query={query} variables={{ input }}>
+    <Query query={query} variables={{ input, canonicalFields }}>
       {({ loading, error, data }) => {
         let items = [];
         if (data && data.websiteScheduledPlatformContent) {
