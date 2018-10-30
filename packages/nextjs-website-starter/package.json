@@ -19,6 +19,7 @@
     "@base-cms/base4-website-nextjs": "https://github.com/base-cms/base4-website-nextjs.git",
     "@base-cms/base4-website-nextjs-bootstrap": "https://github.com/base-cms/base4-website-nextjs-bootstrap.git",
     "apollo-client": "^2.4.2",
+    "bootstrap": "4.1.3",
     "classnames": "^2.2.6",
     "graphql": "^14.0.2",
     "graphql-tag": "^2.10.0",
