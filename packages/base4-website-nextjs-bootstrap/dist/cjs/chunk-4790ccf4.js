@@ -1,9 +1,15 @@
-import { a as _extends, b as _objectWithoutProperties, c as ListGroupItem, d as ListGroup } from './chunk-e66bd223.js';
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { CompanyNameLink, PrimarySectionNameLink, PublishedDate, Row, ShortNameLink } from '@base-cms/base4-website-nextjs/components/content';
-import { asArray } from '@base-cms/base4-website-nextjs/utils';
+'use strict';
+
+function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+
+var __chunk_1 = require('./chunk-3874e52a.js');
+var React = require('react');
+var React__default = _interopDefault(React);
+var PropTypes = _interopDefault(require('prop-types'));
+var classNames = _interopDefault(require('classnames'));
+var __chunk_2 = require('./chunk-ec0103f6.js');
+var content = require('@base-cms/base4-website-nextjs/components/content');
+var utils = require('@base-cms/base4-website-nextjs/utils');
 
 var propTypes = {
   children: PropTypes.node.isRequired,
@@ -21,14 +27,14 @@ var defaultProps = {
 var ContentListGroupItem = function ContentListGroupItem(_ref) {
   var children = _ref.children,
       className = _ref.className,
-      content = _ref.content,
-      attr = _objectWithoutProperties(_ref, ["children", "className", "content"]);
+      content$$1 = _ref.content,
+      attr = __chunk_1._objectWithoutProperties(_ref, ["children", "className", "content"]);
 
-  var _ref2 = content || {},
+  var _ref2 = content$$1 || {},
       id = _ref2.id,
       type = _ref2.type;
 
-  return id && type ? React.createElement(ListGroupItem, _extends({
+  return id && type ? React__default.createElement(__chunk_2.ListGroupItem, __chunk_1._extends({
     "data-id": id,
     className: classNames('content', 'content--list-item', "content--".concat(type), className)
   }, attr), children) : null;
@@ -65,26 +71,26 @@ var defaultProps$1 = {
 };
 
 var ListGroupItemStyleA = function ListGroupItemStyleA(_ref) {
-  var content = _ref.content,
-      attr = _objectWithoutProperties(_ref, ["content"]);
+  var content$$1 = _ref.content,
+      attr = __chunk_1._objectWithoutProperties(_ref, ["content"]);
 
-  return React.createElement(ContentListGroupItem, _extends({
-    content: content
-  }, attr), React.createElement(ShortNameLink, {
-    content: content,
+  return React__default.createElement(ContentListGroupItem, __chunk_1._extends({
+    content: content$$1
+  }, attr), React__default.createElement(content.ShortNameLink, {
+    content: content$$1,
     className: "mb-1"
-  }), React.createElement(CompanyNameLink, {
-    content: content,
+  }), React__default.createElement(content.CompanyNameLink, {
+    content: content$$1,
     tag: "small",
     className: "d-block",
     prefix: "From "
-  }), React.createElement(Row, {
+  }), React__default.createElement(content.Row, {
     tag: "small"
-  }, React.createElement(PrimarySectionNameLink, {
-    content: content,
+  }, React__default.createElement(content.PrimarySectionNameLink, {
+    content: content$$1,
     className: "mr-2"
-  }), React.createElement(PublishedDate, {
-    content: content
+  }), React__default.createElement(content.PublishedDate, {
+    content: content$$1
   })));
 };
 
@@ -110,13 +116,13 @@ var defaultProps$2 = {
 var ListGroupStyleA = function ListGroupStyleA(_ref) {
   var itemAttrs = _ref.itemAttrs,
       nodes = _ref.nodes,
-      attrs = _objectWithoutProperties(_ref, ["itemAttrs", "nodes"]);
+      attrs = __chunk_1._objectWithoutProperties(_ref, ["itemAttrs", "nodes"]);
 
-  var items = asArray(nodes);
-  return items.length ? React.createElement(ListGroup, attrs, items.map(function (content) {
-    return React.createElement(ListGroupItemStyleA, _extends({
-      key: content.id,
-      content: content
+  var items = utils.asArray(nodes);
+  return items.length ? React__default.createElement(__chunk_2.ListGroup, attrs, items.map(function (content$$1) {
+    return React__default.createElement(ListGroupItemStyleA, __chunk_1._extends({
+      key: content$$1.id,
+      content: content$$1
     }, itemAttrs));
   })) : null;
 };
@@ -128,4 +134,6 @@ ListGroupStyleA.fragments = {
   content: ListGroupItemStyleA.fragments.content
 };
 
-export { ListGroupStyleA as a, ContentListGroupItem as b, ListGroupItemStyleA as c };
+exports.ListGroupStyleA = ListGroupStyleA;
+exports.ListGroupItem = ContentListGroupItem;
+exports.ListGroupItemA = ListGroupItemStyleA;

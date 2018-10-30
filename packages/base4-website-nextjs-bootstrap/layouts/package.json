@@ -1,0 +1,6 @@
+{
+  "name": "layouts",
+  "private": true,
+  "main": "../dist/cjs/layouts.js",
+  "module": "../dist/esm/layouts.js"
+}

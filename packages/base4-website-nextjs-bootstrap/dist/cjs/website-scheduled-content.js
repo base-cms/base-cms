@@ -4,12 +4,14 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var __chunk_1 = require('./chunk-f72273a7.js');
-var React = _interopDefault(require('react'));
+var __chunk_1 = require('./chunk-3874e52a.js');
+var React = require('react');
+var React__default = _interopDefault(React);
 var PropTypes = _interopDefault(require('prop-types'));
 var queries = require('@base-cms/base4-website-nextjs/queries');
-var __chunk_2 = require('./chunk-00a4a631.js');
+var __chunk_3 = require('./chunk-4790ccf4.js');
 require('classnames');
+require('./chunk-ec0103f6.js');
 require('@base-cms/base4-website-nextjs/components/content');
 require('@base-cms/base4-website-nextjs/utils');
 
@@ -35,23 +37,23 @@ var BlockListGroupA = function BlockListGroupA(_ref) {
   var query = _ref.query,
       attrs = __chunk_1._objectWithoutProperties(_ref, ["query"]);
 
-  var fragment = __chunk_2.ListGroupStyleA.fragments.content;
+  var fragment = __chunk_3.ListGroupStyleA.fragments.content;
 
   var props = __chunk_1._objectSpread({}, query, {
     fragment: fragment
   });
 
-  return React.createElement(queries.WebsiteScheduledContent, props, function (_ref2) {
+  return React__default.createElement(queries.WebsiteScheduledContent, props, function (_ref2) {
     var loading = _ref2.loading,
         error = _ref2.error,
         items = _ref2.items;
-    if (loading) return React.createElement("span", null, "Loading...");
+    if (loading) return React__default.createElement("span", null, "Loading...");
 
     if (error) {
-      return React.createElement("span", null, "Error", ' ', error.message);
+      return React__default.createElement("span", null, "Error", ' ', error.message);
     }
 
-    return React.createElement(__chunk_2.ListGroupStyleA, __chunk_1._extends({
+    return React__default.createElement(__chunk_3.ListGroupStyleA, __chunk_1._extends({
       nodes: items
     }, attrs));
   });
