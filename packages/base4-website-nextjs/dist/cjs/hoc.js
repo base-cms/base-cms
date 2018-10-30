@@ -285,7 +285,7 @@ var doc$1 = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name
     doc$1.loc.source = {"body":"fragment WithPlatformContentFragment on PlatformContent {\n  id\n  name\n  type\n  teaser\n  body\n  published\n  redirectTo\n  metadata {\n    title\n    description\n  }\n  primarySection {\n    id\n    name\n    alias\n  }\n}\n","name":"GraphQL request","locationOffset":{"line":1,"column":1}};
 
 function _templateObject$1() {
-  var data = __chunk_1._taggedTemplateLiteral(["\n    query WithPlatformContent($input: RootPlatformContentQueryOne!) {\n      platformContent(input: $input) {\n        ...WithPlatformContentFragment\n        ...ContentCanonicalPath\n        ", "\n      }\n    }\n    ", "\n    ", "\n  "]);
+  var data = __chunk_1._taggedTemplateLiteral(["\n    query WithPlatformContent($input: RootPlatformContentQueryOne!) {\n      platformContent(input: $input) {\n        ...WithPlatformContentFragment\n        ", "\n      }\n    }\n    ", "\n    ", "\n  "]);
 
   _templateObject$1 = function _templateObject() {
     return data;

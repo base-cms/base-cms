@@ -36,7 +36,6 @@ export const buildQuery = ({ fragment }) => {
     query WithPlatformContent($input: RootPlatformContentQueryOne!) {
       platformContent(input: $input) {
         ...WithPlatformContentFragment
-        ...ContentCanonicalPath
         ${spreadFragmentName}
       }
     }
