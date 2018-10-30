@@ -13,10 +13,11 @@
     "dev+upgrade": "yarn upgrade:core && yarn dev",
     "build": "next build site",
     "start": "NODE_ENV=production node server",
-    "upgrade:core": "yarn upgrade @base-cms/base4-website-nextjs"
+    "upgrade:core": "yarn upgrade @base-cms/base4-website-nextjs @base-cms/base4-website-nextjs-bootstrap"
   },
   "dependencies": {
     "@base-cms/base4-website-nextjs": "https://github.com/base-cms/base4-website-nextjs.git",
+    "@base-cms/base4-website-nextjs-bootstrap": "https://github.com/base-cms/base4-website-nextjs-bootstrap.git",
     "apollo-client": "^2.4.2",
     "classnames": "^2.2.6",
     "graphql": "^14.0.2",

@@ -764,6 +764,13 @@
     express "^4.16.4"
     helmet "^3.14.0"
 
+"@base-cms/base4-website-nextjs-bootstrap@https://github.com/base-cms/base4-website-nextjs-bootstrap.git":
+  version "0.1.0"
+  resolved "https://github.com/base-cms/base4-website-nextjs-bootstrap.git#6810d2ebb04574da34e6840f2b62907e143a0907"
+  dependencies:
+    classnames "^2.2.6"
+    prop-types "^15.6.2"
+
 "@base-cms/base4-website-nextjs@https://github.com/base-cms/base4-website-nextjs.git":
   version "0.1.0"
   resolved "https://github.com/base-cms/base4-website-nextjs.git#77c697efa7d02c97be7bff020fa476c92ec6738d"
