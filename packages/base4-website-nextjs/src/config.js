@@ -1,5 +1,5 @@
 import SiteConfigContext from './config/context';
 
 export {
-  SiteConfigContext,
+  SiteConfigContext, // eslint-disable-line import/prefer-default-export
 };
