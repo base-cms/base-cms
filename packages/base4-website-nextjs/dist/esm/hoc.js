@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { componentDisplayName, extractFragmentData, httpErrors, sectionPath } from './utils.js';
 import gql from 'graphql-tag';
 import { RelCanonical, PageTitle, MetaDescription } from './components-head.js';
+import getConfig from 'next/config';
 import { redirect } from './routing.js';
 import 'inflected';
 import 'moment';
@@ -396,38 +397,39 @@ var withPlatformContent = (function () {
           var _getInitialProps = _asyncToGenerator(
           /*#__PURE__*/
           _regeneratorRuntime.mark(function _callee(ctx) {
-            var pageProps, query, apollo, id, input, variables, _ref4, data, platformContent, canonicalPath;
+            var _getConfig, publicRuntimeConfig, pageProps, query, apollo, id, input, variables, _ref4, data, platformContent, canonicalPath;
 
             return _regeneratorRuntime.wrap(function _callee$(_context) {
               while (1) {
                 switch (_context.prev = _context.next) {
                   case 0:
-                    console.log(process.env.CONTENT_CANONICAL_PATHS); // Await the props of the Page
+                    _getConfig = getConfig(), publicRuntimeConfig = _getConfig.publicRuntimeConfig;
+                    console.log(publicRuntimeConfig); // Await the props of the Page
 
                     if (!Page.getInitialProps) {
-                      _context.next = 5;
+                      _context.next = 6;
                       break;
                     }
 
-                    _context.next = 4;
+                    _context.next = 5;
                     return Page.getInitialProps(ctx);
 
-                  case 4:
+                  case 5:
                     pageProps = _context.sent;
 
-                  case 5:
+                  case 6:
                     query = ctx.query, apollo = ctx.apollo; // Get the content id from the page query
 
                     id = query.id;
 
                     if (id) {
-                      _context.next = 9;
+                      _context.next = 10;
                       break;
                     }
 
                     throw httpErrors.notFound('No content ID was provided.');
 
-                  case 9:
+                  case 10:
                     // Query for the content object using the id, via the inject apollo client.
                     input = {
                       id: Number(id)
@@ -437,7 +439,7 @@ var withPlatformContent = (function () {
                       input: input,
                       canonicalFields: canonicalFields
                     };
-                    _context.next = 13;
+                    _context.next = 14;
                     return apollo.query({
                       query: buildQuery$1({
                         fragment: fragment
@@ -445,19 +447,19 @@ var withPlatformContent = (function () {
                       variables: variables
                     });
 
-                  case 13:
+                  case 14:
                     _ref4 = _context.sent;
                     data = _ref4.data;
                     platformContent = data.platformContent;
 
                     if (platformContent) {
-                      _context.next = 18;
+                      _context.next = 19;
                       break;
                     }
 
                     throw httpErrors.notFound("No content was found for id '".concat(id, "'"));
 
-                  case 18:
+                  case 19:
                     // Check content for internal/external redirects, etc.
                     checkContent(platformContent, ctx);
                     canonicalPath = platformContent.canonicalPath;
@@ -466,7 +468,7 @@ var withPlatformContent = (function () {
                       canonicalPath: canonicalPath
                     }, pageProps));
 
-                  case 21:
+                  case 22:
                   case "end":
                     return _context.stop();
                 }
