@@ -1,6 +1,7 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import { withPlatformContent } from '@base-cms/base4-website-nextjs/hoc';
+import { DefaultLayout, withLayout } from '@base-cms/base4-website-nextjs-bootstrap/layouts';
 import {
   Body,
   Name,
@@ -43,4 +44,8 @@ const ContentNewsPage = ({ content }) => (
   </Wrapper>
 );
 
-export default withPlatformContent({ fragment })(ContentNewsPage);
+export default withLayout(DefaultLayout)(
+  withPlatformContent({ fragment })(
+    ContentNewsPage
+  )
+);

@@ -1,6 +1,7 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import { withPlatformContent } from '@base-cms/base4-website-nextjs/hoc';
+import { DefaultLayout, withLayout } from '@base-cms/base4-website-nextjs-bootstrap/layouts';
 import {
   AuthorFullNameLinks,
   Body,
@@ -21,7 +22,7 @@ const fragment = gql`
 					node {
 						id
 						fullName
-						canonicalPath
+						canonicalPath(input: { fields: $canonicalFields })
 					}
 				}
 			}
@@ -49,4 +50,8 @@ const ContentArticlePage = ({ content }) => (
   </Wrapper>
 );
 
-export default withPlatformContent({ fragment })(ContentArticlePage);
+export default withLayout(DefaultLayout)(
+  withPlatformContent({ fragment })(
+    ContentArticlePage
+  )
+);

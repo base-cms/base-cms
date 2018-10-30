@@ -1,5 +1,6 @@
 import React from 'react';
 import { withDynamicPage } from '@base-cms/base4-website-nextjs/hoc';
+import { DefaultLayout, withLayout } from '@base-cms/base4-website-nextjs-bootstrap/layouts';
 import {
   Body,
   Name,
@@ -13,4 +14,8 @@ const DynamicPage = ({ page }) => (
   </Wrapper>
 );
 
-export default withDynamicPage(DynamicPage);
+export default withLayout(DefaultLayout)(
+  withDynamicPage(
+    DynamicPage
+  )
+);

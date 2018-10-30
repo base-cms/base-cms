@@ -766,7 +766,7 @@
 
 "@base-cms/base4-website-nextjs-bootstrap@https://github.com/base-cms/base4-website-nextjs-bootstrap.git":
   version "0.1.0"
-  resolved "https://github.com/base-cms/base4-website-nextjs-bootstrap.git#c3970a3e0125dea9108a5069f7c227874672e773"
+  resolved "https://github.com/base-cms/base4-website-nextjs-bootstrap.git#1240abad5a6852d8a0ec1248e76f5ab64059d656"
   dependencies:
     "@zeit/next-sass" "^1.0.1"
     autoprefixer "^9.3.1"

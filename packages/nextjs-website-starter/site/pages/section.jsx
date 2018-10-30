@@ -1,5 +1,6 @@
 import React from 'react';
 import { withWebsiteSection } from '@base-cms/base4-website-nextjs/hoc';
+import { DefaultLayout, withLayout } from '@base-cms/base4-website-nextjs-bootstrap/layouts';
 import {
   Name,
   Description,
@@ -21,4 +22,8 @@ const SectionPage = ({ section }) => (
   </Wrapper>
 );
 
-export default withWebsiteSection()(SectionPage);
+export default withLayout(DefaultLayout)(
+  withWebsiteSection()(
+    SectionPage
+  )
+);
