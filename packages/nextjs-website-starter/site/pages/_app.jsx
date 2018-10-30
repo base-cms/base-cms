@@ -1,6 +1,9 @@
-import { WebsiteApp, withApollo } from '@base-cms/base4-website-nextjs/app';
-import { withSiteConfig } from '@base-cms/base4-website-nextjs/config';
-import { withRouting } from '@base-cms/base4-website-nextjs/routing';
+import {
+  WebsiteApp,
+  withApollo,
+  withRouting,
+  withSiteConfig,
+} from '@base-cms/base4-website-nextjs/app';
 import routeDefs from '../routes';
 import config from '../../site.config';
 
