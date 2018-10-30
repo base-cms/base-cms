@@ -47,7 +47,6 @@ export const buildQuery = ({ fragment }) => {
 };
 
 export default ({
-  routePrefix = 'section',
   fragment = null,
 } = {}) => (Page) => {
   class WithWebsiteSection extends Component {
@@ -83,14 +82,14 @@ export default ({
 
       if (websiteSectionAlias) {
         // The website section was found. Return it allong with the page props.
-        const canonicalPath = sectionPath(alias, routePrefix);
+        const canonicalPath = sectionPath(alias);
         return { section: websiteSectionAlias, canonicalPath, ...pageProps };
       }
 
       if (websiteSectionRedirect && websiteSectionRedirect.alias) {
         // A redirect was found for this section alias. Force a redirect.
         const { alias: redirectAlias } = websiteSectionRedirect;
-        const path = sectionPath(redirectAlias, routePrefix);
+        const path = sectionPath(redirectAlias);
 
         redirect({ Router, res, route: path });
         return { section: {}, canonicalPath: path, ...pageProps };

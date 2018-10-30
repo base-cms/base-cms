@@ -16,7 +16,6 @@ const propTypes = {
   }),
   linkAttrs: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   prefix: PropTypes.string,
-  sectionRoutePrefix: PropTypes.string,
   tag: PropTypes.string,
 };
 
@@ -26,7 +25,6 @@ const defaultProps = {
   content: {},
   linkAttrs: {},
   prefix: null,
-  sectionRoutePrefix: 'section',
   tag: 'span',
 };
 
@@ -34,7 +32,6 @@ const PrimarySectionNameLink = ({
   children,
   content,
   prefix,
-  sectionRoutePrefix,
   linkAttrs,
   ...attrs
 }) => (
@@ -44,7 +41,7 @@ const PrimarySectionNameLink = ({
       const alias = get(content, 'primarySection.alias');
       if (!id || !alias) return null;
       return (
-        <Link routePrefix={sectionRoutePrefix} id={id} alias={alias} value={value} {...linkAttrs}>
+        <Link id={id} alias={alias} value={value} {...linkAttrs}>
           {children}
         </Link>
       );

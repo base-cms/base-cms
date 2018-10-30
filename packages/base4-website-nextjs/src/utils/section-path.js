@@ -1,3 +1,4 @@
+import getConfig from 'next/config';
 import cleanPath from './clean-path';
 
 /**
@@ -16,17 +17,16 @@ const shouldGoToIndex = (alias) => {
  *
  * By default, if the section alias were `tactical/firearms`, this method
  * would generate `/section/tactical/firearms`.
- *
- * The `routePrefix` (the default is 'section') can also be overriden by passing a different value.
- * Keep in mind, if this is done, the root routes.js file will need modification.
- *
+ * *
  * @param {string} alias The website section alias
- * @param {string} [routePrefix=section] The section base path.
  */
-export default (alias, routePrefix = 'section') => {
+export default (alias) => {
   if (shouldGoToIndex(alias)) return '/';
-
   const path = cleanPath(alias);
-  if (!routePrefix) return `/${path}`;
-  return `/${cleanPath(routePrefix)}/${path}`;
+
+  // Load the section route prefix from the runtime config.
+  const { publicRuntimeConfig } = getConfig();
+  const { sectionRoutePrefix } = publicRuntimeConfig;
+  if (!sectionRoutePrefix) return `/${path}`;
+  return `/${cleanPath(sectionRoutePrefix)}/${path}`;
 };
