@@ -47,3 +47,22 @@ Safari >= 9
 Android >= 4.4
 Opera >= 30
 ```
+## Usage
+Once installed, create a SASS file of your choosing, and import into your NextJS app. For example...
+```scss
+// styles/app.scss
+// Setup custom bootstrap variables here, or in an external file.
+@import "~bootstrap/scss/bootstrap";
+```
+Then, inside the `_app` page:
+```js
+// pages/_app.jsx
+import '../styles/app.scss';
+import {
+  WebsiteApp,
+  withApollo,
+  withRouting,
+  withSiteConfig,
+} from '@base-cms/base4-website-nextjs/app';
+// everything else...
+```
