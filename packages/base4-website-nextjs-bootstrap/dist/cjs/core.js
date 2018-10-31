@@ -13,7 +13,7 @@ var router = require('next/router');
 var core = require('@base-cms/base4-website-nextjs/components/core');
 var utils = require('@base-cms/base4-website-nextjs/utils');
 var config = require('@base-cms/base4-website-nextjs/config');
-var __chunk_2 = require('./chunk-ed516bde.js');
+var __chunk_2 = require('./chunk-3c9bbcb9.js');
 var __chunk_3 = require('./chunk-aadbd80c.js');
 
 var propTypes = {

@@ -2,11 +2,11 @@ import { a as _extends, b as _objectWithoutProperties } from './chunk-2f5ab1ea.j
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { a as Card, b as CardBody } from './chunk-6d06dfc5.js';
+import { a as Card, b as CardBody } from './chunk-9d06453f.js';
 import { PrimaryImageLink, CompanyNameLink, PrimarySectionNameLink, PublishedDate, Row, ShortNameLink, Teaser } from '@base-cms/base4-website-nextjs/components/content';
-import { a as ListGroupStyleA, b as ListGroupItem, c as ListGroupItemA } from './chunk-d90359e5.js';
-export { a as ListGroupA, b as ListGroupItem, c as ListGroupItemA } from './chunk-d90359e5.js';
-import './chunk-3d4ab70f.js';
+import { a as ListGroupItem } from './chunk-3d4ab70f.js';
+import { a as ListGroupStyleA, b as ListGroupItemA } from './chunk-a11c7c1c.js';
+export { a as ListGroupA, b as ListGroupItemA } from './chunk-a11c7c1c.js';
 import '@base-cms/base4-website-nextjs/utils';
 
 var propTypes = {
@@ -120,7 +120,9 @@ var CardBodyStyleA = function CardBodyStyleA(_ref) {
   var content = _ref.content,
       attr = _objectWithoutProperties(_ref, ["content"]);
 
-  return React.createElement(React.Fragment, null, React.createElement(ContentCardImage, {
+  return React.createElement("div", {
+    className: "content content--card-body"
+  }, React.createElement(ContentCardImage, {
     content: content
   }), React.createElement(CardBody, attr, React.createElement(ShortNameLink, {
     content: content
@@ -150,4 +152,37 @@ CardBodyStyleA.fragments = {
   content: doc
 };
 
-export { ContentCard as Card, CardBodyStyleA as CardBodyA, ContentCardImage as CardImage };
+var propTypes$3 = {
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]).isRequired,
+  className: PropTypes.string,
+  content: PropTypes.shape({
+    id: PropTypes.number,
+    type: PropTypes.string
+  })
+};
+var defaultProps$3 = {
+  className: null,
+  content: {}
+};
+
+var ContentListGroupItem = function ContentListGroupItem(_ref) {
+  var children = _ref.children,
+      className = _ref.className,
+      content = _ref.content,
+      attr = _objectWithoutProperties(_ref, ["children", "className", "content"]);
+
+  var _ref2 = content || {},
+      id = _ref2.id,
+      type = _ref2.type;
+
+  return id && type ? React.createElement(ListGroupItem, _extends({
+    "data-id": id,
+    className: classNames('content', 'content--list-item', "content--".concat(type), className)
+  }, attr), children) : null;
+};
+
+ContentListGroupItem.displayName = 'Content/ListGroupItem';
+ContentListGroupItem.propTypes = propTypes$3;
+ContentListGroupItem.defaultProps = defaultProps$3;
+
+export { ContentCard as Card, CardBodyStyleA as CardBodyA, ContentCardImage as CardImage, ContentListGroupItem as ListGroupItem };

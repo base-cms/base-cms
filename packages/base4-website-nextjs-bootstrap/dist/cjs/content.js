@@ -9,10 +9,10 @@ var React = require('react');
 var React__default = _interopDefault(React);
 var PropTypes = _interopDefault(require('prop-types'));
 var classNames = _interopDefault(require('classnames'));
-var __chunk_2 = require('./chunk-ed516bde.js');
+var __chunk_2 = require('./chunk-3c9bbcb9.js');
 var content = require('@base-cms/base4-website-nextjs/components/content');
-var __chunk_4 = require('./chunk-3f552c97.js');
-require('./chunk-aadbd80c.js');
+var __chunk_3 = require('./chunk-aadbd80c.js');
+var __chunk_4 = require('./chunk-3b3ccc83.js');
 require('@base-cms/base4-website-nextjs/utils');
 
 var propTypes = {
@@ -126,7 +126,9 @@ var CardBodyStyleA = function CardBodyStyleA(_ref) {
   var content$$1 = _ref.content,
       attr = __chunk_1._objectWithoutProperties(_ref, ["content"]);
 
-  return React__default.createElement(React__default.Fragment, null, React__default.createElement(ContentCardImage, {
+  return React__default.createElement("div", {
+    className: "content content--card-body"
+  }, React__default.createElement(ContentCardImage, {
     content: content$$1
   }), React__default.createElement(__chunk_2.CardBody, attr, React__default.createElement(content.ShortNameLink, {
     content: content$$1
@@ -156,9 +158,42 @@ CardBodyStyleA.fragments = {
   content: doc
 };
 
+var propTypes$3 = {
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]).isRequired,
+  className: PropTypes.string,
+  content: PropTypes.shape({
+    id: PropTypes.number,
+    type: PropTypes.string
+  })
+};
+var defaultProps$3 = {
+  className: null,
+  content: {}
+};
+
+var ContentListGroupItem = function ContentListGroupItem(_ref) {
+  var children = _ref.children,
+      className = _ref.className,
+      content$$1 = _ref.content,
+      attr = __chunk_1._objectWithoutProperties(_ref, ["children", "className", "content"]);
+
+  var _ref2 = content$$1 || {},
+      id = _ref2.id,
+      type = _ref2.type;
+
+  return id && type ? React__default.createElement(__chunk_3.ListGroupItem, __chunk_1._extends({
+    "data-id": id,
+    className: classNames('content', 'content--list-item', "content--".concat(type), className)
+  }, attr), children) : null;
+};
+
+ContentListGroupItem.displayName = 'Content/ListGroupItem';
+ContentListGroupItem.propTypes = propTypes$3;
+ContentListGroupItem.defaultProps = defaultProps$3;
+
 exports.ListGroupA = __chunk_4.ListGroupStyleA;
-exports.ListGroupItem = __chunk_4.ListGroupItem;
 exports.ListGroupItemA = __chunk_4.ListGroupItemA;
 exports.Card = ContentCard;
 exports.CardBodyA = CardBodyStyleA;
 exports.CardImage = ContentCardImage;
+exports.ListGroupItem = ContentListGroupItem;

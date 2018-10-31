@@ -45,7 +45,7 @@ var defaultProps$1 = {
   tag: 'div'
 };
 
-var ContentCardBody = function ContentCardBody(_ref) {
+var CardBody = function CardBody(_ref) {
   var children = _ref.children,
       className = _ref.className,
       overImage = _ref.overImage,
@@ -57,9 +57,9 @@ var ContentCardBody = function ContentCardBody(_ref) {
   }, children) : children);
 };
 
-ContentCardBody.displayName = 'CardBody';
-ContentCardBody.propTypes = propTypes$1;
-ContentCardBody.defaultProps = defaultProps$1;
+CardBody.displayName = 'CardBody';
+CardBody.propTypes = propTypes$1;
+CardBody.defaultProps = defaultProps$1;
 
 exports.Card = Card;
-exports.CardBody = ContentCardBody;
+exports.CardBody = CardBody;

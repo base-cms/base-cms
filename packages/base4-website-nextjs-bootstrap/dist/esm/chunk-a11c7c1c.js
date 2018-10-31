@@ -1,48 +1,34 @@
 import { a as _extends, b as _objectWithoutProperties } from './chunk-2f5ab1ea.js';
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { a as ListGroupItem, b as ListGroup } from './chunk-3d4ab70f.js';
+import { componentDisplayName, getAsObject, get, asArray } from '@base-cms/base4-website-nextjs/utils';
+import PropTypes from 'prop-types';
 import { CompanyNameLink, PrimarySectionNameLink, PublishedDate, Row, ShortNameLink } from '@base-cms/base4-website-nextjs/components/content';
-import { asArray } from '@base-cms/base4-website-nextjs/utils';
+import { a as ListGroupItem, b as ListGroup } from './chunk-3d4ab70f.js';
 
-var propTypes = {
-  children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]).isRequired,
-  className: PropTypes.string,
-  content: PropTypes.shape({
-    id: PropTypes.number,
-    type: PropTypes.string
-  })
-};
-var defaultProps = {
-  className: null,
-  content: {}
-};
+var withAttributes = (function (modifier) {
+  return function (ComposedComponent) {
+    var WithContentAttributes = function WithContentAttributes(props) {
+      var className = get(props, 'className');
+      var content = getAsObject(props, 'content');
+      var id = content.id,
+          type = content.type;
+      var attrs = {
+        'data-id': id,
+        className: classNames('content', "content--".concat(modifier), "content--".concat(type), className)
+      };
+      return React.createElement(ComposedComponent, _extends({}, props, attrs));
+    };
 
-var ContentListGroupItem = function ContentListGroupItem(_ref) {
-  var children = _ref.children,
-      className = _ref.className,
-      content = _ref.content,
-      attr = _objectWithoutProperties(_ref, ["children", "className", "content"]);
-
-  var _ref2 = content || {},
-      id = _ref2.id,
-      type = _ref2.type;
-
-  return id && type ? React.createElement(ListGroupItem, _extends({
-    "data-id": id,
-    className: classNames('content', 'content--list-item', "content--".concat(type), className)
-  }, attr), children) : null;
-};
-
-ContentListGroupItem.displayName = 'Content/ListGroupItem';
-ContentListGroupItem.propTypes = propTypes;
-ContentListGroupItem.defaultProps = defaultProps;
+    WithContentAttributes.displayName = "WithContentAttributes(".concat(componentDisplayName(ComposedComponent), ")");
+    return WithContentAttributes;
+  };
+});
 
 var doc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ContentListGroupItemStyleA"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PlatformContent"}},"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"type"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"shortName"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"published"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"canonicalPath"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"primarySection"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"name"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"alias"},"arguments":[],"directives":[]}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PlatformContentProduct"}},"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"company"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"name"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"canonicalPath"},"arguments":[],"directives":[]}]}}]}}]}}],"loc":{"start":0,"end":258}};
     doc.loc.source = {"body":"fragment ContentListGroupItemStyleA on PlatformContent {\n  id\n  type\n  shortName\n  published\n  canonicalPath\n  primarySection {\n    id\n    name\n    alias\n  }\n  ... on PlatformContentProduct {\n    company {\n      id\n      name\n      canonicalPath\n    }\n  }\n}\n","name":"GraphQL request","locationOffset":{"line":1,"column":1}};
 
-var propTypes$1 = {
+var propTypes = {
   content: PropTypes.shape({
     id: PropTypes.number,
     type: PropTypes.string,
@@ -61,17 +47,13 @@ var propTypes$1 = {
     })
   })
 };
-var defaultProps$1 = {
+var defaultProps = {
   content: {}
 };
 
 var ListGroupItemStyleA = function ListGroupItemStyleA(_ref) {
-  var content = _ref.content,
-      attr = _objectWithoutProperties(_ref, ["content"]);
-
-  return React.createElement(ContentListGroupItem, _extends({
-    content: content
-  }, attr), React.createElement(ShortNameLink, {
+  var content = _ref.content;
+  return React.createElement(ListGroupItem, null, React.createElement(ShortNameLink, {
     content: content,
     className: "mb-1"
   }), React.createElement(CompanyNameLink, {
@@ -90,19 +72,20 @@ var ListGroupItemStyleA = function ListGroupItemStyleA(_ref) {
 };
 
 ListGroupItemStyleA.displayName = 'Content/ListGroupItem/StyleA';
-ListGroupItemStyleA.propTypes = propTypes$1;
-ListGroupItemStyleA.defaultProps = defaultProps$1;
+ListGroupItemStyleA.propTypes = propTypes;
+ListGroupItemStyleA.defaultProps = defaultProps;
 ListGroupItemStyleA.fragments = {
   content: doc
 };
+var ListGroupItemA = withAttributes('list-item')(ListGroupItemStyleA);
 
-var propTypes$2 = {
+var propTypes$1 = {
   flush: PropTypes.bool,
   itemAttrs: PropTypes.object,
   // eslint-disable-line react/forbid-prop-types
   nodes: PropTypes.arrayOf(PropTypes.object)
 };
-var defaultProps$2 = {
+var defaultProps$1 = {
   flush: false,
   itemAttrs: {},
   nodes: []
@@ -115,7 +98,7 @@ var ListGroupStyleA = function ListGroupStyleA(_ref) {
 
   var items = asArray(nodes);
   return items.length ? React.createElement(ListGroup, attrs, items.map(function (content) {
-    return React.createElement(ListGroupItemStyleA, _extends({
+    return React.createElement(ListGroupItemA, _extends({
       key: content.id,
       content: content
     }, itemAttrs));
@@ -123,10 +106,10 @@ var ListGroupStyleA = function ListGroupStyleA(_ref) {
 };
 
 ListGroupStyleA.displayName = 'Content/ListGroup/StyleA';
-ListGroupStyleA.propTypes = propTypes$2;
-ListGroupStyleA.defaultProps = defaultProps$2;
+ListGroupStyleA.propTypes = propTypes$1;
+ListGroupStyleA.defaultProps = defaultProps$1;
 ListGroupStyleA.fragments = {
-  content: ListGroupItemStyleA.fragments.content
+  content: ListGroupItemA.fragments.content
 };
 
-export { ListGroupStyleA as a, ContentListGroupItem as b, ListGroupItemStyleA as c };
+export { ListGroupStyleA as a, ListGroupItemA as b };
