@@ -9,11 +9,11 @@ var React = require('react');
 var React__default = _interopDefault(React);
 var PropTypes = _interopDefault(require('prop-types'));
 var queries = require('@base-cms/base4-website-nextjs/queries');
-var __chunk_4 = require('./chunk-0544838d.js');
-require('@base-cms/base4-website-nextjs/components/content');
-require('./chunk-aadbd80c.js');
+var __chunk_4 = require('./chunk-156e4edf.js');
 require('classnames');
 require('@base-cms/base4-website-nextjs/utils');
+require('@base-cms/base4-website-nextjs/components/content');
+require('./chunk-aadbd80c.js');
 
 var propTypes = {
   // @todo These should be placed here by a HOC.

@@ -12,7 +12,7 @@ var classNames = _interopDefault(require('classnames'));
 var __chunk_2 = require('./chunk-3c9bbcb9.js');
 var content = require('@base-cms/base4-website-nextjs/components/content');
 var __chunk_3 = require('./chunk-aadbd80c.js');
-var __chunk_4 = require('./chunk-0544838d.js');
+var __chunk_4 = require('./chunk-156e4edf.js');
 require('@base-cms/base4-website-nextjs/utils');
 
 var propTypes = {

@@ -5,8 +5,8 @@ import classNames from 'classnames';
 import { a as Card, b as CardBody } from './chunk-9d06453f.js';
 import { PrimaryImageLink, CompanyNameLink, PrimarySectionNameLink, PublishedDate, Row, ShortNameLink, Teaser } from '@base-cms/base4-website-nextjs/components/content';
 import { a as ListGroupItem } from './chunk-3d4ab70f.js';
-import { a as ListGroupStyleA, b as ListGroupItemA } from './chunk-516a3194.js';
-export { a as ListGroupA, b as ListGroupItemA } from './chunk-516a3194.js';
+import { a as ListGroupStyleA, b as ListGroupItemA } from './chunk-57afe732.js';
+export { a as ListGroupA, b as ListGroupItemA } from './chunk-57afe732.js';
 import '@base-cms/base4-website-nextjs/utils';
 
 var propTypes = {
