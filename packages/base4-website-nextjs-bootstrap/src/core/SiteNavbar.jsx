@@ -29,13 +29,13 @@ const SiteNavbar = ({ logoHeight }) => (
                 return value;
               }}
             </LinkElement>
-            <div className="navbar-nav small align-self-center">
+            <ul className="navbar-nav small align-self-center">
               {config.getAsArray('secondaryNavItems').map(item => <NavItem key={item.to} to={item.to} value={item.label} />)}
-            </div>
+            </ul>
           </div>
-          <div className="navbar-nav">
+          <ul className="navbar-nav">
             {config.getAsArray('primaryNavItems').map(item => <NavItem key={item.to} to={item.to} value={item.label} />)}
-          </div>
+          </ul>
         </div>
       )}
     </SiteConfigContext.Consumer>
