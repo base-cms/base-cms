@@ -4,6 +4,8 @@ import LinkElement from './components/core/Elements/Link';
 import ObjectValueElement from './components/core/Elements/ObjectValue';
 import ValueElement from './components/core/Elements/Value';
 
+import NavigationWrapper from './components/core/Navigation/Wrapper';
+
 export {
   // Elements
   DateElement,
@@ -11,4 +13,6 @@ export {
   LinkElement,
   ObjectValueElement,
   ValueElement,
+  // Navigation
+  NavigationWrapper,
 };
