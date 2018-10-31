@@ -5,6 +5,7 @@ import { withLayout } from '@base-cms/base4-website-nextjs-bootstrap/layouts';
 import {
   Body,
   Name,
+  PrimaryImage,
   PrimarySectionNameLink,
   PublishedDate,
   Row,
@@ -19,6 +20,11 @@ const fragment = gql`
   fragment ContentNewsPage on PlatformContent {
     shortName
     published
+    primaryImage {
+      id
+      src(input: { host: "cdn.officer.com" })
+      alt
+    }
     ... on PlatformContentNews {
       source
     }
@@ -29,6 +35,7 @@ const ContentNewsPage = ({ content }) => (
   <Wrapper content={content}>
     <Name content={content} />
     <Teaser tag="h3" content={content} />
+    <PrimaryImage content={content} />
     <hr />
     <Row>
       <PrimarySectionNameLink tag="span" content={content}>

@@ -6,6 +6,7 @@ import {
   AuthorFullNameLinks,
   Body,
   Name,
+  PrimaryImage,
   PrimarySectionNameLink,
   PublishedDate,
   Row,
@@ -17,6 +18,11 @@ import DefaultLayout from '../../layouts/Default';
 
 const fragment = gql`
   fragment ContentArticlePage on PlatformContent {
+    primaryImage {
+      id
+      src(input: { host: "cdn.officer.com" })
+      alt
+    }
     ... on PlatformContentArticle {
 			authors(input: { sort: { field: lastName }, pagination: { first: 2 } }) {
 				edges {
@@ -35,6 +41,7 @@ const ContentArticlePage = ({ content }) => (
   <Wrapper content={content}>
     <Name content={content} />
     <Teaser tag="h3" content={content} />
+    <PrimaryImage content={content} />
     <hr />
     <Row>
       <PrimarySectionNameLink tag="span" content={content}>
