@@ -154,6 +154,58 @@ ContentName.defaultProps = defaultProps$3;
 
 var propTypes$4 = {
   children: PropTypes.func,
+  className: PropTypes.string,
+  collapsible: PropTypes.bool,
+  content: PropTypes.shape({
+    primaryImage: PropTypes.shape({
+      src: PropTypes.string,
+      alt: PropTypes.string
+    })
+  }),
+  imgAttrs: PropTypes.object,
+  // eslint-disable-line react/forbid-prop-types
+  tag: PropTypes.string
+};
+var defaultProps$4 = {
+  children: function children(v) {
+    return v;
+  },
+  className: null,
+  collapsible: true,
+  content: {},
+  imgAttrs: {},
+  tag: 'div'
+};
+
+var PrimaryImage = function PrimaryImage(_ref) {
+  var children = _ref.children,
+      className = _ref.className,
+      collapsible = _ref.collapsible,
+      content = _ref.content,
+      imgAttrs = _ref.imgAttrs,
+      Tag = _ref.tag,
+      attrs = __chunk_1._objectWithoutProperties(_ref, ["children", "className", "collapsible", "content", "imgAttrs", "tag"]);
+
+  var primaryImage = utils.getAsObject(content, 'primaryImage');
+  var src = primaryImage.src,
+      alt = primaryImage.alt;
+  var render = utils.isFunction(children) ? children : defaultProps$4.children;
+  if (collapsible && (!src || !alt)) return null;
+  var image = React__default.createElement("img", __chunk_1._extends({
+    src: src,
+    alt: alt
+  }, imgAttrs));
+  return React__default.createElement(Tag, __chunk_1._extends({
+    className: classNames(utils.modelClassNames('content', 'primaryImage'), className)
+  }, attrs), render(image));
+};
+
+PrimaryImage.displayName = 'Content/Elements/PrimaryImage';
+PrimaryImage.propTypes = propTypes$4;
+PrimaryImage.defaultProps = defaultProps$4;
+
+var propTypes$5 = {
+  children: PropTypes.func,
   collapsible: PropTypes.bool,
   content: PropTypes.shape({
     published: PropTypes.number
@@ -162,7 +214,7 @@ var propTypes$4 = {
   prefix: PropTypes.string,
   tag: PropTypes.string
 };
-var defaultProps$4 = {
+var defaultProps$5 = {
   children: undefined,
   collapsible: true,
   content: {},
@@ -191,15 +243,15 @@ var ContentPublishedDate = function ContentPublishedDate(_ref) {
 };
 
 ContentPublishedDate.displayName = 'Content/Elements/PublishedDate';
-ContentPublishedDate.propTypes = propTypes$4;
-ContentPublishedDate.defaultProps = defaultProps$4;
+ContentPublishedDate.propTypes = propTypes$5;
+ContentPublishedDate.defaultProps = defaultProps$5;
 
-var propTypes$5 = {
+var propTypes$6 = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
 };
-var defaultProps$5 = {
+var defaultProps$6 = {
   className: null,
   tag: 'div'
 };
@@ -215,17 +267,17 @@ var ContentRow = function ContentRow(_ref) {
   }, attrs), children);
 };
 
-ContentRow.propTypes = propTypes$5;
-ContentRow.defaultProps = defaultProps$5;
+ContentRow.propTypes = propTypes$6;
+ContentRow.defaultProps = defaultProps$6;
 
-var propTypes$6 = {
+var propTypes$7 = {
   collapsible: PropTypes.bool,
   content: PropTypes.shape({
     shortName: PropTypes.string
   }),
   tag: PropTypes.string
 };
-var defaultProps$6 = {
+var defaultProps$7 = {
   collapsible: true,
   content: {},
   tag: 'h5'
@@ -243,17 +295,17 @@ var ContentShortName = function ContentShortName(_ref) {
 };
 
 ContentShortName.displayName = 'Content/Elements/ShortName';
-ContentShortName.propTypes = propTypes$6;
-ContentShortName.defaultProps = defaultProps$6;
+ContentShortName.propTypes = propTypes$7;
+ContentShortName.defaultProps = defaultProps$7;
 
-var propTypes$7 = {
+var propTypes$8 = {
   collapsible: PropTypes.bool,
   content: PropTypes.shape({
     name: PropTypes.string
   }),
   tag: PropTypes.string
 };
-var defaultProps$7 = {
+var defaultProps$8 = {
   collapsible: true,
   content: {},
   tag: 'span'
@@ -270,17 +322,17 @@ var ContentSource = function ContentSource(_ref) {
 };
 
 ContentSource.displayName = 'Content/Elements/Source';
-ContentSource.propTypes = propTypes$7;
-ContentSource.defaultProps = defaultProps$7;
+ContentSource.propTypes = propTypes$8;
+ContentSource.defaultProps = defaultProps$8;
 
-var propTypes$8 = {
+var propTypes$9 = {
   collapsible: PropTypes.bool,
   content: PropTypes.shape({
     teaser: PropTypes.string
   }),
   tag: PropTypes.string
 };
-var defaultProps$8 = {
+var defaultProps$9 = {
   collapsible: true,
   content: {},
   tag: 'div'
@@ -298,10 +350,10 @@ var ContentTeaser = function ContentTeaser(_ref) {
 };
 
 ContentTeaser.displayName = 'Content/Elements/Teaser';
-ContentTeaser.propTypes = propTypes$8;
-ContentTeaser.defaultProps = defaultProps$8;
+ContentTeaser.propTypes = propTypes$9;
+ContentTeaser.defaultProps = defaultProps$9;
 
-var propTypes$9 = {
+var propTypes$a = {
   children: PropTypes.func,
   collapsible: PropTypes.bool,
   content: PropTypes.shape({
@@ -309,7 +361,7 @@ var propTypes$9 = {
   }),
   tag: PropTypes.string
 };
-var defaultProps$9 = {
+var defaultProps$a = {
   children: undefined,
   collapsible: true,
   content: {},
@@ -332,10 +384,10 @@ var ContentType = function ContentType(_ref) {
 };
 
 ContentType.displayName = 'Content/Elements/Type';
-ContentType.propTypes = propTypes$9;
-ContentType.defaultProps = defaultProps$9;
+ContentType.propTypes = propTypes$a;
+ContentType.defaultProps = defaultProps$a;
 
-var propTypes$a = {
+var propTypes$b = {
   children: PropTypes.func,
   className: PropTypes.string,
   collapsible: PropTypes.bool,
@@ -347,7 +399,7 @@ var propTypes$a = {
   prefix: PropTypes.string,
   tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
 };
-var defaultProps$a = {
+var defaultProps$b = {
   children: undefined,
   className: null,
   collapsible: true,
@@ -394,10 +446,10 @@ var ContactFullNameLinks = function ContactFullNameLinks(_ref) {
 };
 
 ContactFullNameLinks.displayName = 'Content/Links/ContactFullNames';
-ContactFullNameLinks.propTypes = propTypes$a;
-ContactFullNameLinks.defaultProps = defaultProps$a;
+ContactFullNameLinks.propTypes = propTypes$b;
+ContactFullNameLinks.defaultProps = defaultProps$b;
 
-var propTypes$b = {
+var propTypes$c = {
   children: PropTypes.func,
   collapsible: PropTypes.bool,
   elementAttrs: PropTypes.object,
@@ -407,7 +459,7 @@ var propTypes$b = {
   prefix: PropTypes.string,
   tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
 };
-var defaultProps$b = {
+var defaultProps$c = {
   children: undefined,
   collapsible: true,
   elementAttrs: {},
@@ -423,10 +475,10 @@ var AuthorFullNameLinks = function AuthorFullNameLinks(props) {
 };
 
 AuthorFullNameLinks.displayName = 'Content/Links/AuthorFullNames';
-AuthorFullNameLinks.propTypes = propTypes$b;
-AuthorFullNameLinks.defaultProps = defaultProps$b;
+AuthorFullNameLinks.propTypes = propTypes$c;
+AuthorFullNameLinks.defaultProps = defaultProps$c;
 
-var propTypes$c = {
+var propTypes$d = {
   children: PropTypes.func,
   collapsible: PropTypes.bool,
   content: PropTypes.shape({
@@ -438,7 +490,7 @@ var propTypes$c = {
   prefix: PropTypes.string,
   tag: PropTypes.string
 };
-var defaultProps$c = {
+var defaultProps$d = {
   children: undefined,
   collapsible: true,
   content: {},
@@ -468,10 +520,10 @@ var CompanyNameLink = function CompanyNameLink(_ref) {
 };
 
 CompanyNameLink.displayName = 'Content/Links/CompanyName';
-CompanyNameLink.propTypes = propTypes$c;
-CompanyNameLink.defaultProps = defaultProps$c;
+CompanyNameLink.propTypes = propTypes$d;
+CompanyNameLink.defaultProps = defaultProps$d;
 
-var propTypes$d = {
+var propTypes$e = {
   children: PropTypes.func,
   collapsible: PropTypes.bool,
   elementAttrs: PropTypes.object,
@@ -481,7 +533,7 @@ var propTypes$d = {
   prefix: PropTypes.string,
   tag: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
 };
-var defaultProps$d = {
+var defaultProps$e = {
   children: undefined,
   collapsible: true,
   elementAttrs: {},
@@ -497,10 +549,10 @@ var ContributorFullNameLinks = function ContributorFullNameLinks(props) {
 };
 
 ContributorFullNameLinks.displayName = 'Content/Links/ContributorFullNames';
-ContributorFullNameLinks.propTypes = propTypes$d;
-ContributorFullNameLinks.defaultProps = defaultProps$d;
+ContributorFullNameLinks.propTypes = propTypes$e;
+ContributorFullNameLinks.defaultProps = defaultProps$e;
 
-var propTypes$e = {
+var propTypes$f = {
   className: PropTypes.string,
   collapsible: PropTypes.bool,
   content: PropTypes.shape({
@@ -516,7 +568,7 @@ var propTypes$e = {
   // eslint-disable-line react/forbid-prop-types
   tag: PropTypes.string
 };
-var defaultProps$e = {
+var defaultProps$f = {
   className: null,
   collapsible: true,
   content: {},
@@ -554,10 +606,10 @@ var PrimaryImageLink = function PrimaryImageLink(_ref) {
 };
 
 PrimaryImageLink.displayName = 'Content/Links/PrimaryImage';
-PrimaryImageLink.propTypes = propTypes$e;
-PrimaryImageLink.defaultProps = defaultProps$e;
+PrimaryImageLink.propTypes = propTypes$f;
+PrimaryImageLink.defaultProps = defaultProps$f;
 
-var propTypes$f = {
+var propTypes$g = {
   children: PropTypes.func,
   collapsible: PropTypes.bool,
   content: PropTypes.shape({
@@ -572,7 +624,7 @@ var propTypes$f = {
   prefix: PropTypes.string,
   tag: PropTypes.string
 };
-var defaultProps$f = {
+var defaultProps$g = {
   children: undefined,
   collapsible: true,
   content: {},
@@ -604,10 +656,10 @@ var PrimarySectionNameLink = function PrimarySectionNameLink(_ref) {
 };
 
 PrimarySectionNameLink.propTypes = 'Content/Links/PrimarySectionName';
-PrimarySectionNameLink.propTypes = propTypes$f;
-PrimarySectionNameLink.defaultProps = defaultProps$f;
+PrimarySectionNameLink.propTypes = propTypes$g;
+PrimarySectionNameLink.defaultProps = defaultProps$g;
 
-var propTypes$g = {
+var propTypes$h = {
   collapsible: PropTypes.bool,
   content: PropTypes.shape({
     shortName: PropTypes.string,
@@ -617,7 +669,7 @@ var propTypes$g = {
   // eslint-disable-line react/forbid-prop-types
   tag: PropTypes.string
 };
-var defaultProps$g = {
+var defaultProps$h = {
   collapsible: true,
   content: {},
   linkAttrs: {},
@@ -644,14 +696,15 @@ var ShortNameLink = function ShortNameLink(_ref) {
 };
 
 ShortNameLink.displayName = 'Content/Links/ShortName';
-ShortNameLink.propTypes = propTypes$g;
-ShortNameLink.defaultProps = defaultProps$g;
+ShortNameLink.propTypes = propTypes$h;
+ShortNameLink.defaultProps = defaultProps$h;
 
 exports.Link = ContentLink;
 exports.Wrapper = ContentWrapper;
 exports.Body = ContentBody;
 exports.Name = ContentName;
 exports.ObjectValue = ObjectValue;
+exports.PrimaryImage = PrimaryImage;
 exports.PublishedDate = ContentPublishedDate;
 exports.Row = ContentRow;
 exports.ShortName = ContentShortName;
