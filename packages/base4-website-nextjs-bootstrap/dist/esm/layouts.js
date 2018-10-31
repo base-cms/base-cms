@@ -4,19 +4,19 @@ import { c as _objectSpread, d as _asyncToGenerator, e as _classCallCheck, f as 
 import { componentDisplayName } from '@base-cms/base4-website-nextjs/utils';
 
 var propTypes = {
-  children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)])
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]).isRequired
 };
 var defaultProps = {};
 
 var DefaultLayout = function DefaultLayout(_ref) {
   var children = _ref.children;
-  return React.createElement(React.Fragment, null, React.createElement("main", {
-    className: "container"
+  return React.createElement("main", {
+    className: "container container--default"
   }, React.createElement("div", {
     className: "row"
   }, React.createElement("div", {
     className: "col my-3"
-  }, children))));
+  }, children)));
 };
 
 DefaultLayout.displayName = 'Layouts/Default';

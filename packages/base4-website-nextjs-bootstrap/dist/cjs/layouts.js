@@ -11,19 +11,19 @@ var __chunk_1 = require('./chunk-3874e52a.js');
 var utils = require('@base-cms/base4-website-nextjs/utils');
 
 var propTypes = {
-  children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)])
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]).isRequired
 };
 var defaultProps = {};
 
 var DefaultLayout = function DefaultLayout(_ref) {
   var children = _ref.children;
-  return React__default.createElement(React__default.Fragment, null, React__default.createElement("main", {
-    className: "container"
+  return React__default.createElement("main", {
+    className: "container container--default"
   }, React__default.createElement("div", {
     className: "row"
   }, React__default.createElement("div", {
     className: "col my-3"
-  }, children))));
+  }, children)));
 };
 
 DefaultLayout.displayName = 'Layouts/Default';
