@@ -63,16 +63,19 @@ NavItem.propTypes = propTypes;
 var NavItem$1 = withRouter(NavItem);
 
 var propTypes$1 = {
+  className: PropTypes.string,
   logoHeight: PropTypes.number
 };
 var defaultProps$1 = {
+  className: null,
   logoHeight: 25
 };
 
 var SiteNavbar = function SiteNavbar(_ref) {
-  var logoHeight = _ref.logoHeight;
+  var className = _ref.className,
+      logoHeight = _ref.logoHeight;
   return React.createElement(NavigationWrapper, {
-    className: "navigation navigation--site navbar navbar-dark navbar-expand bg-dark"
+    className: classNames('navigation navigation--site navbar navbar-expand', className)
   }, React.createElement(SiteConfigContext.Consumer, null, function (config) {
     return React.createElement("div", {
       className: "d-flex flex-column"
