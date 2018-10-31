@@ -10,6 +10,7 @@ import {
 } from '@base-cms/base4-website-nextjs/components/content';
 import CardBody from '../../core/CardBody';
 import ContentCardImage from '../CardImage';
+import wrapperAttrs from '../wrapper-attrs';
 import fragment from './StyleA.graphql';
 
 const propTypes = {
@@ -41,7 +42,7 @@ const defaultProps = {
 };
 
 const CardBodyStyleA = ({ content, ...attr }) => (
-  <div className="content content--card-body">
+  <div {...wrapperAttrs({ modifier: 'card-body', content })}>
     <ContentCardImage content={content} />
     <CardBody {...attr}>
       <ShortNameLink content={content} />
