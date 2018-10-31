@@ -1,19 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { SiteConfigContext } from '@base-cms/base4-website-nextjs/config';
 import { NavigationWrapper, LinkElement } from '@base-cms/base4-website-nextjs/components/core';
 import NavItem from './NavItem';
 
 const propTypes = {
+  className: PropTypes.string,
   logoHeight: PropTypes.number,
 };
 
 const defaultProps = {
+  className: null,
   logoHeight: 25,
 };
 
-const SiteNavbar = ({ logoHeight }) => (
-  <NavigationWrapper className="navigation navigation--site navbar navbar-dark navbar-expand bg-dark">
+const SiteNavbar = ({ className, logoHeight }) => (
+  <NavigationWrapper className={classNames('navigation navigation--site navbar navbar-expand', className)}>
     <SiteConfigContext.Consumer>
       {config => (
         <div className="d-flex flex-column">
