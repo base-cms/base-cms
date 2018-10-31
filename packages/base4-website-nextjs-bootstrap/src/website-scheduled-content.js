@@ -1,5 +1,7 @@
+import BlockHeroA from './website-scheduled-content/blocks/HeroA';
 import BlockListGroupA from './website-scheduled-content/blocks/ListGroupA';
 
 export {
-  BlockListGroupA, // eslint-disable-line import/prefer-default-export
+  BlockHeroA,
+  BlockListGroupA,
 };
