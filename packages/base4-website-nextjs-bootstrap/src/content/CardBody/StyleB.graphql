@@ -1,0 +1,25 @@
+fragment ContentListGroupItemStyleB on PlatformContent {
+  id
+  type
+  shortName
+  published
+  canonicalPath
+  primarySection {
+    id
+    name
+    alias
+  }
+  # @todo Remove the hardcoded CDN!
+  primaryImage {
+    id
+    src(input: { host: "cdn.officer.com" })
+    alt
+  }
+  ... on PlatformContentProduct {
+    company {
+      id
+      name
+      canonicalPath
+    }
+  }
+}
