@@ -6,8 +6,10 @@ import { withRouter } from 'next/router';
 import { LinkElement, NavigationWrapper } from '@base-cms/base4-website-nextjs/components/core';
 import { escapeRegex, isFunction, cleanPath } from '@base-cms/base4-website-nextjs/utils';
 import { SiteConfigContext } from '@base-cms/base4-website-nextjs/config';
-import { b as ListGroup, a as ListGroupItem } from './chunk-1b8d0d36.js';
-export { b as ListGroup, a as ListGroupItem } from './chunk-1b8d0d36.js';
+import { a as Card, b as CardBody } from './chunk-6d06dfc5.js';
+export { a as Card, b as CardBody } from './chunk-6d06dfc5.js';
+import { b as ListGroup, a as ListGroupItem } from './chunk-3d4ab70f.js';
+export { b as ListGroup, a as ListGroupItem } from './chunk-3d4ab70f.js';
 
 var propTypes = {
   className: PropTypes.string,

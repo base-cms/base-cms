@@ -1,15 +1,10 @@
-'use strict';
-
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-var __chunk_1 = require('./chunk-3874e52a.js');
-var React = require('react');
-var React__default = _interopDefault(React);
-var PropTypes = _interopDefault(require('prop-types'));
-var classNames = _interopDefault(require('classnames'));
+import { a as _extends, b as _objectWithoutProperties } from './chunk-2f5ab1ea.js';
+import React from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 var propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]).isRequired,
   className: PropTypes.string,
   flush: PropTypes.bool,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
@@ -25,9 +20,9 @@ var ListGroup = function ListGroup(_ref) {
       className = _ref.className,
       flush = _ref.flush,
       Tag = _ref.tag,
-      rest = __chunk_1._objectWithoutProperties(_ref, ["children", "className", "flush", "tag"]);
+      rest = _objectWithoutProperties(_ref, ["children", "className", "flush", "tag"]);
 
-  return React__default.createElement(Tag, __chunk_1._extends({
+  return React.createElement(Tag, _extends({
     className: classNames('list-group', flush ? 'list-group-flush' : null, className)
   }, rest), children);
 };
@@ -37,7 +32,7 @@ ListGroup.propTypes = propTypes;
 ListGroup.defaultProps = defaultProps;
 
 var propTypes$1 = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]).isRequired,
   className: PropTypes.string,
   tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
 };
@@ -50,9 +45,9 @@ var ListGroupItem = function ListGroupItem(_ref) {
   var children = _ref.children,
       className = _ref.className,
       Tag = _ref.tag,
-      attr = __chunk_1._objectWithoutProperties(_ref, ["children", "className", "tag"]);
+      attr = _objectWithoutProperties(_ref, ["children", "className", "tag"]);
 
-  return React__default.createElement(Tag, __chunk_1._extends({
+  return React.createElement(Tag, _extends({
     className: classNames('list-group-item', className)
   }, attr), children);
 };
@@ -61,5 +56,4 @@ ListGroupItem.displayName = 'Core/ListGroupItem';
 ListGroupItem.propTypes = propTypes$1;
 ListGroupItem.defaultProps = defaultProps$1;
 
-exports.ListGroupItem = ListGroupItem;
-exports.ListGroup = ListGroup;
+export { ListGroupItem as a, ListGroup as b };

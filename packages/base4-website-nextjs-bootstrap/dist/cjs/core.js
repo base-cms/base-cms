@@ -13,7 +13,8 @@ var router = require('next/router');
 var core = require('@base-cms/base4-website-nextjs/components/core');
 var utils = require('@base-cms/base4-website-nextjs/utils');
 var config = require('@base-cms/base4-website-nextjs/config');
-var __chunk_2 = require('./chunk-ec0103f6.js');
+var __chunk_2 = require('./chunk-ed516bde.js');
+var __chunk_3 = require('./chunk-aadbd80c.js');
 
 var propTypes = {
   className: PropTypes.string,
@@ -127,7 +128,9 @@ var SiteNavbar = function SiteNavbar(_ref) {
 SiteNavbar.propTypes = propTypes$1;
 SiteNavbar.defaultProps = defaultProps$1;
 
-exports.ListGroup = __chunk_2.ListGroup;
-exports.ListGroupItem = __chunk_2.ListGroupItem;
+exports.Card = __chunk_2.Card;
+exports.CardBody = __chunk_2.CardBody;
+exports.ListGroup = __chunk_3.ListGroup;
+exports.ListGroupItem = __chunk_3.ListGroupItem;
 exports.NavItem = NavItem$1;
 exports.SiteNavbar = SiteNavbar;

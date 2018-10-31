@@ -9,9 +9,9 @@ var React = require('react');
 var React__default = _interopDefault(React);
 var PropTypes = _interopDefault(require('prop-types'));
 var queries = require('@base-cms/base4-website-nextjs/queries');
-var __chunk_3 = require('./chunk-3fa0fc7f.js');
+var __chunk_4 = require('./chunk-3f552c97.js');
 require('classnames');
-require('./chunk-ec0103f6.js');
+require('./chunk-aadbd80c.js');
 require('@base-cms/base4-website-nextjs/components/content');
 require('@base-cms/base4-website-nextjs/utils');
 
@@ -37,7 +37,7 @@ var BlockListGroupA = function BlockListGroupA(_ref) {
   var query = _ref.query,
       attrs = __chunk_1._objectWithoutProperties(_ref, ["query"]);
 
-  var fragment = __chunk_3.ListGroupStyleA.fragments.content;
+  var fragment = __chunk_4.ListGroupStyleA.fragments.content;
 
   var props = __chunk_1._objectSpread({}, query, {
     fragment: fragment
@@ -53,7 +53,7 @@ var BlockListGroupA = function BlockListGroupA(_ref) {
       return React__default.createElement("span", null, "Error", ' ', error.message);
     }
 
-    return React__default.createElement(__chunk_3.ListGroupStyleA, __chunk_1._extends({
+    return React__default.createElement(__chunk_4.ListGroupStyleA, __chunk_1._extends({
       nodes: items
     }, attrs));
   });
