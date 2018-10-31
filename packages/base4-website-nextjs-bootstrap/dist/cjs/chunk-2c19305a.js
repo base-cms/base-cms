@@ -1,3 +1,5 @@
+'use strict';
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
   try {
     var info = gen[key](arg);
@@ -191,4 +193,25 @@ function _possibleConstructorReturn(self, call) {
   return _assertThisInitialized(self);
 }
 
-export { _extends as a, _objectWithoutProperties as b, _objectSpread as c, _asyncToGenerator as d, _classCallCheck as e, _createClass as f, _possibleConstructorReturn as g, _getPrototypeOf as h, _inherits as i };
+function _taggedTemplateLiteral(strings, raw) {
+  if (!raw) {
+    raw = strings.slice(0);
+  }
+
+  return Object.freeze(Object.defineProperties(strings, {
+    raw: {
+      value: Object.freeze(raw)
+    }
+  }));
+}
+
+exports._extends = _extends;
+exports._objectWithoutProperties = _objectWithoutProperties;
+exports._objectSpread = _objectSpread;
+exports._asyncToGenerator = _asyncToGenerator;
+exports._classCallCheck = _classCallCheck;
+exports._createClass = _createClass;
+exports._possibleConstructorReturn = _possibleConstructorReturn;
+exports._getPrototypeOf = _getPrototypeOf;
+exports._inherits = _inherits;
+exports._taggedTemplateLiteral = _taggedTemplateLiteral;
