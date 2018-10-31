@@ -11,6 +11,7 @@ var Head = _interopDefault(require('next/head'));
 var utils = require('./utils.js');
 require('./chunk-9e05845b.js');
 require('inflected');
+require('escape-string-regexp');
 require('moment');
 require('object-path');
 require('next/config');

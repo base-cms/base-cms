@@ -14,6 +14,7 @@ var gql = _interopDefault(require('graphql-tag'));
 var componentsHead = require('./components-head.js');
 var routing = require('./routing.js');
 require('inflected');
+require('escape-string-regexp');
 require('moment');
 require('object-path');
 require('next/config');

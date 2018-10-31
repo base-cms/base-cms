@@ -12,6 +12,7 @@ var reactApollo = require('react-apollo');
 var gql = _interopDefault(require('graphql-tag'));
 var utils = require('./utils.js');
 require('inflected');
+require('escape-string-regexp');
 require('moment');
 require('object-path');
 require('next/config');

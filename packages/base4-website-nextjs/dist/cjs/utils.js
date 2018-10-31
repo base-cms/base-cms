@@ -6,6 +6,7 @@ function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'defau
 
 var __chunk_1 = require('./chunk-9e05845b.js');
 var inflected = require('inflected');
+var escape = _interopDefault(require('escape-string-regexp'));
 var moment = _interopDefault(require('moment'));
 var objectPath = require('object-path');
 var getConfig = _interopDefault(require('next/config'));
@@ -43,6 +44,10 @@ var createMarkup = (function (html) {
 
 var dasherize = (function (value) {
   return inflected.dasherize(inflected.underscore(value));
+});
+
+var escapeRegex = (function (v) {
+  return v ? escape(v) : '';
 });
 
 var extractFragmentName = (function (fragment) {
@@ -161,6 +166,7 @@ exports.cleanPath = cleanPath;
 exports.componentDisplayName = componentDisplayName;
 exports.createMarkup = createMarkup;
 exports.dasherize = dasherize;
+exports.escapeRegex = escapeRegex;
 exports.extractFragmentData = extractFragmentData;
 exports.extractFragmentName = extractFragmentName;
 exports.formatDate = formatDate;

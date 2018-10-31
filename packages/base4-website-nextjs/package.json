@@ -17,6 +17,7 @@
     "@base-cms/base4-nextjs-apollo": "https://github.com/base-cms/base4-nextjs-apollo.git",
     "@base-cms/base4-website-express": "https://github.com/base-cms/base4-website-express.git",
     "classnames": "^2.2.6",
+    "escape-string-regexp": "^1.0.5",
     "hoist-non-react-statics": "^3.0.1",
     "inflected": "^2.0.4",
     "moment": "^2.22.2",

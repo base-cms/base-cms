@@ -7,6 +7,7 @@ import gql from 'graphql-tag';
 import { RelCanonical, PageTitle, MetaDescription } from './components-head.js';
 import { redirect } from './routing.js';
 import 'inflected';
+import 'escape-string-regexp';
 import 'moment';
 import 'object-path';
 import 'next/config';

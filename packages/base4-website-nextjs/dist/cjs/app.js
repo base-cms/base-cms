@@ -16,6 +16,7 @@ var __chunk_3 = require('./chunk-4b678d5c.js');
 var utils = require('./utils.js');
 var __chunk_4 = require('./chunk-4bddce20.js');
 require('inflected');
+require('escape-string-regexp');
 require('moment');
 require('object-path');
 require('next/config');

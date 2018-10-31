@@ -1,5 +1,6 @@
 import { h as _typeof } from './chunk-1a4eb17c.js';
 import { underscore, dasherize } from 'inflected';
+import escape from 'escape-string-regexp';
 import moment from 'moment';
 import { get } from 'object-path';
 import getConfig from 'next/config';
@@ -37,6 +38,10 @@ var createMarkup = (function (html) {
 
 var dasherize$1 = (function (value) {
   return dasherize(underscore(value));
+});
+
+var escapeRegex = (function (v) {
+  return v ? escape(v) : '';
 });
 
 var extractFragmentName = (function (fragment) {
@@ -149,4 +154,4 @@ var titleizeType = (function (type) {
   }).join(' ');
 });
 
-export { asArray, asObject, cleanPath, componentDisplayName, createMarkup, dasherize$1 as dasherize, extractFragmentData, extractFragmentName, formatDate, getAsArray, getAsObject, httpErrors, isFn as isFunction, isObject, modelClassNames, sectionPath, titleizeType };
+export { asArray, asObject, cleanPath, componentDisplayName, createMarkup, dasherize$1 as dasherize, escapeRegex, extractFragmentData, extractFragmentName, formatDate, getAsArray, getAsObject, httpErrors, isFn as isFunction, isObject, modelClassNames, sectionPath, titleizeType };

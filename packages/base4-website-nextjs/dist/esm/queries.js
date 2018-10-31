@@ -5,6 +5,7 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import { extractFragmentData } from './utils.js';
 import 'inflected';
+import 'escape-string-regexp';
 import 'moment';
 import 'object-path';
 import 'next/config';

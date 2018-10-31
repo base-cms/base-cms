@@ -4,6 +4,7 @@ import Head from 'next/head';
 import { isFunction as isFn, cleanPath } from './utils.js';
 import './chunk-1a4eb17c.js';
 import 'inflected';
+import 'escape-string-regexp';
 import 'moment';
 import 'object-path';
 import 'next/config';
