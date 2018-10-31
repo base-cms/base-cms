@@ -28,7 +28,7 @@ const SiteNavigation = () => (
               <NavItem key={item.to}>
                 <LinkElement to={item.to} className="nav-link" value={item.label} />
               </NavItem>
-            )
+            );
           })}
         </Nav>
       </div>
@@ -38,7 +38,7 @@ const SiteNavigation = () => (
             <NavItem key={item.to}>
               <LinkElement to={item.to} className="nav-link" value={item.label} />
             </NavItem>
-          )
+          );
         })}
       </Nav>
     </div>
