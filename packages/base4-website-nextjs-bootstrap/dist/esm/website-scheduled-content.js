@@ -3,12 +3,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 import { WebsiteScheduledContent } from '@base-cms/base4-website-nextjs/queries';
-import { a as Card } from './chunk-ca546298.js';
-import { a as CardBodyStyleA, c as ListGroupStyleA } from './chunk-d660344d.js';
+import { Card } from './core.js';
+import { CardBodyA, ListGroupA } from './content.js';
 import 'classnames';
-import '@base-cms/base4-website-nextjs/components/content';
+import 'next/router';
+import '@base-cms/base4-website-nextjs/components/core';
 import '@base-cms/base4-website-nextjs/utils';
-import './chunk-24a00436.js';
+import '@base-cms/base4-website-nextjs/config';
+import '@base-cms/base4-website-nextjs/components/content';
 
 function _templateObject() {
   var data = _taggedTemplateLiteral(["\n  fragment ContentBlockHeroStyleA on PlatformContent {\n    ...ContentListGroupItemStyleA\n    ...ContentCardBodyStyleA\n  }\n  ", "\n  ", "\n"]);
@@ -19,7 +21,7 @@ function _templateObject() {
 
   return data;
 }
-var fragment = gql(_templateObject(), CardBodyStyleA.fragments.content, ListGroupStyleA.fragments.content);
+var fragment = gql(_templateObject(), CardBodyA.fragments.content, ListGroupA.fragments.content);
 var propTypes = {
   // @todo These should be placed here by a HOC.
   query: PropTypes.shape({
@@ -62,11 +64,11 @@ var BlockHeroA = function BlockHeroA(_ref) {
       className: "row"
     }, React.createElement("div", {
       className: "col-lg-7 col-xl-8"
-    }, React.createElement(Card, null, React.createElement(CardBodyStyleA, _extends({
+    }, React.createElement(Card, null, React.createElement(CardBodyA, _extends({
       content: content
     }, attrs)))), React.createElement("div", {
       className: "col-lg-5 col-xl-4"
-    }, React.createElement(ListGroupStyleA, _extends({
+    }, React.createElement(ListGroupA, _extends({
       nodes: nodes
     }, attrs))));
   });
@@ -76,6 +78,7 @@ BlockHeroA.displayName = 'WebsiteScheduledContent/Blocks/HeroA';
 BlockHeroA.propTypes = propTypes;
 BlockHeroA.defaultProps = defaultProps;
 
+var fragment$1 = ListGroupA.fragments.content;
 var propTypes$1 = {
   // @todo These should be placed here by a HOC.
   query: PropTypes.shape({
@@ -98,10 +101,8 @@ var BlockListGroupA = function BlockListGroupA(_ref) {
   var query = _ref.query,
       attrs = _objectWithoutProperties(_ref, ["query"]);
 
-  var fragment = ListGroupStyleA.fragments.content;
-
   var props = _objectSpread({}, query, {
-    fragment: fragment
+    fragment: fragment$1
   });
 
   return React.createElement(WebsiteScheduledContent, props, function (_ref2) {
@@ -114,7 +115,7 @@ var BlockListGroupA = function BlockListGroupA(_ref) {
       return React.createElement("span", null, "Error", ' ', error.message);
     }
 
-    return React.createElement(ListGroupStyleA, _extends({
+    return React.createElement(ListGroupA, _extends({
       nodes: items
     }, attrs));
   });

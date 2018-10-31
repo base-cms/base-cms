@@ -10,12 +10,14 @@ var React__default = _interopDefault(React);
 var PropTypes = _interopDefault(require('prop-types'));
 var gql = _interopDefault(require('graphql-tag'));
 var queries = require('@base-cms/base4-website-nextjs/queries');
-var __chunk_4 = require('./chunk-90a4af32.js');
-var __chunk_3 = require('./chunk-67b7e6d5.js');
+var core = require('./core.js');
+var content = require('./content.js');
 require('classnames');
-require('@base-cms/base4-website-nextjs/components/content');
+require('next/router');
+require('@base-cms/base4-website-nextjs/components/core');
 require('@base-cms/base4-website-nextjs/utils');
-require('./chunk-69819099.js');
+require('@base-cms/base4-website-nextjs/config');
+require('@base-cms/base4-website-nextjs/components/content');
 
 function _templateObject() {
   var data = __chunk_1._taggedTemplateLiteral(["\n  fragment ContentBlockHeroStyleA on PlatformContent {\n    ...ContentListGroupItemStyleA\n    ...ContentCardBodyStyleA\n  }\n  ", "\n  ", "\n"]);
@@ -26,7 +28,7 @@ function _templateObject() {
 
   return data;
 }
-var fragment = gql(_templateObject(), __chunk_3.CardBodyStyleA.fragments.content, __chunk_3.ListGroupStyleA.fragments.content);
+var fragment = gql(_templateObject(), content.CardBodyA.fragments.content, content.ListGroupA.fragments.content);
 var propTypes = {
   // @todo These should be placed here by a HOC.
   query: PropTypes.shape({
@@ -69,11 +71,11 @@ var BlockHeroA = function BlockHeroA(_ref) {
       className: "row"
     }, React__default.createElement("div", {
       className: "col-lg-7 col-xl-8"
-    }, React__default.createElement(__chunk_4.Card, null, React__default.createElement(__chunk_3.CardBodyStyleA, __chunk_1._extends({
+    }, React__default.createElement(core.Card, null, React__default.createElement(content.CardBodyA, __chunk_1._extends({
       content: content$$1
     }, attrs)))), React__default.createElement("div", {
       className: "col-lg-5 col-xl-4"
-    }, React__default.createElement(__chunk_3.ListGroupStyleA, __chunk_1._extends({
+    }, React__default.createElement(content.ListGroupA, __chunk_1._extends({
       nodes: nodes
     }, attrs))));
   });
@@ -83,6 +85,7 @@ BlockHeroA.displayName = 'WebsiteScheduledContent/Blocks/HeroA';
 BlockHeroA.propTypes = propTypes;
 BlockHeroA.defaultProps = defaultProps;
 
+var fragment$1 = content.ListGroupA.fragments.content;
 var propTypes$1 = {
   // @todo These should be placed here by a HOC.
   query: PropTypes.shape({
@@ -105,10 +108,8 @@ var BlockListGroupA = function BlockListGroupA(_ref) {
   var query = _ref.query,
       attrs = __chunk_1._objectWithoutProperties(_ref, ["query"]);
 
-  var fragment = __chunk_3.ListGroupStyleA.fragments.content;
-
   var props = __chunk_1._objectSpread({}, query, {
-    fragment: fragment
+    fragment: fragment$1
   });
 
   return React__default.createElement(queries.WebsiteScheduledContent, props, function (_ref2) {
@@ -121,7 +122,7 @@ var BlockListGroupA = function BlockListGroupA(_ref) {
       return React__default.createElement("span", null, "Error", ' ', error.message);
     }
 
-    return React__default.createElement(__chunk_3.ListGroupStyleA, __chunk_1._extends({
+    return React__default.createElement(content.ListGroupA, __chunk_1._extends({
       nodes: items
     }, attrs));
   });
