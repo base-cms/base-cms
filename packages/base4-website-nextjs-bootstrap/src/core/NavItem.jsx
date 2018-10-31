@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withRouter } from 'next/router';
 import { LinkElement } from '@base-cms/base4-website-nextjs/components/core';
-import { escapeRegex, isFunction as isFn } from '@base-cms/base4-website-nextjs/utils';
+import { escapeRegex, isFunction as isFn, cleanPath } from '@base-cms/base4-website-nextjs/utils';
 
 const propTypes = {
   className: PropTypes.string,
@@ -42,8 +42,14 @@ const NavItem = ({
 }) => {
   let active = null;
   if (isFn(match) && match(router, to)) active = 'active';
+  const { asPath, route } = router;
   return (
-    <Tag className={classNames('navigation__item', 'nav-item', active, className)} {...attrs}>
+    <Tag
+      data-route={cleanPath(route)}
+      data-path={cleanPath(asPath)}
+      className={classNames('navigation__item', 'nav-item', active, className)}
+      {...attrs}
+    >
       <LinkElement to={to} className={classNames('navigation__link', 'nav-link', linkClassName)} value={value} {...linkAttrs} />
     </Tag>
   );
