@@ -2,6 +2,7 @@ fragment ContentCardBodyStyleA on PlatformContent {
   id
   type
   shortName
+  teaser
   published
   canonicalPath
   primarySection {
