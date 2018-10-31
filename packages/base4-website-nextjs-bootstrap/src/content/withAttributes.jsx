@@ -8,10 +8,11 @@ export default modifier => (ComposedComponent) => {
     const content = getAsObject(props, 'content');
     const { id, type } = content;
     const attrs = {
+      ...props,
       'data-id': id,
       className: classNames('content', `content--${modifier}`, `content--${type}`, className),
     };
-    return <ComposedComponent {...props} {...attrs} />;
+    return <ComposedComponent {...attrs} />;
   };
 
   WithContentAttributes.displayName = `WithContentAttributes(${componentDisplayName(ComposedComponent)})`;

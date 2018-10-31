@@ -2,33 +2,13 @@
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var __chunk_1 = require('./chunk-3874e52a.js');
 var React = require('react');
 var React__default = _interopDefault(React);
-var classNames = _interopDefault(require('classnames'));
-var utils = require('@base-cms/base4-website-nextjs/utils');
 var PropTypes = _interopDefault(require('prop-types'));
 var content = require('@base-cms/base4-website-nextjs/components/content');
 var __chunk_3 = require('./chunk-aadbd80c.js');
-
-var withAttributes = (function (modifier) {
-  return function (ComposedComponent) {
-    var WithContentAttributes = function WithContentAttributes(props) {
-      var className = utils.get(props, 'className');
-      var content$$1 = utils.getAsObject(props, 'content');
-      var id = content$$1.id,
-          type = content$$1.type;
-      var attrs = {
-        'data-id': id,
-        className: classNames('content', "content--".concat(modifier), "content--".concat(type), className)
-      };
-      return React__default.createElement(ComposedComponent, __chunk_1._extends({}, props, attrs));
-    };
-
-    WithContentAttributes.displayName = "WithContentAttributes(".concat(utils.componentDisplayName(ComposedComponent), ")");
-    return WithContentAttributes;
-  };
-});
+var __chunk_1 = require('./chunk-3874e52a.js');
+var utils = require('@base-cms/base4-website-nextjs/utils');
 
 var doc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ContentListGroupItemStyleA"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PlatformContent"}},"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"type"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"shortName"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"published"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"canonicalPath"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"primarySection"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"name"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"alias"},"arguments":[],"directives":[]}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PlatformContentProduct"}},"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"company"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"name"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"canonicalPath"},"arguments":[],"directives":[]}]}}]}}]}}],"loc":{"start":0,"end":258}};
     doc.loc.source = {"body":"fragment ContentListGroupItemStyleA on PlatformContent {\n  id\n  type\n  shortName\n  published\n  canonicalPath\n  primarySection {\n    id\n    name\n    alias\n  }\n  ... on PlatformContentProduct {\n    company {\n      id\n      name\n      canonicalPath\n    }\n  }\n}\n","name":"GraphQL request","locationOffset":{"line":1,"column":1}};
