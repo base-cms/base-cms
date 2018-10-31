@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withRouter } from 'next/router';
 import { LinkElement, NavigationWrapper } from '@base-cms/base4-website-nextjs/components/core';
-import { escapeRegex, isFunction } from '@base-cms/base4-website-nextjs/utils';
+import { escapeRegex, isFunction, cleanPath } from '@base-cms/base4-website-nextjs/utils';
 import { SiteConfigContext } from '@base-cms/base4-website-nextjs/config';
 import { b as ListGroup, a as ListGroupItem } from './chunk-1b8d0d36.js';
 export { b as ListGroup, a as ListGroupItem } from './chunk-1b8d0d36.js';
@@ -47,7 +47,11 @@ var NavItem = function NavItem(_ref) {
 
   var active = null;
   if (isFunction(match) && match(router, to)) active = 'active';
+  var asPath = router.asPath,
+      route = router.route;
   return React.createElement(Tag, _extends({
+    "data-route": cleanPath(route),
+    "data-path": cleanPath(asPath),
     className: classNames('navigation__item', 'nav-item', active, className)
   }, attrs), React.createElement(LinkElement, _extends({
     to: to,
