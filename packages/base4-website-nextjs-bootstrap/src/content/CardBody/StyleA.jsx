@@ -8,7 +8,7 @@ import {
   ShortNameLink,
   Teaser,
 } from '@base-cms/base4-website-nextjs/components/content';
-import CardBody from '../../core/CardBody';
+import { CardBody } from '../../core';
 import ContentCardImage from '../CardImage';
 import wrapperAttrs from '../wrapper-attrs';
 import fragment from './StyleA.graphql';

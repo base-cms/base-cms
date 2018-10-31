@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { WebsiteScheduledContent } from '@base-cms/base4-website-nextjs/queries';
-import ListGroupStyleA from '../../content/ListGroup/StyleA';
+import { ListGroupA } from '../../content';
+
+const fragment = ListGroupA.fragments.content;
 
 const propTypes = {
   // @todo These should be placed here by a HOC.
@@ -27,7 +29,6 @@ const BlockListGroupA = ({
   query,
   ...attrs
 }) => {
-  const fragment = ListGroupStyleA.fragments.content;
   const props = { ...query, fragment };
   return (
     <WebsiteScheduledContent {...props}>
@@ -42,7 +43,7 @@ const BlockListGroupA = ({
             </span>
           );
         }
-        return <ListGroupStyleA nodes={items} {...attrs} />;
+        return <ListGroupA nodes={items} {...attrs} />;
       }}
     </WebsiteScheduledContent>
   );

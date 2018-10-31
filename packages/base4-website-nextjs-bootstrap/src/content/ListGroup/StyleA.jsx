@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { asArray } from '@base-cms/base4-website-nextjs/utils';
 
-import ListGroup from '../../core/ListGroup';
+import { ListGroup } from '../../core';
 import ListGroupItemA from '../ListGroupItem/StyleA';
 
 const propTypes = {
