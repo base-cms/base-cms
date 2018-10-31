@@ -47,11 +47,8 @@ var NavItem = function NavItem(_ref) {
 
   var active = null;
   if (isFunction(match) && match(router, to)) active = 'active';
-  var asPath = router.asPath,
-      route = router.route;
   return React.createElement(Tag, _extends({
-    "data-route": cleanPath(route),
-    "data-path": cleanPath(asPath),
+    "data-to": cleanPath(to),
     className: classNames('navigation__item', 'nav-item', active, className)
   }, attrs), React.createElement(LinkElement, _extends({
     to: to,
