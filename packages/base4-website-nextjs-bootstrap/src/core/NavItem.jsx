@@ -42,11 +42,9 @@ const NavItem = ({
 }) => {
   let active = null;
   if (isFn(match) && match(router, to)) active = 'active';
-  const { asPath, route } = router;
   return (
     <Tag
-      data-route={cleanPath(route)}
-      data-path={cleanPath(asPath)}
+      data-to={cleanPath(to)}
       className={classNames('navigation__item', 'nav-item', active, className)}
       {...attrs}
     >
