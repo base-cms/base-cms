@@ -8,6 +8,7 @@ import escapeRegex from './utils/escape-regex';
 import extractFragmentData from './utils/extract-fragment-data';
 import extractFragmentName from './utils/extract-fragment-name';
 import formatDate from './utils/format-date';
+import get from './utils/get';
 import getAsArray from './utils/get-as-array';
 import getAsObject from './utils/get-as-object';
 import httpErrors from './utils/http-errors';
@@ -28,6 +29,7 @@ export {
   extractFragmentData,
   extractFragmentName,
   formatDate,
+  get,
   getAsArray,
   getAsObject,
   httpErrors,
