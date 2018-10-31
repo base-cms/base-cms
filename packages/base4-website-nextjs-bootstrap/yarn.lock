@@ -786,7 +786,7 @@
 
 "@base-cms/base4-website-nextjs@https://github.com/base-cms/base4-website-nextjs.git":
   version "0.1.0"
-  resolved "https://github.com/base-cms/base4-website-nextjs.git#0db6f85270f84d7b4ff5c2e6c663e83dc89238f0"
+  resolved "https://github.com/base-cms/base4-website-nextjs.git#73775582eda1d23a717bc566994c7420c03ca2c1"
   dependencies:
     "@base-cms/base4-nextjs-apollo" "https://github.com/base-cms/base4-nextjs-apollo.git"
     "@base-cms/base4-website-express" "https://github.com/base-cms/base4-website-express.git"
@@ -8205,6 +8205,6 @@ zen-observable-ts@^0.8.10:
     zen-observable "^0.8.0"
 
 zen-observable@^0.8.0:
-  version "0.8.10"
-  resolved "https://registry.yarnpkg.com/zen-observable/-/zen-observable-0.8.10.tgz#85ad75d41fed82e5b4651bd64ca117b2af960182"
-  integrity sha512-UXEh0ekA/QWYI2NkLHc5IH0V1FstIN4qGVlVvq0DQAS3oR72mofYHkjJ2f4ysMKRAziwnACzg3c0ZuG+SMDu8w==
+  version "0.8.11"
+  resolved "https://registry.yarnpkg.com/zen-observable/-/zen-observable-0.8.11.tgz#d3415885eeeb42ee5abb9821c95bb518fcd6d199"
+  integrity sha512-N3xXQVr4L61rZvGMpWe8XoCGX8vhU35dPyQ4fm5CY/KDlG0F75un14hjbckPXTDuKUY6V0dqR2giT6xN8Y4GEQ==
