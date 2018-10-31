@@ -46,7 +46,7 @@ const PrimaryImageLink = ({
   return (
     <Tag className={classNames(modelClassNames('content', 'primaryImage'), className)} {...attrs}>
       {canonicalPath ? (
-        <Link canonicalPath={canonicalPath} {...linkAttrs}>
+        <Link canonicalPath={canonicalPath} collapsible={false} {...linkAttrs}>
           {() => image}
         </Link>
       ) : image}

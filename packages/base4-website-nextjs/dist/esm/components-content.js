@@ -539,7 +539,8 @@ var PrimaryImageLink = function PrimaryImageLink(_ref) {
   return React.createElement(Tag, _extends({
     className: classNames(modelClassNames('content', 'primaryImage'), className)
   }, attrs), canonicalPath ? React.createElement(ContentLink, _extends({
-    canonicalPath: canonicalPath
+    canonicalPath: canonicalPath,
+    collapsible: false
   }, linkAttrs), function () {
     return image;
   }) : image);

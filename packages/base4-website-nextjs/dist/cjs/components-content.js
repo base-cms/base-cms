@@ -546,7 +546,8 @@ var PrimaryImageLink = function PrimaryImageLink(_ref) {
   return React__default.createElement(Tag, __chunk_1._extends({
     className: classNames(utils.modelClassNames('content', 'primaryImage'), className)
   }, attrs), canonicalPath ? React__default.createElement(ContentLink, __chunk_1._extends({
-    canonicalPath: canonicalPath
+    canonicalPath: canonicalPath,
+    collapsible: false
   }, linkAttrs), function () {
     return image;
   }) : image);
