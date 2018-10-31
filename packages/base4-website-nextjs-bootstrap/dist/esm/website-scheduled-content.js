@@ -2,7 +2,7 @@ import { a as _extends, c as _objectSpread, b as _objectWithoutProperties } from
 import React from 'react';
 import PropTypes from 'prop-types';
 import { WebsiteScheduledContent } from '@base-cms/base4-website-nextjs/queries';
-import { a as ListGroupStyleA } from './chunk-348b01d5.js';
+import { b as ListGroupStyleA } from './chunk-348b01d5.js';
 import 'classnames';
 import '@base-cms/base4-website-nextjs/utils';
 import '@base-cms/base4-website-nextjs/components/content';

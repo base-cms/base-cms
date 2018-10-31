@@ -9,46 +9,13 @@ var React = require('react');
 var React__default = _interopDefault(React);
 var PropTypes = _interopDefault(require('prop-types'));
 var classNames = _interopDefault(require('classnames'));
-var __chunk_2 = require('./chunk-3c9bbcb9.js');
 var content = require('@base-cms/base4-website-nextjs/components/content');
-var __chunk_3 = require('./chunk-aadbd80c.js');
-var __chunk_4 = require('./chunk-7dc236c3.js');
+var __chunk_2 = require('./chunk-98c1240c.js');
+var __chunk_3 = require('./chunk-659d3319.js');
 require('@base-cms/base4-website-nextjs/utils');
+require('./chunk-aadbd80c.js');
 
 var propTypes = {
-  children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]).isRequired,
-  className: PropTypes.string,
-  content: PropTypes.shape({
-    id: PropTypes.number,
-    type: PropTypes.string
-  })
-};
-var defaultProps = {
-  className: null,
-  content: {}
-};
-
-var ContentCard = function ContentCard(_ref) {
-  var children = _ref.children,
-      className = _ref.className,
-      content$$1 = _ref.content,
-      attr = __chunk_1._objectWithoutProperties(_ref, ["children", "className", "content"]);
-
-  var _ref2 = content$$1 || {},
-      id = _ref2.id,
-      type = _ref2.type;
-
-  return id && type ? React__default.createElement(__chunk_2.Card, __chunk_1._extends({
-    "data-id": id,
-    className: classNames('content', 'content--card', "content--".concat(type), className)
-  }, attr), children) : null;
-};
-
-ContentCard.displayName = 'Content/Card';
-ContentCard.propTypes = propTypes;
-ContentCard.defaultProps = defaultProps;
-
-var propTypes$1 = {
   className: PropTypes.string,
   content: PropTypes.shape({
     id: PropTypes.number,
@@ -61,7 +28,7 @@ var propTypes$1 = {
   linkClassName: PropTypes.string,
   withBody: PropTypes.bool
 };
-var defaultProps$1 = {
+var defaultProps = {
   className: null,
   content: {},
   linkClassName: null,
@@ -89,13 +56,13 @@ var ContentCardImage = function ContentCardImage(_ref) {
 };
 
 ContentCardImage.displayName = 'Content/CardImage';
-ContentCardImage.propTypes = propTypes$1;
-ContentCardImage.defaultProps = defaultProps$1;
+ContentCardImage.propTypes = propTypes;
+ContentCardImage.defaultProps = defaultProps;
 
 var doc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ContentCardBodyStyleA"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PlatformContent"}},"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"type"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"shortName"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"published"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"canonicalPath"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"primarySection"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"name"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"alias"},"arguments":[],"directives":[]}]}},{"kind":"Field","name":{"kind":"Name","value":"primaryImage"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"src"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"host"},"value":{"kind":"StringValue","value":"cdn.officer.com","block":false}}]}}],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"alt"},"arguments":[],"directives":[]}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PlatformContentProduct"}},"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"company"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"name"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"canonicalPath"},"arguments":[],"directives":[]}]}}]}}]}}],"loc":{"start":0,"end":369}};
     doc.loc.source = {"body":"fragment ContentCardBodyStyleA on PlatformContent {\n  id\n  type\n  shortName\n  published\n  canonicalPath\n  primarySection {\n    id\n    name\n    alias\n  }\n  # @todo Remove the hardcoded CDN!\n  primaryImage {\n    id\n    src(input: { host: \"cdn.officer.com\" })\n    alt\n  }\n  ... on PlatformContentProduct {\n    company {\n      id\n      name\n      canonicalPath\n    }\n  }\n}\n","name":"GraphQL request","locationOffset":{"line":1,"column":1}};
 
-var propTypes$2 = {
+var propTypes$1 = {
   content: PropTypes.shape({
     id: PropTypes.number,
     type: PropTypes.string,
@@ -118,7 +85,7 @@ var propTypes$2 = {
     })
   })
 };
-var defaultProps$2 = {
+var defaultProps$1 = {
   content: {}
 };
 
@@ -126,9 +93,10 @@ var CardBodyStyleA = function CardBodyStyleA(_ref) {
   var content$$1 = _ref.content,
       attr = __chunk_1._objectWithoutProperties(_ref, ["content"]);
 
-  return React__default.createElement("div", {
-    className: "content content--card-body"
-  }, React__default.createElement(ContentCardImage, {
+  return React__default.createElement("div", __chunk_3.wrapperAttrs({
+    modifier: 'card-body',
+    content: content$$1
+  }), React__default.createElement(ContentCardImage, {
     content: content$$1
   }), React__default.createElement(__chunk_2.CardBody, attr, React__default.createElement(content.ShortNameLink, {
     content: content$$1
@@ -152,48 +120,13 @@ var CardBodyStyleA = function CardBodyStyleA(_ref) {
 };
 
 CardBodyStyleA.displayName = 'Content/CardBody/StyleA';
-CardBodyStyleA.propTypes = propTypes$2;
-CardBodyStyleA.defaultProps = defaultProps$2;
+CardBodyStyleA.propTypes = propTypes$1;
+CardBodyStyleA.defaultProps = defaultProps$1;
 CardBodyStyleA.fragments = {
   content: doc
 };
 
-var propTypes$3 = {
-  children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]).isRequired,
-  className: PropTypes.string,
-  content: PropTypes.shape({
-    id: PropTypes.number,
-    type: PropTypes.string
-  })
-};
-var defaultProps$3 = {
-  className: null,
-  content: {}
-};
-
-var ContentListGroupItem = function ContentListGroupItem(_ref) {
-  var children = _ref.children,
-      className = _ref.className,
-      content$$1 = _ref.content,
-      attr = __chunk_1._objectWithoutProperties(_ref, ["children", "className", "content"]);
-
-  var _ref2 = content$$1 || {},
-      id = _ref2.id,
-      type = _ref2.type;
-
-  return id && type ? React__default.createElement(__chunk_3.ListGroupItem, __chunk_1._extends({
-    "data-id": id,
-    className: classNames('content', 'content--list-item', "content--".concat(type), className)
-  }, attr), children) : null;
-};
-
-ContentListGroupItem.displayName = 'Content/ListGroupItem';
-ContentListGroupItem.propTypes = propTypes$3;
-ContentListGroupItem.defaultProps = defaultProps$3;
-
-exports.ListGroupA = __chunk_4.ListGroupStyleA;
-exports.ListGroupItemA = __chunk_4.ListGroupItemA;
-exports.Card = ContentCard;
+exports.ListGroupA = __chunk_3.ListGroupStyleA;
+exports.ListGroupItemA = __chunk_3.ListGroupItemA;
 exports.CardBodyA = CardBodyStyleA;
 exports.CardImage = ContentCardImage;
-exports.ListGroupItem = ContentListGroupItem;

@@ -13,10 +13,35 @@ var router = require('next/router');
 var core = require('@base-cms/base4-website-nextjs/components/core');
 var utils = require('@base-cms/base4-website-nextjs/utils');
 var config = require('@base-cms/base4-website-nextjs/config');
-var __chunk_2 = require('./chunk-3c9bbcb9.js');
-var __chunk_3 = require('./chunk-aadbd80c.js');
+var __chunk_2 = require('./chunk-98c1240c.js');
+var __chunk_4 = require('./chunk-aadbd80c.js');
 
 var propTypes = {
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]).isRequired,
+  className: PropTypes.string,
+  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
+};
+var defaultProps = {
+  className: null,
+  tag: 'div'
+};
+
+var Card = function Card(_ref) {
+  var children = _ref.children,
+      className = _ref.className,
+      Tag = _ref.tag,
+      attr = __chunk_1._objectWithoutProperties(_ref, ["children", "className", "tag"]);
+
+  return React__default.createElement(Tag, __chunk_1._extends({
+    className: classNames('card', className)
+  }, attr), children);
+};
+
+Card.displayName = 'Core/Card';
+Card.propTypes = propTypes;
+Card.defaultProps = defaultProps;
+
+var propTypes$1 = {
   className: PropTypes.string,
   linkAttrs: PropTypes.object,
   // eslint-disable-line react/forbid-prop-types
@@ -28,7 +53,7 @@ var propTypes = {
   to: PropTypes.string.isRequired,
   value: PropTypes.string
 };
-var defaultProps = {
+var defaultProps$1 = {
   className: null,
   linkAttrs: {},
   linkClassName: null,
@@ -65,15 +90,15 @@ var NavItem = function NavItem(_ref) {
 };
 
 NavItem.displayName = 'Navigation/NavItem';
-NavItem.defaultProps = defaultProps;
-NavItem.propTypes = propTypes;
+NavItem.defaultProps = defaultProps$1;
+NavItem.propTypes = propTypes$1;
 var NavItem$1 = router.withRouter(NavItem);
 
-var propTypes$1 = {
+var propTypes$2 = {
   className: PropTypes.string,
   logoHeight: PropTypes.number
 };
-var defaultProps$1 = {
+var defaultProps$2 = {
   className: null,
   logoHeight: 25
 };
@@ -125,12 +150,12 @@ var SiteNavbar = function SiteNavbar(_ref) {
   }));
 };
 
-SiteNavbar.propTypes = propTypes$1;
-SiteNavbar.defaultProps = defaultProps$1;
+SiteNavbar.propTypes = propTypes$2;
+SiteNavbar.defaultProps = defaultProps$2;
 
-exports.Card = __chunk_2.Card;
 exports.CardBody = __chunk_2.CardBody;
-exports.ListGroup = __chunk_3.ListGroup;
-exports.ListGroupItem = __chunk_3.ListGroupItem;
+exports.ListGroup = __chunk_4.ListGroup;
+exports.ListGroupItem = __chunk_4.ListGroupItem;
+exports.Card = Card;
 exports.NavItem = NavItem$1;
 exports.SiteNavbar = SiteNavbar;

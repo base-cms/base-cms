@@ -8,7 +8,7 @@ var React = require('react');
 var React__default = _interopDefault(React);
 var PropTypes = _interopDefault(require('prop-types'));
 var content = require('@base-cms/base4-website-nextjs/components/content');
-var __chunk_3 = require('./chunk-aadbd80c.js');
+var __chunk_4 = require('./chunk-aadbd80c.js');
 var __chunk_1 = require('./chunk-3874e52a.js');
 
 var wrapperAttrs = (function () {
@@ -53,7 +53,7 @@ var defaultProps = {
 
 var ListGroupItemStyleA = function ListGroupItemStyleA(_ref) {
   var content$$1 = _ref.content;
-  return React__default.createElement(__chunk_3.ListGroupItem, wrapperAttrs({
+  return React__default.createElement(__chunk_4.ListGroupItem, wrapperAttrs({
     modifier: 'list-item',
     content: content$$1
   }), React__default.createElement(content.ShortNameLink, {
@@ -99,7 +99,7 @@ var ListGroupStyleA = function ListGroupStyleA(_ref) {
       attrs = __chunk_1._objectWithoutProperties(_ref, ["itemAttrs", "nodes"]);
 
   var items = utils.asArray(nodes);
-  return items.length ? React__default.createElement(__chunk_3.ListGroup, attrs, items.map(function (content$$1) {
+  return items.length ? React__default.createElement(__chunk_4.ListGroup, attrs, items.map(function (content$$1) {
     return React__default.createElement(ListGroupItemStyleA, __chunk_1._extends({
       key: content$$1.id,
       content: content$$1
@@ -114,5 +114,6 @@ ListGroupStyleA.fragments = {
   content: ListGroupItemStyleA.fragments.content
 };
 
+exports.wrapperAttrs = wrapperAttrs;
 exports.ListGroupStyleA = ListGroupStyleA;
 exports.ListGroupItemA = ListGroupItemStyleA;

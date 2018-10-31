@@ -6,12 +6,37 @@ import { withRouter } from 'next/router';
 import { LinkElement, NavigationWrapper } from '@base-cms/base4-website-nextjs/components/core';
 import { escapeRegex, isFunction, cleanPath } from '@base-cms/base4-website-nextjs/utils';
 import { SiteConfigContext } from '@base-cms/base4-website-nextjs/config';
-import { a as Card, b as CardBody } from './chunk-9d06453f.js';
-export { a as Card, b as CardBody } from './chunk-9d06453f.js';
+import { a as CardBody } from './chunk-eede1f71.js';
+export { a as CardBody } from './chunk-eede1f71.js';
 import { b as ListGroup, a as ListGroupItem } from './chunk-3d4ab70f.js';
 export { b as ListGroup, a as ListGroupItem } from './chunk-3d4ab70f.js';
 
 var propTypes = {
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]).isRequired,
+  className: PropTypes.string,
+  tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
+};
+var defaultProps = {
+  className: null,
+  tag: 'div'
+};
+
+var Card = function Card(_ref) {
+  var children = _ref.children,
+      className = _ref.className,
+      Tag = _ref.tag,
+      attr = _objectWithoutProperties(_ref, ["children", "className", "tag"]);
+
+  return React.createElement(Tag, _extends({
+    className: classNames('card', className)
+  }, attr), children);
+};
+
+Card.displayName = 'Core/Card';
+Card.propTypes = propTypes;
+Card.defaultProps = defaultProps;
+
+var propTypes$1 = {
   className: PropTypes.string,
   linkAttrs: PropTypes.object,
   // eslint-disable-line react/forbid-prop-types
@@ -23,7 +48,7 @@ var propTypes = {
   to: PropTypes.string.isRequired,
   value: PropTypes.string
 };
-var defaultProps = {
+var defaultProps$1 = {
   className: null,
   linkAttrs: {},
   linkClassName: null,
@@ -60,15 +85,15 @@ var NavItem = function NavItem(_ref) {
 };
 
 NavItem.displayName = 'Navigation/NavItem';
-NavItem.defaultProps = defaultProps;
-NavItem.propTypes = propTypes;
+NavItem.defaultProps = defaultProps$1;
+NavItem.propTypes = propTypes$1;
 var NavItem$1 = withRouter(NavItem);
 
-var propTypes$1 = {
+var propTypes$2 = {
   className: PropTypes.string,
   logoHeight: PropTypes.number
 };
-var defaultProps$1 = {
+var defaultProps$2 = {
   className: null,
   logoHeight: 25
 };
@@ -120,7 +145,7 @@ var SiteNavbar = function SiteNavbar(_ref) {
   }));
 };
 
-SiteNavbar.propTypes = propTypes$1;
-SiteNavbar.defaultProps = defaultProps$1;
+SiteNavbar.propTypes = propTypes$2;
+SiteNavbar.defaultProps = defaultProps$2;
 
-export { NavItem$1 as NavItem, SiteNavbar };
+export { Card, NavItem$1 as NavItem, SiteNavbar };

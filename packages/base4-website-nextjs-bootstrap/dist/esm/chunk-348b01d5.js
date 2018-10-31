@@ -109,4 +109,4 @@ ListGroupStyleA.fragments = {
   content: ListGroupItemStyleA.fragments.content
 };
 
-export { ListGroupStyleA as a, ListGroupItemStyleA as b };
+export { wrapperAttrs as a, ListGroupStyleA as b, ListGroupItemStyleA as c };
