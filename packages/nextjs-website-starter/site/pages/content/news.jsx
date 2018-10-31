@@ -1,7 +1,7 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import { withPlatformContent } from '@base-cms/base4-website-nextjs/hoc';
-import { DefaultLayout, withLayout } from '@base-cms/base4-website-nextjs-bootstrap/layouts';
+import { withLayout } from '@base-cms/base4-website-nextjs-bootstrap/layouts';
 import {
   Body,
   Name,
@@ -13,6 +13,7 @@ import {
   Type,
   Wrapper,
 } from '@base-cms/base4-website-nextjs/components/content';
+import DefaultLayout from '../../layouts/Default';
 
 const fragment = gql`
   fragment ContentNewsPage on PlatformContent {

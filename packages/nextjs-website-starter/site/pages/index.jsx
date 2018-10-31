@@ -1,5 +1,6 @@
 import React from 'react';
-import { DefaultLayout, withLayout } from '@base-cms/base4-website-nextjs-bootstrap/layouts';
+import { withLayout } from '@base-cms/base4-website-nextjs-bootstrap/layouts';
+import DefaultLayout from '../layouts/Default';
 
 const IndexPage = () => (
   <h1>Default Home Page</h1>

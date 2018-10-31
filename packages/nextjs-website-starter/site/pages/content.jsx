@@ -1,6 +1,6 @@
 import React from 'react';
 import { withPlatformContent } from '@base-cms/base4-website-nextjs/hoc';
-import { DefaultLayout, withLayout } from '@base-cms/base4-website-nextjs-bootstrap/layouts';
+import { withLayout } from '@base-cms/base4-website-nextjs-bootstrap/layouts';
 import {
   Body,
   Name,
@@ -11,6 +11,7 @@ import {
   Type,
   Wrapper,
 } from '@base-cms/base4-website-nextjs/components/content';
+import DefaultLayout from '../layouts/Default';
 
 const ContentPage = ({ content }) => (
   <Wrapper content={content}>
