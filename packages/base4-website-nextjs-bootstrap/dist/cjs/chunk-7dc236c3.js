@@ -2,33 +2,26 @@
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var __chunk_1 = require('./chunk-3874e52a.js');
-var React = require('react');
-var React__default = _interopDefault(React);
 var classNames = _interopDefault(require('classnames'));
 var utils = require('@base-cms/base4-website-nextjs/utils');
+var React = require('react');
+var React__default = _interopDefault(React);
 var PropTypes = _interopDefault(require('prop-types'));
 var content = require('@base-cms/base4-website-nextjs/components/content');
 var __chunk_3 = require('./chunk-aadbd80c.js');
+var __chunk_1 = require('./chunk-3874e52a.js');
 
-var withAttributes = (function (modifier) {
-  return function (ComposedComponent) {
-    var WithContentAttributes = function WithContentAttributes(props) {
-      var className = utils.get(props, 'className');
-      var content$$1 = utils.getAsObject(props, 'content');
-      var id = content$$1.id,
-          type = content$$1.type;
+var wrapperAttrs = (function () {
+  var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      modifier = _ref.modifier,
+      content$$1 = _ref.content,
+      className = _ref.className;
 
-      var attrs = __chunk_1._objectSpread({}, props, {
-        'data-id': id,
-        className: classNames('content', "content--".concat(modifier), "content--".concat(type), className)
-      });
-
-      return React__default.createElement(ComposedComponent, attrs);
-    };
-
-    WithContentAttributes.displayName = "WithContentAttributes(".concat(utils.componentDisplayName(ComposedComponent), ")");
-    return WithContentAttributes;
+  var id = utils.get(content$$1, 'id');
+  var type = utils.get(content$$1, 'type');
+  return {
+    'data-id': id,
+    className: classNames('content', "content--".concat(modifier), "content--".concat(type), className)
   };
 });
 
@@ -60,7 +53,10 @@ var defaultProps = {
 
 var ListGroupItemStyleA = function ListGroupItemStyleA(_ref) {
   var content$$1 = _ref.content;
-  return React__default.createElement(__chunk_3.ListGroupItem, null, React__default.createElement(content.ShortNameLink, {
+  return React__default.createElement(__chunk_3.ListGroupItem, wrapperAttrs({
+    modifier: 'list-item',
+    content: content$$1
+  }), React__default.createElement(content.ShortNameLink, {
     content: content$$1,
     className: "mb-1"
   }), React__default.createElement(content.CompanyNameLink, {
@@ -84,7 +80,6 @@ ListGroupItemStyleA.defaultProps = defaultProps;
 ListGroupItemStyleA.fragments = {
   content: doc
 };
-var ListGroupItemA = withAttributes('list-item')(ListGroupItemStyleA);
 
 var propTypes$1 = {
   flush: PropTypes.bool,
@@ -105,7 +100,7 @@ var ListGroupStyleA = function ListGroupStyleA(_ref) {
 
   var items = utils.asArray(nodes);
   return items.length ? React__default.createElement(__chunk_3.ListGroup, attrs, items.map(function (content$$1) {
-    return React__default.createElement(ListGroupItemA, __chunk_1._extends({
+    return React__default.createElement(ListGroupItemStyleA, __chunk_1._extends({
       key: content$$1.id,
       content: content$$1
     }, itemAttrs));
@@ -116,8 +111,8 @@ ListGroupStyleA.displayName = 'Content/ListGroup/StyleA';
 ListGroupStyleA.propTypes = propTypes$1;
 ListGroupStyleA.defaultProps = defaultProps$1;
 ListGroupStyleA.fragments = {
-  content: ListGroupItemA.fragments.content
+  content: ListGroupItemStyleA.fragments.content
 };
 
 exports.ListGroupStyleA = ListGroupStyleA;
-exports.ListGroupItemA = ListGroupItemA;
+exports.ListGroupItemA = ListGroupItemStyleA;

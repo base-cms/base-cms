@@ -1,29 +1,22 @@
-import { c as _objectSpread, a as _extends, b as _objectWithoutProperties } from './chunk-2f5ab1ea.js';
-import React from 'react';
 import classNames from 'classnames';
-import { componentDisplayName, getAsObject, get, asArray } from '@base-cms/base4-website-nextjs/utils';
+import { get, asArray } from '@base-cms/base4-website-nextjs/utils';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { CompanyNameLink, PrimarySectionNameLink, PublishedDate, Row, ShortNameLink } from '@base-cms/base4-website-nextjs/components/content';
 import { a as ListGroupItem, b as ListGroup } from './chunk-3d4ab70f.js';
+import { a as _extends, b as _objectWithoutProperties } from './chunk-2f5ab1ea.js';
 
-var withAttributes = (function (modifier) {
-  return function (ComposedComponent) {
-    var WithContentAttributes = function WithContentAttributes(props) {
-      var className = get(props, 'className');
-      var content = getAsObject(props, 'content');
-      var id = content.id,
-          type = content.type;
+var wrapperAttrs = (function () {
+  var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      modifier = _ref.modifier,
+      content = _ref.content,
+      className = _ref.className;
 
-      var attrs = _objectSpread({}, props, {
-        'data-id': id,
-        className: classNames('content', "content--".concat(modifier), "content--".concat(type), className)
-      });
-
-      return React.createElement(ComposedComponent, attrs);
-    };
-
-    WithContentAttributes.displayName = "WithContentAttributes(".concat(componentDisplayName(ComposedComponent), ")");
-    return WithContentAttributes;
+  var id = get(content, 'id');
+  var type = get(content, 'type');
+  return {
+    'data-id': id,
+    className: classNames('content', "content--".concat(modifier), "content--".concat(type), className)
   };
 });
 
@@ -55,7 +48,10 @@ var defaultProps = {
 
 var ListGroupItemStyleA = function ListGroupItemStyleA(_ref) {
   var content = _ref.content;
-  return React.createElement(ListGroupItem, null, React.createElement(ShortNameLink, {
+  return React.createElement(ListGroupItem, wrapperAttrs({
+    modifier: 'list-item',
+    content: content
+  }), React.createElement(ShortNameLink, {
     content: content,
     className: "mb-1"
   }), React.createElement(CompanyNameLink, {
@@ -79,7 +75,6 @@ ListGroupItemStyleA.defaultProps = defaultProps;
 ListGroupItemStyleA.fragments = {
   content: doc
 };
-var ListGroupItemA = withAttributes('list-item')(ListGroupItemStyleA);
 
 var propTypes$1 = {
   flush: PropTypes.bool,
@@ -100,7 +95,7 @@ var ListGroupStyleA = function ListGroupStyleA(_ref) {
 
   var items = asArray(nodes);
   return items.length ? React.createElement(ListGroup, attrs, items.map(function (content) {
-    return React.createElement(ListGroupItemA, _extends({
+    return React.createElement(ListGroupItemStyleA, _extends({
       key: content.id,
       content: content
     }, itemAttrs));
@@ -111,7 +106,7 @@ ListGroupStyleA.displayName = 'Content/ListGroup/StyleA';
 ListGroupStyleA.propTypes = propTypes$1;
 ListGroupStyleA.defaultProps = defaultProps$1;
 ListGroupStyleA.fragments = {
-  content: ListGroupItemA.fragments.content
+  content: ListGroupItemStyleA.fragments.content
 };
 
-export { ListGroupStyleA as a, ListGroupItemA as b };
+export { ListGroupStyleA as a, ListGroupItemStyleA as b };
