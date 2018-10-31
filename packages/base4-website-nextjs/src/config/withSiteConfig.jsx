@@ -1,9 +1,10 @@
 import React from 'react';
 import SiteConfigContext from './context';
-import { componentDisplayName, isObject } from '../utils';
+import SiteConfig from './site-config';
+import { componentDisplayName } from '../utils';
 
 export default siteConfig => (ComposedComponent) => {
-  const config = isObject(siteConfig) ? siteConfig : {};
+  const config = new SiteConfig(siteConfig);
   class WithSiteConfig extends React.Component {
     /**
      *
