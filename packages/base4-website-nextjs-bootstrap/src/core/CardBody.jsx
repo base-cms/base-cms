@@ -18,7 +18,7 @@ const defaultProps = {
   tag: 'div',
 };
 
-const ContentCardBody = ({
+const CardBody = ({
   children,
   className,
   overImage,
@@ -33,8 +33,8 @@ const ContentCardBody = ({
   </Tag>
 );
 
-ContentCardBody.displayName = 'CardBody';
-ContentCardBody.propTypes = propTypes;
-ContentCardBody.defaultProps = defaultProps;
+CardBody.displayName = 'CardBody';
+CardBody.propTypes = propTypes;
+CardBody.defaultProps = defaultProps;
 
-export default ContentCardBody;
+export default CardBody;
