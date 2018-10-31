@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Container, Row, Col } from 'reactstrap';
-import SiteNavigation from '../components/SiteNavigation';
+import { SiteNavbar } from '@base-cms/base4-website-nextjs-bootstrap/core';
 
 const propTypes = {
   children: PropTypes.oneOfType([
@@ -12,7 +12,7 @@ const propTypes = {
 
 const DefaultLayout = ({ children }) => (
   <>
-    <SiteNavigation />
+    <SiteNavbar className="sticky-top navbar-dark bg-dark shadow" />
     <Container>
       <Row>
         <Col className="my-3">
