@@ -74,6 +74,7 @@ var propTypes$1 = {
   content: PropTypes.shape({
     id: PropTypes.number,
     type: PropTypes.string,
+    teaser: PropTypes.string,
     shortName: PropTypes.string,
     canonicalPath: PropTypes.string,
     published: PropTypes.number,
@@ -107,7 +108,8 @@ var CardBodyStyleA = function CardBodyStyleA(_ref) {
   }), React.createElement(ContentCardImage, {
     content: content
   }), React.createElement(CardBody, attr, React.createElement(ShortNameLink, {
-    content: content
+    content: content,
+    tag: "h4"
   }), React.createElement(CompanyNameLink, {
     content: content,
     tag: "small",
@@ -134,10 +136,75 @@ CardBodyStyleA.fragments = {
   content: doc
 };
 
-var doc$1 = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ContentListGroupItemStyleA"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PlatformContent"}},"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"type"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"shortName"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"published"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"canonicalPath"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"primarySection"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"name"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"alias"},"arguments":[],"directives":[]}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PlatformContentProduct"}},"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"company"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"name"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"canonicalPath"},"arguments":[],"directives":[]}]}}]}}]}}],"loc":{"start":0,"end":258}};
-    doc$1.loc.source = {"body":"fragment ContentListGroupItemStyleA on PlatformContent {\n  id\n  type\n  shortName\n  published\n  canonicalPath\n  primarySection {\n    id\n    name\n    alias\n  }\n  ... on PlatformContentProduct {\n    company {\n      id\n      name\n      canonicalPath\n    }\n  }\n}\n","name":"GraphQL request","locationOffset":{"line":1,"column":1}};
+var doc$1 = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ContentListGroupItemStyleB"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PlatformContent"}},"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"type"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"shortName"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"published"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"canonicalPath"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"primarySection"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"name"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"alias"},"arguments":[],"directives":[]}]}},{"kind":"Field","name":{"kind":"Name","value":"primaryImage"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"src"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"host"},"value":{"kind":"StringValue","value":"cdn.officer.com","block":false}}]}}],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"alt"},"arguments":[],"directives":[]}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PlatformContentProduct"}},"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"company"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"name"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"canonicalPath"},"arguments":[],"directives":[]}]}}]}}]}}],"loc":{"start":0,"end":374}};
+    doc$1.loc.source = {"body":"fragment ContentListGroupItemStyleB on PlatformContent {\n  id\n  type\n  shortName\n  published\n  canonicalPath\n  primarySection {\n    id\n    name\n    alias\n  }\n  # @todo Remove the hardcoded CDN!\n  primaryImage {\n    id\n    src(input: { host: \"cdn.officer.com\" })\n    alt\n  }\n  ... on PlatformContentProduct {\n    company {\n      id\n      name\n      canonicalPath\n    }\n  }\n}\n","name":"GraphQL request","locationOffset":{"line":1,"column":1}};
 
 var propTypes$2 = {
+  content: PropTypes.shape({
+    id: PropTypes.number,
+    type: PropTypes.string,
+    shortName: PropTypes.string,
+    canonicalPath: PropTypes.string,
+    published: PropTypes.number,
+    company: PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+      canonicalPath: PropTypes.string
+    }),
+    primarySection: PropTypes.shape({
+      id: PropTypes.number,
+      alias: PropTypes.string,
+      name: PropTypes.string
+    }),
+    primaryImage: PropTypes.shape({
+      src: PropTypes.string,
+      alt: PropTypes.string
+    })
+  })
+};
+var defaultProps$2 = {
+  content: {}
+};
+
+var CardBodyStyleB = function CardBodyStyleB(_ref) {
+  var content = _ref.content,
+      attr = _objectWithoutProperties(_ref, ["content"]);
+
+  return React.createElement("div", wrapperAttrs({
+    modifier: 'card-body',
+    content: content
+  }), React.createElement(ContentCardImage, {
+    content: content
+  }), React.createElement(CardBody, attr, React.createElement(ShortNameLink, {
+    content: content,
+    tag: "h4"
+  }), React.createElement(CompanyNameLink, {
+    content: content,
+    tag: "small",
+    className: "card-text d-block",
+    prefix: "From "
+  }), React.createElement(Row, {
+    tag: "small",
+    className: "card-text"
+  }, React.createElement(PrimarySectionNameLink, {
+    content: content,
+    className: "mr-2"
+  }), React.createElement(PublishedDate, {
+    content: content
+  }))));
+};
+
+CardBodyStyleB.displayName = 'Content/CardBody/StyleB';
+CardBodyStyleB.propTypes = propTypes$2;
+CardBodyStyleB.defaultProps = defaultProps$2;
+CardBodyStyleB.fragments = {
+  content: doc$1
+};
+
+var doc$2 = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ContentListGroupItemStyleA"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PlatformContent"}},"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"type"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"shortName"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"published"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"canonicalPath"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"primarySection"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"name"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"alias"},"arguments":[],"directives":[]}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PlatformContentProduct"}},"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"company"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"name"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"canonicalPath"},"arguments":[],"directives":[]}]}}]}}]}}],"loc":{"start":0,"end":258}};
+    doc$2.loc.source = {"body":"fragment ContentListGroupItemStyleA on PlatformContent {\n  id\n  type\n  shortName\n  published\n  canonicalPath\n  primarySection {\n    id\n    name\n    alias\n  }\n  ... on PlatformContentProduct {\n    company {\n      id\n      name\n      canonicalPath\n    }\n  }\n}\n","name":"GraphQL request","locationOffset":{"line":1,"column":1}};
+
+var propTypes$3 = {
   content: PropTypes.shape({
     id: PropTypes.number,
     type: PropTypes.string,
@@ -156,7 +223,7 @@ var propTypes$2 = {
     })
   })
 };
-var defaultProps$2 = {
+var defaultProps$3 = {
   content: {}
 };
 
@@ -184,19 +251,19 @@ var ListGroupItemStyleA = function ListGroupItemStyleA(_ref) {
 };
 
 ListGroupItemStyleA.displayName = 'Content/ListGroupItem/StyleA';
-ListGroupItemStyleA.propTypes = propTypes$2;
-ListGroupItemStyleA.defaultProps = defaultProps$2;
+ListGroupItemStyleA.propTypes = propTypes$3;
+ListGroupItemStyleA.defaultProps = defaultProps$3;
 ListGroupItemStyleA.fragments = {
-  content: doc$1
+  content: doc$2
 };
 
-var propTypes$3 = {
+var propTypes$4 = {
   flush: PropTypes.bool,
   itemAttrs: PropTypes.object,
   // eslint-disable-line react/forbid-prop-types
   nodes: PropTypes.arrayOf(PropTypes.object)
 };
-var defaultProps$3 = {
+var defaultProps$4 = {
   flush: false,
   itemAttrs: {},
   nodes: []
@@ -217,10 +284,10 @@ var ListGroupStyleA = function ListGroupStyleA(_ref) {
 };
 
 ListGroupStyleA.displayName = 'Content/ListGroup/StyleA';
-ListGroupStyleA.propTypes = propTypes$3;
-ListGroupStyleA.defaultProps = defaultProps$3;
+ListGroupStyleA.propTypes = propTypes$4;
+ListGroupStyleA.defaultProps = defaultProps$4;
 ListGroupStyleA.fragments = {
   content: ListGroupItemStyleA.fragments.content
 };
 
-export { CardBodyStyleA as CardBodyA, ContentCardImage as CardImage, ListGroupStyleA as ListGroupA, ListGroupItemStyleA as ListGroupItemA };
+export { CardBodyStyleA as CardBodyA, CardBodyStyleB as CardBodyB, ContentCardImage as CardImage, ListGroupStyleA as ListGroupA, ListGroupItemStyleA as ListGroupItemA };

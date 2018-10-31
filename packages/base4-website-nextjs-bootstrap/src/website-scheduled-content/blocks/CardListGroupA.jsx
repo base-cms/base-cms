@@ -16,6 +16,7 @@ const fragment = gql`
 `;
 
 const propTypes = {
+  header: PropTypes.string,
   // @todo These should be placed here by a HOC.
   query: PropTypes.shape({
     after: PropTypes.string,
@@ -31,10 +32,12 @@ const propTypes = {
 };
 
 const defaultProps = {
+  header: null,
   query: {},
 };
 
 const BlockHeroA = ({
+  header,
   query,
   ...attrs
 }) => {
@@ -56,6 +59,9 @@ const BlockHeroA = ({
         const nodes = items.slice(1) || [];
         return (
           <Card>
+            {header && (
+              <div className="card-header">{header}</div>
+            )}
             <CardBodyB content={content} {...attrs} />
             <ListGroupA flush nodes={nodes} className {...attrs} />
           </Card>
