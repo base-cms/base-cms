@@ -4,6 +4,7 @@ import Wrapper from './components/content/Wrapper';
 import Body from './components/content/Elements/Body';
 import Name from './components/content/Elements/Name';
 import ObjectValue from './components/content/Elements/ObjectValue';
+import PrimaryImage from './components/content/Elements/PrimaryImage';
 import PublishedDate from './components/content/Elements/PublishedDate';
 import Row from './components/content/Elements/Row';
 import ShortName from './components/content/Elements/ShortName';
@@ -27,6 +28,7 @@ export {
   Body,
   Name,
   ObjectValue,
+  PrimaryImage,
   PublishedDate,
   Row,
   ShortName,
