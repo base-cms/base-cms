@@ -69,14 +69,16 @@ var ContentCardImage = function ContentCardImage(_ref) {
       withBody = _ref.withBody,
       rest = _objectWithoutProperties(_ref, ["className", "content", "linkClassName", "withBody"]);
 
-  var classes = classNames(withBody ? 'card-img' : 'card-img-top img-fluid embed-responsive-item', className);
+  var imgAttrs = {
+    className: classNames(withBody ? 'card-img' : 'card-img-top img-fluid embed-responsive-item', className)
+  };
   var linkAttrs = {
     className: classNames('embed-responsive', 'embed-responsive-16by9', linkClassName)
   };
   return React.createElement(PrimaryImageLink, _extends({
     content: content,
-    className: classes,
-    linkAttrs: linkAttrs
+    linkAttrs: linkAttrs,
+    imgAttrs: imgAttrs
   }, rest));
 };
 

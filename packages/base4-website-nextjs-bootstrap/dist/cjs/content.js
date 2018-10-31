@@ -75,14 +75,16 @@ var ContentCardImage = function ContentCardImage(_ref) {
       withBody = _ref.withBody,
       rest = __chunk_1._objectWithoutProperties(_ref, ["className", "content", "linkClassName", "withBody"]);
 
-  var classes = classNames(withBody ? 'card-img' : 'card-img-top img-fluid embed-responsive-item', className);
+  var imgAttrs = {
+    className: classNames(withBody ? 'card-img' : 'card-img-top img-fluid embed-responsive-item', className)
+  };
   var linkAttrs = {
     className: classNames('embed-responsive', 'embed-responsive-16by9', linkClassName)
   };
   return React__default.createElement(content.PrimaryImageLink, __chunk_1._extends({
     content: content$$1,
-    className: classes,
-    linkAttrs: linkAttrs
+    linkAttrs: linkAttrs,
+    imgAttrs: imgAttrs
   }, rest));
 };
 
