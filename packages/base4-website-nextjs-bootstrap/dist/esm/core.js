@@ -95,7 +95,7 @@ var SiteNavbar = function SiteNavbar(_ref) {
       }
 
       return value;
-    }), React.createElement("div", {
+    }), React.createElement("ul", {
       className: "navbar-nav small align-self-center"
     }, config.getAsArray('secondaryNavItems').map(function (item) {
       return React.createElement(NavItem$1, {
@@ -103,7 +103,7 @@ var SiteNavbar = function SiteNavbar(_ref) {
         to: item.to,
         value: item.label
       });
-    }))), React.createElement("div", {
+    }))), React.createElement("ul", {
       className: "navbar-nav"
     }, config.getAsArray('primaryNavItems').map(function (item) {
       return React.createElement(NavItem$1, {
