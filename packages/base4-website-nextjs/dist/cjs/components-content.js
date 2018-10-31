@@ -661,6 +661,6 @@ exports.AuthorFullNameLinks = AuthorFullNameLinks;
 exports.CompanyNameLink = CompanyNameLink;
 exports.ContactFullNameLinks = ContactFullNameLinks;
 exports.ContributorFullNameLinks = ContributorFullNameLinks;
-exports.PrimayImageLink = PrimaryImageLink;
+exports.PrimaryImageLink = PrimaryImageLink;
 exports.PrimarySectionNameLink = PrimarySectionNameLink;
 exports.ShortNameLink = ShortNameLink;

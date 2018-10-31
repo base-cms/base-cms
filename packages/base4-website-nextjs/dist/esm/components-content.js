@@ -639,4 +639,4 @@ ShortNameLink.displayName = 'Content/Links/ShortName';
 ShortNameLink.propTypes = propTypes$g;
 ShortNameLink.defaultProps = defaultProps$g;
 
-export { ContentLink as Link, ContentWrapper as Wrapper, ContentBody as Body, ContentName as Name, ObjectValue$1 as ObjectValue, ContentPublishedDate as PublishedDate, ContentRow as Row, ContentShortName as ShortName, ContentSource as Source, ContentTeaser as Teaser, ContentType as Type, AuthorFullNameLinks, CompanyNameLink, ContactFullNameLinks, ContributorFullNameLinks, PrimaryImageLink as PrimayImageLink, PrimarySectionNameLink, ShortNameLink };
+export { ContentLink as Link, ContentWrapper as Wrapper, ContentBody as Body, ContentName as Name, ObjectValue$1 as ObjectValue, ContentPublishedDate as PublishedDate, ContentRow as Row, ContentShortName as ShortName, ContentSource as Source, ContentTeaser as Teaser, ContentType as Type, AuthorFullNameLinks, CompanyNameLink, ContactFullNameLinks, ContributorFullNameLinks, PrimaryImageLink, PrimarySectionNameLink, ShortNameLink };
