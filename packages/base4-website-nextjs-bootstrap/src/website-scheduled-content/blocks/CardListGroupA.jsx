@@ -58,12 +58,12 @@ const BlockHeroA = ({
         const content = items[0] || {};
         const nodes = items.slice(1) || [];
         return (
-          <Card>
+          <Card {...attrs}>
             {header && (
               <div className="card-header">{header}</div>
             )}
-            <CardBodyB content={content} {...attrs} />
-            <ListGroupA flush nodes={nodes} className {...attrs} />
+            <CardBodyB content={content} />
+            <ListGroupA flush nodes={nodes} />
           </Card>
         );
       }}

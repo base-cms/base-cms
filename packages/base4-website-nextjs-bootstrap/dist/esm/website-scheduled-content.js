@@ -1,4 +1,4 @@
-import { a as _extends, c as _objectSpread, b as _objectWithoutProperties, j as _taggedTemplateLiteral } from './chunk-cfc9ba70.js';
+import { c as _objectSpread, b as _objectWithoutProperties, j as _taggedTemplateLiteral, a as _extends } from './chunk-cfc9ba70.js';
 import React from 'react';
 import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
@@ -63,15 +63,14 @@ var BlockHeroA = function BlockHeroA(_ref) {
 
     var content = items[0] || {};
     var nodes = items.slice(1) || [];
-    return React.createElement(Card, null, header && React.createElement("div", {
+    return React.createElement(Card, attrs, header && React.createElement("div", {
       className: "card-header"
-    }, header), React.createElement(CardBodyB, _extends({
+    }, header), React.createElement(CardBodyB, {
       content: content
-    }, attrs)), React.createElement(ListGroupA, _extends({
+    }), React.createElement(ListGroupA, {
       flush: true,
-      nodes: nodes,
-      className: true
-    }, attrs)));
+      nodes: nodes
+    }));
   });
 };
 

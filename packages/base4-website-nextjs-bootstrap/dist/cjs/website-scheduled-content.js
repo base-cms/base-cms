@@ -70,15 +70,14 @@ var BlockHeroA = function BlockHeroA(_ref) {
 
     var content$$1 = items[0] || {};
     var nodes = items.slice(1) || [];
-    return React__default.createElement(core.Card, null, header && React__default.createElement("div", {
+    return React__default.createElement(core.Card, attrs, header && React__default.createElement("div", {
       className: "card-header"
-    }, header), React__default.createElement(content.CardBodyB, __chunk_1._extends({
+    }, header), React__default.createElement(content.CardBodyB, {
       content: content$$1
-    }, attrs)), React__default.createElement(content.ListGroupA, __chunk_1._extends({
+    }), React__default.createElement(content.ListGroupA, {
       flush: true,
-      nodes: nodes,
-      className: true
-    }, attrs)));
+      nodes: nodes
+    }));
   });
 };
 
