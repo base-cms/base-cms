@@ -4,7 +4,10 @@ import classNames from 'classnames';
 import ListGroupItem from '../core/ListGroupItem';
 
 const propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+  ]).isRequired,
   className: PropTypes.string,
   content: PropTypes.shape({
     id: PropTypes.number,
