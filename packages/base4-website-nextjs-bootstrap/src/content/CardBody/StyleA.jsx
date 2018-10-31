@@ -17,6 +17,7 @@ const propTypes = {
   content: PropTypes.shape({
     id: PropTypes.number,
     type: PropTypes.string,
+    teaser: PropTypes.string,
     shortName: PropTypes.string,
     canonicalPath: PropTypes.string,
     published: PropTypes.number,
@@ -45,7 +46,7 @@ const CardBodyStyleA = ({ content, ...attr }) => (
   <div {...wrapperAttrs({ modifier: 'card-body', content })}>
     <ContentCardImage content={content} />
     <CardBody {...attr}>
-      <ShortNameLink content={content} />
+      <ShortNameLink content={content} tag="h4" />
       <CompanyNameLink content={content} tag="small" className="card-text d-block" prefix="From " />
       <Teaser content={content} className="card-text" />
       <Row tag="small" className="card-text">
