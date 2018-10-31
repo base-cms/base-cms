@@ -578,7 +578,9 @@ var PrimaryImageLink = function PrimaryImageLink(_ref) {
     return React.createElement(ContentLink, _extends({
       canonicalPath: canonicalPath,
       collapsible: false
-    }, linkAttrs), image);
+    }, linkAttrs), function () {
+      return image;
+    });
   });
 };
 

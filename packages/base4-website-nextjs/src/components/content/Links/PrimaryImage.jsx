@@ -34,7 +34,7 @@ const PrimaryImageLink = ({
     <PrimaryImage content={content} collapsible={collapsible} {...attrs}>
       {image => (
         <Link canonicalPath={canonicalPath} collapsible={false} {...linkAttrs}>
-          {image}
+          {() => image}
         </Link>
       )}
     </PrimaryImage>

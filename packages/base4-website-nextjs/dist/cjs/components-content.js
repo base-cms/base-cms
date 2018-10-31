@@ -585,7 +585,9 @@ var PrimaryImageLink = function PrimaryImageLink(_ref) {
     return React__default.createElement(ContentLink, __chunk_1._extends({
       canonicalPath: canonicalPath,
       collapsible: false
-    }, linkAttrs), image);
+    }, linkAttrs), function () {
+      return image;
+    });
   });
 };
 
