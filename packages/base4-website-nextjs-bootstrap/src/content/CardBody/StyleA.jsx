@@ -36,16 +36,22 @@ const propTypes = {
       alt: PropTypes.string,
     }),
   }),
+  imgAttrs: PropTypes.object, // eslint-disable-line react/forbid-prop-types
 };
 
 const defaultProps = {
   content: {},
+  imgAttrs: {},
 };
 
-const CardBodyStyleA = ({ content, ...attr }) => (
+const CardBodyStyleA = ({
+  content,
+  imgAttrs,
+  ...attrs
+}) => (
   <div {...wrapperAttrs({ modifier: 'card-body', content })}>
-    <ContentCardImage content={content} />
-    <CardBody {...attr}>
+    <ContentCardImage content={content} {...imgAttrs} />
+    <CardBody {...attrs}>
       <ShortNameLink content={content} tag="h4" />
       <CompanyNameLink content={content} tag="small" className="card-text d-block" prefix="From " />
       <Teaser content={content} className="card-text" />

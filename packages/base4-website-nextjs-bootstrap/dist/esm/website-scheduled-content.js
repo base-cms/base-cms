@@ -66,7 +66,10 @@ var BlockHeroA = function BlockHeroA(_ref) {
     return React.createElement(Card, attrs, header && React.createElement("div", {
       className: "card-header"
     }, header), React.createElement(CardBodyB, {
-      content: content
+      content: content,
+      imgAttrs: {
+        className: header ? 'rounded-0' : null
+      }
     }), React.createElement(ListGroupA, {
       flush: true,
       nodes: nodes

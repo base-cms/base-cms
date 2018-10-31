@@ -62,7 +62,7 @@ const BlockHeroA = ({
             {header && (
               <div className="card-header">{header}</div>
             )}
-            <CardBodyB content={content} />
+            <CardBodyB content={content} imgAttrs={{ className: header ? 'rounded-0' : null }} />
             <ListGroupA flush nodes={nodes} />
           </Card>
         );

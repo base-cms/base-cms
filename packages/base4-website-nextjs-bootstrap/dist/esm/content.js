@@ -92,22 +92,26 @@ var propTypes$1 = {
       src: PropTypes.string,
       alt: PropTypes.string
     })
-  })
+  }),
+  imgAttrs: PropTypes.object // eslint-disable-line react/forbid-prop-types
+
 };
 var defaultProps$1 = {
-  content: {}
+  content: {},
+  imgAttrs: {}
 };
 
 var CardBodyStyleA = function CardBodyStyleA(_ref) {
   var content = _ref.content,
-      attr = _objectWithoutProperties(_ref, ["content"]);
+      imgAttrs = _ref.imgAttrs,
+      attrs = _objectWithoutProperties(_ref, ["content", "imgAttrs"]);
 
   return React.createElement("div", wrapperAttrs({
     modifier: 'card-body',
     content: content
-  }), React.createElement(ContentCardImage, {
+  }), React.createElement(ContentCardImage, _extends({
     content: content
-  }), React.createElement(CardBody, attr, React.createElement(ShortNameLink, {
+  }, imgAttrs)), React.createElement(CardBody, attrs, React.createElement(ShortNameLink, {
     content: content,
     tag: "h4"
   }), React.createElement(CompanyNameLink, {
@@ -160,22 +164,26 @@ var propTypes$2 = {
       src: PropTypes.string,
       alt: PropTypes.string
     })
-  })
+  }),
+  imgAttrs: PropTypes.object // eslint-disable-line react/forbid-prop-types
+
 };
 var defaultProps$2 = {
-  content: {}
+  content: {},
+  imgAttrs: {}
 };
 
 var CardBodyStyleB = function CardBodyStyleB(_ref) {
   var content = _ref.content,
-      attr = _objectWithoutProperties(_ref, ["content"]);
+      imgAttrs = _ref.imgAttrs,
+      attrs = _objectWithoutProperties(_ref, ["content", "imgAttrs"]);
 
   return React.createElement("div", wrapperAttrs({
     modifier: 'card-body',
     content: content
-  }), React.createElement(ContentCardImage, {
+  }), React.createElement(ContentCardImage, _extends({
     content: content
-  }), React.createElement(CardBody, attr, React.createElement(ShortNameLink, {
+  }, imgAttrs)), React.createElement(CardBody, attrs, React.createElement(ShortNameLink, {
     content: content,
     tag: "h4"
   }), React.createElement(CompanyNameLink, {

@@ -99,22 +99,26 @@ var propTypes$1 = {
       src: PropTypes.string,
       alt: PropTypes.string
     })
-  })
+  }),
+  imgAttrs: PropTypes.object // eslint-disable-line react/forbid-prop-types
+
 };
 var defaultProps$1 = {
-  content: {}
+  content: {},
+  imgAttrs: {}
 };
 
 var CardBodyStyleA = function CardBodyStyleA(_ref) {
   var content$$1 = _ref.content,
-      attr = __chunk_1._objectWithoutProperties(_ref, ["content"]);
+      imgAttrs = _ref.imgAttrs,
+      attrs = __chunk_1._objectWithoutProperties(_ref, ["content", "imgAttrs"]);
 
   return React__default.createElement("div", wrapperAttrs({
     modifier: 'card-body',
     content: content$$1
-  }), React__default.createElement(ContentCardImage, {
+  }), React__default.createElement(ContentCardImage, __chunk_1._extends({
     content: content$$1
-  }), React__default.createElement(core.CardBody, attr, React__default.createElement(content.ShortNameLink, {
+  }, imgAttrs)), React__default.createElement(core.CardBody, attrs, React__default.createElement(content.ShortNameLink, {
     content: content$$1,
     tag: "h4"
   }), React__default.createElement(content.CompanyNameLink, {
@@ -167,22 +171,26 @@ var propTypes$2 = {
       src: PropTypes.string,
       alt: PropTypes.string
     })
-  })
+  }),
+  imgAttrs: PropTypes.object // eslint-disable-line react/forbid-prop-types
+
 };
 var defaultProps$2 = {
-  content: {}
+  content: {},
+  imgAttrs: {}
 };
 
 var CardBodyStyleB = function CardBodyStyleB(_ref) {
   var content$$1 = _ref.content,
-      attr = __chunk_1._objectWithoutProperties(_ref, ["content"]);
+      imgAttrs = _ref.imgAttrs,
+      attrs = __chunk_1._objectWithoutProperties(_ref, ["content", "imgAttrs"]);
 
   return React__default.createElement("div", wrapperAttrs({
     modifier: 'card-body',
     content: content$$1
-  }), React__default.createElement(ContentCardImage, {
+  }), React__default.createElement(ContentCardImage, __chunk_1._extends({
     content: content$$1
-  }), React__default.createElement(core.CardBody, attr, React__default.createElement(content.ShortNameLink, {
+  }, imgAttrs)), React__default.createElement(core.CardBody, attrs, React__default.createElement(content.ShortNameLink, {
     content: content$$1,
     tag: "h4"
   }), React__default.createElement(content.CompanyNameLink, {
