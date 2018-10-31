@@ -15,6 +15,7 @@ import AuthorFullNameLinks from './components/content/Links/AuthorFullNames';
 import CompanyNameLink from './components/content/Links/CompanyName';
 import ContactFullNameLinks from './components/content/Links/ContactFullNames';
 import ContributorFullNameLinks from './components/content/Links/ContributorFullNames';
+import PrimayImageLink from './components/content/Links/PrimaryImage';
 import PrimarySectionNameLink from './components/content/Links/PrimarySectionName';
 import ShortNameLink from './components/content/Links/ShortName';
 
@@ -37,6 +38,7 @@ export {
   CompanyNameLink,
   ContactFullNameLinks,
   ContributorFullNameLinks,
+  PrimayImageLink,
   PrimarySectionNameLink,
   ShortNameLink,
 };
