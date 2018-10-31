@@ -1,14 +1,9 @@
-'use strict';
-
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-var __chunk_1 = require('./chunk-9e05845b.js');
-var React = require('react');
-var React__default = _interopDefault(React);
-var PropTypes = _interopDefault(require('prop-types'));
-var __chunk_5 = require('./chunk-b4017eec.js');
-var routing = require('./routing.js');
-var utils = require('./utils.js');
+import { f as _objectSpread, i as _objectWithoutProperties } from './chunk-1a4eb17c.js';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { a as Value, b as HTML } from './chunk-3ea85008.js';
+import { Link } from './routing.js';
+import { cleanPath } from './utils.js';
 
 var propTypes = {
   // Whether to render the `value` prop as HTML.
@@ -40,12 +35,12 @@ var LinkElement = function LinkElement(_ref) {
       params = _ref.params,
       to = _ref.to,
       value = _ref.value,
-      attrs = __chunk_1._objectWithoutProperties(_ref, ["asHTML", "children", "collapsible", "params", "to", "value"]);
+      attrs = _objectWithoutProperties(_ref, ["asHTML", "children", "collapsible", "params", "to", "value"]);
 
   var href = String(to || '');
   var isExternal = href.match(/^(http:|https:|ftp:|mailto:|\/\/)/i);
 
-  var props = __chunk_1._objectSpread({}, attrs, {
+  var props = _objectSpread({}, attrs, {
     children: children,
     collapsible: collapsible,
     href: isExternal ? href : undefined,
@@ -53,10 +48,10 @@ var LinkElement = function LinkElement(_ref) {
     value: value
   });
 
-  var child = asHTML ? React__default.createElement(__chunk_5.HTML, props) : React__default.createElement(__chunk_5.Value, props);
+  var child = asHTML ? React.createElement(HTML, props) : React.createElement(Value, props);
   if (isExternal) return child;
-  return React__default.createElement(routing.Link, {
-    route: "/".concat(utils.cleanPath(href)),
+  return React.createElement(Link, {
+    route: "/".concat(cleanPath(href)),
     params: params,
     passHref: true
   }, child);
@@ -66,4 +61,4 @@ LinkElement.displayName = 'Core/Elements/Link';
 LinkElement.propTypes = propTypes;
 LinkElement.defaultProps = defaultProps;
 
-exports.LinkElement = LinkElement;
+export { LinkElement as a };

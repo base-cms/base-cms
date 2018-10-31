@@ -1,13 +1,13 @@
 import { j as _extends, i as _objectWithoutProperties } from './chunk-1a4eb17c.js';
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { a as LinkElement } from './chunk-3113c1e6.js';
+import { a as LinkElement } from './chunk-b58e65a9.js';
 import classNames from 'classnames';
-import { c as ObjectValue } from './chunk-ac41547f.js';
-import { a as withModelFieldClass } from './chunk-672a6455.js';
-import { isFunction as isFn, titleizeType, getAsArray, modelClassNames } from './utils.js';
+import { c as ObjectValue } from './chunk-3ea85008.js';
+import { a as withModelFieldClass } from './chunk-ecc750e7.js';
+import { isFunction as isFn, titleizeType, getAsArray as _getAsArray, modelClassNames } from './utils.js';
 import { get } from 'object-path';
-import { a as Link } from './chunk-05cae656.js';
+import { a as Link } from './chunk-073bf529.js';
 import './routing.js';
 import './chunk-7976a9a0.js';
 import 'inflected';
@@ -363,7 +363,7 @@ var ContactFullNameLinks = function ContactFullNameLinks(_ref) {
       attrs = _objectWithoutProperties(_ref, ["children", "className", "collapsible", "content", "path", "prefix", "elementAttrs", "linkAttrs", "tag"]);
 
   var edgesPath = "".concat(path, ".edges");
-  var edges = getAsArray(content, edgesPath);
+  var edges = _getAsArray(content, edgesPath);
   if (collapsible && !edges.length) return null;
   return React.createElement(Tag, _extends({
     className: classNames(modelClassNames('content', edgesPath), className)

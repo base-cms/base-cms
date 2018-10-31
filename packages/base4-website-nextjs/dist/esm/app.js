@@ -6,7 +6,7 @@ export { default as withApollo } from '@base-cms/base4-nextjs-apollo';
 import { a as _regeneratorRuntime } from './chunk-fd635e66.js';
 import nextRoutes from 'next-routes';
 import { a as RoutingContext } from './chunk-7976a9a0.js';
-import { componentDisplayName, isObject } from './utils.js';
+import { componentDisplayName, get as _get, getAsArray as _getAsArray, getAsObject as _getAsObject, isObject } from './utils.js';
 import { a as SiteConfigContext } from './chunk-b0ac8f34.js';
 import 'inflected';
 import 'escape-string-regexp';
@@ -148,9 +148,58 @@ var withRouting = (function (definitions) {
   };
 });
 
+var SiteConfig =
+/*#__PURE__*/
+function () {
+  /**
+   *
+   * @param {object} config
+   */
+  function SiteConfig(config) {
+    _classCallCheck(this, SiteConfig);
+
+    this.config = isObject(config) ? config : {};
+  }
+  /**
+   *
+   * @param {string} path
+   * @param {*} def
+   */
+
+
+  _createClass(SiteConfig, [{
+    key: "get",
+    value: function get(path, def) {
+      return _get(this.config, path, def);
+    }
+    /**
+     *
+     * @param {string} path
+     */
+
+  }, {
+    key: "getAsArray",
+    value: function getAsArray(path) {
+      return _getAsArray(this.config, path);
+    }
+    /**
+     *
+     * @param {string} path
+     */
+
+  }, {
+    key: "getAsObject",
+    value: function getAsObject(path) {
+      return _getAsObject(this.config, path);
+    }
+  }]);
+
+  return SiteConfig;
+}();
+
 var withSiteConfig = (function (siteConfig) {
   return function (ComposedComponent) {
-    var config = isObject(siteConfig) ? siteConfig : {};
+    var config = new SiteConfig(siteConfig);
 
     var WithSiteConfig =
     /*#__PURE__*/

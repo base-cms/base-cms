@@ -79,16 +79,16 @@ var formatDate = (function (value, format) {
   return date.isValid() ? date.format(format) : '';
 });
 
-var get$1 = (function (obj, path) {
+var _get = (function (obj, path) {
   var def = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
   return get(obj, path, def);
 });
 
-var getAsArray = (function (obj, path) {
+var _getAsArray = (function (obj, path) {
   return asArray(get(obj, path, []));
 });
 
-var getAsObject = (function (obj, path) {
+var _getAsObject = (function (obj, path) {
   return asObject(get(obj, path, {}));
 });
 
@@ -159,4 +159,4 @@ var titleizeType = (function (type) {
   }).join(' ');
 });
 
-export { asArray, asObject, cleanPath, componentDisplayName, createMarkup, dasherize$1 as dasherize, escapeRegex, extractFragmentData, extractFragmentName, formatDate, get$1 as get, getAsArray, getAsObject, httpErrors, isFn as isFunction, isObject, modelClassNames, sectionPath, titleizeType };
+export { asArray, asObject, cleanPath, componentDisplayName, createMarkup, dasherize$1 as dasherize, escapeRegex, extractFragmentData, extractFragmentName, formatDate, _get as get, _getAsArray as getAsArray, _getAsObject as getAsObject, httpErrors, isFn as isFunction, isObject, modelClassNames, sectionPath, titleizeType };

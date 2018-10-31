@@ -155,9 +155,58 @@ var withRouting = (function (definitions) {
   };
 });
 
+var SiteConfig =
+/*#__PURE__*/
+function () {
+  /**
+   *
+   * @param {object} config
+   */
+  function SiteConfig(config) {
+    __chunk_1._classCallCheck(this, SiteConfig);
+
+    this.config = utils.isObject(config) ? config : {};
+  }
+  /**
+   *
+   * @param {string} path
+   * @param {*} def
+   */
+
+
+  __chunk_1._createClass(SiteConfig, [{
+    key: "get",
+    value: function get(path, def) {
+      return utils.get(this.config, path, def);
+    }
+    /**
+     *
+     * @param {string} path
+     */
+
+  }, {
+    key: "getAsArray",
+    value: function getAsArray(path) {
+      return utils.getAsArray(this.config, path);
+    }
+    /**
+     *
+     * @param {string} path
+     */
+
+  }, {
+    key: "getAsObject",
+    value: function getAsObject(path) {
+      return utils.getAsObject(this.config, path);
+    }
+  }]);
+
+  return SiteConfig;
+}();
+
 var withSiteConfig = (function (siteConfig) {
   return function (ComposedComponent) {
-    var config = utils.isObject(siteConfig) ? siteConfig : {};
+    var config = new SiteConfig(siteConfig);
 
     var WithSiteConfig =
     /*#__PURE__*/
