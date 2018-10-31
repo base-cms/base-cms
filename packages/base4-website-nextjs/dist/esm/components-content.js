@@ -1,13 +1,13 @@
 import { j as _extends, i as _objectWithoutProperties } from './chunk-1a4eb17c.js';
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { a as LinkElement } from './chunk-50fbe998.js';
+import { a as LinkElement } from './chunk-3113c1e6.js';
 import classNames from 'classnames';
-import { c as ObjectValue } from './chunk-af4d07d3.js';
-import { a as withModelFieldClass } from './chunk-4977f5b3.js';
+import { c as ObjectValue } from './chunk-ac41547f.js';
+import { a as withModelFieldClass } from './chunk-672a6455.js';
 import { isFunction as isFn, titleizeType, getAsArray, modelClassNames } from './utils.js';
 import { get } from 'object-path';
-import { a as Link } from './chunk-71d47bee.js';
+import { a as Link } from './chunk-05cae656.js';
 import './routing.js';
 import './chunk-7976a9a0.js';
 import 'inflected';

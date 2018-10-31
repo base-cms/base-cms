@@ -2,7 +2,7 @@ import { j as _extends, i as _objectWithoutProperties } from './chunk-1a4eb17c.j
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { a as LinkElement } from './chunk-50fbe998.js';
+import { a as LinkElement } from './chunk-3113c1e6.js';
 import { sectionPath } from './utils.js';
 
 var propTypes = {

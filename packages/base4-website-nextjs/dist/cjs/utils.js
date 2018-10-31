@@ -85,6 +85,11 @@ var formatDate = (function (value, format) {
   return date.isValid() ? date.format(format) : '';
 });
 
+var get = (function (obj, path) {
+  var def = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+  return objectPath.get(obj, path, def);
+});
+
 var getAsArray = (function (obj, path) {
   return asArray(objectPath.get(obj, path, []));
 });
@@ -170,6 +175,7 @@ exports.escapeRegex = escapeRegex;
 exports.extractFragmentData = extractFragmentData;
 exports.extractFragmentName = extractFragmentName;
 exports.formatDate = formatDate;
+exports.get = get;
 exports.getAsArray = getAsArray;
 exports.getAsObject = getAsObject;
 exports.httpErrors = httpErrors;
