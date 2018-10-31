@@ -553,7 +553,6 @@ ContributorFullNameLinks.propTypes = propTypes$e;
 ContributorFullNameLinks.defaultProps = defaultProps$e;
 
 var propTypes$f = {
-  className: PropTypes.string,
   collapsible: PropTypes.bool,
   content: PropTypes.shape({
     canonicalPath: PropTypes.string,
@@ -562,47 +561,32 @@ var propTypes$f = {
       alt: PropTypes.string
     })
   }),
-  imgAttrs: PropTypes.object,
-  // eslint-disable-line react/forbid-prop-types
-  linkAttrs: PropTypes.object,
-  // eslint-disable-line react/forbid-prop-types
-  tag: PropTypes.string
+  linkAttrs: PropTypes.object // eslint-disable-line react/forbid-prop-types
+
 };
 var defaultProps$f = {
-  className: null,
   collapsible: true,
   content: {},
-  imgAttrs: {},
-  linkAttrs: {},
-  tag: 'div'
+  linkAttrs: {}
 };
 
 var PrimaryImageLink = function PrimaryImageLink(_ref) {
-  var className = _ref.className,
-      collapsible = _ref.collapsible,
+  var collapsible = _ref.collapsible,
       content = _ref.content,
-      imgAttrs = _ref.imgAttrs,
       linkAttrs = _ref.linkAttrs,
-      Tag = _ref.tag,
-      attrs = __chunk_1._objectWithoutProperties(_ref, ["className", "collapsible", "content", "imgAttrs", "linkAttrs", "tag"]);
+      attrs = __chunk_1._objectWithoutProperties(_ref, ["collapsible", "content", "linkAttrs"]);
 
   var canonicalPath = utils.get(content, 'canonicalPath');
-  var primaryImage = utils.getAsObject(content, 'primaryImage');
-  var src = primaryImage.src,
-      alt = primaryImage.alt;
-  if (collapsible && (!src || !alt)) return null;
-  var image = React__default.createElement("img", __chunk_1._extends({
-    src: src,
-    alt: alt
-  }, imgAttrs));
-  return React__default.createElement(Tag, __chunk_1._extends({
-    className: classNames(utils.modelClassNames('content', 'primaryImage'), className)
-  }, attrs), canonicalPath ? React__default.createElement(ContentLink, __chunk_1._extends({
-    canonicalPath: canonicalPath,
-    collapsible: false
-  }, linkAttrs), function () {
-    return image;
-  }) : image);
+  if (collapsible && !canonicalPath) return null;
+  return React__default.createElement(PrimaryImage, __chunk_1._extends({
+    content: content,
+    collapsible: collapsible
+  }, attrs), function (image) {
+    return React__default.createElement(ContentLink, __chunk_1._extends({
+      canonicalPath: canonicalPath,
+      collapsible: false
+    }, linkAttrs), image);
+  });
 };
 
 PrimaryImageLink.displayName = 'Content/Links/PrimaryImage';
