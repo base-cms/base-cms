@@ -8,7 +8,7 @@ import {
   ShortNameLink,
 } from '@base-cms/base4-website-nextjs/components/content';
 import ListGroupItem from '../../core/ListGroupItem';
-import withAttributes from '../withAttributes';
+import wrapperAttrs from '../wrapper-attrs';
 import fragment from './StyleA.graphql';
 
 const propTypes = {
@@ -36,7 +36,7 @@ const defaultProps = {
 };
 
 const ListGroupItemStyleA = ({ content }) => (
-  <ListGroupItem>
+  <ListGroupItem {...wrapperAttrs({ modifier: 'list-item', content })}>
     <ShortNameLink content={content} className="mb-1" />
     <CompanyNameLink content={content} tag="small" className="d-block" prefix="From " />
     <Row tag="small">
@@ -51,4 +51,4 @@ ListGroupItemStyleA.propTypes = propTypes;
 ListGroupItemStyleA.defaultProps = defaultProps;
 ListGroupItemStyleA.fragments = { content: fragment };
 
-export default withAttributes('list-item')(ListGroupItemStyleA);
+export default ListGroupItemStyleA;
