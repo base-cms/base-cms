@@ -41,7 +41,7 @@ const defaultProps = {
 };
 
 const CardBodyStyleA = ({ content, ...attr }) => (
-  <>
+  <div className="content content--card-body">
     <ContentCardImage content={content} />
     <CardBody {...attr}>
       <ShortNameLink content={content} />
@@ -52,7 +52,7 @@ const CardBodyStyleA = ({ content, ...attr }) => (
         <PublishedDate content={content} />
       </Row>
     </CardBody>
-  </>
+  </div>
 );
 
 CardBodyStyleA.displayName = 'Content/CardBody/StyleA';
