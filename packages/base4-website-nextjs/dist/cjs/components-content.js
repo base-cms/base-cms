@@ -501,6 +501,62 @@ ContributorFullNameLinks.propTypes = propTypes$d;
 ContributorFullNameLinks.defaultProps = defaultProps$d;
 
 var propTypes$e = {
+  className: PropTypes.string,
+  collapsible: PropTypes.bool,
+  content: PropTypes.shape({
+    canonicalPath: PropTypes.string,
+    primaryImage: PropTypes.shape({
+      src: PropTypes.string,
+      alt: PropTypes.string
+    })
+  }),
+  imgAttrs: PropTypes.object,
+  // eslint-disable-line react/forbid-prop-types
+  linkAttrs: PropTypes.object,
+  // eslint-disable-line react/forbid-prop-types
+  tag: PropTypes.string
+};
+var defaultProps$e = {
+  className: null,
+  collapsible: true,
+  content: {},
+  imgAttrs: {},
+  linkAttrs: {},
+  tag: 'div'
+};
+
+var PrimaryImageLink = function PrimaryImageLink(_ref) {
+  var className = _ref.className,
+      collapsible = _ref.collapsible,
+      content = _ref.content,
+      imgAttrs = _ref.imgAttrs,
+      linkAttrs = _ref.linkAttrs,
+      Tag = _ref.tag,
+      attrs = __chunk_1._objectWithoutProperties(_ref, ["className", "collapsible", "content", "imgAttrs", "linkAttrs", "tag"]);
+
+  var canonicalPath = utils.get(content, 'canonicalPath');
+  var primaryImage = utils.getAsObject(content, 'primaryImage');
+  var src = primaryImage.src,
+      alt = primaryImage.alt;
+  if (collapsible && (!src || !alt)) return null;
+  var image = React__default.createElement("img", __chunk_1._extends({
+    src: src,
+    alt: alt
+  }, imgAttrs));
+  return React__default.createElement(Tag, __chunk_1._extends({
+    className: classNames(utils.modelClassNames('content', 'primaryImage'), className)
+  }, attrs), canonicalPath ? React__default.createElement(ContentLink, __chunk_1._extends({
+    canonicalPath: canonicalPath
+  }, linkAttrs), function () {
+    return image;
+  }) : image);
+};
+
+PrimaryImageLink.displayName = 'Content/Links/PrimaryImage';
+PrimaryImageLink.propTypes = propTypes$e;
+PrimaryImageLink.defaultProps = defaultProps$e;
+
+var propTypes$f = {
   children: PropTypes.func,
   collapsible: PropTypes.bool,
   content: PropTypes.shape({
@@ -515,7 +571,7 @@ var propTypes$e = {
   prefix: PropTypes.string,
   tag: PropTypes.string
 };
-var defaultProps$e = {
+var defaultProps$f = {
   children: undefined,
   collapsible: true,
   content: {},
@@ -547,10 +603,10 @@ var PrimarySectionNameLink = function PrimarySectionNameLink(_ref) {
 };
 
 PrimarySectionNameLink.propTypes = 'Content/Links/PrimarySectionName';
-PrimarySectionNameLink.propTypes = propTypes$e;
-PrimarySectionNameLink.defaultProps = defaultProps$e;
+PrimarySectionNameLink.propTypes = propTypes$f;
+PrimarySectionNameLink.defaultProps = defaultProps$f;
 
-var propTypes$f = {
+var propTypes$g = {
   collapsible: PropTypes.bool,
   content: PropTypes.shape({
     shortName: PropTypes.string,
@@ -560,7 +616,7 @@ var propTypes$f = {
   // eslint-disable-line react/forbid-prop-types
   tag: PropTypes.string
 };
-var defaultProps$f = {
+var defaultProps$g = {
   collapsible: true,
   content: {},
   linkAttrs: {},
@@ -587,8 +643,8 @@ var ShortNameLink = function ShortNameLink(_ref) {
 };
 
 ShortNameLink.displayName = 'Content/Links/ShortName';
-ShortNameLink.propTypes = propTypes$f;
-ShortNameLink.defaultProps = defaultProps$f;
+ShortNameLink.propTypes = propTypes$g;
+ShortNameLink.defaultProps = defaultProps$g;
 
 exports.Link = ContentLink;
 exports.Wrapper = ContentWrapper;
@@ -605,5 +661,6 @@ exports.AuthorFullNameLinks = AuthorFullNameLinks;
 exports.CompanyNameLink = CompanyNameLink;
 exports.ContactFullNameLinks = ContactFullNameLinks;
 exports.ContributorFullNameLinks = ContributorFullNameLinks;
+exports.PrimayImageLink = PrimaryImageLink;
 exports.PrimarySectionNameLink = PrimarySectionNameLink;
 exports.ShortNameLink = ShortNameLink;

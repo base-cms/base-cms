@@ -5,7 +5,7 @@ import { a as LinkElement } from './chunk-b58e65a9.js';
 import classNames from 'classnames';
 import { c as ObjectValue } from './chunk-3ea85008.js';
 import { a as withModelFieldClass } from './chunk-ecc750e7.js';
-import { isFunction as isFn, titleizeType, getAsArray as _getAsArray, modelClassNames } from './utils.js';
+import { isFunction as isFn, titleizeType, getAsArray as _getAsArray, modelClassNames, getAsObject as _getAsObject, get as _get } from './utils.js';
 import { get } from 'object-path';
 import { a as Link } from './chunk-073bf529.js';
 import './routing.js';
@@ -494,6 +494,62 @@ ContributorFullNameLinks.propTypes = propTypes$d;
 ContributorFullNameLinks.defaultProps = defaultProps$d;
 
 var propTypes$e = {
+  className: PropTypes.string,
+  collapsible: PropTypes.bool,
+  content: PropTypes.shape({
+    canonicalPath: PropTypes.string,
+    primaryImage: PropTypes.shape({
+      src: PropTypes.string,
+      alt: PropTypes.string
+    })
+  }),
+  imgAttrs: PropTypes.object,
+  // eslint-disable-line react/forbid-prop-types
+  linkAttrs: PropTypes.object,
+  // eslint-disable-line react/forbid-prop-types
+  tag: PropTypes.string
+};
+var defaultProps$e = {
+  className: null,
+  collapsible: true,
+  content: {},
+  imgAttrs: {},
+  linkAttrs: {},
+  tag: 'div'
+};
+
+var PrimaryImageLink = function PrimaryImageLink(_ref) {
+  var className = _ref.className,
+      collapsible = _ref.collapsible,
+      content = _ref.content,
+      imgAttrs = _ref.imgAttrs,
+      linkAttrs = _ref.linkAttrs,
+      Tag = _ref.tag,
+      attrs = _objectWithoutProperties(_ref, ["className", "collapsible", "content", "imgAttrs", "linkAttrs", "tag"]);
+
+  var canonicalPath = _get(content, 'canonicalPath');
+  var primaryImage = _getAsObject(content, 'primaryImage');
+  var src = primaryImage.src,
+      alt = primaryImage.alt;
+  if (collapsible && (!src || !alt)) return null;
+  var image = React.createElement("img", _extends({
+    src: src,
+    alt: alt
+  }, imgAttrs));
+  return React.createElement(Tag, _extends({
+    className: classNames(modelClassNames('content', 'primaryImage'), className)
+  }, attrs), canonicalPath ? React.createElement(ContentLink, _extends({
+    canonicalPath: canonicalPath
+  }, linkAttrs), function () {
+    return image;
+  }) : image);
+};
+
+PrimaryImageLink.displayName = 'Content/Links/PrimaryImage';
+PrimaryImageLink.propTypes = propTypes$e;
+PrimaryImageLink.defaultProps = defaultProps$e;
+
+var propTypes$f = {
   children: PropTypes.func,
   collapsible: PropTypes.bool,
   content: PropTypes.shape({
@@ -508,7 +564,7 @@ var propTypes$e = {
   prefix: PropTypes.string,
   tag: PropTypes.string
 };
-var defaultProps$e = {
+var defaultProps$f = {
   children: undefined,
   collapsible: true,
   content: {},
@@ -540,10 +596,10 @@ var PrimarySectionNameLink = function PrimarySectionNameLink(_ref) {
 };
 
 PrimarySectionNameLink.propTypes = 'Content/Links/PrimarySectionName';
-PrimarySectionNameLink.propTypes = propTypes$e;
-PrimarySectionNameLink.defaultProps = defaultProps$e;
+PrimarySectionNameLink.propTypes = propTypes$f;
+PrimarySectionNameLink.defaultProps = defaultProps$f;
 
-var propTypes$f = {
+var propTypes$g = {
   collapsible: PropTypes.bool,
   content: PropTypes.shape({
     shortName: PropTypes.string,
@@ -553,7 +609,7 @@ var propTypes$f = {
   // eslint-disable-line react/forbid-prop-types
   tag: PropTypes.string
 };
-var defaultProps$f = {
+var defaultProps$g = {
   collapsible: true,
   content: {},
   linkAttrs: {},
@@ -580,7 +636,7 @@ var ShortNameLink = function ShortNameLink(_ref) {
 };
 
 ShortNameLink.displayName = 'Content/Links/ShortName';
-ShortNameLink.propTypes = propTypes$f;
-ShortNameLink.defaultProps = defaultProps$f;
+ShortNameLink.propTypes = propTypes$g;
+ShortNameLink.defaultProps = defaultProps$g;
 
-export { ContentLink as Link, ContentWrapper as Wrapper, ContentBody as Body, ContentName as Name, ObjectValue$1 as ObjectValue, ContentPublishedDate as PublishedDate, ContentRow as Row, ContentShortName as ShortName, ContentSource as Source, ContentTeaser as Teaser, ContentType as Type, AuthorFullNameLinks, CompanyNameLink, ContactFullNameLinks, ContributorFullNameLinks, PrimarySectionNameLink, ShortNameLink };
+export { ContentLink as Link, ContentWrapper as Wrapper, ContentBody as Body, ContentName as Name, ObjectValue$1 as ObjectValue, ContentPublishedDate as PublishedDate, ContentRow as Row, ContentShortName as ShortName, ContentSource as Source, ContentTeaser as Teaser, ContentType as Type, AuthorFullNameLinks, CompanyNameLink, ContactFullNameLinks, ContributorFullNameLinks, PrimaryImageLink as PrimayImageLink, PrimarySectionNameLink, ShortNameLink };
