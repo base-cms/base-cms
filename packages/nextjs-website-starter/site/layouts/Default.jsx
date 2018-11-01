@@ -13,9 +13,9 @@ const propTypes = {
 const DefaultLayout = ({ children }) => (
   <>
     <SiteNavbar className="sticky-top navbar-dark bg-dark shadow" />
-    <Container>
+    <Container fluid>
       <Row>
-        <Col className="my-3">
+        <Col className="my-3" style={{ paddingLeft: '6rem', paddingRight: '6rem' }}>
           {children}
         </Col>
       </Row>
