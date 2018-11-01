@@ -3,6 +3,7 @@ import CardBody from './core/CardBody';
 import ListGroup from './core/ListGroup';
 import ListGroupItem from './core/ListGroupItem';
 import NavItem from './core/NavItem';
+import PlaceholderAd from './core/PlaceholderAd';
 import SiteNavbar from './core/SiteNavbar';
 
 export {
@@ -11,5 +12,6 @@ export {
   ListGroup,
   ListGroupItem,
   NavItem,
+  PlaceholderAd,
   SiteNavbar,
 };
