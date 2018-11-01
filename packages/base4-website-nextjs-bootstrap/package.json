@@ -11,6 +11,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "build": "yarn clean && rollup -c",
+    "dev": "NODE_ENV=development node test/app/server",
     "lint": "node_modules/.bin/eslint src --ext .js --ext .jsx",
     "upgrade-core": "yarn upgrade @base-cms/base4-website-nextjs --dev"
   },
