@@ -113,7 +113,7 @@ export default ({
       return (
         <>
           <SiteConfigContext.Consumer>
-            {config => <PageTitle value={metadata.title} siteName={config.name} />}
+            {config => <PageTitle value={metadata.title} siteName={config.get('name')} />}
           </SiteConfigContext.Consumer>
           <MetaDescription value={metadata.description} />
           <RelCanonical origin={requestOrigin} pathname={canonicalPath} />

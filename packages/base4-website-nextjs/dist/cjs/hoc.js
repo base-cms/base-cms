@@ -168,7 +168,7 @@ var withDynamicPage = (function (Page) {
         return React__default.createElement(React__default.Fragment, null, React__default.createElement(__chunk_4.SiteConfigContext.Consumer, null, function (config) {
           return React__default.createElement(componentsHead.PageTitle, {
             value: metadata.title,
-            siteName: config.name
+            siteName: config.get('name')
           });
         }), React__default.createElement(componentsHead.MetaDescription, {
           value: metadata.description
@@ -381,7 +381,7 @@ var withPlatformContent = (function () {
           return React__default.createElement(React__default.Fragment, null, React__default.createElement(__chunk_4.SiteConfigContext.Consumer, null, function (config) {
             return React__default.createElement(componentsHead.PageTitle, {
               value: metadata.title,
-              siteName: config.name
+              siteName: config.get('name')
             });
           }), React__default.createElement(componentsHead.MetaDescription, {
             value: metadata.description
@@ -560,7 +560,7 @@ var withWebsiteSection = (function () {
           return React__default.createElement(React__default.Fragment, null, React__default.createElement(__chunk_4.SiteConfigContext.Consumer, null, function (config) {
             return React__default.createElement(componentsHead.PageTitle, {
               value: metadata.title,
-              siteName: config.name
+              siteName: config.get('name')
             });
           }), React__default.createElement(componentsHead.MetaDescription, {
             value: metadata.description
