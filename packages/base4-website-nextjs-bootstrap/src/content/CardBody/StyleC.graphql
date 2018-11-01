@@ -1,0 +1,12 @@
+fragment ContentCardBodyStyleC on PlatformContent {
+  id
+  type
+  shortName
+  canonicalPath
+  # @todo Remove the hardcoded CDN!
+  primaryImage {
+    id
+    src(input: { host: "cdn.officer.com" })
+    alt
+  }
+}
