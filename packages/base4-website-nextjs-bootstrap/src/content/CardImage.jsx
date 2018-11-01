@@ -31,7 +31,7 @@ const ContentCardImage = ({
   withBody,
   ...rest
 }) => {
-  const imgAttrs = { className: classNames(withBody ? 'card-img' : 'card-img-top img-fluid embed-responsive-item', className) };
+  const imgAttrs = { className: classNames(withBody ? 'card-img' : 'card-img-top', 'img-fluid embed-responsive-item', className) };
   const linkAttrs = { className: classNames('embed-responsive', 'embed-responsive-16by9', linkClassName) };
   return <PrimaryImageLink content={content} linkAttrs={linkAttrs} imgAttrs={imgAttrs} {...rest} />;
 };
