@@ -5,9 +5,21 @@ import {
   Description,
   Wrapper,
 } from '@base-cms/base4-website-nextjs/components/website-section';
+
+import {
+  Row,
+  Col,
+} from 'reactstrap';
+
 import withLayout from '../../../src/layouts/withLayout';
 import DefaultLayout from '../layouts/Default';
-import { BlockCardListGroupA } from '../../../src/website-scheduled-content';
+import { BlockHeroA, BlockListGroupA, BlockListGroupB } from '../../../src/website-scheduled-content';
+
+const MutedHeader = ({ children }) => (
+  <h3 className="text-muted">
+    {children}
+  </h3>
+);
 
 const SectionPage = ({ section }) => (
   <Wrapper section={section}>
@@ -16,12 +28,24 @@ const SectionPage = ({ section }) => (
     <hr />
     <hr />
     <h1>Blocks</h1>
+
+    <h2>Hero A</h2>
+    <MutedHeader>Standard Image</MutedHeader>
+    <BlockHeroA
+      query={{
+        sectionId: section.id,
+        first: 7,
+        requiresImage: true,
+      }}
+    />
+
+    <hr />
+
     <h2>Card List Group A</h2>
-    <h3 className="text-muted">col-4 w/header</h3>
-    <div className="row">
-      <div className="col-4">
-        <BlockCardListGroupA
-          className="h-100"
+    <MutedHeader>col-4</MutedHeader>
+    <Row>
+      <Col xs="4">
+        <BlockListGroupA
           header="Video"
           query={{
             sectionId: section.id,
@@ -30,8 +54,28 @@ const SectionPage = ({ section }) => (
             includeContentTypes: ['Video']
           }}
         />
-      </div>
-    </div>
+      </Col>
+    </Row>
+
+    <hr />
+
+    <h2>Card List Group B</h2>
+    <MutedHeader>col-4 w/header</MutedHeader>
+    <Row>
+      <Col xs="4">
+        <BlockListGroupB
+          header="Video"
+          query={{
+            sectionId: section.id,
+            first: 4,
+            requiresImage: true,
+            includeContentTypes: ['Video']
+          }}
+        />
+      </Col>
+    </Row>
+
+    <hr />
 
   </Wrapper>
 );
