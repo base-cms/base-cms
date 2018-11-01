@@ -1,12 +1,20 @@
 module.exports = {
-  name: 'Test Site',
-  logo: 'https://vignette.wikia.nocookie.net/aq3d/images/7/79/TestObject_Logo.png/revision/latest?cb=20161023010639',
+  name: 'Officer (Test Site)',
+  logo: '//cdn.officer.com/files/base/cygnus/ofcr/image/static/logo/site_logo.png',
   primaryNavItems: [
-    { to: '/', label: 'Home' },
-    { to: 'https://google.com', label: 'Google' },
+    { to: '/tactical', label: 'Tactical' },
+    { to: '/training-careers', label: 'Training & Careers' },
+    { to: '/on-the-street', label: 'On the Street' },
+    { to: '/investigations', label: 'Investigations' },
+    { to: '/command-hq', label: 'Command/HQ' },
+    { to: '/directory', label: 'Product Guide' },
+    { to: 'https://forum.officer.com', label: 'Forums (External)' },
   ],
   secondaryNavItems: [
-    { to: '/', label: 'Home' },
-    { to: 'https://google.com', label: 'Google' },
+    { to: '/features/honoring-the-fallen', label: 'Honoring the Fallen' },
+    { to: '/magazine', label: 'Publications' },
+    { to: '/page/privacy-policy', label: 'Privacy Policy' },
+    { to: '/advertise', label: 'Advertise' },
+    { to: '/contact-us', label: 'Contact Us' },
   ],
 };
