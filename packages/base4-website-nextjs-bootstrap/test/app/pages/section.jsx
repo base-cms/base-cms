@@ -22,6 +22,7 @@ import {
   BlockHeroA,
   BlockHeroB,
   BlockHeroC,
+  BlockHeroD,
   BlockListGroupA,
   BlockListGroupB,
   BlockListGroupC,
@@ -70,6 +71,15 @@ const SectionPage = ({ section }) => (
         first: 7,
         requiresImage: true,
         includeContentTypes: ['Article'],
+      }}
+    />
+
+    <h2>Hero D</h2>
+    <BlockHeroD
+      query={{
+        sectionId: section.id,
+        first: 5,
+        requiresImage: true,
       }}
     />
 
