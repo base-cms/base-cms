@@ -1,6 +1,6 @@
 import React from 'react';
 import withLayout from '../../../src/layouts/withLayout';
-import DefaultLayout from '../../../src/layouts/Default';
+import DefaultLayout from '../layouts/Default';
 
 const IndexPage = () => (
   <h1>Default Index Page</h1>
