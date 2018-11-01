@@ -1,5 +1,7 @@
 import React from 'react';
-import { withWebsiteSection } from '@base-cms/base4-website-nextjs/hoc';
+import {
+  withWebsiteSection,
+} from '@base-cms/base4-website-nextjs/hoc';
 import {
   Name,
   Description,
@@ -14,11 +16,15 @@ import {
 import withLayout from '../../../src/layouts/withLayout';
 import DefaultLayout from '../layouts/Default';
 import {
+  BlockCardDeckA,
   BlockHeroA,
   BlockListGroupA,
   BlockListGroupB,
   BlockListGroupC,
 } from '../../../src/website-scheduled-content';
+import {
+  PlaceholderAd,
+} from '../../../src/core';
 
 const MutedHeader = ({ children }) => (
   <h3 className="text-muted">
@@ -97,6 +103,20 @@ const SectionPage = ({ section }) => (
         />
       </Col>
     </Row>
+
+    <hr />
+
+    <h2>Card Deck A</h2>
+    <BlockCardDeckA
+      query={{
+        sectionId: section.id,
+        first: 8,
+        requiresImage: true,
+        includeContentTypes: ['Video']
+      }}
+      interstitial={() => <PlaceholderAd size="300x250" />}
+    />
+
 
   </Wrapper>
 );
