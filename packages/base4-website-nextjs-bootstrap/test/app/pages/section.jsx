@@ -21,6 +21,7 @@ import {
   BlockListGroupA,
   BlockListGroupB,
   BlockListGroupC,
+  BlockListGroupD,
 } from '../../../src/website-scheduled-content';
 import {
   PlaceholderAd,
@@ -52,12 +53,12 @@ const SectionPage = ({ section }) => (
 
     <hr />
 
-    <h2>Card List Group A</h2>
-    <MutedHeader>xl=4, lg=6, xs=12 w/header</MutedHeader>
+    <h2>List Groups</h2>
     <Row>
-      <Col xl="4" lg="6" xs="12">
+      <Col xl="4" lg="6" xs="12" className="mb-3">
         <BlockListGroupA
-          header="Video"
+          className="h-100"
+          header="Group A (xl=4, lg=6, xs=12)"
           query={{
             sectionId: section.id,
             first: 4,
@@ -66,16 +67,10 @@ const SectionPage = ({ section }) => (
           }}
         />
       </Col>
-    </Row>
-
-    <hr />
-
-    <h2>Card List Group B</h2>
-    <MutedHeader>xl=4, lg=6, xs=12 w/header</MutedHeader>
-    <Row>
-      <Col xl="4" lg="6" xs="12">
+      <Col xl="4" lg="6" xs="12" className="mb-3">
         <BlockListGroupB
-          header="Video"
+          className="h-100"
+          header="Group B (xl=4, lg=6, xs=12)"
           query={{
             sectionId: section.id,
             first: 4,
@@ -84,16 +79,22 @@ const SectionPage = ({ section }) => (
           }}
         />
       </Col>
-    </Row>
-
-    <hr />
-
-    <h2>Card List Group C</h2>
-    <MutedHeader>xl=4, lg=6, xs=12 w/header</MutedHeader>
-    <Row>
-      <Col xl="4" lg="6" xs="12">
+      <Col xl="4" lg="6" xs="12" className="mb-3">
         <BlockListGroupC
-          header="Video"
+          className="h-100"
+          header="Group C (xl=4, lg=6, xs=12)"
+          query={{
+            sectionId: section.id,
+            first: 5,
+            requiresImage: true,
+            includeContentTypes: ['Video']
+          }}
+        />
+      </Col>
+      <Col xl="4" lg="6" xs="12" className="mb-3">
+        <BlockListGroupD
+          className="h-100"
+          header="Group D (xl=4, lg=6, xs=12)"
           query={{
             sectionId: section.id,
             first: 5,
