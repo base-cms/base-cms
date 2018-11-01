@@ -52,18 +52,6 @@ const ListGroupItemStyleB = ({ content }) => (
         <PublishedDate content={content} tag="small" className="d-block" />
       </div>
     </div>
-
-    {/* <div className="d-flex flex-row">
-      <div className="d-flex flex-column">
-        <PrimaryImageLink content={content} imgAttrs={{ height: '67', className: 'mr-3' }} />
-      </div>
-      <div className="d-flex flex-column">
-        <ShortNameLink content={content} className="mb-1" />
-        <CompanyNameLink content={content} tag="small" className="d-block" prefix="From " />
-        <PrimarySectionNameLink content={content} tag="small" className="d-block" />
-        <PublishedDate content={content} tag="small" className="d-block" />
-      </div>
-    </div> */}
   </ListGroupItem>
 );
 
