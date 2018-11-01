@@ -46,11 +46,11 @@ const BlockListGroupA = ({
           );
         }
         return (
-          <Card>
+          <Card {...attrs}>
             {header && (
               <div className="card-header">{header}</div>
             )}
-            <ListGroupA flush nodes={items} {...attrs} />
+            <ListGroupA flush nodes={items} />
           </Card>
         );
       }}
