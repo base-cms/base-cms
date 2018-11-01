@@ -4,15 +4,15 @@ import gql from 'graphql-tag';
 
 import { WebsiteScheduledContent } from '@base-cms/base4-website-nextjs/queries';
 import { Card } from '../../core';
-import { CardBodyE, ListGroupA } from '../../content';
+import { CardBodyE, ListGroupD } from '../../content';
 
 const fragment = gql`
-  fragment ContentBlockHeroStyleA on PlatformContent {
-    ...ContentListGroupStyleA
+  fragment ContentBlockHeroStyleC on PlatformContent {
+    ...ContentListGroupStyleD
     ...ContentCardBodyStyleE
   }
   ${CardBodyE.fragments.content}
-  ${ListGroupA.fragments.content}
+  ${ListGroupD.fragments.content}
 `;
 
 const propTypes = {
@@ -63,7 +63,7 @@ const BlockHeroC = ({
             </div>
             <div className="col-lg-5 col-xl-4">
               <Card>
-                <ListGroupA flush nodes={nodes} {...attrs} />
+                <ListGroupD flush nodes={nodes} {...attrs} />
               </Card>
             </div>
           </div>
