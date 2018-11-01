@@ -766,7 +766,7 @@
 
 "@base-cms/base4-website-nextjs-bootstrap@https://github.com/base-cms/base4-website-nextjs-bootstrap.git":
   version "0.1.0"
-  resolved "https://github.com/base-cms/base4-website-nextjs-bootstrap.git#3482fd1bf70a6c04e7e5aa239b5f74e47bfcae69"
+  resolved "https://github.com/base-cms/base4-website-nextjs-bootstrap.git#ba0069ddbeacdbfd31343498394a2ade5fa5dc3e"
   dependencies:
     "@zeit/next-sass" "^1.0.1"
     autoprefixer "^9.3.1"
@@ -5219,9 +5219,9 @@ onetime@^2.0.0:
     mimic-fn "^1.0.0"
 
 optimism@^0.6.6:
-  version "0.6.7"
-  resolved "https://registry.yarnpkg.com/optimism/-/optimism-0.6.7.tgz#c3fbc605b86b83a7529f374c1e5e70450d46d8bd"
-  integrity sha512-gSRISmAZXmTOedipfzP14ZR7/XnnqnQjl9ubgkHWx6WJjtBlEtk2mvzE5GGM2OMcsX5Z5qN55AhX6LWuonXfow==
+  version "0.6.8"
+  resolved "https://registry.yarnpkg.com/optimism/-/optimism-0.6.8.tgz#0780b546da8cd0a72e5207e0c3706c990c8673a6"
+  integrity sha512-bN5n1KCxSqwBDnmgDnzMtQTHdL+uea2HYFx1smvtE+w2AMl0Uy31g0aXnP/Nt85OINnMJPRpJyfRQLTCqn5Weg==
   dependencies:
     immutable-tuple "^0.4.9"
 
