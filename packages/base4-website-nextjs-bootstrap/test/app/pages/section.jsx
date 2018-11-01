@@ -20,6 +20,8 @@ import {
   BlockCardDeckB,
   BlockCardDeckC,
   BlockHeroA,
+  BlockHeroB,
+  BlockHeroC,
   BlockListGroupA,
   BlockListGroupB,
   BlockListGroupC,
@@ -44,7 +46,6 @@ const SectionPage = ({ section }) => (
     <h1>Blocks</h1>
 
     <h2>Hero A</h2>
-    <MutedHeader>Standard Image</MutedHeader>
     <BlockHeroA
       query={{
         sectionId: section.id,
@@ -53,14 +54,31 @@ const SectionPage = ({ section }) => (
       }}
     />
 
+    <h2>Hero B</h2>
+    <BlockHeroB
+      query={{
+        sectionId: section.id,
+        first: 7,
+        requiresImage: true,
+      }}
+    />
+
+    <h2>Hero C</h2>
+    <BlockHeroC
+      query={{
+        sectionId: section.id,
+        first: 7,
+        requiresImage: true,
+        includeContentTypes: ['Article'],
+      }}
+    />
+
+
     <hr />
 
     <h2>List Groups</h2>
     <Row>
       <Col xl="4" lg="6" xs="12" className="mb-3">
-
-
-
         <BlockListGroupA
           className="h-100"
           header="Group A (xl=4, lg=6, xs=12)"
