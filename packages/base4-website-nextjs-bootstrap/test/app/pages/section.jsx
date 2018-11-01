@@ -17,6 +17,7 @@ import withLayout from '../../../src/layouts/withLayout';
 import DefaultLayout from '../layouts/Default';
 import {
   BlockCardDeckA,
+  BlockCardDeckB,
   BlockHeroA,
   BlockListGroupA,
   BlockListGroupB,
@@ -116,6 +117,16 @@ const SectionPage = ({ section }) => (
         includeContentTypes: ['Video']
       }}
       interstitial={() => <PlaceholderAd size="300x250" />}
+    />
+
+    <h2>Card Deck B</h2>
+    <BlockCardDeckB
+      query={{
+        sectionId: section.id,
+        first: 4,
+        requiresImage: true,
+        includeContentTypes: ['Video']
+      }}
     />
 
 
