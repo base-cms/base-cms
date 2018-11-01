@@ -13,7 +13,12 @@ import {
 
 import withLayout from '../../../src/layouts/withLayout';
 import DefaultLayout from '../layouts/Default';
-import { BlockHeroA, BlockListGroupA, BlockListGroupB } from '../../../src/website-scheduled-content';
+import {
+  BlockHeroA,
+  BlockListGroupA,
+  BlockListGroupB,
+  BlockListGroupC,
+} from '../../../src/website-scheduled-content';
 
 const MutedHeader = ({ children }) => (
   <h3 className="text-muted">
@@ -42,9 +47,9 @@ const SectionPage = ({ section }) => (
     <hr />
 
     <h2>Card List Group A</h2>
-    <MutedHeader>col-4</MutedHeader>
+    <MutedHeader>xl=4, lg=6, xs=12 w/header</MutedHeader>
     <Row>
-      <Col xs="4">
+      <Col xl="4" lg="6" xs="12">
         <BlockListGroupA
           header="Video"
           query={{
@@ -60,9 +65,9 @@ const SectionPage = ({ section }) => (
     <hr />
 
     <h2>Card List Group B</h2>
-    <MutedHeader>col-4 w/header</MutedHeader>
+    <MutedHeader>xl=4, lg=6, xs=12 w/header</MutedHeader>
     <Row>
-      <Col xs="4">
+      <Col xl="4" lg="6" xs="12">
         <BlockListGroupB
           header="Video"
           query={{
@@ -76,6 +81,22 @@ const SectionPage = ({ section }) => (
     </Row>
 
     <hr />
+
+    <h2>Card List Group C</h2>
+    <MutedHeader>xl=4, lg=6, xs=12 w/header</MutedHeader>
+    <Row>
+      <Col xl="4" lg="6" xs="12">
+        <BlockListGroupC
+          header="Video"
+          query={{
+            sectionId: section.id,
+            first: 5,
+            requiresImage: true,
+            includeContentTypes: ['Video']
+          }}
+        />
+      </Col>
+    </Row>
 
   </Wrapper>
 );
