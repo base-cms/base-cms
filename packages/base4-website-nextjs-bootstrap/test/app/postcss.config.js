@@ -1,5 +1,4 @@
 module.exports = (ctx) => {
-  console.log(ctx);
   const plugins = {
     precss: {},
     autoprefixer: {
