@@ -18,6 +18,7 @@ import DefaultLayout from '../layouts/Default';
 import {
   BlockCardDeckA,
   BlockCardDeckB,
+  BlockCardDeckC,
   BlockHeroA,
   BlockListGroupA,
   BlockListGroupB,
@@ -57,6 +58,9 @@ const SectionPage = ({ section }) => (
     <h2>List Groups</h2>
     <Row>
       <Col xl="4" lg="6" xs="12" className="mb-3">
+
+
+
         <BlockListGroupA
           className="h-100"
           header="Group A (xl=4, lg=6, xs=12)"
@@ -129,6 +133,17 @@ const SectionPage = ({ section }) => (
       }}
     />
 
+    <h2>Card Deck C</h2>
+    <BlockCardDeckC
+      query={{
+        sectionId: section.id,
+        first: 11,
+        requiresImage: true,
+        includeContentTypes: ['Video']
+      }}
+      ad1={() => <PlaceholderAd size="300x250" />}
+      ad2={() => <PlaceholderAd size="300x600" />}
+    />
 
   </Wrapper>
 );
