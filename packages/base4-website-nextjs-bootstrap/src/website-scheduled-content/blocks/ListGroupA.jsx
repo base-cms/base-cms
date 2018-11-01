@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import { WebsiteScheduledContent } from '@base-cms/base4-website-nextjs/queries';
 import { ListGroupA } from '../../content';
+import { Card } from '../../core';
 
 const fragment = ListGroupA.fragments.content;
 
@@ -26,6 +27,7 @@ const defaultProps = {
 };
 
 const BlockListGroupA = ({
+  header,
   query,
   ...attrs
 }) => {
@@ -43,7 +45,14 @@ const BlockListGroupA = ({
             </span>
           );
         }
-        return <ListGroupA nodes={items} {...attrs} />;
+        return (
+          <Card>
+            {header && (
+              <div className="card-header">{header}</div>
+            )}
+            <ListGroupA flush nodes={items} {...attrs} />
+          </Card>
+        );
       }}
     </WebsiteScheduledContent>
   );

@@ -1,4 +1,4 @@
-fragment ContentListGroupItemStyleA on PlatformContent {
+fragment ContentListGroupStyleA on PlatformContent {
   id
   type
   shortName

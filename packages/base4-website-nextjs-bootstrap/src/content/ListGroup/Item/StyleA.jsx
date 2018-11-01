@@ -7,9 +7,8 @@ import {
   Row,
   ShortNameLink,
 } from '@base-cms/base4-website-nextjs/components/content';
-import ListGroupItem from '../../core/ListGroupItem';
-import wrapperAttrs from '../wrapper-attrs';
-import fragment from './StyleA.graphql';
+import ListGroupItem from '../../../core/ListGroupItem';
+import wrapperAttrs from '../../wrapper-attrs';
 
 const propTypes = {
   content: PropTypes.shape({
@@ -46,9 +45,8 @@ const ListGroupItemStyleA = ({ content }) => (
   </ListGroupItem>
 );
 
-ListGroupItemStyleA.displayName = 'Content/ListGroupItem/StyleA';
+ListGroupItemStyleA.displayName = 'Content/ListGroup/Item/StyleA';
 ListGroupItemStyleA.propTypes = propTypes;
 ListGroupItemStyleA.defaultProps = defaultProps;
-ListGroupItemStyleA.fragments = { content: fragment };
 
 export default ListGroupItemStyleA;

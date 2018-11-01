@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { asArray } from '@base-cms/base4-website-nextjs/utils';
 
 import { ListGroup } from '../../core';
-import ListGroupItemA from '../ListGroupItem/StyleA';
+import ListGroupItemA from './Item/StyleA';
+import fragment from './StyleA.graphql';
 
 const propTypes = {
   flush: PropTypes.bool,
@@ -35,8 +36,6 @@ const ListGroupStyleA = ({
 ListGroupStyleA.displayName = 'Content/ListGroup/StyleA';
 ListGroupStyleA.propTypes = propTypes;
 ListGroupStyleA.defaultProps = defaultProps;
-ListGroupStyleA.fragments = {
-  content: ListGroupItemA.fragments.content,
-};
+ListGroupStyleA.fragments = { content: fragment };
 
 export default ListGroupStyleA;

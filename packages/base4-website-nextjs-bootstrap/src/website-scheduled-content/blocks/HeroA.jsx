@@ -8,7 +8,7 @@ import { CardBodyA, ListGroupA } from '../../content';
 
 const fragment = gql`
   fragment ContentBlockHeroStyleA on PlatformContent {
-    ...ContentListGroupItemStyleA
+    ...ContentListGroupStyleA
     ...ContentCardBodyStyleA
   }
   ${CardBodyA.fragments.content}
@@ -62,7 +62,9 @@ const BlockHeroA = ({
               </Card>
             </div>
             <div className="col-lg-5 col-xl-4">
-              <ListGroupA nodes={nodes} {...attrs} />
+              <Card>
+                <ListGroupA flush nodes={nodes} {...attrs} />
+              </Card>
             </div>
           </div>
         );

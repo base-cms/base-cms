@@ -8,7 +8,7 @@ import { CardBodyB, ListGroupA } from '../../content';
 
 const fragment = gql`
   fragment ContentBlockHeroStyleA on PlatformContent {
-    ...ContentListGroupItemStyleA
+    ...ContentListGroupStyleA
     ...ContentCardBodyStyleB
   }
   ${CardBodyB.fragments.content}
