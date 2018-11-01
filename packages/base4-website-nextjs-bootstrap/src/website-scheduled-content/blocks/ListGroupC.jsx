@@ -1,19 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import gql from 'graphql-tag';
 
 import { WebsiteScheduledContent } from '@base-cms/base4-website-nextjs/queries';
 import { Card } from '../../core';
-import { CardBodyB, ListGroupA } from '../../content';
+import { ListGroupB } from '../../content';
 
-const fragment = gql`
-  fragment ContentBlockListGroupB on PlatformContent {
-    ...ContentListGroupStyleA
-    ...ContentCardBodyStyleB
-  }
-  ${CardBodyB.fragments.content}
-  ${ListGroupA.fragments.content}
-`;
+const fragment = ListGroupB.fragments.content;
 
 const propTypes = {
   header: PropTypes.string,
@@ -36,7 +28,7 @@ const defaultProps = {
   query: {},
 };
 
-const BlockListGroupB = ({
+const BlockListGroupC = ({
   header,
   query,
   ...attrs
@@ -55,15 +47,12 @@ const BlockListGroupB = ({
             </span>
           );
         }
-        const content = items[0] || {};
-        const nodes = items.slice(1) || [];
         return (
           <Card {...attrs}>
             {header && (
               <div className="card-header">{header}</div>
             )}
-            <CardBodyB content={content} imgAttrs={{ className: header ? 'rounded-0' : null }} />
-            <ListGroupA flush nodes={nodes} />
+            <ListGroupB flush nodes={items} />
           </Card>
         );
       }}
@@ -71,8 +60,8 @@ const BlockListGroupB = ({
   );
 };
 
-BlockListGroupB.displayName = 'WebsiteScheduledContent/Blocks/ListGroupB';
-BlockListGroupB.propTypes = propTypes;
-BlockListGroupB.defaultProps = defaultProps;
+BlockListGroupC.displayName = 'WebsiteScheduledContent/Blocks/ListGroupC';
+BlockListGroupC.propTypes = propTypes;
+BlockListGroupC.defaultProps = defaultProps;
 
-export default BlockListGroupB;
+export default BlockListGroupC;
