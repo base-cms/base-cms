@@ -1,0 +1,11 @@
+fragment ContentListGroupStyleD on PlatformContent {
+  id
+  type
+  shortName
+  canonicalPath
+  primarySection {
+    id
+    name
+    alias
+  }
+}

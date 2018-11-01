@@ -7,6 +7,7 @@ import CardImage from './content/CardImage';
 import ListGroupA from './content/ListGroup/StyleA';
 import ListGroupB from './content/ListGroup/StyleB';
 import ListGroupC from './content/ListGroup/StyleC';
+import ListGroupD from './content/ListGroup/StyleD';
 
 export {
   CardBodyA,
@@ -18,4 +19,5 @@ export {
   ListGroupA,
   ListGroupB,
   ListGroupC,
+  ListGroupD,
 };
