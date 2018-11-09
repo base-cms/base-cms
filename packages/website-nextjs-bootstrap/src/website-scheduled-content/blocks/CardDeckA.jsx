@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-import { WebsiteScheduledContent } from '@base-cms/base4-website-nextjs/queries';
-import { isFunction as isFn, asArray } from '@base-cms/base4-website-nextjs/utils';
+import { WebsiteScheduledContent } from '@base-cms/website-nextjs/queries';
+import { isFunction as isFn, asArray } from '@base-cms/website-nextjs/utils';
 import { Card } from '../../core';
 import { CardBodyA } from '../../content';
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { componentDisplayName } from '@base-cms/base4-website-nextjs/utils';
+import { componentDisplayName } from '@base-cms/website-nextjs/utils';
 
 export default LayoutComp => (ComposedComponent) => {
   class WithLayout extends Component {

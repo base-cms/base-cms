@@ -1,5 +1,5 @@
 const withSass = require('../../next-config');
-const withBaseWebsite = require('@base-cms/base4-website-nextjs/next-config');
+const withBaseWebsite = require('@base-cms/website-nextjs/next-config');
 const path = require('path');
 
 module.exports = withSass(withBaseWebsite({

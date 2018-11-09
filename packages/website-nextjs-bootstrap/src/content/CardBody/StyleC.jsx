@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   ShortNameLink,
-} from '@base-cms/base4-website-nextjs/components/content';
+} from '@base-cms/website-nextjs/components/content';
 import { CardBody } from '../../core';
 import ContentCardImage from '../CardImage';
 import wrapperAttrs from '../wrapper-attrs';

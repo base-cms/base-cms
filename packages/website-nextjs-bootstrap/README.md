@@ -2,17 +2,17 @@
 Adds Boostrap component support for Base4 NextJS websites.
 
 ## Installation
-This package requires the `@base-cms/base4-website-nextjs` package, along with its peer dependencies. To install:
+This package requires the `@base-cms/website-nextjs` package, along with its peer dependencies. To install:
 ```
-yarn add @base-cms/base4-website-nextjs @base-cms/base4-website-nextjs-bootstrap bootstrap [...additional peers]
+yarn add @base-cms/website-nextjs @base-cms/website-nextjs-bootstrap bootstrap [...additional peers]
 ```
 
 Once installed, add the following to your `next.config.js`:
 
 ```js
 // next.config.js
-const withSass = require('@base-cms/base4-website-nextjs-bootstrap/next-config');
-const withBaseWebsite = require('@base-cms/base4-website-nextjs/next-config');
+const withSass = require('@base-cms/website-nextjs-bootstrap/next-config');
+const withBaseWebsite = require('@base-cms/website-nextjs/next-config');
 
 module.exports = withSass(withBaseWebsite({
   // additional config options...
@@ -63,6 +63,6 @@ import {
   withApollo,
   withRouting,
   withSiteConfig,
-} from '@base-cms/base4-website-nextjs/app';
+} from '@base-cms/website-nextjs/app';
 // everything else...
 ```

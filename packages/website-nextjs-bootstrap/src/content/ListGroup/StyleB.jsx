@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { asArray } from '@base-cms/base4-website-nextjs/utils';
+import { asArray } from '@base-cms/website-nextjs/utils';
 
 import { ListGroup } from '../../core';
 import ListGroupItemB from './Item/StyleB';

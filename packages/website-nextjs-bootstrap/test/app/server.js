@@ -1,5 +1,5 @@
 const routeDefs = require('./routes');
-const startServer = require('@base-cms/base4-website-nextjs/server');
+const startServer = require('@base-cms/website-nextjs/server');
 
 const { log } = console;
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { SiteConfigContext } from '@base-cms/base4-website-nextjs/config';
-import { NavigationWrapper, LinkElement } from '@base-cms/base4-website-nextjs/components/core';
+import { SiteConfigContext } from '@base-cms/website-nextjs/config';
+import { NavigationWrapper, LinkElement } from '@base-cms/website-nextjs/components/core';
 import NavItem from './NavItem';
 
 const propTypes = {

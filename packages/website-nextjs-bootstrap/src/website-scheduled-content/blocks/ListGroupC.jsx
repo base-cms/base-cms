@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { WebsiteScheduledContent } from '@base-cms/base4-website-nextjs/queries';
+import { WebsiteScheduledContent } from '@base-cms/website-nextjs/queries';
 import { Card } from '../../core';
 import { ListGroupB } from '../../content';
 

@@ -1,12 +1,12 @@
 import React from 'react';
 import {
   withWebsiteSection,
-} from '@base-cms/base4-website-nextjs/hoc';
+} from '@base-cms/website-nextjs/hoc';
 import {
   Name,
   Description,
   Wrapper,
-} from '@base-cms/base4-website-nextjs/components/website-section';
+} from '@base-cms/website-nextjs/components/website-section';
 
 import {
   Row,

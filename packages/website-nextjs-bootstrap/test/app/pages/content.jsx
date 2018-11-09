@@ -1,6 +1,6 @@
 import React from 'react';
 import gql from 'graphql-tag';
-import { withPlatformContent } from '@base-cms/base4-website-nextjs/hoc';
+import { withPlatformContent } from '@base-cms/website-nextjs/hoc';
 import {
   Body,
   Name,
@@ -11,7 +11,7 @@ import {
   Teaser,
   Type,
   Wrapper,
-} from '@base-cms/base4-website-nextjs/components/content';
+} from '@base-cms/website-nextjs/components/content';
 import withLayout from '../../../src/layouts/withLayout';
 import DefaultLayout from '../layouts/Default';
 

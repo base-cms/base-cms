@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { PrimaryImageLink } from '@base-cms/base4-website-nextjs/components/content';
+import { PrimaryImageLink } from '@base-cms/website-nextjs/components/content';
 
 const propTypes = {
   className: PropTypes.string,

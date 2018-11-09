@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 
-import { WebsiteScheduledContent } from '@base-cms/base4-website-nextjs/queries';
+import { WebsiteScheduledContent } from '@base-cms/website-nextjs/queries';
 import { Card } from '../../core';
 import { CardBodyB, ListGroupA } from '../../content';
 

@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withRouter } from 'next/router';
-import { LinkElement } from '@base-cms/base4-website-nextjs/components/core';
-import { escapeRegex, isFunction as isFn, cleanPath } from '@base-cms/base4-website-nextjs/utils';
+import { LinkElement } from '@base-cms/website-nextjs/components/core';
+import { escapeRegex, isFunction as isFn, cleanPath } from '@base-cms/website-nextjs/utils';
 
 const propTypes = {
   className: PropTypes.string,

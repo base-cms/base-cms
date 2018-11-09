@@ -1,10 +1,10 @@
 import React from 'react';
-import { withDynamicPage } from '@base-cms/base4-website-nextjs/hoc';
+import { withDynamicPage } from '@base-cms/website-nextjs/hoc';
 import {
   Body,
   Name,
   Wrapper,
-} from '@base-cms/base4-website-nextjs/components/dynamic-page';
+} from '@base-cms/website-nextjs/components/dynamic-page';
 import withLayout from '../../../src/layouts/withLayout';
 import DefaultLayout from '../layouts/Default';
 

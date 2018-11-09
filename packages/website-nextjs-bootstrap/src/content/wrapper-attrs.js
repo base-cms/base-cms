@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { get } from '@base-cms/base4-website-nextjs/utils';
+import { get } from '@base-cms/website-nextjs/utils';
 
 export default ({ modifier, content, className } = {}) => {
   const id = get(content, 'id');

@@ -7,7 +7,7 @@ import {
   PublishedDate,
   ShortNameLink,
   Teaser,
-} from '@base-cms/base4-website-nextjs/components/content';
+} from '@base-cms/website-nextjs/components/content';
 import ListGroupItem from '../../../core/ListGroupItem';
 import wrapperAttrs from '../../wrapper-attrs';
 
