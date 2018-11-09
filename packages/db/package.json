@@ -1,0 +1,9 @@
+{
+  "name": "@base-cms/db",
+  "version": "0.4.0",
+  "description": "The BaseCMS database driver. Requires direct MongoDB access.",
+  "main": "src/index.js",
+  "author": "Jacob Bare <jacob@limit0.io>",
+  "repository": "https://github.com/base-cms/base-cms/tree/master/packages/db",
+  "license": "MIT"
+}
