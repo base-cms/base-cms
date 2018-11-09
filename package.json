@@ -8,6 +8,7 @@
     "packages/*"
   ],
   "scripts": {
+    "build": "lerna run build",
     "lint": "node_modules/.bin/eslint packages --ext .js --ext .jsx"
   },
   "devDependencies": {
