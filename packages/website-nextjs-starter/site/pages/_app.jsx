@@ -11,7 +11,7 @@ import config from '../../site.config';
 export default withApollo(
   withRouting(routeDefs)(
     withSiteConfig(config)(
-      WebsiteApp
-    )
-  )
+      WebsiteApp,
+    ),
+  ),
 );

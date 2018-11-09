@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withWebsiteSection } from '@base-cms/website-nextjs/hoc';
 import { withLayout } from '@base-cms/website-nextjs-bootstrap/layouts';
 import {
@@ -39,7 +40,7 @@ const SectionPage = ({ section }) => (
             sectionId: section.id,
             first: 4,
             requiresImage: true,
-            includeContentTypes: ['Product']
+            includeContentTypes: ['Product'],
           }}
         />
       </Col>
@@ -58,7 +59,7 @@ const SectionPage = ({ section }) => (
             sectionId: section.id,
             first: 5,
             requiresImage: true,
-            excludeContentTypes: ['Company', 'Contact']
+            excludeContentTypes: ['Company', 'Contact'],
           }}
         />
       </Col>
@@ -73,7 +74,7 @@ const SectionPage = ({ section }) => (
             sectionId: section.id,
             first: 4,
             requiresImage: true,
-            includeContentTypes: ['Video']
+            includeContentTypes: ['Video'],
           }}
         />
       </Col>
@@ -85,20 +86,23 @@ const SectionPage = ({ section }) => (
             sectionId: section.id,
             first: 4,
             requiresImage: false,
-            includeContentTypes: ['PressRelease']
+            includeContentTypes: ['PressRelease'],
           }}
         />
-      </Col>
-      <Col xs="4">
-
       </Col>
     </Row>
     <hr />
   </Wrapper>
 );
 
+SectionPage.propTypes = {
+  section: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+  }).isRequired,
+};
+
 export default withLayout(DefaultLayout)(
   withWebsiteSection()(
-    SectionPage
-  )
+    SectionPage,
+  ),
 );

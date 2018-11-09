@@ -1,5 +1,6 @@
 import React from 'react';
 import gql from 'graphql-tag';
+import PropTypes from 'prop-types';
 import { withPlatformContent } from '@base-cms/website-nextjs/hoc';
 import { withLayout } from '@base-cms/website-nextjs-bootstrap/layouts';
 import {
@@ -39,7 +40,7 @@ const ContentNewsPage = ({ content }) => (
     <hr />
     <Row>
       <PrimarySectionNameLink tag="span" content={content}>
-        {(value) => <strong>{value}</strong>}
+        {value => <strong>{value}</strong>}
       </PrimarySectionNameLink>
       {' | '}
       <Type content={content} />
@@ -52,8 +53,14 @@ const ContentNewsPage = ({ content }) => (
   </Wrapper>
 );
 
+ContentNewsPage.propTypes = {
+  content: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+  }).isRequired,
+};
+
 export default withLayout(DefaultLayout)(
   withPlatformContent({ fragment })(
-    ContentNewsPage
-  )
+    ContentNewsPage,
+  ),
 );
