@@ -16,7 +16,7 @@ const makeExternalPredicate = (externalsArr) => {
   if (externalsArr.length === 0) return () => false;
   const externalPattern = new RegExp(`^(${externalsArr.join('|')})($|/)`);
   return id => externalPattern.test(id);
-}
+};
 
 export default {
   experimentalCodeSplitting: true,
@@ -33,8 +33,8 @@ export default {
   external: makeExternalPredicate(externals),
   plugins: [
     nodeResolve({ extensions: ['.js', '.jsx'] }),
-    commonjs({ include: ['node_modules/**'] }),
+    commonjs({ include: ['../../node_modules/**'] }),
     graphql(),
-    babel({ exclude: 'node_modules/**' }),
+    babel({ exclude: '../../node_modules/**' }),
   ],
-}
+};
