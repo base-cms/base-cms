@@ -8,7 +8,7 @@ var React = require('react');
 var React__default = _interopDefault(React);
 var PropTypes = _interopDefault(require('prop-types'));
 var __chunk_1 = require('./chunk-2c19305a.js');
-var utils = require('@base-cms/base4-website-nextjs/utils');
+var utils = require('@base-cms/website-nextjs/utils');
 
 var propTypes = {
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]).isRequired

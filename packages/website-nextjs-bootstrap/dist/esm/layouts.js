@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { c as _objectSpread, d as _asyncToGenerator, e as _classCallCheck, f as _createClass, g as _possibleConstructorReturn, h as _getPrototypeOf, i as _inherits } from './chunk-cfc9ba70.js';
-import { componentDisplayName } from '@base-cms/base4-website-nextjs/utils';
+import { componentDisplayName } from '@base-cms/website-nextjs/utils';
 
 var propTypes = {
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]).isRequired

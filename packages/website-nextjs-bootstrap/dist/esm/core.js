@@ -3,9 +3,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withRouter } from 'next/router';
-import { LinkElement, NavigationWrapper } from '@base-cms/base4-website-nextjs/components/core';
-import { escapeRegex, isFunction, cleanPath } from '@base-cms/base4-website-nextjs/utils';
-import { SiteConfigContext } from '@base-cms/base4-website-nextjs/config';
+import { LinkElement, NavigationWrapper } from '@base-cms/website-nextjs/components/core';
+import { escapeRegex, isFunction, cleanPath } from '@base-cms/website-nextjs/utils';
+import { SiteConfigContext } from '@base-cms/website-nextjs/config';
 
 var propTypes = {
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]).isRequired,
@@ -168,9 +168,31 @@ var NavItem$1 = withRouter(NavItem);
 
 var propTypes$5 = {
   className: PropTypes.string,
-  logoHeight: PropTypes.number
+  size: PropTypes.string.isRequired
 };
 var defaultProps$5 = {
+  className: null
+};
+
+var PlaceholderAd = function PlaceholderAd(_ref) {
+  var className = _ref.className,
+      size = _ref.size;
+  return React.createElement("div", {
+    className: classNames('text-center', className)
+  }, React.createElement("img", {
+    src: "https://dummyimage.com/".concat(size, "/ccc/000"),
+    alt: "".concat(size, " Advertisement")
+  }));
+};
+
+PlaceholderAd.propTypes = propTypes$5;
+PlaceholderAd.defaultProps = defaultProps$5;
+
+var propTypes$6 = {
+  className: PropTypes.string,
+  logoHeight: PropTypes.number
+};
+var defaultProps$6 = {
   className: null,
   logoHeight: 25
 };
@@ -222,7 +244,7 @@ var SiteNavbar = function SiteNavbar(_ref) {
   }));
 };
 
-SiteNavbar.propTypes = propTypes$5;
-SiteNavbar.defaultProps = defaultProps$5;
+SiteNavbar.propTypes = propTypes$6;
+SiteNavbar.defaultProps = defaultProps$6;
 
-export { Card, CardBody, ListGroup, ListGroupItem, NavItem$1 as NavItem, SiteNavbar };
+export { Card, CardBody, ListGroup, ListGroupItem, NavItem$1 as NavItem, PlaceholderAd, SiteNavbar };

@@ -10,9 +10,9 @@ var React__default = _interopDefault(React);
 var PropTypes = _interopDefault(require('prop-types'));
 var classNames = _interopDefault(require('classnames'));
 var router = require('next/router');
-var core = require('@base-cms/base4-website-nextjs/components/core');
-var utils = require('@base-cms/base4-website-nextjs/utils');
-var config = require('@base-cms/base4-website-nextjs/config');
+var core = require('@base-cms/website-nextjs/components/core');
+var utils = require('@base-cms/website-nextjs/utils');
+var config = require('@base-cms/website-nextjs/config');
 
 var propTypes = {
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]).isRequired,
@@ -175,9 +175,31 @@ var NavItem$1 = router.withRouter(NavItem);
 
 var propTypes$5 = {
   className: PropTypes.string,
-  logoHeight: PropTypes.number
+  size: PropTypes.string.isRequired
 };
 var defaultProps$5 = {
+  className: null
+};
+
+var PlaceholderAd = function PlaceholderAd(_ref) {
+  var className = _ref.className,
+      size = _ref.size;
+  return React__default.createElement("div", {
+    className: classNames('text-center', className)
+  }, React__default.createElement("img", {
+    src: "https://dummyimage.com/".concat(size, "/ccc/000"),
+    alt: "".concat(size, " Advertisement")
+  }));
+};
+
+PlaceholderAd.propTypes = propTypes$5;
+PlaceholderAd.defaultProps = defaultProps$5;
+
+var propTypes$6 = {
+  className: PropTypes.string,
+  logoHeight: PropTypes.number
+};
+var defaultProps$6 = {
   className: null,
   logoHeight: 25
 };
@@ -229,12 +251,13 @@ var SiteNavbar = function SiteNavbar(_ref) {
   }));
 };
 
-SiteNavbar.propTypes = propTypes$5;
-SiteNavbar.defaultProps = defaultProps$5;
+SiteNavbar.propTypes = propTypes$6;
+SiteNavbar.defaultProps = defaultProps$6;
 
 exports.Card = Card;
 exports.CardBody = CardBody;
 exports.ListGroup = ListGroup;
 exports.ListGroupItem = ListGroupItem;
 exports.NavItem = NavItem$1;
+exports.PlaceholderAd = PlaceholderAd;
 exports.SiteNavbar = SiteNavbar;
