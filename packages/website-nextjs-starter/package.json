@@ -7,7 +7,7 @@
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/website-nextjs-starter",
   "scripts": {
     "dev": "NODE_ENV=development node server",
-    "build": "next build site",
+    "build:site": "next build site",
     "start": "NODE_ENV=production node server"
   },
   "dependencies": {
