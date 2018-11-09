@@ -1,1 +1,1 @@
-# Base4 Apollo GraphQL Client & HOC for NextJS
+# BaseCMS Apollo GraphQL Client & HOC for NextJS
