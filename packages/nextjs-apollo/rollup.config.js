@@ -4,6 +4,7 @@ import json from 'rollup-plugin-json';
 import commonjs from 'rollup-plugin-commonjs';
 
 const pkg = require('./package.json');
+
 const peerDependencies = Object.keys(pkg.peerDependencies);
 peerDependencies.push('next/head');
 const dependencies = Object.keys(pkg.dependencies);
