@@ -1,40 +1,18 @@
 {
-  "name": "@base-cms/base4-nextjs-apollo",
-  "version": "0.1.0",
-  "description": "Apollo GraphQL Client & HOC for Base4+NextJS apps",
+  "name": "@base-cms/nextjs-apollo",
+  "version": "0.4.0",
+  "description": "Apollo GraphQL Client & HOC for BaseCMS+NextJS apps",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "jsnext:main": "dist/index.esm.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/base-cms/base4-nextjs-apollo.git"
-  },
+  "repository": "https://github.com/base-cms/base-cms/tree/master/packages/nextjs-apollo.git",
   "author": "Jacob Bare <jacob@limit0.io>",
   "license": "MIT",
   "scripts": {
-    "build": "rollup -c",
-    "lint": "node_modules/.bin/eslint src --ext .js --ext .jsx"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.1.2",
-    "eslint": "^5.6.1",
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jsx-a11y": "^6.1.2",
-    "eslint-plugin-react": "^7.11.1",
-    "graphql": "^14.0.2",
-    "next": "^7.0.2",
-    "react": "^16.5.2",
-    "react-apollo": "^2.2.4",
-    "react-dom": "^16.5.2",
-    "rollup": "^0.66.6",
-    "rollup-plugin-babel": "^4.0.3",
-    "rollup-plugin-commonjs": "^9.2.0",
-    "rollup-plugin-json": "^3.1.0",
-    "rollup-plugin-node-resolve": "^3.4.0"
+    "build": "rollup -c"
   },
   "dependencies": {
-    "@base-cms/base4-graphql-stitching": "https://github.com/base-cms/base4-graphql-stitching.git",
+    "@base-cms/graphql-stitching": "^0.4.0",
     "apollo-cache-inmemory": "^1.3.5",
     "apollo-client": "^2.4.2",
     "apollo-link": "^1.2.3",
