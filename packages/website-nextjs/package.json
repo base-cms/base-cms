@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/website-nextjs",
-  "version": "0.4.0",
+  "version": "0.4.6",
   "description": "Core NextJS components for BaseCMS websites",
   "author": "Jacob Bare <jacob@limit0.io>",
   "license": "MIT",
