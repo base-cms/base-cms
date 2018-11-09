@@ -1,1 +1,1 @@
-# Core NextJS Components for Base4 Websites
+# Core NextJS Components for BaseCMS Websites

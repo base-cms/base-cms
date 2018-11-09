@@ -1,3 +1,5 @@
+const { join } = require('path');
+
 module.exports = {
   extends: 'airbnb',
   plugins: [
