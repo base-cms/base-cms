@@ -1,1 +1,1 @@
-# Base4 GraphQL Express Routing Middleware
+# BaseCMS GraphQL Express Routing Middleware

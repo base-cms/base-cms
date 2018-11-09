@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const { ApolloServer } = require('apollo-server-express');
-const { createSchema } = require('@base-cms/base4-graphql-stitching');
+const { createSchema } = require('@base-cms/graphql-stitching');
 
 const { NODE_ENV } = process.env;
 const isProduction = NODE_ENV === 'production';
