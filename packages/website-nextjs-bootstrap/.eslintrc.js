@@ -1,3 +1,5 @@
+const { join } = require('path');
+
 module.exports = {
   extends: 'airbnb',
   plugins: [
@@ -8,5 +10,9 @@ module.exports = {
   },
   rules: {
     'jsx-a11y/anchor-is-valid': 'off',
+    'import/no-extraneous-dependencies': [
+      'error',
+      { packageDir: [join(__dirname, 'package.json'), join(__dirname, '../../package.json')] },
+    ],
   },
 };
