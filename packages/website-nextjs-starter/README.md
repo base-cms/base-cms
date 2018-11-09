@@ -8,7 +8,7 @@ Assume everything in this folder is either cloned to start a _new_ repository fo
   - Should represent the _site/project name_ and should properly install the required peer deps of the core package?
   - Still need to determine what comes with core and what doesn't
   - `react` and `react-dom` are peer deps of `next`
-  - `next` is currently a peer dep of `@base-cms/base4-website-nextjs`
+  - `next` is currently a peer dep of `@base-cms/website-nextjs`
   - Can `next` be exclusively loaded into the core package?
 - `.env`
   - Needs to be initially created with the proper variables?

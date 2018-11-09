@@ -1,5 +1,5 @@
 import React from 'react';
-import { withLayout } from '@base-cms/base4-website-nextjs-bootstrap/layouts';
+import { withLayout } from '@base-cms/website-nextjs-bootstrap/layouts';
 import DefaultLayout from '../layouts/Default';
 
 const IndexPage = () => (

@@ -1,18 +1,18 @@
 import React from 'react';
-import { withWebsiteSection } from '@base-cms/base4-website-nextjs/hoc';
-import { withLayout } from '@base-cms/base4-website-nextjs-bootstrap/layouts';
+import { withWebsiteSection } from '@base-cms/website-nextjs/hoc';
+import { withLayout } from '@base-cms/website-nextjs-bootstrap/layouts';
 import {
   Name,
   Description,
   Wrapper,
-} from '@base-cms/base4-website-nextjs/components/website-section';
+} from '@base-cms/website-nextjs/components/website-section';
 import {
   Col,
   Row,
   Card,
   CardBody,
 } from 'reactstrap';
-import { BlockHeroA, BlockCardListGroupA, BlockListGroupA } from '@base-cms/base4-website-nextjs-bootstrap/website-scheduled-content';
+import { BlockHeroA, BlockCardListGroupA, BlockListGroupA } from '@base-cms/website-nextjs-bootstrap/website-scheduled-content';
 import DefaultLayout from '../layouts/Default';
 import PlaceholderAd from '../components/PlaceholderAd';
 

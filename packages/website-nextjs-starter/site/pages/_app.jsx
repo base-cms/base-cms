@@ -4,7 +4,7 @@ import {
   withApollo,
   withRouting,
   withSiteConfig,
-} from '@base-cms/base4-website-nextjs/app';
+} from '@base-cms/website-nextjs/app';
 import routeDefs from '../routes';
 import config from '../../site.config';
 

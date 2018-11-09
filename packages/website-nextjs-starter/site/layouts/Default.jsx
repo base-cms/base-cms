@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Container, Row, Col } from 'reactstrap';
-import { SiteNavbar } from '@base-cms/base4-website-nextjs-bootstrap/core';
+import { SiteNavbar } from '@base-cms/website-nextjs-bootstrap/core';
 
 const propTypes = {
   children: PropTypes.oneOfType([

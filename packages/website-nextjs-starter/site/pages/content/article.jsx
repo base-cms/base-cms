@@ -1,7 +1,7 @@
 import React from 'react';
 import gql from 'graphql-tag';
-import { withPlatformContent } from '@base-cms/base4-website-nextjs/hoc';
-import { withLayout } from '@base-cms/base4-website-nextjs-bootstrap/layouts';
+import { withPlatformContent } from '@base-cms/website-nextjs/hoc';
+import { withLayout } from '@base-cms/website-nextjs-bootstrap/layouts';
 import {
   AuthorFullNameLinks,
   Body,
@@ -13,7 +13,7 @@ import {
   Teaser,
   Type,
   Wrapper,
-} from '@base-cms/base4-website-nextjs/components/content';
+} from '@base-cms/website-nextjs/components/content';
 import DefaultLayout from '../../layouts/Default';
 
 const fragment = gql`
