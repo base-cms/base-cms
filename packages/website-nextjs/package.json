@@ -10,7 +10,7 @@
     "build": "yarn clean && rollup -c"
   },
   "dependencies": {
-    "@base-cms/nextjs-apollo": "0.4.5",
+    "@base-cms/nextjs-apollo": "0.4.6",
     "@base-cms/website-express": "0.4.5",
     "classnames": "^2.2.6",
     "escape-string-regexp": "^1.0.5",
