@@ -1,7 +1,7 @@
 const express = require('express');
 const helmet = require('helmet');
 const compression = require('compression');
-const base4router = require('@base-cms/base4-graphql-express-router');
+const base4router = require('@base-cms/graphql-express-router');
 const env = require('./env');
 
 const { LOCAL_GRAPHQL_ENDPOINT } = env;
