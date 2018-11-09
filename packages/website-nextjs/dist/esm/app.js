@@ -1,8 +1,8 @@
 import { a as _classCallCheck, b as _createClass, c as _possibleConstructorReturn, d as _getPrototypeOf, e as _inherits, f as _objectSpread, g as _asyncToGenerator } from './chunk-1a4eb17c.js';
 import App, { Container } from 'next/app';
 import React from 'react';
-import base4NextjsApollo from '@base-cms/base4-nextjs-apollo';
-export { default as withApollo } from '@base-cms/base4-nextjs-apollo';
+import nextjsApollo from '@base-cms/nextjs-apollo';
+export { default as withApollo } from '@base-cms/nextjs-apollo';
 import { a as _regeneratorRuntime } from './chunk-fd635e66.js';
 import nextRoutes from 'next-routes';
 import { a as RoutingContext } from './chunk-7976a9a0.js';

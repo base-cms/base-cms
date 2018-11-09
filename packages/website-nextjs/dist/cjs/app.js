@@ -9,7 +9,7 @@ var App = require('next/app');
 var App__default = _interopDefault(App);
 var React = require('react');
 var React__default = _interopDefault(React);
-var base4NextjsApollo = _interopDefault(require('@base-cms/base4-nextjs-apollo'));
+var nextjsApollo = _interopDefault(require('@base-cms/nextjs-apollo'));
 var __chunk_2 = require('./chunk-efb9fd9b.js');
 var nextRoutes = _interopDefault(require('next-routes'));
 var __chunk_3 = require('./chunk-4b678d5c.js');
@@ -287,7 +287,7 @@ var withSiteConfig = (function (siteConfig) {
   };
 });
 
-exports.withApollo = base4NextjsApollo;
+exports.withApollo = nextjsApollo;
 exports.WebsiteApp = WebsiteApp;
 exports.withRouting = withRouting;
 exports.withSiteConfig = withSiteConfig;
