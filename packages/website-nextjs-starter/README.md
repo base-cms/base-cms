@@ -1,4 +1,4 @@
-# Base NextJS Website Starter Kit
+# BaseCMS NextJS Website Starter Kit
 Assume everything in this folder is either cloned to start a _new_ repository for a site. Or it is somehow generated using a CLI command (similar to Ember). For example: `nextjs-website new officer`. For now we'll pretend the command was run.
 
 # Files
