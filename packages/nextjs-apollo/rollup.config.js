@@ -25,10 +25,10 @@ export default {
   external: peerDependencies.concat(dependencies),
   plugins: [
     resolve({ extensions: ['.js', '.jsx'] }),
-    commonjs({ include: 'node_modules/**' }),
+    commonjs({ include: '../../node_modules/**' }),
     babel(),
     json({
-      include: 'node_modules/@base-cms/graphql-stitching/fragment-types.json',
+      include: '../graphql-stitching/fragment-types.json',
       compact: true,
     }),
   ],
