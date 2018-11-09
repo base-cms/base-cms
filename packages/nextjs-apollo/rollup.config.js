@@ -27,7 +27,7 @@ export default {
     commonjs({ include: 'node_modules/**' }),
     babel(),
     json({
-      include: 'node_modules/@base-cms/base4-graphql-stitching/fragment-types.json',
+      include: 'node_modules/@base-cms/graphql-stitching/fragment-types.json',
       compact: true,
     }),
   ],
