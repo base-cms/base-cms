@@ -1,5 +1,5 @@
-# Bootstrap Design Components for Base4 NextJS Websites
-Adds Boostrap component support for Base4 NextJS websites.
+# Bootstrap Design Components for BaseCMS NextJS Websites
+Adds Boostrap component support for BaseCMS NextJS websites.
 
 ## Installation
 This package requires the `@base-cms/website-nextjs` package, along with its peer dependencies. To install:
