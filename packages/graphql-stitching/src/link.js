@@ -5,10 +5,10 @@ const fetch = require('isomorphic-unfetch');
 const env = require('./env');
 
 const {
-  BASE4_GRAPHQL_URL,
-  BASE4_TENANT_KEY,
-  BASE4_API_TOKEN,
-  BASE4_CONTENT_CANONICAL_PATHS,
+  BASECMS_GRAPHQL_URL,
+  BASECMS_TENANT_KEY,
+  BASECMS_API_TOKEN,
+  BASECMS_CONTENT_CANONICAL_PATHS,
 } = env;
 
 module.exports = ApolloLink.from([
@@ -17,9 +17,9 @@ module.exports = ApolloLink.from([
    */
   setContext(() => ({
     headers: {
-      authorization: `Bearer ${BASE4_API_TOKEN}`,
-      'x-tenant-key': BASE4_TENANT_KEY,
-      'x-content-canonical-paths': BASE4_CONTENT_CANONICAL_PATHS.join(','),
+      authorization: `Bearer ${BASECMS_API_TOKEN}`,
+      'x-tenant-key': BASECMS_TENANT_KEY,
+      'x-content-canonical-paths': BASECMS_CONTENT_CANONICAL_PATHS.join(','),
     },
   })),
 
@@ -27,7 +27,7 @@ module.exports = ApolloLink.from([
    *
    */
   new HttpLink({
-    uri: BASE4_GRAPHQL_URL,
+    uri: BASECMS_GRAPHQL_URL,
     fetch,
   }),
 ]);

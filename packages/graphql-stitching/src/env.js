@@ -18,10 +18,10 @@ const nonemptystr = makeValidator((v) => {
 });
 
 module.exports = cleanEnv(process.env, {
-  BASE4_GRAPHQL_URL: url({ desc: 'The Base4 GraphQL URL for stitching API requests.' }),
-  BASE4_TENANT_KEY: nonemptystr({ desc: 'The Base4 tenant key to connect to.' }),
-  BASE4_API_TOKEN: nonemptystr({ desc: 'The Base4 GraphQL API token.' }),
-  BASE4_CONTENT_CANONICAL_PATHS: json({
+  BASECMS_GRAPHQL_URL: url({ desc: 'The BaseCMS GraphQL URL for stitching API requests.' }),
+  BASECMS_TENANT_KEY: nonemptystr({ desc: 'The BaseCMS tenant key to connect to.' }),
+  BASECMS_API_TOKEN: nonemptystr({ desc: 'The BaseCMS GraphQL API token.' }),
+  BASECMS_CONTENT_CANONICAL_PATHS: json({
     desc: 'A JSON array of content canonical path parts for generating content URLs',
     default: '["sectionAlias", "type", "id", "slug"]',
   }),
