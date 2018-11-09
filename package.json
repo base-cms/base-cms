@@ -1,6 +1,12 @@
 {
   "name": "base4",
+  "description": "Base4 Monorepo",
+  "author": "Jacob Bare <jacob@limit0.io>",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/base-cms/base4.git"
+  },
   "workspaces": [
     "packages/*"
   ],
