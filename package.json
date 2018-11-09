@@ -12,6 +12,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
+    "apollo-client": "^2.3.8",
     "eslint": "^5.8.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-airbnb-base": "^13.1.0",
