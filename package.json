@@ -10,6 +10,9 @@
   "workspaces": [
     "packages/*"
   ],
+  "scripts": {
+    "lint": "node_modules/.bin/eslint packages --ext .js --ext .jsx"
+  },
   "devDependencies": {
     "eslint": "^5.8.0",
     "eslint-config-airbnb-base": "^13.1.0",
