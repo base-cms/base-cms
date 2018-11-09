@@ -1,1 +1,1 @@
-# BaseCMS Monorepo
+# BaseCMS
