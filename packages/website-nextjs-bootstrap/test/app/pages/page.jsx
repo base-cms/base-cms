@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withDynamicPage } from '@base-cms/website-nextjs/hoc';
 import {
   Body,
@@ -15,8 +16,14 @@ const DynamicPage = ({ page }) => (
   </Wrapper>
 );
 
+DynamicPage.propTypes = {
+  page: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+  }).isRequired,
+};
+
 export default withLayout(DefaultLayout)(
   withDynamicPage(
-    DynamicPage
-  )
+    DynamicPage,
+  ),
 );

@@ -1,5 +1,6 @@
 import React from 'react';
 import gql from 'graphql-tag';
+import PropTypes from 'prop-types';
 import { withPlatformContent } from '@base-cms/website-nextjs/hoc';
 import {
   Body,
@@ -35,7 +36,7 @@ const ContentPage = ({ content }) => (
     <hr />
     <Row>
       <PrimarySectionNameLink tag="span" content={content}>
-        {(value) => <strong>{value}</strong>}
+        {value => <strong>{value}</strong>}
       </PrimarySectionNameLink>
       {' | '}
       <Type content={content} />
@@ -47,9 +48,14 @@ const ContentPage = ({ content }) => (
   </Wrapper>
 );
 
+ContentPage.propTypes = {
+  content: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+  }).isRequired,
+};
+
 export default withLayout(DefaultLayout)(
   withPlatformContent({ fragment })(
-    ContentPage
-  )
+    ContentPage,
+  ),
 );
-

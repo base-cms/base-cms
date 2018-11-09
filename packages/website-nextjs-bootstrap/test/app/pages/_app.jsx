@@ -1,4 +1,4 @@
-import '../../../node_modules/bootstrap/scss/bootstrap.scss';
+import '../../../../../node_modules/bootstrap/scss/bootstrap.scss';
 import {
   WebsiteApp,
   withApollo,
@@ -11,7 +11,7 @@ import config from '../site.config';
 export default withApollo(
   withRouting(routeDefs)(
     withSiteConfig(config)(
-      WebsiteApp
-    )
-  )
+      WebsiteApp,
+    ),
+  ),
 );

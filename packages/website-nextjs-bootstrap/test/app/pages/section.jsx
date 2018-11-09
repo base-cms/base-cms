@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   withWebsiteSection,
 } from '@base-cms/website-nextjs/hoc';
@@ -31,12 +32,6 @@ import {
 import {
   PlaceholderAd,
 } from '../../../src/core';
-
-const MutedHeader = ({ children }) => (
-  <h3 className="text-muted">
-    {children}
-  </h3>
-);
 
 const SectionPage = ({ section }) => (
   <Wrapper section={section}>
@@ -96,7 +91,7 @@ const SectionPage = ({ section }) => (
             sectionId: section.id,
             first: 4,
             requiresImage: true,
-            includeContentTypes: ['Video']
+            includeContentTypes: ['Video'],
           }}
         />
       </Col>
@@ -108,7 +103,7 @@ const SectionPage = ({ section }) => (
             sectionId: section.id,
             first: 4,
             requiresImage: true,
-            includeContentTypes: ['Video']
+            includeContentTypes: ['Video'],
           }}
         />
       </Col>
@@ -120,7 +115,7 @@ const SectionPage = ({ section }) => (
             sectionId: section.id,
             first: 5,
             requiresImage: true,
-            includeContentTypes: ['Video']
+            includeContentTypes: ['Video'],
           }}
         />
       </Col>
@@ -132,7 +127,7 @@ const SectionPage = ({ section }) => (
             sectionId: section.id,
             first: 5,
             requiresImage: true,
-            includeContentTypes: ['Video']
+            includeContentTypes: ['Video'],
           }}
         />
       </Col>
@@ -146,7 +141,7 @@ const SectionPage = ({ section }) => (
         sectionId: section.id,
         first: 8,
         requiresImage: true,
-        includeContentTypes: ['Video']
+        includeContentTypes: ['Video'],
       }}
       interstitial={() => <PlaceholderAd size="300x250" />}
     />
@@ -157,7 +152,7 @@ const SectionPage = ({ section }) => (
         sectionId: section.id,
         first: 4,
         requiresImage: true,
-        includeContentTypes: ['Video']
+        includeContentTypes: ['Video'],
       }}
     />
 
@@ -167,7 +162,7 @@ const SectionPage = ({ section }) => (
         sectionId: section.id,
         first: 11,
         requiresImage: true,
-        includeContentTypes: ['Video']
+        includeContentTypes: ['Video'],
       }}
       ad1={() => <PlaceholderAd size="300x250" />}
       ad2={() => <PlaceholderAd size="300x600" />}
@@ -176,8 +171,14 @@ const SectionPage = ({ section }) => (
   </Wrapper>
 );
 
+SectionPage.propTypes = {
+  section: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+  }).isRequired,
+};
+
 export default withLayout(DefaultLayout)(
   withWebsiteSection()(
-    SectionPage
-  )
+    SectionPage,
+  ),
 );
