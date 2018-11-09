@@ -1,12 +1,12 @@
 {
   "name": "@base-cms/base4-graphql-stitching",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Provides a low-level, server-side stitching of the Base4 GraphQL API",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/base-cms/base4.git"
+    "url": "https://github.com/base-cms/base4/tree/master/packages/graphql-stitching"
   },
   "license": "MIT",
   "dependencies": {
