@@ -3,10 +3,7 @@
   "description": "BaseCMS Monorepo",
   "author": "Jacob Bare <jacob@limit0.io>",
   "private": true,
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/base-cms/base-cms.git"
-  },
+  "repository": "https://github.com/base-cms/base-cms.git",
   "workspaces": [
     "packages/*"
   ],
