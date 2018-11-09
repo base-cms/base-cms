@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/graphql-stitching",
-  "version": "0.4.0",
+  "version": "0.4.8",
   "description": "Provides a low-level, server-side stitching of the BaseCMS GraphQL API",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
