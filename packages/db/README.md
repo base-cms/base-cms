@@ -56,7 +56,7 @@ go();
 ```
 
 #### `base.strictFindById(modelName, id[, options])`
-Finds a single document for the provided model name and ID. Will throw an error if the document is not foun
+Finds a single document for the provided model name and ID. Will throw an error if the document is not found.
 ```js
 const go = async () => {
   // Will throw if not found. Handle in `.catch`, etc.
