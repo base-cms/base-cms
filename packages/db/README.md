@@ -21,17 +21,17 @@ const run = async () => {
   const db = await base.db('platform');
 
   // Return the content collection from the platform DB.
-  const collection = await base.collection('platform.content');
+  const collection = await base.collection('platform.Content');
 
   // Find content by ID.
   // If not found, will return `null`
-  const content1 = await base.findById('platform.content', 12345678, { name: 1 });
+  const content1 = await base.findById('platform.Content', 12345678, { name: 1 });
 
   // Find content by ID, but throw error if not found.
-  const content2 = await base.strictFindById('platform.content', 12345678, { name: 1 });
+  const content2 = await base.strictFindById('platform.Content', 12345678, { name: 1 });
 
   // Count content records
-  const count = await base.countDocuments('platform.content');
+  const count = await base.countDocuments('platform.Content');
 };
 run();
 ```
