@@ -7,6 +7,10 @@
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/graphql-server-express",
   "license": "MIT",
   "dependencies": {
-    "@base-cms/graphql": "^0.4.0"
+    "@base-cms/graphql": "^0.4.0",
+    "apollo-server-express": "^2.2.1",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "helmet": "^3.15.0"
   }
 }
