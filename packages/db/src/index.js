@@ -66,7 +66,7 @@ class BaseDB {
    */
   dbNameFor(namespace) {
     if (!namespaces.includes(namespace)) {
-      throw new Error(`The provided Base namespace '${namespace}' is invalid.`);
+      throw BaseDB.error(`The provided Base namespace '${namespace}' is invalid.`, 400);
     }
     return `${this.tenant}_${namespace}`;
   }
@@ -147,6 +147,18 @@ class BaseDB {
   static parseModelName(name) {
     const [namespace, resource] = name.split('.');
     return { namespace, resource };
+  }
+
+  /**
+   * Creates a new `Error` object with the provided message and status code.
+   *
+   * @param {string} message
+   * @param {number} statusCode
+   */
+  static error(message, statusCode) {
+    const err = new Error(message);
+    err.statusCode = Number(statusCode);
+    return err;
   }
 }
 
