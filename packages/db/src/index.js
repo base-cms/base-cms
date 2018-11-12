@@ -247,7 +247,7 @@ class BaseDB {
    * @param {*} [def=null] The default value to return if the value is not found.
    */
   static get(doc, path, def = null) {
-    return objectPath(doc, path, def);
+    return objectPath.get(doc, path, def);
   }
 
   /**
@@ -258,7 +258,7 @@ class BaseDB {
    * @return {array}
    */
   static getAsArray(doc, path) {
-    const value = objectPath(doc, path, []);
+    const value = objectPath.get(doc, path, []);
     return isArray(value) ? value : [];
   }
 
