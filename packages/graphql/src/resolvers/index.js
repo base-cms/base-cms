@@ -18,7 +18,7 @@ module.exports = deepAssign(
       /**
        *
        */
-      ping: () => 'pong',
+      ping: (_, input, { tenant }) => tenant || 'pong',
     },
   },
 );
