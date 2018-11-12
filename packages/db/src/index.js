@@ -99,6 +99,8 @@ class BaseDB {
   }
 
   /**
+   * Returns a MongoDB `Db` instance for the provided namespace.
+   *
    * @param {string} namespace The model namespace, e.g. `platform` or `website`.
    * @param {object} [options] Options to pass to the `MongoClient.db` call.
    */
@@ -107,6 +109,8 @@ class BaseDB {
   }
 
   /**
+   * Returns a MongoDB `Collection` instance for the provided namespace and resource.
+   *
    * @param {string} namespace The model namespace, e.g. `platform` or `website`.
    * @param {string} resource The resource/collection name, e.g. `Content` or `Section`.
    * @param {object} [options] Options to pass to the `Db.collection` call.
