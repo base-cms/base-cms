@@ -87,6 +87,21 @@ class BaseDB {
   }
 
   /**
+   * Extracts a mutation value from a document for the provided type and field.
+   *
+   * @param {object} doc The MongoDB document to extract from.
+   * @param {string} type The mutation type, e.g. `Website`.
+   * @param {string} field The field key of the mutation.
+   */
+  static extractMutationValue(doc, type, field) {
+    const { mutations } = doc;
+    if (!isObject(mutations)) return null;
+    const keyValues = mutations[type];
+    if (!isObject(keyValues)) return null;
+    return keyValues[field];
+  }
+
+  /**
    * Gets a Mongo ID from either a complex (DBRef) or simple (ID) reference.
    *
    * @param {*} ref The reference value.
@@ -105,6 +120,20 @@ class BaseDB {
   static extractRefIds(refs) {
     if (!isArray(refs) || !refs.length) return [];
     return refs.map(ref => BaseDB.extractRefId(ref)).filter(id => id);
+  }
+
+  /**
+   * Fills a mutation value from a document for the provided type and field.
+   * If a mutation value is found, it will use it, otherwise it will
+   * fallback to the "standard" field on the document.
+   *
+   * @param {object} doc
+   * @param {string} type
+   * @param {string} field
+   */
+  static fillMutation(doc, type, field) {
+    const value = BaseDB.extractMutationValue(doc, type, field);
+    return value || doc[field];
   }
 
   /**
