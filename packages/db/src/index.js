@@ -1,5 +1,8 @@
 const { ObjectID } = require('mongodb');
 const MongoClient = require('./mongodb');
+const isObject = require('./is-object');
+
+const { isArray } = Array;
 
 /**
  * The Base4 collection namespaces.
@@ -81,6 +84,27 @@ class BaseDB {
     if (/^[a-f0-9]{24}$/.test(id)) return new ObjectID(id);
     if (/^\d+$/.test(id)) return Number(id);
     return id;
+  }
+
+  /**
+   * Gets a Mongo ID from either a complex (DBRef) or simple (ID) reference.
+   *
+   * @param {*} ref The reference value.
+   */
+  static extractRefId(ref) {
+    const id = isObject(ref) && ref.oid ? ref.oid : ref;
+    return BaseDB.coerceID(id) || null;
+  }
+
+  /**
+   * Gets an array of Mongo IDs from an array
+   * of either complex (DBRef) or simple (ID) references.
+   *
+   * @param {array} refs
+   */
+  static extractRefIds(refs) {
+    if (!isArray(refs) || !refs.length) return [];
+    return refs.map(ref => BaseDB.extractRefId(ref)).filter(id => id);
   }
 
   /**
