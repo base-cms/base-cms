@@ -19,13 +19,23 @@ class BaseDB {
   /**
    * @param {object} baseOpts The Base connection options.
    * @param {string} baseOpts.url The Base MongoDB URL to connect to.
-   * @param {string} baseOpts.tenant The Base tenant, e.g. `cygnus_ofcr`.
+   * @param {string} baseOpts.tenant The Base tenant key, e.g. `cygnus_ofcr`.
    * @param {object} [options] Options to pass to `MongoClient.connect`.
    */
   constructor({ url, tenant } = {}, options) {
-    this.tenant = tenant;
+    this.tenant(tenant);
     this.dbOptions = options;
     this.client = new MongoClient(url, options);
+  }
+
+  /**
+   * Sets the tenant.
+   *
+   * @param {string} key The Base tenant key, e.g. `cygnus_ofcr`.
+   */
+  tenant(key) {
+    this.tenant = key;
+    return this;
   }
 
   /**
