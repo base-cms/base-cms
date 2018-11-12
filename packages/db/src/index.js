@@ -1,3 +1,4 @@
+const { ObjectID } = require('mongodb');
 const MongoClient = require('./mongodb');
 
 /**
@@ -65,6 +66,34 @@ class BaseDB {
       throw new Error(`The provided Base namespace '${namespace}' is invalid.`);
     }
     return `${this.tenant}_${namespace}`;
+  }
+
+  /**
+   * Coerces a string ID to either a MongoDB ObjectID or an integer.
+   *
+   * If the `id` value is not a string, or does not match the requirements for
+   * the above, the `id` value will be returned as-is.
+   *
+   * @param {*} id
+   */
+  static coerceID(id) {
+    if (typeof id !== 'string') return id;
+    if (/^[a-f0-9]{24}$/.test(id)) return new ObjectID(id);
+    if (/^\d+$/.test(id)) return Number(id);
+    return id;
+  }
+
+  /**
+   * Parses a model name into its namespace and resource parts.
+   *
+   * For example, `platform.Content` becomes `{ namespace: 'platform', resource: 'Content' }`
+   *
+   * @param {string} name
+   * @returns {object}
+   */
+  static parseModelName(name) {
+    const [namespace, resource] = name.split('.');
+    return { namespace, resource };
   }
 }
 
