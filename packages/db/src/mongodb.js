@@ -38,8 +38,8 @@ class Client {
    */
   async close(force) {
     if (this.promise) {
-      await this.promise;
-      await this.mongo.close(force);
+      const client = await this.promise;
+      await client.close(force);
     }
   }
 
