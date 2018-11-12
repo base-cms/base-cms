@@ -5,7 +5,7 @@ const isObject = require('./is-object');
 const { isArray } = Array;
 
 /**
- * The Base4 collection namespaces.
+ * The Base collection namespaces.
  *
  * These are used to calculcate the MongoDB
  * database names.
