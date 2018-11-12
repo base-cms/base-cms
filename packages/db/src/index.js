@@ -33,6 +33,62 @@ class BaseDB {
   }
 
   /**
+   * Finds a single document for the provided model name and ID.
+   *
+   * @param {string} modelName The model name, e.g. `platform.Content`.
+   * @param {string|number|ObjectID} id The model identifier.
+   * @param {object} [options] Options to pass to `Collection.findOne`.
+   * @return {Promise<object|null>}
+   */
+  findById(modelName, id, options) {
+    return this.findOne(modelName, { _id: id }, options);
+  }
+
+  /**
+   * Finds a single document for the provided model name and ID.
+   * Will throw an error if the document is not found.
+   *
+   * @param {string} modelName The model name, e.g. `platform.Content`.
+   * @param {string|number|ObjectID} id The model identifier.
+   * @param {object} [options] Options to pass to `Collection.findOne`.
+   * @return {Promise<object|null>}
+   */
+  async strictFindById(modelName, id, options) {
+    const doc = await this.findById(modelName, id, options);
+    if (!doc) throw BaseDB.error(`No ${modelName} record found for ID ${id}`, 404);
+    return doc;
+  }
+
+  /**
+   * Finds a single document for the provided model name and (optional) query criteria.
+   *
+   * @param {string} modelName The model name, e.g. `platform.Content`.
+   * @param {object} [query] The query criteria.
+   * @param {object} [options] Options to pass to `Collection.findOne`.
+   * @return {Promise<object|null>}
+   */
+  async findOne(modelName, query, options) {
+    const { namespace, resource } = BaseDB.parseModelName(modelName);
+    const coll = await this.collection(namespace, resource);
+    return coll.findOne(query, options);
+  }
+
+  /**
+   * Finds a single document for the provided model name and (optional) query criteria.
+   * Will throw an error if the document is not found.
+   *
+   * @param {string} modelName The model name, e.g. `platform.Content`.
+   * @param {object} [query] The query criteria.
+   * @param {object} [options] Options to pass to `Collection.findOne`.
+   * @return {Promise<object|null>}
+   */
+  async strictFindOne(modelName, query, options) {
+    const doc = await this.findOne(modelName, query, options);
+    if (!doc) throw BaseDB.error(`No ${modelName} record found for ID ${JSON.stringify(query)}`, 404);
+    return doc;
+  }
+
+  /**
    * Sets the tenant.
    *
    * @param {string} key The Base tenant key, e.g. `cygnus_ofcr`.
