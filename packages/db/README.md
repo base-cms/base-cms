@@ -12,7 +12,7 @@ const BaseDB = require('@base-cms/db');
 
 // Create the instance.
 const base = new BaseDB({
-  url:  'mongodb://localhost:4111',
+  url:  'mongodb://localhost:4111/test',
   tenant: 'cygnus_ofcr',
 }, {
   // Same options as passed to MongoClient.
