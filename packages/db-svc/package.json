@@ -8,7 +8,9 @@
   "license": "MIT",
   "dependencies": {
     "@base-cms/db": "^0.4.0",
+    "envalid": "^4.1.4",
     "moleculer": "^0.13.4",
-    "nats": "^1.0.1"
+    "nats": "^1.0.1",
+    "validator": "^10.9.0"
   }
 }
