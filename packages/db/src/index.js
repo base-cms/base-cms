@@ -126,7 +126,7 @@ class BaseDB {
    */
   dbNameFor(namespace) {
     if (!namespaces.includes(namespace)) {
-      throw BaseDB.error(`The provided Base namespace '${namespace}' is invalid.`, 400);
+      throw BaseDB.error(`The provided namespace '${namespace}' is invalid.`, 400);
     }
     return `${this.tenant}_${namespace}`;
   }
