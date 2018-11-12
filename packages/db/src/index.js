@@ -133,6 +133,43 @@ class BaseDB {
   }
 
   /**
+   * Returns a reference-one document for the provided document, model name and ref fields.
+   *
+   * For example, to retrieve the `createdBy` document referenced on a `Content` document,
+   * run the following:
+   *
+   * ```
+   * referenceOne({
+   *  doc: content,
+   *  relatedModel: 'platform.User',
+   *  localField: 'createdBy',
+   *  foreignField: '_id',
+   * });
+   * ```
+   *
+   * @param {object} params The function parameters.
+   * @param {object} params.doc The document to pull the reference data from.
+   * @param {string} params.relatedModel The reference's model name, e.g. `platform.Content`.
+   * @param {string} params.localField The local document field path to retreive the ref value from.
+   * @param {string} params.foreignField The foreign/reference document field to query against.
+   * @param {object} [params.query] Additional query criteria to apply.
+   * @param {object} [params.options] Options to pass to `Collection.findOne`.
+   */
+  async referenceOne({
+    doc,
+    relatedModel,
+    localField,
+    foreignField,
+    query,
+    options,
+  } = {}) {
+    const ref = BaseDB.get(doc, localField);
+    const id = BaseDB.extractRefId(ref);
+    if (!id) return null;
+    return this.findOne(relatedModel, { ...query, [foreignField]: id }, options);
+  }
+
+  /**
    * Sets the tenant.
    *
    * @param {string} key The Base tenant key, e.g. `cygnus_ofcr`.
