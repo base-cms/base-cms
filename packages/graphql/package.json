@@ -1,0 +1,12 @@
+{
+  "name": "@base-cms/graphql",
+  "version": "0.4.0",
+  "description": "The BaseCMS GraphQL schema, resolvers, and directives.",
+  "main": "src/index.js",
+  "author": "Jacob Bare <jacob@limit0.io>",
+  "repository": "https://github.com/base-cms/base-cms/tree/master/packages/graphql",
+  "license": "MIT",
+  "dependencies": {
+    "@base-cms/db": "^0.4.0"
+  }
+}
