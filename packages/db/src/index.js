@@ -238,6 +238,31 @@ class BaseDB {
   }
 
   /**
+   * Gets the value from a document for the provided path.
+   * By default, if not found, will return null.
+   * This can be changed by set the `def` argument.
+   *
+   * @param {object} doc The document.
+   * @param {string} path The object path, e.g. `name` or `foo.bar.baz` for deep traversal.
+   * @param {*} [def=null] The default value to return if the value is not found.
+   */
+  static get(doc, path, def = null) {
+    return objectPath(doc, path, def);
+  }
+
+  /**
+   * Gets the value from a document for the provided path as an array.
+   *
+   * @param {object} doc The document.
+   * @param {string} path The object path, e.g. `name` or `foo.bar.baz` for deep traversal.
+   * @return {array}
+   */
+  static getAsArray(doc, path) {
+    const value = objectPath(doc, path, []);
+    return isArray(value) ? value : [];
+  }
+
+  /**
    * Parses a model name into its namespace and resource parts.
    *
    * For example, `platform.Content` becomes `{ namespace: 'platform', resource: 'Content' }`
