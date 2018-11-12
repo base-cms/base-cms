@@ -1,4 +1,5 @@
 const { ObjectID } = require('mongodb');
+const objectPath = require('object-path');
 const MongoClient = require('./mongodb');
 const isObject = require('./is-object');
 
@@ -197,11 +198,8 @@ class BaseDB {
    * @param {string} field The field key of the mutation.
    */
   static extractMutationValue(doc, type, field) {
-    const { mutations } = doc;
-    if (!isObject(mutations)) return null;
-    const keyValues = mutations[type];
-    if (!isObject(keyValues)) return null;
-    return keyValues[field];
+    const path = `mutations.${type}.${field}`;
+    return objectPath(doc, path, null);
   }
 
   /**
