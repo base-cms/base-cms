@@ -7,6 +7,7 @@
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/db",
   "license": "MIT",
   "dependencies": {
-    "mongodb": "^3.1.9"
+    "mongodb": "^3.1.9",
+    "object-path": "^0.11.4"
   }
 }
