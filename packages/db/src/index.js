@@ -251,6 +251,22 @@ class BaseDB {
   }
 
   /**
+   * Explicitally connect to MongoDB.
+   */
+  connect() {
+    return this.client.connect();
+  }
+
+  /**
+   * Close the database connection.
+   *
+   * @param {boolean} [force]
+   */
+  close(force) {
+    return this.client.close(force);
+  }
+
+  /**
    * Coerces a string ID to either a MongoDB ObjectID or an integer.
    *
    * If the `id` value is not a string, or does not match the requirements for
