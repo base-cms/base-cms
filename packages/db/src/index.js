@@ -199,7 +199,7 @@ class BaseDB {
    */
   static extractMutationValue(doc, type, field) {
     const path = `mutations.${type}.${field}`;
-    return objectPath(doc, path, null);
+    return BaseDB.get(doc, path, null);
   }
 
   /**
