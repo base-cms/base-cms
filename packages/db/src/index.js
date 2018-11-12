@@ -170,6 +170,44 @@ class BaseDB {
   }
 
   /**
+   * Returns a cursor of reference-many documents for the
+   * provided document, model name and ref fields.
+   *
+   * For example, to retrieve the `taxonomy` documents referenced on a `Content` document,
+   * run the following:
+   *
+   * ```
+   * referenceMany({
+   *  doc: content,
+   *  relatedModel: 'platform.Taxonomy',
+   *  localField: 'taxonomy',
+   *  foreignField: '_id',
+   * });
+   * ```
+   *
+   * @param {object} params The function parameters.
+   * @param {object} params.doc The document to pull the reference data from.
+   * @param {string} params.relatedModel The reference's model name, e.g. `platform.Content`.
+   * @param {string} params.localField The local document field path to retreive the ref values.
+   * @param {string} params.foreignField The foreign/reference document field to query against.
+   * @param {object} [params.query] Additional query criteria to apply.
+   * @param {object} [params.options] Options to pass to `Collection.find`.
+   * @return {Promise<Cursor>}
+   */
+  async referenceMany({
+    doc,
+    relatedModel,
+    localField,
+    foreignField,
+    query,
+    options,
+  } = {}) {
+    const refs = BaseDB.get(doc, localField);
+    const ids = BaseDB.extractRefIds(isArray(refs) ? refs : [refs]);
+    return this.find(relatedModel, { ...query, [foreignField]: { $in: ids } }, options);
+  }
+
+  /**
    * Sets the tenant.
    *
    * @param {string} key The Base tenant key, e.g. `cygnus_ofcr`.
