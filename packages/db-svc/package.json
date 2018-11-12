@@ -7,6 +7,8 @@
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/db-svc",
   "license": "MIT",
   "dependencies": {
-    "@base-cms/db": "^0.4.0"
+    "@base-cms/db": "^0.4.0",
+    "moleculer": "^0.13.4",
+    "nats": "^1.0.1"
   }
 }
