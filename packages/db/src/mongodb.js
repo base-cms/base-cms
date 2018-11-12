@@ -14,20 +14,22 @@ class Client {
   /**
    *
    * @param {string} name
+   * @param {object} [options]
    */
-  async db(name) {
+  async db(name, options) {
     const client = await this.connect();
-    return client.db(name);
+    return client.db(name, options);
   }
 
   /**
    *
    * @param {string} dbName
    * @param {string} name
+   * @param {object} [options]
    */
-  async collection(dbName, name) {
+  async collection(dbName, name, options) {
     const db = await this.db(dbName);
-    return db.collection(name);
+    return db.collection(name, options);
   }
 
   /**
