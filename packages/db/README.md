@@ -8,20 +8,20 @@ yarn add @base-cms/db
 
 ## Usage
 ```js
-const BaseDB = require('@base-cms/db');
+const { BaseDB, MongoDB } = require('@base-cms/db');
 
-// Create the instance.
-const base = new BaseDB({
-  url:  'mongodb://localhost:4111/test',
-  tenant: 'cygnus_ofcr',
-}, {
-  // Same options as passed to MongoClient.
+// The Base MongoDB url.
+const url = 'mongodb://localhost:1234/platform';
+const client = new MongoDB.Client(url, {
   useNewUrlParser: true,
 });
 
-// Change the tenant (optional).
-// Now accessing Firehouse data.
-base.tenant('cygnus_fhc');
+// Create the instance for the tenant.
+// Must pass the MongoDB.Client instance to the constructor.
+const base = new BaseDB({
+  tenant: 'cygnus_ofcr',
+  client,
+});
 
 const run = async () => {
   // Find content by ID.
