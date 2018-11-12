@@ -89,6 +89,49 @@ class BaseDB {
   }
 
   /**
+   * Finds a multiple documents for the provided model name and (optional) query criteria.
+   * Will return a MongoDB cursor object.
+   *
+   * @param {string} modelName The model name, e.g. `platform.Content`.
+   * @param {object} [query] The query criteria.
+   * @param {object} [options] Options to pass to `Collection.find`.
+   * @return {Promise<Cursor>}
+   */
+  async find(modelName, query, options) {
+    const { namespace, resource } = BaseDB.parseModelName(modelName);
+    const coll = await this.collection(namespace, resource);
+    return coll.find(query, options);
+  }
+
+  /**
+   * Counts the number of documents for the provided model name and (optional) query criteria.
+   *
+   * @param {string} modelName The model name, e.g. `platform.Content`.
+   * @param {object} [query] The query criteria.
+   * @param {object} [options] Options to pass to `Collection.countDocuments`.
+   */
+  async count(modelName, query, options) {
+    const { namespace, resource } = BaseDB.parseModelName(modelName);
+    const coll = await this.collection(namespace, resource);
+    return coll.countDocuments(query, options);
+  }
+
+  /**
+   * Returns distinct values for the provided model name, key (field name)
+   * and (optional) query criteria.
+   *
+   * @param {string} modelName The model name, e.g. `platform.Content`.
+   * @param {string} key The field name to return distinct values from.
+   * @param {object} [query] The query criteria.
+   * @param {object} [options] Options to pass to `Collection.distinct`.
+   */
+  async distinct(modelName, key, query, options) {
+    const { namespace, resource } = BaseDB.parseModelName(modelName);
+    const coll = await this.collection(namespace, resource);
+    return coll.distinct(key, query, options);
+  }
+
+  /**
    * Sets the tenant.
    *
    * @param {string} key The Base tenant key, e.g. `cygnus_ofcr`.
