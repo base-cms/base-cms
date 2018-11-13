@@ -1,3 +1,5 @@
+# import Query.*, * from 'website/index.graphql'
+
 scalar Cursor
 scalar Date
 scalar JSON
@@ -5,6 +7,12 @@ scalar JSON
 directive @value(localField: String, fallbackField: String) on FIELD_DEFINITION
 directive @arrayValue(localField: String) on FIELD_DEFINITION
 directive @refOne(model: String!, localField: String, foreignField: String = "_id", criteria: JSON) on FIELD_DEFINITION
+
+enum ReferenceStatus {
+  all
+  active
+  deleted
+}
 
 type Query {
   ping: String!
