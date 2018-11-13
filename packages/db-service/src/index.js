@@ -13,5 +13,6 @@ const run = async () => {
   log(`BaseCMS DB connected to ${client.s.url}`);
   await broker.start();
   log('> Service ready');
+  // @todo Add graceful shutdown.
 };
 run().catch(e => setImmediate(() => { throw e; }));

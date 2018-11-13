@@ -1,9 +1,7 @@
-const { version } = require('../package.json');
 const BaseDB = require('./basedb');
 
 module.exports = {
   name: 'db',
-  version,
   actions: {
     findById({ params }) {
       const {
