@@ -18,7 +18,13 @@ module.exports = deepAssign(
       /**
        *
        */
-      ping: (_, input, { tenant }) => tenant || 'pong',
+      ping: async (_, input, { db }) => {
+        const doc = await db.call('findById', {
+          modelName: 'platform.Content',
+          id: 10028186,
+        });
+        return doc.name;
+      },
     },
   },
 );

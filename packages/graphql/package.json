@@ -7,7 +7,6 @@
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/graphql",
   "license": "MIT",
   "dependencies": {
-    "@base-cms/db-service": "^0.4.0",
     "@limit0/graphql-custom-types": "^1.0.1",
     "deep-assign": "^3.0.0",
     "graphql": "^14.0.2",
