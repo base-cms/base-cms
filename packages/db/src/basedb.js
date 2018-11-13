@@ -27,6 +27,9 @@ class BaseDB {
    * @param {string} baseOpts.client The MongoClient instance to use.
    */
   constructor({ tenant, client } = {}) {
+    if (!tenant) {
+      throw new Error('No tenant was provided.');
+    }
     this.tenant = tenant;
     if (!(client instanceof Client)) {
       throw new Error('BaseDB.client must be an instanceof Client.');
