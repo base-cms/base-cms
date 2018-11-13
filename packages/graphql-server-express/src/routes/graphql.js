@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const { schema } = require('@base-cms/graphql');
+const broker = require('@base-cms/db-service');
 
 const { NODE_ENV } = process.env;
 const isProduction = NODE_ENV === 'production';
@@ -19,7 +20,13 @@ const server = new ApolloServer({
   introspection: true,
   context: ({ req }) => {
     const tenant = req.get('x-tenant-key');
-    return { tenant, contentPaths: getCanonicalPaths(req) };
+    // @todo make this more elegant with data loaders, etc.
+    const proxy = () => ({
+      call: (action, params, ...rest) => broker.call(`db.${action}`, { tenant, ...params }, ...rest),
+      broker: () => broker,
+      tenant: () => tenant,
+    });
+    return { db: proxy(), contentPaths: getCanonicalPaths(req) };
   },
 });
 server.applyMiddleware({ app: router, path: '/' });
