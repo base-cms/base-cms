@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const { schema } = require('@base-cms/graphql');
-const broker = require('@base-cms/db-service');
+const broker = require('../broker');
 
 const { NODE_ENV } = process.env;
 const isProduction = NODE_ENV === 'production';
