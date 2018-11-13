@@ -17,3 +17,7 @@ enum ReferenceStatus {
 type Query {
   ping: String!
 }
+
+input ReferenceStatusInput {
+  status: ReferenceStatus = active
+}
