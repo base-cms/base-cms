@@ -11,8 +11,16 @@ const run = async () => {
   log(`Starting '${name}' v${version} ...`);
   const client = await mongodb.connect();
   log(`BaseCMS DB connected to ${client.s.url}`);
+
+  broker.middlewares.add({
+    stopped() {
+      return client.close().then(() => {
+        log('BaseCMS DB closed.');
+      }).catch(e => setImmediate(() => { throw e; }));
+    },
+  });
+
   await broker.start();
   log('> Service ready');
-  // @todo Add graceful shutdown.
 };
 run().catch(e => setImmediate(() => { throw e; }));
