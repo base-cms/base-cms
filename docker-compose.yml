@@ -1,7 +1,15 @@
 version: '3.7'
-networks:
-  basecms:
-      name: basecms
+
+x-service-defaults:
+  &service-defaults
+  tty: true
+  init: true
+  image: node:10.13-alpine
+  command: ['/base-cms/node_modules/.bin/gulp']
+  volumes:
+    - .:/base-cms:cached
+    - node_modules:/base-cms/node_modules
+
 services:
   mongodb:
     tty: true
@@ -15,44 +23,29 @@ services:
     ports:
       - "${BASECMS_NATS_PORT-8222}:8222"
   db-service:
-    tty: true
-    init: true
-    image: node:10.13-alpine
+    << : *service-defaults
     working_dir: /base-cms/packages/db-service
     depends_on:
       - mongodb
       - nats
-    command: ['/base-cms/node_modules/.bin/gulp']
-    volumes:
-      - .:/base-cms:cached
-      - node_modules:/base-cms/node_modules
     environment:
       BASECMS_MONGODB_URL: mongodb://mongodb:27017
       NATS_DSN: nats://nats:4222
   keyword-analysis:
-    tty: true
-    image: node:10.13-alpine
+    << : *service-defaults
     working_dir: /base-cms/packages/keyword-analysis
-    entrypoint: node src/import
-    volumes:
-      - .:/base-cms:cached
-      - node_modules:/base-cms/node_modules
+    command: ['node', 'src/import']
   graphql-server-express:
-    tty: true
-    init: true
-    image: node:10.13-alpine
+    << : *service-defaults
     working_dir: /base-cms/packages/graphql-server-express
-    command: ['/base-cms/node_modules/.bin/gulp']
     depends_on:
       - nats
       - db-service
-    volumes:
-      - .:/base-cms:cached
-      - node_modules:/base-cms/node_modules
     environment:
       BASECMS_GRAPHQL_PORT: "${BASECMS_GRAPHQL_PORT-6915}"
       BASECMS_GRAPHQL_HOST: 0.0.0.0
       NATS_DSN: nats://nats:4222
+
 volumes:
   node_modules: {}
   mongodb: {}
