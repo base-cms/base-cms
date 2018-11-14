@@ -1,15 +1,8 @@
-version: '3'
+version: '3.5'
 services:
-  app:
-    tty: true
-    image: node:10.13
-    working_dir: /app
-    volumes:
-      - .:/app:cached
-      - node_modules:/app/node_modules
+  keyword-analysis:
     depends_on:
       - elasticsearch
-    restart: on-failure
     entrypoint: /bin/bash
     environment:
       NODE_ENV: development
@@ -34,5 +27,4 @@ services:
     depends_on:
       - elasticsearch
 volumes:
-  node_modules: {}
   esdata: {}

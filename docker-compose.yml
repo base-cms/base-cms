@@ -1,0 +1,15 @@
+version: '3.5'
+networks:
+  basecms:
+      name: basecms
+services:
+  keyword-analysis:
+    tty: true
+    image: node:10.13
+    working_dir: /base-cms/packages/keyword-analysis
+    entrypoint: node src/import
+    volumes:
+      - .:/base-cms:cached
+      - node_modules:/base-cms/node_modules
+volumes:
+  node_modules: {}
