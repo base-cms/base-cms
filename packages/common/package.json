@@ -5,5 +5,8 @@
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/common",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "html2plaintext": "^2.1.0"
+  }
 }
