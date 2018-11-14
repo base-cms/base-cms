@@ -1,0 +1,9 @@
+{
+  "name": "@base-cms/common",
+  "version": "0.4.0",
+  "description": "Common utility functions for BaseCMS projects.",
+  "main": "src/index.js",
+  "author": "Jacob Bare <jacob@limit0.io>",
+  "repository": "https://github.com/base-cms/base-cms/tree/master/packages/common",
+  "license": "MIT"
+}
