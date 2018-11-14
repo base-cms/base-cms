@@ -22,7 +22,7 @@ services:
     depends_on:
       - mongodb
       - nats
-    command: ['/base-cms/node_modules/.bin/gulp']
+    command: /base-cms/node_modules/.bin/gulp
     volumes:
       - .:/base-cms:cached
       - node_modules:/base-cms/node_modules
