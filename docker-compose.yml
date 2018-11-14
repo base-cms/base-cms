@@ -37,6 +37,22 @@ services:
     volumes:
       - .:/base-cms:cached
       - node_modules:/base-cms/node_modules
+  graphql-server-express:
+    tty: true
+    init: true
+    image: node:10.13-alpine
+    working_dir: /base-cms/packages/graphql-server-express
+    command: ['/base-cms/node_modules/.bin/gulp']
+    depends_on:
+      - nats
+      - db-service
+    volumes:
+      - .:/base-cms:cached
+      - node_modules:/base-cms/node_modules
+    environment:
+      BASECMS_GRAPHQL_PORT: "${BASECMS_GRAPHQL_PORT-6915}"
+      BASECMS_GRAPHQL_HOST: 0.0.0.0
+      NATS_DSN: nats://nats:4222
 volumes:
   node_modules: {}
   mongodb: {}

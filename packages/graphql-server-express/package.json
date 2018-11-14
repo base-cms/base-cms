@@ -6,9 +6,6 @@
   "author": "Jacob Bare <jacob@limit0.io>",
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/graphql-server-express",
   "license": "MIT",
-  "scripts": {
-    "dev": "gulp"
-  },
   "dependencies": {
     "@base-cms/graphql": "^0.4.0",
     "@base-cms/tooling": "^0.4.0",
