@@ -1,7 +1,7 @@
 const { ObjectID } = require('mongodb');
 const objectPath = require('object-path');
+const { isObject } = require('@base-cms/common');
 const { Client } = require('./mongodb');
-const isObject = require('./is-object');
 
 const { isArray } = Array;
 
