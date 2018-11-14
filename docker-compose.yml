@@ -26,6 +26,9 @@ services:
     volumes:
       - .:/base-cms:cached
       - node_modules:/base-cms/node_modules
+    environment:
+      BASECMS_MONGODB_URL: mongodb://mongodb:27017
+      NATS_DSN: nats://nats:4222
   keyword-analysis:
     tty: true
     image: node:10.13-alpine

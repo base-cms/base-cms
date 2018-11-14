@@ -1,6 +1,1 @@
 version: '3.7'
-services:
-  db-service:
-    environment:
-      BASECMS_MONGODB_URL: mongodb://mongodb:27017
-      NATS_DSN: nats://nats:4222
