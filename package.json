@@ -8,9 +8,9 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "lerna run build",
-    "patch": "lerna version patch",
-    "lint": "node_modules/.bin/eslint packages --ext .js --ext .jsx"
+    "build": "scripts/lerna.sh run build",
+    "patch": "scripts/lerna.sh version",
+    "lint": "scripts/lint.sh"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
