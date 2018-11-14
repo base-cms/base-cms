@@ -1,20 +1,16 @@
 {
-  "name": "base-content-index-tool",
-  "description": "Content indexing tool using ElasticSearch.",
-  "version": "1.0.0",
+  "name": "@base-cms/keyword-analysis",
+  "description": "Analyzes BaseCMS content based on keywords using ElasticSearch.",
+  "version": "0.4.0",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/cygnusb2b/base-content-index-tool.git"
-  },
+  "repository": "https://github.com/base-cms/base-cms/tree/master/packages/keyword-analysis",
   "scripts": {
-    "prestart": "$npm_package_docker_dev_install",
-    "start": "$npm_package_docker_dev_up",
+    "predev": "$npm_package_docker_dev_install",
+    "dev": "$npm_package_docker_dev_up",
     "stop": "$npm_package_docker_dev_down",
     "terminal": "docker exec -it base-content-analyzer_app_1 /bin/bash",
-    "lint": "eslint src",
     "index": "docker exec -it base-content-analyzer_app_1 node src/import"
   },
   "docker": {
@@ -38,10 +34,5 @@
     "mongodb": "^3.1.8",
     "progress": "^2.0.1",
     "validator": "^10.8.0"
-  },
-  "devDependencies": {
-    "eslint": "^5.7.0",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.14.0"
   }
 }

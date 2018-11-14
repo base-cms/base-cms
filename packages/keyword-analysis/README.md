@@ -1,1 +1,2 @@
-# Base Content Index Tool
+# BaseCMS Content Keyword Analysis
+Analyzes content based on keywords using ElasticSearch.
