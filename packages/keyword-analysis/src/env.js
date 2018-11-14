@@ -1,25 +1,11 @@
-const { isURL } = require('validator');
+const { envalid } = require('@base-cms/tooling');
+
 const {
+  custom,
   bool,
   cleanEnv,
-  makeValidator,
-} = require('envalid');
-
-const mongodsn = makeValidator((v) => {
-  const opts = { protocols: ['mongodb'], require_tld: false, require_protocol: true };
-  if (isURL(v, opts)) return v;
-  throw new Error('Expected a Mongo DSN string startng with mongodb://');
-});
-
-const nonemptystr = makeValidator((v) => {
-  const err = new Error('Expected a non-empty string');
-  if (v === undefined || v === null || v === '') {
-    throw err;
-  }
-  const trimmed = String(v).trim();
-  if (!trimmed) throw err;
-  return trimmed;
-});
+} = envalid;
+const { mongodsn, nonemptystr } = custom;
 
 module.exports = cleanEnv(process.env, {
   MONGO_DSN: mongodsn({ desc: 'The MongoDB DSN to connect to.' }),
