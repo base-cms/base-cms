@@ -1,2 +1,6 @@
 version: '3.7'
 
+services:
+  graphql-server-express:
+    ports:
+      - "${BASECMS_GRAPHQL_PORT-6915}:6915"
