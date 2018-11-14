@@ -1,11 +1,11 @@
-const { isURL } = require('validator');
-const { str, cleanEnv, makeValidator } = require('envalid');
+const { envalid } = require('@base-cms/tooling');
 
-const natsdsn = makeValidator((v) => {
-  const opts = { protocols: ['nats'], require_tld: false, require_protocol: true };
-  if (isURL(v, opts)) return v;
-  throw new Error('Expected a NATS DSN string with nats://');
-});
+const {
+  custom,
+  str,
+  cleanEnv,
+} = envalid;
+const { natsdsn } = custom;
 
 module.exports = cleanEnv(process.env, {
   BASECMS_MONGODB_URL: str({ desc: 'The Base MongoDB connection URL.' }),

@@ -7,13 +7,12 @@
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/graphql-stitching",
   "license": "MIT",
   "dependencies": {
+    "@base-cms/tooling": "^0.4.0",
     "apollo-link": "^1.2.3",
     "apollo-link-context": "^1.0.9",
     "apollo-link-http": "^1.5.5",
-    "envalid": "^4.1.4",
     "graphql": "^14.0.2",
     "graphql-tools": "^4.0.0",
-    "isomorphic-unfetch": "^3.0.0",
-    "validator": "^10.8.0"
+    "isomorphic-unfetch": "^3.0.0"
   }
 }

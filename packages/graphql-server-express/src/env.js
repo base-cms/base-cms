@@ -1,16 +1,12 @@
-const { isURL } = require('validator');
-const {
-  port,
-  str,
-  cleanEnv,
-  makeValidator,
-} = require('envalid');
+const { envalid } = require('@base-cms/tooling');
 
-const natsdsn = makeValidator((v) => {
-  const opts = { protocols: ['nats'], require_tld: false, require_protocol: true };
-  if (isURL(v, opts)) return v;
-  throw new Error('Expected a NATS DSN string with nats://');
-});
+const {
+  custom,
+  str,
+  port,
+  cleanEnv,
+} = envalid;
+const { natsdsn } = custom;
 
 module.exports = cleanEnv(process.env, {
   BASECMS_GRAPHQL_PORT: port({ desc: 'The port to run the GraphQL server on.', default: 6915 }),

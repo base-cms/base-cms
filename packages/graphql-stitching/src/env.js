@@ -1,21 +1,11 @@
-const { isURL } = require('validator');
-const { cleanEnv, makeValidator, json } = require('envalid');
+const { envalid } = require('@base-cms/tooling');
 
-const url = makeValidator((v) => {
-  const opts = { protocols: ['http', 'https'], require_tld: false, require_protocol: true };
-  if (isURL(v, opts)) return v;
-  throw new Error('Expected a valid URL with http or https');
-});
-
-const nonemptystr = makeValidator((v) => {
-  const err = new Error('Expected a non-empty string');
-  if (v === undefined || v === null || v === '') {
-    throw err;
-  }
-  const trimmed = String(v).trim();
-  if (!trimmed) throw err;
-  return trimmed;
-});
+const {
+  custom,
+  json,
+  cleanEnv,
+} = envalid;
+const { url, nonemptystr } = custom;
 
 module.exports = cleanEnv(process.env, {
   BASECMS_GRAPHQL_URL: url({ desc: 'The BaseCMS GraphQL URL for stitching API requests.' }),
