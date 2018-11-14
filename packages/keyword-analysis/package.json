@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "@base-cms/common": "^0.4.0",
+    "@base-cms/tooling": "^0.4.0",
     "async": "^2.6.1",
     "chalk": "^2.4.1",
     "clear": "^0.1.0",
