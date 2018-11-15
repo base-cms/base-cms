@@ -11,6 +11,12 @@ module.exports = deepAssign(
     Cursor: CursorType,
     JSON: GraphQLJSON,
 
+    // console.log(db);
+    // db.call('findById', {
+    //   modelName: 'platform.Content',
+    //   id: 10028186,
+    // }).then(doc => console.log(doc));
+
     /**
      * Root queries.
      */
@@ -18,13 +24,7 @@ module.exports = deepAssign(
       /**
        *
        */
-      ping: async (_, input, { db }) => {
-        const doc = await db.call('findById', {
-          modelName: 'platform.Content',
-          id: 10028186,
-        });
-        return doc.name;
-      },
+      ping: () => 'pong',
     },
   },
 );
