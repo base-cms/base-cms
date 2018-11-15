@@ -3,6 +3,7 @@ services:
   keyword-analysis:
     depends_on:
       - elasticsearch
+      - kibana
     environment:
       ELASTIC_HOST: http://elasticsearch:9200
   elasticsearch:
