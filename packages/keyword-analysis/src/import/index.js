@@ -6,13 +6,13 @@ const env = require('../env');
 const run = require('./run');
 
 const { log } = console;
-const { TENANT_KEY, MONGO_DSN } = env;
+const { TENANT_KEY } = env;
 
 const questions = [
   {
     type: 'input',
     name: 'batchSize',
-    default: 100,
+    default: 200,
     message: 'The batch size.',
     validate: (v) => {
       const num = parseInt(v, 10);
@@ -38,13 +38,13 @@ const questions = [
   {
     type: 'confirm',
     name: 'shouldRun',
-    message: `Proceed with indexing for '${TENANT_KEY}' from '${MONGO_DSN}'?`,
+    message: `Proceed with indexing for '${TENANT_KEY}'?`,
     default: true,
   },
 ];
 
 clear();
-log(chalk.blue(figlet.textSync('Content Indexer', { horizontalLayout: 'full' })));
+log(chalk.blue(figlet.textSync('Keyword Analysis', { horizontalLayout: 'full' })));
 
 const execute = async () => {
   const answers = await inquirer.prompt(questions);
