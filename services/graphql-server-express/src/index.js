@@ -1,4 +1,4 @@
-const broker = require('./broker');
+const db = require('./db');
 const app = require('./app');
 const pkg = require('../package.json');
 
@@ -6,18 +6,17 @@ const { log } = console;
 
 const run = async () => {
   log(`Starting '${pkg.name}'...`);
-  await broker.start();
-  await broker.waitForServices('db', 2000);
-  log('Service broker started.');
+  await db.connect(2000);
+  log('DB service started.');
 
   const server = await app(80);
-  log('> Ready on http://0.0.0.0:10003');
+  log('> Ready on http://0.0.0.0:10003/graphql');
 
   const graceful = () => {
     log(`Stopping '${pkg.name}'...`);
     server.stop(() => {
       log('Web server stopped.');
-      broker.stop().then(() => log('> Stopped'));
+      db.stop().then(() => log('> Stopped'));
     });
   };
 
