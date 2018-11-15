@@ -1,6 +1,7 @@
 const eachSeries = require('async/eachSeries');
 const each = require('async/each');
 const whilst = require('async/whilst');
+const series = require('async/series');
 
 module.exports = {
   /**
@@ -21,6 +22,19 @@ module.exports = {
    */
   eachPromise: (coll, iteratee) => new Promise((resolve, reject) => {
     each(coll, iteratee, (err, res) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(res);
+      }
+    });
+  }),
+
+  /**
+   *
+   */
+  seriesPromise: tasks => new Promise((resolve, reject) => {
+    series(tasks, (err, res) => {
       if (err) {
         reject(err);
       } else {
