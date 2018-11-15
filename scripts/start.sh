@@ -3,7 +3,7 @@ COMPOSEDIR="packages/$1"
 COMPOSEFILE="$COMPOSEDIR/docker-compose.yml"
 
 function usage() {
-  echo -e "\nUsage: scripts/dev.sh PACKAGE_NAME"
+  echo -e "\nUsage: scripts/start.sh PACKAGE_NAME"
   echo -e "\nBoots a package service"
 }
 
@@ -14,7 +14,7 @@ function compose() {
 }
 
 function arguments() {
-  echo -e "\"dev.sh\" requires 1 argument."
+  echo -e "\"start.sh\" requires 1 argument."
   usage
   exit 1
 }
