@@ -1,4 +1,10 @@
+const env = require('../env');
+
+const { TENANT_KEY } = env;
+
 module.exports = {
+  index: `${TENANT_KEY}_analysis`,
+  type: 'content',
   filter: {
     word_delimiter_catenate: {
       type: 'word_delimiter',

@@ -1,9 +1,12 @@
 const chalk = require('chalk');
 const elastic = require('../elastic');
-const env = require('../env');
-const { filter, analyzer } = require('../elastic/index-settings');
+const {
+  filter,
+  analyzer,
+  index: ELASTIC_INDEX,
+  type: ELASTIC_TYPE,
+} = require('../elastic/index-settings');
 
-const { ELASTIC_INDEX, ELASTIC_TYPE } = env;
 const { log } = console;
 
 /**
