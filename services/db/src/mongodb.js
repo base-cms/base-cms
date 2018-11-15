@@ -1,6 +1,6 @@
 const { MongoDB } = require('@base-cms/db');
-const { BASECMS_MONGODB_URL } = require('./env');
+const { MONGO_DSN } = require('./env');
 
-module.exports = new MongoDB.Client(BASECMS_MONGODB_URL, {
+module.exports = new MongoDB.Client(MONGO_DSN, {
   useNewUrlParser: true,
 });

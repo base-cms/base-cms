@@ -1,6 +1,5 @@
 #!/bin/bash
 COMPOSEDIR="services/$1"
-COMPOSEFILE="$COMPOSEDIR/docker-compose.yml"
 
 function usage() {
   echo -e "\nUsage: scripts/start.sh PACKAGE_NAME"
@@ -28,13 +27,9 @@ function arguments() {
 # Check for a valid package
 [[ -d $COMPOSEDIR ]] || compose
 
-# Check for valid compose file
-[[ ! -f $COMPOSEFILE ]] && echo -e "Creating package docker-compose.yml" && echo -e "version: '3.7'\n" > $COMPOSEFILE
-
 echo -e "\nStarting dev environment for $1\n"
 docker-compose \
   --file docker-compose.yml \
-  --file $COMPOSEFILE \
   --project-name base-cms \
   run \
     --rm \

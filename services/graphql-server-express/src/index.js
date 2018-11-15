@@ -1,6 +1,5 @@
 const broker = require('./broker');
 const app = require('./app');
-const { BASECMS_GRAPHQL_PORT: PORT, BASECMS_GRAPHQL_HOST: HOST } = require('./env');
 const pkg = require('../package.json');
 
 const { log } = console;
@@ -11,8 +10,8 @@ const run = async () => {
   await broker.waitForServices('db', 2000);
   log('Service broker started.');
 
-  const server = await app(PORT, HOST);
-  log(`> Ready on on http://${HOST}:${PORT}`);
+  const server = await app(80);
+  log('> Ready on on http://0.0.0.0:80');
 
   const graceful = () => {
     log(`Stopping '${pkg.name}'...`);

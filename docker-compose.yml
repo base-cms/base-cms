@@ -9,6 +9,11 @@ x-service-defaults:
   volumes:
     - .:/base-cms:cached
     - node_modules:/base-cms/node_modules
+  environment:
+    NODE_ENV: development
+    NATS_DSN: nats://nats:4222
+    MONGO_DSN: mongodb://mongodb:27017
+    ELASTICSEARCH_URL: http://elasticsearch:9200
 
 services:
   mongodb:
@@ -17,36 +22,50 @@ services:
     volumes:
       - mongodb:/data/db
     ports:
-      - "${BASECMS_MONGODB_PORT-10500}:27017"
+      - "10000:27017"
   nats:
     image: nats:latest
     ports:
-      - "${BASECMS_NATS_PORT-8222}:8222"
+      - "10001:8222"
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.4.2
+    environment:
+      discovery.type: single-node
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+  kibana:
+    image: docker.elastic.co/kibana/kibana-oss:6.4.2
+    environment:
+      server.name: kibana
+      ELASTICSEARCH_URL: "${ELASTICSEARCH_URL-http://elasticsearch:9200}"
+      LOGGING_QUIET: "true"
+    ports:
+      - "10002:5601"
+    depends_on:
+      - elasticsearch
   db:
     << : *service-defaults
     working_dir: /base-cms/services/db
     depends_on:
       - mongodb
       - nats
-    environment:
-      BASECMS_MONGODB_URL: mongodb://mongodb:27017
-      NATS_DSN: nats://nats:4222
   keyword-analysis:
     << : *service-defaults
     working_dir: /base-cms/services/keyword-analysis
     command: ['node', 'src']
     depends_on:
       - db
+      - elasticsearch
+      - kibana
   graphql-server-express:
     << : *service-defaults
     working_dir: /base-cms/services/graphql-server-express
     depends_on:
       - db
-    environment:
-      BASECMS_GRAPHQL_PORT: "${BASECMS_GRAPHQL_PORT-6915}"
-      BASECMS_GRAPHQL_HOST: 0.0.0.0
-      NATS_DSN: nats://nats:4222
+    ports:
+      - "6915:80"
 
 volumes:
+  esdata: {}
   node_modules: {}
   mongodb: {}

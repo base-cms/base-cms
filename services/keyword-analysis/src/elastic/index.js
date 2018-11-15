@@ -1,10 +1,10 @@
 const ElasticClient = require('./client');
 const env = require('../env');
 
-const { ELASTIC_HOST, NODE_ENV } = env;
+const { ELASTICSEARCH_URL, NODE_ENV } = env;
 
 const client = ElasticClient({
-  host: ELASTIC_HOST,
+  host: ELASTICSEARCH_URL,
   log: {
     type: 'stdio',
     levels: NODE_ENV === 'test' ? [] : ['error', 'warning'],
