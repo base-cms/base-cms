@@ -1,0 +1,9 @@
+{
+  "name": "@base-cms/service-clients",
+  "version": "0.4.0",
+  "description": "BaseCMS service clients for consuming Moleculer services.",
+  "main": "src/index.js",
+  "author": "Jacob Bare <jacob@limit0.io>",
+  "repository": "https://github.com/base-cms/base-cms/tree/master/packages/service-clients",
+  "license": "MIT"
+}
