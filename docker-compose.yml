@@ -10,9 +10,9 @@ x-service-defaults:
     - .:/base-cms:cached
   environment:
     NODE_ENV: development
-    NATS_DSN: nats://nats:4222
-    MONGO_DSN: mongodb://mongodb:27017
-    ELASTICSEARCH_URL: http://elasticsearch:9200
+    NATS_DSN: ${NATS_DSN-nats://nats:4222}
+    MONGO_DSN: ${MONGO_DSN-mongodb://mongodb:27017}
+    ELASTICSEARCH_URL: ${ELASTICSEARCH_URL-http://elasticsearch:9200}
 
 services:
   mongodb:
