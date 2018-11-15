@@ -1,5 +1,5 @@
 const { async } = require('@base-cms/common');
-const Broker = require('./broker');
+const BrokerFactory = require('./broker');
 
 const { isArray } = Array;
 const { seriesPromise } = async;
@@ -19,7 +19,7 @@ module.exports = ({ serviceName, waitForServices } = {}) => {
      *
      */
     constructor({ brokerOpts } = {}) {
-      this.broker = Broker(brokerOpts);
+      this.broker = BrokerFactory(brokerOpts);
     }
 
     /**
