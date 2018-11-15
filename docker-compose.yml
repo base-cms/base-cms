@@ -34,7 +34,9 @@ services:
   keyword-analysis:
     << : *service-defaults
     working_dir: /base-cms/packages/keyword-analysis
-    command: ['node', 'src/import']
+    command: ['node', 'src']
+    depends_on:
+      - db-service
   graphql-server-express:
     << : *service-defaults
     working_dir: /base-cms/packages/graphql-server-express
