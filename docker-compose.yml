@@ -63,7 +63,7 @@ services:
     depends_on:
       - db
     ports:
-      - "6915:80"
+      - "10003:80"
 
 volumes:
   esdata: {}

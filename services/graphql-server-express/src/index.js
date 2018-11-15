@@ -11,7 +11,7 @@ const run = async () => {
   log('Service broker started.');
 
   const server = await app(80);
-  log('> Ready on on http://0.0.0.0:80');
+  log('> Ready on http://0.0.0.0:10003');
 
   const graceful = () => {
     log(`Stopping '${pkg.name}'...`);
