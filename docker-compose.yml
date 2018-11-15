@@ -41,7 +41,6 @@ services:
     << : *service-defaults
     working_dir: /base-cms/services/graphql-server-express
     depends_on:
-      - nats
       - db
     environment:
       BASECMS_GRAPHQL_PORT: "${BASECMS_GRAPHQL_PORT-6915}"
