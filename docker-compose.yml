@@ -8,7 +8,6 @@ x-service-defaults:
   command: ['/base-cms/node_modules/.bin/gulp']
   volumes:
     - .:/base-cms:cached
-    - node_modules:/base-cms/node_modules
   environment:
     NODE_ENV: development
     NATS_DSN: nats://nats:4222
@@ -67,5 +66,4 @@ services:
 
 volumes:
   esdata: {}
-  node_modules: {}
   mongodb: {}
