@@ -33,7 +33,7 @@ services:
       NATS_DSN: nats://nats:4222
   keyword-analysis:
     << : *service-defaults
-    working_dir: /base-cms/packages/keyword-analysis
+    working_dir: /base-cms/services/keyword-analysis
     command: ['node', 'src']
     depends_on:
       - db
