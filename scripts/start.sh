@@ -22,7 +22,7 @@ function arguments() {
 [[ -z "$1" ]] && arguments
 
 # Only install if we haven't yet.
-[[ -n $(docker volume ls -q | grep base-cms_node_modules) ]] || scripts/install.sh
+[[ -d "node_modules" ]] || scripts/install.sh
 
 # Check for a valid package
 [[ -d $COMPOSEDIR ]] || compose
