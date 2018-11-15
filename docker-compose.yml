@@ -39,7 +39,7 @@ services:
       - db
   graphql-server-express:
     << : *service-defaults
-    working_dir: /base-cms/packages/graphql-server-express
+    working_dir: /base-cms/services/graphql-server-express
     depends_on:
       - nats
       - db
