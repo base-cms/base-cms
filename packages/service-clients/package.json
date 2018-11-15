@@ -5,5 +5,11 @@
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/service-clients",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@base-cms/common": "^0.4.0",
+    "@base-cms/tooling": "^0.4.0",
+    "moleculer": "^0.13.4",
+    "nats": "^1.0.1"
+  }
 }
