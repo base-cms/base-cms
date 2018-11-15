@@ -9,9 +9,11 @@ module.exports = {
     findById({ params }) {
       const {
         tenant,
-        ...rest
+        modelName,
+        id,
+        options,
       } = params;
-      return BaseDB(tenant).findById(...rest);
+      return BaseDB(tenant).findById(modelName, id, options);
     },
 
     /**
