@@ -22,9 +22,9 @@ services:
     image: nats:latest
     ports:
       - "${BASECMS_NATS_PORT-8222}:8222"
-  db-service:
+  db:
     << : *service-defaults
-    working_dir: /base-cms/packages/db-service
+    working_dir: /base-cms/services/db
     depends_on:
       - mongodb
       - nats
@@ -36,13 +36,13 @@ services:
     working_dir: /base-cms/packages/keyword-analysis
     command: ['node', 'src']
     depends_on:
-      - db-service
+      - db
   graphql-server-express:
     << : *service-defaults
     working_dir: /base-cms/packages/graphql-server-express
     depends_on:
       - nats
-      - db-service
+      - db
     environment:
       BASECMS_GRAPHQL_PORT: "${BASECMS_GRAPHQL_PORT-6915}"
       BASECMS_GRAPHQL_HOST: 0.0.0.0

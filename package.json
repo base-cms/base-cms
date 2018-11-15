@@ -5,7 +5,8 @@
   "private": true,
   "repository": "https://github.com/base-cms/base-cms.git",
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "services/*"
   ],
   "scripts": {
     "build": "scripts/lerna.sh run build",
