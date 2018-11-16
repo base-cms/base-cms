@@ -1,13 +1,13 @@
 {
   "name": "@base-cms/website-express",
-  "version": "0.4.8",
+  "version": "0.4.10",
   "description": "Core BaseCMS website server components, using Express",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
   "license": "MIT",
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/website-express",
   "dependencies": {
-    "@base-cms/graphql-express-router": "^0.4.8",
+    "@base-cms/graphql-express-router": "^0.4.10",
     "compression": "^1.7.3",
     "envalid": "^4.1.4",
     "express": "^4.16.4",

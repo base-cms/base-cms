@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/website-nextjs",
-  "version": "0.4.8",
+  "version": "0.4.10",
   "description": "Core NextJS components for BaseCMS websites",
   "author": "Jacob Bare <jacob@limit0.io>",
   "license": "MIT",
@@ -10,8 +10,8 @@
     "build": "yarn clean && rollup -c"
   },
   "dependencies": {
-    "@base-cms/nextjs-apollo": "^0.4.8",
-    "@base-cms/website-express": "^0.4.8",
+    "@base-cms/nextjs-apollo": "^0.4.10",
+    "@base-cms/website-express": "^0.4.10",
     "classnames": "^2.2.6",
     "escape-string-regexp": "^1.0.5",
     "hoist-non-react-statics": "^3.0.1",

@@ -1,13 +1,13 @@
 {
   "name": "@base-cms/graphql-express-router",
-  "version": "0.4.8",
+  "version": "0.4.10",
   "description": "Provides an Express router for accessing the stitched BaseCMS GraphQL schema.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/graphql-middleware-express",
   "license": "MIT",
   "dependencies": {
-    "@base-cms/graphql-stitching": "^0.4.8",
+    "@base-cms/graphql-stitching": "^0.4.10",
     "apollo-server-express": "^2.2.0-alpha.0"
   },
   "peerDependencies": {

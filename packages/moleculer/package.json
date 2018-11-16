@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/moleculer",
-  "version": "0.4.0",
+  "version": "0.4.10",
   "description": "BaseCMS utility functions for the Moleculer microservices framework.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",

@@ -1,13 +1,13 @@
 {
   "name": "@base-cms/graphql-stitching",
-  "version": "0.4.8",
+  "version": "0.4.10",
   "description": "Provides a low-level, server-side stitching of the BaseCMS GraphQL API",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/graphql-stitching",
   "license": "MIT",
   "dependencies": {
-    "@base-cms/tooling": "^0.4.0",
+    "@base-cms/tooling": "^0.4.10",
     "apollo-link": "^1.2.3",
     "apollo-link-context": "^1.0.9",
     "apollo-link-http": "^1.5.5",

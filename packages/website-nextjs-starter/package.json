@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/website-nextjs-starter",
-  "version": "0.4.8",
+  "version": "0.4.10",
   "description": "A starter kit for creating BaseCMS websites using NextJS",
   "author": "Jacob Bare <jacob@limit0.io>",
   "license": "MIT",
@@ -11,7 +11,7 @@
     "start": "NODE_ENV=production node server"
   },
   "dependencies": {
-    "@base-cms/website-nextjs": "^0.4.8",
+    "@base-cms/website-nextjs": "^0.4.10",
     "@base-cms/website-nextjs-bootstrap": "^0.4.8",
     "apollo-client": "^2.4.2",
     "bootstrap": "4.1.3",
