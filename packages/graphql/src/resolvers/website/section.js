@@ -9,7 +9,7 @@ module.exports = {
     /**
      *
      */
-    websiteSection: async (_, { input }, { db }) => {
+    websiteSection: (_, { input }, { db }) => {
       const { id, status } = input;
       return db.call('findOne', {
         modelName: 'website.Section',
