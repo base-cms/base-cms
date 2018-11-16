@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/graphql",
-  "version": "0.4.10",
+  "version": "0.4.11",
   "description": "The BaseCMS GraphQL schema, resolvers, and directives.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
