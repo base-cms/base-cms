@@ -8,6 +8,7 @@
   "license": "MIT",
   "dependencies": {
     "@base-cms/common": "^0.4.0",
+    "@base-cms/moleculer": "^0.4.0",
     "@base-cms/tooling": "^0.4.0",
     "moleculer": "^0.13.4",
     "nats": "^1.0.1"

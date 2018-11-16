@@ -4,7 +4,7 @@ const BrokerFactory = require('./broker');
 const { isArray } = Array;
 const { seriesPromise } = async;
 
-module.exports = ({ serviceName, waitForServices } = {}) => {
+module.exports = ({ serviceName, waitForServices, brokerOpts } = {}) => {
   if (!serviceName) throw new Error('The `serviceName` option must be specified.');
 
   const waitFor = [serviceName];
@@ -18,8 +18,8 @@ module.exports = ({ serviceName, waitForServices } = {}) => {
     /**
      *
      */
-    constructor({ brokerOpts } = {}) {
-      this.broker = BrokerFactory(brokerOpts);
+    constructor(options = {}) {
+      this.broker = BrokerFactory({ ...options, ...brokerOpts });
     }
 
     /**
