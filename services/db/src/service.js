@@ -19,12 +19,14 @@ module.exports = {
     /**
      *
      */
-    findOne({ params }) {
+    async findOne({ params }) {
       const {
         tenant,
-        ...rest
+        modelName,
+        query,
+        options,
       } = params;
-      return BaseDB(tenant).findOne(...rest);
+      return BaseDB(tenant).findOne(modelName, query, options);
     },
 
     /**
@@ -33,9 +35,21 @@ module.exports = {
     referenceOne({ params }) {
       const {
         tenant,
-        ...rest
+        doc,
+        relatedModel,
+        localField,
+        foreignField,
+        query,
+        options,
       } = params;
-      return BaseDB(tenant).referenceOne({ ...rest });
+      return BaseDB(tenant).referenceOne({
+        doc,
+        relatedModel,
+        localField,
+        foreignField,
+        query,
+        options,
+      });
     },
   },
 };
