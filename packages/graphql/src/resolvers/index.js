@@ -27,7 +27,7 @@ module.exports = deepAssign(
       /**
        *
        */
-      ping: () => 'pong',
+      ping: () => 'pong!',
     },
   },
 );
