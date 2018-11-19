@@ -1,3 +1,4 @@
+# import * from 'platform/index.graphql'
 # import Query.*, * from 'website/index.graphql'
 
 scalar ObjectID
@@ -9,16 +10,56 @@ directive @value(localField: String, fallbackField: String) on FIELD_DEFINITION
 directive @arrayValue(localField: String) on FIELD_DEFINITION
 directive @refOne(model: String!, localField: String, foreignField: String = "_id", criteria: JSON) on FIELD_DEFINITION
 
+type Query {
+  ping: String!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  endCursor: Cursor
+}
+
+enum SortOrder {
+  asc
+  desc
+}
+
 enum ReferenceStatus {
   all
   active
   deleted
 }
 
-type Query {
-  ping: String!
+enum RelatedContentQueryType {
+  # returns related content from doc.relatedTo
+  owned
+  # returns related content on the inverse of doc.relatedTo
+  inverse
+  # returns both `to` and `inverse` combined
+  combined
+  # returns related content based on primary section
+  primarySection
+  # returns related content based on inverse company and relatedTo
+  company
+}
+
+input PaginationInput {
+  first: Int = 10
+  after: Cursor
+}
+
+input ModelIdInput {
+  id: Int!
+}
+
+input ModelObjectIdInput {
+  id: ObjectID!
 }
 
 input ReferenceStatusInput {
   status: ReferenceStatus = active
+}
+
+input MomentFormat {
+  format: String = "YYYY-MM-DDTHH:mm:ssZ"
 }

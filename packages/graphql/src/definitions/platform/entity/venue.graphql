@@ -1,0 +1,15 @@
+type PlatformEntityVenue implements PlatformEntity {
+  # fields required by the GraphQL PlatformEntity interface
+  id: String!
+  emails: [PlatformEntityEntityStubEmail]! @arrayValue
+  phoneNumbers: [PlatformEntityEntityStubPhone]! @arrayValue
+  mobileNumbers: [PlatformEntityEntityStubPhone]! @arrayValue
+  faxNumbers: [PlatformEntityEntityStubPhone]! @arrayValue
+  addresses: [PlatformEntityEntityStubAddress]! @arrayValue
+  websites: [PlatformEntityEntityStubWebsite]! @arrayValue
+  socialMediaLinks: [PlatformEntityStubSocial]! @arrayValue
+  status: Int
+
+  # fields directly on platform.model::Entity\Venue
+  name: String
+}

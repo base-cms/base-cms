@@ -1,0 +1,9 @@
+# import * from 'entity/index.graphql'
+# import * from 'content/index.graphql'
+
+type PlatformStubExternal {
+  identifier: String
+  identifiers: [String]! @arrayValue
+  namespace: String
+  url: String
+}
