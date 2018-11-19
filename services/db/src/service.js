@@ -32,6 +32,19 @@ module.exports = {
     /**
      *
      */
+    count({ params }) {
+      const {
+        tenant,
+        modelName,
+        query,
+        options,
+      } = params;
+      return BaseDB(tenant).count(modelName, query, options);
+    },
+
+    /**
+     *
+     */
     referenceOne({ params }) {
       const {
         tenant,
