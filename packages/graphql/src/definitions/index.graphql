@@ -1,5 +1,6 @@
 # import Query.*, * from 'website/index.graphql'
 
+scalar ObjectID
 scalar Cursor
 scalar Date
 scalar JSON
