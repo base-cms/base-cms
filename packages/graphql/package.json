@@ -9,6 +9,7 @@
   "dependencies": {
     "@base-cms/db": "^0.4.10",
     "@limit0/graphql-custom-types": "^1.0.1",
+    "bson": "^1.1.0",
     "deep-assign": "^3.0.0",
     "graphql": "^14.0.2",
     "graphql-import": "^0.7.1",
