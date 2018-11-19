@@ -14,7 +14,7 @@ type WebsiteSection {
   site(input: ReferenceStatusInput = {}): WebsiteProductSite @refOne(model: "platform.Product", criteria: { type: "Site" })
   parent(input: ReferenceStatusInput = {}): WebsiteSection @refOne(model: "website.Section")
   # children(input: RelatedWebsiteSectionsInput = {}): WebsiteSectionConnection! @refMany(model: "website.Section", localField: "_id", foreignField: "parent.$id")
-  # logo: PlatformAssetImage @refOne(model: "platform.Asset", criteria: { type: "Image" })
+  logo: PlatformAssetImage @refOne(model: "platform.Asset", criteria: { type: "Image" })
 
   # fields from trait.platform::StatusEnabled
   status: Int
