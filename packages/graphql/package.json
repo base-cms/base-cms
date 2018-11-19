@@ -11,10 +11,12 @@
     "@limit0/graphql-custom-types": "^1.0.1",
     "bson": "^1.1.0",
     "deep-assign": "^3.0.0",
+    "deepmerge": "^2.2.1",
     "graphql": "^14.0.2",
     "graphql-import": "^0.7.1",
     "graphql-tools": "^4.0.3",
     "graphql-type-json": "^0.2.1",
+    "is-plain-object": "^2.0.4",
     "object-path": "^0.11.4"
   }
 }
