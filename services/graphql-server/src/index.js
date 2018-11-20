@@ -1,4 +1,4 @@
-const db = require('./db');
+const base = require('./basedb');
 const app = require('./app');
 const pkg = require('../package.json');
 
@@ -6,17 +6,18 @@ const { log } = console;
 
 const run = async () => {
   log(`Starting '${pkg.name}'...`);
-  await db.connect(2000);
-  log('DB service started.');
+
+  const client = await base.client.connect();
+  log(`BaseCMS DB connected to ${client.s.url} for ${base.tenant}`);
 
   const server = await app(80);
-  log('> Ready on http://0.0.0.0:10003/graphql');
+  log('> Ready on http://0.0.0.0:10002/graphql');
 
   const graceful = () => {
     log(`Stopping '${pkg.name}'...`);
     server.stop(() => {
       log('Web server stopped.');
-      db.stop().then(() => log('> Stopped'));
+      client.close().then(() => log('> Stopped'));
     });
   };
 

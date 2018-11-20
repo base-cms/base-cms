@@ -1,0 +1,7 @@
+scalar Cursor
+scalar Date
+scalar JSON
+
+type Query {
+  ping: String!
+}
