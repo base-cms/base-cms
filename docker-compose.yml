@@ -10,8 +10,8 @@ x-service-defaults:
     - .:/base-cms:cached
   environment:
     NODE_ENV: development
-    NATS_DSN: ${NATS_DSN-nats://nats:4222}
     MONGO_DSN: ${MONGO_DSN-mongodb://mongodb:27017}
+    TENANT_KEY: cygnus_ofcr
     ELASTICSEARCH_URL: ${ELASTICSEARCH_URL-http://elasticsearch:9200}
 
 services:
@@ -22,10 +22,6 @@ services:
       - mongodb:/data/db
     ports:
       - "10000:27017"
-  nats:
-    image: nats:latest
-    ports:
-      - "10001:8222"
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.4.2
     environment:
@@ -39,30 +35,24 @@ services:
       ELASTICSEARCH_URL: "${ELASTICSEARCH_URL-http://elasticsearch:9200}"
       LOGGING_QUIET: "true"
     ports:
-      - "10002:5601"
+      - "10001:5601"
     depends_on:
       - elasticsearch
-  db:
-    << : *service-defaults
-    working_dir: /base-cms/services/db
-    depends_on:
-      - mongodb
-      - nats
   keyword-analysis:
     << : *service-defaults
     working_dir: /base-cms/services/keyword-analysis
     command: ['node', 'src']
     depends_on:
-      - db
+      - mongodb
       - elasticsearch
       - kibana
-  graphql-server-express:
+  graphql-server:
     << : *service-defaults
-    working_dir: /base-cms/services/graphql-server-express
+    working_dir: /base-cms/services/graphql-server
     depends_on:
-      - db
+      - mongodb
     ports:
-      - "10003:80"
+      - "10002:80"
 
 volumes:
   esdata: {}
