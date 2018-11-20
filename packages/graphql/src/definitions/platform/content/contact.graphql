@@ -1,3 +1,0 @@
-type PlatformContentContact {
-  id: Int! @value(localField: "_id")
-}
