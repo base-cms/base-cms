@@ -1,6 +1,7 @@
 scalar Cursor
 scalar Date
 scalar JSON
+scalar ObjectID
 
 type Query {
   ping: String!
