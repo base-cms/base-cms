@@ -32,6 +32,11 @@ input ModelObjectIdInput {
   id: ObjectID!
 }
 
+input PaginationInput {
+  first: Int = 10
+  after: Cursor
+}
+
 input ReferenceStatusInput {
   status: ReferenceStatus = active
 }
