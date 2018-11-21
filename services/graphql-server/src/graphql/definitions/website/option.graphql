@@ -8,7 +8,7 @@ type WebsiteOption {
   id: Int! @value(localField: "_id")
   name: String
   description: String
-  site(input: ReferenceStatusInput = {}): WebsiteSite @refOne(model: "platform.Product", criteria: { type: "Site" })
+  site(input: WebsiteOptionSiteInput = {}): WebsiteSite @refOne(model: "platform.Product", criteria: { type: "Site" })
 
   # fields from platform.trait::StatusEnabled
   status: Int
@@ -32,11 +32,15 @@ enum WebsiteOptionSortField {
 
 input WebsiteOptionQueryInput {
   id: Int!
-  status: ReferenceStatus = active
+  status: ModelStatus = active
+}
+
+input WebsiteOptionSiteInput {
+  status: ModelStatus = active
 }
 
 input WebsiteOptionsQueryInput {
-  status: ReferenceStatus = active
+  status: ModelStatus = active
   siteId: String
   sort: WebsiteOptionSortInput = { field: id, order: desc }
   pagination: PaginationInput = {}
@@ -48,7 +52,7 @@ input WebsiteOptionSortInput {
 }
 
 input RelatedWebsiteOptionsInput {
-  status: ReferenceStatus = active
+  status: ModelStatus = active
   sort: WebsiteOptionSortInput = {}
   pagination: PaginationInput = {}
 }

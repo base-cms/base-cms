@@ -18,10 +18,9 @@ enum SortOrder {
   desc
 }
 
-enum ReferenceStatus {
-  all
+enum ModelStatus {
+  any
   active
-  deleted
 }
 
 input ModelIdInput {
@@ -35,8 +34,4 @@ input ModelObjectIdInput {
 input PaginationInput {
   first: Int = 10
   after: Cursor
-}
-
-input ReferenceStatusInput {
-  status: ReferenceStatus = active
 }

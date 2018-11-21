@@ -30,5 +30,5 @@ type WebsiteSite {
 
 input WebsiteSiteQueryInput {
   id: ObjectID!
-  status: ReferenceStatus = active
+  status: ModelStatus = active
 }
