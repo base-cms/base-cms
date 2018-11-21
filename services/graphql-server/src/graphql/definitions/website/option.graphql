@@ -8,7 +8,7 @@ type WebsiteOption {
   id: Int! @value(localField: "_id")
   name: String
   description: String
-  site(input: ReferenceStatusInput = {}): WebsiteProductSite @refOne(model: "platform.Product", criteria: { type: "Site" })
+  site(input: ReferenceStatusInput = {}): WebsiteSite @refOne(model: "platform.Product", criteria: { type: "Site" })
 
   # fields from platform.trait::StatusEnabled
   status: Int

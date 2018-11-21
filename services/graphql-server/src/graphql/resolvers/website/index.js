@@ -1,9 +1,9 @@
 const deepAssign = require('deep-assign');
 
 const option = require('./option');
-const product = require('./product');
+const site = require('./site');
 
 module.exports = deepAssign(
   option,
-  product,
+  site,
 );

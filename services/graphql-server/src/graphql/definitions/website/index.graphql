@@ -1,2 +1,2 @@
 # import Query.*, * from 'option.graphql'
-# import Query.*, * from 'product.graphql'
+# import Query.*, * from 'site.graphql'

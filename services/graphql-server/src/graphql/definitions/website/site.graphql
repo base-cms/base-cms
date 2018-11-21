@@ -1,9 +1,9 @@
 type Query {
-  websiteProductSite(input: ModelObjectIdInput!): WebsiteProductSite
+  websiteSite(input: ModelObjectIdInput!): WebsiteSite
   # websiteProductSites(input: WebsiteProductSitesQueryInput!): WebsiteProductSiteConnection!
 }
 
-type WebsiteProductSite {
+type WebsiteSite {
   # fields from platform.model::Product
   id: ObjectID! @value(localField: "_id")
   type: String!
