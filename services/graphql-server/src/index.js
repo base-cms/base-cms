@@ -1,4 +1,4 @@
-const base = require('./basedb');
+const basedb = require('./basedb');
 const app = require('./app');
 const pkg = require('../package.json');
 
@@ -7,8 +7,8 @@ const { log } = console;
 const run = async () => {
   log(`Starting '${pkg.name}'...`);
 
-  const client = await base.client.connect();
-  log(`BaseCMS DB connected to ${client.s.url} for ${base.tenant}`);
+  const client = await basedb.client.connect();
+  log(`BaseCMS DB connected to ${client.s.url} for ${basedb.tenant}`);
 
   const server = await app(80);
   log('> Ready on http://0.0.0.0:10002/graphql');
