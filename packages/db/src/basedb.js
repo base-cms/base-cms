@@ -109,6 +109,20 @@ class BaseDB {
   }
 
   /**
+   * Finds a multiple documents for the provided model name and (optional) query criteria.
+   * Will return am array.
+   *
+   * @param {string} modelName The model name, e.g. `platform.Content`.
+   * @param {object} [query] The query criteria.
+   * @param {object} [options] Options to pass to `Collection.find`.
+   * @return {Promise<Array>}
+   */
+  async findAsArray(modelName, query, options) {
+    const cursor = await this.find(modelName, query, options);
+    return cursor.toArray();
+  }
+
+  /**
    * Counts the number of documents for the provided model name and (optional) query criteria.
    *
    * @param {string} modelName The model name, e.g. `platform.Content`.
