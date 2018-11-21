@@ -1,4 +1,4 @@
-const { MongoClient, ObjectID } = require('mongodb');
+const { MongoClient, ObjectID, Logger } = require('mongodb');
 
 class Client {
   /**
@@ -58,4 +58,5 @@ class Client {
 module.exports = {
   Client,
   ObjectID,
+  Logger,
 };
