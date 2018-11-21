@@ -1,0 +1,49 @@
+type Query {
+  websiteOption(input: ModelIdInput!): WebsiteOption!
+  # websiteOptions(input: WebsiteOptionsQueryInput!): WebsiteOptionConnection!
+}
+
+type WebsiteOption {
+  # fields directly from website.model::Option
+  id: Int! @value(localField: "_id")
+  name: String
+  description: String
+  site(input: ReferenceStatusInput = {}): WebsiteProductSite @refOne(model: "platform.Product", criteria: { type: "Site" })
+
+  # fields from platform.trait::StatusEnabled
+  status: Int
+}
+
+# type WebsiteOptionConnection @paginated {
+#   totalCount: Int!
+#   edges: [WebsiteOptionEdge]!
+#   pageInfo: PageInfo!
+# }
+
+type WebsiteOptionEdge {
+  node: WebsiteOption!
+  cursor: Cursor!
+}
+
+enum WebsiteOptionSortField {
+  id
+  name
+}
+
+input WebsiteOptionsQueryInput {
+  status: ReferenceStatus = active
+  siteId: String
+  sort: WebsiteOptionSortInput = { field: id, order: desc }
+  pagination: PaginationInput = {}
+}
+
+input WebsiteOptionSortInput {
+  field: WebsiteOptionSortField = name
+  order: SortOrder = asc
+}
+
+input RelatedWebsiteOptionsInput {
+  status: ReferenceStatus = active
+  sort: WebsiteOptionSortInput = {}
+  pagination: PaginationInput = {}
+}
