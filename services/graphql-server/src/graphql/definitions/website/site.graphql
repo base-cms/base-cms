@@ -1,5 +1,5 @@
 type Query {
-  websiteSite(input: ModelObjectIdInput!): WebsiteSite
+  websiteSite(input: WebsiteSiteQueryInput!): WebsiteSite
   # websiteProductSites(input: WebsiteProductSitesQueryInput!): WebsiteProductSiteConnection!
 }
 
@@ -26,4 +26,9 @@ type WebsiteSite {
 
   # fields that are new to GraphQL
   # rootSections(input: RelatedWebsiteSectionsInput = {}): WebsiteSectionConnection!
+}
+
+input WebsiteSiteQueryInput {
+  id: ObjectID!
+  status: ReferenceStatus = active
 }
