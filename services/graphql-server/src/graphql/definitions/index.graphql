@@ -1,8 +1,37 @@
+# import Query.*, * from 'website/index.graphql'
+
 scalar Cursor
 scalar Date
 scalar JSON
 scalar ObjectID
 
+directive @arrayValue(localField: String) on FIELD_DEFINITION
+directive @refOne(model: String!, localField: String, foreignField: String = "_id", criteria: JSON) on FIELD_DEFINITION
+directive @value(localField: String, fallbackField: String) on FIELD_DEFINITION
+
 type Query {
   ping: String!
+}
+
+enum SortOrder {
+  asc
+  desc
+}
+
+enum ReferenceStatus {
+  all
+  active
+  deleted
+}
+
+input ModelIdInput {
+  id: Int!
+}
+
+input ModelObjectIdInput {
+  id: ObjectID!
+}
+
+input ReferenceStatusInput {
+  status: ReferenceStatus = active
 }

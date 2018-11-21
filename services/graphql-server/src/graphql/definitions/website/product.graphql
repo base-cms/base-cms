@@ -1,0 +1,29 @@
+type Query {
+  websiteProductSite(input: ModelObjectIdInput!): WebsiteProductSite
+  # websiteProductSites(input: WebsiteProductSitesQueryInput!): WebsiteProductSiteConnection!
+}
+
+type WebsiteProductSite {
+  # fields from platform.model::Product
+  id: ObjectID! @value(localField: "_id")
+  type: String!
+  name: String
+  fullName: String
+  tagLine: String
+  description: String
+  logo: String
+
+  # fields from platform.trait::StatusEnabled
+  status: Int
+
+  # fields directly on website.model::Product\Site
+  # sections(input: RelatedWebsiteSectionsInput = {}): WebsiteSectionConnection! @refMany(model: "website.Section", localField: "_id", foreignField: "site.$id")
+  # pages: [WebsitePage] # add args? @todo Add this model
+  # options(input: RelatedWebsiteOptionsInput = {}): WebsiteOptionConnection! @refMany(model: "website.Option", localField: "_id", foreignField: "site.$id")
+  url: String
+  # socialFollow: [PlatformEntityStubSocial]! @arrayValue
+  redirects: [String]! @arrayValue
+
+  # fields that are new to GraphQL
+  # rootSections(input: RelatedWebsiteSectionsInput = {}): WebsiteSectionConnection!
+}
