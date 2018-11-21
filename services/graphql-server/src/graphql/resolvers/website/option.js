@@ -1,4 +1,5 @@
 const basedb = require('../../../basedb');
+const formatStatus = require('../../utils/format-status');
 
 module.exports = {
   /**
@@ -9,8 +10,12 @@ module.exports = {
      *
      */
     websiteOption: async (_, { input }) => {
-      const { id } = input;
-      return basedb.findById('website.Option', id);
+      const { id, status } = input;
+      const query = {
+        _id: id,
+        ...formatStatus(status),
+      };
+      return basedb.findOne('website.Option', query);
     },
   },
 };

@@ -1,5 +1,5 @@
 type Query {
-  websiteOption(input: ModelIdInput!): WebsiteOption!
+  websiteOption(input: WebsiteOptionQueryInput!): WebsiteOption
   # websiteOptions(input: WebsiteOptionsQueryInput!): WebsiteOptionConnection!
 }
 
@@ -28,6 +28,11 @@ type WebsiteOptionEdge {
 enum WebsiteOptionSortField {
   id
   name
+}
+
+input WebsiteOptionQueryInput {
+  id: Int!
+  status: ReferenceStatus = active
 }
 
 input WebsiteOptionsQueryInput {
