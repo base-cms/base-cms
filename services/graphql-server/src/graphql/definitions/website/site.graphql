@@ -1,6 +1,6 @@
 type Query {
   websiteSite(input: WebsiteSiteQueryInput!): WebsiteSite
-  # websiteProductSites(input: WebsiteProductSitesQueryInput!): WebsiteProductSiteConnection!
+  websiteSites(input: WebsiteSitesQueryInput!): WebsiteSiteConnection!
 }
 
 type WebsiteSite {
@@ -28,7 +28,35 @@ type WebsiteSite {
   # rootSections(input: RelatedWebsiteSectionsInput = {}): WebsiteSectionConnection!
 }
 
+type WebsiteSiteConnection {
+  totalCount: Int!
+  edges: [WebsiteSiteEdge]!
+  pageInfo: PageInfo!
+}
+
+type WebsiteSiteEdge {
+  node: WebsiteSite!
+  cursor: Cursor!
+}
+
+enum WebsiteSiteSortField {
+  id
+  name
+  fullName
+}
+
 input WebsiteSiteQueryInput {
   id: ObjectID!
   status: ModelStatus = active
+}
+
+input WebsiteSitesQueryInput {
+  status: ModelStatus = active
+  sort: WebsiteSiteSortInput = {}
+  pagination: PaginationInput = {}
+}
+
+input WebsiteSiteSortInput {
+  field: WebsiteSiteSortField = id
+  order: SortOrder = asc
 }

@@ -16,5 +16,21 @@ module.exports = {
         ...formatStatus(status),
       });
     },
+
+    /**
+     *
+     */
+    websiteSites: (_, { input }, { basedb }) => {
+      const {
+        status,
+        sort,
+        pagination,
+      } = input;
+      const query = {
+        type: 'Site',
+        ...formatStatus(status),
+      };
+      return basedb.paginate('platform.Product', { query, sort, ...pagination });
+    },
   },
 };
