@@ -1,6 +1,6 @@
 const { SchemaDirectiveVisitor } = require('graphql-tools');
 const formatStatus = require('../utils/format-status');
-const db = require('../../basedb');
+const convertOps = require('../utils/convert-ops');
 
 class RefOneDirective extends SchemaDirectiveVisitor {
   /**
@@ -9,7 +9,7 @@ class RefOneDirective extends SchemaDirectiveVisitor {
    */
   visitFieldDefinition(field) {
     // eslint-disable-next-line no-param-reassign
-    field.resolve = async (doc, { input }) => {
+    field.resolve = async (doc, { input = {} }, { basedb }) => {
       const {
         model,
         localField,
@@ -17,12 +17,10 @@ class RefOneDirective extends SchemaDirectiveVisitor {
         criteria,
       } = this.args;
 
-      let query = { ...criteria };
-      if (input) {
-        const { status } = input;
-        if (status) query = { ...query, ...formatStatus(status) };
-      }
-      return db.referenceOne({
+      const query = { ...convertOps(criteria), ...formatStatus(input.status) };
+
+      console.log('@refOne', model, query);
+      return basedb.referenceOne({
         doc,
         relatedModel: model,
         localField: localField || field.name,

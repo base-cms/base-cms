@@ -1,7 +1,7 @@
 type Query {
-  websiteOption(input: WebsiteOptionQueryInput!): WebsiteOption
-  websiteOptions(input: WebsiteOptionsQueryInput!): WebsiteOptionConnection!
-  websiteOptionsForSite(input: WebsiteOptionsForSiteQueryInput!): WebsiteOptionConnection!
+  websiteOption(input: WebsiteOptionQueryInput!): WebsiteOption @findOne(model: "website.Option", using: { id: "_id" })
+  websiteOptions(input: WebsiteOptionsQueryInput!): WebsiteOptionConnection! @findMany(model: "website.Option")
+  websiteOptionsForSite(input: WebsiteOptionsForSiteQueryInput!): WebsiteOptionConnection! @findMany(model: "website.Option", using: { siteId: "site.$id" })
 }
 
 type WebsiteOption {
@@ -9,7 +9,7 @@ type WebsiteOption {
   id: Int! @value(localField: "_id")
   name: String
   description: String
-  site(input: WebsiteOptionSiteInput = {}): WebsiteSite
+  site(input: WebsiteOptionSiteInput = {}): WebsiteSite @refOne(model: "platform.Product", criteria: { type: "Site" })
 
   # fields from platform.trait::StatusEnabled
   status: Int
