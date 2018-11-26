@@ -18,6 +18,18 @@ module.exports = {
       };
       return basedb.paginate('website.Option', { query, sort, ...pagination });
     },
+    sections: (site, { input }, { basedb }) => {
+      const {
+        status,
+        sort,
+        pagination,
+      } = input;
+      const query = {
+        'site.$id': site._id,
+        ...formatStatus(status),
+      };
+      return basedb.paginate('website.Section', { query, sort, ...pagination });
+    },
   },
 
   /**

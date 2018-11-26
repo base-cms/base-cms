@@ -17,7 +17,7 @@ type WebsiteSite {
   status: Int
 
   # fields directly on website.model::Product\Site
-  # sections(input: RelatedWebsiteSectionsInput = {}): WebsiteSectionConnection! @refMany(model: "website.Section", localField: "_id", foreignField: "site.$id")
+  sections(input: WebsiteSiteSectionsInput = {}): WebsiteSectionConnection!
   # pages: [WebsitePage] # add args? @todo Add this model
   options(input: WebsiteSiteOptionsInput = {}): WebsiteOptionConnection!
   url: String
@@ -65,4 +65,10 @@ input WebsiteSiteOptionsInput {
 input WebsiteSiteSortInput {
   field: WebsiteSiteSortField = id
   order: SortOrder = asc
+}
+
+input WebsiteSiteSectionsInput {
+  status: ModelStatus = active
+  sort: WebsiteSectionSortInput = {}
+  pagination: PaginationInput = {}
 }
