@@ -1,0 +1,52 @@
+type Query {
+  platformAssetImage(input: PlatformAssetImageQueryInput!): PlatformAssetImage
+}
+
+type PlatformAssetImage {
+  # from platform.model::Asset
+  id: ObjectID! @value(localField: "_id")
+  name: String
+  touched: Date
+
+  # from platform.model::Asset\Image
+  filePath: String
+  fileName: String
+  source: PlatformAssetImageSource
+  caption: String
+  credit: String
+  cropDimensions: PlatformAssetImageCrop
+
+  # from platform.model::Asset\Image mutations
+  approvedWebsite: Boolean @value(localField: "mutations.Website.approved")
+  approvedMagazine: Boolean @value(localField: "mutations.Magazine.approved")
+
+  #GraphQL specific fields
+  src(input: PlatformAssetImageSrcInput = {}): String!
+  alt: String!
+}
+
+type PlatformAssetImageSource {
+  location: String
+  name: String
+  width: Int
+  height: Int
+  processed: Boolean
+}
+
+type PlatformAssetImageCrop {
+  x1: Int
+  x2: Int
+  y1: Int
+  y2: Int
+  aspectRatio: String
+}
+
+input PlatformAssetImageQueryInput {
+  id: ObjectID!
+}
+
+input PlatformAssetImageSrcInput {
+  host: String!
+  size: String = "640w"
+  aspectRatio: String = "16x9"
+}
