@@ -1,6 +1,7 @@
 type Query {
   websiteOption(input: WebsiteOptionQueryInput!): WebsiteOption
   websiteOptions(input: WebsiteOptionsQueryInput!): WebsiteOptionConnection!
+  websiteOptionsForSite(input: WebsiteOptionsForSiteQueryInput!): WebsiteOptionConnection!
 }
 
 type WebsiteOption {
@@ -41,7 +42,13 @@ input WebsiteOptionSiteInput {
 
 input WebsiteOptionsQueryInput {
   status: ModelStatus = active
-  siteId: ObjectID
+  sort: WebsiteOptionSortInput = { field: id, order: asc }
+  pagination: PaginationInput = {}
+}
+
+input WebsiteOptionsForSiteQueryInput {
+  siteId: ObjectID!
+  status: ModelStatus = active
   sort: WebsiteOptionSortInput = { field: id, order: asc }
   pagination: PaginationInput = {}
 }

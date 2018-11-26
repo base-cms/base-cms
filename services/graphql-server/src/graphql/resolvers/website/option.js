@@ -32,11 +32,21 @@ module.exports = {
     websiteOptions: (_, { input }, { basedb }) => {
       const {
         status,
-        siteId,
         sort,
         pagination,
       } = input;
       const query = { ...formatStatus(status) };
+      return basedb.paginate('website.Option', { query, sort, ...pagination });
+    },
+
+    websiteOptionsForSite: (_, { input }, { basedb }) => {
+      const {
+        status,
+        siteId,
+        sort,
+        pagination,
+      } = input;
+      const query = { 'site.$id': siteId, ...formatStatus(status) };
       if (siteId) query['site.$id'] = siteId;
       return basedb.paginate('website.Option', { query, sort, ...pagination });
     },
