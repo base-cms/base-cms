@@ -13,6 +13,11 @@ type Query {
   ping: String!
 }
 
+type PageInfo {
+  hasNextPage: Boolean!
+  endCursor: Cursor
+}
+
 enum SortOrder {
   asc
   desc
@@ -33,6 +38,6 @@ input ModelObjectIdInput {
 }
 
 input PaginationInput {
-  first: Int = 10
+  limit: Int = 10
   after: Cursor
 }
