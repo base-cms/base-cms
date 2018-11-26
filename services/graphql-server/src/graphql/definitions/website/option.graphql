@@ -41,7 +41,7 @@ input WebsiteOptionSiteInput {
 
 input WebsiteOptionsQueryInput {
   status: ModelStatus = active
-  siteId: String
+  siteId: ObjectID
   sort: WebsiteOptionSortInput = { field: id, order: asc }
   pagination: PaginationInput = {}
 }

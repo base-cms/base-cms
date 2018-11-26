@@ -1,4 +1,3 @@
-const { BaseDB } = require('@base-cms/db');
 const formatStatus = require('../../utils/format-status');
 
 module.exports = {
@@ -38,7 +37,7 @@ module.exports = {
         pagination,
       } = input;
       const query = { ...formatStatus(status) };
-      if (siteId) query['site.$id'] = BaseDB.coerceID(siteId);
+      if (siteId) query['site.$id'] = siteId;
       return basedb.paginate('website.Option', { query, sort, ...pagination });
     },
   },

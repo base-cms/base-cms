@@ -39,10 +39,12 @@ module.exports = {
     websiteSections: (_, { input }, { basedb }) => {
       const {
         status,
+        siteId,
         sort,
         pagination,
       } = input;
       const query = { ...formatStatus(status) };
+      if (siteId) query['site.$id'] = siteId;
       return basedb.paginate('website.Section', { query, sort, ...pagination });
     },
   },
