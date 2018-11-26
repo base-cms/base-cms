@@ -22,7 +22,7 @@ type WebsiteOptionConnection {
 
 type WebsiteOptionEdge {
   node: WebsiteOption!
-  cursor: Cursor!
+  cursor: String!
 }
 
 enum WebsiteOptionSortField {

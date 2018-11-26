@@ -1,6 +1,5 @@
 # import Query.*, * from 'website/index.graphql'
 
-scalar Cursor
 scalar Date
 scalar JSON
 scalar ObjectID
@@ -15,7 +14,7 @@ type Query {
 
 type PageInfo {
   hasNextPage: Boolean!
-  endCursor: Cursor
+  endCursor: String
 }
 
 enum SortOrder {
@@ -39,5 +38,5 @@ input ModelObjectIdInput {
 
 input PaginationInput {
   limit: Int = 10
-  after: Cursor
+  after: String
 }
