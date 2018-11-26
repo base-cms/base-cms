@@ -8,7 +8,6 @@ type WebsiteOption {
   id: Int! @value(localField: "_id")
   name: String
   description: String
-  # site(input: WebsiteOptionSiteInput = {}): WebsiteSite @refOne(model: "platform.Product", criteria: { type: "Site" })
   site(input: WebsiteOptionSiteInput = {}): WebsiteSite
 
   # fields from platform.trait::StatusEnabled
@@ -20,11 +19,6 @@ type WebsiteOptionConnection {
   edges: [WebsiteOptionEdge]!
   pageInfo: PageInfo!
 }
-# type WebsiteOptionConnection @paginated {
-#   totalCount: Int!
-#   edges: [WebsiteOptionEdge]!
-#   pageInfo: PageInfo!
-# }
 
 type WebsiteOptionEdge {
   node: WebsiteOption!
