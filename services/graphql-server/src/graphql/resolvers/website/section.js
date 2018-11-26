@@ -66,6 +66,17 @@ module.exports = {
     /**
      *
      */
+    websiteSectionRedirect: (_, { input }, { basedb }) => {
+      const { alias, status } = input;
+      return basedb.findOne('website.Section', {
+        redirects: alias,
+        ...formatStatus(status),
+      });
+    },
+
+    /**
+     *
+     */
     websiteSections: (_, { input }, { basedb }) => {
       const {
         status,

@@ -1,6 +1,7 @@
 type Query {
   websiteSection(input: WebsiteSectionQueryInput!): WebsiteSection
   websiteSectionAlias(input: WebsiteSectionAliasQueryInput!): WebsiteSection
+  websiteSectionRedirect(input: WebsiteSectionRedirectQueryInput!): WebsiteSection
   websiteSections(input: WebsiteSectionsQueryInput!): WebsiteSectionConnection!
   rootWebsiteSections(input: RootWebsiteSectionsQueryInput!): WebsiteSectionConnection!
 }
@@ -55,6 +56,11 @@ input WebsiteSectionQueryInput {
 }
 
 input WebsiteSectionAliasQueryInput {
+  status: ModelStatus = active
+  alias: String!
+}
+
+input WebsiteSectionRedirectQueryInput {
   status: ModelStatus = active
   alias: String!
 }
