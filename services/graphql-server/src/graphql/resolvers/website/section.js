@@ -2,6 +2,18 @@ const formatStatus = require('../../utils/format-status');
 
 module.exports = {
   WebsiteSection: {
+    children: (section, { input }, { basedb }) => {
+      const {
+        status,
+        sort,
+        pagination,
+      } = input;
+      const query = {
+        'parent.$id': section._id,
+        ...formatStatus(status),
+      };
+      return basedb.paginate('website.Section', { query, sort, ...pagination });
+    },
     parent: (section, { input }, { basedb }) => basedb.referenceOne({
       doc: section,
       relatedModel: 'website.Section',
