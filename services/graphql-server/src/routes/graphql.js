@@ -2,6 +2,7 @@ const { Router } = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const { MongoDB } = require('@base-cms/db');
 const schema = require('../graphql/schema');
+const basedb = require('../basedb');
 const createLoaders = require('../dataloaders');
 const { NODE_ENV, ENABLE_MONGO_LOGGING } = require('../env');
 
@@ -32,6 +33,7 @@ const server = new ApolloServer({
       Logger.filter('class', ['Cursor']);
     }
     return {
+      basedb,
       loaders: createLoaders(),
       contentPaths: getCanonicalPaths(req),
     };
