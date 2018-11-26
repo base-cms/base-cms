@@ -8,7 +8,7 @@ module.exports = {
     /**
      *
      */
-    websiteSite: async (_, { input }, { basedb }) => {
+    websiteSite: (_, { input }, { basedb }) => {
       const { id, status } = input;
       return basedb.findOne('platform.Product', {
         _id: id,

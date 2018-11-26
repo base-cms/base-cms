@@ -25,7 +25,7 @@ module.exports = {
     /**
      *
      */
-    websiteOption: async (_, { input }, { basedb }) => {
+    websiteOption: (_, { input }, { basedb }) => {
       const { id, status } = input;
       return basedb.findOne('website.Option', {
         _id: id,
