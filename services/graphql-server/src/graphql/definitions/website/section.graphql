@@ -17,7 +17,7 @@ type WebsiteSection {
 
   # fields directly on website.model::Section
   site(input: WebsiteSectionSiteInput = {}): WebsiteSite
-  # parent(input: ReferenceStatusInput = {}): WebsiteSection @refOne(model: "website.Section")
+  parent(input: WebsiteSectionParentInput = {}): WebsiteSection
   # children(input: RelatedWebsiteSectionsInput = {}): WebsiteSectionConnection! @refMany(model: "website.Section", localField: "_id", foreignField: "parent.$id")
   # logo: PlatformAssetImage @refOne(model: "platform.Asset", criteria: { type: "Image" })
 
@@ -46,5 +46,9 @@ input WebsiteSectionSortInput {
 }
 
 input WebsiteSectionSiteInput {
+  status: ModelStatus = active
+}
+
+input WebsiteSectionParentInput {
   status: ModelStatus = active
 }

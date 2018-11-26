@@ -2,6 +2,13 @@ const formatStatus = require('../../utils/format-status');
 
 module.exports = {
   WebsiteSection: {
+    parent: (section, { input }, { basedb }) => basedb.referenceOne({
+      doc: section,
+      relatedModel: 'website.Section',
+      localField: 'parent',
+      foreignField: '_id',
+      query: { ...formatStatus(input.status) },
+    }),
     site: (section, { input }, { basedb }) => basedb.referenceOne({
       doc: section,
       relatedModel: 'platform.Product',
