@@ -1,2 +1,3 @@
 # import Query.*, * from 'option.graphql'
+# import Query.*, * from 'section.graphql'
 # import Query.*, * from 'site.graphql'
