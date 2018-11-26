@@ -2,6 +2,7 @@ const { ObjectID } = require('mongodb');
 const objectPath = require('object-path');
 const { isObject } = require('@base-cms/common');
 const { Client } = require('./mongodb');
+const paginateFind = require('./paginate/find');
 
 const { isArray } = Array;
 
@@ -148,6 +149,28 @@ class BaseDB {
     const { namespace, resource } = BaseDB.parseModelName(modelName);
     const coll = await this.collection(namespace, resource);
     return coll.distinct(key, query, options);
+  }
+
+  /**
+   *
+   * @param {string} modelName The model name, e.g. `platform.Content`.
+   * @param {object} params
+   * @param {object} [params.query]
+   */
+  async paginate(modelName, {
+    query,
+    limit,
+    sort,
+    projection,
+  }) {
+    const { namespace, resource } = BaseDB.parseModelName(modelName);
+    const collection = await this.collection(namespace, resource);
+    return paginateFind(collection, {
+      query,
+      limit,
+      sort,
+      projection,
+    });
   }
 
   /**
