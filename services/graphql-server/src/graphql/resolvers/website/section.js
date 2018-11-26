@@ -32,5 +32,18 @@ module.exports = {
         ...formatStatus(status),
       });
     },
+
+    /**
+     *
+     */
+    websiteSections: (_, { input }, { basedb }) => {
+      const {
+        status,
+        sort,
+        pagination,
+      } = input;
+      const query = { ...formatStatus(status) };
+      return basedb.paginate('website.Section', { query, sort, ...pagination });
+    },
   },
 };

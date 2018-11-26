@@ -1,5 +1,6 @@
 type Query {
   websiteSection(input: WebsiteSectionQueryInput!): WebsiteSection
+  websiteSections(input: WebsiteSectionsQueryInput!): WebsiteSectionConnection!
 }
 
 type WebsiteSection {
@@ -28,6 +29,17 @@ type WebsiteSection {
   slug: String
 }
 
+type WebsiteSectionConnection {
+  totalCount: Int!
+  edges: [WebsiteSectionEdge]!
+  pageInfo: PageInfo!
+}
+
+type WebsiteSectionEdge {
+  node: WebsiteSection!
+  cursor: String!
+}
+
 enum WebsiteSectionSortField {
   id
   name
@@ -38,6 +50,12 @@ enum WebsiteSectionSortField {
 input WebsiteSectionQueryInput {
   status: ModelStatus = active
   id: Int!
+}
+
+input WebsiteSectionsQueryInput {
+  status: ModelStatus = active
+  sort: WebsiteSectionSortInput = { field: id, order: desc }
+  pagination: PaginationInput = {}
 }
 
 input WebsiteSectionSortInput {
