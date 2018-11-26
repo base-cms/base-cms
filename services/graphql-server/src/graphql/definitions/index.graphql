@@ -21,6 +21,7 @@ enum SortOrder {
 enum ModelStatus {
   any
   active
+  deleted
 }
 
 input ModelIdInput {
