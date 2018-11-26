@@ -8,14 +8,13 @@ module.exports = {
     /**
      *
      */
-    websiteSite: async (_, { input }, { loaders }) => {
+    websiteSite: async (_, { input }, { basedb }) => {
       const { id, status } = input;
-      const query = {
+      return basedb.findOne('platform.Product', {
         _id: id,
         type: 'Site',
         ...formatStatus(status),
-      };
-      return loaders.product.load(query);
+      });
     },
   },
 };

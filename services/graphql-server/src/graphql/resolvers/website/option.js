@@ -6,16 +6,15 @@ module.exports = {
    *
    */
   WebsiteOption: {
-    site: async (option, { input }, { loaders }) => {
+    site: async (option, { input }, { basedb }) => {
       const { status } = input;
       const id = BaseDB.extractRefId(option.site);
       if (!id) return null;
-      const query = {
+      return basedb.findOne('platform.Product', {
         _id: id,
         type: 'Site',
         ...formatStatus(status),
-      };
-      return loaders.product.load(query);
+      });
     },
   },
 
@@ -26,13 +25,12 @@ module.exports = {
     /**
      *
      */
-    websiteOption: async (_, { input }, { loaders }) => {
+    websiteOption: async (_, { input }, { basedb }) => {
       const { id, status } = input;
-      const query = {
+      return basedb.findOne('website.Option', {
         _id: id,
         ...formatStatus(status),
-      };
-      return loaders.websiteOption.load(query);
+      });
     },
   },
 };
