@@ -19,7 +19,7 @@ type WebsiteSite {
   # fields directly on website.model::Product\Site
   # sections(input: RelatedWebsiteSectionsInput = {}): WebsiteSectionConnection! @refMany(model: "website.Section", localField: "_id", foreignField: "site.$id")
   # pages: [WebsitePage] # add args? @todo Add this model
-  # options(input: RelatedWebsiteOptionsInput = {}): WebsiteOptionConnection! @refMany(model: "website.Option", localField: "_id", foreignField: "site.$id")
+  options(input: WebsiteSiteOptionsInput = {}): WebsiteOptionConnection!
   url: String
   # socialFollow: [PlatformEntityStubSocial]! @arrayValue
   redirects: [String]! @arrayValue
@@ -53,6 +53,12 @@ input WebsiteSiteQueryInput {
 input WebsiteSitesQueryInput {
   status: ModelStatus = active
   sort: WebsiteSiteSortInput = {}
+  pagination: PaginationInput = {}
+}
+
+input WebsiteSiteOptionsInput {
+  status: ModelStatus = active
+  sort: WebsiteOptionSortInput = {}
   pagination: PaginationInput = {}
 }
 

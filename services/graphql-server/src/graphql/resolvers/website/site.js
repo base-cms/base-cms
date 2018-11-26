@@ -4,6 +4,24 @@ module.exports = {
   /**
    *
    */
+  WebsiteSite: {
+    options: (site, { input }, { basedb }) => {
+      const {
+        status,
+        sort,
+        pagination,
+      } = input;
+      const query = {
+        'site.$id': site._id,
+        ...formatStatus(status),
+      };
+      return basedb.paginate('website.Option', { query, sort, ...pagination });
+    },
+  },
+
+  /**
+   *
+   */
   Query: {
     /**
      *
