@@ -1,4 +1,3 @@
-const { BaseDB } = require('@base-cms/db');
 const formatStatus = require('../../utils/format-status');
 
 module.exports = {
@@ -6,16 +5,13 @@ module.exports = {
    *
    */
   WebsiteOption: {
-    site: async (option, { input }, { basedb }) => {
-      const { status } = input;
-      const id = BaseDB.extractRefId(option.site);
-      if (!id) return null;
-      return basedb.findOne('platform.Product', {
-        _id: id,
-        type: 'Site',
-        ...formatStatus(status),
-      });
-    },
+    site: (option, { input }, { basedb }) => basedb.referenceOne({
+      doc: option,
+      relatedModel: 'platform.Product',
+      localField: 'site',
+      foreignField: '_id',
+      query: { type: 'Site', ...formatStatus(input.status) },
+    }),
   },
 
   /**
