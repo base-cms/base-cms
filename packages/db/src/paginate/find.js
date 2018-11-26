@@ -16,6 +16,7 @@ const Sort = require('./sort');
 module.exports = async (collection, {
   query,
   limit = 10,
+  after,
   sort = { field: '_id', order: 1 },
   projection,
 }) => {
@@ -26,14 +27,17 @@ module.exports = async (collection, {
     _id: 1,
     [$sort.field]: 1,
   } : undefined;
+
   const params = {
     query,
     sort: $sort,
     limit: $limit,
+    after,
   };
-  const q = { $and: [createQuery(params), query] };
-  // console.log(q, $sort.value, $limit.value + 1, $projection);
-  const results = await collection.find(q, { projection: $projection })
+
+  const paginatedQuery = await createQuery(collection, params);
+  const $query = { $and: [paginatedQuery, query] };
+  const results = await collection.find($query, { projection: $projection })
     .sort($sort.value)
     .limit($limit.value + 1) // peek to see if there is another page.
     .toArray();

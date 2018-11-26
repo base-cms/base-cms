@@ -1,11 +1,6 @@
 const objectPath = require('object-path');
 const cursor = require('./cursor');
 
-const createCursorFor = (node, sort) => cursor.encode(sort.value.reduce((obj, [field]) => ({
-  ...obj,
-  [field]: objectPath.get(node, field),
-}), {}));
-
 module.exports = {
   /**
    *
@@ -17,7 +12,6 @@ module.exports = {
   createResponse(collection, results, {
     query,
     limit,
-    sort,
   } = {}) {
     const hasNextPage = results.length > limit.value;
     // Remove the extra model that was queried to peek for the page.
@@ -25,10 +19,10 @@ module.exports = {
 
     const pageInfo = {
       hasNextPage,
-      endCursor: hasNextPage ? createCursorFor(results[results.length - 1], sort) : null,
+      endCursor: hasNextPage ? cursor.encode(results[results.length - 1]._id) : null,
     };
     return {
-      edges: results.map(node => ({ node, cursor: createCursorFor(node, sort) })),
+      edges: results.map(node => ({ node, cursor: cursor.encode(node._id) })),
       pageInfo,
       totalCount: () => collection.countDocuments(query),
     };
@@ -39,10 +33,29 @@ module.exports = {
    * @param {object} params
    * @param {string} [params.after] The cursor value to start the next page.
    */
-  createQuery({
+  async createQuery(collection, {
     after,
+    sort,
   } = {}) {
     if (!after) return {};
-    return {};
+    const id = cursor.decode(after);
+    const { field, order } = sort;
+    const op = order === 1 ? '$gt' : '$lt';
+
+    if (field === '_id') {
+      // Simple sort by id.
+      return { _id: { [op]: id } };
+    }
+
+    // Compound sort.
+    // Need to get the document so we can extract the field.
+    const projection = { [field]: 1 };
+    const doc = await collection.findOne({ _id: id }, { projection });
+    const value = objectPath.get(doc, field);
+    const $or = [
+      { [field]: { [op]: value } },
+      { [field]: { $eq: value }, _id: { [op]: id } },
+    ];
+    return { $or };
   },
 };

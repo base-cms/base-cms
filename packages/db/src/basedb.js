@@ -160,6 +160,7 @@ class BaseDB {
   async paginate(modelName, {
     query,
     limit,
+    after,
     sort,
     projection,
   }) {
@@ -168,6 +169,7 @@ class BaseDB {
     return paginateFind(collection, {
       query,
       limit,
+      after,
       sort,
       projection,
     });
