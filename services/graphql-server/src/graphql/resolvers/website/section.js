@@ -103,5 +103,14 @@ module.exports = {
       if (siteId) query['site.$id'] = siteId;
       return basedb.paginate('website.Section', { query, sort, ...pagination });
     },
+
+    /**
+     *
+     */
+    websiteSectionsFromIds: async (_, { input }, { basedb }) => {
+      const { ids, sort, pagination } = input;
+      const query = { _id: { $in: ids } };
+      return basedb.paginate('website.Section', { query, sort, ...pagination });
+    },
   },
 };

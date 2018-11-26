@@ -4,6 +4,7 @@ type Query {
   websiteSectionRedirect(input: WebsiteSectionRedirectQueryInput!): WebsiteSection
   websiteSections(input: WebsiteSectionsQueryInput!): WebsiteSectionConnection!
   rootWebsiteSections(input: RootWebsiteSectionsQueryInput!): WebsiteSectionConnection!
+  websiteSectionsFromIds(input: WebsiteSectionsFromIdsQueryInput!): WebsiteSectionConnection!
 }
 
 type WebsiteSection {
@@ -75,6 +76,12 @@ input WebsiteSectionsQueryInput {
 input RootWebsiteSectionsQueryInput {
   status: ModelStatus = active
   siteId: ObjectID
+  sort: WebsiteSectionSortInput = { field: id, order: desc }
+  pagination: PaginationInput = {}
+}
+
+input WebsiteSectionsFromIdsQueryInput {
+  ids: [Int!]
   sort: WebsiteSectionSortInput = { field: id, order: desc }
   pagination: PaginationInput = {}
 }
