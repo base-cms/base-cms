@@ -13,6 +13,7 @@
     "cors": "^2.8.5",
     "dataloader": "^1.4.0",
     "deep-assign": "^3.0.0",
+    "deep-rename-keys": "^0.2.1",
     "deepmerge": "^2.2.1",
     "express": "^4.16.4",
     "graphql": "^14.0.2",
