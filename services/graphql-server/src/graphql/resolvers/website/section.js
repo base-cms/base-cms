@@ -28,6 +28,13 @@ module.exports = {
       foreignField: '_id',
       query: { type: 'Site', ...formatStatus(input.status) },
     }),
+    logo: (section, _, { basedb }) => basedb.referenceOne({
+      doc: section,
+      relatedModel: 'platform.Asset',
+      localField: 'logo',
+      foreignField: '_id',
+      query: { type: 'Image' },
+    }),
   },
 
   /**

@@ -21,7 +21,7 @@ type WebsiteSection {
   site(input: WebsiteSectionSiteInput = {}): WebsiteSite
   parent(input: WebsiteSectionParentInput = {}): WebsiteSection
   children(input: WebsiteSectionChildrenInput = {}): WebsiteSectionConnection!
-  # logo: PlatformAssetImage @refOne(model: "platform.Asset", criteria: { type: "Image" })
+  logo: PlatformAssetImage
 
   # fields from trait.platform::Content\SeoFields
   # metadata: WebsiteSectionMetadata! @sectionMetadata
