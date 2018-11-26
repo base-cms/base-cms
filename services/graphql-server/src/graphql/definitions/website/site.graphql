@@ -25,7 +25,7 @@ type WebsiteSite {
   redirects: [String]! @arrayValue
 
   # fields that are new to GraphQL
-  # rootSections(input: RelatedWebsiteSectionsInput = {}): WebsiteSectionConnection!
+  rootSections(input: WebsiteSiteRootSectionsInput = {}): WebsiteSectionConnection!
 }
 
 type WebsiteSiteConnection {
@@ -68,6 +68,12 @@ input WebsiteSiteSortInput {
 }
 
 input WebsiteSiteSectionsInput {
+  status: ModelStatus = active
+  sort: WebsiteSectionSortInput = {}
+  pagination: PaginationInput = {}
+}
+
+input WebsiteSiteRootSectionsInput {
   status: ModelStatus = active
   sort: WebsiteSectionSortInput = {}
   pagination: PaginationInput = {}

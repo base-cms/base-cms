@@ -30,6 +30,19 @@ module.exports = {
       };
       return basedb.paginate('website.Section', { query, sort, ...pagination });
     },
+    rootSections: (site, { input }, { basedb }) => {
+      const {
+        status,
+        sort,
+        pagination,
+      } = input;
+      const query = {
+        'site.$id': site._id,
+        parent: { $exists: false },
+        ...formatStatus(status),
+      };
+      return basedb.paginate('website.Section', { query, sort, ...pagination });
+    },
   },
 
   /**
