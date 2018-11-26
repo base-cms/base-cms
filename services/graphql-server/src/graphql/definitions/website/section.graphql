@@ -1,6 +1,7 @@
 type Query {
   websiteSection(input: WebsiteSectionQueryInput!): WebsiteSection
   websiteSections(input: WebsiteSectionsQueryInput!): WebsiteSectionConnection!
+  rootWebsiteSections(input: RootWebsiteSectionsQueryInput!): WebsiteSectionConnection!
 }
 
 type WebsiteSection {
@@ -53,6 +54,13 @@ input WebsiteSectionQueryInput {
 }
 
 input WebsiteSectionsQueryInput {
+  status: ModelStatus = active
+  siteId: ObjectID
+  sort: WebsiteSectionSortInput = { field: id, order: desc }
+  pagination: PaginationInput = {}
+}
+
+input RootWebsiteSectionsQueryInput {
   status: ModelStatus = active
   siteId: ObjectID
   sort: WebsiteSectionSortInput = { field: id, order: desc }

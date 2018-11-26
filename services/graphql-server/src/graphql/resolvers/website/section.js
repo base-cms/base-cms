@@ -47,5 +47,20 @@ module.exports = {
       if (siteId) query['site.$id'] = siteId;
       return basedb.paginate('website.Section', { query, sort, ...pagination });
     },
+
+    /**
+     *
+     */
+    rootWebsiteSections: (_, { input }, { basedb }) => {
+      const {
+        status,
+        siteId,
+        sort,
+        pagination,
+      } = input;
+      const query = { 'parent.$id': { $exists: false }, ...formatStatus(status) };
+      if (siteId) query['site.$id'] = siteId;
+      return basedb.paginate('website.Section', { query, sort, ...pagination });
+    },
   },
 };
