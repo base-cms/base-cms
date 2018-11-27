@@ -1,6 +1,6 @@
 type Query {
-  websiteSite(input: WebsiteSiteQueryInput!): WebsiteSite @findOne(model: "platform.Product", using: { id: "_id" }, criteria: { type: "Site" })
-  websiteSites(input: WebsiteSitesQueryInput!): WebsiteSiteConnection! @findMany(model: "platform.Product", criteria: { type: "Site" })
+  websiteSite(input: WebsiteSiteQueryInput!): WebsiteSite @findOne(model: "platform.Product", using: { id: "_id" }, criteria: "websiteSite")
+  websiteSites(input: WebsiteSitesQueryInput!): WebsiteSiteConnection! @findMany(model: "platform.Product", criteria: "websiteSite")
 }
 
 type WebsiteSite {
@@ -25,7 +25,7 @@ type WebsiteSite {
   redirects: [String]! @arrayValue
 
   # fields that are new to GraphQL
-  rootSections(input: WebsiteSiteRootSectionsInput = {}): WebsiteSectionConnection! @refMany(model: "website.Option", localField: "_id", foreignField: "site.$id", criteria: { parent: { __exists: false } })
+  rootSections(input: WebsiteSiteRootSectionsInput = {}): WebsiteSectionConnection! @refMany(model: "website.Section", localField: "_id", foreignField: "site.$id", criteria: "rootWebsiteSection")
 }
 
 type WebsiteSiteConnection {
