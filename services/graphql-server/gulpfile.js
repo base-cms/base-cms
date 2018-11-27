@@ -5,6 +5,5 @@ gulpfile({
   lintPaths: ['src/**/*.js'],
   watchPaths: [
     'src/**/*.js',
-    'src/**/*.graphql',
   ],
 });
