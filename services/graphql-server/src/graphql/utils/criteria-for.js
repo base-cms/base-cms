@@ -1,6 +1,7 @@
 const criterion = {
-  issueMagazineSection: () => ({ 'issue.$id': { $exists: true } }),
+  emailNewsletter: () => ({ type: 'Newsletter' }),
   globalMagazineSection: () => ({ 'publication.$id': { $exists: true } }),
+  issueMagazineSection: () => ({ 'issue.$id': { $exists: true } }),
   magazinePublication: () => ({ type: 'Publication' }),
   platformAssetImage: () => ({ type: 'Image' }),
   rootPlatformTaxonomy: () => ({ 'parent.$id': { $exists: false } }),
