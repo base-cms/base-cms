@@ -1,3 +1,10 @@
 # import Query.*, * from 'asset.graphql'
 # import Query.*, * from 'security.graphql'
 # import Query.*, * from 'taxonomy.graphql'
+
+type PlatformStubExternal {
+  identifier: String
+  identifiers: [String]! @arrayValue
+  namespace: String
+  url: String
+}
