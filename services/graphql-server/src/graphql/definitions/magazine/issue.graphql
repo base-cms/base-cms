@@ -15,7 +15,7 @@ type MagazineIssue {
   credit: String
   publication(input: MagazineIssuePublicationInput = {}): MagazinePublication @refOne(model: "platform.Product", criteria: "magazinePublication")
   sections(input: MagazineIssueSectionsInput = {}): MagazineSectionConnection! @refMany(model: "magazine.Section", localField: "_id", foreignField: "issue.$id")
-  coverImage: PlatformAssetImage @refOne(model: "platform.Asset", criteria: "platformAssetImage")
+  coverImage: AssetImage @refOne(model: "platform.Asset", criteria: "assetImage")
   redirects: [String]! @arrayValue
 
   #fields from trait.platform::StatusEnabled

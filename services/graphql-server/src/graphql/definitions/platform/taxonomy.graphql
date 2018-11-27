@@ -1,12 +1,12 @@
 type Query {
-  platformTaxonomy(input: PlatformTaxonomyQueryInput!): PlatformTaxonomy @findOne(model: "platform.Taxonomy", using: { id: "_id" })
-  platformTaxonomies(input: PlatformTaxonomiesQueryInput = {}): PlatformTaxonomyConnection! @findMany(model: "platform.Taxonomy")
-  platformTaxonomiesOfType(input: PlatformTaxonomiesOfTypeQueryInput!): PlatformTaxonomyConnection! @findMany(model: "platform.Taxonomy", using: { type: "type" })
-  rootPlatformTaxonomies(input: RootPlatformTaxonomiesQueryInput = {}): PlatformTaxonomyConnection! @findMany(model: "platform.Taxonomy", criteria: "rootPlatformTaxonomy")
-  rootPlatformTaxonomiesOfType(input: RootPlatformTaxonomiesOfTypeQueryInput!): PlatformTaxonomyConnection! @findMany(model: "platform.Taxonomy", using: { type: "type" }, criteria: "rootPlatformTaxonomy")
+  taxonomy(input: TaxonomyQueryInput!): Taxonomy @findOne(model: "platform.Taxonomy", using: { id: "_id" })
+  taxonomies(input: TaxonomiesQueryInput = {}): TaxonomyConnection! @findMany(model: "platform.Taxonomy")
+  taxonomiesOfType(input: TaxonomiesOfTypeQueryInput!): TaxonomyConnection! @findMany(model: "platform.Taxonomy", using: { type: "type" })
+  rootTaxonomies(input: RootTaxonomiesQueryInput = {}): TaxonomyConnection! @findMany(model: "platform.Taxonomy", criteria: "rootTaxonomy")
+  rootTaxonomiesOfType(input: RootTaxonomiesOfTypeQueryInput!): TaxonomyConnection! @findMany(model: "platform.Taxonomy", using: { type: "type" }, criteria: "rootTaxonomy")
 }
 
-type PlatformTaxonomy {
+type Taxonomy {
   id: Int! @value(localField: "_id")
   name: String
   fullName: String
@@ -15,22 +15,22 @@ type PlatformTaxonomy {
   status: Int
   redirects: [String]! @arrayValue
   sequence: Int
-  parent(input: PlatformTaxonomyParentInput = {}): PlatformTaxonomy @refOne(model: "platform.Taxonomy")
-  children(input: PlatformTaxonomyChildrenInput = {}): PlatformTaxonomyConnection! @refMany(model: "platform.Taxonomy", localField: "_id", foreignField: "parent.$id")
+  parent(input: TaxonomyParentInput = {}): Taxonomy @refOne(model: "platform.Taxonomy")
+  children(input: TaxonomyChildrenInput = {}): TaxonomyConnection! @refMany(model: "platform.Taxonomy", localField: "_id", foreignField: "parent.$id")
 }
 
-type PlatformTaxonomyConnection {
+type TaxonomyConnection {
   totalCount: Int!
-  edges: [PlatformTaxonomyEdge]!
+  edges: [TaxonomyEdge]!
   pageInfo: PageInfo!
 }
 
-type PlatformTaxonomyEdge {
-  node: PlatformTaxonomy!
+type TaxonomyEdge {
+  node: Taxonomy!
   cursor: String!
 }
 
-enum PlatformTaxonomyType {
+enum TaxonomyType {
   Bin
   Category
   Location
@@ -42,56 +42,56 @@ enum PlatformTaxonomyType {
   Type
 }
 
-enum PlatformTaxonomySortField {
+enum TaxonomySortField {
   id
   name
   fullName
   sequence
 }
 
-input PlatformTaxonomyQueryInput {
+input TaxonomyQueryInput {
   status: ModelStatus = active
   id: Int!
 }
 
-input PlatformTaxonomiesQueryInput {
+input TaxonomiesQueryInput {
   status: ModelStatus = active
-  sort: PlatformTaxonomySortInput = {}
+  sort: TaxonomySortInput = {}
   pagination: PaginationInput = {}
 }
 
-input PlatformTaxonomiesOfTypeQueryInput {
-  type: PlatformTaxonomyType!
+input TaxonomiesOfTypeQueryInput {
+  type: TaxonomyType!
   status: ModelStatus = active
-  sort: PlatformTaxonomySortInput = {}
+  sort: TaxonomySortInput = {}
   pagination: PaginationInput = {}
 }
 
-input RootPlatformTaxonomiesQueryInput {
+input RootTaxonomiesQueryInput {
   status: ModelStatus = active
-  sort: PlatformTaxonomySortInput = {}
+  sort: TaxonomySortInput = {}
   pagination: PaginationInput = {}
 }
 
-input RootPlatformTaxonomiesOfTypeQueryInput {
-  type: PlatformTaxonomyType!
+input RootTaxonomiesOfTypeQueryInput {
+  type: TaxonomyType!
   status: ModelStatus = active
-  sort: PlatformTaxonomySortInput = {}
+  sort: TaxonomySortInput = {}
   pagination: PaginationInput = {}
 }
 
-input PlatformTaxonomySortInput {
-  field: PlatformTaxonomySortField = id
+input TaxonomySortInput {
+  field: TaxonomySortField = id
   order: SortOrder = desc
 }
 
-input PlatformTaxonomyParentInput {
+input TaxonomyParentInput {
   status: ModelStatus = active
 }
 
-input PlatformTaxonomyChildrenInput {
+input TaxonomyChildrenInput {
   status: ModelStatus = active
-  sort: PlatformTaxonomySortInput = {}
+  sort: TaxonomySortInput = {}
   pagination: PaginationInput = {}
 }
 

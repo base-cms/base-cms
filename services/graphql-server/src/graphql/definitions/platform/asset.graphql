@@ -1,8 +1,8 @@
 type Query {
-  platformAssetImage(input: PlatformAssetImageQueryInput!): PlatformAssetImage @findOne(model: "platform.Asset", using: { id: "_id" }, criteria: "platformAssetImage")
+  assetImage(input: AssetImageQueryInput!): AssetImage @findOne(model: "platform.Asset", using: { id: "_id" }, criteria: "assetImage")
 }
 
-type PlatformAssetImage {
+type AssetImage {
   # from platform.model::Asset
   id: ObjectID! @value(localField: "_id")
   name: String
@@ -11,21 +11,21 @@ type PlatformAssetImage {
   # from platform.model::Asset\Image
   filePath: String
   fileName: String
-  source: PlatformAssetImageSource
+  source: AssetImageSource
   caption: String
   credit: String
-  cropDimensions: PlatformAssetImageCrop
+  cropDimensions: AssetImageCrop
 
   # from platform.model::Asset\Image mutations
   approvedWebsite: Boolean @value(localField: "mutations.Website.approved")
   approvedMagazine: Boolean @value(localField: "mutations.Magazine.approved")
 
   #GraphQL specific fields
-  src(input: PlatformAssetImageSrcInput = {}): String!
+  src(input: AssetImageSrcInput = {}): String!
   alt: String!
 }
 
-type PlatformAssetImageSource {
+type AssetImageSource {
   location: String
   name: String
   width: Int
@@ -33,7 +33,7 @@ type PlatformAssetImageSource {
   processed: Boolean
 }
 
-type PlatformAssetImageCrop {
+type AssetImageCrop {
   x1: Int
   x2: Int
   y1: Int
@@ -41,11 +41,11 @@ type PlatformAssetImageCrop {
   aspectRatio: String
 }
 
-input PlatformAssetImageQueryInput {
+input AssetImageQueryInput {
   id: ObjectID!
 }
 
-input PlatformAssetImageSrcInput {
+input AssetImageSrcInput {
   host: String!
   size: String = "640w"
   aspectRatio: String = "16x9"

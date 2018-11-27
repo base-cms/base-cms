@@ -1,8 +1,8 @@
 type Query {
-  platformSecurityUser(input: PlatformSecurityUserQueryInput!): PlatformSecurityUser @findOne(model: "platform.User", using: { id: "_id" })
+  user(input: UserQueryInput!): User @findOne(model: "platform.User", using: { id: "_id" })
 }
 
-type PlatformSecurityUser {
+type User {
   id: ObjectID! @value(localField: "_id")
   email: String
   firstName: String
@@ -10,6 +10,6 @@ type PlatformSecurityUser {
   username: String
 }
 
-input PlatformSecurityUserQueryInput {
+input UserQueryInput {
   id: ObjectID!
 }

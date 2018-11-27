@@ -19,7 +19,7 @@ type MagazinePublication {
   # fields directly on magazine.model::Product\Publication
   issues(input: MagazinePublicationIssuesInput = {}): MagazineIssueConnection! @refMany(model: "magazine.Issue", localField: "_id", foreignField: "publication.$id")
   sections(input: MagazinePublicationSectionsInput = {}): MagazineSectionConnection! @refMany(model: "magazine.Section", localField: "_id", foreignField: "publication.$id")
-  coverImage: PlatformAssetImage @refOne(model: "platform.Asset", criteria: "platformAssetImage")
+  coverImage: AssetImage @refOne(model: "platform.Asset", criteria: "assetImage")
   subscribeUrl: String
   renewalUrl: String
   reprintsUrl: String

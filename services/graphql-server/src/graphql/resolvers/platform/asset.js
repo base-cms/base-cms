@@ -16,7 +16,7 @@ module.exports = {
   /**
    *
    */
-  PlatformAssetImage: {
+  AssetImage: {
     src: (image, { input }) => {
       const { host, size, aspectRatio } = input;
       const { filePath, fileName } = image;
