@@ -1,5 +1,6 @@
 const criterion = {
   assetImage: () => ({ type: 'Image' }),
+  contentArticle: () => ({ type: 'Article' }),
   emailNewsletter: () => ({ type: 'Newsletter' }),
   globalMagazineSection: () => ({ 'publication.$id': { $exists: true } }),
   issueMagazineSection: () => ({ 'issue.$id': { $exists: true } }),
