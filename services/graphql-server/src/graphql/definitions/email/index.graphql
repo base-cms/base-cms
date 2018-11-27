@@ -1,2 +1,3 @@
 # import Query.*, * from 'campaign.graphql'
 # import Query.*, * from 'newsletter.graphql'
+# import Query.*, * from 'section.graphql'

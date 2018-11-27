@@ -25,7 +25,7 @@ type EmailNewsletter {
 
   # fields directly on email.model::Product\Newsletter
   parent(input: EmailNewsletterParentInput = {}): EmailNewsletter @refOne(model: "platform.Product", criteria: "emailNewsletter")
-  # sections(input: RelatedEmailSectionsInput = {}): EmailSectionConnection! @refMany(model: "email.Section", localField: "_id", foreignField: "deployment.$id")
+  sections(input: EmailNewsletterSectionsInput = {}): EmailSectionConnection! @refMany(model: "email.Section", localField: "_id", foreignField: "deployment.$id")
   alias: String
   usesDeploymentDates: Boolean
   teaser: String
@@ -73,6 +73,12 @@ input EmailNewslettersQueryInput {
 
 input EmailNewsletterParentInput {
   status: ModelStatus = active
+}
+
+input EmailNewsletterSectionsInput {
+  status: ModelStatus = active
+  sort: EmailSectionSortInput = { field: id, order: desc }
+  pagination: PaginationInput = {}
 }
 
 input EmailNewsletterSortInput {
