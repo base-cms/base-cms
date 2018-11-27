@@ -1,3 +1,4 @@
+# import Query.*, * from 'magazine/index.graphql'
 # import Query.*, * from 'platform/index.graphql'
 # import Query.*, * from 'website/index.graphql'
 

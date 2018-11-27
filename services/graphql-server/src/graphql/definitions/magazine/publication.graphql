@@ -1,0 +1,32 @@
+type Query {
+  magazinePublication(input: MagazinePublicationQueryInput!): MagazinePublication @findOne(model: "platform.Product", using: { id: "_id" }, criteria: "magazinePublication")
+}
+
+type MagazinePublication {
+  # fields from platform.model::Product
+  id: ObjectID! @value(localField: "_id")
+  type: String!
+  name: String
+  fullName: String
+  tagLine: String
+  description: String
+  logo: String
+
+  # fields from platform.trait::StatusEnabled
+  status: Int
+
+  # fields directly on magazine.model::Product\Publication
+  # issues(input: RelatedMagazineIssuesInput = {}): MagazineIssueConnection! @refMany(model: "magazine.Issue", localField: "_id", foreignField: "publication.$id")
+  # sections(input: RelatedMagazineSectionsInput = {}): MagazineSectionConnection! @refMany(model: "magazine.Section", localField: "_id", foreignField: "publication.$id")
+  coverImage: PlatformAssetImage @refOne(model: "platform.Asset", criteria: "platformAssetImage")
+  subscribeUrl: String
+  renewalUrl: String
+  reprintsUrl: String
+  einquiryUrl: String
+  # socialLinks: [PlatformEntityStubSocial]! @arrayValue
+}
+
+input MagazinePublicationQueryInput {
+  id: ObjectID!
+  status: ModelStatus = active
+}

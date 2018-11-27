@@ -1,4 +1,5 @@
 const criterion = {
+  magazinePublication: () => ({ type: 'Publication' }),
   platformAssetImage: () => ({ type: 'Image' }),
   rootPlatformTaxonomy: () => ({ 'parent.$id': { $exists: false } }),
   rootWebsiteSection: () => ({ 'parent.$id': { $exists: false } }),
