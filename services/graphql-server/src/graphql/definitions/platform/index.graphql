@@ -1,4 +1,5 @@
 # import Query.*, * from 'asset.graphql'
+# import Query.*, * from 'content/index.graphql'
 # import Query.*, * from 'security.graphql'
 # import Query.*, * from 'taxonomy.graphql'
 

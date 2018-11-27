@@ -1,0 +1,91 @@
+# import Query.*, * from 'article.graphql'
+
+enum ContentMutation {
+  Email
+  Magazine
+  Website
+}
+
+enum ContentType {
+  Apparatus
+  Article
+  Blog
+  Collection
+  Company
+  Contact
+  Document
+  Ebook
+  EngineSpec
+  Event
+  Group
+  InQuarters
+  Infographic
+  Job
+  MediaGallery
+  News
+  Page
+  Podcast
+  PressRelease
+  Product
+  ProductExternal
+  Promotion
+  Review
+  Sponsored
+  TextAd
+  Video
+  Webinar
+  Whitepaper
+}
+
+enum ContentTypeFormat {
+  standard
+  dasherize
+}
+
+# NOTE: these fields must be properly indexed (with the correct collation)
+# otherwise sorted queries will be **slow** (5ms vs 500ms slow).
+# Generally speaking the index for each field would be:
+# `createIndex({ [field]: 1, _id: 1 }, { collation: { locale: 'en_US } })`
+enum ContentSortField {
+  id
+  name
+  fullName
+  created
+  updated
+  published
+}
+
+enum ContentContactSortField {
+  id
+  name
+  lastName
+  firstName
+  created
+  updated
+  published
+}
+
+enum ContentPathField {
+  id
+  type
+  slug
+  sectionAlias
+}
+
+interface Content {
+  # fields directly on platform.model::Content
+  id: Int! @value(localField: "_id")
+
+  fullName: String # @todo should be calculated in resolvers
+  hash: String
+  created: Date
+  updated: Date
+  touched: Date
+  published: Date
+  unpublished: Date
+  createdBy: User @refOne(model: "platform.User")
+  updatedBy: User @refOne(model: "platform.User")
+
+  # fields from platform.trait::StatusEnabled
+  status: Int
+}
