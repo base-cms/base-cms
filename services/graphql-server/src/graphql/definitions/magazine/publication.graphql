@@ -63,7 +63,7 @@ input MagazinePublicationSectionsInput {
 
 input MagazinePublicationIssuesInput {
   status: ModelStatus = active
-  sort: MagazineIssueSortInput = { field: mailDate, order: desc }
+  sort: MagazineIssueSortInput = {}
   pagination: PaginationInput = {}
 }
 

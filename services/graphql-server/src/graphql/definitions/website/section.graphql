@@ -68,24 +68,24 @@ input WebsiteSectionRedirectQueryInput {
 
 input WebsiteSectionsQueryInput {
   status: ModelStatus = active
-  sort: WebsiteSectionSortInput = { field: id, order: desc }
+  sort: WebsiteSectionSortInput = {}
   pagination: PaginationInput = {}
 }
 
 input RootWebsiteSectionsQueryInput {
   status: ModelStatus = active
-  sort: WebsiteSectionSortInput = { field: id, order: desc }
+  sort: WebsiteSectionSortInput = {}
   pagination: PaginationInput = {}
 }
 
 input WebsiteSectionsFromIdsQueryInput {
   ids: [Int!]
-  sort: WebsiteSectionSortInput = { field: id, order: desc }
+  sort: WebsiteSectionSortInput = {}
   pagination: PaginationInput = {}
 }
 
 input WebsiteSectionSortInput {
-  field: WebsiteSectionSortField = name
+  field: WebsiteSectionSortField = id
   order: SortOrder = asc
 }
 

@@ -46,7 +46,7 @@ input MagazineIssueQueryInput {
 
 input MagazineIssuesQueryInput {
   status: ModelStatus = active
-  sort: MagazineIssueSortInput = { field: id, order: desc }
+  sort: MagazineIssueSortInput = {}
   pagination: PaginationInput = {}
 }
 
@@ -61,6 +61,6 @@ input MagazineIssueSectionsInput {
 }
 
 input MagazineIssueSortInput {
-  field: MagazineIssueSortField = name
+  field: MagazineIssueSortField = id
   order: SortOrder = asc
 }

@@ -51,7 +51,7 @@ input EmailSectionQueryInput {
 
 input EmailSectionsQueryInput {
   status: ModelStatus = active
-  sort: EmailSectionSortInput = { field: id, order: desc }
+  sort: EmailSectionSortInput = {}
   pagination: PaginationInput = {}
 }
 
@@ -60,6 +60,6 @@ input EmailSectionNewsletterInput {
 }
 
 input EmailSectionSortInput {
-  field: EmailSectionSortField = name
+  field: EmailSectionSortField = id
   order: SortOrder = asc
 }

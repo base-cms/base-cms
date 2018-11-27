@@ -42,19 +42,19 @@ input WebsiteOptionSiteInput {
 
 input WebsiteOptionsQueryInput {
   status: ModelStatus = active
-  sort: WebsiteOptionSortInput = { field: id, order: asc }
+  sort: WebsiteOptionSortInput = {}
   pagination: PaginationInput = {}
 }
 
 input WebsiteOptionsForSiteQueryInput {
   siteId: ObjectID!
   status: ModelStatus = active
-  sort: WebsiteOptionSortInput = { field: id, order: asc }
+  sort: WebsiteOptionSortInput = {}
   pagination: PaginationInput = {}
 }
 
 input WebsiteOptionSortInput {
-  field: WebsiteOptionSortField = name
+  field: WebsiteOptionSortField = id
   order: SortOrder = asc
 }
 

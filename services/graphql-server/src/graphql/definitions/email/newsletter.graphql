@@ -77,7 +77,7 @@ input EmailNewsletterParentInput {
 
 input EmailNewsletterSectionsInput {
   status: ModelStatus = active
-  sort: EmailSectionSortInput = { field: id, order: desc }
+  sort: EmailSectionSortInput = {}
   pagination: PaginationInput = {}
 }
 

@@ -56,32 +56,32 @@ input PlatformTaxonomyQueryInput {
 
 input PlatformTaxonomiesQueryInput {
   status: ModelStatus = active
-  sort: PlatformTaxonomySortInput = { field: id, order: desc }
+  sort: PlatformTaxonomySortInput = {}
   pagination: PaginationInput = {}
 }
 
 input PlatformTaxonomiesOfTypeQueryInput {
   type: PlatformTaxonomyType!
   status: ModelStatus = active
-  sort: PlatformTaxonomySortInput = { field: id, order: desc }
+  sort: PlatformTaxonomySortInput = {}
   pagination: PaginationInput = {}
 }
 
 input RootPlatformTaxonomiesQueryInput {
   status: ModelStatus = active
-  sort: PlatformTaxonomySortInput = { field: id, order: desc }
+  sort: PlatformTaxonomySortInput = {}
   pagination: PaginationInput = {}
 }
 
 input RootPlatformTaxonomiesOfTypeQueryInput {
   type: PlatformTaxonomyType!
   status: ModelStatus = active
-  sort: PlatformTaxonomySortInput = { field: id, order: desc }
+  sort: PlatformTaxonomySortInput = {}
   pagination: PaginationInput = {}
 }
 
 input PlatformTaxonomySortInput {
-  field: PlatformTaxonomySortField = name
+  field: PlatformTaxonomySortField = id
   order: SortOrder = asc
 }
 

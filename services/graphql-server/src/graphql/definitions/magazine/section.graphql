@@ -48,19 +48,19 @@ input MagazineSectionQueryInput {
 
 input MagazineSectionsQueryInput {
   status: ModelStatus = active
-  sort: MagazineSectionSortInput = { field: id, order: desc }
+  sort: MagazineSectionSortInput = {}
   pagination: PaginationInput = {}
 }
 
 input GlobalMagazineSectionsQueryInput {
   status: ModelStatus = active
-  sort: MagazineSectionSortInput = { field: id, order: desc }
+  sort: MagazineSectionSortInput = {}
   pagination: PaginationInput = {}
 }
 
 input IssueMagazineSectionsQueryInput {
   status: ModelStatus = active
-  sort: MagazineSectionSortInput = { field: id, order: desc }
+  sort: MagazineSectionSortInput = {}
   pagination: PaginationInput = {}
 }
 
@@ -73,6 +73,6 @@ input MagazineSectionIssueInput {
 }
 
 input MagazineSectionSortInput {
-  field: MagazineSectionSortField = name
+  field: MagazineSectionSortField = id
   order: SortOrder = asc
 }
