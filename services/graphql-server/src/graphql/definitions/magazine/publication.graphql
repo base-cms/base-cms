@@ -1,5 +1,6 @@
 type Query {
   magazinePublication(input: MagazinePublicationQueryInput!): MagazinePublication @findOne(model: "platform.Product", using: { id: "_id" }, criteria: "magazinePublication")
+  magazinePublications(input: MagazinePublicationsQueryInput = {}): MagazinePublicationConnection! @findMany(model: "platform.Product", criteria: "magazinePublication")
 }
 
 type MagazinePublication {
@@ -26,7 +27,35 @@ type MagazinePublication {
   # socialLinks: [PlatformEntityStubSocial]! @arrayValue
 }
 
+type MagazinePublicationConnection {
+  totalCount: Int!
+  edges: [MagazinePublicationEdge]!
+  pageInfo: PageInfo!
+}
+
+type MagazinePublicationEdge {
+  node: MagazinePublication!
+  cursor: String!
+}
+
+enum MagazinePublicationSortField {
+  id
+  name
+  fullName
+}
+
 input MagazinePublicationQueryInput {
   id: ObjectID!
   status: ModelStatus = active
+}
+
+input MagazinePublicationsQueryInput {
+  status: ModelStatus = active
+  sort: MagazinePublicationSortInput = {}
+  pagination: PaginationInput = {}
+}
+
+input MagazinePublicationSortInput {
+  field: MagazinePublicationSortField = id
+  order: SortOrder = asc
 }
