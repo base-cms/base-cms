@@ -32,14 +32,6 @@ enum ModelStatus {
   deleted
 }
 
-input ModelIdInput {
-  id: Int!
-}
-
-input ModelObjectIdInput {
-  id: ObjectID!
-}
-
 input PaginationInput {
   limit: Int = 10
   after: String
