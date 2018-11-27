@@ -1,6 +1,7 @@
 const { SchemaDirectiveVisitor } = require('graphql-tools');
 const formatStatus = require('../utils/format-status');
-const convertOps = require('../utils/convert-ops');
+const criteriaFor = require('../utils/criteria-for');
+const applyInput = require('../utils/apply-input');
 
 class FindManyDirective extends SchemaDirectiveVisitor {
   /**
@@ -21,9 +22,11 @@ class FindManyDirective extends SchemaDirectiveVisitor {
         sort,
         pagination,
       } = input;
-      const query = { ...convertOps(criteria), ...formatStatus(status) };
-      Object.keys(using).filter(key => typeof input[key] !== 'undefined').forEach((key) => {
-        query[using[key]] = input[key];
+
+      const query = applyInput({
+        query: { ...criteriaFor(criteria), ...formatStatus(status) },
+        using,
+        input,
       });
       console.log('@findMany', model, query);
       return basedb.paginate(model, { query, sort, ...pagination });

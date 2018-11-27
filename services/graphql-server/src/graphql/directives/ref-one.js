@@ -1,6 +1,7 @@
+const { BaseDB } = require('@base-cms/db');
 const { SchemaDirectiveVisitor } = require('graphql-tools');
 const formatStatus = require('../utils/format-status');
-const convertOps = require('../utils/convert-ops');
+const criteriaFor = require('../utils/criteria-for');
 
 class RefOneDirective extends SchemaDirectiveVisitor {
   /**
@@ -17,16 +18,15 @@ class RefOneDirective extends SchemaDirectiveVisitor {
         criteria,
       } = this.args;
 
-      const query = { ...convertOps(criteria), ...formatStatus(input.status) };
+      const fieldName = localField || field.name;
+      const ref = BaseDB.get(doc, fieldName);
+      const id = BaseDB.extractRefId(ref);
+      if (!id) return null;
+
+      const query = { [foreignField]: id, ...criteriaFor(criteria), ...formatStatus(input.status) };
 
       console.log('@refOne', model, query);
-      return basedb.referenceOne({
-        doc,
-        relatedModel: model,
-        localField: localField || field.name,
-        foreignField,
-        query,
-      });
+      return basedb.findOne(model, query);
     };
   }
 }

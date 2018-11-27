@@ -1,7 +1,7 @@
 const { SchemaDirectiveVisitor } = require('graphql-tools');
 const { BaseDB } = require('@base-cms/db');
 const formatStatus = require('../utils/format-status');
-const convertOps = require('../utils/convert-ops');
+const criteriaFor = require('../utils/criteria-for');
 
 const { isArray } = Array;
 
@@ -30,9 +30,9 @@ class RefManyDirective extends SchemaDirectiveVisitor {
         pagination,
       } = input;
       const query = {
-        ...convertOps(criteria),
+        ...criteriaFor(criteria),
         ...formatStatus(status),
-        [foreignField]: { $in: ids },
+        [foreignField]: ids.length === 1 ? ids[0] : { $in: ids },
       };
 
       console.log('@refMany', model, query);
