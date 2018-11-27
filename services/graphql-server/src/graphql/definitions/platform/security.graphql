@@ -1,0 +1,15 @@
+type Query {
+  platformSecurityUser(input: PlatformSecurityUserQueryInput!): PlatformSecurityUser @findOne(model: "platform.User", using: { id: "_id" })
+}
+
+type PlatformSecurityUser {
+  id: ObjectID! @value(localField: "_id")
+  email: String
+  firstName: String
+  lastName: String
+  username: String
+}
+
+input PlatformSecurityUserQueryInput {
+  id: ObjectID!
+}
