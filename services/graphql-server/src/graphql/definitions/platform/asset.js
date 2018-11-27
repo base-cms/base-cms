@@ -1,4 +1,8 @@
-type Query {
+const gql = require('graphql-tag');
+
+module.exports = gql`
+
+extend type Query {
   assetImage(input: AssetImageQueryInput!): AssetImage @findOne(model: "platform.Asset", using: { id: "_id" }, criteria: "assetImage")
 }
 
@@ -50,3 +54,5 @@ input AssetImageSrcInput {
   size: String = "640w"
   aspectRatio: String = "16x9"
 }
+
+`;

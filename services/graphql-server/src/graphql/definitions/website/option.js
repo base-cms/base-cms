@@ -1,4 +1,8 @@
-type Query {
+const gql = require('graphql-tag');
+
+module.exports = gql`
+
+extend type Query {
   websiteOption(input: WebsiteOptionQueryInput!): WebsiteOption @findOne(model: "website.Option", using: { id: "_id" })
   websiteOptions(input: WebsiteOptionsQueryInput!): WebsiteOptionConnection! @findMany(model: "website.Option")
   websiteOptionsForSite(input: WebsiteOptionsForSiteQueryInput!): WebsiteOptionConnection! @findMany(model: "website.Option", using: { siteId: "site.$id" })
@@ -63,3 +67,5 @@ input RelatedWebsiteOptionsInput {
   sort: WebsiteOptionSortInput = {}
   pagination: PaginationInput = {}
 }
+
+`;

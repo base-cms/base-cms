@@ -1,4 +1,8 @@
-type Query {
+const gql = require('graphql-tag');
+
+module.exports = gql`
+
+extend type Query {
   websiteSection(input: WebsiteSectionQueryInput!): WebsiteSection @findOne(model: "website.Section", using: { id: "_id" })
   websiteSectionAlias(input: WebsiteSectionAliasQueryInput!): WebsiteSection @findOne(model: "website.Section", using: { alias: "alias" })
   websiteSectionRedirect(input: WebsiteSectionRedirectQueryInput!): WebsiteSection @findOne(model: "website.Section", using: { alias: "redirects" })
@@ -102,3 +106,5 @@ input WebsiteSectionChildrenInput {
   sort: WebsiteSectionSortInput = {}
   pagination: PaginationInput = {}
 }
+
+`;

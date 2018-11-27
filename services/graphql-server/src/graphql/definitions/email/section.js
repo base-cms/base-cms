@@ -1,4 +1,8 @@
-type Query {
+const gql = require('graphql-tag');
+
+module.exports = gql`
+
+extend type Query {
   emailSection(input: EmailSectionQueryInput!): EmailSection @findOne(model: "email.Section", using: { id: "_id" })
   emailSections(input: EmailSectionsQueryInput = {}): EmailSectionConnection! @findMany(model: "email.Section")
 }
@@ -63,3 +67,5 @@ input EmailSectionSortInput {
   field: EmailSectionSortField = id
   order: SortOrder = desc
 }
+
+`;

@@ -1,4 +1,8 @@
-type Query {
+const gql = require('graphql-tag');
+
+module.exports = gql`
+
+extend type Query {
   magazineIssue(input: MagazineIssueQueryInput!): MagazineIssue @findOne(model: "magazine.Issue", using: { id: "_id" })
   magazineIssues(input: MagazineIssuesQueryInput = {}): MagazineIssueConnection! @findMany(model: "magazine.Issue")
 }
@@ -64,3 +68,5 @@ input MagazineIssueSortInput {
   field: MagazineIssueSortField = id
   order: SortOrder = desc
 }
+
+`;

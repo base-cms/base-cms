@@ -1,4 +1,8 @@
-type Query {
+const gql = require('graphql-tag');
+
+module.exports = gql`
+
+extend type Query {
   user(input: UserQueryInput!): User @findOne(model: "platform.User", using: { id: "_id" })
 }
 
@@ -13,3 +17,5 @@ type User {
 input UserQueryInput {
   id: ObjectID!
 }
+
+`;

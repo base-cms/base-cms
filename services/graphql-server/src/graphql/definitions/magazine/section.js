@@ -1,4 +1,8 @@
-type Query {
+const gql = require('graphql-tag');
+
+module.exports = gql`
+
+extend type Query {
   magazineSection(input: MagazineSectionQueryInput!): MagazineSection @findOne(model: "magazine.Section", using: { id: "_id" })
   magazineSections(input: MagazineSectionsQueryInput = {}): MagazineSectionConnection! @findMany(model: "magazine.Section")
   globalMagazineSections(input: GlobalMagazineSectionsQueryInput = {}): MagazineSectionConnection! @findMany(model: "magazine.Section", criteria: "globalMagazineSection")
@@ -76,3 +80,5 @@ input MagazineSectionSortInput {
   field: MagazineSectionSortField = id
   order: SortOrder = desc
 }
+
+`;

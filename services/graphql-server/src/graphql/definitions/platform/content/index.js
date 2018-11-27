@@ -1,4 +1,12 @@
-# import Query.*, * from 'article.graphql'
+const gql = require('graphql-tag');
+const interfaces = require('./interfaces');
+const types = require('./types');
+
+module.exports = gql`
+
+extend type Query {
+  allContent(input: AllContentQueryInput = {}): ContentConnection! @findMany(model: "platform.Content", criteria: "content")
+}
 
 enum ContentMutation {
   Email
@@ -45,21 +53,11 @@ enum ContentTypeFormat {
 # NOTE: these fields must be properly indexed (with the correct collation)
 # otherwise sorted queries will be **slow** (5ms vs 500ms slow).
 # Generally speaking the index for each field would be:
-# `createIndex({ [field]: 1, _id: 1 }, { collation: { locale: 'en_US } })`
+# createIndex({ [field]: 1, _id: 1 }, { collation: { locale: 'en_US } })
 enum ContentSortField {
   id
   name
   fullName
-  created
-  updated
-  published
-}
-
-enum ContentContactSortField {
-  id
-  name
-  lastName
-  firstName
   created
   updated
   published
@@ -72,20 +70,29 @@ enum ContentPathField {
   sectionAlias
 }
 
-interface Content {
-  # fields directly on platform.model::Content
-  id: Int! @value(localField: "_id")
-
-  fullName: String # @todo should be calculated in resolvers
-  hash: String
-  created: Date
-  updated: Date
-  touched: Date
-  published: Date
-  unpublished: Date
-  createdBy: User @refOne(model: "platform.User")
-  updatedBy: User @refOne(model: "platform.User")
-
-  # fields from platform.trait::StatusEnabled
-  status: Int
+type ContentConnection {
+  totalCount: Int!
+  edges: [ContentEdge]!
+  pageInfo: PageInfo!
 }
+
+type ContentEdge {
+  node: Content!
+  cursor: String!
+}
+
+input AllContentQueryInput {
+  status: ModelStatus = active
+  sort: ContentSortInput = {}
+  pagination: PaginationInput = {}
+}
+
+input ContentSortInput {
+  field: ContentSortField = id
+  order: SortOrder = desc
+}
+
+${interfaces}
+${types}
+
+`;

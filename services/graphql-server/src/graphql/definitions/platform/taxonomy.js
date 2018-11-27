@@ -1,4 +1,8 @@
-type Query {
+const gql = require('graphql-tag');
+
+module.exports = gql`
+
+extend type Query {
   taxonomy(input: TaxonomyQueryInput!): Taxonomy @findOne(model: "platform.Taxonomy", using: { id: "_id" })
   taxonomies(input: TaxonomiesQueryInput = {}): TaxonomyConnection! @findMany(model: "platform.Taxonomy")
   taxonomiesOfType(input: TaxonomiesOfTypeQueryInput!): TaxonomyConnection! @findMany(model: "platform.Taxonomy", using: { type: "type" })
@@ -95,3 +99,4 @@ input TaxonomyChildrenInput {
   pagination: PaginationInput = {}
 }
 
+`;

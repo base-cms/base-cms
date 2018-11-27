@@ -1,4 +1,8 @@
-type Query {
+const gql = require('graphql-tag');
+
+module.exports = gql`
+
+extend type Query {
   emailNewsletter(input: EmailNewsletterQueryInput!): EmailNewsletter @findOne(model: "platform.Product", using: { id: "_id" }, criteria: "emailNewsletter")
   emailNewsletters(input: EmailNewslettersQueryInput = {}): EmailNewsletterConnection! @findMany(model: "platform.Product", criteria: "emailNewsletter")
 }
@@ -85,3 +89,5 @@ input EmailNewsletterSortInput {
   field: EmailNewsletterSortField = id
   order: SortOrder = desc
 }
+
+`;
