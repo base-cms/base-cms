@@ -61,5 +61,5 @@ input EmailSectionNewsletterInput {
 
 input EmailSectionSortInput {
   field: EmailSectionSortField = id
-  order: SortOrder = asc
+  order: SortOrder = desc
 }

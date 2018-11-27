@@ -82,7 +82,7 @@ input RootPlatformTaxonomiesOfTypeQueryInput {
 
 input PlatformTaxonomySortInput {
   field: PlatformTaxonomySortField = id
-  order: SortOrder = asc
+  order: SortOrder = desc
 }
 
 input PlatformTaxonomyParentInput {

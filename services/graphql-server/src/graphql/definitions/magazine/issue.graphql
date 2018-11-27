@@ -62,5 +62,5 @@ input MagazineIssueSectionsInput {
 
 input MagazineIssueSortInput {
   field: MagazineIssueSortField = id
-  order: SortOrder = asc
+  order: SortOrder = desc
 }

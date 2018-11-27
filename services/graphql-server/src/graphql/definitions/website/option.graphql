@@ -55,7 +55,7 @@ input WebsiteOptionsForSiteQueryInput {
 
 input WebsiteOptionSortInput {
   field: WebsiteOptionSortField = id
-  order: SortOrder = asc
+  order: SortOrder = desc
 }
 
 input RelatedWebsiteOptionsInput {

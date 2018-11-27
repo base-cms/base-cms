@@ -64,7 +64,7 @@ input WebsiteSiteOptionsInput {
 
 input WebsiteSiteSortInput {
   field: WebsiteSiteSortField = id
-  order: SortOrder = asc
+  order: SortOrder = desc
 }
 
 input WebsiteSiteSectionsInput {
