@@ -32,20 +32,4 @@ module.exports = {
       return altFrom(fileName);
     },
   },
-
-  /**
-   *
-   */
-  Query: {
-    /**
-     *
-     */
-    platformAssetImage: async (root, { input }, { basedb }) => {
-      const { id } = input;
-      return basedb.findOne('platform.Asset', {
-        _id: id,
-        type: 'Image',
-      });
-    },
-  },
 };

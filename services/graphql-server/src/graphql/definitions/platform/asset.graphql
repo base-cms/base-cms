@@ -1,5 +1,5 @@
 type Query {
-  platformAssetImage(input: PlatformAssetImageQueryInput!): PlatformAssetImage
+  platformAssetImage(input: PlatformAssetImageQueryInput!): PlatformAssetImage @findOne(model: "platform.Asset", using: { id: "_id" }, criteria: "platformAssetImage")
 }
 
 type PlatformAssetImage {
