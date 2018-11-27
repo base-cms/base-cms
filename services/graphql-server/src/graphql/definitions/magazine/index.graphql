@@ -1,2 +1,3 @@
+# import Query.*, * from 'issue.graphql'
 # import Query.*, * from 'publication.graphql'
 # import Query.*, * from 'section.graphql'

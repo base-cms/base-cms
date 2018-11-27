@@ -17,7 +17,7 @@ type MagazinePublication {
   status: Int
 
   # fields directly on magazine.model::Product\Publication
-  # issues(input: RelatedMagazineIssuesInput = {}): MagazineIssueConnection! @refMany(model: "magazine.Issue", localField: "_id", foreignField: "publication.$id")
+  issues(input: MagazinePublicationIssuesInput = {}): MagazineIssueConnection! @refMany(model: "magazine.Issue", localField: "_id", foreignField: "publication.$id")
   sections(input: MagazinePublicationSectionsInput = {}): MagazineSectionConnection! @refMany(model: "magazine.Section", localField: "_id", foreignField: "publication.$id")
   coverImage: PlatformAssetImage @refOne(model: "platform.Asset", criteria: "platformAssetImage")
   subscribeUrl: String
@@ -57,7 +57,13 @@ input MagazinePublicationsQueryInput {
 
 input MagazinePublicationSectionsInput {
   status: ModelStatus = active
-  sort: WebsiteSectionSortInput = {}
+  sort: MagazineSectionSortInput = {}
+  pagination: PaginationInput = {}
+}
+
+input MagazinePublicationIssuesInput {
+  status: ModelStatus = active
+  sort: MagazineIssueSortInput = { field: mailDate, order: desc }
   pagination: PaginationInput = {}
 }
 
