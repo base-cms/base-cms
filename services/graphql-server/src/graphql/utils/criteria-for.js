@@ -1,5 +1,6 @@
 const criterion = {
   platformAssetImage: () => ({ type: 'Image' }),
+  rootPlatformTaxonomy: () => ({ 'parent.$id': { $exists: false } }),
   rootWebsiteSection: () => ({ 'parent.$id': { $exists: false } }),
   websiteSite: () => ({ type: 'Site' }),
 };

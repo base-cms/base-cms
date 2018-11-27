@@ -1,5 +1,9 @@
 type Query {
   platformTaxonomy(input: PlatformTaxonomyQueryInput!): PlatformTaxonomy @findOne(model: "platform.Taxonomy", using: { id: "_id" })
+  platformTaxonomies(input: PlatformTaxonomiesQueryInput = {}): PlatformTaxonomyConnection! @findMany(model: "platform.Taxonomy")
+  platformTaxonomiesOfType(input: PlatformTaxonomiesOfTypeQueryInput!): PlatformTaxonomyConnection! @findMany(model: "platform.Taxonomy", using: { type: "type" })
+  rootPlatformTaxonomies(input: RootPlatformTaxonomiesQueryInput = {}): PlatformTaxonomyConnection! @findMany(model: "platform.Taxonomy", criteria: "rootPlatformTaxonomy")
+  rootPlatformTaxonomiesOfType(input: RootPlatformTaxonomiesOfTypeQueryInput!): PlatformTaxonomyConnection! @findMany(model: "platform.Taxonomy", using: { type: "type" }, criteria: "rootPlatformTaxonomy")
 }
 
 type PlatformTaxonomy {
@@ -26,6 +30,18 @@ type PlatformTaxonomyEdge {
   cursor: String!
 }
 
+enum PlatformTaxonomyType {
+  Bin
+  Category
+  Location
+  Organization
+  Person
+  PlatformChannel
+  Tag
+  Topic
+  Type
+}
+
 enum PlatformTaxonomySortField {
   id
   name
@@ -36,6 +52,32 @@ enum PlatformTaxonomySortField {
 input PlatformTaxonomyQueryInput {
   status: ModelStatus = active
   id: Int!
+}
+
+input PlatformTaxonomiesQueryInput {
+  status: ModelStatus = active
+  sort: PlatformTaxonomySortInput = { field: id, order: desc }
+  pagination: PaginationInput = {}
+}
+
+input PlatformTaxonomiesOfTypeQueryInput {
+  type: PlatformTaxonomyType!
+  status: ModelStatus = active
+  sort: PlatformTaxonomySortInput = { field: id, order: desc }
+  pagination: PaginationInput = {}
+}
+
+input RootPlatformTaxonomiesQueryInput {
+  status: ModelStatus = active
+  sort: PlatformTaxonomySortInput = { field: id, order: desc }
+  pagination: PaginationInput = {}
+}
+
+input RootPlatformTaxonomiesOfTypeQueryInput {
+  type: PlatformTaxonomyType!
+  status: ModelStatus = active
+  sort: PlatformTaxonomySortInput = { field: id, order: desc }
+  pagination: PaginationInput = {}
 }
 
 input PlatformTaxonomySortInput {
