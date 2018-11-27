@@ -30,6 +30,21 @@ module.exports = {
 
   /**
    *
+   */
+  createEmptyResponse() {
+    const pageInfo = {
+      hasNextPage: false,
+      endCursor: null,
+    };
+    return {
+      edges: [],
+      pageInfo,
+      totalCount: () => 0,
+    };
+  },
+
+  /**
+   *
    * @param {object} params
    * @param {string} [params.after] The cursor value to start the next page.
    */

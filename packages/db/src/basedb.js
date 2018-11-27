@@ -3,6 +3,7 @@ const objectPath = require('object-path');
 const { isObject } = require('@base-cms/common');
 const { Client } = require('./mongodb');
 const paginateFind = require('./paginate/find');
+const { createEmptyResponse: paginateEmpty } = require('./paginate/utils');
 
 const { isArray } = Array;
 
@@ -384,6 +385,13 @@ class BaseDB {
   static getAsArray(doc, path) {
     const value = objectPath.get(doc, path, []);
     return isArray(value) ? value : [];
+  }
+
+  /**
+   * Returns an empty paginated response.
+   */
+  static paginateEmpty() {
+    return paginateEmpty();
   }
 
   /**
