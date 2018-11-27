@@ -23,7 +23,7 @@ class RefManyDirective extends SchemaDirectiveVisitor {
       const fieldName = localField || field.name;
       const refs = BaseDB.get(doc, fieldName);
       const ids = BaseDB.extractRefIds(isArray(refs) ? refs : [refs]);
-      // if (!ids.length) @todo Return an empty pagination instance.
+      if (!ids.length) return BaseDB.paginateEmpty();
       const {
         status,
         sort,
