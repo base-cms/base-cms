@@ -1,10 +1,10 @@
 type Query {
-  websiteSection(input: WebsiteSectionQueryInput!): WebsiteSection
-  websiteSectionAlias(input: WebsiteSectionAliasQueryInput!): WebsiteSection
-  websiteSectionRedirect(input: WebsiteSectionRedirectQueryInput!): WebsiteSection
-  websiteSections(input: WebsiteSectionsQueryInput!): WebsiteSectionConnection!
-  rootWebsiteSections(input: RootWebsiteSectionsQueryInput!): WebsiteSectionConnection!
-  websiteSectionsFromIds(input: WebsiteSectionsFromIdsQueryInput!): WebsiteSectionConnection!
+  websiteSection(input: WebsiteSectionQueryInput!): WebsiteSection @findOne(model: "website.Section", using: { id: "_id" })
+  websiteSectionAlias(input: WebsiteSectionAliasQueryInput!): WebsiteSection @findOne(model: "website.Section", using: { alias: "alias" })
+  websiteSectionRedirect(input: WebsiteSectionRedirectQueryInput!): WebsiteSection @findOne(model: "website.Section", using: { alias: "redirects" })
+  websiteSections(input: WebsiteSectionsQueryInput!): WebsiteSectionConnection! @findMany(model: "website.Section")
+  rootWebsiteSections(input: RootWebsiteSectionsQueryInput!): WebsiteSectionConnection! @findMany(model: "website.Section", criteria: "rootWebsiteSection")
+  websiteSectionsFromIds(input: WebsiteSectionsFromIdsQueryInput!): WebsiteSectionConnection! @findMany(model: "website.Section", using: { ids: "_id" })
 }
 
 type WebsiteSection {
@@ -21,10 +21,10 @@ type WebsiteSection {
   sequence: Int
 
   # fields directly on website.model::Section
-  site(input: WebsiteSectionSiteInput = {}): WebsiteSite
-  parent(input: WebsiteSectionParentInput = {}): WebsiteSection
-  children(input: WebsiteSectionChildrenInput = {}): WebsiteSectionConnection!
-  logo: PlatformAssetImage
+  site(input: WebsiteSectionSiteInput = {}): WebsiteSite @refOne(model: "platform.Product", criteria: "websiteSite")
+  parent(input: WebsiteSectionParentInput = {}): WebsiteSection @refOne(model: "website.Section")
+  children(input: WebsiteSectionChildrenInput = {}): WebsiteSectionConnection! @refMany(model: "website.Section", localField: "_id", foreignField: "parent.$id")
+  logo: PlatformAssetImage @refOne(model: "platform.Asset", criteria: "platformAssetImage")
 
   # fields from trait.platform::Content\SeoFields
   # metadata: WebsiteSectionMetadata! @sectionMetadata
