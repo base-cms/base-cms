@@ -19,6 +19,18 @@ module.exports = {
   /**
    *
    */
+  Authorable: {
+    /**
+     *
+     */
+    __resolveType(obj) {
+      return `Content${obj.type}`;
+    },
+  },
+
+  /**
+   *
+   */
   Contactable: {
     /**
      *
@@ -89,7 +101,10 @@ module.exports = {
     },
   },
 
-  Authorable: {
+  /**
+   *
+   */
+  Media: {
     /**
      *
      */
