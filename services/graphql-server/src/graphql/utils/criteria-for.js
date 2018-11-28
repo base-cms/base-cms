@@ -1,8 +1,9 @@
 const criterion = {
   assetImage: () => ({ type: 'Image' }),
-  content: () => ({ type: { $in: ['Article', 'Blog', 'Contact', 'PressRelease'] } }),
+  content: () => ({ type: { $in: ['Article', 'Blog', 'Contact', 'Company', 'PressRelease'] } }),
   contentArticle: () => ({ type: 'Article' }),
   contentBlog: () => ({ type: 'Blog' }),
+  contentCompany: () => ({ type: 'Company' }),
   contentContact: () => ({ type: 'Contact' }),
   contentPressRelease: () => ({ type: 'PressRelease' }),
   emailNewsletter: () => ({ type: 'Newsletter' }),
