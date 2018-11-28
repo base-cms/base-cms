@@ -14,6 +14,7 @@ directive @applyInterfaceFields on OBJECT
 directive @arrayValue(localField: String) on FIELD_DEFINITION
 directive @findMany(model: String!, using: JSON, criteria: String) on FIELD_DEFINITION
 directive @findOne(model: String!, using: JSON, criteria: String) on FIELD_DEFINITION
+directive @mutatedValue(localField: String) on FIELD_DEFINITION
 directive @refMany(model: String!, localField: String, foreignField: String = "_id", criteria: String) on FIELD_DEFINITION
 directive @refOne(model: String!, localField: String, foreignField: String = "_id", criteria: String) on FIELD_DEFINITION
 directive @value(localField: String, fallbackField: String) on FIELD_DEFINITION
