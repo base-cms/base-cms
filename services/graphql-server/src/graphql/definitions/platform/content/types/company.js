@@ -10,9 +10,25 @@ type ContentCompany implements Content @applyInterfaceFields {
   id: Int! @value(localField: "_id")
 }
 
+type ContentCompanyConnection {
+  totalCount: Int!
+  edges: [ContentCompanyEdge]!
+  pageInfo: PageInfo!
+}
+
+type ContentCompanyEdge {
+  node: ContentCompany!
+  cursor: String!
+}
+
 input ContentCompanyQueryInput {
   id: Int!
   status: ModelStatus = active
+}
+
+input ContentCompanySortInput {
+  field: ContentSortField = id
+  order: SortOrder = desc
 }
 
 `;

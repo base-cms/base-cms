@@ -10,9 +10,25 @@ type ContentMediaGallery implements Content @applyInterfaceFields {
   id: Int! @value(localField: "_id")
 }
 
+type ContentMediaGalleryConnection {
+  totalCount: Int!
+  edges: [ContentMediaGalleryEdge]!
+  pageInfo: PageInfo!
+}
+
+type ContentMediaGalleryEdge {
+  node: ContentMediaGallery!
+  cursor: String!
+}
+
 input ContentMediaGalleryQueryInput {
   id: Int!
   status: ModelStatus = active
+}
+
+input ContentMediaGallerySortInput {
+  field: ContentSortField = id
+  order: SortOrder = desc
 }
 
 `;

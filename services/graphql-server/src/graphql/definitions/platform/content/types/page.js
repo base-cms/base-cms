@@ -10,9 +10,25 @@ type ContentPage implements Content @applyInterfaceFields {
   id: Int! @value(localField: "_id")
 }
 
+type ContentPageConnection {
+  totalCount: Int!
+  edges: [ContentPageEdge]!
+  pageInfo: PageInfo!
+}
+
+type ContentPageEdge {
+  node: ContentPage!
+  cursor: String!
+}
+
 input ContentPageQueryInput {
   id: Int!
   status: ModelStatus = active
+}
+
+input ContentPageSortInput {
+  field: ContentSortField = id
+  order: SortOrder = desc
 }
 
 `;

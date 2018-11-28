@@ -10,9 +10,25 @@ type ContentInfographic implements Content @applyInterfaceFields {
   id: Int! @value(localField: "_id")
 }
 
+type ContentInfographicConnection {
+  totalCount: Int!
+  edges: [ContentInfographicEdge]!
+  pageInfo: PageInfo!
+}
+
+type ContentInfographicEdge {
+  node: ContentInfographic!
+  cursor: String!
+}
+
 input ContentInfographicQueryInput {
   id: Int!
   status: ModelStatus = active
+}
+
+input ContentInfographicSortInput {
+  field: ContentSortField = id
+  order: SortOrder = desc
 }
 
 `;

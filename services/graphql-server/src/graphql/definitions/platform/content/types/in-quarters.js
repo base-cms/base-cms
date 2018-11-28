@@ -10,9 +10,25 @@ type ContentInQuarters implements Content @applyInterfaceFields {
   id: Int! @value(localField: "_id")
 }
 
+type ContentInQuartersConnection {
+  totalCount: Int!
+  edges: [ContentInQuartersEdge]!
+  pageInfo: PageInfo!
+}
+
+type ContentInQuartersEdge {
+  node: ContentInQuarters!
+  cursor: String!
+}
+
 input ContentInQuartersQueryInput {
   id: Int!
   status: ModelStatus = active
+}
+
+input ContentInQuartersSortInput {
+  field: ContentSortField = id
+  order: SortOrder = desc
 }
 
 `;

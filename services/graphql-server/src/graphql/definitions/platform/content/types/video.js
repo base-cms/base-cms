@@ -10,9 +10,25 @@ type ContentVideo implements Content @applyInterfaceFields {
   id: Int! @value(localField: "_id")
 }
 
+type ContentVideoConnection {
+  totalCount: Int!
+  edges: [ContentVideoEdge]!
+  pageInfo: PageInfo!
+}
+
+type ContentVideoEdge {
+  node: ContentVideo!
+  cursor: String!
+}
+
 input ContentVideoQueryInput {
   id: Int!
   status: ModelStatus = active
+}
+
+input ContentVideoSortInput {
+  field: ContentSortField = id
+  order: SortOrder = desc
 }
 
 `;

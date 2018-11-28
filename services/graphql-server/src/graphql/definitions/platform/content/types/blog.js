@@ -10,9 +10,25 @@ type ContentBlog implements Content & Authorable @applyInterfaceFields {
   id: Int! @value(localField: "_id")
 }
 
+type ContentBlogConnection {
+  totalCount: Int!
+  edges: [ContentBlogEdge]!
+  pageInfo: PageInfo!
+}
+
+type ContentBlogEdge {
+  node: ContentBlog!
+  cursor: String!
+}
+
 input ContentBlogQueryInput {
   id: Int!
   status: ModelStatus = active
+}
+
+input ContentBlogSortInput {
+  field: ContentSortField = id
+  order: SortOrder = desc
 }
 
 `;

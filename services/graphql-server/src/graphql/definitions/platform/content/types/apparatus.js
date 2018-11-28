@@ -10,9 +10,25 @@ type ContentApparatus implements Content @applyInterfaceFields {
   id: Int! @value(localField: "_id")
 }
 
+type ContentApparatusConnection {
+  totalCount: Int!
+  edges: [ContentApparatusEdge]!
+  pageInfo: PageInfo!
+}
+
+type ContentApparatusEdge {
+  node: ContentApparatus!
+  cursor: String!
+}
+
 input ContentApparatusQueryInput {
   id: Int!
   status: ModelStatus = active
+}
+
+input ContentApparatusSortInput {
+  field: ContentSortField = id
+  order: SortOrder = desc
 }
 
 `;
