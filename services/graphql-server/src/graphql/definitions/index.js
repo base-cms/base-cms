@@ -45,6 +45,11 @@ input PaginationInput {
   after: String
 }
 
+input FormatDate {
+  format: String = "YYYY-MM-DDTHH:mm:ssZ"
+  timezone: String = "America/Chicago"
+}
+
 ${email}
 ${magazine}
 ${platform}

@@ -54,10 +54,10 @@ interface Content {
 
   # GraphQL-only fields.
   # metadata: PlatformContentMetadata! @contentMetadata
-  # createdDate(input: MomentFormat = {}): String @momentFormat(localField: "created")
-  # updatedDate(input: MomentFormat = {}): String @momentFormat(localField: "updated")
-  # publishedDate(input: MomentFormat = {}): String @momentFormat(localField: "published")
-  # unpublishedDate(input: MomentFormat = {}): String @momentFormat(localField: "unpublished")
+  createdDate(input: FormatDate = {}): String @momentFormat(localField: "created")
+  updatedDate(input: FormatDate = {}): String @momentFormat(localField: "updated")
+  publishedDate(input: FormatDate = {}): String @momentFormat(localField: "published")
+  unpublishedDate(input: FormatDate = {}): String @momentFormat(localField: "unpublished")
   canonicalPath: String!
   # Determines if this content item should redirect to another location.
   redirectTo: String
