@@ -1,5 +1,5 @@
 const { UserInputError } = require('apollo-server-express');
-const { underscore, dasherize } = require('inflection');
+const { underscore, dasherize, titleize } = require('inflection');
 const pathResolvers = require('../../utils/content-path-resolvers');
 const { createTitle, createDescription } = require('../../utils/content');
 
@@ -55,6 +55,10 @@ module.exports = {
       switch (format) {
         case 'dasherize':
           return dasherize(underscore(type));
+        case 'underscore':
+          return underscore(type);
+        case 'titleize':
+          return titleize(underscore(type));
         default:
           return type;
       }

@@ -48,6 +48,8 @@ enum ContentType {
 enum ContentTypeFormat {
   standard
   dasherize
+  underscore
+  titleize
 }
 
 # NOTE: these fields must be properly indexed (with the correct collation)
