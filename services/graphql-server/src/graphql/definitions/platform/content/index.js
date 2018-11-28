@@ -87,6 +87,16 @@ input AllContentQueryInput {
   pagination: PaginationInput = {}
 }
 
+input ContentMutationInput {
+  mutation: ContentMutation = Website
+}
+
+input ContentTaxonomyInput {
+  status: ModelStatus = active
+  sort: TaxonomySortInput = {}
+  pagination: PaginationInput = {}
+}
+
 input ContentSortInput {
   field: ContentSortField = id
   order: SortOrder = desc
