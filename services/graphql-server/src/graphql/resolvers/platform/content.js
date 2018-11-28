@@ -33,6 +33,15 @@ module.exports = {
       if (!path) return '';
       return `/${path}`;
     },
+
+    redirectTo: (content) => {
+      const { type, linkUrl } = content;
+
+      const types = ['Promotion', 'TextAd'];
+      if (!types.includes(type)) return null;
+
+      return linkUrl;
+    },
   },
 
   Authorable: {
