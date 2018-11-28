@@ -1,4 +1,5 @@
 const { UserInputError } = require('apollo-server-express');
+const { underscore, dasherize } = require('inflection');
 const pathResolvers = require('../../utils/content-path-resolvers');
 const { createTitle, createDescription } = require('../../utils/content');
 
@@ -47,6 +48,16 @@ module.exports = {
       if (!types.includes(type)) return null;
 
       return linkUrl;
+    },
+
+    type: ({ type }, { input }) => {
+      const { format } = input;
+      switch (format) {
+        case 'dasherize':
+          return dasherize(underscore(type));
+        default:
+          return type;
+      }
     },
   },
 

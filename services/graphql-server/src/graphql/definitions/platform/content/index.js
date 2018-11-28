@@ -122,6 +122,10 @@ input ContentPrimarySectionInput {
   status: ModelStatus = active
 }
 
+input ContentTypeInput {
+  format: ContentTypeFormat = dasherize
+}
+
 input ContentSortInput {
   field: ContentSortField = id
   order: SortOrder = desc

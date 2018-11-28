@@ -5,8 +5,7 @@ module.exports = gql`
 interface Content {
   # fields directly on platform.model::Content
   id: Int! @value(localField: "_id")
-  type: String!
-  # type(input: PlatformContentTypeInput = {}): String! @inflect
+  type(input: ContentTypeInput = {}): String!
   name(input: ContentMutationInput = {}): String @mutatedValue
   shortName: String @value(fallbackField: "name") # @todo Add support for falling back to the provided mutation input.
   fullName: String # @todo should be calculated in resolvers
