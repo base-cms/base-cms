@@ -2,6 +2,7 @@ const { SchemaDirectiveVisitor } = require('graphql-tools');
 const { BaseDB } = require('@base-cms/db');
 const formatStatus = require('../utils/format-status');
 const criteriaFor = require('../utils/criteria-for');
+const applyInput = require('../utils/apply-input');
 
 const { isArray } = Array;
 
@@ -18,6 +19,7 @@ class RefManyDirective extends SchemaDirectiveVisitor {
         localField,
         foreignField,
         criteria,
+        using,
       } = this.args;
 
       const fieldName = localField || field.name;
@@ -31,11 +33,15 @@ class RefManyDirective extends SchemaDirectiveVisitor {
         sort,
         pagination,
       } = input;
-      const query = {
-        ...criteriaFor(criteria),
-        ...formatStatus(status),
-        [foreignField]: ids.length === 1 ? ids[0] : { $in: ids },
-      };
+      const query = applyInput({
+        query: {
+          ...criteriaFor(criteria),
+          ...formatStatus(status),
+          [foreignField]: ids.length === 1 ? ids[0] : { $in: ids },
+        },
+        using,
+        input,
+      });
 
       console.log('@refMany', model, query);
       return basedb.paginate(model, { query, sort, ...pagination });
