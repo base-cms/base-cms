@@ -36,6 +36,10 @@ interface Content {
 
   # fields from platform.trait::ContentRelateable
   relatedTo(input: ContentRelatedToInput = {}): ContentConnection! @refMany(model: "platform.Content")
+
+  # fields from platform.trait::MediaRelatable
+  primaryImage: AssetImage @refOne(model: "platform.Asset", criteria: "assetImage")
+  images(input: ContentImagesInput = {}): AssetImageConnection! @refMany(model: "platform.Asset", criteria: "assetImage")
 }
 
 `;

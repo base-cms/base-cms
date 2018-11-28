@@ -103,6 +103,12 @@ input ContentRelatedToInput {
   pagination: PaginationInput = {}
 }
 
+input ContentImagesInput {
+  status: ModelStatus = active
+  sort: AssetImageSortInput = {}
+  pagination: PaginationInput = {}
+}
+
 input ContentSortInput {
   field: ContentSortField = id
   order: SortOrder = desc
