@@ -33,6 +33,9 @@ interface Content {
 
   # fields from platform.trait::Taggable
   taxonomy(input: ContentTaxonomyInput = {}): TaxonomyConnection! @refMany(model: "platform.Taxonomy")
+
+  # fields from platform.trait::ContentRelateable
+  relatedTo(input: ContentRelatedToInput = {}): ContentConnection! @refMany(model: "platform.Content")
 }
 
 `;

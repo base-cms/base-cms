@@ -97,6 +97,12 @@ input ContentTaxonomyInput {
   pagination: PaginationInput = {}
 }
 
+input ContentRelatedToInput {
+  status: ModelStatus = active
+  sort: ContentSortInput = {}
+  pagination: PaginationInput = {}
+}
+
 input ContentSortInput {
   field: ContentSortField = id
   order: SortOrder = desc
