@@ -88,6 +88,11 @@ type ContentMetadata {
   description: String
 }
 
+type ContentStubLocation {
+  latitude: Float
+  longitude: Float
+}
+
 input AllContentQueryInput {
   status: ModelStatus = active
   sort: ContentSortInput = {}

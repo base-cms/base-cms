@@ -7,6 +7,18 @@ module.exports = {
   /**
    *
    */
+  Addressable: {
+    /**
+     *
+     */
+    __resolveType(obj) {
+      return `Content${obj.type}`;
+    },
+  },
+
+  /**
+   *
+   */
   Contactable: {
     /**
      *
