@@ -51,6 +51,16 @@ interface Content {
   alias: String @value(localField: "mutations.Website.alias")
   redirects: [String]! @arrayValue(localField: "mutations.Website.redirects")
   slug: String @value(localField: "mutations.Website.slug")
+
+  # GraphQL-only fields.
+  # metadata: PlatformContentMetadata! @contentMetadata
+  # createdDate(input: MomentFormat = {}): String @momentFormat(localField: "created")
+  # updatedDate(input: MomentFormat = {}): String @momentFormat(localField: "updated")
+  # publishedDate(input: MomentFormat = {}): String @momentFormat(localField: "published")
+  # unpublishedDate(input: MomentFormat = {}): String @momentFormat(localField: "unpublished")
+  canonicalPath: String!
+  # Determines if this content item should redirect to another location.
+  redirectTo: String
 }
 
 `;
