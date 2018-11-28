@@ -29,6 +29,17 @@ type AssetImage {
   alt: String!
 }
 
+type AssetImageConnection {
+  totalCount: Int!
+  edges: [AssetImageEdge]!
+  pageInfo: PageInfo!
+}
+
+type AssetImageEdge {
+  node: AssetImage!
+  cursor: String!
+}
+
 type AssetImageSource {
   location: String
   name: String
@@ -45,6 +56,14 @@ type AssetImageCrop {
   aspectRatio: String
 }
 
+enum AssetImageSortField {
+  id
+  name
+  touched
+  filePath
+  fileName
+}
+
 input AssetImageQueryInput {
   id: ObjectID!
 }
@@ -53,6 +72,11 @@ input AssetImageSrcInput {
   host: String!
   size: String = "640w"
   aspectRatio: String = "16x9"
+}
+
+input AssetImageSortInput {
+  field: AssetImageSortField = id
+  order: SortOrder = desc
 }
 
 `;
