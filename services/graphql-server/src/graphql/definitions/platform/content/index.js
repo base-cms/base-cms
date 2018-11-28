@@ -104,7 +104,6 @@ input ContentRelatedToInput {
 }
 
 input ContentImagesInput {
-  status: ModelStatus = active
   sort: AssetImageSortInput = {}
   pagination: PaginationInput = {}
 }
