@@ -20,6 +20,7 @@ interface Content {
 
   # fields that used to be model specific, but were moved to the root
   deck: String @value(localField: "mutations.Magazine.deck")
+  company(input: ContentCompanyInput = {}): ContentCompany @refOne(model: "platform.Content", criteria: "contentCompany")
 
   # fields from platform.trait::StatusEnabled
   status: Int
