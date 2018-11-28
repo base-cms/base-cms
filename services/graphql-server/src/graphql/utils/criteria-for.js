@@ -1,9 +1,10 @@
 const criterion = {
   assetImage: () => ({ type: 'Image' }),
-  content: () => ({ type: { $in: ['Article', 'Blog', 'Contact'] } }),
+  content: () => ({ type: { $in: ['Article', 'Blog', 'Contact', 'PressRelease'] } }),
   contentArticle: () => ({ type: 'Article' }),
   contentBlog: () => ({ type: 'Blog' }),
   contentContact: () => ({ type: 'Contact' }),
+  contentPressRelease: () => ({ type: 'PressRelease' }),
   emailNewsletter: () => ({ type: 'Newsletter' }),
   globalMagazineSection: () => ({ 'publication.$id': { $exists: true } }),
   issueMagazineSection: () => ({ 'issue.$id': { $exists: true } }),
