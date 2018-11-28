@@ -93,6 +93,7 @@ input ContentMutationInput {
 
 input ContentTaxonomyInput {
   status: ModelStatus = active
+  type: TaxonomyType
   sort: TaxonomySortInput = {}
   pagination: PaginationInput = {}
 }
