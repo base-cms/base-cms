@@ -3,53 +3,19 @@ const { underscore, dasherize, titleize } = require('inflection');
 const pathResolvers = require('../../utils/content-path-resolvers');
 const { createTitle, createDescription } = require('../../utils/content');
 
+const resolveType = ({ type }) => `Content${type}`;
+
 module.exports = {
-  /**
-   *
-   */
-  Addressable: {
-    /**
-     *
-     */
-    __resolveType(obj) {
-      return `Content${obj.type}`;
-    },
-  },
-
-  /**
-   *
-   */
-  Authorable: {
-    /**
-     *
-     */
-    __resolveType(obj) {
-      return `Content${obj.type}`;
-    },
-  },
-
-  /**
-   *
-   */
-  Contactable: {
-    /**
-     *
-     */
-    __resolveType(obj) {
-      return `Content${obj.type}`;
-    },
-  },
+  Addressable: { __resolveType: resolveType },
+  Authorable: { __resolveType: resolveType },
+  Contactable: { __resolveType: resolveType },
+  Media: { __resolveType: resolveType },
 
   /**
    *
    */
   Content: {
-    /**
-     *
-     */
-    __resolveType(obj) {
-      return `Content${obj.type}`;
-    },
+    __resolveType: resolveType,
 
     canonicalPath: async (content, _, ctx) => {
       const { contentPaths } = ctx;
@@ -98,18 +64,6 @@ module.exports = {
         default:
           return type;
       }
-    },
-  },
-
-  /**
-   *
-   */
-  Media: {
-    /**
-     *
-     */
-    __resolveType(obj) {
-      return `Content${obj.type}`;
     },
   },
 };
