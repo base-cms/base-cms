@@ -53,7 +53,7 @@ interface Content {
   slug: String @value(localField: "mutations.Website.slug")
 
   # GraphQL-only fields.
-  # metadata: PlatformContentMetadata! @contentMetadata
+  metadata: ContentMetadata!
   createdDate(input: FormatDate = {}): String @momentFormat(localField: "created")
   updatedDate(input: FormatDate = {}): String @momentFormat(localField: "updated")
   publishedDate(input: FormatDate = {}): String @momentFormat(localField: "published")

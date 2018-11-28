@@ -81,6 +81,11 @@ type ContentEdge {
   cursor: String!
 }
 
+type ContentMetadata {
+  title: String
+  description: String
+}
+
 input AllContentQueryInput {
   status: ModelStatus = active
   sort: ContentSortInput = {}

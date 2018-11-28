@@ -1,5 +1,6 @@
 const { UserInputError } = require('apollo-server-express');
 const pathResolvers = require('../../utils/content-path-resolvers');
+const { createTitle, createDescription } = require('../../utils/content');
 
 module.exports = {
   /**
@@ -33,6 +34,11 @@ module.exports = {
       if (!path) return '';
       return `/${path}`;
     },
+
+    metadata: async (content, _, { basedb }) => ({
+      title: await createTitle(content, basedb),
+      description: createDescription(content),
+    }),
 
     redirectTo: (content) => {
       const { type, linkUrl } = content;
