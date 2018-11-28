@@ -109,6 +109,14 @@ input ContentImagesInput {
   pagination: PaginationInput = {}
 }
 
+input ContentPrimarySiteInput {
+  status: ModelStatus = active
+}
+
+input ContentPrimarySectionInput {
+  status: ModelStatus = active
+}
+
 input ContentSortInput {
   field: ContentSortField = id
   order: SortOrder = desc

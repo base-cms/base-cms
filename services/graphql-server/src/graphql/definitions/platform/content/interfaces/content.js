@@ -40,6 +40,11 @@ interface Content {
   # fields from platform.trait::MediaRelatable
   primaryImage: AssetImage @refOne(model: "platform.Asset", criteria: "assetImage")
   images(input: ContentImagesInput = {}): AssetImageConnection! @refMany(model: "platform.Asset", criteria: "assetImage")
+
+  # fields from platform.model::Content mutations
+  # schedules: PlatformContentSchedules! @passThru
+  primarySite(input: ContentPrimarySiteInput = {}): WebsiteSite @refOne(model: "platform.Product", localField: "mutations.Website.primarySite", criteria: "websiteSite")
+  primarySection(input: ContentPrimarySectionInput = {}): WebsiteSection @refOne(model: "website.Section", localField: "mutations.Website.primarySection")
 }
 
 `;
