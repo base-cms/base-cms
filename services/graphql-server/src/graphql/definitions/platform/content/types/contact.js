@@ -2,11 +2,12 @@ const gql = require('graphql-tag');
 
 module.exports = gql`
 
+extend type Query {
+  contentContact(input: ContentContactQueryInput!): ContentContact @findOne(model: "platform.Content", using: { id: "_id" }, criteria: "contentContact")
+}
+
 type ContentContact implements Content @applyInterfaceFields {
   id: Int! @value(localField: "_id")
-
-  # fields directly on platform.model::Content\Contact
-  # socialLinks: [EntityStubSocial]! @arrayValue
 }
 
 type ContentContactConnection {
@@ -34,6 +35,11 @@ enum ContentContactSortField {
   created
   updated
   published
+}
+
+input ContentContactQueryInput {
+  id: Int!
+  status: ModelStatus = active
 }
 
 input ContentContactSortInput {
