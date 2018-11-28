@@ -45,6 +45,12 @@ interface Content {
   # schedules: PlatformContentSchedules! @passThru
   primarySite(input: ContentPrimarySiteInput = {}): WebsiteSite @refOne(model: "platform.Product", localField: "mutations.Website.primarySite", criteria: "websiteSite")
   primarySection(input: ContentPrimarySectionInput = {}): WebsiteSection @refOne(model: "website.Section", localField: "mutations.Website.primarySection")
+
+  # fields from platform.trait::Content\SeoFields
+  seoTitle: String @value(localField: "mutations.Website.seoTitle", fallbackField: "name")
+  alias: String @value(localField: "mutations.Website.alias")
+  redirects: [String]! @arrayValue(localField: "mutations.Website.redirects")
+  slug: String @value(localField: "mutations.Website.slug")
 }
 
 `;
