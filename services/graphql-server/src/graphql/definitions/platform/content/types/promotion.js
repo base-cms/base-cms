@@ -7,7 +7,9 @@ extend type Query {
 }
 
 type ContentPromotion implements Content @applyInterfaceFields {
-  id: Int! @value(localField: "_id")
+  # fields directly on platform.model::Content\Promotion
+  linkText: String
+  linkUrl: String
 }
 
 type ContentPromotionConnection {
