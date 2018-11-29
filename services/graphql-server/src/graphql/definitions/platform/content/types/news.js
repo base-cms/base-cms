@@ -6,8 +6,11 @@ extend type Query {
   contentNews(input: ContentNewsQueryInput!): ContentNews @findOne(model: "platform.Content", using: { id: "_id" }, criteria: "contentNews")
 }
 
-type ContentNews implements Content @applyInterfaceFields {
-  id: Int! @value(localField: "_id")
+type ContentNews implements Content & Authorable @applyInterfaceFields {
+  # fields directly on platform.model::Content\News
+  source: String
+  byline: String
+  importSource: String
 }
 
 type ContentNewsConnection {
