@@ -7,7 +7,18 @@ extend type Query {
 }
 
 type ContentEngineSpec implements Content @applyInterfaceFields {
-  id: Int! @value(localField: "_id")
+  # fields directly on platform.model::Content\EngineSpec
+  products(input: ContentEngineSpecProductsInput = {}): ContentProductConnection! @refMany(model: "platform.Content", criteria: "contentProduct")
+  fuel: String
+  model: String
+  certification: String
+  aftertreatment: String
+  horsepower: ContentEngineSpecMinMaxValue
+  displacement: ContentEngineSpecMinMaxValue
+  torque: ContentEngineSpecMinMaxValue
+  width: ContentEngineSpecMinMaxValue
+  length: ContentEngineSpecMinMaxValue
+  height: ContentEngineSpecMinMaxValue
 }
 
 type ContentEngineSpecConnection {
@@ -21,9 +32,21 @@ type ContentEngineSpecEdge {
   cursor: String!
 }
 
+type ContentEngineSpecMinMaxValue {
+  min: Float
+  max: Float
+  value: Float
+}
+
 input ContentEngineSpecQueryInput {
   id: Int!
   status: ModelStatus = active
+}
+
+input ContentEngineSpecProductsInput {
+  status: ModelStatus = active
+  sort: ContentProductSortInput = {}
+  pagination: PaginationInput = {}
 }
 
 input ContentEngineSpecSortInput {
