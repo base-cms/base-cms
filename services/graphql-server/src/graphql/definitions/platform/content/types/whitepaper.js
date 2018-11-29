@@ -6,8 +6,10 @@ extend type Query {
   contentWhitepaper(input: ContentWhitepaperQueryInput!): ContentWhitepaper @findOne(model: "platform.Content", using: { id: "_id" }, criteria: "contentWhitepaper")
 }
 
-type ContentWhitepaper implements Content @applyInterfaceFields {
-  id: Int! @value(localField: "_id")
+type ContentWhitepaper implements Content & Authorable & Media @applyInterfaceFields {
+  # fields directly on platform.model::Content\Whitepaper
+  bodyOriginal: String
+  editors(input: ContentWhitepaperEditorsInput = {}): ContentContactConnection! @refMany(model: "platform.Content", criteria: "contentContact")
 }
 
 type ContentWhitepaperConnection {
@@ -24,6 +26,12 @@ type ContentWhitepaperEdge {
 input ContentWhitepaperQueryInput {
   id: Int!
   status: ModelStatus = active
+}
+
+input ContentWhitepaperEditorsInput {
+  status: ModelStatus = active
+  sort: ContentContactSortInput = {}
+  pagination: PaginationInput = {}
 }
 
 input ContentWhitepaperSortInput {
