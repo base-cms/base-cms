@@ -7,7 +7,9 @@ extend type Query {
 }
 
 type ContentCollection implements Content @applyInterfaceFields {
-  id: Int! @value(localField: "_id")
+  # fields directly on platform.model::Content\Collection
+  displayContentType: String
+  collection(input: ContentCollectionCollectionInput = {}): ContentCollectionConnection! @refMany(model: "platform.Content", criteria: "assetCollection")
 }
 
 type ContentCollectionConnection {
@@ -24,6 +26,12 @@ type ContentCollectionEdge {
 input ContentCollectionQueryInput {
   id: Int!
   status: ModelStatus = active
+}
+
+input ContentCollectionCollectionInput {
+  status: ModelStatus = active
+  sort: ContentCollectionSortInput = {}
+  pagination: PaginationInput = {}
 }
 
 input ContentCollectionSortInput {
