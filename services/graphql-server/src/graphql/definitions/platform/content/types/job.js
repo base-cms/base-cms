@@ -7,7 +7,16 @@ extend type Query {
 }
 
 type ContentJob implements Content @applyInterfaceFields {
-  id: Int! @value(localField: "_id")
+  # fields directly on platform.model::Content\Job
+  jobType: String
+  salary: String
+  city: String
+  state: String
+  email: String
+  information: String
+  phone: String
+  website: String
+  sourceUrl: String
 }
 
 type ContentJobConnection {
