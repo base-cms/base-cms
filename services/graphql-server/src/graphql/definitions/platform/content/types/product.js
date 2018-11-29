@@ -7,7 +7,19 @@ extend type Query {
 }
 
 type ContentProduct implements Content @applyInterfaceFields {
-  id: Int! @value(localField: "_id")
+  # fields directly on platform.model::Content\Product
+  bodyOriginal: String
+  productUrl: String
+  iTunesUrl: String
+  googlePlayUrl: String
+  downloadUrl: String
+  website: String
+  url360: String
+  contentStatus: String
+
+  # fields directly on platform.model::Content\Product mutations
+  primaryCategory: String @value(localField: "mutations.Website.primaryCategory")
+  headline: String @value(localField: "mutations.Magazine.headline")
 }
 
 type ContentProductConnection {
