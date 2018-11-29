@@ -7,7 +7,24 @@ extend type Query {
 }
 
 type ContentGroup implements Content @applyInterfaceFields {
-  id: Int! @value(localField: "_id")
+  # fields directly on platform.model::Content\Group
+  parentGroup(input: ContentGroupParentGroupInput = {}): ContentGroup @refOne(model: "platform.Content", criteria: "contentGroup")
+  areaTypes: [String]! @arrayValue
+  inQuarters(input: ContentGroupInQuartersInput = {}): ContentInQuartersConnection! @refMany(model: "platform.Content", localField: "_id", foreignField: "group", criteria: "contentInQuarters")
+  apparatuses(input: ContentGroupAppratusesInput = {}): ContentApparatusConnection! @refMany(model: "platform.Content", localField: "_id", foreignField: "group", criteria: "contentApparatus")
+  services: [String]! @arrayValue
+  annualBudget: [String]! @arrayValue
+  groupType: String
+  municipality: String
+  personnel: [String]! @arrayValue
+  chief: String
+  activeCareer: Int
+  nonActiveCareer: Int
+  activeVolunteer: Int
+  nonActiveVolunteer: Int
+  activePaidPerCall: Int
+  nonActivePaidPerCall: Int
+  annualCallStatistics: Int
 }
 
 type ContentGroupConnection {
@@ -24,6 +41,22 @@ type ContentGroupEdge {
 input ContentGroupQueryInput {
   id: Int!
   status: ModelStatus = active
+}
+
+input ContentGroupParentGroupInput {
+  status: ModelStatus = active
+}
+
+input ContentGroupInQuartersInput {
+  status: ModelStatus = active
+  sort: ContentInQuartersSortInput = {}
+  pagination: PaginationInput = {}
+}
+
+input ContentGroupAppratusesInput {
+  status: ModelStatus = active
+  sort: ContentApparatusSortInput = {}
+  pagination: PaginationInput = {}
 }
 
 input ContentGroupSortInput {
