@@ -18,6 +18,7 @@ directive @momentFormat(localField: String, defaultFormat: String! = "YYYY-MM-DD
 directive @mutatedValue(localField: String) on FIELD_DEFINITION
 directive @refMany(model: String!, localField: String, foreignField: String = "_id", criteria: String, using: JSON) on FIELD_DEFINITION
 directive @refOne(model: String!, localField: String, foreignField: String = "_id", criteria: String) on FIELD_DEFINITION
+directive @relatedContent(type: RelatedContentQueryType!) on FIELD_DEFINITION
 directive @value(localField: String, fallbackField: String) on FIELD_DEFINITION
 
 type Query {

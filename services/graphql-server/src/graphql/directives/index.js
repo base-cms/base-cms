@@ -6,6 +6,7 @@ const MomentFormatDirective = require('./moment-format');
 const MutatedValueDirective = require('./mutated-value');
 const RefManyDirective = require('./ref-many');
 const RefOneDirective = require('./ref-one');
+const RelatedContentDirective = require('./related-content');
 const ValueDirective = require('./value');
 
 module.exports = {
@@ -17,5 +18,6 @@ module.exports = {
   mutatedValue: MutatedValueDirective,
   refMany: RefManyDirective,
   refOne: RefOneDirective,
+  relatedContent: RelatedContentDirective,
   value: ValueDirective,
 };

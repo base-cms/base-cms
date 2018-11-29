@@ -72,6 +72,19 @@ enum ContentPathField {
   sectionAlias
 }
 
+enum RelatedContentQueryType {
+  # returns related content from doc.relatedTo
+  owned
+  # returns related content on the inverse of doc.relatedTo
+  inverse
+  # returns both to and inverse combined
+  combined
+  # returns related content based on primary section
+  primarySection
+  # returns related content based on inverse company and relatedTo
+  company
+}
+
 type ContentConnection {
   totalCount: Int!
   edges: [ContentEdge]!
