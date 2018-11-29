@@ -6,8 +6,9 @@ extend type Query {
   contentPodcast(input: ContentPodcastQueryInput!): ContentPodcast @findOne(model: "platform.Content", using: { id: "_id" }, criteria: "contentPodcast")
 }
 
-type ContentPodcast implements Content @applyInterfaceFields {
-  id: Int! @value(localField: "_id")
+type ContentPodcast implements Content & Media @applyInterfaceFields {
+  # fields directly on platform.model::Content\Podcast
+  duration: Int
 }
 
 type ContentPodcastConnection {
