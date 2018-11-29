@@ -6,8 +6,11 @@ extend type Query {
   contentPressRelease(input: ContentPressReleaseQueryInput!): ContentPressRelease @findOne(model: "platform.Content", using: { id: "_id" }, criteria: "contentPressRelease")
 }
 
-type ContentPressRelease implements Content @applyInterfaceFields {
-  id: Int! @value(localField: "_id")
+type ContentPressRelease implements Content & Authorable @applyInterfaceFields {
+  # fields directly on platform.model::Content\PressRelease
+  bodyOriginal: String
+  sourceFilename: String
+  sourceFile: String
 }
 
 type ContentPressReleaseConnection {
