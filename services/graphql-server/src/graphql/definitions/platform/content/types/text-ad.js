@@ -7,7 +7,9 @@ extend type Query {
 }
 
 type ContentTextAd implements Content @applyInterfaceFields {
-  id: Int! @value(localField: "_id")
+  # fields directly on platform.model::Content\TextAd
+  linkText: String
+  linkUrl: String
 }
 
 type ContentTextAdConnection {
