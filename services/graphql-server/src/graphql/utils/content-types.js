@@ -19,7 +19,6 @@ module.exports = [
   'Podcast',
   'PressRelease',
   'Product',
-  'ProductExternal',
   'Promotion',
   'Review',
   'Sponsored',

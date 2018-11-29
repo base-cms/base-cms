@@ -19,7 +19,6 @@ const page = require('./page');
 const podcast = require('./podcast');
 const pressRelease = require('./press-release');
 const product = require('./product');
-const productExternal = require('./product-external');
 const promotion = require('./promotion');
 const review = require('./review');
 const sponsored = require('./sponsored');
@@ -50,7 +49,6 @@ ${page}
 ${podcast}
 ${pressRelease}
 ${product}
-${productExternal}
 ${promotion}
 ${review}
 ${sponsored}

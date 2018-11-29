@@ -35,7 +35,6 @@ enum ContentType {
   Podcast
   PressRelease
   Product
-  ProductExternal
   Promotion
   Review
   Sponsored
