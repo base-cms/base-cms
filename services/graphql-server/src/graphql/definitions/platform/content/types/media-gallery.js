@@ -6,8 +6,10 @@ extend type Query {
   contentMediaGallery(input: ContentMediaGalleryQueryInput!): ContentMediaGallery @findOne(model: "platform.Content", using: { id: "_id" }, criteria: "contentMediaGallery")
 }
 
-type ContentMediaGallery implements Content @applyInterfaceFields {
-  id: Int! @value(localField: "_id")
+type ContentMediaGallery implements Content & Authorable @applyInterfaceFields {
+  # fields directly on platform.model::Content\MediaGallery (from scomm.nfn overrides)
+  fotomotoCollectionId: String
+  enableFotomoto: Boolean
 }
 
 type ContentMediaGalleryConnection {
