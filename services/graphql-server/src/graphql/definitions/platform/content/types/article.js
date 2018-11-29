@@ -7,7 +7,8 @@ extend type Query {
 }
 
 type ContentArticle implements Content & Authorable @applyInterfaceFields {
-  id: Int! @value(localField: "_id")
+  # fields directly on platform.model::Content\Article
+  sidebars: [ContentStubSidebar]! @arrayValue
 }
 
 type ContentArticleConnection {

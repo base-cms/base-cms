@@ -93,6 +93,10 @@ type ContentStubLocation {
   longitude: Float
 }
 
+type ContentStubSidebar {
+  body: String
+}
+
 input AllContentQueryInput {
   status: ModelStatus = active
   sort: ContentSortInput = {}
