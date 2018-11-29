@@ -7,7 +7,9 @@ extend type Query {
 }
 
 type ContentEbook implements Content @applyInterfaceFields {
-  id: Int! @value(localField: "_id")
+  # fields directly on platform.model::Content\Ebook
+  linkText: String
+  linkUrl: String
 }
 
 type ContentEbookConnection {
