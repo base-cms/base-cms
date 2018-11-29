@@ -6,7 +6,7 @@ extend type Query {
   contentSponsored(input: ContentSponsoredQueryInput!): ContentSponsored @findOne(model: "platform.Content", using: { id: "_id" }, criteria: "contentSponsored")
 }
 
-type ContentSponsored implements Content @applyInterfaceFields {
+type ContentSponsored implements Content & Authorable @applyInterfaceFields {
   id: Int! @value(localField: "_id")
 }
 
