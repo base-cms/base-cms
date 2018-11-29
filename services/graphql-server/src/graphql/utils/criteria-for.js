@@ -9,6 +9,7 @@ const criterion = {
   magazinePublication: () => ({ type: 'Publication' }),
   rootTaxonomy: () => ({ 'parent.$id': { $exists: false } }),
   rootWebsiteSection: () => ({ 'parent.$id': { $exists: false } }),
+  taxonomyCategory: () => ({ type: 'Category' }),
   websiteSite: () => ({ type: 'Site' }),
 };
 
