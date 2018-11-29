@@ -6,8 +6,14 @@ extend type Query {
   contentContact(input: ContentContactQueryInput!): ContentContact @findOne(model: "platform.Content", using: { id: "_id" }, criteria: "contentContact")
 }
 
-type ContentContact implements Content @applyInterfaceFields {
-  id: Int! @value(localField: "_id")
+type ContentContact implements Content & Contactable & Addressable @applyInterfaceFields {
+  # fields directly on platform.model::Content\Contact
+  socialLinks: [EntityStubSocial]! @arrayValue
+
+  # GraphQL-only fields
+  # @todo Implement
+  # @see Cygnus\ApplicationBundle\Icarus\BlockHandler\ContentAuthorQuery
+  ownedContent(input: ContentContactOwnedContentInput = {}): ContentConnection!
 }
 
 type ContentContactConnection {
@@ -40,6 +46,16 @@ enum ContentContactSortField {
 input ContentContactQueryInput {
   id: Int!
   status: ModelStatus = active
+}
+
+# @todo Implement.
+input ContentContactOwnedContentInput {
+  type: ContentContactAuthorType # a null value means all types
+  excludeContentTypes: [ContentType]! = []
+  includeContentTypes: [ContentType]! = []
+  requiresImage: Boolean = false
+  sort: ContentSortInput = {}
+  pagination: PaginationInput = {}
 }
 
 input ContentContactSortInput {
