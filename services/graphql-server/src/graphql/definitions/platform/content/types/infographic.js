@@ -6,7 +6,7 @@ extend type Query {
   contentInfographic(input: ContentInfographicQueryInput!): ContentInfographic @findOne(model: "platform.Content", using: { id: "_id" }, criteria: "contentInfographic")
 }
 
-type ContentInfographic implements Content @applyInterfaceFields {
+type ContentInfographic implements Content & Media @applyInterfaceFields {
   id: Int! @value(localField: "_id")
 }
 
