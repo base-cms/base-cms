@@ -6,7 +6,7 @@ extend type Query {
   contentDocument(input: ContentDocumentQueryInput!): ContentDocument @findOne(model: "platform.Content", using: { id: "_id" }, criteria: "contentDocument")
 }
 
-type ContentDocument implements Content @applyInterfaceFields {
+type ContentDocument implements Content & Media @applyInterfaceFields {
   id: Int! @value(localField: "_id")
 }
 
