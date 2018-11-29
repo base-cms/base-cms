@@ -3,7 +3,7 @@ const gql = require('graphql-tag');
 module.exports = gql`
 
 extend type Query {
-  contentPage(input: ContentPageQueryInput!): ContentPage @findOne(model: "platform.Content", using: { id: "_id" }, criteria: "contentPage")
+  contentPage(input: ContentPageQueryInput!): ContentPage @findOne(model: "platform.Content", using: { alias: "alias" }, criteria: "contentPage")
 }
 
 type ContentPage implements Content @applyInterfaceFields {
@@ -22,8 +22,7 @@ type ContentPageEdge {
 }
 
 input ContentPageQueryInput {
-  id: Int!
-  status: ModelStatus = active
+  alias: String!
 }
 
 input ContentPageSortInput {
