@@ -6,8 +6,14 @@ extend type Query {
   contentVideo(input: ContentVideoQueryInput!): ContentVideo @findOne(model: "platform.Content", using: { id: "_id" }, criteria: "contentVideo")
 }
 
-type ContentVideo implements Content @applyInterfaceFields {
-  id: Int! @value(localField: "_id")
+type ContentVideo implements Content & Authorable & Media @applyInterfaceFields {
+  # fields directly on platform.model::Content\Video
+  duration: Int
+  source: String
+  credit: String
+  embedCode: String
+  sourceId: String
+  sourceThumbnail: String
 }
 
 type ContentVideoConnection {
