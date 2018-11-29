@@ -1,12 +1,13 @@
 const gql = require('graphql-tag');
 const asset = require('./asset');
+const entity = require('./entity');
 const content = require('./content');
 const security = require('./security');
 const taxonomy = require('./taxonomy');
 
 module.exports = gql`
 
-type PlatformStubExternal {
+type StubExternal {
   identifier: String
   identifiers: [String]! @arrayValue
   namespace: String
@@ -14,6 +15,7 @@ type PlatformStubExternal {
 }
 
 ${asset}
+${entity}
 ${content}
 ${security}
 ${taxonomy}
