@@ -6,8 +6,11 @@ extend type Query {
   contentReview(input: ContentReviewQueryInput!): ContentReview @findOne(model: "platform.Content", using: { id: "_id" }, criteria: "contentReview")
 }
 
-type ContentReview implements Content @applyInterfaceFields {
-  id: Int! @value(localField: "_id")
+type ContentReview implements Content & Authorable @applyInterfaceFields {
+  # fields directly on platform.model::Content\Review
+  rating: Float
+  product(input: ContentReviewProductInput = {}): ContentProduct @refOne(model: "platform.Content", criteria: "contentProduct")
+  summary: String
 }
 
 type ContentReviewConnection {
@@ -23,6 +26,10 @@ type ContentReviewEdge {
 
 input ContentReviewQueryInput {
   id: Int!
+  status: ModelStatus = active
+}
+
+input ContentReviewProductInput {
   status: ModelStatus = active
 }
 
