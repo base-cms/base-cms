@@ -2,6 +2,8 @@ const { UserInputError } = require('apollo-server-express');
 const { underscore, dasherize, titleize } = require('inflection');
 const pathResolvers = require('../../utils/content-path-resolvers');
 const { createTitle, createDescription } = require('../../utils/content');
+const defaultContentTypes = require('../../utils/content-types');
+const getDescendantIds = require('../../utils/website-section-child-ids');
 
 const { isArray } = Array;
 
@@ -76,6 +78,53 @@ module.exports = {
     /**
      *
      */
+    allPublishedContent: async (_, { input }, { basedb }) => {
+      const {
+        since,
+        sectionId,
+        contentTypes,
+        requiresImage,
+        sectionBubbling,
+        sort,
+        pagination,
+      } = input;
+
+      const date = since || new Date();
+      const query = {
+        status: 1,
+        type: { $in: contentTypes.length ? contentTypes : defaultContentTypes },
+        published: { $lte: date },
+        $or: [
+          { unpublished: { $gte: date } },
+          { unpublished: { $exists: false } },
+        ],
+      };
+
+      if (requiresImage) {
+        query.primaryImage = { $exists: true };
+      }
+
+      let sectionIds = sectionId;
+      if (sectionId && sectionBubbling) {
+        const descendantIds = await getDescendantIds(sectionId, basedb);
+        if (descendantIds.length) {
+          sectionIds = { $in: descendantIds };
+        }
+      }
+      if (sectionIds) {
+        query['mutations.Website.primarySection.$id'] = sectionIds;
+      }
+
+      return basedb.paginate('platform.Content', {
+        query,
+        sort,
+        ...pagination,
+      });
+    },
+
+    /**
+     *
+     */
     websiteScheduledContent: async (_, { input }, { basedb }) => {
       const {
         sectionId,
@@ -92,11 +141,8 @@ module.exports = {
       const now = new Date();
       let sectionIds = sectionId;
       if (sectionBubbling) {
-        const section = await basedb.findById('website.Section', sectionId, {
-          projection: { descendantIds: 1 },
-        });
-        const { descendantIds } = section || {};
-        if (isArray(descendantIds) && descendantIds.length) {
+        const descendantIds = await getDescendantIds(sectionId, basedb);
+        if (descendantIds.length) {
           sectionIds = { $in: descendantIds };
         }
       }

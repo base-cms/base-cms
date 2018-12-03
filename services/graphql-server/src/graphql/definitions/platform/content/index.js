@@ -5,7 +5,10 @@ const types = require('./types');
 module.exports = gql`
 
 extend type Query {
+  content(input: ContentQueryInput = {}): Content @findOne(model: "platform.Content", using: { id: "_id" }, criteria: "content")
+  contentHash(input: ContentHashQueryInput = {}): Content @findOne(model: "platform.Content", using: { hash: "hash" }, criteria: "content")
   allContent(input: AllContentQueryInput = {}): ContentConnection! @findMany(model: "platform.Content", criteria: "content")
+  allPublishedContent(input: AllPublishedContentQueryInput = {}): ContentConnection!
   websiteScheduledContent(input: WebsiteScheduledContentQueryInput = {}): ContentConnection!
 }
 
@@ -108,6 +111,26 @@ type ContentStubLocation {
 
 type ContentStubSidebar {
   body: String
+}
+
+input ContentQueryInput {
+  status: ModelStatus = active
+  id: Int!
+}
+
+input ContentHashQueryInput {
+  status: ModelStatus = active
+  hash: String!
+}
+
+input AllPublishedContentQueryInput {
+  since: Date
+  sectionId: Int
+  contentTypes: [ContentType!] = []
+  requiresImage: Boolean = false
+  sectionBubbling: Boolean = true
+  sort: ContentSortInput = { field: published, order: desc }
+  pagination: PaginationInput = {}
 }
 
 input AllContentQueryInput {
