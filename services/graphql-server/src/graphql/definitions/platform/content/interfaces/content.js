@@ -35,7 +35,7 @@ interface Content {
   taxonomy(input: ContentTaxonomyInput = {}): TaxonomyConnection! @refMany(model: "platform.Taxonomy", using: { type: "type" })
 
   # fields from platform.trait::ContentRelateable
-  relatedTo(input: ContentRelatedToInput = {}): ContentConnection! @refMany(model: "platform.Content")
+  relatedTo(input: ContentRelatedToInput = {}): ContentConnection! @refMany(model: "platform.Content", criteria: "content")
 
   # fields from platform.trait::MediaRelatable
   primaryImage: AssetImage @refOne(model: "platform.Asset", criteria: "assetImage")
