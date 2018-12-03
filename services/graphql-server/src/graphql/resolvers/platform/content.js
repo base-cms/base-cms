@@ -3,6 +3,8 @@ const { underscore, dasherize, titleize } = require('inflection');
 const pathResolvers = require('../../utils/content-path-resolvers');
 const { createTitle, createDescription } = require('../../utils/content');
 
+const { isArray } = Array;
+
 const resolveType = ({ type }) => `Content${type}`;
 
 module.exports = {
@@ -64,6 +66,105 @@ module.exports = {
         default:
           return type;
       }
+    },
+  },
+
+  /**
+   *
+   */
+  Query: {
+    /**
+     *
+     */
+    websiteScheduledContent: async (_, { input }, { basedb }) => {
+      const {
+        sectionId,
+        optionId,
+        excludeContentIds,
+        excludeSectionIds,
+        includeContentTypes,
+        excludeContentTypes,
+        requiresImage,
+        sectionBubbling,
+        pagination,
+      } = input;
+
+      const now = new Date();
+      let sectionIds = sectionId;
+      if (sectionBubbling) {
+        const section = await basedb.findById('website.Section', sectionId, {
+          projection: { descendantIds: 1 },
+        });
+        const { descendantIds } = section || {};
+        if (isArray(descendantIds) && descendantIds.length) {
+          sectionIds = { $in: descendantIds };
+        }
+      }
+
+      const $elemMatch = {
+        sectionId: sectionIds,
+        start: { $lte: now },
+        $and: [
+          {
+            $or: [
+              { end: { $gt: now } },
+              { end: { $exists: false } },
+            ],
+          },
+        ],
+      };
+
+      if (!optionId) {
+        const defaultOption = await basedb.strictFindOne('website.Option', {
+          name: 'Standard',
+          status: 1,
+        }, {
+          projection: { _id: 1 },
+        });
+        $elemMatch.optionId = defaultOption._id;
+      } else {
+        $elemMatch.optionId = optionId;
+      }
+
+      if (excludeSectionIds.length) {
+        $elemMatch.$and.push({ sectionId: { $nin: excludeSectionIds } });
+      }
+
+      const query = { schedules: { $elemMatch } };
+      if (requiresImage) {
+        query.hasImage = true;
+      }
+      if (includeContentTypes.length) {
+        if (!isArray(query.$and)) query.$and = [];
+        query.$and.push({ contentType: { $in: includeContentTypes } });
+      }
+      if (excludeContentTypes.length) {
+        if (!isArray(query.$and)) query.$and = [];
+        query.$and.push({ contentType: { $nin: excludeContentTypes } });
+      }
+      if (excludeContentIds.length) {
+        query.contentId = { $nin: excludeContentIds };
+      }
+
+      const paginated = await basedb.paginate('website.SectionQuery', {
+        query,
+        collate: false,
+        sort: { field: 'schedules.0.start', order: 'desc' },
+        projection: { contentId: 1, 'schedules.$.start': 1 },
+        ...pagination,
+      });
+
+      const { edges } = paginated;
+      const contentIds = edges.map(({ node }) => node.contentId);
+      const content = await basedb.findAsArray('platform.Content', { _id: { $in: contentIds } });
+
+      return {
+        ...paginated,
+        edges: edges.map(({ node, cursor }) => {
+          const item = content.find(c => c._id === node.contentId);
+          return { cursor, node: item };
+        }),
+      };
     },
   },
 };

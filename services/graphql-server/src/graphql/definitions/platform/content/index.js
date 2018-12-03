@@ -6,6 +6,7 @@ module.exports = gql`
 
 extend type Query {
   allContent(input: AllContentQueryInput = {}): ContentConnection! @findMany(model: "platform.Content", criteria: "content")
+  websiteScheduledContent(input: WebsiteScheduledContentQueryInput = {}): ContentConnection!
 }
 
 enum ContentMutation {
@@ -112,6 +113,19 @@ type ContentStubSidebar {
 input AllContentQueryInput {
   status: ModelStatus = active
   sort: ContentSortInput = {}
+  pagination: PaginationInput = {}
+}
+
+input WebsiteScheduledContentQueryInput {
+  sectionId: Int!
+  optionId: Int
+  excludeContentIds: [Int!] = []
+  excludeSectionIds: [Int!] = []
+  excludeContentTypes: [ContentType!] = []
+  includeContentTypes: [ContentType!] = []
+  requiresImage: Boolean = false
+  useOptionFallback: Boolean = false
+  sectionBubbling: Boolean = true
   pagination: PaginationInput = {}
 }
 
