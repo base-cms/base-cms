@@ -86,6 +86,7 @@ module.exports = {
     Option: {
       query: [
         { status: 1, _id: 1 },
+        { status: 1, name: 1 }, // Non-standard: find by name.
         { status: 1, 'site.$id': 1 },
       ],
       sort: [
