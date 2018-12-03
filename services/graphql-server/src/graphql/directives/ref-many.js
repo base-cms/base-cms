@@ -3,6 +3,7 @@ const { BaseDB } = require('@base-cms/db');
 const formatStatus = require('../utils/format-status');
 const criteriaFor = require('../utils/criteria-for');
 const applyInput = require('../utils/apply-input');
+const shouldCollate = require('../utils/should-collate');
 
 const { isArray } = Array;
 
@@ -44,7 +45,12 @@ class RefManyDirective extends SchemaDirectiveVisitor {
       });
 
       console.log('@refMany', model, query);
-      return basedb.paginate(model, { query, sort, ...pagination });
+      return basedb.paginate(model, {
+        query,
+        sort,
+        collate: shouldCollate(sort.field),
+        ...pagination,
+      });
     };
   }
 }

@@ -2,6 +2,7 @@ const { SchemaDirectiveVisitor } = require('graphql-tools');
 const formatStatus = require('../utils/format-status');
 const criteriaFor = require('../utils/criteria-for');
 const applyInput = require('../utils/apply-input');
+const shouldCollate = require('../utils/should-collate');
 
 class FindManyDirective extends SchemaDirectiveVisitor {
   /**
@@ -29,7 +30,12 @@ class FindManyDirective extends SchemaDirectiveVisitor {
         input,
       });
       console.log('@findMany', model, query);
-      return basedb.paginate(model, { query, sort, ...pagination });
+      return basedb.paginate(model, {
+        query,
+        sort,
+        collate: shouldCollate(sort.field),
+        ...pagination,
+      });
     };
   }
 }
