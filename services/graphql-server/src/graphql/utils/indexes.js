@@ -47,9 +47,21 @@ module.exports = {
         { fileName: 1, _id: 1 }, { collation: { locale: 'en_US' } },
       ],
     },
+    Content: {
+      query: [
+        { status: 1, type: 1, _id: 1 },
+      ],
+      sort: [
+        { name: 1, _id: 1 }, { collation: { locale: 'en_US' } },
+        { fullName: 1, _id: 1 }, { collation: { locale: 'en_US' } },
+        { updated: 1, _id: 1 },
+        { created: 1, _id: 1 },
+        { published: 1, _id: 1 },
+      ],
+    },
     Product: {
       query: [
-        { type: 1, status: 1, _id: 1 },
+        { status: 1, type: 1, _id: 1 },
       ],
       sort: [
         { name: 1, _id: 1 }, { collation: { locale: 'en_US' } },
