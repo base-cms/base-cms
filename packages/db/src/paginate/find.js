@@ -19,6 +19,7 @@ module.exports = async (collection, {
   after,
   sort = { field: '_id', order: 1 },
   projection,
+  collate = false,
 }) => {
   const $limit = new Limit({ value: limit });
   const $sort = new Sort(sort);
@@ -37,7 +38,11 @@ module.exports = async (collection, {
 
   const paginatedQuery = await createQuery(collection, params);
   const $query = { $and: [paginatedQuery, query] };
-  const results = await collection.find($query, { projection: $projection })
+
+  const options = { projection: $projection };
+  if (collate) options.collation = $sort.collation;
+
+  const results = await collection.find($query, options)
     .sort($sort.value)
     .limit($limit.value + 1) // peek to see if there is another page.
     .toArray();

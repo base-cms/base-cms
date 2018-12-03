@@ -133,7 +133,7 @@ class Sort {
    * @return {object}
    */
   get collation() {
-    return this.options.collation;
+    return this.opts.collation;
   }
 
   /**

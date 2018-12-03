@@ -163,6 +163,7 @@ class BaseDB {
     limit,
     after,
     sort,
+    collate,
     projection,
   }) {
     const { namespace, resource } = BaseDB.parseModelName(modelName);
@@ -172,6 +173,7 @@ class BaseDB {
       limit,
       after,
       sort,
+      collate,
       projection,
     });
   }
