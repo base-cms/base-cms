@@ -5,8 +5,8 @@ module.exports = {
         { status: 1, 'deployment.$id': 1 },
       ],
       sort: [
-        { name: 1, _id: 1 }, { collation: { locale: 'en_US' } },
-        { fullName: 1, _id: 1 }, { collation: { locale: 'en_US' } },
+        [{ name: 1, _id: 1 }, { collation: { locale: 'en_US' } }],
+        [{ fullName: 1, _id: 1 }, { collation: { locale: 'en_US' } }],
         { sequence: 1, _id: 1 },
       ],
     },
@@ -18,7 +18,7 @@ module.exports = {
         { status: 1, 'publication.$id': 1 },
       ],
       sort: [
-        { name: 1, _id: 1 }, { collation: { locale: 'en_US' } },
+        [{ name: 1, _id: 1 }, { collation: { locale: 'en_US' } }],
         { mailDate: 1, _id: 1 },
       ],
     },
@@ -29,8 +29,8 @@ module.exports = {
         { status: 1, 'publication.$id': 1 },
       ],
       sort: [
-        { name: 1, _id: 1 }, { collation: { locale: 'en_US' } },
-        { fullName: 1, _id: 1 }, { collation: { locale: 'en_US' } },
+        [{ name: 1, _id: 1 }, { collation: { locale: 'en_US' } }],
+        [{ fullName: 1, _id: 1 }, { collation: { locale: 'en_US' } }],
         { sequence: 1, _id: 1 },
       ],
     },
@@ -41,10 +41,10 @@ module.exports = {
         { type: 1, _id: 1 },
       ],
       sort: [
-        { name: 1, _id: 1 }, { collation: { locale: 'en_US' } },
+        [{ name: 1, _id: 1 }, { collation: { locale: 'en_US' } }],
         { touched: 1, _id: 1 },
-        { filePath: 1, _id: 1 }, { collation: { locale: 'en_US' } },
-        { fileName: 1, _id: 1 }, { collation: { locale: 'en_US' } },
+        [{ filePath: 1, _id: 1 }, { collation: { locale: 'en_US' } }],
+        [{ fileName: 1, _id: 1 }, { collation: { locale: 'en_US' } }],
       ],
     },
     Content: {
@@ -52,8 +52,8 @@ module.exports = {
         { status: 1, type: 1, _id: 1 },
       ],
       sort: [
-        { name: 1, _id: 1 }, { collation: { locale: 'en_US' } },
-        { fullName: 1, _id: 1 }, { collation: { locale: 'en_US' } },
+        [{ name: 1, _id: 1 }, { collation: { locale: 'en_US' } }],
+        [{ fullName: 1, _id: 1 }, { collation: { locale: 'en_US' } }],
         { updated: 1, _id: 1 },
         { created: 1, _id: 1 },
         { published: 1, _id: 1 },
@@ -64,8 +64,8 @@ module.exports = {
         { status: 1, type: 1, _id: 1 },
       ],
       sort: [
-        { name: 1, _id: 1 }, { collation: { locale: 'en_US' } },
-        { fullName: 1, _id: 1 }, { collation: { locale: 'en_US' } },
+        [{ name: 1, _id: 1 }, { collation: { locale: 'en_US' } }],
+        [{ fullName: 1, _id: 1 }, { collation: { locale: 'en_US' } }],
       ],
     },
     Taxonomy: {
@@ -76,8 +76,8 @@ module.exports = {
         { status: 1, type: 1, 'parent.$id': 1 },
       ],
       sort: [
-        { name: 1, _id: 1 }, { collation: { locale: 'en_US' } },
-        { fullName: 1, _id: 1 }, { collation: { locale: 'en_US' } },
+        [{ name: 1, _id: 1 }, { collation: { locale: 'en_US' } }],
+        [{ fullName: 1, _id: 1 }, { collation: { locale: 'en_US' } }],
         { sequence: 1, _id: 1 },
       ],
     },
@@ -89,7 +89,7 @@ module.exports = {
         { status: 1, 'site.$id': 1 },
       ],
       sort: [
-        { name: 1, _id: 1 }, { collation: { locale: 'en_US' } },
+        [{ name: 1, _id: 1 }, { collation: { locale: 'en_US' } }],
       ],
     },
     Section: {
@@ -101,8 +101,8 @@ module.exports = {
         { status: 1, 'site.$id': 1, 'parent.$id': 1 },
       ],
       sort: [
-        { name: 1, _id: 1 }, { collation: { locale: 'en_US' } },
-        { fullName: 1, _id: 1 }, { collation: { locale: 'en_US' } },
+        [{ name: 1, _id: 1 }, { collation: { locale: 'en_US' } }],
+        [{ fullName: 1, _id: 1 }, { collation: { locale: 'en_US' } }],
         { sequence: 1, _id: 1 },
       ],
     },
