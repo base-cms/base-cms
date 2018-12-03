@@ -1,5 +1,16 @@
 module.exports = {
-  email: {},
+  email: {
+    Section: {
+      query: [
+        { status: 1, 'deployment.$id': 1 },
+      ],
+      sort: [
+        { name: 1, _id: 1 }, { collation: { locale: 'en_US' } },
+        { fullName: 1, _id: 1 }, { collation: { locale: 'en_US' } },
+        { sequence: 1, _id: 1 },
+      ],
+    },
+  },
   magazine: {},
   platform: {
     Asset: {
