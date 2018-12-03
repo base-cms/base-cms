@@ -11,7 +11,30 @@ module.exports = {
       ],
     },
   },
-  magazine: {},
+  magazine: {
+    Issue: {
+      query: [
+        { status: 1, _id: 1 },
+        { status: 1, 'publication.$id': 1 },
+      ],
+      sort: [
+        { name: 1, _id: 1 }, { collation: { locale: 'en_US' } },
+        { mailDate: 1, _id: 1 },
+      ],
+    },
+    Section: {
+      query: [
+        { status: 1, _id: 1 },
+        { status: 1, 'issue.$id': 1 },
+        { status: 1, 'publication.$id': 1 },
+      ],
+      sort: [
+        { name: 1, _id: 1 }, { collation: { locale: 'en_US' } },
+        { fullName: 1, _id: 1 }, { collation: { locale: 'en_US' } },
+        { sequence: 1, _id: 1 },
+      ],
+    },
+  },
   platform: {
     Asset: {
       query: [
