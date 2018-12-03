@@ -22,11 +22,11 @@ class Sort {
    * Sets the sort options.
    *
    * @param {object} [options={}]
-   * @param {object} collation The MongoDB sort collation options.
-   * @param {string} [createdField=created] A field that signifies the model's created date.
+   * @param {object} [collation] The MongoDB sort collation options.
+   * @param {string} [createdField] A field that signifies the model's created date.
    *                                          Defaults to `created` as this is the default
    */
-  set options({ collation, createdField = 'created' } = {}) {
+  set options({ collation, createdField } = {}) {
     this.opts = { createdField };
     this.collation = collation;
   }
