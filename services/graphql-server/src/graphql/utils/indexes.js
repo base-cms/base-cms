@@ -50,6 +50,21 @@ module.exports = {
     Content: {
       query: [
         { status: 1, type: 1, _id: 1 },
+        { status: 1, hash: 1 },
+        {
+          status: 1,
+          type: 1,
+          published: 1,
+          unpublished: 1,
+          'mutations.Website.primarySection.$id': 1,
+        },
+        {
+          status: 1,
+          type: 1,
+          published: 1,
+          unpublished: 1,
+          primaryImage: 1,
+        },
       ],
       sort: [
         [{ name: 1, _id: 1 }, { collation: { locale: 'en_US' } }],
