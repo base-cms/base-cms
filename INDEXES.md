@@ -14,7 +14,7 @@ Additional optimization notes:
   - `{ type: 1, _id: 1 }`
 - Sort
   - `{ name: 1, _id: 1 }, { collation: { locale: 'en_US' } }`
-  - `{ touched: 1, _id: 1 } }`
+  - `{ touched: 1, _id: 1 }`
   - `{ filePath: 1, _id: 1 }, { collation: { locale: 'en_US' } }`
   - `{ fileName: 1, _id: 1 }, { collation: { locale: 'en_US' } }`
 ### Product
