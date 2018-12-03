@@ -64,7 +64,17 @@ module.exports = {
 
     // Compound sort.
     // Need to get the document so we can extract the field.
-    const projection = { [field]: 1 };
+    // If the field contains an array position using dot notation, must use slice.
+    // @see https://jira.mongodb.org/browse/SERVER-1831
+    const pattern = /(^.+)(\.)(\d)/;
+    const matches = pattern.exec(field);
+    const projection = {};
+    if (matches && matches[1] && matches[3]) {
+      projection[matches[1]] = { $slice: [Number(matches[3]), 1] };
+    } else {
+      projection[field] = 1;
+    }
+
     const doc = await collection.findOne({ _id: id }, { projection });
     const value = objectPath.get(doc, field);
     const $or = [
