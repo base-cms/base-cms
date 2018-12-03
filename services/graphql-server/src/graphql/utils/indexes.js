@@ -110,7 +110,7 @@ module.exports = {
       query: [
         [{ contentId: 1 }, { unique: true }],
         { 'schedules.sectionId': 1, 'schedules.optionId': 1 },
-        // { 'schedules.sectionId': 1, 'schedules.optionId': 1, hasImage: 1 },
+        { 'schedules.sectionId': 1, 'schedules.optionId': 1, hasImage: 1 },
       ],
       sort: [
         { 'schedules.0.start': -1, _id: -1 },
