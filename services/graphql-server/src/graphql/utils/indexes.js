@@ -56,6 +56,19 @@ module.exports = {
         { fullName: 1, _id: 1 }, { collation: { locale: 'en_US' } },
       ],
     },
+    Taxonomy: {
+      query: [
+        { status: 1, _id: 1 },
+        { status: 1, type: 1, _id: 1 },
+        { status: 1, 'parent.$id': 1 },
+        { status: 1, type: 1, 'parent.$id': 1 },
+      ],
+      sort: [
+        { name: 1, _id: 1 }, { collation: { locale: 'en_US' } },
+        { fullName: 1, _id: 1 }, { collation: { locale: 'en_US' } },
+        { sequence: 1, _id: 1 },
+      ],
+    },
   },
   website: {
     Option: {
