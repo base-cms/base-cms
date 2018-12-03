@@ -37,7 +37,6 @@ Additional optimization notes:
   - `{ status: 1, alias: 1 }`
   - `{ status: 1, redirects: 1 }`
   - `{ status: 1, 'parent.$id': 1 }`
-  - `{ status: 1, 'site.$id': 1 }`
   - `{ status: 1, 'site.$id': 1, 'parent.$id': 1 }`
 - Sort
   - `{ name: 1, _id: 1 }, { collation: { locale: 'en_US' } }`
