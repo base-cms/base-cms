@@ -28,7 +28,7 @@ class BaseDB {
    * @param {string} baseOpts.tenant The Base tenant key, e.g. `cygnus_ofcr`.
    * @param {string} baseOpts.client The MongoClient instance to use.
    */
-  constructor({ tenant, client } = {}) {
+  constructor({ tenant, client, logger } = {}) {
     if (!tenant) {
       throw new Error('No tenant was provided.');
     }
@@ -37,6 +37,7 @@ class BaseDB {
       throw new Error('BaseDB.client must be an instanceof Client.');
     }
     this.client = client;
+    this.logger = logger;
   }
 
   /**
@@ -77,6 +78,7 @@ class BaseDB {
   async findOne(modelName, query, options) {
     const { namespace, resource } = BaseDB.parseModelName(modelName);
     const coll = await this.collection(namespace, resource);
+    this.log('findOne', coll, { query, options });
     return coll.findOne(query, options);
   }
 
@@ -107,6 +109,7 @@ class BaseDB {
   async find(modelName, query, options) {
     const { namespace, resource } = BaseDB.parseModelName(modelName);
     const coll = await this.collection(namespace, resource);
+    this.log('find', coll, { query, options });
     return coll.find(query, options);
   }
 
@@ -134,6 +137,7 @@ class BaseDB {
   async count(modelName, query, options) {
     const { namespace, resource } = BaseDB.parseModelName(modelName);
     const coll = await this.collection(namespace, resource);
+    this.log('countDocuments', coll, { query, options });
     return coll.countDocuments(query, options);
   }
 
@@ -149,6 +153,7 @@ class BaseDB {
   async distinct(modelName, key, query, options) {
     const { namespace, resource } = BaseDB.parseModelName(modelName);
     const coll = await this.collection(namespace, resource);
+    this.log('distinct', coll, { key, query, options });
     return coll.distinct(key, query, options);
   }
 
@@ -175,6 +180,7 @@ class BaseDB {
       sort,
       collate,
       projection,
+      logger: this.log.bind(this),
     });
   }
 
@@ -300,6 +306,19 @@ class BaseDB {
    */
   close(force) {
     return this.client.close(force);
+  }
+
+  /**
+   * @param {string} method
+   * @param {Collection} collection
+   * @param {object} data
+   */
+  log(method, collection, data) {
+    const { logger } = this;
+    if (typeof logger === 'function') {
+      const { namespace } = collection.s;
+      logger(method, namespace, data);
+    }
   }
 
   /**

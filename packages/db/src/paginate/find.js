@@ -20,6 +20,7 @@ module.exports = async (collection, {
   sort = { field: '_id', order: 1 },
   projection,
   collate = false,
+  logger,
 }) => {
   const $limit = new Limit({ value: limit });
   const $sort = new Sort(sort);
@@ -41,6 +42,15 @@ module.exports = async (collection, {
 
   const options = { projection: $projection };
   if (collate) options.collation = $sort.collation;
+
+  if (typeof logger === 'function') {
+    logger('paginate', collection, {
+      query: $query,
+      sort: $sort.value,
+      limit: $limit.value,
+      options,
+    });
+  }
 
   const results = await collection.find($query, options)
     .sort($sort.value)
