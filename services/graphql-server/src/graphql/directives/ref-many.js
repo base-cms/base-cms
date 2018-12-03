@@ -44,7 +44,6 @@ class RefManyDirective extends SchemaDirectiveVisitor {
         input,
       });
 
-      console.log('@refMany', model, query);
       return basedb.paginate(model, {
         query,
         sort,

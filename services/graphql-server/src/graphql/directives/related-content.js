@@ -74,7 +74,6 @@ class RelatedContentDirective extends SchemaDirectiveVisitor {
       }
 
       const model = 'platform.Content';
-      console.log('@relatedContent', model, query);
       return basedb.paginate(model, { query, sort, ...pagination });
     };
   }

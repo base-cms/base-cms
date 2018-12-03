@@ -25,7 +25,6 @@ class FindOneDirective extends SchemaDirectiveVisitor {
         input,
       });
 
-      console.log('@findOne', model, query);
       return basedb.findOne(model, query);
     };
   }

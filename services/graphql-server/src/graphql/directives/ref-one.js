@@ -25,7 +25,6 @@ class RefOneDirective extends SchemaDirectiveVisitor {
 
       const query = { [foreignField]: id, ...criteriaFor(criteria), ...formatStatus(input.status) };
 
-      console.log('@refOne', model, query);
       return basedb.findOne(model, query);
     };
   }

@@ -29,7 +29,6 @@ class FindManyDirective extends SchemaDirectiveVisitor {
         using,
         input,
       });
-      console.log('@findMany', model, query);
       return basedb.paginate(model, {
         query,
         sort,
