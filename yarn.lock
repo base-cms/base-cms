@@ -4394,13 +4394,12 @@ event-source-polyfill@0.0.12:
   resolved "https://registry.yarnpkg.com/event-source-polyfill/-/event-source-polyfill-0.0.12.tgz#e539cd67fdef2760a16aa5262fa98134df52e3af"
   integrity sha1-5TnNZ/3vJ2ChaqUmL6mBNN9S468=
 
-event-stream@^3.3.1:
-  version "3.3.6"
-  resolved "https://registry.yarnpkg.com/event-stream/-/event-stream-3.3.6.tgz#cac1230890e07e73ec9cacd038f60a5b66173eef"
-  integrity sha512-dGXNg4F/FgVzlApjzItL+7naHutA3fDqbV/zAZqDDlXTjiMnQmZKu+prImWKszeBM5UQeGvAl3u1wBiKeDh61g==
+event-stream@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/event-stream/-/event-stream-4.0.1.tgz#4092808ec995d0dd75ea4580c1df6a74db2cde65"
+  integrity sha512-qACXdu/9VHPBzcyhdOWR5/IahhGMf0roTeZJfzz077GwylcDd90yOHLouhmv7GJ5XzPi6ekaQWd8AvPP2nOvpA==
   dependencies:
     duplexer "^0.1.1"
-    flatmap-stream "^0.1.0"
     from "^0.1.7"
     map-stream "0.0.7"
     pause-stream "^0.0.11"
@@ -4801,11 +4800,6 @@ flat-cache@^1.2.1:
     graceful-fs "^4.1.2"
     rimraf "~2.6.2"
     write "^0.2.1"
-
-flatmap-stream@^0.1.0:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/flatmap-stream/-/flatmap-stream-0.1.2.tgz#b1da359a93f24f6d96e46f948552d997e3c2863d"
-  integrity sha512-ucyr6WkLXjyMuHPtOUq4l+nSAxgWi7v4QO508eQ9resnGj+lSup26oIsUI5aH8k4Qfpjsxa8dDf9UCKkS2KHzQ==
 
 flatten@^1.0.2:
   version "1.0.2"
@@ -7173,15 +7167,15 @@ mongodb-core@3.1.9:
   optionalDependencies:
     saslprep "^1.0.0"
 
-mongodb-extended-json@^1.7.1:
-  version "1.10.0"
-  resolved "https://registry.yarnpkg.com/mongodb-extended-json/-/mongodb-extended-json-1.10.0.tgz#dd7a6dc51ced99a30520622ee83a2237b0eaa31a"
-  integrity sha1-3XptxRztmaMFIGIu6DoiN7Dqoxo=
+mongodb-extended-json@1.10.1:
+  version "1.10.1"
+  resolved "https://registry.yarnpkg.com/mongodb-extended-json/-/mongodb-extended-json-1.10.1.tgz#eb3115761159b7c7c616fbf567e1b4c971002d00"
+  integrity sha512-2J+MMnahqaqBXSIVYwEUV9qwJKRtkOlr6qEKPs4aHKvOpyfucjdBWORXinn/Ez1Nwa5sVXak+r8lfGliXd2UPg==
   dependencies:
     JSONStream "^1.1.1"
     async "^2.0.1"
     bson "^1.0.1"
-    event-stream "^3.3.1"
+    event-stream "^4.0.1"
     lodash.isfunction "^3.0.6"
     lodash.transform "^4.6.0"
     moment "^2.10.6"
