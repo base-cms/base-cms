@@ -21,8 +21,8 @@ function arguments() {
 # Throw if args are invalid
 [[ -z "$1" ]] && arguments
 
-# Only install if we haven't yet.
-[[ -d "node_modules" ]] || scripts/install.sh
+# Install packages
+scripts/install.sh
 
 # Check for a valid package
 [[ -d $COMPOSEDIR ]] || compose

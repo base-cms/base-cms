@@ -8,6 +8,7 @@ x-service-defaults:
   command: ['/base-cms/node_modules/.bin/gulp']
   volumes:
     - .:/base-cms:cached
+    - ./node_modules:/base-cms/node_modules:delegated
   environment:
     NODE_ENV: development
     MONGO_DSN: ${MONGO_DSN-mongodb://mongodb:27017}
