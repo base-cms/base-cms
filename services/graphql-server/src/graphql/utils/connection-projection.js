@@ -11,7 +11,7 @@ module.exports = ({ returnType, fieldNodes, schema }) => {
     if (node) {
       // Project based on the node's selectionSet
       projection = getProjection(
-        schema.getType(projectUsing).getFields(),
+        schema.getType(projectUsing),
         getSelected(node.selectionSet),
       );
     } else {

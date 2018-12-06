@@ -13,10 +13,7 @@ class FindOneDirective extends SchemaDirectiveVisitor {
   visitFieldDefinition(field) {
     // eslint-disable-next-line no-param-reassign
     field.resolve = async (_, { input = {} }, { basedb }, { fieldNodes, returnType }) => {
-      const projection = getProjection(
-        returnType.getFields(),
-        getSelected(fieldNodes[0].selectionSet),
-      );
+      const projection = getProjection(returnType, getSelected(fieldNodes[0].selectionSet));
 
       const {
         model,

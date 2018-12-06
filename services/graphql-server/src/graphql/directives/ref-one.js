@@ -13,10 +13,7 @@ class RefOneDirective extends SchemaDirectiveVisitor {
   visitFieldDefinition(field) {
     // eslint-disable-next-line no-param-reassign
     field.resolve = async (doc, { input = {} }, { basedb }, { returnType, fieldNodes }) => {
-      const projection = getProjection(
-        returnType.getFields(),
-        getSelected(fieldNodes[0].selectionSet),
-      );
+      const projection = getProjection(returnType, getSelected(fieldNodes[0].selectionSet));
 
       const {
         model,
