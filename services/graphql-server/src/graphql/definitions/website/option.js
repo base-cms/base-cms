@@ -10,13 +10,13 @@ extend type Query {
 
 type WebsiteOption {
   # fields directly from website.model::Option
-  id: Int! @value(localField: "_id")
-  name: String
-  description: String
-  site(input: WebsiteOptionSiteInput = {}): WebsiteSite @refOne(model: "platform.Product", criteria: "websiteSite")
+  id: Int! @projection(localField: "_id") @value(localField: "_id")
+  name: String @projection
+  description: String @projection
+  site(input: WebsiteOptionSiteInput = {}): WebsiteSite @projection @refOne(model: "platform.Product", criteria: "websiteSite")
 
   # fields from platform.trait::StatusEnabled
-  status: Int
+  status: Int @projection
 }
 
 type WebsiteOptionConnection {

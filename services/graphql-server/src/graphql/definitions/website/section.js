@@ -13,28 +13,28 @@ extend type Query {
 
 type WebsiteSection {
   # fields from platform.model::Section
-  id: Int! @value(localField: "_id")
-  name: String
-  description: String
-  fullName: String
+  id: Int! @projection(localField: "_id") @value(localField: "_id")
+  name: String @projection
+  description: String @projection
+  fullName: String @projection
 
   # fields from trait.platform::StatusEnabled
-  status: Int
+  status: Int @projection
 
   # fields from trait.platform::Sequenceable
-  sequence: Int
+  sequence: Int @projection
 
   # fields directly on website.model::Section
-  site(input: WebsiteSectionSiteInput = {}): WebsiteSite @refOne(model: "platform.Product", criteria: "websiteSite")
-  parent(input: WebsiteSectionParentInput = {}): WebsiteSection @refOne(model: "website.Section")
-  children(input: WebsiteSectionChildrenInput = {}): WebsiteSectionConnection! @refMany(model: "website.Section", localField: "_id", foreignField: "parent.$id")
-  logo: AssetImage @refOne(model: "platform.Asset", criteria: "assetImage")
+  site(input: WebsiteSectionSiteInput = {}): WebsiteSite @projection @refOne(model: "platform.Product", criteria: "websiteSite")
+  parent(input: WebsiteSectionParentInput = {}): WebsiteSection @projection @refOne(model: "website.Section")
+  children(input: WebsiteSectionChildrenInput = {}): WebsiteSectionConnection! @projection @refMany(model: "website.Section", localField: "_id", foreignField: "parent.$id")
+  logo: AssetImage @projection @refOne(model: "platform.Asset", criteria: "assetImage")
 
   # fields from trait.platform::Content\SeoFields
   # metadata: WebsiteSectionMetadata! @sectionMetadata
-  alias: String
-  redirects: [String]! @arrayValue
-  slug: String
+  alias: String @projection
+  redirects: [String]! @projection @arrayValue
+  slug: String @projection
 }
 
 type WebsiteSectionConnection {

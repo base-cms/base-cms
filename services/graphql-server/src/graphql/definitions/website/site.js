@@ -9,27 +9,26 @@ extend type Query {
 
 type WebsiteSite {
   # fields from platform.model::Product
-  id: ObjectID! @value(localField: "_id")
-  type: String!
-  name: String
-  fullName: String
-  tagLine: String
-  description: String
-  logo: String
+  id: ObjectID! @projection(localField: "_id") @value(localField: "_id")
+  name: String @projection
+  fullName: String @projection
+  tagLine: String @projection
+  description: String @projection
+  logo: String @projection
 
   # fields from platform.trait::StatusEnabled
-  status: Int
+  status: Int @projection
 
   # fields directly on website.model::Product\Site
-  sections(input: WebsiteSiteSectionsInput = {}): WebsiteSectionConnection! @refMany(model: "website.Section", localField: "_id", foreignField: "site.$id")
+  sections(input: WebsiteSiteSectionsInput = {}): WebsiteSectionConnection! @projection(localField: "_id") @refMany(model: "website.Section", localField: "_id", foreignField: "site.$id")
   # pages: [WebsitePage] # add args? @todo Add this model
-  options(input: WebsiteSiteOptionsInput = {}): WebsiteOptionConnection! @refMany(model: "website.Option", localField: "_id", foreignField: "site.$id")
-  url: String
+  options(input: WebsiteSiteOptionsInput = {}): WebsiteOptionConnection! @projection(localField: "_id") @refMany(model: "website.Option", localField: "_id", foreignField: "site.$id")
+  url: String @projection
   # socialFollow: [PlatformEntityStubSocial]! @arrayValue
-  redirects: [String]! @arrayValue
+  redirects: [String]! @projection @arrayValue
 
   # fields that are new to GraphQL
-  rootSections(input: WebsiteSiteRootSectionsInput = {}): WebsiteSectionConnection! @refMany(model: "website.Section", localField: "_id", foreignField: "site.$id", criteria: "rootWebsiteSection")
+  rootSections(input: WebsiteSiteRootSectionsInput = {}): WebsiteSectionConnection! @projection(localField: "_id") @refMany(model: "website.Section", localField: "_id", foreignField: "site.$id", criteria: "rootWebsiteSection")
 }
 
 type WebsiteSiteConnection {
