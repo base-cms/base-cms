@@ -50,7 +50,7 @@ Your query should look like something like this:
 {
   # The `limit` here is bad, don't ask for more content than you need!
   allContent(input: { pagination: { limit: 10 } }) {
-    # bad - this runs a count against the entire content collection. Do do it unless you need it.
+    # bad - this runs a count against the entire content collection. Don't do it unless you need it.
     totalCount
     edges {
       # bad - the cursor has to be encoded... why bother when not using?
@@ -64,7 +64,7 @@ Your query should look like something like this:
           id
           name
         }
-        # bad - HMTL bodies can _very_ large. We're not using it so don't request it. :)
+        # bad - HMTL bodies can be _very_ large. We're not using it so don't request it. :)
         body
         # bad - not using this either: there's no point in doing a taxonomy query.
         taxonomy {
