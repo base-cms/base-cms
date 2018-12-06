@@ -11,19 +11,19 @@ extend type Query {
 }
 
 type Taxonomy {
-  id: Int! @value(localField: "_id")
-  name: String
-  fullName: String
-  description: String
-  type: String
-  status: Int
-  redirects: [String]! @arrayValue
-  sequence: Int
-  parent(input: TaxonomyParentInput = {}): Taxonomy @refOne(model: "platform.Taxonomy")
-  children(input: TaxonomyChildrenInput = {}): TaxonomyConnection! @refMany(model: "platform.Taxonomy", localField: "_id", foreignField: "parent.$id")
+  id: Int! @projection(localField: "_id") @value(localField: "_id")
+  name: String @projection
+  fullName: String @projection
+  description: String @projection
+  type: String @projection
+  status: Int @projection
+  redirects: [String]! @projection @arrayValue
+  sequence: Int @projection
+  parent(input: TaxonomyParentInput = {}): Taxonomy @projection @refOne(model: "platform.Taxonomy")
+  children(input: TaxonomyChildrenInput = {}): TaxonomyConnection! @projection(localField: "_id") @refMany(model: "platform.Taxonomy", localField: "_id", foreignField: "parent.$id")
 }
 
-type TaxonomyConnection {
+type TaxonomyConnection @projectUsing(type: "TaxonomyConnection") {
   totalCount: Int!
   edges: [TaxonomyEdge]!
   pageInfo: PageInfo!
