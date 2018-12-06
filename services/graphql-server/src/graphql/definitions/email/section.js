@@ -9,28 +9,28 @@ extend type Query {
 
 type EmailSection {
   # fields from platform.model::Section
-  id: Int! @value(localField: "_id")
-  name: String
-  description: String
-  fullName: String
+  id: Int! @projection(localField: "_id") @value(localField: "_id")
+  name: String @projection
+  description: String @projection
+  fullName: String @projection
 
   # fields from trait.platform::StatusEnabled
-  status: Int
+  status: Int @projection
 
   # fields from trait.platform::Sequenceable
-  sequence: Int
+  sequence: Int @projection
 
   # fields directly on email.model::Section
-  newsletter(input: EmailSectionNewsletterInput = {}): EmailNewsletter @refOne(model: "platform.Product", localField: "deployment", criteria: "emailNewsletter")
+  newsletter(input: EmailSectionNewsletterInput = {}): EmailNewsletter @projection(localField: "deployment") @refOne(model: "platform.Product", localField: "deployment", criteria: "emailNewsletter")
 
   # fields from trait.platform::Content\SeoFields
-  seoTitle: String
-  alias: String
-  redirects: [String]! @arrayValue
-  slug: String
+  seoTitle: String @projection
+  alias: String @projection
+  redirects: [String]! @projection @arrayValue
+  slug: String @projection
 }
 
-type EmailSectionConnection {
+type EmailSectionConnection @projectUsing(type: "EmailSection") {
   totalCount: Int!
   edges: [EmailSectionEdge]!
   pageInfo: PageInfo!

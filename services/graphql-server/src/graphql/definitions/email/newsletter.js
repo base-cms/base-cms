@@ -9,33 +9,32 @@ extend type Query {
 
 type EmailNewsletter {
   # fields from platform.model::Product
-  id: ObjectID! @value(localField: "_id")
-  type: String!
-  name: String
-  fullName: String
-  tagLine: String
-  description: String
-  logo: String
+  id: ObjectID! @projection(localField: "_id") @value(localField: "_id")
+  name: String @projection
+  fullName: String @projection
+  tagLine: String @projection
+  description: String @projection
+  logo: String @projection
 
   # fields from platform.trait::StatusEnabled
-  status: Int
+  status: Int @projection
 
   # fields from email.model::Product
-  provider: EmailProductStubProvider
-  sourceProvider: EmailProductStubHtmlSourceProvider
-  defaultTesters: [EmailCampaignTestRecipient]! @arrayValue
-  defaultFromName: String
-  defaultSubjectLine: String
+  provider: EmailProductStubProvider @projection
+  sourceProvider: EmailProductStubHtmlSourceProvider @projection
+  defaultTesters: [EmailCampaignTestRecipient]! @projection @arrayValue
+  defaultFromName: String @projection
+  defaultSubjectLine: String @projection
 
   # fields directly on email.model::Product\Newsletter
-  parent(input: EmailNewsletterParentInput = {}): EmailNewsletter @refOne(model: "platform.Product", criteria: "emailNewsletter")
-  sections(input: EmailNewsletterSectionsInput = {}): EmailSectionConnection! @refMany(model: "email.Section", localField: "_id", foreignField: "deployment.$id")
-  alias: String
-  usesDeploymentDates: Boolean
-  teaser: String
+  parent(input: EmailNewsletterParentInput = {}): EmailNewsletter @projection @refOne(model: "platform.Product", criteria: "emailNewsletter")
+  sections(input: EmailNewsletterSectionsInput = {}): EmailSectionConnection! @projection(localField: "_id") @refMany(model: "email.Section", localField: "_id", foreignField: "deployment.$id")
+  alias: String @projection
+  usesDeploymentDates: Boolean @projection
+  teaser: String @projection
 }
 
-type EmailNewsletterConnection {
+type EmailNewsletterConnection @projectUsing(type: "EmailNewsletter") {
   totalCount: Int!
   edges: [EmailNewsletterEdge]!
   pageInfo: PageInfo!
