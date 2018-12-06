@@ -16,6 +16,7 @@ directive @findMany(model: String!, using: JSON, criteria: String) on FIELD_DEFI
 directive @findOne(model: String!, using: JSON, criteria: String) on FIELD_DEFINITION
 directive @momentFormat(localField: String, defaultFormat: String! = "YYYY-MM-DDTHH:mm:ssZ", defaultTimezone: String! = "America/Chicago") on FIELD_DEFINITION
 directive @mutatedValue(localField: String) on FIELD_DEFINITION
+directive @projection(localField: String, needs: [String] = []) on FIELD_DEFINITION
 directive @refMany(model: String!, localField: String, foreignField: String = "_id", criteria: String, using: JSON) on FIELD_DEFINITION
 directive @refOne(model: String!, localField: String, foreignField: String = "_id", criteria: String) on FIELD_DEFINITION
 directive @relatedContent(type: RelatedContentQueryType!) on FIELD_DEFINITION
