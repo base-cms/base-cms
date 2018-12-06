@@ -29,7 +29,7 @@ Section: Tactical
 Your query should look like something like this:
 ```graphql
 {
-  allContent(input: { pagination: { limit: 5 } }) {
+  allContent(input: { pagination: { limit: 2 } }) {
     edges {
       node {
         id
@@ -48,7 +48,8 @@ Your query should look like something like this:
 **NOT** like this:
 ```graphql
 {
-  allContent(input: { pagination: { limit: 5 } }) {
+  # The `limit` here is bad, don't ask for more content than you need!
+  allContent(input: { pagination: { limit: 10 } }) {
     # bad - this runs a count against the entire content collection. Do do it unless you need it.
     totalCount
     edges {
