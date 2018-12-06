@@ -7,11 +7,11 @@ extend type Query {
 }
 
 type User {
-  id: ObjectID! @value(localField: "_id")
-  email: String
-  firstName: String
-  lastName: String
-  username: String
+  id: ObjectID! @projection(localField: "_id") @value(localField: "_id")
+  email: String @projection
+  firstName: String @projection
+  lastName: String @projection
+  username: String @projection
 }
 
 input UserQueryInput {
