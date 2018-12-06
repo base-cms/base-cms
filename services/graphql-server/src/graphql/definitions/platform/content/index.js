@@ -88,7 +88,7 @@ enum RelatedContentQueryType {
   company
 }
 
-type ContentConnection {
+type ContentConnection @projectUsing(type: "Content") {
   totalCount: Int!
   edges: [ContentEdge]!
   pageInfo: PageInfo!
