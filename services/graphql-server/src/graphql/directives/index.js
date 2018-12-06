@@ -9,6 +9,7 @@ const ProjectionDirective = require('./projection');
 const RefManyDirective = require('./ref-many');
 const RefOneDirective = require('./ref-one');
 const RelatedContentDirective = require('./related-content');
+const RequiresProjectDirective = require('./requires-project');
 const ValueDirective = require('./value');
 
 module.exports = {
@@ -23,5 +24,6 @@ module.exports = {
   refMany: RefManyDirective,
   refOne: RefOneDirective,
   relatedContent: RelatedContentDirective,
+  requiresProject: RequiresProjectDirective,
   value: ValueDirective,
 };

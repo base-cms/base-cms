@@ -2,7 +2,7 @@ const gql = require('graphql-tag');
 
 module.exports = gql`
 
-interface Content {
+interface Content @requiresProject(fields: ["type"]) {
   # fields directly on platform.model::Content
   id: Int! @value(localField: "_id")
   type(input: ContentTypeInput = {}): String!
