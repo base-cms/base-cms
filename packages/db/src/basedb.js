@@ -6,6 +6,7 @@ const paginateFind = require('./paginate/find');
 const { createEmptyResponse: paginateEmpty } = require('./paginate/utils');
 
 const { isArray } = Array;
+const { hrtime } = process;
 
 /**
  * The Base collection namespaces.
@@ -76,10 +77,12 @@ class BaseDB {
    * @return {Promise<object|null>}
    */
   async findOne(modelName, query, options) {
+    const start = hrtime();
     const { namespace, resource } = BaseDB.parseModelName(modelName);
     const coll = await this.collection(namespace, resource);
-    this.log('findOne', coll, { query, options });
-    return coll.findOne(query, options);
+    const doc = await coll.findOne(query, options);
+    this.log('findOne', start, { modelName, query, options });
+    return doc;
   }
 
   /**
@@ -99,32 +102,20 @@ class BaseDB {
 
   /**
    * Finds a multiple documents for the provided model name and (optional) query criteria.
-   * Will return a MongoDB cursor object.
+   * Will return an array of documents.
    *
    * @param {string} modelName The model name, e.g. `platform.Content`.
    * @param {object} [query] The query criteria.
    * @param {object} [options] Options to pass to `Collection.find`.
-   * @return {Promise<Cursor>}
+   * @return {Promise<object[]>}
    */
   async find(modelName, query, options) {
+    const start = hrtime();
     const { namespace, resource } = BaseDB.parseModelName(modelName);
     const coll = await this.collection(namespace, resource);
-    this.log('find', coll, { query, options });
-    return coll.find(query, options);
-  }
-
-  /**
-   * Finds a multiple documents for the provided model name and (optional) query criteria.
-   * Will return am array.
-   *
-   * @param {string} modelName The model name, e.g. `platform.Content`.
-   * @param {object} [query] The query criteria.
-   * @param {object} [options] Options to pass to `Collection.find`.
-   * @return {Promise<Array>}
-   */
-  async findAsArray(modelName, query, options) {
-    const cursor = await this.find(modelName, query, options);
-    return cursor.toArray();
+    const docs = await coll.find(query, options).toArray();
+    this.log('find', start, { modelName, query, options });
+    return docs;
   }
 
   /**
@@ -135,10 +126,12 @@ class BaseDB {
    * @param {object} [options] Options to pass to `Collection.countDocuments`.
    */
   async count(modelName, query, options) {
+    const start = hrtime();
     const { namespace, resource } = BaseDB.parseModelName(modelName);
     const coll = await this.collection(namespace, resource);
-    this.log('countDocuments', coll, { query, options });
-    return coll.countDocuments(query, options);
+    const count = await coll.countDocuments(query, options);
+    this.log('countDocuments', start, { modelName, query, options });
+    return count;
   }
 
   /**
@@ -151,10 +144,17 @@ class BaseDB {
    * @param {object} [options] Options to pass to `Collection.distinct`.
    */
   async distinct(modelName, key, query, options) {
+    const start = hrtime();
     const { namespace, resource } = BaseDB.parseModelName(modelName);
     const coll = await this.collection(namespace, resource);
-    this.log('distinct', coll, { key, query, options });
-    return coll.distinct(key, query, options);
+    const values = await coll.distinct(key, query, options);
+    this.log('distinct', start, {
+      modelName,
+      key,
+      query,
+      options,
+    });
+    return values;
   }
 
   /**
@@ -171,16 +171,13 @@ class BaseDB {
     collate,
     projection,
   }) {
-    const { namespace, resource } = BaseDB.parseModelName(modelName);
-    const collection = await this.collection(namespace, resource);
-    return paginateFind(collection, {
+    return paginateFind(this, modelName, {
       query,
       limit,
       after,
       sort,
       collate,
       projection,
-      logger: this.log.bind(this),
     });
   }
 
@@ -256,7 +253,7 @@ class BaseDB {
   } = {}) {
     const refs = BaseDB.get(doc, localField);
     const ids = BaseDB.extractRefIds(isArray(refs) ? refs : [refs]);
-    return this.find(relatedModel, { ...query, [foreignField]: { $in: ids } }, options);
+    return this.findAsArray(relatedModel, { ...query, [foreignField]: { $in: ids } }, options);
   }
 
   /**
@@ -310,14 +307,14 @@ class BaseDB {
 
   /**
    * @param {string} method
-   * @param {Collection} collection
+   * @param {array} hrtime
    * @param {object} data
    */
-  log(method, collection, data) {
+  log(method, start, data) {
     const { logger } = this;
     if (typeof logger === 'function') {
-      const { namespace } = collection.s;
-      logger(method, namespace, data);
+      const [secs, ns] = hrtime(start);
+      logger({ method, data, time: `${(secs * 1000) + (ns / 1000000)}ms` });
     }
   }
 

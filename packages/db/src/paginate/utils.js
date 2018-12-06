@@ -4,12 +4,13 @@ const cursor = require('./cursor');
 module.exports = {
   /**
    *
-   * @param {Collection} collection
+   * @param {object} basedb
+   * @param {string} modelName
    * @param {array} results
    * @param {object} params
    * @param {object} [params.query]
    */
-  createResponse(collection, results, {
+  createResponse(basedb, modelName, results, {
     query,
     limit,
   } = {}) {
@@ -17,14 +18,16 @@ module.exports = {
     // Remove the extra model that was queried to peek for the page.
     if (hasNextPage) results.pop();
 
+    // Cursor generation is actually pretty slow... 5 - 20ms on large datasets.
+    // As such, only return the values if requested (by making the property a function).
     const pageInfo = {
       hasNextPage,
-      endCursor: hasNextPage ? cursor.encode(results[results.length - 1]._id) : null,
+      endCursor: () => (hasNextPage ? cursor.encode(results[results.length - 1]._id) : null),
     };
     return {
-      edges: results.map(node => ({ node, cursor: cursor.encode(node._id) })),
+      edges: () => results.map(node => ({ node, cursor: () => cursor.encode(node._id) })),
       pageInfo,
-      totalCount: () => collection.countDocuments(query),
+      totalCount: () => basedb.count(modelName, query),
     };
   },
 
@@ -48,7 +51,7 @@ module.exports = {
    * @param {object} params
    * @param {string} [params.after] The cursor value to start the next page.
    */
-  async createQuery(collection, {
+  async createQuery(basedb, modelName, {
     after,
     sort,
   } = {}) {
@@ -75,7 +78,7 @@ module.exports = {
       projection[field] = 1;
     }
 
-    const doc = await collection.findOne({ _id: id }, { projection });
+    const doc = await basedb.findById(modelName, id, { projection });
     const value = objectPath.get(doc, field);
     const $or = [
       { [field]: { [op]: value } },

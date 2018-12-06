@@ -4,7 +4,8 @@ const Limit = require('./limit');
 const Sort = require('./sort');
 
 /**
- * @param {Collection} collection
+ * @param {object} basedb
+ * @param {string} modelName
  * @param {object} params
  * @param {object} [params.query]
  * @param {number} [params.limit=10]
@@ -13,14 +14,13 @@ const Sort = require('./sort');
  * @param {number|string} [params.sort.order=1]
  * @param {object} [params.sort.options]
  */
-module.exports = async (collection, {
+module.exports = async (basedb, modelName, {
   query,
   limit = 10,
   after,
   sort = { field: '_id', order: 1 },
   projection,
   collate = false,
-  logger,
 }) => {
   const $limit = new Limit({ value: limit });
   const $sort = new Sort(sort);
@@ -37,25 +37,17 @@ module.exports = async (collection, {
     after,
   };
 
-  const paginatedQuery = await createQuery(collection, params);
+  const paginatedQuery = await createQuery(basedb, modelName, params);
   const $query = { $and: [paginatedQuery, query] };
 
-  const options = { projection: $projection };
+  const options = {
+    sort: $sort.value,
+    limit: $limit.value + 1, // peek to see if there is another page.
+    projection: $projection,
+  };
   if (collate) options.collation = $sort.collation;
 
-  if (typeof logger === 'function') {
-    logger('paginate', collection, {
-      query: $query,
-      sort: $sort.value,
-      limit: $limit.value,
-      options,
-    });
-  }
+  const results = await basedb.find(modelName, $query, options);
 
-  const results = await collection.find($query, options)
-    .sort($sort.value)
-    .limit($limit.value + 1) // peek to see if there is another page.
-    .toArray();
-
-  return createResponse(collection, results, params);
+  return createResponse(basedb, modelName, results, params);
 };
