@@ -1,4 +1,5 @@
 const { BaseDB, MongoDB } = require('@base-cms/db');
+const { inspect } = require('util');
 const { NODE_ENV, MONGO_DSN, TENANT_KEY: tenant } = require('./env');
 
 const DEV = NODE_ENV === 'development';
@@ -9,10 +10,9 @@ const client = new MongoDB.Client(MONGO_DSN, {
   useNewUrlParser: true,
 });
 
-const logger = (method, namespace, data) => {
+const logger = (obj) => {
   log('');
-  log(method, namespace);
-  Object.keys(data).forEach(key => log(`${key}:`, data[key]));
+  Object.keys(obj).forEach(key => log(`${key}:`, inspect(obj[key], { colors: true, depth: 5 })));
   log('');
 };
 
