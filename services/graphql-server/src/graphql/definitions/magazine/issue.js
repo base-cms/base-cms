@@ -9,24 +9,24 @@ extend type Query {
 
 type MagazineIssue {
   # fields directly on platform.model::Issue
-  id: Int! @value(localField: "_id")
-  name: String
-  description: String
-  mailDate: Date
-  digitalEditionUrl: String
-  dedication: String
-  coverDescription: String
-  credit: String
-  publication(input: MagazineIssuePublicationInput = {}): MagazinePublication @refOne(model: "platform.Product", criteria: "magazinePublication")
-  sections(input: MagazineIssueSectionsInput = {}): MagazineSectionConnection! @refMany(model: "magazine.Section", localField: "_id", foreignField: "issue.$id")
-  coverImage: AssetImage @refOne(model: "platform.Asset", criteria: "assetImage")
-  redirects: [String]! @arrayValue
+  id: Int! @projection(localField: "_id") @value(localField: "_id")
+  name: String @projection
+  description: String @projection
+  mailDate: Date @projection
+  digitalEditionUrl: String @projection
+  dedication: String @projection
+  coverDescription: String @projection
+  credit: String @projection
+  publication(input: MagazineIssuePublicationInput = {}): MagazinePublication @projection @refOne(model: "platform.Product", criteria: "magazinePublication")
+  sections(input: MagazineIssueSectionsInput = {}): MagazineSectionConnection! @projection(localField: "_id") @refMany(model: "magazine.Section", localField: "_id", foreignField: "issue.$id")
+  coverImage: AssetImage @projection @refOne(model: "platform.Asset", criteria: "assetImage")
+  redirects: [String]! @projection @arrayValue
 
   #fields from trait.platform::StatusEnabled
-  status: Int
+  status: Int @projection
 }
 
-type MagazineIssueConnection {
+type MagazineIssueConnection @projectUsing(type: "MagazineIssue") {
   totalCount: Int!
   edges: [MagazineIssueEdge]!
   pageInfo: PageInfo!

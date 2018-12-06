@@ -11,23 +11,23 @@ extend type Query {
 
 type MagazineSection {
   # fields from platform.model::Section
-  id: Int! @value(localField: "_id")
-  name: String
-  description: String
-  fullName: String
+  id: Int! @projection(localField: "_id") @value(localField: "_id")
+  name: String @projection
+  description: String @projection
+  fullName: String @projection
 
   # fields from trait.platform::StatusEnabled
-  status: Int
+  status: Int @projection
 
   # fields from trait.platform::Sequenceable
-  sequence: Int
+  sequence: Int @projection
 
   # fields directly on magazine.model::Section
-  publication(input: MagazineSectionPublicationInput = {}): MagazinePublication @refOne(model: "platform.Product", criteria: "magazinePublication")
-  issue(input: MagazineSectionIssueInput = {}): MagazineIssue @refOne(model: "magazine.Issue")
+  publication(input: MagazineSectionPublicationInput = {}): MagazinePublication @projection @refOne(model: "platform.Product", criteria: "magazinePublication")
+  issue(input: MagazineSectionIssueInput = {}): MagazineIssue @projection @refOne(model: "magazine.Issue")
 }
 
-type MagazineSectionConnection {
+type MagazineSectionConnection @projectUsing(type: "MagazineSection") {
   totalCount: Int!
   edges: [MagazineSectionEdge]!
   pageInfo: PageInfo!

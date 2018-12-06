@@ -9,29 +9,28 @@ extend type Query {
 
 type MagazinePublication {
   # fields from platform.model::Product
-  id: ObjectID! @value(localField: "_id")
-  type: String!
-  name: String
-  fullName: String
-  tagLine: String
-  description: String
-  logo: String
+  id: ObjectID! @projection(localField: "_id") @value(localField: "_id")
+  name: String @projection
+  fullName: String @projection
+  tagLine: String @projection
+  description: String @projection
+  logo: String @projection
 
   # fields from platform.trait::StatusEnabled
-  status: Int
+  status: Int @projection
 
   # fields directly on magazine.model::Product\Publication
-  issues(input: MagazinePublicationIssuesInput = {}): MagazineIssueConnection! @refMany(model: "magazine.Issue", localField: "_id", foreignField: "publication.$id")
-  sections(input: MagazinePublicationSectionsInput = {}): MagazineSectionConnection! @refMany(model: "magazine.Section", localField: "_id", foreignField: "publication.$id")
-  coverImage: AssetImage @refOne(model: "platform.Asset", criteria: "assetImage")
-  subscribeUrl: String
-  renewalUrl: String
-  reprintsUrl: String
-  einquiryUrl: String
+  issues(input: MagazinePublicationIssuesInput = {}): MagazineIssueConnection! @projection(localField: "_id") @refMany(model: "magazine.Issue", localField: "_id", foreignField: "publication.$id")
+  sections(input: MagazinePublicationSectionsInput = {}): MagazineSectionConnection! @projection(localField: "_id") @refMany(model: "magazine.Section", localField: "_id", foreignField: "publication.$id")
+  coverImage: AssetImage @projection @refOne(model: "platform.Asset", criteria: "assetImage")
+  subscribeUrl: String @projection
+  renewalUrl: String @projection
+  reprintsUrl: String @projection
+  einquiryUrl: String @projection
   # socialLinks: [PlatformEntityStubSocial]! @arrayValue
 }
 
-type MagazinePublicationConnection {
+type MagazinePublicationConnection @projectUsing(type: "MagazinePublication") {
   totalCount: Int!
   edges: [MagazinePublicationEdge]!
   pageInfo: PageInfo!
