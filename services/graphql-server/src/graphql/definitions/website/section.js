@@ -27,7 +27,7 @@ type WebsiteSection {
   # fields directly on website.model::Section
   site(input: WebsiteSectionSiteInput = {}): WebsiteSite @projection @refOne(model: "platform.Product", criteria: "websiteSite")
   parent(input: WebsiteSectionParentInput = {}): WebsiteSection @projection @refOne(model: "website.Section")
-  children(input: WebsiteSectionChildrenInput = {}): WebsiteSectionConnection! @projection @refMany(model: "website.Section", localField: "_id", foreignField: "parent.$id")
+  children(input: WebsiteSectionChildrenInput = {}): WebsiteSectionConnection! @projection(localField: "_id") @refMany(model: "website.Section", localField: "_id", foreignField: "parent.$id")
   logo: AssetImage @projection @refOne(model: "platform.Asset", criteria: "assetImage")
 
   # fields from trait.platform::Content\SeoFields
@@ -37,7 +37,7 @@ type WebsiteSection {
   slug: String @projection
 }
 
-type WebsiteSectionConnection {
+type WebsiteSectionConnection @projectUsing(type: "WebsiteSection") {
   totalCount: Int!
   edges: [WebsiteSectionEdge]!
   pageInfo: PageInfo!
