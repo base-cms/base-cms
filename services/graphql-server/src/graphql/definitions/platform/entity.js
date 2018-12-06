@@ -4,14 +4,14 @@ module.exports = gql`
 
 type EntityOrganization {
   # fields directly on platform.model::Entity
-  id: String!
-  emails: [EntityStubEmail]! @arrayValue
-  phoneNumbers: [EntityStubPhone]! @arrayValue
-  mobileNumbers: [EntityStubPhone]! @arrayValue
-  faxNumbers: [EntityStubPhone]! @arrayValue
-  addresses: [EntityStubAddress]! @arrayValue
-  websites: [EntityStubWebsite]! @arrayValue
-  socialMediaLinks: [EntityStubSocial]! @arrayValue
+  id: ObjectID! @projection(localField: "_id") @value(localField: "_id")
+  emails: [EntityStubEmail]! @projection @arrayValue
+  phoneNumbers: [EntityStubPhone]! @projection @arrayValue
+  mobileNumbers: [EntityStubPhone]! @projection @arrayValue
+  faxNumbers: [EntityStubPhone]! @projection @arrayValue
+  addresses: [EntityStubAddress]! @projection @arrayValue
+  websites: [EntityStubWebsite]! @projection @arrayValue
+  socialMediaLinks: [EntityStubSocial]! @projection @arrayValue
 
   # fields from platform.trait::StatusEnabled
   status: Int
@@ -22,14 +22,14 @@ type EntityOrganization {
 
 type EntityVenue {
   # fields directly on platform.model::Entity
-  id: String!
-  emails: [EntityStubEmail]! @arrayValue
-  phoneNumbers: [EntityStubPhone]! @arrayValue
-  mobileNumbers: [EntityStubPhone]! @arrayValue
-  faxNumbers: [EntityStubPhone]! @arrayValue
-  addresses: [EntityStubAddress]! @arrayValue
-  websites: [EntityStubWebsite]! @arrayValue
-  socialMediaLinks: [EntityStubSocial]! @arrayValue
+  id: ObjectID! @projection(localField: "_id") @value(localField: "_id")
+  emails: [EntityStubEmail]! @projection @arrayValue
+  phoneNumbers: [EntityStubPhone]! @projection @arrayValue
+  mobileNumbers: [EntityStubPhone]! @projection @arrayValue
+  faxNumbers: [EntityStubPhone]! @projection @arrayValue
+  addresses: [EntityStubAddress]! @projection @arrayValue
+  websites: [EntityStubWebsite]! @projection @arrayValue
+  socialMediaLinks: [EntityStubSocial]! @projection @arrayValue
 
   # fields from platform.trait::StatusEnabled
   status: Int
