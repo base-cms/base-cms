@@ -8,15 +8,23 @@ The BaseCMS GraphQL server using Apollo and Express.
 4. Add the type (e.g. `Event`) to the content types array found in `graphql/utils/content-types.js`
 
 ## Query Best Practices
-Don't request more fields than you need! Data will only be returned from the database for fields that are _actually_ requested within the GraphQL query. Don't request large or time-consuming fields like `Content.body` or `Connection.totalCount` or `Connection.edges.cursor` or `Content.taxonomy.edges.node` when you don't need them!
+Don't request more fields than you need! Data will only be returned from the database for fields _defined_ within the GraphQL query. Don't request large or time-consuming fields like `Content.body` or `Connection.totalCount` or `Connection.edges.cursor` or `Content.taxonomy.edges.node` when you don't need the data!
 
-For example, when displaying content in a list such as:
+For example, when displaying content in a list:
 ```
-Content Title
+Content Title 1
 Teaser text here...
 
 Published: Jun 6th, 2018
 Section: Firearms
+
+-----
+
+Content Title 2
+Another teaser is here...
+
+Published: Jun 5th, 2018
+Section: Tactical
 ```
 Your query should look like something like this:
 ```graphql
