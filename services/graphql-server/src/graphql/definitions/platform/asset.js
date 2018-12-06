@@ -8,28 +8,28 @@ extend type Query {
 
 type AssetImage {
   # from platform.model::Asset
-  id: ObjectID! @value(localField: "_id")
-  name: String
-  touched: Date
+  id: ObjectID! @projection(localField: "_id") @value(localField: "_id")
+  name: String @projection
+  touched: Date @projection
 
   # from platform.model::Asset\Image
-  filePath: String
-  fileName: String
-  source: AssetImageSource
-  caption: String
-  credit: String
-  cropDimensions: AssetImageCrop
+  filePath: String @projection
+  fileName: String @projection
+  source: AssetImageSource @projection
+  caption: String @projection
+  credit: String @projection
+  cropDimensions: AssetImageCrop @projection
 
   # from platform.model::Asset\Image mutations
-  approvedWebsite: Boolean @value(localField: "mutations.Website.approved")
-  approvedMagazine: Boolean @value(localField: "mutations.Magazine.approved")
+  approvedWebsite: Boolean @projection(localField: "mutations.Website.approved") @value(localField: "mutations.Website.approved")
+  approvedMagazine: Boolean @projection(localField: "mutations.Magazine.approved") @value(localField: "mutations.Magazine.approved")
 
   #GraphQL specific fields
-  src(input: AssetImageSrcInput = {}): String!
-  alt: String!
+  src(input: AssetImageSrcInput!): String! @projection(localField: "fileName", needs: ["filePath"])
+  alt: String! @projection(localField: "name", needs: ["caption", "fileName"])
 }
 
-type AssetImageConnection {
+type AssetImageConnection @projectUsing(type: "AssetImage") {
   totalCount: Int!
   edges: [AssetImageEdge]!
   pageInfo: PageInfo!
