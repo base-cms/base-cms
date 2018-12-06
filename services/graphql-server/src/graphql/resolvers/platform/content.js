@@ -42,9 +42,13 @@ module.exports = {
       return `/${path}`;
     },
 
-    metadata: async (content, _, { basedb }) => ({
-      title: await createTitle(content, basedb),
-      description: createDescription(content),
+    /**
+     * Return title and description as functions, so they're only
+     * executed when requested.
+     */
+    metadata: (content, _, { basedb }) => ({
+      title: () => createTitle(content, basedb),
+      description: () => createDescription(content),
     }),
 
     redirectTo: (content) => {
