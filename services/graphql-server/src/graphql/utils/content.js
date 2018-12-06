@@ -45,9 +45,12 @@ const createTitle = async (doc, basedb) => {
 const createDescription = (doc) => {
   if (!isObject(doc)) return null;
   const description = striptags((BaseDB.fillMutation(doc, 'Website', 'teaser') || '').trim());
-  if (description) return description;
-  const body = striptags(BaseDB.fillMutation(doc, 'Website', 'body') || '');
-  return `${body.substring(0, 155)}...`;
+  return description;
+  // This should not require the entire body, and rather should be handled at save time.
+  // Otherwise, the entire body needs to be returned all the time.
+  // No longer doing this here.
+  // const body = striptags(BaseDB.fillMutation(doc, 'Website', 'body') || '');
+  // return `${body.substring(0, 155)}...`;
 };
 
 module.exports = { createTitle, createDescription };
