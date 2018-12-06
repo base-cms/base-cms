@@ -13,6 +13,8 @@ class FindManyDirective extends SchemaDirectiveVisitor {
   visitFieldDefinition(field) {
     // eslint-disable-next-line no-param-reassign
     field.resolve = async (_, { input = {} }, { basedb }, info) => {
+      const start = process.hrtime();
+
       const {
         model,
         using,
@@ -32,8 +34,6 @@ class FindManyDirective extends SchemaDirectiveVisitor {
       });
 
       const projection = connectionProjection(info);
-
-      console.time('findMany');
       const result = await basedb.paginate(model, {
         query,
         sort,
@@ -41,7 +41,7 @@ class FindManyDirective extends SchemaDirectiveVisitor {
         collate: shouldCollate(sort.field),
         ...pagination,
       });
-      console.timeEnd('findMany');
+      basedb.log('@findMany', start, { model });
       return result;
     };
   }

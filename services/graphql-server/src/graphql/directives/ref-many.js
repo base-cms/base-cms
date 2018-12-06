@@ -30,6 +30,8 @@ class RefManyDirective extends SchemaDirectiveVisitor {
 
       const ids = BaseDB.extractRefIds(isArray(refs) ? refs : [refs]);
       if (!ids.length) return BaseDB.paginateEmpty();
+
+      const start = process.hrtime();
       const {
         status,
         sort,
@@ -46,8 +48,6 @@ class RefManyDirective extends SchemaDirectiveVisitor {
       });
 
       const projection = connectionProjection(info);
-
-      console.time('refMany');
       const result = await basedb.paginate(model, {
         query,
         sort,
@@ -55,7 +55,7 @@ class RefManyDirective extends SchemaDirectiveVisitor {
         collate: shouldCollate(sort.field),
         projection,
       });
-      console.timeEnd('refMany');
+      basedb.log('@refMany', start, { model });
       return result;
     };
   }
