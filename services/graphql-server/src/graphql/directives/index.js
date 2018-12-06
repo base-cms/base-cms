@@ -4,6 +4,7 @@ const FindManyDirective = require('./find-many');
 const FindOneDirective = require('./find-one');
 const MomentFormatDirective = require('./moment-format');
 const MutatedValueDirective = require('./mutated-value');
+const ProjectUsingDirective = require('./project-using');
 const ProjectionDirective = require('./projection');
 const RefManyDirective = require('./ref-many');
 const RefOneDirective = require('./ref-one');
@@ -17,6 +18,7 @@ module.exports = {
   findOne: FindOneDirective,
   momentFormat: MomentFormatDirective,
   mutatedValue: MutatedValueDirective,
+  projectUsing: ProjectUsingDirective,
   projection: ProjectionDirective,
   refMany: RefManyDirective,
   refOne: RefOneDirective,
