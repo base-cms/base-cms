@@ -2,6 +2,8 @@ const { BaseDB } = require('@base-cms/db');
 const { SchemaDirectiveVisitor } = require('graphql-tools');
 const formatStatus = require('../utils/format-status');
 const criteriaFor = require('../utils/criteria-for');
+const getProjection = require('../utils/get-projection');
+const getSelected = require('../utils/get-selected-fields');
 
 class RefOneDirective extends SchemaDirectiveVisitor {
   /**
@@ -10,7 +12,12 @@ class RefOneDirective extends SchemaDirectiveVisitor {
    */
   visitFieldDefinition(field) {
     // eslint-disable-next-line no-param-reassign
-    field.resolve = async (doc, { input = {} }, { basedb }) => {
+    field.resolve = async (doc, { input = {} }, { basedb }, { returnType, fieldNodes }) => {
+      const projection = getProjection(
+        returnType.getFields(),
+        getSelected(fieldNodes[0].selectionSet),
+      );
+
       const {
         model,
         localField,
@@ -25,7 +32,7 @@ class RefOneDirective extends SchemaDirectiveVisitor {
 
       const query = { [foreignField]: id, ...criteriaFor(criteria), ...formatStatus(input.status) };
 
-      return basedb.findOne(model, query);
+      return basedb.findOne(model, query, { projection });
     };
   }
 }
