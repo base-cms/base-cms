@@ -6,3 +6,69 @@ The BaseCMS GraphQL server using Apollo and Express.
 2. Import the type definition into `graphql/definitions/platform/content/types/index.js`
 3. Add the type (e.g. `Event`) to the `ContentType` enum found in `graphql/definitions/platform/content/index.js`
 4. Add the type (e.g. `Event`) to the content types array found in `graphql/utils/content-types.js`
+
+## Query Best Practices
+Don't request more fields than you need! Data will only be returned from the database for fields that are _actually_ requested within the GraphQL query. Don't request large or time-consuming fields like `Content.body` or `Connection.totalCount` or `Connection.edges.cursor` or `Content.taxonomy.edges.node` when you don't need them!
+
+For example, when displaying content in a list such as:
+```
+Content Title
+Teaser text here...
+
+Published: Jun 6th, 2018
+Section: Firearms
+```
+Your query should look like something like this:
+```graphql
+{
+  allContent(input: { pagination: { limit: 5 } }) {
+    edges {
+      node {
+        id
+        name
+        teaser
+        published
+        primarySection {
+          id
+          name
+        }
+      }
+    }
+  }
+}
+```
+**NOT** like this:
+```graphql
+{
+  allContent(input: { pagination: { limit: 5 } }) {
+    # bad - this runs a count against the entire content collection. Do do it unless you need it.
+    totalCount
+    edges {
+      # bad - the cursor has to be encoded... why bother when not using?
+      cursor
+      node {
+        id
+        name
+        teaser
+        published
+        primarySection {
+          id
+          name
+        }
+        # bad - HMTL bodies can _very_ large. We're not using it so don't request it. :)
+        body
+        # bad - not using this either: there's no point in doing a taxonomy query.
+        taxonomy {
+          edges {
+            node {
+              id
+              name
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
