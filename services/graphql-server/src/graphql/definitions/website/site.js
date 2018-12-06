@@ -4,7 +4,7 @@ module.exports = gql`
 
 extend type Query {
   websiteSite(input: WebsiteSiteQueryInput!): WebsiteSite @findOne(model: "platform.Product", using: { id: "_id" }, criteria: "websiteSite")
-  websiteSites(input: WebsiteSitesQueryInput!): WebsiteSiteConnection! @findMany(model: "platform.Product", criteria: "websiteSite")
+  websiteSites(input: WebsiteSitesQueryInput = {}): WebsiteSiteConnection! @findMany(model: "platform.Product", criteria: "websiteSite")
 }
 
 type WebsiteSite {
@@ -31,7 +31,7 @@ type WebsiteSite {
   rootSections(input: WebsiteSiteRootSectionsInput = {}): WebsiteSectionConnection! @projection(localField: "_id") @refMany(model: "website.Section", localField: "_id", foreignField: "site.$id", criteria: "rootWebsiteSection")
 }
 
-type WebsiteSiteConnection {
+type WebsiteSiteConnection @projectUsing(type: "WebsiteSite") {
   totalCount: Int!
   edges: [WebsiteSiteEdge]!
   pageInfo: PageInfo!
