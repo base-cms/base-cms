@@ -4,6 +4,7 @@ const formatStatus = require('../utils/format-status');
 const criteriaFor = require('../utils/criteria-for');
 const applyInput = require('../utils/apply-input');
 const shouldCollate = require('../utils/should-collate');
+const connectionProjection = require('../utils/connection-projection');
 
 const { isArray } = Array;
 
@@ -14,7 +15,7 @@ class RefManyDirective extends SchemaDirectiveVisitor {
    */
   visitFieldDefinition(field) {
     // eslint-disable-next-line no-param-reassign
-    field.resolve = async (doc, { input = {} }, { basedb }) => {
+    field.resolve = async (doc, { input = {} }, { basedb }, info) => {
       const {
         model,
         localField,
@@ -44,12 +45,18 @@ class RefManyDirective extends SchemaDirectiveVisitor {
         input,
       });
 
-      return basedb.paginate(model, {
+      const projection = connectionProjection(info);
+
+      console.time('refMany');
+      const result = await basedb.paginate(model, {
         query,
         sort,
-        collate: shouldCollate(sort.field),
         ...pagination,
+        collate: shouldCollate(sort.field),
+        projection,
       });
+      console.timeEnd('refMany');
+      return result;
     };
   }
 }

@@ -3,6 +3,7 @@ const formatStatus = require('../utils/format-status');
 const criteriaFor = require('../utils/criteria-for');
 const applyInput = require('../utils/apply-input');
 const shouldCollate = require('../utils/should-collate');
+const connectionProjection = require('../utils/connection-projection');
 
 class FindManyDirective extends SchemaDirectiveVisitor {
   /**
@@ -11,7 +12,7 @@ class FindManyDirective extends SchemaDirectiveVisitor {
    */
   visitFieldDefinition(field) {
     // eslint-disable-next-line no-param-reassign
-    field.resolve = async (_, { input = {} }, { basedb }) => {
+    field.resolve = async (_, { input = {} }, { basedb }, info) => {
       const {
         model,
         using,
@@ -29,12 +30,19 @@ class FindManyDirective extends SchemaDirectiveVisitor {
         using,
         input,
       });
-      return basedb.paginate(model, {
+
+      const projection = connectionProjection(info);
+
+      console.time('findMany');
+      const result = await basedb.paginate(model, {
         query,
         sort,
+        projection,
         collate: shouldCollate(sort.field),
         ...pagination,
       });
+      console.timeEnd('findMany');
+      return result;
     };
   }
 }
