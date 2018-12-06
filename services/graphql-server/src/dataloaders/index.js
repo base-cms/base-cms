@@ -19,11 +19,11 @@ module.exports = () => ({
    */
   product: new DataLoader((queries) => {
     const query = { $or: queries };
-    return basedb.findAsArray('platform.Product', query);
+    return basedb.find('platform.Product', query);
   }, { cacheKeyFn }),
 
   websiteOption: new DataLoader((queries) => {
     const query = { $or: queries };
-    return basedb.findAsArray('website.Option', query);
+    return basedb.find('website.Option', query);
   }, { cacheKeyFn }),
 });
