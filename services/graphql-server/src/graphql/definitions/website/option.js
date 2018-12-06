@@ -19,7 +19,7 @@ type WebsiteOption {
   status: Int @projection
 }
 
-type WebsiteOptionConnection {
+type WebsiteOptionConnection @projectUsing(type: "WebsiteOption") {
   totalCount: Int!
   edges: [WebsiteOptionEdge]!
   pageInfo: PageInfo!
