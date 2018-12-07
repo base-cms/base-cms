@@ -160,7 +160,7 @@ const keys = [
   [56265, ['_id'],
 ];
 ```
-The batch function would then return the documents from `res1`, `res2` and `res3` in the following order:
+The batch function then returns the documents from `res1`, `res2` and `res3` in the following order:
 ```js
 const return = [
   { _id: 56374, /* all fields on the document */ },
