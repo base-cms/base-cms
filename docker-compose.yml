@@ -9,7 +9,9 @@ x-service-defaults:
   volumes:
     - .:/base-cms:cached
     - ./node_modules:/base-cms/node_modules:delegated
+    - yarn-cache:/.yarn-cache
   environment:
+    YARN_CACHE_FOLDER: /.yarn-cache
     NODE_ENV: development
     MONGO_DSN: ${MONGO_DSN-mongodb://mongodb:27017}
     TENANT_KEY: cygnus_ofcr
@@ -58,3 +60,4 @@ services:
 volumes:
   esdata: {}
   mongodb: {}
+  yarn-cache: {}
