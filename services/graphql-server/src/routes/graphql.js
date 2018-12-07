@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const { MongoDB } = require('@base-cms/db');
+const { isObject } = require('@base-cms/common');
 const schema = require('../graphql/schema');
 const basedb = require('../basedb');
 const createLoaders = require('../dataloaders');
@@ -32,9 +33,15 @@ const server = new ApolloServer({
       Logger.setLevel('debug');
       Logger.filter('class', ['Cursor']);
     }
+
+    const loaders = createLoaders(basedb);
     return {
       basedb,
-      loaders: createLoaders(),
+      load: async (loader, id, projection) => {
+        if (!loaders[loader]) throw new Error(`No dataloader found for '${loader}'`);
+        const fields = isObject(projection) ? Object.keys({ ...projection, _id: 1 }).sort() : [];
+        return loaders[loader].load([id, fields.length ? fields : null]);
+      },
       contentPaths: getCanonicalPaths(req),
     };
   },
