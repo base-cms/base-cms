@@ -49,7 +49,8 @@ class BaseDB {
    * @param {object} [options] Options to pass to `Collection.findOne`.
    * @return {Promise<object|null>}
    */
-  findById(modelName, id, options) {
+  async findById(modelName, id, options) {
+    if (!id) return null;
     return this.findOne(modelName, { _id: id }, options);
   }
 
