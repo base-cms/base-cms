@@ -105,7 +105,7 @@ load(name, 56265, { name: 1 });
 load(name, 56265, { _id: 1 });
 ```
 
-Cache keys would be generated based the `load` calls. All keys start with the stringified `id` followed by a field list.  Projected requests will always add the `_id` field, sort all field names, and then concatenate them with a pipe (`|`). Non-projected requests receive a `*` value. Field names are de-duplicated.
+Cache keys would be generated based the `load` calls. All keys start with the stringified `id` followed by a field list.  Projected requests will always add the `_id` field, sort all field names, and then concatenate them with a pipe (`|`). Non-projected requests receive a `*` value. Field names are de-duplicated. The distinct list of cache keys would be:
 ```
 56163:_id|alias
 56163:_id|name
