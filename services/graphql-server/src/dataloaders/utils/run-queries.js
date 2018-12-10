@@ -1,4 +1,16 @@
-const { keys } = Object;
+const objectHash = require('object-hash');
+const { MongoDB } = require('@base-cms/db');
+
+const { ObjectID } = MongoDB;
+const { keys, values } = Object;
+
+const hashOptions = {
+  encoding: 'base64',
+  replacer: (v) => {
+    if (v instanceof ObjectID) return `${v}`;
+    return v;
+  },
+};
 
 /**
  * Given a query map input, will execute a query+projection for each
@@ -56,6 +68,15 @@ module.exports = ({
 }) => Promise.all(keys(queryMap).map((key) => {
   const v = queryMap[key];
   const { ids, projection, queries } = v;
-  const query = { _id: { $in: ids }, $or: queries };
+  const query = { _id: { $in: ids } };
+  // Only include queries where needed.
+  // In other words, if a `null` query is present, no additional filters are needed.
+  if (!queries.includes(null)) {
+    // Attempt to remove repeated queries.
+    query.$or = values(queries.reduce((o, q) => {
+      const hash = objectHash(q, hashOptions);
+      return { ...o, [hash]: q };
+    }, {}));
+  }
   return basedb.find(modelName, query, { projection });
 }));

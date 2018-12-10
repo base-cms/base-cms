@@ -39,7 +39,7 @@ const server = new ApolloServer({
         return loaders[loader].load([
           id,
           sortedFields.length ? sortedFields : null,
-          sortedQuery,
+          queryKeys.length ? sortedQuery : null,
         ]);
       },
       contentPaths: getCanonicalPaths(req),

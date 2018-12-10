@@ -45,6 +45,7 @@ module.exports = (resultSets, keys) => {
   return keys.map(([id, _, query]) => {
     const doc = resultHash[id] || null;
     if (!doc) return doc;
-    return sift(query, [doc])[0];
+    // Fallback to an empty `{}` filter when `query` is not set.
+    return sift(query || {}, [doc])[0];
   });
 };
