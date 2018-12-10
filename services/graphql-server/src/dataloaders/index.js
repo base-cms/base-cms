@@ -22,5 +22,6 @@ module.exports = basedb => ({
   platformProduct: createProjectLoader({ basedb, modelName: 'platform.Product' }),
   platformTaxonomy: createProjectLoader({ basedb, modelName: 'platform.Taxonomy' }),
   platformUser: createProjectLoader({ basedb, modelName: 'platform.User' }),
+  websiteOption: createProjectLoader({ basedb, modelName: 'website.Option' }),
   websiteSection: createProjectLoader({ basedb, modelName: 'website.Section' }),
 });
