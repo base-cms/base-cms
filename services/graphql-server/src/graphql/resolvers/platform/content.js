@@ -46,8 +46,8 @@ module.exports = {
      * Return title and description as functions, so they're only
      * executed when requested.
      */
-    metadata: (content, _, { load }) => ({
-      title: () => createTitle(content, load),
+    metadata: content => ({
+      title: () => createTitle(content),
       description: () => createDescription(content),
     }),
 
