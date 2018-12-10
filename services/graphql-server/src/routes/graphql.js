@@ -1,13 +1,11 @@
 const { Router } = require('express');
 const { ApolloServer } = require('apollo-server-express');
-const { MongoDB } = require('@base-cms/db');
 const { isObject } = require('@base-cms/common');
 const schema = require('../graphql/schema');
 const basedb = require('../basedb');
 const createLoaders = require('../dataloaders');
-const { NODE_ENV, ENABLE_MONGO_LOGGING } = require('../env');
+const { NODE_ENV } = require('../env');
 
-const { Logger } = MongoDB;
 const isProduction = NODE_ENV === 'production';
 
 const router = Router();
@@ -23,17 +21,6 @@ const server = new ApolloServer({
   playground: !isProduction ? { endpoint: '/graphql' } : false,
   introspection: true,
   context: ({ req }) => {
-    if (ENABLE_MONGO_LOGGING) {
-      const { log } = console;
-      let logCount = 0;
-      Logger.setCurrentLogger((msg) => {
-        logCount += 1;
-        log(`MONGO DB REQUEST ${logCount}: ${msg}\n`);
-      });
-      Logger.setLevel('debug');
-      Logger.filter('class', ['Cursor']);
-    }
-
     const loaders = createLoaders(basedb);
     return {
       basedb,
