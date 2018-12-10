@@ -12,7 +12,7 @@ module.exports = {
     const ref = BaseDB.get(content, 'mutations.Website.primarySection');
     const id = BaseDB.extractRefId(ref);
     if (!id) return 'home';
-    const section = await load('activeWebsiteSections', id, { alias: 1 });
+    const section = await load('websiteSections', id, { alias: 1 }, { status: 1 });
     return section ? section.alias : 'home';
   },
 };
