@@ -23,8 +23,8 @@ type MagazineSection {
   sequence: Int @projection
 
   # fields directly on magazine.model::Section
-  publication(input: MagazineSectionPublicationInput = {}): MagazinePublication @projection @refOne(model: "platform.Product", criteria: "magazinePublication")
-  issue(input: MagazineSectionIssueInput = {}): MagazineIssue @projection @refOne(model: "magazine.Issue")
+  publication(input: MagazineSectionPublicationInput = {}): MagazinePublication @projection @refOne(loader: "platformProduct", criteria: "magazinePublication")
+  issue(input: MagazineSectionIssueInput = {}): MagazineIssue @projection @refOne(loader: "magazineIssue")
 }
 
 type MagazineSectionConnection @projectUsing(type: "MagazineSection") {

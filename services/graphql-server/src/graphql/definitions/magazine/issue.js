@@ -17,9 +17,9 @@ type MagazineIssue {
   dedication: String @projection
   coverDescription: String @projection
   credit: String @projection
-  publication(input: MagazineIssuePublicationInput = {}): MagazinePublication @projection @refOne(model: "platform.Product", criteria: "magazinePublication")
+  publication(input: MagazineIssuePublicationInput = {}): MagazinePublication @projection @refOne(loader: "platformProduct", criteria: "magazinePublication")
   sections(input: MagazineIssueSectionsInput = {}): MagazineSectionConnection! @projection(localField: "_id") @refMany(model: "magazine.Section", localField: "_id", foreignField: "issue.$id")
-  coverImage: AssetImage @projection @refOne(model: "platform.Asset", criteria: "assetImage")
+  coverImage: AssetImage @projection @refOne(loader: "platformAsset", criteria: "assetImage")
   redirects: [String]! @projection @arrayValue
 
   #fields from trait.platform::StatusEnabled

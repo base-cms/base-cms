@@ -10,8 +10,8 @@ type ContentEvent implements Content & Contactable & Addressable @applyInterface
   # fields directly on platform.model::Content\Event
   cost: String
   eventType: String
-  venue(input: ContentEventVenueInput = {}): EntityVenue @refOne(model: "platform.Entity", criteria: "entityVenue")
-  organization(input: ContentEventOrganizationInput = {}): EntityOrganization @refOne(model: "platform.Entity", criteria: "entityOrganization")
+  venue(input: ContentEventVenueInput = {}): EntityVenue @refOne(loader: "platformEntity", criteria: "entityVenue")
+  organization(input: ContentEventOrganizationInput = {}): EntityOrganization @refOne(loader: "platformEntity", criteria: "entityOrganization")
   startDate: Date
   endDate: Date
   allDay: Boolean
@@ -32,7 +32,7 @@ type ContentEventEdge {
 
 type ContentEventContact {
   type: String
-  contact(input: ContentEventContactsContactInput = {}): ContentContact @refOne(model: "platform.Content", criteria: "contentContact")
+  contact(input: ContentEventContactsContactInput = {}): ContentContact @refOne(loader: "platformContent", criteria: "contentContact")
 }
 
 input ContentEventQueryInput {

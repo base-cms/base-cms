@@ -22,7 +22,7 @@ type MagazinePublication {
   # fields directly on magazine.model::Product\Publication
   issues(input: MagazinePublicationIssuesInput = {}): MagazineIssueConnection! @projection(localField: "_id") @refMany(model: "magazine.Issue", localField: "_id", foreignField: "publication.$id")
   sections(input: MagazinePublicationSectionsInput = {}): MagazineSectionConnection! @projection(localField: "_id") @refMany(model: "magazine.Section", localField: "_id", foreignField: "publication.$id")
-  coverImage: AssetImage @projection @refOne(model: "platform.Asset", criteria: "assetImage")
+  coverImage: AssetImage @projection @refOne(loader: "platformAsset", criteria: "assetImage")
   subscribeUrl: String @projection
   renewalUrl: String @projection
   reprintsUrl: String @projection

@@ -9,7 +9,7 @@ extend type Query {
 type ContentReview implements Content & Authorable @applyInterfaceFields {
   # fields directly on platform.model::Content\Review
   rating: Float
-  product(input: ContentReviewProductInput = {}): ContentProduct @refOne(model: "platform.Content", criteria: "contentProduct")
+  product(input: ContentReviewProductInput = {}): ContentProduct @refOne(loader: "platformContent", criteria: "contentProduct")
   summary: String
 }
 

@@ -25,10 +25,10 @@ type WebsiteSection {
   sequence: Int @projection
 
   # fields directly on website.model::Section
-  site(input: WebsiteSectionSiteInput = {}): WebsiteSite @projection @refOne(model: "platform.Product", criteria: "websiteSite")
-  parent(input: WebsiteSectionParentInput = {}): WebsiteSection @projection @refOne(model: "website.Section")
+  site(input: WebsiteSectionSiteInput = {}): WebsiteSite @projection @refOne(loader: "platformProduct", criteria: "websiteSite")
+  parent(input: WebsiteSectionParentInput = {}): WebsiteSection @projection @refOne(loader: "websiteSection")
   children(input: WebsiteSectionChildrenInput = {}): WebsiteSectionConnection! @projection(localField: "_id") @refMany(model: "website.Section", localField: "_id", foreignField: "parent.$id")
-  logo: AssetImage @projection @refOne(model: "platform.Asset", criteria: "assetImage")
+  logo: AssetImage @projection @refOne(loader: "platformAsset", criteria: "assetImage")
 
   # fields from trait.platform::Content\SeoFields
   # metadata: WebsiteSectionMetadata! @sectionMetadata

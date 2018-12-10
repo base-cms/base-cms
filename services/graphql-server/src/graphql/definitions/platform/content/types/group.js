@@ -8,7 +8,7 @@ extend type Query {
 
 type ContentGroup implements Content @applyInterfaceFields {
   # fields directly on platform.model::Content\Group
-  parentGroup(input: ContentGroupParentGroupInput = {}): ContentGroup @refOne(model: "platform.Content", criteria: "contentGroup")
+  parentGroup(input: ContentGroupParentGroupInput = {}): ContentGroup @refOne(loader: "platformContent", criteria: "contentGroup")
   areaTypes: [String]! @arrayValue
   inQuarters(input: ContentGroupInQuartersInput = {}): ContentInQuartersConnection! @refMany(model: "platform.Content", localField: "_id", foreignField: "group", criteria: "contentInQuarters")
   apparatuses(input: ContentGroupAppratusesInput = {}): ContentApparatusConnection! @refMany(model: "platform.Content", localField: "_id", foreignField: "group", criteria: "contentApparatus")

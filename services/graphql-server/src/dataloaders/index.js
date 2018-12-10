@@ -16,8 +16,11 @@ const createProjectLoader = ({ basedb, modelName }) => new DataLoader(async (key
 }, { cacheKeyFn: projectCacheKey });
 
 module.exports = basedb => ({
-  /**
-   *
-   */
-  websiteSections: createProjectLoader({ basedb, modelName: 'website.Section' }),
+  platformAsset: createProjectLoader({ basedb, modelName: 'platform.Asset' }),
+  platformContent: createProjectLoader({ basedb, modelName: 'platform.Content' }),
+  platformEntity: createProjectLoader({ basedb, modelName: 'platform.Entity' }),
+  platformProduct: createProjectLoader({ basedb, modelName: 'platform.Product' }),
+  platformTaxonomy: createProjectLoader({ basedb, modelName: 'platform.Taxonomy' }),
+  platformUser: createProjectLoader({ basedb, modelName: 'platform.User' }),
+  websiteSection: createProjectLoader({ basedb, modelName: 'website.Section' }),
 });

@@ -18,9 +18,9 @@ type ContentApparatus implements Content & Authorable @applyInterfaceFields {
   manufacturer: String
   transmission: String
   apparatusType: String
-  chassisManufacturer(input: ContentApparatusChassisManufacturerInput = {}): ContentCompany @refOne(model: "platform.Content", criteria: "contentCompany")
+  chassisManufacturer(input: ContentApparatusChassisManufacturerInput = {}): ContentCompany @refOne(loader: "platformContent", criteria: "contentCompany")
   state: String
-  group(input: ContentApparatusGroupInput = {}): ContentGroup @refOne(model: "platform.Content", criteria: "contentGroup")
+  group(input: ContentApparatusGroupInput = {}): ContentGroup @refOne(loader: "platformContent", criteria: "contentGroup")
   model: String
 }
 

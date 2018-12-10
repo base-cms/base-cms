@@ -13,7 +13,7 @@ type WebsiteOption {
   id: Int! @projection(localField: "_id") @value(localField: "_id")
   name: String @projection
   description: String @projection
-  site(input: WebsiteOptionSiteInput = {}): WebsiteSite @projection @refOne(model: "platform.Product", criteria: "websiteSite")
+  site(input: WebsiteOptionSiteInput = {}): WebsiteSite @projection @refOne(loader: "platformProduct", criteria: "websiteSite")
 
   # fields from platform.trait::StatusEnabled
   status: Int @projection

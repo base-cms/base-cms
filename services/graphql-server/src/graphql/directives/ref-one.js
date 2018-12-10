@@ -12,14 +12,12 @@ class RefOneDirective extends SchemaDirectiveVisitor {
    */
   visitFieldDefinition(field) {
     // eslint-disable-next-line no-param-reassign
-    field.resolve = async (doc, { input = {} }, { basedb }, { returnType, fieldNodes }) => {
-      const start = process.hrtime();
+    field.resolve = async (doc, { input = {} }, { load }, { returnType, fieldNodes }) => {
       const projection = getProjection(returnType, getSelected(fieldNodes[0].selectionSet));
 
       const {
-        model,
+        loader,
         localField,
-        foreignField,
         criteria,
       } = this.args;
 
@@ -28,11 +26,8 @@ class RefOneDirective extends SchemaDirectiveVisitor {
       const id = BaseDB.extractRefId(ref);
       if (!id) return null;
 
-      const query = { [foreignField]: id, ...criteriaFor(criteria), ...formatStatus(input.status) };
-
-      const result = await basedb.findOne(model, query, { projection });
-      basedb.log('@refOne', start, { model });
-      return result;
+      const query = { ...criteriaFor(criteria), ...formatStatus(input.status) };
+      return load(loader, id, projection, query);
     };
   }
 }

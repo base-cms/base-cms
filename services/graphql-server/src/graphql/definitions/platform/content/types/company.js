@@ -9,7 +9,7 @@ extend type Query {
 type ContentCompany implements Content & Contactable & Addressable @applyInterfaceFields {
   # fields directly on platform.model::Content\Company
   companyType: String
-  parentCompany(input: ContentCompanyParentCompanyInput = {}): ContentCompany @refOne(model: "platform.Content" criteria: "contentCompany")
+  parentCompany(input: ContentCompanyParentCompanyInput = {}): ContentCompany @refOne(loader: "platformContent" criteria: "contentCompany")
   brandsCarried(input: ContentCompanyBrandsCarriedInput = {}): ContentCompanyConnection! @refMany(model: "platform.Content" criteria: "contentCompany")
   statesServed: [String]! @arrayValue
   listingContacts(input: ContentCompanyListingContactsInput = {}): ContentContactConnection! @refMany(model: "platform.Content", criteria: "contentContact")
@@ -23,7 +23,7 @@ type ContentCompany implements Content & Contactable & Addressable @applyInterfa
   leadsDelivery: Boolean @value(localField: "mutations.Website.leadsDelivery")
   enableRmi: Boolean @value(localField: "mutations.Website.enableRmi")
   featuredCategories(input: ContentCompanyFeaturedCategoriesInput = {}): TaxonomyConnection! @refMany(model: "platform.Taxonomy", localField: "mutations.Website.featuredCategories", criteria: "taxonomyCategory")
-  primaryCategory(input: ContentCompanyPrimaryCategoryInput = {}): Taxonomy @refOne(model: "platform.Taxonomy", localField: "mutations.Website.primaryCategory")
+  primaryCategory(input: ContentCompanyPrimaryCategoryInput = {}): Taxonomy @refOne(loader: "platformTaxonomy", localField: "mutations.Website.primaryCategory")
 
   # GraphQL-only fields.
   # @see Cygnus\ApplicationBundle\Icarus\BlockHandler::PlatformContentCompanyContentQuery

@@ -19,7 +19,7 @@ type Taxonomy {
   status: Int @projection
   redirects: [String]! @projection @arrayValue
   sequence: Int @projection
-  parent(input: TaxonomyParentInput = {}): Taxonomy @projection @refOne(model: "platform.Taxonomy")
+  parent(input: TaxonomyParentInput = {}): Taxonomy @projection @refOne(loader: "platformTaxonomy")
   children(input: TaxonomyChildrenInput = {}): TaxonomyConnection! @projection(localField: "_id") @refMany(model: "platform.Taxonomy", localField: "_id", foreignField: "parent.$id")
 }
 

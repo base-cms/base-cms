@@ -21,7 +21,7 @@ type EmailSection {
   sequence: Int @projection
 
   # fields directly on email.model::Section
-  newsletter(input: EmailSectionNewsletterInput = {}): EmailNewsletter @projection(localField: "deployment") @refOne(model: "platform.Product", localField: "deployment", criteria: "emailNewsletter")
+  newsletter(input: EmailSectionNewsletterInput = {}): EmailNewsletter @projection(localField: "deployment") @refOne(loader: "platformProduct", localField: "deployment", criteria: "emailNewsletter")
 
   # fields from trait.platform::Content\SeoFields
   seoTitle: String @projection

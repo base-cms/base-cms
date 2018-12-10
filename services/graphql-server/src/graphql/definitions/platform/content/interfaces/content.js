@@ -15,12 +15,12 @@ interface Content @requiresProject(fields: ["type"]) {
   touched: Date @projection
   published: Date @projection
   unpublished: Date @projection
-  createdBy: User @projection @refOne(model: "platform.User")
-  updatedBy: User @projection @refOne(model: "platform.User")
+  createdBy: User @projection @refOne(loader: "platformUser")
+  updatedBy: User @projection @refOne(loader: "platformUser")
 
   # fields that used to be model specific, but were moved to the root
   deck: String @projection(localField: "mutations.Magazine.deck") @value(localField: "mutations.Magazine.deck")
-  company(input: ContentCompanyInput = {}): ContentCompany @projection @refOne(model: "platform.Content", criteria: "contentCompany")
+  company(input: ContentCompanyInput = {}): ContentCompany @projection @refOne(loader: "platformContent", criteria: "contentCompany")
 
   # fields from platform.trait::StatusEnabled
   status: Int @projection
@@ -38,13 +38,13 @@ interface Content @requiresProject(fields: ["type"]) {
   relatedTo(input: ContentRelatedToInput = {}): ContentConnection! @projection @refMany(model: "platform.Content", criteria: "content")
 
   # fields from platform.trait::MediaRelatable
-  primaryImage: AssetImage @projection @refOne(model: "platform.Asset", criteria: "assetImage")
+  primaryImage: AssetImage @projection @refOne(loader: "platformAsset", criteria: "assetImage")
   images(input: ContentImagesInput = {}): AssetImageConnection! @projection @refMany(model: "platform.Asset", criteria: "assetImage")
 
   # fields from platform.model::Content mutations
   # schedules: PlatformContentSchedules! @passThru
-  primarySite(input: ContentPrimarySiteInput = {}): WebsiteSite @projection(localField: "mutations.Website.primarySite") @refOne(model: "platform.Product", localField: "mutations.Website.primarySite", criteria: "websiteSite")
-  primarySection(input: ContentPrimarySectionInput = {}): WebsiteSection @projection(localField: "mutations.Website.primarySection") @refOne(model: "website.Section", localField: "mutations.Website.primarySection")
+  primarySite(input: ContentPrimarySiteInput = {}): WebsiteSite @projection(localField: "mutations.Website.primarySite") @refOne(loader: "platformProduct", localField: "mutations.Website.primarySite", criteria: "websiteSite")
+  primarySection(input: ContentPrimarySectionInput = {}): WebsiteSection @projection(localField: "mutations.Website.primarySection") @refOne(loader: "websiteSection", localField: "mutations.Website.primarySection")
 
   # fields from platform.trait::Content\SeoFields
   seoTitle: String @projection(localField: "mutations.Website.seoTitle", needs: ["name"]) @value(localField: "mutations.Website.seoTitle", fallbackField: "name")

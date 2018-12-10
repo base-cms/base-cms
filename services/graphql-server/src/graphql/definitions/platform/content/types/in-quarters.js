@@ -9,7 +9,7 @@ extend type Query {
 type ContentInQuarters implements Content & Authorable @applyInterfaceFields {
   # fields directly on platform.model::Content\InQuarters
   email: String
-  group(input: ContentInQuartersGroupInput = {}): ContentGroup @refOne(model: "platform.Content", criteria: "contentGroup")
+  group(input: ContentInQuartersGroupInput = {}): ContentGroup @refOne(loader: "platformContent", criteria: "contentGroup")
   state: String
   year: Int
   engines: Int
