@@ -178,3 +178,6 @@ const return = [
   { _id: 56265, alias: 'foo', name: 'bar', description: 'baz' },
 ];
 ```
+
+## Collection Indexing
+See `src/graphql/utils/indexes.js` for a list of indices required by the GraphQL API. There are also a number of indices that already exist on each collection. An analysis should be performed to determine which are needed.
