@@ -4,6 +4,7 @@ const pathResolvers = require('../../utils/content-path-resolvers');
 const { createTitle, createDescription } = require('../../utils/content');
 const defaultContentTypes = require('../../utils/content-types');
 const getDescendantIds = require('../../utils/website-section-child-ids');
+const getDefaultOption = require('../../utils/get-default-option');
 const connectionProjection = require('../../utils/connection-projection');
 
 const { isArray } = Array;
@@ -145,17 +146,15 @@ module.exports = {
         pagination,
       } = input;
 
-      const now = new Date();
-      let sectionIds = sectionId;
-      if (sectionBubbling) {
-        const descendantIds = await getDescendantIds(sectionId, basedb);
-        if (descendantIds.length) {
-          sectionIds = { $in: descendantIds };
-        }
-      }
+      const [descendantIds, defaultOption] = await Promise.all([
+        sectionBubbling ? getDescendantIds(sectionId, basedb) : Promise.resolve([]),
+        !optionId ? getDefaultOption(basedb) : Promise.resolve(null),
+      ]);
 
+      const now = new Date();
       const $elemMatch = {
-        sectionId: sectionIds,
+        sectionId: descendantIds.length ? { $in: descendantIds } : sectionId,
+        optionId: defaultOption ? defaultOption._id : optionId,
         start: { $lte: now },
         $and: [
           {
@@ -167,22 +166,9 @@ module.exports = {
         ],
       };
 
-      if (!optionId) {
-        const defaultOption = await basedb.strictFindOne('website.Option', {
-          name: 'Standard',
-          status: 1,
-        }, {
-          projection: { _id: 1 },
-        });
-        $elemMatch.optionId = defaultOption._id;
-      } else {
-        $elemMatch.optionId = optionId;
-      }
-
       if (excludeSectionIds.length) {
         $elemMatch.$and.push({ sectionId: { $nin: excludeSectionIds } });
       }
-
       const query = { schedules: { $elemMatch } };
       if (requiresImage) {
         query.hasImage = true;
