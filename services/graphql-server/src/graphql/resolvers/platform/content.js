@@ -4,6 +4,7 @@ const pathResolvers = require('../../utils/content-path-resolvers');
 const { createTitle, createDescription } = require('../../utils/content');
 const defaultContentTypes = require('../../utils/content-types');
 const getDescendantIds = require('../../utils/website-section-child-ids');
+const connectionProjection = require('../../utils/connection-projection');
 
 const { isArray } = Array;
 
@@ -82,7 +83,7 @@ module.exports = {
     /**
      *
      */
-    allPublishedContent: async (_, { input }, { basedb }) => {
+    allPublishedContent: async (_, { input }, { basedb }, info) => {
       const {
         since,
         sectionId,
@@ -119,9 +120,11 @@ module.exports = {
         query['mutations.Website.primarySection.$id'] = sectionIds;
       }
 
+      const projection = connectionProjection(info);
       return basedb.paginate('platform.Content', {
         query,
         sort,
+        projection,
         ...pagination,
       });
     },
@@ -129,7 +132,7 @@ module.exports = {
     /**
      *
      */
-    websiteScheduledContent: async (_, { input }, { basedb }) => {
+    websiteScheduledContent: async (_, { input }, { basedb }, info) => {
       const {
         sectionId,
         optionId,
@@ -204,16 +207,18 @@ module.exports = {
         ...pagination,
       });
 
-      const { edges } = paginated;
-      const contentIds = edges.map(({ node }) => node.contentId);
-      const content = await basedb.findAsArray('platform.Content', { _id: { $in: contentIds } });
-
       return {
         ...paginated,
-        edges: edges.map(({ node, cursor }) => {
-          const item = content.find(c => c._id === node.contentId);
-          return { cursor, node: item };
-        }),
+        edges: async () => {
+          const scheduleEdges = paginated.edges();
+          const contentIds = scheduleEdges.map(({ node }) => node.contentId);
+          const projection = connectionProjection(info);
+          const content = await basedb.find('platform.Content', { _id: { $in: contentIds } }, { projection });
+          return scheduleEdges.map(({ node, cursor }) => {
+            const item = content.find(c => c._id === node.contentId);
+            return { cursor, node: item };
+          });
+        },
       };
     },
   },
