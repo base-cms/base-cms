@@ -181,3 +181,10 @@ const return = [
 
 ## Collection Indexing
 See `src/graphql/utils/indexes.js` for a list of indices required by the GraphQL API. There are also a number of indices that already exist on each collection. An analysis should be performed to determine which are needed.
+
+## Embedded Document Considerations
+Content queries frequently request `primarySection`, `primaryImage` and `company` relationships. Data loaders, along with the async nature of GraphQL, significantly reduce query overhead (and perceived response time), it might be worth embedding these values directly on content. The original fields would need to be maintained for compatibility purposes, but new fields could be created and resolved by GraphQL. This would require changes to the PHP implementation of Base Platform, namely:
+- Event subscribers would need to update all references to related website sections, asset images, and company content when these items change.
+- Imports would need to account for the new embedded fields when onboarding new websites.
+
+In addition, the `website.SectionQuery` collection could be written directly onto content itself.
