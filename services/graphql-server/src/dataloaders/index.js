@@ -8,15 +8,10 @@ const {
   runQueries,
 } = require('./utils');
 
-const createProjectLoader = ({ basedb, modelName, criteria }) => new DataLoader(async (keys) => {
+const createProjectLoader = ({ basedb, modelName }) => new DataLoader(async (keys) => {
   const map = mapKeys(keys);
   const queryMap = mapQuery(map);
-  const resultSets = await runQueries({
-    queryMap,
-    basedb,
-    modelName,
-    criteria,
-  });
+  const resultSets = await runQueries({ queryMap, basedb, modelName });
   return returnResults(resultSets, keys);
 }, { cacheKeyFn: projectCacheKey });
 
@@ -24,9 +19,5 @@ module.exports = basedb => ({
   /**
    *
    */
-  activeWebsiteSections: createProjectLoader({
-    basedb,
-    modelName: 'website.Section',
-    criteria: { status: 1 },
-  }),
+  websiteSections: createProjectLoader({ basedb, modelName: 'website.Section' }),
 });

@@ -53,9 +53,9 @@ module.exports = ({
   queryMap,
   basedb,
   modelName,
-  criteria,
 }) => Promise.all(keys(queryMap).map((key) => {
   const v = queryMap[key];
-  const { ids, projection } = v;
-  return basedb.find(modelName, { _id: { $in: ids }, ...criteria }, { projection });
+  const { ids, projection, queries } = v;
+  const query = { _id: { $in: ids }, $or: queries };
+  return basedb.find(modelName, query, { projection });
 }));

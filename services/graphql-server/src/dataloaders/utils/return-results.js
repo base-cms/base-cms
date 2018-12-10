@@ -1,3 +1,5 @@
+const sift = require('sift').default;
+
 /**
  * Takes array of result sets and creates a result hash map
  * based on each document id.
@@ -39,5 +41,10 @@
 module.exports = (resultSets, keys) => {
   const resultHash = resultSets
     .reduce((o, docs) => docs.reduce((h, doc) => ({ ...h, [doc._id]: doc }), o), {});
-  return keys.map(([id]) => (resultHash[id] || null));
+  // eslint-disable-next-line no-unused-vars
+  return keys.map(([id, _, query]) => {
+    const doc = resultHash[id] || null;
+    if (!doc) return doc;
+    return sift(query, [doc])[0];
+  });
 };

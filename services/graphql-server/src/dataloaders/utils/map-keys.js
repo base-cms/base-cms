@@ -27,12 +27,13 @@
   }
   ```
  */
-module.exports = keys => keys.reduce((o, [id, fields]) => {
-  if (!o[id]) o[id] = { _id: id, set: new Set() };
+module.exports = keys => keys.reduce((o, [id, fields, query]) => {
+  if (!o[id]) o[id] = { _id: id, set: new Set(), queries: [] };
   if (!fields) {
     o[id].set = null;
   } else if (o[id].set) {
     o[id].set = new Set([...fields, ...o[id].set]);
   }
+  o[id].queries.push(query);
   return o;
 }, {});
