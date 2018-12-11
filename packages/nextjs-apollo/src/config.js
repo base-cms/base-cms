@@ -3,10 +3,6 @@ import { ApolloLink } from 'apollo-link';
 import { onError } from 'apollo-link-error';
 import fetch from 'isomorphic-unfetch';
 
-// const { HttpLink } = apolloLinkHttp;
-// const { ApolloLink } = apolloLink;
-// const { onError } = apolloLinkError;
-
 const { log } = console;
 
 export default (req) => {
