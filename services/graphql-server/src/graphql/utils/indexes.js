@@ -65,6 +65,9 @@ module.exports = {
           unpublished: 1,
           primaryImage: 1,
         },
+        // Section query indexes
+        { 'sectionQuery.sectionId': 1, 'sectionQuery.optionId': 1 },
+        { 'sectionQuery.sectionId': 1, 'sectionQuery.optionId': 1, primaryImage: 1 },
       ],
       sort: [
         [{ name: 1, _id: 1 }, { collation: { locale: 'en_US' } }],
@@ -72,6 +75,8 @@ module.exports = {
         { updated: 1, _id: 1 },
         { created: 1, _id: 1 },
         { published: 1, _id: 1 },
+        // Section query sort
+        { 'sectionQuery.0.start': -1, _id: -1 },
       ],
     },
     Product: {
@@ -120,16 +125,6 @@ module.exports = {
         [{ name: 1, _id: 1 }, { collation: { locale: 'en_US' } }],
         [{ fullName: 1, _id: 1 }, { collation: { locale: 'en_US' } }],
         { sequence: 1, _id: 1 },
-      ],
-    },
-    SectionQuery: {
-      query: [
-        [{ contentId: 1 }, { unique: true }],
-        { 'schedules.sectionId': 1, 'schedules.optionId': 1 },
-        { 'schedules.sectionId': 1, 'schedules.optionId': 1, hasImage: 1 },
-      ],
-      sort: [
-        { 'schedules.0.start': -1, _id: -1 },
       ],
     },
   },
