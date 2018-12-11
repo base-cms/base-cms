@@ -169,43 +169,29 @@ module.exports = {
       if (excludeSectionIds.length) {
         $elemMatch.$and.push({ sectionId: { $nin: excludeSectionIds } });
       }
-      const query = { schedules: { $elemMatch } };
+      const query = { sectionQuery: { $elemMatch } };
       if (requiresImage) {
-        query.hasImage = true;
+        query.primaryImage = { $exists: true };
       }
       if (includeContentTypes.length) {
         if (!isArray(query.$and)) query.$and = [];
-        query.$and.push({ contentType: { $in: includeContentTypes } });
+        query.$and.push({ type: { $in: includeContentTypes } });
       }
       if (excludeContentTypes.length) {
         if (!isArray(query.$and)) query.$and = [];
-        query.$and.push({ contentType: { $nin: excludeContentTypes } });
+        query.$and.push({ type: { $nin: excludeContentTypes } });
       }
       if (excludeContentIds.length) {
-        query.contentId = { $nin: excludeContentIds };
+        query._id = { $nin: excludeContentIds };
       }
 
-      const paginated = await basedb.paginate('website.SectionQuery', {
+      const projection = connectionProjection(info);
+      return basedb.paginate('platform.Content', {
         query,
-        collate: false,
-        sort: { field: 'schedules.0.start', order: 'desc' },
-        projection: { contentId: 1, 'schedules.$.start': 1 },
+        sort: { field: 'sectionQuery.0.start', order: 'desc' },
+        projection,
         ...pagination,
       });
-
-      return {
-        ...paginated,
-        edges: async () => {
-          const scheduleEdges = paginated.edges();
-          const contentIds = scheduleEdges.map(({ node }) => node.contentId);
-          const projection = connectionProjection(info);
-          const content = await basedb.find('platform.Content', { _id: { $in: contentIds } }, { projection });
-          return scheduleEdges.map(({ node, cursor }) => {
-            const item = content.find(c => c._id === node.contentId);
-            return { cursor, node: item };
-          });
-        },
-      };
     },
   },
 };
