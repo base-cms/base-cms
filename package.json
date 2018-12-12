@@ -10,6 +10,7 @@
   ],
   "scripts": {
     "build": "scripts/lerna.sh run build",
+    "test": "scripts/lerna.sh run test",
     "patch": "scripts/lerna.sh version",
     "lint": "scripts/lint.sh"
   },
