@@ -71,7 +71,6 @@ module.exports = {
       ],
       sort: [
         [{ name: 1, _id: 1 }, { collation: { locale: 'en_US' } }],
-        [{ fullName: 1, _id: 1 }, { collation: { locale: 'en_US' } }],
         { updated: 1, _id: 1 },
         { created: 1, _id: 1 },
         { published: 1, _id: 1 },

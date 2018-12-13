@@ -62,7 +62,6 @@ enum ContentTypeFormat {
 enum ContentSortField {
   id
   name
-  fullName
   created
   updated
   published
