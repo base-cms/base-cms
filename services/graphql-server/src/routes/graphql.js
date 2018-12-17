@@ -19,7 +19,7 @@ const getCanonicalPaths = (req) => {
 
 const server = new ApolloServer({
   schema,
-  playground: !isProduction ? { endpoint: '/graphql' } : false,
+  playground: !isProduction ? { endpoint: '/' } : false,
   introspection: true,
   context: ({ req }) => {
     const loaders = createLoaders(basedb);
