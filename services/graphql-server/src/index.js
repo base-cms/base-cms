@@ -1,28 +1,34 @@
-const basedb = require('./basedb');
+const http = require('http');
+const { createTerminus } = require('@godaddy/terminus');
 const app = require('./app');
 const pkg = require('../package.json');
+const services = require('./services');
+const { log } = require('./output');
 
-const { log } = console;
+const server = http.createServer(app);
 
 const run = async () => {
-  log(`Starting '${pkg.name}'...`);
+  await services.start();
 
-  const client = await basedb.client.connect();
-  log(`BaseCMS DB connected to ${client.s.url} for ${basedb.tenant}`);
+  createTerminus(server, {
+    timeout: 1000,
+    signals: ['SIGTERM', 'SIGINT', 'SIGHUP', 'SIGQUIT'],
+    healthChecks: { '/_health': () => services.ping() },
+    onSignal: () => {
+      log('> Cleaning up...');
+      return services.stop().catch(e => log('> CLEANUP ERRORS:', e));
+    },
+    onShutdown: () => log('> Cleanup finished. Shutting down.'),
+  });
 
-  const server = await app(80);
-  log('> Ready on http://0.0.0.0:10002/graphql');
-
-  const graceful = () => {
-    log(`Stopping '${pkg.name}'...`);
-    server.stop(() => {
-      log('Web server stopped.');
-      client.close().then(() => log('> Stopped'));
-    });
-  };
-
-  process.on('SIGTERM', graceful);
-  process.on('SIGINT', graceful);
+  server.listen(80, () => log('> Ready on http://0.0.0.0:10002'));
 };
 
+// Simulate future NodeJS behavior by throwing unhandled Promise rejections.
+process.on('unhandledRejection', (e) => {
+  log('> Unhandled promise rejection. Throwing error...');
+  throw e;
+});
+
+log(`> Booting ${pkg.name} v${pkg.version}...`);
 run().catch(e => setImmediate(() => { throw e; }));
