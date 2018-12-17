@@ -4,16 +4,14 @@ const fs = require('fs');
 const env = require('./src/env');
 
 const { log } = console;
-const { BASE4_GRAPHQL_URL, BASE4_TENANT_KEY, BASE4_API_TOKEN } = env;
+const { GRAPHQL_URL } = env;
 
 // @see https://www.apollographql.com/docs/react/advanced/fragments.html
 
-fetch(BASE4_GRAPHQL_URL, {
+fetch(GRAPHQL_URL, {
   method: 'POST',
   headers: {
     'content-type': 'application/json',
-    authorization: `Bearer ${BASE4_API_TOKEN}`,
-    'x-tenant-key': BASE4_TENANT_KEY,
   },
   body: JSON.stringify({
     query: `
