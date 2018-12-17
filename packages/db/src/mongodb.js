@@ -34,6 +34,17 @@ class Client {
 
   /**
    *
+   * @param {object} command
+   * @param {object} options
+   */
+  async command(command, options) {
+    const client = await this.connect();
+    const db = await client.db('test');
+    return db.command(command, options);
+  }
+
+  /**
+   *
    * @param {boolean} force
    */
   async close(force) {
