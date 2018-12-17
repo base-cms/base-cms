@@ -7,6 +7,8 @@ To utilize the Express website server, follow these steps
 - Using the factory, create the `app` (with options, if desired)
 - Instruct the `app` to listen for web requests
 
+**Note:** You _must_ have the `graphql` peer dependency installed in your project. To do so, run `yarn add graphql`.
+
 For example:
 
 ```js
