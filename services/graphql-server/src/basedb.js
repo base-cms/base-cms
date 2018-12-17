@@ -12,6 +12,11 @@ const DEV = NODE_ENV === 'development';
 const { log } = console;
 
 const client = new MongoDB.Client(MONGO_DSN, {
+  bufferMaxEntries: 0,
+  connectTimeoutMS: 200,
+  ignoreUndefined: true,
+  reconnectInterval: 200, // only affects single server connects
+  reconnectTries: 15, // only affects single server connects
   useNewUrlParser: true,
 });
 
@@ -26,4 +31,8 @@ const shouldLog = () => {
   return ENABLE_BASEDB_LOGGING;
 };
 
-module.exports = new BaseDB({ tenant, client, logger: shouldLog() ? logger : undefined });
+module.exports = new BaseDB({
+  tenant,
+  client,
+  logger: shouldLog() ? logger : undefined,
+});
