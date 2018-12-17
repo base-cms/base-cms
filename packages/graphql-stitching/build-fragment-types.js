@@ -1,6 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 const fetch = require('isomorphic-unfetch');
 const fs = require('fs');
+const path = require('path');
 const env = require('./src/env');
 
 const { log } = console;
@@ -35,7 +36,7 @@ fetch(GRAPHQL_URL, {
   );
   // eslint-disable-next-line no-param-reassign
   result.data.__schema.types = filteredData;
-  fs.writeFile('./fragment-types.json', JSON.stringify(result.data), (err) => {
+  fs.writeFile(path.join(__dirname, 'fragment-types.json'), JSON.stringify(result.data), (err) => {
     if (err) log('Error writing fragmentTypes file', err);
     log('Fragment types successfully extracted!');
   });
