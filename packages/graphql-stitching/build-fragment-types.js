@@ -2,10 +2,9 @@
 const fetch = require('isomorphic-unfetch');
 const fs = require('fs');
 const path = require('path');
-const env = require('./src/env');
 
 const { log } = console;
-const { GRAPHQL_URL } = env;
+const { GRAPHQL_URL } = process.env;
 
 // @see https://www.apollographql.com/docs/react/advanced/fragments.html
 

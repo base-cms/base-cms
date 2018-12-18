@@ -2,28 +2,37 @@ const { HttpLink } = require('apollo-link-http');
 const { ApolloLink } = require('apollo-link');
 const { setContext } = require('apollo-link-context');
 const fetch = require('isomorphic-unfetch');
-const env = require('./env');
 
-const {
-  GRAPHQL_URL,
-  CONTENT_CANONICAL_PATHS,
-} = env;
+let link;
+const defaultCanonicalPaths = ['sectionAlias', 'type', 'id', 'slug'];
 
-module.exports = ApolloLink.from([
-  /**
-   *
-   */
-  setContext(() => ({
-    headers: {
-      'x-content-canonical-paths': CONTENT_CANONICAL_PATHS.join(','),
-    },
-  })),
+module.exports = ({
+  uri,
+  contentCanonicalPaths,
+}) => {
+  const paths = Array.isArray(contentCanonicalPaths)
+    ? contentCanonicalPaths
+    : defaultCanonicalPaths;
 
-  /**
-   *
-   */
-  new HttpLink({
-    uri: GRAPHQL_URL,
-    fetch,
-  }),
-]);
+  if (!link) {
+    link = ApolloLink.from([
+      /**
+       *
+       */
+      setContext(() => ({
+        headers: {
+          'x-content-canonical-paths': paths.join(','),
+        },
+      })),
+
+      /**
+       *
+       */
+      new HttpLink({
+        uri,
+        fetch,
+      }),
+    ]);
+  }
+  return link;
+};

@@ -1,8 +1,7 @@
 const { execute, makePromise } = require('apollo-link');
-const link = require('./link');
 
-module.exports = {
+module.exports = link => ({
   query(operation) {
     return makePromise(execute(link, operation));
   },
-};
+});
