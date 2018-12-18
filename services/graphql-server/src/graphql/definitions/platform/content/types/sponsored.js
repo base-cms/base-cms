@@ -7,7 +7,7 @@ extend type Query {
 }
 
 type ContentSponsored implements Content & Authorable @applyInterfaceFields {
-  id: Int! @value(localField: "_id")
+  id: Int! @projection @value(localField: "_id")
 }
 
 type ContentSponsoredConnection {

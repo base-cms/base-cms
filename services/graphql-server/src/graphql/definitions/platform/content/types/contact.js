@@ -8,7 +8,7 @@ extend type Query {
 
 type ContentContact implements Content & Contactable & Addressable @applyInterfaceFields {
   # fields directly on platform.model::Content\Contact
-  socialLinks: [EntityStubSocial]! @arrayValue
+  socialLinks: [EntityStubSocial]! @projection @arrayValue
 
   # GraphQL-only fields
   # @todo Implement

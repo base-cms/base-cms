@@ -8,8 +8,8 @@ extend type Query {
 
 type ContentPromotion implements Content @applyInterfaceFields {
   # fields directly on platform.model::Content\Promotion
-  linkText: String
-  linkUrl: String
+  linkText: String @projection
+  linkUrl: String @projection
 }
 
 type ContentPromotionConnection {

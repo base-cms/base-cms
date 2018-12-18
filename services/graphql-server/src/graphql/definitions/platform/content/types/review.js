@@ -8,9 +8,9 @@ extend type Query {
 
 type ContentReview implements Content & Authorable @applyInterfaceFields {
   # fields directly on platform.model::Content\Review
-  rating: Float
-  product(input: ContentReviewProductInput = {}): ContentProduct @refOne(loader: "platformContent", criteria: "contentProduct")
-  summary: String
+  rating: Float @projection
+  product(input: ContentReviewProductInput = {}): ContentProduct @projection @refOne(loader: "platformContent", criteria: "contentProduct")
+  summary: String @projection
 }
 
 type ContentReviewConnection {

@@ -8,9 +8,9 @@ extend type Query {
 
 type ContentWebinar implements Content & Media @applyInterfaceFields {
   # fields directly on platform.model::Content\Webinar
-  startDate: Date
-  duration: Int
-  linkUrl: String
+  startDate: Date @projection
+  duration: Int @projection
+  linkUrl: String @projection
 }
 
 type ContentWebinarConnection {

@@ -7,7 +7,7 @@ extend type Query {
 }
 
 type ContentInfographic implements Content & Media @applyInterfaceFields {
-  id: Int! @value(localField: "_id")
+  id: Int! @projection @value(localField: "_id")
 }
 
 type ContentInfographicConnection {

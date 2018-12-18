@@ -8,8 +8,8 @@ extend type Query {
 
 type ContentEbook implements Content @applyInterfaceFields {
   # fields directly on platform.model::Content\Ebook
-  linkText: String
-  linkUrl: String
+  linkText: String @projection
+  linkUrl: String @projection
 }
 
 type ContentEbookConnection {

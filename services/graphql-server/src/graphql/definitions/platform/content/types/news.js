@@ -8,9 +8,9 @@ extend type Query {
 
 type ContentNews implements Content & Authorable @applyInterfaceFields {
   # fields directly on platform.model::Content\News
-  source: String
-  byline: String
-  importSource: String
+  source: String @projection
+  byline: String @projection
+  importSource: String @projection
 }
 
 type ContentNewsConnection {

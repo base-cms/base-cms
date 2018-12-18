@@ -8,23 +8,23 @@ extend type Query {
 
 type ContentGroup implements Content @applyInterfaceFields {
   # fields directly on platform.model::Content\Group
-  parentGroup(input: ContentGroupParentGroupInput = {}): ContentGroup @refOne(loader: "platformContent", criteria: "contentGroup")
-  areaTypes: [String]! @arrayValue
-  inQuarters(input: ContentGroupInQuartersInput = {}): ContentInQuartersConnection! @refMany(model: "platform.Content", localField: "_id", foreignField: "group", criteria: "contentInQuarters")
-  apparatuses(input: ContentGroupAppratusesInput = {}): ContentApparatusConnection! @refMany(model: "platform.Content", localField: "_id", foreignField: "group", criteria: "contentApparatus")
-  services: [String]! @arrayValue
-  annualBudget: [String]! @arrayValue
-  groupType: String
-  municipality: String
-  personnel: [String]! @arrayValue
-  chief: String
-  activeCareer: Int
-  nonActiveCareer: Int
-  activeVolunteer: Int
-  nonActiveVolunteer: Int
-  activePaidPerCall: Int
-  nonActivePaidPerCall: Int
-  annualCallStatistics: Int
+  parentGroup(input: ContentGroupParentGroupInput = {}): ContentGroup @projection @refOne(loader: "platformContent", criteria: "contentGroup")
+  areaTypes: [String]! @projection @arrayValue
+  inQuarters(input: ContentGroupInQuartersInput = {}): ContentInQuartersConnection! @projection(localField: "_id") @refMany(model: "platform.Content", localField: "_id", foreignField: "group", criteria: "contentInQuarters")
+  apparatuses(input: ContentGroupAppratusesInput = {}): ContentApparatusConnection! @projection(localField: "_id") @refMany(model: "platform.Content", localField: "_id", foreignField: "group", criteria: "contentApparatus")
+  services: [String]! @projection @arrayValue
+  annualBudget: [String]! @projection @arrayValue
+  groupType: String @projection
+  municipality: String @projection
+  personnel: [String]! @projection @arrayValue
+  chief: String @projection
+  activeCareer: Int @projection
+  nonActiveCareer: Int @projection
+  activeVolunteer: Int @projection
+  nonActiveVolunteer: Int @projection
+  activePaidPerCall: Int @projection
+  nonActivePaidPerCall: Int @projection
+  annualCallStatistics: Int @projection
 }
 
 type ContentGroupConnection {

@@ -8,20 +8,20 @@ extend type Query {
 
 type ContentApparatus implements Content & Authorable @applyInterfaceFields {
   # fields directly on platform.model::Content\Apparatus
-  aerial: String
-  email: String
-  engine: String
-  generator: String
-  pump: String
-  tank: String
-  year: Int
-  manufacturer: String
-  transmission: String
-  apparatusType: String
-  chassisManufacturer(input: ContentApparatusChassisManufacturerInput = {}): ContentCompany @refOne(loader: "platformContent", criteria: "contentCompany")
-  state: String
-  group(input: ContentApparatusGroupInput = {}): ContentGroup @refOne(loader: "platformContent", criteria: "contentGroup")
-  model: String
+  aerial: String @projection
+  email: String @projection
+  engine: String @projection
+  generator: String @projection
+  pump: String @projection
+  tank: String @projection
+  year: Int @projection
+  manufacturer: String @projection
+  transmission: String @projection
+  apparatusType: String @projection
+  chassisManufacturer(input: ContentApparatusChassisManufacturerInput = {}): ContentCompany @projection @refOne(loader: "platformContent", criteria: "contentCompany")
+  state: String @projection
+  group(input: ContentApparatusGroupInput = {}): ContentGroup @projection @refOne(loader: "platformContent", criteria: "contentGroup")
+  model: String @projection
 }
 
 type ContentApparatusConnection {

@@ -8,12 +8,12 @@ extend type Query {
 
 type ContentVideo implements Content & Authorable & Media @applyInterfaceFields {
   # fields directly on platform.model::Content\Video
-  duration: Int
-  source: String
-  credit: String
-  embedCode: String
-  sourceId: String
-  sourceThumbnail: String
+  duration: Int @projection
+  source: String @projection
+  credit: String @projection
+  embedCode: String @projection
+  sourceId: String @projection
+  sourceThumbnail: String @projection
 }
 
 type ContentVideoConnection {

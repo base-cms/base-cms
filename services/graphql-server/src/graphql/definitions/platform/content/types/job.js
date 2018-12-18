@@ -8,15 +8,15 @@ extend type Query {
 
 type ContentJob implements Content @applyInterfaceFields {
   # fields directly on platform.model::Content\Job
-  jobType: String
-  salary: String
-  city: String
-  state: String
-  email: String
-  information: String
-  phone: String
-  website: String
-  sourceUrl: String
+  jobType: String @projection
+  salary: String @projection
+  city: String @projection
+  state: String @projection
+  email: String @projection
+  information: String @projection
+  phone: String @projection
+  website: String @projection
+  sourceUrl: String @projection
 }
 
 type ContentJobConnection {

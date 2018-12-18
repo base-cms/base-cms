@@ -8,8 +8,8 @@ extend type Query {
 
 type ContentWhitepaper implements Content & Authorable & Media @applyInterfaceFields {
   # fields directly on platform.model::Content\Whitepaper
-  bodyOriginal: String
-  editors(input: ContentWhitepaperEditorsInput = {}): ContentContactConnection! @refMany(model: "platform.Content", criteria: "contentContact")
+  bodyOriginal: String @projection
+  editors(input: ContentWhitepaperEditorsInput = {}): ContentContactConnection! @projection @refMany(model: "platform.Content", criteria: "contentContact")
 }
 
 type ContentWhitepaperConnection {

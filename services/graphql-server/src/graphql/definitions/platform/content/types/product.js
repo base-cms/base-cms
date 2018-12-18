@@ -8,18 +8,18 @@ extend type Query {
 
 type ContentProduct implements Content @applyInterfaceFields {
   # fields directly on platform.model::Content\Product
-  bodyOriginal: String
-  productUrl: String
-  iTunesUrl: String
-  googlePlayUrl: String
-  downloadUrl: String
-  website: String
-  url360: String
-  contentStatus: String
+  bodyOriginal: String @projection
+  productUrl: String @projection
+  iTunesUrl: String @projection
+  googlePlayUrl: String @projection
+  downloadUrl: String @projection
+  website: String @projection
+  url360: String @projection
+  contentStatus: String @projection
 
   # fields directly on platform.model::Content\Product mutations
-  primaryCategory: String @value(localField: "mutations.Website.primaryCategory")
-  headline: String @value(localField: "mutations.Magazine.headline")
+  primaryCategory: String @projection(localField: "mutations.Website.primaryCategory") @value(localField: "mutations.Website.primaryCategory")
+  headline: String @projection(localField: "mutations.Magazine.headline") @value(localField: "mutations.Magazine.headline")
 }
 
 type ContentProductConnection {

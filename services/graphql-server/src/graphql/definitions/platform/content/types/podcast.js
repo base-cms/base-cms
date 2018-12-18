@@ -8,7 +8,7 @@ extend type Query {
 
 type ContentPodcast implements Content & Media @applyInterfaceFields {
   # fields directly on platform.model::Content\Podcast
-  duration: Int
+  duration: Int @projection
 }
 
 type ContentPodcastConnection {

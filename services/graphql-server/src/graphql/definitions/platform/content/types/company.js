@@ -8,22 +8,22 @@ extend type Query {
 
 type ContentCompany implements Content & Contactable & Addressable @applyInterfaceFields {
   # fields directly on platform.model::Content\Company
-  companyType: String
-  parentCompany(input: ContentCompanyParentCompanyInput = {}): ContentCompany @refOne(loader: "platformContent" criteria: "contentCompany")
-  brandsCarried(input: ContentCompanyBrandsCarriedInput = {}): ContentCompanyConnection! @refMany(model: "platform.Content" criteria: "contentCompany")
-  statesServed: [String]! @arrayValue
-  listingContacts(input: ContentCompanyListingContactsInput = {}): ContentContactConnection! @refMany(model: "platform.Content", criteria: "contentContact")
-  publicContacts(input: ContentCompanyPublicContactsInput = {}): ContentContactConnection! @refMany(model: "platform.Content", criteria: "contentContact")
-  salesContacts(input: ContentCompanySalesContactsInput = {}): ContentContactConnection! @refMany(model: "platform.Content", criteria: "contentContact")
-  marketingContacts(input: ContentCompanyMarketingContactsInput = {}): ContentContactConnection! @refMany(model: "platform.Content", criteria: "contentContact")
-  companyCompetitors(input: ContentCompanyCompanyCompetitorsInput = {}): ContentCompanyConnection! @refMany(model: "platform.Content", criteria: "contentCompany")
-  socialLinks: [EntityStubSocial]! @arrayValue
+  companyType: String @projection
+  parentCompany(input: ContentCompanyParentCompanyInput = {}): ContentCompany @projection @refOne(loader: "platformContent" criteria: "contentCompany")
+  brandsCarried(input: ContentCompanyBrandsCarriedInput = {}): ContentCompanyConnection! @projection @refMany(model: "platform.Content" criteria: "contentCompany")
+  statesServed: [String]! @projection @arrayValue
+  listingContacts(input: ContentCompanyListingContactsInput = {}): ContentContactConnection! @projection @refMany(model: "platform.Content", criteria: "contentContact")
+  publicContacts(input: ContentCompanyPublicContactsInput = {}): ContentContactConnection! @projection @refMany(model: "platform.Content", criteria: "contentContact")
+  salesContacts(input: ContentCompanySalesContactsInput = {}): ContentContactConnection! @projection @refMany(model: "platform.Content", criteria: "contentContact")
+  marketingContacts(input: ContentCompanyMarketingContactsInput = {}): ContentContactConnection! @projection @refMany(model: "platform.Content", criteria: "contentContact")
+  companyCompetitors(input: ContentCompanyCompanyCompetitorsInput = {}): ContentCompanyConnection! @projection @refMany(model: "platform.Content", criteria: "contentCompany")
+  socialLinks: [EntityStubSocial]! @projection @arrayValue
 
   # fields directly on platform.model::Content\Company from mutations
-  leadsDelivery: Boolean @value(localField: "mutations.Website.leadsDelivery")
-  enableRmi: Boolean @value(localField: "mutations.Website.enableRmi")
-  featuredCategories(input: ContentCompanyFeaturedCategoriesInput = {}): TaxonomyConnection! @refMany(model: "platform.Taxonomy", localField: "mutations.Website.featuredCategories", criteria: "taxonomyCategory")
-  primaryCategory(input: ContentCompanyPrimaryCategoryInput = {}): Taxonomy @refOne(loader: "platformTaxonomy", localField: "mutations.Website.primaryCategory")
+  leadsDelivery: Boolean @projection(localField: "mutations.Website.leadsDelivery") @value(localField: "mutations.Website.leadsDelivery")
+  enableRmi: Boolean @projection(localField: "mutations.Website.enableRmi") @value(localField: "mutations.Website.enableRmi")
+  featuredCategories(input: ContentCompanyFeaturedCategoriesInput = {}): TaxonomyConnection! @projection(localField: "mutations.Website.featuredCategories") @refMany(model: "platform.Taxonomy", localField: "mutations.Website.featuredCategories", criteria: "taxonomyCategory")
+  primaryCategory(input: ContentCompanyPrimaryCategoryInput = {}): Taxonomy @projection(localField: "mutations.Website.primaryCategory") @refOne(loader: "platformTaxonomy", localField: "mutations.Website.primaryCategory")
 
   # GraphQL-only fields.
   # @see Cygnus\ApplicationBundle\Icarus\BlockHandler::PlatformContentCompanyContentQuery

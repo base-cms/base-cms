@@ -8,8 +8,8 @@ extend type Query {
 
 type ContentTextAd implements Content @applyInterfaceFields {
   # fields directly on platform.model::Content\TextAd
-  linkText: String
-  linkUrl: String
+  linkText: String @projection
+  linkUrl: String @projection
 }
 
 type ContentTextAdConnection {

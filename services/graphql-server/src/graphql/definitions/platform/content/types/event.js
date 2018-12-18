@@ -8,15 +8,15 @@ extend type Query {
 
 type ContentEvent implements Content & Contactable & Addressable @applyInterfaceFields {
   # fields directly on platform.model::Content\Event
-  cost: String
-  eventType: String
-  venue(input: ContentEventVenueInput = {}): EntityVenue @refOne(loader: "platformEntity", criteria: "entityVenue")
-  organization(input: ContentEventOrganizationInput = {}): EntityOrganization @refOne(loader: "platformEntity", criteria: "entityOrganization")
-  startDate: Date
-  endDate: Date
-  allDay: Boolean
-  contacts: [ContentEventContact]! @arrayValue
-  beneficiary: String
+  cost: String @projection
+  eventType: String @projection
+  venue(input: ContentEventVenueInput = {}): EntityVenue @projection @refOne(loader: "platformEntity", criteria: "entityVenue")
+  organization(input: ContentEventOrganizationInput = {}): EntityOrganization @projection @refOne(loader: "platformEntity", criteria: "entityOrganization")
+  startDate: Date @projection
+  endDate: Date @projection
+  allDay: Boolean @projection
+  contacts: [ContentEventContact]! @projection @arrayValue
+  beneficiary: String @projection
 }
 
 type ContentEventConnection {

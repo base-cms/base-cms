@@ -8,17 +8,17 @@ extend type Query {
 
 type ContentEngineSpec implements Content @applyInterfaceFields {
   # fields directly on platform.model::Content\EngineSpec
-  products(input: ContentEngineSpecProductsInput = {}): ContentProductConnection! @refMany(model: "platform.Content", criteria: "contentProduct")
-  fuel: String
-  model: String
-  certification: String
-  aftertreatment: String
-  horsepower: ContentEngineSpecMinMaxValue
-  displacement: ContentEngineSpecMinMaxValue
-  torque: ContentEngineSpecMinMaxValue
-  width: ContentEngineSpecMinMaxValue
-  length: ContentEngineSpecMinMaxValue
-  height: ContentEngineSpecMinMaxValue
+  products(input: ContentEngineSpecProductsInput = {}): ContentProductConnection! @projection @refMany(model: "platform.Content", criteria: "contentProduct")
+  fuel: String @projection
+  model: String @projection
+  certification: String @projection
+  aftertreatment: String @projection
+  horsepower: ContentEngineSpecMinMaxValue @projection
+  displacement: ContentEngineSpecMinMaxValue @projection
+  torque: ContentEngineSpecMinMaxValue @projection
+  width: ContentEngineSpecMinMaxValue @projection
+  length: ContentEngineSpecMinMaxValue @projection
+  height: ContentEngineSpecMinMaxValue @projection
 }
 
 type ContentEngineSpecConnection {

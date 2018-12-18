@@ -8,9 +8,9 @@ extend type Query {
 
 type ContentPressRelease implements Content & Authorable @applyInterfaceFields {
   # fields directly on platform.model::Content\PressRelease
-  bodyOriginal: String
-  sourceFilename: String
-  sourceFile: String
+  bodyOriginal: String @projection
+  sourceFilename: String @projection
+  sourceFile: String @projection
 }
 
 type ContentPressReleaseConnection {

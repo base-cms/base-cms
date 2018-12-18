@@ -8,20 +8,20 @@ extend type Query {
 
 type ContentInQuarters implements Content & Authorable @applyInterfaceFields {
   # fields directly on platform.model::Content\InQuarters
-  email: String
-  group(input: ContentInQuartersGroupInput = {}): ContentGroup @refOne(loader: "platformContent", criteria: "contentGroup")
-  state: String
-  year: Int
-  engines: Int
-  tankers: Int
-  brushTrucks: Int
-  aerials: Int
-  heavyRescues: Int
-  chiefs: Int
-  blsAls: Int
-  supportOther: Int
-  members: Int
-  servingArea: Int
+  email: String @projection
+  group(input: ContentInQuartersGroupInput = {}): ContentGroup @projection @refOne(loader: "platformContent", criteria: "contentGroup")
+  state: String @projection
+  year: Int @projection
+  engines: Int @projection
+  tankers: Int @projection
+  brushTrucks: Int @projection
+  aerials: Int @projection
+  heavyRescues: Int @projection
+  chiefs: Int @projection
+  blsAls: Int @projection
+  supportOther: Int @projection
+  members: Int @projection
+  servingArea: Int @projection
 }
 
 type ContentInQuartersConnection {
