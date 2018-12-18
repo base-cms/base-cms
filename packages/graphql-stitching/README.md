@@ -1,11 +1,20 @@
 # BaseCMS GraphQL Client and Schema Stitching
 Creates a server-side client, link, and remote schema for the BaseCMS GraphQL API. Can be used as a low-level dependency in other projects.
 
-## Configuration
-The following environment variables can be used to configure how to connect to the remote schema.
+## Usage
+```js
+const stitch = require('@base-cms/graphql-stitching');
 
-**Required**:
-- `GRAPHQL_URL`: the GraphQL URL to remotely connect to and stitch from. For example `https://graphql.[your-website].com`
+// The stitching builder is an async, singleton function.
+// You _must_ pass the remote BaseCMS uri when building the schema.
+const run = async ({ uri }) => {
+  // The schema can now be used by ApolloServer.
+  // The graph client can now be used by a backend node application.
+  const { schema, client } = await stitch({ uri });
+};
+run();
+```
 
-**Optional**:
-- `CONTENT_CANONICAL_PATHS`: a JSON value that specifies the format for creating Content paths. By default this is set to `["sectionAlias", "type", "id", "slug"]`
+## Parameters
+Besides the required `uri` parameter, the following optional parameters may be passed:
+- `contentCanonicalPaths`: an `array` of `strings` that specify how Content paths will be generated. Default: `['sectionAlias', 'type', 'id', 'slug']`
