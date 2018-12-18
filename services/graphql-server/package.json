@@ -10,7 +10,6 @@
     "@base-cms/common": "^0.4.10",
     "@base-cms/db": "^0.4.10",
     "@godaddy/terminus": "^4.1.0",
-    "@limit0/graphql-custom-types": "^1.0.1",
     "apollo-server-express": "^2.3.1",
     "cors": "^2.8.5",
     "dataloader": "^1.4.0",

@@ -1333,13 +1333,6 @@
     libnpm "^2.0.1"
     write-file-atomic "^2.3.0"
 
-"@limit0/graphql-custom-types@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@limit0/graphql-custom-types/-/graphql-custom-types-1.0.1.tgz#6ec74695eb1de6bf3b2824233f391bd256c7de9c"
-  integrity sha1-bsdGlesd5r87KCQjPzkb0lbH3pw=
-  dependencies:
-    base64-url "^2.2.0"
-
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
