@@ -7,8 +7,7 @@ const { log } = console;
 
 export default (req) => {
   const headers = req ? req.headers : {};
-  const uri = (req) ? `${req.protocol}://${req.get('host')}` : '';
-
+  const uri = req ? `${req.protocol}://${req.get('host')}/graphql` : '/graphql';
   return {
     link: ApolloLink.from([
       onError(({ graphQLErrors, networkError }) => {
@@ -18,7 +17,7 @@ export default (req) => {
         if (networkError) log(`[Network error]: ${networkError}`);
       }),
       new HttpLink({
-        uri: `${uri}/graphql`,
+        uri,
         headers,
         fetch,
       }),

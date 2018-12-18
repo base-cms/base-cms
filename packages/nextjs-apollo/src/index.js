@@ -1,3 +1,3 @@
-import withApollo from './withApollo';
+import WithApollo from './WithApollo';
 
-export default withApollo;
+export default WithApollo;

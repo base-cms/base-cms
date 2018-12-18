@@ -82,6 +82,6 @@ export default (ComposedComponent) => {
     }
   }
 
-  WithApollo.displayName = `withApollo(${getDisplayName(ComposedComponent)})`;
+  WithApollo.displayName = `WithApollo(${getDisplayName(ComposedComponent)})`;
   return WithApollo;
 };
