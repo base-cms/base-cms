@@ -1,13 +1,21 @@
 import babel from 'rollup-plugin-babel';
 import resolve from 'rollup-plugin-node-resolve';
-import json from 'rollup-plugin-json';
 import commonjs from 'rollup-plugin-commonjs';
 
 const pkg = require('./package.json');
 
-const peerDependencies = Object.keys(pkg.peerDependencies);
-peerDependencies.push('next/head');
-const dependencies = Object.keys(pkg.dependencies);
+const { keys } = Object;
+
+const externals = [
+  ...keys(pkg.dependencies || {}),
+  ...keys(pkg.peerDependencies || {}),
+];
+
+const makeExternalPredicate = (externalsArr) => {
+  if (externalsArr.length === 0) return () => false;
+  const externalPattern = new RegExp(`^(${externalsArr.join('|')})($|/)`);
+  return id => externalPattern.test(id);
+};
 
 export default {
   input: 'src/index.js',
@@ -20,16 +28,13 @@ export default {
     {
       file: 'dist/index.esm.js',
       format: 'esm',
+      sourcemap: true,
     },
   ],
-  external: peerDependencies.concat(dependencies),
+  external: makeExternalPredicate(externals),
   plugins: [
     resolve({ extensions: ['.js', '.jsx'] }),
     commonjs({ include: '../../node_modules/**' }),
     babel(),
-    json({
-      include: '../graphql-stitching/fragment-types.json',
-      compact: true,
-    }),
   ],
 };
