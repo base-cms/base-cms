@@ -18,11 +18,14 @@ const website = require('@base-cms/website-express');
 const { log } = console;
 
 // Create the express app.
-const app = website();
+const app = website({
+  graphql: { uri: 'https://graphql.[your-website].com' },
+});
 
-// If you need options, you can also call...
+// If you need additional options, you can also call...
 /*
 const app = website({
+  graphql: { uri: 'https://graphql.[your-website].com' },
   helmet: {}, // Optional helmet options
   compression: {}, // Optional compression options
 });
@@ -34,13 +37,6 @@ app.listen(PORT, () => log(`> Ready on http://0.0.0.0:${PORT}`));
 ```
 
 ## Endpoints
-Once the web server is running, the follow endpoints will be available:
-- `/graphql`: the _local_ BaseCMS GraphQL API that is stitched from a _remote_ source (to customize these values, see Environment Variables below)
+Once the web server is running, the following endpoints will be available:
+- `/graphql`: the _local_ BaseCMS GraphQL API that is stitched from the _remote_ source
 
-## Environment Variables
-**Required**
-  - `GRAPHQL_URL`: Specifies the _remote_ GraphQL URL to access. For example, `https://graphql.[your-website].com`
-
-**Optional**
-  - `LOCAL_GRAPHQL_ENDPOINT`: Allows you to override the GraphQL API endpoint that will be use _locally_ (default: `/graphql`)
-  - `CONTENT_CANONICAL_PATHS`: A JSON string that specifies how Content paths are generated for the website (default: `["sectionAlias", "type", "id", "slug"]`)

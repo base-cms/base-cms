@@ -1,12 +1,12 @@
 const express = require('express');
 const helmet = require('helmet');
 const compression = require('compression');
-const base4router = require('@base-cms/graphql-express-router');
-const env = require('./env');
+const graphql = require('./graphql');
 
-const { LOCAL_GRAPHQL_ENDPOINT } = env;
-
-module.exports = (opts = {}) => express()
-  .use(helmet(opts.helmet))
-  .use(compression(opts.compression))
-  .use(LOCAL_GRAPHQL_ENDPOINT, base4router({ endpoint: LOCAL_GRAPHQL_ENDPOINT }));
+module.exports = (opts = {}) => {
+  const app = express();
+  app.use(helmet(opts.helmet));
+  app.use(compression(opts.compression));
+  graphql({ app, ...opts.graphql });
+  return app;
+};
