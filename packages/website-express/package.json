@@ -7,7 +7,6 @@
   "license": "MIT",
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/website-express",
   "dependencies": {
-    "@base-cms/graphql-stitching": "^0.4.10",
     "apollo-server-express": "^2.3.1",
     "compression": "^1.7.3",
     "express": "^4.16.4",
