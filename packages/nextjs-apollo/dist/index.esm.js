@@ -1,12 +1,13 @@
-import { IntrospectionFragmentMatcher, InMemoryCache } from 'apollo-cache-inmemory';
+import React from 'react';
+import Head from 'next/head';
+import { ApolloProvider, getDataFromTree } from 'react-apollo';
 import { ApolloClient } from 'apollo-client';
+import { IntrospectionFragmentMatcher, InMemoryCache } from 'apollo-cache-inmemory';
+import introspectionQueryResultData from '@base-cms/graphql-fragment-types';
 import { HttpLink } from 'apollo-link-http';
 import { ApolloLink } from 'apollo-link';
 import { onError } from 'apollo-link-error';
 import fetch from 'isomorphic-unfetch';
-import React from 'react';
-import Head from 'next/head';
-import { ApolloProvider, getDataFromTree } from 'react-apollo';
 
 function createCommonjsModule(fn, module) {
 	return module = { exports: {} }, fn(module, module.exports), module.exports;
@@ -909,14 +910,10 @@ function _possibleConstructorReturn(self, call) {
   return _assertThisInitialized(self);
 }
 
-var __schema={types:[{kind:"INTERFACE",name:"PlatformProduct",possibleTypes:[{name:"EmailProductNewsletter"},{name:"WebsiteProductSite"},{name:"MagazineProductPublication"}]},{kind:"INTERFACE",name:"PlatformSection",possibleTypes:[{name:"EmailSection"},{name:"WebsiteSection"},{name:"MagazineSection"}]},{kind:"INTERFACE",name:"PlatformSchedule",possibleTypes:[{name:"EmailSchedule"},{name:"WebsiteSchedule"},{name:"MagazineSchedule"}]},{kind:"INTERFACE",name:"PlatformContent",possibleTypes:[{name:"PlatformContentArticle"},{name:"PlatformContentContact"},{name:"PlatformContentCompany"},{name:"PlatformContentApparatus"},{name:"PlatformContentGroup"},{name:"PlatformContentInQuarters"},{name:"PlatformContentBlog"},{name:"PlatformContentCollection"},{name:"PlatformContentDocument"},{name:"PlatformContentEbook"},{name:"PlatformContentEngineSpec"},{name:"PlatformContentProduct"},{name:"PlatformContentEvent"},{name:"PlatformContentInfographic"},{name:"PlatformContentJob"},{name:"PlatformContentMediaGallery"},{name:"PlatformContentNews"},{name:"PlatformContentPage"},{name:"PlatformContentPodcast"},{name:"PlatformContentPressRelease"},{name:"PlatformContentProductExternal"},{name:"PlatformContentPromotion"},{name:"PlatformContentReview"},{name:"PlatformContentSponsored"},{name:"PlatformContentTextAd"},{name:"PlatformContentVideo"},{name:"PlatformContentWebinar"},{name:"PlatformContentWhitepaper"}]},{kind:"INTERFACE",name:"PlatformEntity",possibleTypes:[{name:"PlatformEntityVenue"},{name:"PlatformEntityOrganization"}]}]};var introspectionQueryResultData = {__schema:__schema};
-
 var fragmentMatcher = new IntrospectionFragmentMatcher({
   introspectionQueryResultData: introspectionQueryResultData
 });
 
-// const { InMemoryCache } = apolloCache;
-// The client-side apollo client.
 // Will be initialized once.
 
 var apolloClient;
@@ -962,14 +959,11 @@ function initApollo(config, initialState, req) {
   return apolloClient;
 }
 
-// const { ApolloLink } = apolloLink;
-// const { onError } = apolloLinkError;
-
 var _console = console,
     log = _console.log;
 var apolloConfig = (function (req) {
   var headers = req ? req.headers : {};
-  var uri = req ? "".concat(req.protocol, "://").concat(req.get('host')) : '';
+  var uri = req ? "".concat(req.protocol, "://").concat(req.get('host'), "/graphql") : '/graphql';
   return {
     link: ApolloLink.from([onError(function (_ref) {
       var graphQLErrors = _ref.graphQLErrors,
@@ -986,7 +980,7 @@ var apolloConfig = (function (req) {
 
       if (networkError) log("[Network error]: ".concat(networkError));
     }), new HttpLink({
-      uri: "".concat(uri, "/graphql"),
+      uri: uri,
       headers: headers,
       fetch: fetch
     })])
@@ -1000,7 +994,7 @@ var getDisplayName = function getDisplayName(Component) {
   return Component.displayName || Component.name || 'Unknown';
 };
 
-var withApollo = (function (ComposedComponent) {
+var WithApollo = (function (ComposedComponent) {
   var WithApollo =
   /*#__PURE__*/
   function (_React$Component) {
@@ -1116,17 +1110,20 @@ var withApollo = (function (ComposedComponent) {
           }, _callee, this, [[10, 15]]);
         }));
 
-        return function getInitialProps(_x) {
+        function getInitialProps(_x) {
           return _getInitialProps.apply(this, arguments);
-        };
+        }
+
+        return getInitialProps;
       }()
     }]);
 
     return WithApollo;
   }(React.Component);
 
-  WithApollo.displayName = "withApollo(".concat(getDisplayName(ComposedComponent), ")");
+  WithApollo.displayName = "WithApollo(".concat(getDisplayName(ComposedComponent), ")");
   return WithApollo;
 });
 
-export default withApollo;
+export default WithApollo;
+//# sourceMappingURL=index.esm.js.map
