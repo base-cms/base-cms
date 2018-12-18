@@ -3,7 +3,6 @@ const formatStatus = require('../utils/format-status');
 const criteriaFor = require('../utils/criteria-for');
 const applyInput = require('../utils/apply-input');
 const getProjection = require('../utils/get-projection');
-const getSelected = require('../utils/get-selected-fields');
 
 class FindOneDirective extends SchemaDirectiveVisitor {
   /**
@@ -12,9 +11,9 @@ class FindOneDirective extends SchemaDirectiveVisitor {
    */
   visitFieldDefinition(field) {
     // eslint-disable-next-line no-param-reassign
-    field.resolve = async (_, { input = {} }, { basedb }, { fieldNodes, returnType }) => {
+    field.resolve = async (_, { input = {} }, { basedb }, { fieldNodes, returnType, schema }) => {
       const start = process.hrtime();
-      const projection = getProjection(returnType, getSelected(fieldNodes[0].selectionSet));
+      const projection = getProjection(schema, returnType, fieldNodes[0].selectionSet);
 
       const {
         model,
