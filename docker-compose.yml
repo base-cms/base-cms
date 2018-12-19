@@ -4,7 +4,7 @@ x-service-defaults:
   &service-defaults
   tty: true
   init: true
-  image: node:10.13-alpine
+  image: node:10.13
   command: ['/base-cms/node_modules/.bin/gulp']
   volumes:
     - .:/base-cms:cached
