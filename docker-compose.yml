@@ -1,11 +1,12 @@
 version: '3.7'
 
-x-service-defaults:
-  &service-defaults
+x-node-defaults: &node
   tty: true
   init: true
-  image: node:10.13-alpine
-  command: ['/base-cms/node_modules/.bin/gulp']
+  image: base-cms-node-alpine:latest
+  build: ./node-alpine-git
+  entrypoint: ["node"]
+  working_dir: /base-cms
   volumes:
     - .:/base-cms:cached
     - ./node_modules:/base-cms/node_modules:delegated
@@ -20,6 +21,12 @@ x-service-defaults:
     ENABLE_BASEDB_LOGGING: ${ENABLE_BASEDB_LOGGING-0}
 
 services:
+  commands:
+    <<: *node
+    working_dir: /base-cms
+    entrypoint: ["tail"]
+    command: ["-f", "/dev/null"]
+
   mongodb:
     tty: true
     image: mongo:3.4
@@ -44,24 +51,25 @@ services:
     depends_on:
       - elasticsearch
   keyword-analysis:
-    << : *service-defaults
+    << : *node
     working_dir: /base-cms/services/keyword-analysis
-    command: ['node', 'src']
+    command: ["src"]
     depends_on:
       - mongodb
       - elasticsearch
       - kibana
   graphql-server:
-    << : *service-defaults
+    << : *node
     working_dir: /base-cms/services/graphql-server
+    entrypoint: ["/base-cms/node_modules/.bin/gulp"]
     depends_on:
       - mongodb
     ports:
       - "10002:80"
   example-website:
-    << : *service-defaults
+    << : *node
     working_dir: /base-cms/services/example-website
-    command: ['node', 'server.js']
+    command: ["server.js"]
     depends_on:
       - graphql-server
     ports:
