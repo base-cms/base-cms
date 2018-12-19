@@ -1,4 +1,4 @@
-import { a as _typeof } from './chunk-3be546a6.js';
+import { h as _typeof } from './chunk-3be546a6.js';
 import { get } from 'object-path';
 
 var isArray = Array.isArray;

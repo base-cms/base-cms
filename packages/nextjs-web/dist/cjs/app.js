@@ -4,17 +4,41 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var __chunk_1 = require('./chunk-7917b9e8.js');
-var __chunk_2 = require('./chunk-79f77106.js');
+var nextjsApollo = _interopDefault(require('@base-cms/nextjs-apollo'));
+var __chunk_1 = require('./chunk-79f77106.js');
+var App = require('next/app');
+var App__default = _interopDefault(App);
 var React = _interopDefault(require('react'));
+var __chunk_2 = require('./chunk-7917b9e8.js');
 var nextRoutes = _interopDefault(require('next-routes'));
 var __chunk_3 = require('./chunk-cd22912d.js');
 var utils = require('./utils.js');
 require('object-path');
 var __chunk_4 = require('./chunk-8172d30a.js');
-var App = require('next/app');
-var App__default = _interopDefault(App);
-var nextjsApollo = _interopDefault(require('@base-cms/nextjs-apollo'));
+
+var WebsiteApp =
+/*#__PURE__*/
+function (_App) {
+  __chunk_1._inherits(WebsiteApp, _App);
+
+  function WebsiteApp() {
+    __chunk_1._classCallCheck(this, WebsiteApp);
+
+    return __chunk_1._possibleConstructorReturn(this, __chunk_1._getPrototypeOf(WebsiteApp).apply(this, arguments));
+  }
+
+  __chunk_1._createClass(WebsiteApp, [{
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          Component = _this$props.Component,
+          pageProps = _this$props.pageProps;
+      return React.createElement(App.Container, null, React.createElement(Component, pageProps));
+    }
+  }]);
+
+  return WebsiteApp;
+}(App__default);
 
 var isArray = Array.isArray;
 
@@ -38,7 +62,7 @@ var createRoutes = once(function (definitions) {
   });
   return routes;
 });
-var WithRouting = (function (definitions) {
+var withRouting = (function (definitions) {
   return function (ComposedComponent) {
     if (!isArray(definitions)) {
       throw new Error('No route definitions were provided!');
@@ -49,15 +73,15 @@ var WithRouting = (function (definitions) {
     var WithRouting =
     /*#__PURE__*/
     function (_React$Component) {
-      __chunk_2._inherits(WithRouting, _React$Component);
+      __chunk_1._inherits(WithRouting, _React$Component);
 
       function WithRouting() {
-        __chunk_2._classCallCheck(this, WithRouting);
+        __chunk_1._classCallCheck(this, WithRouting);
 
-        return __chunk_2._possibleConstructorReturn(this, __chunk_2._getPrototypeOf(WithRouting).apply(this, arguments));
+        return __chunk_1._possibleConstructorReturn(this, __chunk_1._getPrototypeOf(WithRouting).apply(this, arguments));
       }
 
-      __chunk_2._createClass(WithRouting, [{
+      __chunk_1._createClass(WithRouting, [{
         key: "render",
 
         /**
@@ -76,11 +100,11 @@ var WithRouting = (function (definitions) {
          * @param {object} args
          */
         value: function () {
-          var _getInitialProps = __chunk_2._asyncToGenerator(
+          var _getInitialProps = __chunk_1._asyncToGenerator(
           /*#__PURE__*/
-          __chunk_1._regeneratorRuntime.mark(function _callee(args) {
+          __chunk_2._regeneratorRuntime.mark(function _callee(args) {
             var ctx, Router, composedInitialProps;
-            return __chunk_1._regeneratorRuntime.wrap(function _callee$(_context) {
+            return __chunk_2._regeneratorRuntime.wrap(function _callee$(_context) {
               while (1) {
                 switch (_context.prev = _context.next) {
                   case 0:
@@ -102,7 +126,7 @@ var WithRouting = (function (definitions) {
                     composedInitialProps = _context.sent;
 
                   case 8:
-                    return _context.abrupt("return", __chunk_2._objectSpread({}, composedInitialProps));
+                    return _context.abrupt("return", __chunk_1._objectSpread({}, composedInitialProps));
 
                   case 9:
                   case "end":
@@ -136,7 +160,7 @@ function () {
    * @param {object} config
    */
   function SiteConfig(config) {
-    __chunk_2._classCallCheck(this, SiteConfig);
+    __chunk_1._classCallCheck(this, SiteConfig);
 
     this.config = utils.isObject(config) ? config : {};
   }
@@ -147,7 +171,7 @@ function () {
    */
 
 
-  __chunk_2._createClass(SiteConfig, [{
+  __chunk_1._createClass(SiteConfig, [{
     key: "get",
     value: function get(path, def) {
       return utils.get(this.config, path, def);
@@ -177,22 +201,22 @@ function () {
   return SiteConfig;
 }();
 
-var WithSiteConfig = (function (siteConfig) {
+var withSiteConfig = (function (siteConfig) {
   return function (ComposedComponent) {
     var config = new SiteConfig(siteConfig);
 
     var WithSiteConfig =
     /*#__PURE__*/
     function (_React$Component) {
-      __chunk_2._inherits(WithSiteConfig, _React$Component);
+      __chunk_1._inherits(WithSiteConfig, _React$Component);
 
       function WithSiteConfig() {
-        __chunk_2._classCallCheck(this, WithSiteConfig);
+        __chunk_1._classCallCheck(this, WithSiteConfig);
 
-        return __chunk_2._possibleConstructorReturn(this, __chunk_2._getPrototypeOf(WithSiteConfig).apply(this, arguments));
+        return __chunk_1._possibleConstructorReturn(this, __chunk_1._getPrototypeOf(WithSiteConfig).apply(this, arguments));
       }
 
-      __chunk_2._createClass(WithSiteConfig, [{
+      __chunk_1._createClass(WithSiteConfig, [{
         key: "render",
 
         /**
@@ -211,11 +235,11 @@ var WithSiteConfig = (function (siteConfig) {
          * @param {object} args
          */
         value: function () {
-          var _getInitialProps = __chunk_2._asyncToGenerator(
+          var _getInitialProps = __chunk_1._asyncToGenerator(
           /*#__PURE__*/
-          __chunk_1._regeneratorRuntime.mark(function _callee(args) {
+          __chunk_2._regeneratorRuntime.mark(function _callee(args) {
             var ctx, composedInitialProps;
-            return __chunk_1._regeneratorRuntime.wrap(function _callee$(_context) {
+            return __chunk_2._regeneratorRuntime.wrap(function _callee$(_context) {
               while (1) {
                 switch (_context.prev = _context.next) {
                   case 0:
@@ -236,7 +260,7 @@ var WithSiteConfig = (function (siteConfig) {
                     composedInitialProps = _context.sent;
 
                   case 7:
-                    return _context.abrupt("return", __chunk_2._objectSpread({}, composedInitialProps));
+                    return _context.abrupt("return", __chunk_1._objectSpread({}, composedInitialProps));
 
                   case 8:
                   case "end":
@@ -262,31 +286,7 @@ var WithSiteConfig = (function (siteConfig) {
   };
 });
 
-var WebsiteApp =
-/*#__PURE__*/
-function (_App) {
-  __chunk_2._inherits(WebsiteApp, _App);
-
-  function WebsiteApp() {
-    __chunk_2._classCallCheck(this, WebsiteApp);
-
-    return __chunk_2._possibleConstructorReturn(this, __chunk_2._getPrototypeOf(WebsiteApp).apply(this, arguments));
-  }
-
-  __chunk_2._createClass(WebsiteApp, [{
-    key: "render",
-    value: function render() {
-      var _this$props = this.props,
-          Component = _this$props.Component,
-          pageProps = _this$props.pageProps;
-      return React.createElement(App.Container, null, React.createElement(Component, pageProps));
-    }
-  }]);
-
-  return WebsiteApp;
-}(App__default);
-
-exports.WithApollo = nextjsApollo;
+exports.withApollo = nextjsApollo;
 exports.WebsiteApp = WebsiteApp;
-exports.WithRouting = WithRouting;
-exports.WithSiteConfig = WithSiteConfig;
+exports.withRouting = withRouting;
+exports.withSiteConfig = withSiteConfig;

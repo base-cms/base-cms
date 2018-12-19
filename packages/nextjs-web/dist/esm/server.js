@@ -1,5 +1,5 @@
+import { f as _asyncToGenerator } from './chunk-3be546a6.js';
 import { a as _regeneratorRuntime } from './chunk-cc3f9e68.js';
-import { g as _asyncToGenerator } from './chunk-3be546a6.js';
 import nextRoutes from 'next-routes';
 import next from 'next';
 import { resolve } from 'path';

@@ -85,18 +85,18 @@ The website uses Apollo GraphQL, route definitions, and site configuration globa
 // site/pages/_app.jsx
 import {
   WebsiteApp,
-  WithApollo,
-  WithRouting,
-  WithSiteConfig,
+  withApollo,
+  withRouting,
+  withSiteConfig,
 } from '@base-cms/nextjs-web/app';
 // Your route definitions from above... assumes site/routes.js
 import routeDefs from '../routes';
 // Your site config from above... assumes site/config.js
 import config from '../config';
 
-export default WithApollo(
-  WithRouting(routeDefs)(
-    WithSiteConfig(config)(
+export default withApollo(
+  withRouting(routeDefs)(
+    withSiteConfig(config)(
       WebsiteApp,
     ),
   ),

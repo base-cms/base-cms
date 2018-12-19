@@ -1,13 +1,37 @@
-import { a as _regeneratorRuntime } from './chunk-cc3f9e68.js';
-import { b as _inherits, c as _classCallCheck, d as _possibleConstructorReturn, e as _getPrototypeOf, f as _createClass, g as _asyncToGenerator, h as _objectSpread } from './chunk-3be546a6.js';
+export { default as withApollo } from '@base-cms/nextjs-apollo';
+import { a as _inherits, b as _classCallCheck, c as _possibleConstructorReturn, d as _getPrototypeOf, e as _createClass, f as _asyncToGenerator, g as _objectSpread } from './chunk-3be546a6.js';
+import App, { Container } from 'next/app';
 import React from 'react';
+import { a as _regeneratorRuntime } from './chunk-cc3f9e68.js';
 import nextRoutes from 'next-routes';
 import { a as RoutingContext } from './chunk-fccae6e7.js';
 import { componentDisplayName, get as _get, getAsArray as _getAsArray, getAsObject as _getAsObject, isObject } from './utils.js';
 import 'object-path';
 import { a as SiteConfigContext } from './chunk-a9505423.js';
-import App, { Container } from 'next/app';
-export { default as WithApollo } from '@base-cms/nextjs-apollo';
+
+var WebsiteApp =
+/*#__PURE__*/
+function (_App) {
+  _inherits(WebsiteApp, _App);
+
+  function WebsiteApp() {
+    _classCallCheck(this, WebsiteApp);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(WebsiteApp).apply(this, arguments));
+  }
+
+  _createClass(WebsiteApp, [{
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          Component = _this$props.Component,
+          pageProps = _this$props.pageProps;
+      return React.createElement(Container, null, React.createElement(Component, pageProps));
+    }
+  }]);
+
+  return WebsiteApp;
+}(App);
 
 var isArray = Array.isArray;
 
@@ -31,7 +55,7 @@ var createRoutes = once(function (definitions) {
   });
   return routes;
 });
-var WithRouting = (function (definitions) {
+var withRouting = (function (definitions) {
   return function (ComposedComponent) {
     if (!isArray(definitions)) {
       throw new Error('No route definitions were provided!');
@@ -170,7 +194,7 @@ function () {
   return SiteConfig;
 }();
 
-var WithSiteConfig = (function (siteConfig) {
+var withSiteConfig = (function (siteConfig) {
   return function (ComposedComponent) {
     var config = new SiteConfig(siteConfig);
 
@@ -255,28 +279,4 @@ var WithSiteConfig = (function (siteConfig) {
   };
 });
 
-var WebsiteApp =
-/*#__PURE__*/
-function (_App) {
-  _inherits(WebsiteApp, _App);
-
-  function WebsiteApp() {
-    _classCallCheck(this, WebsiteApp);
-
-    return _possibleConstructorReturn(this, _getPrototypeOf(WebsiteApp).apply(this, arguments));
-  }
-
-  _createClass(WebsiteApp, [{
-    key: "render",
-    value: function render() {
-      var _this$props = this.props,
-          Component = _this$props.Component,
-          pageProps = _this$props.pageProps;
-      return React.createElement(Container, null, React.createElement(Component, pageProps));
-    }
-  }]);
-
-  return WebsiteApp;
-}(App);
-
-export { WebsiteApp, WithRouting, WithSiteConfig };
+export { WebsiteApp, withRouting, withSiteConfig };

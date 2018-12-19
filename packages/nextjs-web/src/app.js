@@ -1,10 +1,11 @@
-import WithRouting from './routing/WithRouting';
-import WithSiteConfig from './config/WithSiteConfig';
-import { WebsiteApp, WithApollo } from './pages/_app';
+import withApollo from '@base-cms/nextjs-apollo';
+import WebsiteApp from './pages/_app';
+import withRouting from './routing/withRouting';
+import withSiteConfig from './config/withSiteConfig';
 
 export {
   WebsiteApp,
-  WithApollo,
-  WithRouting,
-  WithSiteConfig,
+  withApollo,
+  withRouting,
+  withSiteConfig,
 };

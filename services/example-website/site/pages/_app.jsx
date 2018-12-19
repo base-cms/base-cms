@@ -1,15 +1,15 @@
 import {
   WebsiteApp,
-  WithApollo,
-  WithRouting,
-  WithSiteConfig,
+  withApollo,
+  withRouting,
+  withSiteConfig,
 } from '@base-cms/nextjs-web/app';
 import routeDefs from '../routes';
 import config from '../config';
 
-export default WithApollo(
-  WithRouting(routeDefs)(
-    WithSiteConfig(config)(
+export default withApollo(
+  withRouting(routeDefs)(
+    withSiteConfig(config)(
       WebsiteApp,
     ),
   ),

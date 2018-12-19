@@ -998,7 +998,7 @@ var getDisplayName = function getDisplayName(Component) {
   return Component.displayName || Component.name || 'Unknown';
 };
 
-var WithApollo = (function (ComposedComponent) {
+var withApollo = (function (ComposedComponent) {
   var WithApollo =
   /*#__PURE__*/
   function (_React$Component) {
@@ -1129,5 +1129,5 @@ var WithApollo = (function (ComposedComponent) {
   return WithApollo;
 });
 
-module.exports = WithApollo;
+module.exports = withApollo;
 //# sourceMappingURL=index.cjs.js.map

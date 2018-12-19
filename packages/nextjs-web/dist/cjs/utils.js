@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var __chunk_2 = require('./chunk-79f77106.js');
+var __chunk_1 = require('./chunk-79f77106.js');
 var objectPath = require('object-path');
 
 var isArray = Array.isArray;
@@ -11,7 +11,7 @@ var asArray = (function (v) {
 });
 
 var isObject = (function (v) {
-  return v && __chunk_2._typeof(v) === 'object';
+  return v && __chunk_1._typeof(v) === 'object';
 });
 
 var asObject = (function (v) {

@@ -153,7 +153,6 @@ function _possibleConstructorReturn(self, call) {
   return _assertThisInitialized(self);
 }
 
-exports._typeof = _typeof;
 exports._inherits = _inherits;
 exports._classCallCheck = _classCallCheck;
 exports._possibleConstructorReturn = _possibleConstructorReturn;
@@ -161,3 +160,4 @@ exports._getPrototypeOf = _getPrototypeOf;
 exports._createClass = _createClass;
 exports._asyncToGenerator = _asyncToGenerator;
 exports._objectSpread = _objectSpread;
+exports._typeof = _typeof;

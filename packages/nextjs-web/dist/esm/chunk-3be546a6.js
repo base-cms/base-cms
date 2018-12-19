@@ -151,4 +151,4 @@ function _possibleConstructorReturn(self, call) {
   return _assertThisInitialized(self);
 }
 
-export { _typeof as a, _inherits as b, _classCallCheck as c, _possibleConstructorReturn as d, _getPrototypeOf as e, _createClass as f, _asyncToGenerator as g, _objectSpread as h };
+export { _inherits as a, _classCallCheck as b, _possibleConstructorReturn as c, _getPrototypeOf as d, _createClass as e, _asyncToGenerator as f, _objectSpread as g, _typeof as h };

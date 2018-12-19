@@ -2,8 +2,8 @@
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var __chunk_1 = require('./chunk-7917b9e8.js');
-var __chunk_2 = require('./chunk-79f77106.js');
+var __chunk_1 = require('./chunk-79f77106.js');
+var __chunk_2 = require('./chunk-7917b9e8.js');
 var nextRoutes = _interopDefault(require('next-routes'));
 var next = _interopDefault(require('next'));
 var path = require('path');
@@ -48,9 +48,9 @@ var isArray = Array.isArray;
  */
 
 var server = /*#__PURE__*/
-__chunk_2._asyncToGenerator(
+__chunk_1._asyncToGenerator(
 /*#__PURE__*/
-__chunk_1._regeneratorRuntime.mark(function _callee() {
+__chunk_2._regeneratorRuntime.mark(function _callee() {
   var _ref2,
       _ref2$dir,
       dir,
@@ -68,7 +68,7 @@ __chunk_1._regeneratorRuntime.mark(function _callee() {
       server,
       _args = arguments;
 
-  return __chunk_1._regeneratorRuntime.wrap(function _callee$(_context) {
+  return __chunk_2._regeneratorRuntime.wrap(function _callee$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:

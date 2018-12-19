@@ -1,6 +1,5 @@
 import App, { Container } from 'next/app';
 import React from 'react';
-import WithApollo from '@base-cms/nextjs-apollo';
 
 class WebsiteApp extends App {
   render() {
@@ -13,7 +12,4 @@ class WebsiteApp extends App {
   }
 }
 
-export {
-  WebsiteApp,
-  WithApollo,
-};
+export default WebsiteApp;
