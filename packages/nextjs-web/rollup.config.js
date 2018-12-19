@@ -24,6 +24,7 @@ export default {
   experimentalCodeSplitting: true,
   input: [
     'src/app.js',
+    'src/components-core.js',
     'src/components-head.js',
     'src/config.js',
     'src/hoc.js',
