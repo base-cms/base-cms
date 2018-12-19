@@ -1,8 +1,12 @@
-import { a as _inherits, b as _classCallCheck, c as _possibleConstructorReturn, d as _getPrototypeOf, e as _createClass, f as _extends, g as _asyncToGenerator, h as _objectSpread, j as _taggedTemplateLiteral } from './chunk-02337cfc.js';
+import { a as _inherits, b as _classCallCheck, c as _possibleConstructorReturn, d as _getPrototypeOf, e as _createClass, f as _extends, g as _asyncToGenerator, h as _objectSpread, k as _taggedTemplateLiteral } from './chunk-cc870ac4.js';
 import React, { Component } from 'react';
 import { a as _regeneratorRuntime } from './chunk-cc3f9e68.js';
 import { componentDisplayName, httpErrors, extractFragmentData } from './utils.js';
+import 'inflected';
+import 'escape-string-regexp';
+import 'moment';
 import 'object-path';
+import 'next/config';
 import { a as SiteConfigContext } from './chunk-a9505423.js';
 import PropTypes from 'prop-types';
 import 'next/head';
@@ -309,4 +313,92 @@ var withDynamicPage = (function (Page) {
   return withRequestOrigin(WithDynamicPage);
 });
 
-export { withDynamicPage, withRequestOrigin };
+var _jsxFileName$2 = "/base-cms/packages/nextjs-web/src/hoc/withLayout.jsx";
+var withLayout = (function (LayoutComp) {
+  return function (ComposedComponent) {
+    var WithLayout =
+    /*#__PURE__*/
+    function (_Component) {
+      _inherits(WithLayout, _Component);
+
+      function WithLayout() {
+        _classCallCheck(this, WithLayout);
+
+        return _possibleConstructorReturn(this, _getPrototypeOf(WithLayout).apply(this, arguments));
+      }
+
+      _createClass(WithLayout, [{
+        key: "render",
+
+        /**
+         *
+         */
+        value: function render() {
+          return React.createElement(LayoutComp, {
+            __source: {
+              fileName: _jsxFileName$2,
+              lineNumber: 23
+            },
+            __self: this
+          }, React.createElement(ComposedComponent, _extends({}, this.props, {
+            __source: {
+              fileName: _jsxFileName$2,
+              lineNumber: 24
+            },
+            __self: this
+          })));
+        }
+      }], [{
+        key: "getInitialProps",
+
+        /**
+         *
+         */
+        value: function () {
+          var _getInitialProps = _asyncToGenerator(
+          /*#__PURE__*/
+          _regeneratorRuntime.mark(function _callee(ctx) {
+            var pageProps;
+            return _regeneratorRuntime.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    if (!ComposedComponent.getInitialProps) {
+                      _context.next = 4;
+                      break;
+                    }
+
+                    _context.next = 3;
+                    return ComposedComponent.getInitialProps(ctx);
+
+                  case 3:
+                    pageProps = _context.sent;
+
+                  case 4:
+                    return _context.abrupt("return", _objectSpread({}, pageProps));
+
+                  case 5:
+                  case "end":
+                    return _context.stop();
+                }
+              }
+            }, _callee, this);
+          }));
+
+          function getInitialProps(_x) {
+            return _getInitialProps.apply(this, arguments);
+          }
+
+          return getInitialProps;
+        }()
+      }]);
+
+      return WithLayout;
+    }(Component);
+
+    WithLayout.displayName = "WithLayout(".concat(componentDisplayName(ComposedComponent), ")");
+    return WithLayout;
+  };
+});
+
+export { withDynamicPage, withLayout, withRequestOrigin };

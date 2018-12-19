@@ -1,12 +1,16 @@
 export { default as withApollo } from '@base-cms/nextjs-apollo';
-import { a as _inherits, b as _classCallCheck, c as _possibleConstructorReturn, d as _getPrototypeOf, e as _createClass, f as _extends, g as _asyncToGenerator, h as _objectSpread } from './chunk-02337cfc.js';
+import { a as _inherits, b as _classCallCheck, c as _possibleConstructorReturn, d as _getPrototypeOf, e as _createClass, f as _extends, g as _asyncToGenerator, h as _objectSpread } from './chunk-cc870ac4.js';
 import App, { Container } from 'next/app';
 import React from 'react';
 import { a as _regeneratorRuntime } from './chunk-cc3f9e68.js';
 import nextRoutes from 'next-routes';
 import { a as RoutingContext } from './chunk-fccae6e7.js';
 import { componentDisplayName, get as _get, getAsArray as _getAsArray, getAsObject as _getAsObject, isObject } from './utils.js';
+import 'inflected';
+import 'escape-string-regexp';
+import 'moment';
 import 'object-path';
+import 'next/config';
 import { a as SiteConfigContext } from './chunk-a9505423.js';
 
 var _jsxFileName = "/base-cms/packages/nextjs-web/src/pages/_app.jsx";

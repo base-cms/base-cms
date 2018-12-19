@@ -4,12 +4,16 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var __chunk_1 = require('./chunk-cd896063.js');
+var __chunk_1 = require('./chunk-15d55d73.js');
 var React = require('react');
 var React__default = _interopDefault(React);
 var __chunk_2 = require('./chunk-7917b9e8.js');
 var utils = require('./utils.js');
+require('inflected');
+require('escape-string-regexp');
+require('moment');
 require('object-path');
+require('next/config');
 var __chunk_4 = require('./chunk-6748c5a0.js');
 var PropTypes = _interopDefault(require('prop-types'));
 require('next/head');
@@ -316,5 +320,94 @@ var withDynamicPage = (function (Page) {
   return withRequestOrigin(WithDynamicPage);
 });
 
+var _jsxFileName$2 = "/base-cms/packages/nextjs-web/src/hoc/withLayout.jsx";
+var withLayout = (function (LayoutComp) {
+  return function (ComposedComponent) {
+    var WithLayout =
+    /*#__PURE__*/
+    function (_Component) {
+      __chunk_1._inherits(WithLayout, _Component);
+
+      function WithLayout() {
+        __chunk_1._classCallCheck(this, WithLayout);
+
+        return __chunk_1._possibleConstructorReturn(this, __chunk_1._getPrototypeOf(WithLayout).apply(this, arguments));
+      }
+
+      __chunk_1._createClass(WithLayout, [{
+        key: "render",
+
+        /**
+         *
+         */
+        value: function render() {
+          return React__default.createElement(LayoutComp, {
+            __source: {
+              fileName: _jsxFileName$2,
+              lineNumber: 23
+            },
+            __self: this
+          }, React__default.createElement(ComposedComponent, __chunk_1._extends({}, this.props, {
+            __source: {
+              fileName: _jsxFileName$2,
+              lineNumber: 24
+            },
+            __self: this
+          })));
+        }
+      }], [{
+        key: "getInitialProps",
+
+        /**
+         *
+         */
+        value: function () {
+          var _getInitialProps = __chunk_1._asyncToGenerator(
+          /*#__PURE__*/
+          __chunk_2._regeneratorRuntime.mark(function _callee(ctx) {
+            var pageProps;
+            return __chunk_2._regeneratorRuntime.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    if (!ComposedComponent.getInitialProps) {
+                      _context.next = 4;
+                      break;
+                    }
+
+                    _context.next = 3;
+                    return ComposedComponent.getInitialProps(ctx);
+
+                  case 3:
+                    pageProps = _context.sent;
+
+                  case 4:
+                    return _context.abrupt("return", __chunk_1._objectSpread({}, pageProps));
+
+                  case 5:
+                  case "end":
+                    return _context.stop();
+                }
+              }
+            }, _callee, this);
+          }));
+
+          function getInitialProps(_x) {
+            return _getInitialProps.apply(this, arguments);
+          }
+
+          return getInitialProps;
+        }()
+      }]);
+
+      return WithLayout;
+    }(React.Component);
+
+    WithLayout.displayName = "WithLayout(".concat(utils.componentDisplayName(ComposedComponent), ")");
+    return WithLayout;
+  };
+});
+
 exports.withDynamicPage = withDynamicPage;
+exports.withLayout = withLayout;
 exports.withRequestOrigin = withRequestOrigin;

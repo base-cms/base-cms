@@ -4,11 +4,15 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-require('./chunk-cd896063.js');
+require('./chunk-15d55d73.js');
 var React = require('react');
 var React__default = _interopDefault(React);
 var utils = require('./utils.js');
+require('inflected');
+require('escape-string-regexp');
+require('moment');
 require('object-path');
+require('next/config');
 var PropTypes = _interopDefault(require('prop-types'));
 var Head = _interopDefault(require('next/head'));
 

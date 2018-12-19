@@ -5,7 +5,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
 var nextjsApollo = _interopDefault(require('@base-cms/nextjs-apollo'));
-var __chunk_1 = require('./chunk-cd896063.js');
+var __chunk_1 = require('./chunk-15d55d73.js');
 var App = require('next/app');
 var App__default = _interopDefault(App);
 var React = require('react');
@@ -14,7 +14,11 @@ var __chunk_2 = require('./chunk-7917b9e8.js');
 var nextRoutes = _interopDefault(require('next-routes'));
 var __chunk_3 = require('./chunk-d1518d46.js');
 var utils = require('./utils.js');
+require('inflected');
+require('escape-string-regexp');
+require('moment');
 require('object-path');
+require('next/config');
 var __chunk_4 = require('./chunk-6748c5a0.js');
 
 var _jsxFileName = "/base-cms/packages/nextjs-web/src/pages/_app.jsx";

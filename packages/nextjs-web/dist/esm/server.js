@@ -1,4 +1,4 @@
-import { g as _asyncToGenerator } from './chunk-02337cfc.js';
+import { g as _asyncToGenerator } from './chunk-cc870ac4.js';
 import { a as _regeneratorRuntime } from './chunk-cc3f9e68.js';
 import nextRoutes from 'next-routes';
 import next from 'next';

@@ -1,5 +1,9 @@
-import { i as _typeof } from './chunk-02337cfc.js';
+import { i as _typeof } from './chunk-cc870ac4.js';
+import { dasherize, underscore } from 'inflected';
+import escape from 'escape-string-regexp';
+import moment from 'moment';
 import { get } from 'object-path';
+import getConfig from 'next/config';
 
 var isArray = Array.isArray;
 var asArray = (function (v) {
@@ -32,6 +36,14 @@ var createMarkup = (function (html) {
   };
 });
 
+var dasherize$1 = (function (value) {
+  return dasherize(underscore(value));
+});
+
+var escapeRegex = (function (v) {
+  return v ? escape(v) : '';
+});
+
 var extractFragmentName = (function (fragment) {
   var pattern = /fragment (.*) on/;
   if (typeof fragment === 'string') return fragment.match(pattern)[1];
@@ -61,6 +73,12 @@ var extractFragmentData = (function (_ref) {
   };
 });
 
+var formatDate = (function (value, format) {
+  if (!value) return '';
+  var date = moment(value);
+  return date.isValid() ? date.format(format) : '';
+});
+
 var _get = (function (obj, path) {
   var def = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
   return get(obj, path, def);
@@ -88,4 +106,60 @@ var isFn = (function (v) {
   return typeof v === 'function';
 });
 
-export { asArray, asObject, cleanPath, componentDisplayName, createMarkup, extractFragmentData, extractFragmentName, _get as get, _getAsArray as getAsArray, _getAsObject as getAsObject, httpErrors, isFn as isFunction, isObject };
+var modelClassNames = (function (modelName, path) {
+  var types = String(path).split('.');
+  var elementTypes = types.shift();
+  var elementClass = "".concat(modelName, "__").concat(dasherize$1(elementTypes));
+  var classes = [elementClass];
+  types.forEach(function (type) {
+    return classes.push("".concat(elementClass, "--").concat(dasherize$1(type)));
+  });
+  return classes;
+});
+
+/**
+ * Determines if an alias should go to the index/home page.
+ *
+ * @param {string} alias
+ */
+
+var shouldGoToIndex = function shouldGoToIndex(alias) {
+  var path = cleanPath(alias);
+  if (path === 'home' || path === '') return true;
+  return false;
+};
+/**
+ * Generates the website section route name (as used by `next-routes`).
+ *
+ * By default, if the section alias were `tactical/firearms`, this method
+ * would generate `/section/tactical/firearms`.
+ *
+ * In the above example, if `sectionRoutePrefix` was empty, this would
+ * generate `/tactical/firearms`
+ *
+ * @param {string} alias The website section alias
+ */
+
+
+var sectionPath = (function (alias) {
+  if (shouldGoToIndex(alias)) return '/';
+  var path = cleanPath(alias); // Load the section route prefix from the runtime config.
+
+  var _getConfig = getConfig(),
+      publicRuntimeConfig = _getConfig.publicRuntimeConfig;
+
+  var sectionRoutePrefix = publicRuntimeConfig.sectionRoutePrefix;
+  if (!sectionRoutePrefix) return "/".concat(path);
+  return "/".concat(cleanPath(sectionRoutePrefix), "/").concat(path);
+});
+
+var titleizeType = (function (type) {
+  if (!type) return '';
+  return type.split('-').map(function (lower) {
+    return lower.replace(/^\w/, function (c) {
+      return c.toUpperCase();
+    });
+  }).join(' ');
+});
+
+export { asArray, asObject, cleanPath, componentDisplayName, createMarkup, dasherize$1 as dasherize, escapeRegex, extractFragmentData, extractFragmentName, formatDate, _get as get, _getAsArray as getAsArray, _getAsObject as getAsObject, httpErrors, isFn as isFunction, isObject, modelClassNames, sectionPath, titleizeType };

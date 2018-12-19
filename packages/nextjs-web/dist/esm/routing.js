@@ -1,4 +1,4 @@
-import { f as _extends } from './chunk-02337cfc.js';
+import { f as _extends } from './chunk-cc870ac4.js';
 import React from 'react';
 import { a as RoutingContext } from './chunk-fccae6e7.js';
 export { a as RoutingContext } from './chunk-fccae6e7.js';

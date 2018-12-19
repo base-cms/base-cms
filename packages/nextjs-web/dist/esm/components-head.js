@@ -1,7 +1,11 @@
-import './chunk-02337cfc.js';
+import './chunk-cc870ac4.js';
 import React from 'react';
 import { isFunction as isFn, cleanPath } from './utils.js';
+import 'inflected';
+import 'escape-string-regexp';
+import 'moment';
 import 'object-path';
+import 'next/config';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 
