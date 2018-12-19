@@ -1,4 +1,4 @@
-import { a as _inherits, b as _classCallCheck, c as _possibleConstructorReturn, d as _getPrototypeOf, e as _createClass } from './chunk-8ffd44ec.js';
+import { a as _inherits, b as _classCallCheck, c as _possibleConstructorReturn, d as _getPrototypeOf, e as _createClass } from './chunk-7be1e98d.js';
 import App, { Container } from 'next/app';
 import React from 'react';
 export { default as WithApollo } from '@base-cms/nextjs-apollo';
