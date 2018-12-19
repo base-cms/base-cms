@@ -1,3 +1,4 @@
+import '../styles/app.scss';
 import {
   WebsiteApp,
   withApollo,

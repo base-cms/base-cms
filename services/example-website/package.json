@@ -6,8 +6,9 @@
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/example-website",
   "license": "MIT",
   "dependencies": {
-    "@base-cms/nextjs-apollo": "^0.4.10",
     "@base-cms/nextjs-web": "^0.4.10",
+    "@base-cms/nextjs-web-bootstrap": "^0.4.10",
+    "bootstrap": "4.1.3",
     "express": "^4.16.4",
     "graphql": "^14.0.2",
     "graphql-tag": "^2.10.0",
