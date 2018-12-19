@@ -9,7 +9,7 @@ deploy:
       tags: true
   -
     provider: script
-    script: bash scripts/deploy/deploy.sh
+    script: bash scripts/deploy/release.sh
     on:
       tags: true
       condition: "$TRAVIS_TAG =~ ^v[0-9]+\\.[0-9]+\\.[0-9]+$"
