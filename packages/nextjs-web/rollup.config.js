@@ -27,6 +27,7 @@ export default {
     'src/components-core.js',
     'src/components-dynamic-page.js',
     'src/components-head.js',
+    'src/components-website-section.js',
     'src/config.js',
     'src/hoc.js',
     'src/routing.js',

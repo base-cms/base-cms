@@ -1,0 +1,6 @@
+{
+  "name": "components-website-section",
+  "private": true,
+  "main": "../../dist/cjs/components-website-section.js",
+  "module": "../../dist/esm/components-website-section.js"
+}
