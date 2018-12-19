@@ -8,6 +8,7 @@ import extractFragmentName from './utils/extract-fragment-name';
 import get from './utils/get';
 import getAsArray from './utils/get-as-array';
 import getAsObject from './utils/get-as-object';
+import httpErrors from './utils/http-errors';
 import isFunction from './utils/is-function';
 import isObject from './utils/is-object';
 
@@ -22,6 +23,7 @@ export {
   get,
   getAsArray,
   getAsObject,
+  httpErrors,
   isFunction,
   isObject,
 };
