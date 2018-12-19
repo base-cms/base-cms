@@ -1,4 +1,20 @@
 language: node_js
 node_js:
-  - "node"
-  - "lts/*"
+  - node
+  - lts/*
+deploy:
+  -
+    provider: script
+    script: bash scripts/image.sh
+    on:
+      tags: true
+  -
+    provder: script
+    script: bash scripts/deploy.sh
+    on:
+      tags: true
+      condition: "$TRAVIS_TAG =~ ^v[0-9]+\\.[0-9]+\\.[0-9]+$"
+env:
+  matrix:
+  - secure: G8yCgMfSR8gjCyF+4id6/Fg8wTnESJjwK0gjDYFyaNf+uGaPwDpFjsoQzV4xGY29nCHOQ01fxM8hMPsRAmfru/jr12s+fDUVt02MovvE2MdmmdyJ8xFwzW7gMf8+Bg4bp0bUJuwnv/4fQfTfZ8/XLUrUJdN/EEI9OGK12qnsB+XkVmaS9j8fE2qBW1ilhMWQf2yulDYFgK8JRVDt8zi+ihXAZlfNbBn+smWyQ9MJ6n3ymZcd6d2z/Luvj98w9lHLVDiS7V4d6RHu8512r4UN41T9uKaloVqNmEg13OcHBQHLPzkuiZ5e7V+rEp/qPJYDVt/wdO0dncRU4h0BloPzjEDxM2abVSJE+YKbcyg1L97IKEW+laVLydcbh2DBfedEJFS82VndTdNARC4b8KTWAHTSUEkuWjmqqJiwBQ0FGLLaloT3TTYCWC3wgeBULF85vE3p7dnUtj4dI8/9W9l8Fxu93xD0ml1LM5ULWe3G+wmfDerxv2ih0loDzrMNvU6MkoxPlLviFfEbmu74+cRLqdcftpeOCnO4sofx9qIX92gCwmL88tGbbsUxyVEapLPvUawftxGI2pooIxpIR2fK2KMG+NBiLdAPRefZoyxvnX/pQ1cmZHYx7C+G5R+R/q0Nf21WpeCbz4QgzBNlZ0/ITQCLXpRlC0NFQRs8mdxl9ms=
+  - secure: C7arL22C5sdha8QDOEKXEuhlJhr2OgbqFhBuqh1JJMZyMNbW7pMbvgK67Fl1yQZsa6ueFuIVkadacZS/wssY7xdv9MF+wLeE2OsGug6DkjJo+0FcJx3UB1W6iYIQ06Ewzx+QkcEyPS+aafYZoS/i5AFHHJ5yIdNW0fdUWCz4IqlBP2gCMD2X6QdnyHyb1IL2hazrx4TdNTI2ExiUgsfGqAWAFqypABIqOOgFCWR9bSKhDhY+HXbOQ0l7tKQeE9mRg0qrc8XYrrIK5Hik2uF3WJLIejWCYNmibCg3+n4D/YrzKGhrCjQ3zexBwcefVEVoxqujYSSG7v3TexLyUYH4uGZ1i8venJzsof1d3gO5tGNuGZHntLPpJ24ZwIlil42m/WiffVxl/4NBBlx38k1yUUVMl6BiNIVorPwbQan+rBIqHycsHcdRVCWB3/Y8/WNt7ip8NM5fczRmx6NJdpqIK9f3yjyzJ594fpTjy8NU+7GXbqx9OoDeFVEioEOis1Fzsyqe0Dr8RMz1jTSZ+H/ek9O1iUVanlXdLKZM/Df/dcsrVwSTFsFu4B1yx6DydY7Wr98Dd8QgQaWayWvwbyZrKTlfHR0Mo8LYvnke/9TpA9NUTXUrqicPCvdM8ItliS+qP3O/ZyMJHdhGHvo3YJ7KIKo9QyvjbPjCoOoxNEnAgrM=
