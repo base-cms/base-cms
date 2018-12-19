@@ -52,22 +52,52 @@ const IndexPage = () => (
 
 export default IndexPage;
 ```
+### Site Config
+A configuration file is used throughout the website to display common elements (such as name, logo, nav items, etc.). By default, the config is defined in the `site/config.js` file (the `site` path can be overriden - see Next Server below for details). An baseline config would look similar to this:
+```js
+module.exports = {
+  name: 'Officer',
+  logo: '//cdn.officer.com/files/base/cygnus/ofcr/image/static/logo/site_logo.png',
+  primaryNavItems: [
+    { to: '/tactical', label: 'Tactical' },
+    { to: '/training-careers', label: 'Training & Careers' },
+    { to: '/on-the-street', label: 'On the Street' },
+    { to: '/investigations', label: 'Investigations' },
+    { to: '/command-hq', label: 'Command/HQ' },
+    { to: '/directory', label: 'Product Guide' },
+    { to: 'https://forum.officer.com', label: 'Forums' },
+  ],
+  secondaryNavItems: [
+    { to: '/features/honoring-the-fallen', label: 'Honoring the Fallen' },
+    { to: '/magazine', label: 'Publications' },
+    { to: '/subscribe', label: 'Subscribe' },
+    { to: '/advertise', label: 'Advertise' },
+    { to: '/contact-us', label: 'Contact Us' },
+  ],
+};
+
+```
 
 ### Application Higher-Order Components
-The website uses Apollo GraphQL (along with other support components) globally. Route definitions are also applied to the application. To facilitate this, create a `site/pages/_app.jsx` file with the following setup. This is required for the website to function properly.
+The website uses Apollo GraphQL, route definitions, and site configuration globally. To facilitate this, create a `site/pages/_app.jsx` file with the following setup. This is required for the website to function properly.
 ```js
 // site/pages/_app.jsx
 import {
   WebsiteApp,
   WithApollo,
   WithRouting,
+  WithSiteConfig,
 } from '@base-cms/nextjs-web/app';
 // Your route definitions from above... assumes site/routes.js
 import routeDefs from '../routes';
+// Your site config from above... assumes site/config.js
+import config from '../config';
 
 export default WithApollo(
   WithRouting(routeDefs)(
-    WebsiteApp,
+    WithSiteConfig(config)(
+      WebsiteApp,
+    ),
   ),
 );
 ```
