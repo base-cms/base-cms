@@ -54,15 +54,22 @@ export default IndexPage;
 ```
 
 ### Application Higher-Order Components
-The website uses Apollo GraphQL (along with other support components) globally. To facilitate this, create a `site/pages/_app.jsx` file with the following setup. This is required for the website to function properly.
+The website uses Apollo GraphQL (along with other support components) globally. Route definitions are also applied to the application. To facilitate this, create a `site/pages/_app.jsx` file with the following setup. This is required for the website to function properly.
 ```js
 // site/pages/_app.jsx
 import {
   WebsiteApp,
   WithApollo,
+  WithRouting,
 } from '@base-cms/nextjs-web/app';
+// Your route definitions from above... assumes site/routes.js
+import routeDefs from '../routes';
 
-export default WithApollo(WebsiteApp);
+export default WithApollo(
+  WithRouting(routeDefs)(
+    WebsiteApp,
+  ),
+);
 ```
 
 ### Next Server
