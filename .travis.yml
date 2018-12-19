@@ -4,12 +4,12 @@ node_js:
 deploy:
   -
     provider: script
-    script: bash scripts/image.sh
+    script: bash scripts/deploy/image.sh
     on:
       tags: true
   -
     provder: script
-    script: bash scripts/deploy.sh
+    script: bash scripts/deploy/deploy.sh
     on:
       tags: true
       condition: "$TRAVIS_TAG =~ ^v[0-9]+\\.[0-9]+\\.[0-9]+$"
