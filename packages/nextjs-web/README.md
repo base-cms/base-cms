@@ -113,7 +113,7 @@ const startServer = require('@base-cms/nextjs-web/server');
 const routeDefs = require('./site/routes');
 // The port the website should run on
 const port = 3005;
-// You external services URL (for GraphQL, RSS, Sitemaps, etc).
+// Your external services URL (for GraphQL, RSS, Sitemaps, etc).
 // This is required.
 const serviceUrl = 'https://[account].4.base-cms.io/[group]';
 
