@@ -55,6 +55,7 @@ export default IndexPage;
 ### Site Config
 A configuration file is used throughout the website to display common elements (such as name, logo, nav items, etc.). By default, the config is defined in the `site/config.js` file (the `site` path can be overriden - see Next Server below for details). An baseline config would look similar to this:
 ```js
+// site/config.js
 module.exports = {
   name: 'Officer',
   logo: '//cdn.officer.com/files/base/cygnus/ofcr/image/static/logo/site_logo.png',
