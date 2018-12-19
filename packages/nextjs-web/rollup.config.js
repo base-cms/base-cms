@@ -26,6 +26,7 @@ export default {
     'src/app.js',
     'src/components-head.js',
     'src/config.js',
+    'src/hoc.js',
     'src/routing.js',
     'src/server.js',
     'src/utils.js',
