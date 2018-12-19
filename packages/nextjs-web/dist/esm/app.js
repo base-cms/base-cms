@@ -3,8 +3,9 @@ import { b as _inherits, c as _classCallCheck, d as _possibleConstructorReturn, 
 import React from 'react';
 import nextRoutes from 'next-routes';
 import { a as RoutingContext } from './chunk-fccae6e7.js';
-import { componentDisplayName } from './utils.js';
+import { componentDisplayName, get as _get, getAsArray as _getAsArray, getAsObject as _getAsObject, isObject } from './utils.js';
 import 'object-path';
+import { a as SiteConfigContext } from './chunk-a9505423.js';
 import App, { Container } from 'next/app';
 export { default as WithApollo } from '@base-cms/nextjs-apollo';
 
@@ -120,6 +121,140 @@ var WithRouting = (function (definitions) {
   };
 });
 
+var SiteConfig =
+/*#__PURE__*/
+function () {
+  /**
+   *
+   * @param {object} config
+   */
+  function SiteConfig(config) {
+    _classCallCheck(this, SiteConfig);
+
+    this.config = isObject(config) ? config : {};
+  }
+  /**
+   *
+   * @param {string} path
+   * @param {*} def
+   */
+
+
+  _createClass(SiteConfig, [{
+    key: "get",
+    value: function get(path, def) {
+      return _get(this.config, path, def);
+    }
+    /**
+     *
+     * @param {string} path
+     */
+
+  }, {
+    key: "getAsArray",
+    value: function getAsArray(path) {
+      return _getAsArray(this.config, path);
+    }
+    /**
+     *
+     * @param {string} path
+     */
+
+  }, {
+    key: "getAsObject",
+    value: function getAsObject(path) {
+      return _getAsObject(this.config, path);
+    }
+  }]);
+
+  return SiteConfig;
+}();
+
+var WithSiteConfig = (function (siteConfig) {
+  return function (ComposedComponent) {
+    var config = new SiteConfig(siteConfig);
+
+    var WithSiteConfig =
+    /*#__PURE__*/
+    function (_React$Component) {
+      _inherits(WithSiteConfig, _React$Component);
+
+      function WithSiteConfig() {
+        _classCallCheck(this, WithSiteConfig);
+
+        return _possibleConstructorReturn(this, _getPrototypeOf(WithSiteConfig).apply(this, arguments));
+      }
+
+      _createClass(WithSiteConfig, [{
+        key: "render",
+
+        /**
+         *
+         */
+        value: function render() {
+          return React.createElement(SiteConfigContext.Provider, {
+            value: config
+          }, React.createElement(ComposedComponent, this.props));
+        }
+      }], [{
+        key: "getInitialProps",
+
+        /**
+         *
+         * @param {object} args
+         */
+        value: function () {
+          var _getInitialProps = _asyncToGenerator(
+          /*#__PURE__*/
+          _regeneratorRuntime.mark(function _callee(args) {
+            var ctx, composedInitialProps;
+            return _regeneratorRuntime.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    ctx = args.ctx; // Add the config to the page context.
+
+                    ctx.siteConfig = config;
+                    composedInitialProps = {};
+
+                    if (!ComposedComponent.getInitialProps) {
+                      _context.next = 7;
+                      break;
+                    }
+
+                    _context.next = 6;
+                    return ComposedComponent.getInitialProps(args);
+
+                  case 6:
+                    composedInitialProps = _context.sent;
+
+                  case 7:
+                    return _context.abrupt("return", _objectSpread({}, composedInitialProps));
+
+                  case 8:
+                  case "end":
+                    return _context.stop();
+                }
+              }
+            }, _callee, this);
+          }));
+
+          function getInitialProps(_x) {
+            return _getInitialProps.apply(this, arguments);
+          }
+
+          return getInitialProps;
+        }()
+      }]);
+
+      return WithSiteConfig;
+    }(React.Component);
+
+    WithSiteConfig.displayName = "WithSiteConfig(".concat(componentDisplayName(ComposedComponent), ")");
+    return WithSiteConfig;
+  };
+});
+
 var WebsiteApp =
 /*#__PURE__*/
 function (_App) {
@@ -144,4 +279,4 @@ function (_App) {
   return WebsiteApp;
 }(App);
 
-export { WebsiteApp, WithRouting };
+export { WebsiteApp, WithRouting, WithSiteConfig };

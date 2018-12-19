@@ -2,10 +2,9 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+require('react');
+var __chunk_4 = require('./chunk-8172d30a.js');
 
-var React = _interopDefault(require('react'));
 
-var ConfigContext = React.createContext({});
 
-exports.SiteConfigContext = ConfigContext;
+exports.SiteConfigContext = __chunk_4.SiteConfigContext;

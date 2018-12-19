@@ -11,6 +11,7 @@ var nextRoutes = _interopDefault(require('next-routes'));
 var __chunk_3 = require('./chunk-cd22912d.js');
 var utils = require('./utils.js');
 require('object-path');
+var __chunk_4 = require('./chunk-8172d30a.js');
 var App = require('next/app');
 var App__default = _interopDefault(App);
 var nextjsApollo = _interopDefault(require('@base-cms/nextjs-apollo'));
@@ -127,6 +128,140 @@ var WithRouting = (function (definitions) {
   };
 });
 
+var SiteConfig =
+/*#__PURE__*/
+function () {
+  /**
+   *
+   * @param {object} config
+   */
+  function SiteConfig(config) {
+    __chunk_2._classCallCheck(this, SiteConfig);
+
+    this.config = utils.isObject(config) ? config : {};
+  }
+  /**
+   *
+   * @param {string} path
+   * @param {*} def
+   */
+
+
+  __chunk_2._createClass(SiteConfig, [{
+    key: "get",
+    value: function get(path, def) {
+      return utils.get(this.config, path, def);
+    }
+    /**
+     *
+     * @param {string} path
+     */
+
+  }, {
+    key: "getAsArray",
+    value: function getAsArray(path) {
+      return utils.getAsArray(this.config, path);
+    }
+    /**
+     *
+     * @param {string} path
+     */
+
+  }, {
+    key: "getAsObject",
+    value: function getAsObject(path) {
+      return utils.getAsObject(this.config, path);
+    }
+  }]);
+
+  return SiteConfig;
+}();
+
+var WithSiteConfig = (function (siteConfig) {
+  return function (ComposedComponent) {
+    var config = new SiteConfig(siteConfig);
+
+    var WithSiteConfig =
+    /*#__PURE__*/
+    function (_React$Component) {
+      __chunk_2._inherits(WithSiteConfig, _React$Component);
+
+      function WithSiteConfig() {
+        __chunk_2._classCallCheck(this, WithSiteConfig);
+
+        return __chunk_2._possibleConstructorReturn(this, __chunk_2._getPrototypeOf(WithSiteConfig).apply(this, arguments));
+      }
+
+      __chunk_2._createClass(WithSiteConfig, [{
+        key: "render",
+
+        /**
+         *
+         */
+        value: function render() {
+          return React.createElement(__chunk_4.SiteConfigContext.Provider, {
+            value: config
+          }, React.createElement(ComposedComponent, this.props));
+        }
+      }], [{
+        key: "getInitialProps",
+
+        /**
+         *
+         * @param {object} args
+         */
+        value: function () {
+          var _getInitialProps = __chunk_2._asyncToGenerator(
+          /*#__PURE__*/
+          __chunk_1._regeneratorRuntime.mark(function _callee(args) {
+            var ctx, composedInitialProps;
+            return __chunk_1._regeneratorRuntime.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    ctx = args.ctx; // Add the config to the page context.
+
+                    ctx.siteConfig = config;
+                    composedInitialProps = {};
+
+                    if (!ComposedComponent.getInitialProps) {
+                      _context.next = 7;
+                      break;
+                    }
+
+                    _context.next = 6;
+                    return ComposedComponent.getInitialProps(args);
+
+                  case 6:
+                    composedInitialProps = _context.sent;
+
+                  case 7:
+                    return _context.abrupt("return", __chunk_2._objectSpread({}, composedInitialProps));
+
+                  case 8:
+                  case "end":
+                    return _context.stop();
+                }
+              }
+            }, _callee, this);
+          }));
+
+          function getInitialProps(_x) {
+            return _getInitialProps.apply(this, arguments);
+          }
+
+          return getInitialProps;
+        }()
+      }]);
+
+      return WithSiteConfig;
+    }(React.Component);
+
+    WithSiteConfig.displayName = "WithSiteConfig(".concat(utils.componentDisplayName(ComposedComponent), ")");
+    return WithSiteConfig;
+  };
+});
+
 var WebsiteApp =
 /*#__PURE__*/
 function (_App) {
@@ -154,3 +289,4 @@ function (_App) {
 exports.WithApollo = nextjsApollo;
 exports.WebsiteApp = WebsiteApp;
 exports.WithRouting = WithRouting;
+exports.WithSiteConfig = WithSiteConfig;

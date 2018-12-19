@@ -32,16 +32,16 @@ var createMarkup = (function (html) {
   };
 });
 
-var get$1 = (function (obj, path) {
+var _get = (function (obj, path) {
   var def = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
   return get(obj, path, def);
 });
 
-var getAsArray = (function (obj, path) {
+var _getAsArray = (function (obj, path) {
   return asArray(get(obj, path, []));
 });
 
-var getAsObject = (function (obj, path) {
+var _getAsObject = (function (obj, path) {
   return asObject(get(obj, path, {}));
 });
 
@@ -49,4 +49,4 @@ var isFunction = (function (v) {
   return typeof v === 'function';
 });
 
-export { asArray, asObject, cleanPath, componentDisplayName, createMarkup, get$1 as get, getAsArray, getAsObject, isFunction, isObject };
+export { asArray, asObject, cleanPath, componentDisplayName, createMarkup, _get as get, _getAsArray as getAsArray, _getAsObject as getAsObject, isFunction, isObject };
