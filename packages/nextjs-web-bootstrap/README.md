@@ -16,7 +16,7 @@ Once installed, add the following to your `next.config.js`:
 const withSass = require('@base-cms/nextjs-web-bootstrap/next-config');
 const withWebsite = require('@base-cms/nextjs-web/next-config');
 
-module.exports = withSass(withBaseWebsite({
+module.exports = withSass(withWebsite({
   // additional config options...
 }));
 ```
