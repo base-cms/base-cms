@@ -10,6 +10,7 @@ var React = _interopDefault(require('react'));
 var nextRoutes = _interopDefault(require('next-routes'));
 var __chunk_3 = require('./chunk-cd22912d.js');
 var utils = require('./utils.js');
+require('object-path');
 var App = require('next/app');
 var App__default = _interopDefault(App);
 var nextjsApollo = _interopDefault(require('@base-cms/nextjs-apollo'));

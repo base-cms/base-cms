@@ -4,6 +4,7 @@ import React from 'react';
 import nextRoutes from 'next-routes';
 import { a as RoutingContext } from './chunk-fccae6e7.js';
 import { componentDisplayName } from './utils.js';
+import 'object-path';
 import App, { Container } from 'next/app';
 export { default as WithApollo } from '@base-cms/nextjs-apollo';
 
