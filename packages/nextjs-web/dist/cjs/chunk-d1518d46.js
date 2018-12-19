@@ -2,8 +2,9 @@
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var React = _interopDefault(require('react'));
+var React = require('react');
+var React__default = _interopDefault(React);
 
-var RoutingContext = React.createContext({});
+var RoutingContext = React__default.createContext({});
 
 exports.RoutingContext = RoutingContext;

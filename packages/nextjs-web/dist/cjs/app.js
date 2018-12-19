@@ -5,16 +5,19 @@ Object.defineProperty(exports, '__esModule', { value: true });
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
 var nextjsApollo = _interopDefault(require('@base-cms/nextjs-apollo'));
-var __chunk_1 = require('./chunk-79f77106.js');
+var __chunk_1 = require('./chunk-cd896063.js');
 var App = require('next/app');
 var App__default = _interopDefault(App);
-var React = _interopDefault(require('react'));
+var React = require('react');
+var React__default = _interopDefault(React);
 var __chunk_2 = require('./chunk-7917b9e8.js');
 var nextRoutes = _interopDefault(require('next-routes'));
-var __chunk_3 = require('./chunk-cd22912d.js');
+var __chunk_3 = require('./chunk-d1518d46.js');
 var utils = require('./utils.js');
 require('object-path');
-var __chunk_4 = require('./chunk-8172d30a.js');
+var __chunk_4 = require('./chunk-6748c5a0.js');
+
+var _jsxFileName = "/base-cms/packages/nextjs-web/src/pages/_app.jsx";
 
 var WebsiteApp =
 /*#__PURE__*/
@@ -33,13 +36,26 @@ function (_App) {
       var _this$props = this.props,
           Component = _this$props.Component,
           pageProps = _this$props.pageProps;
-      return React.createElement(App.Container, null, React.createElement(Component, pageProps));
+      return React__default.createElement(App.Container, {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 8
+        },
+        __self: this
+      }, React__default.createElement(Component, __chunk_1._extends({}, pageProps, {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 9
+        },
+        __self: this
+      })));
     }
   }]);
 
   return WebsiteApp;
 }(App__default);
 
+var _jsxFileName$1 = "/base-cms/packages/nextjs-web/src/routing/withRouting.jsx";
 var isArray = Array.isArray;
 
 var once = function once(fn) {
@@ -88,9 +104,20 @@ var withRouting = (function (definitions) {
          *
          */
         value: function render() {
-          return React.createElement(__chunk_3.RoutingContext.Provider, {
-            value: routes
-          }, React.createElement(ComposedComponent, this.props));
+          return React__default.createElement(__chunk_3.RoutingContext.Provider, {
+            value: routes,
+            __source: {
+              fileName: _jsxFileName$1,
+              lineNumber: 55
+            },
+            __self: this
+          }, React__default.createElement(ComposedComponent, __chunk_1._extends({}, this.props, {
+            __source: {
+              fileName: _jsxFileName$1,
+              lineNumber: 56
+            },
+            __self: this
+          })));
         }
       }], [{
         key: "getInitialProps",
@@ -145,7 +172,7 @@ var withRouting = (function (definitions) {
       }]);
 
       return WithRouting;
-    }(React.Component);
+    }(React__default.Component);
 
     WithRouting.displayName = "WithRouting(".concat(utils.componentDisplayName(ComposedComponent), ")");
     return WithRouting;
@@ -201,6 +228,7 @@ function () {
   return SiteConfig;
 }();
 
+var _jsxFileName$2 = "/base-cms/packages/nextjs-web/src/config/withSiteConfig.jsx";
 var withSiteConfig = (function (siteConfig) {
   return function (ComposedComponent) {
     var config = new SiteConfig(siteConfig);
@@ -223,9 +251,20 @@ var withSiteConfig = (function (siteConfig) {
          *
          */
         value: function render() {
-          return React.createElement(__chunk_4.SiteConfigContext.Provider, {
-            value: config
-          }, React.createElement(ComposedComponent, this.props));
+          return React__default.createElement(__chunk_4.SiteConfigContext.Provider, {
+            value: config,
+            __source: {
+              fileName: _jsxFileName$2,
+              lineNumber: 30
+            },
+            __self: this
+          }, React__default.createElement(ComposedComponent, __chunk_1._extends({}, this.props, {
+            __source: {
+              fileName: _jsxFileName$2,
+              lineNumber: 31
+            },
+            __self: this
+          })));
         }
       }], [{
         key: "getInitialProps",
@@ -279,7 +318,7 @@ var withSiteConfig = (function (siteConfig) {
       }]);
 
       return WithSiteConfig;
-    }(React.Component);
+    }(React__default.Component);
 
     WithSiteConfig.displayName = "WithSiteConfig(".concat(utils.componentDisplayName(ComposedComponent), ")");
     return WithSiteConfig;

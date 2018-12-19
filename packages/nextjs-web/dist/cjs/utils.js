@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var __chunk_1 = require('./chunk-79f77106.js');
+var __chunk_1 = require('./chunk-cd896063.js');
 var objectPath = require('object-path');
 
 var isArray = Array.isArray;
@@ -36,6 +36,35 @@ var createMarkup = (function (html) {
   };
 });
 
+var extractFragmentName = (function (fragment) {
+  var pattern = /fragment (.*) on/;
+  if (typeof fragment === 'string') return fragment.match(pattern)[1];
+
+  if (fragment && fragment.kind && fragment.kind === 'Document') {
+    return fragment.loc.source.body.match(pattern)[1];
+  }
+
+  return null;
+});
+
+var extractFragmentData = (function (_ref) {
+  var fragment = _ref.fragment;
+  var spreadFragmentName = '';
+  var processedFragment = '';
+
+  if (fragment) {
+    var fragmentName = extractFragmentName(fragment);
+    if (!fragmentName) throw new Error('Unable to extract a fragment name.');
+    processedFragment = fragment;
+    spreadFragmentName = "...".concat(fragmentName);
+  }
+
+  return {
+    processedFragment: processedFragment,
+    spreadFragmentName: spreadFragmentName
+  };
+});
+
 var _get = (function (obj, path) {
   var def = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
   return objectPath.get(obj, path, def);
@@ -49,7 +78,17 @@ var _getAsObject = (function (obj, path) {
   return asObject(objectPath.get(obj, path, {}));
 });
 
-var isFunction = (function (v) {
+var httpErrors = {
+  notFound: function notFound() {
+    var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'No record found.';
+    var e = new Error(message);
+    e.code = 'ENOENT';
+    e.statusCode = 404;
+    return e;
+  }
+};
+
+var isFn = (function (v) {
   return typeof v === 'function';
 });
 
@@ -58,8 +97,11 @@ exports.asObject = asObject;
 exports.cleanPath = cleanPath;
 exports.componentDisplayName = componentDisplayName;
 exports.createMarkup = createMarkup;
+exports.extractFragmentData = extractFragmentData;
+exports.extractFragmentName = extractFragmentName;
 exports.get = _get;
 exports.getAsArray = _getAsArray;
 exports.getAsObject = _getAsObject;
-exports.isFunction = isFunction;
+exports.httpErrors = httpErrors;
+exports.isFunction = isFn;
 exports.isObject = isObject;

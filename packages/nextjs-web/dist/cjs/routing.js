@@ -4,13 +4,28 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var React = _interopDefault(require('react'));
-var __chunk_3 = require('./chunk-cd22912d.js');
+var __chunk_1 = require('./chunk-cd896063.js');
+var React = require('react');
+var React__default = _interopDefault(React);
+var __chunk_3 = require('./chunk-d1518d46.js');
 
+var _jsxFileName = "/base-cms/packages/nextjs-web/src/routing/Link.jsx";
 var Link = (function (props) {
-  return React.createElement(__chunk_3.RoutingContext.Consumer, null, function (_ref) {
+  return React__default.createElement(__chunk_3.RoutingContext.Consumer, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 5
+    },
+    __self: this
+  }, function (_ref) {
     var NextLink = _ref.Link;
-    return React.createElement(NextLink, props);
+    return React__default.createElement(NextLink, __chunk_1._extends({}, props, {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 6
+      },
+      __self: this
+    }));
   });
 });
 

@@ -1,3 +1,5 @@
+'use strict';
+
 function _typeof(obj) {
   if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
     _typeof = function (obj) {
@@ -85,6 +87,24 @@ function _defineProperty(obj, key, value) {
   return obj;
 }
 
+function _extends() {
+  _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
 function _objectSpread(target) {
   for (var i = 1; i < arguments.length; i++) {
     var source = arguments[i] != null ? arguments[i] : {};
@@ -151,4 +171,25 @@ function _possibleConstructorReturn(self, call) {
   return _assertThisInitialized(self);
 }
 
-export { _inherits as a, _classCallCheck as b, _possibleConstructorReturn as c, _getPrototypeOf as d, _createClass as e, _asyncToGenerator as f, _objectSpread as g, _typeof as h };
+function _taggedTemplateLiteral(strings, raw) {
+  if (!raw) {
+    raw = strings.slice(0);
+  }
+
+  return Object.freeze(Object.defineProperties(strings, {
+    raw: {
+      value: Object.freeze(raw)
+    }
+  }));
+}
+
+exports._inherits = _inherits;
+exports._classCallCheck = _classCallCheck;
+exports._possibleConstructorReturn = _possibleConstructorReturn;
+exports._getPrototypeOf = _getPrototypeOf;
+exports._createClass = _createClass;
+exports._extends = _extends;
+exports._asyncToGenerator = _asyncToGenerator;
+exports._objectSpread = _objectSpread;
+exports._typeof = _typeof;
+exports._taggedTemplateLiteral = _taggedTemplateLiteral;

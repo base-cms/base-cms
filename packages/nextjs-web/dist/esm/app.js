@@ -1,5 +1,5 @@
 export { default as withApollo } from '@base-cms/nextjs-apollo';
-import { a as _inherits, b as _classCallCheck, c as _possibleConstructorReturn, d as _getPrototypeOf, e as _createClass, f as _asyncToGenerator, g as _objectSpread } from './chunk-3be546a6.js';
+import { a as _inherits, b as _classCallCheck, c as _possibleConstructorReturn, d as _getPrototypeOf, e as _createClass, f as _extends, g as _asyncToGenerator, h as _objectSpread } from './chunk-02337cfc.js';
 import App, { Container } from 'next/app';
 import React from 'react';
 import { a as _regeneratorRuntime } from './chunk-cc3f9e68.js';
@@ -8,6 +8,8 @@ import { a as RoutingContext } from './chunk-fccae6e7.js';
 import { componentDisplayName, get as _get, getAsArray as _getAsArray, getAsObject as _getAsObject, isObject } from './utils.js';
 import 'object-path';
 import { a as SiteConfigContext } from './chunk-a9505423.js';
+
+var _jsxFileName = "/base-cms/packages/nextjs-web/src/pages/_app.jsx";
 
 var WebsiteApp =
 /*#__PURE__*/
@@ -26,13 +28,26 @@ function (_App) {
       var _this$props = this.props,
           Component = _this$props.Component,
           pageProps = _this$props.pageProps;
-      return React.createElement(Container, null, React.createElement(Component, pageProps));
+      return React.createElement(Container, {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 8
+        },
+        __self: this
+      }, React.createElement(Component, _extends({}, pageProps, {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 9
+        },
+        __self: this
+      })));
     }
   }]);
 
   return WebsiteApp;
 }(App);
 
+var _jsxFileName$1 = "/base-cms/packages/nextjs-web/src/routing/withRouting.jsx";
 var isArray = Array.isArray;
 
 var once = function once(fn) {
@@ -82,8 +97,19 @@ var withRouting = (function (definitions) {
          */
         value: function render() {
           return React.createElement(RoutingContext.Provider, {
-            value: routes
-          }, React.createElement(ComposedComponent, this.props));
+            value: routes,
+            __source: {
+              fileName: _jsxFileName$1,
+              lineNumber: 55
+            },
+            __self: this
+          }, React.createElement(ComposedComponent, _extends({}, this.props, {
+            __source: {
+              fileName: _jsxFileName$1,
+              lineNumber: 56
+            },
+            __self: this
+          })));
         }
       }], [{
         key: "getInitialProps",
@@ -194,6 +220,7 @@ function () {
   return SiteConfig;
 }();
 
+var _jsxFileName$2 = "/base-cms/packages/nextjs-web/src/config/withSiteConfig.jsx";
 var withSiteConfig = (function (siteConfig) {
   return function (ComposedComponent) {
     var config = new SiteConfig(siteConfig);
@@ -217,8 +244,19 @@ var withSiteConfig = (function (siteConfig) {
          */
         value: function render() {
           return React.createElement(SiteConfigContext.Provider, {
-            value: config
-          }, React.createElement(ComposedComponent, this.props));
+            value: config,
+            __source: {
+              fileName: _jsxFileName$2,
+              lineNumber: 30
+            },
+            __self: this
+          }, React.createElement(ComposedComponent, _extends({}, this.props, {
+            __source: {
+              fileName: _jsxFileName$2,
+              lineNumber: 31
+            },
+            __self: this
+          })));
         }
       }], [{
         key: "getInitialProps",

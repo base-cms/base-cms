@@ -1,11 +1,25 @@
+import { f as _extends } from './chunk-02337cfc.js';
 import React from 'react';
 import { a as RoutingContext } from './chunk-fccae6e7.js';
 export { a as RoutingContext } from './chunk-fccae6e7.js';
 
+var _jsxFileName = "/base-cms/packages/nextjs-web/src/routing/Link.jsx";
 var Link = (function (props) {
-  return React.createElement(RoutingContext.Consumer, null, function (_ref) {
+  return React.createElement(RoutingContext.Consumer, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 5
+    },
+    __self: this
+  }, function (_ref) {
     var NextLink = _ref.Link;
-    return React.createElement(NextLink, props);
+    return React.createElement(NextLink, _extends({}, props, {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 6
+      },
+      __self: this
+    }));
   });
 });
 

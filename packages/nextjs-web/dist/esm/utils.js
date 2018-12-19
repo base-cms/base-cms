@@ -1,4 +1,4 @@
-import { h as _typeof } from './chunk-3be546a6.js';
+import { i as _typeof } from './chunk-02337cfc.js';
 import { get } from 'object-path';
 
 var isArray = Array.isArray;
@@ -32,6 +32,35 @@ var createMarkup = (function (html) {
   };
 });
 
+var extractFragmentName = (function (fragment) {
+  var pattern = /fragment (.*) on/;
+  if (typeof fragment === 'string') return fragment.match(pattern)[1];
+
+  if (fragment && fragment.kind && fragment.kind === 'Document') {
+    return fragment.loc.source.body.match(pattern)[1];
+  }
+
+  return null;
+});
+
+var extractFragmentData = (function (_ref) {
+  var fragment = _ref.fragment;
+  var spreadFragmentName = '';
+  var processedFragment = '';
+
+  if (fragment) {
+    var fragmentName = extractFragmentName(fragment);
+    if (!fragmentName) throw new Error('Unable to extract a fragment name.');
+    processedFragment = fragment;
+    spreadFragmentName = "...".concat(fragmentName);
+  }
+
+  return {
+    processedFragment: processedFragment,
+    spreadFragmentName: spreadFragmentName
+  };
+});
+
 var _get = (function (obj, path) {
   var def = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
   return get(obj, path, def);
@@ -45,8 +74,18 @@ var _getAsObject = (function (obj, path) {
   return asObject(get(obj, path, {}));
 });
 
-var isFunction = (function (v) {
+var httpErrors = {
+  notFound: function notFound() {
+    var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'No record found.';
+    var e = new Error(message);
+    e.code = 'ENOENT';
+    e.statusCode = 404;
+    return e;
+  }
+};
+
+var isFn = (function (v) {
   return typeof v === 'function';
 });
 
-export { asArray, asObject, cleanPath, componentDisplayName, createMarkup, _get as get, _getAsArray as getAsArray, _getAsObject as getAsObject, isFunction, isObject };
+export { asArray, asObject, cleanPath, componentDisplayName, createMarkup, extractFragmentData, extractFragmentName, _get as get, _getAsArray as getAsArray, _getAsObject as getAsObject, httpErrors, isFn as isFunction, isObject };

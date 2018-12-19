@@ -2,7 +2,7 @@
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var __chunk_1 = require('./chunk-79f77106.js');
+var __chunk_1 = require('./chunk-cd896063.js');
 var __chunk_2 = require('./chunk-7917b9e8.js');
 var nextRoutes = _interopDefault(require('next-routes'));
 var next = _interopDefault(require('next'));
