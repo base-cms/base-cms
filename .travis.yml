@@ -1,4 +1,15 @@
 language: node_js
 node_js:
-  - "node"
-  - "lts/*"
+  - "10.13"
+deploy:
+  -
+    provider: script
+    script: bash scripts/image.sh
+    on:
+      tags: true
+  -
+    provder: script
+    script: bash scripts/deploy.sh
+    on:
+      tags: true
+      condition: "$TRAVIS_TAG =~ ^v[0-9]+\\.[0-9]+\\.[0-9]+$"
