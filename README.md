@@ -18,8 +18,8 @@ To bring down all services (and service deps) run `scripts/down.sh`.
 
 ## Adding/Removing Dependencies
 This repository uses Yarn workspaces for managing packages and services.
-- To add packages to a workspace run `scripts/workspace.sh [WORKSPACE_NAME] add [package]`
-- To remove packages from a workspace run `scripts/workspace.sh [WORKSPACE_NAME] remove [package]`
+- To add dependencies to a workspace run `scripts/workspace.sh [WORKSPACE_NAME] add [package]`
+- To remove dependencies from a workspace run `scripts/workspace.sh [WORKSPACE_NAME] remove [package]`
 
 The `WORKSPACE_NAME` is equivalent to the `name` field found in the `package.json` file of the package or service. For example, to add a package to the `graphql-server` service, run `scripts/workspace.sh @base-cms/graphql-server add [package]`
 
