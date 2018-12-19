@@ -31,7 +31,7 @@ type WebsiteSection {
   logo: AssetImage @projection @refOne(loader: "platformAsset", criteria: "assetImage")
 
   # fields from trait.platform::Content\SeoFields
-  # metadata: WebsiteSectionMetadata! @sectionMetadata
+  metadata: WebsiteSectionMetadata! @projection(localField: "fullName", needs: ["description", "seoTitle"])
   alias: String @projection
   redirects: [String]! @projection @arrayValue
   slug: String @projection
@@ -46,6 +46,11 @@ type WebsiteSectionConnection @projectUsing(type: "WebsiteSection") {
 type WebsiteSectionEdge {
   node: WebsiteSection!
   cursor: String!
+}
+
+type WebsiteSectionMetadata {
+  title: String
+  description: String
 }
 
 enum WebsiteSectionSortField {
