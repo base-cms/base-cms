@@ -3,7 +3,7 @@ const gql = require('graphql-tag');
 module.exports = gql`
 
 extend type Query {
-  contentPage(input: ContentPageQueryInput!): ContentPage @findOne(model: "platform.Content", using: { alias: "alias" }, criteria: "contentPage")
+  contentPage(input: ContentPageQueryInput!): ContentPage @findOne(model: "platform.Content", using: { alias: "mutations.Website.alias" }, criteria: "contentPage")
 }
 
 type ContentPage implements Content @applyInterfaceFields {
