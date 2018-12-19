@@ -12,7 +12,8 @@
     "@base-cms/nextjs-apollo": "^0.4.10",
     "express": "^4.16.4",
     "http-proxy-middleware": "^0.19.1",
-    "next-routes": "^1.4.2"
+    "next-routes": "^1.4.2",
+    "object-path": "^0.11.4"
   },
   "peerDependencies": {
     "apollo-client": "^2.4.0",
