@@ -1,4 +1,4 @@
-import { g as _typeof } from './chunk-7be1e98d.js';
+import { a as _typeof } from './chunk-3be546a6.js';
 
 var componentDisplayName = (function (Comp) {
   if (typeof Comp === 'string') return Comp;

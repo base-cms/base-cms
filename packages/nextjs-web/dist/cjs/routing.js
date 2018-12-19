@@ -5,11 +5,10 @@ Object.defineProperty(exports, '__esModule', { value: true });
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
 var React = _interopDefault(require('react'));
-
-var RoutingContext = React.createContext({});
+var __chunk_3 = require('./chunk-cd22912d.js');
 
 var Link = (function (props) {
-  return React.createElement(RoutingContext.Consumer, null, function (_ref) {
+  return React.createElement(__chunk_3.RoutingContext.Consumer, null, function (_ref) {
     var NextLink = _ref.Link;
     return React.createElement(NextLink, props);
   });
@@ -35,6 +34,6 @@ var redirect = function redirect() {
   }
 };
 
+exports.RoutingContext = __chunk_3.RoutingContext;
 exports.Link = Link;
-exports.RoutingContext = RoutingContext;
 exports.redirect = redirect;

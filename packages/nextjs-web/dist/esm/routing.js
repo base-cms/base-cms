@@ -1,6 +1,6 @@
 import React from 'react';
-
-var RoutingContext = React.createContext({});
+import { a as RoutingContext } from './chunk-fccae6e7.js';
+export { a as RoutingContext } from './chunk-fccae6e7.js';
 
 var Link = (function (props) {
   return React.createElement(RoutingContext.Consumer, null, function (_ref) {
@@ -29,4 +29,4 @@ var redirect = function redirect() {
   }
 };
 
-export { Link, RoutingContext, redirect };
+export { Link, redirect };
