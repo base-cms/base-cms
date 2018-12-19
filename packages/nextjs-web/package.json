@@ -6,7 +6,8 @@
   "license": "MIT",
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/nextjs-web",
   "scripts": {
-    "build": "rollup -c"
+    "clean": "rimraf dist",
+    "build": "yarn clean && rollup -c"
   },
   "dependencies": {
     "@base-cms/nextjs-apollo": "^0.4.10",
