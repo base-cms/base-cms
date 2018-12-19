@@ -13,9 +13,9 @@ Once the dependencies are installed, a bare minimum Next+BaseCMS setup is requir
 Create a `next.config.js` file in the project root and import the BaseCMS next config:
 ```js
 // next.config.js
-const withBaseWebsite = require('@base-cms/nextjs-web/next-config');
+const withWebsite = require('@base-cms/nextjs-web/next-config');
 
-module.exports = withBaseWebsite({
+module.exports = withWebsite({
   distDir: '../.next/build', // Or whatever directory you'd like
   publicRuntimeConfig: {
     // This assumes that you do _not_ want section page paths prefixed with `/section`. Omit this to preserve `/section` prefixing.
@@ -25,7 +25,7 @@ module.exports = withBaseWebsite({
 });
 
 ```
-By default the `withBaseWebsite` config will add the `NODE_ENV` value via Webpack's `EnvironmentPlugin` and add support for importing `.graphql` files.
+By default the `withWebsite` config will add the `NODE_ENV` value via Webpack's `EnvironmentPlugin` and add support for importing `.graphql` files.
 
 ### Setup Default Routes
 Routes are named and support pattern matching. A default set of routes need to be created in order for the site to initially function. By default, these are defined in the `site/routes.js` file (the `site` path can be overriden - see Next Server below for details). At bare minimum, a home or index route must be created:
