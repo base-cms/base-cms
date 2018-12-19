@@ -4,12 +4,6 @@ module.exports = [
     pattern: '/',
     page: 'index',
   },
-  // @todo Remove me.
-  {
-    name: 'test',
-    pattern: '/test',
-    page: 'test',
-  },
   {
     name: 'page',
     pattern: '/page/:alias',
