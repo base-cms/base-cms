@@ -14,7 +14,8 @@ x-service-defaults:
     YARN_CACHE_FOLDER: /.yarn-cache
     NODE_ENV: development
     MONGO_DSN: ${MONGO_DSN-mongodb://mongodb:27017}
-    TENANT_KEY: cygnus_ofcr
+    TENANT_KEY: ${TENANT_KEY}
+    GRAPHQL_URL: ${GRAPHQL_URL-http://graphql-server}
     ELASTICSEARCH_URL: ${ELASTICSEARCH_URL-http://elasticsearch:9200}
     ENABLE_BASEDB_LOGGING: ${ENABLE_BASEDB_LOGGING-0}
 
@@ -57,6 +58,14 @@ services:
       - mongodb
     ports:
       - "10002:80"
+  example-website:
+    << : *service-defaults
+    working_dir: /base-cms/services/example-website
+    command: ['node', 'server.js']
+    depends_on:
+      - graphql-server
+    ports:
+      - "10003:10003"
 
 volumes:
   esdata: {}

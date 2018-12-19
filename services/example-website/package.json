@@ -1,0 +1,20 @@
+{
+  "name": "@base-cms/example-website",
+  "version": "0.4.11",
+  "main": "src/index.js",
+  "author": "Jacob Bare <jacob@limit0.io>",
+  "repository": "https://github.com/base-cms/base-cms/tree/master/packages/example-website",
+  "license": "MIT",
+  "dependencies": {
+    "@base-cms/nextjs-apollo": "^0.4.10",
+    "@base-cms/nextjs-web": "^0.4.10",
+    "express": "^4.16.4",
+    "graphql": "^14.0.2",
+    "graphql-tag": "^2.10.0",
+    "http-proxy-middleware": "^0.19.1",
+    "next": "^7.0.2",
+    "react": "^16.6.3",
+    "react-apollo": "^2.3.3",
+    "react-dom": "^16.6.3"
+  }
+}
