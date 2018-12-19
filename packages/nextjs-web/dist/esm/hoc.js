@@ -1,7 +1,8 @@
 import { a as _inherits, b as _classCallCheck, c as _possibleConstructorReturn, d as _getPrototypeOf, e as _createClass, f as _extends, g as _asyncToGenerator, h as _objectSpread, k as _taggedTemplateLiteral } from './chunk-cc870ac4.js';
 import React, { Component } from 'react';
 import { a as _regeneratorRuntime } from './chunk-cc3f9e68.js';
-import { componentDisplayName, httpErrors, extractFragmentData } from './utils.js';
+import './chunk-fccae6e7.js';
+import { componentDisplayName, httpErrors, extractFragmentData, sectionPath } from './utils.js';
 import 'inflected';
 import 'escape-string-regexp';
 import 'moment';
@@ -9,6 +10,7 @@ import 'object-path';
 import 'next/config';
 import { a as SiteConfigContext } from './chunk-a9505423.js';
 import PropTypes from 'prop-types';
+import { redirect } from './routing.js';
 import 'next/head';
 import { PageTitle, MetaDescription, RelCanonical } from './components-head.js';
 import gql from 'graphql-tag';
@@ -401,4 +403,231 @@ var withLayout = (function (LayoutComp) {
   };
 });
 
-export { withDynamicPage, withLayout, withRequestOrigin };
+var doc$1 = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"WithWebsiteSectionFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"WebsiteSection"}},"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"name"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"description"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"alias"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"metadata"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"description"},"arguments":[],"directives":[]}]}}]}}],"loc":{"start":0,"end":135}};
+    doc$1.loc.source = {"body":"fragment WithWebsiteSectionFragment on WebsiteSection {\n  id\n  name\n  description\n  alias\n  metadata {\n    title\n    description\n  }\n}\n","name":"GraphQL request","locationOffset":{"line":1,"column":1}};
+
+var _jsxFileName$3 = "/base-cms/packages/nextjs-web/src/hoc/withWebsiteSection.jsx";
+
+function _templateObject$1() {
+  var data = _taggedTemplateLiteral(["\n    query WithWebsiteSection($input: WebsiteSectionAliasQueryInput!, $redirect: WebsiteSectionRedirectQueryInput!) {\n      websiteSectionAlias(input: $input) {\n        ...WithWebsiteSectionFragment\n        ", "\n      }\n      websiteSectionRedirect(input: $redirect) {\n        id\n        alias\n      }\n    }\n    ", "\n    ", "\n  "]);
+
+  _templateObject$1 = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+/**
+ * Builds the website section GraphQL query.
+ */
+
+var buildQuery$1 = function buildQuery(_ref) {
+  var fragment = _ref.fragment;
+
+  var _extractFragmentData = extractFragmentData({
+    fragment: fragment
+  }),
+      spreadFragmentName = _extractFragmentData.spreadFragmentName,
+      processedFragment = _extractFragmentData.processedFragment;
+
+  return gql(_templateObject$1(), spreadFragmentName, doc$1, processedFragment);
+};
+var withWebsiteSection = (function () {
+  var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      _ref2$fragment = _ref2.fragment,
+      fragment = _ref2$fragment === void 0 ? null : _ref2$fragment;
+
+  return function (Page) {
+    var WithWebsiteSection =
+    /*#__PURE__*/
+    function (_Component) {
+      _inherits(WithWebsiteSection, _Component);
+
+      function WithWebsiteSection() {
+        _classCallCheck(this, WithWebsiteSection);
+
+        return _possibleConstructorReturn(this, _getPrototypeOf(WithWebsiteSection).apply(this, arguments));
+      }
+
+      _createClass(WithWebsiteSection, [{
+        key: "render",
+
+        /**
+         *
+         */
+        value: function render() {
+          var _this$props = this.props,
+              requestOrigin = _this$props.requestOrigin,
+              canonicalPath = _this$props.canonicalPath,
+              section = _this$props.section;
+          var metadata = section.metadata;
+          return React.createElement(React.Fragment, null, React.createElement(SiteConfigContext.Consumer, {
+            __source: {
+              fileName: _jsxFileName$3,
+              lineNumber: 110
+            },
+            __self: this
+          }, function (config) {
+            return React.createElement(PageTitle, {
+              value: metadata.title,
+              siteName: config.get('name'),
+              __source: {
+                fileName: _jsxFileName$3,
+                lineNumber: 111
+              },
+              __self: this
+            });
+          }), React.createElement(MetaDescription, {
+            value: metadata.description,
+            __source: {
+              fileName: _jsxFileName$3,
+              lineNumber: 113
+            },
+            __self: this
+          }), React.createElement(RelCanonical, {
+            origin: requestOrigin,
+            pathname: canonicalPath,
+            __source: {
+              fileName: _jsxFileName$3,
+              lineNumber: 114
+            },
+            __self: this
+          }), React.createElement(Page, _extends({}, this.props, {
+            __source: {
+              fileName: _jsxFileName$3,
+              lineNumber: 115
+            },
+            __self: this
+          })));
+        }
+      }], [{
+        key: "getInitialProps",
+
+        /**
+         *
+         */
+        value: function () {
+          var _getInitialProps = _asyncToGenerator(
+          /*#__PURE__*/
+          _regeneratorRuntime.mark(function _callee(ctx) {
+            var pageProps, query, apollo, res, Router, alias, input, variables, _ref3, data, websiteSectionAlias, websiteSectionRedirect, canonicalPath, redirectAlias, path;
+
+            return _regeneratorRuntime.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    if (!Page.getInitialProps) {
+                      _context.next = 4;
+                      break;
+                    }
+
+                    _context.next = 3;
+                    return Page.getInitialProps(ctx);
+
+                  case 3:
+                    pageProps = _context.sent;
+
+                  case 4:
+                    query = ctx.query, apollo = ctx.apollo, res = ctx.res, Router = ctx.Router; // Get the section alias from the page query.
+                    // Note: the section alias is required for this HOC to function properly.
+
+                    alias = query.alias;
+
+                    if (alias) {
+                      _context.next = 8;
+                      break;
+                    }
+
+                    throw httpErrors.notFound('No website section alias was provided.');
+
+                  case 8:
+                    // Query for the website section using the alias, via the injected apollo client.
+                    input = {
+                      alias: alias
+                    };
+                    variables = {
+                      input: input,
+                      redirect: input
+                    };
+                    _context.next = 12;
+                    return apollo.query({
+                      query: buildQuery$1({
+                        fragment: fragment
+                      }),
+                      variables: variables
+                    });
+
+                  case 12:
+                    _ref3 = _context.sent;
+                    data = _ref3.data;
+                    websiteSectionAlias = data.websiteSectionAlias, websiteSectionRedirect = data.websiteSectionRedirect;
+
+                    if (!websiteSectionAlias) {
+                      _context.next = 18;
+                      break;
+                    }
+
+                    // The website section was found. Return it allong with the page props.
+                    canonicalPath = sectionPath(alias);
+                    return _context.abrupt("return", _objectSpread({
+                      section: websiteSectionAlias,
+                      canonicalPath: canonicalPath
+                    }, pageProps));
+
+                  case 18:
+                    if (!(websiteSectionRedirect && websiteSectionRedirect.alias)) {
+                      _context.next = 23;
+                      break;
+                    }
+
+                    // A redirect was found for this section alias. Force a redirect.
+                    redirectAlias = websiteSectionRedirect.alias;
+                    path = sectionPath(redirectAlias);
+                    redirect({
+                      Router: Router,
+                      res: res,
+                      route: path
+                    });
+                    return _context.abrupt("return", _objectSpread({
+                      section: {},
+                      canonicalPath: path
+                    }, pageProps));
+
+                  case 23:
+                    throw httpErrors.notFound("No website section was found for alias '".concat(alias, "'"));
+
+                  case 24:
+                  case "end":
+                    return _context.stop();
+                }
+              }
+            }, _callee, this);
+          }));
+
+          function getInitialProps(_x) {
+            return _getInitialProps.apply(this, arguments);
+          }
+
+          return getInitialProps;
+        }()
+      }]);
+
+      return WithWebsiteSection;
+    }(Component);
+
+    WithWebsiteSection.displayName = "WithWebsiteSection(".concat(componentDisplayName(Page), ")");
+    WithWebsiteSection.propTypes = _objectSpread({}, Page.propTypes, {
+      canonicalPath: PropTypes.string.isRequired,
+      section: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        alias: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        description: PropTypes.string,
+        seoTitle: PropTypes.string
+      }).isRequired
+    });
+    return withRequestOrigin(WithWebsiteSection);
+  };
+});
+
+export { withDynamicPage, withLayout, withRequestOrigin, withWebsiteSection };

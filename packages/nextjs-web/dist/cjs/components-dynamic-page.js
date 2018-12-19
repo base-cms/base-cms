@@ -7,7 +7,7 @@ function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'defau
 var __chunk_1 = require('./chunk-15d55d73.js');
 var React = require('react');
 var React__default = _interopDefault(React);
-var utils = require('./utils.js');
+require('./utils.js');
 require('inflected');
 require('escape-string-regexp');
 require('moment');
@@ -16,6 +16,7 @@ require('next/config');
 var PropTypes = _interopDefault(require('prop-types'));
 var __chunk_5 = require('./chunk-6bc6a447.js');
 var classNames = _interopDefault(require('classnames'));
+var __chunk_7 = require('./chunk-831a7cdc.js');
 
 var _jsxFileName = "/base-cms/packages/nextjs-web/src/components/dynamic-page/Wrapper.jsx";
 var propTypes = {
@@ -61,38 +62,9 @@ DynamicPageWrapper.displayName = 'DynamicPage/Wrapper';
 DynamicPageWrapper.propTypes = propTypes;
 DynamicPageWrapper.defaultProps = defaultProps;
 
-var _jsxFileName$1 = "/base-cms/packages/nextjs-web/src/hoc/withModelFieldClass.jsx";
-var withModelFieldClass = (function (modelType) {
-  return function (Component) {
-    var WithModelFieldClass = function WithModelFieldClass(_ref) {
-      var path = _ref.path,
-          className = _ref.className,
-          rest = __chunk_1._objectWithoutProperties(_ref, ["path", "className"]);
+var ObjectValue = __chunk_7.withModelFieldClass('dynamic-page')(__chunk_5.ObjectValue);
 
-      var classes = utils.modelClassNames(modelType, path);
-      return React__default.createElement(Component, __chunk_1._extends({
-        className: classNames(classes, className),
-        path: path
-      }, rest, {
-        __source: {
-          fileName: _jsxFileName$1,
-          lineNumber: 13
-        },
-        __self: this
-      }));
-    };
-
-    WithModelFieldClass.displayName = "WithModelFieldClass(".concat(utils.componentDisplayName(Component), ")[").concat(modelType, "]");
-    WithModelFieldClass.propTypes = __chunk_1._objectSpread({}, Component.propTypes, {
-      path: PropTypes.string.isRequired
-    });
-    return WithModelFieldClass;
-  };
-});
-
-var ObjectValue = withModelFieldClass('dynamic-page')(__chunk_5.ObjectValue);
-
-var _jsxFileName$2 = "/base-cms/packages/nextjs-web/src/components/dynamic-page/Elements/Body.jsx";
+var _jsxFileName$1 = "/base-cms/packages/nextjs-web/src/components/dynamic-page/Elements/Body.jsx";
 var propTypes$1 = {
   collapsible: PropTypes.bool,
   page: PropTypes.shape({
@@ -116,7 +88,7 @@ var DynamicPageBody = function DynamicPageBody(_ref) {
     obj: page
   }, rest, {
     __source: {
-      fileName: _jsxFileName$2,
+      fileName: _jsxFileName$1,
       lineNumber: 20
     },
     __self: this
@@ -127,7 +99,7 @@ DynamicPageBody.displayName = 'DynamicPage/Elements/Body';
 DynamicPageBody.propTypes = propTypes$1;
 DynamicPageBody.defaultProps = defaultProps$1;
 
-var _jsxFileName$3 = "/base-cms/packages/nextjs-web/src/components/dynamic-page/Elements/Name.jsx";
+var _jsxFileName$2 = "/base-cms/packages/nextjs-web/src/components/dynamic-page/Elements/Name.jsx";
 var propTypes$2 = {
   collapsible: PropTypes.bool,
   page: PropTypes.shape({
@@ -150,7 +122,7 @@ var DynamicPageName = function DynamicPageName(_ref) {
     obj: page
   }, rest, {
     __source: {
-      fileName: _jsxFileName$3,
+      fileName: _jsxFileName$2,
       lineNumber: 20
     },
     __self: this

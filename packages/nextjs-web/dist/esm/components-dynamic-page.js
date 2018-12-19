@@ -1,6 +1,6 @@
-import { j as _objectWithoutProperties, f as _extends, h as _objectSpread } from './chunk-cc870ac4.js';
+import { j as _objectWithoutProperties, f as _extends } from './chunk-cc870ac4.js';
 import React from 'react';
-import { componentDisplayName, modelClassNames } from './utils.js';
+import './utils.js';
 import 'inflected';
 import 'escape-string-regexp';
 import 'moment';
@@ -9,6 +9,7 @@ import 'next/config';
 import PropTypes from 'prop-types';
 import { c as ObjectValue } from './chunk-e4c58053.js';
 import classNames from 'classnames';
+import { a as withModelFieldClass } from './chunk-4277d5cc.js';
 
 var _jsxFileName = "/base-cms/packages/nextjs-web/src/components/dynamic-page/Wrapper.jsx";
 var propTypes = {
@@ -54,38 +55,9 @@ DynamicPageWrapper.displayName = 'DynamicPage/Wrapper';
 DynamicPageWrapper.propTypes = propTypes;
 DynamicPageWrapper.defaultProps = defaultProps;
 
-var _jsxFileName$1 = "/base-cms/packages/nextjs-web/src/hoc/withModelFieldClass.jsx";
-var withModelFieldClass = (function (modelType) {
-  return function (Component) {
-    var WithModelFieldClass = function WithModelFieldClass(_ref) {
-      var path = _ref.path,
-          className = _ref.className,
-          rest = _objectWithoutProperties(_ref, ["path", "className"]);
-
-      var classes = modelClassNames(modelType, path);
-      return React.createElement(Component, _extends({
-        className: classNames(classes, className),
-        path: path
-      }, rest, {
-        __source: {
-          fileName: _jsxFileName$1,
-          lineNumber: 13
-        },
-        __self: this
-      }));
-    };
-
-    WithModelFieldClass.displayName = "WithModelFieldClass(".concat(componentDisplayName(Component), ")[").concat(modelType, "]");
-    WithModelFieldClass.propTypes = _objectSpread({}, Component.propTypes, {
-      path: PropTypes.string.isRequired
-    });
-    return WithModelFieldClass;
-  };
-});
-
 var ObjectValue$1 = withModelFieldClass('dynamic-page')(ObjectValue);
 
-var _jsxFileName$2 = "/base-cms/packages/nextjs-web/src/components/dynamic-page/Elements/Body.jsx";
+var _jsxFileName$1 = "/base-cms/packages/nextjs-web/src/components/dynamic-page/Elements/Body.jsx";
 var propTypes$1 = {
   collapsible: PropTypes.bool,
   page: PropTypes.shape({
@@ -109,7 +81,7 @@ var DynamicPageBody = function DynamicPageBody(_ref) {
     obj: page
   }, rest, {
     __source: {
-      fileName: _jsxFileName$2,
+      fileName: _jsxFileName$1,
       lineNumber: 20
     },
     __self: this
@@ -120,7 +92,7 @@ DynamicPageBody.displayName = 'DynamicPage/Elements/Body';
 DynamicPageBody.propTypes = propTypes$1;
 DynamicPageBody.defaultProps = defaultProps$1;
 
-var _jsxFileName$3 = "/base-cms/packages/nextjs-web/src/components/dynamic-page/Elements/Name.jsx";
+var _jsxFileName$2 = "/base-cms/packages/nextjs-web/src/components/dynamic-page/Elements/Name.jsx";
 var propTypes$2 = {
   collapsible: PropTypes.bool,
   page: PropTypes.shape({
@@ -143,7 +115,7 @@ var DynamicPageName = function DynamicPageName(_ref) {
     obj: page
   }, rest, {
     __source: {
-      fileName: _jsxFileName$3,
+      fileName: _jsxFileName$2,
       lineNumber: 20
     },
     __self: this
