@@ -1,6 +1,6 @@
 language: node_js
-node_js:
-  - "10.13"
+node_js: "10.13"
+cache: yarn
 deploy:
   -
     provider: script
@@ -8,7 +8,7 @@ deploy:
     on:
       tags: true
   -
-    provder: script
+    provider: script
     script: bash scripts/deploy/deploy.sh
     on:
       tags: true
