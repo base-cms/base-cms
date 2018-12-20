@@ -30,6 +30,7 @@ export default {
     'src/components-website-section.js',
     'src/config.js',
     'src/hoc.js',
+    'src/queries.js',
     'src/routing.js',
     'src/server.js',
     'src/utils.js',
