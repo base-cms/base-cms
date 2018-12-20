@@ -1,0 +1,6 @@
+{
+  "name": "components-content",
+  "private": true,
+  "main": "../../dist/cjs/components-content.js",
+  "module": "../../dist/esm/components-content.js"
+}

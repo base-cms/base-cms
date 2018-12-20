@@ -24,6 +24,7 @@ export default {
   experimentalCodeSplitting: true,
   input: [
     'src/app.js',
+    'src/components-content.js',
     'src/components-core.js',
     'src/components-dynamic-page.js',
     'src/components-head.js',
