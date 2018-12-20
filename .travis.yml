@@ -14,7 +14,7 @@ deploy:
       tags: true
   -
     provider: script
-    script: bash scripts/deploy/release.sh
+    script: cd scripts/deploy; yarn start
     on:
       tags: true
       condition: "$TRAVIS_TAG =~ ^v[0-9]+\\.[0-9]+\\.[0-9]+$"
