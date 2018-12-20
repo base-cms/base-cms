@@ -1,8 +1,9 @@
-import { a as _objectWithoutProperties, b as _extends, c as CardBody, d as ListGroupItem, e as ListGroup } from './core-cf9a6157.js';
+import { a as _objectWithoutProperties, b as _extends } from './chunk-061f2db9.js';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { PrimaryImageLink, ShortNameLink, CompanyNameLink, Teaser, Row, PrimarySectionNameLink, PublishedDate, AuthorFullNameLinks } from '@base-cms/nextjs-web/components/content';
 import classNames from 'classnames';
+import { CardBody, ListGroupItem, ListGroup } from './core.js';
 import 'next/router';
 import '@base-cms/nextjs-web/components/core';
 import { get, asArray } from '@base-cms/nextjs-web/utils';

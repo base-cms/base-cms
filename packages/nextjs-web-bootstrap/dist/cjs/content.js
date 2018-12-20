@@ -4,11 +4,13 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var core = require('./core-3b7d7343.js');
-var React = _interopDefault(require('react'));
+var __chunk_1 = require('./chunk-f7f9e949.js');
+var React = require('react');
+var React__default = _interopDefault(React);
 var PropTypes = _interopDefault(require('prop-types'));
 var content = require('@base-cms/nextjs-web/components/content');
 var classNames = _interopDefault(require('classnames'));
+var core = require('./core.js');
 require('next/router');
 require('@base-cms/nextjs-web/components/core');
 var utils = require('@base-cms/nextjs-web/utils');
@@ -39,7 +41,7 @@ var ContentCardImage = function ContentCardImage(_ref) {
       content$$1 = _ref.content,
       linkClassName = _ref.linkClassName,
       withBody = _ref.withBody,
-      rest = core._objectWithoutProperties(_ref, ["className", "content", "linkClassName", "withBody"]);
+      rest = __chunk_1._objectWithoutProperties(_ref, ["className", "content", "linkClassName", "withBody"]);
 
   var imgAttrs = {
     className: classNames(withBody ? 'card-img' : 'card-img-top', 'img-fluid embed-responsive-item', className)
@@ -47,7 +49,7 @@ var ContentCardImage = function ContentCardImage(_ref) {
   var linkAttrs = {
     className: classNames('embed-responsive', 'embed-responsive-16by9', linkClassName)
   };
-  return React.createElement(content.PrimaryImageLink, core._extends({
+  return React__default.createElement(content.PrimaryImageLink, __chunk_1._extends({
     content: content$$1,
     linkAttrs: linkAttrs,
     imgAttrs: imgAttrs
@@ -116,9 +118,9 @@ var defaultProps$1 = {
 var CardBodyStyleA = function CardBodyStyleA(_ref) {
   var content$$1 = _ref.content,
       imgAttrs = _ref.imgAttrs,
-      attrs = core._objectWithoutProperties(_ref, ["content", "imgAttrs"]);
+      attrs = __chunk_1._objectWithoutProperties(_ref, ["content", "imgAttrs"]);
 
-  return React.createElement("div", core._extends({}, wrapperAttrs({
+  return React__default.createElement("div", __chunk_1._extends({}, wrapperAttrs({
     modifier: 'card-body',
     content: content$$1
   }), {
@@ -127,7 +129,7 @@ var CardBodyStyleA = function CardBodyStyleA(_ref) {
       lineNumber: 52
     },
     __self: this
-  }), React.createElement(ContentCardImage, core._extends({
+  }), React__default.createElement(ContentCardImage, __chunk_1._extends({
     content: content$$1
   }, imgAttrs, {
     __source: {
@@ -135,13 +137,13 @@ var CardBodyStyleA = function CardBodyStyleA(_ref) {
       lineNumber: 53
     },
     __self: this
-  })), React.createElement(core.CardBody, core._extends({}, attrs, {
+  })), React__default.createElement(core.CardBody, __chunk_1._extends({}, attrs, {
     __source: {
       fileName: _jsxFileName$1,
       lineNumber: 54
     },
     __self: this
-  }), React.createElement(content.ShortNameLink, {
+  }), React__default.createElement(content.ShortNameLink, {
     content: content$$1,
     tag: "h4",
     __source: {
@@ -149,7 +151,7 @@ var CardBodyStyleA = function CardBodyStyleA(_ref) {
       lineNumber: 55
     },
     __self: this
-  }), React.createElement(content.CompanyNameLink, {
+  }), React__default.createElement(content.CompanyNameLink, {
     content: content$$1,
     tag: "small",
     className: "card-text d-block",
@@ -159,7 +161,7 @@ var CardBodyStyleA = function CardBodyStyleA(_ref) {
       lineNumber: 56
     },
     __self: this
-  }), React.createElement(content.Teaser, {
+  }), React__default.createElement(content.Teaser, {
     content: content$$1,
     className: "card-text",
     __source: {
@@ -167,7 +169,7 @@ var CardBodyStyleA = function CardBodyStyleA(_ref) {
       lineNumber: 57
     },
     __self: this
-  }), React.createElement(content.Row, {
+  }), React__default.createElement(content.Row, {
     tag: "small",
     className: "card-text",
     __source: {
@@ -175,7 +177,7 @@ var CardBodyStyleA = function CardBodyStyleA(_ref) {
       lineNumber: 58
     },
     __self: this
-  }, React.createElement(content.PrimarySectionNameLink, {
+  }, React__default.createElement(content.PrimarySectionNameLink, {
     content: content$$1,
     className: "mr-2",
     __source: {
@@ -183,7 +185,7 @@ var CardBodyStyleA = function CardBodyStyleA(_ref) {
       lineNumber: 59
     },
     __self: this
-  }), React.createElement(content.PublishedDate, {
+  }), React__default.createElement(content.PublishedDate, {
     content: content$$1,
     __source: {
       fileName: _jsxFileName$1,
@@ -237,9 +239,9 @@ var defaultProps$2 = {
 var CardBodyStyleB = function CardBodyStyleB(_ref) {
   var content$$1 = _ref.content,
       imgAttrs = _ref.imgAttrs,
-      attrs = core._objectWithoutProperties(_ref, ["content", "imgAttrs"]);
+      attrs = __chunk_1._objectWithoutProperties(_ref, ["content", "imgAttrs"]);
 
-  return React.createElement("div", core._extends({}, wrapperAttrs({
+  return React__default.createElement("div", __chunk_1._extends({}, wrapperAttrs({
     modifier: 'card-body',
     content: content$$1
   }), {
@@ -248,7 +250,7 @@ var CardBodyStyleB = function CardBodyStyleB(_ref) {
       lineNumber: 50
     },
     __self: this
-  }), React.createElement(ContentCardImage, core._extends({
+  }), React__default.createElement(ContentCardImage, __chunk_1._extends({
     content: content$$1
   }, imgAttrs, {
     __source: {
@@ -256,13 +258,13 @@ var CardBodyStyleB = function CardBodyStyleB(_ref) {
       lineNumber: 51
     },
     __self: this
-  })), React.createElement(core.CardBody, core._extends({}, attrs, {
+  })), React__default.createElement(core.CardBody, __chunk_1._extends({}, attrs, {
     __source: {
       fileName: _jsxFileName$2,
       lineNumber: 52
     },
     __self: this
-  }), React.createElement(content.ShortNameLink, {
+  }), React__default.createElement(content.ShortNameLink, {
     content: content$$1,
     tag: "h4",
     __source: {
@@ -270,7 +272,7 @@ var CardBodyStyleB = function CardBodyStyleB(_ref) {
       lineNumber: 53
     },
     __self: this
-  }), React.createElement(content.CompanyNameLink, {
+  }), React__default.createElement(content.CompanyNameLink, {
     content: content$$1,
     tag: "small",
     className: "card-text d-block",
@@ -280,7 +282,7 @@ var CardBodyStyleB = function CardBodyStyleB(_ref) {
       lineNumber: 54
     },
     __self: this
-  }), React.createElement(content.Row, {
+  }), React__default.createElement(content.Row, {
     tag: "small",
     className: "card-text",
     __source: {
@@ -288,7 +290,7 @@ var CardBodyStyleB = function CardBodyStyleB(_ref) {
       lineNumber: 55
     },
     __self: this
-  }, React.createElement(content.PrimarySectionNameLink, {
+  }, React__default.createElement(content.PrimarySectionNameLink, {
     content: content$$1,
     className: "mr-2",
     __source: {
@@ -296,7 +298,7 @@ var CardBodyStyleB = function CardBodyStyleB(_ref) {
       lineNumber: 56
     },
     __self: this
-  }), React.createElement(content.PublishedDate, {
+  }), React__default.createElement(content.PublishedDate, {
     content: content$$1,
     __source: {
       fileName: _jsxFileName$2,
@@ -339,9 +341,9 @@ var defaultProps$3 = {
 var CardBodyStyleC = function CardBodyStyleC(_ref) {
   var content$$1 = _ref.content,
       imgAttrs = _ref.imgAttrs,
-      attrs = core._objectWithoutProperties(_ref, ["content", "imgAttrs"]);
+      attrs = __chunk_1._objectWithoutProperties(_ref, ["content", "imgAttrs"]);
 
-  return React.createElement("div", core._extends({}, wrapperAttrs({
+  return React__default.createElement("div", __chunk_1._extends({}, wrapperAttrs({
     modifier: 'card-body',
     content: content$$1
   }), {
@@ -350,7 +352,7 @@ var CardBodyStyleC = function CardBodyStyleC(_ref) {
       lineNumber: 35
     },
     __self: this
-  }), React.createElement(ContentCardImage, core._extends({
+  }), React__default.createElement(ContentCardImage, __chunk_1._extends({
     content: content$$1
   }, imgAttrs, {
     __source: {
@@ -358,13 +360,13 @@ var CardBodyStyleC = function CardBodyStyleC(_ref) {
       lineNumber: 36
     },
     __self: this
-  })), React.createElement(core.CardBody, core._extends({}, attrs, {
+  })), React__default.createElement(core.CardBody, __chunk_1._extends({}, attrs, {
     __source: {
       fileName: _jsxFileName$3,
       lineNumber: 37
     },
     __self: this
-  }), React.createElement(content.ShortNameLink, {
+  }), React__default.createElement(content.ShortNameLink, {
     content: content$$1,
     tag: "h5",
     __source: {
@@ -420,9 +422,9 @@ var defaultProps$4 = {
 var CardBodyStyleD = function CardBodyStyleD(_ref) {
   var content$$1 = _ref.content,
       imgAttrs = _ref.imgAttrs,
-      attrs = core._objectWithoutProperties(_ref, ["content", "imgAttrs"]);
+      attrs = __chunk_1._objectWithoutProperties(_ref, ["content", "imgAttrs"]);
 
-  return React.createElement("div", core._extends({}, wrapperAttrs({
+  return React__default.createElement("div", __chunk_1._extends({}, wrapperAttrs({
     modifier: 'card-body',
     content: content$$1
   }), {
@@ -431,7 +433,7 @@ var CardBodyStyleD = function CardBodyStyleD(_ref) {
       lineNumber: 52
     },
     __self: this
-  }), React.createElement(ContentCardImage, core._extends({
+  }), React__default.createElement(ContentCardImage, __chunk_1._extends({
     withBody: true,
     content: content$$1
   }, imgAttrs, {
@@ -440,7 +442,7 @@ var CardBodyStyleD = function CardBodyStyleD(_ref) {
       lineNumber: 53
     },
     __self: this
-  })), React.createElement(core.CardBody, core._extends({
+  })), React__default.createElement(core.CardBody, __chunk_1._extends({
     overImage: true
   }, attrs, {
     __source: {
@@ -448,7 +450,7 @@ var CardBodyStyleD = function CardBodyStyleD(_ref) {
       lineNumber: 54
     },
     __self: this
-  }), React.createElement(content.ShortNameLink, {
+  }), React__default.createElement(content.ShortNameLink, {
     content: content$$1,
     tag: "h4",
     __source: {
@@ -456,7 +458,7 @@ var CardBodyStyleD = function CardBodyStyleD(_ref) {
       lineNumber: 55
     },
     __self: this
-  }), React.createElement(content.CompanyNameLink, {
+  }), React__default.createElement(content.CompanyNameLink, {
     content: content$$1,
     tag: "small",
     className: "card-text d-block",
@@ -466,7 +468,7 @@ var CardBodyStyleD = function CardBodyStyleD(_ref) {
       lineNumber: 56
     },
     __self: this
-  }), React.createElement(content.Teaser, {
+  }), React__default.createElement(content.Teaser, {
     content: content$$1,
     className: "card-text",
     __source: {
@@ -474,7 +476,7 @@ var CardBodyStyleD = function CardBodyStyleD(_ref) {
       lineNumber: 57
     },
     __self: this
-  }), React.createElement(content.Row, {
+  }), React__default.createElement(content.Row, {
     tag: "small",
     className: "card-text",
     __source: {
@@ -482,7 +484,7 @@ var CardBodyStyleD = function CardBodyStyleD(_ref) {
       lineNumber: 58
     },
     __self: this
-  }, React.createElement(content.PrimarySectionNameLink, {
+  }, React__default.createElement(content.PrimarySectionNameLink, {
     content: content$$1,
     className: "mr-2",
     __source: {
@@ -490,7 +492,7 @@ var CardBodyStyleD = function CardBodyStyleD(_ref) {
       lineNumber: 59
     },
     __self: this
-  }), React.createElement(content.PublishedDate, {
+  }), React__default.createElement(content.PublishedDate, {
     content: content$$1,
     __source: {
       fileName: _jsxFileName$4,
@@ -554,9 +556,9 @@ var defaultProps$5 = {
 var CardBodyStyleE = function CardBodyStyleE(_ref) {
   var content$$1 = _ref.content,
       imgAttrs = _ref.imgAttrs,
-      attrs = core._objectWithoutProperties(_ref, ["content", "imgAttrs"]);
+      attrs = __chunk_1._objectWithoutProperties(_ref, ["content", "imgAttrs"]);
 
-  return React.createElement("div", core._extends({}, wrapperAttrs({
+  return React__default.createElement("div", __chunk_1._extends({}, wrapperAttrs({
     modifier: 'card-body',
     content: content$$1
   }), {
@@ -565,7 +567,7 @@ var CardBodyStyleE = function CardBodyStyleE(_ref) {
       lineNumber: 62
     },
     __self: this
-  }), React.createElement(ContentCardImage, core._extends({
+  }), React__default.createElement(ContentCardImage, __chunk_1._extends({
     withBody: true,
     content: content$$1
   }, imgAttrs, {
@@ -574,7 +576,7 @@ var CardBodyStyleE = function CardBodyStyleE(_ref) {
       lineNumber: 63
     },
     __self: this
-  })), React.createElement(core.CardBody, core._extends({
+  })), React__default.createElement(core.CardBody, __chunk_1._extends({
     overImage: true
   }, attrs, {
     __source: {
@@ -582,7 +584,7 @@ var CardBodyStyleE = function CardBodyStyleE(_ref) {
       lineNumber: 64
     },
     __self: this
-  }), React.createElement(content.ShortNameLink, {
+  }), React__default.createElement(content.ShortNameLink, {
     content: content$$1,
     tag: "h4",
     __source: {
@@ -590,7 +592,7 @@ var CardBodyStyleE = function CardBodyStyleE(_ref) {
       lineNumber: 65
     },
     __self: this
-  }), React.createElement(content.CompanyNameLink, {
+  }), React__default.createElement(content.CompanyNameLink, {
     content: content$$1,
     tag: "small",
     className: "card-text d-block",
@@ -600,7 +602,7 @@ var CardBodyStyleE = function CardBodyStyleE(_ref) {
       lineNumber: 66
     },
     __self: this
-  }), React.createElement(content.Teaser, {
+  }), React__default.createElement(content.Teaser, {
     content: content$$1,
     className: "card-text",
     __source: {
@@ -608,7 +610,7 @@ var CardBodyStyleE = function CardBodyStyleE(_ref) {
       lineNumber: 67
     },
     __self: this
-  }), React.createElement(content.Row, {
+  }), React__default.createElement(content.Row, {
     tag: "small",
     className: "card-text",
     __source: {
@@ -616,7 +618,7 @@ var CardBodyStyleE = function CardBodyStyleE(_ref) {
       lineNumber: 68
     },
     __self: this
-  }, React.createElement(content.PrimarySectionNameLink, {
+  }, React__default.createElement(content.PrimarySectionNameLink, {
     content: content$$1,
     className: "mr-2",
     __source: {
@@ -624,7 +626,7 @@ var CardBodyStyleE = function CardBodyStyleE(_ref) {
       lineNumber: 69
     },
     __self: this
-  }), React.createElement(content.AuthorFullNameLinks, {
+  }), React__default.createElement(content.AuthorFullNameLinks, {
     content: content$$1,
     className: "mr-2 d-inline-block",
     __source: {
@@ -632,7 +634,7 @@ var CardBodyStyleE = function CardBodyStyleE(_ref) {
       lineNumber: 70
     },
     __self: this
-  }), React.createElement(content.PublishedDate, {
+  }), React__default.createElement(content.PublishedDate, {
     content: content$$1,
     __source: {
       fileName: _jsxFileName$5,
@@ -675,7 +677,7 @@ var defaultProps$6 = {
 
 var ListGroupItemStyleA = function ListGroupItemStyleA(_ref) {
   var content$$1 = _ref.content;
-  return React.createElement(core.ListGroupItem, core._extends({}, wrapperAttrs({
+  return React__default.createElement(core.ListGroupItem, __chunk_1._extends({}, wrapperAttrs({
     modifier: 'list-item',
     content: content$$1
   }), {
@@ -684,7 +686,7 @@ var ListGroupItemStyleA = function ListGroupItemStyleA(_ref) {
       lineNumber: 38
     },
     __self: this
-  }), React.createElement(content.ShortNameLink, {
+  }), React__default.createElement(content.ShortNameLink, {
     content: content$$1,
     className: "mb-1",
     __source: {
@@ -692,7 +694,7 @@ var ListGroupItemStyleA = function ListGroupItemStyleA(_ref) {
       lineNumber: 39
     },
     __self: this
-  }), React.createElement(content.CompanyNameLink, {
+  }), React__default.createElement(content.CompanyNameLink, {
     content: content$$1,
     tag: "small",
     className: "d-block",
@@ -702,14 +704,14 @@ var ListGroupItemStyleA = function ListGroupItemStyleA(_ref) {
       lineNumber: 40
     },
     __self: this
-  }), React.createElement(content.Row, {
+  }), React__default.createElement(content.Row, {
     tag: "small",
     __source: {
       fileName: _jsxFileName$6,
       lineNumber: 41
     },
     __self: this
-  }, React.createElement(content.PrimarySectionNameLink, {
+  }, React__default.createElement(content.PrimarySectionNameLink, {
     content: content$$1,
     className: "mr-2",
     __source: {
@@ -717,7 +719,7 @@ var ListGroupItemStyleA = function ListGroupItemStyleA(_ref) {
       lineNumber: 42
     },
     __self: this
-  }), React.createElement(content.PublishedDate, {
+  }), React__default.createElement(content.PublishedDate, {
     content: content$$1,
     __source: {
       fileName: _jsxFileName$6,
@@ -750,17 +752,17 @@ var defaultProps$7 = {
 var ListGroupStyleA = function ListGroupStyleA(_ref) {
   var itemAttrs = _ref.itemAttrs,
       nodes = _ref.nodes,
-      attrs = core._objectWithoutProperties(_ref, ["itemAttrs", "nodes"]);
+      attrs = __chunk_1._objectWithoutProperties(_ref, ["itemAttrs", "nodes"]);
 
   var items = utils.asArray(nodes);
-  return items.length ? React.createElement(core.ListGroup, core._extends({}, attrs, {
+  return items.length ? React__default.createElement(core.ListGroup, __chunk_1._extends({}, attrs, {
     __source: {
       fileName: _jsxFileName$7,
       lineNumber: 28
     },
     __self: this
   }), items.map(function (content$$1) {
-    return React.createElement(ListGroupItemStyleA, core._extends({
+    return React__default.createElement(ListGroupItemStyleA, __chunk_1._extends({
       key: content$$1.id,
       content: content$$1
     }, itemAttrs, {
@@ -810,7 +812,7 @@ var defaultProps$8 = {
 
 var ListGroupItemStyleB = function ListGroupItemStyleB(_ref) {
   var content$$1 = _ref.content;
-  return React.createElement(core.ListGroupItem, core._extends({}, wrapperAttrs({
+  return React__default.createElement(core.ListGroupItem, __chunk_1._extends({}, wrapperAttrs({
     modifier: 'list-item',
     content: content$$1
   }), {
@@ -819,21 +821,21 @@ var ListGroupItemStyleB = function ListGroupItemStyleB(_ref) {
       lineNumber: 42
     },
     __self: this
-  }), React.createElement("div", {
+  }), React__default.createElement("div", {
     className: "row",
     __source: {
       fileName: _jsxFileName$8,
       lineNumber: 44
     },
     __self: this
-  }, React.createElement("div", {
+  }, React__default.createElement("div", {
     className: "col-4 pr-0",
     __source: {
       fileName: _jsxFileName$8,
       lineNumber: 45
     },
     __self: this
-  }, React.createElement(content.PrimaryImageLink, {
+  }, React__default.createElement(content.PrimaryImageLink, {
     content: content$$1,
     imgAttrs: {
       className: 'img-fluid'
@@ -843,14 +845,14 @@ var ListGroupItemStyleB = function ListGroupItemStyleB(_ref) {
       lineNumber: 46
     },
     __self: this
-  })), React.createElement("div", {
+  })), React__default.createElement("div", {
     className: "col-8",
     __source: {
       fileName: _jsxFileName$8,
       lineNumber: 48
     },
     __self: this
-  }, React.createElement(content.ShortNameLink, {
+  }, React__default.createElement(content.ShortNameLink, {
     content: content$$1,
     className: "mb-1",
     __source: {
@@ -858,7 +860,7 @@ var ListGroupItemStyleB = function ListGroupItemStyleB(_ref) {
       lineNumber: 49
     },
     __self: this
-  }), React.createElement(content.CompanyNameLink, {
+  }), React__default.createElement(content.CompanyNameLink, {
     content: content$$1,
     tag: "small",
     className: "d-block",
@@ -868,7 +870,7 @@ var ListGroupItemStyleB = function ListGroupItemStyleB(_ref) {
       lineNumber: 50
     },
     __self: this
-  }), React.createElement(content.PrimarySectionNameLink, {
+  }), React__default.createElement(content.PrimarySectionNameLink, {
     content: content$$1,
     tag: "small",
     className: "d-block",
@@ -877,7 +879,7 @@ var ListGroupItemStyleB = function ListGroupItemStyleB(_ref) {
       lineNumber: 51
     },
     __self: this
-  }), React.createElement(content.PublishedDate, {
+  }), React__default.createElement(content.PublishedDate, {
     content: content$$1,
     tag: "small",
     className: "d-block",
@@ -912,17 +914,17 @@ var defaultProps$9 = {
 var ListGroupStyleB = function ListGroupStyleB(_ref) {
   var itemAttrs = _ref.itemAttrs,
       nodes = _ref.nodes,
-      attrs = core._objectWithoutProperties(_ref, ["itemAttrs", "nodes"]);
+      attrs = __chunk_1._objectWithoutProperties(_ref, ["itemAttrs", "nodes"]);
 
   var items = utils.asArray(nodes);
-  return items.length ? React.createElement(core.ListGroup, core._extends({}, attrs, {
+  return items.length ? React__default.createElement(core.ListGroup, __chunk_1._extends({}, attrs, {
     __source: {
       fileName: _jsxFileName$9,
       lineNumber: 28
     },
     __self: this
   }), items.map(function (content$$1) {
-    return React.createElement(ListGroupItemStyleB, core._extends({
+    return React__default.createElement(ListGroupItemStyleB, __chunk_1._extends({
       key: content$$1.id,
       content: content$$1
     }, itemAttrs, {
@@ -973,7 +975,7 @@ var defaultProps$a = {
 
 var ListGroupItemStyleC = function ListGroupItemStyleC(_ref) {
   var content$$1 = _ref.content;
-  return React.createElement(core.ListGroupItem, core._extends({}, wrapperAttrs({
+  return React__default.createElement(core.ListGroupItem, __chunk_1._extends({}, wrapperAttrs({
     modifier: 'list-item',
     content: content$$1
   }), {
@@ -982,21 +984,21 @@ var ListGroupItemStyleC = function ListGroupItemStyleC(_ref) {
       lineNumber: 44
     },
     __self: this
-  }), React.createElement("div", {
+  }), React__default.createElement("div", {
     className: "row",
     __source: {
       fileName: _jsxFileName$a,
       lineNumber: 46
     },
     __self: this
-  }, React.createElement("div", {
+  }, React__default.createElement("div", {
     className: "col-4 pr-0",
     __source: {
       fileName: _jsxFileName$a,
       lineNumber: 47
     },
     __self: this
-  }, React.createElement(content.PrimaryImageLink, {
+  }, React__default.createElement(content.PrimaryImageLink, {
     content: content$$1,
     imgAttrs: {
       className: 'img-fluid'
@@ -1006,14 +1008,14 @@ var ListGroupItemStyleC = function ListGroupItemStyleC(_ref) {
       lineNumber: 48
     },
     __self: this
-  })), React.createElement("div", {
+  })), React__default.createElement("div", {
     className: "col-8",
     __source: {
       fileName: _jsxFileName$a,
       lineNumber: 50
     },
     __self: this
-  }, React.createElement(content.ShortNameLink, {
+  }, React__default.createElement(content.ShortNameLink, {
     content: content$$1,
     className: "mb-1",
     __source: {
@@ -1021,7 +1023,7 @@ var ListGroupItemStyleC = function ListGroupItemStyleC(_ref) {
       lineNumber: 51
     },
     __self: this
-  }), React.createElement(content.CompanyNameLink, {
+  }), React__default.createElement(content.CompanyNameLink, {
     content: content$$1,
     tag: "small",
     className: "d-block",
@@ -1031,14 +1033,14 @@ var ListGroupItemStyleC = function ListGroupItemStyleC(_ref) {
       lineNumber: 52
     },
     __self: this
-  }), React.createElement(content.Teaser, {
+  }), React__default.createElement(content.Teaser, {
     content: content$$1,
     __source: {
       fileName: _jsxFileName$a,
       lineNumber: 53
     },
     __self: this
-  }), React.createElement(content.PrimarySectionNameLink, {
+  }), React__default.createElement(content.PrimarySectionNameLink, {
     content: content$$1,
     tag: "small",
     className: "d-block",
@@ -1047,7 +1049,7 @@ var ListGroupItemStyleC = function ListGroupItemStyleC(_ref) {
       lineNumber: 54
     },
     __self: this
-  }), React.createElement(content.PublishedDate, {
+  }), React__default.createElement(content.PublishedDate, {
     content: content$$1,
     tag: "small",
     className: "d-block",
@@ -1082,17 +1084,17 @@ var defaultProps$b = {
 var ListGroupStyleC = function ListGroupStyleC(_ref) {
   var itemAttrs = _ref.itemAttrs,
       nodes = _ref.nodes,
-      attrs = core._objectWithoutProperties(_ref, ["itemAttrs", "nodes"]);
+      attrs = __chunk_1._objectWithoutProperties(_ref, ["itemAttrs", "nodes"]);
 
   var items = utils.asArray(nodes);
-  return items.length ? React.createElement(core.ListGroup, core._extends({}, attrs, {
+  return items.length ? React__default.createElement(core.ListGroup, __chunk_1._extends({}, attrs, {
     __source: {
       fileName: _jsxFileName$b,
       lineNumber: 28
     },
     __self: this
   }), items.map(function (content$$1) {
-    return React.createElement(ListGroupItemStyleC, core._extends({
+    return React__default.createElement(ListGroupItemStyleC, __chunk_1._extends({
       key: content$$1.id,
       content: content$$1
     }, itemAttrs, {
@@ -1132,7 +1134,7 @@ var defaultProps$c = {
 
 var ListGroupItemStyleD = function ListGroupItemStyleD(_ref) {
   var content$$1 = _ref.content;
-  return React.createElement(core.ListGroupItem, core._extends({}, wrapperAttrs({
+  return React__default.createElement(core.ListGroupItem, __chunk_1._extends({}, wrapperAttrs({
     modifier: 'list-item',
     content: content$$1
   }), {
@@ -1141,7 +1143,7 @@ var ListGroupItemStyleD = function ListGroupItemStyleD(_ref) {
       lineNumber: 29
     },
     __self: this
-  }), React.createElement(content.PrimarySectionNameLink, {
+  }), React__default.createElement(content.PrimarySectionNameLink, {
     content: content$$1,
     tag: "small",
     __source: {
@@ -1149,7 +1151,7 @@ var ListGroupItemStyleD = function ListGroupItemStyleD(_ref) {
       lineNumber: 30
     },
     __self: this
-  }), React.createElement(content.ShortNameLink, {
+  }), React__default.createElement(content.ShortNameLink, {
     content: content$$1,
     className: "mb-0",
     __source: {
@@ -1183,17 +1185,17 @@ var defaultProps$d = {
 var ListGroupStyleD = function ListGroupStyleD(_ref) {
   var itemAttrs = _ref.itemAttrs,
       nodes = _ref.nodes,
-      attrs = core._objectWithoutProperties(_ref, ["itemAttrs", "nodes"]);
+      attrs = __chunk_1._objectWithoutProperties(_ref, ["itemAttrs", "nodes"]);
 
   var items = utils.asArray(nodes);
-  return items.length ? React.createElement(core.ListGroup, core._extends({}, attrs, {
+  return items.length ? React__default.createElement(core.ListGroup, __chunk_1._extends({}, attrs, {
     __source: {
       fileName: _jsxFileName$d,
       lineNumber: 28
     },
     __self: this
   }), items.map(function (content$$1) {
-    return React.createElement(ListGroupItemStyleD, core._extends({
+    return React__default.createElement(ListGroupItemStyleD, __chunk_1._extends({
       key: content$$1.id,
       content: content$$1
     }, itemAttrs, {
