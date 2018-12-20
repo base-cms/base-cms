@@ -67,7 +67,7 @@ class Rancher {
     return this.finishUpgrade({ service });
   }
 
-  async waitForServiceStatus({ service, status }) {
+  waitForServiceStatus({ service, status }) {
     const op = retry.operation({
       minTimeout: this.sleepMs,
       maxTimeout: this.timeoutMs,
@@ -86,13 +86,9 @@ class Rancher {
     };
 
     return new Promise((resolve, reject) => {
-      op.attempt(async () => {
-        try {
-          resolve(await action());
-        } catch (err) {
-          if (!op.retry(err)) reject(err);
-        }
-      });
+      op.attempt(() => action().then(resolve).catch((e) => {
+        if (!op.retry(e)) reject(e);
+      }));
     });
   }
 
