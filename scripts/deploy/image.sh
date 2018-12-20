@@ -1,5 +1,5 @@
 #!/bin/bash
 echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-docker build -t "base-cms:$TRAVIS_TAG" .
-docker tag "base-cms:$TRAVIS_TAG" "basecms/base-cms:$TRAVIS_TAG"
-docker push "basecms/base-cms:$TRAVIS_TAG"
+docker build -t "base-cms:$1" .
+docker tag "base-cms:$1" "basecms/base-cms:$1"
+docker push "basecms/base-cms:$1"
