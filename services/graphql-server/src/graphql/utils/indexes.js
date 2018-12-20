@@ -75,7 +75,7 @@ module.exports = {
         { created: 1, _id: 1 },
         { published: 1, _id: 1 },
         // Section query sort
-        { 'sectionQuery.0.start': -1, _id: -1 },
+        { 'sectionQuery.start': -1, _id: -1 },
       ],
     },
     Product: {
