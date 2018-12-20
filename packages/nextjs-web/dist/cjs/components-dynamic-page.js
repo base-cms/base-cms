@@ -14,7 +14,7 @@ require('moment');
 require('object-path');
 require('next/config');
 var PropTypes = _interopDefault(require('prop-types'));
-var __chunk_5 = require('./chunk-6bc6a447.js');
+var __chunk_5 = require('./chunk-66f2384e.js');
 var classNames = _interopDefault(require('classnames'));
 var __chunk_7 = require('./chunk-831a7cdc.js');
 

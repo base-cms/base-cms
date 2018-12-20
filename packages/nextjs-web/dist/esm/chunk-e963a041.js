@@ -1,14 +1,9 @@
-'use strict';
-
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-var __chunk_1 = require('./chunk-15d55d73.js');
-var React = require('react');
-var React__default = _interopDefault(React);
-var utils = require('./utils.js');
-var PropTypes = _interopDefault(require('prop-types'));
-var __chunk_5 = require('./chunk-6bc6a447.js');
-var routing = require('./routing.js');
+import { j as _objectWithoutProperties, h as _objectSpread, f as _extends } from './chunk-cc870ac4.js';
+import React from 'react';
+import { cleanPath } from './utils.js';
+import PropTypes from 'prop-types';
+import { a as HTML, b as Value } from './chunk-559b4f38.js';
+import { Link } from './routing.js';
 
 var _jsxFileName = "/base-cms/packages/nextjs-web/src/components/core/Elements/Link.jsx";
 var propTypes = {
@@ -41,12 +36,12 @@ var LinkElement = function LinkElement(_ref) {
       params = _ref.params,
       to = _ref.to,
       value = _ref.value,
-      attrs = __chunk_1._objectWithoutProperties(_ref, ["asHTML", "children", "collapsible", "params", "to", "value"]);
+      attrs = _objectWithoutProperties(_ref, ["asHTML", "children", "collapsible", "params", "to", "value"]);
 
   var href = String(to || '');
   var isExternal = href.match(/^(http:|https:|ftp:|mailto:|\/\/)/i);
 
-  var props = __chunk_1._objectSpread({}, attrs, {
+  var props = _objectSpread({}, attrs, {
     children: children,
     collapsible: collapsible,
     href: isExternal ? href : undefined,
@@ -54,13 +49,13 @@ var LinkElement = function LinkElement(_ref) {
     value: value
   });
 
-  var child = asHTML ? React__default.createElement(__chunk_5.HTML, __chunk_1._extends({}, props, {
+  var child = asHTML ? React.createElement(HTML, _extends({}, props, {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 51
     },
     __self: this
-  })) : React__default.createElement(__chunk_5.Value, __chunk_1._extends({}, props, {
+  })) : React.createElement(Value, _extends({}, props, {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 51
@@ -68,8 +63,8 @@ var LinkElement = function LinkElement(_ref) {
     __self: this
   }));
   if (isExternal) return child;
-  return React__default.createElement(routing.Link, {
-    route: "/".concat(utils.cleanPath(href)),
+  return React.createElement(Link, {
+    route: "/".concat(cleanPath(href)),
     params: params,
     passHref: true,
     __source: {
@@ -84,4 +79,4 @@ LinkElement.displayName = 'Core/Elements/Link';
 LinkElement.propTypes = propTypes;
 LinkElement.defaultProps = defaultProps;
 
-exports.LinkElement = LinkElement;
+export { LinkElement as a };
