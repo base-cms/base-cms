@@ -4,7 +4,12 @@ cache: yarn
 deploy:
   -
     provider: script
-    script: bash scripts/deploy/image.sh
+    script: bash scripts/deploy/image.sh latest
+    on:
+      branch: master
+  -
+    provider: script
+    script: bash scripts/deploy/image.sh $TRAVIS_TAG
     on:
       tags: true
   -
