@@ -171,6 +171,7 @@ class BaseDB {
     sort,
     collate,
     projection,
+    excludeProjection,
   }) {
     return paginateFind(this, modelName, {
       query,
@@ -179,6 +180,7 @@ class BaseDB {
       sort,
       collate,
       projection,
+      excludeProjection,
     });
   }
 

@@ -3,6 +3,8 @@ const { createResponse, createQuery } = require('./utils');
 const Limit = require('./limit');
 const Sort = require('./sort');
 
+const { isArray } = Array;
+
 /**
  * @param {object} basedb
  * @param {string} modelName
@@ -20,6 +22,7 @@ module.exports = async (basedb, modelName, {
   after,
   sort = { field: '_id', order: 1 },
   projection,
+  excludeProjection,
   collate = false,
 }) => {
   const $limit = new Limit({ value: limit });
@@ -29,6 +32,9 @@ module.exports = async (basedb, modelName, {
     _id: 1,
     [$sort.field]: 1,
   } : undefined;
+  if ($projection && isArray(excludeProjection)) {
+    excludeProjection.forEach(key => delete $projection[key]);
+  }
 
   const params = {
     query,
