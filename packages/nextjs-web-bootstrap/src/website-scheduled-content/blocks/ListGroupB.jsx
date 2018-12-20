@@ -28,6 +28,7 @@ const propTypes = {
     requiresImage: PropTypes.bool,
     sectionBubbling: PropTypes.bool,
     sectionId: PropTypes.number.isRequired,
+    optionId: PropTypes.number,
   }),
 };
 

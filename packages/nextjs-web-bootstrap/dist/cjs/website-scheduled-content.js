@@ -32,7 +32,8 @@ var propTypes = {
     includeContentTypes: PropTypes.arrayOf(PropTypes.string),
     requiresImage: PropTypes.bool,
     sectionBubbling: PropTypes.bool,
-    sectionId: PropTypes.number.isRequired
+    sectionId: PropTypes.number.isRequired,
+    optionId: PropTypes.number
   })
 };
 var defaultProps = {
@@ -54,7 +55,7 @@ var BlockCardDeckA = function BlockCardDeckA(_ref) {
   return React__default.createElement(queries.WebsiteScheduledContent, __chunk_1._extends({}, props, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 39
+      lineNumber: 40
     },
     __self: this
   }), function (_ref2) {
@@ -64,7 +65,7 @@ var BlockCardDeckA = function BlockCardDeckA(_ref) {
     if (loading) return React__default.createElement("span", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 41
+        lineNumber: 42
       },
       __self: this
     }, "Loading...");
@@ -73,7 +74,7 @@ var BlockCardDeckA = function BlockCardDeckA(_ref) {
       return React__default.createElement("span", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 44
+          lineNumber: 45
         },
         __self: this
       }, "Error", ' ', error.message);
@@ -86,7 +87,7 @@ var BlockCardDeckA = function BlockCardDeckA(_ref) {
     }, attrs, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 55
+        lineNumber: 56
       },
       __self: this
     }), nodes.map(function (content$$1, index) {
@@ -94,35 +95,35 @@ var BlockCardDeckA = function BlockCardDeckA(_ref) {
         key: content$$1.id,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 57
+          lineNumber: 58
         },
         __self: this
       }, React__default.createElement("div", {
         className: "mb-3 col-12 col-lg-6 col-xl-4",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 58
+          lineNumber: 59
         },
         __self: this
       }, React__default.createElement(core.Card, {
         className: "h-100",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 59
+          lineNumber: 60
         },
         __self: this
       }, React__default.createElement(content$1.CardBodyA, {
         content: content$$1,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 60
+          lineNumber: 61
         },
         __self: this
       }))), index === 3 && React__default.createElement("div", {
         className: "mb-3 col-12 col-lg-6 col-xl-4 d-flex justify-content-center align-items-center",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 64
+          lineNumber: 65
         },
         __self: this
       }, renderInter()));
@@ -147,7 +148,8 @@ var propTypes$1 = {
     includeContentTypes: PropTypes.arrayOf(PropTypes.string),
     requiresImage: PropTypes.bool,
     sectionBubbling: PropTypes.bool,
-    sectionId: PropTypes.number.isRequired
+    sectionId: PropTypes.number.isRequired,
+    optionId: PropTypes.number
   })
 };
 var defaultProps$1 = {
@@ -165,7 +167,7 @@ var BlockCardDeckB = function BlockCardDeckB(_ref) {
   return React__default.createElement(queries.WebsiteScheduledContent, __chunk_1._extends({}, props, {
     __source: {
       fileName: _jsxFileName$1,
-      lineNumber: 36
+      lineNumber: 37
     },
     __self: this
   }), function (_ref2) {
@@ -175,7 +177,7 @@ var BlockCardDeckB = function BlockCardDeckB(_ref) {
     if (loading) return React__default.createElement("span", {
       __source: {
         fileName: _jsxFileName$1,
-        lineNumber: 38
+        lineNumber: 39
       },
       __self: this
     }, "Loading...");
@@ -184,7 +186,7 @@ var BlockCardDeckB = function BlockCardDeckB(_ref) {
       return React__default.createElement("span", {
         __source: {
           fileName: _jsxFileName$1,
-          lineNumber: 41
+          lineNumber: 42
         },
         __self: this
       }, "Error", ' ', error.message);
@@ -196,7 +198,7 @@ var BlockCardDeckB = function BlockCardDeckB(_ref) {
     }, attrs, {
       __source: {
         fileName: _jsxFileName$1,
-        lineNumber: 51
+        lineNumber: 52
       },
       __self: this
     }), nodes.map(function (content$$1) {
@@ -204,28 +206,28 @@ var BlockCardDeckB = function BlockCardDeckB(_ref) {
         key: content$$1.id,
         __source: {
           fileName: _jsxFileName$1,
-          lineNumber: 53
+          lineNumber: 54
         },
         __self: this
       }, React__default.createElement("div", {
         className: "mb-3 col-12 col-md-6 col-lg-3",
         __source: {
           fileName: _jsxFileName$1,
-          lineNumber: 54
+          lineNumber: 55
         },
         __self: this
       }, React__default.createElement(core.Card, {
         className: "h-100",
         __source: {
           fileName: _jsxFileName$1,
-          lineNumber: 55
+          lineNumber: 56
         },
         __self: this
       }, React__default.createElement(content$1.CardBodyC, {
         content: content$$1,
         __source: {
           fileName: _jsxFileName$1,
-          lineNumber: 56
+          lineNumber: 57
         },
         __self: this
       }))));
@@ -262,7 +264,8 @@ var propTypes$2 = {
     includeContentTypes: PropTypes.arrayOf(PropTypes.string),
     requiresImage: PropTypes.bool,
     sectionBubbling: PropTypes.bool,
-    sectionId: PropTypes.number.isRequired
+    sectionId: PropTypes.number.isRequired,
+    optionId: PropTypes.number
   })
 };
 var defaultProps$2 = {
@@ -288,7 +291,7 @@ var BlockCardDeckC = function BlockCardDeckC(_ref) {
   return React__default.createElement(queries.WebsiteScheduledContent, __chunk_1._extends({}, props, {
     __source: {
       fileName: _jsxFileName$2,
-      lineNumber: 50
+      lineNumber: 51
     },
     __self: this
   }), function (_ref2) {
@@ -298,7 +301,7 @@ var BlockCardDeckC = function BlockCardDeckC(_ref) {
     if (loading) return React__default.createElement("span", {
       __source: {
         fileName: _jsxFileName$2,
-        lineNumber: 52
+        lineNumber: 53
       },
       __self: this
     }, "Loading...");
@@ -307,7 +310,7 @@ var BlockCardDeckC = function BlockCardDeckC(_ref) {
       return React__default.createElement("span", {
         __source: {
           fileName: _jsxFileName$2,
-          lineNumber: 55
+          lineNumber: 56
         },
         __self: this
       }, "Error", ' ', error.message);
@@ -321,7 +324,7 @@ var BlockCardDeckC = function BlockCardDeckC(_ref) {
     return React__default.createElement(React.Fragment, {
       __source: {
         fileName: _jsxFileName$2,
-        lineNumber: 70
+        lineNumber: 71
       },
       __self: this
     }, React__default.createElement("div", __chunk_1._extends({
@@ -329,7 +332,7 @@ var BlockCardDeckC = function BlockCardDeckC(_ref) {
     }, attrs, {
       __source: {
         fileName: _jsxFileName$2,
-        lineNumber: 71
+        lineNumber: 72
       },
       __self: this
     }), set1.map(function (content$$1, index) {
@@ -337,35 +340,35 @@ var BlockCardDeckC = function BlockCardDeckC(_ref) {
         key: content$$1.id,
         __source: {
           fileName: _jsxFileName$2,
-          lineNumber: 73
+          lineNumber: 74
         },
         __self: this
       }, React__default.createElement("div", {
         className: "mb-3 col-12 col-lg-6 col-xl-4",
         __source: {
           fileName: _jsxFileName$2,
-          lineNumber: 74
+          lineNumber: 75
         },
         __self: this
       }, React__default.createElement(core.Card, {
         className: "h-100",
         __source: {
           fileName: _jsxFileName$2,
-          lineNumber: 75
+          lineNumber: 76
         },
         __self: this
       }, React__default.createElement(content$1.CardBodyA, {
         content: content$$1,
         __source: {
           fileName: _jsxFileName$2,
-          lineNumber: 76
+          lineNumber: 77
         },
         __self: this
       }))), index === 3 && React__default.createElement("div", {
         className: "mb-3 col-12 col-lg-6 col-xl-4 d-flex justify-content-center align-items-center",
         __source: {
           fileName: _jsxFileName$2,
-          lineNumber: 80
+          lineNumber: 81
         },
         __self: this
       }, renderAd1()));
@@ -373,27 +376,27 @@ var BlockCardDeckC = function BlockCardDeckC(_ref) {
       className: "row",
       __source: {
         fileName: _jsxFileName$2,
-        lineNumber: 87
+        lineNumber: 88
       },
       __self: this
     }, React__default.createElement("div", {
       className: "col-lg-4 mb-3 d-flex justify-content-center align-items-center",
       __source: {
         fileName: _jsxFileName$2,
-        lineNumber: 88
+        lineNumber: 89
       },
       __self: this
     }, renderAd2()), React__default.createElement("div", {
       className: "col-lg-8",
       __source: {
         fileName: _jsxFileName$2,
-        lineNumber: 91
+        lineNumber: 92
       },
       __self: this
     }, React__default.createElement(core.Card, {
       __source: {
         fileName: _jsxFileName$2,
-        lineNumber: 92
+        lineNumber: 93
       },
       __self: this
     }, React__default.createElement(content$1.ListGroupC, {
@@ -401,7 +404,7 @@ var BlockCardDeckC = function BlockCardDeckC(_ref) {
       nodes: set2,
       __source: {
         fileName: _jsxFileName$2,
-        lineNumber: 93
+        lineNumber: 94
       },
       __self: this
     })))));
@@ -435,7 +438,8 @@ var propTypes$3 = {
     includeContentTypes: PropTypes.arrayOf(PropTypes.string),
     requiresImage: PropTypes.bool,
     sectionBubbling: PropTypes.bool,
-    sectionId: PropTypes.number.isRequired
+    sectionId: PropTypes.number.isRequired,
+    optionId: PropTypes.number
   })
 };
 var defaultProps$3 = {
@@ -453,7 +457,7 @@ var BlockHeroA = function BlockHeroA(_ref) {
   return React__default.createElement(queries.WebsiteScheduledContent, __chunk_1._extends({}, props, {
     __source: {
       fileName: _jsxFileName$3,
-      lineNumber: 43
+      lineNumber: 44
     },
     __self: this
   }), function (_ref2) {
@@ -463,7 +467,7 @@ var BlockHeroA = function BlockHeroA(_ref) {
     if (loading) return React__default.createElement("span", {
       __source: {
         fileName: _jsxFileName$3,
-        lineNumber: 45
+        lineNumber: 46
       },
       __self: this
     }, "Loading...");
@@ -472,7 +476,7 @@ var BlockHeroA = function BlockHeroA(_ref) {
       return React__default.createElement("span", {
         __source: {
           fileName: _jsxFileName$3,
-          lineNumber: 48
+          lineNumber: 49
         },
         __self: this
       }, "Error", ' ', error.message);
@@ -484,20 +488,20 @@ var BlockHeroA = function BlockHeroA(_ref) {
       className: "row",
       __source: {
         fileName: _jsxFileName$3,
-        lineNumber: 58
+        lineNumber: 59
       },
       __self: this
     }, React__default.createElement("div", {
       className: "col-lg-7 col-xl-8",
       __source: {
         fileName: _jsxFileName$3,
-        lineNumber: 59
+        lineNumber: 60
       },
       __self: this
     }, React__default.createElement(core.Card, {
       __source: {
         fileName: _jsxFileName$3,
-        lineNumber: 60
+        lineNumber: 61
       },
       __self: this
     }, React__default.createElement(content$1.CardBodyA, __chunk_1._extends({
@@ -505,20 +509,20 @@ var BlockHeroA = function BlockHeroA(_ref) {
     }, attrs, {
       __source: {
         fileName: _jsxFileName$3,
-        lineNumber: 61
+        lineNumber: 62
       },
       __self: this
     })))), React__default.createElement("div", {
       className: "col-lg-5 col-xl-4",
       __source: {
         fileName: _jsxFileName$3,
-        lineNumber: 64
+        lineNumber: 65
       },
       __self: this
     }, React__default.createElement(core.Card, {
       __source: {
         fileName: _jsxFileName$3,
-        lineNumber: 65
+        lineNumber: 66
       },
       __self: this
     }, React__default.createElement(content$1.ListGroupA, __chunk_1._extends({
@@ -527,7 +531,7 @@ var BlockHeroA = function BlockHeroA(_ref) {
     }, attrs, {
       __source: {
         fileName: _jsxFileName$3,
-        lineNumber: 66
+        lineNumber: 67
       },
       __self: this
     })))));
@@ -561,7 +565,8 @@ var propTypes$4 = {
     includeContentTypes: PropTypes.arrayOf(PropTypes.string),
     requiresImage: PropTypes.bool,
     sectionBubbling: PropTypes.bool,
-    sectionId: PropTypes.number.isRequired
+    sectionId: PropTypes.number.isRequired,
+    optionId: PropTypes.number
   })
 };
 var defaultProps$4 = {
@@ -579,7 +584,7 @@ var BlockHeroB = function BlockHeroB(_ref) {
   return React__default.createElement(queries.WebsiteScheduledContent, __chunk_1._extends({}, props, {
     __source: {
       fileName: _jsxFileName$4,
-      lineNumber: 43
+      lineNumber: 44
     },
     __self: this
   }), function (_ref2) {
@@ -589,7 +594,7 @@ var BlockHeroB = function BlockHeroB(_ref) {
     if (loading) return React__default.createElement("span", {
       __source: {
         fileName: _jsxFileName$4,
-        lineNumber: 45
+        lineNumber: 46
       },
       __self: this
     }, "Loading...");
@@ -598,7 +603,7 @@ var BlockHeroB = function BlockHeroB(_ref) {
       return React__default.createElement("span", {
         __source: {
           fileName: _jsxFileName$4,
-          lineNumber: 48
+          lineNumber: 49
         },
         __self: this
       }, "Error", ' ', error.message);
@@ -610,20 +615,20 @@ var BlockHeroB = function BlockHeroB(_ref) {
       className: "row",
       __source: {
         fileName: _jsxFileName$4,
-        lineNumber: 58
+        lineNumber: 59
       },
       __self: this
     }, React__default.createElement("div", {
       className: "col-lg-7 col-xl-8",
       __source: {
         fileName: _jsxFileName$4,
-        lineNumber: 59
+        lineNumber: 60
       },
       __self: this
     }, React__default.createElement(core.Card, {
       __source: {
         fileName: _jsxFileName$4,
-        lineNumber: 60
+        lineNumber: 61
       },
       __self: this
     }, React__default.createElement(content$1.CardBodyD, __chunk_1._extends({
@@ -631,20 +636,20 @@ var BlockHeroB = function BlockHeroB(_ref) {
     }, attrs, {
       __source: {
         fileName: _jsxFileName$4,
-        lineNumber: 61
+        lineNumber: 62
       },
       __self: this
     })))), React__default.createElement("div", {
       className: "col-lg-5 col-xl-4",
       __source: {
         fileName: _jsxFileName$4,
-        lineNumber: 64
+        lineNumber: 65
       },
       __self: this
     }, React__default.createElement(core.Card, {
       __source: {
         fileName: _jsxFileName$4,
-        lineNumber: 65
+        lineNumber: 66
       },
       __self: this
     }, React__default.createElement(content$1.ListGroupA, __chunk_1._extends({
@@ -653,7 +658,7 @@ var BlockHeroB = function BlockHeroB(_ref) {
     }, attrs, {
       __source: {
         fileName: _jsxFileName$4,
-        lineNumber: 66
+        lineNumber: 67
       },
       __self: this
     })))));
@@ -687,7 +692,8 @@ var propTypes$5 = {
     includeContentTypes: PropTypes.arrayOf(PropTypes.string),
     requiresImage: PropTypes.bool,
     sectionBubbling: PropTypes.bool,
-    sectionId: PropTypes.number.isRequired
+    sectionId: PropTypes.number.isRequired,
+    optionId: PropTypes.number
   })
 };
 var defaultProps$5 = {
@@ -705,7 +711,7 @@ var BlockHeroC = function BlockHeroC(_ref) {
   return React__default.createElement(queries.WebsiteScheduledContent, __chunk_1._extends({}, props, {
     __source: {
       fileName: _jsxFileName$5,
-      lineNumber: 43
+      lineNumber: 44
     },
     __self: this
   }), function (_ref2) {
@@ -715,7 +721,7 @@ var BlockHeroC = function BlockHeroC(_ref) {
     if (loading) return React__default.createElement("span", {
       __source: {
         fileName: _jsxFileName$5,
-        lineNumber: 45
+        lineNumber: 46
       },
       __self: this
     }, "Loading...");
@@ -724,7 +730,7 @@ var BlockHeroC = function BlockHeroC(_ref) {
       return React__default.createElement("span", {
         __source: {
           fileName: _jsxFileName$5,
-          lineNumber: 48
+          lineNumber: 49
         },
         __self: this
       }, "Error", ' ', error.message);
@@ -736,20 +742,20 @@ var BlockHeroC = function BlockHeroC(_ref) {
       className: "row",
       __source: {
         fileName: _jsxFileName$5,
-        lineNumber: 58
+        lineNumber: 59
       },
       __self: this
     }, React__default.createElement("div", {
       className: "col-lg-7 col-xl-8",
       __source: {
         fileName: _jsxFileName$5,
-        lineNumber: 59
+        lineNumber: 60
       },
       __self: this
     }, React__default.createElement(core.Card, {
       __source: {
         fileName: _jsxFileName$5,
-        lineNumber: 60
+        lineNumber: 61
       },
       __self: this
     }, React__default.createElement(content$1.CardBodyE, __chunk_1._extends({
@@ -757,20 +763,20 @@ var BlockHeroC = function BlockHeroC(_ref) {
     }, attrs, {
       __source: {
         fileName: _jsxFileName$5,
-        lineNumber: 61
+        lineNumber: 62
       },
       __self: this
     })))), React__default.createElement("div", {
       className: "col-lg-5 col-xl-4",
       __source: {
         fileName: _jsxFileName$5,
-        lineNumber: 64
+        lineNumber: 65
       },
       __self: this
     }, React__default.createElement(core.Card, {
       __source: {
         fileName: _jsxFileName$5,
-        lineNumber: 65
+        lineNumber: 66
       },
       __self: this
     }, React__default.createElement(content$1.ListGroupD, __chunk_1._extends({
@@ -779,7 +785,7 @@ var BlockHeroC = function BlockHeroC(_ref) {
     }, attrs, {
       __source: {
         fileName: _jsxFileName$5,
-        lineNumber: 66
+        lineNumber: 67
       },
       __self: this
     })))));
@@ -813,7 +819,8 @@ var propTypes$6 = {
     includeContentTypes: PropTypes.arrayOf(PropTypes.string),
     requiresImage: PropTypes.bool,
     sectionBubbling: PropTypes.bool,
-    sectionId: PropTypes.number.isRequired
+    sectionId: PropTypes.number.isRequired,
+    optionId: PropTypes.number
   })
 };
 var defaultProps$6 = {
@@ -831,7 +838,7 @@ var BlockHeroD = function BlockHeroD(_ref) {
   return React__default.createElement(queries.WebsiteScheduledContent, __chunk_1._extends({}, props, {
     __source: {
       fileName: _jsxFileName$6,
-      lineNumber: 43
+      lineNumber: 44
     },
     __self: this
   }), function (_ref2) {
@@ -841,7 +848,7 @@ var BlockHeroD = function BlockHeroD(_ref) {
     if (loading) return React__default.createElement("span", {
       __source: {
         fileName: _jsxFileName$6,
-        lineNumber: 45
+        lineNumber: 46
       },
       __self: this
     }, "Loading...");
@@ -850,7 +857,7 @@ var BlockHeroD = function BlockHeroD(_ref) {
       return React__default.createElement("span", {
         __source: {
           fileName: _jsxFileName$6,
-          lineNumber: 48
+          lineNumber: 49
         },
         __self: this
       }, "Error", ' ', error.message);
@@ -863,7 +870,7 @@ var BlockHeroD = function BlockHeroD(_ref) {
     }, attrs, {
       __source: {
         fileName: _jsxFileName$6,
-        lineNumber: 58
+        lineNumber: 59
       },
       __self: this
     }), set1.map(function (content$$1) {
@@ -872,21 +879,21 @@ var BlockHeroD = function BlockHeroD(_ref) {
         key: content$$1.id,
         __source: {
           fileName: _jsxFileName$6,
-          lineNumber: 60
+          lineNumber: 61
         },
         __self: this
       }, React__default.createElement(core.Card, {
         className: "h-100",
         __source: {
           fileName: _jsxFileName$6,
-          lineNumber: 61
+          lineNumber: 62
         },
         __self: this
       }, React__default.createElement(content$1.CardBodyA, {
         content: content$$1,
         __source: {
           fileName: _jsxFileName$6,
-          lineNumber: 62
+          lineNumber: 63
         },
         __self: this
       })));
@@ -894,14 +901,14 @@ var BlockHeroD = function BlockHeroD(_ref) {
       className: "col-4",
       __source: {
         fileName: _jsxFileName$6,
-        lineNumber: 66
+        lineNumber: 67
       },
       __self: this
     }, React__default.createElement(core.Card, {
       className: "h-100",
       __source: {
         fileName: _jsxFileName$6,
-        lineNumber: 67
+        lineNumber: 68
       },
       __self: this
     }, React__default.createElement(content$1.ListGroupD, {
@@ -909,7 +916,7 @@ var BlockHeroD = function BlockHeroD(_ref) {
       nodes: set2,
       __source: {
         fileName: _jsxFileName$6,
-        lineNumber: 68
+        lineNumber: 69
       },
       __self: this
     }))));
@@ -933,7 +940,8 @@ var propTypes$7 = {
     includeContentTypes: PropTypes.arrayOf(PropTypes.string),
     requiresImage: PropTypes.bool,
     sectionBubbling: PropTypes.bool,
-    sectionId: PropTypes.number.isRequired
+    sectionId: PropTypes.number.isRequired,
+    optionId: PropTypes.number
   })
 };
 var defaultProps$7 = {
@@ -952,7 +960,7 @@ var BlockListGroupA = function BlockListGroupA(_ref) {
   return React__default.createElement(queries.WebsiteScheduledContent, __chunk_1._extends({}, props, {
     __source: {
       fileName: _jsxFileName$7,
-      lineNumber: 36
+      lineNumber: 37
     },
     __self: this
   }), function (_ref2) {
@@ -962,7 +970,7 @@ var BlockListGroupA = function BlockListGroupA(_ref) {
     if (loading) return React__default.createElement("span", {
       __source: {
         fileName: _jsxFileName$7,
-        lineNumber: 38
+        lineNumber: 39
       },
       __self: this
     }, "Loading...");
@@ -971,7 +979,7 @@ var BlockListGroupA = function BlockListGroupA(_ref) {
       return React__default.createElement("span", {
         __source: {
           fileName: _jsxFileName$7,
-          lineNumber: 41
+          lineNumber: 42
         },
         __self: this
       }, "Error", ' ', error.message);
@@ -980,14 +988,14 @@ var BlockListGroupA = function BlockListGroupA(_ref) {
     return React__default.createElement(core.Card, __chunk_1._extends({}, attrs, {
       __source: {
         fileName: _jsxFileName$7,
-        lineNumber: 49
+        lineNumber: 50
       },
       __self: this
     }), header && React__default.createElement("div", {
       className: "card-header",
       __source: {
         fileName: _jsxFileName$7,
-        lineNumber: 51
+        lineNumber: 52
       },
       __self: this
     }, header), React__default.createElement(content$1.ListGroupA, {
@@ -995,7 +1003,7 @@ var BlockListGroupA = function BlockListGroupA(_ref) {
       nodes: items,
       __source: {
         fileName: _jsxFileName$7,
-        lineNumber: 53
+        lineNumber: 54
       },
       __self: this
     }));
@@ -1030,7 +1038,8 @@ var propTypes$8 = {
     includeContentTypes: PropTypes.arrayOf(PropTypes.string),
     requiresImage: PropTypes.bool,
     sectionBubbling: PropTypes.bool,
-    sectionId: PropTypes.number.isRequired
+    sectionId: PropTypes.number.isRequired,
+    optionId: PropTypes.number
   })
 };
 var defaultProps$8 = {
@@ -1050,7 +1059,7 @@ var BlockListGroupB = function BlockListGroupB(_ref) {
   return React__default.createElement(queries.WebsiteScheduledContent, __chunk_1._extends({}, props, {
     __source: {
       fileName: _jsxFileName$8,
-      lineNumber: 46
+      lineNumber: 47
     },
     __self: this
   }), function (_ref2) {
@@ -1060,7 +1069,7 @@ var BlockListGroupB = function BlockListGroupB(_ref) {
     if (loading) return React__default.createElement("span", {
       __source: {
         fileName: _jsxFileName$8,
-        lineNumber: 48
+        lineNumber: 49
       },
       __self: this
     }, "Loading...");
@@ -1069,7 +1078,7 @@ var BlockListGroupB = function BlockListGroupB(_ref) {
       return React__default.createElement("span", {
         __source: {
           fileName: _jsxFileName$8,
-          lineNumber: 51
+          lineNumber: 52
         },
         __self: this
       }, "Error", ' ', error.message);
@@ -1080,14 +1089,14 @@ var BlockListGroupB = function BlockListGroupB(_ref) {
     return React__default.createElement(core.Card, __chunk_1._extends({}, attrs, {
       __source: {
         fileName: _jsxFileName$8,
-        lineNumber: 61
+        lineNumber: 62
       },
       __self: this
     }), header && React__default.createElement("div", {
       className: "card-header",
       __source: {
         fileName: _jsxFileName$8,
-        lineNumber: 63
+        lineNumber: 64
       },
       __self: this
     }, header), React__default.createElement(content$1.CardBodyB, {
@@ -1097,7 +1106,7 @@ var BlockListGroupB = function BlockListGroupB(_ref) {
       },
       __source: {
         fileName: _jsxFileName$8,
-        lineNumber: 65
+        lineNumber: 66
       },
       __self: this
     }), React__default.createElement(content$1.ListGroupA, {
@@ -1105,7 +1114,7 @@ var BlockListGroupB = function BlockListGroupB(_ref) {
       nodes: nodes,
       __source: {
         fileName: _jsxFileName$8,
-        lineNumber: 66
+        lineNumber: 67
       },
       __self: this
     }));
@@ -1130,7 +1139,8 @@ var propTypes$9 = {
     includeContentTypes: PropTypes.arrayOf(PropTypes.string),
     requiresImage: PropTypes.bool,
     sectionBubbling: PropTypes.bool,
-    sectionId: PropTypes.number.isRequired
+    sectionId: PropTypes.number.isRequired,
+    optionId: PropTypes.number
   })
 };
 var defaultProps$9 = {
@@ -1150,7 +1160,7 @@ var BlockListGroupC = function BlockListGroupC(_ref) {
   return React__default.createElement(queries.WebsiteScheduledContent, __chunk_1._extends({}, props, {
     __source: {
       fileName: _jsxFileName$9,
-      lineNumber: 38
+      lineNumber: 39
     },
     __self: this
   }), function (_ref2) {
@@ -1160,7 +1170,7 @@ var BlockListGroupC = function BlockListGroupC(_ref) {
     if (loading) return React__default.createElement("span", {
       __source: {
         fileName: _jsxFileName$9,
-        lineNumber: 40
+        lineNumber: 41
       },
       __self: this
     }, "Loading...");
@@ -1169,7 +1179,7 @@ var BlockListGroupC = function BlockListGroupC(_ref) {
       return React__default.createElement("span", {
         __source: {
           fileName: _jsxFileName$9,
-          lineNumber: 43
+          lineNumber: 44
         },
         __self: this
       }, "Error", ' ', error.message);
@@ -1178,14 +1188,14 @@ var BlockListGroupC = function BlockListGroupC(_ref) {
     return React__default.createElement(core.Card, __chunk_1._extends({}, attrs, {
       __source: {
         fileName: _jsxFileName$9,
-        lineNumber: 51
+        lineNumber: 52
       },
       __self: this
     }), header && React__default.createElement("div", {
       className: "card-header",
       __source: {
         fileName: _jsxFileName$9,
-        lineNumber: 53
+        lineNumber: 54
       },
       __self: this
     }, header), React__default.createElement(content$1.ListGroupB, {
@@ -1193,7 +1203,7 @@ var BlockListGroupC = function BlockListGroupC(_ref) {
       nodes: items,
       __source: {
         fileName: _jsxFileName$9,
-        lineNumber: 55
+        lineNumber: 56
       },
       __self: this
     }));
@@ -1228,7 +1238,8 @@ var propTypes$a = {
     includeContentTypes: PropTypes.arrayOf(PropTypes.string),
     requiresImage: PropTypes.bool,
     sectionBubbling: PropTypes.bool,
-    sectionId: PropTypes.number.isRequired
+    sectionId: PropTypes.number.isRequired,
+    optionId: PropTypes.number
   })
 };
 var defaultProps$a = {
@@ -1248,7 +1259,7 @@ var BlockListGroupD = function BlockListGroupD(_ref) {
   return React__default.createElement(queries.WebsiteScheduledContent, __chunk_1._extends({}, props, {
     __source: {
       fileName: _jsxFileName$a,
-      lineNumber: 46
+      lineNumber: 47
     },
     __self: this
   }), function (_ref2) {
@@ -1258,7 +1269,7 @@ var BlockListGroupD = function BlockListGroupD(_ref) {
     if (loading) return React__default.createElement("span", {
       __source: {
         fileName: _jsxFileName$a,
-        lineNumber: 48
+        lineNumber: 49
       },
       __self: this
     }, "Loading...");
@@ -1267,7 +1278,7 @@ var BlockListGroupD = function BlockListGroupD(_ref) {
       return React__default.createElement("span", {
         __source: {
           fileName: _jsxFileName$a,
-          lineNumber: 51
+          lineNumber: 52
         },
         __self: this
       }, "Error", ' ', error.message);
@@ -1278,14 +1289,14 @@ var BlockListGroupD = function BlockListGroupD(_ref) {
     return React__default.createElement(core.Card, __chunk_1._extends({}, attrs, {
       __source: {
         fileName: _jsxFileName$a,
-        lineNumber: 61
+        lineNumber: 62
       },
       __self: this
     }), header && React__default.createElement("div", {
       className: "card-header",
       __source: {
         fileName: _jsxFileName$a,
-        lineNumber: 63
+        lineNumber: 64
       },
       __self: this
     }, header), React__default.createElement(content$1.CardBodyA, {
@@ -1295,7 +1306,7 @@ var BlockListGroupD = function BlockListGroupD(_ref) {
       },
       __source: {
         fileName: _jsxFileName$a,
-        lineNumber: 65
+        lineNumber: 66
       },
       __self: this
     }), React__default.createElement(content$1.ListGroupA, {
@@ -1303,7 +1314,7 @@ var BlockListGroupD = function BlockListGroupD(_ref) {
       nodes: nodes,
       __source: {
         fileName: _jsxFileName$a,
-        lineNumber: 66
+        lineNumber: 67
       },
       __self: this
     }));
