@@ -25,6 +25,16 @@ module.exports = [
     page: 'content',
   },
   {
+    name: 'section-tactical',
+    pattern: '/:alias(tactical)',
+    page: 'section/tactical',
+  },
+  {
+    name: 'section-training-careers',
+    pattern: '/:alias(training-careers)',
+    page: 'section/training-careers',
+  },
+  {
     name: 'section',
     pattern: '/:alias(.*)',
     page: 'section',
