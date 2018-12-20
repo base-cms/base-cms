@@ -5,16 +5,15 @@ const routeDefs = require('./site/routes');
 const { log } = console;
 
 const dir = './site';
-// @todo These should be env values.
 const port = 10003;
-const serviceUrl = 'https://graphql.officer.com';
+const { SERVICE_URL } = process.env;
 
 const boot = async () => {
   await startServer({
     dir,
     port,
     routeDefs,
-    serviceUrl,
+    serviceUrl: SERVICE_URL,
   });
   log(`> Ready on http://0.0.0.0:${port}`);
 };
