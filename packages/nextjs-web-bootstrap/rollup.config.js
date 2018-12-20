@@ -25,6 +25,7 @@ export default {
   input: [
     'src/content.js',
     'src/core.js',
+    'src/website-scheduled-content.js',
   ],
   output: [
     { dir: 'dist/cjs', format: 'cjs' },
