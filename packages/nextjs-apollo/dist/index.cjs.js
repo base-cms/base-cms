@@ -967,7 +967,7 @@ var _console = console,
     log = _console.log;
 var apolloConfig = (function (req) {
   var headers = req ? req.headers : {};
-  var uri = req ? "".concat(req.protocol, "://").concat(req.get('host'), "/graphql") : '/graphql';
+  var uri = req ? 'http://localhost/graphql' : '/graphql';
   return {
     link: apolloLink.ApolloLink.from([apolloLinkError.onError(function (_ref) {
       var graphQLErrors = _ref.graphQLErrors,
@@ -991,6 +991,7 @@ var apolloConfig = (function (req) {
   };
 });
 
+var _jsxFileName = "/base-cms/packages/nextjs-apollo/src/withApollo.jsx";
 var _console$1 = console,
     log$1 = _console$1.log;
 
@@ -1034,8 +1035,19 @@ var withApollo = (function (ComposedComponent) {
        */
       value: function render() {
         return React.createElement(reactApollo.ApolloProvider, {
-          client: this.apollo
-        }, React.createElement(ComposedComponent, this.props));
+          client: this.apollo,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 78
+          },
+          __self: this
+        }, React.createElement(ComposedComponent, _extends({}, this.props, {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 79
+          },
+          __self: this
+        })));
       }
     }], [{
       key: "getInitialProps",
@@ -1077,11 +1089,22 @@ var withApollo = (function (ComposedComponent) {
                   _context.prev = 10;
                   _context.next = 13;
                   return reactApollo.getDataFromTree(React.createElement(reactApollo.ApolloProvider, {
-                    client: apollo
+                    client: apollo,
+                    __source: {
+                      fileName: _jsxFileName,
+                      lineNumber: 50
+                    },
+                    __self: this
                   }, React.createElement(ComposedComponent, _extends({
                     router: router,
                     Component: Component
-                  }, composedInitialProps))));
+                  }, composedInitialProps, {
+                    __source: {
+                      fileName: _jsxFileName,
+                      lineNumber: 51
+                    },
+                    __self: this
+                  }))));
 
                 case 13:
                   _context.next = 18;

@@ -5,7 +5,7 @@ const routeDefs = require('./site/routes');
 const { log } = console;
 
 const dir = './site';
-const port = 10003;
+const port = 80;
 const { SERVICE_URL } = process.env;
 
 const boot = async () => {

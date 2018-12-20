@@ -9,7 +9,8 @@
   "author": "Jacob Bare <jacob@limit0.io>",
   "license": "MIT",
   "scripts": {
-    "build": "rollup -c"
+    "clean": "rimraf dist",
+    "build": "yarn clean && rollup -c"
   },
   "dependencies": {
     "@base-cms/graphql-fragment-types": "^0.4.12",

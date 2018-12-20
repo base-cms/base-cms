@@ -73,7 +73,7 @@ services:
     depends_on:
       - graphql-server
     ports:
-      - "10003:10003"
+      - "10003:80"
 
 volumes:
   esdata: {}
