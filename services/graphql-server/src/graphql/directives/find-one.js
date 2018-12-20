@@ -11,9 +11,14 @@ class FindOneDirective extends SchemaDirectiveVisitor {
    */
   visitFieldDefinition(field) {
     // eslint-disable-next-line no-param-reassign
-    field.resolve = async (_, { input = {} }, { basedb }, { fieldNodes, returnType, schema }) => {
-      const start = process.hrtime();
-      const projection = getProjection(schema, returnType, fieldNodes[0].selectionSet);
+    field.resolve = async (_, { input = {} }, { basedb }, info) => {
+      const {
+        fieldNodes,
+        returnType,
+        schema,
+        fragments,
+      } = info;
+      const projection = getProjection(schema, returnType, fieldNodes[0].selectionSet, fragments);
 
       const {
         model,
@@ -30,7 +35,6 @@ class FindOneDirective extends SchemaDirectiveVisitor {
       });
 
       const result = await basedb.findOne(model, query, { projection });
-      basedb.log('@findOne', start, { model });
       return result;
     };
   }

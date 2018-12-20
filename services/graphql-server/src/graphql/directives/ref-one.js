@@ -11,8 +11,14 @@ class RefOneDirective extends SchemaDirectiveVisitor {
    */
   visitFieldDefinition(field) {
     // eslint-disable-next-line no-param-reassign
-    field.resolve = async (doc, { input = {} }, { load }, { returnType, fieldNodes, schema }) => {
-      const projection = getProjection(schema, returnType, fieldNodes[0].selectionSet);
+    field.resolve = async (doc, { input = {} }, { load }, info) => {
+      const {
+        returnType,
+        fieldNodes,
+        schema,
+        fragments,
+      } = info;
+      const projection = getProjection(schema, returnType, fieldNodes[0].selectionSet, fragments);
 
       const {
         loader,

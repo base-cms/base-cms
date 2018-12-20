@@ -1,7 +1,12 @@
 const objectPath = require('object-path');
 const getProjection = require('./get-projection');
 
-module.exports = ({ returnType, fieldNodes, schema }) => {
+module.exports = ({
+  returnType,
+  fieldNodes,
+  schema,
+  fragments,
+}) => {
   let projection;
   const { projectUsing } = returnType.ofType || returnType;
   if (projectUsing) {
@@ -13,6 +18,7 @@ module.exports = ({ returnType, fieldNodes, schema }) => {
         schema,
         schema.getType(projectUsing),
         node.selectionSet,
+        fragments,
       );
     } else {
       // Do not return any fields, since `node` was not selected.

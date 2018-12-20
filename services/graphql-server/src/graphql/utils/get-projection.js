@@ -2,7 +2,7 @@ const { isObject } = require('@base-cms/common');
 
 const { isArray } = Array;
 
-const getFields = (schema, type, selectionSet, fields = []) => {
+const getFields = (schema, type, selectionSet, fragments, fields = []) => {
   if (!isObject(selectionSet)) return fields;
   const { selections = [] } = selectionSet;
   selections.forEach((s) => {
@@ -12,7 +12,22 @@ const getFields = (schema, type, selectionSet, fields = []) => {
         fields.push({ type, value: name.value });
         break;
       case 'InlineFragment':
-        getFields(schema, schema.getType(typeCondition.name.value), s.selectionSet, fields);
+        getFields(
+          schema,
+          schema.getType(typeCondition.name.value),
+          s.selectionSet,
+          fragments,
+          fields,
+        );
+        break;
+      case 'FragmentSpread':
+        getFields(
+          schema,
+          schema.getType(fragments[name.value].typeCondition.name.value),
+          fragments[name.value].selectionSet,
+          fragments,
+          fields,
+        );
         break;
       default:
         break;
@@ -21,10 +36,10 @@ const getFields = (schema, type, selectionSet, fields = []) => {
   return fields;
 };
 
-module.exports = (schema, returnType, selectionSet) => {
+module.exports = (schema, returnType, selectionSet, fragments) => {
   const type = returnType.ofType || returnType;
   // An array of { type, value } objects.
-  const selected = getFields(schema, type, selectionSet);
+  const selected = getFields(schema, type, selectionSet, fragments);
   const { requiresProject } = type;
   const fields = isArray(requiresProject)
     ? selected.concat(requiresProject.map(value => ({ type, value })))
