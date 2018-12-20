@@ -1,0 +1,17 @@
+fragment ContentListGroupStyleA on Content {
+  id
+  type
+  shortName
+  published
+  canonicalPath
+  primarySection {
+    id
+    name
+    alias
+  }
+  company {
+    id
+    name
+    canonicalPath
+  }
+}

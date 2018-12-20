@@ -1,0 +1,11 @@
+fragment ContentListGroupStyleD on Content {
+  id
+  type
+  shortName
+  canonicalPath
+  primarySection {
+    id
+    name
+    alias
+  }
+}
