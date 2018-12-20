@@ -53,7 +53,8 @@ var WebsiteScheduledContent = function WebsiteScheduledContent(_ref2) {
       includeContentTypes = _ref2.includeContentTypes,
       requiresImage = _ref2.requiresImage,
       sectionBubbling = _ref2.sectionBubbling,
-      sectionId = _ref2.sectionId;
+      sectionId = _ref2.sectionId,
+      optionId = _ref2.optionId;
   var pagination = {
     limit: limit,
     after: after
@@ -65,7 +66,8 @@ var WebsiteScheduledContent = function WebsiteScheduledContent(_ref2) {
     includeContentTypes: includeContentTypes,
     requiresImage: requiresImage,
     sectionBubbling: sectionBubbling,
-    sectionId: sectionId
+    sectionId: sectionId,
+    optionId: optionId
   };
   var query = buildQuery({
     fragment: fragment
@@ -77,7 +79,7 @@ var WebsiteScheduledContent = function WebsiteScheduledContent(_ref2) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 51
+      lineNumber: 53
     },
     __self: this
   }, function (_ref3) {
@@ -111,7 +113,8 @@ WebsiteScheduledContent.defaultProps = {
   fragment: undefined,
   includeContentTypes: [],
   requiresImage: false,
-  sectionBubbling: true
+  sectionBubbling: true,
+  optionId: undefined
 };
 WebsiteScheduledContent.propTypes = {
   after: PropTypes.string,
@@ -123,7 +126,8 @@ WebsiteScheduledContent.propTypes = {
   includeContentTypes: PropTypes.arrayOf(PropTypes.string),
   requiresImage: PropTypes.bool,
   sectionBubbling: PropTypes.bool,
-  sectionId: PropTypes.number.isRequired
+  sectionId: PropTypes.number.isRequired,
+  optionId: PropTypes.number
 };
 
 exports.WebsiteScheduledContent = WebsiteScheduledContent;

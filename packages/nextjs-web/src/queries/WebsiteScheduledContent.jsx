@@ -35,6 +35,7 @@ const WebsiteScheduledContent = ({
   requiresImage,
   sectionBubbling,
   sectionId,
+  optionId,
 }) => {
   const pagination = { limit, after };
   const input = {
@@ -45,6 +46,7 @@ const WebsiteScheduledContent = ({
     requiresImage,
     sectionBubbling,
     sectionId,
+    optionId,
   };
   const query = buildQuery({ fragment });
   return (
@@ -72,6 +74,7 @@ WebsiteScheduledContent.defaultProps = {
   includeContentTypes: [],
   requiresImage: false,
   sectionBubbling: true,
+  optionId: undefined,
 };
 
 WebsiteScheduledContent.propTypes = {
@@ -85,6 +88,7 @@ WebsiteScheduledContent.propTypes = {
   requiresImage: PropTypes.bool,
   sectionBubbling: PropTypes.bool,
   sectionId: PropTypes.number.isRequired,
+  optionId: PropTypes.number,
 };
 
 export default WebsiteScheduledContent;
