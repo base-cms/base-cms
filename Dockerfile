@@ -4,3 +4,7 @@ ENV NODE_ENV production
 ADD ./ /base-cms
 WORKDIR /base-cms
 RUN yarn --production
+
+WORKDIR /base-cms/services/example-website
+RUN node_modules/.bin/next build site
+WORKDIR /base-cms
