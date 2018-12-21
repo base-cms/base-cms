@@ -40,6 +40,11 @@ module.exports = [
     page: 'section/on-the-street',
   },
   {
+    name: 'section-investigations',
+    pattern: '/:alias(investigations)',
+    page: 'section/investigations',
+  },
+  {
     name: 'section',
     pattern: '/:alias(.*)',
     page: 'section',
