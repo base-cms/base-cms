@@ -9,5 +9,8 @@
   "dependencies": {
     "async": "^2.6.1",
     "html2plaintext": "^2.1.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
