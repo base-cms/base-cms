@@ -1,6 +1,0 @@
-{
-  "name": "components-core",
-  "private": true,
-  "main": "../../dist/cjs/components-core.js",
-  "module": "../../dist/esm/components-core.js"
-}
