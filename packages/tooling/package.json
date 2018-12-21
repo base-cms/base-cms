@@ -9,5 +9,8 @@
   "dependencies": {
     "envalid": "^4.1.4",
     "validator": "^10.9.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
