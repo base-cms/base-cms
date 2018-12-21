@@ -45,6 +45,11 @@ module.exports = [
     page: 'section/investigations',
   },
   {
+    name: 'section-command-hq',
+    pattern: '/:alias(command-hq)',
+    page: 'section/command-hq',
+  },
+  {
     name: 'section',
     pattern: '/:alias(.*)',
     page: 'section',
