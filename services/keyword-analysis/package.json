@@ -5,6 +5,7 @@
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
   "license": "MIT",
+  "private": true,
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/keyword-analysis",
   "scripts": {
     "predev": "$npm_package_docker_dev_install",

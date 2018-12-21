@@ -5,6 +5,7 @@
   "author": "Jacob Bare <jacob@limit0.io>",
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/example-website",
   "license": "MIT",
+  "private": true,
   "dependencies": {
     "@base-cms/nextjs-web": "^0.4.12",
     "@base-cms/nextjs-web-bootstrap": "^0.4.12",
