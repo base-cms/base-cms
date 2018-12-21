@@ -9,11 +9,11 @@ module.exports = [
     pattern: '/page/:alias',
     page: 'page',
   },
-  // {
-  //   name: 'content-article',
-  //   pattern: '/:prefix(.*)/:type(article)/:id(\\d{8}):suffix(.*)',
-  //   page: 'content/article',
-  // },
+  {
+    name: 'content-article',
+    pattern: '/:prefix(.*)/:type(article)/:id(\\d{8}):suffix(.*)',
+    page: 'content/article',
+  },
   {
     name: 'content-news',
     pattern: '/:prefix(.*)/:type(news)/:id(\\d{8}):suffix(.*)',
