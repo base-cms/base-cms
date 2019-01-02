@@ -2,14 +2,13 @@
 const chalk = require('chalk');
 const ProgressBar = require('progress');
 const elastic = require('../elastic');
+const { index: ELASTIC_INDEX, type: ELASTIC_TYPE } = require('../elastic/index-settings');
 const base4 = require('../base4');
 const Base4 = require('../base4/client');
-const env = require('../env');
 const { taxonomyLoader } = require('../base4/loaders');
 const { whilstPromise } = require('../utils/async');
 const stripHtml = require('../utils/strip-html');
 
-const { ELASTIC_INDEX, ELASTIC_TYPE } = env;
 const { log } = console;
 
 /**

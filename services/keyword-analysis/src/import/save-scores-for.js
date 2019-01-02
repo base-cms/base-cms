@@ -1,12 +1,11 @@
 const chalk = require('chalk');
 const ProgressBar = require('progress');
-const env = require('../env');
 const base4 = require('../base4');
 const elastic = require('../elastic');
-const { whilstPromise, eachSeriesPromise, eachPromise } = require('../utils/async');
+const { index: ELASTIC_INDEX, type: ELASTIC_TYPE } = require('../elastic/index-settings');
+const { whilstPromise, eachSeriesPromise } = require('../utils/async');
 const buildQuery = require('./build-elastic-query');
 
-const { ELASTIC_INDEX, ELASTIC_TYPE } = env;
 const { log } = console;
 
 const buildBody = (query, size, after) => ({
@@ -29,7 +28,7 @@ const mongoIndexes = [
 
 const makeUniquePhrases = async (phrases) => {
   const tokenizedPhrases = [];
-  await eachPromise(phrases, async (phrase) => {
+  await eachSeriesPromise(phrases, async (phrase) => {
     const { tokens } = await elastic.analyze(ELASTIC_INDEX, { text: phrase });
     const tokenizedPhrase = tokens.map(t => t.token).join(' ');
     if (tokenizedPhrase) tokenizedPhrases.push(tokenizedPhrase);
