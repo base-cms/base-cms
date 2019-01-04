@@ -19,7 +19,7 @@ module.exports = async (populate) => {
   // Delete the index.
   if (populate) {
     await elastic.deleteIndex(ELASTIC_INDEX);
-    log(chalk`{gray Index removed.}`);
+    log(chalk`{dim Index removed.}`);
   }
 
   const exists = await elastic.indexExists(ELASTIC_INDEX);
@@ -36,7 +36,7 @@ module.exports = async (populate) => {
         },
       },
     });
-    log(chalk`{gray Index created.}`);
+    log(chalk`{dim Index created.}`);
     // Create mappings.
     await elastic.putMapping(ELASTIC_INDEX, ELASTIC_TYPE, {
       properties: {
@@ -72,7 +72,7 @@ module.exports = async (populate) => {
         terms: { type: 'keyword' },
       },
     });
-    log(chalk`{gray Index mappings created.}`);
+    log(chalk`{dim Index mappings created.}`);
   }
   log(chalk`{blue Elasticsearch setup} {green complete}`);
 };

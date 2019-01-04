@@ -44,7 +44,7 @@ module.exports = async (keywordMap, batchSize) => {
   const collection = await base4.collectionFor('platform.KeywordAnalysis');
   await collection.deleteMany();
   await collection.createIndexes(mongoIndexes);
-  log(chalk`{gray Cleared destination Mongo collection.}`);
+  log(chalk`{dim Cleared destination Mongo collection.}`);
 
   await eachSeriesPromise(Object.keys(keywordMap), async (channel) => {
     const phrases = await makeUniquePhrases(keywordMap[channel]);
@@ -55,12 +55,12 @@ module.exports = async (keywordMap, batchSize) => {
     }
 
     const query = buildQuery(phrases);
-    log(chalk`{gray Begin index analysis for the} {blue ${channel}} {gray keyword group...}`);
-    log(chalk`{gray Using search phrases...}`);
+    log(chalk`{dim Begin index analysis for the} {blue ${channel}} {dim keyword group...}`);
+    log(chalk`{dim Using search phrases...}`);
     log(chalk`{white ${phrases.join(' ')}}`);
 
     const { count } = await elastic.count(ELASTIC_INDEX, ELASTIC_TYPE, { query });
-    log(chalk`{gray Found} {white ${count}} {gray total hits for} {blue ${channel}}`);
+    log(chalk`{dim Found} {white ${count}} {dim total hits for} {blue ${channel}}`);
 
     let maxScore = 0;
     let offset = 0;
@@ -106,6 +106,6 @@ module.exports = async (keywordMap, batchSize) => {
       hasMore = count > offset;
       bar.tick();
     });
-    log(chalk`{gray Index analysis for} {blue ${channel}} {gray complete.}`);
+    log(chalk`{dim Index analysis for} {blue ${channel}} {dim complete.}`);
   });
 };

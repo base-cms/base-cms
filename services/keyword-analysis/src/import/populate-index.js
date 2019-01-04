@@ -29,12 +29,12 @@ module.exports = async (batchSize) => {
   };
 
   const count = await base4.count('platform.Content', criteria);
-  log(chalk`{gray Found} {white ${count}} {gray documents in MongoDB}`);
+  log(chalk`{dim Found} {white ${count}} {dim documents in MongoDB}`);
 
-  log(chalk`{gray Prime the Taxonomy loader...}`);
+  log(chalk`{dim Prime the Taxonomy loader...}`);
   const taxDocs = await base4.find('platform.Taxonomy', {}, {}, true);
   taxDocs.map(taxDoc => taxonomyLoader.prime(taxDoc._id, taxDoc));
-  log(chalk`{gray Priming complete.}`);
+  log(chalk`{dim Priming complete.}`);
 
   let offset = 0;
   let hasMore = count > offset;
