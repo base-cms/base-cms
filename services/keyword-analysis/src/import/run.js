@@ -9,7 +9,7 @@ module.exports = async ({ batchSize, populate, saveToMongo }) => {
     await popluateIndex(batchSize);
   }
   if (saveToMongo) {
-    const keywordMap = loadKeywords();
+    const keywordMap = await loadKeywords();
     await saveScoresFor(keywordMap, batchSize);
   }
 };
