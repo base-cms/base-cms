@@ -1,12 +1,11 @@
 const chalk = require('chalk');
 const ProgressBar = require('progress');
-const env = require('../env');
 const base4 = require('../base4');
 const elastic = require('../elastic');
-const { whilstPromise, eachSeriesPromise, eachPromise } = require('../utils/async');
+const { index: ELASTIC_INDEX, type: ELASTIC_TYPE } = require('../elastic/index-settings');
+const { whilstPromise, eachSeriesPromise } = require('../utils/async');
 const buildQuery = require('./build-elastic-query');
 
-const { ELASTIC_INDEX, ELASTIC_TYPE } = env;
 const { log } = console;
 
 const buildBody = (query, size, after) => ({
@@ -29,7 +28,7 @@ const mongoIndexes = [
 
 const makeUniquePhrases = async (phrases) => {
   const tokenizedPhrases = [];
-  await eachPromise(phrases, async (phrase) => {
+  await eachSeriesPromise(phrases, async (phrase) => {
     const { tokens } = await elastic.analyze(ELASTIC_INDEX, { text: phrase });
     const tokenizedPhrase = tokens.map(t => t.token).join(' ');
     if (tokenizedPhrase) tokenizedPhrases.push(tokenizedPhrase);
@@ -45,7 +44,7 @@ module.exports = async (keywordMap, batchSize) => {
   const collection = await base4.collectionFor('platform.KeywordAnalysis');
   await collection.deleteMany();
   await collection.createIndexes(mongoIndexes);
-  log(chalk`{gray Cleared destination Mongo collection.}`);
+  log(chalk`{dim Cleared destination Mongo collection.}`);
 
   await eachSeriesPromise(Object.keys(keywordMap), async (channel) => {
     const phrases = await makeUniquePhrases(keywordMap[channel]);
@@ -56,12 +55,12 @@ module.exports = async (keywordMap, batchSize) => {
     }
 
     const query = buildQuery(phrases);
-    log(chalk`{gray Begin index analysis for the} {blue ${channel}} {gray keyword group...}`);
-    log(chalk`{gray Using search phrases...}`);
+    log(chalk`{dim Begin index analysis for the} {blue ${channel}} {dim keyword group...}`);
+    log(chalk`{dim Using search phrases...}`);
     log(chalk`{white ${phrases.join(' ')}}`);
 
     const { count } = await elastic.count(ELASTIC_INDEX, ELASTIC_TYPE, { query });
-    log(chalk`{gray Found} {white ${count}} {gray total hits for} {blue ${channel}}`);
+    log(chalk`{dim Found} {white ${count}} {dim total hits for} {blue ${channel}}`);
 
     let maxScore = 0;
     let offset = 0;
@@ -107,6 +106,6 @@ module.exports = async (keywordMap, batchSize) => {
       hasMore = count > offset;
       bar.tick();
     });
-    log(chalk`{gray Index analysis for} {blue ${channel}} {gray complete.}`);
+    log(chalk`{dim Index analysis for} {blue ${channel}} {dim complete.}`);
   });
 };
