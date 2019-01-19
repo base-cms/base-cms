@@ -2,10 +2,10 @@
   "name": "@base-cms/manage",
   "version": "0.4.0",
   "private": true,
-  "description": "Small description for @base-cms/manage goes here",
-  "repository": "",
+  "description": "The BaseCMS Management Interface",
+  "author": "Jacob Bare <jacob@limit0.io>",
+  "repository": "https://github.com/base-cms/base-cms/tree/master/packages/manage",
   "license": "MIT",
-  "author": "",
   "directories": {
     "doc": "doc",
     "test": "tests"
