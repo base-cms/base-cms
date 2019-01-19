@@ -3,8 +3,7 @@ version: '3.7'
 x-node-defaults: &node
   tty: true
   init: true
-  image: base-cms-node-alpine:latest
-  build: ./node-alpine-git
+  image: node:10.15
   entrypoint: ["node"]
   working_dir: /base-cms
   volumes:
