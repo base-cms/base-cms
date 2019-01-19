@@ -5781,7 +5781,7 @@ ember-cli-htmlbars-inline-precompile@^1.0.0, ember-cli-htmlbars-inline-precompil
     heimdalljs-logger "^0.1.9"
     silent-error "^1.1.0"
 
-ember-cli-htmlbars@^2.0.3:
+ember-cli-htmlbars@^2.0.1, ember-cli-htmlbars@^2.0.3:
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-2.0.5.tgz#b5a105429a6bce4f7c9c97b667e3b8926e31397f"
   integrity sha512-3f3PAxdnQ/fhQa8XP/3z4RLRgLHxV8j4Ln75aHbRdemOCjBa048KxL9l+acRLhCulbGQCMnLiIUIC89PAzLrcA==
@@ -6006,6 +6006,14 @@ ember-cli@~3.7.1:
     walk-sync "^1.0.0"
     watch-detector "^0.1.0"
     yam "^1.0.0"
+
+ember-entypo@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/ember-entypo/-/ember-entypo-1.0.1.tgz#0dc5980d0f777ba0593abcfc71e5db47d44f2021"
+  integrity sha1-DcWYDQ93e6BZOrz8ceXbR9RPICE=
+  dependencies:
+    ember-cli-babel "^6.6.0"
+    ember-cli-htmlbars "^2.0.1"
 
 ember-export-application-global@^2.0.0:
   version "2.0.0"
