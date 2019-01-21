@@ -10,6 +10,7 @@ const content = [
       alt: 'image alt',
     },
     type: 'Article',
+    status: 'Published',
   },
 
   {
@@ -21,6 +22,7 @@ const content = [
       alt: 'image alt',
     },
     type: 'Press Release',
+    status: 'Draft',
   },
 
   {
@@ -32,6 +34,7 @@ const content = [
       alt: '',
     },
     type: 'Blog',
+    status: 'Published',
   },
 
   {
@@ -43,6 +46,7 @@ const content = [
       alt: '',
     },
     type: 'News',
+    status: 'Scheduled',
   },
 
   {
@@ -54,6 +58,7 @@ const content = [
       alt: '',
     },
     type: 'Article',
+    status: 'Published',
   },
 
   {
@@ -65,6 +70,7 @@ const content = [
       alt: '',
     },
     type: 'Video',
+    status: 'Deleted',
   },
 
   {
@@ -76,6 +82,7 @@ const content = [
       alt: '',
     },
     type: 'Press Release',
+    status: 'Draft',
   },
 
   {
@@ -87,6 +94,7 @@ const content = [
       alt: '',
     },
     type: 'Product',
+    status: 'Published',
   },
 
   {
@@ -98,6 +106,7 @@ const content = [
       alt: '',
     },
     type: 'News',
+    status: 'Scheduled',
   },
 ];
 

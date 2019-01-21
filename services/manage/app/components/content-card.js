@@ -7,4 +7,12 @@ export default Component.extend({
   typeDasherized: computed('type', function() {
     return this.get('type').replace(' ', '-').toLowerCase();
   }),
+
+  teaserTruncated: computed('teaser', function() {
+    const teaser = this.get('teaser');
+    if (!teaser) return '';
+    const words = teaser.split(' ');
+    if (words.length > 20) return `${words.slice(0, 20).join(' ')}...`
+    return teaser;
+  }),
 });
