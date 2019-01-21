@@ -151,6 +151,6 @@ export default Service.extend({
     return content;
   },
   content(id) {
-    return content.find(c => c.id === id);
+    return content.find(c => c.id === parseInt(id, 10));
   },
 });
