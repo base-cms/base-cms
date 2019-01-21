@@ -1,0 +1,15 @@
+<div class="card z-depth-1 border-0 mnh-100">
+  {{#link-to "content.edit" typeDasherized id}}
+    <img class="card-img-top" src={{imageSrc}} alt={{imageAlt}}>
+  {{/link-to}}
+  <div class="card-body">
+    <h4 class="card-title">
+      {{#link-to "content.edit" typeDasherized id}}
+        {{title}}
+      {{/link-to}}
+    </h4>
+    <p class="card-text mb-0">
+      {{teaser}}
+    </p>
+  </div>
+</div>
