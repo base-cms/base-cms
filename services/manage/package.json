@@ -18,8 +18,10 @@
     "test": "ember test"
   },
   "devDependencies": {
+    "@creative-tim-official/argon-dashboard-free": "^1.0.0",
     "@ember/jquery": "^0.5.2",
     "@ember/optional-features": "^0.6.3",
+    "argon-design-system-free": "^1.0.1",
     "bootstrap": "4.2.1",
     "bootswatch": "4.2.1",
     "broccoli-asset-rev": "^2.7.0",
