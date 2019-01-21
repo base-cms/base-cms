@@ -8,7 +8,9 @@ const Router = EmberRouter.extend({
 
 Router.map(function() {
   this.route('content', function() {
+    this.route('edit', { path: ':type/:id' }, function() {
 
+    });
   });
 });
 
