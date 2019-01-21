@@ -27,6 +27,8 @@ module.exports = function(defaults) {
   // Bootstrap JS and source maps.
   app.import('node_modules/bootstrap/dist/js/bootstrap.bundle.min.js');
   app.import('node_modules/bootstrap/dist/js/bootstrap.bundle.min.js.map', { destDir: 'assets' });
+  // app.import('node_modules/@creative-tim-official/argon-dashboard-free/assets/js/argon.min.js');
+  app.import('node_modules/argon-design-system-free/assets/js/argon.min.js');
 
   return app.toTree();
 };
