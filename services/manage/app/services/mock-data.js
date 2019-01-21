@@ -2,7 +2,7 @@ import Service from '@ember/service';
 
 const content = [
   {
-    id: 1,
+    id: 21044236,
     title: 'Why Marketers Must Embrace Ethical Data Use',
     teaser: 'Data Privacy Week gives all of us an opportunity to reflect on how the conversation surrounding data has shifted in the last year or so. We’ve seen a much more intense focus on using data in a responsible manner',
     image: {
@@ -11,10 +11,14 @@ const content = [
     },
     type: 'Article',
     status: 'Published',
+    updated: new Date(),
+    updatedBy: {
+      username: 'jbare@southcomm.com',
+    },
   },
 
   {
-    id: 2,
+    id: 21044229,
     title: 'Data-Driven Marketers: It takes big and small to know it all',
     teaser: 'We have so much data at our fingertips, it can be easy to fall into the trap of assuming that we know our customers.',
     image: {
@@ -23,10 +27,14 @@ const content = [
     },
     type: 'Press Release',
     status: 'Draft',
+    updated: new Date(),
+    updatedBy: {
+      username: 'bkrigbaum@southcomm.com',
+    },
   },
 
   {
-    id: 3,
+    id: 21044231,
     title: 'Toughened Epoxy Resists High Temperatures & Chemicals',
     teaser: 'Master Bond Supreme 62-1 delivers enhanced chemical and temperature resistance while maintaining high performance properties. This adhesive offers excellent flow properties and a long working life over a wide service temperature range.',
     image: {
@@ -35,10 +43,14 @@ const content = [
     },
     type: 'Blog',
     status: 'Published',
+    updated: new Date(),
+    updatedBy: {
+      username: 'ppeluso@southcomm.com',
+    },
   },
 
   {
-    id: 4,
+    id: 21044227,
     title: 'Monster 4 Drawer Cart with larger top storage',
     teaser: 'This professional cart provides lots of storage and has a large 15.6″ tall top storage compartment, latching drawers and PVC drawer liners. 5″ HD casters for smooth mobility. Bumpers provide extra protection in case of contact with painted surfaces.',
     image: {
@@ -47,10 +59,14 @@ const content = [
     },
     type: 'News',
     status: 'Scheduled',
+    updated: new Date(),
+    updatedBy: {
+      username: 'sscullin@southcomm.com',
+    },
   },
 
   {
-    id: 5,
+    id: 21044111,
     title: 'Designed for EXTREME environments',
     teaser: 'The G-SHOCK MUDMASTER GG1000 is an ideal "Every Day Carry" item as it\'s mud resistant construction helps to ensure that nothing gets into the watch under tough conditions.',
     image: {
@@ -59,10 +75,14 @@ const content = [
     },
     type: 'Article',
     status: 'Published',
+    updated: new Date(),
+    updatedBy: {
+      username: 'bmiller@southcomm.com',
+    },
   },
 
   {
-    id: 6,
+    id: 21044110,
     title: 'Globe ATHLETIX™ - Like nothing you’ve ever experienced.',
     teaser: 'All-new athletic design with stretch fabrics for body-contoured, less bulky fit, lighter weight, and unprecedented range of motion.',
     image: {
@@ -71,10 +91,14 @@ const content = [
     },
     type: 'Video',
     status: 'Deleted',
+    updated: new Date(),
+    updatedBy: {
+      username: 'jworden@southcomm.com',
+    },
   },
 
   {
-    id: 7,
+    id: 21044109,
     title: 'Center Brunswick Vol. Fire Department receives Marion Pumper',
     teaser: 'Marion\'s priority is to listen to the customer\'s needs. Check out more departments that have experienced the Marion Difference!',
     image: {
@@ -83,10 +107,14 @@ const content = [
     },
     type: 'Press Release',
     status: 'Draft',
+    updated: new Date(),
+    updatedBy: {
+      username: 'jfitzgerald@southcomm.com',
+    },
   },
 
   {
-    id: 8,
+    id: 21044106,
     title: 'Connect with the future of mobility at ABB Customer World',
     teaser: 'Formula E is at the forefront not only of electric vehicle technology but of IoT, data analytics and real-time communications. See how ABB FIA Formula E is shaping the future of mobility at ABB Customer World, March 4-7. Registration is FREE.',
     image: {
@@ -95,10 +123,14 @@ const content = [
     },
     type: 'Product',
     status: 'Published',
+    updated: new Date(),
+    updatedBy: {
+      username: 'bkrigbaum@southcomm.com',
+    },
   },
 
   {
-    id: 9,
+    id: 21044088,
     title: 'Good Quality - Sufficently Rugged',
     teaser: 'Through superior mud resistant construction, the G-SHOCK Mudmaster GG1000 is designed to withstand all environments, offering all of the characteristics you\'ve come to expect from G-SHOCK.',
     image: {
@@ -107,6 +139,10 @@ const content = [
     },
     type: 'News',
     status: 'Scheduled',
+    updated: new Date(),
+    updatedBy: {
+      username: 'jbare@southcomm.com',
+    },
   },
 ];
 

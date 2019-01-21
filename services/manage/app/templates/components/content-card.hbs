@@ -8,7 +8,7 @@
       </div>
     </div>
   {{/link-to}}
-  <div class="card-body">
+  <div class="card-body d-flex flex-column">
     <h4 class="card-title">
       {{#link-to "content.edit" typeDasherized id}}
         {{title}}
@@ -17,5 +17,24 @@
     <p class="card-text mb-0">
       {{teaserTruncated}}
     </p>
+  </div>
+  <div class="card-footer py-2">
+
+    <small class="text-muted d-block">
+      Updated
+      <span title={{updatedDate}}>
+        {{updatedFromNow}}
+      </span>
+      by {{username}}
+    </small>
+
+    <div class="d-flex flex-row justify-content-between align-items-center mt-1">
+      <small>ID: {{id}}</small>
+      <label class="custom-toggle">
+        <input type="checkbox">
+        <span class="custom-toggle-slider rounded-circle"></span>
+      </label>
+    </div>
+
   </div>
 </div>
