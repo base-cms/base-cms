@@ -3,7 +3,10 @@
   <div class="embed-responsive embed-responsive-16by9">
     <div class="embed-responsive-item d-flex align-items-center">
       {{#if imageSrc}}
+        {{!-- @todo Display placeholder when no image exits --}}
         {{#if hasLogoImage}}
+          {{!-- @todo Create a content card image component to wrap this --}}
+          {{!-- @todo Detect faces and, if present, use face crop --}}
           {{imgix-img
             class="card-img-top img-fluid"
             originalSrc=imageSrc
