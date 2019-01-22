@@ -32,7 +32,7 @@
               </div>
             </div>
           </a>
-          <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
+          <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right z-depth-2">
             <div class="dropdown-header">
               <h6 class="text-overflow m-0">Welcome!</h6>
             </div>
@@ -64,17 +64,17 @@
     </div>
 
   </nav>
-  <div class="header content pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px; background-image: url({{model.image.src}}); background-size: cover; background-position: center top;">
+  <div class="header content pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px; background-image: url({{model.primaryImage.src}}); background-size: cover; background-position: center top;">
     <span class="mask bg-gradient-default opacity-7"></span>
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-7 col-md-10">
-          <h1 class="display-2 text-white" contenteditable="true">{{model.title}}</h1>
+          <h1 class="display-2 text-white text-depth-1-half" contenteditable="true">{{model.name}}</h1>
         </div>
       </div>
       <div class="row">
         <div class="col-lg-7 col-md-10">
-          <p class="text-white mt-0 mb-5" contenteditable="true">{{model.teaser}}</p>
+          <p class="text-white mt-0 mb-5 text-depth-1" contenteditable="true">{{model.teaser}}</p>
         </div>
       </div>
     </div>

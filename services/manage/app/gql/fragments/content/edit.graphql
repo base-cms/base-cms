@@ -1,0 +1,10 @@
+fragment ContentEditFragment on Content {
+  id
+  name
+  teaser
+  primaryImage {
+    id
+    src(input: { host: "cdn.officer.com", size: "1280w" })
+    alt
+  }
+}

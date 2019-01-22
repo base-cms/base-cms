@@ -1,10 +1,19 @@
 import Route from '@ember/routing/route';
-import { inject } from '@ember/service';
+import { RouteQueryManager } from 'ember-apollo-client';
 
-export default Route.extend({
-  mockData: inject(),
+import query from '@base-cms/manage/gql/queries/content/edit';
 
+export default Route.extend(RouteQueryManager, {
+  /**
+   *
+   * @param {object} params
+   */
   model({ id }) {
-    return this.get('mockData').content(id);
+    const input = {
+      id: parseInt(id, 10),
+      status: 'any',
+    };
+    const variables = { input };
+    return this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'network-only' }, 'content');
   },
 });
