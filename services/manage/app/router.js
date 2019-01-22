@@ -8,6 +8,9 @@ const Router = EmberRouter.extend({
 
 Router.map(function() {
   this.route('content', function() {
+    this.route('browse', { path: '' }, function() {
+      this.route('create');
+    });
     this.route('edit', { path: ':type/:id' }, function() {
 
     });
