@@ -1,0 +1,29 @@
+{{#if src}}
+  {{#if isLogo}}
+    {{!-- @todo Detect faces and, if present, use face crop --}}
+    {{imgix-img
+      class="card-img-top img-fluid"
+      originalSrc=src
+      alt=alt
+      title=title
+      fit="clip"
+      w="480"
+      h="270"
+    }}
+  {{else}}
+    {{imgix-img
+      class="card-img-top img-fluid"
+      originalSrc=src
+      alt=alt
+      title=title
+      crop="focalpoint"
+      fp-x=focalpoint.x
+      fp-y=focalpoint.y
+      fit="crop"
+      w="480"
+      h="270"
+    }}
+  {{/if}}
+{{else}}
+  {{!-- @todo Display placeholder when no image exits --}}
+{{/if}}

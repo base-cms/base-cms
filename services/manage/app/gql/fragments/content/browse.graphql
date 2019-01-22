@@ -2,7 +2,6 @@ fragment ContentBrowseFragment on Content {
   id
   name
   type(input: { format: titleize })
-  # dasherizedType: type({ input: { format: dasherize } })
   statusText
   teaser
   primaryImage {
@@ -11,7 +10,12 @@ fragment ContentBrowseFragment on Content {
     alt
   }
   updated
+  created
   updatedBy {
+    id
+    username
+  }
+  createdBy {
     id
     username
   }
