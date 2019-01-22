@@ -1,14 +1,43 @@
 <div class="card content z-depth-1 border-0 mnh-100">
-  {{#link-to "content.edit" typeDasherized id}}
-    <img class="card-img-top" src={{imageSrc}} alt={{imageAlt}}>
-    <div class="card-img-overlay">
-      <div class="d-flex justify-content-between">
-        {{content-card/status-badge status=status}}
-        {{content-card/type-badge type=type}}
-      </div>
+
+  <div class="embed-responsive embed-responsive-16by9">
+    <div class="embed-responsive-item d-flex align-items-center">
+      {{#if imageSrc}}
+        {{#if hasLogoImage}}
+          {{imgix-img
+            class="card-img-top img-fluid"
+            originalSrc=imageSrc
+            alt=imageAlt
+            fit="clip"
+            w="480"
+            h="270"
+          }}
+        {{else}}
+          {{imgix-img
+            class="card-img-top img-fluid"
+            originalSrc=imageSrc
+            alt=imageAlt
+            crop="focalpoint"
+            fp-x="0.5"
+            fp-y="0.5"
+            fit="crop"
+            w="480"
+            h="270"
+          }}
+        {{/if}}
+      {{/if}}
+      {{#link-to "content.edit" typeDasherized id}}
+        <div class="card-img-overlay">
+          <div class="d-flex justify-content-between">
+            {{content-card/status-badge status=status}}
+            {{content-card/type-badge type=type}}
+          </div>
+        </div>
+      {{/link-to}}
     </div>
-  {{/link-to}}
-  <div class="card-body d-flex flex-column">
+  </div>
+
+  <div class="card-body">
     <h4 class="card-title">
       {{#link-to "content.edit" typeDasherized id}}
         {{title}}
@@ -18,9 +47,8 @@
       {{teaserTruncated}}
     </p>
   </div>
-  {{!-- @todo Fix this the footer is not clickable to the edit page. --}}
-  <div class="card-footer py-2">
 
+  <div class="card-footer pt-2 pb-1">
     <small class="text-muted d-block">
       Updated
       <span title={{updatedDate}}>
