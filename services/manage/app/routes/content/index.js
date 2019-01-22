@@ -12,6 +12,7 @@ export default Route.extend(RouteQueryManager, {
     const input = {
       sort: { field: 'updated', order: 'desc' },
       pagination: { limit: 24 },
+      status: 'any',
     };
     const variables = { input };
     return this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'network-only' }, 'allContent');
