@@ -10,6 +10,13 @@ export default Component.extend({
   }),
 
   /**
+   * @todo This is contrived. Base should provide whether the image is a logo.
+   */
+  hasLogoImage: computed('type', function() {
+    return this.get('type') === 'Company';
+  }),
+
+  /**
    * @todo This is contrived. Update to support HTML and words.
    */
   teaserTruncated: computed('teaser', function() {
