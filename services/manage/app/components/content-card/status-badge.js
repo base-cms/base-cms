@@ -16,6 +16,8 @@ export default Component.extend({
         return 'bg-warning';
       case 'Scheduled':
         return 'bg-info';
+      case 'Expired':
+        return 'bg-warning';
       default:
         return 'bg-secondary';
     }
