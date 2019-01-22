@@ -1,0 +1,18 @@
+fragment ContentBrowseFragment on Content {
+  id
+  name
+  type(input: { format: titleize })
+  # dasherizedType: type({ input: { format: dasherize } })
+  status
+  teaser
+  primaryImage {
+    id
+    src(input: { host: "cdn.officer.com" })
+    alt
+  }
+  updated
+  updatedBy {
+    id
+    username
+  }
+}

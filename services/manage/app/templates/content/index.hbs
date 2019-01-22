@@ -71,18 +71,20 @@
   <div class="container-fluid mt--8">
     <div class="row">
 
-      {{#each model as |content|}}
-        {{content-card
-          id=content.id
-          type=content.type
-          status=content.status
-          title=content.title
-          teaser=content.teaser
-          imageSrc=content.image.src
-          imageAlt=content.image.alt
-          updated=content.updated
-          username=content.updatedBy.username
-        }}
+      {{#each model.edges as |edge|}}
+        {{#with edge.node as |content|}}
+          {{content-card
+            id=content.id
+            type=content.type
+            status=content.status
+            title=content.name
+            teaser=content.teaser
+            imageSrc=content.primaryImage.src
+            imageAlt=content.primaryImage.alt
+            updated=content.updated
+            username=content.updatedBy.username
+          }}
+        {{/with}}
       {{/each}}
 
     </div>
