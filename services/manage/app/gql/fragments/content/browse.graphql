@@ -3,7 +3,7 @@ fragment ContentBrowseFragment on Content {
   name
   type(input: { format: titleize })
   # dasherizedType: type({ input: { format: dasherize } })
-  status
+  statusText
   teaser
   primaryImage {
     id
