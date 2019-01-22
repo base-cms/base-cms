@@ -30,12 +30,7 @@
         {{/if}}
       {{/if}}
       {{#link-to "content.edit" typeDasherized id}}
-        <div class="card-img-overlay">
-          <div class="d-flex justify-content-between">
-            {{content-card/status-badge status=status}}
-            {{content-card/type-badge type=type}}
-          </div>
-        </div>
+        {{content-card/image-overlay type=type status=status}}
       {{/link-to}}
     </div>
   </div>
