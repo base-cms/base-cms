@@ -75,6 +75,23 @@ module.exports = {
           return type;
       }
     },
+
+    statusText: ({ status, published, unpublished }) => {
+      const now = Date.now();
+      switch (status) {
+        case 0:
+          return 'Deleted';
+        case 1:
+          if (published && published.valueOf() > now) return 'Scheduled';
+          if (unpublished && unpublished < now) return 'Expired';
+          if (published) return 'Published';
+          return 'Unpublished';
+        case 2:
+          return 'Draft';
+        default:
+          return 'Unpublished';
+      }
+    },
   },
 
   /**
