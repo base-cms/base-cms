@@ -10,9 +10,9 @@
 
   <div class="card-body border-top">
     <h4 class="card-title">
-      {{#content-card/link contentId=content.id type=content.type}}
+      {{#content/edit-link contentId=content.id type=content.type}}
         {{content.name}}
-      {{/content-card/link}}
+      {{/content/edit-link}}
     </h4>
     <p class="card-text mb-0">
       {{teaserTruncated}}
@@ -20,6 +20,7 @@
   </div>
 
   <div class="card-footer pt-2 pb-1">
+    {{log content}}
     {{content-card/user-attribution
       created=content.created
       createdBy=content.createdBy.username

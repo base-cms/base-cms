@@ -4,6 +4,12 @@ import { RouteQueryManager } from 'ember-apollo-client';
 import query from '@base-cms/manage/gql/queries/content/index';
 
 export default Route.extend(RouteQueryManager, {
+  queryParams: {
+    attribution: {
+      refreshModel: false,
+    },
+  },
+
   /**
    *
    * @param {object} params
