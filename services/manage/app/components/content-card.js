@@ -15,7 +15,7 @@ export default Component.extend({
   teaserTruncated: computed('teaser', function() {
     const teaser = this.get('teaser');
     if (!teaser) return '';
-    if (teaser.length > 75) return `${teaser.slice(0, 75)}...`;
+    if (teaser.length > 100) return `${teaser.slice(0, 100)}...`;
     return teaser;
   }),
 
