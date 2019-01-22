@@ -18,8 +18,16 @@ $z-depth-4: 0 16px 28px 0 rgba(0, 0, 0, 0.22), 0 25px 55px 0 rgba(0, 0, 0, 0.21)
   box-shadow: $z-depth-1;
 }
 
+.text-depth-1 {
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 10px rgba(0, 0, 0, 0.12);
+}
+
 .z-depth-1-half {
   box-shadow: $z-depth-1-half;
+}
+
+.text-depth-1-half {
+  text-shadow: 0 5px 11px rgba(0, 0, 0, 0.18), 0 4px 15px rgba(0, 0, 0, 0.15);
 }
 
 .z-depth-2 {
