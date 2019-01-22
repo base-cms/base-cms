@@ -39,7 +39,7 @@ export default Component.extend({
    *
    * @type {string}
    */
-  dateFormat: undefined,
+  dateFormat: 'MMM Do, YYYY h:mma',
 
   /**
    * The selected attribution key.
@@ -48,6 +48,11 @@ export default Component.extend({
    * @type {string}
    */
   selected: 'updated',
+
+  /**
+   * Whether the `fromNow` value is displayed.
+   */
+  showFromNow: true,
 
   /**
    * Determines which user property to use.
@@ -76,7 +81,7 @@ export default Component.extend({
   /**
    * Gets the selected username.
    */
-  username: computed('selectedUserProp', function() {
+  username: computed('selectedUserProp', 'createdBy', 'updatedBy', function() {
     const selectedUserProp = this.get('selectedUserProp');
     return this.get(selectedUserProp);
   }),
@@ -86,7 +91,7 @@ export default Component.extend({
    *
    * @returns {string}
    */
-  fromNow: computed('selected', function() {
+  fromNow: computed('selected', 'created', 'updated', function() {
     const value = this.get(this.get('selected'));
     if (!value) return null;
     const date = moment(value);
@@ -99,12 +104,22 @@ export default Component.extend({
    *
    * @returns {string}
    */
-  formattedDate: computed('selected', function() {
+  formattedDate: computed('selected', 'created', 'updated', function() {
     const value = this.get(this.get('selected'));
     if (!value) return null;
     const date = moment(value);
     if (!date.isValid()) return null;
-    return date.format(this.get('format'));
+    return date.format(this.get('dateFormat'));
+  }).readOnly(),
+
+  dateDisplay: computed('showFromNow', 'fromNow', 'formattedDate', function() {
+    const showFromNow = this.get('showFromNow');
+    const fromNow = this.get('fromNow');
+    const formattedDate = this.get('formattedDate');
+    if (showFromNow) {
+      return { title: formattedDate, value: fromNow };
+    }
+    return { title: fromNow, value: formattedDate };
   }).readOnly(),
 
   init() {
@@ -112,5 +127,11 @@ export default Component.extend({
     if (!this.get('selected')) {
       this.set('selected', '');
     }
-  }
+  },
+
+  actions: {
+    toggleDates() {
+      this.toggleProperty('showFromNow');
+    },
+  },
 });

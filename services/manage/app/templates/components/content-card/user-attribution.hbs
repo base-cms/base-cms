@@ -1,7 +1,7 @@
 {{#if show}}
   {{label}}
   {{#if fromNow}}
-    <abbr title={{formattedDate}}>{{fromNow}}</abbr>
+    <abbr title={{dateDisplay.title}} {{action "toggleDates"}}>{{dateDisplay.value}}</abbr>
   {{/if}}
   {{#if username}}
     by {{username}}
