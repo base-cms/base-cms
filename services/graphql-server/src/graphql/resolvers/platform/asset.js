@@ -18,12 +18,9 @@ module.exports = {
    */
   AssetImage: {
     src: (image, { input }) => {
-      const { host, size, aspectRatio } = input;
+      const { host } = input;
       const { filePath, fileName } = image;
-      const file = fileName.replace(/\.png$/, '.jpg');
-      const ar = aspectRatio ? `/${aspectRatio}` : '';
-      const sz = size !== 'original' ? `/${size}` : '';
-      return `https://${host}/${filePath}${ar}${sz}/${file}`;
+      return `https://${host}/${filePath}/${fileName}`;
     },
     alt: (image) => {
       const { caption, name, fileName } = image;

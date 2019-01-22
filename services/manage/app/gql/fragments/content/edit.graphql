@@ -5,7 +5,7 @@ fragment ContentEditFragment on Content {
   teaser
   primaryImage {
     id
-    src(input: { host: "cdn.officer.com", size: "1280w" })
+    src
     alt
   }
 }
