@@ -3,7 +3,7 @@ import { computed } from '@ember/object';
 import moment from 'moment';
 
 export default Component.extend({
-  classNames: ['mb-5', 'col-12', 'col-md-6', 'col-lg-4'],
+  classNames: ['mb-5', 'col-12', 'col-sm-6', 'col-lg-4', 'col-xl-3'],
 
   typeDasherized: computed('type', function() {
     return this.get('type').replace(' ', '-').toLowerCase();

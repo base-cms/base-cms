@@ -18,3 +18,13 @@
 .header.content .display-2 {
   line-height: 1.3;
 }
+
+$content-bg-color: #f8f9fe;
+
+.bg-content {
+  background-color: $content-bg-color;
+}
+
+.fill-content {
+  fill: $content-bg-color;
+}
