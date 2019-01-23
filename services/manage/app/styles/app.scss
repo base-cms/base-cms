@@ -34,6 +34,11 @@ body.transitioning {
   min-height: 100%;
 }
 
+// Fix issue with CT's toggler to ensure size doesn't change
+.custom-toggle-slider {
+  width: 50px;
+}
+
 .card.content:hover {
   box-shadow: $z-depth-1-half;
 }
