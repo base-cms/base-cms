@@ -9,12 +9,20 @@
   }}
 
   <div class="card-body border-top">
-    <h4 class="card-title">
+    <h4 class="card-title mb-0">
       {{#content/edit-link contentId=content.id type=content.type}}
         {{content.name}}
       {{/content/edit-link}}
     </h4>
-    <p class="card-text mb-0">
+    {{#with content.company as |company|}}
+      {{#if company.id}}
+        <small class="d-block mt-1 mb-0">
+          From:
+          {{#content/edit-link contentId=company.id type="Company"}}{{company.name}}{{/content/edit-link}}
+        </small>
+      {{/if}}
+    {{/with}}
+    <p class="card-text mt-3 mb-0">
       {{teaserTruncated}}
     </p>
   </div>

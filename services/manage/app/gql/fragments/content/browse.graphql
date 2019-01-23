@@ -9,14 +9,22 @@ fragment ContentBrowseFragment on Content {
     src
     alt
   }
+  company {
+    id
+    name
+  }
   updated
   created
   updatedBy {
     id
     username
+    firstName
+    lastName
   }
   createdBy {
     id
     username
+    firstName
+    lastName
   }
 }
