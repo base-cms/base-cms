@@ -4,6 +4,7 @@ import moment from 'moment';
 
 export default Component.extend({
   tagName: 'small',
+  classNames: ['d-flex'],
 
   /**
    * The content created date.
