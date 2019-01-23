@@ -12,6 +12,18 @@ export default Controller.extend({
     this.set('queryParams', [
       'attribution',
     ]);
+    this.set('contentQueue', new Set());
+  },
+
+  actions: {
+    queue(id, checked) {
+      const queue = this.get('contentQueue');
+      if (checked) {
+        queue.add(id);
+      } else {
+        queue.delete(id);
+      }
+    },
   },
 
 });

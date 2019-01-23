@@ -18,4 +18,17 @@ export default Component.extend({
     if (teaser.length > 100) return `${teaser.slice(0, 100)}...`;
     return teaser;
   }),
+
+  isQueued: computed('contentQueue', function() {
+    const queue = this.get('contentQueue');
+    return queue.has(this.get('content.id'));
+  }),
+
+  actions: {
+    emitQueueChange(event) {
+      const { checked } = event.target;
+      const id = this.get('content.id');
+      this.get('onQueueChange')(id, checked);
+    },
+  },
 });

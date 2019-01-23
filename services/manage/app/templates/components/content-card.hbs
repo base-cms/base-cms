@@ -42,12 +42,14 @@
           updatedBy=content.updatedBy.username
           selected=attributionType
         }}
-      </div>
+      </div>  
+
 
       <label class="custom-toggle mt-auto mb-0">
-        <input type="checkbox">
+        {{input type="checkbox" checked=isQueued change=(action "emitQueueChange")}}
         <span class="custom-toggle-slider rounded-circle"></span>
       </label>
+      
     </div>
 
   </div>
