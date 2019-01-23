@@ -21,7 +21,7 @@ export default Component.extend({
 
   isQueued: computed('contentQueue', function() {
     const queue = this.get('contentQueue');
-    return queue.has(this.get('content.id'));
+    return queue.includes(this.get('content.id'));
   }),
 
   actions: {
