@@ -28,22 +28,23 @@
   </div>
 
   <div class="card-footer py-2">
-    
-    <small class="d-block">
-      {{entypo-icon "key"}}
-      {{content.id}}
-    </small>
 
-    <div class="d-flex align-items-center">
-      {{content-card/user-attribution
-        created=content.created
-        createdBy=content.createdBy.username
-        updated=content.updated
-        updatedBy=content.updatedBy.username
-        selected=attributionType
-      }}
+    <div class="d-flex">
+      <div class="d-flex flex-column">
+        <small class="d-block">
+          {{entypo-icon "key"}}
+          {{content.id}}
+        </small>
+        {{content-card/user-attribution
+          created=content.created
+          createdBy=content.createdBy.username
+          updated=content.updated
+          updatedBy=content.updatedBy.username
+          selected=attributionType
+        }}
+      </div>
 
-      <label class="custom-toggle d-block ml-auto mt-auto mb-0">
+      <label class="custom-toggle ml-auto mt-auto mb-0">
         <input type="checkbox">
         <span class="custom-toggle-slider rounded-circle"></span>
       </label>
