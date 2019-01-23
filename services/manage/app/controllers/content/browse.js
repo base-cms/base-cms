@@ -25,6 +25,10 @@ export default Controller.extend({
       }
       this.set('contentQueue', [...queue]);
     },
+
+    clearQueue() {
+      this.set('contentQueue', []);
+    },
   },
 
 });

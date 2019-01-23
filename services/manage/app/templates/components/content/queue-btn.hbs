@@ -1,0 +1,21 @@
+{{#if count}}
+  <div class="btn-group dropup btn-content-queue">
+    <button type="button" class="btn btn-primary z-depth-2 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Queued: {{count}}
+    </button>
+    <div class="dropdown-menu">
+      <h6 class="dropdown-header text-default d-flex justify-content-between">
+        Export
+        {{entypo-icon "export"}}
+      </h6>
+      {{!-- @todo Export options are different per tenant. Must determine how to query these. --}}
+      <a class="dropdown-item" href="#!">InDesign (Default)</a>
+      <a class="dropdown-item" href="#!">InDesign (Products)</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item d-flex justify-content-between" {{action onClear}}>
+        <span>Clear Queue</span>
+        {{entypo-icon "cross"}}
+      </a>
+    </div>
+  </div>
+{{/if}}
