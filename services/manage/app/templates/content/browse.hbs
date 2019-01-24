@@ -93,12 +93,9 @@
       </div>
 
       {{in-view on-viewport-enter=(action fetch.actions.loadMore)}}
-      {{#if fetch.isFetching}}
-        <p class="mb-0 text-center">
-          {{entypo-icon "hour-glass" class="d-inline-block spin"}} Loading more...
-        </p>
-      {{/if}}
-
+      <div class="text-center">
+        {{loading-badge isLoading=fetch.isFetching}}
+      </div>
     {{/fetch-more}}
   </div>
 </div>
