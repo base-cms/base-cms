@@ -37,6 +37,26 @@ body.transitioning {
   min-height: 100%;
 }
 
+// Footer controls
+.footer-controls {
+  position: fixed;
+  bottom: 1.5rem;
+}
+
+.footer-controls.left {
+  left: 1.5rem;
+}
+
+.footer-controls.right {
+  right: 1.5rem;
+}
+
+// Force the button to "pop-in" quicker due to it being fixed to the bottom.
+.footer-controls .btn-content-queue {
+  animation-delay: -300ms;
+  -webkit-animation-delay: -300ms;
+}
+
 // Fix issue with CT's toggler to ensure size doesn't change
 .custom-toggle-slider {
   width: 50px;
@@ -58,21 +78,6 @@ $content-bg-color: #f8f9fe;
 
 .fill-content {
   fill: $content-bg-color;
-}
-
-.btn-content-create {
-  position: fixed;
-  right: 1.5rem;
-  bottom: 1.5rem;
-  left: inherit;
-}
-
-.btn-content-queue {
-  position: fixed;
-  bottom: 1.5rem;
-  left: 1.5rem;
-  animation-delay: -300ms;
-  -webkit-animation-delay: -300ms;
 }
 
 .btn-circle {

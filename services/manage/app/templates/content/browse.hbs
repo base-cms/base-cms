@@ -103,7 +103,12 @@
   </div>
 </div>
 
-{{content/queue-btn count=contentQueue.length onClear=(action "clearQueue")}}
-{{content/create-btn}}
+<div class="footer-controls left">
+  {{content/queue-btn count=contentQueue.length onClear=(action "clearQueue")}}
+</div>
+
+<div class="footer-controls right">
+  {{content/create-btn}}
+</div>
 
 {{outlet}}
