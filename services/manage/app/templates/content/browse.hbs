@@ -73,18 +73,33 @@
   </div>
 
   <div class="container-fluid mt--8">
-    <div class="row">
+    {{#fetch-more
+      query=observable
+      edges=model.edges
+      hasNextPage=model.pageInfo.hasNextPage
+      endCursor=model.pageInfo.endCursor
+      resultKey="allContent"
+    as |fetch|
+    }}
+      <div class="row">
+        {{#each fetch.nodes as |item|}}
+          {{content-card
+            content=item
+            attributionType=attribution
+            contentQueue=contentQueue
+            onQueueChange=(action "queue")
+          }}
+        {{/each}}
+      </div>
 
-      {{#each model.edges as |edge|}}
-        {{content-card
-          content=edge.node
-          attributionType=attribution
-          contentQueue=contentQueue
-          onQueueChange=(action "queue")
-        }}
-      {{/each}}
+      {{in-view on-viewport-enter=(action fetch.actions.loadMore)}}
+      {{#if fetch.isFetching}}
+        <p class="mb-0 text-center">
+          {{entypo-icon "hour-glass" class="d-inline-block spin"}} Loading more...
+        </p>
+      {{/if}}
 
-    </div>
+    {{/fetch-more}}
   </div>
 </div>
 
