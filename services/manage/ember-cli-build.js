@@ -30,5 +30,8 @@ module.exports = function(defaults) {
   // app.import('node_modules/@creative-tim-official/argon-dashboard-free/assets/js/argon.min.js');
   app.import('node_modules/argon-design-system-free/assets/js/argon.min.js');
 
+  // Animate.css
+  app.import('node_modules/animate.css/animate.css.min');
+
   return app.toTree();
 };

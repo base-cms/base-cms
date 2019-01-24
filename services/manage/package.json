@@ -22,6 +22,7 @@
     "@creative-tim-official/argon-dashboard-free": "^1.0.0",
     "@ember/jquery": "^0.5.2",
     "@ember/optional-features": "^0.6.3",
+    "animate.css": "^3.7.0",
     "apollo-cache-inmemory": "^1.4.2",
     "apollo-link-context": "^1.0.12",
     "argon-design-system-free": "^1.0.1",
