@@ -104,7 +104,12 @@
 </div>
 
 <div class="footer-controls left">
-  {{content/queue-btn count=contentQueue.length onClear=(action "clearQueue")}}
+  {{content/queue-btn
+    class="mr-2"
+    count=contentQueue.length
+    onClear=(action "clearQueue")
+  }}
+  {{scroll-top-btn}}
 </div>
 
 <div class="footer-controls right">
