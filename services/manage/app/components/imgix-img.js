@@ -3,6 +3,7 @@ import { computed } from '@ember/object';
 import { isPresent } from '@ember/utils';
 
 const properties = [
+  'auto',
   'border',
   'border-radius',
   'border-radius-inner',
