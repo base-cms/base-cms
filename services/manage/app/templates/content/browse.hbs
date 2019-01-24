@@ -93,9 +93,12 @@
       </div>
 
       {{in-view on-viewport-enter=(action fetch.actions.loadMore)}}
-      <div class="text-center">
-        {{loading-badge isLoading=fetch.isFetching}}
-      </div>
+      {{#if fetch.isFetching}}
+        <div class="sk-double-bounce mx-auto my-0">
+          <div class="sk-child sk-double-bounce1 bg-primary z-depth-1"></div>
+          <div class="sk-child sk-double-bounce2 bg-primary z-depth-1"></div>
+        </div>
+      {{/if}}
     {{/fetch-more}}
   </div>
 </div>
