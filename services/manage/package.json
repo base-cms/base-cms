@@ -61,7 +61,8 @@
     "loader.js": "^4.7.0",
     "moment": "^2.24.0",
     "node-sass": "^4.11.0",
-    "qunit-dom": "^0.8.0"
+    "qunit-dom": "^0.8.0",
+    "spinkit": "^1.2.5"
   },
   "engines": {
     "node": "6.* || 8.* || >= 10.*"
