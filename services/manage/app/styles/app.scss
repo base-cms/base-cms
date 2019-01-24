@@ -70,6 +70,8 @@ $content-bg-color: #f8f9fe;
   position: fixed;
   bottom: 1.5rem;
   left: 1.5rem;
+  animation-delay: -300ms;
+  -webkit-animation-delay: -300ms;
 }
 
 .btn-circle {
