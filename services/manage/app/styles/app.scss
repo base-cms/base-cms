@@ -43,6 +43,10 @@ body.transitioning {
   bottom: 1.5rem;
 }
 
+.footer-controls button {
+  box-shadow: $z-depth-2;
+}
+
 .footer-controls.left {
   left: 1.5rem;
 }
