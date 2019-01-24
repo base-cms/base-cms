@@ -1,9 +1,9 @@
 import Route from '@ember/routing/route';
-import { RouteQueryManager } from 'ember-apollo-client';
+import RouteObservableMixin from '@base-cms/manage/mixins/route-observable-mixin';
 
-import query from '@base-cms/manage/gql/queries/content/index';
+import query from '@base-cms/manage/gql/queries/content/browse';
 
-export default Route.extend(RouteQueryManager, {
+export default Route.extend(RouteObservableMixin, {
   queryParams: {
     attribution: {
       refreshModel: false,
@@ -14,13 +14,15 @@ export default Route.extend(RouteQueryManager, {
    *
    * @param {object} params
    */
-  model() {
+  async model() {
     const input = {
       sort: { field: 'updated', order: 'desc' },
       pagination: { limit: 24 },
       status: 'any',
     };
     const variables = { input };
-    return this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'network-only' }, 'allContent');
+    const response = await this.get('apollo').watchQuery({ query, variables, fetchPolicy: 'network-only' }, 'allContent');
+    this.getController().set('observable', this.getObservable(response));
+    return response;
   },
 });
