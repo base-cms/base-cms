@@ -1,0 +1,59 @@
+
+{{#content/browse/left-menu/tab-content open=open}}
+  <div class="p-3">
+  </div>
+{{/content/browse/left-menu/tab-content}}
+
+<div class="tabs d-flex flex-column">
+  {{!-- Content Types --}}
+  {{#content/browse/left-menu/button
+    class="mt-3"
+    title="Content Types"
+    for="types"
+    activeMenu=activeMenu
+    on-click=(action "setActiveMenu")
+  }}
+    {{entypo-icon "open-book" class="text-white h2"}}
+  {{/content/browse/left-menu/button}}
+
+  {{!-- Status --}}
+  {{#content/browse/left-menu/button
+    title="Status"
+    for="status"
+    activeMenu=activeMenu
+    on-click=(action "setActiveMenu")
+  }}
+    {{entypo-icon "light-bulb" class="text-white h2"}}
+  {{/content/browse/left-menu/button}}
+
+  {{!-- Scheduling --}}
+  {{#content/browse/left-menu/button
+    title="Scheduling"
+    for="scheduling"
+    activeMenu=activeMenu
+    on-click=(action "setActiveMenu")
+  }}
+    {{entypo-icon "pin" class="text-white h2"}}
+  {{/content/browse/left-menu/button}}
+
+  {{!-- Taxonomy --}}
+  {{#content/browse/left-menu/button
+    title="Taxonomy"
+    for="taxonomy"
+    activeMenu=activeMenu
+    on-click=(action "setActiveMenu")
+  }}
+    {{entypo-icon "price-tag" class="text-white h2"}}
+  {{/content/browse/left-menu/button}}
+
+
+  {{!-- Dates --}}
+  {{#content/browse/left-menu/button
+    title="Dates"
+    for="dates"
+    activeMenu=activeMenu
+    on-click=(action "setActiveMenu")
+  }}
+    {{entypo-icon "calendar" class="text-white h2"}}
+  {{/content/browse/left-menu/button}}
+</div>

@@ -37,6 +37,113 @@ body.transitioning {
   min-height: 100%;
 }
 
+.top-controls {
+  position: fixed;
+  top: -0.5rem;
+  display: flex;
+  flex-direction: row;
+}
+
+.top-controls.left {
+  left: 8vh;
+}
+
+.top-controls.left button {
+  box-shadow: $z-depth-2;
+  border-radius: 4rem;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  padding-top: 1.25rem;
+  padding-bottom: 0.625rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
+// Browse left menu
+.browse-left-menu {
+  position: fixed;
+  top: 5rem;
+  bottom: 0;
+  z-index: 100;
+  border-top-right-radius: 0.5em;
+  // border-bottom-right-radius: 0.5em;
+  display: flex;
+  flex-direction: row;
+}
+
+.browse-left-menu .tab-content {
+  width: 0;
+
+  opacity: 0.96;
+  z-index: 1;
+  border-top-right-radius: 0.5em;
+  // border-bottom-right-radius: 0.5em;
+
+  overflow-y: scroll;
+  transition: width 0.5s ease 0s;
+}
+
+.browse-left-menu .tab-content.open {
+  box-shadow: $z-depth-2;
+  width: 300px;
+  border-right: 0.5em solid #6a7e95; // @todo Determine sass var
+
+}
+
+.browse-left-menu .btn-left-menu {
+  box-shadow: $z-depth-2;
+  border-radius: 4rem; // @todo sass var
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  opacity: 0.96;
+  transition: background-color 0.25s ease-in-out;
+  padding-left: 0.9em; // @todo sass var
+}
+
+.browse-left-menu .btn-left-menu:hover,
+.browse-left-menu .btn-left-menu:focus {
+  background-color: #8898aa !important; // @todo sass var
+}
+
+.browse-left-menu .btn-left-menu.active {
+  border-radius: 4rem;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  opacity: 0.96;
+  z-index: 2;
+  background-color: #6a7e95 !important; // @todo sass var
+}
+
+// Side controls
+.side-controls {
+  position: fixed;
+  top: 5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.side-controls.left {
+  left: -0.5rem;
+}
+
+.side-controls.left button {
+  box-shadow: $z-depth-2;
+  border-radius: 4rem;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.side-controls.right {
+  right: -0.5rem;
+}
+
+.side-controls.right button {
+  box-shadow: $z-depth-2;
+  border-radius: 4rem;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
 // Footer controls
 .footer-controls {
   position: fixed;
@@ -57,8 +164,12 @@ body.transitioning {
 
 // Force the button to "pop-in" quicker due to it being fixed to the bottom.
 .footer-controls .btn-content-queue {
-  animation-delay: -300ms;
-  -webkit-animation-delay: -300ms;
+  animation-delay: -400ms;
+  -webkit-animation-delay: -400ms;
+}
+.footer-controls .btn-content-queue.closing {
+  animation-delay: 0ms;
+  -webkit-animation-delay: 0ms;
 }
 
 // Fix issue with CT's toggler to ensure size doesn't change
