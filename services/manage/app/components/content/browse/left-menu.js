@@ -6,23 +6,34 @@ export default Component.extend({
   classNameBindings: ['open'],
   open: false,
 
-  activeMenu: null,
+  activeTab: null,
+
+  init() {
+    this._super(...arguments);
+    this.set('tabs', [
+      { key: 'types', title: 'Content Types', icon: 'open-book' },
+      { key: 'status', title: 'Status', icon: 'light-bulb' },
+      { key: 'scheduling', title: 'Scheduling', icon: 'pin' },
+      { key: 'taxonomy', title: 'Taxonomy', icon: 'price-tag' },
+      { key: 'dates', title: 'Dates', icon: 'calendar' },
+    ]);
+  },
 
   actions: {
-    setActiveMenu(name) {
-      const { open, activeMenu } = this.getProperties('open', 'activeMenu');
-      if (open && activeMenu === name) {
+    setActiveTab(name) {
+      const { open, activeTab } = this.getProperties('open', 'activeTab');
+      if (open && activeTab === name) {
         this.send('close');
       } else if (!open) {
         this.set('open', true);
-        this.set('activeMenu', name);
+        this.set('activeTab', name);
       } else {
-        this.set('activeMenu', name);
+        this.set('activeTab', name);
       }
     },
     close() {
       this.set('open', false);
-      this.set('activeMenu', null);
+      this.set('activeTab', null);
     },
   },
 });
