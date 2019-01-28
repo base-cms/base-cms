@@ -62,40 +62,50 @@ body.transitioning {
 // Browse left menu
 .browse-left-menu {
   position: fixed;
-  top: 5rem;
+  top: 0;
   bottom: 0;
   z-index: 100;
-  border-top-right-radius: 0.5em;
-  // border-bottom-right-radius: 0.5em;
   display: flex;
   flex-direction: row;
+}
+
+.browse-left-menu .tabs {
+  margin-top: 5rem;
 }
 
 .browse-left-menu .tab-content {
   width: 0;
 
-  opacity: 0.96;
-  z-index: 1;
-  border-top-right-radius: 0.5em;
-  // border-bottom-right-radius: 0.5em;
+  opacity: 0.95;
+  z-index: 3;
 
   overflow-y: scroll;
-  transition: width 0.5s ease 0s;
+  transition: width 0.25s ease-in-out 0s;
 }
 
 .browse-left-menu .tab-content.open {
-  box-shadow: $z-depth-2;
+  // @todo Make this responsive.
   width: 300px;
-  border-right: 0.5em solid #6a7e95; // @todo Determine sass var
-
 }
+
+.browse-left-menu .tab-seperator {
+  width: 0.3em;
+  background-color: #8898aa;
+  z-index: 2;
+}
+
+.browse-left-menu .tab-seperator.open {
+  background-color: #FB6344;
+  box-shadow: $z-depth-2;
+}
+
+
 
 .browse-left-menu .btn-left-menu {
   box-shadow: $z-depth-2;
   border-radius: 4rem; // @todo sass var
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
-  opacity: 0.96;
   transition: background-color 0.25s ease-in-out;
   padding-left: 0.9em; // @todo sass var
 }
@@ -109,9 +119,8 @@ body.transitioning {
   border-radius: 4rem;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
-  opacity: 0.96;
   z-index: 2;
-  background-color: #6a7e95 !important; // @todo sass var
+  background-color: #FB6344 !important; // @todo sass var
 }
 
 // Side controls
