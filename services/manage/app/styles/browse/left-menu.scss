@@ -1,10 +1,29 @@
 .content .browse .left-menu {
+  $seperator-width: 0.3em;
+  $active-tab-color: $warning;
+  $button-color: $gray-600;
+
   position: fixed;
   top: 0;
   bottom: 0;
+  left: -#{$seperator-width};
   z-index: 100;
   display: flex;
   flex-direction: row;
+
+  &.open {
+    left: 0;
+
+    .tab-content {
+      // @todo Make this responsive.
+      width: 300px;
+    }
+
+    .tab-seperator {
+      background-color: $active-tab-color;
+      box-shadow: $z-depth-2; 
+    }
+  }
 
   .tabs {
     margin-top: 5rem;
@@ -17,23 +36,13 @@
     z-index: 3;
   
     overflow-y: scroll;
-    transition: width 0.25s ease-in-out 0s;
-
-    &.open {
-      // @todo Make this responsive.
-      width: 300px;
-    }
+    transition: width 0.25s ease-in-out;
   }
 
   .tab-seperator {
-    width: 0.3em;
-    background-color: #8898aa; // @todo sass var
+    width: $seperator-width;
+    background-color: $button-color;
     z-index: 2;
-
-    &.open {
-      background-color: #FB6344; // @todo sass var
-      box-shadow: $z-depth-2; 
-    }
   }
 
   .btn-left-menu {
@@ -45,7 +54,7 @@
     padding-left: 0.9em; // @todo sass var
 
     &:hover, &:focus {
-      background-color: #8898aa !important; // @todo sass var
+      background-color: $button-color !important;
     }
 
     &.active {
@@ -54,7 +63,7 @@
       border-bottom-left-radius: 0;
       box-shadow: none;
       z-index: 2;
-      background-color: #FB6344 !important; // @todo sass var
+      background-color: $active-tab-color !important; // @todo sass var
     }
   }
 }
