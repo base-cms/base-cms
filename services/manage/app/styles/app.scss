@@ -7,119 +7,22 @@
 @import "../../node_modules/animate.css/animate";
 @import "../../node_modules/spinkit/scss/spinners/2-double-bounce";
 
+// Depth classes/vars
 @import "z-depth";
 
-// Add xl modal, per https://github.com/twbs/bootstrap/pull/19925
-$modal-xl:                    1140px !default;
-@include media-breakpoint-up(lg) {
-  .modal-xl { max-width: $modal-lg; }
-}
+// Loading elements
+@import "loading";
 
-@include media-breakpoint-up(xl) {
-  .modal-xl { max-width: $modal-xl; }
-}
+// Content browse
+@import "browse";
 
-// Application loading progress bar
-.application-loading {
-  margin: 0;
-  border-radius: 0;
-  z-index: 1040;
-  box-shadow: $z-depth-half;
-}
-// Showing progress cursor when transitioning/loading.
-body.transitioning {
-  cursor: progress;
-}
+// XL modal (can be remove with BS >4.2)
+@import "modal";
+
 
 // Add min-height utility
 .mnh-100 {
   min-height: 100%;
-}
-
-.top-controls {
-  position: fixed;
-  top: -0.5rem;
-  display: flex;
-  flex-direction: row;
-}
-
-.top-controls.left {
-  left: 8vh;
-}
-
-.top-controls.left button {
-  box-shadow: $z-depth-2;
-  border-radius: 4rem;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  padding-top: 1.25rem;
-  padding-bottom: 0.625rem;
-  padding-right: 1rem;
-  padding-left: 1rem;
-}
-
-// Browse left menu
-.browse-left-menu {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  z-index: 100;
-  display: flex;
-  flex-direction: row;
-}
-
-.browse-left-menu .tabs {
-  margin-top: 5rem;
-}
-
-.browse-left-menu .tab-content {
-  width: 0;
-
-  opacity: 0.95;
-  z-index: 3;
-
-  overflow-y: scroll;
-  transition: width 0.25s ease-in-out 0s;
-}
-
-.browse-left-menu .tab-content.open {
-  // @todo Make this responsive.
-  width: 300px;
-}
-
-.browse-left-menu .tab-seperator {
-  width: 0.3em;
-  background-color: #8898aa;
-  z-index: 2;
-}
-
-.browse-left-menu .tab-seperator.open {
-  background-color: #FB6344;
-  box-shadow: $z-depth-2;
-}
-
-
-
-.browse-left-menu .btn-left-menu {
-  box-shadow: $z-depth-2;
-  border-radius: 4rem; // @todo sass var
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  transition: background-color 0.25s ease-in-out;
-  padding-left: 0.9em; // @todo sass var
-}
-
-.browse-left-menu .btn-left-menu:hover,
-.browse-left-menu .btn-left-menu:focus {
-  background-color: #8898aa !important; // @todo sass var
-}
-
-.browse-left-menu .btn-left-menu.active {
-  border-radius: 4rem;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  z-index: 2;
-  background-color: #FB6344 !important; // @todo sass var
 }
 
 // Side controls

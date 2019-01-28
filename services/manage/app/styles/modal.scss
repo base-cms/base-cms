@@ -1,0 +1,10 @@
+// Add xl modal, per https://github.com/twbs/bootstrap/pull/19925
+$modal-xl: 1140px !default;
+
+@include media-breakpoint-up(lg) {
+  .modal-xl { max-width: $modal-lg; }
+}
+
+@include media-breakpoint-up(xl) {
+  .modal-xl { max-width: $modal-xl; }
+}
