@@ -2,6 +2,8 @@
   $seperator-width: 0.3em;
   $active-tab-color: $warning;
   $button-color: $gray-600;
+  $button-border-radius: map-get($spacers, 5);
+  $button-spacing: map-get($spacers, 3);
 
   position: fixed;
   top: 0;
@@ -45,25 +47,35 @@
     z-index: 2;
   }
 
-  .btn-left-menu {
+  .tab-btn {
+    background-color: $button-color;
     box-shadow: $z-depth-2;
-    border-radius: 4rem; // @todo sass var
+    border-radius: $button-border-radius;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     transition: background-color 0.25s ease-in-out;
-    padding-left: 0.9em; // @todo sass var
+    margin: 0 0 $button-spacing 0;
+    padding-left: $button-spacing;
+
+    &:first-child {
+      margin-top: $button-spacing;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
 
     &:hover, &:focus {
       background-color: $button-color !important;
     }
 
     &.active {
-      border-radius: 4rem;
+      border-radius: $button-border-radius;
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
       box-shadow: none;
       z-index: 2;
-      background-color: $active-tab-color !important; // @todo sass var
+      background-color: $active-tab-color !important;
     }
   }
 }

@@ -4,18 +4,18 @@ import SendEventMixin from '@base-cms/manage/mixins/send-event-mixin';
 
 export default Component.extend(SendEventMixin, {
   tagName: 'button',
-  classNames: ['btn', 'text-white', 'bg-gray', 'mb-3', 'mr-0', 'btn-left-menu'],
+  classNames: ['btn', 'tab-btn'],
   classNameBindings: ['active'],
   attributeBindings: ['type', 'title'],
   type: 'button',
 
-  active: computed('for', 'activeMenu', function() {
-    return this.get('for') === this.get('activeMenu');
+  active: computed('for', 'activeTab', function() {
+    return this.get('for') === this.get('activeTab');
   }).readOnly(),
 
   title: null,
   for: '',
-  activeMenu: null,
+  activeTab: null,
 
   click() {
     this.sendEvent('on-click', this.get('for'));
