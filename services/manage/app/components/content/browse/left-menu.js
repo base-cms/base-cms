@@ -1,7 +1,8 @@
 import Component from '@ember/component';
 
 export default Component.extend({
-  classNames: ['browse-left-menu'],
+  tagName: 'aside',
+  classNames: ['left-menu'],
   classNameBindings: ['open'],
   open: false,
 
