@@ -42,6 +42,10 @@ $browse-color: #f8f9fe;
       box-shadow: $z-depth-2;
     }
 
+    &.left {
+      left: 1.5rem;
+    }
+
     &.right {
       right: 1.5rem;
     }

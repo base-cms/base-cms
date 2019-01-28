@@ -5,7 +5,7 @@ import { htmlSafe } from '@ember/string';
 
 export default Component.extend({
   tagName: 'button',
-  classNames: ['btn', 'bg-purple', 'text-white', 'px-3', 'animated'],
+  classNames: ['btn', 'btn-scroll-top', 'px-3', 'animated'],
   attributeBindings: ['type', 'title', 'style'],
   type: 'button',
   title: 'Scroll To Top',
