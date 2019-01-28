@@ -1,135 +1,67 @@
-{{!-- <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white">
-
-</nav> --}}
-<div class="main-content bg-content mb-6">
-  <nav class="navbar navbar-top navbar-expand-md navbar-dark">
+{{!-- @todo This should be a main element, but CT has overflow hidden --}}
+<div class="browse">
+  <nav class="navbar navbar-dark">
     <div class="container-fluid">
 
       <a class="navbar-brand">
-        <img src="{{rootURL}}logo-default.png" alt="BaseCMS" height="30">
+        <img src="/{{rootURL}}logo-default.png" alt="BaseCMS" height="30">
       </a>
 
-      <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
-        <div class="form-group mb-0">
-          <div class="input-group input-group-alternative">
-            <div class="input-group-prepend">
-              <span class="input-group-text">{{entypo-icon "magnifying-glass"}}</span>
-            </div>
-            <input class="form-control" placeholder="Search" type="text">
-          </div>
-        </div>
-      </form>
+      {{!-- @todo This needs to be re-worked --}}
+      {{search-form}}
 
-      <ul class="navbar-nav align-items-center d-none d-md-flex">
-        <li class="nav-item dropdown">
-          <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <div class="media align-items-center">
-              <span class="avatar avatar-sm rounded-circle">
-                <img alt="Image placeholder" src="https://secure.gravatar.com/avatar/38e23bf434e8ba27b96a726f5aa37e98">
-              </span>
-              <div class="media-body ml-2 d-none d-lg-block">
-                <span class="mb-0 text-sm  font-weight-bold">Jacob Bare</span>
-              </div>
-            </div>
-          </a>
-          <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right  z-depth-3">
-            <div class="dropdown-header">
-              <h6 class="text-overflow m-0">Welcome!</h6>
-            </div>
-            <a href="#" class="dropdown-item d-flex justify-content-between">
-              <span>My Profile</span>
-              {{entypo-icon "user" class="ml-1"}}
-            </a>
-            <a href="#" class="dropdown-item d-flex justify-content-between">
-              <span>Settings</span>
-              {{entypo-icon "cog"}}
-            </a>
-            <a href="#" class="dropdown-item d-flex justify-content-between">
-              <span>Change Password</span>
-              {{entypo-icon "key"}}
-            </a>
-            <a href="#" class="dropdown-item d-flex justify-content-between">
-              <span>Support</span>
-              {{entypo-icon "help-with-circle"}}
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item d-flex justify-content-between">
-              <span>Logout</span>
-              {{entypo-icon "log-out"}}
-            </a>
-          </div>
-        </li>
-      </ul>
+      {{!-- @todo This needs to be re-worked --}}
+      {{user-nav}}
 
     </div>
-
   </nav>
-  <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
-    <div class="separator separator-bottom separator-skew zindex-100">
-      <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-        <polygon class="fill-content" points="2560 0 2560 100 0 100"></polygon>
-      </svg>
-    </div>
-  </div>
 
-  <div class="container-fluid mt--8">
-    {{#fetch-more
-      query=observable
-      edges=model.edges
-      hasNextPage=model.pageInfo.hasNextPage
-      endCursor=model.pageInfo.endCursor
-      resultKey="allContent"
-    as |fetch|
-    }}
-      <div class="row">
-        {{#each fetch.nodes as |item|}}
-          {{content-card
-            content=item
-            attributionType=attribution
-            contentQueue=contentQueue
-            onQueueChange=(action "queue")
-          }}
-        {{/each}}
+  <section class="list bg-browse mb-6">
+
+    <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+      <div class="separator separator-bottom separator-skew zindex-100">
+        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+          <polygon class="fill-browse" points="2560 0 2560 100 0 100"></polygon>
+        </svg>
       </div>
+    </div>
 
-      {{in-view on-viewport-enter=(action fetch.actions.loadMore)}}
-      {{#if fetch.isFetching}}
-        <div class="sk-double-bounce mx-auto my-0">
-          <div class="sk-child sk-double-bounce1 bg-primary z-depth-1"></div>
-          <div class="sk-child sk-double-bounce2 bg-primary z-depth-1"></div>
+    <div class="container-fluid mt--8">
+      {{#fetch-more
+        query=observable
+        edges=model.edges
+        hasNextPage=model.pageInfo.hasNextPage
+        endCursor=model.pageInfo.endCursor
+        resultKey="allContent"
+      as |fetch|
+      }}
+        <div class="row">
+          {{#each fetch.nodes as |item|}}
+            {{content-card
+              content=item
+              attributionType=attribution
+              contentQueue=contentQueue
+              onQueueChange=(action "queue")
+            }}
+          {{/each}}
         </div>
-      {{/if}}
-    {{/fetch-more}}
+
+        {{in-view on-viewport-enter=(action fetch.actions.loadMore)}}
+        {{#if fetch.isFetching}}
+          <div class="sk-double-bounce mx-auto my-0">
+            <div class="sk-child sk-double-bounce1 bg-primary z-depth-1"></div>
+            <div class="sk-child sk-double-bounce2 bg-primary z-depth-1"></div>
+          </div>
+        {{/if}}
+      {{/fetch-more}}
+    </div>
+  </section>
+  {{content/browse/left-menu}}
+
+  <div class="footer-controls right">
+    {{content/create-btn}}
   </div>
+
 </div>
-
-
-
-<div class="side-controls right">
-  <button class="btn text-white bg-gray my-3 mr-0" title="Sort Options">
-    {{entypo-icon "select-arrows" class="text-white h2"}}
-  </button>
-  <button class="btn text-white bg-gray mb-3 mr-0" title="Notifications">
-    {{entypo-icon "notification" class="text-white h2"}}
-  </button>
-  <button class="btn text-white bg-gray mb-3 mr-0" title="Content Queue">
-    {{entypo-icon "list" class="text-white h2"}}
-  </button>
-</div>
-
-<div class="footer-controls left">
-  {{content/queue-btn
-    class="mr-2"
-    count=contentQueue.length
-    onClear=(action "clearQueue")
-  }}
-  {{scroll-top-btn}}
-</div>
-
-<div class="footer-controls right">
-  {{content/create-btn}}
-</div>
-
-{{content/browse/left-menu}}
 
 {{outlet}}
