@@ -1,8 +1,8 @@
-{{!-- {{content/browse/left-menu/tab-content activeTab=activeTab.key}} --}}
-{{#each tabs as |tab|}}
-  {{content/browse/left-menu/tab-content activeTabKey=activeTab.key tab=tab}}
-{{/each}}
-
+<div class="tab-wrapper bg-secondary">
+  {{#each tabs as |tab|}}
+    {{content/browse/left-menu/tab-content activeTabKey=activeTab.key tab=tab}}
+  {{/each}}
+</div>
 
 <div class="tab-seperator"></div>
 

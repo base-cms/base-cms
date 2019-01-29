@@ -2,7 +2,7 @@ import Component from '@ember/component';
 import { computed } from '@ember/object';
 
 export default Component.extend({
-  classNames: ['tab-content', 'bg-secondary'],
+  classNames: ['tab-content'],
   classNameBindings: ['active'],
 
   active: computed('tab.key', 'activeTabKey', function() {
@@ -12,7 +12,7 @@ export default Component.extend({
   activeTabKey: '',
   tab: null,
 
-  componentName: computed('tab.key', function() {
+  contentComponentName: computed('tab.key', function() {
     const key = this.get('tab.key');
     return `content/browse/left-menu/tab-content/${key}`;
   }),

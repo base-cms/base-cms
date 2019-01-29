@@ -5,6 +5,8 @@
   $button-border-radius: map-get($spacers, 5);
   $button-spacing: map-get($spacers, 3);
   $tab-padding: map-get($spacers, 3);
+  $transition-speed: 0.25s;
+  $transition-type: ease-in-out;
 
   position: fixed;
   top: 0;
@@ -17,7 +19,7 @@
   &.open {
     left: 0;
 
-    .tab-content {
+    .tab-wrapper {
       // @todo Make this responsive.
       width: 300px;
     }
@@ -32,14 +34,32 @@
     margin-top: 5rem;
   }
 
-  .tab-content {
+  .tab-wrapper {
     width: 0;
 
     opacity: 0.95;
     z-index: 3;
   
     overflow-y: scroll;
-    transition: width 0.25s ease-in-out;
+    transition: width $transition-speed $transition-type;
+
+    .tab-content {
+      position: absolute;
+      left: -300px; // @todo Must match the .tab-wrapper width
+      padding: $tab-padding;
+
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0s $transition-type $transition-speed, opacity $transition-speed $transition-type;
+
+      &.active {
+        position: relative;
+        left: 0;
+        visibility: visible;
+        opacity: 1;
+        transition-delay: 0s;
+      }
+    }
   }
 
   .tab-seperator {
@@ -54,7 +74,7 @@
     border-radius: $button-border-radius;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
-    transition: background-color 0.25s ease-in-out;
+    transition: background-color $transition-speed $transition-type;
     margin: 0 0 $button-spacing 0;
     padding-left: $button-spacing;
 
