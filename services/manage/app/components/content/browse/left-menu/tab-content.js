@@ -13,11 +13,6 @@ export default Component.extend(SendEventMixin, {
   activeTabKey: '',
   tab: null,
 
-  contentComponentName: computed('tab.key', function() {
-    const key = this.get('tab.key');
-    return `content/browse/left-menu/tab-content/${key}`;
-  }),
-
   actions: {
     close() {
       this.sendEvent('on-close');

@@ -1,9 +1,16 @@
 <div class="tab-wrapper bg-secondary">
   {{#each tabs as |tab|}}
-    {{content/browse/left-menu/tab-content
-      activeTabKey=activeTab.key tab=tab
+    {{#content/browse/left-menu/tab-content
+      activeTabKey=activeTab.key
+      tab=tab
+      facets=facets
+      selectedContentTypes=selectedContentTypes
+      on-content-type-click=on-content-type-click
       on-close=(action "close")
+    as |tabContent|
     }}
+      {{get tabContent tab.key}}
+    {{/content/browse/left-menu/tab-content}}
   {{/each}}
 </div>
 

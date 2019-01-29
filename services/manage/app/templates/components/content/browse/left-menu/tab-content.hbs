@@ -4,4 +4,18 @@
     {{entypo-icon "cross"}}
   </button>
 </div>
-{{component contentComponentName}}
+
+{{yield 
+  (hash
+    content-types=(component 
+      "content/browse/left-menu/tab-content/content-types"
+      facets=facets
+      selected=selectedContentTypes
+      on-click=(action on-content-type-click)
+    )
+    dates=(component "content/browse/left-menu/tab-content/dates")
+    scheduling=(component "content/browse/left-menu/tab-content/scheduling")
+    status=(component "content/browse/left-menu/tab-content/status")
+    taxonomy=(component "content/browse/left-menu/tab-content/taxonomy")
+  )
+}}

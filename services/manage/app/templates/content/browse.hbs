@@ -56,8 +56,12 @@
       {{/fetch-more}}
     </div>
   </section>
+  
   {{content/browse/left-menu
     activeTabKey=active-tab
+    facets=facets
+    selectedContentTypes=selectedContentTypes
+    on-content-type-click=(action "toggleContentTypes")
   }}
 
   <div class="footer-controls left">
