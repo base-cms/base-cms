@@ -1,0 +1,9 @@
+<div class="list-group">
+  {{#each facets as |facet|}}
+    <a href="#!" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+      <span>{{facet.name}}</span>
+      {{!-- @todo Format number with commas --}}
+      <span class="badge badge-pill badge-white bg-primary">{{facet.count}}</span>
+    </a>
+  {{/each}}
+</div>
