@@ -1,4 +1,5 @@
 import Component from '@ember/component';
+import { computed } from '@ember/object';
 
 export default Component.extend({
   tagName: 'aside',
@@ -6,7 +7,13 @@ export default Component.extend({
   classNameBindings: ['open'],
   open: false,
 
-  activeTab: null,
+  activeTabKey: null,
+
+  activeTab: computed('activeTabKey', function() {
+    const key = this.get('activeTabKey');
+    if (!key) return {};
+    return this.get('tabs').find(tab => tab.key === key) || {};
+  }).readOnly(),
 
   init() {
     this._super(...arguments);
@@ -20,20 +27,20 @@ export default Component.extend({
   },
 
   actions: {
-    setActiveTab(name) {
-      const { open, activeTab } = this.getProperties('open', 'activeTab');
-      if (open && activeTab === name) {
+    setActiveTabKey(key) {
+      const { open, activeTabKey } = this.getProperties('open', 'activeTabKey');
+      if (open && activeTabKey === key) {
         this.send('close');
       } else if (!open) {
         this.set('open', true);
-        this.set('activeTab', name);
+        this.set('activeTabKey', key);
       } else {
-        this.set('activeTab', name);
+        this.set('activeTabKey', key);
       }
     },
     close() {
       this.set('open', false);
-      this.set('activeTab', null);
+      this.set('activeTabKey', null);
     },
   },
 });

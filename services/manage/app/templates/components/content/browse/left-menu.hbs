@@ -1,6 +1,8 @@
-{{#content/browse/left-menu/tab-content activeTab=activeTab}}
-  
-{{/content/browse/left-menu/tab-content}}
+{{!-- {{content/browse/left-menu/tab-content activeTab=activeTab.key}} --}}
+{{#each tabs as |tab|}}
+  {{content/browse/left-menu/tab-content activeTabKey=activeTab.key tab=tab}}
+{{/each}}
+
 
 <div class="tab-seperator"></div>
 
@@ -9,8 +11,8 @@
     {{#content/browse/left-menu/button
       title=tab.title
       for=tab.key
-      activeTab=activeTab
-      on-click=(action "setActiveTab")
+      activeTab=activeTab.key
+      on-click=(action "setActiveTabKey")
     }}
       {{entypo-icon tab.icon class="text-white h2"}}
     {{/content/browse/left-menu/button}}

@@ -4,6 +4,7 @@
   $button-color: $gray-600;
   $button-border-radius: map-get($spacers, 5);
   $button-spacing: map-get($spacers, 3);
+  $tab-padding: map-get($spacers, 3);
 
   position: fixed;
   top: 0;
