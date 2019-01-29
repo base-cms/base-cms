@@ -1,3 +1,4 @@
+// @todo Ultimately, this should be the same width as a card, relative to the left padding of the page
 .content .browse .left-menu {
   $seperator-width: 0.3em;
   $active-tab-color: $warning;
@@ -32,20 +33,23 @@
 
   .tabs {
     margin-top: 5rem;
+    padding-right: map-get($spacers, 1);
   }
 
   .tab-wrapper {
     width: 0;
 
-    opacity: 0.95;
+    opacity: 0.97;
     z-index: 3;
   
     overflow-y: scroll;
     transition: width $transition-speed $transition-type;
+    position: relative;
 
     .tab-content {
       position: absolute;
-      left: -#{$tab-content-width};
+      width: 100%;
+      top: 0;
       padding: $tab-padding;
 
       visibility: hidden;
@@ -53,11 +57,17 @@
       transition: visibility 0s $transition-type $transition-speed, opacity $transition-speed $transition-type;
 
       &.active {
-        position: relative;
-        left: 0;
         visibility: visible;
         opacity: 1;
         transition-delay: 0s;
+      }
+
+      .list-group-item {
+        font-weight: 300;
+        line-height: 1.7;
+        font-size: 1rem;
+        padding-top: map-get($spacers, 2);
+        padding-bottom: map-get($spacers, 2);
       }
     }
   }
