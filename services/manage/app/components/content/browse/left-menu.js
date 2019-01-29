@@ -1,7 +1,10 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
+import { inject } from '@ember/service';
 
 export default Component.extend({
+  globalEvents: inject(),
+
   tagName: 'aside',
   classNames: ['left-menu'],
   classNameBindings: ['open'],
@@ -24,6 +27,23 @@ export default Component.extend({
       { key: 'taxonomy', title: 'Taxonomy', icon: 'price-tag' },
       { key: 'dates', title: 'Dates', icon: 'calendar' },
     ]);
+  },
+
+  didInsertElement() {
+    const events = this.get('globalEvents');
+    const handleEscapeKey = this.handleEscapeKey.bind(this);
+    events.addListener('keyup', handleEscapeKey);
+    this.set('removeListener', () => events.removeListener('keyup', handleEscapeKey));
+  },
+
+  willDestroyElement() {
+    this.get('removeListener')();
+  },
+
+  handleEscapeKey(event) {
+    if (event.which === 27 && this.get('open')) {
+      this.send('close');
+    }
   },
 
   actions: {
