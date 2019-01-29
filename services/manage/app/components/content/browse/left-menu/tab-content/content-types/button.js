@@ -27,5 +27,6 @@ export default Component.extend(SendEventMixin, {
   click(event) {
     event.preventDefault();
     this.sendEvent('on-click', this.get('key'));
+    this.element.blur();
   },
 });

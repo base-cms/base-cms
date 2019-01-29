@@ -39,7 +39,7 @@
   .tab-wrapper {
     width: 0;
 
-    opacity: 0.97;
+    opacity: 0.98;
     z-index: 3;
   
     overflow-y: scroll;
@@ -62,12 +62,35 @@
         transition-delay: 0s;
       }
 
+      .list-group {
+        border: 1px solid $list-group-border-color;
+        border-radius: $list-group-border-radius;
+      }
+ 
       .list-group-item {
+        border: none;
         font-weight: 300;
         line-height: 1.7;
         font-size: 1rem;
         padding-top: map-get($spacers, 2);
         padding-bottom: map-get($spacers, 2);
+        color: $gray-700;
+
+        .badge {
+          background-color: $gray-500;
+          color: $white;
+        }
+
+        &.active {
+          background-color: $gray-700;
+          border-color: $gray-700;
+          color: $gray-100;
+
+          .badge {
+            background-color: $gray-100;
+            color: $list-group-action-color;
+          }
+        }
       }
     }
   }
