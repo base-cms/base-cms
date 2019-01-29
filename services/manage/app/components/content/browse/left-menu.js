@@ -8,9 +8,13 @@ export default Component.extend({
   tagName: 'aside',
   classNames: ['left-menu'],
   classNameBindings: ['open'],
-  open: false,
 
   activeTabKey: null,
+
+  open: computed('activeTabKey', function() {
+    if (this.get('activeTabKey')) return true;
+    return false;
+  }).readOnly(),
 
   activeTab: computed('activeTabKey', function() {
     const key = this.get('activeTabKey');
@@ -51,15 +55,11 @@ export default Component.extend({
       const { open, activeTabKey } = this.getProperties('open', 'activeTabKey');
       if (open && activeTabKey === key) {
         this.send('close');
-      } else if (!open) {
-        this.set('open', true);
-        this.set('activeTabKey', key);
       } else {
         this.set('activeTabKey', key);
       }
     },
     close() {
-      this.set('open', false);
       this.set('activeTabKey', null);
     },
   },

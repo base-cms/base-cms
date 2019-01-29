@@ -5,11 +5,13 @@ export default Controller.extend({
    * Query params
    */
   queryParams: null,
+  'active-tab': null,
   attribution: 'updated',
 
   init() {
     this._super(...arguments);
     this.set('queryParams', [
+      'active-tab',
       'attribution',
     ]);
     this.set('contentQueue', []);
