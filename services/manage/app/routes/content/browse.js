@@ -8,6 +8,9 @@ export default Route.extend(RouteObservableMixin, {
     attribution: {
       refreshModel: false,
     },
+    'content-types': {
+      refreshModel: true,
+    },
   },
 
   /**
