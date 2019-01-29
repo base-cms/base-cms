@@ -75,6 +75,10 @@ export default Controller.extend({
         selected.removeObject(key);
       }
     },
+
+    clearContentTypes() {
+      this.set('selectedContentTypes', []);
+    },
   },
 
 });
