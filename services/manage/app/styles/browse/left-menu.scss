@@ -7,6 +7,7 @@
   $tab-padding: map-get($spacers, 3);
   $transition-speed: 0.25s;
   $transition-type: ease-in-out;
+  $tab-content-width: 350px; // @todo Make this responsive
 
   position: fixed;
   top: 0;
@@ -20,8 +21,7 @@
     left: 0;
 
     .tab-wrapper {
-      // @todo Make this responsive.
-      width: 300px;
+      width: $tab-content-width;
     }
 
     .tab-seperator {
@@ -45,7 +45,7 @@
 
     .tab-content {
       position: absolute;
-      left: -300px; // @todo Must match the .tab-wrapper width
+      left: -#{$tab-content-width};
       padding: $tab-padding;
 
       visibility: hidden;
