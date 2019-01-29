@@ -1,7 +1,8 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
+import SendEventMixin from '@base-cms/manage/mixins/send-event-mixin';
 
-export default Component.extend({
+export default Component.extend(SendEventMixin, {
   classNames: ['tab-content'],
   classNameBindings: ['active'],
 
@@ -16,4 +17,10 @@ export default Component.extend({
     const key = this.get('tab.key');
     return `content/browse/left-menu/tab-content/${key}`;
   }),
+
+  actions: {
+    close() {
+      this.sendEvent('on-close');
+    },
+  },
 });

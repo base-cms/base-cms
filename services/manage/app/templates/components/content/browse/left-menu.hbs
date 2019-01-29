@@ -1,6 +1,9 @@
 <div class="tab-wrapper bg-secondary">
   {{#each tabs as |tab|}}
-    {{content/browse/left-menu/tab-content activeTabKey=activeTab.key tab=tab}}
+    {{content/browse/left-menu/tab-content
+      activeTabKey=activeTab.key tab=tab
+      on-close=(action "close")
+    }}
   {{/each}}
 </div>
 

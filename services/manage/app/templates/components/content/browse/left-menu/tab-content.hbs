@@ -1,2 +1,7 @@
-<h3 class="text-center">{{tab.title}}</h3>
+<div class="d-flex justify-content-between align-items-start">
+  <h3>{{tab.title}}</h3>
+  <button class="close" type="button" {{action "close"}}>
+    {{entypo-icon "cross"}}
+  </button>
+</div>
 {{component contentComponentName}}
