@@ -1,0 +1,13 @@
+<div class="embed-responsive-item d-flex align-items-center">
+  {{content-card/image
+    title=name
+    src=image.src
+    alt=image.alt
+    focalpoint=image.focalpoint
+    isLogo=isLogo
+  }}
+
+  {{#content/edit-link contentId=contentId type=type}}
+    {{content-card/image-overlay type=type status=statusText}}
+  {{/content/edit-link}}
+</div>

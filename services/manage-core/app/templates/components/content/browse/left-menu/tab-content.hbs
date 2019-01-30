@@ -1,0 +1,22 @@
+<div class="d-flex justify-content-between align-items-start">
+  <h3>{{tab.title}}</h3>
+  <button class="close" type="button" {{action "close"}}>
+    {{entypo-icon "cross"}}
+  </button>
+</div>
+
+{{yield 
+  (hash
+    content-types=(component 
+      "content/browse/left-menu/tab-content/content-types"
+      facets=facets
+      selected=selectedContentTypes
+      on-click=(action on-content-type-click)
+      on-clear=(action on-content-type-clear)
+    )
+    dates=(component "content/browse/left-menu/tab-content/dates")
+    scheduling=(component "content/browse/left-menu/tab-content/scheduling")
+    status=(component "content/browse/left-menu/tab-content/status")
+    taxonomy=(component "content/browse/left-menu/tab-content/taxonomy")
+  )
+}}

@@ -1,0 +1,141 @@
+// @todo Ultimately, this should be the same width as a card, relative to the left padding of the page
+.content .browse .left-menu {
+  $seperator-width: 0.3em;
+  $active-tab-color: $warning;
+  $button-color: $gray-600;
+  $button-border-radius: map-get($spacers, 5);
+  $button-spacing: map-get($spacers, 3);
+  $tab-padding: map-get($spacers, 3);
+  $transition-speed: 0.25s;
+  $transition-type: ease-in-out;
+  $tab-content-width: 350px; // @todo Make this responsive
+
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: -#{$seperator-width};
+  z-index: 100;
+  display: flex;
+  flex-direction: row;
+
+  &.open {
+    left: 0;
+
+    .tab-wrapper {
+      width: $tab-content-width;
+    }
+
+    .tab-seperator {
+      background-color: $active-tab-color;
+      box-shadow: $z-depth-2; 
+    }
+  }
+
+  .tabs {
+    margin-top: 5rem;
+    padding-right: map-get($spacers, 1);
+  }
+
+  .tab-wrapper {
+    width: 0;
+
+    opacity: 0.98;
+    z-index: 3;
+  
+    overflow-y: scroll;
+    transition: width $transition-speed $transition-type;
+    position: relative;
+
+    .tab-content {
+      position: absolute;
+      width: 100%;
+      top: 0;
+      padding: $tab-padding;
+
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0s $transition-type $transition-speed, opacity $transition-speed $transition-type;
+
+      &.active {
+        visibility: visible;
+        opacity: 1;
+        transition-delay: 0s;
+      }
+
+      .card {
+        background-color: transparent;
+      }
+
+      .card-header {
+        padding: map-get($spacers, 2) map-get($spacers, 3);
+        small {
+          font-weight: 300;
+        }
+      }
+
+      .list-group-item {
+        border: none;
+        font-weight: 300;
+        line-height: 1.7;
+        font-size: 1rem;
+        padding-top: map-get($spacers, 2);
+        padding-bottom: map-get($spacers, 2);
+        color: $gray-700;
+
+        .badge {
+          background-color: $gray-500;
+          color: $white;
+        }
+
+        &.active {
+          background-color: $gray-700;
+          border-color: $gray-700;
+          color: $gray-100;
+
+          .badge {
+            background-color: $gray-100;
+            color: $list-group-action-color;
+          }
+        }
+      }
+    }
+  }
+
+  .tab-seperator {
+    width: $seperator-width;
+    background-color: $button-color;
+    z-index: 2;
+  }
+
+  .tab-btn {
+    background-color: $button-color;
+    box-shadow: $z-depth-2;
+    border-radius: $button-border-radius;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    transition: background-color $transition-speed $transition-type;
+    margin: 0 0 $button-spacing 0;
+    padding-left: $button-spacing;
+
+    &:first-child {
+      margin-top: $button-spacing;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &:hover, &:focus {
+      background-color: $button-color !important;
+    }
+
+    &.active {
+      border-radius: $button-border-radius;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      box-shadow: none;
+      z-index: 2;
+      background-color: $active-tab-color !important;
+    }
+  }
+}
