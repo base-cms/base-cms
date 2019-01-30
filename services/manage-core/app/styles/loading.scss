@@ -1,0 +1,11 @@
+// Application loading progress bar
+.application-loading {
+    margin: 0;
+    border-radius: 0;
+    z-index: 1040;
+    box-shadow: $z-depth-half;
+  }
+  // Showing progress cursor when transitioning/loading.
+  body.transitioning {
+    cursor: progress;
+  }
