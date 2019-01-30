@@ -25,7 +25,7 @@ export default Component.extend({
   init() {
     this._super(...arguments);
     this.set('tabs', [
-      { key: 'content-types', title: 'Content Types', icon: 'open-book' },
+      { key: 'content-types', title: 'Content Types', icon: 'list' },
       { key: 'status', title: 'Status', icon: 'light-bulb' },
       { key: 'scheduling', title: 'Scheduling', icon: 'pin' },
       { key: 'taxonomy', title: 'Taxonomy', icon: 'price-tag' },
