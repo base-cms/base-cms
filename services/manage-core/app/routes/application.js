@@ -1,5 +1,5 @@
 import Route from '@ember/routing/route';
-import LoadingMixin from '@base-cms/manage/mixins/loading-mixin';
+import LoadingMixin from '@base-cms/manage-core/mixins/loading-mixin';
 
 export default Route.extend(LoadingMixin, {
 

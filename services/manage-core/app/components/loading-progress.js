@@ -1,7 +1,7 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { htmlSafe } from '@ember/string';
-import LoadingMixin from '@base-cms/manage/mixins/loading-mixin';
+import LoadingMixin from '@base-cms/manage-core/mixins/loading-mixin';
 
 export default Component.extend(LoadingMixin, {
   classNames: ['application-loading', 'progress', 'fixed-top'],

@@ -1,7 +1,7 @@
 import Route from '@ember/routing/route';
 import { RouteQueryManager } from 'ember-apollo-client';
 
-import query from '@base-cms/manage/gql/queries/content/edit';
+import query from '@base-cms/manage-core/gql/queries/content/edit';
 
 export default Route.extend(RouteQueryManager, {
   /**

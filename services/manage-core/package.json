@@ -1,5 +1,5 @@
 {
-  "name": "@base-cms/manage",
+  "name": "@base-cms/manage-core",
   "version": "0.4.0",
   "private": true,
   "description": "The BaseCMS Management Interface",
