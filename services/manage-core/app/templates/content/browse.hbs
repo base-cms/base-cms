@@ -7,23 +7,24 @@
     </div>
   </div>
 
-  <nav class="navbar navbar-dark">
+  <nav class="navbar navbar-expand navbar-dark">
     <div class="container-fluid">
 
-      <a class="navbar-brand">
+      {{#link-to "index" class="navbar-brand"}}
         <img src="/{{rootURL}}logo-default.png" alt="BaseCMS" height="30">
-      </a>
+      {{/link-to}}
+
+      <ul class="navbar-nav">
+        {{user-nav}}
+      </ul>
 
       {{!-- @todo This needs to be re-worked --}}
-      {{search-form}}
-
-      {{!-- @todo This needs to be re-worked --}}
-      {{user-nav}}
+      {{!-- {{search-form}} --}}
 
     </div>
   </nav>
 
-  <section class="container-fluid mb-6">
+  <section class="container-fluid mt-3 mb-6">
     {{#fetch-more
       query=observable
       edges=model.edges

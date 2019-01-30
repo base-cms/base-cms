@@ -10,6 +10,16 @@ $browse-color: #f8f9fe;
   fill: $browse-color;
 }
 
+.user-dropdown {
+  .dropdown-toggle {
+    font-size: $font-size-sm;
+
+    &::after {
+      display: none;
+    }
+  }
+}
+
 .card {
   &.content {
     .card-text {
@@ -26,11 +36,6 @@ $browse-color: #f8f9fe;
     top: 0;
     width: 100%;
     height: 16rem; // @todo make smaller on mobile
-  }
-  
-  .navbar {
-    background-color: transparent;
-    padding: 0;
   }
 
   .container-fluid {  
