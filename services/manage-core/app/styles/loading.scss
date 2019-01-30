@@ -2,8 +2,9 @@
 .application-loading {
     margin: 0;
     border-radius: 0;
-    z-index: 1040;
+    z-index: 1080;
     box-shadow: $z-depth-half;
+    height: 0.5rem;
   }
   // Showing progress cursor when transitioning/loading.
   body.transitioning {
