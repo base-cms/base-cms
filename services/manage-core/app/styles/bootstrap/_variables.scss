@@ -9,14 +9,14 @@
 //
 
 $white:    #fff !default;
-$gray-100: #f8f9fa !default;
+$gray-100: #f6f9fc !default;
 $gray-200: #e9ecef !default;
 $gray-300: #dee2e6 !default;
 $gray-400: #ced4da !default;
 $gray-500: #adb5bd !default;
-$gray-600: #6c757d !default;
-$gray-700: #495057 !default;
-$gray-800: #343a40 !default;
+$gray-600: #8898aa !default;
+$gray-700: #525f7f !default;
+$gray-800: #32325d !default;
 $gray-900: #212529 !default;
 $black:    #000 !default;
 
@@ -38,16 +38,16 @@ $grays: map-merge(
 );
 
 
-$blue:    #007bff !default;
-$indigo:  #6610f2 !default;
-$purple:  #6f42c1 !default;
-$pink:    #e83e8c !default;
-$red:     #dc3545 !default;
-$orange:  #fd7e14 !default;
-$yellow:  #ffc107 !default;
-$green:   #28a745 !default;
-$teal:    #20c997 !default;
-$cyan:    #17a2b8 !default;
+$blue:    #5e72e4 !default;
+$indigo:  #5603ad !default;
+$purple:  #8965e0 !default;
+$pink:    #f3a4b5 !default;
+$red:     #f5365c !default;
+$orange:  #fb6340 !default;
+$yellow:  #ffd600 !default;
+$green:   #2dce89 !default;
+$teal:    #11cdef !default;
+$cyan:    #2bffc6 !default;
 
 $colors: () !default;
 // stylelint-disable-next-line scss/dollar-variable-default
@@ -65,41 +65,74 @@ $colors: map-merge(
     "cyan":       $cyan,
     "white":      $white,
     "gray":       $gray-600,
+    "light":      $gray-400,
+    "lighter":    $gray-200,
     "gray-dark":  $gray-800
   ),
   $colors
 );
 
+$default:       #172b4d !default;
 $primary:       $blue !default;
-$secondary:     $gray-600 !default;
+$secondary:     #f7fafc !default;
 $success:       $green !default;
-$info:          $cyan !default;
-$warning:       $yellow !default;
+$info:          $teal !default;
+$warning:       $orange !default;
 $danger:        $red !default;
-$light:         $gray-100 !default;
-$dark:          $gray-800 !default;
+$light:         $gray-500 !default;
+$dark:          $gray-900 !default;
+$darker:        darken($gray-900, 15%) !default;
+
+$facebook:      #3b5999 !default;
+$twitter:       #1da1f2 !default;
+$google-plus:   #dd4b39 !default;
+$instagram:     #e4405f !default;
+$pinterest:     #bd081c !default;
+$youtube:       #cd201f !default;
+$slack:         #3aaf85 !default;
+$dribbble:      #ea4c89 !default;
+$github:        #222222 !default;
 
 $theme-colors: () !default;
 // stylelint-disable-next-line scss/dollar-variable-default
 $theme-colors: map-merge(
   (
-    "primary":    $primary,
-    "secondary":  $secondary,
-    "success":    $success,
-    "info":       $info,
-    "warning":    $warning,
-    "danger":     $danger,
-    "light":      $light,
-    "dark":       $dark
+    "default":      $default,
+    "primary":      $primary,
+    "secondary":    $secondary,
+    "success":      $success,
+    "info":         $info,
+    "warning":      $warning,
+    "danger":       $danger,
+    "white":        $white,
+    "neutral":      $white,
+    "dark":         $dark,
+    "darker":       $darker
   ),
   $theme-colors
+);
+
+$brand-colors: () !default;
+$brand-colors: map-merge(
+  (
+    "facebook":     $facebook,
+    "twitter":      $twitter,
+    "google-plus":  $google-plus,
+    "instagram":    $instagram,
+    "pinterest":    $pinterest,
+    "youtube":      $youtube,
+    "slack":        $slack,
+    "dribbble":     $dribbble,
+    "github":       $github
+  ),
+  $brand-colors
 );
 
 // Set a specific jump point for requesting color jumps
 $theme-color-interval:      8% !default;
 
 // The yiq lightness value that determines when the lightness of color changes from "dark" to "light". Acceptable values are between 0 and 255.
-$yiq-contrasted-threshold:  150 !default;
+$yiq-contrasted-threshold:  200 !default;
 
 // Customize the light and dark text colors for use in our YIQ color contrast function.
 $yiq-text-dark:             $gray-900 !default;
@@ -111,7 +144,7 @@ $yiq-text-light:            $white !default;
 
 $enable-caret:              true !default;
 $enable-rounded:            true !default;
-$enable-shadows:            false !default;
+$enable-shadows:            true !default;
 $enable-gradients:          false !default;
 $enable-transitions:        true !default;
 $enable-hover-media-query:  false !default; // Deprecated, no longer affects any compiled CSS
