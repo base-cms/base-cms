@@ -7,6 +7,11 @@
 @import "../../node_modules/animate.css/animate";
 @import "../../node_modules/spinkit/scss/spinners/2-double-bounce";
 
+@import "ember-power-calendar";
+.ember-power-calendar {
+  @include ember-power-calendar($cell-size: 30px);
+}
+
 // Depth classes/vars
 @import "z-depth";
 
