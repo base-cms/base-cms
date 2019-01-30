@@ -31,3 +31,96 @@
 @import "../../node_modules/bootstrap/scss/carousel";
 @import "../../node_modules/bootstrap/scss/utilities";
 @import "../../node_modules/bootstrap/scss/print";
+
+
+// Opacity Utils
+
+.opacity-0 {
+  opacity: 0 !important;
+}
+.opacity-1 {
+  opacity: .1 !important;
+}
+.opacity-2 {
+  opacity: .2 !important;
+}
+.opacity-3 {
+  opacity: .3 !important;
+}
+.opacity-4 {
+  opacity: .4 !important;
+}
+.opacity-5 {
+  opacity: .5 !important;
+}
+.opacity-6 {
+  opacity: .6 !important;
+}
+.opacity-7 {
+  opacity: .7 !important;
+}
+.opacity-8 {
+  opacity: .8 !important;
+}
+.opacity-9 {
+  opacity: .9 !important;
+}
+.opacity-10 {
+  opacity: 1 !important;
+}
+
+
+//
+// Separator
+// add svg on top or bottom of a section for a more stylish visual
+//
+
+
+.separator {
+  position: absolute;
+  top: auto;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 150px;
+  transform: translateZ(0);
+  overflow: hidden;
+  pointer-events: none;
+
+  svg {
+      position: absolute;
+      pointer-events: none;
+  }
+}
+
+.separator-top {
+  top: 0;
+  bottom: auto;
+
+  svg {
+      top: 0;
+  }
+}
+
+.separator-bottom {
+  top: auto;
+  bottom: 0;
+
+  svg {
+      bottom: 0;
+  }
+}
+
+.separator-inverse {
+  transform: rotate(180deg);
+}
+
+// Styles
+
+.separator-skew {
+  height: 60px;
+
+  @include media-breakpoint-up(xl) {
+      height: 70px;
+  }
+}
