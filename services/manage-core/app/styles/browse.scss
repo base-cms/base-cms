@@ -10,6 +10,36 @@ $browse-color: #f8f9fe;
   fill: $browse-color;
 }
 
+.navbar .search {
+  .input-group {
+    border-radius: 2em;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+
+    .input-group-text {
+      background-color: transparent;
+      padding-left: 1rem;
+      color: rgba(255, 255, 255, 0.6);
+      border: 0;
+      box-shadow: none;
+    }
+
+    .form-control {
+      color: rgba(255, 255, 255, 0.9);
+      background-color: transparent;
+      width: 300px;
+      border: 0;
+      box-shadow: none;
+      font-size: 0.875rem;
+
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.6);
+      }
+    }
+  }
+  
+  
+}
+
 .user-dropdown {
   .dropdown-toggle {
     font-size: $font-size-sm;
