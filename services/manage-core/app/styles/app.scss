@@ -1,10 +1,9 @@
-// @import "pulse/variables";
-// @import "../../node_modules/bootstrap/scss/bootstrap";
-// @import "pulse/bootswatch";
+// Bootstrap theme
+@import "bootstrap";
 
-// @import "../../node_modules/argon-design-system-free/assets/scss/argon";
-@import "../../node_modules/@creative-tim-official/argon-dashboard-free/assets/scss/argon";
+// Animate.css
 @import "../../node_modules/animate.css/animate";
+// Spinkit
 @import "../../node_modules/spinkit/scss/spinners/2-double-bounce";
 
 @import "ember-power-calendar";
@@ -23,9 +22,6 @@
 
 // Content browse
 @import "browse";
-
-// XL modal (can be remove with BS >4.2)
-@import "modal";
 
 
 // Add min-height utility
