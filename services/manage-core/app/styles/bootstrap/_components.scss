@@ -32,6 +32,14 @@
 @import "../../node_modules/bootstrap/scss/utilities";
 @import "../../node_modules/bootstrap/scss/print";
 
+// Override close outline
+.close {
+  &:hover,
+  &:focus {
+    outline: none;
+  }
+}
+
 
 // Opacity Utils
 
