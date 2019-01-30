@@ -85,6 +85,17 @@ services:
       - "4200:4200"
       - "7020:7020"
       - "7357:7357"
+  manage-core:
+    <<: *node
+    image: danlynn/ember-cli:3.7.1
+    working_dir: /base-cms/services/manage-core
+    entrypoint: ["node_modules/.bin/ember"]
+    command: ["serve", "--port", "4201", "--proxy", "http://graphql-server"]
+    depends_on:
+      - graphql-server
+    ports:
+      - "4201:4201"
+      - "7358:7358"
 
 volumes:
   esdata: {}
