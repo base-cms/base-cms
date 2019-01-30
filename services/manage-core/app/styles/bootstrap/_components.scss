@@ -40,6 +40,31 @@
   }
 }
 
+// Dropdown overrides
+.dropdown-menu {
+  min-width: 12rem;
+
+  .dropdown-item {
+      padding: .5rem 1rem;
+      font-size: $font-size-sm;
+      // > i,
+      // > svg {
+      //     margin-right: 1rem;
+      //     font-size: 1rem;
+      //     vertical-align: -17%;
+      // }
+  }
+}
+
+.dropdown-header {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  color: $gray-100;
+  font-size: .625rem;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
 
 // Opacity Utils
 
@@ -132,3 +157,48 @@
       height: 70px;
   }
 }
+
+
+//
+// Avatar
+//
+
+// General styles
+
+.avatar {
+	color: $white;
+	background-color: $gray-500;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1rem;
+	border-radius: 50%;
+	height: 48px;
+	width: 48px;
+
+    img {
+    	width: 100%;
+    	border-radius: 50%;
+    }
+
+    + .avatar-content {
+    	display: inline-block;
+    	margin-left: .75rem;
+    }
+}
+
+
+// Avatar size variations
+
+.avatar-lg {
+	width: 58px;
+	height: 58px;
+	font-size: $font-size-sm;
+}
+
+.avatar-sm {
+	width: 36px;
+	height: 36px;
+	font-size: $font-size-sm;
+}
+
