@@ -703,7 +703,7 @@ $form-feedback-icon-invalid:        str-replace(url("data:image/svg+xml,%3csvg x
 //
 // Dropdown menu container and contents.
 
-$dropdown-min-width:                10rem !default;
+$dropdown-min-width:                12rem !default;
 $dropdown-padding-y:                .5rem !default;
 $dropdown-spacer:                   .125rem !default;
 $dropdown-bg:                       $white !default;
@@ -723,10 +723,10 @@ $dropdown-link-active-bg:           $component-active-bg !default;
 
 $dropdown-link-disabled-color:      $gray-600 !default;
 
-$dropdown-item-padding-y:           .25rem !default;
-$dropdown-item-padding-x:           1.5rem !default;
+$dropdown-item-padding-y:           .5rem !default;
+$dropdown-item-padding-x:           1rem !default;
 
-$dropdown-header-color:             $gray-600 !default;
+$dropdown-header-color:             $gray-800 !default;
 
 
 // Z-index master list
