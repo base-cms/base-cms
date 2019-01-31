@@ -13,7 +13,56 @@
         <img src="/{{rootURL}}logo-default.png" alt="BaseCMS" height="30">
       {{/link-to}}
 
-      {{search-form}}
+      <div class="dropdown ml-auto mr-3">
+        <button class="btn btn-primary btn-content-queue dropdown-toggle" title="Content Queue" type="button" data-toggle="dropdown">
+          0 {{entypo-icon "box" class="ml-1"}}
+        </button>
+        <div class="dropdown-menu z-depth-3">
+          <div class="dropdown-header text-uppercase">Content Queue</div>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item d-flex justify-content-between" href="#">
+            <span>Export</span>
+            {{entypo-icon "export" class="ml-1"}}
+          </a>
+          <a class="dropdown-item d-flex justify-content-between" href="#">
+            <span>Edit Scheduling</span>
+            {{entypo-icon "pin" class="ml-1"}}
+          </a>
+          <a class="dropdown-item d-flex justify-content-between" href="#">
+            <span>Edit Taxonomy</span>
+            {{entypo-icon "price-tag" class="ml-1"}}
+          </a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item d-flex justify-content-between" href="#">
+            <span>Clear</span>
+            {{entypo-icon "cross" class="ml-1"}}
+          </a>
+          <a class="dropdown-item d-flex justify-content-between" href="#">
+            <span>Select All</span>
+            {{entypo-icon "grid" class="ml-1"}}
+          </a>
+        </div>
+      </div>
+
+      <div class="btn-group mr-4" role="group">
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-primary btn-sort-options dropdown-toggle" title="Sort Field" data-toggle="dropdown">
+            Updated Date
+          </button>
+          <div class="dropdown-menu z-depth-3">
+            <div class="dropdown-header text-uppercase">Sort By</div>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Created Date</a>
+            <a class="dropdown-item" href="#">Name</a>
+            <a class="dropdown-item" href="#">Published Date</a>
+            <a class="dropdown-item" href="#">Relevance</a>
+          </div>
+        </div>
+
+        <button type="button" title="Sort Direction" class="btn btn-primary btn-sort-options px-3">{{entypo-icon "arrow-with-circle-up"}}</button>
+      </div>
+
+      {{search-form class="mr-3"}}
 
       <ul class="navbar-nav">
         {{user-nav}}

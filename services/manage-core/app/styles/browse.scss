@@ -36,8 +36,15 @@ $browse-color: #f8f9fe;
       }
     }
   }
-  
-  
+}
+
+.navbar {
+  .btn-sort-options,
+  .btn-sort-direction,
+  .btn-content-queue {
+    color: rgba(255, 255, 255, 0.8);
+    border: none;
+  }
 }
 
 .user-dropdown {
