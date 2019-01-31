@@ -1000,4 +1000,4 @@ $print-page-size:                   a3 !default;
 $print-body-min-width:              map-get($grid-breakpoints, "lg") !default;
 
 // Import default vars...
-@import "../../../node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/variables";
