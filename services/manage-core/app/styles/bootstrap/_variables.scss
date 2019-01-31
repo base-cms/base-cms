@@ -104,7 +104,8 @@ $theme-colors: map-merge(
     "white":        $white,
     "neutral":      $white,
     "dark":         $dark,
-    "darker":       $darker
+    "darker":       $darker,
+    "gray-dark":    $gray-800
   ),
   $theme-colors
 );
