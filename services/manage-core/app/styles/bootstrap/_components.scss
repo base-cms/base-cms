@@ -44,27 +44,17 @@
 
 // Dropdown overrides
 .dropdown-menu {
-  min-width: 12rem;
-
   .dropdown-item {
-      padding: .5rem 1rem;
-      font-size: $font-size-sm;
-      // > i,
-      // > svg {
-      //     margin-right: 1rem;
-      //     font-size: 1rem;
-      //     vertical-align: -17%;
-      // }
+    font-size: $font-size-sm;
   }
 }
 
 .dropdown-header {
   padding-left: 1rem;
   padding-right: 1rem;
-  color: $gray-100;
-  font-size: .625rem;
+  font-size: $font-size-sm * .8;
   text-transform: uppercase;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 
