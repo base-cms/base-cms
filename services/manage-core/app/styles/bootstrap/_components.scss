@@ -34,8 +34,9 @@
 @import "node_modules/bootstrap/scss/utilities";
 @import "node_modules/bootstrap/scss/print";
 
-// Override close outline
-.close {
+// Remove outline and add pointer to all buttons
+button {
+  cursor: pointer;
   &:hover,
   &:focus {
     outline: none;
