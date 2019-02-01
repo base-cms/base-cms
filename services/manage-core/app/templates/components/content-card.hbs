@@ -46,10 +46,10 @@
       </div>  
 
 
-      <label class="custom-toggle mt-auto mb-0">
-        {{input type="checkbox" checked=isQueued change=(action "emitQueueChange")}}
-        <span class="custom-toggle-slider rounded-circle"></span>
-      </label>
+      <div class="custom-control custom-checkbox mt-auto ml-auto mr--2">
+        {{input type="checkbox" id=(concat "content-queue-" content.id) class="custom-control-input" checked=isQueued change=(action "emitQueueChange")}}
+        <label class="custom-control-label" for="content-queue-{{content.id}}"></label>
+      </div>
       
     </div>
 
