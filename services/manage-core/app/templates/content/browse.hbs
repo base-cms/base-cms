@@ -20,23 +20,12 @@
         on-clear=(action "clearQueue")
       }}
 
-      <div class="btn-group mr-4" role="group">
-        <div class="btn-group" role="group">
-          <button type="button" class="btn btn-primary btn-sort-options dropdown-toggle" title="Sort Field" data-toggle="dropdown">
-            Updated Date
-          </button>
-          <div class="dropdown-menu z-depth-3">
-            <div class="dropdown-header text-uppercase">Sort By</div>
-            <div class="dropdown-divider"></div>
-            {{dropdown-item/button value="Created Date" icon="calendar"}}
-            {{dropdown-item/button value="Name" icon="text-document"}}
-            {{dropdown-item/button value="Published Date" icon="calendar"}}
-            {{dropdown-item/button value="Relevance" icon="magnifying-glass"}}
-          </div>
-        </div>
-
-        <button type="button" title="Sort Direction" class="btn btn-primary btn-sort-options px-3">{{entypo-icon "arrow-with-circle-up"}}</button>
-      </div>
+      {{content/browse/sort-controls
+        class="mr-4"
+        options=sortOptions
+        sortByKey=sort-by
+        directionKey=sort-direction
+      }}
 
       {{search-form class="mr-3"}}
 

@@ -11,6 +11,12 @@ export default Route.extend(RouteObservableMixin, {
     'content-types': {
       refreshModel: true,
     },
+    'sort-by': {
+      refreshModel: true,
+    },
+    'sort-direction': {
+      refreshModel: true,
+    },
   },
 
   /**

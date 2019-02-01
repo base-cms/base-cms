@@ -1,0 +1,25 @@
+<div class="btn-group" role="group">
+  <button type="button" class="btn btn-primary btn-sort-options dropdown-toggle" title="Sort Field" data-toggle="dropdown">
+    {{selectedSortOption.label}}
+  </button>
+  <div class="dropdown-menu z-depth-3">
+    <div class="dropdown-header text-uppercase">Sort By</div>
+    <div class="dropdown-divider"></div>
+    {{#each options as |option|}}
+      {{dropdown-item/button
+        value=option.label
+        icon=option.icon
+        click=(action "setSortByKey" option.key)
+      }}
+    {{/each}}
+  </div>
+</div>
+
+<button
+  type="button"
+  title="Sort Direction"
+  class="btn btn-primary btn-sort-options px-3"
+  {{action "toggleSortDirection"}}
+>
+  {{entypo-icon directionIcon}}
+</button>
