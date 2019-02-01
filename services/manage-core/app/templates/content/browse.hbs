@@ -13,36 +13,12 @@
         <img src="/{{rootURL}}logo-default.png" alt="BaseCMS" height="30">
       {{/link-to}}
 
-      <div class="dropdown ml-auto mr-3">
-        <button class="btn btn-primary btn-content-queue dropdown-toggle" title="Content Queue" type="button" data-toggle="dropdown">
-          0 {{entypo-icon "box" class="ml-1"}}
-        </button>
-        <div class="dropdown-menu z-depth-3">
-          <div class="dropdown-header text-uppercase">Content Queue</div>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item d-flex justify-content-between" href="#">
-            <span>Export</span>
-            {{entypo-icon "export" class="ml-1"}}
-          </a>
-          <a class="dropdown-item d-flex justify-content-between" href="#">
-            <span>Edit Scheduling</span>
-            {{entypo-icon "pin" class="ml-1"}}
-          </a>
-          <a class="dropdown-item d-flex justify-content-between" href="#">
-            <span>Edit Taxonomy</span>
-            {{entypo-icon "price-tag" class="ml-1"}}
-          </a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item d-flex justify-content-between" href="#">
-            <span>Clear</span>
-            {{entypo-icon "cross" class="ml-1"}}
-          </a>
-          <a class="dropdown-item d-flex justify-content-between" href="#">
-            <span>Select All</span>
-            {{entypo-icon "grid" class="ml-1"}}
-          </a>
-        </div>
-      </div>
+
+      {{content/queue-dropdown
+        class="ml-auto mr-3"
+        count=contentQueue.length
+        on-clear=(action "clearQueue")
+      }}
 
       <div class="btn-group mr-4" role="group">
         <div class="btn-group" role="group">

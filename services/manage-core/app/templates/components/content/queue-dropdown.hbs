@@ -1,0 +1,18 @@
+<button class="btn btn-primary btn-content-queue dropdown-toggle" title="Content Queue" type="button" data-toggle="dropdown">
+  {{count}} {{entypo-icon "box" class="ml-1"}}
+</button>
+<div class="dropdown-menu z-depth-3">
+  <div class="dropdown-header text-uppercase">Content Queue</div>
+  <div class="dropdown-divider"></div>
+  {{dropdown-item/button value="Export" icon="export" disabled=isDisabled}}
+  {{dropdown-item/button value="Edit Scheduling" icon="pin" disabled=isDisabled}}
+  {{dropdown-item/button value="Edit Taxonomy" icon="price-tag" disabled=isDisabled}}
+  <div class="dropdown-divider"></div>
+  {{dropdown-item/button
+    value="Clear"
+    icon="cross"
+    disabled=isDisabled
+     click=(action on-clear)
+  }}
+  {{dropdown-item/button value="Select All" icon="grid"}}
+</div>
