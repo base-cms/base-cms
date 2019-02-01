@@ -41,6 +41,16 @@ button {
   &:focus {
     outline: none;
   }
+
+  &.disabled, &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.dropdown-item {
+  &.disabled, &:disabled {
+    pointer-events: visible;
+  }
 }
 
 // Dropdown overrides
