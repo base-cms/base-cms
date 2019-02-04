@@ -5,9 +5,26 @@ const nodeSass = require('node-sass');
 
 module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
-    // Add options here
     sassOptions: {
       implementation: nodeSass,
+    },
+    'ember-froala-editor': {
+      plugins: [
+        'paragraph_format',
+        'lists',
+        'link',
+        'video',
+        'image',
+        'url',
+        'emoticons',
+        'help',
+        'fullscreen',
+        'quote',
+        'char_counter',
+        'word_paste',
+        'draggable',
+        'align',
+      ],
     },
   });
 
