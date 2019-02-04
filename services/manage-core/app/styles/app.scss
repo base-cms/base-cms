@@ -23,6 +23,12 @@
 // Content browse
 @import "browse";
 
+// Adjust notification position
+div[data-test-notification-container="top-right"] {
+  top: 1.5rem;
+  right: 1.5rem;
+}
+
 
 // Add min-height utility
 .mnh-100 {
