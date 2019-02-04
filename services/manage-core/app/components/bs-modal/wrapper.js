@@ -1,6 +1,7 @@
 import Component from '@ember/component';
 import { isPresent } from '@ember/utils';
 import $ from 'jquery';
+import { Promise } from 'rsvp';
 
 export default Component.extend({
   classNames: ['modal'],
@@ -55,13 +56,21 @@ export default Component.extend({
 
     /**
      * Fires an explicit hide action via a close button.
-     * Will set an isClosing flag, which is different than the modal being
+     * By default will set an isClosing flag, which is different than the modal being
      * hidden by other means (transition between routes, etc.)
      */
-    hide() {
+    async hide(isClosing = true) {
+      const $obj = this.$();
       if (this.get('isTransitioning')) return;
-      this.set('isClosing', true);
+      this.set('isClosing', isClosing);
+
+      const promise = new Promise((resolve) => {
+        $obj.on('hidden.bs.modal', () => {
+          resolve();
+        });
+      });
       this.$().modal('hide');
+      return promise;
     },
   },
 
