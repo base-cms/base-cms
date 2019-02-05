@@ -8,6 +8,7 @@ extend type Query {
   taxonomiesOfType(input: TaxonomiesOfTypeQueryInput!): TaxonomyConnection! @findMany(model: "platform.Taxonomy", using: { type: "type" })
   rootTaxonomies(input: RootTaxonomiesQueryInput = {}): TaxonomyConnection! @findMany(model: "platform.Taxonomy", criteria: "rootTaxonomy")
   rootTaxonomiesOfType(input: RootTaxonomiesOfTypeQueryInput!): TaxonomyConnection! @findMany(model: "platform.Taxonomy", using: { type: "type" }, criteria: "rootTaxonomy")
+  matchTaxonomies(input: MatchTaxonomiesQueryInput!): TaxonomyConnection! @matchMany(model: "platform.Taxonomy")
 }
 
 type Taxonomy {
@@ -23,7 +24,7 @@ type Taxonomy {
   children(input: TaxonomyChildrenInput = {}): TaxonomyConnection! @projection(localField: "_id") @refMany(model: "platform.Taxonomy", localField: "_id", foreignField: "parent.$id")
 }
 
-type TaxonomyConnection @projectUsing(type: "TaxonomyConnection") {
+type TaxonomyConnection @projectUsing(type: "Taxonomy") {
   totalCount: Int!
   edges: [TaxonomyEdge]!
   pageInfo: PageInfo!
@@ -53,6 +54,11 @@ enum TaxonomySortField {
   sequence
 }
 
+enum TaxonomyMatchField {
+  name
+  fullName
+}
+
 input TaxonomyQueryInput {
   status: ModelStatus = active
   id: Int!
@@ -62,6 +68,17 @@ input TaxonomiesQueryInput {
   status: ModelStatus = active
   sort: TaxonomySortInput = {}
   pagination: PaginationInput = {}
+}
+
+input MatchTaxonomiesQueryInput {
+  status: ModelStatus = active
+  pagination: PaginationInput = {}
+  sort: TaxonomySortInput = { order: asc }
+  field: TaxonomyMatchField!
+  phrase: String!
+  position: MatchPosition = contains
+  match: MatchWords = all
+  excludeIds: [Int!] = []
 }
 
 input TaxonomiesOfTypeQueryInput {
