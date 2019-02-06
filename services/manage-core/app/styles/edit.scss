@@ -17,10 +17,13 @@
 
   .card {
     .body-editor {
-      min-height: 300px;
+
+      .fr-view {
+        min-height: 200px;
+      }
 
       .fr-counter {
-        bottom: -20px !important;
+        bottom: -1rem !important;
         font-family: $font-family-base;
       }
     }
