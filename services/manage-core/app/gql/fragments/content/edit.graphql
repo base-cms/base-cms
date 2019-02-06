@@ -4,6 +4,7 @@ fragment ContentEditFragment on Content {
   statusText
   type(input: { format: titleize })
   teaser
+  body
   primaryImage {
     id
     src

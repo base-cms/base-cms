@@ -1,7 +1,7 @@
 <section class="edit">
   {{!-- @todo Remove inline style! --}}
-  <div class="header" style="background-image: url({{model.primaryImage.src}}?auto=format&crop=focalpoint&dpr=2&fit=crop&fp-x=0.5&fp-y=0.5&h=540&w=960); background-size: cover; background-position: center center;">
-    <span class="mask bg-gradient-gray-dark opacity-7"></span>
+  <div class="header pb-9" style="background-image: url({{model.primaryImage.src}}?auto=format&crop=focalpoint&dpr=2&fit=crop&fp-x=0.5&fp-y=0.5&h=540&w=960); background-size: cover; background-position: center center;">
+    <span class="mask bg-gradient-gray-dark opacity-8"></span>
 
     <nav class="navbar navbar-expand navbar-dark py-3">
       <div class="container-fluid">
@@ -35,7 +35,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-lg-7 col-md-10 mb-5">
+        <div class="col-lg-7 col-md-10 mb-4">
           {{content/status-badge status=model.statusText textClass="h5" class="mr-1"}}
           {{content/type-badge type=model.type textClass="h5"}}
         </div>
@@ -47,6 +47,21 @@
         <polygon class="fill-browse" points="2560 0 2560 100 0 100"></polygon>
       </svg>
     </div>
+
+
+
+  </div>
+
+  <div class="container-fluid mt--8 mb-6">
+
+    <div class="row">
+      <div class="col-lg-8 col-md-10">
+        <div class="card border-0 z-depth-1">
+          {{content/edit/body-editor content=model.body class="card-body"}}
+        </div>
+      </div>
+    </div>
+
   </div>
 
 </section>
