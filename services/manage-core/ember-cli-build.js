@@ -22,6 +22,7 @@ module.exports = function(defaults) {
         'word_paste',
         'draggable',
         'align',
+        'special_characters',
       ],
     },
   });
