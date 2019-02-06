@@ -30,6 +30,11 @@ div[data-test-notification-container="top-right"] {
   right: 1.5rem;
 }
 
+// Add shadows to all cards by default
+.card {
+  box-shadow: $z-depth-1;
+}
+
 // Masks
 .mask {
   position: absolute;

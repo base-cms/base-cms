@@ -1,9 +1,9 @@
-<section class="edit">
+<section class="content content--edit">
   {{!-- @todo Remove inline style! --}}
-  <div class="header pb-9" style="background-image: url({{model.primaryImage.src}}?auto=format&crop=focalpoint&dpr=2&fit=crop&fp-x=0.5&fp-y=0.5&h=540&w=960); background-size: cover; background-position: center center;">
-    <span class="mask bg-gradient-gray-dark opacity-8"></span>
+  <div class="content__header" style="background-image: url({{model.primaryImage.src}}?auto=format&crop=focalpoint&dpr=2&fit=crop&fp-x=0.5&fp-y=0.5&h=540&w=960); background-size: cover; background-position: center center;">
+    <span class="mask"></span>
 
-    <nav class="navbar navbar-expand navbar-dark py-3">
+    <nav class="navbar navbar-expand navbar-dark">
       <div class="container-fluid">
         {{#link-to "index" class="navbar-brand"}}
           <img src="/{{rootURL}}logo-inverted.png" alt="BaseCMS" height="30">
@@ -19,25 +19,25 @@
 
     <div class="container-fluid banner">
       <div class="row">
-        <div class="col-lg-7 col-md-10">
+        <div class="col-md-10 col-lg-7">
           {{content/edit/inline-simple-editor
-            class="display-2 text-white text-depth-1-half"
+            class="content__field content__field--name"
             content=model.name
             placeholder="Enter a title..."
           }}
         </div>
       </div>
       <div class="row">
-        <div class="col-lg-7 col-md-10">
+        <div class="col-md-10 col-lg-7">
           {{content/edit/inline-simple-editor
-            class="text-white text-depth-1 lead"
+            class="content__field content__field--teaser"
             content=model.teaser
             placeholder="Enter a teaser..."
           }}
         </div>
       </div>
       <div class="row">
-        <div class="col-lg-7 col-md-10 mb-2">
+        <div class="col-md-10 col-lg-7 mb-2">
           {{content/status-badge status=model.statusText textClass="h5" class="mr-1"}}
           {{content/type-badge type=model.type textClass="h5"}}
         </div>
@@ -54,13 +54,13 @@
 
   </div>
 
-  <div class="container-fluid mt--8 mb-6">
+  <div class="content__main container-fluid">
 
     <div class="row">
-      <div class="col-lg-8 col-md-10">
-        <div class="card border-0 z-depth-1">
-          {{content/edit/body-editor
-            class="card-body"
+      <div class="col-lg-7 col-md-10">
+        <div class="card card--content">
+          {{content/edit/inline-full-editor
+            class="content__field content__field--body"
             content=model.body
             placeholder="Enter a body..."
           }}

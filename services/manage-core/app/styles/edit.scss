@@ -1,11 +1,20 @@
-.edit {
-  position: relative;
+.content--edit {
 
-  .header {
+  .content__header {
     position: relative;
-    // top: 0;
-    // width: 100%;
     min-height: 18rem; // @todo make smaller on mobile
+    padding-bottom: map-get($spacers, 9);
+    box-shadow: inset 0 0 5rem black;
+
+    @include bg-gradient-variant(".mask", $gray-800);
+    .mask {
+      opacity: map-get($opacities, 8);
+    }
+
+    .navbar {
+      padding-top: map-get($spacers, 3);
+      padding-bottom: map-get($spacers, 3);
+    }
   }
 
   .container-fluid {
@@ -15,11 +24,48 @@
     }
   }
 
-  .card {
-    .body-editor {
+  .content__main {
+    margin-top: map-get($spacers, -8);
+    margin-bottom: map-get($spacers, 6)
+  }
+
+  .content__field {
+    font-size: $lead-font-size;
+    font-weight: $lead-font-weight;
+
+    strong, b {
+      font-weight: $font-weight-bold;
+    }
+
+    &.content__field--name {
+      color: $white;
+      text-shadow: $text-depth-2;
+      font-size: $display2-size;
+      font-weight: $font-weight-normal;
+
+      strong, b {
+        font-weight: $font-weight-bold + 200;
+      }
+    }
+
+    &.content__field--teaser {
+      color: $white;
+      text-shadow: $text-depth-1;
+    }
+
+    &.content__field--body {
+      padding: map-get($spacers, 4);
 
       .fr-view {
         min-height: 200px;
+
+        h1, h2, h3, h4, h5 { font-weight: $font-weight-bold; }
+        h1 { font-size: $lead-font-size * 1.6; }
+        h2 { font-size: $lead-font-size * 1.5; }
+        h3 { font-size: $lead-font-size * 1.4; }
+        h4 { font-size: $lead-font-size * 1.3; }
+        h5 { font-size: $lead-font-size * 1.2; }
+        h6 { font-size: $lead-font-size * 1.1; }
       }
 
       .fr-counter {
