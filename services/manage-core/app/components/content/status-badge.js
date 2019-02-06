@@ -3,7 +3,7 @@ import { computed } from '@ember/object';
 
 export default Component.extend({
   tagName: 'span',
-  classNames: ['badge', 'text-default', 'text-uppercase', 'z-depth-1'],
+  classNames: ['badge', 'text-uppercase', 'z-depth-1'],
   classNameBindings: ['color'],
 
   color: computed('status', function() {
