@@ -21,11 +21,7 @@
 @import "buttons";
 
 // Content
-@import "content/header";
-
-// Content browse and edit
-@import "browse";
-@import "edit";
+@import "content";
 
 // Adjust notification position
 div[data-test-notification-container="top-right"] {
@@ -69,8 +65,4 @@ div[data-test-notification-container="top-right"] {
 
 .card.content:hover {
   box-shadow: $z-depth-1-half;
-}
-
-.header.content .display-2 {
-  line-height: 1.3;
 }
