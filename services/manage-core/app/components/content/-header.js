@@ -11,8 +11,6 @@ export default Component.extend({
   backgroundPosition: 'center',
   backgroundSize: 'cover',
 
-  // background-image: url(https://upload.wikimedia.org/wikipedia/commons/6/6e/Veil_Nebula_-_NGC6960.jpg); background-size: cover; background-position: 50% 40%;
-
   style: computed('backgroundImage', 'backgroundPosition', 'backgroundSize', function() {
     const image = this.get('backgroundImage');
     if (!image || String(image).trim().indexOf('http') === -1) return null;
@@ -24,5 +22,4 @@ export default Component.extend({
     const style = props.map(([name, value]) => `${name}: ${value};`).join(' ');
     return htmlSafe(style);
   }).readOnly(),
-
 });

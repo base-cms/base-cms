@@ -1,20 +1,9 @@
 <main class="content-edit">
   {{#content/-header
     backgroundImage=(concat model.primaryImage.src "?auto=format&crop=focalpoint&dpr=2&fit=crop&fp-x=0.5&fp-y=0.5&h=540&w=960")
+    as |header|
   }}
-    <nav class="navbar navbar-expand navbar-dark">
-      <div class="container-fluid">
-        {{#link-to "index" class="navbar-brand"}}
-          <img src="/{{rootURL}}logo-inverted.png" alt="BaseCMS" height="30">
-        {{/link-to}}
-
-        {{search-form class="ml-auto mr-3"}}
-
-        <ul class="navbar-nav">
-          {{user-nav}}
-        </ul>
-      </div>
-    </nav>
+    {{header.navbar}}
 
     <div class="container-fluid">
       <div class="row">

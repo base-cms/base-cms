@@ -2,33 +2,22 @@
   {{#content/-header
     backgroundImage="https://upload.wikimedia.org/wikipedia/commons/6/6e/Veil_Nebula_-_NGC6960.jpg"
     backgroundPosition="50% 40%"
+    as |header|
   }}
-    <nav class="navbar navbar-expand navbar-dark">
-      <div class="container-fluid">
-        {{#link-to "index" class="navbar-brand"}}
-          <img src="/{{rootURL}}logo-inverted.png" alt="BaseCMS" height="30">
-        {{/link-to}}
+    {{#header.navbar}}
+      {{content/queue-dropdown
+        class="mr-3"
+        count=contentQueue.length
+        on-clear=(action "clearQueue")
+      }}
 
-        {{content/queue-dropdown
-          class="ml-auto mr-3"
-          count=contentQueue.length
-          on-clear=(action "clearQueue")
-        }}
-
-        {{content/browse/sort-controls
-          class="mr-4"
-          options=sortOptions
-          sortByKey=sort-by
-          directionKey=sort-direction
-        }}
-
-        {{search-form class="mr-3"}}
-
-        <ul class="navbar-nav">
-          {{user-nav}}
-        </ul>
-      </div>
-    </nav>
+      {{content/browse/sort-controls
+        class="mr-4"
+        options=sortOptions
+        sortByKey=sort-by
+        directionKey=sort-direction
+      }}
+    {{/header.navbar}}
   {{/content/-header}}
 
   <section class="content-browse__list container-fluid">

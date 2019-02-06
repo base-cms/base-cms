@@ -1,0 +1,13 @@
+<div class="container-fluid">
+  {{#link-to "index" class="navbar-brand mr-auto"}}
+    <img src="/{{rootURL}}logo-inverted.png" alt="BaseCMS" height="30">
+  {{/link-to}}
+
+  {{yield}}
+
+  {{search-form class="mr-3"}}
+
+  <ul class="navbar-nav">
+    {{user-nav}}
+  </ul>
+</div>

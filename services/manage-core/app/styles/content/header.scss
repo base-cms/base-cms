@@ -9,13 +9,12 @@
     opacity: map-get($opacities, 8);
   }
 
-  // @todo move this once ocmponent is made
-  .navbar {
-    padding-top: map-get($spacers, 3);
-    padding-bottom: map-get($spacers, 3);
-  }
-
   .separator polygon {
     fill: $body-bg;
   }
+}
+
+.content-header__navbar {
+  padding-top: map-get($spacers, 3);
+  padding-bottom: map-get($spacers, 3);
 }
