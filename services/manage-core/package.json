@@ -45,6 +45,7 @@
     "ember-entypo": "^1.0.1",
     "ember-export-application-global": "^2.0.0",
     "ember-fetch": "^6.4.0",
+    "ember-font-awesome": "^4.0.0-rc.4",
     "ember-froala-editor": "^2.9.1",
     "ember-in-viewport": "^3.2.2",
     "ember-load-initializers": "^1.1.0",
