@@ -20,12 +20,18 @@
     <div class="container-fluid banner">
       <div class="row">
         <div class="col-lg-7 col-md-10">
-          <h1 class="display-2 text-white text-depth-1-half" contenteditable="true">{{model.name}}</h1>
+          {{content/edit/inline-simple-editor
+            class="display-2 text-white text-depth-1-half"
+            content=model.name
+          }}
         </div>
       </div>
       <div class="row">
         <div class="col-lg-7 col-md-10">
-          <p class="text-white text-depth-1 lead" contenteditable="true">{{model.teaser}}</p>
+          {{content/edit/inline-simple-editor
+            class="text-white text-depth-1 lead"
+            content=model.teaser
+          }}
         </div>
       </div>
       <div class="row">
