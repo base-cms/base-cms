@@ -305,9 +305,9 @@ $line-height-sm:              1.5 !default;
 $border-width:                1px !default;
 $border-color:                $gray-200 !default;
 
-$border-radius:               .375rem !default;
-$border-radius-lg:            .4375rem !default;
-$border-radius-sm:            .25rem !default;
+$border-radius:               .425rem !default;
+$border-radius-lg:            .5rem !default;
+$border-radius-sm:            .35rem !default;
 
 $rounded-pill:                50rem !default;
 
@@ -863,7 +863,7 @@ $jumbotron-bg:                      $gray-200 !default;
 
 $card-spacer-y:                     1.25rem !default;
 $card-spacer-x:                     1.5rem !default;
-$card-border-width:                 0 !default;
+$card-border-width:                 $border-width !default;
 $card-border-radius:                $border-radius !default;
 $card-border-color:                 rgba($black, .05) !default;
 $card-inner-border-radius:          calc(#{$card-border-radius} - #{$card-border-width}) !default;

@@ -32,6 +32,7 @@ div[data-test-notification-container="top-right"] {
 
 // Add shadows to all cards by default
 .card {
+  border: none;
   box-shadow: $z-depth-1;
 }
 
