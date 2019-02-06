@@ -1,8 +1,7 @@
 <main class="content-edit">
-  {{!-- @todo Remove inline style! --}}
-  <header class="content-edit__header" style="background-image: url({{model.primaryImage.src}}?auto=format&crop=focalpoint&dpr=2&fit=crop&fp-x=0.5&fp-y=0.5&h=540&w=960); background-size: cover; background-position: center center;">
-    <span class="mask"></span>
-
+  {{#content/main-header
+    backgroundImage=(concat model.primaryImage.src "?auto=format&crop=focalpoint&dpr=2&fit=crop&fp-x=0.5&fp-y=0.5&h=540&w=960")
+  }}
     <nav class="navbar navbar-expand navbar-dark">
       <div class="container-fluid">
         {{#link-to "index" class="navbar-brand"}}
@@ -17,7 +16,7 @@
       </div>
     </nav>
 
-    <div class="container-fluid banner">
+    <div class="container-fluid">
       <div class="row">
         <div class="col-md-10 col-lg-7">
           {{content/edit/inline-simple-editor
@@ -43,14 +42,7 @@
         </div>
       </div>
     </div>
-
-    <div class="separator separator-bottom separator-skew">
-      <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-        <polygon points="2560 0 2560 100 0 100"></polygon>
-      </svg>
-    </div>
-
-  </header>
+  {{/content/main-header}}
 
   <section class="content-edit__main container-fluid">
 

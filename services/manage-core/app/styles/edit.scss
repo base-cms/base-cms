@@ -1,26 +1,5 @@
 .content-edit {
 
-  .content-edit__header {
-    position: relative;
-    min-height: 16rem; // @todo make smaller on mobile
-    padding-bottom: map-get($spacers, 9);
-    box-shadow: inset 0 0 5rem black;
-
-    @include bg-gradient-variant(".mask", $gray-800);
-    .mask {
-      opacity: map-get($opacities, 8);
-    }
-
-    .navbar {
-      padding-top: map-get($spacers, 3);
-      padding-bottom: map-get($spacers, 3);
-    }
-
-    .separator polygon {
-      fill: $body-bg;
-    }
-  }
-
   .content-edit__main {
     margin-top: map-get($spacers, -8);
     margin-bottom: map-get($spacers, 6)

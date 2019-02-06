@@ -1,31 +1,6 @@
 @import "browse/left-menu";
 
 .content-browse {
-  .content-browse__header {
-    // @todo compare this to content edit
-    position: relative;
-    min-height: 16rem; // @todo make smaller on mobile
-    padding-bottom: map-get($spacers, 9);
-    box-shadow: inset 0 0 5rem black;
-
-    // @todo compare this to content edit
-    @include bg-gradient-variant(".mask", $gray-800);
-    .mask {
-      opacity: map-get($opacities, 8);
-    }
-
-    // @todo compare this to content edit
-    .navbar {
-      padding-top: map-get($spacers, 3);
-      padding-bottom: map-get($spacers, 3);
-    }
-
-    // @todo compare this to content edit
-    .separator polygon {
-      fill: $body-bg;
-    }
-  }
-
   .content-browse__list {
     margin-top: map-get($spacers, -8);
     margin-bottom: map-get($spacers, 6)

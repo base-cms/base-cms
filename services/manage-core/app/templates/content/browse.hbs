@@ -1,7 +1,8 @@
 <main class="content-browse">
-  <header class="content-browse__header" style="background-image: url(https://upload.wikimedia.org/wikipedia/commons/6/6e/Veil_Nebula_-_NGC6960.jpg); background-size: cover; background-position: 50% 40%;">
-    <span class="mask"></span>
-
+  {{#content/main-header
+    backgroundImage="https://upload.wikimedia.org/wikipedia/commons/6/6e/Veil_Nebula_-_NGC6960.jpg"
+    backgroundPosition="50% 40%"
+  }}
     <nav class="navbar navbar-expand navbar-dark">
       <div class="container-fluid">
         {{#link-to "index" class="navbar-brand"}}
@@ -28,14 +29,7 @@
         </ul>
       </div>
     </nav>
-
-    <div class="separator separator-bottom separator-skew">
-      <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-        <polygon points="2560 0 2560 100 0 100"></polygon>
-      </svg>
-    </div>
-
-  </header>
+  {{/content/main-header}}
 
   <section class="content-browse__list container-fluid">
     {{#fetch-more
