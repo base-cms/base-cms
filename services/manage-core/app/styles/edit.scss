@@ -1,8 +1,8 @@
-.content--edit {
+.content-edit {
 
-  .content__header {
+  .content-edit__header {
     position: relative;
-    min-height: 18rem; // @todo make smaller on mobile
+    min-height: 16rem; // @todo make smaller on mobile
     padding-bottom: map-get($spacers, 9);
     box-shadow: inset 0 0 5rem black;
 
@@ -15,6 +15,10 @@
       padding-top: map-get($spacers, 3);
       padding-bottom: map-get($spacers, 3);
     }
+
+    .separator polygon {
+      fill: $body-bg;
+    }
   }
 
   .container-fluid {
@@ -24,12 +28,12 @@
     }
   }
 
-  .content__main {
+  .content-edit__main {
     margin-top: map-get($spacers, -8);
     margin-bottom: map-get($spacers, 6)
   }
 
-  .content__field {
+  .content-edit__field {
     font-size: $lead-font-size;
     font-weight: $lead-font-weight;
 
@@ -37,7 +41,7 @@
       font-weight: $font-weight-bold;
     }
 
-    &.content__field--name {
+    &.content-edit__field--name {
       color: $white;
       text-shadow: $text-depth-2;
       font-size: $display2-size;
@@ -48,12 +52,12 @@
       }
     }
 
-    &.content__field--teaser {
+    &.content-edit__field--teaser {
       color: $white;
       text-shadow: $text-depth-1;
     }
 
-    &.content__field--body {
+    &.content-edit__field--body {
       padding: map-get($spacers, 4);
 
       .fr-view {

@@ -1,15 +1,64 @@
 @import "browse/left-menu";
 
-$browse-color: #f8f9fe;
+.content-browse {
+  .content-browse__header {
+    // @todo compare this to content edit
+    position: relative;
+    min-height: 16rem; // @todo make smaller on mobile
+    padding-bottom: map-get($spacers, 9);
+    box-shadow: inset 0 0 5rem black;
 
-.bg-browse {
-  background-color: $browse-color;
+    // @todo compare this to content edit
+    @include bg-gradient-variant(".mask", $gray-800);
+    .mask {
+      opacity: map-get($opacities, 8);
+    }
+
+    // @todo compare this to content edit
+    .navbar {
+      padding-top: map-get($spacers, 3);
+      padding-bottom: map-get($spacers, 3);
+    }
+
+    // @todo compare this to content edit
+    .separator polygon {
+      fill: $body-bg;
+    }
+  }
+
+  // @todo Make this global.
+  .container-fluid {
+    @include media-breakpoint-up(md) {
+      padding-left: $grid-gutter-width * 1.25 !important;
+      padding-right: $grid-gutter-width * 1.25 !important;
+    }
+  }
+
+  .content-browse__list {
+    margin-top: map-get($spacers, -8);
+    margin-bottom: map-get($spacers, 6)
+  }
+
+  .footer-controls {
+    position: fixed;
+    bottom: 1.5rem;
+    z-index: 110;
+
+    button {
+      box-shadow: $z-depth-2;
+    }
+
+    &.left {
+      left: 1.5rem;
+    }
+
+    &.right {
+      right: 1.5rem;
+    }
+  }
 }
 
-.fill-browse {
-  fill: $browse-color;
-}
-
+// @todo These should be made generic and moved
 .navbar .search {
   .input-group {
     border-radius: 2em;
@@ -53,50 +102,6 @@ $browse-color: #f8f9fe;
 
     &::after {
       display: none;
-    }
-  }
-}
-
-.card {
-  &.content {
-    .card-text {
-      line-height: 1.7;
-    }
-  }
-}
-
-.browse {
-  position: relative;
-
-  .header {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 16rem; // @todo make smaller on mobile
-  }
-
-  .container-fluid {
-    @include media-breakpoint-up(md) {
-      padding-left: $grid-gutter-width * 1.25 !important;
-      padding-right: $grid-gutter-width * 1.25 !important;
-    }
-  }
-
-  .footer-controls {
-    position: fixed;
-    bottom: 1.5rem;
-    z-index: 110;
-
-    button {
-      box-shadow: $z-depth-2;
-    }
-
-    &.left {
-      left: 1.5rem;
-    }
-
-    &.right {
-      right: 1.5rem;
     }
   }
 }

@@ -1,41 +1,43 @@
-<section class="browse">
-  <div class="header bg-gradient-gray-dark">
-    <div class="separator separator-bottom separator-skew zindex-100">
+<main class="content-browse">
+  <header class="content-browse__header" style="background-image: url(https://upload.wikimedia.org/wikipedia/commons/6/6e/Veil_Nebula_-_NGC6960.jpg); background-size: cover; background-position: 50% 40%;">
+    <span class="mask"></span>
+
+    <nav class="navbar navbar-expand navbar-dark">
+      <div class="container-fluid">
+        {{#link-to "index" class="navbar-brand"}}
+          <img src="/{{rootURL}}logo-inverted.png" alt="BaseCMS" height="30">
+        {{/link-to}}
+
+        {{content/queue-dropdown
+          class="ml-auto mr-3"
+          count=contentQueue.length
+          on-clear=(action "clearQueue")
+        }}
+
+        {{content/browse/sort-controls
+          class="mr-4"
+          options=sortOptions
+          sortByKey=sort-by
+          directionKey=sort-direction
+        }}
+
+        {{search-form class="mr-3"}}
+
+        <ul class="navbar-nav">
+          {{user-nav}}
+        </ul>
+      </div>
+    </nav>
+
+    <div class="separator separator-bottom separator-skew">
       <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-        <polygon class="fill-browse" points="2560 0 2560 100 0 100"></polygon>
+        <polygon points="2560 0 2560 100 0 100"></polygon>
       </svg>
     </div>
-  </div>
 
-  <nav class="navbar navbar-expand navbar-dark py-3">
-    <div class="container-fluid">
-      {{#link-to "index" class="navbar-brand"}}
-        <img src="/{{rootURL}}logo-inverted.png" alt="BaseCMS" height="30">
-      {{/link-to}}
+  </header>
 
-
-      {{content/queue-dropdown
-        class="ml-auto mr-3"
-        count=contentQueue.length
-        on-clear=(action "clearQueue")
-      }}
-
-      {{content/browse/sort-controls
-        class="mr-4"
-        options=sortOptions
-        sortByKey=sort-by
-        directionKey=sort-direction
-      }}
-
-      {{search-form class="mr-3"}}
-
-      <ul class="navbar-nav">
-        {{user-nav}}
-      </ul>
-    </div>
-  </nav>
-
-  <section class="container-fluid mb-6">
+  <section class="content-browse__list container-fluid">
     {{#fetch-more
       query=observable
       edges=model.edges
@@ -82,6 +84,6 @@
     {{content/create-btn}}
   </aside>
 
-</section>
+</main>
 
 {{outlet}}

@@ -1,6 +1,6 @@
-<section class="content content--edit">
+<main class="content-edit">
   {{!-- @todo Remove inline style! --}}
-  <div class="content__header" style="background-image: url({{model.primaryImage.src}}?auto=format&crop=focalpoint&dpr=2&fit=crop&fp-x=0.5&fp-y=0.5&h=540&w=960); background-size: cover; background-position: center center;">
+  <header class="content-edit__header" style="background-image: url({{model.primaryImage.src}}?auto=format&crop=focalpoint&dpr=2&fit=crop&fp-x=0.5&fp-y=0.5&h=540&w=960); background-size: cover; background-position: center center;">
     <span class="mask"></span>
 
     <nav class="navbar navbar-expand navbar-dark">
@@ -21,7 +21,7 @@
       <div class="row">
         <div class="col-md-10 col-lg-7">
           {{content/edit/inline-simple-editor
-            class="content__field content__field--name"
+            class="content-edit__field content-edit__field--name"
             content=model.name
             placeholder="Enter a title..."
           }}
@@ -30,7 +30,7 @@
       <div class="row">
         <div class="col-md-10 col-lg-7">
           {{content/edit/inline-simple-editor
-            class="content__field content__field--teaser"
+            class="content-edit__field content-edit__field--teaser"
             content=model.teaser
             placeholder="Enter a teaser..."
           }}
@@ -46,28 +46,26 @@
 
     <div class="separator separator-bottom separator-skew">
       <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-        <polygon class="fill-browse" points="2560 0 2560 100 0 100"></polygon>
+        <polygon points="2560 0 2560 100 0 100"></polygon>
       </svg>
     </div>
 
+  </header>
 
-
-  </div>
-
-  <div class="content__main container-fluid">
+  <section class="content-edit__main container-fluid">
 
     <div class="row">
       <div class="col-lg-7 col-md-10">
-        <div class="card card--content">
+        <article class="card card--content">
           {{content/edit/inline-full-editor
-            class="content__field content__field--body"
+            class="content-edit__field content-edit__field--body"
             content=model.body
             placeholder="Enter a body..."
           }}
-        </div>
+        </article>
       </div>
     </div>
 
-  </div>
+  </section>
 
-</section>
+</main>

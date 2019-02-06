@@ -1,5 +1,5 @@
 // @todo Ultimately, this should be the same width as a card, relative to the left padding of the page
-.content .browse .left-menu {
+.content-browse__left-menu {
   $seperator-width: 0.3em;
   $active-tab-color: $warning;
   $button-color: $gray-600;
@@ -27,7 +27,7 @@
 
     .tab-seperator {
       background-color: $active-tab-color;
-      box-shadow: $z-depth-2; 
+      box-shadow: $z-depth-2;
     }
   }
 
@@ -41,7 +41,7 @@
 
     opacity: 0.98;
     z-index: 3;
-  
+
     overflow-y: scroll;
     transition: width $transition-speed $transition-type;
     position: relative;
