@@ -1,0 +1,69 @@
+// Note, this must be included _after_ Bootstrap.
+
+// The standard trigger
+$ember-power-select-trigger-border: $custom-select-border-width solid $custom-select-border-color !default;
+
+$ember-power-select-trigger-border-top: $ember-power-select-trigger-border;
+$ember-power-select-trigger-border-bottom: $ember-power-select-trigger-border;
+$ember-power-select-trigger-border-right: $ember-power-select-trigger-border;
+$ember-power-select-trigger-border-left: $ember-power-select-trigger-border;
+$ember-power-select-trigger-default-border-radius: $custom-select-border-radius;
+
+$ember-power-select-background-color: $custom-select-bg;
+$ember-power-select-line-height: $custom-select-line-height;
+$ember-power-select-text-color: $custom-select-color;
+
+// Disabled trigger
+$ember-power-select-disabled-background-color: $custom-select-disabled-bg;
+
+// Active/focused trigger
+$ember-power-select-focus-outline: none;
+$ember-power-select-active-trigger-border: $custom-select-border-width solid $custom-select-focus-border-color !default;
+$ember-power-select-active-trigger-border-top: $ember-power-select-active-trigger-border;
+$ember-power-select-active-trigger-border-bottom: $ember-power-select-active-trigger-border;
+$ember-power-select-active-trigger-border-right: $ember-power-select-active-trigger-border;
+$ember-power-select-active-trigger-border-left: $ember-power-select-active-trigger-border;
+
+$ember-power-select-focus-box-shadow: $custom-select-box-shadow, $custom-select-focus-box-shadow;
+
+// Placeholder. Custom select does not have this, so use the regular input.
+$ember-power-select-placeholder-color: $input-placeholder-color;
+
+@import "ember-power-select";
+
+// Additional trigger items not set
+.ember-power-select-trigger {
+  // Hard set in the custom-select component
+  display: inline-block;
+  width: 100%;
+  vertical-align: middle;
+
+  // Apply variables that power select does not address with their own vars.
+  height: $custom-select-height;
+  padding: $custom-select-padding-y ($custom-select-padding-x + $custom-select-indicator-padding) $custom-select-padding-y $custom-select-padding-x;
+  font-weight: $custom-select-font-weight;
+  box-shadow: $custom-select-box-shadow;
+
+  // Apply input variables to match a "regular" input (these are not defined for bootstrap custom select)
+  font-size: $input-font-size;
+  transition: $custom-forms-transition;
+
+  // Apply the custom select background/indicator and reapply color
+  background: $custom-select-background;
+  background-color: $ember-power-select-background-color;
+
+  &[aria-disabled=true] {
+    color: $custom-select-disabled-color;
+    opacity: 1;
+  }
+}
+
+// Remove text left-margin
+.ember-power-select-selected-item, .ember-power-select-placeholder {
+  margin-left: 0;
+}
+
+// Remove the icon and use the custom select background icon
+.ember-power-select-status-icon {
+  display: none;
+}

@@ -6,6 +6,8 @@
 // Spinkit
 @import "../../node_modules/spinkit/scss/spinners/2-double-bounce";
 
+@import "power-select";
+
 @import "ember-power-calendar";
 .ember-power-calendar {
   @include ember-power-calendar($cell-size: 30px);
@@ -27,6 +29,12 @@
 div[data-test-notification-container="top-right"] {
   top: 1.5rem;
   right: 1.5rem;
+}
+
+// Enusure custom-select uses same font size
+.custom-select {
+  font-size: $input-font-size;
+  -webkit-appearance: none;
 }
 
 // Add shadows to all cards by default
