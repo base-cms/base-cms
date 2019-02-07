@@ -1,12 +1,7 @@
 // Note, this must be included _after_ Bootstrap.
 
 // The standard trigger
-$ember-power-select-trigger-border: $custom-select-border-width solid $custom-select-border-color !default;
-
-$ember-power-select-trigger-border-top: $ember-power-select-trigger-border;
-$ember-power-select-trigger-border-bottom: $ember-power-select-trigger-border;
-$ember-power-select-trigger-border-right: $ember-power-select-trigger-border;
-$ember-power-select-trigger-border-left: $ember-power-select-trigger-border;
+$ember-power-select-trigger-border: $custom-select-border-width solid $custom-select-border-color;
 $ember-power-select-trigger-default-border-radius: $custom-select-border-radius;
 
 $ember-power-select-background-color: $custom-select-bg;
@@ -19,15 +14,28 @@ $ember-power-select-disabled-background-color: $custom-select-disabled-bg;
 // Active/focused trigger
 $ember-power-select-focus-outline: none;
 $ember-power-select-active-trigger-border: $custom-select-border-width solid $custom-select-focus-border-color !default;
-$ember-power-select-active-trigger-border-top: $ember-power-select-active-trigger-border;
-$ember-power-select-active-trigger-border-bottom: $ember-power-select-active-trigger-border;
-$ember-power-select-active-trigger-border-right: $ember-power-select-active-trigger-border;
-$ember-power-select-active-trigger-border-left: $ember-power-select-active-trigger-border;
-
+$ember-power-select-default-focus-border: $custom-select-border-width solid $custom-select-focus-border-color !default;
 $ember-power-select-focus-box-shadow: $custom-select-box-shadow, $custom-select-focus-box-shadow;
 
 // Placeholder. Custom select does not have this, so use the regular input.
 $ember-power-select-placeholder-color: $input-placeholder-color;
+
+// Maintain trigger border radius when open
+$ember-power-select-opened-border-radius: $custom-select-border-radius;
+
+// Dropdown
+$ember-power-select-dropdown-border: $dropdown-border-width solid $dropdown-border-color !default;
+$ember-power-select-dropdown-default-border-radius: $dropdown-border-radius;
+$ember-power-select-dropdown-box-shadow: $dropdown-box-shadow;
+$ember-power-select-dropdown-margin: $dropdown-spacer; // Margin between the dropdown and the trigger
+$ember-power-select-dropdown-contiguous-border: $ember-power-select-dropdown-border;
+$ember-basic-dropdown-content-background-color: $dropdown-bg;
+
+// Dropdown options
+$ember-power-select-selected-background: $dropdown-link-active-bg;
+$ember-power-select-highlighted-background: $dropdown-link-hover-bg;
+$ember-power-select-highlighted-color: $dropdown-link-hover-color;
+$ember-power-select-disabled-option-color: $dropdown-link-disabled-color;
 
 @import "ember-power-select";
 
@@ -58,12 +66,74 @@ $ember-power-select-placeholder-color: $input-placeholder-color;
   }
 }
 
-// Remove text left-margin
+// Remove text left-margin because the indicator icon will be removed
 .ember-power-select-selected-item, .ember-power-select-placeholder {
   margin-left: 0;
 }
 
-// Remove the icon and use the custom select background icon
+// Remove the indicator icon as we're using from BS
 .ember-power-select-status-icon {
   display: none;
+}
+
+// Make select dropdown look like bootstrap downdown
+.ember-power-select-dropdown {
+  padding: $dropdown-padding-y 0;
+  font-size: $font-size-base;
+  background-clip: padding-box;
+  z-index: $zindex-dropdown;
+  min-width: $dropdown-min-width;
+}
+
+// Make options look like dropdown-items.
+.ember-power-select-option {
+  display: block;
+  white-space: nowrap;
+  padding: $dropdown-item-padding-y $dropdown-item-padding-x;
+  color: $dropdown-link-color;
+
+  &:active {
+    color: $dropdown-link-active-color;
+    @include gradient-bg($dropdown-link-active-bg);
+  }
+}
+
+.ember-power-select-option {
+  &[aria-diabled="true"] {
+    text-decoration: none;
+    pointer-events: none;
+    background-color: transparent;
+    // Remove CSS gradients
+    background-image: none;
+  }
+  &[aria-selected="true"] {
+    color: $dropdown-link-active-color; // PS doesn't have this var, use BS directly
+    @include gradient-bg($ember-power-select-selected-background);
+  }
+  &[aria-current="true"]:not([aria-selected="true"]) {
+    // Reset the current color so we can use the :hover state.
+    // But don't do it on selected items.
+    color: $dropdown-link-color;
+    background-color: $ember-basic-dropdown-content-background-color;
+
+    // Include the :active style so the click will change the background
+    &:active {
+      color: $dropdown-link-active-color; // PS doesn't have this var, use the BS one directly
+      @include gradient-bg($ember-power-select-selected-background);
+    }
+
+    // Include the :hover style (we didn't use the current label because it doesn't "off" the color when the control is exited)
+    &:hover {
+      color: $ember-power-select-highlighted-color;
+      @include gradient-bg($ember-power-select-highlighted-background);
+    }
+  }
+}
+
+.ember-power-select-option--no-matches-message {
+  pointer-events: none;
+  // Mimic dropdown-item-text
+  display: block;
+  padding: $dropdown-item-padding-y $dropdown-item-padding-x;
+  color: $dropdown-link-color;
 }
