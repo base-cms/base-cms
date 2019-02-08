@@ -1,5 +1,7 @@
 // Note, this must be included _after_ Bootstrap.
 
+// @todo Since custom select prefrills input vars that are calculated, switch to straigh input vars.
+
 // The standard trigger
 $ember-power-select-trigger-border: $custom-select-border-width solid $custom-select-border-color;
 $ember-power-select-trigger-default-border-radius: $custom-select-border-radius;
@@ -43,7 +45,40 @@ $ember-power-select-search-input-border-radius: $input-border-radius;
 $ember-power-select-search-field-focus-border: $input-border-width solid $input-focus-border-color;
 $ember-power-select-focus-box-shadow: $input-box-shadow, $input-focus-box-shadow;
 
+// Multiple options
+$ember-power-select-multiple-option-line-height: $custom-select-line-height;
+$ember-power-select-multiple-option-border-radius: $input-border-radius-sm;
+$ember-power-select-multiple-selection-background-color: $ember-power-select-selected-background;
+$ember-power-select-multiple-selection-color: $dropdown-link-active-color;
+
+// Divide by two to match the option margins
+// The left padding is cut in half so the close button is centered
+$power-select-half-padding-y: $custom-select-padding-y / 2;
+$power-select-half-padding-x: $custom-select-padding-x / 2;
+$ember-power-select-multiple-option-padding: $power-select-half-padding-y $custom-select-padding-x $power-select-half-padding-y $power-select-half-padding-x;
+
 @import "ember-power-select";
+
+.ember-power-select-multiple-option {
+  margin: 0;
+  border: none;
+  // use same value as padding for trigger element but cut in half
+  margin-right: $power-select-half-padding-x;
+  margin-bottom: $power-select-half-padding-y;
+}
+
+.ember-power-select-multiple-options {
+  padding: 0;
+  // This allows the options to utilize more space within the control
+  margin: ($power-select-half-padding-y * -1) (($power-select-half-padding-x) * -1);
+}
+
+.ember-power-select-trigger-multiple-input {
+  // Ensure the input box is aligned with the selection pills.
+  margin-left: $power-select-half-padding-x;
+  margin-top: $power-select-half-padding-y;
+  margin-bottom: $power-select-half-padding-y;
+}
 
 // Additional trigger items not set
 .ember-power-select-trigger {
@@ -53,8 +88,11 @@ $ember-power-select-focus-box-shadow: $input-box-shadow, $input-focus-box-shadow
   vertical-align: middle;
 
   // Apply variables that power select does not address with their own vars.
-  height: $custom-select-height;
-  padding: $custom-select-padding-y ($custom-select-padding-x + $custom-select-indicator-padding) $custom-select-padding-y $custom-select-padding-x;
+  min-height: $custom-select-height; // Using min-height instead of height so multi-select can wrap
+
+  // The bottom padding is zero to account for the fact the multiple options have margin-bottom applied of the same value.
+  // The min-height will ensure the control is still the correct height even when nothing is selected.
+  padding: $custom-select-padding-y ($custom-select-padding-x + $custom-select-indicator-padding) 0 $custom-select-padding-x;
   font-weight: $custom-select-font-weight;
   box-shadow: $custom-select-box-shadow;
 
