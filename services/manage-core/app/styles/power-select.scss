@@ -145,7 +145,8 @@ $ember-power-select-multiple-option-padding: $power-select-half-padding-y $custo
 
   // Apply "dropdown" variables that power select does not address with their own vars.
   padding: $dropdown-padding-y 0;
-  font-size: $font-size-base; // @todo Should this actually use the $input-font-size?
+  font-size: $input-font-size; // Apply the same font size as the trigger control.
+  font-weight: $custom-select-font-weight; // Apply the same font-weight as the trigger control.
   z-index: $zindex-dropdown; // @todo This is still buggy due to ember-wormhole.
   min-width: $dropdown-min-width;
 
@@ -203,7 +204,7 @@ $ember-power-select-multiple-option-padding: $power-select-half-padding-y $custo
 
 
 //
-// SINGLE SELECT OPTION COMPONENTS
+// DROPDOWN OPTION COMPONENTS
 //
 
 .ember-power-select-option {
