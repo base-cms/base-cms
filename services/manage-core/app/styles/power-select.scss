@@ -127,6 +127,19 @@ $ember-power-select-multiple-option-padding: $power-select-half-padding-y $custo
   background-clip: padding-box;
   z-index: $zindex-dropdown;
   min-width: $dropdown-min-width;
+
+  // The dropdown inherits the select border radius by default.
+  // This is because, originally, the dropdown menu was "connected" to the select.
+  // Reset to use the dropdown border radius.
+  &.ember-basic-dropdown-content--above {
+    border-bottom-left-radius: $ember-power-select-dropdown-default-border-radius;
+    border-bottom-right-radius: $ember-power-select-dropdown-default-border-radius;
+  }
+  &.ember-basic-dropdown-content--below,
+  &.ember-basic-dropdown-content--in-place {
+    border-top-left-radius: $ember-power-select-dropdown-default-border-radius;
+    border-top-right-radius: $ember-power-select-dropdown-default-border-radius;
+  }
 }
 
 // Make options look like dropdown-items.
