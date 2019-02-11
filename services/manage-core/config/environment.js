@@ -4,7 +4,7 @@ module.exports = function(environment) {
   let ENV = {
     modulePrefix: '@base-cms/manage-core',
     environment,
-    rootURL: '/',
+    rootURL: '/manage',
     locationType: 'auto',
     EmberENV: {
       FEATURES: {
