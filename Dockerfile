@@ -14,7 +14,7 @@ WORKDIR /base-cms
 
 # Create volume for management app assets
 VOLUME /base-cms/services/manage/dist
-COPY --from=ember /base-cms/services/manage/dist /base-cms/services/manage/dist/app
+COPY --from=ember /base-cms/services/manage/dist /base-cms/services/manage/dist/manage
 
 # Create volume for management app config
 VOLUME /etc/nginx/conf.d
