@@ -25,10 +25,32 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-10 col-lg-7 mb-2">
-          {{content/status-badge status=model.statusText textClass="h5" class="mr-1"}}
-          {{content/type-badge type=model.type textClass="h5"}}
+        <div class="col-md-10 col-lg-7 mb-2 d-flex">
+          <div>
+            {{content/status-badge status=model.statusText textClass="h5" class="mr-1"}}
+            {{content/type-badge type=model.type textClass="h5"}}
+          </div>
+          <div class="ml-auto">
+            {{#if model.company.id}}
+              {{#power-select
+                triggerClass="content-edit__field content-edit__field--company"
+                dropdownClass="content-edit__field content-edit__field--company"
+                search=(action "search")
+                selected=model.company
+                closeOnSelect=true
+                horizontalPosition="right"
+                searchField="name"
+                searchPlaceholder="Type to search..."
+                searchMessage=null
+                onchange=(action (mut model.company))
+                as |company|
+              }}
+                {{company.name}}
+              {{/power-select}}
+            {{/if}}
+          </div>
         </div>
+
       </div>
     </div>
   {{/content/-header}}
@@ -44,6 +66,8 @@
             placeholder="Enter a body..."
           }}
         </article>
+      </div>
+      <div class="col-md-2 col-lg-5 mt-8">
       </div>
     </div>
 

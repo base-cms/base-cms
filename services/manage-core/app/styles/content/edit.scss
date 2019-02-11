@@ -1,54 +1,69 @@
-.content-edit {
+.content-edit__main {
+  margin-top: map-get($spacers, -8);
+  margin-bottom: map-get($spacers, 6)
+}
 
-  .content-edit__main {
-    margin-top: map-get($spacers, -8);
-    margin-bottom: map-get($spacers, 6)
+.content-edit__field {
+  strong, b {
+    font-weight: $font-weight-bold;
   }
 
-  .content-edit__field {
-    font-size: $lead-font-size;
-    font-weight: $lead-font-weight;
+  &.content-edit__field--name {
+    color: $white;
+    text-shadow: $text-depth-2;
+    font-size: $display2-size;
+    font-weight: $font-weight-normal;
+    line-height: 1.3;
 
     strong, b {
-      font-weight: $font-weight-bold;
+      font-weight: $font-weight-bold + 200;
+    }
+  }
+
+  &.content-edit__field--teaser {
+    font-size: $lead-font-size;
+    font-weight: $lead-font-weight;
+    color: $white;
+    text-shadow: $text-depth-1;
+  }
+
+  &.content-edit__field--body {
+    font-size: $lead-font-size;
+    font-weight: $lead-font-weight;
+    padding: map-get($spacers, 4);
+
+    .fr-view {
+      min-height: 200px;
+
+      h1, h2, h3, h4, h5 { font-weight: $font-weight-bold; }
+      h1 { font-size: $lead-font-size * 1.6; }
+      h2 { font-size: $lead-font-size * 1.5; }
+      h3 { font-size: $lead-font-size * 1.4; }
+      h4 { font-size: $lead-font-size * 1.3; }
+      h5 { font-size: $lead-font-size * 1.2; }
+      h6 { font-size: $lead-font-size * 1.1; }
     }
 
-    &.content-edit__field--name {
-      color: $white;
-      text-shadow: $text-depth-2;
-      font-size: $display2-size;
-      font-weight: $font-weight-normal;
-      line-height: 1.3;
+    .fr-counter {
+      bottom: -1rem !important;
+      font-family: $font-family-base;
+    }
+  }
 
-      strong, b {
-        font-weight: $font-weight-bold + 200;
-      }
+  &.content-edit__field--company {
+
+    &.ember-power-select-dropdown {
+      min-width: 18rem;
     }
 
-    &.content-edit__field--teaser {
-      color: $white;
-      text-shadow: $text-depth-1;
-    }
-
-    &.content-edit__field--body {
-      padding: map-get($spacers, 4);
-
-      .fr-view {
-        min-height: 200px;
-
-        h1, h2, h3, h4, h5 { font-weight: $font-weight-bold; }
-        h1 { font-size: $lead-font-size * 1.6; }
-        h2 { font-size: $lead-font-size * 1.5; }
-        h3 { font-size: $lead-font-size * 1.4; }
-        h4 { font-size: $lead-font-size * 1.3; }
-        h5 { font-size: $lead-font-size * 1.2; }
-        h6 { font-size: $lead-font-size * 1.1; }
-      }
-
-      .fr-counter {
-        bottom: -1rem !important;
-        font-family: $font-family-base;
-      }
+    &.ember-power-select-trigger {
+      background: none;
+      background-color: transparent;
+      padding: ($custom-select-padding-y / 2) $custom-select-padding-x;
+      min-height: auto;
+      border: 2px solid rgba(255, 255, 255, 0.6);
+      color: rgba(255, 255, 255, 0.9);
+      cursor: pointer;
     }
   }
 }
