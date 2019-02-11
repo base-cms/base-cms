@@ -1,4 +1,4 @@
-#import '@base-cms/manage-core/gql/fragments/content/browse'
+#import '@base-cms/manage/gql/fragments/content/browse'
 
 query ContentIndex($input: AllContentQueryInput!) {
   allContent(input: $input) {

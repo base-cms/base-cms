@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import InViewportMixin from 'ember-in-viewport';
-import SendEventMixin from '@base-cms/manage-core/mixins/send-event-mixin';
+import SendEventMixin from '@base-cms/manage/mixins/send-event-mixin';
 import { setProperties }  from '@ember/object';
 
 export default Component.extend(InViewportMixin, SendEventMixin, {

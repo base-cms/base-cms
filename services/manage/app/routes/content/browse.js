@@ -1,7 +1,7 @@
 import Route from '@ember/routing/route';
-import RouteObservableMixin from '@base-cms/manage-core/mixins/route-observable-mixin';
+import RouteObservableMixin from '@base-cms/manage/mixins/route-observable-mixin';
 
-import query from '@base-cms/manage-core/gql/queries/content/browse';
+import query from '@base-cms/manage/gql/queries/content/browse';
 
 export default Route.extend(RouteObservableMixin, {
   queryParams: {

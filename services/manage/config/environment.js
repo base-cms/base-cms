@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
   let ENV = {
-    modulePrefix: '@base-cms/manage-core',
+    modulePrefix: '@base-cms/manage',
     environment,
     rootURL: '/manage',
     locationType: 'auto',
