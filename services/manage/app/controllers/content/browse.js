@@ -9,6 +9,8 @@ export default Controller.extend({
   'active-tab': null,
   attribution: 'updated',
   'content-types': null,
+  'sort-by': 'updated',
+  'sort-direction': 'asc',
 
   splitContentTypes: observer('content-types', function() {
     const value = this.get('content-types');
@@ -43,10 +45,21 @@ export default Controller.extend({
       { key: 'webinar', name: 'Webinar', count: 10 },
       { key: 'whitepaper', name: 'Whitepaper', count: 350 },
     ]);
+
+    this.set('sortOptions', [
+      { key: 'created', label: 'Created Date', icon: 'calendar' },
+      { key: 'published', label: 'Published Date', icon: 'calendar' },
+      { key: 'updated', label: 'Updated Date', icon: 'calendar' },
+      { key: 'name', label: 'Name', icon: 'text-document' },
+      { key: 'relevance', label: 'Relevance', icon: 'magnifying-glass' },
+    ]);
+
     this.set('queryParams', [
       'active-tab',
       'attribution',
       'content-types',
+      'sort-by',
+      'sort-direction',
     ]);
     this.set('contentQueue', []);
   },

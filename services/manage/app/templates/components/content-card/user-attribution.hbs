@@ -3,6 +3,7 @@
   <div>
     {{label}}
     {{#if fromNow}}
+      {{! template-lint-disable no-invalid-interactive }}
       <abbr title={{dateDisplay.title}} {{action "toggleDates"}}>{{dateDisplay.value}}</abbr>
     {{/if}}
     {{#if username}}

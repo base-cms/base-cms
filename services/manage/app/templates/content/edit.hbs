@@ -1,98 +1,76 @@
-{{!-- <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white">
+<main class="content-edit">
+  {{#content/-header
+    backgroundImage=(concat model.primaryImage.src "?auto=format&crop=focalpoint&dpr=2&fit=crop&fp-x=0.5&fp-y=0.5&h=540&w=960")
+    as |header|
+  }}
+    {{header.navbar}}
 
-</nav> --}}
-<div class="main-content bg-content">
-  <nav class="navbar navbar-top navbar-expand-md navbar-dark">
-    <div class="container-fluid">
-
-      {{#link-to "content.browse.index" class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block"}}
-        {{entypo-icon "chevron-thin-left"}} Browse
-      {{/link-to}}
-
-      <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
-        <div class="form-group mb-0">
-          <div class="input-group input-group-alternative">
-            <div class="input-group-prepend">
-              <span class="input-group-text">{{entypo-icon "magnifying-glass"}}</span>
-            </div>
-            <input class="form-control" placeholder="Search" type="text">
-          </div>
-        </div>
-      </form>
-
-      <ul class="navbar-nav align-items-center d-none d-md-flex">
-        <li class="nav-item dropdown">
-          <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <div class="media align-items-center">
-              <span class="avatar avatar-sm rounded-circle">
-                <img alt="Image placeholder" src="https://secure.gravatar.com/avatar/38e23bf434e8ba27b96a726f5aa37e98">
-              </span>
-              <div class="media-body ml-2 d-none d-lg-block">
-                <span class="mb-0 text-sm  font-weight-bold">Jacob Bare</span>
-              </div>
-            </div>
-          </a>
-          <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right z-depth-2">
-            <div class="dropdown-header">
-              <h6 class="text-overflow m-0">Welcome!</h6>
-            </div>
-            <a href="#" class="dropdown-item d-flex justify-content-between">
-              <span>My Profile</span>
-              {{entypo-icon "user" class="ml-1"}}
-            </a>
-            <a href="#" class="dropdown-item d-flex justify-content-between">
-              <span>Settings</span>
-              {{entypo-icon "cog"}}
-            </a>
-            <a href="#" class="dropdown-item d-flex justify-content-between">
-              <span>Change Password</span>
-              {{entypo-icon "key"}}
-            </a>
-            <a href="#" class="dropdown-item d-flex justify-content-between">
-              <span>Support</span>
-              {{entypo-icon "help-with-circle"}}
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item d-flex justify-content-between">
-              <span>Logout</span>
-              {{entypo-icon "log-out"}}
-            </a>
-          </div>
-        </li>
-      </ul>
-
-    </div>
-
-  </nav>
-  <div class="header content pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px; background-image: url({{model.primaryImage.src}}); background-size: cover; background-position: center top;">
-    <span class="mask bg-gradient-default opacity-7"></span>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-7 col-md-10">
-          <h1 class="display-2 text-white text-depth-1-half" contenteditable="true">{{model.name}}</h1>
+        <div class="col-md-10 col-lg-7">
+          {{content/edit/inline-simple-editor
+            class="content-edit__field content-edit__field--name"
+            content=model.name
+            placeholder="Enter a title..."
+          }}
         </div>
       </div>
       <div class="row">
-        <div class="col-lg-7 col-md-10">
-          <p class="text-white text-depth-1" contenteditable="true">{{model.teaser}}</p>
+        <div class="col-md-10 col-lg-7">
+          {{content/edit/inline-simple-editor
+            class="content-edit__field content-edit__field--teaser"
+            content=model.teaser
+            placeholder="Enter a teaser..."
+          }}
         </div>
       </div>
       <div class="row">
-        <div class="col-lg-7 col-md-10 mb-5">
-          <span class="badge badge-white bg-primary z-depth-half">
-            <h5 class="mb-0 text-white">{{model.type}}</h5>
-          </span>
+        <div class="col-md-10 col-lg-7 mb-2 d-flex">
+          <div>
+            {{content/status-badge status=model.statusText textClass="h5" class="mr-1"}}
+            {{content/type-badge type=model.type textClass="h5"}}
+          </div>
+          <div class="ml-auto">
+            {{#if model.company.id}}
+              {{#power-select
+                triggerClass="content-edit__field content-edit__field--company"
+                dropdownClass="content-edit__field content-edit__field--company"
+                search=(action "search")
+                selected=model.company
+                closeOnSelect=true
+                horizontalPosition="right"
+                searchField="name"
+                searchPlaceholder="Type to search..."
+                searchMessage=null
+                onchange=(action (mut model.company))
+                as |company|
+              }}
+                {{company.name}}
+              {{/power-select}}
+            {{/if}}
+          </div>
         </div>
+
       </div>
     </div>
-    <div class="separator separator-bottom separator-skew zindex-100">
-      <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-        <polygon class="fill-content" points="2560 0 2560 100 0 100"></polygon>
-      </svg>
+  {{/content/-header}}
+
+  <section class="content-edit__main container-fluid">
+
+    <div class="row">
+      <div class="col-lg-7 col-md-10">
+        <article class="card card--content">
+          {{content/edit/inline-full-editor
+            class="content-edit__field content-edit__field--body"
+            content=model.body
+            placeholder="Enter a body..."
+          }}
+        </article>
+      </div>
+      <div class="col-md-2 col-lg-5 mt-8">
+      </div>
     </div>
-  </div>
 
-  <div class="container-fluid mt--8">
+  </section>
 
-  </div>
-</div>
+</main>

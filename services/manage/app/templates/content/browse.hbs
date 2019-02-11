@@ -1,60 +1,53 @@
-{{!-- @todo This should be a main element, but CT has overflow hidden --}}
-<div class="browse">
-  <nav class="navbar navbar-dark">
-    <div class="container-fluid">
-
-      <a class="navbar-brand">
-        <img src="/{{rootURL}}logo-default.png" alt="BaseCMS" height="30">
-      </a>
-
-      {{!-- @todo This needs to be re-worked --}}
-      {{search-form}}
-
-      {{!-- @todo This needs to be re-worked --}}
-      {{user-nav}}
-
-    </div>
-  </nav>
-
-  <section class="list bg-browse mb-6">
-
-    <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
-      <div class="separator separator-bottom separator-skew zindex-100">
-        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-          <polygon class="fill-browse" points="2560 0 2560 100 0 100"></polygon>
-        </svg>
-      </div>
-    </div>
-
-    <div class="container-fluid mt--8">
-      {{#fetch-more
-        query=observable
-        edges=model.edges
-        hasNextPage=model.pageInfo.hasNextPage
-        endCursor=model.pageInfo.endCursor
-        resultKey="allContent"
-      as |fetch|
+<main class="content-browse">
+  {{#content/-header
+    backgroundImage="https://upload.wikimedia.org/wikipedia/commons/6/6e/Veil_Nebula_-_NGC6960.jpg"
+    backgroundPosition="50% 40%"
+    as |header|
+  }}
+    {{#header.navbar}}
+      {{content/queue-dropdown
+        class="mr-3"
+        count=contentQueue.length
+        on-clear=(action "clearQueue")
       }}
-        <div class="row">
-          {{#each fetch.nodes as |item|}}
-            {{content-card
-              content=item
-              attributionType=attribution
-              contentQueue=contentQueue
-              onQueueChange=(action "queue")
-            }}
-          {{/each}}
-        </div>
 
-        {{in-view on-viewport-enter=(action fetch.actions.loadMore)}}
-        {{#if fetch.isFetching}}
-          <div class="sk-double-bounce mx-auto my-0">
-            <div class="sk-child sk-double-bounce1 bg-primary z-depth-1"></div>
-            <div class="sk-child sk-double-bounce2 bg-primary z-depth-1"></div>
-          </div>
-        {{/if}}
-      {{/fetch-more}}
-    </div>
+      {{content/browse/sort-controls
+        class="mr-4"
+        options=sortOptions
+        sortByKey=sort-by
+        directionKey=sort-direction
+      }}
+    {{/header.navbar}}
+  {{/content/-header}}
+
+  <section class="content-browse__list container-fluid">
+    {{#fetch-more
+      query=observable
+      edges=model.edges
+      hasNextPage=model.pageInfo.hasNextPage
+      endCursor=model.pageInfo.endCursor
+      resultKey="allContent"
+    as |fetch|
+    }}
+      <div class="row">
+        {{#each fetch.nodes as |item|}}
+          {{content-card
+            content=item
+            attributionType=attribution
+            contentQueue=contentQueue
+            onQueueChange=(action "queue")
+          }}
+        {{/each}}
+      </div>
+
+      {{in-view on-viewport-enter=(action fetch.actions.loadMore)}}
+      {{#if fetch.isFetching}}
+        <div class="sk-double-bounce mx-auto my-0">
+          <div class="sk-child sk-double-bounce1 bg-primary z-depth-1"></div>
+          <div class="sk-child sk-double-bounce2 bg-primary z-depth-1"></div>
+        </div>
+      {{/if}}
+    {{/fetch-more}}
   </section>
 
   {{content/browse/left-menu
@@ -65,14 +58,15 @@
     on-content-type-clear=(action "clearContentTypes")
   }}
 
-  <div class="footer-controls left">
-    {{btn-scroll-top}}
-  </div>
+  <aside class="footer-controls left">
+    {{!-- @todo Fix `classList` not defined error --}}
+    {{!-- {{btn-scroll-top}} --}}
+  </aside>
 
-  <div class="footer-controls right">
+  <aside class="footer-controls right">
     {{content/create-btn}}
-  </div>
+  </aside>
 
-</div>
+</main>
 
 {{outlet}}

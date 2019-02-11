@@ -3,23 +3,23 @@ import { computed } from '@ember/object';
 
 export default Component.extend({
   tagName: 'span',
-  classNames: ['badge', 'badge-default', 'z-depth-1'],
+  classNames: ['badge', 'text-uppercase', 'z-depth-1'],
   classNameBindings: ['color'],
 
   color: computed('status', function() {
     switch (this.get('status')) {
       case 'Published':
-        return 'bg-success';
+        return 'badge-success';
       case 'Deleted':
-        return 'bg-danger';
+        return 'badge-danger';
       case 'Draft':
-        return 'bg-warning';
+        return 'badge-warning';
       case 'Scheduled':
-        return 'bg-info';
+        return 'badge-info';
       case 'Expired':
-        return 'bg-warning';
+        return 'badge-warning';
       default:
-        return 'bg-secondary';
+        return 'badge-secondary';
     }
   }),
 

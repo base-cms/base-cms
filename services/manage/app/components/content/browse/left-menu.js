@@ -6,7 +6,7 @@ export default Component.extend({
   globalEvents: inject(),
 
   tagName: 'aside',
-  classNames: ['left-menu'],
+  classNames: ['content-browse__left-menu'],
   classNameBindings: ['open'],
 
   activeTabKey: null,

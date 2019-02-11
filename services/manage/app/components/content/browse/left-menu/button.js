@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
-import SendEventMixin from '@base-cms/manage/mixins/send-event-mixin';
+import SendEventMixin from '@base-cms/manage-core/mixins/send-event-mixin';
 
 export default Component.extend(SendEventMixin, {
   tagName: 'button',

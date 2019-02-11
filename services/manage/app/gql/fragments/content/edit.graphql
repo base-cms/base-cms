@@ -1,11 +1,17 @@
 fragment ContentEditFragment on Content {
   id
   name
+  statusText
   type(input: { format: titleize })
   teaser
+  body
   primaryImage {
     id
     src
     alt
+  }
+  company {
+    id
+    name
   }
 }

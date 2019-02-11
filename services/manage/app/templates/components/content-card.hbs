@@ -1,5 +1,6 @@
 <div class="card content z-depth-1 border-0 mnh-100">
 
+  {{!-- @todo Company logos needs to fit within the 16x9 box --}}
   {{content-card/image-cap
     contentId=content.id
     type=content.type
@@ -22,7 +23,7 @@
         </small>
       {{/if}}
     {{/with}}
-    <p class="card-text mt-3 mb-0">
+    <p class="card-text font-weight-light mt-3 mb-0">
       {{teaserTruncated}}
     </p>
   </div>
@@ -45,10 +46,10 @@
       </div>  
 
 
-      <label class="custom-toggle mt-auto mb-0">
-        {{input type="checkbox" checked=isQueued change=(action "emitQueueChange")}}
-        <span class="custom-toggle-slider rounded-circle"></span>
-      </label>
+      <div class="custom-control custom-checkbox mt-auto ml-auto mr--2">
+        {{input type="checkbox" id=(concat "content-queue-" content.id) class="custom-control-input" checked=isQueued change=(action "emitQueueChange")}}
+        <label class="custom-control-label" for="content-queue-{{content.id}}"></label>
+      </div>
       
     </div>
 
