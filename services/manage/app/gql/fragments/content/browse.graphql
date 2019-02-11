@@ -1,0 +1,30 @@
+fragment ContentBrowseFragment on Content {
+  id
+  name
+  type(input: { format: titleize })
+  statusText
+  teaser
+  primaryImage {
+    id
+    src
+    alt
+  }
+  company {
+    id
+    name
+  }
+  updated
+  created
+  updatedBy {
+    id
+    username
+    firstName
+    lastName
+  }
+  createdBy {
+    id
+    username
+    firstName
+    lastName
+  }
+}

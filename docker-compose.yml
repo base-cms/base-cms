@@ -3,8 +3,7 @@ version: '3.7'
 x-node-defaults: &node
   tty: true
   init: true
-  image: base-cms-node-alpine:latest
-  build: ./node-alpine-git
+  image: node:10.15
   entrypoint: ["node"]
   working_dir: /base-cms
   volumes:
@@ -74,6 +73,17 @@ services:
       - graphql-server
     ports:
       - "10003:80"
+  manage:
+    <<: *node
+    image: danlynn/ember-cli:3.7.1
+    working_dir: /base-cms/services/manage
+    entrypoint: ["node_modules/.bin/ember"]
+    command: ["serve", "--port", "10004", "--proxy", "http://graphql-server"]
+    depends_on:
+      - graphql-server
+    ports:
+      - "10004:10004" # serve port
+      - "10005:10005" # test port (needs to be configured)
 
 volumes:
   esdata: {}

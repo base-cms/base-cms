@@ -1,0 +1,373 @@
+// THIS MUST BE INCLUDED _AFTER_ BOOTSTRAP
+// Designed for bootstrap@4.2.1 and ember-power-select@2.2.1
+// YMMV if using different versions.
+
+
+//
+// TRIGGER VARIABLES
+//
+
+// Trigger. Mimics the Bootstrap "custom-select" component.
+$ember-power-select-trigger-border: $custom-select-border-width solid $custom-select-border-color;
+$ember-power-select-trigger-default-border-radius: $custom-select-border-radius;
+
+$ember-power-select-background-color: $custom-select-bg;
+$ember-power-select-line-height: $custom-select-line-height;
+$ember-power-select-text-color: $custom-select-color;
+
+// Trigger in disabled state.
+$ember-power-select-disabled-background-color: $custom-select-disabled-bg;
+
+// Trigger in active/focused state.
+$ember-power-select-focus-outline: none;
+$ember-power-select-active-trigger-border: $custom-select-border-width solid $custom-select-focus-border-color !default;
+$ember-power-select-default-focus-border: $custom-select-border-width solid $custom-select-focus-border-color !default;
+$ember-power-select-focus-box-shadow: $custom-select-box-shadow, $custom-select-focus-box-shadow;
+
+// Trigger placeholder text.
+// The "custom-select" component does not have a placeholder variable.
+// As such, use the value from the "input" component.
+$ember-power-select-placeholder-color: $input-placeholder-color;
+
+//
+// DROPDOWN VARIABLES
+//
+
+// The dropdown menu.
+// Mimics the Bootstrap "dropdown" component.
+$ember-power-select-dropdown-border: $dropdown-border-width solid $dropdown-border-color !default;
+$ember-power-select-dropdown-default-border-radius: $dropdown-border-radius;
+$ember-power-select-dropdown-box-shadow: $dropdown-box-shadow;
+$ember-power-select-dropdown-margin: $dropdown-spacer; // Margin between the dropdown and the trigger
+$ember-power-select-dropdown-contiguous-border: $ember-power-select-dropdown-border;
+$ember-basic-dropdown-content-background-color: $dropdown-bg;
+
+// Dropdown options. These display on single select.
+// Mimics Bootstrap "dropdown-link" component.
+$ember-power-select-selected-background: $dropdown-link-active-bg;
+$ember-power-select-highlighted-background: $dropdown-link-hover-bg;
+$ember-power-select-highlighted-color: $dropdown-link-hover-color;
+$ember-power-select-disabled-option-color: $dropdown-link-disabled-color;
+
+// The dropdown search input (displays on single select only).
+// Mimics Bootstrap "input" component.
+$ember-power-select-search-field-border: $input-border-width solid $input-border-color;
+$ember-power-select-search-input-border-radius: $input-border-radius;
+$ember-power-select-search-field-focus-border: $input-border-width solid $input-focus-border-color;
+$ember-power-select-focus-box-shadow: $input-box-shadow, $input-focus-box-shadow;
+
+// Ensure the opened border-radius matches.
+$ember-power-select-opened-border-radius: $ember-power-select-dropdown-default-border-radius;
+
+
+//
+// MULTIPLE SELECT VARIABLES
+//
+
+// Individual selected options when in multiple select mode.
+// These are the "chips" that appear inside the control.
+// A mix of the "custom-select," "input," and "dropdown" components.
+$ember-power-select-multiple-option-line-height: $custom-select-line-height;
+$ember-power-select-multiple-option-border-radius: $input-border-radius-sm;
+$ember-power-select-multiple-selection-background-color: $ember-power-select-selected-background;
+$ember-power-select-multiple-selection-color: $dropdown-link-active-color;
+
+// When in mutiple select mode, the options are displayed as "chips" within the control.
+// By default there is a lot of "wasted" space due to default padding settings. As a result, the options appear too small.
+// As such, adjust the padding by dividing the normal padding by two.
+$power-select-half-padding-y: $custom-select-padding-y / 2 !default;
+$power-select-half-padding-x: $custom-select-padding-x / 2 !default;
+$ember-power-select-multiple-option-padding: $power-select-half-padding-y $custom-select-padding-x $power-select-half-padding-y $power-select-half-padding-x;
+
+
+@import "ember-power-select";
+
+
+//
+// TRIGGER COMPONENT
+//
+
+.ember-power-select-trigger {
+  // Apply hard-set values from the "custom-select" component.
+  display: inline-block;
+  width: 100%;
+  vertical-align: middle;
+
+  // Apply "custom-select" variables that power select does not address with their own vars.
+  min-height: $custom-select-height; // Using min-height instead of height so multiple selections can wrap within the control.
+
+  // Bottom padding is zero to account for multiple select options that already have a margin-bottom of the same value.
+  // The min-height will ensure that the control is still the correct height even when empty.
+  padding: $custom-select-padding-y ($custom-select-padding-x + $custom-select-indicator-padding) 0 $custom-select-padding-x;
+  font-weight: $custom-select-font-weight;
+
+  @include transition($custom-forms-transition);
+  @include box-shadow($custom-select-box-shadow);
+
+  // Only apply border-radius if enabled.
+  @if $enable-rounded {
+    border-radius: $ember-power-select-trigger-default-border-radius;
+  } @else {
+    border-radius: 0;
+  }
+
+  // Apply "input" variables that are not defined for "custom-select".
+  font-size: $input-font-size;
+
+
+  // Apply the "custom-select" background (which contains the right-aligned arrow indicator) and re-apply color
+  background: $custom-select-background;
+  background-color: $ember-power-select-background-color;
+
+  &[aria-disabled=true] {
+    color: $custom-select-disabled-color;
+    opacity: 1;
+  }
+
+  // By default, power select attempts to "combine" the dropdown with the trigger.
+  // Bootstrap generally does not display dropdowns this way.
+  // As such, reset the opened trigger border radius to match the unopened border radius.
+  &[aria-expaned=true] {
+    @if $enable-rounded {
+      border-radius: $ember-power-select-trigger-default-border-radius;
+    } @else {
+      border-radius: 0;
+    }
+  }
+
+  &:focus,
+  &--active {
+    // Only apply box-shadow if enabled (and unset if not)
+    @if $enable-shadows {
+      box-shadow: $ember-power-select-focus-box-shadow;
+    } @else {
+      box-shadow: none;
+    }
+  }
+}
+
+
+//
+// TRIGGER INDICATOR/STATUS ICON
+//
+
+.ember-power-select-status-icon {
+  // Remove the built-in indicator icon since we're using the "custom-select" indicator.
+  display: none;
+}
+
+// Remove the left-margin because the built-in indicator icon was replaced.
+.ember-power-select-selected-item, .ember-power-select-placeholder {
+  margin-left: 0;
+}
+
+
+//
+// DROPDOWN COMPONENT
+//
+
+.ember-power-select-dropdown {
+  // Apply hard-set values from the "dropdown" component.
+  background-clip: padding-box;
+
+  // Apply "dropdown" variables that power select does not address with their own vars.
+  padding: $dropdown-padding-y 0;
+  font-size: $input-font-size; // Apply the same font size as the trigger control.
+  font-weight: $custom-select-font-weight; // Apply the same font-weight as the trigger control.
+  z-index: $zindex-dropdown; // @todo This is still buggy due to ember-wormhole.
+  min-width: $dropdown-min-width;
+
+  // Only apply box-shadow if enabled (and unset if not)
+  @if $enable-shadows {
+    box-shadow: $ember-power-select-dropdown-box-shadow;
+  } @else {
+    box-shadow: none;
+  }
+
+  // Only apply border-radius if enabled.
+  @if $enable-rounded {
+    border-radius: $ember-power-select-dropdown-default-border-radius;
+  } @else {
+    border-radius: 0;
+  }
+
+  // The power select dropdown inherits the select border radius by default.
+  // This is because, originally, the dropdown menu was "connected" to the select.
+  // Reset to use the dropdown border radius.
+  &.ember-basic-dropdown-content--above {
+    @if $enable-rounded {
+      border-bottom-left-radius: $ember-power-select-dropdown-default-border-radius;
+      border-bottom-right-radius: $ember-power-select-dropdown-default-border-radius;
+    } @else {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+  &.ember-basic-dropdown-content--below,
+  &.ember-basic-dropdown-content--in-place {
+    @if $enable-rounded {
+      border-top-left-radius: $ember-power-select-dropdown-default-border-radius;
+      border-top-right-radius: $ember-power-select-dropdown-default-border-radius;
+    } @else {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+  }
+}
+
+.ember-basic-dropdown-trigger[aria-expanded="true"] {
+  @if $enable-rounded {
+    border-radius: $ember-power-select-opened-border-radius;
+  } @else {
+    border-radius: 0;
+  }
+}
+
+//
+// SEARCH BOX COMPONENT (SINGLE SELECT ONLY)
+//
+
+.ember-power-select-search-input {
+  // Apply hard-set values from the "forms" component.
+  display: block;
+  width: 100%;
+  background-clip: padding-box;
+
+  // Apply "input" variables that power select does not address with their own vars.
+  height: $input-height;
+  padding: $input-padding-y $input-padding-x;
+  font-size: $input-font-size;
+  font-weight: $input-font-weight;
+  line-height: $input-line-height;
+  color: $input-color;
+  background-color: $input-bg;
+
+  // Only apply border-radius if enabled.
+  @if $enable-rounded {
+    border-radius: $ember-power-select-search-input-border-radius;
+  } @else {
+    border-radius: 0;
+  }
+
+  @include box-shadow($input-box-shadow);
+  @include transition($input-transition);
+
+  &:focus {
+    color: $input-focus-color;
+    // Only apply box-shadow if enabled (and unset if not)
+    @if $enable-shadows {
+      box-shadow: $ember-power-select-focus-box-shadow;
+    } @else {
+      box-shadow: none;
+    }
+  }
+
+  &::placeholder {
+    color: $input-placeholder-color;
+    opacity: 1;
+  }
+}
+
+.ember-power-select-search {
+  // Since the search box appears inside the dropdown, override the padding to match the other dropdown items
+  padding: $dropdown-item-padding-y $dropdown-item-padding-x;
+}
+
+
+//
+// DROPDOWN OPTION COMPONENTS
+//
+
+.ember-power-select-option {
+  // Mimics Bootstrap's "dropdown-item" component.
+  display: block;
+  white-space: nowrap;
+  padding: $dropdown-item-padding-y $dropdown-item-padding-x;
+  color: $dropdown-link-color;
+
+  &[aria-disabled="true"] {
+    // Mimic Bootstrap's "dropdown-item" disabled styles.
+    text-decoration: none;
+    pointer-events: none;
+    background-color: transparent;
+    // Remove CSS gradients
+    background-image: none;
+  }
+  &[aria-selected="true"] {
+    color: $dropdown-link-active-color; // PS doesn't have this var, use BS directly
+    @include gradient-bg($ember-power-select-selected-background);
+  }
+  &[aria-current="true"]:not([aria-selected="true"]) {
+    // Reset the current color so we can use the :hover state.
+    // But don't do it on selected items.
+    color: $dropdown-link-color;
+    background-color: $ember-basic-dropdown-content-background-color;
+
+    // Include the :active style so the click will change the background and color.
+    &:active {
+      color: $dropdown-link-active-color; // PS doesn't have this var, use the BS one directly
+      @include gradient-bg($ember-power-select-selected-background);
+    }
+
+    // Include the :hover style.
+    // We reset power select's "aria-current=true" styles so that we can directly use the :hover state.
+    // This was done to ensure that the hover color is removed when the mouse completely exits the control.
+    // Otherwise it would stick.
+    &:hover {
+      color: $ember-power-select-highlighted-color;
+      @include gradient-bg($ember-power-select-highlighted-background);
+    }
+  }
+
+  &:active {
+    color: $dropdown-link-active-color;
+    @include gradient-bg($dropdown-link-active-bg);
+  }
+}
+
+// Displays when a search is performed but no matches were found.
+// Also displays when the search message is enabled.
+.ember-power-select-option--no-matches-message,
+.ember-power-select-option--search-message {
+  // Mimics Bootstrap's "dropdown-item-text" component.
+  pointer-events: none;
+  display: block;
+  padding: $dropdown-item-padding-y $dropdown-item-padding-x;
+  color: $dropdown-link-color;
+}
+
+//
+// MULTIPLE SELECT OPTION COMPONENTS
+//
+
+// The wrapping component for all selected options (the "chip" wrapper).
+.ember-power-select-multiple-options {
+  padding: 0;
+  // This allows the options to utilize more space within the control, but accounts for
+  // the fact that each option also adds margins (so each option is spaced apart from one another).
+  margin: ($power-select-half-padding-y * -1) (($power-select-half-padding-x) * -1);
+}
+
+// The indiviual selected option ("chip")
+.ember-power-select-multiple-option {
+  margin: 0;
+  border: none;
+  // Use same value as padding for trigger element but cut in half.
+  margin-right: $power-select-half-padding-x;
+  margin-bottom: $power-select-half-padding-y;
+
+  // Only apply border-radius if enabled.
+  @if $enable-rounded {
+    border-radius: $ember-power-select-multiple-option-border-radius;
+  } @else {
+    border-radius: 0;
+  }
+}
+
+// The inline search input
+.ember-power-select-trigger-multiple-input {
+  // Ensure the input box is aligned with the selection pills.
+  margin-left: $power-select-half-padding-x;
+  margin-top: $power-select-half-padding-y;
+  margin-bottom: $power-select-half-padding-y;
+}

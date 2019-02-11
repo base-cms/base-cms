@@ -1,0 +1,31 @@
+<div class="tab-wrapper bg-secondary">
+  {{#each tabs as |tab|}}
+    {{#content/browse/left-menu/tab-content
+      activeTabKey=activeTab.key
+      tab=tab
+      facets=facets
+      selectedContentTypes=selectedContentTypes
+      on-content-type-click=on-content-type-click
+      on-content-type-clear=on-content-type-clear
+      on-close=(action "close")
+    as |tabContent|
+    }}
+      {{get tabContent tab.key}}
+    {{/content/browse/left-menu/tab-content}}
+  {{/each}}
+</div>
+
+<div class="tab-seperator"></div>
+
+<div class="tabs d-flex flex-column">
+  {{#each tabs as |tab|}}
+    {{#content/browse/left-menu/button
+      title=tab.title
+      for=tab.key
+      activeTab=activeTab.key
+      on-click=(action "setActiveTabKey")
+    }}
+      {{entypo-icon tab.icon class="text-white h2"}}
+    {{/content/browse/left-menu/button}}
+  {{/each}}
+</div>

@@ -2,6 +2,7 @@ const ApplyInterfaceDirective = require('./apply-interface');
 const ArrayValueDirective = require('./array-value');
 const FindManyDirective = require('./find-many');
 const FindOneDirective = require('./find-one');
+const MatchManyDirective = require('./match-many');
 const MomentFormatDirective = require('./moment-format');
 const MutatedValueDirective = require('./mutated-value');
 const ProjectUsingDirective = require('./project-using');
@@ -17,6 +18,7 @@ module.exports = {
   arrayValue: ArrayValueDirective,
   findMany: FindManyDirective,
   findOne: FindOneDirective,
+  matchMany: MatchManyDirective,
   momentFormat: MomentFormatDirective,
   mutatedValue: MutatedValueDirective,
   projectUsing: ProjectUsingDirective,

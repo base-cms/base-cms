@@ -4,7 +4,7 @@ const { isObject } = require('@base-cms/common');
 const schema = require('../graphql/schema');
 const basedb = require('../basedb');
 const createLoaders = require('../dataloaders');
-const { NODE_ENV } = require('../env');
+const { NODE_ENV, GRAPHQL_ENDPOINT } = require('../env');
 
 const isProduction = NODE_ENV === 'production';
 
@@ -19,7 +19,7 @@ const getCanonicalPaths = (req) => {
 
 const server = new ApolloServer({
   schema,
-  playground: !isProduction ? { endpoint: '/' } : false,
+  playground: !isProduction ? { endpoint: GRAPHQL_ENDPOINT } : false,
   introspection: true,
   context: ({ req }) => {
     const loaders = createLoaders(basedb);
@@ -46,6 +46,6 @@ const server = new ApolloServer({
     };
   },
 });
-server.applyMiddleware({ app: router, path: '/' });
+server.applyMiddleware({ app: router, path: GRAPHQL_ENDPOINT });
 
 module.exports = router;

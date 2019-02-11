@@ -1,0 +1,13 @@
+{{#if show}}
+  {{entypo-icon "clock" class="mr-1"}}
+  <div>
+    {{label}}
+    {{#if fromNow}}
+      {{! template-lint-disable no-invalid-interactive }}
+      <abbr title={{dateDisplay.title}} {{action "toggleDates"}}>{{dateDisplay.value}}</abbr>
+    {{/if}}
+    {{#if username}}
+      by {{username}}
+    {{/if}}
+  </div>
+{{/if}}

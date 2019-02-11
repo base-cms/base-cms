@@ -1,0 +1,26 @@
+@import "browse/left-menu";
+
+.content-browse {
+  .content-browse__list {
+    margin-top: map-get($spacers, -8);
+    margin-bottom: map-get($spacers, 6)
+  }
+
+  .footer-controls {
+    position: fixed;
+    bottom: 1.5rem;
+    z-index: 110;
+
+    button {
+      box-shadow: $z-depth-2;
+    }
+
+    &.left {
+      left: 1.5rem;
+    }
+
+    &.right {
+      right: 1.5rem;
+    }
+  }
+}

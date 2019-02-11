@@ -1,0 +1,65 @@
+.content-header {
+  position: relative;
+  min-height: 16rem; // @todo make smaller on mobile
+  padding-bottom: map-get($spacers, 9);
+  box-shadow: inset 0 0 5rem black;
+
+  @include bg-gradient-variant(".mask", $gray-800);
+  .mask {
+    opacity: map-get($opacities, 8);
+  }
+
+  .separator polygon {
+    fill: $body-bg;
+  }
+}
+
+.content-header__navbar {
+  padding-top: map-get($spacers, 3);
+  padding-bottom: map-get($spacers, 3);
+
+  .search {
+    .input-group {
+      border-radius: 2em;
+      border: 2px solid rgba(255, 255, 255, 0.6);
+
+      .input-group-text {
+        background-color: transparent;
+        padding-left: 1rem;
+        color: rgba(255, 255, 255, 0.6);
+        border: 0;
+        box-shadow: none;
+      }
+
+      .form-control {
+        color: rgba(255, 255, 255, 0.9);
+        background-color: transparent;
+        width: 350px;
+        border: 0;
+        box-shadow: none;
+        font-size: 0.875rem;
+
+        &::placeholder {
+          color: rgba(255, 255, 255, 0.6);
+        }
+      }
+    }
+  }
+
+  .btn-sort-options,
+  .btn-sort-direction,
+  .btn-content-queue {
+    color: rgba(255, 255, 255, 0.8);
+    border: none;
+  }
+
+  .user-dropdown {
+    .dropdown-toggle {
+      font-size: $font-size-sm;
+
+      &::after {
+        display: none;
+      }
+    }
+  }
+}
