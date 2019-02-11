@@ -56,6 +56,9 @@ $ember-power-select-search-input-border-radius: $input-border-radius;
 $ember-power-select-search-field-focus-border: $input-border-width solid $input-focus-border-color;
 $ember-power-select-focus-box-shadow: $input-box-shadow, $input-focus-box-shadow;
 
+// Ensure the opened border-radius matches.
+$ember-power-select-opened-border-radius: $ember-power-select-dropdown-default-border-radius;
+
 
 //
 // MULTIPLE SELECT VARIABLES
@@ -212,6 +215,13 @@ $ember-power-select-multiple-option-padding: $power-select-half-padding-y $custo
   }
 }
 
+.ember-basic-dropdown-trigger[aria-expanded="true"] {
+  @if $enable-rounded {
+    border-radius: $ember-power-select-opened-border-radius;
+  } @else {
+    border-radius: 0;
+  }
+}
 
 //
 // SEARCH BOX COMPONENT (SINGLE SELECT ONLY)
