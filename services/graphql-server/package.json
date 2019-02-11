@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/graphql-server",
-  "version": "0.4.13",
+  "version": "0.4.14",
   "description": "The BaseCMS GraphQL server using Apollo and Express.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
@@ -8,8 +8,8 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "@base-cms/common": "^0.4.10",
-    "@base-cms/db": "^0.4.13",
+    "@base-cms/common": "^0.4.14",
+    "@base-cms/db": "^0.4.14",
     "@godaddy/terminus": "^4.1.0",
     "apollo-server-express": "^2.3.1",
     "cors": "^2.8.5",
