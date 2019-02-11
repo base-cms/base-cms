@@ -10,4 +10,8 @@ fragment ContentEditFragment on Content {
     src
     alt
   }
+  company {
+    id
+    name
+  }
 }
