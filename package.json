@@ -46,5 +46,9 @@
     "rollup-plugin-graphql": "^0.1.0",
     "rollup-plugin-json": "^3.1.0",
     "rollup-plugin-node-resolve": "^3.4.0"
+  },
+  "graphdoc": {
+    "endpoint": "http://graphql-server/graphql",
+    "logo": "<h3 class='slds-text-heading--medium'><a href='/'>GraphQL Schema NPM_VERSION</a></h3>"
   }
 }
