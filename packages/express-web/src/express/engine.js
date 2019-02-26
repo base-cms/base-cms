@@ -2,11 +2,12 @@ const { resolve } = require('path');
 const registerHelpers = require('../helpers');
 const hbs = require('../engine');
 
-module.exports = (app, siteDir) => {
+module.exports = (app, siteDir, options = {}) => {
   const dir = resolve(siteDir);
 
   // Set the view engine.
   app.engine('hbs', hbs.express4({
+    ...options,
     contentHelperName: 'content-for',
     defaultLayout: `${dir}/index`,
     partialsDir: `${dir}/partials`,
