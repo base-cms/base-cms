@@ -1,5 +1,6 @@
 const { startServer } = require('@base-cms/express-web');
 const routes = require('./routes');
+const siteConfig = require('../site.config');
 
 const { GRAPHQL_URI, INTERNAL_PORT, EXTERNAL_PORT } = require('./env');
 const pkg = require('../package.json');
@@ -14,6 +15,7 @@ process.on('unhandledRejection', (e) => {
 log(`> Booting ${pkg.name} v${pkg.version}...`);
 startServer({
   siteDir: `${__dirname}/../site`,
+  siteConfig,
   routes,
   graphqlUri: GRAPHQL_URI,
   port: INTERNAL_PORT,

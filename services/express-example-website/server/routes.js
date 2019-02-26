@@ -7,7 +7,7 @@ module.exports = (router) => {
 
   router.get('/page/:alias', (req, res) => {
     const { alias } = req.params;
-    res.render('page', { alias });
+    res.render('dynamic-page', { alias });
   });
 
   // All content
