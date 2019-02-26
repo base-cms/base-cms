@@ -22,6 +22,6 @@ COPY ./services/manage/nginx.conf /etc/nginx/conf.d/manage.conf
 
 RUN yarn --production
 
-WORKDIR /base-cms/services/example-website
+WORKDIR /base-cms/services/nextjs-example-website
 RUN node_modules/.bin/next build site
 WORKDIR /base-cms

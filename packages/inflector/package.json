@@ -1,0 +1,15 @@
+{
+  "name": "@base-cms/inflector",
+  "version": "0.4.0",
+  "description": "Inflector functions for JavaScript projects.",
+  "main": "src/index.js",
+  "author": "Jacob Bare <jacob@limit0.io>",
+  "repository": "https://github.com/base-cms/base-cms/tree/master/packages/inflector",
+  "license": "MIT",
+  "dependencies": {
+    "inflected": "^2.0.4"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
