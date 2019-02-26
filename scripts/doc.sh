@@ -7,7 +7,7 @@
 docker-compose up -d graphql-server
 
 curl -IX GET http://localhost:10002/grapqhl?query=%7Bping%7D \
-    --retry 10 \
+    --retry 100 \
     --retry-connrefused \
     --retry-delay 2
 
@@ -23,8 +23,9 @@ git config --global user.email "travis@travis-ci.org"
 git config --global user.name "Travis CI"
 
 git checkout -b gh-pages
-mv doc/* .
-git add .
+git pull
+mv doc/graphql graphql
+git add graphql
 git commit --message "Documentation update: $1"
 
 git remote add origin-pages https://${GH_DOC_TOKEN}@github.com/base-cms/base-cms.git > /dev/null 2>&1
