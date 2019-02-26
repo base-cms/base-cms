@@ -10,8 +10,6 @@ before_install:
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
 
-after_script: ./scripts/doc.sh master; ./scripts/doc.sh v0.4.14
-
 deploy:
   -
     provider: script
