@@ -7,36 +7,34 @@ services:
   - elasticsearch
 
 env:
-  - MONGO_DSN=mongodb://mongodb:27017
-  - TENANT_KEY=as3_baseplatform
-  - SERVICE_URL=http://graphql-server
-  - ELASTICSEARCH_URL=http://localhost:9200
-  - ENABLE_BASEDB_LOGGING=0
+  - MONGO_DSN=mongodb://mongodb:27017 TENANT_KEY=as3_baseplatform SERVICE_URL=http://graphql-server ELASTICSEARCH_URL=http://localhost:9200 ENABLE_BASEDB_LOGGING=0
 
-deploy:
-  -
-    provider: script
-    script: bash scripts/doc.sh master
-    on:
-      branch: doc
-  # -
-  #   provider: script
-  #   script: bash scripts/doc.sh $TRAVIS_TAG
-  #   on:
-  #     tags: true
-  # # -
-  # #   provider: script
-  # #   script: bash scripts/deploy-image.sh latest
-  # #   on:
-  # #     branch: master
-  # -
-  #   provider: script
-  #   script: bash scripts/deploy-image.sh $TRAVIS_TAG
-  #   on:
-  #     tags: true
-  # -
-  #   provider: script
-  #   script: bash scripts/deploy-rancher.sh
-  #   on:
-  #     tags: true
-  #     condition: "$TRAVIS_TAG =~ ^v[0-9]+\\.[0-9]+\\.[0-9]+$"
+after_script: scripts/doc.sh master
+
+# deploy:
+#   -
+#     provider: script
+#     script: bash scripts/doc.sh master
+#     on:
+#       branch: master
+#   -
+#     provider: script
+#     script: bash scripts/doc.sh $TRAVIS_TAG
+#     on:
+#       tags: true
+#   -
+#     provider: script
+#     script: bash scripts/deploy-image.sh latest
+#     on:
+#       branch: master
+#   -
+#     provider: script
+#     script: bash scripts/deploy-image.sh $TRAVIS_TAG
+#     on:
+#       tags: true
+#   -
+#     provider: script
+#     script: bash scripts/deploy-rancher.sh
+#     on:
+#       tags: true
+#       condition: "$TRAVIS_TAG =~ ^v[0-9]+\\.[0-9]+\\.[0-9]+$"
