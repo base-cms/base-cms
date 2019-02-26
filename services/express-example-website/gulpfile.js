@@ -35,7 +35,7 @@ const serve = async () => {
   });
 };
 
-// @todo The `site` path should be read from a config, since this value can change.
+// Note: if the `siteDir` is changed in `server/index.js` this also needs to be changed.
 const lint = () => src(['server/**/*.js', 'site/**/*.js'])
   .pipe(cache('lint'))
   .pipe(eslint())
