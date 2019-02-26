@@ -76,7 +76,7 @@ services:
   express-example-website:
     << : *node
     working_dir: /base-cms/services/express-example-website
-    command: ["server.js"]
+    command: ["/base-cms/node_modules/.bin/gulp"]
     environment:
       YARN_CACHE_FOLDER: /.yarn-cache
       NODE_ENV: development
