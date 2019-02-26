@@ -7,7 +7,7 @@ services:
   - elasticsearch
 
 env:
-  - MONGO_DSN=mongodb://mongodb:27017 TENANT_KEY=as3_baseplatform SERVICE_URL=http://graphql-server ELASTICSEARCH_URL=http://localhost:9200 ENABLE_BASEDB_LOGGING=0
+  - MONGO_DSN=mongodb://localhost:27017 TENANT_KEY=as3_baseplatform
 
 after_script: scripts/doc.sh master
 
