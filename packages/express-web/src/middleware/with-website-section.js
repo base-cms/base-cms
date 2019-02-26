@@ -3,7 +3,6 @@ const gql = require('graphql-tag');
 const defaultFragment = require('../gql/fragments/with-website-section');
 const extractFragmentData = require('../utils/extract-fragment-data');
 const sectionPath = require('../utils/section-path');
-// const site = require('../site/config');
 
 const createError = (statusCode, message) => {
   const err = new Error(message);
