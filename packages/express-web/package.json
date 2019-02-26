@@ -1,0 +1,22 @@
+{
+  "name": "@base-cms/express-web",
+  "version": "0.4.0",
+  "description": "Core Express components for BaseCMS websites",
+  "author": "Jacob Bare <jacob@limit0.io>",
+  "license": "MIT",
+  "repository": "https://github.com/base-cms/base-cms/tree/master/packages/express-web",
+  "dependencies": {
+    "@base-cms/express-apollo": "^0.4.0"
+  },
+  "peerDependencies": {
+    "graphql": "^14.0.0",
+    "graphql-tag": "^2.10.0"
+  },
+  "devDependencies": {
+    "graphql": "^14.1.1",
+    "graphql-tag": "^2.10.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
