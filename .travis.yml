@@ -6,8 +6,6 @@ services:
   - mongodb
   - elasticsearch
 
-after_script: scripts/doc.sh master
-
 deploy:
   -
     provider: script
