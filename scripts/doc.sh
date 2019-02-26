@@ -23,7 +23,8 @@ git config --global user.email "travis@travis-ci.org"
 git config --global user.name "Travis CI"
 
 git checkout -b gh-pages
-git add doc/
+mv doc/* .
+git add .
 git commit --message "Documentation update: $1"
 
 git remote add origin-pages https://${GH_DOC_TOKEN}@github.com/base-cms/base-cms.git > /dev/null 2>&1
