@@ -65,9 +65,9 @@ services:
       - mongodb
     ports:
       - "10002:80"
-  example-website:
+  nextjs-example-website:
     << : *node
-    working_dir: /base-cms/services/example-website
+    working_dir: /base-cms/services/nextjs-example-website
     command: ["server.js"]
     depends_on:
       - graphql-server
