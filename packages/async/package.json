@@ -1,0 +1,15 @@
+{
+  "name": "@base-cms/async",
+  "version": "0.4.0",
+  "description": "Promise wrappers for the async library.",
+  "main": "src/index.js",
+  "author": "Jacob Bare <jacob@limit0.io>",
+  "repository": "https://github.com/base-cms/base-cms/tree/master/packages/async",
+  "license": "MIT",
+  "dependencies": {
+    "async": "^2.6.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
