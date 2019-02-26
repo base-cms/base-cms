@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+yarn
+
 # Update GraphQL documentation
 MONGO_DSN=mongodb://localhost:27017 TENANT_KEY=as3_baseplatform node services/graphql-server/src/index.js &
 sleep 2; ./node_modules/.bin/graphdoc --force -o doc/graphql/$1 -e http://localhost/graphql
