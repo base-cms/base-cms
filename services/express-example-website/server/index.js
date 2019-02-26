@@ -19,6 +19,7 @@ startServer({
   routes,
   graphqlUri: GRAPHQL_URI,
   port: INTERNAL_PORT,
+  engineConfig: { beautify: process.env.NODE_ENV === 'development' },
 }).then(() => {
   log(`> Ready on http://0.0.0.0:${EXTERNAL_PORT}`);
 }).catch(e => setImmediate(() => { throw e; }));
