@@ -9,6 +9,16 @@ deploy:
       branch: master
   -
     provider: script
+    script: bash scripts/doc.sh master
+    on:
+      branch: master
+  -
+    provider: script
+    script: bash scripts/doc.sh $TRAVIS_TAG
+    on:
+      tags: true
+  -
+    provider: script
     script: bash scripts/deploy-image.sh $TRAVIS_TAG
     on:
       tags: true
