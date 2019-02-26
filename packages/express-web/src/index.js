@@ -4,8 +4,9 @@ const { isFunction: isFn } = require('@base-cms/utils');
 const express = require('./express');
 
 const startServer = async ({
-  siteDir = './site',
+  siteDir,
   port = 4008,
+  routes,
   graphqlUri,
   apolloConfig,
   engineConfig,
@@ -17,12 +18,18 @@ const startServer = async ({
   onStart,
   onHealthCheck,
 } = {}) => {
+  if (!siteDir) throw new Error('No site directory was provided.');
+
   const app = express({
     siteDir,
     graphqlUri,
     apolloConfig,
     engineConfig,
   });
+
+  // Load website routes.
+  if (!isFn(routes)) throw new Error('A routes function is required.');
+  routes(app);
 
   // Await required services here...
   if (isFn(onStart)) await onStart(app);

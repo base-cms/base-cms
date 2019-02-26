@@ -10,5 +10,11 @@ module.exports = (config = {}) => {
   // Register the HBS view engine.
   engine(app, config.siteDir, config.engineConfig);
 
+  // Apply request origin.
+  app.use((req, res, next) => {
+    res.locals.requestOrigin = `${req.protocol}://${req.get('host')}`;
+    next();
+  });
+
   return app;
 };
