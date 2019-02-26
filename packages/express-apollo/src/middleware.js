@@ -1,7 +1,7 @@
 const createClient = require('./create-client');
 
-module.exports = config => (req, res, next) => {
-  const apollo = createClient(config);
+module.exports = (uri, config) => (req, res, next) => {
+  const apollo = createClient(uri, config);
   req.apollo = apollo;
   res.locals.apollo = apollo;
   next();
