@@ -1,9 +1,9 @@
 {
-  "name": "@base-cms/example-website",
+  "name": "@base-cms/nextjs-example-website",
   "version": "0.4.14",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
-  "repository": "https://github.com/base-cms/base-cms/tree/master/packages/example-website",
+  "repository": "https://github.com/base-cms/base-cms/tree/master/packages/nextjs-example-website",
   "license": "MIT",
   "private": true,
   "dependencies": {
