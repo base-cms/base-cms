@@ -1,14 +1,11 @@
-const { withWebsiteSection } = require('@base-cms/express-web/middleware');
+const { withWebsiteSection, withDynamicPage } = require('@base-cms/express-web/middleware');
 
 module.exports = (router) => {
   router.get('/', (req, res) => {
     res.render('index');
   });
 
-  router.get('/page/:alias', (req, res) => {
-    const { alias } = req.params;
-    res.render('dynamic-page', { alias });
-  });
+  router.get('/page/:alias', withDynamicPage());
 
   // All content
   router.get('/:prefix(*):id(\\d{8}):suffix(*)', (req, res) => {
