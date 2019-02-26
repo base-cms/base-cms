@@ -5,6 +5,7 @@ const express = require('./express');
 
 const startServer = async ({
   siteDir,
+  siteConfig,
   port = 4008,
   routes,
   graphqlUri,
@@ -22,6 +23,7 @@ const startServer = async ({
 
   const app = express({
     siteDir,
+    siteConfig,
     graphqlUri,
     apolloConfig,
     engineConfig,

@@ -58,8 +58,6 @@ module.exports = ({
     return res.render(page, {
       section: websiteSectionAlias,
       canonicalPath,
-      // @todo This MW would not have config context. Needs to be injected differently.
-      site: { name: 'Officer' },
     });
   }
 

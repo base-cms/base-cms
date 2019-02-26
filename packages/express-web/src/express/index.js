@@ -1,9 +1,14 @@
 const express = require('express');
 const apollo = require('./apollo');
 const engine = require('./engine');
+const SiteConfig = require('../config/site-config');
 
 module.exports = (config = {}) => {
   const app = express();
+
+  // Set the website config to the app.
+  app.locals.site = new SiteConfig(config.siteConfig);
+
   // Register apollo.
   apollo(app, config.graphqlUri, config.apolloConfig);
 
