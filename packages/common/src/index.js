@@ -1,3 +1,5 @@
+const asArray = require('./as-array');
+const asObject = require('./as-object');
 const async = require('./async');
 const asyncRoute = require('./async-route');
 const callOnce = require('./call-once');
@@ -6,6 +8,8 @@ const isObject = require('./is-object');
 const stripHtml = require('./strip-html');
 
 module.exports = {
+  asArray,
+  asObject,
   async,
   asyncRoute,
   callOnce,
