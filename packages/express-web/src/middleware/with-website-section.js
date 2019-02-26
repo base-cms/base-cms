@@ -1,14 +1,9 @@
-const { asyncRoute, isFunction: isFn } = require('@base-cms/utils');
+const createError = require('http-errors');
 const gql = require('graphql-tag');
+const { asyncRoute, isFunction: isFn } = require('@base-cms/utils');
 const defaultFragment = require('../gql/fragments/with-website-section');
 const extractFragmentData = require('../utils/extract-fragment-data');
 const sectionPath = require('../utils/section-path');
-
-const createError = (statusCode, message) => {
-  const err = new Error(message);
-  err.statusCode = statusCode;
-  return err;
-};
 
 const buildQuery = ({ fragment } = {}) => {
   const { spreadFragmentName, processedFragment } = extractFragmentData({ fragment });
@@ -38,7 +33,7 @@ module.exports = ({
 
   if (!alias) {
     // No website alias was provided. Return a 404.
-    throw createError(404, 'No website section alias was provided.');
+    throw createError(400, 'No website section alias was provided.');
   }
 
   // Query for the website section using the alias, via the injected apollo client.
