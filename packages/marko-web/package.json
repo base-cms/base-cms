@@ -1,0 +1,29 @@
+{
+  "name": "@base-cms/marko-web",
+  "version": "0.4.0",
+  "description": "Core Marko+Express components for BaseCMS websites",
+  "author": "Jacob Bare <jacob@limit0.io>",
+  "main": "src/index.js",
+  "license": "MIT",
+  "repository": "https://github.com/base-cms/base-cms/tree/master/packages/marko-web",
+  "dependencies": {
+    "@base-cms/express-apollo": "^0.4.0",
+    "@base-cms/object-path": "^0.4.0",
+    "@base-cms/utils": "^0.4.0",
+    "@godaddy/terminus": "^4.1.0",
+    "express": "^4.16.4",
+    "http-errors": "^1.7.2",
+    "marko": "^4.15.2"
+  },
+  "peerDependencies": {
+    "graphql": "^14.0.0",
+    "graphql-tag": "^2.10.0"
+  },
+  "devDependencies": {
+    "graphql": "^14.1.1",
+    "graphql-tag": "^2.10.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
