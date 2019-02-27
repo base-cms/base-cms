@@ -27,7 +27,7 @@ if [ "master" != "$1" ]; then
 fi
 
 # Ensure there is always a change to prevent the git commit from erroring
-sed -i '' "s/\"Last Updated.*\"/\"Last Updated $(date +"%Y-%m-%d %H:%M")\"/" _doc/_config.yml
+sed -i.bak "s/\"Last Updated.*\"/\"Last Updated $(date +"%Y-%m-%d %H:%M")\"/" _doc/_config.yml
 
 cd _doc
 git add .
