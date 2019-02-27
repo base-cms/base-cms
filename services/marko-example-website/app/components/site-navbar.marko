@@ -1,0 +1,15 @@
+<nav>
+  <a href="/">
+    <img style="background-color: black; padding: 0.5rem;" src=`${out.global.site.config.logo}` height="25">
+  </a>
+  <ul>
+    <for|item| of=out.global.site.config.primaryNavItems>
+      <li><a href=`${item.to}`>${item.label}</a></li>
+    </for>
+  </ul>
+  <ul>
+    <for|item| of=out.global.site.config.secondaryNavItems>
+      <li><a href=`${item.to}`><small>${item.label}</small></a></li>
+    </for>
+  </ul>
+</nav>
