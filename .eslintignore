@@ -1,2 +1,5 @@
 # Build products
 dist/
+
+# Generated Marko Files
+*.marko.js
