@@ -31,10 +31,12 @@ exports.buildQuery = buildQuery;
  * @param {string} params.alias The content page alias to query.
  * @param {string} [params.queryFragment] The `graphql-tag` fragment
  *                                        to apply to the `contentPage` query.
+ * @param {object} [params.additionalInput] Additional query input params.
  */
 module.exports = async (apolloClient, {
   alias,
   queryFragment,
+  additionalInput,
 } = {}) => {
   if (!alias) {
     // No content page alias was provided. Return a 400.
@@ -42,7 +44,7 @@ module.exports = async (apolloClient, {
   }
 
   // Query for the content page using the alias.
-  const input = { alias };
+  const input = { ...additionalInput, alias };
   const variables = { input };
   const { data } = await apolloClient.query({ query: buildQuery({ queryFragment }), variables });
   const { contentPage: page } = data;
