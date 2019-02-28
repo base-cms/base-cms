@@ -1,9 +1,9 @@
-const { Router } = require('express');
 const { ApolloServer } = require('apollo-server-express');
-const { isObject } = require('@base-cms/common');
-const schema = require('../graphql/schema');
+const { Router } = require('express');
+const { isObject } = require('@base-cms/utils');
 const basedb = require('../basedb');
 const createLoaders = require('../dataloaders');
+const schema = require('../graphql/schema');
 const { NODE_ENV, GRAPHQL_ENDPOINT } = require('../env');
 
 const isProduction = NODE_ENV === 'production';

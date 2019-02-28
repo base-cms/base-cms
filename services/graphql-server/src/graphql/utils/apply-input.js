@@ -1,4 +1,4 @@
-const { isObject } = require('@base-cms/common');
+const { isObject } = require('@base-cms/utils');
 
 const { isArray } = Array;
 

@@ -1,5 +1,5 @@
 const striptags = require('striptags');
-const { isObject } = require('@base-cms/common');
+const { isObject } = require('@base-cms/utils');
 
 const createTitle = (doc) => {
   if (!isObject(doc)) return null;

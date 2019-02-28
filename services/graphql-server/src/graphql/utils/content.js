@@ -1,5 +1,5 @@
 const striptags = require('striptags');
-const { isObject } = require('@base-cms/common');
+const { isObject } = require('@base-cms/utils');
 const { BaseDB } = require('@base-cms/db');
 
 const createSeoTitle = (doc) => {
