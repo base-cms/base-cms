@@ -6,6 +6,27 @@ const { extractFragmentData } = require('../utils');
 /**
  * Builds the `content` GraphQL query.
  *
+ * Guarantees that the following fields will be present:
+ *
+ * ```
+ * id
+ * name
+ * type
+ * teaser
+ * body
+ * published
+ * redirectTo
+ * canonicalPath
+ * metadata {
+ *   title
+ *   description
+ * }
+ * primarySection {
+ *   id
+ *   name
+ *   alias
+ * }
+ * ```
  * @param {object} params
  * @param {string} [params.queryFragment] The `graphql-tag` fragment
  *                                        to apply to the `content` query.
