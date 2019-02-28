@@ -1,7 +1,16 @@
+import { get } from '@base-cms/object-path';
+
 <site-layout>
   <site-navbar />
-  <h1>Content (templates/content.marko)</h1>
-  <h2>Loaded content: ${data.content.id}</h2>
+  <div class="container-fluid">
+    <h1>${get(data, "content.name")}</h1>
+    <hr>
+    <h4>$!{get(data, "content.teaser")}</h4>
+    <hr>
+    <article>
+      $!{get(data, "content.body")}
+    </article>
+  </div>
   <hr>
   <site-footer />
 </site-layout>

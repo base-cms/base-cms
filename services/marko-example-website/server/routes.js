@@ -1,4 +1,4 @@
-const { withWebsiteSection, withDynamicPage } = require('@base-cms/marko-web/middleware');
+const { withWebsiteSection, withDynamicPage, withContent } = require('@base-cms/marko-web/middleware');
 const index = require('../app/templates/index');
 const section = require('../app/templates/section');
 const page = require('../app/templates/dynamic-page');
@@ -16,11 +16,9 @@ module.exports = (app) => {
   }));
 
   // All content
-  app.get('/:prefix(*):id(\\d{8}):suffix(*)', (req, res) => {
-    res.marko(content, {
-      name: 'Test',
-    });
-  });
+  app.get('/:prefix(*):id(\\d{8}):suffix(*)', withContent({
+    template: content,
+  }));
 
   app.get('/:alias(tactical)', withWebsiteSection({
     template: section,
