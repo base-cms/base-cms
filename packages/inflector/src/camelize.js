@@ -1,3 +1,3 @@
-const { underscore, camelize } = require('inflection');
+const { underscore, camelize } = require('inflected');
 
-module.exports = value => camelize(underscore(value), true);
+module.exports = value => camelize(underscore(value), false);
