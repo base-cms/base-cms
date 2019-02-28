@@ -6,6 +6,7 @@ const cleanPath = require('./clean-path');
 const compareNumbers = require('./compare-numbers');
 const isFunction = require('./is-function');
 const isObject = require('./is-object');
+const sleep = require('./sleep');
 
 module.exports = {
   asArray,
@@ -16,4 +17,5 @@ module.exports = {
   compareNumbers,
   isFunction,
   isObject,
+  sleep,
 };
