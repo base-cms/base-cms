@@ -1,5 +1,5 @@
-const { UserInputError } = require('apollo-server-express');
 const { underscore, dasherize, titleize } = require('inflection');
+const { isFunction: isFn, cleanPath } = require('@base-cms/utils');
 const pathResolvers = require('../../utils/content-path-resolvers');
 const { createTitle, createDescription } = require('../../utils/content');
 const defaultContentTypes = require('../../utils/content-types');
@@ -24,23 +24,23 @@ module.exports = {
     __resolveType: resolveType,
 
     canonicalPath: async (content, _, ctx) => {
-      const { contentPaths } = ctx;
-      if (!contentPaths.includes('id')) {
-        throw new UserInputError('The canonicalPath arguments must at least contain "id"', {
-          invalidArgs: contentPaths,
-        });
-      }
+      const { canonicalRules } = ctx;
+      const { content: contentRules } = canonicalRules;
+      const { parts, prefix } = contentRules;
+
       const { type, linkUrl } = content;
       const types = ['Promotion', 'TextAd'];
       if (types.includes(type) && linkUrl) return linkUrl;
 
-      const values = await Promise.all(contentPaths.map((key) => {
+      const values = await Promise.all(parts.map((key) => {
         const fn = pathResolvers[key];
-        return typeof fn === 'function' ? fn(content, ctx) : content[key];
+        return isFn(fn) ? fn(content, ctx) : content[key];
       }));
 
-      const path = values.filter(v => v).join('/');
+      const path = cleanPath(values.filter(v => v).map(v => String(v).trim()).join('/'));
+
       if (!path) return '';
+      if (prefix) return `/${cleanPath(prefix)}/${path}`;
       return `/${path}`;
     },
 
