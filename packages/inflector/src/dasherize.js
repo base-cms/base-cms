@@ -1,3 +1,3 @@
-const { underscore, dasherize } = require('inflected');
+const { underscore, dasherize } = require('inflection');
 
 module.exports = value => dasherize(underscore(value));
