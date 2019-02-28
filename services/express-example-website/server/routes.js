@@ -14,7 +14,7 @@ module.exports = (router) => {
   });
 
   router.get('/:alias(tactical)', withWebsiteSection({
-    page: 'section/tactical',
+    template: 'section/tactical',
   }));
 
   router.get('/:alias(*)', withWebsiteSection());
