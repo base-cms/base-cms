@@ -1,5 +1,5 @@
 const { asyncRoute, isFunction: isFn } = require('@base-cms/utils');
-const { websiteSection: load } = require('@base-cms/web-common/page-loaders');
+const { websiteSection: loader } = require('@base-cms/web-common/page-loaders');
 
 module.exports = ({
   template = 'section',
@@ -10,7 +10,7 @@ module.exports = ({
   const alias = isFn(aliasResolver) ? await aliasResolver(req, res) : req.params.alias;
   const { apollo } = req;
 
-  const section = await load(apollo, { alias, queryFragment });
+  const section = await loader(apollo, { alias, queryFragment });
   const { redirectTo, canonicalPath } = section;
   if (redirectTo) {
     return res.redirect(301, redirectTo);

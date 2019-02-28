@@ -1,5 +1,5 @@
 const { asyncRoute, isFunction: isFn } = require('@base-cms/utils');
-const { dynamicPage: load } = require('@base-cms/web-common/page-loaders');
+const { dynamicPage: loader } = require('@base-cms/web-common/page-loaders');
 
 module.exports = ({
   template = 'dynamic-page',
@@ -10,7 +10,7 @@ module.exports = ({
   const alias = isFn(aliasResolver) ? await aliasResolver(req, res) : req.params.alias;
   const { apollo } = req;
 
-  const page = await load(apollo, { alias, queryFragment });
+  const page = await loader(apollo, { alias, queryFragment });
   const { redirectTo, canonicalPath } = page;
   if (redirectTo) {
     return res.redirect(301, redirectTo);
