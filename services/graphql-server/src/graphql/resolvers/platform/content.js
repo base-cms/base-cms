@@ -1,5 +1,6 @@
 const { underscore, dasherize, titleize } = require('inflection');
 const { isFunction: isFn, cleanPath } = require('@base-cms/utils');
+const objectPath = require('object-path');
 const pathResolvers = require('../../utils/content-path-resolvers');
 const { createTitle, createDescription } = require('../../utils/content');
 const defaultContentTypes = require('../../utils/content-types');
@@ -9,7 +10,28 @@ const connectionProjection = require('../../utils/connection-projection');
 
 const { isArray } = Array;
 
-const resolveType = ({ type }) => `Content${type}`;
+const dynamicPageResolvers = {
+  alias: content => objectPath.get(content, 'mutations.Website.alias'),
+};
+
+const handleDynamicPage = async (content, ctx) => {
+  const { canonicalRules } = ctx;
+  const { dynamicPage: pageRules } = canonicalRules;
+  const { parts, prefix } = pageRules;
+
+  const values = await Promise.all(parts.map((key) => {
+    const fn = dynamicPageResolvers[key];
+    return isFn(fn) ? fn(content, ctx) : content[key];
+  }));
+
+  const path = cleanPath(values.filter(v => v).map(v => String(v).trim()).join('/'));
+
+  if (!path) return '';
+  if (prefix) return `/${cleanPath(prefix)}/page/${path}`;
+  return `/page/${path}`;
+};
+
+const resolveType = async ({ type }) => `Content${type}`;
 
 module.exports = {
   Addressable: { __resolveType: resolveType },
@@ -29,6 +51,9 @@ module.exports = {
       const { parts, prefix } = contentRules;
 
       const { type, linkUrl } = content;
+
+      if (type === 'Page') return handleDynamicPage(content, ctx);
+
       const types = ['Promotion', 'TextAd'];
       if (types.includes(type) && linkUrl) return linkUrl;
 
