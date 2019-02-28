@@ -2,25 +2,7 @@ language: node_js
 node_js: "10.15"
 cache: yarn
 
-env:
-  - DOCKER_COMPOSE_VERSION=1.23.2
-before_install:
-  - sudo rm /usr/local/bin/docker-compose
-  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
-  - chmod +x docker-compose
-  - sudo mv docker-compose /usr/local/bin
-
 deploy:
-  -
-    provider: script
-    script: bash scripts/doc.sh master
-    on:
-      branch: master
-  -
-    provider: script
-    script: bash scripts/doc.sh $TRAVIS_TAG
-    on:
-      tags: true
   -
     provider: script
     script: bash scripts/deploy-image.sh latest
