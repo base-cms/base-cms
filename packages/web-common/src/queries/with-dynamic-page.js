@@ -1,25 +1,9 @@
 const createError = require('http-errors');
 const gql = require('graphql-tag');
-const defaultFragment = require('../gql/fragments/with-dynamic-page');
 const { extractFragmentData } = require('../utils');
 
 /**
  * Builds the `contentPage` GraphQL query.
- *
- * Guarantees that the following fields will be present:
- *
- * ```
- * id
- * name
- * type
- * teaser
- * alias
- * body
- * metadata {
- *   title
- *   description
- * }
- * ```
  *
  * @param {object} params
  * @param {string} [params.queryFragment] The `graphql-tag` fragment
@@ -30,11 +14,19 @@ const buildQuery = ({ queryFragment } = {}) => {
   return gql`
     query WithDynamicPage($input: ContentPageQueryInput!) {
       contentPage(input: $input) {
-        ...WithDynamicPageFragment
+        id
+        name
+        type
+        teaser
+        alias
+        body
+        metadata {
+          title
+          description
+        }
         ${spreadFragmentName}
       }
     }
-    ${defaultFragment}
     ${processedFragment}
   `;
 };

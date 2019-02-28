@@ -1,32 +1,10 @@
 const createError = require('http-errors');
 const gql = require('graphql-tag');
-const defaultFragment = require('../gql/fragments/with-content');
 const { extractFragmentData } = require('../utils');
 
 /**
  * Builds the `content` GraphQL query.
- *
- * Guarantees that the following fields will be present:
- *
- * ```
- * id
- * name
- * type
- * teaser
- * body
- * published
- * redirectTo
- * canonicalPath
- * metadata {
- *   title
- *   description
- * }
- * primarySection {
- *   id
- *   name
- *   alias
- * }
- * ```
+ * *
  * @param {object} params
  * @param {string} [params.queryFragment] The `graphql-tag` fragment
  *                                        to apply to the `content` query.
@@ -36,11 +14,26 @@ const buildQuery = ({ queryFragment }) => {
   return gql`
     query WithContent($input: ContentQueryInput!) {
       content(input: $input) {
-        ...WithContentFragment
+        id
+        name
+        type
+        teaser
+        body
+        published
+        redirectTo
+        canonicalPath
+        metadata {
+          title
+          description
+        }
+        primarySection {
+          id
+          name
+          alias
+        }
         ${spreadFragmentName}
       }
     }
-    ${defaultFragment}
     ${processedFragment}
   `;
 };
