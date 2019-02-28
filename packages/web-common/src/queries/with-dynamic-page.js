@@ -53,5 +53,5 @@ module.exports = async (apolloClient, {
     // No content page was found for this alias. Return a 404.
     throw createError(404, `No content page was found for alias '${alias}'`);
   }
-  return { page };
+  return page;
 };
