@@ -11,7 +11,7 @@ const { extractFragmentData } = require('../utils');
  *                                        to apply to the `contentPage` query.
  */
 const buildQuery = ({ queryFragment } = {}) => {
-  const { spreadFragmentName, processedFragment } = extractFragmentData({ queryFragment });
+  const { spreadFragmentName, processedFragment } = extractFragmentData(queryFragment);
   return gql`
     query WithDynamicPage($input: ContentPageQueryInput!) {
       contentPage(input: $input) {

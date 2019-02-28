@@ -1,6 +1,6 @@
 const extractFragmentName = require('./extract-fragment-name');
 
-module.exports = ({ fragment }) => {
+module.exports = (fragment) => {
   let spreadFragmentName = '';
   let processedFragment = '';
   if (fragment) {
