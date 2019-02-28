@@ -9,6 +9,8 @@ fragment WithDynamicPageFragment on ContentPage {
   teaser
   alias
   body
+  redirectTo
+  canonicalPath
   metadata {
     title
     description

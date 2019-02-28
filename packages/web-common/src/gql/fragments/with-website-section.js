@@ -7,6 +7,8 @@ fragment WithWebsiteSectionFragment on WebsiteSection {
   name
   description
   alias
+  redirectTo
+  canonicalPath
   metadata {
     title
     description
