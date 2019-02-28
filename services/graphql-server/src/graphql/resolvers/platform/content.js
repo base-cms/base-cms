@@ -92,11 +92,11 @@ module.exports = {
       const { format } = input;
       switch (format) {
         case 'dasherize':
-          return dasherize(underscore(type));
+          return dasherize(type);
         case 'underscore':
           return underscore(type);
         case 'titleize':
-          return titleize(underscore(type));
+          return titleize(type);
         default:
           return type;
       }
