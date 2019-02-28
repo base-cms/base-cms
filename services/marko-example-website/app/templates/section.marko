@@ -10,7 +10,7 @@ import queryFragment from '../api/fragments/website-scheduled-content';
 
   <div class="container-fluid">
     <h1>Section (templates/section.marko)</h1>
-    <h2>Loaded alias: ${get(data "section.alias")}</h2>
+    <h2>Loaded alias: ${get(data, "section.alias")}</h2>
     <hr>
     <website-scheduled-content|{ items }|
       query-fragment=queryFragment
