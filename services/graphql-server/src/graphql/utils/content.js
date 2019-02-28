@@ -1,11 +1,11 @@
-const striptags = require('striptags');
-const { isObject } = require('@base-cms/utils');
 const { BaseDB } = require('@base-cms/db');
+const { isObject } = require('@base-cms/utils');
+const { stripTags } = require('@base-cms/html');
 
 const createSeoTitle = (doc) => {
   let title = BaseDB.extractMutationValue(doc, 'Website', 'seoTitle');
   if (!title) title = BaseDB.fillMutation(doc, 'Website', 'name');
-  return striptags(title || '').trim();
+  return stripTags(title || '').trim();
 };
 
 // const createTitleCompany = async (doc, load) => {
@@ -53,14 +53,14 @@ const createTitle = async (doc) => {
 
 const createDescription = (doc) => {
   if (!isObject(doc)) return null;
-  const description = striptags((BaseDB.fillMutation(doc, 'Website', 'teaser') || '').trim());
+  const description = stripTags((BaseDB.fillMutation(doc, 'Website', 'teaser') || '').trim());
   return description;
   // This should not require the entire body, and rather should be handled at save time.
   // Otherwise, the entire body needs to be returned all the time.
   // No longer doing this here.
   // @todo Add support for this on write in platform.
 
-  // const body = striptags(BaseDB.fillMutation(doc, 'Website', 'body') || '');
+  // const body = stripTags(BaseDB.fillMutation(doc, 'Website', 'body') || '');
   // return `${body.substring(0, 155)}...`;
 };
 
