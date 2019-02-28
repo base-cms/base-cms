@@ -1,17 +1,18 @@
-const { underscore, dasherize, titleize } = require('inflection');
+const { get } = require('@base-cms/object-path');
 const { isFunction: isFn, cleanPath } = require('@base-cms/utils');
-const objectPath = require('object-path');
+const { underscore, dasherize, titleize } = require('@base-cms/inflector');
+
+const connectionProjection = require('../../utils/connection-projection');
+const defaultContentTypes = require('../../utils/content-types');
+const getDefaultOption = require('../../utils/get-default-option');
+const getDescendantIds = require('../../utils/website-section-child-ids');
 const pathResolvers = require('../../utils/content-path-resolvers');
 const { createTitle, createDescription } = require('../../utils/content');
-const defaultContentTypes = require('../../utils/content-types');
-const getDescendantIds = require('../../utils/website-section-child-ids');
-const getDefaultOption = require('../../utils/get-default-option');
-const connectionProjection = require('../../utils/connection-projection');
 
 const { isArray } = Array;
 
 const dynamicPageResolvers = {
-  alias: content => objectPath.get(content, 'mutations.Website.alias'),
+  alias: content => get(content, 'mutations.Website.alias'),
 };
 
 const handleDynamicPage = async (content, ctx) => {

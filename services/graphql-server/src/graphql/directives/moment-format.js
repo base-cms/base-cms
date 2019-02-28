@@ -1,6 +1,6 @@
 const { SchemaDirectiveVisitor } = require('graphql-tools');
 const moment = require('moment-timezone');
-const objectPath = require('object-path');
+const { get } = require('@base-cms/object-path');
 
 class MomentFormatDirective extends SchemaDirectiveVisitor {
   /**
@@ -16,7 +16,7 @@ class MomentFormatDirective extends SchemaDirectiveVisitor {
         defaultTimezone,
       } = this.args;
 
-      const value = objectPath.get(doc, localField || field.name);
+      const value = get(doc, localField || field.name);
       if (!(value instanceof Date)) return value;
 
       const format = input && input.format ? input.format : defaultFormat;

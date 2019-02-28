@@ -1,5 +1,5 @@
 const { SchemaDirectiveVisitor } = require('graphql-tools');
-const objectPath = require('object-path');
+const { get } = require('@base-cms/object-path');
 
 class MutatedValueDirective extends SchemaDirectiveVisitor {
   /**
@@ -11,12 +11,12 @@ class MutatedValueDirective extends SchemaDirectiveVisitor {
     field.resolve = async (doc, { input } = {}) => {
       const { localField } = this.args;
       const fieldKey = localField || field.name;
-      const value = objectPath.get(doc, fieldKey);
+      const value = get(doc, fieldKey);
 
       const { mutation } = input;
       if (!mutation) return value;
 
-      const mutated = objectPath.get(doc, `mutations.${mutation}.${fieldKey}`);
+      const mutated = get(doc, `mutations.${mutation}.${fieldKey}`);
       return mutated || value;
     };
   }

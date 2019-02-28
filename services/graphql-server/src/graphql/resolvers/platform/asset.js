@@ -1,4 +1,4 @@
-const inflection = require('inflection');
+const { titleize } = require('@base-cms/inflector');
 
 const altFrom = (value) => {
   const pos = value.lastIndexOf('.');
@@ -6,7 +6,7 @@ const altFrom = (value) => {
   const offset = value.length - pos;
   if (offset < 6) {
     const replaced = value.replace(value.substring(pos), '');
-    const titleized = inflection.titleize(replaced);
+    const titleized = titleize(replaced);
     return titleized.replace(/\./g, ' ');
   }
   return value;

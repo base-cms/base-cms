@@ -1,13 +1,11 @@
-const objectPath = require('object-path');
-const inflection = require('inflection');
+const { get } = require('@base-cms/object-path');
 const { BaseDB } = require('@base-cms/db');
-
-const { underscore, dasherize } = inflection;
+const { dasherize } = require('@base-cms/inflector');
 
 module.exports = {
   id: content => content._id,
-  slug: content => objectPath.get(content, 'mutations.Website.slug'),
-  type: content => dasherize(underscore(content.type)),
+  slug: content => get(content, 'mutations.Website.slug'),
+  type: content => dasherize(content.type),
   sectionAlias: async (content, { load }) => {
     const ref = BaseDB.get(content, 'mutations.Website.primarySection');
     const id = BaseDB.extractRefId(ref);
