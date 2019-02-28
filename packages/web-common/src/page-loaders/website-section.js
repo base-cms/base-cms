@@ -1,33 +1,5 @@
 const createError = require('http-errors');
-const gql = require('graphql-tag');
-const { extractFragmentData } = require('../utils');
-const defaultFragment = require('../gql/fragments/with-website-section');
-
-/**
- * Builds the `websiteSectionAlias` and `websiteSectionRedirect` GraphQL query.
- *
- * @param {object} params
- * @param {string} [params.queryFragment] The `graphql-tag` fragment
- *                                        to apply to the `contentPage` query.
- */
-const buildQuery = ({ queryFragment } = {}) => {
-  const { spreadFragmentName, processedFragment } = extractFragmentData(queryFragment);
-  return gql`
-    query WithWebsiteSection($input: WebsiteSectionAliasQueryInput!, $redirect: WebsiteSectionRedirectQueryInput!) {
-      websiteSectionAlias(input: $input) {
-        ...WithWebsiteSectionFragment
-        ${spreadFragmentName}
-      }
-      websiteSectionRedirect(input: $redirect) {
-        ...WithWebsiteSectionFragment
-        ${spreadFragmentName}
-      }
-    }
-    ${defaultFragment}
-    ${processedFragment}
-  `;
-};
-exports.buildQuery = buildQuery;
+const buildQuery = require('../gql/query-factories/with-website-section');
 
 /**
  * @param {ApolloClient} apolloClient The Apollo GraphQL client that will perform the query.

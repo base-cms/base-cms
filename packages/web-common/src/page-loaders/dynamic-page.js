@@ -1,36 +1,5 @@
 const createError = require('http-errors');
-const gql = require('graphql-tag');
-const { extractFragmentData } = require('../utils');
-
-/**
- * Builds the `contentPage` GraphQL query.
- *
- * @param {object} params
- * @param {string} [params.queryFragment] The `graphql-tag` fragment
- *                                        to apply to the `contentPage` query.
- */
-const buildQuery = ({ queryFragment } = {}) => {
-  const { spreadFragmentName, processedFragment } = extractFragmentData(queryFragment);
-  return gql`
-    query WithDynamicPage($input: ContentPageQueryInput!) {
-      contentPage(input: $input) {
-        id
-        name
-        type
-        teaser
-        alias
-        body
-        metadata {
-          title
-          description
-        }
-        ${spreadFragmentName}
-      }
-    }
-    ${processedFragment}
-  `;
-};
-exports.buildQuery = buildQuery;
+const buildQuery = require('../gql/query-factories/with-dynamic-page');
 
 /**
  * @param {ApolloClient} apolloClient The Apollo GraphQL client that will perform the query.

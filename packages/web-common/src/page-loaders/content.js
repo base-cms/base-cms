@@ -1,43 +1,5 @@
 const createError = require('http-errors');
-const gql = require('graphql-tag');
-const { extractFragmentData } = require('../utils');
-
-/**
- * Builds the `content` GraphQL query.
- * *
- * @param {object} params
- * @param {string} [params.queryFragment] The `graphql-tag` fragment
- *                                        to apply to the `content` query.
- */
-const buildQuery = ({ queryFragment }) => {
-  const { spreadFragmentName, processedFragment } = extractFragmentData(queryFragment);
-  return gql`
-    query WithContent($input: ContentQueryInput!) {
-      content(input: $input) {
-        id
-        name
-        type
-        teaser
-        body
-        published
-        redirectTo
-        canonicalPath
-        metadata {
-          title
-          description
-        }
-        primarySection {
-          id
-          name
-          alias
-        }
-        ${spreadFragmentName}
-      }
-    }
-    ${processedFragment}
-  `;
-};
-exports.buildQuery = buildQuery;
+const buildQuery = require('../gql/query-factories/with-content');
 
 /**
  * @param {ApolloClient} apolloClient The Apollo GraphQL client that will perform the query.
@@ -46,7 +8,6 @@ exports.buildQuery = buildQuery;
  * @param {string} [params.queryFragment] The `graphql-tag` fragment
  *                                        to apply to the `content` query.
  * @param {object} [params.additionalInput] Additional query input params.
- *
  */
 module.exports = async (apolloClient, {
   id,
