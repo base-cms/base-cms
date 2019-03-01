@@ -1,13 +1,13 @@
 {
   "name": "@base-cms/web-common",
-  "version": "0.4.0",
+  "version": "0.4.15",
   "description": "Common utilities, queries and functions for BaseCMS website projects.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/web-common",
   "license": "MIT",
   "dependencies": {
-    "@base-cms/utils": "^0.4.0",
+    "@base-cms/utils": "^0.4.15",
     "http-errors": "^1.7.2"
   },
   "peerDependencies": {
