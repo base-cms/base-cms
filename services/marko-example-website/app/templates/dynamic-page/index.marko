@@ -1,5 +1,7 @@
-import { get } from '@base-cms/object-path';
+import { getAsObject } from '@base-cms/object-path';
 
-<layout page=get(data, "page")>
-  $!{get(data, "page.body")}
+$ const page = getAsObject(data, 'page');
+
+<layout page=page>
+  $!{page.body}
 </layout>

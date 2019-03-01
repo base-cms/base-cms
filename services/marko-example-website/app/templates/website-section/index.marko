@@ -1,13 +1,18 @@
-import { get } from '@base-cms/object-path';
+import { getAsObject } from '@base-cms/object-path';
 import queryFragment from '../../api/fragments/website-scheduled-content';
 
-<layout section=get(data, "section")>
-  <h1>Section (templates/section.marko)</h1>
-  <h2>Loaded alias: ${get(data, "section.alias")}</h2>
-  <hr>
+$ const section = getAsObject(data, 'section');
+
+<layout section=section>
+  <h1>${section.name}</h1>
+  <if(section.description)>
+    <hr />
+    <p>${section.description}</p>
+  </if>
+  <hr />
   <-website-scheduled-content|{ items }|
     query-fragment=queryFragment
-    section-id=get(data, "section.id")
+    section-id=section.id
     limit=18
     include-content-types=["Article"]
   >

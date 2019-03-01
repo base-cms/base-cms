@@ -1,9 +1,11 @@
-import { get } from '@base-cms/object-path';
+import { getAsObject } from '@base-cms/object-path';
 
-<layout content=get(data, "content")>
-  <h1>${get(data, "content.name")}</h1>
+$ const content = getAsObject(data, 'content');
+
+<layout content=content>
+  <h1>${content.name}</h1>
   <hr>
-  <h4>$!{get(data, "content.teaser")}</h4>
+  <h4>$!{content.teaser}</h4>
   <hr>
-  $!{get(data, "content.body")}
+  $!{content.body}
 </layout>
