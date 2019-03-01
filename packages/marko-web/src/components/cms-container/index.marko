@@ -1,0 +1,20 @@
+$ const attrs = {
+  data: input.data,
+  tag: input.tag,
+  class: input.class,
+  attrs: input.attrs,
+  renderBody: input.renderBody,
+}
+
+<if(input.for === 'content')>
+  <content ...attrs />
+</if>
+<else-if(input.for === 'website-section')>
+  <website-section ...attrs />
+</else-if>
+<else-if(input.for === 'dynamic-page')>
+  <dynamic-page ...attrs />
+</else-if>
+<else>
+  <default ...attrs />
+</else>
