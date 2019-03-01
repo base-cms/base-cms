@@ -1,0 +1,5 @@
+import { cleanPath } from '@base-cms/utils';
+
+<if(input.pathname)>
+  <link rel="canonical" href=`${out.global.requestOrigin}/${cleanPath(input.pathname)}` />
+</if>
