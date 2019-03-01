@@ -13,7 +13,7 @@ module.exports = (config = {}) => {
   apollo(app, config.graphqlUri, config.apolloConfig);
 
   // Register the Marko middleware.
-  marko(app, config.markoConfig);
+  marko(app, config.assetsDir, config.markoConfig);
 
   // Apply request origin.
   app.use((req, res, next) => {

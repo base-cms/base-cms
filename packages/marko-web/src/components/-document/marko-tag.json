@@ -1,0 +1,20 @@
+{
+  "@lang": {
+    "type": "string",
+    "default-value": "en-US",
+    "description": "The html `lang` attribute."
+  },
+  "@dir": {
+    "type": "string",
+    "default-value": "ltr",
+    "description": "The html `dir` attribute."
+  },
+  "@viewport": {
+    "type": "string",
+    "default-value": "width=device-width, initial-scale=1",
+    "description": "The meta viewport `content` attribute"
+  },
+  "<head>": {},
+  "<body-header>": {},
+  "<body-footer>": {}
+}

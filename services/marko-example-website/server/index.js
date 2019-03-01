@@ -1,4 +1,5 @@
 const { startServer } = require('@base-cms/marko-web');
+const path = require('path');
 const routes = require('../app/routes');
 const siteConfig = require('../config/site');
 
@@ -14,6 +15,7 @@ process.on('unhandledRejection', (e) => {
 
 log(`> Booting ${pkg.name} v${pkg.version}...`);
 startServer({
+  assetsDir: path.resolve(__dirname, '../dist'),
   siteConfig,
   routes,
   graphqlUri: GRAPHQL_URI,

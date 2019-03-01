@@ -4,6 +4,7 @@ const { isFunction: isFn } = require('@base-cms/utils');
 const express = require('./express');
 
 const startServer = async ({
+  assetsDir,
   siteConfig,
   port = 4008,
   routes,
@@ -18,7 +19,9 @@ const startServer = async ({
   onStart,
   onHealthCheck,
 } = {}) => {
+  if (!assetsDir) throw new Error('The assets directory is required.');
   const app = express({
+    assetsDir,
     siteConfig,
     graphqlUri,
     apolloConfig,
