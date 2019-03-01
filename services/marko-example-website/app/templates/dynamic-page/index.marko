@@ -2,8 +2,8 @@ import { get } from '@base-cms/object-path';
 
 <website>
   <site-navbar />
-  <section>
+  <cms-container for="dynamic-page" class="container-fluid" data=data.page>
     $!{get(data, "page.body")}
-  </section>
+  </cms-container>
   <site-footer />
 </website>

@@ -1,14 +1,14 @@
-import { get as v } from '@base-cms/object-path';
+import { get } from '@base-cms/object-path';
 
 <website>
   <@head>
-    <title>${v(input, "section.name")}</title>
+    <title>${get(input, "section.name")}</title>
     <${input.head} />
   </@head>
   <site-navbar />
-  <main.section-page.container-fluid data-id=`${v(input, "section.id")}`>
+  <cms-container for="website-section" class="container-fluid" data=input.section>
     <${input.renderBody} />
-  </main.section-page.container-fluid>
+  </cms-container>
   <hr>
   <site-footer />
 </website>
