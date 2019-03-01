@@ -1,14 +1,14 @@
-import { get } from '@base-cms/object-path';
+import { getAsObject } from '@base-cms/object-path';
+
+$ const page = getAsObject(input, 'page');
 
 <website>
   <@head>
-    <-page-title value=get(input, "page.metadata.title") />
-    <-meta-description content=get(input, "page.metadata.description") />
-    <-rel-canonical pathname=get(input, "page.canonicalPath") />
+    <-page-metadata for="dynamic-page" ...page />
     <${input.head} />
   </@head>
   <site-navbar />
-  <-page-container for="dynamic-page" class="container-fluid" data=data.page>
+  <-page-container for="dynamic-page" class="container-fluid" data=page>
     <${input.renderBody} />
   </-page-container>
   <hr>

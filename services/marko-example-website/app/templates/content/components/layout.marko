@@ -1,14 +1,14 @@
-import { get } from '@base-cms/object-path';
+import { getAsObject } from '@base-cms/object-path';
+
+$ const content = getAsObject(input, 'content');
 
 <website>
   <@head>
-    <-page-title value=get(input, "content.metadata.title") />
-    <-meta-description content=get(input, "content.metadata.description") />
-    <-rel-canonical pathname=get(input, "content.canonicalPath") />
+    <-page-metadata for="content" ...content />
     <${input.head} />
   </@head>
   <site-navbar />
-  <-page-container for="content" class="container-fluid" data=data.content>
+  <-page-container for="content" class="container-fluid" data=content>
     <${input.renderBody} />
   </-page-container>
   <hr>
