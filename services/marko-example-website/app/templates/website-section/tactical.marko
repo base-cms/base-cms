@@ -1,5 +1,7 @@
-import { get } from '@base-cms/object-path';
+import { getAsObject } from '@base-cms/object-path';
 
-<layout section=get(data, "section")>
-  <h1>Override! ${get(data, "section.name")}</h1>
+$ const section = getAsObject(data, 'section');
+
+<layout section=section>
+  <h1>Override! ${section.name}</h1>
 </layout>
