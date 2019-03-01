@@ -1,0 +1,5 @@
+import { get } from '@base-cms/object-path';
+
+<layout section=get(data, "section")>
+  <h1>Override! ${get(data, "section.name")}</h1>
+</layout>

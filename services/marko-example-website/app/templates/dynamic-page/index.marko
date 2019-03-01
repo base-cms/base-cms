@@ -1,11 +1,9 @@
 import { get } from '@base-cms/object-path';
 
-<site-layout>
+<website>
   <site-navbar />
-  <h1>Dynamic Page (templates/dynamic-page.marko)</h1>
   <section>
     $!{get(data, "page.body")}
   </section>
-  <hr>
   <site-footer />
-</site-layout>
+</website>

@@ -1,6 +1,6 @@
 const { startServer } = require('@base-cms/marko-web');
-const routes = require('./routes');
-const siteConfig = require('../site.config');
+const routes = require('../app/routes');
+const siteConfig = require('../config/site');
 
 const { GRAPHQL_URI, INTERNAL_PORT, EXTERNAL_PORT } = require('./env');
 const pkg = require('../package.json');

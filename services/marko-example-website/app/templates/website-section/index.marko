@@ -1,0 +1,24 @@
+import { get } from '@base-cms/object-path';
+import queryFragment from '../../api/fragments/website-scheduled-content';
+
+<layout section=get(data, "section")>
+  <h1>Section (templates/section.marko)</h1>
+  <h2>Loaded alias: ${get(data, "section.alias")}</h2>
+  <hr>
+  <website-scheduled-content|{ items }|
+    query-fragment=queryFragment
+    section-id=get(data, "section.id")
+    limit=18
+    include-content-types=["Article"]
+  >
+    <for|content| of=items>
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title"><a href=`${content.canonicalPath}`>${content.shortName}</a></h5>
+          <p class="card-text">${content.teaser}</p>
+          <small>${content.type}</small>
+        </div>
+      </div>
+    </for>
+  </website-scheduled-content>
+</layout>
