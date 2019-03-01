@@ -5,6 +5,11 @@ import { websiteScheduledContent as loader } from '@base-cms/web-common/block-lo
     <${input.renderBody} items=items />
   </@then>
   <@catch|err|>
-    <pre>An unexpected error occurred: ${err.message}</pre>
+    <if(input.onError)>
+      <${input.onError} err=err />
+    </if>
+    <else>
+      <pre>An unexpected error occurred: ${err.message}</pre>
+    </else>
   </@catch>
 </await>
