@@ -2,7 +2,7 @@ import { get } from '@base-cms/object-path';
 
 <website>
   <@head>
-    <title>${get(input, "section.name")}</title>
+    <-page-title value=get(input, "section.metadata.title") />
     <-rel-canonical pathname=get(input, "section.canonicalPath") />
     <${input.head} />
   </@head>
