@@ -1,0 +1,15 @@
+import { get } from '@base-cms/object-path';
+
+<website>
+  <@head>
+    <title>${get(input, "page.name")}</title>
+    <cms-rel-canonical pathname=get(input, "page.canonicalPath") />
+    <${input.head} />
+  </@head>
+  <site-navbar />
+  <cms-container for="dynamic-page" class="container-fluid" data=data.page>
+    <${input.renderBody} />
+  </cms-container>
+  <hr>
+  <site-footer />
+</website>

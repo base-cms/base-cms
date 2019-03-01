@@ -3,6 +3,7 @@ import { get } from '@base-cms/object-path';
 <website>
   <@head>
     <title>${get(input, "section.name")}</title>
+    <cms-rel-canonical pathname=get(input, "section.canonicalPath") />
     <${input.head} />
   </@head>
   <site-navbar />

@@ -1,14 +1,9 @@
 import { get } from '@base-cms/object-path';
 
-<website>
-  <site-navbar />
-  <cms-container for="content" class="container-fluid" data=data.content>
-    <h1>${get(data, "content.name")}</h1>
-    <hr>
-    <h4>$!{get(data, "content.teaser")}</h4>
-    <hr>
-    $!{get(data, "content.body")}
-  </cms-container>
+<layout content=get(data, "content")>
+  <h1>${get(data, "content.name")}</h1>
   <hr>
-  <site-footer />
-</website>
+  <h4>$!{get(data, "content.teaser")}</h4>
+  <hr>
+  $!{get(data, "content.body")}
+</layout>
