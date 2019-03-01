@@ -1,3 +1,4 @@
 {
+  "taglib-id": "@base-cms/marko-web",
   "tags-dir": "./src/components"
 }
