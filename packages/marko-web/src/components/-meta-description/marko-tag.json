@@ -1,0 +1,7 @@
+{
+  "@content": {
+    "type": "string",
+    "default-value": "",
+    "description": "The meta description content. The tag will collapse if falsy."
+  }
+}
