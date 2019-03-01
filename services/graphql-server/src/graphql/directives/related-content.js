@@ -1,6 +1,6 @@
 const { SchemaDirectiveVisitor } = require('graphql-tools');
 const { UserInputError } = require('apollo-server-express');
-const objectPath = require('object-path');
+const { get } = require('@base-cms/object-path');
 const { BaseDB } = require('@base-cms/db');
 
 class RelatedContentDirective extends SchemaDirectiveVisitor {
@@ -34,7 +34,7 @@ class RelatedContentDirective extends SchemaDirectiveVisitor {
         ],
       };
 
-      const sectionId = BaseDB.extractRefId(objectPath.get(doc, 'mutations.Website.primarySection'));
+      const sectionId = BaseDB.extractRefId(get(doc, 'mutations.Website.primarySection'));
       const relatedToIds = BaseDB.extractRefIds(doc.relatedTo);
 
       switch (type) {

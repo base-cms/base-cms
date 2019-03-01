@@ -1,0 +1,29 @@
+import { getAsObject } from '@base-cms/object-path';
+import queryFragment from '../../api/fragments/website-scheduled-content';
+
+$ const section = getAsObject(data, 'section');
+
+<layout section=section>
+  <h1>${section.name}</h1>
+  <if(section.description)>
+    <hr />
+    <p>${section.description}</p>
+  </if>
+  <hr />
+  <-website-scheduled-content|{ items }|
+    query-fragment=queryFragment
+    section-id=section.id
+    limit=18
+    include-content-types=["Article"]
+  >
+    <for|content| of=items>
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title"><a href=`${content.canonicalPath}`>${content.shortName}</a></h5>
+          <p class="card-text">${content.teaser}</p>
+          <small>${content.type}</small>
+        </div>
+      </div>
+    </for>
+  </-website-scheduled-content>
+</layout>

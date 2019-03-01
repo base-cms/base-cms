@@ -31,10 +31,16 @@ type WebsiteSection {
   logo: AssetImage @projection @refOne(loader: "platformAsset", criteria: "assetImage")
 
   # fields from trait.platform::Content\SeoFields
-  metadata: WebsiteSectionMetadata! @projection(localField: "fullName", needs: ["description", "seoTitle"])
+
   alias: String @projection
   redirects: [String]! @projection @arrayValue
   slug: String @projection
+
+  # GraphQL-only fields.
+  metadata: WebsiteSectionMetadata! @projection(localField: "fullName", needs: ["description", "seoTitle"])
+  canonicalPath: String! @projection(localField: "alias")
+  # Determines if this content item should redirect to another location.
+  redirectTo: String
 }
 
 type WebsiteSectionConnection @projectUsing(type: "WebsiteSection") {

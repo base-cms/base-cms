@@ -1,0 +1,15 @@
+<nav>
+  <a href="/">
+    <img style="background-color: black; padding: 0.5rem;" src="{{site.config.logo}}" height="25">
+  </a>
+  <ul>
+    {{#each site.config.primaryNavItems as |item|}}
+      <li><a href="{{item.to}}">{{item.label}}</a></li>
+    {{/each}}
+  </ul>
+  <ul>
+    {{#each site.config.secondaryNavItems as |item|}}
+      <li><a href="{{item.to}}">{{item.label}}</a></li>
+    {{/each}}
+  </ul>
+</nav>

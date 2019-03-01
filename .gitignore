@@ -75,3 +75,8 @@ typings/
 # FuseBox cache
 .fusebox/
 .DS_Store
+
+# Marko
+*.marko.js
+.marko-cli
+.marko-devtools

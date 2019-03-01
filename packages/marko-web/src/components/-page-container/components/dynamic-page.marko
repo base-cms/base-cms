@@ -1,0 +1,13 @@
+import { get } from '@base-cms/object-path';
+
+$ const id = get(input, 'data.id');
+$ const alias = get(input, 'data.alias', '');
+$ const type = alias.replace('/', '-').toLowerCase();
+
+<${input.tag || 'main'}
+  data-id=`${id}`
+  class=['dynamic-page', 'dynamic-page--display', `dynamic-page--${type}`, input.class]
+  ...input.attrs
+>
+  <${input.renderBody} />
+</>

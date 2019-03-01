@@ -1,15 +1,38 @@
-const { UserInputError } = require('apollo-server-express');
-const { underscore, dasherize, titleize } = require('inflection');
+const { get } = require('@base-cms/object-path');
+const { isFunction: isFn, cleanPath } = require('@base-cms/utils');
+const { underscore, dasherize, titleize } = require('@base-cms/inflector');
+
+const connectionProjection = require('../../utils/connection-projection');
+const defaultContentTypes = require('../../utils/content-types');
+const getDefaultOption = require('../../utils/get-default-option');
+const getDescendantIds = require('../../utils/website-section-child-ids');
 const pathResolvers = require('../../utils/content-path-resolvers');
 const { createTitle, createDescription } = require('../../utils/content');
-const defaultContentTypes = require('../../utils/content-types');
-const getDescendantIds = require('../../utils/website-section-child-ids');
-const getDefaultOption = require('../../utils/get-default-option');
-const connectionProjection = require('../../utils/connection-projection');
 
 const { isArray } = Array;
 
-const resolveType = ({ type }) => `Content${type}`;
+const dynamicPageResolvers = {
+  alias: content => get(content, 'mutations.Website.alias'),
+};
+
+const handleDynamicPage = async (content, ctx) => {
+  const { canonicalRules } = ctx;
+  const { dynamicPage: pageRules } = canonicalRules;
+  const { parts, prefix } = pageRules;
+
+  const values = await Promise.all(parts.map((key) => {
+    const fn = dynamicPageResolvers[key];
+    return isFn(fn) ? fn(content, ctx) : content[key];
+  }));
+
+  const path = cleanPath(values.filter(v => v).map(v => String(v).trim()).join('/'));
+
+  if (!path) return '';
+  if (prefix) return `/${cleanPath(prefix)}/page/${path}`;
+  return `/page/${path}`;
+};
+
+const resolveType = async ({ type }) => `Content${type}`;
 
 module.exports = {
   Addressable: { __resolveType: resolveType },
@@ -24,23 +47,26 @@ module.exports = {
     __resolveType: resolveType,
 
     canonicalPath: async (content, _, ctx) => {
-      const { contentPaths } = ctx;
-      if (!contentPaths.includes('id')) {
-        throw new UserInputError('The canonicalPath arguments must at least contain "id"', {
-          invalidArgs: contentPaths,
-        });
-      }
+      const { canonicalRules } = ctx;
+      const { content: contentRules } = canonicalRules;
+      const { parts, prefix } = contentRules;
+
       const { type, linkUrl } = content;
+
+      if (type === 'Page') return handleDynamicPage(content, ctx);
+
       const types = ['Promotion', 'TextAd'];
       if (types.includes(type) && linkUrl) return linkUrl;
 
-      const values = await Promise.all(contentPaths.map((key) => {
+      const values = await Promise.all(parts.map((key) => {
         const fn = pathResolvers[key];
-        return typeof fn === 'function' ? fn(content, ctx) : content[key];
+        return isFn(fn) ? fn(content, ctx) : content[key];
       }));
 
-      const path = values.filter(v => v).join('/');
+      const path = cleanPath(values.filter(v => v).map(v => String(v).trim()).join('/'));
+
       if (!path) return '';
+      if (prefix) return `/${cleanPath(prefix)}/${path}`;
       return `/${path}`;
     },
 
@@ -66,11 +92,11 @@ module.exports = {
       const { format } = input;
       switch (format) {
         case 'dasherize':
-          return dasherize(underscore(type));
+          return dasherize(type);
         case 'underscore':
           return underscore(type);
         case 'titleize':
-          return titleize(underscore(type));
+          return titleize(type);
         default:
           return type;
       }

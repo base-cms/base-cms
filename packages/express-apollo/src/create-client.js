@@ -9,9 +9,9 @@ const rootConfig = {
   ssrMode: true,
 };
 
-module.exports = (uri, config) => new ApolloClient({
+module.exports = (uri, config, linkConfig) => new ApolloClient({
   ...config,
   ...rootConfig,
-  link: createHttpLink({ uri, fetch }),
+  link: createHttpLink({ ...linkConfig, uri, fetch }),
   cache: new InMemoryCache({ fragmentMatcher }),
 });

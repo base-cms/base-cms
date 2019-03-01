@@ -73,6 +73,35 @@ services:
       - graphql-server
     ports:
       - "10003:80"
+  express-example-website:
+    << : *node
+    working_dir: /base-cms/services/express-example-website
+    command: ["/base-cms/node_modules/.bin/gulp"]
+    environment:
+      YARN_CACHE_FOLDER: /.yarn-cache
+      NODE_ENV: development
+      GRAPHQL_URI: ${GRAPHQL_URI-http://graphql-server}
+      INTERNAL_PORT: ${INTERNAL_PORT-80}
+      EXTERNAL_PORT: ${EXTERNAL_PORT-10006}
+    depends_on:
+      - graphql-server
+    ports:
+      - "${EXTERNAL_PORT-10006}:${INTERNAL_PORT-80}"
+  marko-example-website:
+    << : *node
+    working_dir: /base-cms/services/marko-example-website
+    command: ["/base-cms/node_modules/.bin/browser-refresh", "server/index.js"]
+    environment:
+      YARN_CACHE_FOLDER: /.yarn-cache
+      NODE_ENV: development
+      GRAPHQL_URI: ${GRAPHQL_URI-http://graphql-server}
+      INTERNAL_PORT: ${INTERNAL_PORT-80}
+      EXTERNAL_PORT: ${EXTERNAL_PORT-10007}
+    depends_on:
+      - graphql-server
+    ports:
+      - "${EXTERNAL_PORT-10007}:${INTERNAL_PORT-80}"
+      - "10008:10008" # livereload port
   manage:
     <<: *node
     image: danlynn/ember-cli:3.7.1
