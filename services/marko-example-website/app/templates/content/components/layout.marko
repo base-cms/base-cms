@@ -3,13 +3,13 @@ import { get } from '@base-cms/object-path';
 <website>
   <@head>
     <title>${get(input, "content.name")}</title>
-    <cms-rel-canonical pathname=get(input, "content.canonicalPath") />
+    <-rel-canonical pathname=get(input, "content.canonicalPath") />
     <${input.head} />
   </@head>
   <site-navbar />
-  <cms-container for="content" class="container-fluid" data=data.content>
+  <-page-container for="content" class="container-fluid" data=data.content>
     <${input.renderBody} />
-  </cms-container>
+  </-page-container>
   <hr>
   <site-footer />
 </website>
