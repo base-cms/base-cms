@@ -1,10 +1,10 @@
 const { withWebsiteSection } = require('@base-cms/marko-web/middleware');
 const section = require('../templates/website-section');
-const tactical = require('../templates/website-section/tactical');
+const applications = require('../templates/website-section/applications');
 
 module.exports = (app) => {
-  app.get('/:alias(tactical)', withWebsiteSection({
-    template: tactical,
+  app.get('/:alias(applications)', withWebsiteSection({
+    template: applications,
   }));
 
   app.get('/:alias(*)', withWebsiteSection({
