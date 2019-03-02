@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const apollo = require('./apollo');
 const marko = require('./marko');
+const sitemaps = require('./sitemaps');
 const SiteConfig = require('../site-config');
 
 module.exports = (config = {}) => {
@@ -19,6 +20,9 @@ module.exports = (config = {}) => {
 
   // Register public files.
   app.use(express.static(path.resolve(rootDir, 'public')));
+
+  // Register sitemaps.
+  sitemaps(app);
 
   // Apply request origin.
   app.use((req, res, next) => {
