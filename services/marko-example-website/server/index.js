@@ -15,7 +15,7 @@ process.on('unhandledRejection', (e) => {
 
 log(`> Booting ${pkg.name} v${pkg.version}...`);
 startServer({
-  assetsDir: path.resolve(__dirname, '../dist'),
+  rootDir: path.resolve(__dirname, '../'),
   siteConfig,
   routes,
   graphqlUri: GRAPHQL_URI,

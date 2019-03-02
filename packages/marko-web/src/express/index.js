@@ -1,9 +1,11 @@
 const express = require('express');
+const path = require('path');
 const apollo = require('./apollo');
 const marko = require('./marko');
 const SiteConfig = require('../site-config');
 
 module.exports = (config = {}) => {
+  const { rootDir } = config;
   const app = express();
 
   // Set the website config to the app.
@@ -13,7 +15,10 @@ module.exports = (config = {}) => {
   apollo(app, config.graphqlUri, config.apolloConfig);
 
   // Register the Marko middleware.
-  marko(app, config.assetsDir, config.markoConfig);
+  marko(app, rootDir, config.markoConfig);
+
+  // Register public files.
+  app.use(express.static(path.resolve(rootDir, 'public')));
 
   // Apply request origin.
   app.use((req, res, next) => {
