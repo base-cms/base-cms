@@ -1,4 +1,4 @@
-const contentTypes = require('./content')
+const contentTypes = require('./content');
 const dynamicPages = require('./dynamic-page');
 const index = require('../templates/index');
 const websiteSections = require('./website-section');
