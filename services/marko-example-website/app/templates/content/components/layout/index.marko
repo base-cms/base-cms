@@ -7,9 +7,6 @@ $ const content = getAsObject(input, 'content');
     <-page-metadata for="content" ...content />
     <${input.head} />
   </@head>
-  <@body-footer>
-    <browser-refresh />
-  </@body-footer>
   <site-navbar />
   <-page-container for="content" class="container-fluid" data=content>
     <${input.renderBody} />

@@ -7,9 +7,6 @@ $ const section = getAsObject(input, 'section');
     <-page-metadata for="website-section" ...section />
     <${input.head} />
   </@head>
-  <@body-footer>
-    <browser-refresh />
-  </@body-footer>
   <site-navbar />
   <-page-container for="website-section" class="container-fluid" data=section>
     <${input.renderBody} />
