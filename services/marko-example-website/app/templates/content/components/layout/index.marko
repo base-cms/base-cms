@@ -8,8 +8,10 @@ $ const content = getAsObject(input, 'content');
     <${input.head} />
   </@head>
   <-page-container for="content" class="container-fluid" data=content>
+    <-ad-placeholder size="970x90" class="text-center mb-4" />
+    <hr />
     <${input.renderBody} />
+    <hr />
   </-page-container>
-  <hr>
   <site-footer />
 </document>

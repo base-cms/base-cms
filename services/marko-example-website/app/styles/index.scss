@@ -8,5 +8,9 @@ $site-font-family-serif: 'PT Serif', serif !default;
     #{ $self }__body {
       font-family: $site-font-family-serif;
     }
+    #{ $self }__teaser {
+      font-family: $site-font-family-serif;
+      font-style: italic;
+    }
   }
 }
