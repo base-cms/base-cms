@@ -13,6 +13,26 @@ module.exports = (app, dirs, config = {}) => {
     plugins: [
       'lasso-marko',
       'lasso-sass',
+      // @todo Evalulate this.
+      // This matches Bootstrap4's browserlistrc.
+      // While BS is not required, shouldn't all CSS use autoprexifer?
+      {
+        plugin: 'lasso-autoprefixer',
+        config: {
+          browsers: [
+            '>= 1%',
+            'last 1 major version',
+            'Chrome >= 45',
+            'Firefox >= 38',
+            'Edge >= 12',
+            'Explorer >= 10',
+            'iOS >= 9',
+            'Safari >= 9',
+            'Android >= 4.4',
+            'Opera >= 30',
+          ],
+        },
+      },
     ],
     outputDir: dirs.dist,
     bundlingEnabled: true,
