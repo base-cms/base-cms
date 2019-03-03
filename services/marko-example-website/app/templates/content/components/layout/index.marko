@@ -7,11 +7,9 @@ $ const content = getAsObject(input, 'content');
     <-page-metadata for="content" ...content />
     <${input.head} />
   </@head>
-  <-page-container for="content" class="container-fluid" data=content>
-    <-ad-placeholder size="970x90" class="text-center mb-4" />
-    <hr />
+  <-page-container for="content" class="container" data=content>
+    <-ad-placeholder size="970x90" class="mb-4 text-center" />
     <${input.renderBody} />
-    <hr />
   </-page-container>
   <site-footer />
 </document>
