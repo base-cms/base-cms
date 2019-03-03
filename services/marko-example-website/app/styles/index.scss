@@ -1,1 +1,12 @@
 @import "bootstrap";
+
+$site-font-family-serif: 'PT Serif', serif !default;
+
+.content {
+  $self: &;
+  &--display {
+    #{ $self }__body {
+      font-family: $site-font-family-serif;
+    }
+  }
+}
