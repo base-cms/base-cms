@@ -1,6 +1,6 @@
 module.exports = {
   name: 'Evaluation Engineering',
-  logo: 'https://cdn.evaluationengineering.com/files/base/ebm/ee/image/static/favicon.ico',
+  logo: 'https://cdn.evaluationengineering.com/files/base/ebm/ee/image/static/logo/site_logo_bare.png',
   primaryNavItems: [
     { to: '/applications', label: 'Applications' },
     { to: '/industries', label: 'Industries' },
