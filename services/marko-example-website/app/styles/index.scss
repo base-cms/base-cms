@@ -9,9 +9,11 @@ $site-font-family-serif: 'PT Serif', serif !default;
       font-family: $site-font-family-serif;
     }
     #{ $self }__teaser {
-      font-family: $site-font-family-serif;
       font-style: italic;
     }
+  }
+  &__teaser {
+    font-family: $site-font-family-serif;
   }
 }
 
