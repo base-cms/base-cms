@@ -3,9 +3,7 @@ import { getAsObject } from '@base-cms/object-path';
 $ const content = getAsObject(data, 'content');
 
 <layout content=content>
-  <h1>${content.name}</h1>
-  <hr>
-  <h4>$!{content.teaser}</h4>
-  <hr>
-  $!{content.body}
+  <-value tag="h1" for="content" obj=content path="name" />
+  <-value tag="h4" for="content" obj=content path="teaser" asHTML=true />
+  <-value for="content" obj=content path="body" asHTML=true />
 </layout>
