@@ -7,7 +7,6 @@ $ const page = getAsObject(input, 'page');
     <-page-metadata for="dynamic-page" ...page />
     <${input.head} />
   </@head>
-  <site-navbar />
   <-page-container for="dynamic-page" class="container-fluid" data=page>
     <${input.renderBody} />
   </-page-container>
