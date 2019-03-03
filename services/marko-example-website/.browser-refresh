@@ -1,5 +1,6 @@
 {
   "port": 10008,
+  "delay": 3000,
   "watch": [
     "./app/",
     "./config/",
