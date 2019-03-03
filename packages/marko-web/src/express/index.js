@@ -9,6 +9,24 @@ module.exports = (config = {}) => {
   const { rootDir } = config;
   const app = express();
 
+  const appDir = path.resolve(rootDir, 'app');
+
+  const dirs = {
+    root: rootDir,
+    app: {
+      root: appDir,
+      styles: path.resolve(appDir, 'styles'),
+      templates: path.resolve(appDir, 'templates'),
+      routes: path.resolve(appDir, 'routes'),
+    },
+    dist: path.resolve(rootDir, 'dist'),
+    public: path.resolve(rootDir, 'public'),
+    config: path.resolve(rootDir, 'config'),
+  };
+
+  // Set the directories.
+  app.locals.dirs = dirs;
+
   // Set the website config to the app.
   app.locals.site = new SiteConfig(config.siteConfig);
 
@@ -16,10 +34,10 @@ module.exports = (config = {}) => {
   apollo(app, config.graphqlUri, config.apolloConfig);
 
   // Register the Marko middleware.
-  marko(app, rootDir, config.markoConfig);
+  marko(app, dirs, config.markoConfig);
 
   // Register public files.
-  app.use(express.static(path.resolve(rootDir, 'public')));
+  app.use(express.static(dirs.public));
 
   // Register sitemaps.
   sitemaps(app);

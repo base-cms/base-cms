@@ -12100,7 +12100,50 @@ markdown-it@^8.3.1, markdown-it@^8.4.2:
     mdurl "^1.0.1"
     uc.micro "^1.0.5"
 
-marko@^4.10.0, marko@^4.15.2:
+marked@^0.3.6:
+  version "0.3.19"
+  resolved "https://registry.yarnpkg.com/marked/-/marked-0.3.19.tgz#5d47f709c4c9fc3c216b6d46127280f40b39d790"
+  integrity sha512-ea2eGWOqNxPcXv8dyERdSr/6FmzvWwzjMxpfGB/sbMccXoct+xY+YukPD+QTUZwyvK7BZwcr4m21WBOW41pAkg==
+
+marko@^4.10.0:
+  version "4.15.3"
+  resolved "https://registry.yarnpkg.com/marko/-/marko-4.15.3.tgz#26dae76b556f55eadcea4faa484e5db8fa3f7256"
+  integrity sha512-wKUS9nma1r7AAWX+uak2rt0VQ65isGtKi9nRRgoLtmmQfDyUEB2+Ov5Rop9j/zUnkyHMm7bpydHVcTHk0TL9qg==
+  dependencies:
+    app-module-path "^2.2.0"
+    argly "^1.0.0"
+    browser-refresh-client "^1.0.0"
+    camelcase "^5.0.0"
+    char-props "~0.1.5"
+    complain "^1.3.0"
+    deresolve "^1.1.2"
+    escodegen "^1.8.1"
+    esprima "^4.0.0"
+    estraverse "^4.2.0"
+    events "^1.0.2"
+    events-light "^1.0.0"
+    he "^1.1.0"
+    htmljs-parser "^2.6.5"
+    lasso-caching-fs "^1.0.1"
+    lasso-modules-client "^2.0.4"
+    lasso-package-root "^1.0.1"
+    listener-tracker "^2.0.0"
+    minimatch "^3.0.2"
+    object-assign "^4.1.0"
+    property-handlers "^1.0.0"
+    raptor-json "^1.0.1"
+    raptor-polyfill "^1.0.0"
+    raptor-promises "^1.0.1"
+    raptor-regexp "^1.0.0"
+    raptor-util "^3.2.0"
+    resolve-from "^2.0.0"
+    shorthash "0.0.2"
+    simple-sha1 "^2.1.0"
+    strip-json-comments "^2.0.1"
+    try-require "^1.2.1"
+    warp10 "^2.0.1"
+
+marko@^4.15.2:
   version "4.15.2"
   resolved "https://registry.yarnpkg.com/marko/-/marko-4.15.2.tgz#e068e3731667dfd74425b89f2c2e3910cf764f17"
   integrity sha512-Wn2SCjMS13q8UC+loaG6fX10NTrF4XbgXS0OafosvGu9w6XMhFuJFSUaUk1thtKMQEOKbueo/NFfg9kRbb7b/Q==
@@ -12137,11 +12180,6 @@ marko@^4.10.0, marko@^4.15.2:
     strip-json-comments "^2.0.1"
     try-require "^1.2.1"
     warp10 "^2.0.1"
-
-marked@^0.3.6:
-  version "0.3.19"
-  resolved "https://registry.yarnpkg.com/marked/-/marked-0.3.19.tgz#5d47f709c4c9fc3c216b6d46127280f40b39d790"
-  integrity sha512-ea2eGWOqNxPcXv8dyERdSr/6FmzvWwzjMxpfGB/sbMccXoct+xY+YukPD+QTUZwyvK7BZwcr4m21WBOW41pAkg==
 
 matchdep@^2.0.0:
   version "2.0.0"

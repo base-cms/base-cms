@@ -1,3 +1,8 @@
+import pageName from '../../utils/page-name';
+
+$ const name = pageName(out.global.dirs.app.templates, out.global.template.path);
+
+<lasso-page name=name dependencies=[`${out.global.dirs.app.styles}/index.scss`] />
 <!doctype html>
 <html lang=`${input.lang}` dir=`${input.dir}`>
   <head>
@@ -12,6 +17,5 @@
     <${input.renderBody} />
     <${input.bodyFooter} />
     <lasso-body />
-    <!-- @todo Enable lasso-body -->
   </body>
 </html>

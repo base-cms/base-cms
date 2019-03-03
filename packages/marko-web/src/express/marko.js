@@ -5,17 +5,29 @@ const lasso = require('lasso');
 const expressLasso = require('lasso/middleware');
 
 
-module.exports = (app, rootDir, config = {}) => {
+module.exports = (app, dirs, config = {}) => {
   const isProduction = process.env.NODE_ENV === 'production';
 
+  // @todo set configure's baseDir arg??
   lasso.configure({
     plugins: [
       'lasso-marko',
+      'lasso-sass',
     ],
-    outputDir: path.resolve(rootDir, 'dist'),
+    outputDir: dirs.dist,
     bundlingEnabled: true,
     minify: isProduction, // Only minify JS and CSS code in production
     fingerprintsEnabled: isProduction, // Only add fingerprints to URLs in production
+    bundles: [
+      {
+        name: 'website-styles',
+        dependencies: [
+          {
+            path: path.resolve(dirs.app.styles, 'index.scss'),
+          },
+        ],
+      },
+    ],
   });
 
   app.use(marko(config));
