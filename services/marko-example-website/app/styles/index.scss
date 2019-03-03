@@ -14,3 +14,15 @@ $site-font-family-serif: 'PT Serif', serif !default;
     }
   }
 }
+
+.navbar {
+  &--site {
+    background-color: $black;
+    .nav-item {
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      padding: 0 .2rem;
+    }
+  }
+}

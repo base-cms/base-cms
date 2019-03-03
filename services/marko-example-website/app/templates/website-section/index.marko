@@ -4,7 +4,7 @@ import queryFragment from '../../api/fragments/website-scheduled-content';
 $ const section = getAsObject(data, 'section');
 
 <layout section=section>
-  <h1>${section.name}</h1>
+  <h1>${section.metadata.title}</h1>
   <if(section.description)>
     <hr />
     <p>${section.description}</p>
@@ -16,14 +16,32 @@ $ const section = getAsObject(data, 'section');
     limit=18
     include-content-types=["Article"]
   >
-    <for|content| of=items>
-      <div class="card mb-3">
-        <div class="card-body">
-          <h5 class="card-title"><a href=`${content.canonicalPath}`>${content.shortName}</a></h5>
-          <p class="card-text">${content.teaser}</p>
-          <small>${content.type}</small>
-        </div>
-      </div>
-    </for>
+    <div class="card">
+      <ul class="list-group list-group-flush">
+        <for|content| of=items>
+          <li class="list-group-item d-flex flex-row">
+            <div class="d-flex my-auto mr-3">
+              <a href=content.canonicalPath>
+                <if(content.primaryImage)>
+                  <img src=content.primaryImage.src style="max-width: 100px; max-height: 100px;" />
+                </if>
+                <else>
+                  <div style="width: 100px; height: 67px; background: linear-gradient(to right, rgba(122,188,255,1) 0%,rgba(96,171,248,1) 44%,rgba(64,150,238,1) 100%);"></div>
+                </else>
+              </a>
+            </div>
+            <div>
+              <-value|{ value }| tag="h5" for="content" obj=content path="shortName">
+                <a href=content.canonicalPath>${value}</a>
+              </-value>
+              <-value tag="p" class="font-italic mt-0 mb-2" for="content" obj=content path="teaser" />
+              <-value|{ value }| tag="small" for="content" obj=content path="primarySection.name">
+                <a href=content.primarySection.canonicalPath class="text-secondary">${value}</a>
+              </-value>
+            </div>
+          </li>
+        </for>
+      </ul>
+    </div>
   </-website-scheduled-content>
 </layout>

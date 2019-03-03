@@ -1,19 +1,19 @@
-<nav class="navbar navbar-dark navbar-expand-lg bg-dark shadow sticky-top mb-4">
+<nav class="navbar navbar-dark navbar-expand-lg shadow sticky-top mb-4 navbar--site">
   <a class="navbar-brand" href="/">
     <img src=`${out.global.site.config.logo}` height="35">
   </a>
   <div class="d-flex flex-column-reverse">
-    <ul class="navbar-nav">
+    <ul class="navbar-nav navbar-nav--primary">
       <for|item| of=out.global.site.config.primaryNavItems>
         <li class="nav-item">
-          <a class="nav-link pt-1" href=`${item.to}`>${item.label}</a>
+          <a class="nav-link pt-1 text-white" href=`${item.to}`>${item.label}</a>
         </li>
       </for>
     </ul>
     <ul class="navbar-nav">
       <for|item| of=out.global.site.config.secondaryNavItems>
         <li class="nav-item">
-          <a class="nav-link pb-1" href=`${item.to}`><small>${item.label}</small></a>
+          <a class="nav-link pb-1 text-secondary" href=`${item.to}`><small>${item.label}</small></a>
         </li>
       </for>
     </ul>
