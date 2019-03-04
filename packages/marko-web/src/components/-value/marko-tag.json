@@ -19,6 +19,9 @@
     "type": "string",
     "required": true
   },
+  "@default": {
+    "type": "expression"
+  },
   "@class": {
     "type": "string"
   },

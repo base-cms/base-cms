@@ -1,11 +1,11 @@
 import { get } from '@base-cms/object-path';
 import { modelClassNames } from '@base-cms/web-common/utils';
 
-$ const value = get(input.obj, input.path);
+$ const value = get(input.obj, input.path, input.default);
 
 <if(!input.collapsible || (input.collapsible && value))>
   <${input.tag}
-    class=[...modelClassNames(input.for, input.path), input.class]
+    class=[`${input.for}__field`, ...modelClassNames(input.for, input.path), input.class]
     ...input.attrs
   >
     <if(input.renderBody)>
