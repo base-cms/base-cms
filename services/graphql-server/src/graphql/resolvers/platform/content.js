@@ -40,11 +40,18 @@ module.exports = {
   Contactable: { __resolveType: resolveType },
   Media: { __resolveType: resolveType },
 
+  ContentMetadata: {
+    title: content => createTitle(content),
+    description: content => createDescription(content),
+  },
+
   /**
    *
    */
   Content: {
     __resolveType: resolveType,
+
+    metadata: content => content,
 
     canonicalPath: async (content, _, ctx) => {
       const { canonicalRules } = ctx;
@@ -69,15 +76,6 @@ module.exports = {
       if (prefix) return `/${cleanPath(prefix)}/${path}`;
       return `/${path}`;
     },
-
-    /**
-     * Return title and description as functions, so they're only
-     * executed when requested.
-     */
-    metadata: content => ({
-      title: () => createTitle(content),
-      description: () => createDescription(content),
-    }),
 
     redirectTo: (content) => {
       const { type, linkUrl } = content;

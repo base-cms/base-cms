@@ -101,6 +101,7 @@ type ContentEdge {
 type ContentMetadata {
   title: String
   description: String
+  image: AssetImage @refOne(localField: "primaryImage", loader: "platformAsset", criteria: "assetImage")
 }
 
 type ContentStubLocation {
