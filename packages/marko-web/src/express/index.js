@@ -9,18 +9,18 @@ module.exports = (config = {}) => {
   const { rootDir } = config;
   const app = express();
 
-  const appDir = path.resolve(rootDir, 'app');
+  const serverDir = path.resolve(rootDir, 'server');
 
   const dirs = {
     root: rootDir,
-    app: {
-      root: appDir,
-      styles: path.resolve(appDir, 'styles'),
-      templates: path.resolve(appDir, 'templates'),
-      routes: path.resolve(appDir, 'routes'),
+    server: {
+      root: serverDir,
+      styles: path.join(serverDir, 'styles'),
+      templates: path.join(serverDir, 'templates'),
+      routes: path.join(serverDir, 'routes'),
+      public: path.join(serverDir, 'public'),
     },
     dist: path.resolve(rootDir, 'dist'),
-    public: path.resolve(rootDir, 'public'),
     config: path.resolve(rootDir, 'config'),
   };
 
@@ -45,10 +45,10 @@ module.exports = (config = {}) => {
   apollo(app, config.graphqlUri, config.apolloConfig);
 
   // Register the Marko middleware.
-  marko(app, dirs, config.markoConfig);
+  marko(app);
 
   // Register public files.
-  app.use(express.static(dirs.public));
+  app.use(express.static(dirs.server.public));
 
   // Register sitemaps.
   sitemaps(app);
