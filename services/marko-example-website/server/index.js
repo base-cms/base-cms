@@ -13,9 +13,20 @@ process.on('unhandledRejection', (e) => {
   throw e;
 });
 
+/**
+ * Core configuration with preset properties.
+ * This is different than the "free-form" site comfig.
+ * @todo Move this and create a config with defaults.
+ */
+const coreConfig = {
+  siteName: 'Evaluation Engineering',
+  locale: 'en_US',
+};
+
 log(`> Booting ${pkg.name} v${pkg.version}...`);
 startServer({
   rootDir: path.resolve(__dirname, '../'),
+  coreConfig,
   siteConfig,
   routes,
   graphqlUri: GRAPHQL_URI,
