@@ -14,6 +14,10 @@ fragment WithContentFragment on Content {
   metadata {
     title
     description
+    image {
+      id
+      src
+    }
   }
   primarySection {
     id
