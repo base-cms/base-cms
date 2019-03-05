@@ -1,22 +1,19 @@
-import pageName from '../../utils/page-name';
+import { get } from '@base-cms/object-path';
 
-$ const name = pageName(out.global.dirs.app.templates, out.global.template.path);
+$ const lang = get(out.global, 'config.locale');
 
-<lasso-page name=name dependencies=[`${out.global.dirs.app.styles}/index.scss`] />
 <!doctype html>
-<html lang=`${input.lang}` dir=`${input.dir}`>
+<html lang=lang dir=input.dir>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content=`${input.viewport}`>
-    <lasso-head />
+    <meta name="viewport" content=input.viewport>
     <${input.head} />
+    <lasso-head />
   </head>
   <body>
     <${input.bodyHeader} />
     <${input.renderBody} />
     <${input.bodyFooter} />
-    <lasso-body />
-    <browser-refresh />
   </body>
 </html>
