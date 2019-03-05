@@ -3,7 +3,7 @@ import { get } from '@base-cms/object-path';
 
 $ const parts = [
   input.value,
-  get(out.global, 'site.config.name'),
+  get(out.global, 'config.siteName'),
 ];
 $ const title = parts.filter(v => v).join(` ${input.concateWith} `);
 

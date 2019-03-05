@@ -27,8 +27,19 @@ module.exports = (config = {}) => {
   // Set the directories.
   app.locals.dirs = dirs;
 
+  // Set the core config.
+  // @todo Create a class with default values when not set.
+  // @todo Determine the differences between core and site configs.
+  app.locals.config = config.coreConfig;
+
   // Set the website config to the app.
   app.locals.site = new SiteConfig(config.siteConfig);
+
+  // Apply request origin.
+  app.use((req, res, next) => {
+    res.locals.requestOrigin = `${req.protocol}://${req.get('host')}`;
+    next();
+  });
 
   // Register apollo.
   apollo(app, config.graphqlUri, config.apolloConfig);
@@ -41,12 +52,6 @@ module.exports = (config = {}) => {
 
   // Register sitemaps.
   sitemaps(app);
-
-  // Apply request origin.
-  app.use((req, res, next) => {
-    res.locals.requestOrigin = `${req.protocol}://${req.get('host')}`;
-    next();
-  });
 
   return app;
 };
