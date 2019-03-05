@@ -81,5 +81,5 @@ typings/
 .marko-cli
 .marko-devtools
 
-# Marko build assets
-dist/
+# Build assets
+**/dist/
