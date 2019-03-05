@@ -1,0 +1,36 @@
+{
+  "name": "@base-cms/marko-web-cli",
+  "version": "0.4.0",
+  "description": "CLI components for BaseCMS+Marko websites",
+  "author": "Jacob Bare <jacob@limit0.io>",
+  "main": "src/index.js",
+  "bin": {
+    "basecms-marko-web": "bin/cli.js"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/base-cms/base-cms/tree/master/packages/marko-web-cli",
+  "dependencies": {
+    "@base-cms/express-apollo": "^0.4.15",
+    "@base-cms/object-path": "^0.4.15",
+    "@base-cms/utils": "^0.4.15",
+    "@base-cms/web-common": "^0.4.15",
+    "@godaddy/terminus": "^4.1.0",
+    "chalk": "^2.4.2",
+    "express": "^4.16.4",
+    "http-errors": "^1.7.2",
+    "liftoff": "^3.0.0",
+    "marko": "^4.15.2",
+    "yargs": "^13.2.1"
+  },
+  "peerDependencies": {
+    "graphql": "^14.0.0",
+    "graphql-tag": "^2.10.0"
+  },
+  "devDependencies": {
+    "graphql": "^14.1.1",
+    "graphql-tag": "^2.10.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
