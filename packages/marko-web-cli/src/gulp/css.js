@@ -11,7 +11,7 @@ sass.compiler = require('node-sass');
 
 module.exports = cwd => () => {
   pump([
-    src('server/styles/app.scss', { cwd }),
+    src('server/styles/index.scss', { cwd }),
     sourcemaps.init(),
     sass(),
     postcss([
