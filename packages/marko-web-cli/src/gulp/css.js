@@ -18,6 +18,7 @@ module.exports = cwd => () => {
       autoprefixer({
         browsers: [
           '>= 1%',
+          'not dead',
           'last 1 major version',
           'Chrome >= 45',
           'Firefox >= 38',
