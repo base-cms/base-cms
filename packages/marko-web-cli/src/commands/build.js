@@ -19,11 +19,7 @@ const handler = ({ _ }) => {
   const dir = path ? resolve(cwd, path) : cwd;
   log(`Running '${blue('build')}' command in '${gray(dir)}'`);
   const task = build(dir);
-  try {
-    task();
-  } catch (e) {
-    log('BIG EEEE', e);
-  }
+  task();
 };
 
 module.exports = program => program.command(name, desc, builder, handler);
