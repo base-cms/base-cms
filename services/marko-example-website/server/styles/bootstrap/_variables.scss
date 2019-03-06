@@ -1,10 +1,10 @@
-$font-family-sans-serif: 'PT Sans', sans-serif;
-$red: #d71920;
-$secondary: $red;
-$link-color: black;
+$font-family-sans-serif: "PT Sans", sans-serif !default;
+$red: #d71920 !default;
+$secondary: $red !default;
+$link-color: #000 !default;
 
 // Import default vars...
 @import "../../node_modules/bootstrap/scss/variables";
 
-$body-bg: $gray-200;
-$h1-font-size: $font-size-base * 2.25;
+$body-bg: $gray-200 !default;
+$h1-font-size: $font-size-base * 2.25 !default;

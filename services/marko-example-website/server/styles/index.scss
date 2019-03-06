@@ -1,6 +1,6 @@
 @import "bootstrap";
 
-$site-font-family-serif: 'PT Serif', serif !default;
+$site-font-family-serif: "PT Serif", serif !default;
 
 .content {
   $self: &;
@@ -21,10 +21,10 @@ $site-font-family-serif: 'PT Serif', serif !default;
   &--site {
     background-color: $black;
     .nav-item {
-      text-transform: uppercase;
-      font-size: 0.8rem;
-      letter-spacing: 2px;
       padding: 0 .2rem;
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
     }
   }
 }
