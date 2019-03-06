@@ -8,24 +8,7 @@ const SiteConfig = require('../site-config');
 module.exports = (config = {}) => {
   const { rootDir } = config;
   const app = express();
-
   const serverDir = path.resolve(rootDir, 'server');
-
-  const dirs = {
-    root: rootDir,
-    server: {
-      root: serverDir,
-      styles: path.join(serverDir, 'styles'),
-      templates: path.join(serverDir, 'templates'),
-      routes: path.join(serverDir, 'routes'),
-      public: path.join(serverDir, 'public'),
-    },
-    dist: path.resolve(rootDir, 'dist'),
-    config: path.resolve(rootDir, 'config'),
-  };
-
-  // Set the directories.
-  app.locals.dirs = dirs;
 
   // Set the core config.
   // @todo Create a class with default values when not set.
@@ -42,13 +25,13 @@ module.exports = (config = {}) => {
   });
 
   // Register apollo.
-  apollo(app, config.graphqlUri, config.apolloConfig);
+  apollo(app, config.graphqlUri);
 
   // Register the Marko middleware.
   marko(app);
 
   // Register public files.
-  app.use(express.static(dirs.server.public));
+  app.use(express.static(path.join(serverDir, 'public')));
 
   // Register sitemaps.
   sitemaps(app);

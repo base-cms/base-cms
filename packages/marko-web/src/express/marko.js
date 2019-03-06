@@ -1,4 +1,4 @@
-require('marko/node-require').install();
+require('marko/node-require');
 const marko = require('marko/express');
 
 module.exports = (app) => {

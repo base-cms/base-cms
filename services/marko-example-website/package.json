@@ -7,15 +7,15 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "dev": "node_modules/.bin/basecms-marko-web serve",
-    "build": "node_modules/.bin/basecms-marko-web build"
+    "dev": "basecms-marko-web dev index.js",
+    "build": "basecms-marko-web build",
+    "lint": "basecms-marko-web lint"
   },
   "dependencies": {
     "@base-cms/marko-web": "^0.4.15",
     "@base-cms/marko-web-cli": "^0.4.0",
     "@base-cms/object-path": "^0.4.15",
     "bootstrap": "4.3.1",
-    "envalid": "^4.1.4",
     "graphql": "^14.1.1",
     "graphql-tag": "^2.10.1"
   },

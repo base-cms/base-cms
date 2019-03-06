@@ -3,15 +3,19 @@ const { createTerminus } = require('@godaddy/terminus');
 const { isFunction: isFn } = require('@base-cms/utils');
 const express = require('./express');
 
+// @todo Perhaps this should be configured...
+process.on('unhandledRejection', (e) => { throw e; });
+
 const startServer = async ({
   rootDir,
   siteConfig,
   coreConfig,
   port = 4008,
+  exposedPort,
   routes,
   graphqlUri,
-  apolloConfig,
-  markoConfig,
+
+  // Terminus settings.
   timeout = 1000,
   signals = ['SIGTERM', 'SIGINT', 'SIGHUP', 'SIGQUIT'],
   healthCheckPath = '/_health',
@@ -26,8 +30,6 @@ const startServer = async ({
     siteConfig,
     coreConfig,
     graphqlUri,
-    apolloConfig,
-    markoConfig,
   });
 
   // Load website routes.
@@ -60,9 +62,16 @@ const startServer = async ({
 
   return new Promise((res, rej) => {
     server.listen(port, function listen(err) {
-      if (err) { rej(err); } else { res(this); }
+      if (err) {
+        rej(err);
+      } else {
+        res(this);
+        if (process.send) {
+          process.send({ event: 'ready', location: `http://0.0.0.0:${exposedPort || port}` });
+        }
+      }
     });
-  });
+  }).catch(e => setImmediate(() => { throw e; }));
 };
 
 module.exports = {
