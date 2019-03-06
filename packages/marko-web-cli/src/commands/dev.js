@@ -1,42 +1,33 @@
 const log = require('fancy-log');
+const { blue, gray } = require('chalk');
+const { existsSync } = require('fs');
+const { resolve, parse } = require('path');
+const exit = require('../utils/print-and-exit');
+const serve = require('../gulp/serve');
 
 const name = 'dev';
 const desc = 'Start the BaseCMS website development server.';
 
 const builder = (yargs) => {
   yargs
-    .positional('path', {
-      describe: 'A path (relative to the CWD) to execute the command in',
+    .positional('file', {
+      describe: 'The website server file to execute.',
       type: 'string',
-    })
-    .option('graphql-uri', {
-      alias: 'gql',
-      default: process.env.GRAPHQL_URI,
-      describe: 'The GraphQL API URL',
-      type: 'string',
-    })
-    .option('port', {
-      alias: 'p',
-      default: 5000,
-      describe: 'The port number to serve on',
-      type: 'number',
-    })
-    .option('exposed-port', {
-      default: 5000,
-      describe: 'The exposed (Docker) port number',
-      type: 'number',
-    })
-    .option('live-reload-port', {
-      default: 7000,
-      describe: 'The livereload port',
-      type: 'number',
-    })
-    .demandOption(['graphql-uri']);
+    });
 };
 
-const handler = (argv) => {
+const handler = ({ _ }) => {
+  const [, file] = _;
+  const server = resolve(process.cwd(), file);
+
+  if (!existsSync(server)) {
+    exit(`No such server file exists at ${server}`);
+  }
+  const cwd = parse(server).dir;
+
+  log(`Running '${blue('dev')}' command using server file '${gray(server)}'`);
   process.env.NODE_ENV = process.env.NODE_ENV || 'development';
-  log('serve this!', argv);
+  serve(cwd, server)();
 };
 
 module.exports = program => program.command(name, desc, builder, handler);

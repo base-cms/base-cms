@@ -5,11 +5,11 @@ const pump = require('pump');
 const sass = require('gulp-sass');
 const sourcemaps = require('gulp-sourcemaps');
 const { dest, src } = require('gulp');
-const logError = require('../utils/log-error');
+const completeTask = require('../utils/task-callback');
 
 sass.compiler = require('node-sass');
 
-module.exports = cwd => () => {
+module.exports = cwd => (cb) => {
   pump([
     src('server/styles/index.scss', { cwd }),
     sourcemaps.init(),
@@ -34,5 +34,5 @@ module.exports = cwd => () => {
     ]),
     sourcemaps.write('.'),
     dest('dist', { cwd }),
-  ], logError);
+  ], e => completeTask(e, cb));
 };

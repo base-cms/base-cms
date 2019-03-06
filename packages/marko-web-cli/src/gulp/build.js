@@ -3,4 +3,4 @@ const {
 } = require('gulp');
 const css = require('./css');
 
-module.exports = dir => parallel(css(dir));
+module.exports = cwd => parallel(css(cwd));

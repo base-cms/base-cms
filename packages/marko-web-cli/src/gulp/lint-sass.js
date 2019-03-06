@@ -2,9 +2,9 @@ const cache = require('gulp-cached');
 const pump = require('pump');
 const styelint = require('gulp-stylelint');
 const { src } = require('gulp');
-const logError = require('../utils/log-error');
+const completeTask = require('../utils/task-callback');
 
-module.exports = (cwd, options) => () => {
+module.exports = (cwd, options) => (cb) => {
   pump([
     src('server/styles/**/*.scss', { cwd }),
     cache('basecms-lint-sass'),
@@ -15,5 +15,5 @@ module.exports = (cwd, options) => () => {
         { formatter: 'string', console: true },
       ],
     }),
-  ], logError);
+  ], e => completeTask(e, cb));
 };
