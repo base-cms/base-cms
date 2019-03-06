@@ -13,8 +13,8 @@ const builder = (yargs) => {
   });
 };
 
-const handler = (argv) => {
-  const [, path] = argv._;
+const handler = ({ _ }) => {
+  const [, path] = _;
   const cwd = process.cwd();
   const dir = path ? resolve(cwd, path) : cwd;
   log(`Running '${blue('lint')}' command in '${gray(dir)}'`);
