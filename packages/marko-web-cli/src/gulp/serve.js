@@ -18,7 +18,13 @@ module.exports = (cwd, serverFile) => () => {
   livereload.listen({ port: LIVERELOAD_PORT, quiet: true });
   log(`Livereload ${green('listening')} on port ${magenta(LIVERELOAD_PORT)}`);
   const watcher = watch(
-    ['server.js', 'config/**/*.js', 'server/**/*.js', 'server/styles/**/*.scss', 'server/**/*.marko'],
+    [
+      serverFile,
+      'config/**/*.js',
+      'server/**/*.js',
+      'server/styles/**/*.scss',
+      'server/**/*.marko',
+    ],
     {
       cwd,
       queue: false,
