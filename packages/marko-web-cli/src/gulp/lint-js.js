@@ -1,12 +1,14 @@
 const cache = require('gulp-cached');
 const eslint = require('gulp-eslint');
-const { join } = require('path');
+const pump = require('pump');
 const { src } = require('gulp');
+const logError = require('../utils/log-error');
 
-module.exports = (dir, options) => () => src([
-  join(dir, 'server/**/*.js'),
-  `!${join(dir, 'server/**/*.marko.js')}`, // ignore marko.js files
-])
-  .pipe(cache('basecms-lint-js'))
-  .pipe(eslint(options))
-  .pipe(eslint.format());
+module.exports = (cwd, options) => () => {
+  pump([
+    src(['server/**/*.js', '!server/**/*.marko.js'], { cwd }),
+    cache('basecms-lint-js'),
+    eslint(options),
+    eslint.format(),
+  ], logError);
+};

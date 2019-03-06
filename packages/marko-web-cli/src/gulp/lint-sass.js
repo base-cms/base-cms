@@ -1,14 +1,19 @@
 const cache = require('gulp-cached');
+const pump = require('pump');
 const styelint = require('gulp-stylelint');
-const { join } = require('path');
 const { src } = require('gulp');
+const logError = require('../utils/log-error');
 
-module.exports = (dir, options) => () => src(join(dir, 'server/styles/**/*.scss'))
-  .pipe(cache('basecms-lint-sass'))
-  .pipe(styelint({
-    ...options,
-    failAfterError: false,
-    reporters: [
-      { formatter: 'string', console: true },
-    ],
-  }));
+module.exports = (cwd, options) => () => {
+  pump([
+    src('server/styles/**/*.scss', { cwd }),
+    cache('basecms-lint-sass'),
+    styelint({
+      ...options,
+      failAfterError: false,
+      reporters: [
+        { formatter: 'string', console: true },
+      ],
+    }),
+  ], logError);
+};
