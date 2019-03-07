@@ -103,7 +103,7 @@ module.exports = ({ path, npmOrg }) => [
     type: 'confirm',
     name: 'withBootstrap',
     message: 'Install Bootstrap design components?',
-    default: false,
+    default: true,
     when: ({ proceed }) => proceed === true,
   },
   {
