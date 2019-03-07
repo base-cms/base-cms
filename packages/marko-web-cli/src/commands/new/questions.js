@@ -3,6 +3,7 @@ const chalk = require('chalk');
 const { isURL } = require('validator');
 const { createClient } = require('@base-cms/express-apollo');
 const gql = require('graphql-tag');
+const querySections = require('./query-root-sections');
 
 module.exports = ({ path, npmOrg }) => [
   {
@@ -12,7 +13,7 @@ module.exports = ({ path, npmOrg }) => [
       if (npmOrg) return `@${npmOrg.replace('@', '')}/${path}`;
       return path;
     },
-    message: chalk`Project Name {reset [used as the {yellow name} field of the {yellow package.json} file]}:`,
+    message: chalk`Project Name {reset [used as the {blue name} field of the {blue package.json} file]}:`,
     validate: (v) => {
       if (!v) return 'The project name is required.';
       const { validForNewPackages } = validatePackage(v);
@@ -24,7 +25,7 @@ module.exports = ({ path, npmOrg }) => [
   {
     type: 'input',
     name: 'siteName',
-    message: chalk`Site Name {reset [used in {yellow <title>} and {yellow <meta>} elements]}:`,
+    message: chalk`Site Name {reset [used in {blue <title>} and {blue <meta>} elements]}:`,
     validate: v => (v ? true : 'The site name is required.'),
     filter: v => (v ? String(v).trim() : v),
   },
@@ -39,6 +40,14 @@ module.exports = ({ path, npmOrg }) => [
         require_protocol: true,
       }) ? true : 'Invalid URL.';
     },
+    filter: v => (v ? String(v).trim() : v),
+  },
+  {
+    type: 'input',
+    name: 'locale',
+    default: 'en_US',
+    message: chalk`Locale {reset [the ICU locale ID]}:`,
+    validate: v => (v ? true : 'The locale is required.'),
     filter: v => (v ? String(v).trim() : v),
   },
   {
@@ -74,11 +83,21 @@ module.exports = ({ path, npmOrg }) => [
     when: ({ graphql }) => graphql.pinged === false,
   },
   {
-    type: 'input',
-    name: 'locale',
-    default: 'en_US',
-    message: chalk`Locale {reset [the ICU locale ID]}:`,
+    type: 'confirm',
+    name: 'withNavItems',
+    message: 'Add example website section navigation?',
+    default: true,
     when: ({ proceed }) => proceed === true,
+  },
+  {
+    type: 'checkbox',
+    name: 'sections',
+    message: 'Select navigation items...',
+    choices: (answers) => {
+      const { client } = answers.graphql;
+      return querySections(client);
+    },
+    when: ({ withNavItems }) => withNavItems === true,
   },
   {
     type: 'confirm',
