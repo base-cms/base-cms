@@ -2,9 +2,9 @@ const log = require('fancy-log');
 const inquirer = require('inquirer');
 const figlet = require('figlet');
 const emptyDir = require('empty-dir');
-const validatePackage = require('validate-npm-package-name');
 const { existsSync } = require('fs');
 const chalk = require('chalk');
+const loadQuestions = require('./new/questions');
 const clear = require('../utils/clear');
 const cwd = require('../utils/get-cwd');
 const logError = require('../utils/log-error');
@@ -33,24 +33,7 @@ const handler = ({ _, npmOrg }) => {
     exit(`The selected project directory is not empty. Tried installing in ${chalk.gray(dir)}`);
   }
 
-  const questions = [
-    {
-      type: 'input',
-      name: 'projectName',
-      default: () => {
-        if (npmOrg) return `@${npmOrg.replace('@', '')}/${path}`;
-        return path;
-      },
-      message: chalk`Enter a project name. This will populate the {yellow name} field of the {yellow package.json} file.`,
-      validate: (v) => {
-        if (!v) return 'The project name is required.';
-        const { validForNewPackages } = validatePackage(v);
-        if (!validForNewPackages) return 'The project name is not a valid package.json name.';
-        return true;
-      },
-      filter: v => (v ? String(v).trim() : v),
-    },
-  ];
+  const questions = loadQuestions({ path, npmOrg });
 
   clear();
 
@@ -61,8 +44,9 @@ const handler = ({ _, npmOrg }) => {
 
     const {
       projectName,
+      siteName,
     } = answers;
-    log('Install', chalk.yellow(projectName), 'into', chalk.gray(dir));
+    log(chalk`Install {yellow ${projectName}} ({cyan ${siteName}}) into {gray ${dir}}`);
     process.exit(0);
   };
 
