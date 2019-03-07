@@ -44,9 +44,13 @@ const handler = ({ _, npmOrg }) => {
 
     const {
       projectName,
-      siteName,
+      proceed,
     } = answers;
-    log(chalk`Install {yellow ${projectName}} ({cyan ${siteName}}) into {gray ${dir}}`);
+    if (proceed) {
+      log('Installing ', chalk.cyan(projectName), '...');
+    } else {
+      log('Installation', chalk.red('stopped'));
+    }
     process.exit(0);
   };
 
