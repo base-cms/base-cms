@@ -1,14 +1,14 @@
-const log = require('fancy-log');
-const inquirer = require('inquirer');
-const figlet = require('figlet');
-const emptyDir = require('empty-dir');
-const { existsSync } = require('fs');
 const chalk = require('chalk');
-const loadQuestions = require('./new/questions');
+const emptyDir = require('empty-dir');
+const figlet = require('figlet');
+const inquirer = require('inquirer');
+const { existsSync } = require('fs');
+
 const clear = require('../utils/clear');
 const cwd = require('../utils/get-cwd');
-const logError = require('../utils/log-error');
 const exit = require('../utils/print-and-exit');
+const generateProject = require('../generator');
+const loadQuestions = require('./new/questions');
 
 const name = 'new';
 const desc = 'Create a new BaseCMS website project.';
@@ -39,24 +39,20 @@ const handler = ({ _, npmOrg }) => {
 
   // eslint-disable-next-line no-console
   console.log(chalk.blue(figlet.textSync('BaseCMS Website', { horizontalLayout: 'full' })));
+
   const execute = async () => {
     const answers = await inquirer.prompt(questions);
-
-    const {
-      projectName,
-      proceed,
-    } = answers;
-    if (proceed) {
-      log('Installing ', chalk.cyan(projectName), '...');
-    } else {
-      log('Installation', chalk.red('stopped'));
+    const { proceed } = answers;
+    if (!proceed) {
+      exit(chalk`Installation {red stopped}`, 0);
     }
-    process.exit(0);
+    return generateProject(dir, answers);
   };
 
-  execute().then(() => process.exit(0)).catch((e) => {
-    logError(e);
-    process.exit(1);
+  execute().then(() => {
+    exit(chalk`{green Installation complete!}`, 0);
+  }).catch((e) => {
+    exit(e.message);
   });
 };
 
