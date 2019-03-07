@@ -1,0 +1,12 @@
+import { getAsObject } from '@base-cms/object-path';
+
+$ const content = getAsObject(data, 'content');
+
+<layout content=content>
+  <div>
+    <-content-name obj=content class="mb-0" />
+    <-content-teaser obj=content class="mt-3" />
+    <hr />
+    <-content-body obj=content class="mt-3" />
+  </div>
+</layout>

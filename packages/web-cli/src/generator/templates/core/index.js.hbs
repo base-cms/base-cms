@@ -9,7 +9,4 @@ startServer({
   siteConfig,
   routes,
   graphqlUri: '{{graphqlUri}}',
-  {{#if-rm port}}port: {{port}},{{/if-rm}}
-  {{#if-rm exposedPort}}exposedPort: {{exposedPort}},{{/if-rm}}
-  {{#if-rm liveReloadPort}}liveReloadPort: {{liveReloadPort}},{{/if-rm}}
 });

@@ -1,0 +1,26 @@
+import { getAsArray, get} from '@base-cms/object-path';
+
+$ const primaryNavItems = getAsArray(out.global, 'site.config.primaryNavItems');
+$ const logo = get(out.global, 'site.config.logo');
+$ const siteName = get(out.global, 'site.config.siteName');
+
+<nav>
+  <a href="/">
+    <if(logo)>
+      <img src=logo height="40">
+    </if>
+    <else>
+      <h3>${siteName}</h3>
+    </else>
+  </a>
+  <if(primaryNavItems.length)>
+    <ul>
+      <for|item| of=primaryNavItems>
+        <li>
+          <a href=item.href>${item.label}</a>
+        </li>
+      </for>
+    </ul>
+  </if>
+  <hr>
+</nav>

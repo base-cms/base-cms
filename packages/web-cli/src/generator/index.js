@@ -11,7 +11,7 @@ module.exports = async (dir, answers) => {
 
   const pkg = createPkg(answers);
 
-  const templateDir = path.join(__dirname, 'templates');
+  const templateDir = path.join(__dirname, 'templates/core');
   const toWrite = await buildFiles(templateDir, answers);
 
   toWrite.targets.forEach(target => mkdir(dir, target));
