@@ -1,0 +1,6 @@
+$ const { NODE_ENV, WEBSITE_LIVE_RELOAD_PORT } = process.env;
+$ const isDevelopment = NODE_ENV === 'development';
+
+<if(isDevelopment && WEBSITE_LIVE_RELOAD_PORT)>
+  <script src=`http://0.0.0.0:${WEBSITE_LIVE_RELOAD_PORT}/livereload.js` async></script>
+</if>

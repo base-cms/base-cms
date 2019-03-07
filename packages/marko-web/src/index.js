@@ -3,6 +3,12 @@ const { createTerminus } = require('@godaddy/terminus');
 const { isFunction: isFn } = require('@base-cms/utils');
 const express = require('./express');
 
+if (!process.env.WEBSITE_LIVE_RELOAD_PORT) {
+  process.env.WEBSITE_LIVE_RELOAD_PORT = 4010;
+}
+const { env } = process;
+
+
 // @todo Perhaps this should be configured...
 process.on('unhandledRejection', (e) => { throw e; });
 
@@ -10,8 +16,8 @@ const startServer = async ({
   rootDir,
   siteConfig,
   coreConfig,
-  port = 4008,
-  exposedPort,
+  port = env.WEBSITE_PORT || 4008,
+  exposedPort = env.WEBSITE_EXPOSED_PORT || env.WEBSITE_PORT || 4008,
   routes,
   graphqlUri,
 
@@ -67,7 +73,7 @@ const startServer = async ({
       } else {
         res(this);
         if (process.send) {
-          process.send({ event: 'ready', location: `http://0.0.0.0:${exposedPort || port}` });
+          process.send({ event: 'ready', location: `http://0.0.0.0:${exposedPort}` });
         }
       }
     });

@@ -30,6 +30,9 @@ module.exports = (config = {}) => {
   // Register the Marko middleware.
   marko(app);
 
+  // Serve static assets
+  app.use('/dist', express.static(path.resolve(rootDir, 'dist')));
+
   // Register public files.
   app.use(express.static(path.join(serverDir, 'public')));
 
