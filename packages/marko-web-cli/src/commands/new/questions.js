@@ -1,6 +1,8 @@
 const validatePackage = require('validate-npm-package-name');
 const chalk = require('chalk');
 const { isURL } = require('validator');
+const { createClient } = require('@base-cms/express-apollo');
+const gql = require('graphql-tag');
 
 module.exports = ({ path, npmOrg }) => [
   {
@@ -43,31 +45,53 @@ module.exports = ({ path, npmOrg }) => [
     type: 'input',
     name: 'graphqlUri',
     message: chalk`GraphQL URL {reset [used to retrieve your BaseCMS website data]}:`,
-    validate: (v) => {
+    validate: async (v, answers) => {
       if (!v) return 'The GraphQL URL is required.';
-      return isURL(v, {
-        protocols: ['http', 'https'],
-        require_protocol: true,
-      }) ? true : 'Invalid URL.';
+      if (!isURL(v, { protocols: ['http', 'https'], require_protocol: true })) {
+        return 'Invalid URL.';
+      }
+      const client = createClient(v);
+      try {
+        await client.query({ query: gql`{ ping }` });
+        // eslint-disable-next-line no-param-reassign
+        answers.graphql = { pinged: true, client };
+        // eslint-disable-next-line no-param-reassign
+        answers.proceed = true;
+        return true;
+      } catch (e) {
+        // eslint-disable-next-line no-param-reassign
+        answers.graphql = { pinged: false };
+        return true;
+      }
     },
     filter: v => (v ? String(v).trim() : v),
+  },
+  {
+    type: 'confirm',
+    name: 'proceed',
+    default: false,
+    message: chalk`{red Unable} to ping the provided GraphQL URL. Proceed anyway?`,
+    when: ({ graphql }) => graphql.pinged === false,
   },
   {
     type: 'input',
     name: 'locale',
     default: 'en_US',
     message: chalk`Locale {reset [the ICU locale ID]}:`,
+    when: ({ proceed }) => proceed === true,
   },
   {
     type: 'confirm',
     name: 'withBootstrap',
     message: 'Install Bootstrap design components?',
     default: false,
+    when: ({ proceed }) => proceed === true,
   },
   {
     type: 'confirm',
     name: 'proceed',
     message: chalk`{magenta Confirm} your choices and {green proceed} with install?`,
     default: false,
+    when: ({ proceed }) => proceed === true,
   },
 ];
