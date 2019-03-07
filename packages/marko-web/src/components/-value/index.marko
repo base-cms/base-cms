@@ -1,0 +1,21 @@
+import { get } from '@base-cms/object-path';
+import { modelClassNames } from '@base-cms/web-common/utils';
+
+$ const value = get(input.obj, input.path, input.default);
+
+<if(!input.collapsible || (input.collapsible && value))>
+  <${input.tag}
+    class=[`${input.for}__field`, ...modelClassNames(input.for, input.path), input.class]
+    ...input.attrs
+  >
+    <if(input.renderBody)>
+      <${input.renderBody} value=value />
+    </if>
+    <else-if(input.asHTML)>
+      $!{value}
+    </else-if>
+    <else>
+      ${value}
+    </else>
+  </>
+</if>

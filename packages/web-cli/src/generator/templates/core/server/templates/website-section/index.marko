@@ -1,0 +1,41 @@
+import { getAsObject } from '@base-cms/object-path';
+import queryFragment from '../../api/fragments/website-scheduled-content';
+
+$ const section = getAsObject(data, 'section');
+
+<layout section=section>
+  <h1>${section.metadata.title}</h1>
+  <if(section.description)>
+    <p>${section.description}</p>
+  </if>
+  <-website-scheduled-content|{ items }|
+    query-fragment=queryFragment
+    section-id=section.id
+    limit=18
+    include-content-types=["Article"]
+  >
+    <for|content| of=items>
+
+      <div class="d-flex my-auto mr-3">
+        <a href=content.canonicalPath>
+          <if(content.primaryImage)>
+            <img src=content.primaryImage.src style="max-width: 160px; max-height: 160px; border-radius: 0.5rem;" />
+          </if>
+          <else>
+            <div style="width: 160px; height: 90px; border-radius: 0.5rem; background: linear-gradient(to right, rgba(122,188,255,1) 0%,rgba(96,171,248,1) 44%,rgba(64,150,238,1) 100%);"></div>
+          </else>
+        </a>
+      </div>
+      <div>
+        <-value|{ value }| tag="h5" for="content" obj=content path="shortName">
+          <a href=content.canonicalPath>${value}</a>
+        </-value>
+        <-value tag="p" for="content" obj=content path="teaser" />
+        <-value|{ value }| tag="small" for="content" obj=content path="primarySection.name">
+          <a href=content.primarySection.canonicalPath>${value}</a>
+        </-value>
+      </div>
+
+    </for>
+  </-website-scheduled-content>
+</layout>

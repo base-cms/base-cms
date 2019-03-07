@@ -1,8 +1,0 @@
-{
-  "port": 10008,
-  "watch": [
-    "./app/",
-    "./config/",
-    "./server/"
-  ]
-}

@@ -1,9 +1,4 @@
 {
-  "@lang": {
-    "type": "string",
-    "default-value": "en-US",
-    "description": "The html `lang` attribute."
-  },
   "@dir": {
     "type": "string",
     "default-value": "ltr",

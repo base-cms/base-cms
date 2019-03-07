@@ -1,0 +1,30 @@
+@import "bootstrap";
+
+$site-font-family-serif: "PT Serif", serif !default;
+
+.content {
+  $self: &;
+  &--display {
+    #{ $self }__body {
+      font-family: $site-font-family-serif;
+    }
+    #{ $self }__teaser {
+      font-style: italic;
+    }
+  }
+  &__teaser {
+    font-family: $site-font-family-serif;
+  }
+}
+
+.navbar {
+  &--site {
+    background-color: $black;
+    .nav-item {
+      padding: 0 .2rem;
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+  }
+}

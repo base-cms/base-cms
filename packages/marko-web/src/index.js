@@ -3,14 +3,25 @@ const { createTerminus } = require('@godaddy/terminus');
 const { isFunction: isFn } = require('@base-cms/utils');
 const express = require('./express');
 
+if (!process.env.WEBSITE_LIVE_RELOAD_PORT) {
+  process.env.WEBSITE_LIVE_RELOAD_PORT = 4010;
+}
+const { env } = process;
+
+
+// @todo Perhaps this should be configured...
+process.on('unhandledRejection', (e) => { throw e; });
+
 const startServer = async ({
-  assetsDir,
+  rootDir,
   siteConfig,
-  port = 4008,
+  coreConfig,
+  port = env.WEBSITE_PORT || 4008,
+  exposedPort = env.WEBSITE_EXPOSED_PORT || env.WEBSITE_PORT || 4008,
   routes,
   graphqlUri,
-  apolloConfig,
-  markoConfig,
+
+  // Terminus settings.
   timeout = 1000,
   signals = ['SIGTERM', 'SIGINT', 'SIGHUP', 'SIGQUIT'],
   healthCheckPath = '/_health',
@@ -19,13 +30,12 @@ const startServer = async ({
   onStart,
   onHealthCheck,
 } = {}) => {
-  if (!assetsDir) throw new Error('The assets directory is required.');
+  if (!rootDir) throw new Error('The root project directory is required.');
   const app = express({
-    assetsDir,
+    rootDir,
     siteConfig,
+    coreConfig,
     graphqlUri,
-    apolloConfig,
-    markoConfig,
   });
 
   // Load website routes.
@@ -58,9 +68,16 @@ const startServer = async ({
 
   return new Promise((res, rej) => {
     server.listen(port, function listen(err) {
-      if (err) { rej(err); } else { res(this); }
+      if (err) {
+        rej(err);
+      } else {
+        res(this);
+        if (process.send) {
+          process.send({ event: 'ready', location: `http://0.0.0.0:${exposedPort}` });
+        }
+      }
     });
-  });
+  }).catch(e => setImmediate(() => { throw e; }));
 };
 
 module.exports = {

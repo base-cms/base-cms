@@ -1,0 +1,35 @@
+{
+  "@tag": {
+    "type": "string",
+    "default-value": "div"
+  },
+  "@collapsible": {
+    "type": "boolean",
+    "default-value": true
+  },
+  "@path": {
+    "type": "string",
+    "required": true
+  },
+  "@obj": {
+    "type": "object",
+    "required": true
+  },
+  "@for": {
+    "type": "string",
+    "required": true
+  },
+  "@default": {
+    "type": "expression"
+  },
+  "@class": {
+    "type": "string"
+  },
+  "@asHTML": {
+    "type": "boolean",
+    "default-value": false
+  },
+  "@attrs": {
+    "type": "object"
+  }
+}

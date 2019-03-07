@@ -1,0 +1,23 @@
+{
+  "@tag": {
+    "type": "string",
+    "default-value": "h1"
+  },
+  "@collapsible": {
+    "type": "boolean",
+    "default-value": true
+  },
+  "@obj": {
+    "type": "object",
+    "required": true
+  },
+  "@class": {
+    "type": "string"
+  },
+  "@default": {
+    "type": "expression"
+  },
+  "@attrs": {
+    "type": "object"
+  }
+}

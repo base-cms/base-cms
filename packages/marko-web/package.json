@@ -12,13 +12,8 @@
     "@base-cms/utils": "^0.4.15",
     "@base-cms/web-common": "^0.4.15",
     "@godaddy/terminus": "^4.1.0",
-    "@lasso/marko-taglib": "^1.0.15",
     "express": "^4.16.4",
     "http-errors": "^1.7.2",
-    "lasso": "^3.2.9",
-    "lasso-autoprefixer": "^3.0.0",
-    "lasso-marko": "^2.4.6",
-    "lasso-sass": "^3.0.0",
     "marko": "^4.15.2"
   },
   "peerDependencies": {

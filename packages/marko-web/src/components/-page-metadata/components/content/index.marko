@@ -1,0 +1,51 @@
+import { get } from '@base-cms/object-path';
+
+$ const metadata = input.metadata;
+$ const { title, description, image } = metadata;
+$ const src = get(image, 'src');
+$ const locale = get(out.global, 'config.locale');
+
+<!-- Standard Fields -->
+<-page-title value=title />
+<-rel-canonical pathname=input.canonicalPath />
+<if (description)>
+  <-meta-description content=description />
+</if>
+<if (src)>
+  <meta name="image" content=src />
+</if>
+
+<!-- Schema.org -->
+<meta item-prop="name" content=title />
+<if (description)>
+  <meta item-prop="description" content=description />
+</if>
+<if (src)>
+  <meta item-prop="image" content=src />
+</if>
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content=title />
+<if (description)>
+  <meta name="twitter:description" content=description />
+</if>
+<if (src)>
+  <meta name="twitter:image:src" content=src />
+</if>
+
+<!-- OpenGraph (Facebook, etc.) -->
+<meta name="og:title" content=title />
+<if (description)>
+  <meta name="og:description" content=description />
+</if>
+<if(src)>
+  <!-- @todo Create a new focal point preview for FB's 1200x630 ratio -->
+  <meta name="og:image" content=src />
+</if>
+<-rel-canonical|{ href }| pathname=input.canonicalPath>
+  <meta name="og:url" content=href />
+</-rel-canonical>
+<meta name="og:site_name" content=get(out.global, 'config.siteName') />
+<meta name="og:locale" content=locale />
+<meta name="og:type" content="article" />
