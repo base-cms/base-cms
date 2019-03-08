@@ -17,7 +17,7 @@ module.exports = async (templatesDir, answers) => {
 
   // Load any .gitignore files and filter out files that should be ignored.
   const toIgnore = ignore();
-  files.filter(f => /\.gitignore/.test(f)).map(f => readFileSync(f).toString()).forEach(patterns => toIgnore.add(patterns));
+  files.filter(f => /gitignore$/.test(f)).map(f => readFileSync(f).toString()).forEach(patterns => toIgnore.add(patterns));
   const filteredFiles = toIgnore.filter(relative);
 
   const targets = [];
