@@ -87,7 +87,7 @@ module.exports = ({ path, npmOrg }) => [
     name: 'withNavItems',
     message: 'Add example website section navigation?',
     default: true,
-    when: ({ proceed }) => proceed === true,
+    when: ({ proceed, graphql }) => proceed === true && graphql.pinged === true,
   },
   {
     type: 'checkbox',
