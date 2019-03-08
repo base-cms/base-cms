@@ -36,6 +36,14 @@ module.exports = (program) => {
       }).option('npm-org', {
         describe: 'Your NPM org name. Will prefix the package name.',
         type: 'string',
+      }).option('yarn', {
+        describe: 'Whether to use Yarn instead of NPM for installing dependencies.',
+        type: 'boolean',
+        default: true,
+      }).option('skip-install', {
+        describe: 'Whether to skip installing dependencies.',
+        type: 'boolean',
+        default: false,
       });
     }, argv => require('./create')(argv));
 };
