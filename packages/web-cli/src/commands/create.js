@@ -8,22 +8,9 @@ const clear = require('../utils/clear');
 const cwd = require('../utils/get-cwd');
 const exit = require('../utils/print-and-exit');
 const generateProject = require('../generator');
-const loadQuestions = require('./new/questions');
+const loadQuestions = require('./create/questions');
 
-const name = 'new';
-const desc = 'Create a new BaseCMS website project.';
-
-const builder = (yargs) => {
-  yargs.positional('path', {
-    describe: 'A path (relative to the CWD) to create the project in',
-    type: 'string',
-  }).option('npm-org', {
-    describe: 'Your NPM org name. Will prefix the package name.',
-    type: 'string',
-  });
-};
-
-const handler = ({ _, npmOrg }) => {
+module.exports = ({ _, npmOrg }) => {
   const [, path] = _;
   if (!path) {
     exit('A project directory is required.');
@@ -55,5 +42,3 @@ const handler = ({ _, npmOrg }) => {
     exit(e.message);
   });
 };
-
-module.exports = program => program.command(name, desc, builder, handler);
