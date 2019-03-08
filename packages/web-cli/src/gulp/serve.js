@@ -11,14 +11,14 @@ const build = require('./build');
 const lint = require('./lint');
 const server = require('./server');
 
-if (!process.env.WEBSITE_LIVE_RELOAD_PORT) {
-  process.env.WEBSITE_LIVE_RELOAD_PORT = 4010;
+if (!process.env.LIVERELOAD_PORT) {
+  process.env.LIVERELOAD_PORT = 4010;
 }
-const { WEBSITE_LIVE_RELOAD_PORT } = process.env;
+const { LIVERELOAD_PORT } = process.env;
 
 module.exports = (cwd, serverFile) => () => {
-  livereload.listen({ port: WEBSITE_LIVE_RELOAD_PORT, quiet: true });
-  log(`Livereload ${green('listening')} on port ${magenta(WEBSITE_LIVE_RELOAD_PORT)}`);
+  livereload.listen({ port: LIVERELOAD_PORT, quiet: true });
+  log(`Livereload ${green('listening')} on port ${magenta(LIVERELOAD_PORT)}`);
   const watcher = watch(
     [
       serverFile,
