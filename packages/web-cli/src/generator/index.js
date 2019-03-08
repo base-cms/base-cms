@@ -21,7 +21,11 @@ module.exports = async (dir, answers) => {
     if (contents) {
       write(dest, file, contents);
     } else {
-      copy(join(src, file), join(dest, file));
+      let destination = join(dest, file);
+      if (/gitignore$/.test(file)) {
+        destination = join(dest, file.replace('gitignore', '.gitignore'));
+      }
+      copy(join(src, file), destination);
     }
   });
   write(dir, 'package.json', `${JSON.stringify(pkg, null, 2)}\n`);
