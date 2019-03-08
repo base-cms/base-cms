@@ -8,9 +8,15 @@ const clear = require('../utils/clear');
 const cwd = require('../utils/get-cwd');
 const exit = require('../utils/print-and-exit');
 const generateProject = require('../generator');
+const installDeps = require('../generator/install');
 const loadQuestions = require('./create/questions');
 
-module.exports = ({ _, npmOrg }) => {
+module.exports = ({
+  _,
+  npmOrg,
+  yarn,
+  skipInstall,
+}) => {
   const [, path] = _;
   if (!path) {
     exit('A project directory is required.');
@@ -33,7 +39,11 @@ module.exports = ({ _, npmOrg }) => {
     if (!proceed) {
       exit(chalk`Installation {red stopped}`, 0);
     }
-    return generateProject(dir, answers);
+    await generateProject(dir, answers);
+    if (!skipInstall) {
+
+      await installDeps(dir, yarn);
+    }
   };
 
   execute().then(() => {
