@@ -3,8 +3,8 @@ const { createTerminus } = require('@godaddy/terminus');
 const { isFunction: isFn } = require('@base-cms/utils');
 const express = require('./express');
 
-if (!process.env.WEBSITE_LIVE_RELOAD_PORT) {
-  process.env.WEBSITE_LIVE_RELOAD_PORT = 4010;
+if (!process.env.LIVERELOAD_PORT) {
+  process.env.LIVERELOAD_PORT = 4010;
 }
 const { env } = process;
 
@@ -16,8 +16,8 @@ const startServer = async ({
   rootDir,
   siteConfig,
   coreConfig,
-  port = env.WEBSITE_PORT || 4008,
-  exposedPort = env.WEBSITE_EXPOSED_PORT || env.WEBSITE_PORT || 4008,
+  port = env.PORT || 4008,
+  exposedPort = env.EXPOSED_PORT || env.PORT || 4008,
   routes,
   graphqlUri,
 
