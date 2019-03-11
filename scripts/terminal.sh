@@ -2,5 +2,5 @@
 docker-compose run \
   --rm \
   --no-deps \
-  --entrypoint sh \
+  --entrypoint /bin/bash \
   commands
