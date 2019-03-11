@@ -6,5 +6,5 @@ $link-color: #000 !default;
 // Import default vars...
 @import "../../node_modules/bootstrap/scss/variables";
 
-$body-bg: $gray-200 !default;
-$h1-font-size: $font-size-base * 2.25 !default;
+$body-bg: $gray-200;
+$h1-font-size: $font-size-base * 2.25;
