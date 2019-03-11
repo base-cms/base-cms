@@ -1,5 +1,17 @@
 version: '3.7'
 
+x-env-defaults: &env
+  YARN_CACHE_FOLDER: /.yarn-cache
+  NODE_ENV: development
+
+x-env-mongo: &env-mongo
+  MONGO_DSN: ${MONGO_DSN-mongodb://mongodb:27017}
+  TENANT_KEY: ${TENANT_KEY-as3_baseplatform}
+  ENABLE_BASEDB_LOGGING: ${ENABLE_BASEDB_LOGGING-0}
+
+x-env-elastic: &env-elastic
+  ELASTICSEARCH_URL: ${ELASTICSEARCH_URL-http://elasticsearch:9200}
+
 x-node-defaults: &node
   tty: true
   init: true
@@ -11,13 +23,7 @@ x-node-defaults: &node
     - ./node_modules:/base-cms/node_modules:delegated
     - yarn-cache:/.yarn-cache
   environment:
-    YARN_CACHE_FOLDER: /.yarn-cache
-    NODE_ENV: development
-    MONGO_DSN: ${MONGO_DSN-mongodb://mongodb:27017}
-    TENANT_KEY: ${TENANT_KEY-as3_baseplatform}
-    SERVICE_URL: ${SERVICE_URL-http://graphql-server}
-    ELASTICSEARCH_URL: ${ELASTICSEARCH_URL-http://elasticsearch:9200}
-    ENABLE_BASEDB_LOGGING: ${ENABLE_BASEDB_LOGGING-0}
+    <<: *env
 
 services:
   commands:
@@ -33,81 +39,104 @@ services:
       - mongodb:/data/db
     ports:
       - "10000:27017"
+
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.4.2
     environment:
       discovery.type: single-node
     volumes:
       - esdata:/usr/share/elasticsearch/data
+
   kibana:
     image: docker.elastic.co/kibana/kibana-oss:6.4.2
     environment:
       server.name: kibana
       ELASTICSEARCH_URL: "${ELASTICSEARCH_URL-http://elasticsearch:9200}"
       LOGGING_QUIET: "true"
-    ports:
-      - "10001:5601"
     depends_on:
       - elasticsearch
+    ports:
+      - "10001:5601"
+
   keyword-analysis:
     << : *node
     working_dir: /base-cms/services/keyword-analysis
     command: ["src"]
+    environment:
+      <<: *env
+      <<: *env-mongo
+      <<: *env-elastic
     depends_on:
       - mongodb
       - elasticsearch
       - kibana
+
   graphql-server:
     << : *node
     working_dir: /base-cms/services/graphql-server
     entrypoint: ["/base-cms/node_modules/.bin/gulp"]
+    environment:
+      <<: *env
+      <<: *env-mongo
     depends_on:
       - mongodb
     ports:
       - "10002:80"
+
   nextjs-example-website:
     << : *node
     working_dir: /base-cms/services/nextjs-example-website
     command: ["server.js"]
+    environment:
+      <<: *env
+      <<: *env-mongo
+      SERVICE_URL: ${SERVICE_URL-http://graphql-server}
     depends_on:
       - graphql-server
     ports:
       - "10003:80"
+
   express-example-website:
     << : *node
     working_dir: /base-cms/services/express-example-website
     command: ["/base-cms/node_modules/.bin/gulp"]
     environment:
-      YARN_CACHE_FOLDER: /.yarn-cache
-      NODE_ENV: development
-      GRAPHQL_URI: ${GRAPHQL_URI-http://graphql-server}
+      <<: *env
+      <<: *env-mongo
       INTERNAL_PORT: ${INTERNAL_PORT-80}
       EXTERNAL_PORT: ${EXTERNAL_PORT-10006}
+      GRAPHQL_URI: ${GRAPHQL_URI-http://graphql-server}
     depends_on:
       - graphql-server
     ports:
-      - "${EXTERNAL_PORT-10006}:${INTERNAL_PORT-80}"
+      - "10006:80"
+
   marko-example-website:
     << : *node
     working_dir: /base-cms/services/marko-example-website
-    command: ["/base-cms/node_modules/.bin/browser-refresh", "server/index.js"]
+    command: ["/base-cms/node_modules/.bin/basecms-website", "dev", "index.js"]
     environment:
-      YARN_CACHE_FOLDER: /.yarn-cache
-      NODE_ENV: development
+      <<: *env
+      <<: *env-mongo
+      PORT: 80
+      EXPOSED_PORT: 10007
+      LIVERELOAD_PORT: 10008
       GRAPHQL_URI: ${GRAPHQL_URI-http://graphql-server}
-      INTERNAL_PORT: ${INTERNAL_PORT-80}
-      EXTERNAL_PORT: ${EXTERNAL_PORT-10007}
     depends_on:
       - graphql-server
     ports:
-      - "${EXTERNAL_PORT-10007}:${INTERNAL_PORT-80}"
+      - "10007:80"
       - "10008:10008" # livereload port
+
   manage:
     <<: *node
     image: danlynn/ember-cli:3.7.1
     working_dir: /base-cms/services/manage
     entrypoint: ["node_modules/.bin/ember"]
     command: ["serve", "--port", "10004", "--proxy", "http://graphql-server"]
+    environment:
+      <<: *env
+      <<: *env-mongo
     depends_on:
       - graphql-server
     ports:
