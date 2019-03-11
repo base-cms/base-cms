@@ -1,6 +1,11 @@
 const livereload = require('gulp-livereload');
 const log = require('fancy-log');
-const { green, yellow, magenta } = require('chalk');
+const {
+  green,
+  yellow,
+  magenta,
+  gray,
+} = require('chalk');
 const { spawn } = require('child_process');
 
 module.exports = (file) => {
@@ -10,7 +15,7 @@ module.exports = (file) => {
     node = await spawn('node', [file], { stdio: ['inherit', 'inherit', 'inherit', 'ipc'] });
     node.on('message', (msg) => {
       if (msg.event === 'ready') {
-        log(`Server ${green('ready')} on ${yellow(msg.location)}`);
+        log(`${magenta(msg.name)} website ${green('ready')} on ${yellow(msg.location)} (API: ${gray(msg.graphqlUri)})`);
         livereload.changed('/');
       }
     });

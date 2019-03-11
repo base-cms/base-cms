@@ -74,7 +74,12 @@ const startServer = async ({
       } else {
         res(this);
         if (process.send) {
-          process.send({ event: 'ready', location: `http://0.0.0.0:${exposedPort}` });
+          process.send({
+            event: 'ready',
+            name: coreConfig.siteName,
+            graphqlUri,
+            location: `http://0.0.0.0:${exposedPort}`,
+          });
         }
       }
     });
