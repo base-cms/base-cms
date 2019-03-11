@@ -1,10 +1,8 @@
-$font-family-sans-serif: "PT Sans", sans-serif !default;
-$red: #d71920 !default;
-$secondary: $red !default;
-$link-color: #000 !default;
+// Override variables that are _not_ dependant on other bootstrap vars here...
+$font-family-sans-serif: $site-font-family-sans-serif !default;
 
 // Import default vars...
 @import "../../node_modules/bootstrap/scss/variables";
 
+// Override variavles that _are_ dependent on other bootstrap vars here...
 $body-bg: $gray-200;
-$h1-font-size: $font-size-base * 2.25;

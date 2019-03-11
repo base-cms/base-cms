@@ -1,6 +1,7 @@
-@import "bootstrap";
-
+$site-font-family-sans-serif: "PT Sans", sans-serif !default;
 $site-font-family-serif: "PT Serif", serif !default;
+
+@import "bootstrap";
 
 .content {
   $self: &;
@@ -19,7 +20,10 @@ $site-font-family-serif: "PT Serif", serif !default;
 
 .navbar {
   &--site {
-    background-color: $black;
+    @extend .sticky-top;
+    margin-bottom: map-get($spacers, 4);
+    background-color: $dark;
+    box-shadow: $box-shadow;
     .nav-item {
       padding: 0 .2rem;
       font-size: .8rem;
