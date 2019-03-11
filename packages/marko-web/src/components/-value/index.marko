@@ -1,7 +1,11 @@
+import moment from 'moment';
 import { get } from '@base-cms/object-path';
 import { modelClassNames } from '@base-cms/web-common/utils';
 
 $ const value = get(input.obj, input.path, input.default);
+$ let date = input.dateFormat ? moment(value) : null;
+$ date = date && date.isValid() ? date.format(input.dateFormat) : null;
+$ const formatted = date || value;
 
 <if(!input.collapsible || (input.collapsible && value))>
   <${input.tag}
@@ -9,13 +13,13 @@ $ const value = get(input.obj, input.path, input.default);
     ...input.attrs
   >
     <if(input.renderBody)>
-      <${input.renderBody} value=value />
+      <${input.renderBody} value=formatted />
     </if>
     <else-if(input.asHTML)>
-      $!{value}
+      $!{formatted}
     </else-if>
     <else>
-      ${value}
+      ${formatted}
     </else>
   </>
 </if>
