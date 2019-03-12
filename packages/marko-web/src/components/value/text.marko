@@ -3,7 +3,8 @@ import { modelClassNames } from '@base-cms/web-common/utils';
 
 $ const result = get(input.obj, input.path, input.default);
 $ const value = result == null ? '' : `${result}`.trim();
-$ const tag = input.tag || 'span';
+$ const tag = input.tag || 'div';
+$ const collapsible = input.collapsible == null ? true : false;
 
 $ const tagProps = {
   class: [...modelClassNames(input.for, input.path), input.class],
@@ -20,11 +21,11 @@ $ const href = get(input.obj, input.linkPath || 'canonicalPath');
 $ const linkProps = {
   href,
   attrs: input.linkAttrs,
-  class: [`${input.for}-link`, input.linkClass],
+  class: input.linkClass,
 };
 
-<if(!input.collapsible || (input.collapsible && value))>
-  <if(input.link && (!input.collapsible || (input.collapsible && href)))>
+<if(!collapsible || value)>
+  <if(input.link && (!collapsible || href))>
     <${tag} ...tagProps>
       <a ...linkProps>
         <tag-content ...contentProps />
