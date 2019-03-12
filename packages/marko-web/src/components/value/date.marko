@@ -4,6 +4,11 @@ import { get, set } from '@base-cms/object-path';
 $ const result = get(input.obj, input.path, input.default);
 $ let date = result ? moment(result) : null;
 $ date = date && date.isValid() ? date.format(input.format || 'MMM Do, YYYY') : null;
-$ set(input.obj, input.path, date);
+$ const obj = {};
+$ set(obj, input.path, date);
+$ const props = {
+  ...input,
+  obj,
+};
 
-<-value-text ...input />
+<cms-text-value ...input />
