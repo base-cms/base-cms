@@ -27,14 +27,18 @@ $ const linkProps = {
 <if(!collapsible || value)>
   <if(input.link && (!collapsible || href))>
     <${tag} ...tagProps>
+      <${input.before} />
       <a ...linkProps>
         <tag-content ...contentProps />
       </a>
+      <${input.after} />
     </>
   </if>
   <else>
     <${tag} ...tagProps>
+      <${input.before} />
       <tag-content ...contentProps />
+      <${input.after} />
     </>
   </else>
 </if>
