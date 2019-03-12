@@ -1,7 +1,10 @@
 {
   "tags": {
-    "-content-teaser-test": {
+    "cms-content-teaser": {
       "template": "./teaser.marko"
+    },
+    "cms-content-name": {
+      "template": "./name.marko"
     }
   }
 }
