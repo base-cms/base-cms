@@ -1,1 +1,31 @@
-<h1>Teaser!</h1>
+import { get } from '@base-cms/object-path';
+import { modelClassNames } from '@base-cms/web-common/utils';
+
+$ const field = 'teaser';
+$ const path = input.path || field;
+<!-- Should an error be thrown if last part does not equal teaser? -->
+$ const classNames = [...modelClassNames('content', path), input.class];
+$ const value = get(input.from, path, input.default);
+$ const tag = input.tag || 'p';
+$ const href = get(input.from, 'canonicalPath');
+
+<if(!input.collapsible || (input.collapsible && value))>
+  <${tag} class=classNames ...input.attrs>
+    <if(input.link && (!input.collapsible || (input.collapsible && href)))>
+      <a href=href class=['content-link', input.linkClass] ...input.linkAttrs>
+        <if(input.renderBody)>
+          <${input.renderBody} value=value />
+        </if>
+        <else>
+          $!{value}
+        </else>
+      </a>
+    </if>
+    <else-if(input.renderBody)>
+      <${input.renderBody} value=value />
+    </else-if>
+    <else>
+      $!{value}
+    </else>
+  </>
+</if>
