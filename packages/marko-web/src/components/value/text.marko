@@ -1,0 +1,21 @@
+import { get } from '@base-cms/object-path';
+import { modelClassNames } from '@base-cms/web-common/utils';
+
+$ const tag = input.tag || 'span';
+$ const result = get(input.obj, input.path, input.default);
+$ const value = result == null ? '' : `${result}`.trim();
+$ const classes = [...modelClassNames(input.for, input.path), input.class];
+
+<if(!input.collapsible || (input.collapsible && value))>
+  <${tag} class=classes ...input.attrs>
+    <if(input.renderBody)>
+      <${input.renderBody} value=value />
+    </if>
+    <else-if(input.asHTML)>
+      $!{value}
+    </else-if>
+    <else>
+      ${value}
+    </else>
+  </>
+</if>

@@ -1,0 +1,13 @@
+{
+  "tags": {
+    "-value-text": {
+      "template": "./text.marko"
+    },
+    "-value-html": {
+      "template": "./html.marko"
+    },
+    "-value-date": {
+      "template": "./date.marko"
+    }
+  }
+}
