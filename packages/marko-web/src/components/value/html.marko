@@ -1,6 +1,5 @@
-$ const props = {
-  ...input,
-  asHTML: true,
-};
+import { set } from '@base-cms/object-path';
 
-<-value-text ...props />
+$ set(input.obj, 'asHTML', true);
+
+<-value-text ...input />
