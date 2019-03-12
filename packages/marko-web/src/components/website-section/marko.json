@@ -1,0 +1,7 @@
+{
+  "tags": {
+    "cms-website-section-name": {
+      "template": "./name.marko"
+    }
+  }
+}

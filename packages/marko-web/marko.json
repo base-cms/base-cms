@@ -3,6 +3,7 @@
   "tags-dir": "./src/components",
   "taglib-imports": [
     "./src/components/content/marko.json",
-    "./src/components/value/marko.json"
+    "./src/components/value/marko.json",
+    "./src/components/website-section/marko.json"
   ]
 }
