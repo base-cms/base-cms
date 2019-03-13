@@ -1,43 +1,101 @@
 import { get } from '@base-cms/object-path';
-import { modelClassNames } from '@base-cms/web-common/utils';
+import { elementClassNames } from '@base-cms/web-common/utils';
+import { linkClassNames } from '@base-cms/web-common/utils';
 
-$ const result = get(input.obj, input.path, input.default);
+$ const { buildForContent, buildForWebsiteSection, buildForDynamicPage } = linkClassNames;
+
+<!--
+Accepted inputs:
+
+type: the target object type (where field+from resolves from)
+obj: root object
+field: the attribute field to display
+from: a "middle-man" path
+
+defaultValue: default value to display if the obj[path] is not found
+tag: the tag name to render, e.g. p or h1
+collapsible: whether the entire tag should collapse on an empty value
+
+block-name: the parent block that owns this element. if not set, no classes will be generated
+modifiers: additional modifiers to add to the element
+
+class: optional class names to add
+attrs: attrs to add to the element (e.g. { title: 'foo', 'data-id': 12 } would create <tag title="foo" data-id="12">)
+renderBody: function that renders inner contents (optional)
+asHTML: whether to render as HTML (only used when not using renderBody, otherwise you have to manually mark as safe)
+
+before: contents to render before the element (but before the link, if link=true)
+after: contents to render after the element (but after the link, if link=true)
+
+link: whether to link the value
+linkPath: an alternate path to the link value (from the targetObj, e.g. obj + from + field), otherwise `canonicalPath`
+linkAttrs: attrs object to add to the link element (e.g { title: 'foo' } would create <a title="foo">)
+linkModifiers: additional modifiers to add the the link element
+
+Calculated:
+path: calculated by concatenating from + field
+-->
+
+$ const path = input.from ? `${input.from}.${input.field}` : input.field;
+$ const targetObj = input.from ? get(input.obj, input.from, {}) : input.obj;
+$ const result = get(targetObj, input.field, input.defaultValue);
+
 $ const value = result == null ? '' : `${result}`.trim();
 $ const tag = input.tag || 'div';
 $ const collapsible = input.collapsible == null ? true : false;
 
-$ const tagProps = {
-  class: [...modelClassNames(input.for, input.path), input.class],
+<!-- Input to apply to the wrapping element -->
+$ const tagInput = {
+  class: [...elementClassNames(input.blockName, path, input.modifiers), input.class],
   attrs: input.attrs,
 };
 
-$ const contentProps = {
+<!-- Input to apply to the inner element content -->
+$ const contentInput = {
   renderBody: input.renderBody,
   value,
   asHTML: input.asHTML,
 };
 
-$ const href = get(input.obj, input.linkPath || 'canonicalPath');
-$ const linkProps = {
-  href,
-  attrs: input.linkAttrs,
-  class: input.linkClass,
-};
+<!-- Input to apply to the link element (if applicable) -->
+$ let linkInput = {};
+$ const href = get(targetObj, input.linkPath || 'canonicalPath');
+$ let linkClasses = [];
+$ if (input.link) {
+  switch (input.type) {
+    case 'content':
+      linkClasses = buildForContent(input.blockName, targetObj);
+      break;
+    case 'website-section':
+      linkClasses = buildForWebsiteSection(input.blockName, targetObj);
+      break;
+    case 'dynamic-page':
+      linkClasses = buildForDynamicPage(input.blockName, targetObj);
+      break;
+    default:
+      break;
+  }
+  linkInput = {
+    href,
+    attrs: input.linkAttrs,
+    class: [...linkClasses, input.linkClass],
+  };
+}
 
 <if(!collapsible || value)>
   <if(input.link && (!collapsible || href))>
-    <${tag} ...tagProps>
+    <${tag} ...tagInput>
       <${input.before} />
-      <a ...linkProps>
-        <tag-content ...contentProps />
+      <a ...linkInput>
+        <tag-content ...contentInput />
       </a>
       <${input.after} />
     </>
   </if>
   <else>
-    <${tag} ...tagProps>
+    <${tag} ...tagInput>
       <${input.before} />
-      <tag-content ...contentProps />
+      <tag-content ...contentInput />
       <${input.after} />
     </>
   </else>
