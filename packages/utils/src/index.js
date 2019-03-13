@@ -1,3 +1,4 @@
+const Profiler = require('./profiler');
 const asArray = require('./as-array');
 const asObject = require('./as-object');
 const asyncRoute = require('./async-route');
@@ -10,6 +11,7 @@ const parseDelimitedString = require('./parse-delimited-string');
 const sleep = require('./sleep');
 
 module.exports = {
+  Profiler,
   asArray,
   asObject,
   asyncRoute,
