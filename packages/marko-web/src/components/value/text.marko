@@ -16,7 +16,7 @@ defaultValue: default value to display if the obj[path] is not found
 tag: the tag name to render, e.g. p or h1
 collapsible: whether the entire tag should collapse on an empty value
 
-block-name: the parent block that owns this element. if not set, no classes will be generated
+block: the parent block that owns this element. if not set, no classes will be generated
 modifiers: additional modifiers to add to the element
 
 class: optional class names to add
@@ -46,7 +46,7 @@ $ const collapsible = input.collapsible == null ? true : false;
 
 <!-- Input to apply to the wrapping element -->
 $ const tagInput = {
-  class: [...elementClassNames(input.blockName, path, input.modifiers), input.class],
+  class: [...elementClassNames(input.block, path, input.modifiers), input.class],
   attrs: input.attrs,
 };
 
@@ -64,13 +64,13 @@ $ let linkClasses = [];
 $ if (input.link) {
   switch (input.type) {
     case 'content':
-      linkClasses = buildForContent(input.blockName, targetObj);
+      linkClasses = buildForContent(input.block, targetObj);
       break;
     case 'website-section':
-      linkClasses = buildForWebsiteSection(input.blockName, targetObj);
+      linkClasses = buildForWebsiteSection(input.block, targetObj);
       break;
     case 'dynamic-page':
-      linkClasses = buildForDynamicPage(input.blockName, targetObj);
+      linkClasses = buildForDynamicPage(input.block, targetObj);
       break;
     default:
       break;
