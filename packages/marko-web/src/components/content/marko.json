@@ -5,6 +5,9 @@
     },
     "cms-content-name": {
       "template": "./name.marko"
+    },
+    "cms-primary-section-name": {
+      "template": "./primary-section-name.marko"
     }
   }
 }
