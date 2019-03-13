@@ -1,9 +1,7 @@
-import createInput from '../../utils/create-input';
-
-$ const props = createInput({
-  input,
+$ const props = {
+  ...input,
   type: 'content',
   field: 'teaser',
-});
+};
 
 <cms-html-value ...props />
