@@ -1,12 +1,10 @@
 import { get } from '@base-cms/object-path';
 
 $ const id = get(input, 'data.id');
-$ const alias = get(input, 'data.alias', '');
-$ const type = alias.replace('/', '-');
+$ const block = 'website-section-page';
 
 <${input.tag || 'main'}
-  data-id=`${id}`
-  class=['website-section', 'website-section--display', `website-section--${type}`, input.class]
+  class=[block, `${block}--${id}`, input.class]
   ...input.attrs
   >
   <${input.renderBody} />

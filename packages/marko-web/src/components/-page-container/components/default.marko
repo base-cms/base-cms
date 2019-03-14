@@ -1,5 +1,7 @@
+$ const block = 'default-page';
+
 <${input.tag || 'main'}
-  class=input.class
+  class=[block, input.class]
   ...input.attrs
   >
   <${input.renderBody} />
