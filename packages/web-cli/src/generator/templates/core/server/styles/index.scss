@@ -1,3 +1,8 @@
 html {
   font-family: "PT Sans", sans-serif;
 }
+
+.element-row {
+  display: flex;
+  justify-content: space-between;
+}
