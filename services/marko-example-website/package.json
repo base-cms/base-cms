@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/marko-example-website",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/marko-example-website",
@@ -14,7 +14,7 @@
   "dependencies": {
     "@base-cms/marko-web": "^0.5.0",
     "@base-cms/object-path": "^0.5.0",
-    "@base-cms/web-cli": "^0.5.0",
+    "@base-cms/web-cli": "^0.5.1",
     "bootstrap": "4.3.1",
     "graphql": "^14.1.1",
     "graphql-tag": "^2.10.1"
