@@ -1,0 +1,7 @@
+{
+  "tags": {
+    "cms-query-website-scheduled-content": {
+      "template": "./website-scheduled-content.marko"
+    }
+  }
+}

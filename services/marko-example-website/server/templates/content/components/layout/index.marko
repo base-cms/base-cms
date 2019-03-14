@@ -4,12 +4,12 @@ $ const content = getAsObject(input, 'content');
 
 <document>
   <@head>
-    <-page-metadata for="content" ...content />
+    <cms-page-metadata for="content" ...content />
     <${input.head} />
   </@head>
-  <-page-container for="content" class="container" data=content>
+  <cms-page-container for="content" class="container" data=content>
     <cms-ad-placeholder size="970x90" class="mb-4 text-center" />
     <${input.renderBody} />
-  </-page-container>
+  </cms-page-container>
   <site-footer />
 </document>

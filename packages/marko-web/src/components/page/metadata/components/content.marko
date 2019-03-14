@@ -6,10 +6,10 @@ $ const src = get(image, 'src');
 $ const locale = get(out.global, 'config.locale');
 
 <!-- Standard Fields -->
-<-page-title value=title />
-<-rel-canonical pathname=input.canonicalPath />
+<cms-page-title value=title />
+<cms-page-rel-canonical pathname=input.canonicalPath />
 <if (description)>
-  <-meta-description content=description />
+  <cms-page-description content=description />
 </if>
 <if (src)>
   <meta name="image" content=src />
@@ -43,9 +43,9 @@ $ const locale = get(out.global, 'config.locale');
   <!-- @todo Create a new focal point preview for FB's 1200x630 ratio -->
   <meta name="og:image" content=src />
 </if>
-<-rel-canonical|{ href }| pathname=input.canonicalPath>
+<cms-page-rel-canonical|{ href }| pathname=input.canonicalPath>
   <meta name="og:url" content=href />
-</-rel-canonical>
+</cms-page-rel-canonical>
 <meta name="og:site_name" content=get(out.global, 'config.siteName') />
 <meta name="og:locale" content=locale />
 <meta name="og:type" content="article" />

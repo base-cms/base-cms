@@ -8,7 +8,7 @@ $ const section = getAsObject(data, 'section');
   <if(section.description)>
     <p>${section.description}</p>
   </if>
-  <-website-scheduled-content|{ items }|
+  <cms-query-website-scheduled-content|{ items }|
     query-fragment=queryFragment
     section-id=section.id
     limit=24
@@ -46,5 +46,5 @@ $ const section = getAsObject(data, 'section');
         </div>
       </for>
     </div>
-  </-website-scheduled-content>
+  </cms-query-website-scheduled-content>
 </layout>

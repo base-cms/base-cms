@@ -1,8 +1,10 @@
 {
   "taglib-id": "@base-cms/marko-web",
-  "tags-dir": "./src/components",
   "taglib-imports": [
     "./src/components/ads/marko.json",
-    "./src/components/elements/marko.json"
+    "./src/components/document/marko.json",
+    "./src/components/elements/marko.json",
+    "./src/components/page/marko.json",
+    "./src/components/queries/marko.json"
   ]
 }

@@ -1,0 +1,19 @@
+{
+  "tags": {
+    "cms-page-container": {
+      "template": "./container/index.marko"
+    },
+    "cms-page-title": {
+      "template": "./title.marko"
+    },
+    "cms-page-rel-canonical": {
+      "template": "./title.marko"
+    },
+    "cms-page-description": {
+      "template": "./description.marko"
+    },
+    "cms-page-metadata": {
+      "template": "./metadata/index.marko"
+    }
+  }
+}
