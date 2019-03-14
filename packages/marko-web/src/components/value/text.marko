@@ -40,7 +40,6 @@ $ const collapse = input.collapse == null ? true : false;
 <!-- Input to apply to the wrapping element -->
 $ const tagInput = {
   class: [...elementClassNames(input.block, [input.type, input.field], input.modifiers), input.class],
-  attrs: input.attrs,
 };
 
 <!-- Input to apply to the inner element content -->
@@ -70,23 +69,22 @@ $ if (input.link) {
   }
   linkInput = {
     href,
-    attrs: input.linkAttrs,
     class: [...linkClasses, input.linkClass],
   };
 }
 
 <if(!collapse || value)>
   <if(input.link && (!collapse || href))>
-    <${tag} ...tagInput>
+    <${tag} ...tagInput ...input.attrs>
       <${input.before} />
-      <a ...linkInput>
+      <a ...linkInput ...input.linkAttrs>
         <tag-content ...contentInput />
       </a>
       <${input.after} />
     </>
   </if>
   <else>
-    <${tag} ...tagInput>
+    <${tag} ...tagInput ...input.attrs>
       <${input.before} />
       <tag-content ...contentInput />
       <${input.after} />
