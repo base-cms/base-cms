@@ -7,14 +7,13 @@ $ const { buildForContent, buildForWebsiteSection, buildForDynamicPage } = linkC
 <!--
 Accepted inputs:
 
-type: the target object type (where field+from resolves from)
-obj: root object
+type: the target object type (where field resolves from)
+obj: the object to extract the value from, via `field`
 field: the attribute field to display
-from: a "middle-man" path
 
-defaultValue: default value to display if the obj[path] is not found
+defaultValue: default value to display if the obj[field] is not found
 tag: the tag name to render, e.g. p or h1
-collapsible: whether the entire tag should collapse on an empty value
+collapse: whether the entire tag should collapse on an empty value
 
 block: the parent block that owns this element. if not set, no classes will be generated
 modifiers: additional modifiers to add to the element
@@ -28,25 +27,19 @@ before: contents to render before the element (but before the link, if link=true
 after: contents to render after the element (but after the link, if link=true)
 
 link: whether to link the value
-linkPath: an alternate path to the link value (from the targetObj, e.g. obj + from + field), otherwise `canonicalPath`
+linkPath: an alternate path to the link value (from the input.obj, e.g. obj[field]), otherwise `canonicalPath`
 linkAttrs: attrs object to add to the link element (e.g { title: 'foo' } would create <a title="foo">)
 linkModifiers: additional modifiers to add the the link element
 
-Calculated:
-path: calculated by concatenating from + field
 -->
-
-$ const path = input.from ? `${input.from}.${input.field}` : input.field;
-$ const targetObj = input.from ? get(input.obj, input.from, {}) : input.obj;
-$ const result = get(targetObj, input.field, input.defaultValue);
-
+$ const result = get(input.obj, input.field, input.defaultValue);
 $ const value = result == null ? '' : `${result}`.trim();
 $ const tag = input.tag || 'div';
-$ const collapsible = input.collapsible == null ? true : false;
+$ const collapse = input.collapse == null ? true : false;
 
 <!-- Input to apply to the wrapping element -->
 $ const tagInput = {
-  class: [...elementClassNames(input.block, path, input.modifiers), input.class],
+  class: [...elementClassNames(input.block, [input.type, input.field], input.modifiers), input.class],
   attrs: input.attrs,
 };
 
@@ -59,18 +52,18 @@ $ const contentInput = {
 
 <!-- Input to apply to the link element (if applicable) -->
 $ let linkInput = {};
-$ const href = get(targetObj, input.linkPath || 'canonicalPath');
+$ const href = get(input.obj, input.linkPath || 'canonicalPath');
 $ let linkClasses = [];
 $ if (input.link) {
   switch (input.type) {
     case 'content':
-      linkClasses = buildForContent(input.block, targetObj);
+      linkClasses = buildForContent(input.block, input.obj);
       break;
     case 'website-section':
-      linkClasses = buildForWebsiteSection(input.block, targetObj);
+      linkClasses = buildForWebsiteSection(input.block, input.obj);
       break;
     case 'dynamic-page':
-      linkClasses = buildForDynamicPage(input.block, targetObj);
+      linkClasses = buildForDynamicPage(input.block, input.obj);
       break;
     default:
       break;
@@ -82,8 +75,8 @@ $ if (input.link) {
   };
 }
 
-<if(!collapsible || value)>
-  <if(input.link && (!collapsible || href))>
+<if(!collapse || value)>
+  <if(input.link && (!collapse || href))>
     <${tag} ...tagInput>
       <${input.before} />
       <a ...linkInput>

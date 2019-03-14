@@ -1,14 +1,15 @@
 import moment from 'moment';
 import { get, set } from '@base-cms/object-path';
 
-$ const result = get(input.obj, input.path, input.default);
+$ const path = input.from ? `${input.from}.${input.field}` : input.field;
+$ const result = get(input.obj, path);
 $ let date = result ? moment(result) : null;
 $ date = date && date.isValid() ? date.format(input.format || 'MMM Do, YYYY') : null;
-$ const obj = {};
-$ set(obj, input.path, date);
+$ const obj = { ...input.obj };
+$ set(obj, path, date);
 $ const props = {
   ...input,
   obj,
 };
 
-<cms-text-value ...input />
+<cms-text-value ...props />
