@@ -1,0 +1,36 @@
+import { asObject } from '@base-cms/utils';
+
+<!--
+Requires the following content fragment
+{
+  id
+  type
+  canonicalPath
+  shortName
+  published
+  company {
+    id
+    name
+    canonicalPath
+  }
+  primarySection {
+    id
+    name
+    fullName
+    canonicalPath
+  }
+}
+-->
+
+$ const tag = input.tag || 'li';
+$ const block = 'content-list-item';
+$ const content = asObject(input.content);
+
+<${tag} class=[block, `${block}--style-a`, 'list-group-item']>
+  <cms-content-short-name tag="h5" block=block obj=content link=true />
+  <cms-content-name tag="small" block=block obj=content.company link=true />
+  <small class="element-row">
+    <cms-website-section-name obj=content.primarySection link=true />
+    <cms-content-published obj=content />
+  </small>
+</>

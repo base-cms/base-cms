@@ -1,0 +1,53 @@
+import gql from 'graphql-tag';
+
+$ const queryFragment = gql`
+  fragment HeroBlockAWebsiteScheduleQueryFragment on Content {
+    id
+    type
+    shortName
+    teaser
+    canonicalPath
+    published
+    company {
+      id
+      type
+      name
+      canonicalPath
+    }
+    primarySection {
+      id
+      name
+      fullName
+      canonicalPath
+    }
+    primaryImage {
+      id
+      src
+    }
+  }
+`;
+
+$ const block = 'content-hero';
+$ const params = {
+  ...input,
+  queryFragment,
+};
+
+<cms-query-website-scheduled-content|{ items }| ...params>
+  $ const hero = items[0] || {};
+  $ const nodes = items.slice(1) || [];
+
+  <div class="row">
+    <div class="col-lg-7 col-xl-8">
+      <div class="card">
+        <content-card-body-a content=hero />
+      </div>
+    </div>
+    <div class="col-lg-5 col-xl-4">
+      <div class="card">
+        <content-list-group-a nodes=nodes />
+      </div>
+    </div>
+  </div>
+
+</cms-query-website-scheduled-content>

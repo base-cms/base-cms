@@ -1,0 +1,7 @@
+{
+  "tags": {
+    "content-list-group-item-a": {
+      "template": "./style-a.marko"
+    }
+  }
+}

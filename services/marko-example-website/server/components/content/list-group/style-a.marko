@@ -1,0 +1,12 @@
+import { asArray } from '@base-cms/utils';
+
+$ const nodes = asArray(input.nodes);
+$ const collapse = input.collapse == null ? true : false;
+
+<if(!collapse || nodes.length)>
+  <ul class="list-group list-group-flush">
+    <for|content| of=nodes>
+      <content-list-group-item-a content=content />
+    </for>
+  </ul>
+</if>

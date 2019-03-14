@@ -1,0 +1,5 @@
+{
+  "taglib-imports": [
+    "./content/marko.json"
+  ]
+}

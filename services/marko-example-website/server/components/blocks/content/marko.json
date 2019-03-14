@@ -1,0 +1,7 @@
+{
+  "tags": {
+    "content-hero-block-a": {
+      "template": "./hero-a.marko"
+    }
+  }
+}
