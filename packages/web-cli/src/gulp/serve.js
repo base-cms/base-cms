@@ -24,6 +24,7 @@ module.exports = (cwd, serverFile) => () => {
       serverFile,
       'config/**/*.js',
       'server/**/*.js',
+      'server/**/*.json',
       'server/styles/**/*.scss',
       'server/**/*.marko',
     ],
