@@ -11,6 +11,9 @@
     },
     "content-short-name": {
       "template": "./short-name.marko"
+    },
+    "content-body": {
+      "template": "./body.marko"
     }
   }
 }
