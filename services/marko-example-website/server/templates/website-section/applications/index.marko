@@ -33,14 +33,14 @@ $ const section = getAsObject(data, 'section');
 
             <div class="card-body d-flex flex-column justify-content-start">
               <small class="element-row">
-                <website-section-name block=block obj=content.primarySection link=true />
-                <content-published block=block obj=content />
+                <cms-website-section-name block=block obj=content.primarySection link=true />
+                <cms-content-published block=block obj=content />
               </small>
-              <content-short-name tag="h5" block=block obj=content link=true />
-              <content-name tag="small" block=block obj=content.company link=true modifiers=['related-company']>
+              <cms-content-short-name tag="h5" block=block obj=content link=true />
+              <cms-content-name tag="small" block=block obj=content.company link=true modifiers=['related-company']>
                 <@before>From:&nbsp;</@before>
-              </content-name>
-              <content-teaser tag="p" block=block obj=content />
+              </cms-content-name>
+              <cms-content-teaser tag="p" block=block obj=content />
             </div>
           </div>
         </div>

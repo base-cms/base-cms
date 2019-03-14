@@ -8,6 +8,7 @@ $ const section = getAsObject(data, 'section');
   <if(section.description)>
     <p>${section.description}</p>
   </if>
+  $ const block = 'content-list';
   <-website-scheduled-content|{ items }|
     query-fragment=queryFragment
     section-id=section.id
@@ -19,12 +20,10 @@ $ const section = getAsObject(data, 'section');
         <div class="col">
           <div class="card border-0 shadow-sm mb-4 w-100">
             <div class="card-body d-flex flex-row py-4">
-
-
               <div class="d-flex my-auto mr-3">
                 <a href=content.canonicalPath>
                   <if(content.primaryImage)>
-                    <img src=content.primaryImage.src style="max-width: 160px; max-height: 160px; border-radius: 0.5rem;" />
+                    <img src=`${content.primaryImage.src}?auto=format&max-w=160&max-h=160&fit=crop&crop=focalpoint&fp-x=0.5&fp-y=0.5` style="max-width: 160px; max-height: 160px; border-radius: 0.5rem;" />
                   </if>
                   <else>
                     <!-- @todo Add a site logo within the no-image, image? -->
@@ -34,16 +33,10 @@ $ const section = getAsObject(data, 'section');
                 </a>
               </div>
               <div>
-                <-value|{ value }| tag="h5" for="content" obj=content path="shortName">
-                  <a href=content.canonicalPath>${value}</a>
-                </-value>
-                <-value tag="p" class="mt-0 mb-2" for="content" obj=content path="teaser" />
-                <-value|{ value }| tag="small" for="content" obj=content path="primarySection.name">
-                  <a href=content.primarySection.canonicalPath class="text-secondary">${value}</a>
-                </-value>
+                <cms-content-short-name tag="h5" block=block obj=content link=true />
+                <cms-content-teaser tag="p" block=block obj=content />
+                <cms-website-section-name tag="small" block=block content=content link=true />
               </div>
-
-
             </div>
           </div>
         </div>
