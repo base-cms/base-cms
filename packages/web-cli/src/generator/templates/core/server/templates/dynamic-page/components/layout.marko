@@ -2,7 +2,7 @@ import { getAsObject } from '@base-cms/object-path';
 
 $ const page = getAsObject(input, 'page');
 
-<cms-document>
+<document>
   <@head>
     <cms-page-metadata for="dynamic-page" ...page />
     <${input.head} />
@@ -10,4 +10,4 @@ $ const page = getAsObject(input, 'page');
   <cms-page-container for="dynamic-page" data=page>
     <${input.renderBody} />
   </cms-page-container>
-</cms-document>
+</document>

@@ -2,7 +2,7 @@ import { getAsObject } from '@base-cms/object-path';
 
 $ const section = getAsObject(input, 'section');
 
-<cms-document>
+<document>
   <@head>
     <cms-page-metadata for="website-section" ...section />
     <${input.head} />
@@ -10,4 +10,4 @@ $ const section = getAsObject(input, 'section');
   <cms-page-container for="website-section" data=section>
     <${input.renderBody} />
   </cms-page-container>
-</cms-document>
+</document>
