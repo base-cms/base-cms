@@ -1,4 +1,4 @@
-import { getAsObject } from '@base-cms/object-path';
+import { getAsObject, get } from '@base-cms/object-path';
 import queryFragment from '../../../api/fragments/website-scheduled-content';
 
 $ const section = getAsObject(data, 'section');
@@ -16,24 +16,31 @@ $ const section = getAsObject(data, 'section');
   >
     <div class="row">
       <for|content| of=items>
+        $ const block = 'content-card';
         <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-          <div class="card h-100 border-0 shadow-sm">
-            <if(content.primaryImage)>
-              <div class="embed-responsive embed-responsive-16by9 border-bottom">
-                <img src=content.primaryImage.src class="card-img-top embed-responsive-item">
-              </div>
-            </if>
-            <else>
-              <div class="embed-responsive embed-responsive-16by9 border-bottom card-img-top" style="background: linear-gradient(to right, rgba(122,188,255,1) 0%,rgba(96,171,248,1) 44%,rgba(64,150,238,1) 100%);"></div>
-            </else>
-            <div class="card-body">
-              <-value|{ value }| tag="small" for="content" obj=content path="primarySection.name" class="text-uppercase">
-                <a href=content.primarySection.canonicalPath class="text-secondary">${value}</a>
-              </-value>
-              <-value|{ value }| tag="h5" for="content" obj=content path="shortName" class="mt-3">
-                <a href=content.canonicalPath>${value}</a>
-              </-value>
-              <-value tag="p" class="mb-0 mt-3 text-muted" for="content" obj=content path="teaser" />
+          <div class=`card h-100 border-0 shadow-sm ${block} ${block}--${content.type} ${block}--${content.id}`>
+
+            <div class="embed-responsive embed-responsive-16by9 border-bottom">
+              <a href=content.canonicalPath>
+                <if(content.primaryImage)>
+                  <img src=`${content.primaryImage.src}?auto=format&w=480&h=270&fit=crop&crop=focalpoint&fp-x=0.5&fp-y=0.5` class="card-img-top embed-responsive-item">
+                </if>
+                <else>
+                  <div class="card-img-top embed-responsive-item" style="background: linear-gradient(to right, rgba(122,188,255,1) 0%,rgba(96,171,248,1) 44%,rgba(64,150,238,1) 100%);"></div>
+                </else>
+              </a>
+            </div>
+
+            <div class="card-body d-flex flex-column justify-content-start">
+              <small class="element-row">
+                <website-section-name block=block obj=content.primarySection link=true />
+                <content-published block=block obj=content />
+              </small>
+              <content-short-name tag="h5" block=block obj=content link=true />
+              <content-name tag="small" block=block obj=content.company link=true modifiers=['related-company']>
+                <@before>From:&nbsp;</@before>
+              </content-name>
+              <content-teaser tag="p" block=block obj=content />
             </div>
           </div>
         </div>
