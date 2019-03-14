@@ -1,6 +1,6 @@
 {
   "tags": {
-    "website-section-name": {
+    "cms-website-section-name": {
       "template": "./name.marko"
     }
   }

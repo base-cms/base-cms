@@ -1,18 +1,18 @@
 {
   "tags": {
-    "content-teaser": {
+    "cms-content-teaser": {
       "template": "./teaser.marko"
     },
-    "content-name": {
+    "cms-content-name": {
       "template": "./name.marko"
     },
-    "content-published": {
+    "cms-content-published": {
       "template": "./published.marko"
     },
-    "content-short-name": {
+    "cms-content-short-name": {
       "template": "./short-name.marko"
     },
-    "content-body": {
+    "cms-content-body": {
       "template": "./body.marko"
     }
   }

@@ -1,12 +1,12 @@
 {
   "tags": {
-    "cms-text-value": {
+    "cms-text-element": {
       "template": "./text.marko"
     },
-    "cms-html-value": {
+    "cms-html-element": {
       "template": "./html.marko"
     },
-    "cms-date-value": {
+    "cms-date-element": {
       "template": "./date.marko"
     }
   }
