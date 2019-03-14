@@ -1,6 +1,33 @@
+$site-font-family-sans-serif: "PT Sans", sans-serif !default;
+$site-font-family-serif: "PT Serif", serif !default;
+
 @import "bootstrap";
 
-$site-font-family-serif: "PT Serif", serif !default;
+@import "core";
+
+.content-card {
+  &__content-short-name {
+    margin-top: map-get($spacers, 3);
+    margin-bottom: 0;
+  }
+
+  &__content-published {
+    color: $text-muted;
+  }
+
+  &__content-name--related-company {
+    margin-top: map-get($spacers, 2);
+    margin-bottom: 0;
+  }
+
+  &__content-teaser {
+    margin-top: map-get($spacers, 3);
+    margin-bottom: 0;
+    font-family: $site-font-family-serif;
+    font-style: italic;
+    color: $text-muted;
+  }
+}
 
 .content {
   $self: &;
@@ -19,7 +46,10 @@ $site-font-family-serif: "PT Serif", serif !default;
 
 .navbar {
   &--site {
-    background-color: $black;
+    @extend .sticky-top;
+    margin-bottom: map-get($spacers, 4);
+    background-color: $dark;
+    box-shadow: $box-shadow;
     .nav-item {
       padding: 0 .2rem;
       font-size: .8rem;

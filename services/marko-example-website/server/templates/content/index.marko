@@ -7,10 +7,10 @@ $ const content = getAsObject(data, 'content');
     <div class="col">
       <div class="card border-0 shadow">
         <div class="card-body">
-          <-content-name obj=content class="mb-0" />
-          <-content-teaser obj=content class="mt-3" />
-          <hr />
-          <-content-body obj=content class="mt-3" />
+          <cms-content-name tag="h1" block="content-page" obj=content />
+          <cms-content-teaser tag="p" block="content-page" obj=content />
+          <hr>
+          <cms-content-body tag="div" block="content-page" obj=content />
         </div>
       </div>
     </div>

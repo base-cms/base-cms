@@ -19,7 +19,7 @@ const startServer = async ({
   port = env.PORT || 4008,
   exposedPort = env.EXPOSED_PORT || env.PORT || 4008,
   routes,
-  graphqlUri,
+  graphqlUri = env.GRAPHQL_URI,
 
   // Terminus settings.
   timeout = 1000,
@@ -31,6 +31,7 @@ const startServer = async ({
   onHealthCheck,
 } = {}) => {
   if (!rootDir) throw new Error('The root project directory is required.');
+  if (!graphqlUri) throw new Error('The GraphQL API URL is required.');
   const app = express({
     rootDir,
     siteConfig,
@@ -73,7 +74,12 @@ const startServer = async ({
       } else {
         res(this);
         if (process.send) {
-          process.send({ event: 'ready', location: `http://0.0.0.0:${exposedPort}` });
+          process.send({
+            event: 'ready',
+            name: coreConfig.siteName,
+            graphqlUri,
+            location: `http://0.0.0.0:${exposedPort}`,
+          });
         }
       }
     });

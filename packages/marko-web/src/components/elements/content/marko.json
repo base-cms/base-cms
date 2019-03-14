@@ -1,0 +1,19 @@
+{
+  "tags": {
+    "cms-content-teaser": {
+      "template": "./teaser.marko"
+    },
+    "cms-content-name": {
+      "template": "./name.marko"
+    },
+    "cms-content-published": {
+      "template": "./published.marko"
+    },
+    "cms-content-short-name": {
+      "template": "./short-name.marko"
+    },
+    "cms-content-body": {
+      "template": "./body.marko"
+    }
+  }
+}

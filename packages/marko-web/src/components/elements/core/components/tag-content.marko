@@ -1,0 +1,9 @@
+<if(input.renderBody)>
+  <${input.renderBody} value=input.value />
+</if>
+<else-if(input.asHTML)>
+  $!{input.value}
+</else-if>
+<else>
+  ${input.value}
+</else>

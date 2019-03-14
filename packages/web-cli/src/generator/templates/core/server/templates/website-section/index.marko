@@ -1,4 +1,4 @@
-import { getAsObject } from '@base-cms/object-path';
+import { getAsObject, get } from '@base-cms/object-path';
 import queryFragment from '../../api/fragments/website-scheduled-content';
 
 $ const section = getAsObject(data, 'section');
@@ -8,34 +8,32 @@ $ const section = getAsObject(data, 'section');
   <if(section.description)>
     <p>${section.description}</p>
   </if>
-  <-website-scheduled-content|{ items }|
+  <cms-query-website-scheduled-content|{ items }|
     query-fragment=queryFragment
     section-id=section.id
     limit=18
     include-content-types=["Article"]
   >
+    $ const block = "content-list";
     <for|content| of=items>
-
-      <div class="d-flex my-auto mr-3">
-        <a href=content.canonicalPath>
-          <if(content.primaryImage)>
-            <img src=content.primaryImage.src style="max-width: 160px; max-height: 160px; border-radius: 0.5rem;" />
-          </if>
-          <else>
-            <div style="width: 160px; height: 90px; border-radius: 0.5rem; background: linear-gradient(to right, rgba(122,188,255,1) 0%,rgba(96,171,248,1) 44%,rgba(64,150,238,1) 100%);"></div>
-          </else>
-        </a>
+      <div class=block>
+        <div>
+          <a href=content.canonicalPath>
+            $ const src = get(content, 'primaryImage.src');
+            <if(src)>
+              <img src=`${src}?auto=format&max-w=160&max-h=160&fit=crop&crop=focalpoint&fp-x=0.5&fp-y=0.5` style="max-width: 160px; max-height: 160px; border-radius: 0.5rem;" />
+            </if>
+            <else>
+              <div style="width: 160px; height: 90px; border-radius: 0.5rem; background: linear-gradient(to right, rgba(122,188,255,1) 0%,rgba(96,171,248,1) 44%,rgba(64,150,238,1) 100%);"></div>
+            </else>
+          </a>
+        </div>
+        <div>
+          <cms-content-short-name tag="h5" block=block obj=content link=true />
+          <cms-content-teaser tag="p" block=block obj=content />
+          <cms-website-section-name tag="small" block=block obj=content.primarySection link=true />
+        </div>
       </div>
-      <div>
-        <-value|{ value }| tag="h5" for="content" obj=content path="shortName">
-          <a href=content.canonicalPath>${value}</a>
-        </-value>
-        <-value tag="p" for="content" obj=content path="teaser" />
-        <-value|{ value }| tag="small" for="content" obj=content path="primarySection.name">
-          <a href=content.primarySection.canonicalPath>${value}</a>
-        </-value>
-      </div>
-
     </for>
-  </-website-scheduled-content>
+  </cms-query-website-scheduled-content>
 </layout>

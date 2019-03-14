@@ -1,0 +1,50 @@
+import { getAsObject, get } from '@base-cms/object-path';
+import queryFragment from '../../api/fragments/website-scheduled-content';
+
+$ const section = getAsObject(data, 'section');
+
+<layout section=section>
+  <h1 class="mb-4">${section.metadata.title}</h1>
+  <if(section.description)>
+    <p>${section.description}</p>
+  </if>
+  <cms-query-website-scheduled-content|{ items }|
+    query-fragment=queryFragment
+    section-id=section.id
+    limit=24
+    include-content-types=["Article"]
+  >
+    <div class="row">
+      <for|content| of=items>
+        $ const block = 'content-card';
+        <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+          <div class=`card h-100 border-0 shadow-sm ${block} ${block}--${content.type} ${block}--${content.id}`>
+
+            <div class="embed-responsive embed-responsive-16by9 border-bottom">
+              <a href=content.canonicalPath>
+                <if(content.primaryImage)>
+                  <img src=`${content.primaryImage.src}?auto=format&w=480&h=270&fit=crop&crop=focalpoint&fp-x=0.5&fp-y=0.5` class="card-img-top embed-responsive-item">
+                </if>
+                <else>
+                  <div class="card-img-top embed-responsive-item" style="background: linear-gradient(to right, rgba(122,188,255,1) 0%,rgba(96,171,248,1) 44%,rgba(64,150,238,1) 100%);"></div>
+                </else>
+              </a>
+            </div>
+
+            <div class="card-body d-flex flex-column justify-content-start">
+              <small class="element-row">
+                <cms-website-section-name block=block obj=content.primarySection link=true />
+                <cms-content-published block=block obj=content />
+              </small>
+              <cms-content-short-name tag="h5" block=block obj=content link=true />
+              <cms-content-name tag="small" block=block obj=content.company link=true modifiers=['related-company']>
+                <@before>From:&nbsp;</@before>
+              </cms-content-name>
+              <cms-content-teaser tag="p" block=block obj=content />
+            </div>
+          </div>
+        </div>
+      </for>
+    </div>
+  </cms-query-website-scheduled-content>
+</layout>

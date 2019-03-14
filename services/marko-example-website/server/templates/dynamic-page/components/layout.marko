@@ -1,0 +1,15 @@
+import { getAsObject } from '@base-cms/object-path';
+
+$ const page = getAsObject(input, 'page');
+
+<document>
+  <@head>
+    <cms-page-metadata for="dynamic-page" ...page />
+    <${input.head} />
+  </@head>
+  <cms-page-container for="dynamic-page" class="container-fluid" data=page>
+    <${input.renderBody} />
+  </cms-page-container>
+  <hr>
+  <site-footer />
+</document>

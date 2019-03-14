@@ -1,0 +1,93 @@
+import { get } from '@base-cms/object-path';
+import { elementClassNames } from '@base-cms/web-common/utils';
+import { linkClassNames } from '@base-cms/web-common/utils';
+
+$ const { buildForContent, buildForWebsiteSection, buildForDynamicPage } = linkClassNames;
+
+<!--
+Accepted inputs:
+
+type: the target object type (where field resolves from)
+obj: the object to extract the value from, via `field`
+field: the attribute field to display
+
+defaultValue: default value to display if the obj[field] is not found
+tag: the tag name to render, e.g. p or h1
+collapse: whether the entire tag should collapse on an empty value
+
+block: the parent block that owns this element. if not set, no classes will be generated
+modifiers: additional modifiers to add to the element
+
+class: optional class names to add
+attrs: attrs to add to the element (e.g. { title: 'foo', 'data-id': 12 } would create <tag title="foo" data-id="12">)
+renderBody: function that renders inner contents (optional)
+asHTML: whether to render as HTML (only used when not using renderBody, otherwise you have to manually mark as safe)
+
+before: contents to render before the element (but before the link, if link=true)
+after: contents to render after the element (but after the link, if link=true)
+
+link: whether to link the value
+linkPath: an alternate path to the link value (from the input.obj, e.g. obj[field]), otherwise `canonicalPath`
+linkAttrs: attrs object to add to the link element (e.g { title: 'foo' } would create <a title="foo">)
+linkModifiers: additional modifiers to add the the link element
+
+-->
+$ const result = get(input.obj, input.field, input.defaultValue);
+$ const value = result == null ? '' : `${result}`.trim();
+$ const tag = input.tag || 'div';
+$ const collapse = input.collapse == null ? true : false;
+
+<!-- Input to apply to the wrapping element -->
+$ const tagInput = {
+  class: [...elementClassNames(input.block, [input.type, input.field], input.modifiers), input.class],
+};
+
+<!-- Input to apply to the inner element content -->
+$ const contentInput = {
+  renderBody: input.renderBody,
+  value,
+  asHTML: input.asHTML,
+};
+
+<!-- Input to apply to the link element (if applicable) -->
+$ let linkInput = {};
+$ const href = get(input.obj, input.linkPath || 'canonicalPath');
+$ let linkClasses = [];
+$ if (input.link) {
+  switch (input.type) {
+    case 'content':
+      linkClasses = buildForContent(input.block, input.obj);
+      break;
+    case 'website-section':
+      linkClasses = buildForWebsiteSection(input.block, input.obj);
+      break;
+    case 'dynamic-page':
+      linkClasses = buildForDynamicPage(input.block, input.obj);
+      break;
+    default:
+      break;
+  }
+  linkInput = {
+    href,
+    class: [...linkClasses, input.linkClass],
+  };
+}
+
+<if(!collapse || value)>
+  <if(input.link && (!collapse || href))>
+    <${tag} ...tagInput ...input.attrs>
+      <${input.before} />
+      <a ...linkInput ...input.linkAttrs>
+        <tag-content ...contentInput />
+      </a>
+      <${input.after} />
+    </>
+  </if>
+  <else>
+    <${tag} ...tagInput ...input.attrs>
+      <${input.before} />
+      <tag-content ...contentInput />
+      <${input.after} />
+    </>
+  </else>
+</if>

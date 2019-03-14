@@ -8,6 +8,7 @@
   "license": "MIT",
   "dependencies": {
     "@base-cms/inflector": "^0.4.15",
+    "@base-cms/object-path": "^0.4.15",
     "@base-cms/utils": "^0.4.15",
     "http-errors": "^1.7.2"
   },

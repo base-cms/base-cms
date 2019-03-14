@@ -1,0 +1,20 @@
+import { websiteScheduledContent as loader } from '@base-cms/web-common/block-loaders';
+
+$ const isDevelopment = process.env.NODE_ENV === 'development';
+
+<await(loader(out.global.apollo, input))>
+  <@then|items|>
+    <${input.renderBody} items=items />
+  </@then>
+  <@catch|err|>
+    <if(input.onError)>
+      <${input.onError} err=err />
+    </if>
+    <else>
+      <pre>An unexpected error occurred: ${err.message}</pre>
+      <if(isDevelopment)>
+        <pre>${err.stack}</pre>
+      </if>
+    </else>
+  </@catch>
+</await>

@@ -1,9 +1,0 @@
-{
-  "@size": {
-    "type": "string",
-    "required": true
-  },
-  "@class": {
-    "type": "string"
-  }
-}

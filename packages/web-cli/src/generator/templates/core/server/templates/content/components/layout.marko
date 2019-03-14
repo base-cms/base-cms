@@ -1,0 +1,14 @@
+import { getAsObject } from '@base-cms/object-path';
+
+$ const content = getAsObject(input, 'content');
+
+<cms-document>
+  <@head>
+    <cms-page-metadata for="content" ...content />
+    <${input.head} />
+  </@head>
+  <cms-page-container for="content" data=content>
+    <cms-ad-placeholder size="970x90" />
+    <${input.renderBody} />
+  </cms-page-container>
+</cms-document>

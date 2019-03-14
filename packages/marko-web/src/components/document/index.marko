@@ -1,0 +1,20 @@
+import { get } from '@base-cms/object-path';
+
+$ const lang = get(out.global, 'config.locale');
+
+<!doctype html>
+<html lang=lang dir=input.dir>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content=input.viewport>
+    <link rel="stylesheet" href="/dist/index.css">
+    <${input.head} />
+  </head>
+  <body>
+    <${input.bodyHeader} />
+    <${input.renderBody} />
+    <${input.bodyFooter} />
+    <cms-document-live-reload />
+  </body>
+</html>
