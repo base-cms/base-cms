@@ -20,6 +20,11 @@ Requires the following content fragment
     fullName
     canonicalPath
   }
+  primaryImage {
+    id
+    src
+    alt
+  }
 }
 -->
 
@@ -28,6 +33,7 @@ $ const block = 'content-card-body';
 $ const content = asObject(input.content);
 
 <${tag} class=[block, `${block}--style-a`, 'card-body']>
+  <cms-image-element block=block obj=content.primaryImage link-to=content />
   <cms-content-short-name tag="h4" block=block obj=content link=true />
   <cms-content-name tag="small" block=block obj=content.company link=true />
   <cms-content-teaser tag="p" block=block obj=content />
