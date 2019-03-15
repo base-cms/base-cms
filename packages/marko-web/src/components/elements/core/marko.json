@@ -8,6 +8,9 @@
     },
     "cms-date-element": {
       "template": "./date.marko"
+    },
+    "cms-link-element": {
+      "template": "./link.marko"
     }
   }
 }

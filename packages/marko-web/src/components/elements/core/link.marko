@@ -1,0 +1,13 @@
+import { linkClassNames } from '@base-cms/web-common/utils';
+import getHref from './get-href';
+import shouldCollapse from '../../../utils/should-collapse';
+
+$ const href = getHref(input.to, input.path);
+$ const classes = [...linkClassNames(input.block, input.to, input.modifiers), input.class];
+$ const collapse = shouldCollapse(input.collapse);
+
+<if(!collapse || href)>
+  <a href=href class=classes ...input.attrs>
+    <${input.renderBody} />
+  </a>
+</if>
