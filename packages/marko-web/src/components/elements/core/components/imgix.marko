@@ -1,0 +1,15 @@
+import { buildImgixQuery } from '@base-cms/web-common/utils';
+import shouldCollapse from '../../../../utils/should-collapse';
+
+$ const defaults = {
+  auto: 'format',
+  h: 640,
+  w: 640,
+};
+
+$ const collapse = shouldCollapse(input.collapse);
+$ const query = buildImgixQuery(input.options, defaults)
+
+<if(!collapse || input.src)>
+  <img src=`${input.src}?${query}` class=input.class alt=input.alt title=input.title />
+</if>

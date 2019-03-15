@@ -1,0 +1,40 @@
+import { elementClassNames } from '@base-cms/web-common/utils';
+import { get } from '@base-cms/object-path';
+import getHref from './get-href';
+import shouldCollapse from '../../../utils/should-collapse';
+
+$ const result = get(input.obj, 'src');
+$ let src = result == null ? '' : `${result}`.trim();
+$ src = /^http/i.test(src) ? src : null;
+$ const collapse = shouldCollapse(input.collapse);
+
+$ const href = getHref(input.linkTo, input.linkPath);
+$ const imgInput = {
+  alt: get(input.obj, 'alt', input.alt),
+  class: [...elementClassNames(input.block, input.obj, null, input.modifiers), input.class],
+  collapse,
+  options: input.options, // ingix options
+  src,
+  title: input.title,
+};
+
+$ const linkInput = {
+  attrs: input.linkAttrs,
+  block: input.block,
+  class: input.linkClass,
+  collapse,
+  modifiers: input.linkModifiers,
+  path: input.linkPath,
+  to: input.linkTo,
+};
+
+<if(!collapse || src)>
+  <if(input.linkTo && (!collapse || href))>
+    <cms-link-element ...linkInput>
+      <imgix ...imgInput />
+    </cms-link-element>
+  </if>
+  <else>
+    <imgix ...imgInput />
+  </else>
+</if>
