@@ -4,13 +4,20 @@ $ const content = getAsObject(data, 'content');
 
 <layout content=content>
   <div class="row">
-    <div class="col">
-      <div class="card border-0 shadow">
+    <div class="col-lg-7 col-xl-8">
+      <div class="card h-100">
         <div class="card-body">
           <cms-content-name tag="h1" block="content-page" obj=content />
           <cms-content-teaser tag="p" block="content-page" obj=content />
           <hr>
           <cms-content-body tag="div" block="content-page" obj=content />
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-5 col-xl-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <cms-ad-placeholder size="300x250" class="text-center" />
         </div>
       </div>
     </div>
