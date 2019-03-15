@@ -11,6 +11,7 @@ const { isArray } = Array;
  * @param {object} params
  * @param {object} [params.query]
  * @param {number} [params.limit=10]
+ * @param {number} params.skip
  * @param {object} params.sort
  * @param {string} [params.sort.field=_id]
  * @param {number|string} [params.sort.order=1]
@@ -19,6 +20,7 @@ const { isArray } = Array;
 module.exports = async (basedb, modelName, {
   query,
   limit = 10,
+  skip,
   after,
   sort = { field: '_id', order: 1 },
   projection,
@@ -49,6 +51,7 @@ module.exports = async (basedb, modelName, {
   const options = {
     sort: $sort.value,
     limit: $limit.value + 1, // peek to see if there is another page.
+    skip,
     projection: $projection,
   };
   if (collate) options.collation = $sort.collation;

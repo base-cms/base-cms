@@ -167,6 +167,7 @@ class BaseDB {
   async paginate(modelName, {
     query,
     limit,
+    skip,
     after,
     sort,
     collate,
@@ -176,6 +177,7 @@ class BaseDB {
     return paginateFind(this, modelName, {
       query,
       limit,
+      skip,
       after,
       sort,
       collate,

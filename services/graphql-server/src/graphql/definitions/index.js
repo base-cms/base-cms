@@ -61,6 +61,7 @@ enum MatchWords {
 
 input PaginationInput {
   limit: Int = 10
+  skip: Int
   after: String
 }
 
