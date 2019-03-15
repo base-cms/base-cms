@@ -24,8 +24,8 @@ module.exports = {
     },
     alt: (image) => {
       const { caption, name, fileName } = image;
-      if (name) return altFrom(name);
       if (caption) return caption;
+      if (name) return altFrom(name);
       return altFrom(fileName);
     },
   },
