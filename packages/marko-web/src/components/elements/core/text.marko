@@ -1,8 +1,7 @@
 import { get } from '@base-cms/object-path';
 import { elementClassNames } from '@base-cms/web-common/utils';
-import { linkClassNames } from '@base-cms/web-common/utils';
-
-$ const { buildForContent, buildForWebsiteSection, buildForDynamicPage } = linkClassNames;
+import getHref from './get-href';
+import shouldCollapse from '../../../utils/should-collapse';
 
 <!--
 Accepted inputs:
@@ -35,51 +34,40 @@ linkModifiers: additional modifiers to add the the link element
 $ const result = get(input.obj, input.field, input.defaultValue);
 $ const value = result == null ? '' : `${result}`.trim();
 $ const tag = input.tag || 'div';
-$ const collapse = input.collapse == null ? true : false;
+$ const collapse = shouldCollapse(input.collapse);
 
 <!-- Input to apply to the wrapping element -->
 $ const tagInput = {
-  class: [...elementClassNames(input.block, [input.type, input.field], input.modifiers), input.class],
+  class: [...elementClassNames(input.block, input.obj, input.field, input.modifiers), input.class],
 };
 
 <!-- Input to apply to the inner element content -->
 $ const contentInput = {
+  asHTML: input.asHTML,
   renderBody: input.renderBody,
   value,
-  asHTML: input.asHTML,
 };
 
-<!-- Input to apply to the link element (if applicable) -->
-$ let linkInput = {};
-$ const href = get(input.obj, input.linkPath || 'canonicalPath');
-$ let linkClasses = [];
-$ if (input.link) {
-  switch (input.type) {
-    case 'content':
-      linkClasses = buildForContent(input.block, input.obj);
-      break;
-    case 'website-section':
-      linkClasses = buildForWebsiteSection(input.block, input.obj);
-      break;
-    case 'dynamic-page':
-      linkClasses = buildForDynamicPage(input.block, input.obj);
-      break;
-    default:
-      break;
-  }
-  linkInput = {
-    href,
-    class: [...linkClasses, input.linkClass],
-  };
-}
+<!-- Input to apply to the link element -->
+$ const href = getHref(input.obj, input.linkPath);
+$ const linkInput = {
+  attrs: input.linkAttrs,
+  block: input.block,
+  class: input.linkClass,
+  collapse,
+  modifiers: input.linkModifiers,
+  path: input.linkPath,
+  renderBody: input.renderBody,
+  to: input.obj,
+};
 
 <if(!collapse || value)>
   <if(input.link && (!collapse || href))>
     <${tag} ...tagInput ...input.attrs>
       <${input.before} />
-      <a ...linkInput ...input.linkAttrs>
+      <cms-link-element ...linkInput>
         <tag-content ...contentInput />
-      </a>
+      </cms-link-element>
       <${input.after} />
     </>
   </if>
