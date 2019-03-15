@@ -1,5 +1,8 @@
 {
   "tags": {
+    "content-card-deck-a": {
+      "template": "./card-deck-a.marko"
+    },
     "content-hero-block-a": {
       "template": "./hero-a.marko"
     }
