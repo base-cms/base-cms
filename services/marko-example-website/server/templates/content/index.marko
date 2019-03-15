@@ -9,18 +9,47 @@ $ const content = getAsObject(data, 'content');
         <div class="card-body">
           <cms-content-name tag="h1" block="content-page" obj=content />
           <cms-content-teaser tag="p" block="content-page" obj=content />
+          <small class="element-row mb-3 text-uppercase text-muted">
+            <cms-website-section-name block="content-page" obj=content.primarySection link=true />
+            <cms-content-published block="content-page" obj=content />
+          </small>
+          <content-card-image block="content-page" obj=content.primaryImage />
+
           <hr>
           <cms-content-body tag="div" block="content-page" obj=content />
         </div>
       </div>
     </div>
     <div class="col-lg-5 col-xl-4">
-      <div class="card h-100">
+      <div class="card mb-4">
         <div class="card-body">
           <cms-ad-placeholder size="300x250" class="text-center" />
         </div>
       </div>
+
+      <div class="card">
+        <div class="card-body">
+        </div>
+      </div>
     </div>
   </div>
+
+  $ const section = getAsObject(content, 'primarySection');
+  <if(section.id)>
+    <hr>
+    <div class="text-center">
+      <h2 class="text-uppercase mb-3">More in ${section.name}</h2>
+    </div>
+    <content-card-deck-a
+      exclude-content-ids=[content.id]
+      section-id=section.id
+      requires-image=true
+    />
+    <content-card-deck-a
+      skip=8
+      section-id=section.id
+      requires-image=true
+    />
+  </if>
 
 </layout>
