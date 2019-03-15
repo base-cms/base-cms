@@ -3,5 +3,13 @@
     "./card-body/marko.json",
     "./list-group/marko.json",
     "./list-group-item/marko.json"
-  ]
+  ],
+  "tags": {
+    "content-card-body": {
+      "template": "./card-body.marko"
+    },
+    "content-card-image": {
+      "template": "./card-image.marko"
+    }
+  }
 }
