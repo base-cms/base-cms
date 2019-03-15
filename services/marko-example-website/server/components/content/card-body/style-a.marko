@@ -33,6 +33,7 @@ $ const block = 'content-card-body';
 $ const content = asObject(input.content);
 
 <${tag} class=[block, `${block}--style-a`, 'card-body']>
+  <!-- @todo This will need to properly handle srcset input for different sizes of the card -->
   <cms-image-element block=block obj=content.primaryImage link-to=content />
   <cms-content-short-name tag="h4" block=block obj=content link=true />
   <cms-content-name tag="small" block=block obj=content.company link=true />
