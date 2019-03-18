@@ -2,3 +2,11 @@
 @import "bootstrap/variables";
 @import "bootstrap/mixins";
 @import "bootstrap/components";
+
+
+.container-fluid-max {
+  @include make-container();
+  @include media-breakpoint-up("xl", $grid-breakpoints) {
+    max-width: map-get($grid-breakpoints, "xl");
+  }
+}

@@ -4,7 +4,7 @@ $ const content = getAsObject(data, 'content');
 
 <layout content=content>
   <div class="row">
-    <div class="col-lg-7 col-xl-8">
+    <div class="col-lg-8">
       <div class="card h-100">
         <div class="card-body">
           <cms-content-name tag="h1" block="content-page" obj=content />
@@ -20,9 +20,9 @@ $ const content = getAsObject(data, 'content');
         </div>
       </div>
     </div>
-    <div class="col-lg-5 col-xl-4">
+    <div class="col-lg-4">
       <div class="card mb-4">
-        <div class="card-body">
+        <div class="card-body p-1">
           <cms-ad-placeholder size="300x250" class="text-center" />
         </div>
       </div>
@@ -45,8 +45,9 @@ $ const content = getAsObject(data, 'content');
       section-id=section.id
       requires-image=true
     />
-    <content-card-deck-a
-      skip=8
+    <content-card-list-a
+      exclude-content-ids=[content.id]
+      skip=11
       section-id=section.id
       requires-image=true
     />
