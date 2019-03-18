@@ -36,20 +36,20 @@ $ const params = {
   queryFragment,
 };
 
-$ const coreClass = 'mb-3 col-12 col-md-6 col-lg-4';
+$ const coreClass = 'mb-4 col-12 col-md-6 col-lg-4';
 
 <cms-query-website-scheduled-content|{ items }| ...params>
   $ const nodes = asArray(items);
   <div class="row">
     <for|node, index| of=nodes>
       <div class=coreClass>
-        <div class="card h-100">
+        <div class="card content-card-deck">
           <content-card-body-a content=node />
         </div>
       </div>
       <if(index === 3)>
         <div class=coreClass>
-          <div class="card h-100">
+          <div class="card content-card-deck">
             <!-- @todo Centered ads within a card body are common. Componentize this -->
             <cms-ad-placeholder size="300x250" class="card-body d-flex justify-content-center align-items-center" />
           </div>

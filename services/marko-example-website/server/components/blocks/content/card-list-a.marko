@@ -43,14 +43,14 @@ $ const params = {
   $ const nodes = asArray(items);
   <div class="row">
     <div class="mb-3 col-12 col-lg-6 col-xl-4">
-      <div class="card h-100">
+      <div class="card h-100 border">
         <div class="card-body d-flex justify-content-center align-items-center">
           <cms-ad-placeholder size="300x600" />
         </div>
       </div>
     </div>
     <div class="mb-3 col-12 col-lg-6 col-xl-8">
-      <div class="card h-100">
+      <div class="card h-100 border">
 
         <ul class="list-group list-group-flush">
           <for|content| of=nodes>
@@ -60,16 +60,15 @@ $ const params = {
                 obj=content.primaryImage
                 link-to=content
                 link-class="mr-3 my-auto"
-                class=""
                 width=192
                 options={ w: 192, fit: 'clip', dpr: 2 }
               />
 
-              <div class="w-100 d-flex flex-column justify-content-between">
+              <div class="w-100 d-flex flex-column">
                 <cms-content-short-name tag="h5" block=block obj=content link=true />
                 <cms-content-name tag="small" block=block obj=content.company link=true />
                 <cms-content-teaser tag="p" block=block obj=content />
-                <small class="element-row">
+                <small class="element-row mt-auto">
                   <cms-website-section-name block=block obj=content.primarySection link=true />
                   <cms-content-published block=block obj=content />
                 </small>

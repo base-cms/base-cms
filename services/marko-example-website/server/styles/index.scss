@@ -47,7 +47,6 @@ $site-font-family-serif: "PT Serif", serif !default;
 .navbar {
   &--site {
     @extend .sticky-top;
-    margin-bottom: map-get($spacers, 4);
     background-color: $dark;
     box-shadow: $box-shadow;
     .nav-item {

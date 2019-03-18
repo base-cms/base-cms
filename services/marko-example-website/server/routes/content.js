@@ -12,6 +12,12 @@ module.exports = (app) => {
           src
           alt
         }
+        primarySection {
+          id
+          name
+          fullName
+          canonicalPath
+        }
       }
     `,
   }));

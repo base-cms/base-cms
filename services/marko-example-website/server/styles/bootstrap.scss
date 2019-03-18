@@ -3,10 +3,21 @@
 @import "bootstrap/mixins";
 @import "bootstrap/components";
 
+.card {
+  border: none;
+}
+
+.content-card-deck {
+  min-height: 100%;
+  border: 1px solid $gray-300;
+}
 
 .container-fluid-max {
   @include make-container();
   @include media-breakpoint-up("xl", $grid-breakpoints) {
     max-width: map-get($grid-breakpoints, "xl");
   }
+  padding-top: map-get($spacers, 4);
+  background-color: $white;
+  box-shadow: $box-shadow-sm;
 }

@@ -32,17 +32,16 @@ $ const tag = input.tag || 'div';
 $ const block = 'content-card-body';
 $ const content = asObject(input.content);
 
-<${tag} class=[block, `${block}--style-a`]>
-  <!-- @todo content-card-image.with-body and content-card-body.over-image (for overlays) do not work yet -->
-  <!-- @todo This will need to properly handle srcset input for different sizes of the card -->
-  <content-card-image block=block obj=content.primaryImage link-to=content class="border-bottom" />
-  <content-card-body>
-    <cms-content-short-name tag="h4" block=block obj=content link=true />
-    <cms-content-name tag="small" block=block obj=content.company link=true />
-    <cms-content-teaser tag="p" block=block obj=content />
-    <small class="element-row">
-      <cms-website-section-name block=block obj=content.primarySection link=true />
-      <cms-content-published block=block obj=content />
-    </small>
-  </content-card-body>
-</>
+<!-- @todo content-card-image.with-body and content-card-body.over-image (for overlays) do not work yet -->
+<!-- @todo This will need to properly handle srcset input for different sizes of the card -->
+<content-card-image block=block obj=content.primaryImage link-to=content class="border-bottom" />
+<div class="card-body d-flex flex-column">
+  <cms-content-short-name tag="h4" block=block obj=content link=true />
+  <cms-content-name tag="small" block=block obj=content.company link=true />
+  <cms-content-teaser tag="p" block=block obj=content />
+
+  <small class="element-row mt-auto">
+    <cms-website-section-name block=block obj=content.primarySection link=true />
+    <cms-content-published block=block obj=content />
+  </small>
+</div>
