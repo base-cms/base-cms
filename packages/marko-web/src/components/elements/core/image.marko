@@ -13,9 +13,11 @@ $ const imgInput = {
   alt: get(input.obj, 'alt', input.alt),
   class: [...elementClassNames(input.block, input.obj, null, input.modifiers), input.class],
   collapse,
+  height: input.height,
   options: input.options, // ingix options
   src,
   title: input.title,
+  width: input.width,
 };
 
 $ const linkInput = {

@@ -11,5 +11,12 @@ $ const collapse = shouldCollapse(input.collapse);
 $ const query = buildImgixQuery(input.options, defaults)
 
 <if(!collapse || input.src)>
-  <img src=`${input.src}?${query}` class=input.class alt=input.alt title=input.title />
+  <img
+    src=`${input.src}?${query}`
+    class=input.class
+    alt=input.alt
+    title=input.title
+    width=input.width
+    height=input.height
+  />
 </if>
