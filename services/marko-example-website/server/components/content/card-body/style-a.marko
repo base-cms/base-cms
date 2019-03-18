@@ -35,7 +35,7 @@ $ const content = asObject(input.content);
 <${tag} class=[block, `${block}--style-a`]>
   <!-- @todo content-card-image.with-body and content-card-body.over-image (for overlays) do not work yet -->
   <!-- @todo This will need to properly handle srcset input for different sizes of the card -->
-  <content-card-image block=block obj=content.primaryImage link-to=content />
+  <content-card-image block=block obj=content.primaryImage link-to=content class="border-bottom" />
   <content-card-body>
     <cms-content-short-name tag="h4" block=block obj=content link=true />
     <cms-content-name tag="small" block=block obj=content.company link=true />
