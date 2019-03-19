@@ -4,6 +4,7 @@ $site-font-family-serif: "PT Serif", serif !default;
 @import "bootstrap";
 
 @import "core";
+@import "embedded-media";
 
 .content-card {
   &__content-short-name {
