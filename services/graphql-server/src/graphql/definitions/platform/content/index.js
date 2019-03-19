@@ -156,6 +156,11 @@ input ContentMutationInput {
   mutation: ContentMutation = Website
 }
 
+input ContentTeaserInput {
+  mutation: ContentMutation = Website
+  useFallback: Boolean = true
+}
+
 input ContentTaxonomyInput {
   status: ModelStatus = active
   type: TaxonomyType
