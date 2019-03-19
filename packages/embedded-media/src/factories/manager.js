@@ -5,14 +5,22 @@ const {
   DB_TAG_START,
   DEFAULT_HTML_ELEMENT,
   TAG_TYPE_ATTR_NAME,
+  TAG_ID_ATTR_NAME,
 } = require('../constants');
 
-const ImageAssetFactory = require('./image-asset');
-const OEmbedFactory = require('./oembed');
+const ImageAssetTag = require('../tags/image-asset');
+const OEmbedTag = require('../tags/oembed');
 
-const factories = {
-  image: new ImageAssetFactory(),
-  oembed: new OEmbedFactory(),
+const tags = {
+  image: ImageAssetTag,
+  oembed: OEmbedTag,
+};
+
+const createTag = (type, attrs) => {
+  const identifier = attrs[TAG_ID_ATTR_NAME];
+  const Tag = tags[type];
+  const instance = new Tag(identifier, attrs);
+  return instance;
 };
 
 module.exports = {
@@ -21,11 +29,11 @@ module.exports = {
    * @param {string} fromType
    * @param {string} match
    */
-  createTagInstance(fromType, match, options) {
+  createTagInstance(fromType, match) {
     const attrs = this.getAttributesForMatch(fromType, match);
     const tagType = attrs[TAG_TYPE_ATTR_NAME];
     if (!tagType) throw new Error('No embed type attribute was found for tag');
-    return this.getFactoryFor(tagType).createFromAttributes(attrs, options);
+    return createTag(tagType, attrs);
   },
 
   getAttributesForMatch(displayType, match) {
@@ -45,11 +53,5 @@ module.exports = {
     return match
       .replace(DB_TAG_START, `<${tag}`)
       .replace(DB_TAG_END, `></${tag}>`);
-  },
-
-  getFactoryFor(tagType) {
-    const factory = factories[tagType];
-    if (!factory) throw new Error(`No tag factory exists for type '${tagType}'`);
-    return factory;
   },
 };
