@@ -51,7 +51,7 @@ class BaseDB {
    */
   async findById(modelName, id, options) {
     if (!id) return null;
-    return this.findOne(modelName, { _id: id }, options);
+    return this.findOne(modelName, { _id: BaseDB.coerceID(id) }, options);
   }
 
   /**
