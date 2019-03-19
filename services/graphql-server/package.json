@@ -9,6 +9,7 @@
   "private": true,
   "dependencies": {
     "@base-cms/db": "^0.5.0",
+    "@base-cms/embedded-media": "^0.5.0",
     "@base-cms/html": "^0.5.0",
     "@base-cms/inflector": "^0.5.0",
     "@base-cms/object-path": "^0.5.0",

@@ -1,6 +1,7 @@
 const { get } = require('@base-cms/object-path');
 const { isFunction: isFn, cleanPath } = require('@base-cms/utils');
 const { underscore, dasherize, titleize } = require('@base-cms/inflector');
+const { parser: embedParser } = require('@base-cms/embedded-media');
 
 const connectionProjection = require('../../utils/connection-projection');
 const defaultContentTypes = require('../../utils/content-types');
@@ -60,6 +61,15 @@ module.exports = {
 
       const mutated = get(content, `mutations.${mutation}.teaser`);
       return mutated || value;
+    },
+
+    body: (content, { input }) => {
+      const { mutation, embeds } = input;
+      const { body } = content;
+      const mutated = get(content, `mutations.${mutation}.body`);
+
+      const value = mutation ? mutated || body : body;
+      return embedParser.convertFromDbToHtml(value, embeds);
     },
 
     metadata: content => content,

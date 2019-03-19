@@ -161,6 +161,15 @@ input ContentTeaserInput {
   useFallback: Boolean = true
 }
 
+input ContentBodyInput {
+  mutation: ContentMutation = Website
+  embeds: ContentBodyEmbedsInput = {}
+}
+
+input ContentBodyEmbedsInput {
+  parse: Boolean = true
+}
+
 input ContentTaxonomyInput {
   status: ModelStatus = active
   type: TaxonomyType
