@@ -21,3 +21,17 @@
   background-color: $white;
   box-shadow: $box-shadow-sm;
 }
+
+[data-embed-type][data-embed-align="left"] {
+  @include media-breakpoint-down("sm") {
+    width: 100%;
+    margin-right: 0;
+  }
+}
+
+[data-embed-type][data-embed-align="right"] {
+  @include media-breakpoint-down("sm") {
+    width: 100%;
+    margin-left: 0;
+  }
+}

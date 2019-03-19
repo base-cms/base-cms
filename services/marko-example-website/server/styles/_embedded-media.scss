@@ -24,6 +24,13 @@ p [data-embed-type] {
   margin: .5rem 0 0;
 }
 
+[data-embed-type][data-embed-align="left"] {
+  float: left;
+  width: 50%;
+  width: calc(50% - 1rem);
+  margin-right: 1rem;
+}
+
 [data-embed-type][data-embed-align="right"] {
   float: right;
   width: 50%;
@@ -54,4 +61,8 @@ p [data-embed-type] {
 [data-embed-type] .credit {
   margin-top: .25rem;
   font-style: italic;
+}
+
+[data-embed-invalid] {
+  display: none;
 }
