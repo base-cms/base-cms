@@ -1,10 +1,9 @@
 $site-font-family-sans-serif: "PT Sans", sans-serif !default;
 $site-font-family-serif: "PT Serif", serif !default;
 
-@import "bootstrap";
-
 @import "core";
 @import "embedded-media";
+@import "bootstrap";
 
 .content-card {
   &__content-short-name {
