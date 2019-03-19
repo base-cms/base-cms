@@ -10,7 +10,7 @@ class AbstractFactory {
 
   static createCommonInstance(attrs, Klass) {
     const identifier = attrs[TAG_ID_ATTR_NAME];
-    const instance = new Klass(identifier);
+    const instance = new Klass(identifier, attrs);
     return instance;
   }
 }

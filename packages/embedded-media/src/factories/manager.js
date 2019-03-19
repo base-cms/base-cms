@@ -21,11 +21,11 @@ module.exports = {
    * @param {string} fromType
    * @param {string} match
    */
-  createTagInstance(fromType, match) {
+  createTagInstance(fromType, match, options) {
     const attrs = this.getAttributesForMatch(fromType, match);
     const tagType = attrs[TAG_TYPE_ATTR_NAME];
     if (!tagType) throw new Error('No embed type attribute was found for tag');
-    return this.getFactoryFor(tagType).createFromAttributes(attrs);
+    return this.getFactoryFor(tagType).createFromAttributes(attrs, options);
   },
 
   getAttributesForMatch(displayType, match) {

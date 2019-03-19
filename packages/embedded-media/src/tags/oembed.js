@@ -1,9 +1,9 @@
 const AbstractTag = require('./abstract-tag');
 
 class OEmbedTag extends AbstractTag {
-  // eslint-disable-next-line class-methods-use-this
-  getType() {
-    return 'oembed';
+  async buildHtmlTagContents() {
+    console.log('buildHtmlTag', this.identifier, this.attributes);
+    return '<!-- Embedded HTML tag here -->';
   }
 }
 

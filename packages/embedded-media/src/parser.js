@@ -14,7 +14,7 @@ module.exports = {
    * @param {object} options
    * @param {boolean} options.parse
    */
-  async convertFromDbToHtml(text, { parse } = {}) {
+  async convertFromDbToHtml(text, { parse, imageHost, basedb } = {}) {
     if (!parse) return text;
     if (!text) return text;
 
@@ -28,7 +28,7 @@ module.exports = {
 
     if (!matches.length) return text;
     const replacements = await Promise.all(matches.map(async (str) => {
-      const fn = this.getCallback('database', 'html');
+      const fn = this.getCallback('database', 'html', { imageHost, basedb });
       const replacement = await fn(str);
       return { substr: str, replacement };
     }));
@@ -52,14 +52,14 @@ module.exports = {
    * @param {string} fromType
    * @param {string} toType
    */
-  getCallback(fromType, toType) {
+  getCallback(fromType, toType, options) {
     return async (match) => {
       const instance = factoryManager.createTagInstance(fromType, match);
       switch (toType) {
         case 'database':
           return '';
         case 'html':
-          return instance.buildHtmlTag();
+          return instance.buildHtmlTag(options);
         default:
           return '';
       }
