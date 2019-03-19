@@ -14,10 +14,26 @@ module.exports = {
    * @param {object} options
    * @param {boolean} options.parse
    */
-  convertFromDbToHtml(text, { parse } = {}) {
+  async convertFromDbToHtml(text, { parse } = {}) {
     if (!parse) return text;
     if (!text) return text;
-    return String(text).replace(this.getTagPatternDb(), this.getCallback('database', 'html'));
+
+    const pattern = this.getTagPatternDb();
+    const matches = [];
+    let match;
+    do {
+      match = pattern.exec(text);
+      if (match && match[0]) matches.push(match[0]);
+    } while (match);
+
+    if (!matches.length) return text;
+    const replacements = await Promise.all(matches.map(async (str) => {
+      const fn = this.getCallback('database', 'html');
+      const replacement = await fn(str);
+      return { substr: str, replacement };
+    }));
+    return replacements
+      .reduce((str, { substr, replacement }) => str.replace(substr, replacement), text);
   },
 
   /**
@@ -37,7 +53,7 @@ module.exports = {
    * @param {string} toType
    */
   getCallback(fromType, toType) {
-    return (match) => {
+    return async (match) => {
       const instance = factoryManager.createTagInstance(fromType, match);
       switch (toType) {
         case 'database':
