@@ -7,16 +7,21 @@ module.exports = (app) => {
     template: content,
     queryFragment: gql`
       fragment ContentPageFragment on Content {
+        id
+        name
+        teaser(input: { useFallback: false })
+        body
+        published
+        primarySection {
+          id
+          name
+          alias
+          canonicalPath
+        }
         primaryImage {
           id
           src
           alt
-        }
-        primarySection {
-          id
-          name
-          fullName
-          canonicalPath
         }
       }
     `,

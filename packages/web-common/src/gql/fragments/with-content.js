@@ -4,11 +4,7 @@ module.exports = gql`
 
 fragment WithContentFragment on Content {
   id
-  name
   type
-  teaser
-  body
-  published
   redirectTo
   canonicalPath
   metadata {
@@ -18,11 +14,6 @@ fragment WithContentFragment on Content {
       id
       src
     }
-  }
-  primarySection {
-    id
-    name
-    alias
   }
 }
 
