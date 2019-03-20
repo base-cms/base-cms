@@ -1,0 +1,11 @@
+$ const imageInput = {
+  ...input,
+  linkClass: 'embed-responsive embed-responsive-16by9',
+  // @todo fix me
+  class: [input.withBody ? 'card-img' : 'card-img-top img-fluid embed-responsive-item', input.class],
+  options: { w: 640, h: 360, fit: 'crop', crop: 'focalpoint', fpX: 0.5, fpY: 0.5 },
+};
+
+<!-- @todo Determine how to support srcset input options -->
+
+<cms-image-element ...imageInput />

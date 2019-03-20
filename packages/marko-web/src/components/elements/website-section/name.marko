@@ -2,7 +2,6 @@ import { get } from '@base-cms/object-path';
 
 $ const props = {
   ...input,
-  type: 'website-section',
   field: 'name',
   attrs: { ...input.attrs, title: get(input.obj, 'fullName') },
 };

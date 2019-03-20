@@ -17,6 +17,7 @@ const buildQuery = require('../gql/query-factories/block-website-scheduled-conte
  */
 module.exports = async (apolloClient, {
   limit,
+  skip,
   after,
 
   sectionId,
@@ -31,7 +32,7 @@ module.exports = async (apolloClient, {
 
   queryFragment,
 } = {}) => {
-  const pagination = { limit, after };
+  const pagination = { limit, skip, after };
   const input = {
     pagination,
     excludeContentIds,

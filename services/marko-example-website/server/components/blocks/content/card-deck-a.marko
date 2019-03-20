@@ -1,0 +1,60 @@
+import gql from 'graphql-tag';
+import { asArray } from '@base-cms/utils';
+
+$ const queryFragment = gql`
+  fragment CardDeckAWebsiteScheduleQueryFragment on Content {
+    id
+    type
+    shortName
+    teaser
+    canonicalPath
+    published
+    company {
+      id
+      type
+      name
+      canonicalPath
+    }
+    primarySection {
+      id
+      name
+      fullName
+      canonicalPath
+    }
+    primaryImage {
+      id
+      src
+      alt
+    }
+  }
+`;
+
+$ const block = 'content-card-deck';
+$ const params = {
+  ...input,
+  limit: 11,
+  queryFragment,
+};
+
+$ const coreClass = 'mb-4 col-12 col-md-6 col-lg-4';
+
+<cms-query-website-scheduled-content|{ items }| ...params>
+  $ const nodes = asArray(items);
+  <div class="row">
+    <for|node, index| of=nodes>
+      <div class=coreClass>
+        <div class="card content-card-deck">
+          <content-card-body-a content=node />
+        </div>
+      </div>
+      <if(index === 3)>
+        <div class=coreClass>
+          <div class="card content-card-deck">
+            <!-- @todo Centered ads within a card body are common. Componentize this -->
+            <cms-ad-placeholder size="300x250" class="card-body d-flex justify-content-center align-items-center" />
+          </div>
+        </div>
+      </if>
+    </for>
+  </div>
+</cms-query-website-scheduled-content>

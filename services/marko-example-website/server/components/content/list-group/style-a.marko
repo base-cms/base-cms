@@ -1,7 +1,8 @@
 import { asArray } from '@base-cms/utils';
+import { shouldCollapse } from '@base-cms/marko-web/utils';
 
 $ const nodes = asArray(input.nodes);
-$ const collapse = input.collapse == null ? true : false;
+$ const collapse = shouldCollapse(input.collapse);
 
 <if(!collapse || nodes.length)>
   <ul class="list-group list-group-flush">

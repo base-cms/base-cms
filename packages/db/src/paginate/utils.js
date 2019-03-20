@@ -54,6 +54,7 @@ module.exports = {
   async createQuery(basedb, modelName, {
     after,
     sort,
+    skip,
   } = {}) {
     if (!after) return {};
     const id = cursor.decode(after);
@@ -78,7 +79,7 @@ module.exports = {
       projection[field] = 1;
     }
 
-    const doc = await basedb.findById(modelName, id, { projection });
+    const doc = await basedb.findById(modelName, id, { projection, skip });
     const value = objectPath.get(doc, field);
     const $or = [
       { [field]: { [op]: value } },

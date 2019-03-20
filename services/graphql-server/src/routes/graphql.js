@@ -50,6 +50,7 @@ const server = new ApolloServer({
         ]);
       },
       canonicalRules: canonicalRules(req),
+      imageHost: 'base.imgix.net',
     };
   },
 });

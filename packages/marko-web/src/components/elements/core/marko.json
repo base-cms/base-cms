@@ -6,8 +6,14 @@
     "cms-html-element": {
       "template": "./html.marko"
     },
+    "cms-image-element": {
+      "template": "./image.marko"
+    },
     "cms-date-element": {
       "template": "./date.marko"
+    },
+    "cms-link-element": {
+      "template": "./link.marko"
     }
   }
 }

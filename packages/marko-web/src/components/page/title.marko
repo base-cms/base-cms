@@ -5,7 +5,8 @@ $ const parts = [
   input.value,
   get(out.global, 'config.siteName'),
 ];
-$ const title = parts.filter(v => v).join(` ${input.concateWith} `);
+$ const concateWith = input.concateWith || '|';
+$ const title = parts.filter(v => v).join(` ${concateWith} `);
 
 <title>
   <if(input.renderBody)>

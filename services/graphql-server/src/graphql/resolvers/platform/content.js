@@ -1,6 +1,7 @@
 const { get } = require('@base-cms/object-path');
 const { isFunction: isFn, cleanPath } = require('@base-cms/utils');
 const { underscore, dasherize, titleize } = require('@base-cms/inflector');
+const { parser: embedParser } = require('@base-cms/embedded-media');
 
 const connectionProjection = require('../../utils/connection-projection');
 const defaultContentTypes = require('../../utils/content-types');
@@ -50,6 +51,32 @@ module.exports = {
    */
   Content: {
     __resolveType: resolveType,
+
+    teaser: (content, { input }) => {
+      const { mutation, useFallback } = input;
+      const { teaser, teaserFallback } = content;
+
+      const value = !teaser && useFallback ? teaserFallback : teaser;
+      if (!mutation) return value;
+
+      const mutated = get(content, `mutations.${mutation}.teaser`);
+      return mutated || value;
+    },
+
+    body: (content, { input }, { imageHost, basedb }) => {
+      const { mutation, embeds } = input;
+      const { body } = content;
+      const mutated = get(content, `mutations.${mutation}.body`);
+
+      const value = mutation ? mutated || body : body;
+      // @todo Should likely have a better way of using the basedb in more than one place.
+      // Ultimately, the db should become a service that multiple services can share.
+      return embedParser.convertFromDbToHtml(value, {
+        basedb,
+        parse: embeds.parse,
+        imageHost,
+      });
+    },
 
     metadata: content => content,
 
