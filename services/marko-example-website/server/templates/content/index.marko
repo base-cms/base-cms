@@ -4,40 +4,43 @@ $ const content = getAsObject(data, 'content');
 $ const block = 'content-page';
 
 <layout content=content>
-  <div class="row">
-    <div class="col">
-      <div class="card h-100">
-        <div class="card-body pb-0">
-          <cms-website-section-name tag="small" class="text-uppercase d-block mb-2" block=block obj=content.primarySection link=true />
-          <cms-content-name tag="h1" class="mb-2" block=block obj=content />
-          <cms-content-teaser tag="p" block=block obj=content />
-          <cms-content-published tag="small" class="text-uppercase text-muted" block=block obj=content />
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-lg-8">
-      <div class="card h-100">
-        <div class="card-body">
-          <!-- <content-card-image block=block obj=content.primaryImage class="mb-3" /> -->
-          <cms-content-body tag="div" block=block obj=content />
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-4">
-      <div class="card mb-4">
-        <div class="card-body px-1">
-          <cms-ad-placeholder size="300x250" class="text-center" />
-        </div>
-      </div>
 
-      <div class="card">
-        <div class="card-body">
+  <cms-page-container for="content" data=content>
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-body pb-0">
+            <cms-website-section-name tag="small" class="text-uppercase d-block mb-2" block=block obj=content.primarySection link=true />
+            <cms-content-name tag="h1" class="mb-2" block=block obj=content />
+            <cms-content-teaser tag="p" block=block obj=content />
+            <cms-content-published tag="small" class="text-uppercase text-muted" block=block obj=content />
+          </div>
         </div>
       </div>
     </div>
-  </div>
+
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="card">
+          <div class="card-body">
+            <cms-content-body tag="div" block=block obj=content />
+          </div>
+        </div>
+      </div>
+      <aside class="col-lg-4">
+        <div class="card mb-4">
+          <div class="card-body px-1">
+            <cms-ad-placeholder size="300x250" class="text-center" />
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body">
+          </div>
+        </div>
+      </aside>
+    </div>
+  </cms-page-container>
 
   $ const section = getAsObject(content, 'primarySection');
   <if(section.id)>
