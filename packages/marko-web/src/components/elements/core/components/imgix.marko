@@ -1,11 +1,10 @@
 import { buildImgixUrl } from '@base-cms/image';
-import { get } from '@base-cms/object-path';
 
-$ const lazyloadImages = get(out.global, 'config.images.lazyload', true);
+$ const { config } = out.global;
 $ const src = buildImgixUrl(input.src, input.options);
 
 <if(src)>
-  <if(lazyloadImages && input.lazyload !== false)>
+  <if(config.lazyloadImages() && input.lazyload !== false)>
     <img
       data-src=src
       class=[input.class, 'lazyload']

@@ -1,10 +1,7 @@
-import { get } from '@base-cms/object-path';
-
-$ const lang = get(out.global, 'config.locale');
-$ const lazyloadImages = get(out.global, 'config.images.lazyload', true);
+$ const { config } = out.global;
 
 <!doctype html>
-<html lang=lang dir=input.dir>
+<html lang=config.locale() dir=input.dir>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,7 +12,7 @@ $ const lazyloadImages = get(out.global, 'config.images.lazyload', true);
   <body>
     <${input.bodyHeader} />
     <${input.renderBody} />
-    <if(lazyloadImages)>
+    <if(config.lazyloadImages())>
       <!-- @todo This should use internal JS -->
       <script src="https://afarkas.github.io/lazysizes/lazysizes.min.js" async></script>
     </if>

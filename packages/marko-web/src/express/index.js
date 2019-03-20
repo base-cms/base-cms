@@ -3,6 +3,7 @@ const path = require('path');
 const apollo = require('./apollo');
 const marko = require('./marko');
 const sitemaps = require('./sitemaps');
+const CoreConfig = require('../core-config');
 const SiteConfig = require('../site-config');
 
 module.exports = (config = {}) => {
@@ -11,9 +12,7 @@ module.exports = (config = {}) => {
   const serverDir = path.resolve(rootDir, 'server');
 
   // Set the core config.
-  // @todo Create a class with default values when not set.
-  // @todo Determine the differences between core and site configs.
-  app.locals.config = config.coreConfig;
+  app.locals.config = new CoreConfig(config.coreConfig);
 
   // Set the website config to the app.
   app.locals.site = new SiteConfig(config.siteConfig);
