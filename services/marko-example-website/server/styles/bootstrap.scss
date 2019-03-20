@@ -22,6 +22,12 @@
   box-shadow: $box-shadow-sm;
 }
 
+// Apply the 16x9 bootstrap responsive embed classes to embedded videos
+[data-oembed-type="video"] {
+  @extend .embed-responsive;
+  @extend .embed-responsive-16by9;
+}
+
 [data-embed-type][data-embed-align="left"] {
   @include media-breakpoint-down("sm") {
     width: 100%;
