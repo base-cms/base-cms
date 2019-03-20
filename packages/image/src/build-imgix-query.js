@@ -2,6 +2,7 @@ const { camelize } = require('@base-cms/inflector');
 
 const params = [
   'auto',
+  'blur',
   'border',
   'border-radius',
   'border-radius-inner',
@@ -15,6 +16,7 @@ const params = [
   'max-w',
   'min-h',
   'min-w',
+  'px',
   'trim',
   'w',
 ];
