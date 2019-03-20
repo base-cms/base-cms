@@ -8,6 +8,9 @@
     },
     "content-hero-block-a": {
       "template": "./hero-a.marko"
+    },
+    "content-block-sub-page-a": {
+      "template": "./sub-page-a.marko"
     }
   }
 }

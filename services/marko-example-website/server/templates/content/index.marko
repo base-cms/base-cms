@@ -48,14 +48,8 @@ $ const block = 'content-page';
     <div class="text-center">
       <h2 class="text-uppercase mb-3">More in ${section.name}</h2>
     </div>
-    <content-card-deck-a
+    <content-block-sub-page-a
       exclude-content-ids=[content.id]
-      section-id=section.id
-      requires-image=true
-    />
-    <content-card-list-a
-      exclude-content-ids=[content.id]
-      skip=11
       section-id=section.id
       requires-image=true
     />
