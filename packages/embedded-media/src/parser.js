@@ -14,7 +14,12 @@ module.exports = {
    * @param {object} options
    * @param {boolean} options.parse
    */
-  async convertFromDbToHtml(text, { parse, imageHost, basedb } = {}) {
+  async convertFromDbToHtml(text, {
+    parse,
+    imageHost,
+    basedb,
+    lazyload,
+  } = {}) {
     if (!parse) return text;
     if (!text) return text;
 
@@ -28,7 +33,7 @@ module.exports = {
 
     if (!matches.length) return text;
     const replacements = await Promise.all(matches.map(async (str) => {
-      const fn = this.getCallback('database', 'html', { imageHost, basedb });
+      const fn = this.getCallback('database', 'html', { imageHost, basedb, lazyload });
       const replacement = await fn(str);
       return { substr: str, replacement };
     }));

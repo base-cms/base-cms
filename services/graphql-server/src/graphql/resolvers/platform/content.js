@@ -75,6 +75,7 @@ module.exports = {
         basedb,
         parse: embeds.parse,
         imageHost,
+        lazyload: embeds.lazyloadImages,
       });
     },
 
