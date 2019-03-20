@@ -21,6 +21,10 @@ module.exports = ({ queryFragment }) => {
             ${spreadFragmentName}
           }
         }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
       }
     }
     ${defaultFragment}
