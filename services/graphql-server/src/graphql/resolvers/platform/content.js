@@ -63,13 +63,19 @@ module.exports = {
       return mutated || value;
     },
 
-    body: (content, { input }) => {
+    body: (content, { input }, { imageHost, basedb }) => {
       const { mutation, embeds } = input;
       const { body } = content;
       const mutated = get(content, `mutations.${mutation}.body`);
 
       const value = mutation ? mutated || body : body;
-      return embedParser.convertFromDbToHtml(value, embeds);
+      // @todo Should likely have a better way of using the basedb in more than one place.
+      // Ultimately, the db should become a service that multiple services can share.
+      return embedParser.convertFromDbToHtml(value, {
+        basedb,
+        parse: embeds.parse,
+        imageHost,
+      });
     },
 
     metadata: content => content,
