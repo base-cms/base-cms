@@ -1,6 +1,7 @@
-const buildImgixQuery = require('./build-imgix-query');
+const buildImgixUrl = require('./build-imgix-url');
 
 module.exports = (host, image, options, defaultOptions) => {
   const { filePath, fileName } = image;
-  return `https://${host}/${filePath}/${fileName}?${buildImgixQuery(options, defaultOptions)}`;
+  const src = `https://${host}/${filePath}/${fileName}`;
+  return buildImgixUrl(src, options, defaultOptions);
 };
