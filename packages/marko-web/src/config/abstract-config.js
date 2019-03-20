@@ -4,21 +4,13 @@ const {
   getAsObject,
 } = require('@base-cms/object-path');
 
-class CoreConfig {
-  constructor(config = {}) {
+class AbstractConfig {
+  /**
+   *
+   * @param {object} config
+   */
+  constructor(config) {
     this.config = config;
-  }
-
-  locale() {
-    return this.get('locale', 'en_US');
-  }
-
-  lazyloadImages() {
-    return this.get('images.lazyload', true);
-  }
-
-  siteName() {
-    return this.get('siteName', '');
   }
 
   /**
@@ -47,4 +39,4 @@ class CoreConfig {
   }
 }
 
-module.exports = CoreConfig;
+module.exports = AbstractConfig;

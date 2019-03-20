@@ -3,8 +3,8 @@ const path = require('path');
 const apollo = require('./apollo');
 const marko = require('./marko');
 const sitemaps = require('./sitemaps');
-const CoreConfig = require('../core-config');
-const SiteConfig = require('../site-config');
+const CoreConfig = require('../config/core');
+const SiteConfig = require('../config/site');
 
 module.exports = (config = {}) => {
   const { rootDir } = config;
