@@ -6,7 +6,13 @@ class OEmbedTag extends AbstractTag {
     const maxwidth = this.getAttribute('maxwidth');
     const maxheight = this.getAttribute('maxheight');
     const data = await oembed.extract(this.identifier, { maxwidth, maxheight });
-    return data && data.html ? data.html : '<!-- invalid oembed -->';
+
+    if (data) {
+      this.setAttribute('data-oembed-type', data.type);
+      this.setAttribute('data-oembed-provider', data.provider_name);
+      return data.html;
+    }
+    return '<!-- invalid oembed -->';
   }
 }
 

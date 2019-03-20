@@ -65,6 +65,11 @@ class AbstractTag {
     return this.attributes[name];
   }
 
+  setAttribute(name, value) {
+    this.attributes[name] = value;
+    return this;
+  }
+
   static getTagName() {
     return DEFAULT_HTML_ELEMENT;
   }

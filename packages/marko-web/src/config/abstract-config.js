@@ -3,15 +3,14 @@ const {
   getAsArray,
   getAsObject,
 } = require('@base-cms/object-path');
-const { isObject } = require('@base-cms/utils');
 
-class SiteConfig {
+class AbstractConfig {
   /**
    *
    * @param {object} config
    */
   constructor(config) {
-    this.config = isObject(config) ? config : {};
+    this.config = config;
   }
 
   /**
@@ -40,4 +39,4 @@ class SiteConfig {
   }
 }
 
-module.exports = SiteConfig;
+module.exports = AbstractConfig;

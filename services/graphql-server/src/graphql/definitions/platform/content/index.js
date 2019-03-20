@@ -168,6 +168,7 @@ input ContentBodyInput {
 
 input ContentBodyEmbedsInput {
   parse: Boolean = true
+  lazyloadImages: Boolean = true
 }
 
 input ContentTaxonomyInput {

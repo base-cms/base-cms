@@ -1,9 +1,9 @@
 import { cleanPath } from '@base-cms/utils';
-import { get } from '@base-cms/object-path';
 
+$ const { config } = out.global;
 $ const parts = [
   input.value,
-  get(out.global, 'config.siteName'),
+  config.siteName(),
 ];
 $ const concateWith = input.concateWith || '|';
 $ const title = parts.filter(v => v).join(` ${concateWith} `);

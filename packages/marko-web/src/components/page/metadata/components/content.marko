@@ -1,9 +1,9 @@
 import { get } from '@base-cms/object-path';
 
+$ const { config } = out.global;
 $ const metadata = input.metadata;
 $ const { title, description, image } = metadata;
 $ const src = get(image, 'src');
-$ const locale = get(out.global, 'config.locale');
 
 <!-- Standard Fields -->
 <cms-page-title value=title />
@@ -46,6 +46,6 @@ $ const locale = get(out.global, 'config.locale');
 <cms-page-rel-canonical|{ href }| pathname=input.canonicalPath>
   <meta name="og:url" content=href />
 </cms-page-rel-canonical>
-<meta name="og:site_name" content=get(out.global, 'config.siteName') />
-<meta name="og:locale" content=locale />
+<meta name="og:site_name" content=config.siteName() />
+<meta name="og:locale" content=config.locale() />
 <meta name="og:type" content="article" />

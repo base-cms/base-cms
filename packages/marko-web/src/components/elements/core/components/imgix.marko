@@ -1,22 +1,27 @@
-import { buildImgixQuery } from '@base-cms/web-common/utils';
-import shouldCollapse from '../../../../utils/should-collapse';
+import { buildImgixUrl } from '@base-cms/image';
 
-$ const defaults = {
-  auto: 'format',
-  h: 640,
-  w: 640,
-};
+$ const { config } = out.global;
+$ const src = buildImgixUrl(input.src, input.options);
 
-$ const collapse = shouldCollapse(input.collapse);
-$ const query = buildImgixQuery(input.options, defaults)
-
-<if(!collapse || input.src)>
-  <img
-    src=`${input.src}?${query}`
-    class=input.class
-    alt=input.alt
-    title=input.title
-    width=input.width
-    height=input.height
-  />
+<if(src)>
+  <if(config.lazyloadImages() && input.lazyload !== false)>
+    <img
+      data-src=src
+      class=[input.class, 'lazyload']
+      alt=input.alt
+      title=input.title
+      width=input.width
+      height=input.height
+    />
+  </if>
+  <else>
+    <img
+      src=src
+      class=input.class
+      alt=input.alt
+      title=input.title
+      width=input.width
+      height=input.height
+    />
+  </else>
 </if>
