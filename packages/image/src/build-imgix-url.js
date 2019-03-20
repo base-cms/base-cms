@@ -24,8 +24,8 @@ const params = [
 
 const coreDefaults = {
   auto: 'format',
-  h: 640,
-  w: 640,
+  h: 320,
+  w: 320,
 };
 
 module.exports = (src, selected, defaults) => {
