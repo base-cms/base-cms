@@ -25,6 +25,7 @@ module.exports = async (basedb, modelName, {
   sort = { field: '_id', order: 1 },
   projection,
   excludeProjection,
+  ignoreCompoundAfterSort,
   collate = false,
 }) => {
   const $limit = new Limit({ value: limit });
@@ -43,6 +44,7 @@ module.exports = async (basedb, modelName, {
     sort: $sort,
     limit: $limit,
     after,
+    ignoreCompoundAfterSort,
   };
 
   const paginatedQuery = await createQuery(basedb, modelName, params);
