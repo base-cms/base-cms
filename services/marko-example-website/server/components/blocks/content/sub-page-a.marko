@@ -29,14 +29,20 @@ $ const queryFragment = gql`
   }
 `;
 
-$ const block = 'content-sub-page';
+$ const block = 'content-sub-page-a';
 $ const params = {
   ...input,
   limit: 15,
   queryFragment,
 };
 
-<cms-query-website-scheduled-content|{ nodes }| ...params>
+<cms-query-website-scheduled-content|{ nodes, pageInfo }| ...params>
   <content-flow-card-deck-a nodes=nodes.slice(0, 11) />
   <content-flow-card-list-a nodes=nodes.slice(11) />
+
+  $ const { hasNextPage, endCursor } = pageInfo;
+  $ const loadMoreParams = { ...params, after: endCursor };
+  <if(hasNextPage)>
+    <load-more tag="content-block-sub-page-a" params=loadMoreParams />
+  </if>
 </cms-query-website-scheduled-content>
