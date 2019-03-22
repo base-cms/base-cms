@@ -2,6 +2,8 @@ $ const id = `vue-${Date.now()}`;
 $ const props = JSON.stringify(input.props || {});
 $ const contents = `<script>BaseCMS.loadComponent('#${id}', '${input.name}', ${props});</script>`;
 
+<!-- @todo The loadComponent function should be proxied, e.g. basecms('loadComponent', id, name, props); -->
+
 <div id=id>
   $!{contents}
 </div>
