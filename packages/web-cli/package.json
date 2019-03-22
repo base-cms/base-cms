@@ -10,10 +10,18 @@
   "license": "MIT",
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/web-cli",
   "dependencies": {
+    "@babel/core": "^7.4.0",
+    "@babel/plugin-transform-runtime": "^7.4.0",
+    "@babel/preset-env": "^7.4.2",
+    "@babel/runtime": "^7.4.2",
+    "@babel/runtime-corejs2": "^7.4.2",
     "@base-cms/express-apollo": "^0.5.0",
     "@base-cms/marko-web": "^0.5.0",
     "autoprefixer": "^9.4.10",
+    "babel-loader": "^8.0.5",
     "chalk": "^2.4.2",
+    "core-js": "^2.6.5",
+    "css-loader": "^2.1.1",
     "cssnano": "^4.1.10",
     "empty-dir": "^2.0.0",
     "eslint": "^5.15.1",
@@ -42,7 +50,15 @@
     "stylelint-config-twbs-bootstrap": "^0.3.0",
     "validate-npm-package-name": "^3.0.0",
     "validator": "^10.9.0",
+    "vue-loader": "^15.7.0",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.6.10",
+    "webpack": "^4.29.6",
+    "webpack-stream": "^5.2.1",
     "yargs": "^13.2.1"
+  },
+  "peerDependencies": {
+    "vue": "^2.6.10"
   },
   "publishConfig": {
     "access": "public"
