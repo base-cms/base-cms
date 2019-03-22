@@ -1,0 +1,7 @@
+$ const id = `vue-${Date.now()}`;
+$ const props = JSON.stringify(input.props || {});
+$ const contents = `<script>BaseCMS.loadComponent('#${id}', '${input.name}', ${props});</script>`;
+
+<div id=id>
+  $!{contents}
+</div>
