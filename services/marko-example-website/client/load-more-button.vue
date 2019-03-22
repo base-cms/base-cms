@@ -1,8 +1,5 @@
 <template>
-  <div v-if="html">
-
-  </div>
-  <div v-else>
+  <div>
     <button v-on:click="load()" v-bind:disabled="loading">
       <template v-if="loading">
         Loading...
@@ -19,13 +16,12 @@ import setInnerHTML from './utils/set-inner-html';
 
 export default {
   props: ['tag', 'params'],
-  data: () => ({ loading: false, html: null }),
+  data: () => ({ loading: false }),
   methods: {
     load() {
       this.loading = true;
       const href = `/load-more/${this.tag}?q=${encodeURIComponent(JSON.stringify(this.params))}`
       fetch(href).then(r => r.text()).then(html => {
-        this.html = html;
         setInnerHTML(this.$el, html);
       }).finally(() => {
         this.loading = false;
