@@ -13,16 +13,9 @@
     </button>
   </div>
 </template>
+
 <script>
-const setInnerHTML = (ele, html) => {
-  ele.innerHTML = html;
-  Array.from(ele.querySelectorAll('script')).forEach((oldScript) => {
-    const newScript = document.createElement('script');
-    Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
-    newScript.appendChild(document.createTextNode(oldScript.innerHTML));
-    oldScript.parentNode.replaceChild(newScript, oldScript);
-  });
-};
+import setInnerHTML from './utils/set-inner-html';
 
 export default {
   props: ['tag', 'params'],
