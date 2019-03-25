@@ -8,9 +8,6 @@
     },
     "cms-document-live-reload": {
       "template": "./live-reload.marko"
-    },
-    "cms-browser-component": {
-      "template": "./browser-component.marko"
     }
   }
 }
