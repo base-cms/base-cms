@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import $ from 'jquery/dist/jquery.slim';
 import setInnerHTML from './utils/set-inner-html';
 
 export default {
@@ -37,11 +38,12 @@ export default {
     async load() {
       this.error = null;
       this.loading = true;
-      const href = `/load-more/${this.blockName}?q=${encodeURIComponent(JSON.stringify(this.params))}`
+      const q = encodeURIComponent(JSON.stringify(this.params));
+      const href = `/load-more/${this.blockName}?q=${q}`
       try {
         const r = await fetch(href);
         const html = await r.text();
-        setInnerHTML(this.$el, html);
+        $(this.$el).replaceWith(html);
       } catch (e) {
         // @todo Log this!
         this.error = e;
