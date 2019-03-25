@@ -1,0 +1,19 @@
+$ const params = input.params;
+$ if (params.after && params.skip) delete params.skip;
+$ if (params.queryFragment) delete params.queryFragment;
+$ if (params.renderBody) delete params.renderBody;
+
+<vue-component name="LoadMoreButton" props={
+  blockName: input.blockName,
+  label: 'Load More Content',
+  params,
+  buttonClassObj: {
+    btn: true,
+    'btn-lg': true,
+    'btn-primary': true,
+    'mb-3': true,
+  },
+  wrappingClassObj: {
+    'text-center': true,
+  },
+} />

@@ -43,6 +43,6 @@ $ const params = {
   $ const { hasNextPage, endCursor } = pageInfo;
   $ const loadMoreParams = { ...params, after: endCursor };
   <if(hasNextPage)>
-    <load-more tag="content-block-sub-page-a" params=loadMoreParams />
+    <load-more-button blockName="content-block-sub-page-a" params=loadMoreParams />
   </if>
 </cms-query-website-scheduled-content>
