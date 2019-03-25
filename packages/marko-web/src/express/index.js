@@ -8,11 +8,12 @@ const SiteConfig = require('../config/site');
 
 module.exports = (config = {}) => {
   const { rootDir } = config;
+  const distDir = path.resolve(rootDir, 'dist');
   const app = express();
   const serverDir = path.resolve(rootDir, 'server');
 
   // Set the core config.
-  app.locals.config = new CoreConfig(config.coreConfig);
+  app.locals.config = new CoreConfig({ ...config.coreConfig, distDir });
 
   // Set the website config to the app.
   app.locals.site = new SiteConfig(config.siteConfig);
@@ -30,7 +31,7 @@ module.exports = (config = {}) => {
   marko(app);
 
   // Serve static assets
-  app.use('/dist', express.static(path.resolve(rootDir, 'dist')));
+  app.use('/dist', express.static(distDir));
 
   // Register public files.
   app.use(express.static(path.join(serverDir, 'public')));
