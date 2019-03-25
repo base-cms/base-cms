@@ -39,10 +39,11 @@ $ const params = {
 <cms-query-website-scheduled-content|{ nodes, pageInfo }| ...params>
   <content-flow-card-deck-a nodes=nodes.slice(0, 11) />
   <content-flow-card-list-a nodes=nodes.slice(11) />
-
-  $ const { hasNextPage, endCursor } = pageInfo;
-  $ const loadMoreParams = { ...params, after: endCursor };
-  <if(hasNextPage)>
-    <load-more-button blockName="content-block-sub-page-a" params=loadMoreParams />
-  </if>
+  <cms-load-more-element
+    blockName="content-block-sub-page-a"
+    params=params
+    page-info=pageInfo
+    button-class-obj={ btn: true, 'btn-lg': true, 'btn-primary': true }
+    wrapping-class-obj={ 'text-center': true, 'pb-3': true }
+  />
 </cms-query-website-scheduled-content>
