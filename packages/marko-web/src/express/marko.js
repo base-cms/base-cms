@@ -1,4 +1,3 @@
-require('marko/node-require');
 const marko = require('marko/express');
 
 module.exports = (app) => {
