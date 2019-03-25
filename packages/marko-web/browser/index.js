@@ -1,13 +1,6 @@
 /* eslint-disable no-new */
-import Vue from 'vue';
-import LoadMoreButton from './load-more-button.vue';
-
-// @todo This entire file must move to core
-// Must also determine how to load both the core and the site clientjs
-
-const components = {
-  LoadMoreButton,
-};
+import Vue from './vue';
+import components from './components';
 
 const loadComponent = (el, name, props) => {
   const Component = components[name];
@@ -23,7 +16,7 @@ const registerComponent = (name, Component) => {
   components[name] = Component;
 };
 
-export {
+export default {
   loadComponent,
   registerComponent,
 };

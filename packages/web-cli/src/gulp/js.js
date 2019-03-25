@@ -17,14 +17,15 @@ const absoluteRuntime = path.dirname(require.resolve('@babel/runtime/package.jso
 module.exports = cwd => (cb) => {
   const { ifProduction, ifNotProduction } = getIfUtils(process.env.NODE_ENV);
   pump([
-    src('client/index.js', { cwd }),
+    src('browser/index.js', { cwd }),
     webpack({
       mode: ifProduction('production', 'development'),
       cache: ifNotProduction(),
       devtool: 'source-map',
       output: {
-        library: 'BaseCMS',
-        libraryTarget: 'window',
+        library: 'CMSBrowserComponents',
+        libraryExport: 'default',
+        libraryTarget: 'umd',
         filename: 'index.[chunkhash:8].js',
       },
       module: {

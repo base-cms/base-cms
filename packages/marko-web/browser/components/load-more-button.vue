@@ -16,8 +16,7 @@
 </template>
 
 <script>
-import $ from 'jquery/dist/jquery.slim';
-import setInnerHTML from './utils/set-inner-html';
+import $ from '../jquery';
 
 export default {
   props: {

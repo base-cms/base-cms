@@ -22,9 +22,9 @@ module.exports = (cwd, serverFile) => () => {
   const watcher = watch(
     [
       serverFile,
-      'client/**/*.js',
-      'client/**/*.vue',
-      'client/**/*.scss',
+      'browser/**/*.js',
+      'browser/**/*.vue',
+      'browser/**/*.scss',
       'config/**/*.js',
       'server/**/*.js',
       'server/**/*.json',
