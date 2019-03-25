@@ -47,8 +47,10 @@ module.exports = async (apolloClient, {
   const variables = { input };
 
   const { data } = await apolloClient.query({ query, variables });
-  if (!data || !data.websiteScheduledContent) return [];
-  return data.websiteScheduledContent.edges
+  if (!data || !data.websiteScheduledContent) return { nodes: [], pageInfo: {} };
+  const { pageInfo } = data.websiteScheduledContent;
+  const nodes = data.websiteScheduledContent.edges
     .map(edge => (edge && edge.node ? edge.node : null))
     .filter(c => c);
+  return { nodes, pageInfo };
 };

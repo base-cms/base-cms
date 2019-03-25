@@ -3,8 +3,8 @@ import { websiteScheduledContent as loader } from '@base-cms/web-common/block-lo
 $ const isDevelopment = process.env.NODE_ENV === 'development';
 
 <await(loader(out.global.apollo, input))>
-  <@then|items|>
-    <${input.renderBody} items=items />
+  <@then|{ nodes, pageInfo }|>
+    <${input.renderBody} nodes=nodes page-info=pageInfo />
   </@then>
   <@catch|err|>
     <if(input.onError)>

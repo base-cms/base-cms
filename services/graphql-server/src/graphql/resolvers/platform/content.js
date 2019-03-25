@@ -260,6 +260,7 @@ module.exports = {
         sort: { field: 'sectionQuery.start', order: 'desc' },
         projection: { 'sectionQuery.$.start': 1, ...projection },
         excludeProjection: ['sectionQuery.start'],
+        ignoreCompoundAfterSort: true,
         ...pagination,
       });
     },

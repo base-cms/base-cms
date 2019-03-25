@@ -54,15 +54,15 @@ module.exports = {
   async createQuery(basedb, modelName, {
     after,
     sort,
-    skip,
+    ignoreCompoundAfterSort,
   } = {}) {
     if (!after) return {};
     const id = cursor.decode(after);
     const { field, order } = sort;
     const op = order === 1 ? '$gt' : '$lt';
 
-    if (field === '_id') {
-      // Simple sort by id.
+    if (field === '_id' || ignoreCompoundAfterSort) {
+      // Simple sort by id (or compound sorting was ignored)
       return { _id: { [op]: id } };
     }
 
@@ -79,7 +79,7 @@ module.exports = {
       projection[field] = 1;
     }
 
-    const doc = await basedb.findById(modelName, id, { projection, skip });
+    const doc = await basedb.findById(modelName, id, { projection });
     const value = objectPath.get(doc, field);
     const $or = [
       { [field]: { [op]: value } },

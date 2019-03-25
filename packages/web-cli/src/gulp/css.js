@@ -23,7 +23,7 @@ module.exports = cwd => (cb) => {
           'Chrome >= 45',
           'Firefox >= 38',
           'Edge >= 12',
-          'Explorer >= 10',
+          'Explorer >= 11',
           'iOS >= 9',
           'Safari >= 9',
           'Android >= 4.4',

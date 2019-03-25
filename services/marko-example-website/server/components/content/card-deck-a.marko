@@ -1,0 +1,24 @@
+import { asArray } from '@base-cms/utils';
+
+$ const nodes = asArray(input.nodes);
+$ const coreClass = 'mb-4 col-12 col-md-6 col-lg-4';
+
+<if(nodes.length)>
+  <div class="row">
+    <for|node, index| of=nodes>
+      <div class=coreClass>
+        <div class="card content-card-deck">
+          <content-card-body-a content=node />
+        </div>
+      </div>
+      <if(index === 3)>
+        <div class=coreClass>
+          <div class="card content-card-deck">
+            <!-- @todo Centered ads within a card body are common. Componentize this -->
+            <cms-ad-placeholder size="300x250" class="card-body d-flex justify-content-center align-items-center" />
+          </div>
+        </div>
+      </if>
+    </for>
+  </div>
+</if>
