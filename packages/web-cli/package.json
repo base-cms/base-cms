@@ -23,6 +23,7 @@
     "core-js": "^2.6.5",
     "css-loader": "^2.1.1",
     "cssnano": "^4.1.10",
+    "del": "^4.0.0",
     "empty-dir": "^2.0.0",
     "eslint": "^5.15.1",
     "eslint-config-airbnb-base": "^13.1.0",
@@ -54,6 +55,8 @@
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.6.10",
     "webpack": "^4.29.6",
+    "webpack-config-utils": "^2.3.1",
+    "webpack-manifest-plugin": "^2.0.4",
     "webpack-stream": "^5.2.1",
     "yargs": "^13.2.1"
   },

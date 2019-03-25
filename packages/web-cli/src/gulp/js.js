@@ -1,27 +1,31 @@
 /* eslint-disable global-require */
+const ManifestPlugin = require('webpack-manifest-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const path = require('path');
 const pump = require('pump');
 const webpack = require('webpack-stream');
 const wp = require('webpack');
 const { dest, src } = require('gulp');
+const { getIfUtils } = require('webpack-config-utils');
 const completeTask = require('../utils/task-callback');
 
 const absoluteRuntime = path.dirname(require.resolve('@babel/runtime/package.json'));
 
-// @todo Add fingerprinting!
 // @todo Determine how to combine CSS with the main CSS build
 // @todo Add sass to Vue components
 // @todo Add default polyfills to entry point
 module.exports = cwd => (cb) => {
+  const { ifProduction, ifNotProduction } = getIfUtils(process.env.NODE_ENV);
   pump([
     src('client/index.js', { cwd }),
     webpack({
-      mode: process.env.NODE_ENV,
+      mode: ifProduction('production', 'development'),
+      cache: ifNotProduction(),
+      devtool: 'source-map',
       output: {
         library: 'BaseCMS',
         libraryTarget: 'window',
-        filename: 'index.js',
+        filename: 'index.[chunkhash:8].js',
       },
       module: {
         rules: [
@@ -50,6 +54,7 @@ module.exports = cwd => (cb) => {
                         'Firefox >= 45',
                         'Safari >= 10',
                         'Edge >= 13',
+                        'Explorer >= 11',
                         'iOS >= 10',
                       ],
                     },
@@ -82,7 +87,24 @@ module.exports = cwd => (cb) => {
       },
       plugins: [
         new VueLoaderPlugin(),
+        new ManifestPlugin({
+          fileName: 'asset-manifest.json',
+          publicPath: '/dist/',
+          filter: ({ name }) => /\.js$/.test(name),
+        }),
       ],
+      // @todo Explore splitting vendor code vs. core website code vs. userland website code
+      // optimization: {
+      //   splitChunks: {
+      //     cacheGroups: {
+      //       commons: {
+      //         test: /[\\/]node_modules[\\/]/,
+      //         name: 'vendor',
+      //         chunks: 'initial',
+      //       },
+      //     },
+      //   },
+      // },
     }, wp),
     dest('dist', { cwd }),
   ], e => completeTask(e, cb));
