@@ -7,7 +7,7 @@ module.exports = (app) => {
     template: applications,
   }));
 
-  app.get('/:alias(*)', withWebsiteSection({
+  app.get('/:alias([a-z0-9-/]+)', withWebsiteSection({
     template: section,
   }));
 };

@@ -1,6 +1,8 @@
+require('marko/node-require');
 const http = require('http');
 const { createTerminus } = require('@godaddy/terminus');
 const { isFunction: isFn } = require('@base-cms/utils');
+const errorHandlers = require('./express/error-handlers');
 const express = require('./express');
 
 if (!process.env.LIVERELOAD_PORT) {
@@ -20,6 +22,7 @@ const startServer = async ({
   exposedPort = env.EXPOSED_PORT || env.PORT || 4008,
   routes,
   graphqlUri = env.GRAPHQL_URI,
+  errorTemplate,
 
   // Terminus settings.
   timeout = 1000,
@@ -39,12 +42,15 @@ const startServer = async ({
     graphqlUri,
   });
 
+  // Await required services here...
+  if (isFn(onStart)) await onStart(app);
+
   // Load website routes.
   if (!isFn(routes)) throw new Error('A routes function is required.');
   routes(app);
 
-  // Await required services here...
-  if (isFn(onStart)) await onStart(app);
+  // Apply error handlers.
+  errorHandlers(app, { template: errorTemplate });
 
   const server = http.createServer(app);
 
