@@ -10,6 +10,7 @@ extend type Query {
   allContent(input: AllContentQueryInput = {}): ContentConnection! @findMany(model: "platform.Content", criteria: "content")
   allPublishedContent(input: AllPublishedContentQueryInput = {}): ContentConnection!
   websiteScheduledContent(input: WebsiteScheduledContentQueryInput = {}): ContentConnection!
+  relatedPublishedContent(input: RelatedPublishedContentQueryInput = {}): ContentConnection!
 }
 
 enum ContentMutation {
@@ -79,8 +80,6 @@ enum RelatedContentQueryType {
   owned
   # returns related content on the inverse of doc.relatedTo
   inverse
-  # returns both to and inverse combined
-  combined
   # returns related content based on primary section
   primarySection
   # returns related content based on inverse company and relatedTo
@@ -149,6 +148,23 @@ input WebsiteScheduledContentQueryInput {
   requiresImage: Boolean = false
   useOptionFallback: Boolean = false
   sectionBubbling: Boolean = true
+  pagination: PaginationInput = {}
+}
+
+input RelatedPublishedContentQueryInput {
+  contentId: Int!
+  excludeContentTypes: [ContentType!] = []
+  includeContentTypes: [ContentType!] = []
+  requiresImage: Boolean = false
+  queryTypes: [RelatedContentQueryType!] = [owned, inverse]
+  pagination: PaginationInput = {}
+}
+
+input ContentRelatedContentInput {
+  excludeContentTypes: [ContentType!] = []
+  includeContentTypes: [ContentType!] = []
+  requiresImage: Boolean = false
+  queryTypes: [RelatedContentQueryType!] = [owned, inverse]
   pagination: PaginationInput = {}
 }
 

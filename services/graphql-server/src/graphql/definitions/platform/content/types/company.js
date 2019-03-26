@@ -24,10 +24,6 @@ type ContentCompany implements Content & Contactable & Addressable @applyInterfa
   enableRmi: Boolean @projection(localField: "mutations.Website.enableRmi") @value(localField: "mutations.Website.enableRmi")
   featuredCategories(input: ContentCompanyFeaturedCategoriesInput = {}): TaxonomyConnection! @projection(localField: "mutations.Website.featuredCategories") @refMany(model: "platform.Taxonomy", localField: "mutations.Website.featuredCategories", criteria: "taxonomyCategory")
   primaryCategory(input: ContentCompanyPrimaryCategoryInput = {}): Taxonomy @projection(localField: "mutations.Website.primaryCategory") @refOne(loader: "platformTaxonomy", localField: "mutations.Website.primaryCategory")
-
-  # GraphQL-only fields.
-  # @see Cygnus\ApplicationBundle\Icarus\BlockHandler::PlatformContentCompanyContentQuery
-  companyRelatedTo(input: ContentCompanyRelatedToInput = {}): ContentConnection! @relatedContent(type: company)
 }
 
 type ContentCompanyConnection {
@@ -99,15 +95,6 @@ input ContentCompanyPrimaryCategoryInput {
 input ContentCompanySortInput {
   field: ContentSortField = id
   order: SortOrder = desc
-}
-
-# From Icarus\Definitions\BlockDefinitions::getContentRelatedDefinition()
-input ContentCompanyRelatedToInput {
-  excludeContentTypes: [ContentType!] = []
-  includeContentTypes: [ContentType!] = []
-  requiresImage: Boolean = false
-  sort: ContentSortInput = {}
-  pagination: PaginationInput = { first: 5 }
 }
 
 `;

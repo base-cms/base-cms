@@ -21,7 +21,6 @@ directive @projection(localField: String, needs: [String] = []) on FIELD_DEFINIT
 directive @projectUsing(type: String!) on OBJECT
 directive @refMany(model: String!, localField: String, foreignField: String = "_id", criteria: String, using: JSON) on FIELD_DEFINITION
 directive @refOne(loader: String!, localField: String, criteria: String) on FIELD_DEFINITION
-directive @relatedContent(type: RelatedContentQueryType!) on FIELD_DEFINITION
 directive @requiresProject(fields: [String] = []) on OBJECT | INTERFACE
 directive @value(localField: String, fallbackField: String) on FIELD_DEFINITION
 
