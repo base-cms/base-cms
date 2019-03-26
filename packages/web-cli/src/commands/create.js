@@ -16,6 +16,8 @@ module.exports = ({
   npmOrg,
   yarn,
   skipInstall,
+  siteName,
+  graphqlUri,
 }) => {
   if (!path) {
     exit('A project directory is required.');
@@ -25,7 +27,12 @@ module.exports = ({
     exit(`The selected project directory is not empty. Tried installing in ${chalk.gray(dir)}`);
   }
 
-  const questions = loadQuestions({ path, npmOrg });
+  const questions = loadQuestions({
+    path,
+    npmOrg,
+    siteName,
+    graphqlUri,
+  });
 
   clear();
 

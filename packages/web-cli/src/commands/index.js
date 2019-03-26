@@ -31,6 +31,12 @@ const createOptions = yargs => yargs
     describe: 'Whether to skip installing dependencies.',
     type: 'boolean',
     default: false,
+  })
+  .option('site-name', {
+    describe: 'Whether to skip installing dependencies.',
+  })
+  .option('graphql-uri', {
+    describe: 'Whether to skip installing dependencies.',
   });
 
 /**
