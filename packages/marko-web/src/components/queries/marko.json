@@ -2,6 +2,9 @@
   "tags": {
     "cms-query-website-scheduled-content": {
       "template": "./website-scheduled-content.marko"
+    },
+    "cms-query-related-published-content": {
+      "template": "./related-published-content.marko"
     }
   }
 }

@@ -3,7 +3,7 @@ const section = require('../templates/website-section');
 const applications = require('../templates/website-section/applications');
 
 module.exports = (app) => {
-  app.get('/:alias(applications)', withWebsiteSection({
+  app.get('/:alias(tactical)', withWebsiteSection({
     template: applications,
   }));
 

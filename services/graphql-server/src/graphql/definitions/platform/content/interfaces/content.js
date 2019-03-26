@@ -62,6 +62,8 @@ interface Content @requiresProject(fields: ["type"]) {
   canonicalPath: String! @projection(localField: "_id", needs: ["type", "linkUrl", "mutations.Website.slug", "mutations.Website.primarySection", "mutations.Website.alias"])
   # Determines if this content item should redirect to another location.
   redirectTo: String @projection(localField: "type", needs: ["linkUrl"])
+  # Returns related, published content based on input flags
+  relatedContent(input: ContentRelatedContentInput = {}): ContentConnection! @projection(localField: "_id", needs: ["relatedTo", "mutations.Website.primarySection"])
 }
 
 `;

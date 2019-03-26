@@ -11,6 +11,9 @@
     },
     "content-block-sub-page-a": {
       "template": "./sub-page-a.marko"
+    },
+    "content-related-a": {
+      "template": "./related-a.marko"
     }
   }
 }

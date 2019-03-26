@@ -1,14 +1,20 @@
+const { BaseDB } = require('@base-cms/db');
 const { get } = require('@base-cms/object-path');
 const { isFunction: isFn, cleanPath } = require('@base-cms/utils');
-const { underscore, dasherize, titleize } = require('@base-cms/inflector');
 const { parser: embedParser } = require('@base-cms/embedded-media');
+const { underscore, dasherize, titleize } = require('@base-cms/inflector');
 
+const relatedContent = require('../../utils/related-content');
 const connectionProjection = require('../../utils/connection-projection');
-const defaultContentTypes = require('../../utils/content-types');
 const getDefaultOption = require('../../utils/get-default-option');
 const getDescendantIds = require('../../utils/website-section-child-ids');
 const pathResolvers = require('../../utils/content-path-resolvers');
-const { createTitle, createDescription } = require('../../utils/content');
+const {
+  createTitle,
+  createDescription,
+  getPublishedCriteria,
+  getDefaultContentTypes,
+} = require('../../utils/content');
 
 const { isArray } = Array;
 
@@ -144,6 +150,17 @@ module.exports = {
           return 'Unpublished';
       }
     },
+
+    relatedContent: (doc, { input }, { basedb }, info) => {
+      const {
+        queryTypes,
+      } = input;
+      // If no query types were specified (owned, inverse, etc), return an empty response.
+      if (!queryTypes.length) return BaseDB.paginateEmpty();
+
+      // Run perform the related content query.
+      return relatedContent.performQuery(doc, { input, basedb, info });
+    },
   },
 
   /**
@@ -164,16 +181,7 @@ module.exports = {
         pagination,
       } = input;
 
-      const date = since || new Date();
-      const query = {
-        status: 1,
-        type: { $in: contentTypes.length ? contentTypes : defaultContentTypes },
-        published: { $lte: date },
-        $or: [
-          { unpublished: { $gte: date } },
-          { unpublished: { $exists: false } },
-        ],
-      };
+      const query = getPublishedCriteria({ since, contentTypes });
 
       if (requiresImage) {
         query.primaryImage = { $exists: true };
@@ -245,6 +253,9 @@ module.exports = {
       if (includeContentTypes.length) {
         if (!isArray(query.$and)) query.$and = [];
         query.$and.push({ type: { $in: includeContentTypes } });
+      } else {
+        if (!isArray(query.$and)) query.$and = [];
+        query.$and.push({ type: { $in: getDefaultContentTypes() } });
       }
       if (excludeContentTypes.length) {
         if (!isArray(query.$and)) query.$and = [];
@@ -263,6 +274,29 @@ module.exports = {
         ignoreCompoundAfterSort: true,
         ...pagination,
       });
+    },
+
+    /**
+     *
+     */
+    relatedPublishedContent: async (_, { input }, { basedb }, info) => {
+      const {
+        contentId,
+        queryTypes,
+      } = input;
+      // If no query types were specified (owned, inverse, etc), return an empty response.
+      if (!queryTypes.length) return BaseDB.paginateEmpty();
+
+      // Retrieve the content document.
+      const doc = await basedb.findById('platform.Content', contentId, {
+        projection: { _id: 1, relatedTo: 1, 'mutations.Website.primarySection': 1 },
+      });
+
+      // If no content document was found, return an empty response.
+      if (!doc) return BaseDB.paginateEmpty();
+
+      // Run perform the related content query.
+      return relatedContent.performQuery(doc, { input, basedb, info });
     },
   },
 };
