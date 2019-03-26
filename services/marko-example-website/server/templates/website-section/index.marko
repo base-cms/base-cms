@@ -9,13 +9,13 @@ $ const section = getAsObject(data, 'section');
     <p>${section.description}</p>
   </if>
   $ const block = 'content-list';
-  <cms-query-website-scheduled-content|{ items }|
+  <cms-query-website-scheduled-content|{ nodes }|
     query-fragment=queryFragment
     section-id=section.id
     limit=18
     include-content-types=["Article"]
   >
-    <for|content| of=items>
+    <for|content| of=nodes>
       <div class="row">
         <div class="col">
           <div class="card border-0 shadow-sm mb-4 w-100">

@@ -34,19 +34,19 @@ $ const params = {
   queryFragment,
 };
 
-<cms-query-website-scheduled-content|{ items }| ...params>
-  $ const hero = items[0] || {};
-  $ const nodes = items.slice(1) || [];
+<cms-query-website-scheduled-content|{ nodes }| ...params>
+  $ const hero = nodes[0] || {};
+  $ const list = nodes.slice(1) || [];
 
   <div class="row">
     <div class="col-lg-7 col-xl-8">
-      <div class="card h-100">
+      <div class="card border">
         <content-card-body-a content=hero />
       </div>
     </div>
     <div class="col-lg-5 col-xl-4">
-      <div class="card h-100">
-        <content-list-group-a nodes=nodes />
+      <div class="card border">
+        <content-list-group-a nodes=list />
       </div>
     </div>
   </div>
