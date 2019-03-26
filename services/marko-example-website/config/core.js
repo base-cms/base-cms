@@ -1,4 +1,4 @@
 module.exports = {
-  siteName: 'Evaluation Engineering',
+  siteName: 'Officer',
   locale: 'en_US',
 };
