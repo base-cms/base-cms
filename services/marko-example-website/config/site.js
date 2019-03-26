@@ -13,7 +13,7 @@ module.exports = {
     { to: '/features/honoring-the-fallen', label: 'Honoring the Fallen' },
     { to: '/magazine', label: 'Publications' },
     { to: '/subscribe', label: 'Subscribe' },
-    { to: '/advertise', label: 'Advertise' },
+    { to: '/page/advertise', label: 'Advertise' },
     { to: '/contact-us', label: 'Contact Us' },
   ],
   // logo: 'https://cdn.evaluationengineering.com/files/base/ebm/ee/image/static/logo/site_logo_bare.png',
