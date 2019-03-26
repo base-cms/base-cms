@@ -1,6 +1,7 @@
 const validatePackage = require('validate-npm-package-name');
 const chalk = require('chalk');
 const { isURL } = require('validator');
+const { existsSync } = require('fs');
 const { createClient } = require('@base-cms/express-apollo');
 const gql = require('graphql-tag');
 const querySections = require('./query-root-sections');
@@ -9,6 +10,7 @@ module.exports = ({
   path,
   npmOrg,
   siteName,
+  templateDir,
   graphqlUri,
 }) => [
   {
@@ -112,6 +114,17 @@ module.exports = ({
     message: 'Install Bootstrap design components?',
     default: true,
     when: ({ proceed }) => proceed === true,
+  },
+  {
+    type: 'input',
+    name: 'templateDir',
+    default: templateDir,
+    message: chalk`Custom template directory {reset [enter relative path or leave blank for none]}:`,
+    validate: (v) => {
+      if (!v) return true;
+      return existsSync(v) ? true : `Path ${v} does not exist!`;
+    },
+    filter: v => (v ? String(v).trim() : v),
   },
   {
     type: 'confirm',

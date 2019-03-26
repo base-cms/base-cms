@@ -32,6 +32,9 @@ const createOptions = yargs => yargs
     type: 'boolean',
     default: false,
   })
+  .option('template-dir', {
+    describe: 'Custom skeleton template directory',
+  })
   .option('site-name', {
     describe: 'Whether to skip installing dependencies.',
   })

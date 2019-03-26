@@ -38,5 +38,10 @@ module.exports = async (dir, answers) => {
     await writeTemplates(dir, answers, join(__dirname, 'templates/bootstrap'));
   }
 
+  if (answers.templateDir) {
+    log(chalk`Creating {green custom} templates`);
+    await writeTemplates(dir, answers, answers.templateDir);
+  }
+
   write(dir, 'package.json', `${JSON.stringify(pkg, null, 2)}\n`);
 };

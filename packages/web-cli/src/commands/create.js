@@ -16,6 +16,7 @@ module.exports = ({
   npmOrg,
   yarn,
   skipInstall,
+  templateDir,
   siteName,
   graphqlUri,
 }) => {
@@ -30,6 +31,7 @@ module.exports = ({
   const questions = loadQuestions({
     path,
     npmOrg,
+    templateDir,
     siteName,
     graphqlUri,
   });
