@@ -4,7 +4,7 @@ const buildQuery = require('../gql/query-factories/block-related-published-conte
  * @param {ApolloClient} apolloClient The Apollo GraphQL client that will perform the query.
  * @param {object} params
  * @param {number} params.contentId The content ID. Required.
- * @param {string[]} [params.queryTypes] The related query types to use (e.g. owned, invsere, etc).
+ * @param {string[]} [params.queryTypes] The related query types to use (e.g. owned, inverse, etc).
  * @param {number} [params.limit] The number of results to return.
  * @param {string} [params.after] The cursor to start returning results from.
  * @param {string[]} [params.excludeContentTypes] An array of content types to exclude.
