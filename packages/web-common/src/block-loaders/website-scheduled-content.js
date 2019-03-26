@@ -13,7 +13,7 @@ const buildQuery = require('../gql/query-factories/block-website-scheduled-conte
  * @param {boolean} [params.requiresImage] Whether the content must have an image.
  * @param {boolean} [params.sectionBubbling] Whether automatic section bubbling is applied.
  * @param {string} [params.queryFragment] The `graphql-tag` fragment
- *                                        to apply to the `contentPage` query.
+ *                                        to apply to the `websiteScheduledContent` query.
  */
 module.exports = async (apolloClient, {
   limit,
