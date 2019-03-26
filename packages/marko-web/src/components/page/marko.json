@@ -7,7 +7,7 @@
       "template": "./title.marko"
     },
     "cms-page-rel-canonical": {
-      "template": "./title.marko"
+      "template": "./rel-canonical.marko"
     },
     "cms-page-description": {
       "template": "./description.marko"
