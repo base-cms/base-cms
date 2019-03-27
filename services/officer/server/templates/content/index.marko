@@ -35,6 +35,13 @@ $ const block = 'content-page';
             <cms-ad-placeholder size="300x250" />
           </div>
         </div>
+
+        <content-related-a content-id=content.id />
+
+        <content-related-b
+          exclude-content-ids=[content.id]
+          section-id=get(content, 'primarySection.id')
+        />
       </aside>
     </div>
 
@@ -46,5 +53,10 @@ $ const block = 'content-page';
     <div class="text-center">
       <h2 class="text-uppercase mb-3">More in ${section.name}</h2>
     </div>
+    <content-sub-page-a
+      skip=5
+      exclude-content-ids=[content.id]
+      section-id=section.id
+    />
   </if>
 </layout>
