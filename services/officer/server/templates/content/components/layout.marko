@@ -1,0 +1,13 @@
+import { getAsObject } from '@base-cms/object-path';
+
+$ const content = getAsObject(input, 'content');
+
+<document>
+  <@head>
+    <cms-page-metadata for="content" ...content />
+    <${input.head} />
+  </@head>
+  <div class="container-fluid-max">
+    <${input.renderBody} />
+  </div>
+</document>
