@@ -1,0 +1,10 @@
+$ const isDevelopment = process.env.NODE_ENV === 'development';
+$ const error = input.error || {};
+
+<document>
+  <h2>${input.statusCode} ${input.statusMessage}</h2>
+  <h3>${error.message}</h3>
+  <if(isDevelopment)>
+    <pre>${error.stack}</pre>
+  </if>
+</document>

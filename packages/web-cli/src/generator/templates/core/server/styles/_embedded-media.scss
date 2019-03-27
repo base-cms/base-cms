@@ -1,0 +1,68 @@
+// Collapse empty p elements
+.content-page {
+  &__content-body {
+    p:empty {
+      display: none;
+    }
+  }
+}
+
+
+// @todo Review using data attributes for embedded media.
+[data-embed-type] {
+  display: inline-block;
+  width: 100%;
+  padding: 0 0 .5rem;
+  margin: 0;
+  color: #888;
+  background: transparent;
+  border-right-width: 0;
+  border-left-width: 0;
+}
+
+p [data-embed-type] {
+  margin: .5rem 0 0;
+}
+
+[data-embed-type][data-embed-align="left"] {
+  float: left;
+  width: 50%;
+  width: calc(50% - 1rem);
+  margin-right: 1rem;
+}
+
+[data-embed-type][data-embed-align="right"] {
+  float: right;
+  width: 50%;
+  width: calc(50% - 1rem);
+  margin-left: 1rem;
+}
+
+[data-embed-type] img {
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+}
+
+[data-embed-type] .caption,
+[data-embed-type] .credit {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  font-size: .9rem;
+  line-height: 1.5;
+  text-align: left;
+}
+
+[data-embed-type] .caption {
+  font-weight: 600;
+}
+
+[data-embed-type] .credit {
+  margin-top: .25rem;
+  font-style: italic;
+}
+
+[data-embed-invalid] {
+  display: none;
+}

@@ -8,14 +8,14 @@ $ const section = getAsObject(data, 'section');
   <if(section.description)>
     <p>${section.description}</p>
   </if>
-  <cms-query-website-scheduled-content|{ items }|
+  <cms-query-website-scheduled-content|{ nodes }|
     query-fragment=queryFragment
     section-id=section.id
     limit=18
     include-content-types=["Article"]
   >
     $ const block = "content-list";
-    <for|content| of=items>
+    <for|content| of=nodes>
       <div class=block>
         <div>
           <a href=content.canonicalPath>

@@ -1,0 +1,13 @@
+import { getAsObject } from '@base-cms/object-path';
+
+$ const section = getAsObject(input, 'section');
+
+<document>
+  <@head>
+    <cms-page-metadata for="website-section" ...section />
+    <${input.head} />
+  </@head>
+  <cms-page-container for="website-section" class="container-fluid-max" data=section>
+    <${input.renderBody} />
+  </cms-page-container>
+</document>

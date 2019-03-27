@@ -1,0 +1,18 @@
+import { getAsObject, get } from '@base-cms/object-path';
+import queryFragment from '../../api/fragments/website-scheduled-content';
+
+$ const section = getAsObject(data, 'section');
+
+<layout section=section>
+  <cms-ad-placeholder size="970x90" class="text-center mb-4" />
+  <content-hero-a
+    section-id=section.id
+    limit=7
+    requires-image=true
+  />
+  <div class="mb-4"></div>
+  <content-sub-page-a
+    skip=7
+    section-id=section.id
+  />
+</layout>

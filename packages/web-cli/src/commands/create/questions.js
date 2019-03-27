@@ -17,7 +17,7 @@ module.exports = ({
     type: 'input',
     name: 'projectName',
     default: () => {
-      if (npmOrg) return `@${npmOrg.replace('@', '')}/${path}`;
+      if (npmOrg) return `@${npmOrg.replace('@', '')}/${path.replace('/', '-').replace('\\', '-')}`;
       return path;
     },
     message: chalk`Project Name {reset [used as the {blue name} field of the {blue package.json} file]}:`,

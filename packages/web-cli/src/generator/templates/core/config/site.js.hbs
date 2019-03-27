@@ -6,5 +6,10 @@ module.exports = {
     { href: '/{{section.alias}}', label: '{{section.name}}' },
   {{/each}}
   ],
+  secondaryNavItems: [
+  {{#each sections as |section|}}
+    { href: '/{{section.alias}}', label: '{{section.name}}' },
+  {{/each}}
+  ],
   {{/if-rm}}
 };
