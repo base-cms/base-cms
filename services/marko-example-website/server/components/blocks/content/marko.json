@@ -14,6 +14,9 @@
     },
     "content-related-a": {
       "template": "./related-a.marko"
+    },
+    "content-related-b": {
+      "template": "./related-b.marko"
     }
   }
 }

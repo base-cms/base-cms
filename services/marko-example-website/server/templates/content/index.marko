@@ -1,4 +1,4 @@
-import { getAsObject } from '@base-cms/object-path';
+import { getAsObject, get } from '@base-cms/object-path';
 
 $ const content = getAsObject(data, 'content');
 $ const block = 'content-page';
@@ -35,6 +35,11 @@ $ const block = 'content-page';
         </div>
 
         <content-related-a content-id=content.id />
+
+        <content-related-b
+          exclude-content-ids=[content.id]
+          section-id=get(content, 'primarySection.id')
+        />
       </aside>
     </div>
   </cms-page-container>
@@ -46,6 +51,7 @@ $ const block = 'content-page';
       <h2 class="text-uppercase mb-3">More in ${section.name}</h2>
     </div>
     <content-block-sub-page-a
+      skip=5
       exclude-content-ids=[content.id]
       section-id=section.id
     />
