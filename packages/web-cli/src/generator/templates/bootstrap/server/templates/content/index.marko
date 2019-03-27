@@ -26,7 +26,7 @@ $ const block = 'content-page';
         <div class="card border-0">
           <div class="card-body">
 
-            <if(content.primaryImage)>
+            <if(content.primaryImage && content.primaryImage.src)>
               <div class="embed-responsive embed-responsive-16by9 mb-3">
                 <cms-image-element
                   obj=content.primaryImage
