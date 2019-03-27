@@ -3,6 +3,16 @@
 @import "bootstrap/mixins";
 @import "bootstrap/components";
 
+.container-fluid-max {
+  @include make-container();
+  @include media-breakpoint-up("xl", $grid-breakpoints) {
+    max-width: map-get($grid-breakpoints, "xl");
+  }
+  padding-top: map-get($spacers, 4);
+  background-color: $white;
+  box-shadow: $box-shadow-sm;
+}
+
 // Apply the 16x9 bootstrap responsive embed classes to embedded videos
 [data-oembed-type="video"] {
   @extend .embed-responsive;
