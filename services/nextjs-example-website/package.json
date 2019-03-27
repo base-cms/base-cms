@@ -1,14 +1,14 @@
 {
   "name": "@base-cms/nextjs-example-website",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/nextjs-example-website",
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "@base-cms/nextjs-web": "^0.5.0",
-    "@base-cms/nextjs-web-bootstrap": "^0.5.0",
+    "@base-cms/nextjs-web": "^0.6.0",
+    "@base-cms/nextjs-web-bootstrap": "^0.6.0",
     "bootstrap": "4.3.1",
     "express": "^4.16.4",
     "graphql": "^14.0.2",

@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/inflector",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Inflector functions for JavaScript projects.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
