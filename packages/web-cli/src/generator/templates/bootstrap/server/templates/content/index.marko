@@ -6,11 +6,11 @@ $ const block = 'content-page';
 <layout content=content>
   <cms-page-container for="content" data=content>
 
-    <cms-ad-placeholder size="970x250" class="text-center" />
+    <cms-ad-placeholder size="970x90" class="text-center" />
 
     <div class="row">
       <div class="col">
-        <div class="card">
+        <div class="card border-0">
           <div class="card-body pb-0">
             <cms-website-section-name tag="small" class="text-uppercase d-block mb-2" block=block obj=content.primarySection link=true />
             <cms-content-name tag="h1" class="mb-2" block=block obj=content />
@@ -23,14 +23,14 @@ $ const block = 'content-page';
 
     <div class="row">
       <div class="col-lg-8">
-        <div class="card">
+        <div class="card border-0">
           <div class="card-body">
             <cms-content-body tag="div" block=block obj=content />
           </div>
         </div>
       </div>
       <aside class="col-lg-4">
-        <div class="card mb-4">
+        <div class="card mb-4 border-0">
           <div class="card-body px-1 d-flex justify-content-center">
             <cms-ad-placeholder size="300x250" />
           </div>
