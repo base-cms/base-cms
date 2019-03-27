@@ -8,7 +8,7 @@ $ const style = sizes.length === 1 ? `width: ${sizes[0][0]}; height: ${sizes[0][
 $ const sizeJson = JSON.stringify(sizes.length === 1 ? sizes[0] : sizes);
 
 <if(sizes.length && adUnitPath)>
-  <div id=id style=style>
+  <div id=id style=style class=input.class>
     <script>
       googletag.cmd.push(function() {
         googletag.defineSlot('${adUnitPath}', ${sizeJson}, '${id}').addService(googletag.pubads());
