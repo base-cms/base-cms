@@ -4,11 +4,21 @@ $site-font-family-serif: "PT Serif", serif !default;
 @import "embedded-media";
 @import "bootstrap";
 
-html {
-  font-family: "PT Sans", sans-serif;
-}
-
 .element-row {
   display: flex;
   justify-content: space-between;
+}
+
+.navbar {
+  &--site {
+    @extend .sticky-top;
+    background-color: $dark;
+    box-shadow: $box-shadow;
+    .nav-item {
+      padding: 0 .2rem;
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+  }
 }
