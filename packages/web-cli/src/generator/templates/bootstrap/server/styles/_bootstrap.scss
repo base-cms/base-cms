@@ -8,6 +8,7 @@
   @include media-breakpoint-up("xl", $grid-breakpoints) {
     max-width: map-get($grid-breakpoints, "xl");
   }
+  height: 100%;
   padding-top: map-get($spacers, 4);
   background-color: $white;
   box-shadow: $box-shadow-sm;
