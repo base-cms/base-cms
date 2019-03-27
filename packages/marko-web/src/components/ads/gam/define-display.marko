@@ -1,17 +1,17 @@
 import generateId from './utils/generate-id';
-import slotSizes from './utils/slot-sizes';
+import slotStyle from './utils/slot-size-style';
 
 $ const id = input.id || generateId();
-$ const sizes = slotSizes(input.size);
+$ const size = typeof input.size === 'string' ? [input.size] : (Array.isArray(input.size) ? input.size : []);
 $ const { adUnitPath } = input;
-$ const style = sizes.length === 1 ? `width: ${sizes[0][0]}; height: ${sizes[0][1]};` : null;
-$ const sizeJson = JSON.stringify(sizes.length === 1 ? sizes[0] : sizes);
+$ const applyStyle = typeof input.applyStyle === 'undefined' ? true : input.applyStyle;
+$ const style = applyStyle ? slotStyle(size) : null;
 
-<if(sizes.length && adUnitPath)>
+<if(size.length && adUnitPath)>
   <div id=id style=style class=input.class>
     <script>
       googletag.cmd.push(function() {
-        googletag.defineSlot('${adUnitPath}', ${sizeJson}, '${id}').addService(googletag.pubads());
+        googletag.defineSlot('${adUnitPath}', ${JSON.stringify(size)}, '${id}').addService(googletag.pubads());
         googletag.display('${id}');
       });
     </script>
