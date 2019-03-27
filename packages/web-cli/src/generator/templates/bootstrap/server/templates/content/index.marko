@@ -25,6 +25,16 @@ $ const block = 'content-page';
       <div class="col-lg-8">
         <div class="card border-0">
           <div class="card-body">
+
+            <if(content.primaryImage)>
+              <div class="embed-responsive embed-responsive-16by9 mb-3">
+                <cms-image-element
+                  obj=content.primaryImage
+                  class="img-fluid embed-responsive-item rounded"
+                  options={ w: 640, h: 360, fit: 'crop', crop: 'focalpoint', fpX: 0.5, fpY: 0.5 }
+                />
+              </div>
+            </if>
             <cms-content-body tag="div" block=block obj=content />
           </div>
         </div>
