@@ -4,16 +4,15 @@ import slotStyle from './utils/slot-size-style';
 $ const id = input.id || generateId();
 $ const size = typeof input.size === 'string' ? [input.size] : (Array.isArray(input.size) ? input.size : []);
 $ const { adUnitPath } = input;
-$ const applyStyle = typeof input.applyStyle === 'undefined' ? true : input.applyStyle;
+$ const applyStyle = typeof input.applyStyle === 'undefined' ? false : input.applyStyle;
 $ const style = applyStyle ? slotStyle(size) : null;
+
+$ const calls = [];
+$ calls.push(`googletag.defineSlot('${adUnitPath}', ${JSON.stringify(size)}, '${id}').addService(googletag.pubads());`);
+$ calls.push(`googletag.display('${id}');`);
 
 <if(size.length && adUnitPath)>
   <div id=id style=style class=input.class>
-    <script>
-      googletag.cmd.push(function() {
-        googletag.defineSlot('${adUnitPath}', ${JSON.stringify(size)}, '${id}').addService(googletag.pubads());
-        googletag.display('${id}');
-      });
-    </script>
+    <script>googletag.cmd.push(function() { ${calls.join(' ')} });</script>
   </div>
 </if>
