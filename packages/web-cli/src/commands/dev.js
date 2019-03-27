@@ -5,8 +5,7 @@ const { resolve, parse } = require('path');
 const exit = require('../utils/print-and-exit');
 const serve = require('../gulp/serve');
 
-module.exports = ({ _ }) => {
-  const [, file] = _;
+module.exports = ({ file }) => {
   const server = resolve(process.cwd(), file);
 
   if (!existsSync(server)) {

@@ -14,7 +14,7 @@ module.exports = async (client) => {
       }
     }
   `;
-  const input = { sort: { field: 'name', order: 'asc' } };
+  const input = { sort: { field: 'name', order: 'asc' }, pagination: { limit: 100 } };
   const variables = { input };
   const { data } = await client.query({ query, variables });
   return data.rootWebsiteSections.edges

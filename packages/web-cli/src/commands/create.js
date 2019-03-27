@@ -12,12 +12,14 @@ const installDeps = require('../generator/install');
 const loadQuestions = require('./create/questions');
 
 module.exports = ({
-  _,
+  path,
   npmOrg,
   yarn,
   skipInstall,
+  templateDir,
+  siteName,
+  graphqlUri,
 }) => {
-  const [, path] = _;
   if (!path) {
     exit('A project directory is required.');
   }
@@ -26,7 +28,13 @@ module.exports = ({
     exit(`The selected project directory is not empty. Tried installing in ${chalk.gray(dir)}`);
   }
 
-  const questions = loadQuestions({ path, npmOrg });
+  const questions = loadQuestions({
+    path,
+    npmOrg,
+    templateDir,
+    siteName,
+    graphqlUri,
+  });
 
   clear();
 
@@ -41,7 +49,6 @@ module.exports = ({
     }
     await generateProject(dir, answers);
     if (!skipInstall) {
-
       await installDeps(dir, yarn);
     }
   };
