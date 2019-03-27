@@ -1,0 +1,26 @@
+{
+  "tags": {
+    "cms-ad-gam-init": {
+      "template": "./init.marko"
+    },
+    "cms-ad-gam-display": {
+      "template": "./display.marko"
+    },
+    "cms-ad-gam-define-display": {
+      "template": "./define-display.marko"
+    }
+  },
+  "<cms-ad-gam-head>": {
+    "template": "./head.marko",
+    "@enable-single-request": {
+      "type": "boolean",
+      "default-value": true
+    },
+    "@collapse-empty-divs": {
+      "type": "boolean",
+      "default-value": true
+    },
+    "@slots": "object",
+    "@targeting": "object"
+  }
+}

@@ -14,8 +14,9 @@ $ const coreClass = 'mb-4 col-12 col-md-6 col-lg-4';
       <if(index === 3)>
         <div class=coreClass>
           <div class="card content-card-deck">
-            <!-- @todo Centered ads within a card body are common. Componentize this -->
-            <cms-ad-placeholder size="300x250" class="card-body d-flex justify-content-center align-items-center" />
+            <div class="card-body d-flex justify-content-center align-items-center">
+              <gam-ad alias="MR" />
+            </div>
           </div>
         </div>
       </if>

@@ -1,11 +1,21 @@
-import { getAsObject } from '@base-cms/object-path';
+import { getAsObject, get } from '@base-cms/object-path';
 
 $ const content = getAsObject(data, 'content');
 $ const block = 'content-page';
 
 <layout content=content>
+  <@head>
+    <cms-ad-gam-head
+      slots={
+        'gpt-ad-bs': { path: '/21687441225/Officer/Officer_BS', size: [[970, 250], [970, 90]] },
+        'gpt-ad-mr': { path: '/21687441225/Officer/Officer_MR', size: [300, 250] },
+      }
+    />
+  </@head>
 
   <cms-page-container for="content" data=content>
+    <cms-ad-gam-display id="gpt-ad-bs" class="text-center" />
+
     <div class="row">
       <div class="col">
         <div class="card">
@@ -29,12 +39,17 @@ $ const block = 'content-page';
       </div>
       <aside class="col-lg-4">
         <div class="card mb-4">
-          <div class="card-body px-1">
-            <cms-ad-placeholder size="300x250" class="text-center" />
+          <div class="card-body px-1 d-flex justify-content-center">
+            <cms-ad-gam-display id="gpt-ad-mr" />
           </div>
         </div>
 
         <content-related-a content-id=content.id />
+
+        <content-related-b
+          exclude-content-ids=[content.id]
+          section-id=get(content, 'primarySection.id')
+        />
       </aside>
     </div>
   </cms-page-container>
@@ -46,9 +61,9 @@ $ const block = 'content-page';
       <h2 class="text-uppercase mb-3">More in ${section.name}</h2>
     </div>
     <content-block-sub-page-a
+      skip=5
       exclude-content-ids=[content.id]
       section-id=section.id
     />
   </if>
-
 </layout>

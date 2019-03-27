@@ -4,12 +4,23 @@ import queryFragment from '../../api/fragments/website-scheduled-content';
 $ const section = getAsObject(data, 'section');
 
 <layout section=section>
+  <@head>
+    <script>
+      googletag.cmd.push(function() {
+        googletag.pubads().enableSingleRequest();
+        googletag.pubads().collapseEmptyDivs();
+        // googletag.pubads().setTargeting('chan_name', ['AIRCRAFT', 'AIRPORT TECH SECURITY']);
+        googletag.enableServices();
+      });
+    </script>
+  </@head>
+
   <content-hero-block-a
     section-id=section.id
     limit=6
     requires-image=true
   />
-  <cms-ad-placeholder size="970x90" class="text-center my-3" />
+  <gam-ad alias="BS" class="text-center my-4" />
   <content-card-deck-a
     skip=6
     section-id=section.id
@@ -20,7 +31,7 @@ $ const section = getAsObject(data, 'section');
     section-id=section.id
     requires-image=true
   />
-  <cms-ad-placeholder size="970x90" class="text-center my-3" />
+  <gam-ad alias="BS" class="text-center my-4" />
   <content-card-deck-a
     skip=28
     section-id=section.id
