@@ -4,8 +4,24 @@ $ const content = getAsObject(data, 'content');
 $ const block = 'content-page';
 
 <layout content=content>
+  <@head>
+    <script>
+      googletag.cmd.push(function() {
+        googletag.defineSlot('/21687441225/Officer/Officer_BS', [[970, 250], [970, 90]], 'div-gpt-ad-1553631869602-0').addService(googletag.pubads());
+        googletag.defineSlot('/21687441225/Officer/Officer_MR', [300, 250], 'div-gpt-ad-1553632245675-0').addService(googletag.pubads());
+        googletag.pubads().enableSingleRequest();
+        googletag.pubads().collapseEmptyDivs();
+        // googletag.pubads().setTargeting('chan_name', ['AIRCRAFT', 'AIRPORT TECH SECURITY']);
+        // googletag.pubads().definePassback('/21687441225/Officer/Officer_HP', [300, 600]).setTargeting('category', ['activated-carbon-filter']).display();
+        googletag.enableServices();
+      });
+    </script>
+  </@head>
 
   <cms-page-container for="content" data=content>
+    <!-- /21687441225/Officer/Officer_BS -->
+    <cms-ad-gam-display id="div-gpt-ad-1553631869602-0" class="text-center" />
+
     <div class="row">
       <div class="col">
         <div class="card">
@@ -29,8 +45,9 @@ $ const block = 'content-page';
       </div>
       <aside class="col-lg-4">
         <div class="card mb-4">
-          <div class="card-body px-1">
-            <cms-ad-placeholder size="300x250" class="text-center" />
+          <div class="card-body px-1 d-flex justify-content-center">
+            <!-- /21687441225/Officer/Officer_MR -->
+            <cms-ad-gam-display id="div-gpt-ad-1553632245675-0" style="width:300px; height:250px;" />
           </div>
         </div>
 
