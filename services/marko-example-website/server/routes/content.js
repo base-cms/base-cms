@@ -18,6 +18,11 @@ module.exports = (app) => {
           alias
           canonicalPath
         }
+        primaryImage {
+          id
+          src
+          alt
+        }
       }
     `,
   }));
