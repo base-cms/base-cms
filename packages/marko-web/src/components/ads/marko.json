@@ -1,4 +1,7 @@
 {
+  "taglib-imports": [
+    "./gam/marko.json"
+  ],
   "tags": {
     "cms-ad-placeholder": {
       "template": "./placeholder.marko"

@@ -1,0 +1,19 @@
+import generateId from './utils/generate-id';
+import slotSizes from './utils/slot-sizes';
+
+$ const id = input.id || generateId();
+$ const sizes = slotSizes(input.size);
+$ const { adUnitPath } = input;
+$ const style = sizes.length === 1 ? `width: ${sizes[0][0]}; height: ${sizes[0][1]};` : null;
+$ const sizeJson = JSON.stringify(sizes.length === 1 ? sizes[0] : sizes);
+
+<if(sizes.length && adUnitPath)>
+  <div id=id style=style>
+    <script>
+      googletag.cmd.push(function() {
+        googletag.defineSlot('${adUnitPath}', ${sizeJson}, '${id}').addService(googletag.pubads());
+        googletag.display('${id}');
+      });
+    </script>
+  </div>
+</if>

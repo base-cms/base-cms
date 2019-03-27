@@ -1,0 +1,13 @@
+{
+  "tags": {
+    "cms-ad-gam-init": {
+      "template": "./init.marko"
+    },
+    "cms-ad-gam-display": {
+      "template": "./display.marko"
+    },
+    "cms-ad-gam-define-display": {
+      "template": "./define-display.marko"
+    }
+  }
+}
