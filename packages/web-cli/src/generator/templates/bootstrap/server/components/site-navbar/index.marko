@@ -1,8 +1,8 @@
-$ const { site } = out.global;
+$ const { site, config } = out.global;
 
 <nav class="navbar navbar--site navbar-dark navbar-expand-lg">
   <a class="navbar-brand" href="/">
-    <img src=`${site.get('logo')}` height="35">
+    <img alt=config.siteName() src=site.get('logo') height="35">
   </a>
   <div class="d-flex flex-column-reverse">
     <ul class="navbar-nav navbar-nav--primary">
