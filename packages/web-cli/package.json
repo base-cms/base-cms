@@ -60,10 +60,6 @@
     "webpack-stream": "^5.2.1",
     "yargs": "^13.2.1"
   },
-  "peerDependencies": {
-    "jquery": "^3.3.1",
-    "vue": "^2.6.10"
-  },
   "publishConfig": {
     "access": "public"
   }
