@@ -13,9 +13,3 @@ deploy:
     script: bash scripts/deploy-image.sh $TRAVIS_TAG
     on:
       tags: true
-  -
-    provider: script
-    script: bash scripts/deploy-rancher.sh
-    on:
-      tags: true
-      condition: "$TRAVIS_TAG =~ ^v[0-9]+\\.[0-9]+\\.[0-9]+$"
