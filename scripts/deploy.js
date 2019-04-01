@@ -23,7 +23,7 @@ const { TRAVIS_TAG } = process.env;
 
 const version = `v${lerna.version}`;
 const service = process.argv[2];
-const servicePath = `../${join('services', service, 'package.json')}`;
+const servicePath = join('services', service);
 const image = `basecms/${service}`;
 
 const error = (message) => {
@@ -55,7 +55,7 @@ if (TRAVIS_TAG !== version) error(`Tagged version ${TRAVIS_TAG} differs from ler
 if (!service) error('You must specify the service folder to deploy.');
 if (!existsSync(servicePath)) error(`Could not read ${servicePath}!`);
 
-const pkg = require(servicePath); // eslint-disable-line import/no-dynamic-require
+const pkg = require(`../${servicePath}/package.json`); // eslint-disable-line import/no-dynamic-require
 
 if (version !== `v${pkg.version}`) {
   log(`Site ${service} is at version ${pkg.version}. Skipping deployment.`);

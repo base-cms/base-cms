@@ -6,9 +6,8 @@ mv services ../
 mkdir services
 mv ../services/$1 services/
 
-[[ -z "services/$1/Dockerfile"]] && mv Dockerfile Dockerfile.core && mv "services/$1/Dockerfile" Dockerfile
+mv "services/$1/Dockerfile" Dockerfile
 docker build -q -t "$1:$2" --build-arg SERVICE=$1 .
-[[ -z "Dockerfile.core" ]] && mv Dockerfile.core Dockerfile
 
 mv ../services/* services/
 rm -rf ../services
