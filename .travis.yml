@@ -2,14 +2,23 @@ language: node_js
 node_js: "10.15"
 cache: yarn
 
-deploy:
-  -
-    provider: script
-    script: bash scripts/deploy-image.sh latest
-    on:
-      branch: master
-  -
-    provider: script
-    script: bash scripts/deploy-image.sh $TRAVIS_TAG
-    on:
-      tags: true
+stages:
+  - name: test
+  - name: deploy
+    if: tag is present
+  - name: notify
+    if: tag is present
+
+jobs:
+  include:
+    - stage: test
+    - stage: notify
+      script: scripts/deploy-notify.sh
+
+    - stage: deploy
+      name: Deploy GraphQL Server
+      script: scripts/deploy.js graphql-server
+
+    - stage: deploy
+      name: Deploy Manage
+      script: scripts/deploy.js manage

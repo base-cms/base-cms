@@ -70,6 +70,7 @@ const getJson = (url, reqHeaders) => new Promise((resolve, reject) => {
     if (statusCode >= 500) return reject(statusMessage);
     resp.on('data', chunk => data += chunk); // eslint-disable-line no-return-assign
     resp.on('end', () => resolve(JSON.parse(data)));
+    return resp;
   }).on('error', reject);
 });
 
