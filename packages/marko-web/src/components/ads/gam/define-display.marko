@@ -1,4 +1,5 @@
 import generateId from './utils/generate-id';
+import buildSizeMapping from './utils/build-size-mapping';
 import slotStyle from './utils/slot-size-style';
 
 $ const id = input.id || generateId();
@@ -8,7 +9,8 @@ $ const applyStyle = typeof input.applyStyle === 'undefined' ? false : input.app
 $ const style = applyStyle ? slotStyle(size) : null;
 
 $ const calls = [];
-$ calls.push(`googletag.defineSlot('${adUnitPath}', ${JSON.stringify(size)}, '${id}').addService(googletag.pubads());`);
+$ const sizeMapping = buildSizeMapping(input.sizeMapping);
+$ calls.push(`googletag.defineSlot('${adUnitPath}', ${JSON.stringify(size)}, '${id}')${sizeMapping}.addService(googletag.pubads());`);
 $ calls.push(`googletag.display('${id}');`);
 
 <if(size.length && adUnitPath)>
