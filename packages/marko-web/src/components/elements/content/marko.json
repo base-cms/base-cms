@@ -14,6 +14,24 @@
     },
     "cms-content-body": {
       "template": "./body.marko"
+    },
+    "cms-content-authors": {
+      "template": "./authors.marko"
+    },
+    "cms-content-contributors": {
+      "template": "./contributors.marko"
+    },
+    "cms-content-photographers": {
+      "template": "./photographers.marko"
+    },
+    "cms-content-source": {
+      "template": "./source.marko"
+    },
+    "cms-content-byline": {
+      "template": "./byline.marko"
+    },
+    "cms-content-embed-code": {
+      "template": "./embed-code.marko"
     }
   }
 }

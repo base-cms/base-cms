@@ -12,16 +12,63 @@ module.exports = (app) => {
         teaser(input: { useFallback: false })
         body
         published
+        company {
+          id
+          name
+          canonicalPath
+        }
         primarySection {
           id
           name
           alias
           canonicalPath
+          hierarchy {
+            id
+            name
+            alias
+            canonicalPath
+          }
         }
         primaryImage {
           id
           src
           alt
+        }
+        ... on ContentVideo {
+          embedCode
+        }
+        ... on ContentNews {
+          source
+          byline
+        }
+        ... on Authorable {
+          authors {
+            edges {
+              node {
+                id
+                name
+                canonicalPath
+              }
+            }
+          }
+          contributors {
+            edges {
+              node {
+                id
+                name
+                canonicalPath
+              }
+            }
+          }
+          photographers {
+            edges {
+              node {
+                id
+                name
+                canonicalPath
+              }
+            }
+          }
         }
       }
     `,

@@ -1,0 +1,18 @@
+import { getAsArray } from '@base-cms/object-path';
+import { elementClassNames } from '@base-cms/web-common/utils';
+import shouldCollapse from '../../../utils/should-collapse';
+
+$ const field = 'hierarchy';
+$ const value = getAsArray(input.obj, field);
+$ const collapse = shouldCollapse(input.collapse);
+$ const classNames = [...elementClassNames(input.block, input.obj, field, input.modifiers), input.class];
+
+<if(!collapse || value.length)>
+  <${input.tag} class=classNames ...input.attrs>
+    <${input.before} />
+    <for|section| of=value>
+      <${input.renderBody} section=section />
+    </for>
+    <${input.after} />
+  </>
+</if>
