@@ -29,6 +29,35 @@ module.exports = (app) => {
           src
           alt
         }
+        ... on Authorable {
+          authors {
+            edges {
+              node {
+                id
+                name
+                canonicalPath
+              }
+            }
+          }
+          contributors {
+            edges {
+              node {
+                id
+                name
+                canonicalPath
+              }
+            }
+          }
+          photographers {
+            edges {
+              node {
+                id
+                name
+                canonicalPath
+              }
+            }
+          }
+        }
       }
     `,
   }));
