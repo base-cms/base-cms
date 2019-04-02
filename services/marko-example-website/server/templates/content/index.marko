@@ -23,6 +23,11 @@ $ const block = 'content-page';
 
             <nav aria-label="breadcrumb">
               <cms-website-section-hierarchy|{ section }| tag="ol" class="breadcrumb" block=block obj=content.primarySection>
+                <@before>
+                  <li class="text-uppercase breadcrumb-item small">
+                    <a href="/">Home</a>
+                  </li>
+                </@before>
                 <cms-website-section-name tag="li" class="text-uppercase breadcrumb-item small" block=block obj=section link=true />
               </cms-website-section-hierarchy>
             </nav>

@@ -9,8 +9,10 @@ $ const classNames = [...elementClassNames(input.block, input.obj, field, input.
 
 <if(!collapse || value.length)>
   <${input.tag} class=classNames ...input.attrs>
+    <${input.before} />
     <for|section| of=value>
       <${input.renderBody} section=section />
     </for>
+    <${input.after} />
   </>
 </if>
