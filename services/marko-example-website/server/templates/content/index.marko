@@ -29,24 +29,40 @@ $ const block = 'content-page';
 
             <cms-content-name tag="h1" class="mb-2" block=block obj=content />
             <cms-content-teaser tag="p" block=block obj=content />
-            <cms-content-authors|{ contact }| tag="div" class="small" block=block obj=content>
-              <@before|{ length }|>
-                Author<if(length > 1)>s</if>:&nbsp;
-              </@before>
-              <cms-content-name tag="span" block=block obj=contact link=true />
-            </cms-content-authors>
-            <cms-content-contributors|{ contact }| tag="div" class="small" block=block obj=content>
-              <@before|{ length }|>
-                Contributor<if(length > 1)>s</if>:&nbsp;
-              </@before>
-              <cms-content-name tag="span" block=block obj=contact link=true />
-            </cms-content-contributors>
-            <cms-content-photographers|{ contact }| tag="div" class="small" block=block obj=content>
-              <@before|{ length }|>
-                Photographer<if(length > 1)>s</if>:&nbsp;
-              </@before>
-              <cms-content-name tag="span" block=block obj=contact link=true />
-            </cms-content-photographers>
+
+            <div class="content-authorable mb-2">
+              <cms-content-byline tag="div" class="small" block=block obj=content>
+                <@before>By:&nbsp;</@before>
+              </cms-content-byline>
+
+              <cms-content-authors|{ contact }| tag="div" class="small" block=block obj=content>
+                <@before|{ length }|>
+                  Author<if(length > 1)>s</if>:&nbsp;
+                </@before>
+                <cms-content-name tag="span" block=block obj=contact link=true />
+              </cms-content-authors>
+              <cms-content-contributors|{ contact }| tag="div" class="small" block=block obj=content>
+                <@before|{ length }|>
+                  Contributor<if(length > 1)>s</if>:&nbsp;
+                </@before>
+                <cms-content-name tag="span" block=block obj=contact link=true />
+              </cms-content-contributors>
+              <cms-content-photographers|{ contact }| tag="div" class="small" block=block obj=content>
+                <@before|{ length }|>
+                  Photographer<if(length > 1)>s</if>:&nbsp;
+                </@before>
+                <cms-content-name tag="span" block=block obj=contact link=true />
+              </cms-content-photographers>
+
+              <cms-content-source tag="div" class="small" block=block obj=content>
+                <@before>Source:&nbsp;</@before>
+              </cms-content-source>
+
+              <cms-content-name tag="div" class="small" block=block obj=content.company link=true>
+                <@before>From:&nbsp;</@before>
+              </cms-content-name>
+            </div>
+
             <cms-content-published tag="small" class="text-uppercase text-muted" block=block obj=content />
           </div>
         </div>

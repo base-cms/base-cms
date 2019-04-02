@@ -12,6 +12,11 @@ module.exports = (app) => {
         teaser(input: { useFallback: false })
         body
         published
+        company {
+          id
+          name
+          canonicalPath
+        }
         primarySection {
           id
           name
@@ -28,6 +33,10 @@ module.exports = (app) => {
           id
           src
           alt
+        }
+        ... on ContentNews {
+          source
+          byline
         }
         ... on Authorable {
           authors {
