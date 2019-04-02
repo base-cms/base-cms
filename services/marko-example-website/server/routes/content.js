@@ -34,6 +34,9 @@ module.exports = (app) => {
           src
           alt
         }
+        ... on ContentVideo {
+          embedCode
+        }
         ... on ContentNews {
           source
           byline
