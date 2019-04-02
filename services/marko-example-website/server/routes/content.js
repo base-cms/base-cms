@@ -17,6 +17,12 @@ module.exports = (app) => {
           name
           alias
           canonicalPath
+          hierarchy {
+            id
+            name
+            alias
+            canonicalPath
+          }
         }
         primaryImage {
           id

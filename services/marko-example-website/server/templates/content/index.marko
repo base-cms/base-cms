@@ -20,7 +20,13 @@ $ const block = 'content-page';
       <div class="col">
         <div class="card">
           <div class="card-body pb-0">
-            <cms-website-section-name tag="small" class="text-uppercase d-block mb-2" block=block obj=content.primarySection link=true />
+
+            <nav aria-label="breadcrumb">
+              <cms-website-section-hierarchy|{ section }| tag="ol" class="breadcrumb" block=block obj=content.primarySection>
+                <cms-website-section-name tag="li" class="text-uppercase breadcrumb-item small" block=block obj=section link=true />
+              </cms-website-section-hierarchy>
+            </nav>
+
             <cms-content-name tag="h1" class="mb-2" block=block obj=content />
             <cms-content-teaser tag="p" block=block obj=content />
             <cms-content-published tag="small" class="text-uppercase text-muted" block=block obj=content />
