@@ -29,6 +29,9 @@
     },
     "cms-content-byline": {
       "template": "./byline.marko"
+    },
+    "cms-content-embed-code": {
+      "template": "./embed-code.marko"
     }
   }
 }
