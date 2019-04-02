@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/manage",
-  "version": "0.6.0",
+  "version": "0.6.5",
   "private": true,
   "description": "The BaseCMS Management Interface",
   "author": "Jacob Bare <jacob@limit0.io>",
