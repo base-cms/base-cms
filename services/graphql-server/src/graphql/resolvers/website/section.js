@@ -13,6 +13,7 @@ const loadHierarchy = async (section, load, projection, sections = []) => {
   const parentId = BaseDB.extractRefId(ref);
   if (!parentId) return sections;
   const parent = await load('websiteSection', parentId, projection, { status: 1 });
+  if (!parent) return sections;
   sections.push(parent);
   return loadHierarchy(parent, load, projection, sections);
 };
