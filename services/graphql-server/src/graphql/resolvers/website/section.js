@@ -50,7 +50,7 @@ module.exports = {
       description: () => createDescription(section),
     }),
 
-    hierarchy: (section, _, { load }, info) => {
+    hierarchy: async (section, _, { load }, info) => {
       const {
         returnType,
         fieldNodes,
@@ -64,7 +64,9 @@ module.exports = {
         fragments,
       );
       projection.parent = 1;
-      return loadHierarchy(section, load, projection);
+      const thisSection = await load('websiteSection', section._id, projection, { status: 1 });
+      const sections = await loadHierarchy(section, load, projection, [thisSection]);
+      return sections.reverse();
     },
   },
 };
