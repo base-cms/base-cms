@@ -15,6 +15,7 @@ const {
   getPublishedCriteria,
   getDefaultContentTypes,
 } = require('../../utils/content');
+const contentTeaser = require('../../utils/content-teaser');
 
 const { isArray } = Array;
 
@@ -59,14 +60,10 @@ module.exports = {
     __resolveType: resolveType,
 
     teaser: (content, { input }) => {
-      const { mutation, useFallback } = input;
-      const { teaser, teaserFallback } = content;
-
-      const value = !teaser && useFallback ? teaserFallback : teaser;
-      if (!mutation) return value;
-
-      const mutated = get(content, `mutations.${mutation}.teaser`);
-      return mutated || value;
+      const { mutation } = input;
+      const teaser = contentTeaser.getTeaser(mutation, content);
+      const { teaserFallback } = content;
+      return contentTeaser.generateTeaser(teaser, teaserFallback, input) || null;
     },
 
     body: (content, { input }, { imageHost, basedb }) => {
