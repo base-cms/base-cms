@@ -17,7 +17,10 @@ const truncateTeaser = (value, { maxLength, truncatedSuffix }) => {
   let truncated = '';
   const words = stripped.split(' ').filter(v => v);
   words.forEach((word) => {
-    if (!truncated) truncated = word;
+    if (!truncated) {
+      truncated = word;
+      return;
+    }
     if (truncated.length < maxLength) {
       truncated = `${truncated} ${word}`;
     }
