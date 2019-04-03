@@ -3,6 +3,7 @@ const dynamicPages = require('./dynamic-page');
 const index = require('../templates/index');
 const loadMore = require('./load-more');
 const websiteSections = require('./website-section');
+const magazine = require('./magazine');
 
 module.exports = (app) => {
   // Trusted proxies
@@ -21,6 +22,9 @@ module.exports = (app) => {
 
   // Content Types
   contentTypes(app);
+
+  // Magazine Pages
+  magazine(app);
 
   // Website Sections
   websiteSections(app);

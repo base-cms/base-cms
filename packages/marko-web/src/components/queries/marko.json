@@ -5,6 +5,9 @@
     },
     "cms-query-related-published-content": {
       "template": "./related-published-content.marko"
+    },
+    "cms-query-magazine-publications": {
+      "template": "./magazine-publications.marko"
     }
   }
 }

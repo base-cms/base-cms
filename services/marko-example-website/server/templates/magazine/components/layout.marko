@@ -1,0 +1,9 @@
+import { getAsObject } from '@base-cms/object-path';
+
+$ const publications = getAsObject(input, 'publications');
+
+<document>
+  <cms-page-container for="magazine-publications" class="container-fluid-max" data=publications>
+    <${input.renderBody} />
+  </cms-page-container>
+</document>

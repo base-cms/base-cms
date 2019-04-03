@@ -1,0 +1,37 @@
+import { getAsArray, get } from '@base-cms/object-path';
+import publicationFragment from '../../api/fragments/magazine-publication';
+import latestIssueFragment from '../../api/fragments/magazine-latest-issue';
+
+<layout>
+  <cms-ad-placeholder size="970x90" class="text-center mb-4" />
+
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-body pb-0">
+          <!-- @todo pull from config -->
+          <h1 class="mb-2">Officer.com Magazines</h1>
+          <p>Law Enforcement Technology (LET) and Law Enforcement Product News (LEPN) are the leading magazine publications for the police and law enforcement community.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <cms-query-magazine-publications|{ nodes }| query-fragment=publicationFragment>
+      <for|publication| of=nodes>
+        <div class="col-6 col-md-4">
+          <div class="card">
+            <span class="card-header">${publication.name}</span>
+            <div class="card-body">
+              <p>${publication.description}</p>
+            </div>
+          </div>
+        </div>
+      </for>
+    </cms-query-magazine-publications>
+
+  </div>
+
+</layout>
