@@ -1,0 +1,43 @@
+import gql from 'graphql-tag';
+import { asArray } from '@base-cms/utils';
+
+$ const queryFragment = gql`
+  fragment MagazineActiveIssuesQueryFragment on MagazineIssue {
+    id
+    name
+    coverImage {
+      id
+      src
+    }
+  }
+`;
+
+$ const block = 'magazine-active-issues';
+$ const params = {
+  ...input,
+  limit: 12,
+  queryFragment,
+};
+
+<cms-query-magazine-active-issues|{ nodes, pageInfo }| ...params>
+  <for|issue| of=nodes>
+    <div class="col col-md-6 col-lg-4 col-xl-3 text-center">
+      <div class="card">
+        <cms-magazine-issue-link obj=issue class="card-image-top">
+          <cms-magazine-issue-image obj=issue.coverImage />
+        </cms-magazine-issue-link>
+        <p class="card-body">
+          <cms-magazine-issue-link obj=issue>${issue.name}</cms-magazine-issue-link>
+        </p>
+      </div>
+    </div>
+  </for>
+  <cms-load-more-element
+    blockName="magazine-block-active-issues"
+    label="Load more issues"
+    params=params
+    page-info=pageInfo
+    button-class-obj={ btn: true, 'btn-lg': true, 'btn-primary': true }
+    wrapping-class-obj={ col: true, 'text-center': true, 'pb-3': true }
+  />
+</cms-query-magazine-active-issues>

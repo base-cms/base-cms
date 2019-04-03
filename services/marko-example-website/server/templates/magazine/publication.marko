@@ -1,5 +1,4 @@
 import { getAsObject, get } from '@base-cms/object-path';
-import queryFragment from '../../api/fragments/magazine-active-issues';
 
 $ const publication = getAsObject(data, 'publication');
 
@@ -23,22 +22,7 @@ $ const publication = getAsObject(data, 'publication');
   <hr>
 
   <div class="row mt-3">
-    <cms-query-magazine-active-issues|{ nodes }|
-      query-fragment=queryFragment
-      id=publication.id
-      limit=12
-    >
-      <for|issue| of=nodes>
-        <div class="col col-md-6 col-lg-4 col-xl-3 text-center">
-          <div class="card">
-            <cms-magazine-issue-link obj=issue class="card-image-top">
-              <cms-magazine-issue-image obj=issue.coverImage />
-            </cms-magazine-issue-link>
-            <p class="card-body">${issue.name}</p>
-          </div>
-        </div>
-      </for>
-    </cms-query-magazine-active-issues>
+    <magazine-block-active-issues id=publication.id />
   </div>
 
 </layout>

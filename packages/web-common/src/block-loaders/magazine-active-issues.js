@@ -6,10 +6,17 @@ const buildQuery = require('../gql/query-factories/block-magazine-active-issues'
  * @param {string} [params.queryFragment] The `graphql-tag` fragment
  *                                        to apply to the `magazineActiveIssues` query.
  */
-module.exports = async (apolloClient, { id, queryFragment, limit } = {}) => {
+module.exports = async (apolloClient, input = {}) => {
+  const {
+    id,
+    queryFragment,
+    limit,
+    skip,
+    after,
+  } = input;
   const query = buildQuery({ queryFragment });
   const sort = { field: 'mailDate', order: 'desc' };
-  const pagination = { limit };
+  const pagination = { limit, skip, after };
   const variables = { input: { id, sort, pagination } };
 
   const { data } = await apolloClient.query({ query, variables });
