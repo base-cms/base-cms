@@ -3,12 +3,36 @@ const createError = require('http-errors');
 const errorTemplate = require('../components/document/components/error');
 const getRedirect = require('./get-redirect');
 
-const render = (res, { statusCode, err, template }) => {
+const { error: log } = console;
+const { isArray } = Array;
+
+const renderError = (res, { statusCode, err, template }) => {
+  res.status(statusCode);
   res.marko(template || errorTemplate, {
     statusCode,
     statusMessage: STATUS_CODES[statusCode],
     error: err,
   });
+};
+
+const handleNetworkError = (res, { statusCode, err, template }) => {
+  const { result } = err;
+  const message = result.errors && isArray(result.errors) ? result.errors[0].message : 'Unknown fatal.';
+  return renderError(res, { statusCode, err: new Error(message), template });
+};
+
+const render = (res, { statusCode, err, template }) => {
+  log(err);
+
+  if (err.errors && err.errors[0]) {
+    const error = err.errors[0];
+    return error.result
+      ? handleNetworkError(res, { statusCode, err: error, template })
+      : renderError(res, { statusCode, err, template });
+  }
+  return err.networkError
+    ? handleNetworkError(res, { statusCode, err: err.networkError, template })
+    : renderError(res, { statusCode, err, template });
 };
 
 module.exports = (app, { template }) => {
