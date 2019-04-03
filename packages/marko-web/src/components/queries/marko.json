@@ -11,6 +11,9 @@
     },
     "cms-query-magazine-latest-issue": {
       "template": "./magazine-latest-issue.marko"
+    },
+    "cms-query-magazine-active-issues": {
+      "template": "./magazine-active-issues.marko"
     }
   }
 }

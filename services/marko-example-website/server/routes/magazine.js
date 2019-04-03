@@ -16,6 +16,10 @@ module.exports = (app) => {
         id
         name
         description
+        coverImage {
+          id
+          src
+        }
       }
     `,
   }));
