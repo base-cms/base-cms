@@ -1,0 +1,14 @@
+import { get } from '@base-cms/object-path';
+
+$ const props = {
+  to: input.obj,
+  path: 'id',
+  ...input,
+  attrs: {
+    title: get(input.obj, 'name'),
+    ...input.attrs,
+    href: `/magazine/${get(input.obj, 'id')}`,
+    },
+};
+
+<cms-link-element ...props />

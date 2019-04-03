@@ -1,0 +1,19 @@
+{
+  "tags": {
+    "cms-magazine-issue-link": {
+      "template": "./issue-link.marko"
+    },
+    "cms-magazine-issue-image": {
+      "template": "./issue-image.marko"
+    },
+    "cms-magazine-issue-digital-edition": {
+      "template": "./issue-digital-edition.marko"
+    },
+    "cms-magazine-publication-subscribe": {
+      "template": "./publication-subscribe.marko"
+    },
+    "cms-magazine-publication-link": {
+      "template": "./publication-link.marko"
+    }
+  }
+}

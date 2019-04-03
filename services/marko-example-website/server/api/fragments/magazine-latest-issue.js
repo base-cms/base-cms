@@ -9,6 +9,7 @@ fragment MagazineLatestIssueQueryFragment on MagazineIssue {
     id
     src
   }
+  digitalEditionUrl
   publication {
     id
     subscribeUrl

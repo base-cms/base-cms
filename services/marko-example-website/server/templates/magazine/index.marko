@@ -21,11 +21,34 @@ import latestIssueFragment from '../../api/fragments/magazine-latest-issue';
 
     <cms-query-magazine-publications|{ nodes }| query-fragment=publicationFragment>
       <for|publication| of=nodes>
-        <div class="col-6 col-md-4">
+        <div class="col col-md-6">
           <div class="card">
             <span class="card-header">${publication.name}</span>
-            <div class="card-body">
-              <p>${publication.description}</p>
+            <div class="card-body row">
+
+              <cms-query-magazine-latest-issue|{ node }|
+                publication-id=publication.id
+                query-fragment=latestIssueFragment
+              >
+                <cms-magazine-issue-link obj=node class="col-6">
+                  <cms-magazine-issue-image obj=node.coverImage />
+                </cms-magazine-issue-link>
+
+                <div class="col-6">
+                  <cms-magazine-publication-subscribe obj=node.publication>
+                    Subscribe
+                  </cms-magazine-publication-subscribe>
+                  <cms-magazine-issue-digital-edition obj=node>
+                    Digital Edition
+                  </cms-magazine-issue-digital-edition>
+                  <cms-magazine-publication-link obj=node.publication>
+                    Archive
+                  </cms-magazine-publication-link>
+                </div>
+
+              </cms-query-magazine-latest-issue>
+
+              <p class="mt-3">${publication.description}</p>
             </div>
           </div>
         </div>
