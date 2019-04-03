@@ -1,5 +1,6 @@
 const blockWebsiteScheduledContent = require('./block-website-scheduled-content');
 const blockMagazinePublications = require('./block-magazine-publications');
+const blockMagazineLatestIssue = require('./block-magazine-latest-issue');
 
 const withContent = require('./with-content');
 const withDynamicPage = require('./with-dynamic-page');
@@ -9,6 +10,7 @@ module.exports = {
   // Blocks
   blockWebsiteScheduledContent,
   blockMagazinePublications,
+  blockMagazineLatestIssue,
 
   // Pages
   withContent,

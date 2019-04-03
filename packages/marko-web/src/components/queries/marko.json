@@ -8,6 +8,9 @@
     },
     "cms-query-magazine-publications": {
       "template": "./magazine-publications.marko"
+    },
+    "cms-query-magazine-latest-issue": {
+      "template": "./magazine-latest-issue.marko"
     }
   }
 }
