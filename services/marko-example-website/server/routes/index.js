@@ -20,11 +20,11 @@ module.exports = (app) => {
   // Dynamic Pages
   dynamicPages(app);
 
-  // Content Types
-  contentTypes(app);
-
   // Magazine Pages
   magazine(app);
+
+  // Content Types
+  contentTypes(app);
 
   // Website Sections
   websiteSections(app);
