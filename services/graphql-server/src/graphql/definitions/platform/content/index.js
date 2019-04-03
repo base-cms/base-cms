@@ -175,6 +175,9 @@ input ContentMutationInput {
 input ContentTeaserInput {
   mutation: ContentMutation = Website
   useFallback: Boolean = true
+  minLength: Int = 75
+  maxLength: Int = 125
+  truncatedSuffix: String = "..."
 }
 
 input ContentBodyInput {
