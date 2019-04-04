@@ -3,7 +3,20 @@ import { getAsObject } from '@base-cms/object-path';
 $ const publications = getAsObject(input, 'publications');
 
 <document>
-  <div class="container-fluid-max">
+  <@head>
+    <cms-page-metadata for="magazine" ...publications />
+    <cms-ad-gam-head
+      slots={
+        'gpt-ad-bs': { path: '/21687441225/Officer/Officer_BS', size: [[970, 250], [970, 90]] },
+        'gpt-ad-mr': { path: '/21687441225/Officer/Officer_MR', size: [300, 250] },
+        'gpt-ad-hp': { path: '/21687441225/Officer/Officer_HP', size: [300, 600] },
+      }
+    />
+    <${input.head} />
+  </@head>
+  <cms-page-container for="magazine" class="container-fluid-max" data=publications>
     <${input.renderBody} />
-  </div>
+  </cms-page-container>
+  <hr>
+  <site-footer />
 </document>

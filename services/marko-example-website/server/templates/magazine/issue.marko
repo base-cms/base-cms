@@ -3,11 +3,24 @@ import { getAsObject, get } from '@base-cms/object-path';
 $ const issue = getAsObject(data, 'issue');
 
 <layout>
-  <cms-ad-placeholder size="970x90" class="text-center mb-4" />
+  <cms-ad-gam-display id="gpt-ad-bs" class="text-center" />
 
   <div class="row">
     <div class="col">
-      <h1 class="mb-2">${issue.name}</h1>
+      <div class="card">
+        <div class="card-body pb-0">
+
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="text-uppercase breadcrumb-item small"><a href="/magazine">Magazines</a></li>
+              <li class="text-uppercase breadcrumb-item small"><a href=`/magazine/${issue.publication.id}`>${issue.publication.name}</a></li>
+              <li class="text-uppercase breadcrumb-item small">${issue.name}</li>
+            </ol>
+          </nav>
+
+          <h1 class="mb-2">${issue.name}</h1>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -22,20 +35,14 @@ $ const issue = getAsObject(data, 'issue');
       <cms-text-element obj=issue field='dedication' class="small" />
       <cms-text-element obj=issue field='credit' class="small" />
       <cms-text-element obj=issue.publication field='description' class="small" />
-      <div class="col-6 offset-3">
+    </div>
+    <div class="col-6 col-md-3">
         <cms-magazine-publication-subscribe obj=issue.publication>
           Subscribe
         </cms-magazine-publication-subscribe>
         <cms-magazine-issue-digital-edition obj=issue>
           Digital Edition
         </cms-magazine-issue-digital-edition>
-      </div>
-    </div>
-    <div class="col-6 col-md-3">
-      <magazine-block-active-issues id=issue.publication.id limit=12 load-more=false name=false/>
-      <cms-magazine-publication-link obj=issue.publication class="mt-2">
-        Archives
-      </cms-magazine-publication-link>
     </div>
   </div>
 

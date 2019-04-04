@@ -3,13 +3,19 @@ import publicationFragment from '../../api/fragments/magazine-publication';
 import latestIssueFragment from '../../api/fragments/magazine-latest-issue';
 
 <layout>
-  <cms-ad-placeholder size="970x90" class="text-center mb-4" />
+  <cms-ad-gam-display id="gpt-ad-bs" class="text-center" />
 
   <div class="row">
     <div class="col">
       <div class="card">
         <div class="card-body pb-0">
-          <!-- @todo pull from config -->
+
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="text-uppercase breadcrumb-item small">Magazines</li>
+            </ol>
+          </nav>
+
           <h1 class="mb-2">Officer.com Magazines</h1>
           <p>Law Enforcement Technology (LET) and Law Enforcement Product News (LEPN) are the leading magazine publications for the police and law enforcement community.</p>
         </div>
@@ -56,5 +62,4 @@ import latestIssueFragment from '../../api/fragments/magazine-latest-issue';
     </cms-query-magazine-publications>
 
   </div>
-
 </layout>
