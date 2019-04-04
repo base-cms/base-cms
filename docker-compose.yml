@@ -143,6 +143,19 @@ services:
       - "10004:10004" # serve port
       - "10005:10005" # test port (needs to be configured)
 
+  sitemap-handler:
+    << : *node
+    working_dir: /base-cms/services/sitemap-handler
+    entrypoint: ["/base-cms/node_modules/.bin/gulp"]
+    environment:
+      <<: *env
+      AWS_S3_BUCKET: basecms-sitemaps
+      AWS_S3_PREFIX: ${TENANT_KEY}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+    ports:
+      - "10009:80"
+
 volumes:
   esdata: {}
   mongodb: {}
