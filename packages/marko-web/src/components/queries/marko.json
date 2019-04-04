@@ -14,6 +14,9 @@
     },
     "cms-query-magazine-active-issues": {
       "template": "./magazine-active-issues.marko"
+    },
+    "cms-query-magazine-scheduled-content": {
+      "template": "./magazine-scheduled-content.marko"
     }
   }
 }

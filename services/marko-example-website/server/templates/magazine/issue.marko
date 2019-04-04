@@ -32,8 +32,6 @@ $ const issue = getAsObject(data, 'issue');
       </div>
     </div>
     <div class="col-6 col-md-3">
-
-          <cms-ad-gam-display id="gpt-ad-mr" />
       <magazine-block-active-issues id=issue.publication.id limit=12 load-more=false name=false/>
       <cms-magazine-publication-link obj=issue.publication class="mt-2">
         Archives
@@ -44,6 +42,6 @@ $ const issue = getAsObject(data, 'issue');
   <hr>
 
   <h2 class="text-center text-uppercase mb-3">In This Issue:</h2>
-  <!-- <magazine-block-issue-content issue-id=issue.id /> -->
+  <magazine-block-issue-content issue-id=issue.id />
 
 </layout>
