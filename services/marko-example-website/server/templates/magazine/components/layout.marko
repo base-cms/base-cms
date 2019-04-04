@@ -3,7 +3,7 @@ import { getAsObject } from '@base-cms/object-path';
 $ const publications = getAsObject(input, 'publications');
 
 <document>
-  <cms-page-container for="magazine-publications" class="container-fluid-max" data=publications>
+  <div class="container-fluid-max">
     <${input.renderBody} />
-  </cms-page-container>
+  </div>
 </document>

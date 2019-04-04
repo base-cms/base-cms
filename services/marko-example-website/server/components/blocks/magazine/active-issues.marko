@@ -14,30 +14,38 @@ $ const queryFragment = gql`
 
 $ const block = 'magazine-active-issues';
 $ const params = {
-  ...input,
+  name: true,
+  loadMore: true,
   limit: 12,
+  ...input,
   queryFragment,
 };
 
 <cms-query-magazine-active-issues|{ nodes, pageInfo }| ...params>
-  <for|issue| of=nodes>
-    <div class="col col-md-6 col-lg-4 col-xl-3 text-center">
-      <div class="card">
-        <cms-magazine-issue-link obj=issue class="card-image-top">
-          <cms-magazine-issue-image obj=issue.coverImage />
-        </cms-magazine-issue-link>
-        <p class="card-body">
-          <cms-magazine-issue-link obj=issue>${issue.name}</cms-magazine-issue-link>
-        </p>
+  <div class="row">
+    <for|issue| of=nodes>
+      <div class="col col-md-6 col-lg-4 col-xl-3 text-center">
+        <div class="card">
+          <cms-magazine-issue-link obj=issue class="card-image-top">
+            <cms-magazine-issue-image obj=issue.coverImage class="mr-1 mb-1 w-100" />
+          </cms-magazine-issue-link>
+          <if(params.name)>
+            <p class="card-body">
+              <cms-magazine-issue-link obj=issue>${issue.name}</cms-magazine-issue-link>
+            </p>
+          </if>
+        </div>
       </div>
-    </div>
-  </for>
-  <cms-load-more-element
-    blockName="magazine-block-active-issues"
-    label="Load more issues"
-    params=params
-    page-info=pageInfo
-    button-class-obj={ btn: true, 'btn-lg': true, 'btn-primary': true }
-    wrapping-class-obj={ col: true, 'text-center': true, 'pb-3': true }
-  />
+    </for>
+    <if(params.loadMore)>
+      <cms-load-more-element
+        blockName="magazine-block-active-issues"
+        label="Load More Issues"
+        params=params
+        page-info=pageInfo
+        button-class-obj={ btn: true, 'btn-lg': true, 'btn-primary': true }
+        wrapping-class-obj={ col: true, 'text-center': true, 'pb-3': true }
+      />
+    </if>
+  </div>
 </cms-query-magazine-active-issues>

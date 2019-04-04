@@ -1,0 +1,49 @@
+import { getAsObject, get } from '@base-cms/object-path';
+
+$ const issue = getAsObject(data, 'issue');
+
+<layout>
+  <cms-ad-placeholder size="970x90" class="text-center mb-4" />
+
+  <div class="row">
+    <div class="col">
+      <h1 class="mb-2">${issue.name}</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-6 col-md-3">
+      <cms-magazine-issue-link obj=issue class="col-6">
+        <cms-magazine-issue-image obj=issue.coverImage alt=issue.coverDescription />
+      </cms-magazine-issue-link>
+    </div>
+    <div class="col-6 col-md-6">
+      <cms-text-element obj=issue field='description' class="lead" />
+      <cms-text-element obj=issue field='dedication' class="small" />
+      <cms-text-element obj=issue field='credit' class="small" />
+      <cms-text-element obj=issue.publication field='description' class="small" />
+      <div class="col-6 offset-3">
+        <cms-magazine-publication-subscribe obj=issue.publication>
+          Subscribe
+        </cms-magazine-publication-subscribe>
+        <cms-magazine-issue-digital-edition obj=issue>
+          Digital Edition
+        </cms-magazine-issue-digital-edition>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+
+          <cms-ad-gam-display id="gpt-ad-mr" />
+      <magazine-block-active-issues id=issue.publication.id limit=12 load-more=false name=false/>
+      <cms-magazine-publication-link obj=issue.publication class="mt-2">
+        Archives
+      </cms-magazine-publication-link>
+    </div>
+  </div>
+
+  <hr>
+
+  <h2 class="text-center text-uppercase mb-3">In This Issue:</h2>
+  <!-- <magazine-block-issue-content issue-id=issue.id /> -->
+
+</layout>
