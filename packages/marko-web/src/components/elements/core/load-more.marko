@@ -9,7 +9,7 @@ $ const { hasNextPage, endCursor } = getAsObject(input, 'pageInfo');
 $ const loadMoreParams = { ...params, after: endCursor };
 $ const props = {
   blockName: input.blockName,
-  label: input.label || 'Load More Content',
+  label: input.label || 'Load More',
   params: { ...params, after: endCursor },
   buttonClassObj: input.buttonClassObj,
   wrappingClassObj: input.wrappingClassObj,
