@@ -4,12 +4,14 @@ const { indexes, sections, content } = require('./generate/');
 
 const { log } = console;
 
+/**
+ * Generates one or more sitemaps and stores them in S3.
+ */
 module.exports = async (res, url) => {
   try {
     const regex = /^\/generate($|\/(?<type>index$|sections$|content$))/;
     const matched = url.match(regex);
     const type = matched && matched.groups.type ? matched.groups.type : 'all';
-    log(matched);
 
     log(`Generating ${type} sitemaps`);
 
