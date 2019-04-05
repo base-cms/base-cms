@@ -120,6 +120,22 @@ class BaseDB {
   }
 
   /**
+   * Aggregates documents for the provided modelname, pipeline, and options.
+   *
+   * @param {*} modelName
+   * @param {*} pipeline
+   * @param {*} options
+   */
+  async aggregate(modelName, pipeline, options) {
+    const start = hrtime();
+    const { namespace, resource } = BaseDB.parseModelName(modelName);
+    const coll = await this.collection(namespace, resource);
+    const result = await coll.aggregate(pipeline, options);
+    this.log('aggregate', start, { modelName, pipeline, options });
+    return result;
+  }
+
+  /**
    * Counts the number of documents for the provided model name and (optional) query criteria.
    *
    * @param {string} modelName The model name, e.g. `platform.Content`.
