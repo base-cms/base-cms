@@ -1,6 +1,6 @@
 const micro = require('micro');
 
-const { retrieve, generate } = require('./middleware');
+const { retrieve, generate } = require('./routes');
 
 const server = micro(async (req, res) => {
   if (/^\/sitemap(.xml|-google-news.xml|\/.+.xml)$/.test(req.url)) return retrieve(res, req.url);
