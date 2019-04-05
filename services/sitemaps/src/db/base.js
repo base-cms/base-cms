@@ -1,3 +1,4 @@
+const moment = require('moment');
 const { BaseDB, MongoDB } = require('@base-cms/db');
 const { TENANT_KEY, MONGO_DSN } = require('../env');
 
@@ -46,5 +47,21 @@ module.exports = {
       { $sort: { count: -1 } },
     ];
     return basedb.aggregate('platform.Content', pipeline);
+  },
+  getLatestNews: () => {
+    const published = new Date(moment().subtract(5, 'days').valueOf());
+    const query = {
+      ...statusCriteria,
+      type: { $in: ['News', 'PressRelease', 'Blog'] },
+      $and: [
+        { published: { $gte: published } },
+      ],
+    };
+    const options = {
+      limit: 1000,
+      projection: { published: 1, type: 1, name: 1 },
+      sort: { published: -1 },
+    };
+    return basedb.find('platform.Content', query, options);
   },
 };

@@ -9,4 +9,5 @@ module.exports = cleanEnv(process.env, {
   AWS_S3_REGION: nonemptystr({ desc: 'The S3 region', default: 'us-east-1' }),
   AWS_ACCESS_KEY_ID: nonemptystr({ desc: 'The access key for reading the s3 bucket' }),
   AWS_SECRET_ACCESS_KEY: nonemptystr({ desc: 'The secret key for reading the s3 bucket' }),
+  GOOGLE_NEWS_PUBLICATION: nonemptystr({ desc: 'The Google News publisher name' }),
 });
