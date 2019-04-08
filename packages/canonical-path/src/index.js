@@ -1,9 +1,9 @@
 const content = require('./content');
 const section = require('./section');
-const util = require('./util');
+const requestParser = require('./request-parser');
 
 module.exports = {
   content,
   section,
-  util,
+  requestParser,
 };
