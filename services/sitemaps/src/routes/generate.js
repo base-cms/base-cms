@@ -37,6 +37,6 @@ module.exports = async (req, res) => {
     }
     log('\nDone!');
   } catch (e) {
-    micro.creatError(500, e);
+    micro.createError(500, e);
   }
 };

@@ -1,14 +1,15 @@
 const moment = require('moment');
 const { content: canonicalPathFor } = require('@base-cms/canonical-path');
-const { getContent, getContentCounts } = require('../../db/base');
+const { BaseDB } = require('@base-cms/db');
+const { getContent, getContentCounts, getPrimarySections } = require('../../db/base');
 const { storeFile } = require('../../db/s3');
 
 const { log } = console;
 
 const formatter = (docs = []) => `<?xml version="1.0" encoding="utf-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-${docs.reduce((str, { canonicalPath, updated }) => `${str}  <url>
-    <loc>${canonicalPath}</loc>
+${docs.reduce((str, { url, updated }) => `${str}  <url>
+    <loc>${url}</loc>
     <lastmod>${moment(updated).format()}</lastmod>
     <priority>0.5</priority>
     <changefreq>weekly</changefreq>
@@ -42,10 +43,24 @@ const generateContent = async ({ filename, baseUri, canonicalRules }) => {
   const skip = suffix ? parseInt(suffix, 10) * 10000 : 0;
   const docs = await getContent(type, skip);
   log(`    Found ${docs.length} ${type} docs.`);
-  const toFormat = await Promise.all(docs.map(async (content) => {
-    const path = await canonicalPathFor(content, { canonicalRules });
-    const canonicalPath = `${baseUri}${path}`;
-    return { ...content, canonicalPath };
+
+  // Get sections to run a single query
+  const ids = [...new Set(docs.map((content) => {
+    const ref = BaseDB.get(content, 'mutations.Website.primarySection');
+    return BaseDB.extractRefId(ref);
+  }))];
+  const sections = await getPrimarySections(ids);
+  log(`      Loading ${ids.length} primary sections`);
+
+  // Inject a loader function into the context
+  const load = (_, id) => sections.filter(({ _id }) => _id === id)[0];
+  const context = { canonicalRules, load };
+
+  const slugged = docs.map(content => ({ ...content, slug: content.mutations.Website.slug }));
+  const toFormat = await Promise.all(slugged.map(async (content) => {
+    const path = await canonicalPathFor(content, context);
+    const url = `${baseUri}${path}`;
+    return { ...content, url };
   }));
   return formatter(toFormat);
 };

@@ -27,7 +27,13 @@ module.exports = {
     };
     const options = {
       limit: 10000,
-      projection: { updated: 1 },
+      projection: {
+        'mutations.Website.alias': 1,
+        'mutations.Website.primarySection': 1,
+        'mutations.Website.slug': 1,
+        type: 1,
+        updated: 1,
+      },
       skip,
     };
     // @todo need canonicalPath stuff from gql-server so these don't 301.
@@ -48,6 +54,16 @@ module.exports = {
     ];
     return basedb.aggregate('platform.Content', pipeline);
   },
+  getPrimarySections: (ids) => {
+    const query = {
+      _id: { $in: ids },
+      status: 1,
+    };
+    const options = {
+      projection: { alias: 1 },
+    };
+    return basedb.find('website.Section', query, options);
+  },
   getLatestNews: () => {
     const published = new Date(moment().subtract(5, 'days').valueOf());
     const query = {
@@ -59,7 +75,13 @@ module.exports = {
     };
     const options = {
       limit: 1000,
-      projection: { published: 1, type: 1, name: 1 },
+      projection: {
+        'mutations.Website.primarySection': 1,
+        'mutations.Website.slug': 1,
+        type: 1,
+        published: 1,
+        name: 1,
+      },
       sort: { published: -1 },
     };
     return basedb.find('platform.Content', query, options);

@@ -3,13 +3,14 @@ const {
   content: canonicalPathFor,
   requestParser,
 } = require('@base-cms/canonical-path');
-const { getLatestNews } = require('../db/base');
+const { BaseDB } = require('@base-cms/db');
+const { getLatestNews, getPrimarySections } = require('../db/base');
 const { GOOGLE_NEWS_PUBLICATION } = require('../env');
 
 const formatter = (docs = []) => `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
 ${docs.reduce((str, doc) => `${str}  <url>
-    <loc>${doc.canonicalPath}</loc>
+    <loc>${doc.url}</loc>
     <news:news>
       <news:publication>
         <news:name>${GOOGLE_NEWS_PUBLICATION}</news:name>
@@ -33,10 +34,22 @@ module.exports = async (req, res) => {
   const news = await getLatestNews();
   res.setHeader('X-Robots-Tag', 'noindex');
   res.setHeader('Content-Type', 'text/xml');
+
+  // Get sections to run a single query
+  const ids = [...new Set(news.map((content) => {
+    const ref = BaseDB.get(content, 'mutations.Website.primarySection');
+    return BaseDB.extractRefId(ref);
+  }))];
+  const sections = await getPrimarySections(ids);
+
+  // Inject a loader function into the context
+  const load = (_, id) => sections.filter(({ _id }) => _id === id)[0];
+  const context = { canonicalRules, load };
+
   const toFormat = await Promise.all(news.map(async (content) => {
-    const path = await canonicalPathFor(content, { canonicalRules });
-    const canonicalPath = `${baseUri}${path}`;
-    return { ...content, canonicalPath };
+    const path = await canonicalPathFor(content, context);
+    const url = `${baseUri}${path}`;
+    return { ...content, url };
   }));
   console.log(toFormat);
   res.end(formatter(toFormat));
