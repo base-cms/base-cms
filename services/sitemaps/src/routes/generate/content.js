@@ -1,3 +1,5 @@
+const moment = require('moment');
+const { content: canonicalPathFor } = require('@base-cms/canonical-path');
 const { getContent, getContentCounts } = require('../../db/base');
 const { storeFile } = require('../../db/s3');
 
@@ -34,20 +36,25 @@ const getSuffixes = (count, limit = 10000) => {
 /**
  * Generates content sitemap for given filename
  */
-const generateContent = async (filename) => {
+const generateContent = async ({ filename, baseUri, canonicalRules }) => {
   const regex = /^sitemap\/(?<type>[a-zA-Z]+)\.*(?<suffix>.*).xml$/;
   const { type, suffix } = filename.match(regex).groups;
   const skip = suffix ? parseInt(suffix, 10) * 10000 : 0;
   const docs = await getContent(type, skip);
   log(`    Found ${docs.length} ${type} docs.`);
-  return formatter(docs);
+  const toFormat = await Promise.all(docs.map(async (content) => {
+    const path = await canonicalPathFor(content, { canonicalRules });
+    const canonicalPath = `${baseUri}${path}`;
+    return { ...content, canonicalPath };
+  }));
+  return formatter(toFormat);
 };
 
 
 /**
  * Updates content sitemaps
  */
-module.exports = async () => {
+module.exports = async ({ baseUri, canonicalRules }) => {
   log('\n  Getting content counts');
   const cursor = await getContentCounts();
   const typeCounts = await cursor.toArray();
@@ -57,7 +64,7 @@ module.exports = async () => {
   }, []);
 
   const map = filenames.reduce((obj, filename) => {
-    const contents = generateContent(filename);
+    const contents = generateContent({ filename, baseUri, canonicalRules });
     return { ...obj, [filename]: contents };
   }, {});
   log('\n  Generating content sitemaps');

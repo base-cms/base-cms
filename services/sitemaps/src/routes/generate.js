@@ -8,33 +8,30 @@ const { log } = console;
 /**
  * Generates one or more sitemaps and stores them in S3.
  */
-module.exports = async (res, req) => {
-  const { url } = req;
+module.exports = async (req, res) => {
   try {
-    const regex = /^\/generate($|\/(?<type>index$|sections$|content$))/;
-    const matched = url.match(regex);
-    const type = matched && matched.groups.type ? matched.groups.type : 'all';
-    const { canonicalRules } = await json(req);
+    const body = await json(req);
+    const { type, canonicalRules, baseUri } = body;
 
     log(`Generating ${type} sitemaps`);
 
     switch (type) {
       case 'index':
-        await indexes();
+        await indexes({ baseUri });
         res.end('updated sitemap index');
         break;
       case 'sections':
-        await sections(canonicalRules);
+        await sections({ baseUri, canonicalRules });
         res.end('updated sections index');
         break;
       case 'content':
-        await content(canonicalRules);
+        await content({ baseUri, canonicalRules });
         res.end('updated content index');
         break;
       default:
-        await sections(canonicalRules);
-        await content(canonicalRules);
-        await indexes();
+        await sections({ baseUri, canonicalRules });
+        await content({ baseUri, canonicalRules });
+        await indexes({ baseUri });
         res.end('updated all sitemaps');
         break;
     }
