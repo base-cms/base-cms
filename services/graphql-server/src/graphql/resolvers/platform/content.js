@@ -1,4 +1,5 @@
 const { BaseDB } = require('@base-cms/db');
+const { UserInputError } = require('apollo-server-express');
 const { get } = require('@base-cms/object-path');
 const { isFunction: isFn, cleanPath } = require('@base-cms/utils');
 const { parser: embedParser } = require('@base-cms/embedded-media');
@@ -210,6 +211,7 @@ module.exports = {
     websiteScheduledContent: async (_, { input }, { basedb }, info) => {
       const {
         sectionId,
+        sectionAlias,
         optionId,
         excludeContentIds,
         excludeSectionIds,
@@ -220,14 +222,23 @@ module.exports = {
         pagination,
       } = input;
 
+      if (!sectionId && !sectionAlias) throw new UserInputError('Either a sectionId or sectionAlias input must be provided.');
+      if (sectionId && sectionAlias) throw new UserInputError('You cannot provided both a sectionId and sectionAlias as input.');
+
+      let sid = sectionId;
+      if (sectionAlias) {
+        const section = await basedb.strictFindOne('website.Section', { status: 1, alias: sectionAlias }, { projection: { _id: 1 } });
+        sid = section._id;
+      }
+
       const [descendantIds, defaultOption] = await Promise.all([
-        sectionBubbling ? getDescendantIds(sectionId, basedb) : Promise.resolve([]),
+        sectionBubbling ? getDescendantIds(sid, basedb) : Promise.resolve([]),
         !optionId ? getDefaultOption(basedb) : Promise.resolve(null),
       ]);
 
       const now = new Date();
       const $elemMatch = {
-        sectionId: descendantIds.length ? { $in: descendantIds } : sectionId,
+        sectionId: descendantIds.length ? { $in: descendantIds } : sid,
         optionId: defaultOption ? defaultOption._id : optionId,
         start: { $lte: now },
         $and: [
@@ -241,7 +252,7 @@ module.exports = {
       };
 
       if (excludeSectionIds.length) {
-        $elemMatch.$and.push({ sectionId: { $nin: excludeSectionIds } });
+        $elemMatch.$and.push({ sid: { $nin: excludeSectionIds } });
       }
       const query = { sectionQuery: { $elemMatch } };
       if (requiresImage) {

@@ -139,7 +139,8 @@ input AllContentQueryInput {
 }
 
 input WebsiteScheduledContentQueryInput {
-  sectionId: Int!
+  sectionId: Int
+  sectionAlias: String
   optionId: Int
   excludeContentIds: [Int!] = []
   excludeSectionIds: [Int!] = []
