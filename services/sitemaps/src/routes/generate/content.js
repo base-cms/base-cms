@@ -1,8 +1,17 @@
 const { getContent, getContentCounts } = require('../../db/base');
 const { storeFile } = require('../../db/s3');
-const { formatContent: formatter } = require('./format');
 
 const { log } = console;
+
+const formatter = (docs = []) => `<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+${docs.reduce((str, { canonicalPath, updated }) => `${str}  <url>
+    <loc>${canonicalPath}</loc>
+    <lastmod>${moment(updated).format()}</lastmod>
+    <priority>0.5</priority>
+    <changefreq>weekly</changefreq>
+  </url>\n`, '')}
+</urlset>`;
 
 /**
  * Returns an array of file suffixes based on counts e.g;
