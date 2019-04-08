@@ -3,7 +3,9 @@ const buildQuery = require('../gql/query-factories/block-website-scheduled-conte
 /**
  * @param {ApolloClient} apolloClient The Apollo GraphQL client that will perform the query.
  * @param {object} params
- * @param {number} params.sectionId The section ID. Required.
+ * @param {number} params.sectionId The section ID.
+ * @param {number} params.sectionAlias The section alias.
+ *                                     A `sectionId` or `sectionAlias` is required.
  * @param {number} [params.limit] The number of results to return.
  * @param {string} [params.after] The cursor to start returning results from.
  * @param {number} [params.optionId] The option ID.
@@ -21,6 +23,7 @@ module.exports = async (apolloClient, {
   after,
 
   sectionId,
+  sectionAlias,
   optionId,
 
   excludeContentIds,
@@ -39,6 +42,7 @@ module.exports = async (apolloClient, {
     excludeContentTypes,
     includeContentTypes,
     requiresImage,
+    sectionAlias,
     sectionBubbling,
     sectionId,
     optionId,
