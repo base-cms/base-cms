@@ -27,6 +27,9 @@ directive @value(localField: String, fallbackField: String) on FIELD_DEFINITION
 type Query {
   ping: String!
 }
+type Mutation {
+  generateSitemaps(input: GenerateSitemapInput!): String!
+}
 
 type PageInfo {
   hasNextPage: Boolean!
@@ -57,6 +60,12 @@ enum MatchWords {
   all
 }
 
+enum SitemapType {
+  all
+  index
+  sections
+  content
+}
 
 input PaginationInput {
   limit: Int = 10
@@ -67,6 +76,11 @@ input PaginationInput {
 input FormatDate {
   format: String = "YYYY-MM-DDTHH:mm:ssZ"
   timezone: String = "America/Chicago"
+}
+
+input GenerateSitemapInput {
+  type: SitemapType!
+  baseUri: String!
 }
 
 ${email}
