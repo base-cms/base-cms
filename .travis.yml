@@ -16,13 +16,13 @@ jobs:
       script: scripts/deploy-notify.sh
 
     - stage: deploy
-      name: Deploy GraphQL Server
+      name: GraphQL Server
       script: scripts/deploy.js graphql-server
 
     - stage: deploy
-      name: Deploy Manage
+      name: Manage
       script: scripts/deploy.js manage
 
     - stage: deploy
-      name: Deploy Sitemap Handler
-      script: scripts/deploy.js sitemap-handler
+      name: Sitemaps
+      script: scripts/deploy.js sitemaps
