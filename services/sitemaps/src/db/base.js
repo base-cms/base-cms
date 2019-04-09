@@ -7,7 +7,6 @@ const { Client } = MongoDB;
 const basedb = new BaseDB({
   tenant: TENANT_KEY,
   client: new Client(MONGO_DSN, { useNewUrlParser: true }),
-  // logger: console.log,
 });
 
 const statusCriteria = {
