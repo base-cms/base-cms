@@ -45,12 +45,12 @@ const generateContent = async ({ filename, baseUri, canonicalRules }) => {
   log(`    Found ${docs.length} ${type} docs.`);
 
   // Get sections to run a single query
-  const ids = [...new Set(docs.map((content) => {
+  const sectionIds = [...new Set(docs.map((content) => {
     const ref = BaseDB.get(content, 'mutations.Website.primarySection');
     return BaseDB.extractRefId(ref);
   }))];
-  const sections = await getPrimarySections(ids);
-  log(`      Loading ${ids.length} primary sections`);
+  const sections = await getPrimarySections(sectionIds);
+  log(`      Loading ${sectionIds.length} primary sections`);
 
   // Inject a loader function into the context
   const load = (_, id) => sections.filter(({ _id }) => _id === id)[0];

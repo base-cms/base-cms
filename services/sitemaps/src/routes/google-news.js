@@ -36,11 +36,11 @@ module.exports = async (req, res) => {
   res.setHeader('Content-Type', 'text/xml');
 
   // Get sections to run a single query
-  const ids = [...new Set(news.map((content) => {
+  const sectionIds = [...new Set(news.map((content) => {
     const ref = BaseDB.get(content, 'mutations.Website.primarySection');
     return BaseDB.extractRefId(ref);
   }))];
-  const sections = await getPrimarySections(ids);
+  const sections = await getPrimarySections(sectionIds);
 
   // Inject a loader function into the context
   const load = (_, id) => sections.filter(({ _id }) => _id === id)[0];
