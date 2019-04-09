@@ -3,7 +3,7 @@ const gql = require('graphql-tag');
 module.exports = gql`
 
 type Mutation {
-  generateSitemaps(input: GenerateSitemapInput!): String!
+  generateSitemaps(input: GenerateSitemapInput!): Boolean!
 }
 
 enum SitemapType {
