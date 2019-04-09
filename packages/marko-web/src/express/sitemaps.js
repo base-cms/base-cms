@@ -10,7 +10,7 @@ module.exports = (app) => {
     proxyReqOptDecorator: (reqOpts, req) => {
       const headers = { ...reqOpts.headers };
       headers['x-forwarded-proto'] = req.protocol;
-      return { headers: { ...headers }, ...reqOpts };
+      return { ...reqOpts, headers };
     },
   };
   app.use('/sitemap*', proxy(SERVICE_URI, opts));
