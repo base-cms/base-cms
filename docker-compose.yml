@@ -123,11 +123,21 @@ services:
       EXPOSED_PORT: 10007
       LIVERELOAD_PORT: 10008
       GRAPHQL_URI: ${GRAPHQL_URI-http://graphql-server}
+      SITEMAP_SERVICE_URI: ${SITEMAP_URI-http://sitemaps}
     depends_on:
       - graphql-server
     ports:
       - "10007:80"
       - "10008:10008" # livereload port
+
+  haproxy:
+    image: haproxy:alpine
+    ports: [ "${PORT-10010}:80" ]
+    volumes:
+      - ./services/haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    depends_on:
+      - marko-example-website
+      - graphql-server
 
   manage:
     <<: *node
