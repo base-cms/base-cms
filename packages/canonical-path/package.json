@@ -11,5 +11,8 @@
     "@base-cms/inflector": "^0.6.0",
     "@base-cms/object-path": "^0.6.0",
     "@base-cms/utils": "^0.6.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
