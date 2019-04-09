@@ -12,8 +12,7 @@
   },
   "dependencies": {
     "aws-sdk": "^2.435.0",
-    "micro": "^9.3.3",
-    "yargs": "^13.2.2"
+    "micro": "^9.3.3"
   },
   "devDependencies": {
     "micro-dev": "^3.0.0"
