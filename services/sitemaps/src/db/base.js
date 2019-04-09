@@ -9,19 +9,22 @@ const basedb = new BaseDB({
   client: new Client(MONGO_DSN, { useNewUrlParser: true }),
 });
 
-const statusCriteria = {
-  status: 1,
-  published: { $lte: new Date() },
-  $or: [
-    { unpublished: { $exists: false } },
-    { unpublished: { $gte: new Date() } },
-  ],
+const statusCriteria = () => {
+  const date = new Date();
+  return {
+    status: 1,
+    published: { $lte: date },
+    $or: [
+      { unpublished: { $exists: false } },
+      { unpublished: { $gte: date } },
+    ],
+  };
 };
 
 module.exports = {
   getContent: (type, skip) => {
     const query = {
-      ...statusCriteria,
+      ...statusCriteria(),
       type,
     };
     const options = {
@@ -47,7 +50,7 @@ module.exports = {
   },
   getContentCounts: () => {
     const pipeline = [
-      { $match: statusCriteria },
+      { $match: statusCriteria() },
       { $group: { _id: '$type', count: { $sum: 1 } } },
       { $sort: { count: -1 } },
     ];
@@ -66,7 +69,7 @@ module.exports = {
   getLatestNews: () => {
     const published = new Date(moment().subtract(5, 'days').valueOf());
     const query = {
-      ...statusCriteria,
+      ...statusCriteria(),
       type: { $in: ['News', 'PressRelease', 'Blog'] },
       $and: [
         { published: { $gte: published } },
