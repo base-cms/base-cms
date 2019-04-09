@@ -83,7 +83,7 @@ module.exports = async ({ baseUri, canonicalRules }) => {
     return { ...obj, [filename]: contents };
   }, {});
   log('\n  Generating content sitemaps');
-  await Promise.all(Object.keys(map).map(k => map[k]));
+  await Promise.all(Object.values(map));
 
   log('\n  Uploading files to S3...');
   return Promise.all(Object.keys(map).map(async (filename) => {
