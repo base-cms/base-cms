@@ -3,6 +3,7 @@ const email = require('./email');
 const magazine = require('./magazine');
 const platform = require('./platform');
 const website = require('./website');
+const sitemaps = require('./sitemaps');
 
 module.exports = gql`
 
@@ -26,9 +27,6 @@ directive @value(localField: String, fallbackField: String) on FIELD_DEFINITION
 
 type Query {
   ping: String!
-}
-type Mutation {
-  generateSitemaps(input: GenerateSitemapInput!): String!
 }
 
 type PageInfo {
@@ -60,13 +58,6 @@ enum MatchWords {
   all
 }
 
-enum SitemapType {
-  all
-  index
-  sections
-  content
-}
-
 input PaginationInput {
   limit: Int = 10
   skip: Int
@@ -78,14 +69,10 @@ input FormatDate {
   timezone: String = "America/Chicago"
 }
 
-input GenerateSitemapInput {
-  type: SitemapType!
-  baseUri: String!
-}
-
 ${email}
 ${magazine}
 ${platform}
 ${website}
+${sitemaps}
 
 `;
