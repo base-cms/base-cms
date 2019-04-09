@@ -38,7 +38,6 @@ module.exports = {
       },
       skip,
     };
-    // @todo need canonicalPath stuff from gql-server so these don't 301.
     return basedb.find('platform.Content', query, options);
   },
   getSections: () => {
@@ -67,7 +66,7 @@ module.exports = {
     return basedb.find('website.Section', query, options);
   },
   getLatestNews: () => {
-    const published = new Date(moment().subtract(5, 'days').valueOf());
+    const published = moment().subtract(5, 'days').toDate();
     const query = {
       ...statusCriteria(),
       type: { $in: ['News', 'PressRelease', 'Blog'] },
