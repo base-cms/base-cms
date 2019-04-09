@@ -51,6 +51,5 @@ module.exports = async (req, res) => {
     const url = `${baseUri}${path}`;
     return { ...content, url };
   }));
-  console.log(toFormat);
   res.end(formatter(toFormat));
 };
