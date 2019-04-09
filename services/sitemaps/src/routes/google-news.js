@@ -29,7 +29,8 @@ ${docs.reduce((str, doc) => `${str}  <url>
  */
 module.exports = async (req, res) => {
   const { host } = req.headers;
-  const baseUri = `http://${host}`;
+  const protocol = req.headers['x-forwarded-proto'] || 'http';
+  const baseUri = `${protocol}://${host}`;
   const canonicalRules = requestParser(req);
   const news = await getLatestNews();
   res.setHeader('X-Robots-Tag', 'noindex');
