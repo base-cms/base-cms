@@ -5,5 +5,5 @@ WORKDIR /base-cms
 
 RUN yarn --production
 
-WORKDIR /base-cms/services/sitemap-handler
+WORKDIR /base-cms/services/sitemaps
 ENTRYPOINT [ "node", "src/index.js" ]
