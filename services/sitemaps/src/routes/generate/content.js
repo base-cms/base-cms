@@ -85,11 +85,10 @@ module.exports = async ({ baseUri, canonicalRules }) => {
   log('\n  Generating content sitemaps');
   await Promise.all(Object.keys(map).map(k => map[k]));
 
-  const uploads = Object.keys(map).map(async (filename) => {
+  log('\n  Uploading files to S3...');
+  return Promise.all(Object.keys(map).map(async (filename) => {
     const contents = await map[filename];
     log(`    Uploading ${filename}...`);
     return storeFile(contents, filename);
-  });
-  log('\n  Uploading files to S3...');
-  await Promise.all(uploads);
+  }));
 };
