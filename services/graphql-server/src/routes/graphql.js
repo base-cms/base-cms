@@ -1,9 +1,8 @@
 const { ApolloServer } = require('apollo-server-express');
 const { Router } = require('express');
-const { camelize } = require('@base-cms/inflector');
 const { isObject } = require('@base-cms/utils');
+const { requestParser: canonicalRules } = require('@base-cms/canonical-path');
 const basedb = require('../basedb');
-const canonical = require('../canonical-paths');
 const createLoaders = require('../dataloaders');
 const schema = require('../graphql/schema');
 const { NODE_ENV, GRAPHQL_ENDPOINT } = require('../env');
@@ -12,17 +11,6 @@ const isProduction = NODE_ENV === 'production';
 
 const { keys } = Object;
 const router = Router();
-
-const canonicalRules = (req) => {
-  const headerPrefix = 'x-canonical';
-  return ['content', 'website-section', 'dynamic-page'].reduce((o, type) => ({
-    ...o,
-    [camelize(type)]: {
-      prefix: req.get(`${headerPrefix}-${type}-prefix`) || '',
-      parts: canonical.parseHeaderFor(type, req.get(`${headerPrefix}-${type}-parts`)),
-    },
-  }), {});
-};
 
 const server = new ApolloServer({
   schema,

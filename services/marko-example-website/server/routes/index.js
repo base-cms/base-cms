@@ -5,6 +5,9 @@ const loadMore = require('./load-more');
 const websiteSections = require('./website-section');
 
 module.exports = (app) => {
+  // Trusted proxies
+  app.set('trust proxy', ['loopback', 'linklocal', 'uniquelocal']);
+
   // Homepage
   app.get('/', (req, res) => {
     res.marko(index);

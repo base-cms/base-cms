@@ -78,6 +78,7 @@ services:
     environment:
       <<: *env
       <<: *env-mongo
+      SITEMAP_SERVICE_URI: http://sitemaps
     depends_on:
       - mongodb
     ports:
@@ -122,11 +123,21 @@ services:
       EXPOSED_PORT: 10007
       LIVERELOAD_PORT: 10008
       GRAPHQL_URI: ${GRAPHQL_URI-http://graphql-server}
+      SITEMAP_SERVICE_URI: ${SITEMAP_URI-http://sitemaps}
     depends_on:
       - graphql-server
     ports:
       - "10007:80"
       - "10008:10008" # livereload port
+
+  haproxy:
+    image: haproxy:alpine
+    ports: [ "${PORT-10010}:80" ]
+    volumes:
+      - ./services/haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    depends_on:
+      - marko-example-website
+      - graphql-server
 
   manage:
     <<: *node
@@ -142,6 +153,23 @@ services:
     ports:
       - "10004:10004" # serve port
       - "10005:10005" # test port (needs to be configured)
+
+  sitemaps:
+    << : *node
+    working_dir: /base-cms/services/sitemaps
+    command: ["/base-cms/node_modules/.bin/gulp"]
+    environment:
+      <<: *env
+      <<: *env-mongo
+      AWS_S3_BUCKET: basecms-sitemaps
+      AWS_S3_PREFIX: ${TENANT_KEY}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      GOOGLE_NEWS_PUBLICATION: develop
+    depends_on:
+      - mongodb
+    ports:
+      - "10009:80"
 
 volumes:
   esdata: {}

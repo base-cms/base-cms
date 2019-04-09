@@ -1,0 +1,49 @@
+const { isFunction: isFn, cleanPath } = require('@base-cms/utils');
+const { get } = require('@base-cms/object-path');
+
+const pathResolvers = require('./path-resolvers');
+
+const dynamicPageResolvers = {
+  alias: content => get(content, 'mutations.Website.alias'),
+};
+
+const handleDynamicPage = async (content, context) => {
+  const { canonicalRules } = context;
+  const { dynamicPage: pageRules } = canonicalRules;
+  const { parts, prefix } = pageRules;
+
+  const values = await Promise.all(parts.map((key) => {
+    const fn = dynamicPageResolvers[key];
+    return isFn(fn) ? fn(content, context) : content[key];
+  }));
+
+  const path = cleanPath(values.filter(v => v).map(v => String(v).trim()).join('/'));
+
+  if (!path) return '';
+  if (prefix) return `/${cleanPath(prefix)}/page/${path}`;
+  return `/page/${path}`;
+};
+
+
+module.exports = async (content, context) => {
+  const { canonicalRules } = context;
+  const { content: contentRules } = canonicalRules;
+  const { parts, prefix } = contentRules;
+  const { type, linkUrl } = content;
+
+  if (type === 'Page') return handleDynamicPage(content, context);
+
+  const types = ['Promotion', 'TextAd'];
+  if (types.includes(type) && linkUrl) return linkUrl;
+
+  const values = await Promise.all(parts.map((key) => {
+    const fn = pathResolvers[key];
+    return isFn(fn) ? fn(content, context) : content[key];
+  }));
+
+  const path = cleanPath(values.filter(v => v).map(v => String(v).trim()).join('/'));
+
+  if (!path) return '';
+  if (prefix) return `/${cleanPath(prefix)}/${path}`;
+  return `/${path}`;
+};

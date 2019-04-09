@@ -1,15 +1,14 @@
 const { BaseDB } = require('@base-cms/db');
 const { UserInputError } = require('apollo-server-express');
 const { get } = require('@base-cms/object-path');
-const { isFunction: isFn, cleanPath } = require('@base-cms/utils');
 const { parser: embedParser } = require('@base-cms/embedded-media');
 const { underscore, dasherize, titleize } = require('@base-cms/inflector');
+const { content: canonicalPathFor } = require('@base-cms/canonical-path');
 
 const relatedContent = require('../../utils/related-content');
 const connectionProjection = require('../../utils/connection-projection');
 const getDefaultOption = require('../../utils/get-default-option');
 const getDescendantIds = require('../../utils/website-section-child-ids');
-const pathResolvers = require('../../utils/content-path-resolvers');
 const {
   createTitle,
   createDescription,
@@ -19,27 +18,6 @@ const {
 const contentTeaser = require('../../utils/content-teaser');
 
 const { isArray } = Array;
-
-const dynamicPageResolvers = {
-  alias: content => get(content, 'mutations.Website.alias'),
-};
-
-const handleDynamicPage = async (content, ctx) => {
-  const { canonicalRules } = ctx;
-  const { dynamicPage: pageRules } = canonicalRules;
-  const { parts, prefix } = pageRules;
-
-  const values = await Promise.all(parts.map((key) => {
-    const fn = dynamicPageResolvers[key];
-    return isFn(fn) ? fn(content, ctx) : content[key];
-  }));
-
-  const path = cleanPath(values.filter(v => v).map(v => String(v).trim()).join('/'));
-
-  if (!path) return '';
-  if (prefix) return `/${cleanPath(prefix)}/page/${path}`;
-  return `/page/${path}`;
-};
 
 const resolveType = async ({ type }) => `Content${type}`;
 
@@ -85,29 +63,7 @@ module.exports = {
 
     metadata: content => content,
 
-    canonicalPath: async (content, _, ctx) => {
-      const { canonicalRules } = ctx;
-      const { content: contentRules } = canonicalRules;
-      const { parts, prefix } = contentRules;
-
-      const { type, linkUrl } = content;
-
-      if (type === 'Page') return handleDynamicPage(content, ctx);
-
-      const types = ['Promotion', 'TextAd'];
-      if (types.includes(type) && linkUrl) return linkUrl;
-
-      const values = await Promise.all(parts.map((key) => {
-        const fn = pathResolvers[key];
-        return isFn(fn) ? fn(content, ctx) : content[key];
-      }));
-
-      const path = cleanPath(values.filter(v => v).map(v => String(v).trim()).join('/'));
-
-      if (!path) return '';
-      if (prefix) return `/${cleanPath(prefix)}/${path}`;
-      return `/${path}`;
-    },
+    canonicalPath: (content, _, ctx) => canonicalPathFor(content, ctx),
 
     redirectTo: (content) => {
       const { type, linkUrl } = content;

@@ -3,6 +3,7 @@ const email = require('./email');
 const magazine = require('./magazine');
 const platform = require('./platform');
 const website = require('./website');
+const sitemaps = require('./sitemaps');
 
 module.exports = gql`
 
@@ -57,7 +58,6 @@ enum MatchWords {
   all
 }
 
-
 input PaginationInput {
   limit: Int = 10
   skip: Int
@@ -73,5 +73,6 @@ ${email}
 ${magazine}
 ${platform}
 ${website}
+${sitemaps}
 
 `;

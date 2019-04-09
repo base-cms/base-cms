@@ -1,4 +1,5 @@
 const { parseDelimitedString } = require('@base-cms/utils');
+const { camelize } = require('@base-cms/inflector');
 
 const { isArray } = Array;
 
@@ -64,12 +65,16 @@ const parseHeaderFor = (type, headerString) => {
   }
 };
 
-module.exports = {
-  buildContentParts,
-  buildDynamicPageParts,
-  buildWebsiteSectionParts,
-  parseContentHeader,
-  parseHeaderFor,
-  parseDynamicPageHeader,
-  parseWebsiteSectionHeader,
+/**
+ * Parses the HTTP request object for canonical path rules
+ */
+module.exports = (req) => {
+  const headerPrefix = 'x-canonical';
+  return ['content', 'website-section', 'dynamic-page'].reduce((o, type) => ({
+    ...o,
+    [camelize(type)]: {
+      prefix: req.headers[`${headerPrefix}-${type}-prefix`] || '',
+      parts: parseHeaderFor(type, req.headers[`${headerPrefix}-${type}-parts`]),
+    },
+  }), {});
 };
