@@ -43,7 +43,7 @@ module.exports = async (req, res) => {
   const sections = await getPrimarySections(sectionIds);
 
   // Inject a loader function into the context
-  const load = (_, id) => sections.filter(({ _id }) => _id === id)[0];
+  const load = (_, id) => sections.find(s => `${s._id}` === `${id}`);
   const context = { canonicalRules, load };
 
   const toFormat = await Promise.all(news.map(async (content) => {

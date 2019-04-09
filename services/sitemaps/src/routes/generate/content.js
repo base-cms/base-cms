@@ -53,7 +53,7 @@ const generateContent = async ({ filename, baseUri, canonicalRules }) => {
   log(`      Loading ${sectionIds.length} primary sections`);
 
   // Inject a loader function into the context
-  const load = (_, id) => sections.filter(({ _id }) => _id === id)[0];
+  const load = (_, id) => sections.find(s => `${s._id}` === `${id}`);
   const context = { canonicalRules, load };
 
   const slugged = docs.map(content => ({ ...content, slug: content.mutations.Website.slug }));
