@@ -1,7 +1,7 @@
 {
   "name": "@base-cms/keyword-analysis",
   "description": "Analyzes BaseCMS content based on keywords using ElasticSearch.",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
   "license": "MIT",
@@ -22,7 +22,7 @@
     }
   },
   "dependencies": {
-    "@base-cms/tooling": "^0.6.0",
+    "@base-cms/tooling": "^0.7.0",
     "async": "^2.6.1",
     "chalk": "^2.4.1",
     "clear": "^0.1.0",

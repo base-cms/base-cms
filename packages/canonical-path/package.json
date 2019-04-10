@@ -1,16 +1,16 @@
 {
   "name": "@base-cms/canonical-path",
-  "version": "0.6.11",
+  "version": "0.7.0",
   "description": "Canonical path library for BaseCMS projects.",
   "main": "src/index.js",
   "author": "Josh Worden <josh@limit0.io>",
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/canonical-path",
   "license": "MIT",
   "dependencies": {
-    "@base-cms/db": "^0.6.11",
-    "@base-cms/inflector": "^0.6.0",
-    "@base-cms/object-path": "^0.6.0",
-    "@base-cms/utils": "^0.6.0"
+    "@base-cms/db": "^0.7.0",
+    "@base-cms/inflector": "^0.7.0",
+    "@base-cms/object-path": "^0.7.0",
+    "@base-cms/utils": "^0.7.0"
   },
   "publishConfig": {
     "access": "public"
