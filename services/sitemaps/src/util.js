@@ -47,6 +47,9 @@ module.exports = {
         type: 1,
         updated: 1,
       },
+      sort: {
+        updated: 1,
+      },
       skip,
     };
     return basedb.find('platform.Content', query, options);
