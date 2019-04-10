@@ -1,6 +1,6 @@
 const { ObjectID } = require('mongodb');
 const objectPath = require('object-path');
-const { isObject } = require('@base-cms/common');
+const { isObject } = require('@base-cms/utils');
 const { Client } = require('./mongodb');
 const paginateFind = require('./paginate/find');
 const { createEmptyResponse: paginateEmpty } = require('./paginate/utils');

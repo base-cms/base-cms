@@ -22,7 +22,6 @@
     }
   },
   "dependencies": {
-    "@base-cms/common": "^0.6.0",
     "@base-cms/tooling": "^0.6.0",
     "async": "^2.6.1",
     "chalk": "^2.4.1",
