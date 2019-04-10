@@ -8,6 +8,7 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
+    "@base-cms/canonical-path": "^0.6.11",
     "@base-cms/db": "^0.6.11",
     "@base-cms/tooling": "^0.6.11",
     "@godaddy/terminus": "^4.1.0",
