@@ -18,7 +18,7 @@
     "http-errors": "^1.7.2",
     "jquery": "^3.3.1",
     "marko": "^4.15.2",
-    "moment": "^2.23.0",
+    "moment": "^2.24.0",
     "vue": "^2.6.10"
   },
   "peerDependencies": {
@@ -26,7 +26,7 @@
     "graphql-tag": "^2.10.0"
   },
   "devDependencies": {
-    "graphql": "^14.1.1",
+    "graphql": "^14.2.1",
     "graphql-tag": "^2.10.1"
   },
   "publishConfig": {

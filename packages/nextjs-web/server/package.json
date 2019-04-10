@@ -1,6 +1,0 @@
-{
-  "name": "server",
-  "private": true,
-  "main": "../dist/cjs/server.js",
-  "module": "../dist/esm/server.js"
-}

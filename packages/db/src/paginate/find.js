@@ -1,4 +1,4 @@
-const { isObject } = require('@base-cms/common');
+const { isObject } = require('@base-cms/utils');
 const { createResponse, createQuery } = require('./utils');
 const Limit = require('./limit');
 const Sort = require('./sort');

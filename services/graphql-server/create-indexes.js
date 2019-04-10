@@ -1,11 +1,10 @@
-const { async } = require('@base-cms/common');
+const { eachSeries } = require('@base-cms/async');
 const basedb = require('./src/basedb');
 const indexes = require('./src/graphql/utils/indexes');
 
 const { log } = console;
 const { keys } = Object;
 const { isArray } = Array;
-const { eachSeriesPromise } = async;
 
 const run = async () => {
   const client = await basedb.client.connect();
@@ -29,7 +28,7 @@ const run = async () => {
     });
   });
 
-  await eachSeriesPromise(defs, async (def) => {
+  await eachSeries(defs, async (def) => {
     const {
       namespace,
       resource,
