@@ -45,7 +45,8 @@ const handle = asyncRoute(async (req, res) => {
     const context = { canonicalRules, load };
 
     const toFormat = await Promise.all(news.map(async (content) => {
-      const path = await canonicalPathFor(content, context);
+      const slug = BaseDB.get(content, 'mutations.Website.slug');
+      const path = await canonicalPathFor({ slug, ...content }, context);
       const url = `${baseUri}${path}`;
       return { ...content, url };
     }));

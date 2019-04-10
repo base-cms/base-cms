@@ -39,9 +39,9 @@ const handle = asyncRoute(async (req, res) => {
     const load = await getPrimarySectionLoader(sectionIds);
     const context = { canonicalRules, load };
 
-    const slugged = docs.map(content => ({ ...content, slug: content.mutations.Website.slug }));
-    const toFormat = await Promise.all(slugged.map(async (content) => {
-      const path = await canonicalPathFor(content, context);
+    const toFormat = await Promise.all(docs.map(async (content) => {
+      const slug = BaseDB.get(content, 'mutations.Website.slug');
+      const path = await canonicalPathFor({ slug, ...content }, context);
       const url = `${baseUri}${path}`;
       return { ...content, url };
     }));
