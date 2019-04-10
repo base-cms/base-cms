@@ -1,5 +1,6 @@
 const moment = require('moment');
 const basedb = require('./basedb');
+const { PAGE_SIZE } = require('./env');
 
 /**
  * Returns an array of file suffixes based on counts e.g;
@@ -12,7 +13,7 @@ const basedb = require('./basedb');
  * @param {*} count
  * @param {*} limit
  */
-const getSuffixes = (count, limit = 10000) => {
+const getSuffixes = (count, limit = PAGE_SIZE) => {
   const num = count % limit === 0
     ? count / limit
     : ((count - (count % limit)) / limit) + 1;
@@ -39,7 +40,7 @@ module.exports = {
       type,
     };
     const options = {
-      limit: 10000,
+      limit: PAGE_SIZE,
       projection: {
         'mutations.Website.alias': 1,
         'mutations.Website.primarySection': 1,

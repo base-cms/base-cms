@@ -5,6 +5,7 @@ const {
   content: canonicalPathFor,
   requestParser: getCanonicalRules,
 } = require('@base-cms/canonical-path');
+const { PAGE_SIZE } = require('../env');
 
 const { getContent, getPrimarySectionLoader } = require('../util');
 
@@ -27,7 +28,7 @@ const handle = asyncRoute(async (req, res) => {
   try {
     const regex = /sitemap\/(?<type>[a-zA-Z]+)\.*(?<suffix>.*).xml$/;
     const { type, suffix } = req.path.match(regex).groups;
-    const skip = suffix ? parseInt(suffix, 10) * 10000 : 0;
+    const skip = suffix ? parseInt(suffix, 10) * PAGE_SIZE : 0;
     const docs = await getContent(type, skip);
 
     const sectionIds = [...new Set(docs.map((content) => {
