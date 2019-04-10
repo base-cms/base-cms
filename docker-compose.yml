@@ -95,9 +95,10 @@ services:
       EXPOSED_PORT: 10007
       LIVERELOAD_PORT: 10008
       GRAPHQL_URI: ${GRAPHQL_URI-http://graphql-server}
-      SITEMAP_SERVICE_URI: ${SITEMAP_URI-http://sitemaps}
+      SITEMAPS_URI: ${SITEMAPS_URI-http://sitemaps}
     depends_on:
       - graphql-server
+      - sitemaps
     ports:
       - "10007:80"
       - "10008:10008" # livereload port
@@ -133,11 +134,6 @@ services:
     environment:
       <<: *env
       <<: *env-mongo
-      AWS_S3_BUCKET: basecms-sitemaps
-      AWS_S3_PREFIX: ${TENANT_KEY}
-      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
-      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
-      GOOGLE_NEWS_PUBLICATION: develop
     depends_on:
       - mongodb
     ports:

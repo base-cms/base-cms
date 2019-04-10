@@ -1,12 +1,33 @@
-const micro = require('micro');
+const http = require('http');
+const { createTerminus } = require('@godaddy/terminus');
+const app = require('./app');
+const pkg = require('../package.json');
+const services = require('./services');
+const { log } = require('./output');
 
-const { retrieve, generate, googleNews } = require('./routes');
+const server = http.createServer(app);
 
-const server = micro(async (req, res) => {
-  if (req.url === '/sitemap-google-news.xml') return googleNews(req, res);
-  if (/^\/sitemap(?:.*).xml$/.test(req.url)) return retrieve(res, req.url);
-  if (/^\/generate$/.test(req.url)) return generate(req, res);
-  throw micro.createError(404, 'Not found');
+const run = async () => {
+  await services.start();
+
+  createTerminus(server, {
+    timeout: 1000,
+    signals: ['SIGTERM', 'SIGINT', 'SIGHUP', 'SIGQUIT'],
+    onSignal: () => {
+      log('> Cleaning up...');
+      return services.stop().catch(e => log('> CLEANUP ERRORS:', e));
+    },
+    onShutdown: () => log('> Cleanup finished. Shutting down.'),
+  });
+
+  server.listen(80, () => log('> Ready on http://0.0.0.0:10009'));
+};
+
+// Simulate future NodeJS behavior by throwing unhandled Promise rejections.
+process.on('unhandledRejection', (e) => {
+  log('> Unhandled promise rejection. Throwing error...');
+  throw e;
 });
 
-server.listen(80);
+log(`> Booting ${pkg.name} v${pkg.version}...`);
+run().catch(e => setImmediate(() => { throw e; }));

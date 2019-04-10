@@ -1,13 +1,24 @@
 const moment = require('moment');
-const { BaseDB, MongoDB } = require('@base-cms/db');
-const { TENANT_KEY, MONGO_DSN } = require('../env');
+const basedb = require('./basedb');
+const { PAGE_SIZE } = require('./env');
 
-const { Client } = MongoDB;
-
-const basedb = new BaseDB({
-  tenant: TENANT_KEY,
-  client: new Client(MONGO_DSN, { useNewUrlParser: true }),
-});
+/**
+ * Returns an array of file suffixes based on counts e.g;
+ * count=    1 = ['']
+ * count=10000 = ['']
+ * count=10001 = ['', '.1']
+ * count=20000 = ['', '.1']
+ * count=20001 = ['', '.1', '.2']
+ *
+ * @param {*} count
+ * @param {*} limit
+ */
+const getSuffixes = (count, limit = PAGE_SIZE) => {
+  const num = count % limit === 0
+    ? count / limit
+    : ((count - (count % limit)) / limit) + 1;
+  return [...Array(num).keys()].map(x => (x === 0 ? '' : `.${x}`));
+};
 
 const statusCriteria = () => {
   const date = new Date();
@@ -22,18 +33,22 @@ const statusCriteria = () => {
 };
 
 module.exports = {
+  getSuffixes,
   getContent: (type, skip) => {
     const query = {
       ...statusCriteria(),
       type,
     };
     const options = {
-      limit: 10000,
+      limit: PAGE_SIZE,
       projection: {
         'mutations.Website.alias': 1,
         'mutations.Website.primarySection': 1,
         'mutations.Website.slug': 1,
         type: 1,
+        updated: 1,
+      },
+      sort: {
         updated: 1,
       },
       skip,
@@ -55,7 +70,7 @@ module.exports = {
     ];
     return basedb.aggregate('platform.Content', pipeline);
   },
-  getPrimarySections: (ids) => {
+  getPrimarySectionLoader: async (ids) => {
     const query = {
       _id: { $in: ids },
       status: 1,
@@ -63,7 +78,9 @@ module.exports = {
     const options = {
       projection: { alias: 1 },
     };
-    return basedb.find('website.Section', query, options);
+    const sections = await basedb.find('website.Section', query, options);
+    const sectionMap = sections.reduce((map, section) => map.set(`${section._id}`, section), new Map());
+    return (_, id) => sectionMap.get(`${id}`);
   },
   getLatestNews: () => {
     const published = moment().subtract(5, 'days').toDate();
