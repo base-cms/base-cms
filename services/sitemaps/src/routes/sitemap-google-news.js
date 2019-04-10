@@ -6,7 +6,7 @@ const {
   requestParser: getCanonicalRules,
 } = require('@base-cms/canonical-path');
 
-const { getLatestNews, getPrimarySections } = require('../util');
+const { getLatestNews, getPrimarySectionLoader } = require('../util');
 
 const formatter = (docs = [], publication) => `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
@@ -39,10 +39,9 @@ const handle = asyncRoute(async (req, res) => {
       const ref = BaseDB.get(content, 'mutations.Website.primarySection');
       return BaseDB.extractRefId(ref);
     }))];
-    const sections = await getPrimarySections(sectionIds);
 
     // Inject a loader function into the context
-    const load = (_, id) => sections.find(s => `${s._id}` === `${id}`);
+    const load = await getPrimarySectionLoader(sectionIds);
     const context = { canonicalRules, load };
 
     const toFormat = await Promise.all(news.map(async (content) => {

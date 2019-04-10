@@ -6,7 +6,7 @@ const {
   requestParser: getCanonicalRules,
 } = require('@base-cms/canonical-path');
 
-const { getContent, getPrimarySections } = require('../util');
+const { getContent, getPrimarySectionLoader } = require('../util');
 
 const formatter = (docs = []) => `<?xml version="1.0" encoding="utf-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
@@ -35,9 +35,8 @@ const handle = asyncRoute(async (req, res) => {
       return BaseDB.extractRefId(ref);
     }))];
 
-    const sections = await getPrimarySections(sectionIds);
-
-    const load = (_, id) => sections.find(s => `${s._id}` === `${id}`);
+    // Inject a loader function into the context
+    const load = await getPrimarySectionLoader(sectionIds);
     const context = { canonicalRules, load };
 
     const slugged = docs.map(content => ({ ...content, slug: content.mutations.Website.slug }));

@@ -69,7 +69,7 @@ module.exports = {
     ];
     return basedb.aggregate('platform.Content', pipeline);
   },
-  getPrimarySections: (ids) => {
+  getPrimarySectionLoader: async (ids) => {
     const query = {
       _id: { $in: ids },
       status: 1,
@@ -77,7 +77,9 @@ module.exports = {
     const options = {
       projection: { alias: 1 },
     };
-    return basedb.find('website.Section', query, options);
+    const sections = await basedb.find('website.Section', query, options);
+    const sectionMap = sections.reduce((map, section) => map.set(`${section._id}`, section), new Map());
+    return (_, id) => sectionMap.get(`${id}`);
   },
   getLatestNews: () => {
     const published = moment().subtract(5, 'days').toDate();
