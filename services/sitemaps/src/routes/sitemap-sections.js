@@ -18,10 +18,8 @@ ${sections.reduce((str, { url }) => `${str}  <url>
 </urlset>`;
 
 module.exports = asyncRoute(async (req, res) => {
-  const baseUri = `${req.protocol}://${req.get('host')}`;
+  const { baseUri } = res.locals;
   const canonicalRules = getCanonicalRules(req);
-  res.setHeader('X-Robots-Tag', 'noindex');
-  res.setHeader('Content-Type', 'text/xml');
 
   try {
     const sections = await getSections();

@@ -9,9 +9,7 @@ ${files.reduce((str, { url }) => `${str}  <sitemap>
 </sitemapindex>`;
 
 module.exports = asyncRoute(async (req, res) => {
-  const baseUri = `${req.protocol}://${req.get('host')}`;
-  res.setHeader('X-Robots-Tag', 'noindex');
-  res.setHeader('Content-Type', 'text/xml');
+  const { baseUri } = res.locals;
 
   try {
     const cursor = await getContentCounts();
