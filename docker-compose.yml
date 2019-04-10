@@ -97,21 +97,6 @@ services:
     ports:
       - "10003:80"
 
-  express-example-website:
-    << : *node
-    working_dir: /base-cms/services/express-example-website
-    command: ["/base-cms/node_modules/.bin/gulp"]
-    environment:
-      <<: *env
-      <<: *env-mongo
-      INTERNAL_PORT: ${INTERNAL_PORT-80}
-      EXTERNAL_PORT: ${EXTERNAL_PORT-10006}
-      GRAPHQL_URI: ${GRAPHQL_URI-http://graphql-server}
-    depends_on:
-      - graphql-server
-    ports:
-      - "10006:80"
-
   marko-example-website:
     << : *node
     working_dir: /base-cms/services/marko-example-website
