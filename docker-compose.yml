@@ -98,6 +98,7 @@ services:
       SITEMAPS_URI: ${SITEMAPS_URI-http://sitemaps}
     depends_on:
       - graphql-server
+      - sitemaps
     ports:
       - "10007:80"
       - "10008:10008" # livereload port
