@@ -6,8 +6,8 @@ const health = require('./_health');
 
 module.exports = (app) => {
   health(app);
-  sitemap(app);
-  sitemapGoogleNews(app);
-  sitemapSections(app);
-  sitemapContent(app);
+  app.get('([a-z0-9-/]*)?/sitemap.xml', sitemap);
+  app.get('([a-z0-9-/]*)?/sitemap-google-news.xml', sitemapGoogleNews);
+  app.get('([a-z0-9-/]*)?/sitemap/sections.xml', sitemapSections);
+  app.get('([a-z0-9-/]*)?/sitemap/*.xml', sitemapContent);
 };

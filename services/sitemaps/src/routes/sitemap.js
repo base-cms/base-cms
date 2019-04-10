@@ -8,7 +8,7 @@ ${files.reduce((str, { url }) => `${str}  <sitemap>
   </sitemap>\n`, '')}
 </sitemapindex>`;
 
-const handle = asyncRoute(async (req, res) => {
+module.exports = asyncRoute(async (req, res) => {
   const baseUri = `${req.protocol}://${req.get('host')}`;
   res.setHeader('X-Robots-Tag', 'noindex');
   res.setHeader('Content-Type', 'text/xml');
@@ -26,10 +26,3 @@ const handle = asyncRoute(async (req, res) => {
     res.status(500).send();
   }
 });
-
-
-module.exports = (app) => {
-  const path = '([a-z0-9-/]*)?/sitemap.xml';
-  app.get(path, handle);
-  app.head(path, handle);
-};

@@ -19,7 +19,7 @@ ${docs.reduce((str, { url, updated }) => `${str}  <url>
   </url>\n`, '')}
 </urlset>`;
 
-const handle = asyncRoute(async (req, res) => {
+module.exports = asyncRoute(async (req, res) => {
   const baseUri = `${req.protocol}://${req.get('host')}`;
   const canonicalRules = getCanonicalRules(req);
   res.setHeader('X-Robots-Tag', 'noindex');
@@ -51,10 +51,3 @@ const handle = asyncRoute(async (req, res) => {
     res.status(500).send();
   }
 });
-
-
-module.exports = (app) => {
-  const path = '([a-z0-9-/]*)?/sitemap/*.xml';
-  app.get(path, handle);
-  app.head(path, handle);
-};
