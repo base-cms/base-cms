@@ -14,7 +14,7 @@
     "node-fetch": "^2.3.0"
   },
   "devDependencies": {
-    "graphql": "^14.1.1"
+    "graphql": "^14.2.1"
   },
   "peerDependencies": {
     "graphql": "^14.0.0"

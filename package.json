@@ -24,7 +24,7 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
-    "graphql": "^14.1.1",
+    "graphql": "^14.2.1",
     "graphql-tag": "^2.10.1",
     "gulp": "^4.0.0",
     "gulp-cached": "^1.1.1",

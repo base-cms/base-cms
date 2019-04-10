@@ -17,7 +17,7 @@
     "graphql-tag": "^2.10.0"
   },
   "devDependencies": {
-    "graphql": "^14.1.1",
+    "graphql": "^14.2.1",
     "graphql-tag": "^2.10.1"
   },
   "publishConfig": {

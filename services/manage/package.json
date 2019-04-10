@@ -59,7 +59,7 @@
     "ember-source": "~3.7.0",
     "ember-wormhole": "^0.5.5",
     "eslint-plugin-ember": "^5.2.0",
-    "graphql": "^14.1.1",
+    "graphql": "^14.2.1",
     "loader.js": "^4.7.0",
     "moment": "^2.24.0",
     "node-sass": "^4.11.0",
