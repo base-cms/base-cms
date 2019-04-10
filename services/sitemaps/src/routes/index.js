@@ -1,9 +1,5 @@
-const retrieve = require('./retrieve');
-const generate = require('./generate');
-const googleNews = require('./google-news');
+const health = require('./_health');
 
-module.exports = {
-  retrieve,
-  generate,
-  googleNews,
+module.exports = (app) => {
+  health(app);
 };

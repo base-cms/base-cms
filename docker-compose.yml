@@ -133,11 +133,6 @@ services:
     environment:
       <<: *env
       <<: *env-mongo
-      AWS_S3_BUCKET: basecms-sitemaps
-      AWS_S3_PREFIX: ${TENANT_KEY}
-      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
-      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
-      GOOGLE_NEWS_PUBLICATION: develop
     depends_on:
       - mongodb
     ports:

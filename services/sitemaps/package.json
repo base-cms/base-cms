@@ -7,14 +7,13 @@
   "repository": "https://github.com/base-cms/base-cms/tree/master/services/sitemaps",
   "license": "MIT",
   "private": true,
-  "scripts": {
-    "start": "micro"
-  },
   "dependencies": {
-    "aws-sdk": "^2.435.0",
-    "micro": "^9.3.3"
-  },
-  "devDependencies": {
-    "micro-dev": "^3.0.0"
+    "@base-cms/db": "^0.6.11",
+    "@base-cms/tooling": "^0.6.11",
+    "@godaddy/terminus": "^4.1.0",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "helmet": "^3.15.0",
+    "moment": "^2.23.0"
   }
 }

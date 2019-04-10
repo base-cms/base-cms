@@ -1,13 +1,23 @@
 const moment = require('moment');
-const { BaseDB, MongoDB } = require('@base-cms/db');
-const { TENANT_KEY, MONGO_DSN } = require('../env');
+const basedb = require('./basedb');
 
-const { Client } = MongoDB;
-
-const basedb = new BaseDB({
-  tenant: TENANT_KEY,
-  client: new Client(MONGO_DSN, { useNewUrlParser: true }),
-});
+/**
+ * Returns an array of file suffixes based on counts e.g;
+ * count=    1 = ['']
+ * count=10000 = ['']
+ * count=10001 = ['', '.1']
+ * count=20000 = ['', '.1']
+ * count=20001 = ['', '.1', '.2']
+ *
+ * @param {*} count
+ * @param {*} limit
+ */
+const getSuffixes = (count, limit = 10000) => {
+  const num = count % limit === 0
+    ? count / limit
+    : ((count - (count % limit)) / limit) + 1;
+  return [...Array(num).keys()].map(x => (x === 0 ? '' : `.${x}`));
+};
 
 const statusCriteria = () => {
   const date = new Date();
@@ -22,6 +32,7 @@ const statusCriteria = () => {
 };
 
 module.exports = {
+  getSuffixes,
   getContent: (type, skip) => {
     const query = {
       ...statusCriteria(),
