@@ -1,6 +1,0 @@
-{
-  "name": "config",
-  "private": true,
-  "main": "../dist/cjs/config.js",
-  "module": "../dist/esm/config.js"
-}
