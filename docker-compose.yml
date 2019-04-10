@@ -78,7 +78,6 @@ services:
     environment:
       <<: *env
       <<: *env-mongo
-      SITEMAP_SERVICE_URI: http://sitemaps
     depends_on:
       - mongodb
     ports:

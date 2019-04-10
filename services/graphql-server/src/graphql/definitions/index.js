@@ -3,7 +3,6 @@ const email = require('./email');
 const magazine = require('./magazine');
 const platform = require('./platform');
 const website = require('./website');
-const sitemaps = require('./sitemaps');
 
 module.exports = gql`
 
@@ -73,6 +72,5 @@ ${email}
 ${magazine}
 ${platform}
 ${website}
-${sitemaps}
 
 `;
