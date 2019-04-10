@@ -1,7 +1,7 @@
 {
   "name": "@base-cms/sitemaps",
   "version": "0.6.11",
-  "description": "The BaseCMS Sitemap request handler",
+  "description": "The BaseCMS Sitemaps service",
   "main": "src/index.js",
   "author": "Josh Worden <josh@limit0.io>",
   "repository": "https://github.com/base-cms/base-cms/tree/master/services/sitemaps",

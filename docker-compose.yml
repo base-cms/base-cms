@@ -95,7 +95,7 @@ services:
       EXPOSED_PORT: 10007
       LIVERELOAD_PORT: 10008
       GRAPHQL_URI: ${GRAPHQL_URI-http://graphql-server}
-      SITEMAP_SERVICE_URI: ${SITEMAP_URI-http://sitemaps}
+      SITEMAPS_URI: ${SITEMAPS_URI-http://sitemaps}
     depends_on:
       - graphql-server
     ports:
