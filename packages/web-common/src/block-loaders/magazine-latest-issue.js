@@ -10,7 +10,7 @@ module.exports = async (apolloClient, { publicationId, queryFragment } = {}) => 
   const query = buildQuery({ queryFragment });
   const variables = { input: { publicationId } };
   const { data } = await apolloClient.query({ query, variables });
-  if (!data || !data.magazineLatestIssue) return { issue: null };
+  if (!data || !data.magazineLatestIssue) return { node: null };
   const { magazineLatestIssue: node } = data;
   return { node };
 };
