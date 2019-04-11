@@ -8,7 +8,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','${name}','${containerId}');
 `;
 
-$ const containerIds = isArray(input.containerId) ? input.containerId : [input.containerId];
+$ const containerIds = (isArray(input.containerId) ? input.containerId : [input.containerId]).filter(v => v);
 $ const scripts = containerIds.map(containerId => createContainerScript(containerId, input.name));
 
 <if(scripts.length)>
