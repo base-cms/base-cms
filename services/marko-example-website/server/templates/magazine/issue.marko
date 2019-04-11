@@ -26,9 +26,11 @@ $ const issue = getAsObject(data, 'issue');
 
   <div class="row">
     <div class="col-6 col-md-3">
-      <cms-magazine-issue-link obj=issue class="col-6">
-        <cms-magazine-issue-image obj=issue.coverImage alt=issue.coverDescription />
-      </cms-magazine-issue-link>
+      $ const altText = issue.coverDescription || `${issue.name} Cover Image`;
+      <cms-image-element
+        obj=issue.coverImage
+        alt=altText
+      />
     </div>
     <div class="col-6 col-md-6">
       <cms-text-element obj=issue field='description' class="lead" />
@@ -37,12 +39,16 @@ $ const issue = getAsObject(data, 'issue');
       <cms-text-element obj=issue.publication field='description' class="small" />
     </div>
     <div class="col-6 col-md-3">
-        <cms-magazine-publication-subscribe obj=issue.publication>
+        <cms-link-element to=issue.publication path='subscribeUrl'
+          class='btn btn-sm btn-block btn-primary'
+        >
           Subscribe
-        </cms-magazine-publication-subscribe>
-        <cms-magazine-issue-digital-edition obj=issue>
+        </cms-link-element>
+        <cms-link-element to=issue path='digitalEditionUrl'
+          class='btn btn-sm btn-block btn-primary'
+        >
           Digital Edition
-        </cms-magazine-issue-digital-edition>
+        </cms-link-element>
     </div>
   </div>
 

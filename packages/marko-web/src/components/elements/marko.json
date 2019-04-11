@@ -2,7 +2,6 @@
   "taglib-imports": [
     "./content/marko.json",
     "./core/marko.json",
-    "./website-section/marko.json",
-    "./magazine/marko.json"
+    "./website-section/marko.json"
   ]
 }

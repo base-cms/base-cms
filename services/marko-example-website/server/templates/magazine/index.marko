@@ -36,20 +36,30 @@ import latestIssueFragment from '../../api/fragments/magazine-latest-issue';
                 publication-id=publication.id
                 query-fragment=latestIssueFragment
               >
-                <cms-magazine-issue-link obj=node class="col-6">
-                  <cms-magazine-issue-image obj=node.coverImage />
-                </cms-magazine-issue-link>
+                $ const altText = node.coverDescription || `${node.name} Cover Image`;
+                <cms-image-element
+                  obj=node.coverImage
+                  linkTo=node
+                  linkClass="col-6"
+                  alt=altText
+                />
 
                 <div class="col-6">
-                  <cms-magazine-publication-subscribe obj=node.publication>
+                  <cms-link-element to=node.publication path='subscribeUrl'
+                    class='btn btn-sm btn-block btn-primary'
+                  >
                     Subscribe
-                  </cms-magazine-publication-subscribe>
-                  <cms-magazine-issue-digital-edition obj=node>
+                  </cms-link-element>
+                  <cms-link-element to=node path='digitalEditionUrl'
+                    class='btn btn-sm btn-block btn-primary'
+                  >
                     Digital Edition
-                  </cms-magazine-issue-digital-edition>
-                  <cms-magazine-publication-link obj=node.publication>
+                  </cms-link-element>
+                  <cms-link-element to=node.publication
+                    class='btn btn-sm btn-block btn-primary'
+                  >
                     Archive
-                  </cms-magazine-publication-link>
+                  </cms-link-element>
                 </div>
 
               </cms-query-magazine-latest-issue>

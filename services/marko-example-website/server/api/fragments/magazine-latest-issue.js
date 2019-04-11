@@ -5,6 +5,7 @@ module.exports = gql`
 fragment MagazineLatestIssueQueryFragment on MagazineIssue {
   id
   name
+  canonicalPath
   coverImage {
     id
     src
@@ -12,6 +13,7 @@ fragment MagazineLatestIssueQueryFragment on MagazineIssue {
   digitalEditionUrl
   publication {
     id
+    canonicalPath
     subscribeUrl
   }
 }

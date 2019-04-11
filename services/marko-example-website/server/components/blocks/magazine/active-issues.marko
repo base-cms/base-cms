@@ -5,6 +5,7 @@ $ const queryFragment = gql`
   fragment MagazineActiveIssuesQueryFragment on MagazineIssue {
     id
     name
+    canonicalPath
     coverImage {
       id
       src
@@ -26,12 +27,17 @@ $ const params = {
     <for|issue| of=nodes>
       <div class="col col-md-6 col-lg-4 col-xl-3 text-center">
         <div class="card">
-          <cms-magazine-issue-link obj=issue class="card-image-top">
-            <cms-magazine-issue-image obj=issue.coverImage class="mr-1 mb-1 w-100" />
-          </cms-magazine-issue-link>
+          $ const altText = issue.coverDescription || `${issue.name} Cover Image`;
+          <cms-image-element
+            obj=issue.coverImage
+            alt=altText
+            class="mr-1 mb-1 w-100"
+            linkTo=issue
+            linkClass="card-image-top"
+          />
           <if(params.name)>
             <p class="card-body">
-              <cms-magazine-issue-link obj=issue>${issue.name}</cms-magazine-issue-link>
+              <cms-link-element to=issue>${issue.name}</cms-link-element>
             </p>
           </if>
         </div>

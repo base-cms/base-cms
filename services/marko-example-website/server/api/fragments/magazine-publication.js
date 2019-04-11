@@ -6,6 +6,7 @@ fragment MagazinePublicationQueryFragment on MagazinePublication {
   id
   name
   description
+  canonicalPath
 }
 
 `;
