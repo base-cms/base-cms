@@ -7,10 +7,10 @@ fragment WithMagazinePublicationFragment on MagazinePublication {
   name
   description
   canonicalPath
-  # metadata {
-  #   title
-  #   description
-  # }
+  metadata {
+    title
+    description
+  }
 }
 
 `;

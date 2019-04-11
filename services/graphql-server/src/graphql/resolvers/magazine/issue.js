@@ -1,4 +1,5 @@
 const { magazineIssue: canonicalPathFor } = require('@base-cms/canonical-path');
+const { createTitle, createDescription } = require('../../utils/magazine-issue');
 
 module.exports = {
   /**
@@ -6,6 +7,10 @@ module.exports = {
    */
   MagazineIssue: {
     canonicalPath: (issue, _, ctx) => canonicalPathFor(issue, ctx),
+    metadata: issue => ({
+      title: () => createTitle(issue),
+      description: () => createDescription(issue),
+    }),
   },
   /**
    *

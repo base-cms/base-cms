@@ -1,14 +1,11 @@
-import { getAsObject } from '@base-cms/object-path';
+import { getAsObject, get } from '@base-cms/object-path';
 
-$ const publications = getAsObject(input, 'publications');
-$ const { config, site } = out.global;
-$ const title = `${config.get('siteName')} Magazines`;
-$ const description = site.get('magazines.description');
+$ const issue = getAsObject(input, 'issue');
+$ console.log({ issue });
 
 <document>
   <@head>
-    <cms-page-title value=title />
-    <cms-page-description content=description />
+    <cms-page-metadata for="magazine-issue" ...issue />
     <cms-ad-gam-head
       slots={
         'gpt-ad-bs': { path: '/21687441225/Officer/Officer_BS', size: [[970, 250], [970, 90]] },
@@ -18,7 +15,7 @@ $ const description = site.get('magazines.description');
     />
     <${input.head} />
   </@head>
-  <cms-page-container for="magazine" class="container-fluid-max" data=publications>
+  <cms-page-container for="magazine-issue" class="container-fluid-max" data=issue>
     <${input.renderBody} />
   </cms-page-container>
   <hr>

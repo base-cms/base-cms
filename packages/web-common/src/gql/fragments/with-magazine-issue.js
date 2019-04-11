@@ -10,10 +10,10 @@ fragment WithMagazineIssueFragment on MagazineIssue {
     src
   }
   canonicalPath
-  # metadata {
-  #   title
-  #   description
-  # }
+  metadata {
+    title
+    description
+  }
 }
 
 `;

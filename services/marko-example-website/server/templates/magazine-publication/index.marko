@@ -3,7 +3,7 @@ import { getAsObject, get } from '@base-cms/object-path';
 $ const publication = getAsObject(data, 'publication');
 $ const magazines = { canonicalPath: '/magazine' };
 
-<layout>
+<layout publication=publication>
   <cms-ad-gam-display id="gpt-ad-bs" class="text-center" />
 
   <div class="row">
