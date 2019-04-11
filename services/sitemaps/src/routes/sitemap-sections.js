@@ -1,7 +1,7 @@
 const { asyncRoute } = require('@base-cms/utils');
 const moment = require('moment');
 const {
-  section: canonicalPathFor,
+  websiteSection: canonicalPathFor,
   requestParser: getCanonicalRules,
 } = require('@base-cms/canonical-path');
 

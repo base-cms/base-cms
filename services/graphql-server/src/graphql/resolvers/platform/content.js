@@ -3,7 +3,7 @@ const { UserInputError } = require('apollo-server-express');
 const { get } = require('@base-cms/object-path');
 const { parser: embedParser } = require('@base-cms/embedded-media');
 const { underscore, dasherize, titleize } = require('@base-cms/inflector');
-const { content: canonicalPathFor } = require('@base-cms/canonical-path');
+const { platformContent: canonicalPathFor } = require('@base-cms/canonical-path');
 
 const relatedContent = require('../../utils/related-content');
 const connectionProjection = require('../../utils/connection-projection');

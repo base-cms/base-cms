@@ -2,7 +2,7 @@ const { asyncRoute } = require('@base-cms/utils');
 const { BaseDB } = require('@base-cms/db');
 const moment = require('moment');
 const {
-  content: canonicalPathFor,
+  platformContent: canonicalPathFor,
   requestParser: getCanonicalRules,
 } = require('@base-cms/canonical-path');
 const { PAGE_SIZE } = require('../env');

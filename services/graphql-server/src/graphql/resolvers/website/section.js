@@ -1,5 +1,5 @@
 const { BaseDB } = require('@base-cms/db');
-const { section: canonicalPathFor } = require('@base-cms/canonical-path');
+const { websiteSection: canonicalPathFor } = require('@base-cms/canonical-path');
 const getProjection = require('../../utils/get-projection');
 const getGraphType = require('../../utils/get-graph-type');
 const { createTitle, createDescription } = require('../../utils/website-section');
