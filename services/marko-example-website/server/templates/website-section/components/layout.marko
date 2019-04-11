@@ -1,9 +1,11 @@
 import { getAsObject } from '@base-cms/object-path';
 
+$ const { site } = out.global;
 $ const section = getAsObject(input, 'section');
 
 <document>
   <@head>
+    <cms-gtm-container container-id=site.get('gtmContainer') />
     <cms-page-metadata for="website-section" ...section />
     <${input.head} />
   </@head>
