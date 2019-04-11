@@ -13,9 +13,9 @@ module.exports = async (apolloClient, input = {}) => {
     limit,
     skip,
     after,
+    sort,
   } = input;
   const query = buildQuery({ queryFragment });
-  const sort = { field: 'mailDate', order: 'desc' };
   const pagination = { limit, skip, after };
   const variables = { input: { id, sort, pagination } };
 

@@ -61,7 +61,7 @@ input MagazineLatestIssueQueryInput {
 
 input MagazineActiveIssuesQueryInput {
   id: ObjectID!
-  sort: MagazineIssueSortInput = {}
+  sort: MagazineIssueSortInput = { field: mailDate, order: desc }
   pagination: PaginationInput = {}
 }
 
