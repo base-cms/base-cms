@@ -23,7 +23,9 @@ module.exports = {
       HP: { path: '/21687441225/Officer/Officer_HP', size: [300, 600] },
     },
   },
-  gtmContainer: 'GTM-M94ZBBC',
+  gtm: {
+    containerId: 'GTM-M94ZBBC',
+  },
   // logo: 'https://cdn.evaluationengineering.com/files/base/ebm/ee/image/static/logo/site_logo_bare.png',
   // primaryNavItems: [
   //   { href: '/applications', label: 'Applications' },

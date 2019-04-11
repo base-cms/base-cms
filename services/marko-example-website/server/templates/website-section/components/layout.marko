@@ -5,7 +5,7 @@ $ const section = getAsObject(input, 'section');
 
 <document>
   <@head>
-    <cms-gtm-container container-id=site.get('gtmContainer') />
+    <cms-gtm-container container-id=site.get('gtm.containerId') />
     <cms-page-metadata for="website-section" ...section />
     <${input.head} />
   </@head>

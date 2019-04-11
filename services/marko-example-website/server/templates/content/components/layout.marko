@@ -5,7 +5,7 @@ $ const content = getAsObject(input, 'content');
 
 <document>
   <@head>
-    <cms-gtm-container container-id=site.get('gtmContainer') />
+    <cms-gtm-container container-id=site.get('gtm.containerId') />
     <cms-page-metadata for="content" ...content />
     <${input.head} />
   </@head>
