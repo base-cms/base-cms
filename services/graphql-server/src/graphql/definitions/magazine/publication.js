@@ -29,6 +29,9 @@ type MagazinePublication {
   reprintsUrl: String @projection
   einquiryUrl: String @projection
   # socialLinks: [PlatformEntityStubSocial]! @arrayValue
+
+  # GraphQL only fields
+  canonicalPath: String! @projection(localField: "_id")
 }
 
 type MagazinePublicationConnection @projectUsing(type: "MagazinePublication") {
