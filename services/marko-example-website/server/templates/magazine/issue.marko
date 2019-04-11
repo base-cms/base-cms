@@ -33,19 +33,19 @@ $ const issue = getAsObject(data, 'issue');
       />
     </div>
     <div class="col-6 col-md-6">
-      <cms-text-element obj=issue field='description' class="lead" />
-      <cms-text-element obj=issue field='dedication' class="small" />
-      <cms-text-element obj=issue field='credit' class="small" />
-      <cms-text-element obj=issue.publication field='description' class="small" />
+      <cms-text-element obj=issue field="description" class="lead" />
+      <cms-text-element obj=issue field="dedication" class="small" />
+      <cms-text-element obj=issue field="credit" class="small" />
+      <cms-text-element obj=issue.publication field="description" class="small" />
     </div>
     <div class="col-6 col-md-3">
-        <cms-link-element to=issue.publication path='subscribeUrl'
-          class='btn btn-sm btn-block btn-primary'
+        <cms-link-element to=issue.publication path="subscribeUrl"
+          class="btn btn-sm btn-block btn-primary"
         >
           Subscribe
         </cms-link-element>
-        <cms-link-element to=issue path='digitalEditionUrl'
-          class='btn btn-sm btn-block btn-primary'
+        <cms-link-element to=issue path="digitalEditionUrl"
+          class="btn btn-sm btn-block btn-primary"
         >
           Digital Edition
         </cms-link-element>
