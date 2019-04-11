@@ -17,17 +17,21 @@
     },
     "cms-load-more-element": {
       "template": "./load-more.marko",
+      "@page-number": {
+        "type": "number",
+        "default-value": 1
+      },
       "@append-to": {
         "type": "string",
         "required": true
       },
+      "@show": {
+        "type": "boolean",
+        "default-value": true
+      },
       "@max-pages": "number",
       "@block-name": "string",
-      "@params": {
-        "type": "object",
-        "required": true
-      },
-      "@page-info": {
+      "@provide": {
         "type": "object",
         "required": true
       },

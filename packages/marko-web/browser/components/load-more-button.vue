@@ -24,7 +24,11 @@ export default {
       type: String,
       required: true,
     },
-    params: Object,
+    pageNumber: {
+      type: Number,
+      required: true,
+    },
+    provide: Object,
     buttonClassObj: Object,
     wrappingClassObj: Object,
     label: {
@@ -49,14 +53,11 @@ export default {
       if (this.hasLoaded) return 'none';
       return 'block';
     },
-    currentPage() {
-      return this.params.page || 0;
-    },
     canLazyload() {
       if (this.maxPages === 0) return false;
       const max = parseInt(this.maxPages, 10);
       if (!max) return true;
-      return this.currentPage < max;
+      return this.pageNumber <= max;
     },
   },
   created() {
@@ -67,14 +68,13 @@ export default {
       if (target.id === this.buttonId) this.load();
     },
     async load() {
-      const params = {
-        ...this.params,
-        page: this.currentPage + 1,
+      const input = {
+        ...this.provide,
+        pageNumber: this.pageNumber + 1,
       };
       this.error = null;
       this.loading = true;
-      const q = encodeURIComponent(JSON.stringify(params));
-      const href = `/load-more/${this.blockName}?q=${q}`
+      const href = `/load-more/${this.blockName}?input=${encodeURIComponent(JSON.stringify(input))}`
       try {
         const r = await fetch(href);
         const html = await r.text();

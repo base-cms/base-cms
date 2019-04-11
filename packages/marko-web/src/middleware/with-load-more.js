@@ -11,7 +11,7 @@ module.exports = ({
   const block = blocks[blockName];
   if (!block) throw createError(404, `A load more block template for '${blockName}' was not found.`);
 
-  const input = JSON.parse(query.q || null) || {};
+  const input = JSON.parse(query.input || null) || {};
 
   res.marko(loadMore, {
     block,
