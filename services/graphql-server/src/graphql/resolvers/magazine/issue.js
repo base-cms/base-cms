@@ -24,8 +24,8 @@ module.exports = {
       const mailDate = new Date();
       const query = {
         status: 1,
-        'publication.$id': publicationId,
         mailDate: { $lte: mailDate },
+        'publication.$id': publicationId,
       };
       const sort = { [field]: order === 'desc' ? -1 : 1 };
       return basedb.findOne('magazine.Issue', query, { sort });
