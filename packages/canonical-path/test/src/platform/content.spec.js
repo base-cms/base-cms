@@ -4,11 +4,6 @@ const content = require('../../../src/platform/content');
 const requestParser = require('../../../src/request-parser');
 
 describe('platform/content', () => {
-  it('should be a function', (done) => {
-    expect(content).to.be.a('function');
-    done();
-  });
-
   describe('the default configuration', () => {
     const section = {
       alias: '/primary-section',

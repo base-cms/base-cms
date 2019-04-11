@@ -4,11 +4,6 @@ const section = require('../../../src/website/section');
 const requestParser = require('../../../src/request-parser');
 
 describe('website/section', () => {
-  it('should be a function', (done) => {
-    expect(section).to.be.a('function');
-    done();
-  });
-
   describe('the default configuration', () => {
     const obj = {
       id: 1234,

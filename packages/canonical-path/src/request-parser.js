@@ -29,6 +29,22 @@ const buildWebsiteSectionParts = (parts) => {
   return built;
 };
 
+const buildMagazineIssueParts = (parts) => {
+  const allowed = ['id'];
+  const def = ['id'];
+
+  const built = buildParts({ parts, allowed, def });
+  return built;
+};
+
+const buildMagazinePublicationParts = (parts) => {
+  const allowed = ['id'];
+  const def = ['id'];
+
+  const built = buildParts({ parts, allowed, def });
+  return built;
+};
+
 const buildDynamicPageParts = (parts) => {
   const allowed = ['alias'];
   const def = ['alias'];
@@ -47,12 +63,22 @@ const parseWebsiteSectionHeader = (headerString) => {
   return buildWebsiteSectionParts(parts);
 };
 
+const parseMagazineIssueHeader = (headerString) => {
+  const parts = parseDelimitedString(headerString);
+  return buildMagazineIssueParts(parts);
+};
+
+const parseMagazinePublicationHeader = (headerString) => {
+  const parts = parseDelimitedString(headerString);
+  return buildMagazinePublicationParts(parts);
+};
+
 const parseDynamicPageHeader = (headerString) => {
   const parts = parseDelimitedString(headerString);
   return buildDynamicPageParts(parts);
 };
 
-const parseHeaderFor = (type, headerString) => {
+const parseHeaderPartsFor = (type, headerString) => {
   switch (type) {
     case 'content':
       return parseContentHeader(headerString);
@@ -60,8 +86,22 @@ const parseHeaderFor = (type, headerString) => {
       return parseDynamicPageHeader(headerString);
     case 'website-section':
       return parseWebsiteSectionHeader(headerString);
+    case 'magazine-issue':
+      return parseMagazineIssueHeader(headerString);
+    case 'magazine-publication':
+      return parseMagazinePublicationHeader(headerString);
     default:
       return [];
+  }
+};
+
+const parseHeaderPrefixFor = (type, headerString) => {
+  switch (type) {
+    case 'magazine-issue':
+    case 'magazine-publication':
+      return typeof headerString === 'undefined' ? 'magazine' : headerString;
+    default:
+      return headerString || '';
   }
 };
 
@@ -70,11 +110,17 @@ const parseHeaderFor = (type, headerString) => {
  */
 module.exports = (req) => {
   const headerPrefix = 'x-canonical';
-  return ['content', 'website-section', 'dynamic-page'].reduce((o, type) => ({
+  return [
+    'content',
+    'website-section',
+    'dynamic-page',
+    'magazine-issue',
+    'magazine-publication',
+  ].reduce((o, type) => ({
     ...o,
     [camelize(type)]: {
-      prefix: req.headers[`${headerPrefix}-${type}-prefix`] || '',
-      parts: parseHeaderFor(type, req.headers[`${headerPrefix}-${type}-parts`]),
+      prefix: parseHeaderPrefixFor(type, req.headers[`${headerPrefix}-${type}-prefix`]),
+      parts: parseHeaderPartsFor(type, req.headers[`${headerPrefix}-${type}-parts`]),
     },
   }), {});
 };
