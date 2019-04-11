@@ -1,0 +1,16 @@
+{
+  "tags": {
+    "cms-gtm-container": {
+      "template": "./container.marko",
+      "@container-id": {
+        "type": "expression",
+        "required": true
+      },
+      "@name": {
+        "type": "string",
+        "required": true,
+        "default-value": "dataLayer"
+      }
+    }
+  }
+}
