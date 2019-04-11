@@ -9,6 +9,7 @@ $ const { hasNextPage, endCursor } = getAsObject(input, 'pageInfo');
 $ const loadMoreParams = { ...params, after: endCursor };
 $ const props = {
   appendTo: input.appendTo,
+  maxPages: input.maxPages,
   blockName: input.blockName,
   label: input.label,
   params: { ...params, after: endCursor },

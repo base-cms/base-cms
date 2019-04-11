@@ -21,6 +21,7 @@
         "type": "string",
         "required": true
       },
+      "@max-pages": "number",
       "@block-name": "string",
       "@params": {
         "type": "object",

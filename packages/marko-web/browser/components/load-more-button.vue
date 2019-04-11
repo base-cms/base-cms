@@ -35,8 +35,9 @@ export default {
       type: String,
       required: true,
     },
+    maxPages: Number,
   },
-  data: () => ({ loading: false, display: 'block', error: null }),
+  data: () => ({ loading: false, hasLoaded: false, error: null }),
   computed: {
     buttonClass() {
       return { ...this.buttonClassObj, lazyload: true };
@@ -44,18 +45,35 @@ export default {
     buttonId() {
       return `load-more-${Date.now()}`
     },
+    display() {
+      if (this.hasLoaded) return 'none';
+      return 'block';
+    },
+    currentPage() {
+      return this.params.page || 0;
+    },
+    canLazyload() {
+      if (this.maxPages === 0) return false;
+      const max = parseInt(this.maxPages, 10);
+      if (!max) return true;
+      return this.currentPage < max;
+    },
   },
   created() {
-    document.addEventListener('lazybeforeunveil', this.lazyload.bind(this));
+    if (this.canLazyload) document.addEventListener('lazybeforeunveil', this.lazyload.bind(this));
   },
   methods: {
     lazyload({ target }) {
       if (target.id === this.buttonId) this.load();
     },
     async load() {
+      const params = {
+        ...this.params,
+        page: this.currentPage + 1,
+      };
       this.error = null;
       this.loading = true;
-      const q = encodeURIComponent(JSON.stringify(this.params));
+      const q = encodeURIComponent(JSON.stringify(params));
       const href = `/load-more/${this.blockName}?q=${q}`
       try {
         const r = await fetch(href);
@@ -68,12 +86,12 @@ export default {
             $(temp).replaceWith(html);
           }
         }
-        this.display = 'none';
       } catch (e) {
         // @todo Log this!
         this.error = e;
       } finally {
         this.loading = false;
+        this.hasLoaded = true;
         document.removeEventListener('lazybeforeunveil', this.lazyload);
       }
     }
