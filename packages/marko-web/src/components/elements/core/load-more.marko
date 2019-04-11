@@ -10,7 +10,7 @@ $ const loadMoreParams = { ...params, after: endCursor };
 $ const props = {
   appendTo: input.appendTo,
   blockName: input.blockName,
-  label: input.label || 'Load More',
+  label: input.label,
   params: { ...params, after: endCursor },
   buttonClassObj: input.buttonClassObj,
   wrappingClassObj: input.wrappingClassObj,

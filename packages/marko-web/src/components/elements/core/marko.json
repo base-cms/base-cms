@@ -16,7 +16,26 @@
       "template": "./link.marko"
     },
     "cms-load-more-element": {
-      "template": "./load-more.marko"
+      "template": "./load-more.marko",
+      "@append-to": {
+        "type": "string",
+        "required": true
+      },
+      "@block-name": "string",
+      "@params": {
+        "type": "object",
+        "required": true
+      },
+      "@page-info": {
+        "type": "object",
+        "required": true
+      },
+      "@label": {
+        "type": "string",
+        "default-value": "Load More"
+      },
+      "@button-class-obj": "object",
+      "@wrapping-class-obj": "object"
     }
   }
 }
