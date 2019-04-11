@@ -8,6 +8,7 @@ $ if (params.renderBody) delete params.renderBody;
 $ const { hasNextPage, endCursor } = getAsObject(input, 'pageInfo');
 $ const loadMoreParams = { ...params, after: endCursor };
 $ const props = {
+  appendTo: input.appendTo,
   blockName: input.blockName,
   label: input.label || 'Load More',
   params: { ...params, after: endCursor },

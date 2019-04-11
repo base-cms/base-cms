@@ -1,9 +1,9 @@
 <template>
-  <div v-bind:class="wrappingClassObj" v-if="error">
+  <div v-bind:class="wrappingClassObj" v-bind:style="{ display: display }" v-if="error">
     <pre>An unexpected error occurred: {{ error.message }}</pre>
     <pre>{{ error.stack }}</pre>
   </div>
-  <div v-bind:class="wrappingClassObj" v-else>
+  <div v-bind:class="wrappingClassObj" v-bind:style="{ display: display }" v-else>
     <button v-on:click="load()" v-bind:disabled="loading" v-bind:class="buttonClassObj">
       <template v-if="loading">
         Loading...
@@ -31,8 +31,12 @@ export default {
       type: String,
       default: 'Load More',
     },
+    appendTo: {
+      type: String,
+      required: true,
+    },
   },
-  data: () => ({ loading: false, error: null }),
+  data: () => ({ loading: false, display: 'block', error: null }),
   methods: {
     async load() {
       this.error = null;
@@ -42,7 +46,15 @@ export default {
       try {
         const r = await fetch(href);
         const html = await r.text();
-        $(this.$el).replaceWith(html);
+        const temp = document.createElement('div');
+        if (this.appendTo) {
+          const parent = document.querySelector(this.appendTo);
+          if (parent) {
+            parent.appendChild(temp);
+            $(temp).replaceWith(html);
+          }
+        }
+        this.display = 'none';
       } catch (e) {
         // @todo Log this!
         this.error = e;
