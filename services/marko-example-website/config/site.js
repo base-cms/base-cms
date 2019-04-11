@@ -23,6 +23,9 @@ module.exports = {
       HP: { path: '/21687441225/Officer/Officer_HP', size: [300, 600] },
     },
   },
+  magazines: {
+    description: 'Law Enforcement Technology (LET) and Law Enforcement Product News (LEPN) are the leading magazine publications for the police and law enforcement community.',
+  },
   // logo: 'https://cdn.evaluationengineering.com/files/base/ebm/ee/image/static/logo/site_logo_bare.png',
   // primaryNavItems: [
   //   { href: '/applications', label: 'Applications' },

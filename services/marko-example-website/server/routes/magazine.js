@@ -23,6 +23,7 @@ module.exports = (app) => {
           id
           src
         }
+        canonicalPath
       }
     `,
   }));
@@ -37,6 +38,7 @@ module.exports = (app) => {
         coverDescription
         credit
         digitalEditionUrl
+        canonicalPath
         coverImage {
           id
           src
@@ -46,6 +48,7 @@ module.exports = (app) => {
           name
           description
           subscribeUrl
+          canonicalPath
         }
       }
     `,

@@ -13,7 +13,7 @@ $ const issue = getAsObject(data, 'issue');
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="text-uppercase breadcrumb-item small"><a href="/magazine">Magazines</a></li>
-              <li class="text-uppercase breadcrumb-item small"><a href=`/magazine/${issue.publication.id}`>${issue.publication.name}</a></li>
+              <li class="text-uppercase breadcrumb-item small"><cms-link-element to=issue.publication>${issue.publication.name}</cms-link-element></li>
               <li class="text-uppercase breadcrumb-item small">${issue.name}</li>
             </ol>
           </nav>

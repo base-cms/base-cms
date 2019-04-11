@@ -2,6 +2,8 @@ import { getAsArray, get } from '@base-cms/object-path';
 import publicationFragment from '../../api/fragments/magazine-publication';
 import latestIssueFragment from '../../api/fragments/magazine-latest-issue';
 
+$ const { config, site } = out.global;
+
 <layout>
   <cms-ad-gam-display id="gpt-ad-bs" class="text-center" />
 
@@ -16,8 +18,8 @@ import latestIssueFragment from '../../api/fragments/magazine-latest-issue';
             </ol>
           </nav>
 
-          <h1 class="mb-2">Officer.com Magazines</h1>
-          <p>Law Enforcement Technology (LET) and Law Enforcement Product News (LEPN) are the leading magazine publications for the police and law enforcement community.</p>
+          <h1 class="mb-2">${config.get('siteName')} Magazines</h1>
+          <p>${site.get('magazines.description')}</p>
         </div>
       </div>
     </div>
