@@ -3,15 +3,11 @@ const buildQuery = require('../gql/query-factories/block-magazine-scheduled-cont
 /**
  * @param {ApolloClient} apolloClient The Apollo GraphQL client that will perform the query.
  * @param {object} params
- * @param {number} params.sectionId The section ID. Required.
  * @param {number} [params.limit] The number of results to return.
+ * @param {number} [params.skip] The number of results to skip.
  * @param {string} [params.after] The cursor to start returning results from.
- * @param {number} [params.optionId] The option ID.
- * @param {number[]} [params.excludeContentIds] An array of content IDs to exclude.
- * @param {string[]} [params.excludeContentTypes] An array of content types to exclude.
- * @param {string[]} [params.includeContentTypes] An array of content types to include.
- * @param {boolean} [params.requiresImage] Whether the content must have an image.
- * @param {boolean} [params.sectionBubbling] Whether automatic section bubbling is applied.
+ * @param {number} [params.issueId] The issue identifier to use when finding scheduled content.
+ * @param {object} [params.sort] The sort clause
  * @param {string} [params.queryFragment] The `graphql-tag` fragment
  *                                        to apply to the `magazineScheduledContent` query.
  */
@@ -20,14 +16,15 @@ module.exports = async (apolloClient, {
   skip,
   after,
   issueId,
+  sort,
   queryFragment,
 } = {}) => {
   const pagination = { limit, skip, after };
   const input = {
+    sort,
     pagination,
     issueId,
   };
-  console.log(input);
   const query = buildQuery({ queryFragment });
   const variables = { input };
 

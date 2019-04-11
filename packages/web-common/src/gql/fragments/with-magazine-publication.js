@@ -6,7 +6,7 @@ fragment WithMagazinePublicationFragment on MagazinePublication {
   id
   name
   description
-  # canonicalPath
+  canonicalPath
   # metadata {
   #   title
   #   description

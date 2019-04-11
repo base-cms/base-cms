@@ -9,7 +9,7 @@ fragment WithMagazineIssueFragment on MagazineIssue {
   coverImage {
     src
   }
-  # canonicalPath
+  canonicalPath
   # metadata {
   #   title
   #   description

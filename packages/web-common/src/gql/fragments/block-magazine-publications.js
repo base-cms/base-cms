@@ -6,7 +6,7 @@ fragment BlockMagazinePublicationsFragment on MagazinePublication {
   id
   name
   description
-  # canonicalPath
+  canonicalPath
 }
 
 `;
