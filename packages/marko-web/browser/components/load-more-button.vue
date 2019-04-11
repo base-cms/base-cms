@@ -4,7 +4,7 @@
     <pre>{{ error.stack }}</pre>
   </div>
   <div v-bind:class="wrappingClassObj" v-bind:style="{ display: display }" v-else>
-    <button v-on:click="load()" v-bind:disabled="loading" v-bind:class="buttonClassObj">
+    <button v-bind:id="buttonId" v-on:click="load()" v-bind:disabled="loading" v-bind:class="buttonClass">
       <template v-if="loading">
         Loading...
       </template>
@@ -37,7 +37,21 @@ export default {
     },
   },
   data: () => ({ loading: false, display: 'block', error: null }),
+  computed: {
+    buttonClass() {
+      return { ...this.buttonClassObj, lazyload: true };
+    },
+    buttonId() {
+      return `load-more-${Date.now()}`
+    },
+  },
+  created() {
+    document.addEventListener('lazybeforeunveil', this.lazyload.bind(this));
+  },
   methods: {
+    lazyload({ target }) {
+      if (target.id === this.buttonId) this.load();
+    },
     async load() {
       this.error = null;
       this.loading = true;
@@ -60,6 +74,7 @@ export default {
         this.error = e;
       } finally {
         this.loading = false;
+        document.removeEventListener('lazybeforeunveil', this.lazyload);
       }
     }
   },
