@@ -39,6 +39,18 @@ const buildForWebsiteSection = (block, obj, modifiers) => {
   return build(block, 'website-section', mods);
 };
 
+const buildForMagazineIssue = (block, obj, modifiers) => {
+  const id = get(obj, 'id');
+  const mods = joinModifiers([id], modifiers);
+  return build(block, 'magazine-issue', mods);
+};
+
+const buildForMagazinePublication = (block, obj, modifiers) => {
+  const id = get(obj, 'id');
+  const mods = joinModifiers([id], modifiers);
+  return build(block, 'magazine-publication', mods);
+};
+
 module.exports = (block, obj, modifiers) => {
   const type = objectTypeName(obj);
   switch (type) {
@@ -46,6 +58,10 @@ module.exports = (block, obj, modifiers) => {
       return buildForContent(block, obj, modifiers);
     case 'website-section':
       return buildForWebsiteSection(block, obj, modifiers);
+    case 'magazine-issue':
+      return buildForMagazineIssue(block, obj, modifiers);
+    case 'magazine-publication':
+      return buildForMagazinePublication(block, obj, modifiers);
     case 'dynamic-page':
       return buildForDynamicPage(block, obj, modifiers);
     default:
