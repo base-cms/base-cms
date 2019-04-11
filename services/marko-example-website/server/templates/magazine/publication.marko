@@ -1,6 +1,7 @@
 import { getAsObject, get } from '@base-cms/object-path';
 
 $ const publication = getAsObject(data, 'publication');
+$ const magazines = { canonicalPath: '/magazine' };
 
 <layout>
   <cms-ad-gam-display id="gpt-ad-bs" class="text-center" />
@@ -12,7 +13,7 @@ $ const publication = getAsObject(data, 'publication');
 
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-              <li class="text-uppercase breadcrumb-item small"><a href="/magazine">Magazines</a></li>
+              <li class="text-uppercase breadcrumb-item small"><cms-link-element to=magazines>Magazines</cms-link-element></li>
               <li class="text-uppercase breadcrumb-item small">${publication.name}</li>
             </ol>
           </nav>
