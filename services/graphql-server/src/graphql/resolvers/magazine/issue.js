@@ -15,17 +15,15 @@ module.exports = {
      *
      */
     magazineLatestIssue: async (_, { input }, { basedb }) => {
-      const { publicationId } = input;
+      const { publicationId, sort: { field, order } } = input;
       const mailDate = new Date();
       const query = {
         status: 1,
         'publication.$id': publicationId,
         mailDate: { $lte: mailDate },
       };
-      const options = {
-        sort: [['mailDate', 'descending']],
-      };
-      return basedb.findOne('magazine.Issue', query, options);
+      const sort = { [field]: order === 'desc' ? -1 : 1 };
+      return basedb.findOne('magazine.Issue', query, { sort });
     },
   },
 };
