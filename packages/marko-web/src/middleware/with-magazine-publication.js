@@ -6,8 +6,6 @@ module.exports = ({
   queryFragment,
 } = {}) => asyncRoute(async (req, res) => {
   const { apollo } = req;
-  const { id } = req.params;
-
-  const publication = await loader(apollo, { id, queryFragment });
+  const publication = await loader(apollo, { id: req.params.id, queryFragment });
   return res.marko(template, { publication });
 });
