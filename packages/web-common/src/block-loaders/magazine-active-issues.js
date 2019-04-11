@@ -8,7 +8,7 @@ const buildQuery = require('../gql/query-factories/block-magazine-active-issues'
  */
 module.exports = async (apolloClient, input = {}) => {
   const {
-    id,
+    publicationId,
     queryFragment,
     limit,
     skip,
@@ -17,7 +17,7 @@ module.exports = async (apolloClient, input = {}) => {
   } = input;
   const query = buildQuery({ queryFragment });
   const pagination = { limit, skip, after };
-  const variables = { input: { id, sort, pagination } };
+  const variables = { input: { publicationId, sort, pagination } };
 
   const { data } = await apolloClient.query({ query, variables });
   if (!data || !data.magazineActiveIssues) return { nodes: [], pageInfo: {} };

@@ -19,9 +19,9 @@ module.exports = async (apolloClient, {
     throw createError(400, 'No magazine publication id was provided.');
   }
 
-  // Query for the magazine publication (and any potential redirects) using the id.
+  // Query for the magazine publication using the id.
   const input = { ...additionalInput, id };
-  const variables = { input, redirect: input };
+  const variables = { input };
   const { data } = await apolloClient.query({ query: buildQuery({ queryFragment }), variables });
 
   const { magazinePublication: publication } = data;
@@ -30,6 +30,6 @@ module.exports = async (apolloClient, {
     // The magazine publication was found.
     return publication;
   }
-  // No magazine publication or redirect was found for this id. Return a 404.
+  // No magazine publication was found for this id. Return a 404.
   throw createError(404, `No magazine publication was found for id '${id}'`);
 };

@@ -7,7 +7,7 @@ const { extractFragmentData } = require('../../utils');
  *
  * @param {object} params
  * @param {string} [params.queryFragment] The `graphql-tag` fragment
- *                                        to apply to the `magazineIssueAlias` query.
+ *                                        to apply to the `magazineIssue` query.
  */
 module.exports = ({ queryFragment } = {}) => {
   const { spreadFragmentName, processedFragment } = extractFragmentData(queryFragment);
