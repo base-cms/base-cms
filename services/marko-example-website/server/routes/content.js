@@ -12,6 +12,10 @@ module.exports = (app) => {
         teaser(input: { useFallback: false })
         body
         published
+        createdBy {
+          id
+          username
+        }
         company {
           id
           name
@@ -20,6 +24,7 @@ module.exports = (app) => {
         primarySection {
           id
           name
+          fullName
           alias
           canonicalPath
           hierarchy {
