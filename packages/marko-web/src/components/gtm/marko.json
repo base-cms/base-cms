@@ -11,6 +11,9 @@
         "required": true,
         "default-value": "dataLayer"
       }
+    },
+    "cms-gtm-track-event": {
+      "template": "./track-event.marko"
     }
   }
 }
