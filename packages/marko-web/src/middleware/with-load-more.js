@@ -4,17 +4,21 @@ const loadMore = require('../components/document/components/load-more-result');
 
 module.exports = ({
   blocks = {},
-} = {}) => asyncRoute(async (req, res) => {
-  const { query, params } = req;
-  const { blockName } = params;
-  if (!blockName) throw createError(400, 'No block name was provided with the load more request.');
-  const block = blocks[blockName];
-  if (!block) throw createError(404, `A load more block template for '${blockName}' was not found.`);
+} = {}) => asyncRoute(async (req, res, next) => {
+  try {
+    const { query, params } = req;
+    const { blockName } = params;
+    if (!blockName) throw createError(400, 'No block name was provided with the load more request.');
+    const block = blocks[blockName];
+    if (!block) throw createError(404, `A load more block template for '${blockName}' was not found.`);
 
-  const input = JSON.parse(query.q || null) || {};
+    const input = JSON.parse(query.q || null) || {};
 
-  res.marko(loadMore, {
-    block,
-    input,
-  });
+    res.marko(loadMore, {
+      block,
+      input,
+    });
+  } catch (e) {
+    next(e);
+  }
 });
