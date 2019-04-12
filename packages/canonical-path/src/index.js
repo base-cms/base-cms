@@ -1,4 +1,4 @@
-const platformContent = require('./platform/content');
+const content = require('./platform/content');
 const websiteSection = require('./website/section');
 const requestParser = require('./request-parser');
 const magazineIssue = require('./magazine/issue');
@@ -8,6 +8,6 @@ module.exports = {
   requestParser,
   magazineIssue,
   magazinePublication,
-  platformContent,
+  content,
   websiteSection,
 };

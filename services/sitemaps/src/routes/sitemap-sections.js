@@ -1,9 +1,6 @@
+const { websiteSection: canonicalPathFor, requestParser: getCanonicalRules } = require('@base-cms/canonical-path');
 const { asyncRoute } = require('@base-cms/utils');
 const moment = require('moment');
-const {
-  websiteSection: canonicalPathFor,
-  requestParser: getCanonicalRules,
-} = require('@base-cms/canonical-path');
 
 const { getSections } = require('../util');
 
