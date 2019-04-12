@@ -1,4 +1,3 @@
-const { asyncRoute } = require('@base-cms/utils');
 const gql = require('graphql-tag');
 
 const query = gql`
@@ -10,13 +9,10 @@ const query = gql`
   }
 `;
 
-module.exports = asyncRoute(async (req, res) => {
+module.exports = async (req) => {
   const { apollo, path: from } = req;
   const variables = { input: { from } };
   const { data } = await apollo.query({ query, variables });
   const { websiteRedirect } = data;
-  if (websiteRedirect) {
-    const { to, code } = websiteRedirect;
-    res.redirect(code, to);
-  }
-});
+  return websiteRedirect;
+};
