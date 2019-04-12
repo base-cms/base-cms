@@ -5,6 +5,7 @@ module.exports = gql`
 extend type Query {
   websiteSite(input: WebsiteSiteQueryInput!): WebsiteSite @findOne(model: "platform.Product", using: { id: "_id" }, criteria: "websiteSite")
   websiteSites(input: WebsiteSitesQueryInput = {}): WebsiteSiteConnection! @findMany(model: "platform.Product", criteria: "websiteSite")
+  websiteRedirect(input: WebsiteRedirectQueryInput!): WebsiteRedirect @findOne(model: "website.Redirects", using: { from: "from" })
 }
 
 type WebsiteSite {
@@ -31,6 +32,12 @@ type WebsiteSite {
   rootSections(input: WebsiteSiteRootSectionsInput = {}): WebsiteSectionConnection! @projection(localField: "_id") @refMany(model: "website.Section", localField: "_id", foreignField: "site.$id", criteria: "rootWebsiteSection")
 }
 
+type WebsiteRedirect {
+  from: String!
+  to: String!
+  code: Int!
+}
+
 type WebsiteSiteConnection @projectUsing(type: "WebsiteSite") {
   totalCount: Int!
   edges: [WebsiteSiteEdge]!
@@ -46,6 +53,10 @@ enum WebsiteSiteSortField {
   id
   name
   fullName
+}
+
+input WebsiteRedirectQueryInput {
+  from: String!
 }
 
 input WebsiteSiteQueryInput {
