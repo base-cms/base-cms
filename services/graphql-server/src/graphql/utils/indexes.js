@@ -102,6 +102,11 @@ module.exports = {
     },
   },
   website: {
+    Redirects: {
+      query: [
+        { from: 1 },
+      ],
+    },
     Option: {
       query: [
         { status: 1, _id: 1 },
