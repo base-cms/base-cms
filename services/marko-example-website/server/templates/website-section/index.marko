@@ -23,7 +23,7 @@ $ const section = getAsObject(data, 'section');
               <div class="d-flex my-auto mr-3">
                 <a href=content.canonicalPath>
                   <if(content.primaryImage)>
-                    <img src=`${content.primaryImage.src}?auto=format&w=160&h=160&fit=crop&crop=focalpoint&fp-x=0.5&fp-y=0.5` style="max-width: 160px; max-height: 160px; border-radius: 0.5rem;" />
+                    <img class="lazyload" data-src=`${content.primaryImage.src}?auto=format&w=160&h=160&fit=crop&crop=focalpoint&fp-x=0.5&fp-y=0.5` style="max-width: 160px; max-height: 160px; border-radius: 0.5rem;" />
                   </if>
                   <else>
                     <!-- @todo Add a site logo within the no-image, image? -->
