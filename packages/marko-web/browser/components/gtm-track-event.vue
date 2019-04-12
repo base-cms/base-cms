@@ -41,7 +41,6 @@ export default {
     const { dataLayer } = window;
     if (!dataLayer) return;
     this.resetDataLayer();
-    console.log('push', { event: this.name, ...this.vars, ...context });
     dataLayer.push({ event: this.name, ...this.vars, ...context });
   },
 }
