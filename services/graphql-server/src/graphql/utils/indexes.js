@@ -15,7 +15,7 @@ module.exports = {
     Issue: {
       query: [
         { status: 1, _id: 1 },
-        { status: 1, 'publication.$id': 1 },
+        { status: 1, mailDate: -1, 'publication.$id': 1 },
       ],
       sort: [
         [{ name: 1, _id: 1 }, { collation: { locale: 'en_US' } }],

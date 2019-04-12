@@ -1,9 +1,13 @@
-const content = require('./content');
-const section = require('./section');
+const content = require('./platform/content');
+const websiteSection = require('./website/section');
 const requestParser = require('./request-parser');
+const magazineIssue = require('./magazine/issue');
+const magazinePublication = require('./magazine/publication');
 
 module.exports = {
-  content,
-  section,
   requestParser,
+  magazineIssue,
+  magazinePublication,
+  content,
+  websiteSection,
 };

@@ -5,6 +5,18 @@
     },
     "cms-query-related-published-content": {
       "template": "./related-published-content.marko"
+    },
+    "cms-query-magazine-publications": {
+      "template": "./magazine-publications.marko"
+    },
+    "cms-query-magazine-latest-issue": {
+      "template": "./magazine-latest-issue.marko"
+    },
+    "cms-query-magazine-active-issues": {
+      "template": "./magazine-active-issues.marko"
+    },
+    "cms-query-magazine-scheduled-content": {
+      "template": "./magazine-scheduled-content.marko"
     }
   }
 }

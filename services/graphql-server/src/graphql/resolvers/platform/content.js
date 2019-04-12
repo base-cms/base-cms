@@ -162,6 +162,41 @@ module.exports = {
     },
 
     /**
+     * @todo add content publishing fields to magaazine schedules
+     */
+    magazineScheduledContent: async (_, { input }, { basedb }, info) => {
+      const {
+        issueId,
+        sectionId,
+        excludeContentIds,
+        includeContentTypes: contentTypes,
+        requiresImage,
+        pagination,
+      } = input;
+
+      const since = new Date();
+      const idQuery = {
+        issue: issueId,
+      };
+      if (sectionId) idQuery.section = sectionId;
+
+      const ids = await basedb.distinct('magazine.Schedule', 'content.$id', idQuery);
+
+      const query = getPublishedCriteria({ excludeContentIds, contentTypes, since });
+      query.$and.push({ _id: { $in: ids } });
+
+      if (requiresImage) query.primaryImage = { $exists: true };
+
+      const projection = connectionProjection(info);
+      return basedb.paginate('platform.Content', {
+        query,
+        projection,
+        sort: { field: 'published', order: 'desc' },
+        ...pagination,
+      });
+    },
+
+    /**
      *
      */
     websiteScheduledContent: async (_, { input }, { basedb }, info) => {

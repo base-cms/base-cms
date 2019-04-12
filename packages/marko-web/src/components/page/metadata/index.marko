@@ -16,3 +16,12 @@ $ const attrs = {
 <else-if(input.for === 'dynamic-page')>
   <dynamic-page metadata=metadata canonicalPath=canonicalPath />
 </else-if>
+<else-if(input.for === 'magazine-issue')>
+  <magazine-issue metadata=metadata canonicalPath=canonicalPath />
+</else-if>
+<else-if(input.for === 'magazine-publication')>
+  <magazine-publication metadata=metadata canonicalPath=canonicalPath />
+</else-if>
+<else>
+<pre>${input.for}</pre>
+</else>

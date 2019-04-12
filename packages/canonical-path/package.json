@@ -6,6 +6,10 @@
   "author": "Josh Worden <josh@limit0.io>",
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/canonical-path",
   "license": "MIT",
+  "scripts": {
+    "test": "yarn run lint && ../../node_modules/.bin/mocha --reporter spec",
+    "lint": "../../node_modules/.bin/eslint \"src/**/*.js\""
+  },
   "dependencies": {
     "@base-cms/db": "^0.7.0",
     "@base-cms/inflector": "^0.7.0",
