@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/canonical-path",
-  "version": "0.7.0",
+  "version": "0.7.4",
   "description": "Canonical path library for BaseCMS projects.",
   "main": "src/index.js",
   "author": "Josh Worden <josh@limit0.io>",
