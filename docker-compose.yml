@@ -95,9 +95,11 @@ services:
       LIVERELOAD_PORT: 10008
       GRAPHQL_URI: ${GRAPHQL_URI-http://graphql-server}
       SITEMAPS_URI: ${SITEMAPS_URI-http://sitemaps}
+      RSS_URI: ${RSS_URI-http://rss}
     depends_on:
       - graphql-server
       - sitemaps
+      - rss
     ports:
       - "10007:80"
       - "10008:10008" # livereload port

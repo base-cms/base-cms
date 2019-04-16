@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const apollo = require('./apollo');
 const marko = require('./marko');
+const rss = require('./rss');
 const sitemaps = require('./sitemaps');
 const CoreConfig = require('../config/core');
 const SiteConfig = require('../config/site');
@@ -38,6 +39,9 @@ module.exports = (config = {}) => {
 
   // Register sitemaps.
   sitemaps(app);
+
+  // Register RSS Feeds.
+  rss(app);
 
   return app;
 };
