@@ -26,3 +26,7 @@ jobs:
     - stage: deploy
       name: Sitemaps
       script: scripts/deploy.js sitemaps
+
+    - stage: deploy
+      name: RSS
+      script: scripts/deploy.js rss

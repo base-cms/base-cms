@@ -138,6 +138,18 @@ services:
     ports:
       - "10009:80"
 
+  rss:
+    << : *node
+    working_dir: /base-cms/services/rss
+    command: ["/base-cms/node_modules/.bin/gulp"]
+    environment:
+      <<: *env
+      <<: *env-mongo
+    depends_on:
+      - mongodb
+    ports:
+      - "10011:80"
+
 volumes:
   esdata: {}
   mongodb: {}
