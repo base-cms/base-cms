@@ -3,7 +3,7 @@ const defaultFragment = require('../fragments/block-all-published-content');
 const { extractFragmentData } = require('../../utils');
 
 /**
- * Builds the `BlockPublishedContent` GraphQL operation.
+ * Builds the `BlockAllPublishedContent` GraphQL operation.
  *
  * @param {object} params
  * @param {string} [params.queryFragment] The `graphql-tag` fragment
