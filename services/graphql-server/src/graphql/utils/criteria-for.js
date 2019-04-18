@@ -1,4 +1,6 @@
-const contentTypes = require('./content-types');
+const { getDefaultContentTypes } = require('@base-cms/utils');
+
+const contentTypes = getDefaultContentTypes();
 
 const criterion = {
   assetImage: () => ({ type: 'Image' }),
