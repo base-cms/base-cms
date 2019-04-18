@@ -20,9 +20,9 @@ module.exports = async (apolloClient, {
   limit,
   skip,
   after,
+  beginning,
+  ending,
 
-  startDate,
-  startDirection,
   sortField: field,
   sortOrder: order,
 
@@ -40,8 +40,8 @@ module.exports = async (apolloClient, {
     requiresImage,
     sectionBubbling,
     sectionId,
-    startDate,
-    startDirection,
+    beginning,
+    ending,
   };
   if (field || order) input.sort = { field, order };
   const query = buildQuery({ queryFragment });

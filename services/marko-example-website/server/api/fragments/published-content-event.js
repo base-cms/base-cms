@@ -20,8 +20,8 @@ fragment PublishedContentEventQueryFragment on ContentEvent {
     id
     src
   }
-  startDate
-  endDate
+  starts
+  ends
 }
 
 `;

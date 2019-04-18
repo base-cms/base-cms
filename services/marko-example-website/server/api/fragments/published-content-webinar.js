@@ -20,7 +20,7 @@ fragment PublishedContentWebinarQueryFragment on ContentWebinar {
     id
     src
   }
-  startDate
+  starts
 }
 
 `;
