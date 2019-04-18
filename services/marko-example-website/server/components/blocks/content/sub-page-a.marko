@@ -32,10 +32,9 @@ $ const queryFragment = gql`
 
 $ const pageNumber = input.pageNumber || 1;
 $ const block = 'content-sub-page-a';
-$ const limit = 15;
 $ const query = {
   ...input.query,
-  limit,
+  limit: 15,
   queryFragment,
 };
 $ const loadMore = {
@@ -55,27 +54,27 @@ $ const context = JSON.stringify({
 });
 
 <cms-query-website-scheduled-content|{ nodes, pageInfo }| ...query>
-    <div class="load-more-page" data-context=context>
-      <!-- @todo Should this even be a core component? It needs to fire on in-view. -->
-      <cms-gtm-track-event name="page_load" />
-      <content-flow-card-deck-a nodes=nodes.slice(0, 11) />
-      <content-flow-card-list-a nodes=nodes.slice(11) />
+  <div class="load-more-page" data-context=context>
+    <!-- @todo Should this even be a core component? It needs to fire on in-view. -->
+    <cms-gtm-track-event name="page_load" />
+    <content-flow-card-deck-a nodes=nodes.slice(0, 11) />
+    <content-flow-card-list-a nodes=nodes.slice(11) />
 
-      $ const { endCursor, hasNextPage } = pageInfo;
-      $ delete query.skip;
-      $ delete query.queryFragment;
-      $ query.after = endCursor;
-      $ const provide = { ...input, query };
+    $ const { endCursor, hasNextPage } = pageInfo;
+    $ delete query.skip;
+    $ delete query.queryFragment;
+    $ query.after = endCursor;
+    $ const provide = { ...input, query };
 
-      <cms-load-more-element
-        show=hasNextPage
-        page-number=pageNumber
-        append-to=loadMore.appendTo
-        max-pages=loadMore.maxPages
-        block-name="content-block-sub-page-a"
-        provide=provide
-        button-class-obj={ btn: true, 'btn-lg': true, 'btn-primary': true }
-        wrapping-class-obj={ 'text-center': true, 'pb-3': true }
-      />
-    </div>
+    <cms-load-more-element
+      show=hasNextPage
+      page-number=pageNumber
+      append-to=loadMore.appendTo
+      max-pages=loadMore.maxPages
+      block-name="content-block-sub-page-a"
+      provide=provide
+      button-class-obj={ btn: true, 'btn-lg': true, 'btn-primary': true }
+      wrapping-class-obj={ 'text-center': true, 'pb-3': true }
+    />
+  </div>
 </cms-query-website-scheduled-content>
