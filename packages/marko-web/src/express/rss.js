@@ -14,5 +14,5 @@ module.exports = (app) => {
       return { ...reqOpts, headers };
     },
   };
-  app.use('/rss/*.xml', proxy(SERVICE_URI, opts));
+  app.use('/rss/:alias([a-z-_/]+).xml', proxy(SERVICE_URI, opts));
 };
