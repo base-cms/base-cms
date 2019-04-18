@@ -20,6 +20,13 @@ fragment PublishedContentQueryFragment on Content {
     id
     src
   }
+  ... on ContentWebinar {
+    starts
+  }
+  ... on ContentEvent {
+    starts
+    ends
+  }
 }
 
 `;
