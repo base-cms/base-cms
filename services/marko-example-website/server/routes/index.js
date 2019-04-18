@@ -1,6 +1,6 @@
 const contentTypes = require('./content');
 const dynamicPages = require('./dynamic-page');
-const index = require('../templates/index');
+const home = require('./home');
 const loadMore = require('./load-more');
 const websiteSections = require('./website-section');
 const magazine = require('./magazine');
@@ -10,9 +10,7 @@ module.exports = (app) => {
   app.set('trust proxy', ['loopback', 'linklocal', 'uniquelocal']);
 
   // Homepage
-  app.get('/', (req, res) => {
-    res.marko(index);
-  });
+  home(app);
 
   // Load More / Infinite Scroll
   loadMore(app);

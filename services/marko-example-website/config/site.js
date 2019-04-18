@@ -23,6 +23,9 @@ module.exports = {
       HP: { path: '/21687441225/Officer/Officer_HP', size: [300, 600] },
     },
   },
+  gtm: {
+    containerId: 'GTM-M94ZBBC',
+  },
   magazines: {
     description: 'Law Enforcement Technology (LET) and Law Enforcement Product News (LEPN) are the leading magazine publications for the police and law enforcement community.',
   },

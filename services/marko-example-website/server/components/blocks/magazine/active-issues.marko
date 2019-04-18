@@ -14,15 +14,18 @@ $ const queryFragment = gql`
 `;
 
 $ const block = 'magazine-active-issues';
-$ const params = {
-  name: true,
-  loadMore: true,
+$ const pageNumber = input.pageNumber || 1;
+$ const query = {
   limit: 12,
-  ...input,
+  ...input.query,
   queryFragment,
 };
+$ const loadMore = {
+  ...input.loadMore,
+};
 
-<cms-query-magazine-active-issues|{ nodes, pageInfo }| ...params>
+
+<cms-query-magazine-active-issues|{ nodes, pageInfo }| ...query>
   <div class="row">
     <for|issue| of=nodes>
       <div class="col col-md-6 col-lg-4 col-xl-3 text-center">
@@ -35,23 +38,29 @@ $ const params = {
             linkTo=issue
             linkClass="card-image-top"
           />
-          <if(params.name)>
-            <p class="card-body">
-              <cms-link-element to=issue>${issue.name}</cms-link-element>
-            </p>
-          </if>
+          <p class="card-body">
+            <cms-link-element to=issue>${issue.name}</cms-link-element>
+          </p>
         </div>
       </div>
     </for>
-    <if(params.loadMore)>
-      <cms-load-more-element
-        blockName="magazine-block-active-issues"
-        label="Load More Issues"
-        params=params
-        page-info=pageInfo
-        button-class-obj={ btn: true, 'btn-lg': true, 'btn-primary': true }
-        wrapping-class-obj={ col: true, 'text-center': true, 'pb-3': true }
-      />
-    </if>
+
+    $ const { endCursor, hasNextPage } = pageInfo;
+    $ delete query.skip;
+    $ delete query.queryFragment;
+    $ query.after = endCursor;
+    $ const provide = { ...input, query };
+
+    <cms-load-more-element
+      show=hasNextPage
+      page-number=pageNumber
+      append-to=loadMore.appendTo
+      max-pages=loadMore.maxPages
+      block-name="magazine-block-active-issues"
+      label="Load More Issues"
+      provide=provide
+      button-class-obj={ btn: true, 'btn-lg': true, 'btn-primary': true }
+      wrapping-class-obj={ col: true, 'text-center': true, 'pb-3': true }
+    />
   </div>
 </cms-query-magazine-active-issues>

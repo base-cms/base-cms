@@ -16,7 +16,31 @@
       "template": "./link.marko"
     },
     "cms-load-more-element": {
-      "template": "./load-more.marko"
+      "template": "./load-more.marko",
+      "@page-number": {
+        "type": "number",
+        "default-value": 1
+      },
+      "@append-to": {
+        "type": "string",
+        "required": true
+      },
+      "@show": {
+        "type": "boolean",
+        "default-value": true
+      },
+      "@max-pages": "number",
+      "@block-name": "string",
+      "@provide": {
+        "type": "object",
+        "required": true
+      },
+      "@label": {
+        "type": "string",
+        "default-value": "Load More"
+      },
+      "@button-class-obj": "object",
+      "@wrapping-class-obj": "object"
     }
   }
 }

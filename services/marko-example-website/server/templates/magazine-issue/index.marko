@@ -56,6 +56,6 @@ $ const magazines = { canonicalPath: '/magazine' };
   <hr>
 
   <h2 class="text-center text-uppercase mb-3">In This Issue:</h2>
-  <magazine-block-issue-content issue-id=issue.id />
+  <magazine-block-issue-content query={ issueId: issue.id } load-more={ appendTo: '.container-fluid-max' } />
 
 </layout>
