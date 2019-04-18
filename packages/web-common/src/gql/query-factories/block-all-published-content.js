@@ -13,7 +13,7 @@ const { extractFragmentData } = require('../../utils');
 module.exports = ({ queryFragment }) => {
   const { spreadFragmentName, processedFragment } = extractFragmentData(queryFragment);
   return gql`
-    query BlockPublishedContent($input: AllPublishedContentQueryInput!) {
+    query BlockAllPublishedContent($input: AllPublishedContentQueryInput!) {
       allPublishedContent(input: $input) {
         edges {
           node {
