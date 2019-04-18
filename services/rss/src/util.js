@@ -1,18 +1,7 @@
 const { BaseDB } = require('@base-cms/db');
+const { getPublishedContentCriteria } = require('@base-cms/utils');
 const basedb = require('./basedb');
 const { PAGE_SIZE: limit } = require('./env');
-
-const statusCriteria = (now) => {
-  const date = now || new Date();
-  return {
-    status: 1,
-    published: { $lte: date },
-    $or: [
-      { unpublished: { $exists: false } },
-      { unpublished: { $gte: date } },
-    ],
-  };
-};
 
 module.exports = {
   getSectionByAlias: (alias) => {
@@ -35,15 +24,16 @@ module.exports = {
     return (_, id) => sectionMap.get(`${id}`);
   },
   getSectionContent: async (sectionId) => {
-    const now = new Date();
+    const since = new Date();
     const scheduleQuery = {
-      ...statusCriteria(now),
+      ...getPublishedContentCriteria({ since }),
+      type: undefined,
       section: sectionId,
       contentStatus: 1,
-      startDate: { $lte: now },
+      startDate: { $lte: since },
       $or: [
         { endDate: { $exists: false } },
-        { endDate: { $gte: now } },
+        { endDate: { $gte: since } },
       ],
     };
     const scheduleOpts = {

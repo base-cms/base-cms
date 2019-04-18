@@ -1,4 +1,5 @@
 const moment = require('moment');
+const { getPublishedContentCriteria } = require('@base-cms/utils');
 const basedb = require('./basedb');
 const { PAGE_SIZE } = require('./env');
 
@@ -20,23 +21,11 @@ const getSuffixes = (count, limit = PAGE_SIZE) => {
   return [...Array(num).keys()].map(x => (x === 0 ? '' : `.${x}`));
 };
 
-const statusCriteria = () => {
-  const date = new Date();
-  return {
-    status: 1,
-    published: { $lte: date },
-    $or: [
-      { unpublished: { $exists: false } },
-      { unpublished: { $gte: date } },
-    ],
-  };
-};
-
 module.exports = {
   getSuffixes,
   getContent: (type, skip) => {
     const query = {
-      ...statusCriteria(),
+      ...getPublishedContentCriteria(),
       type,
     };
     const options = {
@@ -64,7 +53,7 @@ module.exports = {
   },
   getContentCounts: () => {
     const pipeline = [
-      { $match: statusCriteria() },
+      { $match: getPublishedContentCriteria() },
       { $group: { _id: '$type', count: { $sum: 1 } } },
       { $sort: { count: -1 } },
     ];
@@ -85,7 +74,7 @@ module.exports = {
   getLatestNews: () => {
     const published = moment().subtract(5, 'days').toDate();
     const query = {
-      ...statusCriteria(),
+      ...getPublishedContentCriteria(),
       type: { $in: ['News', 'PressRelease', 'Blog'] },
       $and: [
         { published: { $gte: published } },

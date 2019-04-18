@@ -1,15 +1,17 @@
 const { BaseDB } = require('@base-cms/db');
-const { isObject } = require('@base-cms/utils');
+const {
+  isObject,
+  getPublishedContentCriteria: getPublishedCriteria,
+  getDefaultContentTypes,
+} = require('@base-cms/utils');
 const { stripTags } = require('@base-cms/html');
-const defaultContentTypes = require('./content-types');
-
-const { isArray } = Array;
 
 const createSeoTitle = (doc) => {
   let title = BaseDB.extractMutationValue(doc, 'Website', 'seoTitle');
   if (!title) title = BaseDB.fillMutation(doc, 'Website', 'name');
   return stripTags(title || '').trim();
 };
+
 
 // const createTitleCompany = async (doc, load) => {
 //   const id = BaseDB.extractRefId(doc.company);
@@ -65,36 +67,6 @@ const createDescription = (doc) => {
 
   // const body = stripTags(BaseDB.fillMutation(doc, 'Website', 'body') || '');
   // return `${body.substring(0, 155)}...`;
-};
-
-const getDefaultContentTypes = () => defaultContentTypes.slice();
-
-const getPublishedCriteria = ({
-  excludeContentIds = [],
-  contentTypes = [],
-  since,
-} = {}) => {
-  const date = since || new Date();
-  const types = isArray(contentTypes) && contentTypes.length
-    ? contentTypes : getDefaultContentTypes();
-
-  const query = {
-    status: 1,
-    type: { $in: types },
-    published: { $lte: date },
-    $and: [
-      {
-        $or: [
-          { unpublished: { $gt: date } },
-          { unpublished: { $exists: false } },
-        ],
-      },
-    ],
-  };
-  if (isArray(excludeContentIds) && excludeContentIds.length) {
-    query._id = { $nin: excludeContentIds };
-  }
-  return query;
 };
 
 module.exports = {
