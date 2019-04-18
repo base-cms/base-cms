@@ -125,6 +125,8 @@ input ContentHashQueryInput {
 
 input AllPublishedContentQueryInput {
   since: Date
+  startDate: Date
+  startDirection: SortOrder = desc
   sectionId: Int
   contentTypes: [ContentType!] = []
   requiresImage: Boolean = false

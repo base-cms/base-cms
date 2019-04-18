@@ -127,6 +127,8 @@ module.exports = {
     allPublishedContent: async (_, { input }, { basedb }, info) => {
       const {
         since,
+        startDate,
+        startDirection,
         sectionId,
         contentTypes,
         requiresImage,
@@ -136,6 +138,11 @@ module.exports = {
       } = input;
 
       const query = getPublishedCriteria({ since, contentTypes });
+
+      if (startDate) {
+        const dir = startDirection === 'asc' ? '$gte' : '$lte';
+        query.startDate = { [dir]: startDate };
+      }
 
       if (requiresImage) {
         query.primaryImage = { $exists: true };
