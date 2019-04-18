@@ -20,7 +20,7 @@ $ const now = new Date().valueOf();
               query-fragment=queryFragment
               limit=6
               content-types=["Webinar"]
-              beginning={ after: now }
+              beginningAfter=now
             >
             <if(nodes.length)>
               <for|content| of=nodes>
@@ -68,7 +68,7 @@ $ const now = new Date().valueOf();
               query-fragment=queryFragment
               limit=6
               content-types=["Webinar"]
-              beginning={ before: now }
+              beginningBefore=now
             >
             <if(nodes.length)>
               <for|content| of=nodes>

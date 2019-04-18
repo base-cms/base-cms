@@ -4,6 +4,10 @@ const buildQuery = require('../gql/query-factories/block-published-content');
  * @param {ApolloClient} apolloClient The Apollo GraphQL client that will perform the query.
  * @param {object} params
  * @param {date} params.since The date to consider content published by
+ * @param {date} params.beginningAfter The date to include content by
+ * @param {date} params.beginningBefore The date to include content by
+ * @param {date} params.endingAfter The date to include content by
+ * @param {date} params.endingBefore The date to include content by
  * @param {number} params.sectionId The section ID.
  * @param {string[]} [params.contentTypes] An array of content types to include.
  * @param {boolean} [params.requiresImage] Whether the content must have an image.
@@ -20,8 +24,10 @@ module.exports = async (apolloClient, {
   limit,
   skip,
   after,
-  beginning,
-  ending,
+  beginningAfter,
+  beginningBefore,
+  endingAfter,
+  endingBefore,
 
   sortField: field,
   sortOrder: order,
@@ -40,8 +46,8 @@ module.exports = async (apolloClient, {
     requiresImage,
     sectionBubbling,
     sectionId,
-    beginning,
-    ending,
+    beginning: { after: beginningAfter, before: beginningBefore },
+    ending: { after: endingAfter, before: endingBefore },
   };
   if (field || order) input.sort = { field, order };
   const query = buildQuery({ queryFragment });
