@@ -32,7 +32,7 @@ module.exports = async (apolloClient, {
   }
   if (redirect && redirect.alias) {
     // A redirect was found for this section alias.
-    // return redirect;
+    return redirect;
   }
   // No website section or redirect was found for this alias. Return a 404.
   throw createError(404, `No website section was found for alias '${alias}'`);
