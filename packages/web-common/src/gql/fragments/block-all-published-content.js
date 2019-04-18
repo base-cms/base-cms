@@ -2,7 +2,7 @@ const gql = require('graphql-tag');
 
 module.exports = gql`
 
-fragment BlockPublishedContentFragment on Content {
+fragment BlockAllPublishedContentFragment on Content {
   id
   type
   canonicalPath

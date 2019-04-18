@@ -1,5 +1,5 @@
 import { getAsObject } from '@base-cms/object-path';
-import queryFragment from '../../api/fragments/published-content';
+import queryFragment from '../../api/fragments/all-published-content';
 
 $ const section = getAsObject(data, 'section');
 $ const now = new Date().valueOf();
@@ -16,7 +16,7 @@ $ const now = new Date().valueOf();
       <div class="card border">
         <h2 class="card-title">Upcoming</h2>
         <div class="card-body">
-          <cms-query-published-content|{ nodes }|
+          <cms-query-all-published-content|{ nodes }|
               query-fragment=queryFragment
               limit=6
               content-types=["Webinar"]
@@ -55,7 +55,7 @@ $ const now = new Date().valueOf();
             <else>
               <p class="text-muted">Nothing coming up!</p>
             </else>
-            </cms-query-published-content>
+            </cms-query-all-published-content>
         </div>
         <p class="card-footer">Load More</p>
       </div>
@@ -64,7 +64,7 @@ $ const now = new Date().valueOf();
       <div class="card border">
         <h2 class="card-title">Archive</h2>
         <div class="card-body">
-          <cms-query-published-content|{ nodes }|
+          <cms-query-all-published-content|{ nodes }|
               query-fragment=queryFragment
               limit=6
               content-types=["Webinar"]
@@ -103,7 +103,7 @@ $ const now = new Date().valueOf();
             <else>
               <p class="text-muted">Nothing left!</p>
             </else>
-            </cms-query-published-content>
+            </cms-query-all-published-content>
         </div>
         <p class="card-footer">Load More</p>
       </div>

@@ -1,5 +1,5 @@
 const gql = require('graphql-tag');
-const defaultFragment = require('../fragments/block-published-content');
+const defaultFragment = require('../fragments/block-all-published-content');
 const { extractFragmentData } = require('../../utils');
 
 /**
@@ -17,7 +17,7 @@ module.exports = ({ queryFragment }) => {
       allPublishedContent(input: $input) {
         edges {
           node {
-            ...BlockPublishedContentFragment
+            ...BlockAllPublishedContentFragment
             ${spreadFragmentName}
           }
         }

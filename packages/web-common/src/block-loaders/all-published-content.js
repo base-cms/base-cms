@@ -1,4 +1,4 @@
-const buildQuery = require('../gql/query-factories/block-published-content');
+const buildQuery = require('../gql/query-factories/block-all-published-content');
 
 /**
  * @param {ApolloClient} apolloClient The Apollo GraphQL client that will perform the query.

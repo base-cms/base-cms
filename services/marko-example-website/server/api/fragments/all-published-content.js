@@ -2,7 +2,7 @@ const gql = require('graphql-tag');
 
 module.exports = gql`
 
-fragment PublishedContentQueryFragment on Content {
+fragment AllPublishedContentQueryFragment on Content {
   id
   type
   name

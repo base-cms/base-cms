@@ -1,5 +1,5 @@
 import { getAsObject } from '@base-cms/object-path';
-import queryFragment from '../../api/fragments/published-content';
+import queryFragment from '../../api/fragments/all-published-content';
 
 $ const section = getAsObject(data, 'section');
 $ const chunk = (array, size) => {
@@ -18,7 +18,7 @@ $ const chunk = (array, size) => {
     <p>${section.description}</p>
   </if>
   $ const block = 'content-list';
-  <cms-query-published-content|{ nodes }|
+  <cms-query-all-published-content|{ nodes }|
     query-fragment=queryFragment
     limit=18
     content-types=["Video"]
@@ -52,5 +52,5 @@ $ const chunk = (array, size) => {
         </for>
       </div>
     </for>
-  </cms-query-published-content>
+  </cms-query-all-published-content>
 </layout>
