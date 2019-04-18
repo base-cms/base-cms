@@ -1,4 +1,6 @@
-const contentTypes = require('./content-types');
+const { getDefaultContentTypes } = require('@base-cms/utils');
+
+const contentTypes = getDefaultContentTypes();
 
 const criterion = {
   assetImage: () => ({ type: 'Image' }),
@@ -13,6 +15,7 @@ const criterion = {
   rootWebsiteSection: () => ({ 'parent.$id': { $exists: false } }),
   taxonomyCategory: () => ({ type: 'Category' }),
   websiteSite: () => ({ type: 'Site' }),
+  magazineActiveIssues: () => ({ status: 1, mailDate: { $lte: new Date() } }),
 };
 
 contentTypes.forEach((type) => {

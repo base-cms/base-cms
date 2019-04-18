@@ -9,6 +9,7 @@ extend type Query {
   contentHash(input: ContentHashQueryInput = {}): Content @findOne(model: "platform.Content", using: { hash: "hash" }, criteria: "content")
   allContent(input: AllContentQueryInput = {}): ContentConnection! @findMany(model: "platform.Content", criteria: "content")
   allPublishedContent(input: AllPublishedContentQueryInput = {}): ContentConnection!
+  magazineScheduledContent(input: MagazineScheduledContentQueryInput = {}): ContentConnection!
   websiteScheduledContent(input: WebsiteScheduledContentQueryInput = {}): ContentConnection!
   relatedPublishedContent(input: RelatedPublishedContentQueryInput = {}): ContentConnection!
 }
@@ -130,11 +131,34 @@ input AllPublishedContentQueryInput {
   sectionBubbling: Boolean = true
   sort: ContentSortInput = { field: published, order: desc }
   pagination: PaginationInput = {}
+  beginning: ContentBeginningInput = {}
+  ending: ContentEndingInput = {}
+}
+
+input ContentBeginningInput {
+  before: Date
+  after: Date
+}
+
+input ContentEndingInput {
+  before: Date
+  after: Date
 }
 
 input AllContentQueryInput {
   status: ModelStatus = active
   sort: ContentSortInput = {}
+  pagination: PaginationInput = {}
+}
+
+input MagazineScheduledContentQueryInput {
+  issueId: Int!
+  sectionId: Int
+  excludeContentIds: [Int!] = []
+  excludeSectionIds: [Int!] = []
+  excludeContentTypes: [ContentType!] = []
+  includeContentTypes: [ContentType!] = []
+  requiresImage: Boolean = false
   pagination: PaginationInput = {}
 }
 

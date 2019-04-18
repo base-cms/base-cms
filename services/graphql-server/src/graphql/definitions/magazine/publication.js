@@ -20,6 +20,7 @@ type MagazinePublication {
   status: Int @projection
 
   # fields directly on magazine.model::Product\Publication
+  activeIssues(input: MagazinePublicationActiveIssuesInput = {}): MagazineIssueConnection! @projection(localField: "_id") @refMany(model: "magazine.Issue", localField: "_id", foreignField: "publication.$id", criteria: "magazineActiveIssues")
   issues(input: MagazinePublicationIssuesInput = {}): MagazineIssueConnection! @projection(localField: "_id") @refMany(model: "magazine.Issue", localField: "_id", foreignField: "publication.$id")
   sections(input: MagazinePublicationSectionsInput = {}): MagazineSectionConnection! @projection(localField: "_id") @refMany(model: "magazine.Section", localField: "_id", foreignField: "publication.$id")
   coverImage: AssetImage @projection @refOne(loader: "platformAsset", criteria: "assetImage")
@@ -28,6 +29,10 @@ type MagazinePublication {
   reprintsUrl: String @projection
   einquiryUrl: String @projection
   # socialLinks: [PlatformEntityStubSocial]! @arrayValue
+
+  # GraphQL only fields
+  metadata: MagazinePageMetadata! @projection(localField: "fullName", needs: ["description", "seoTitle"])
+  canonicalPath: String! @projection(localField: "_id")
 }
 
 type MagazinePublicationConnection @projectUsing(type: "MagazinePublication") {
@@ -65,6 +70,12 @@ input MagazinePublicationSectionsInput {
 }
 
 input MagazinePublicationIssuesInput {
+  status: ModelStatus = active
+  sort: MagazineIssueSortInput = {}
+  pagination: PaginationInput = {}
+}
+
+input MagazinePublicationActiveIssuesInput {
   status: ModelStatus = active
   sort: MagazineIssueSortInput = {}
   pagination: PaginationInput = {}

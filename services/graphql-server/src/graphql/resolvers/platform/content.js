@@ -133,9 +133,16 @@ module.exports = {
         sectionBubbling,
         sort,
         pagination,
+        beginning,
+        ending,
       } = input;
 
       const query = getPublishedCriteria({ since, contentTypes });
+
+      if (beginning.before) query.$and.push({ startDate: { $lte: beginning.before } });
+      if (beginning.after) query.$and.push({ startDate: { $gte: beginning.after } });
+      if (ending.before) query.$and.push({ endDate: { $lte: ending.before } });
+      if (ending.after) query.$and.push({ endDate: { $gte: ending.after } });
 
       if (requiresImage) {
         query.primaryImage = { $exists: true };
@@ -157,6 +164,41 @@ module.exports = {
         query,
         sort,
         projection,
+        ...pagination,
+      });
+    },
+
+    /**
+     * @todo add content publishing fields to magaazine schedules
+     */
+    magazineScheduledContent: async (_, { input }, { basedb }, info) => {
+      const {
+        issueId,
+        sectionId,
+        excludeContentIds,
+        includeContentTypes: contentTypes,
+        requiresImage,
+        pagination,
+      } = input;
+
+      const since = new Date();
+      const idQuery = {
+        issue: issueId,
+      };
+      if (sectionId) idQuery.section = sectionId;
+
+      const ids = await basedb.distinct('magazine.Schedule', 'content.$id', idQuery);
+
+      const query = getPublishedCriteria({ excludeContentIds, contentTypes, since });
+      query.$and.push({ _id: { $in: ids } });
+
+      if (requiresImage) query.primaryImage = { $exists: true };
+
+      const projection = connectionProjection(info);
+      return basedb.paginate('platform.Content', {
+        query,
+        projection,
+        sort: { field: 'published', order: 'desc' },
         ...pagination,
       });
     },

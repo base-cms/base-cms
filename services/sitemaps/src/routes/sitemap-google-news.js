@@ -1,10 +1,7 @@
+const { content: canonicalPathFor, requestParser: getCanonicalRules } = require('@base-cms/canonical-path');
 const { asyncRoute } = require('@base-cms/utils');
 const { BaseDB } = require('@base-cms/db');
 const moment = require('moment');
-const {
-  content: canonicalPathFor,
-  requestParser: getCanonicalRules,
-} = require('@base-cms/canonical-path');
 
 const { getLatestNews, getPrimarySectionLoader } = require('../util');
 

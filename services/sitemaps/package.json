@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/sitemaps",
-  "version": "0.7.3",
+  "version": "0.7.4",
   "description": "The BaseCMS Sitemaps service",
   "main": "src/index.js",
   "author": "Josh Worden <josh@limit0.io>",
@@ -8,7 +8,7 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "@base-cms/canonical-path": "^0.7.0",
+    "@base-cms/canonical-path": "^0.7.4",
     "@base-cms/db": "^0.7.0",
     "@base-cms/tooling": "^0.7.0",
     "@godaddy/terminus": "^4.1.0",

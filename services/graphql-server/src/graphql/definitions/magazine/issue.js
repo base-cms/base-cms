@@ -5,6 +5,8 @@ module.exports = gql`
 extend type Query {
   magazineIssue(input: MagazineIssueQueryInput!): MagazineIssue @findOne(model: "magazine.Issue", using: { id: "_id" })
   magazineIssues(input: MagazineIssuesQueryInput = {}): MagazineIssueConnection! @findMany(model: "magazine.Issue")
+  magazineActiveIssues(input: MagazineActiveIssuesQueryInput = {}): MagazineIssueConnection! @findMany(model: "magazine.Issue", criteria: "magazineActiveIssues", using: { publicationId: "publication.$id" })
+  magazineLatestIssue(input: MagazineLatestIssueQueryInput!): MagazineIssue
 }
 
 type MagazineIssue {
@@ -12,7 +14,7 @@ type MagazineIssue {
   id: Int! @projection(localField: "_id") @value(localField: "_id")
   name: String @projection
   description: String @projection
-  mailDate: Date @projection
+  mailed: Date @projection(localField: "mailDate") @value(localField: "mailDate")
   digitalEditionUrl: String @projection
   dedication: String @projection
   coverDescription: String @projection
@@ -24,6 +26,11 @@ type MagazineIssue {
 
   #fields from trait.platform::StatusEnabled
   status: Int @projection
+
+  # GraphQL only fields
+  metadata: MagazinePageMetadata! @projection(localField: "fullName", needs: ["description", "seoTitle"])
+  mailDate(input: FormatDate = {}): String @projection(localField: "mailDate") @momentFormat(localField: "mailDate")
+  canonicalPath: String! @projection(localField: "_id")
 }
 
 type MagazineIssueConnection @projectUsing(type: "MagazineIssue") {
@@ -46,6 +53,18 @@ enum MagazineIssueSortField {
 input MagazineIssueQueryInput {
   id: Int!
   status: ModelStatus = active
+}
+
+input MagazineLatestIssueQueryInput {
+  publicationId: ObjectID!
+  status: ModelStatus = active
+  sort: MagazineIssueSortInput = { field: mailDate, order: desc }
+}
+
+input MagazineActiveIssuesQueryInput {
+  publicationId: ObjectID!
+  sort: MagazineIssueSortInput = { field: mailDate, order: desc }
+  pagination: PaginationInput = {}
 }
 
 input MagazineIssuesQueryInput {

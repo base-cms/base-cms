@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/web-common",
-  "version": "0.7.0",
+  "version": "0.7.4",
   "description": "Common utilities, queries and functions for BaseCMS website projects.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",

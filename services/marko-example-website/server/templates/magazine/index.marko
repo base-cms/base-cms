@@ -1,0 +1,77 @@
+import { getAsArray, get } from '@base-cms/object-path';
+import publicationFragment from '../../api/fragments/magazine-publication';
+import latestIssueFragment from '../../api/fragments/magazine-latest-issue';
+
+$ const { config, site } = out.global;
+
+<layout>
+  <cms-ad-gam-display id="gpt-ad-bs" class="text-center" />
+
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-body pb-0">
+
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="text-uppercase breadcrumb-item small">Magazines</li>
+            </ol>
+          </nav>
+
+          <h1 class="mb-2">${config.get('siteName')} Magazines</h1>
+          <p>${site.get('magazines.description')}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <cms-query-magazine-publications|{ nodes }| query-fragment=publicationFragment>
+      <for|publication| of=nodes>
+        <div class="col col-md-6">
+          <div class="card">
+            <span class="card-header">${publication.name}</span>
+            <div class="card-body row">
+
+              <cms-query-magazine-latest-issue|{ node }|
+                publication-id=publication.id
+                query-fragment=latestIssueFragment
+              >
+                $ const altText = node.coverDescription || `${node.name} Cover Image`;
+                <cms-image-element
+                  obj=node.coverImage
+                  linkTo=node
+                  linkClass="col-6"
+                  alt=altText
+                />
+
+                <div class="col-6">
+                  <cms-link-element to=node.publication path="subscribeUrl"
+                    class="btn btn-sm btn-block btn-primary"
+                  >
+                    Subscribe
+                  </cms-link-element>
+                  <cms-link-element to=node path="digitalEditionUrl"
+                    class="btn btn-sm btn-block btn-primary"
+                  >
+                    Digital Edition
+                  </cms-link-element>
+                  <cms-link-element to=node.publication
+                    class="btn btn-sm btn-block btn-primary"
+                  >
+                    Archive
+                  </cms-link-element>
+                </div>
+
+              </cms-query-magazine-latest-issue>
+
+              <p class="mt-3">${publication.description}</p>
+            </div>
+          </div>
+        </div>
+      </for>
+    </cms-query-magazine-publications>
+
+  </div>
+</layout>

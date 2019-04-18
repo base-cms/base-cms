@@ -1,0 +1,61 @@
+import { getAsObject, get } from '@base-cms/object-path';
+
+$ const issue = getAsObject(data, 'issue');
+$ const magazines = { canonicalPath: '/magazine' };
+
+<layout issue=issue>
+  <cms-ad-gam-display id="gpt-ad-bs" class="text-center" />
+
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-body pb-0">
+
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="text-uppercase breadcrumb-item small"><cms-link-element to=magazines>Magazines</cms-link-element></li>
+              <li class="text-uppercase breadcrumb-item small"><cms-link-element to=issue.publication>${issue.publication.name}</cms-link-element></li>
+              <li class="text-uppercase breadcrumb-item small">${issue.name}</li>
+            </ol>
+          </nav>
+
+          <h1 class="mb-2">${issue.name}</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-6 col-md-3">
+      $ const altText = issue.coverDescription || `${issue.name} Cover Image`;
+      <cms-image-element
+        obj=issue.coverImage
+        alt=altText
+      />
+    </div>
+    <div class="col-6 col-md-6">
+      <cms-text-element obj=issue field="description" class="lead" />
+      <cms-text-element obj=issue field="dedication" class="small" />
+      <cms-text-element obj=issue field="credit" class="small" />
+      <cms-text-element obj=issue.publication field="description" class="small" />
+    </div>
+    <div class="col-6 col-md-3">
+        <cms-link-element to=issue.publication path="subscribeUrl"
+          class="btn btn-sm btn-block btn-primary"
+        >
+          Subscribe
+        </cms-link-element>
+        <cms-link-element to=issue path="digitalEditionUrl"
+          class="btn btn-sm btn-block btn-primary"
+        >
+          Digital Edition
+        </cms-link-element>
+    </div>
+  </div>
+
+  <hr>
+
+  <h2 class="text-center text-uppercase mb-3">In This Issue:</h2>
+  <magazine-block-issue-content issue-id=issue.id />
+
+</layout>

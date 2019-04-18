@@ -1,0 +1,10 @@
+{
+  "tags": {
+    "magazine-block-active-issues": {
+      "template": "./active-issues.marko"
+    },
+    "magazine-block-issue-content": {
+      "template": "./issue-content.marko"
+    }
+  }
+}
