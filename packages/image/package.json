@@ -1,13 +1,13 @@
 {
   "name": "@base-cms/image",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Common image utilities for BaseCMS projects.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/image",
   "license": "MIT",
   "dependencies": {
-    "@base-cms/inflector": "^0.7.0"
+    "@base-cms/inflector": "^0.8.0"
   },
   "publishConfig": {
     "access": "public"

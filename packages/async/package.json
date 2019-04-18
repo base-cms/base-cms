@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/async",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Promise wrappers for the async library.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
