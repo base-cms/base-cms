@@ -11,6 +11,9 @@ type ContentWebinar implements Content & Media @applyInterfaceFields {
   startDate: Date @projection
   duration: Int @projection
   linkUrl: String @projection
+
+  # GraphQL only fields
+  starts(input: FormatDate = {}): String @projection(localField: "startDate") @momentFormat(localField: "startDate")
 }
 
 type ContentWebinarConnection {

@@ -4,6 +4,7 @@ const magazinePublications = require('./magazine-publications');
 const magazineLatestIssue = require('./magazine-latest-issue');
 const magazineActiveIssues = require('./magazine-active-issues');
 const magazineScheduledContent = require('./magazine-scheduled-content');
+const allPublishedContent = require('./all-published-content');
 
 module.exports = {
   relatedPublishedContent,
@@ -12,4 +13,5 @@ module.exports = {
   magazineLatestIssue,
   magazineActiveIssues,
   magazineScheduledContent,
+  allPublishedContent,
 };

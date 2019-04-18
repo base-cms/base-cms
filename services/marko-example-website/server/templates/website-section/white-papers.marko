@@ -1,0 +1,56 @@
+import { getAsObject } from '@base-cms/object-path';
+import queryFragment from '../../api/fragments/all-published-content';
+
+$ const section = getAsObject(data, 'section');
+$ const chunk = (array, size) => {
+  const chunked = [];
+  let index = 0;
+  while (index < array.length) {
+    chunked.push(array.slice(index, size + index));
+    index += size;
+  }
+  return chunked;
+};
+
+<layout section=section>
+  <h1 class="mb-4">${section.metadata.title}</h1>
+  <if(section.description)>
+    <p>${section.description}</p>
+  </if>
+  $ const block = 'content-list';
+  <cms-query-all-published-content|{ nodes }|
+    query-fragment=queryFragment
+    limit=18
+    content-types=["Whitepaper"]
+  >
+    $ const chunked = chunk(nodes, 3);
+    <for|chunk| of=chunked>
+      <div class="card-deck">
+        <for|content| of=chunk>
+          <div class="card border-0 shadow-sm mb-4 w-100">
+          <if(content.primaryImage)>
+            <cms-image-element
+              obj=content.primaryImage
+              class="mr-1 mb-1 w-100"
+              linkTo=content
+              linkClass="card-image-top"
+            />
+          </if>
+          <else>
+            <cms-link-element to=content class="card-image-top">
+              <img class="mr-1 mb-1 w-100" src="https://placehold.it/320x180" />
+            </cms-link-element>
+          </else>
+            <div class="card-body d-flex flex-row py-4">
+              <div>
+                <cms-content-short-name tag="h5" block=block obj=content link=true />
+                <cms-content-teaser tag="p" block=block obj=content />
+                <cms-website-section-name tag="small" block=block content=content link=true />
+              </div>
+            </div>
+          </div>
+        </for>
+      </div>
+    </for>
+  </cms-query-all-published-content>
+</layout>

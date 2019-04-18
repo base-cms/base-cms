@@ -131,6 +131,18 @@ input AllPublishedContentQueryInput {
   sectionBubbling: Boolean = true
   sort: ContentSortInput = { field: published, order: desc }
   pagination: PaginationInput = {}
+  beginning: ContentBeginningInput = {}
+  ending: ContentEndingInput = {}
+}
+
+input ContentBeginningInput {
+  before: Date
+  after: Date
+}
+
+input ContentEndingInput {
+  before: Date
+  after: Date
 }
 
 input AllContentQueryInput {

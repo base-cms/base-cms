@@ -133,9 +133,16 @@ module.exports = {
         sectionBubbling,
         sort,
         pagination,
+        beginning,
+        ending,
       } = input;
 
       const query = getPublishedCriteria({ since, contentTypes });
+
+      if (beginning.before) query.$and.push({ startDate: { $lte: beginning.before } });
+      if (beginning.after) query.$and.push({ startDate: { $gte: beginning.after } });
+      if (ending.before) query.$and.push({ endDate: { $lte: ending.before } });
+      if (ending.after) query.$and.push({ endDate: { $gte: ending.after } });
 
       if (requiresImage) {
         query.primaryImage = { $exists: true };

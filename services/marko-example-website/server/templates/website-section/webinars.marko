@@ -1,0 +1,113 @@
+import { getAsObject } from '@base-cms/object-path';
+import queryFragment from '../../api/fragments/all-published-content';
+
+$ const section = getAsObject(data, 'section');
+$ const now = new Date();
+
+<layout section=section>
+  <h1 class="mb-4">${section.metadata.title}</h1>
+  <if(section.description)>
+    <p>${section.description}</p>
+  </if>
+  $ const block = 'content-list';
+
+  <div class="row">
+    <div class="col col-lg-6">
+      <div class="card border">
+        <h2 class="card-title">Upcoming</h2>
+        <div class="card-body">
+          <cms-query-all-published-content|{ nodes }|
+              query-fragment=queryFragment
+              limit=6
+              content-types=["Webinar"]
+              beginningAfter=now
+            >
+            <if(nodes.length)>
+              <for|content| of=nodes>
+                <div class="row">
+                  <div class="col">
+                    <div class="card border-0 shadow-sm mb-4 w-100">
+                      <div class="card-body d-flex flex-row py-4">
+                        <div class="d-flex my-auto mr-3">
+                          <a href=content.canonicalPath>
+                            <if(content.primaryImage)>
+                              <img src=`${content.primaryImage.src}?auto=format&w=160&h=160&fit=crop&crop=focalpoint&fp-x=0.5&fp-y=0.5` style="max-width: 160px; max-height: 160px; border-radius: 0.5rem;" />
+                            </if>
+                            <else>
+                              <!-- @todo Add a site logo within the no-image, image? -->
+                              <!-- @todo Generate random gradient directions based on overall theme -->
+                              <div style="width: 160px; height: 160px; border-radius: 0.5rem; background: linear-gradient(to right, rgba(122,188,255,1) 0%,rgba(96,171,248,1) 44%,rgba(64,150,238,1) 100%);"></div>
+                            </else>
+                          </a>
+                        </div>
+                        <div>
+                          <cms-content-short-name tag="h5" block=block obj=content link=true />
+                          <cms-content-teaser tag="p" block=block obj=content />
+                          <cms-website-section-name tag="small" block=block content=content link=true />
+                          ${content.starts} - ${content.ends}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </for>
+            </if>
+            <else>
+              <p class="text-muted">Nothing coming up!</p>
+            </else>
+            </cms-query-all-published-content>
+        </div>
+        <p class="card-footer">Load More</p>
+      </div>
+    </div>
+    <div class="col col-lg-6">
+      <div class="card border">
+        <h2 class="card-title">Archive</h2>
+        <div class="card-body">
+          <cms-query-all-published-content|{ nodes }|
+              query-fragment=queryFragment
+              limit=6
+              content-types=["Webinar"]
+              beginningBefore=now
+            >
+            <if(nodes.length)>
+              <for|content| of=nodes>
+                <div class="row">
+                  <div class="col">
+                    <div class="card border-0 shadow-sm mb-4 w-100">
+                      <div class="card-body d-flex flex-row py-4">
+                        <div class="d-flex my-auto mr-3">
+                          <a href=content.canonicalPath>
+                            <if(content.primaryImage)>
+                              <img src=`${content.primaryImage.src}?auto=format&w=160&h=160&fit=crop&crop=focalpoint&fp-x=0.5&fp-y=0.5` style="max-width: 160px; max-height: 160px; border-radius: 0.5rem;" />
+                            </if>
+                            <else>
+                              <!-- @todo Add a site logo within the no-image, image? -->
+                              <!-- @todo Generate random gradient directions based on overall theme -->
+                              <div style="width: 160px; height: 160px; border-radius: 0.5rem; background: linear-gradient(to right, rgba(122,188,255,1) 0%,rgba(96,171,248,1) 44%,rgba(64,150,238,1) 100%);"></div>
+                            </else>
+                          </a>
+                        </div>
+                        <div>
+                          <cms-content-short-name tag="h5" block=block obj=content link=true />
+                          <cms-content-teaser tag="p" block=block obj=content />
+                          <cms-website-section-name tag="small" block=block content=content link=true />
+                          ${content.starts} - ${content.ends}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </for>
+            </if>
+            <else>
+              <p class="text-muted">Nothing left!</p>
+            </else>
+            </cms-query-all-published-content>
+        </div>
+        <p class="card-footer">Load More</p>
+      </div>
+    </div>
+  </div>
+
+</layout>

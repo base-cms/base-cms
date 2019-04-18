@@ -17,6 +17,10 @@ type ContentEvent implements Content & Contactable & Addressable @applyInterface
   allDay: Boolean @projection
   contacts: [ContentEventContact]! @projection @arrayValue
   beneficiary: String @projection
+
+  # GraphQL only fields
+  starts(input: FormatDate = {}): String @projection(localField: "startDate") @momentFormat(localField: "startDate")
+  ends(input: FormatDate = {}): String @projection(localField: "endDate") @momentFormat(localField: "endDate")
 }
 
 type ContentEventConnection {
