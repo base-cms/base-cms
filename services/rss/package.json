@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/rss",
-  "version": "0.7.5",
+  "version": "0.7.4",
   "description": "The BaseCMS RSS service",
   "main": "src/index.js",
   "author": "Josh Worden <josh@limit0.io>",

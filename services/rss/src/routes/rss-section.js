@@ -13,7 +13,7 @@ const formatter = (section = {}, docs = [], baseUri) => `<?xml version="1.0" enc
   <channel>
     <title>${clean(get(section, 'title', ''))}</title>
     <link>${baseUri}/${clean(get(section, 'alias', ''))}</link>
-    <atom:link href="${baseUri}/feeds/${clean(get(section, 'alias', ''))}.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="${baseUri}/rss/${clean(get(section, 'alias', ''))}.xml" rel="self" type="application/rss+xml" />
     <description>${clean(get(section, 'description', ''))}</description>
 ${docs.reduce((str, content) => `${str}
     <item>
