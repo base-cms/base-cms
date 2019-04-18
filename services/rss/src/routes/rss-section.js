@@ -34,6 +34,11 @@ module.exports = asyncRoute(async (req, res) => {
     const publication = req.headers['x-publication-name'] || host;
     const { alias } = req.params;
     const section = await getSectionByAlias(alias);
+    if (!section) {
+      const err = new Error('Not found');
+      err.statusCode = 404;
+      throw err;
+    }
     const docs = await getSectionContent(BaseDB.get(section, '_id'));
 
     const sectionIds = [...new Set(docs.map((content) => {
@@ -56,6 +61,6 @@ module.exports = asyncRoute(async (req, res) => {
     res.end(formatter(section, toFormat, baseUri));
   } catch (e) {
     error(e);
-    res.status(500).send(`Error: ${e.message}`);
+    res.status(e.statusCode || 500).send(`Error: ${e.message}`);
   }
 });
