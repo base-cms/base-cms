@@ -1,5 +1,7 @@
 const buildQuery = require('../gql/query-factories/block-all-published-content');
 
+const date = v => (v instanceof Date ? v.valueOf() : v);
+
 /**
  * @param {ApolloClient} apolloClient The Apollo GraphQL client that will perform the query.
  * @param {object} params
@@ -24,6 +26,8 @@ module.exports = async (apolloClient, {
   limit,
   skip,
   after,
+
+  since,
   beginningAfter,
   beginningBefore,
   endingAfter,
@@ -46,8 +50,9 @@ module.exports = async (apolloClient, {
     requiresImage,
     sectionBubbling,
     sectionId,
-    beginning: { after: beginningAfter, before: beginningBefore },
-    ending: { after: endingAfter, before: endingBefore },
+    since: date(since),
+    beginning: { after: date(beginningAfter), before: date(beginningBefore) },
+    ending: { after: date(endingAfter), before: date(endingBefore) },
   };
   if (field || order) input.sort = { field, order };
   const query = buildQuery({ queryFragment });

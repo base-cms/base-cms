@@ -2,7 +2,7 @@ import { getAsObject } from '@base-cms/object-path';
 import queryFragment from '../../api/fragments/all-published-content';
 
 $ const section = getAsObject(data, 'section');
-$ const now = new Date().valueOf();
+$ const now = new Date();
 
 <layout section=section>
   <h1 class="mb-4">${section.metadata.title}</h1>
