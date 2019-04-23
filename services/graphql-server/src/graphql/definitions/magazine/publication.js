@@ -5,6 +5,7 @@ module.exports = gql`
 extend type Query {
   magazinePublication(input: MagazinePublicationQueryInput!): MagazinePublication @findOne(model: "platform.Product", using: { id: "_id" }, criteria: "magazinePublication")
   magazinePublications(input: MagazinePublicationsQueryInput = {}): MagazinePublicationConnection! @findMany(model: "platform.Product", criteria: "magazinePublication")
+  magazineSubscribeUrl(input: MagazineSubscribeUrlQueryInput!): MagazinePublication @findOne(model: "platform.Product", using: { subscribeUrl: "subscribeUrl" }, criteria: "magazinePublication")
 }
 
 type MagazinePublication {
@@ -54,6 +55,11 @@ enum MagazinePublicationSortField {
 
 input MagazinePublicationQueryInput {
   id: ObjectID!
+  status: ModelStatus = active
+}
+
+input MagazineSubscribeUrlQueryInput {
+  subscribeUrl: String!
   status: ModelStatus = active
 }
 

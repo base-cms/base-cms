@@ -4,6 +4,7 @@ const home = require('./home');
 const loadMore = require('./load-more');
 const websiteSections = require('./website-section');
 const magazine = require('./magazine');
+const subscribe = require('./subscribe');
 
 module.exports = (app) => {
   // Trusted proxies
@@ -20,6 +21,9 @@ module.exports = (app) => {
 
   // Magazine Pages
   magazine(app);
+
+  // Magazine Pages
+  subscribe(app);
 
   // Content Types
   contentTypes(app);

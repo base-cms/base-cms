@@ -4,6 +4,7 @@ const withLoadMore = require('./with-load-more');
 const withWebsiteSection = require('./with-website-section');
 const withMagazineIssue = require('./with-magazine-issue');
 const withMagazinePublication = require('./with-magazine-publication');
+const withMagazineSubscribeUrl = require('./with-magazine-subscribe-url');
 
 module.exports = {
   withContent,
@@ -12,4 +13,5 @@ module.exports = {
   withWebsiteSection,
   withMagazineIssue,
   withMagazinePublication,
+  withMagazineSubscribeUrl,
 };
