@@ -78,6 +78,8 @@ services:
     environment:
       <<: *env
       <<: *env-mongo
+      CDN_IMAGE_HOSTNAME: ${CDN_IMAGE_HOSTNAME-base.imgix.net}
+      CDN_ASSET_HOSTNAME: ${CDN_ASSET_HOSTNAME-cdn.baseplatform.io}
     depends_on:
       - mongodb
     ports:
