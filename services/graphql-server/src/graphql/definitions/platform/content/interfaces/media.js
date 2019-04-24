@@ -9,6 +9,9 @@ interface Media {
   sourceFilename: String @projection
   sourceFile: String @projection
   contacts(input: MediaContactsInput = {}): ContentContactConnection! @projection @refMany(model: "platform.Content", criteria: "contentContact")
+
+  # GraphQL specific fields
+  fileSrc: String! @projection(localField: "fileName", needs: ["filePath"])
 }
 
 input MediaContactsInput {

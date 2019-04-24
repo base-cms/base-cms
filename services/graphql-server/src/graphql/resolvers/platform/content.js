@@ -1,10 +1,12 @@
 const { BaseDB } = require('@base-cms/db');
 const { UserInputError } = require('apollo-server-express');
+const { cleanPath } = require('@base-cms/utils');
+const { content: canonicalPathFor } = require('@base-cms/canonical-path');
 const { get } = require('@base-cms/object-path');
 const { parser: embedParser } = require('@base-cms/embedded-media');
 const { underscore, dasherize, titleize } = require('@base-cms/inflector');
-const { content: canonicalPathFor } = require('@base-cms/canonical-path');
 
+const { CDN_ASSET_HOSTNAME } = require('../../../env');
 const relatedContent = require('../../utils/related-content');
 const connectionProjection = require('../../utils/connection-projection');
 const getDefaultOption = require('../../utils/get-default-option');
@@ -25,8 +27,18 @@ module.exports = {
   Addressable: { __resolveType: resolveType },
   Authorable: { __resolveType: resolveType },
   Contactable: { __resolveType: resolveType },
-  Media: { __resolveType: resolveType },
 
+  /**
+   *
+   */
+  Media: {
+    __resolveType: resolveType,
+    fileSrc: ({ fileName, filePath }) => `https://${CDN_ASSET_HOSTNAME}/${cleanPath(filePath)}/${fileName}`,
+  },
+
+  /**
+   *
+   */
   ContentMetadata: {
     title: content => createTitle(content),
     description: content => createDescription(content),

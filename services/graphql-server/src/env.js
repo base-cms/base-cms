@@ -12,4 +12,6 @@ module.exports = cleanEnv(process.env, {
   TENANT_KEY: nonemptystr({ desc: 'The Base tenant key to connect to, e.g. cygnus_ofcr' }),
   ENABLE_BASEDB_LOGGING: bool({ desc: 'Whether the BaseDB instance should log to the console.', default: false }),
   GRAPHQL_ENDPOINT: nonemptystr({ desc: 'The GraphQL endpoint', default: '/' }),
+  CDN_IMAGE_HOSTNAME: nonemptystr({ desc: 'The CDN hostname that serves images.', default: 'base.imgix.net' }),
+  CDN_ASSET_HOSTNAME: nonemptystr({ desc: 'The CDN hostname that serves assets/documents.', default: 'cdn.baseplatform.io' }),
 });
