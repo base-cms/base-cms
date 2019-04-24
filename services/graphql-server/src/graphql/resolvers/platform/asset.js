@@ -6,7 +6,7 @@ module.exports = {
    *
    */
   AssetImage: {
-    src: image => createSrcFor(CDN_IMAGE_HOSTNAME, image),
+    src: image => createSrcFor(CDN_IMAGE_HOSTNAME, image, undefined, { w: 320, auto: 'format' }),
     alt: image => createAltFor(image),
   },
 };
