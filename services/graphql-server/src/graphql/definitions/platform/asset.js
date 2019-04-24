@@ -24,8 +24,8 @@ type AssetImage {
   approvedWebsite: Boolean @projection(localField: "mutations.Website.approved") @value(localField: "mutations.Website.approved")
   approvedMagazine: Boolean @projection(localField: "mutations.Magazine.approved") @value(localField: "mutations.Magazine.approved")
 
-  #GraphQL specific fields
-  src(input: AssetImageSrcInput = {}): String! @projection(localField: "fileName", needs: ["filePath"])
+  # GraphQL specific fields
+  src: String! @projection(localField: "fileName", needs: ["filePath"])
   alt: String! @projection(localField: "name", needs: ["caption", "fileName"])
 }
 
@@ -66,10 +66,6 @@ enum AssetImageSortField {
 
 input AssetImageQueryInput {
   id: ObjectID!
-}
-
-input AssetImageSrcInput {
-  host: String = "base.imgix.net"
 }
 
 input AssetImageSortInput {
