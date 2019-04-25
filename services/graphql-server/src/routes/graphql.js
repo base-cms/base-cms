@@ -1,7 +1,9 @@
 const { ApolloServer } = require('apollo-server-express');
+const { get } = require('@base-cms/object-path');
 const { Router } = require('express');
 const { isObject } = require('@base-cms/utils');
 const { requestParser: canonicalRules } = require('@base-cms/canonical-path');
+const { noticeError } = require('newrelic');
 const basedb = require('../basedb');
 const createLoaders = require('../dataloaders');
 const schema = require('../graphql/schema');
@@ -41,6 +43,11 @@ const server = new ApolloServer({
       canonicalRules: canonicalRules(req),
       imageHost: 'base.imgix.net',
     };
+  },
+  formatError: (e) => {
+    const code = get(e, 'extensions.code');
+    if (code === 'INTERNAL_SERVER_ERROR') noticeError(e);
+    return e;
   },
 });
 server.applyMiddleware({ app: router, path: GRAPHQL_ENDPOINT });

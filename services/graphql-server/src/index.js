@@ -1,5 +1,6 @@
 const http = require('http');
 const { createTerminus } = require('@godaddy/terminus');
+require('./newrelic');
 const app = require('./app');
 const pkg = require('../package.json');
 const services = require('./services');
