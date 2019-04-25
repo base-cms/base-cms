@@ -3,7 +3,7 @@ const { get } = require('@base-cms/object-path');
 const { Router } = require('express');
 const { isObject } = require('@base-cms/utils');
 const { requestParser: canonicalRules } = require('@base-cms/canonical-path');
-const { noticeError } = require('newrelic');
+const newrelic = require('../newrelic');
 const basedb = require('../basedb');
 const createLoaders = require('../dataloaders');
 const schema = require('../graphql/schema');
@@ -46,7 +46,7 @@ const server = new ApolloServer({
   },
   formatError: (e) => {
     const code = get(e, 'extensions.code');
-    if (code === 'INTERNAL_SERVER_ERROR') noticeError(e);
+    if (code === 'INTERNAL_SERVER_ERROR') newrelic.noticeError(e);
     return e;
   },
 });
