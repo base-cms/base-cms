@@ -5,7 +5,7 @@ const { requestParser: canonicalRules } = require('@base-cms/canonical-path');
 const basedb = require('../basedb');
 const createLoaders = require('../dataloaders');
 const schema = require('../graphql/schema');
-const { NODE_ENV, GRAPHQL_ENDPOINT } = require('../env');
+const { NODE_ENV, GRAPHQL_ENDPOINT, ENGINE_API_KEY } = require('../env');
 
 const isProduction = NODE_ENV === 'production';
 
@@ -16,6 +16,7 @@ const server = new ApolloServer({
   schema,
   playground: !isProduction ? { endpoint: GRAPHQL_ENDPOINT } : false,
   introspection: true,
+  engine: isProduction ? { apiKey: ENGINE_API_KEY } : false,
   context: ({ req }) => {
     const loaders = createLoaders(basedb);
     return {

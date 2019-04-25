@@ -14,4 +14,5 @@ module.exports = cleanEnv(process.env, {
   GRAPHQL_ENDPOINT: nonemptystr({ desc: 'The GraphQL endpoint', default: '/' }),
   CDN_IMAGE_HOSTNAME: nonemptystr({ desc: 'The CDN hostname that serves images.', default: 'base.imgix.net' }),
   CDN_ASSET_HOSTNAME: nonemptystr({ desc: 'The CDN hostname that serves assets/documents.', default: 'cdn.baseplatform.io' }),
+  ENGINE_API_KEY: nonemptystr({ desc: 'The Apollo Engine API key', devDefault: '(unset)' }),
 });
