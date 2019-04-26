@@ -10,9 +10,9 @@ module.exports = {
   },
   buildRequestHeaders: (config = {}) => {
     const { tenantKey, cdnImageHostname, cdnAssetHostname } = config;
-    if (!tenantKey) throw new Error('A required configuration value `tenantKey` was not sent!');
-    if (!cdnImageHostname) throw new Error('A required configuration value `cdnImageHostname` was not sent!');
-    if (!cdnAssetHostname) throw new Error('A required configuration value `cdnAssetHostname` was not sent!');
+    if (!tenantKey) throw new Error('A required configuration value `tenantKey` was not set!');
+    if (!cdnImageHostname) throw new Error('A required configuration value `cdnImageHostname` was not set!');
+    if (!cdnAssetHostname) throw new Error('A required configuration value `cdnAssetHostname` was not set!');
     return {
       'x-tenant-key': tenantKey,
       'x-cdn-image-hostname': cdnImageHostname,
