@@ -6,6 +6,7 @@ $ const src = buildImgixUrl(input.src, input.options);
 <if(src)>
   <if(config.lazyloadImages() && input.lazyload !== false)>
     <img
+      src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
       data-src=src
       class=[input.class, 'lazyload']
       alt=input.alt
