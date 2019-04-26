@@ -5,5 +5,8 @@
   "main": "index.js",
   "author": "Josh Worden <josh@limit0.io>",
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/tenant-context",
-  "license": "MIT"
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
 }
