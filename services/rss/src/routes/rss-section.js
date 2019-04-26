@@ -27,19 +27,19 @@ ${docs.reduce((str, content) => `${str}
 </rss>`;
 
 module.exports = asyncRoute(async (req, res) => {
-  const { baseUri, host } = res.locals;
+  const { baseUri, basedb, host } = res.locals;
   const canonicalRules = getCanonicalRules(req);
 
   try {
     const publication = req.headers['x-publication-name'] || host;
     const { alias } = req.params;
-    const section = await getSectionByAlias(alias);
+    const section = await getSectionByAlias(basedb, alias);
     if (!section) {
       const err = new Error('Not found');
       err.statusCode = 404;
       throw err;
     }
-    const docs = await getSectionContent(BaseDB.get(section, '_id'));
+    const docs = await getSectionContent(basedb, BaseDB.get(section, '_id'));
 
     const sectionIds = [...new Set(docs.map((content) => {
       const ref = BaseDB.get(content, 'mutations.Website.primarySection');
@@ -47,7 +47,7 @@ module.exports = asyncRoute(async (req, res) => {
     }))];
 
     // Inject a loader function into the context
-    const load = await getPrimarySectionLoader(sectionIds);
+    const load = await getPrimarySectionLoader(basedb, sectionIds);
     const context = { canonicalRules, load };
 
     const toFormat = await Promise.all(docs.map(async (content) => {

@@ -3,7 +3,6 @@ const { inspect } = require('util');
 const {
   NODE_ENV,
   MONGO_DSN,
-  TENANT_KEY: tenant,
   ENABLE_BASEDB_LOGGING,
 } = require('./env');
 
@@ -31,7 +30,7 @@ const shouldLog = () => {
   return ENABLE_BASEDB_LOGGING;
 };
 
-module.exports = new BaseDB({
+module.exports = tenant => new BaseDB({
   tenant,
   client,
   logger: shouldLog() ? logger : undefined,
