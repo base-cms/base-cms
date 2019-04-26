@@ -3,7 +3,6 @@ const createError = require('http-errors');
 const errorTemplate = require('../components/document/components/error');
 const getRedirect = require('./get-redirect');
 
-const { error: log } = console;
 const { isArray } = Array;
 
 const renderError = (res, { statusCode, err, template }) => {
@@ -22,8 +21,6 @@ const handleNetworkError = (res, { statusCode, err, template }) => {
 };
 
 const render = (res, { statusCode, err, template }) => {
-  log(err);
-
   if (err.errors && err.errors[0]) {
     const error = err.errors[0];
     return error.result
