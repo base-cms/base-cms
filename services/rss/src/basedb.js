@@ -1,37 +1,6 @@
-const { BaseDB, MongoDB } = require('@base-cms/db');
-const { inspect } = require('util');
-const {
-  NODE_ENV,
-  MONGO_DSN,
-  ENABLE_BASEDB_LOGGING,
-} = require('./env');
+const { basedbFactory, mongodbFactory } = require('@base-cms/db');
+const { MONGO_DSN } = require('./env');
 
-const DEV = NODE_ENV === 'development';
+const client = mongodbFactory(MONGO_DSN);
 
-const { log } = console;
-
-const client = new MongoDB.Client(MONGO_DSN, {
-  bufferMaxEntries: 0,
-  connectTimeoutMS: 200,
-  ignoreUndefined: true,
-  reconnectInterval: 200, // only affects single server connects
-  reconnectTries: 15, // only affects single server connects
-  useNewUrlParser: true,
-});
-
-const logger = (obj) => {
-  log('');
-  Object.keys(obj).forEach(key => log(`${key}:`, inspect(obj[key], { colors: true, depth: 5 })));
-  log('');
-};
-
-const shouldLog = () => {
-  if (!DEV) return false;
-  return ENABLE_BASEDB_LOGGING;
-};
-
-module.exports = tenant => new BaseDB({
-  tenant,
-  client,
-  logger: shouldLog() ? logger : undefined,
-});
+module.exports = tenant => basedbFactory({ tenant, client });
