@@ -10,6 +10,7 @@
     "@base-cms/express-apollo": "^0.8.0",
     "@base-cms/image": "^0.8.0",
     "@base-cms/object-path": "^0.8.0",
+    "@base-cms/tenant-context": "^0.8.0",
     "@base-cms/utils": "^0.8.0",
     "@base-cms/web-common": "^0.8.1",
     "@godaddy/terminus": "^4.1.0",

@@ -22,6 +22,9 @@ const startServer = async ({
   exposedPort = env.EXPOSED_PORT || env.PORT || 4008,
   routes,
   graphqlUri = env.GRAPHQL_URI,
+  tenantKey = env.TENANT_KEY,
+  cdnImageHostname = env.CDN_IMAGE_HOSTNAME || 'base.imgix.net',
+  cdnAssetHostname = env.CDN_ASSET_HOSTNAME || 'media.baseplatform.io',
   errorTemplate,
 
   // Terminus settings.
@@ -40,6 +43,9 @@ const startServer = async ({
     siteConfig,
     coreConfig,
     graphqlUri,
+    tenantKey,
+    cdnImageHostname,
+    cdnAssetHostname,
   });
 
   // Await required services here...
