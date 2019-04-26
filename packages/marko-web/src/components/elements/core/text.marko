@@ -33,7 +33,7 @@ linkModifiers: additional modifiers to add the the link element
 -->
 $ const result = get(input.obj, input.field, input.defaultValue);
 $ const value = result == null ? '' : `${result}`.trim();
-$ const tag = input.tag || 'div';
+$ const tag = input.tag === null ? null : input.tag || 'div';
 $ const collapse = shouldCollapse(input.collapse);
 
 <!-- Input to apply to the wrapping element -->
@@ -63,19 +63,35 @@ $ const linkInput = {
 
 <if(!collapse || value)>
   <if(input.link && (!collapse || href))>
-    <${tag} ...tagInput ...input.attrs>
+    <if(tag === null)>
       <${input.before} />
       <cms-link-element ...linkInput>
         <tag-content ...contentInput />
       </cms-link-element>
       <${input.after} />
-    </>
+    </if>
+    <else>
+      <${tag} ...tagInput ...input.attrs>
+        <${input.before} />
+        <cms-link-element ...linkInput>
+          <tag-content ...contentInput />
+        </cms-link-element>
+        <${input.after} />
+      </>
+    </else>
   </if>
   <else>
-    <${tag} ...tagInput ...input.attrs>
+    <if(tag === null)>
       <${input.before} />
       <tag-content ...contentInput />
       <${input.after} />
-    </>
+    </if>
+    <else>
+      <${tag} ...tagInput ...input.attrs>
+        <${input.before} />
+        <tag-content ...contentInput />
+        <${input.after} />
+      </>
+    </else>
   </else>
 </if>
