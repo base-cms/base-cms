@@ -1,4 +1,4 @@
-const basedb = require('./basedb');
+const basedb = require('./basedb')('test');
 const { log } = require('./output');
 
 const start = (name, promise, url) => {
@@ -22,7 +22,7 @@ const ping = (name, promise) => promise.then(() => `${name} pinged successfully.
 
 module.exports = {
   start: () => Promise.all([
-    start('BaseDB', basedb.client.connect(), c => `${c.s.url} for ${basedb.tenant}`),
+    start('BaseDB', basedb.client.connect(), c => c.s.url),
   ]),
   stop: () => Promise.all([
     stop('BaseDB', basedb.client.close()),

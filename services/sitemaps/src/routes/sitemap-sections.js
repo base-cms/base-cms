@@ -15,11 +15,11 @@ ${sections.reduce((str, { url }) => `${str}  <url>
 </urlset>`;
 
 module.exports = asyncRoute(async (req, res) => {
-  const { baseUri } = res.locals;
+  const { baseUri, basedb } = res.locals;
   const canonicalRules = getCanonicalRules(req);
 
   try {
-    const sections = await getSections();
+    const sections = await getSections(basedb);
     const updated = new Date();
     const toFormat = await Promise.all(sections.map(async (section) => {
       const alias = await canonicalPathFor(section, { canonicalRules });

@@ -17,14 +17,14 @@ ${docs.reduce((str, { url, updated }) => `${str}  <url>
 </urlset>`;
 
 module.exports = asyncRoute(async (req, res) => {
-  const { baseUri } = res.locals;
+  const { baseUri, basedb } = res.locals;
   const canonicalRules = getCanonicalRules(req);
 
   try {
     const regex = /sitemap\/(?<type>[a-zA-Z]+)\.*(?<suffix>.*).xml$/;
     const { type, suffix } = req.path.match(regex).groups;
     const skip = suffix ? parseInt(suffix, 10) * PAGE_SIZE : 0;
-    const docs = await getContent(type, skip);
+    const docs = await getContent(basedb, type, skip);
 
     const sectionIds = [...new Set(docs.map((content) => {
       const ref = BaseDB.get(content, 'mutations.Website.primarySection');
@@ -32,7 +32,7 @@ module.exports = asyncRoute(async (req, res) => {
     }))];
 
     // Inject a loader function into the context
-    const load = await getPrimarySectionLoader(sectionIds);
+    const load = await getPrimarySectionLoader(basedb, sectionIds);
     const context = { canonicalRules, load };
 
     const toFormat = await Promise.all(docs.map(async (content) => {
