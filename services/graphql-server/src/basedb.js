@@ -1,6 +1,6 @@
-const { basedbFactory, mongodbFactory } = require('@base-cms/db');
+const { createBaseDB, createMongoClient } = require('@base-cms/db');
 const { MONGO_DSN } = require('./env');
 
-const client = mongodbFactory(MONGO_DSN);
+const client = createMongoClient(MONGO_DSN);
 
-module.exports = tenant => basedbFactory({ tenant, client });
+module.exports = tenant => createBaseDB({ tenant, client });

@@ -1,11 +1,11 @@
 const BaseDB = require('./basedb');
 const MongoDB = require('./mongodb');
-const mongodbFactory = require('./mongodb-factory');
-const basedbFactory = require('./basedb-factory');
+const createMongoClient = require('./create-mongo-client');
+const createBaseDB = require('./create-basedb');
 
 module.exports = {
   BaseDB,
   MongoDB,
-  mongodbFactory,
-  basedbFactory,
+  createMongoClient,
+  createBaseDB,
 };
