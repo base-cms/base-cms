@@ -6,7 +6,6 @@ const { get } = require('@base-cms/object-path');
 const { parser: embedParser } = require('@base-cms/embedded-media');
 const { underscore, dasherize, titleize } = require('@base-cms/inflector');
 
-const { CDN_ASSET_HOSTNAME } = require('../../../env');
 const relatedContent = require('../../utils/related-content');
 const connectionProjection = require('../../utils/connection-projection');
 const getDefaultOption = require('../../utils/get-default-option');
@@ -33,7 +32,7 @@ module.exports = {
    */
   Media: {
     __resolveType: resolveType,
-    fileSrc: ({ fileName, filePath }) => `https://${CDN_ASSET_HOSTNAME}/${cleanPath(filePath)}/${fileName}`,
+    fileSrc: ({ fileName, filePath }, _, { assetHost }) => `https://${assetHost}/${cleanPath(filePath)}/${fileName}`,
   },
 
   /**
