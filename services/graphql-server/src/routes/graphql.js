@@ -1,10 +1,11 @@
 const { ApolloServer } = require('apollo-server-express');
 const { get } = require('@base-cms/object-path');
+const { getFromRequest } = require('@base-cms/tenant-context');
 const { Router } = require('express');
 const { isObject } = require('@base-cms/utils');
 const { requestParser: canonicalRules } = require('@base-cms/canonical-path');
 const newrelic = require('../newrelic');
-const basedb = require('../basedb');
+const basedbFactory = require('../basedb');
 const createLoaders = require('../dataloaders');
 const schema = require('../graphql/schema');
 const { NODE_ENV, GRAPHQL_ENDPOINT, ENGINE_API_KEY } = require('../env');
@@ -20,6 +21,8 @@ const server = new ApolloServer({
   introspection: true,
   engine: isProduction ? { apiKey: ENGINE_API_KEY } : false,
   context: ({ req }) => {
+    const { tenant, imageHost, assetHost } = getFromRequest(req);
+    const basedb = basedbFactory(tenant);
     const loaders = createLoaders(basedb);
     return {
       basedb,
@@ -41,7 +44,8 @@ const server = new ApolloServer({
         ]);
       },
       canonicalRules: canonicalRules(req),
-      imageHost: 'base.imgix.net',
+      imageHost,
+      assetHost,
     };
   },
   formatError: (e) => {

@@ -1,3 +1,4 @@
+const { buildRequestHeaders } = require('@base-cms/tenant-context');
 const express = require('express');
 const path = require('path');
 const apollo = require('./apollo');
@@ -26,7 +27,8 @@ module.exports = (config = {}) => {
   });
 
   // Register apollo.
-  apollo(app, config.graphqlUri);
+  const headers = buildRequestHeaders(config);
+  apollo(app, config.graphqlUri, { link: { headers } });
 
   // Register the Marko middleware.
   marko(app);
@@ -38,10 +40,10 @@ module.exports = (config = {}) => {
   app.use(express.static(path.join(serverDir, 'public')));
 
   // Register sitemaps.
-  sitemaps(app);
+  sitemaps(app, headers);
 
   // Register RSS Feeds.
-  rss(app);
+  rss(app, headers);
 
   return app;
 };

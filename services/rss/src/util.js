@@ -1,17 +1,16 @@
 const { BaseDB } = require('@base-cms/db');
 const { getPublishedContentCriteria } = require('@base-cms/utils');
-const basedb = require('./basedb');
 const { PAGE_SIZE: limit } = require('./env');
 
 module.exports = {
-  getSectionByAlias: (alias) => {
+  getSectionByAlias: (basedb, alias) => {
     const options = {
       projection: { description: 1, name: 1, alias: 1 },
       sort: { sequence: 1 },
     };
     return basedb.findOne('website.Section', { alias, status: 1 }, options);
   },
-  getPrimarySectionLoader: async (ids) => {
+  getPrimarySectionLoader: async (basedb, ids) => {
     const query = {
       _id: { $in: ids },
       status: 1,
@@ -23,7 +22,7 @@ module.exports = {
     const sectionMap = sections.reduce((map, section) => map.set(`${section._id}`, section), new Map());
     return (_, id) => sectionMap.get(`${id}`);
   },
-  getSectionContent: async (sectionId) => {
+  getSectionContent: async (basedb, sectionId) => {
     const since = new Date();
     const scheduleQuery = {
       ...getPublishedContentCriteria({ since }),

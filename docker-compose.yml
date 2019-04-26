@@ -6,7 +6,6 @@ x-env-defaults: &env
 
 x-env-mongo: &env-mongo
   MONGO_DSN: ${MONGO_DSN-mongodb://mongodb:27017}
-  TENANT_KEY: ${TENANT_KEY-as3_baseplatform}
   ENABLE_BASEDB_LOGGING: ${ENABLE_BASEDB_LOGGING-0}
   NEW_RELIC_ENABLED: ${NEW_RELIC_ENABLED-0}
   NEW_RELIC_LICENSE_KEY: ${NEW_RELIC_LICENSE_KEY-(unset)}
@@ -80,8 +79,6 @@ services:
     environment:
       <<: *env
       <<: *env-mongo
-      CDN_IMAGE_HOSTNAME: ${CDN_IMAGE_HOSTNAME-base.imgix.net}
-      CDN_ASSET_HOSTNAME: ${CDN_ASSET_HOSTNAME-cdn.baseplatform.io}
     depends_on:
       - mongodb
     ports:
@@ -100,6 +97,9 @@ services:
       GRAPHQL_URI: ${GRAPHQL_URI-http://graphql-server}
       SITEMAPS_URI: ${SITEMAPS_URI-http://sitemaps}
       RSS_URI: ${RSS_URI-http://rss}
+      TENANT_KEY: ${TENANT_KEY-cygnus_ofcr}
+      CDN_IMAGE_HOSTNAME: ${CDN_IMAGE_HOSTNAME-base.imgix.net}
+      CDN_ASSET_HOSTNAME: ${CDN_ASSET_HOSTNAME-cdn.baseplatform.io}
     depends_on:
       - graphql-server
       - sitemaps

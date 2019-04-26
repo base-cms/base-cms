@@ -23,11 +23,11 @@ ${docs.reduce((str, doc) => `${str}  <url>
 
 module.exports = asyncRoute(async (req, res) => {
   const publication = req.headers['x-publication-name'] || 'Google News Publisher';
-  const { baseUri } = res.locals;
+  const { baseUri, basedb } = res.locals;
   const canonicalRules = getCanonicalRules(req);
 
   try {
-    const news = await getLatestNews();
+    const news = await getLatestNews(basedb);
 
     // Get sections to run a single query
     const sectionIds = [...new Set(news.map((content) => {
@@ -36,7 +36,7 @@ module.exports = asyncRoute(async (req, res) => {
     }))];
 
     // Inject a loader function into the context
-    const load = await getPrimarySectionLoader(sectionIds);
+    const load = await getPrimarySectionLoader(basedb, sectionIds);
     const context = { canonicalRules, load };
 
     const toFormat = await Promise.all(news.map(async (content) => {

@@ -1,6 +1,5 @@
 const moment = require('moment');
 const { getPublishedContentCriteria } = require('@base-cms/utils');
-const basedb = require('./basedb');
 const { PAGE_SIZE } = require('./env');
 
 /**
@@ -23,7 +22,7 @@ const getSuffixes = (count, limit = PAGE_SIZE) => {
 
 module.exports = {
   getSuffixes,
-  getContent: (type, skip) => {
+  getContent: (basedb, type, skip) => {
     const query = {
       ...getPublishedContentCriteria(),
       type,
@@ -44,14 +43,14 @@ module.exports = {
     };
     return basedb.find('platform.Content', query, options);
   },
-  getSections: () => {
+  getSections: (basedb) => {
     const options = {
       projection: { alias: 1 },
       sort: { sequence: 1 },
     };
     return basedb.find('website.Section', { status: 1 }, options);
   },
-  getContentCounts: () => {
+  getContentCounts: (basedb) => {
     const pipeline = [
       { $match: getPublishedContentCriteria() },
       { $group: { _id: '$type', count: { $sum: 1 } } },
@@ -59,7 +58,7 @@ module.exports = {
     ];
     return basedb.aggregate('platform.Content', pipeline);
   },
-  getPrimarySectionLoader: async (ids) => {
+  getPrimarySectionLoader: async (basedb, ids) => {
     const query = {
       _id: { $in: ids },
       status: 1,
@@ -71,7 +70,7 @@ module.exports = {
     const sectionMap = sections.reduce((map, section) => map.set(`${section._id}`, section), new Map());
     return (_, id) => sectionMap.get(`${id}`);
   },
-  getLatestNews: () => {
+  getLatestNews: (basedb) => {
     const published = moment().subtract(5, 'days').toDate();
     const query = {
       ...getPublishedContentCriteria(),

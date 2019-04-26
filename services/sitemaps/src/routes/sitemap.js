@@ -9,10 +9,10 @@ ${files.reduce((str, { url }) => `${str}  <sitemap>
 </sitemapindex>`;
 
 module.exports = asyncRoute(async (req, res) => {
-  const { baseUri } = res.locals;
+  const { baseUri, basedb } = res.locals;
 
   try {
-    const cursor = await getContentCounts();
+    const cursor = await getContentCounts(basedb);
     const typeCounts = await cursor.toArray();
     const sections = [{ url: `${baseUri}/sitemap/sections.xml` }];
     const toFormat = sections.concat(typeCounts.reduce((arr, { _id, count }) => arr
