@@ -3,11 +3,11 @@ const proxy = require('express-http-proxy');
 const SERVICE_URI = process.env.SITEMAPS_URI;
 if (!SERVICE_URI) throw new Error('Missing required environment variable: SITEMAPS_URI.');
 
-module.exports = (app) => {
+module.exports = (app, tenantContext) => {
   const opts = {
     proxyReqPathResolver: ({ originalUrl }) => originalUrl,
     proxyReqOptDecorator: (reqOpts, req) => {
-      const headers = { ...reqOpts.headers };
+      const headers = { ...reqOpts.headers, ...tenantContext };
       headers['x-publication-name'] = app.locals.config.siteName();
       headers['x-forwarded-proto'] = req.protocol;
       headers['x-website-host'] = req.get('host');

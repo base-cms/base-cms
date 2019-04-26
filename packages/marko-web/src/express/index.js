@@ -40,10 +40,10 @@ module.exports = (config = {}) => {
   app.use(express.static(path.join(serverDir, 'public')));
 
   // Register sitemaps.
-  sitemaps(app);
+  sitemaps(app, headers);
 
   // Register RSS Feeds.
-  rss(app);
+  rss(app, headers);
 
   return app;
 };
