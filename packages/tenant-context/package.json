@@ -1,0 +1,9 @@
+{
+  "name": "@base-cms/tenant-context",
+  "version": "0.8.0",
+  "description": "Ensures that required headers are present",
+  "main": "index.js",
+  "author": "Josh Worden <josh@limit0.io>",
+  "repository": "https://github.com/base-cms/base-cms/tree/master/packages/tenant-context",
+  "license": "MIT"
+}
