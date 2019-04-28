@@ -1,8 +1,10 @@
 const { content: canonicalPathFor, requestParser: getCanonicalRules } = require('@base-cms/canonical-path');
 const { BaseDB } = require('@base-cms/db');
-const basedb = require('./src/basedb');
+const createDB = require('./src/basedb');
 
 const { log } = console;
+const { TENANT_KEY } = process.env;
+const basedb = createDB(TENANT_KEY);
 
 const canonicalRules = getCanonicalRules({ headers: {} });
 

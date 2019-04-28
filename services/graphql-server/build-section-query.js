@@ -1,7 +1,9 @@
 const moment = require('moment');
-const basedb = require('./src/basedb');
+const createDB = require('./src/basedb');
 
 const { log } = console;
+const { TENANT_KEY } = process.env;
+const basedb = createDB(TENANT_KEY);
 
 const run = async () => {
   const client = await basedb.client.connect();
