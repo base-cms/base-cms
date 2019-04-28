@@ -7,7 +7,7 @@ These must be ran after a full import is completed, or any time import data chan
 2. From the project root, run `scripts/yarn.sh` to install dependencies
 3. Create a `.env` in the project root
 4. Within the `.env` set the `MONGO_DSN` values for the target site (see below)
-5. Pass the `TENANT_KEY` as a `docker-compose` env value (see "Running the Scripts" beliw)
+5. Pass the `TENANT_KEY` as a `docker-compose` env value (see "Running the Scripts" below)
 5. Run the `build-section-query.js`, `build-redirects.js`, `create-indexes.js` and `build-fallback-teasers.js` within the `graphql-server` service (see below)
 
 ## Example `.env` Setup
