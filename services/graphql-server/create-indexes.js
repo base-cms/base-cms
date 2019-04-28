@@ -1,10 +1,12 @@
 const { eachSeries } = require('@base-cms/async');
-const basedb = require('./src/basedb');
+const createDB = require('./src/basedb');
 const indexes = require('./src/graphql/utils/indexes');
 
 const { log } = console;
 const { keys } = Object;
 const { isArray } = Array;
+const { TENANT_KEY } = process.env;
+const basedb = createDB(TENANT_KEY);
 
 const run = async () => {
   const client = await basedb.client.connect();

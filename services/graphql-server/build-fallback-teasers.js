@@ -1,9 +1,11 @@
 const { get } = require('@base-cms/object-path');
 const { stripHtml } = require('@base-cms/html');
 const cheerio = require('cheerio');
-const basedb = require('./src/basedb');
+const createDB = require('./src/basedb');
 
 const { log } = console;
+const { TENANT_KEY } = process.env;
+const basedb = createDB(TENANT_KEY);
 
 const MIN_LENGTH = 70;
 
