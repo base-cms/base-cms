@@ -43,20 +43,10 @@ $ const loadMore = {
 
 $ const section = getAsObject(input, 'section');
 $ const channel = getAsObject(section, 'hierarchy.0');
-$ const context = JSON.stringify({
-  page_type: 'website-section',
-  page_path: `${section.canonicalPath}/page${pageNumber + 1}`,
-  section_id: section.id,
-  section_name: section.name,
-  section_path: section.fullName,
-  root_section_id: channel.id,
-  root_section_name: channel.name,
-});
 
 <cms-query-website-scheduled-content|{ nodes, pageInfo }| ...query>
-  <div class="load-more-page" data-context=context>
-    <!-- @todo Should this even be a core component? It needs to fire on in-view. -->
-    <cms-gtm-track-event name="page_load" />
+  <div class="load-more-page">
+    <cms-gtm-track-inview-event name="page_load" vars={ page_number: pageNumber + 1 } />
     <content-flow-card-deck-a nodes=nodes.slice(0, 11) />
     <content-flow-card-list-a nodes=nodes.slice(11) />
 

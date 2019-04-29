@@ -1,8 +1,8 @@
-import GTMTrackEvent from './gtm-track-event.vue';
+import GTMTrackInViewEvent from './gtm-track-in-view-event.vue';
 import LoadMoreButton from './load-more-button.vue';
 
 const components = {
-  GTMTrackEvent,
+  GTMTrackInViewEvent,
   LoadMoreButton,
 };
 

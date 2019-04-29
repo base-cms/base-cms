@@ -13,8 +13,8 @@
         "default-value": "dataLayer"
       }
     },
-    "cms-gtm-track-event": {
-      "template": "./track-event.marko"
+    "cms-gtm-track-inview-event": {
+      "template": "./track-inview-event.marko"
     }
   }
 }
