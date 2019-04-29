@@ -3,8 +3,6 @@
 </template>
 
 <script>
-import $ from '../jquery';
-
 export default {
   props: {
     name: {
