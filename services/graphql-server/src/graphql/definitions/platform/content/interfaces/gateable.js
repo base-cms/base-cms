@@ -13,7 +13,7 @@ enum GateableUserRole {
 enum GateableSurveyProvider {
   wufoo
   idme
-  form_dot_com
+  app_form_com
 }
 
 type ContentGating {
