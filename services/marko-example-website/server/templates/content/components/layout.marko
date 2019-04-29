@@ -8,7 +8,7 @@ $ const section = getAsObject(content, 'primarySection');
 $ const channel = getAsObject(section, 'hierarchy.0');
 $ const context = {
   page_type: 'content',
-  page_path: content.canonicalPath,
+  canonical_path: content.canonicalPath,
   content_id: content.id,
   content_type: content.type,
   content_title: content.name,

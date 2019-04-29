@@ -5,7 +5,7 @@ $ const section = getAsObject(input, 'section');
 $ const channel = getAsObject(section, 'hierarchy.0');
 $ const context = {
   page_type: 'website-section',
-  page_path: section.canonicalPath,
+  canonical_path: section.canonicalPath,
   section_id: section.id,
   section_name: section.name,
   section_path: section.fullName,
