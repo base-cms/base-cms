@@ -6,7 +6,7 @@ extend type Query {
   contentWhitepaper(input: ContentWhitepaperQueryInput!): ContentWhitepaper @findOne(model: "platform.Content", using: { id: "_id" }, criteria: "contentWhitepaper")
 }
 
-type ContentWhitepaper implements Content & Authorable & Gateable & Media @applyInterfaceFields {
+type ContentWhitepaper implements Content & Authorable & Media @applyInterfaceFields {
   # fields directly on platform.model::Content\Whitepaper
   bodyOriginal: String @projection
   editors(input: ContentWhitepaperEditorsInput = {}): ContentContactConnection! @projection @refMany(model: "platform.Content", criteria: "contentContact")

@@ -14,6 +14,16 @@ extend type Query {
   relatedPublishedContent(input: RelatedPublishedContentQueryInput = {}): ContentConnection!
 }
 
+enum GateableUserRole {
+  ROLE_REGISTERED
+}
+
+enum GateableSurveyProvider {
+  wufoo
+  idme
+  app_form_com
+}
+
 enum ContentMutation {
   Email
   Magazine
@@ -85,6 +95,12 @@ enum RelatedContentQueryType {
   primarySection
   # returns related content based on inverse company and relatedTo
   company
+}
+
+type ContentGating {
+  requiredRole: GateableUserRole
+  surveyType: GateableSurveyProvider
+  surveyId: String
 }
 
 type ContentConnection @projectUsing(type: "Content") {
