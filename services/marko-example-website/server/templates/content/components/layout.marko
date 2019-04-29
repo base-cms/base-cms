@@ -6,9 +6,9 @@ $ const company = getAsObject(content, 'company');
 $ const createdBy = getAsObject(content, 'createdBy');
 $ const section = getAsObject(content, 'primarySection');
 $ const channel = getAsObject(section, 'hierarchy.0');
-$ const context = JSON.stringify({
+$ const context = {
   page_type: 'content',
-  page_path: content.canonicalPath,
+  canonical_path: content.canonicalPath,
   content_id: content.id,
   content_type: content.type,
   content_title: content.name,
@@ -22,16 +22,16 @@ $ const context = JSON.stringify({
   section_path: section.fullName,
   root_section_id: channel.id,
   root_section_name: channel.name,
-});
+};
 
 <document>
   <@head>
-    <cms-gtm-container container-id=site.get('gtm.containerId') />
+    <cms-gtm-container container-id=site.get('gtm.containerId') push=context />
     <cms-page-metadata for="content" ...content />
     <${input.head} />
   </@head>
 
-  <div class="container-fluid-max" data-context=context>
+  <div class="container-fluid-max">
     <${input.renderBody} />
   </div>
 </document>
