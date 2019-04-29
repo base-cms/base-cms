@@ -3,7 +3,7 @@ import { getAsObject } from '@base-cms/object-path';
 
 $ const { site } = out.global;
 $ const section = getAsObject(data, 'section');
-$ const context = JSON.stringify({
+$ const context = {
   page_type: 'home',
   page_path: '/',
   section_id: section.id,
@@ -11,13 +11,13 @@ $ const context = JSON.stringify({
   section_path: section.name,
   root_section_id: section.id,
   root_section_name: section.name,
-});
+};
 
 <document>
   <@head>
-    <cms-gtm-container container-id=site.get('gtm.containerId') />
+    <cms-gtm-container container-id=site.get('gtm.containerId') push=context />
   </@head>
-  <cms-page-container for="home" class="container-fluid" attrs={ "data-context": context }>
+  <cms-page-container for="home" class="container-fluid">
     <h1>Homepage</h1>
     $ const block = 'content-list';
     <cms-query-website-scheduled-content|{ nodes }|
