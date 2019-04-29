@@ -3,7 +3,7 @@ import { getAsObject, get } from '@base-cms/object-path';
 $ const { site } = out.global;
 $ const section = getAsObject(input, 'section');
 $ const channel = getAsObject(section, 'hierarchy.0');
-$ const context = JSON.stringify({
+$ const context = {
   page_type: 'website-section',
   page_path: section.canonicalPath,
   section_id: section.id,
@@ -11,15 +11,15 @@ $ const context = JSON.stringify({
   section_path: section.fullName,
   root_section_id: channel.id,
   root_section_name: channel.name,
-});
+};
 
 <document>
   <@head>
-    <cms-gtm-container container-id=site.get('gtm.containerId') />
+    <cms-gtm-container container-id=site.get('gtm.containerId') push=context />
     <cms-page-metadata for="website-section" ...section />
     <${input.head} />
   </@head>
-  <cms-page-container for="website-section" class="container-fluid-max" attrs={ "data-context": context } data=section>
+  <cms-page-container for="website-section" class="container-fluid-max" attrs={ "data-context": JSON.stringify(context) } data=section>
     <${input.renderBody} />
   </cms-page-container>
   <hr>
