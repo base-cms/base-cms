@@ -6,6 +6,7 @@
         "type": "expression",
         "required": true
       },
+      "@push": "object",
       "@name": {
         "type": "string",
         "required": true,
