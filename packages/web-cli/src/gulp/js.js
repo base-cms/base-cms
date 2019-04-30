@@ -82,7 +82,7 @@ module.exports = cwd => (cb) => {
                   require.resolve('@babel/preset-env'),
                   {
                     modules: false,
-                    useBuiltIns: 'usage',
+                    useBuiltIns: false,
                     corejs: 2,
                     targets,
                     loose: false,
