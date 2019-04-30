@@ -74,6 +74,7 @@ module.exports = {
     const matches = pattern.exec(field);
     const projection = {};
     if (matches && matches[1] && matches[3]) {
+      projection._id = 1;
       projection[matches[1]] = { $slice: [Number(matches[3]), 1] };
     } else {
       projection[field] = 1;
