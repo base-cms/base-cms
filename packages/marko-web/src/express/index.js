@@ -1,4 +1,5 @@
 const { buildRequestHeaders } = require('@base-cms/tenant-context');
+const cookieParser = require('cookie-parser');
 const express = require('express');
 const path = require('path');
 const apollo = require('./apollo');
@@ -13,6 +14,9 @@ module.exports = (config = {}) => {
   const distDir = path.resolve(rootDir, 'dist');
   const app = express();
   const serverDir = path.resolve(rootDir, 'server');
+
+  // Add cookie parsing
+  app.use(cookieParser());
 
   // Set the core config.
   app.locals.config = new CoreConfig({ ...config.coreConfig, distDir });

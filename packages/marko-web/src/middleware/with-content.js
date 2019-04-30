@@ -10,7 +10,10 @@ module.exports = ({
   const id = isFn(idResolver) ? await idResolver(req, res) : req.params.id;
   const { apollo } = req;
 
-  const content = await loader(apollo, { id, queryFragment });
+  const additionalInput = {};
+  if (req.cookies['preview-mode']) additionalInput.status = 'any';
+
+  const content = await loader(apollo, { id, queryFragment, additionalInput });
   const { redirectTo, canonicalPath } = content;
   if (redirectTo) {
     return res.redirect(301, redirectTo);
