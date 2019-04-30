@@ -9,8 +9,11 @@ const createTitle = (doc) => {
 };
 
 const createDescription = (doc) => {
-  const { description } = doc;
-  return stripTags((description || '').trim()) || null;
+  const { alias, description } = doc;
+  const defaultDesc = alias !== 'home'
+    ? `Articles, news, products, blogs and videos covering the ${doc.fullName} market.`
+    : '';
+  return stripTags((description || defaultDesc).trim()) || null;
 };
 
 module.exports = { createTitle, createDescription };
