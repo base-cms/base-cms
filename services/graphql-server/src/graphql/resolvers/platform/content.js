@@ -285,10 +285,9 @@ module.exports = {
       const projection = connectionProjection(info);
       return basedb.paginate('platform.Content', {
         query,
-        sort: { field: 'sectionQuery.start', order: 'desc' },
+        sort: { field: 'sectionQuery.0.start', order: 'desc' },
         projection: { 'sectionQuery.$.start': 1, ...projection },
         excludeProjection: ['sectionQuery.start'],
-        ignoreCompoundAfterSort: true,
         ...pagination,
       });
     },
