@@ -3,5 +3,10 @@
     "./components/ads/marko.json",
     "./components/blocks/marko.json",
     "./components/content/marko.json"
-  ]
+  ],
+  "tags": {
+    "icon": {
+      "template": "./components/icon.marko"
+    }
+  }
 }
