@@ -84,7 +84,6 @@ module.exports = cwd => (cb) => {
                   {
                     modules: false,
                     useBuiltIns: false,
-                    corejs: 2,
                     targets,
                     loose: false,
                     debug,
@@ -95,8 +94,8 @@ module.exports = cwd => (cb) => {
                 [
                   require.resolve('@babel/plugin-transform-runtime'),
                   {
-                    regenerator: false,
-                    corejs: 2,
+                    regenerator: true,
+                    corejs: false,
                     helpers: true,
                     useESModules: false,
                     absoluteRuntime,
