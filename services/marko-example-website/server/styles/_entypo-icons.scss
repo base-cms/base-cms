@@ -1,0 +1,22 @@
+@font-face {
+  font-family: toolkit-entypo;
+  font-style: normal;
+  font-weight: 400;
+  src: url("/dist/fonts/entypo.eot");
+  src: url("/dist/fonts/entypo.eot?#iefix") format("eot"), url("/dist/fonts/entypo.woff2") format("woff2"), url("/dist/fonts/entypo.woff") format("woff"), url("/dist/fonts/entypo.ttf") format("truetype");
+}
+
+.entypo::before {
+  position: relative;
+  top: 2px;
+  display: inline-block;
+  font-family: toolkit-entypo;
+  font-size: 100%;
+  font-style: normal;
+  font-weight: 400;
+  font-variant: normal;
+  line-height: 1;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
