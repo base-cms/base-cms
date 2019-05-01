@@ -4,6 +4,7 @@ const { getFromRequest } = require('@base-cms/tenant-context');
 const { Router } = require('express');
 const { isObject } = require('@base-cms/utils');
 const { requestParser: canonicalRules } = require('@base-cms/canonical-path');
+const ApolloNewrelicExtension = require('apollo-newrelic-extension');
 const newrelic = require('../newrelic');
 const basedbFactory = require('../basedb');
 const createLoaders = require('../dataloaders');
@@ -15,11 +16,21 @@ const isProduction = NODE_ENV === 'production';
 const { keys } = Object;
 const router = Router();
 
+const config = {
+  // Enable in production
+  tracing: isProduction,
+  cacheControl: isProduction,
+  extensions: isProduction ? [() => new ApolloNewrelicExtension()] : [],
+  engine: isProduction ? { apiKey: ENGINE_API_KEY } : false,
+  // Enable in dev
+  introspection: !isProduction,
+  debug: !isProduction,
+  playground: !isProduction ? { endpoint: GRAPHQL_ENDPOINT } : false,
+};
+
 const server = new ApolloServer({
   schema,
-  playground: !isProduction ? { endpoint: GRAPHQL_ENDPOINT } : false,
-  introspection: true,
-  engine: isProduction ? { apiKey: ENGINE_API_KEY } : false,
+  ...config,
   context: ({ req }) => {
     const { tenant, imageHost, assetHost } = getFromRequest(req);
     const basedb = basedbFactory(tenant);
