@@ -19,6 +19,7 @@
     "@base-cms/utils": "^0.9.0",
     "@godaddy/terminus": "^4.1.0",
     "@newrelic/native-metrics": "^4.1.0",
+    "apollo-newrelic-extension": "^0.1.0",
     "apollo-server-express": "^2.4.8",
     "cheerio": "^1.0.0-rc.2",
     "cors": "^2.8.5",
