@@ -141,12 +141,14 @@ const run = async () => {
     basedb.collection('magazine', 'Issue'),
   ]);
 
-  const contentRedirects = await buildContentRedirects(contentColl);
-  const sectionRedirects = await buildSectionRedirects(sectionColl);
-  const issueRedirects = await buildIssueRedirects(issueColl);
-  const globalRedirects = await buildGlobalRedirects();
+  const promised = await Promise.all([
+    buildContentRedirects(contentColl),
+    buildSectionRedirects(sectionColl),
+    buildIssueRedirects(issueColl),
+    buildGlobalRedirects(),
+  ]);
 
-  const redirects = [].concat(contentRedirects, sectionRedirects, issueRedirects, globalRedirects);
+  const redirects = promised.reduce((arr, el) => arr.concat(el), []);
 
   log('Beginning bulk write process...');
 
