@@ -21,16 +21,7 @@ const getPrimarySectionLoader = async (ids) => {
   return (_, id) => sectionMap.get(`${id}`);
 };
 
-const run = async () => {
-  const client = await basedb.client.connect();
-  log(`BaseCMS DB connected to ${client.s.url} for ${basedb.tenant}`);
-
-  const [redirectsColl, contentColl] = await Promise.all([
-    basedb.collection('website', 'Redirects'),
-    basedb.collection('platform', 'Content'),
-  ]);
-
-
+const buildContentRedirects = async (contentColl) => {
   log('Retrieving content redirects...');
   const cursor = await contentColl.aggregate([
     { $match: { 'mutations.Website.redirects.0': { $exists: true } } },
@@ -55,15 +46,109 @@ const run = async () => {
   const load = await getPrimarySectionLoader(sectionIds);
   const context = { canonicalRules, load };
 
-  log(`Found ${docs.length} redirects.`);
+  log(`Found ${docs.length} content redirects.`);
 
-  const redirects = await Promise.all(docs.map(async (doc) => {
+  return Promise.all(docs.map(async (doc) => {
     const redirect = doc.mutations.Website.redirects;
     const from = redirect.charAt(0) === '/' ? redirect : `/${redirect}`;
     const slug = BaseDB.get(doc, 'mutations.Website.slug');
     const to = await canonicalPathFor({ slug, ...doc }, context);
     return { from, to };
   }));
+};
+
+const buildSectionRedirects = async (sectionColl) => {
+  log('Retrieving section redirects...');
+  const cursor = await sectionColl.aggregate([
+    { $match: { 'redirects.0': { $exists: true } } },
+    { $unwind: '$redirects' },
+    { $project: { redirects: 1, alias: 1 } },
+  ]);
+  const docs = await cursor.toArray();
+
+  log(`Found ${docs.length} section redirects.`);
+  return Promise.all(docs.map(async ({ alias, redirects }) => {
+    const from = redirects.charAt(0) === '/' ? redirects : `/${redirects}`;
+    const to = alias.charAt(0) === '/' ? alias : `/${alias}`;
+    return { from, to };
+  }));
+};
+
+const buildIssueRedirects = async (issueColl) => {
+  log('Retrieving issue redirects...');
+  const cursor = await issueColl.aggregate([
+    { $match: { 'redirects.0': { $exists: true } } },
+    { $unwind: '$redirects' },
+    { $project: { redirects: 1 } },
+  ]);
+  const docs = await cursor.toArray();
+
+  log(`Found ${docs.length} issue redirects.`);
+  return Promise.all(docs.map(async ({ _id, redirects }) => {
+    const from = redirects.charAt(0) === '/' ? redirects : `/${redirects}`;
+    const to = `/magazine/${_id}`;
+    return { from, to };
+  }));
+};
+
+const buildGlobalRedirects = () => {
+  const code = TENANT_KEY.split('_')[1];
+  const key = code === 'pia' ? 'sr' : code;
+  return [
+    { from: `/content/${key}/en/video.html`, to: '/videos' },
+    { from: `/content/${key}/en/currentissue`, to: '/magazine' },
+    { from: `/content/${key}/en/past-issues.html`, to: '/magazine' },
+    { from: `/content/${key}/en/events.html`, to: '/events' },
+    { from: `/content/${key}/en/archives.html`, to: '/magazine' },
+    { from: `/content/${key}/en/index.html`, to: '/' },
+    { from: `/content/${key}/en/whitpapers.html`, to: '/white-papers' },
+    { from: `/content/${key}/en/search.html`, to: '/search' },
+    { from: `/content/${key}/en/advertise.html`, to: '/page/advertise' },
+    { from: `/content/${key}/en/webcasts.html`, to: '/webcasts' },
+    { from: `/content/${key}/en/podcasts.html`, to: '/podcasts' },
+    { from: `/content/${key}/en/index.html`, to: '/' },
+    { from: `/content/${key}/en/magazine.html`, to: '/magazine' },
+    { from: `/content/${key}/en/about-us.html`, to: '/page/about-us' },
+    { from: `/content/${key}/en/newsletter.html`, to: '/subscribe/email' },
+    { from: '/past-issues.html', to: '/magazine' },
+    { from: '/search.html', to: '/search' },
+    { from: '/whitepapers.html', to: '/white-papers' },
+    { from: '/events.html', to: '/events' },
+    { from: '/advertise', to: '/page/advertise' },
+    { from: '/advertise.html', to: '/advertise' },
+    { from: '/webcasts.html', to: '/webcasts' },
+    { from: '/podcasts.html', to: '/podcasts' },
+    { from: '/index/contact-us.html', to: '/contact-us' },
+    { from: '/index/about-us.html', to: '/page/about-us' },
+    { from: '/subscribe.html', to: '/subscribe' },
+    { from: '/magazine.html', to: '/magazine' },
+    { from: '/archives.html', to: '/magazine' },
+    { from: '/about-us.html', to: '/page/about-us' },
+    { from: '/newsletter.html', to: '/suscribe/email' },
+    { from: '/video.html', to: '/videos' },
+    { from: '/index.html', to: '/' },
+  ];
+};
+
+const run = async () => {
+  const client = await basedb.client.connect();
+  log(`BaseCMS DB connected to ${client.s.url} for ${basedb.tenant}`);
+
+  const [redirectsColl, contentColl, sectionColl, issueColl] = await Promise.all([
+    basedb.collection('website', 'Redirects'),
+    basedb.collection('platform', 'Content'),
+    basedb.collection('website', 'Section'),
+    basedb.collection('magazine', 'Issue'),
+  ]);
+
+  const promised = await Promise.all([
+    buildContentRedirects(contentColl),
+    buildSectionRedirects(sectionColl),
+    buildIssueRedirects(issueColl),
+    buildGlobalRedirects(),
+  ]);
+
+  const redirects = promised.reduce((arr, el) => arr.concat(el), []);
 
   log('Beginning bulk write process...');
 
