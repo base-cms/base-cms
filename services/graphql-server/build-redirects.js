@@ -126,6 +126,7 @@ const buildGlobalRedirects = () => {
     { from: '/about-us.html', to: '/page/about-us' },
     { from: '/newsletter.html', to: '/suscribe/email' },
     { from: '/video.html', to: '/videos' },
+    { from: '/index.html', to: '/' },
   ];
 };
 
