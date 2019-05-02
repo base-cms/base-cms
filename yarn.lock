@@ -2796,10 +2796,10 @@ apollo-link@^1.2.8:
   dependencies:
     zen-observable-ts "^0.8.15"
 
-apollo-newrelic-extension@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/apollo-newrelic-extension/-/apollo-newrelic-extension-0.1.0.tgz#968c8d750e5cebbedb514fe011b41724cc54b049"
-  integrity sha512-ymixd6qwfybEeGbM431lSY6lIrNx5vSfbcdYnm/pnTVyVaK8hHTMLTceKiZf/fNKMnc+VC3AaGzVjg9QGWU1tQ==
+apollo-newrelic-extension@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/apollo-newrelic-extension/-/apollo-newrelic-extension-0.1.1.tgz#5245af01f4a64e7227c3af1061aa9bee3f131a9b"
+  integrity sha512-NxfDIZih0fmdBBxNfR4i0PD7wY7qizLg4+jleuCF76VROiOv/J0CYUDeNxJXCDwOUkyWzGa3Z5N7EPqyUGxUOw==
   dependencies:
     graphql "^0.13.2"
     graphql-extensions "^0.1.2"
