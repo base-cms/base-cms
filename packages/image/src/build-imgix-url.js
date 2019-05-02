@@ -3,6 +3,7 @@ const { URL, URLSearchParams } = require('url');
 
 const params = [
   'auto',
+  'bg',
   'blur',
   'border',
   'border-radius',
