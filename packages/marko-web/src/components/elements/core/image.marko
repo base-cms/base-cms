@@ -8,7 +8,7 @@ $ let src = result == null ? '' : `${result}`.trim();
 $ src = /^http/i.test(src) ? src : null;
 $ const collapse = shouldCollapse(input.collapse);
 
-$ if (input.obj.isLogo) {
+$ if (input.isLogo || get(input, 'obj.isLogo')) {
   input.options.fit = 'fillmax';
   input.options.fillColor = input.options.fillColor || 'fff';
 }
