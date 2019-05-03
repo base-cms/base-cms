@@ -1,5 +1,5 @@
 import { elementClassNames } from '@base-cms/web-common/utils';
-import { get } from '@base-cms/object-path';
+import { get, getAsObject } from '@base-cms/object-path';
 import getHref from './get-href';
 import shouldCollapse from '../../../utils/should-collapse';
 
@@ -8,9 +8,11 @@ $ let src = result == null ? '' : `${result}`.trim();
 $ src = /^http/i.test(src) ? src : null;
 $ const collapse = shouldCollapse(input.collapse);
 
-$ if (input.isLogo || get(input, 'obj.isLogo')) {
-  input.options.fit = 'fillmax';
-  input.options.fillColor = input.options.fillColor || 'fff';
+$ const options = getAsObject(input, 'options');
+
+$ if (get(input.obj, 'isLogo', input.logo)) {
+  options.fit = 'fillmax';
+  options.fillColor = options.fillColor || 'fff';
 }
 
 $ const href = getHref(input.linkTo, input.linkPath);
@@ -20,7 +22,7 @@ $ const imgInput = {
   collapse,
   height: input.height,
   lazyload: input.lazyload,
-  options: input.options, // imgix options
+  options: options, // imgix options
   src,
   title: input.title,
   width: input.width,
