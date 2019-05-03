@@ -24,6 +24,9 @@
     "cms-content-photographers": {
       "template": "./photographers.marko"
     },
+    "cms-content-sponsors": {
+      "template": "./sponsors.marko"
+    },
     "cms-content-source": {
       "template": "./source.marko"
     },
