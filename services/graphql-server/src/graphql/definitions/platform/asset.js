@@ -19,6 +19,7 @@ type AssetImage {
   caption: String @projection
   credit: String @projection
   cropDimensions: AssetImageCrop @projection
+  isLogo: Boolean @projection
 
   # from platform.model::Asset\Image mutations
   approvedWebsite: Boolean @projection(localField: "mutations.Website.approved") @value(localField: "mutations.Website.approved")
