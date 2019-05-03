@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/embedded-media",
-  "version": "0.9.0",
+  "version": "0.9.8",
   "description": "BaseCMS embedded media parsing.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
@@ -10,7 +10,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@base-cms/image": "^0.9.0",
+    "@base-cms/image": "^0.9.8",
     "@base-cms/inflector": "^0.9.0",
     "cheerio": "^1.0.0-rc.2",
     "escape-string-regexp": "^1.0.5",
