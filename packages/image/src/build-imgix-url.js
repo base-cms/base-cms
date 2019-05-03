@@ -10,6 +10,7 @@ const params = [
   'crop',
   'dpr',
   'fit',
+  'fill-color',
   'fp-x',
   'fp-y',
   'h',
