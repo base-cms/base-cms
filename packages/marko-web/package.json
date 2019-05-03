@@ -18,7 +18,7 @@
     "express": "^4.16.4",
     "express-http-proxy": "^1.5.1",
     "http-errors": "^1.7.2",
-    "jquery": "^3.3.1",
+    "jquery": "^3.4.0",
     "marko": "^4.15.2",
     "moment": "^2.24.0",
     "vue": "^2.6.10"
