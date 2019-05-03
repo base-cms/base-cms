@@ -8,6 +8,11 @@ $ let src = result == null ? '' : `${result}`.trim();
 $ src = /^http/i.test(src) ? src : null;
 $ const collapse = shouldCollapse(input.collapse);
 
+$ if (input.obj.isLogo) {
+  input.options.fit = 'fillmax';
+  input.options.fillColor = input.options.fillColor || 'fff';
+}
+
 $ const href = getHref(input.linkTo, input.linkPath);
 $ const imgInput = {
   alt: get(input.obj, 'alt', input.alt),
