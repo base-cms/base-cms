@@ -1,10 +1,15 @@
 import buildSlots from './utils/build-slots';
 import buildTargeting from './utils/build-targeting';
+import { get, getAsObject } from '@base-cms/object-path';
 
 $ const calls = [];
 $ buildSlots(input.slots).forEach(slot => calls.push(slot));
 $ if (input.enableSingleRequest) calls.push('googletag.pubads().enableSingleRequest();');
 $ if (input.collapseEmptyDivs) calls.push('googletag.pubads().collapseEmptyDivs();');
+$ if (input.targetingIncludeUri) {
+  input.targeting = getAsObject(input, 'targeting');
+  input.targeting.uri = get(out, 'global.req.url');
+}
 $ const targeting = buildTargeting(input.targeting);
 $ if (targeting) calls.push(`googletag.pubads().${targeting};`);
 $ calls.push('googletag.enableServices();');

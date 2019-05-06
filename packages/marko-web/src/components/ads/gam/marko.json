@@ -20,6 +20,10 @@
       "type": "boolean",
       "default-value": true
     },
+    "@targeting-include-uri": {
+      "type": "boolean",
+      "default-value": true
+    },
     "@slots": "object",
     "@targeting": "object"
   }
