@@ -74,6 +74,8 @@ module.exports = {
         { updated: 1, _id: 1 },
         { created: 1, _id: 1 },
         { published: 1, _id: 1 },
+        [{ startDate: 1, _id: 1 }, { sparse: true }],
+        [{ endDate: 1, _id: 1 }, { sparse: true }],
         // Section query sort
         { 'sectionQuery.start': -1, _id: -1 },
       ],

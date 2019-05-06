@@ -77,6 +77,8 @@ enum ContentSortField {
   created
   updated
   published
+  startDate
+  endDate
 }
 
 enum ContentPathField {
