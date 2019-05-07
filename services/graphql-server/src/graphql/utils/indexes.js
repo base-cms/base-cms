@@ -85,6 +85,7 @@ module.exports = {
         { status: 1, type: 1, _id: 1 },
       ],
       sort: [
+        [{ sequence: 1, _id: 1 }],
         [{ name: 1, _id: 1 }, { collation: { locale: 'en_US' } }],
         [{ fullName: 1, _id: 1 }, { collation: { locale: 'en_US' } }],
       ],

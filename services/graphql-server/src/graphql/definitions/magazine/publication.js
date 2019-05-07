@@ -49,6 +49,7 @@ type MagazinePublicationEdge {
 
 enum MagazinePublicationSortField {
   id
+  sequence
   name
   fullName
 }
@@ -88,8 +89,8 @@ input MagazinePublicationActiveIssuesInput {
 }
 
 input MagazinePublicationSortInput {
-  field: MagazinePublicationSortField = id
-  order: SortOrder = desc
+  field: MagazinePublicationSortField = sequence
+  order: SortOrder = asc
 }
 
 `;
