@@ -26,6 +26,7 @@ module.exports = {
   Addressable: { __resolveType: resolveType },
   Authorable: { __resolveType: resolveType },
   Contactable: { __resolveType: resolveType },
+  SocialLinkable: { __resolveType: resolveType },
 
   /**
    *
