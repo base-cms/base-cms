@@ -6,10 +6,7 @@ extend type Query {
   contentContact(input: ContentContactQueryInput!): ContentContact @findOne(model: "platform.Content", using: { id: "_id" }, criteria: "contentContact")
 }
 
-type ContentContact implements Content & Contactable & Addressable @applyInterfaceFields {
-  # fields directly on platform.model::Content\Contact
-  socialLinks: [EntityStubSocial]! @projection @arrayValue
-
+type ContentContact implements Content & Contactable & Addressable & SocialLinkable @applyInterfaceFields {
   # GraphQL-only fields
   # @todo Implement
   # @see Cygnus\ApplicationBundle\Icarus\BlockHandler\ContentAuthorQuery

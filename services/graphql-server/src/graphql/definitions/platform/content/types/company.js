@@ -6,7 +6,7 @@ extend type Query {
   contentCompany(input: ContentCompanyQueryInput!): ContentCompany @findOne(model: "platform.Content", using: { id: "_id" }, criteria: "contentCompany")
 }
 
-type ContentCompany implements Content & Contactable & Addressable @applyInterfaceFields {
+type ContentCompany implements Content & Contactable & Addressable & SocialLinkable @applyInterfaceFields {
   # fields directly on platform.model::Content\Company
   companyType: String @projection
   parentCompany(input: ContentCompanyParentCompanyInput = {}): ContentCompany @projection @refOne(loader: "platformContent" criteria: "contentCompany")
@@ -17,7 +17,6 @@ type ContentCompany implements Content & Contactable & Addressable @applyInterfa
   salesContacts(input: ContentCompanySalesContactsInput = {}): ContentContactConnection! @projection @refMany(model: "platform.Content", criteria: "contentContact")
   marketingContacts(input: ContentCompanyMarketingContactsInput = {}): ContentContactConnection! @projection @refMany(model: "platform.Content", criteria: "contentContact")
   companyCompetitors(input: ContentCompanyCompanyCompetitorsInput = {}): ContentCompanyConnection! @projection @refMany(model: "platform.Content", criteria: "contentCompany")
-  socialLinks: [EntityStubSocial]! @projection @arrayValue
 
   # fields directly on platform.model::Content\Company from mutations
   leadsDelivery: Boolean @projection(localField: "mutations.Website.leadsDelivery") @value(localField: "mutations.Website.leadsDelivery")

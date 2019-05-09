@@ -79,7 +79,7 @@ services:
     environment:
       <<: *env
       <<: *env-mongo
-      ENGINE_API_KEY: ${ENGINE_API_KEY}
+      ENGINE_API_KEY: ${ENGINE_API_KEY-(unset)}
     depends_on:
       - mongodb
     ports:
