@@ -4,14 +4,22 @@ const fs = require('fs');
 const path = require('path');
 
 const { log } = console;
-const { GRAPHQL_URL } = process.env;
+const {
+  GRAPHQL_URI,
+  TENANT_KEY,
+  CDN_IMAGE_HOSTNAME,
+  CDN_ASSET_HOSTNAME,
+} = process.env;
 
 // @see https://www.apollographql.com/docs/react/advanced/fragments.html
 
-fetch(GRAPHQL_URL, {
+fetch(GRAPHQL_URI, {
   method: 'POST',
   headers: {
     'content-type': 'application/json',
+    'x-tenant-key': TENANT_KEY,
+    'x-cdn-image-hostname': CDN_IMAGE_HOSTNAME,
+    'x-cdn-asset-hostname': CDN_ASSET_HOSTNAME,
   },
   body: JSON.stringify({
     query: `
