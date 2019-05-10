@@ -8,7 +8,9 @@ $ let src = result == null ? '' : `${result}`.trim();
 $ src = /^http/i.test(src) ? src : null;
 $ const collapse = shouldCollapse(input.collapse);
 
-$ const options = getAsObject(input, 'options');
+$ const options = {
+  ...getAsObject(input, 'options')
+};
 
 $ if (get(input.obj, 'isLogo', input.logo)) {
   options.fit = 'fillmax';
