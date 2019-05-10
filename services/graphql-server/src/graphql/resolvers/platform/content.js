@@ -35,7 +35,7 @@ module.exports = {
         out = `${state}`;
       }
       if (zip) out = `${out} ${zip}`;
-      return out;
+      return out || null;
     },
   },
   Authorable: { __resolveType: resolveType },
