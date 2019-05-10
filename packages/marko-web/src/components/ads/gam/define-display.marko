@@ -10,10 +10,14 @@ $ const style = applyStyle ? slotStyle(size) : null;
 
 $ const calls = [];
 $ const sizeMapping = buildSizeMapping(input.sizeMapping);
-$ calls.push(`googletag.defineSlot('${adUnitPath}', ${JSON.stringify(size)}, '${id}')${sizeMapping}.addService(googletag.pubads());`);
+$ if (input.outOfPage) {
+  calls.push(`googletag.defineOutOfPageSlot('${adUnitPath}', '${id}').addService(googletag.pubads());`);
+} else {
+  calls.push(`googletag.defineSlot('${adUnitPath}', ${JSON.stringify(size)}, '${id}')${sizeMapping}.addService(googletag.pubads());`);
+}
 $ calls.push(`googletag.display('${id}');`);
 
-<if(size.length && adUnitPath)>
+<if(adUnitPath && (size.length || input.outOfPage === true))>
   <div id=id style=style class=input.class>
     <script>googletag.cmd.push(function() { ${calls.join(' ')} });</script>
   </div>
