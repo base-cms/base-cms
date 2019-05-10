@@ -29,8 +29,12 @@ const coreDefaults = {
   w: 320,
 };
 
-module.exports = (src, selected, defaults) => {
-  const options = selected || defaults || coreDefaults;
+module.exports = (src, selected, defaults, isLogo) => {
+  const options = { ...(selected || defaults || coreDefaults) };
+  if (isLogo) {
+    options.fit = 'fillmax';
+    options.fillColor = options.fillColor || 'fff';
+  }
   try {
     const url = new URL(src);
     const searchParams = params.sort().reduce((sp, key) => {

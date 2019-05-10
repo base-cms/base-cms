@@ -8,21 +8,15 @@ $ let src = result == null ? '' : `${result}`.trim();
 $ src = /^http/i.test(src) ? src : null;
 $ const collapse = shouldCollapse(input.collapse);
 
-$ const options = getAsObject(input, 'options');
-
-$ if (get(input.obj, 'isLogo', input.logo)) {
-  options.fit = 'fillmax';
-  options.fillColor = options.fillColor || 'fff';
-}
-
 $ const href = getHref(input.linkTo, input.linkPath);
 $ const imgInput = {
   alt: get(input.obj, 'alt', input.alt),
   class: [...elementClassNames(input.block, input.obj, null, input.modifiers), input.class],
   collapse,
   height: input.height,
+  isLogo: get(input.obj, 'isLogo', input.logo),
   lazyload: input.lazyload,
-  options: options, // imgix options
+  options: input.options, // imgix options
   src,
   title: input.title,
   width: input.width,

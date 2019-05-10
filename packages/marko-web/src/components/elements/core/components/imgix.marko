@@ -1,7 +1,7 @@
 import { buildImgixUrl } from '@base-cms/image';
 
 $ const { config } = out.global;
-$ const src = buildImgixUrl(input.src, input.options);
+$ const src = buildImgixUrl(input.src, input.options, undefined, input.isLogo);
 
 <if(src)>
   <if(config.lazyloadImages() && input.lazyload !== false)>
