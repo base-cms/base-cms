@@ -16,10 +16,6 @@ interface Contactable {
   title: String @projection
   mobile: String @projection
   publicEmail: String @projection
-
-  # GraphQL-only fields.
-  emailLink: String @projection(localField: "email")
-  publicEmailLink: String @projection(localField: "publicEmail")
 }
 
 `;

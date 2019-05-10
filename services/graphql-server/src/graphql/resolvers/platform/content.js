@@ -39,11 +39,7 @@ module.exports = {
     },
   },
   Authorable: { __resolveType: resolveType },
-  Contactable: {
-    __resolveType: resolveType,
-    emailLink: ({ email }) => (email ? `mailto:${email}` : null),
-    publicEmailLink: ({ publicEmail }) => (publicEmail ? `mailto:${publicEmail}` : null),
-  },
+  Contactable: { __resolveType: resolveType },
   SocialLinkable: { __resolveType: resolveType },
 
   /**
