@@ -11,6 +11,9 @@ interface Addressable {
   zip: String @projection
   country: String @projection
   location: ContentStubLocation @projection
+
+  # GraphQL-only fields.
+  cityStateZip: String @projection(localField: "city", needs: ["state", "zip"])
 }
 
 `;

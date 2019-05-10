@@ -23,7 +23,21 @@ const { isArray } = Array;
 const resolveType = async ({ type }) => `Content${type}`;
 
 module.exports = {
-  Addressable: { __resolveType: resolveType },
+  Addressable: {
+    __resolveType: resolveType,
+    cityStateZip: ({ city, state, zip }) => {
+      let out = '';
+      if (city && state) {
+        out = `${city}, ${state}`;
+      } else if (city) {
+        out = `${city}`;
+      } else if (state) {
+        out = `${state}`;
+      }
+      if (zip) out = `${out} ${zip}`;
+      return out || null;
+    },
+  },
   Authorable: { __resolveType: resolveType },
   Contactable: { __resolveType: resolveType },
   SocialLinkable: { __resolveType: resolveType },
