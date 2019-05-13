@@ -18,6 +18,7 @@ const params = [
   'max-w',
   'min-h',
   'min-w',
+  'pad',
   'px',
   'trim',
   'w',
@@ -34,6 +35,7 @@ module.exports = (src, selected, defaults, isLogo) => {
   if (isLogo) {
     options.fit = 'fillmax';
     options.fillColor = options.fillColor || 'fff';
+    options.pad = options.pad || '5';
   }
   try {
     const url = new URL(src);
