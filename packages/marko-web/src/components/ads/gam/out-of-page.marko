@@ -7,6 +7,8 @@ $ const calls = [];
 $ calls.push(`googletag.defineOutOfPageSlot('${adUnitPath}', '${id}').addService(googletag.pubads());`);
 $ calls.push(`googletag.display('${id}');`);
 
-<div id=id class=input.class>
-  <script>googletag.cmd.push(function() { ${calls.join(' ')} });</script>
-</div>
+<if(adUnitPath && adunit.outOfPage)>
+  <div id=id>
+    <script>googletag.cmd.push(function() { ${calls.join(' ')} });</script>
+  </div>
+</if>
