@@ -8,6 +8,9 @@
     },
     "cms-ad-gam-define-display": {
       "template": "./define-display.marko"
+    },
+    "cms-ad-gam-out-of-page": {
+      "template": "./out-of-page.marko"
     }
   },
   "<cms-ad-gam-head>": {
