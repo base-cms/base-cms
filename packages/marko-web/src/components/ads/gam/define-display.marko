@@ -2,7 +2,7 @@ import generateId from './utils/generate-id';
 import buildSizeMapping from './utils/build-size-mapping';
 import slotStyle from './utils/slot-size-style';
 
-$ const id = input.id || generateId();
+$ const id = input.id || generateId(input.inc);
 $ const size = typeof input.size === 'string' ? [input.size] : (Array.isArray(input.size) ? input.size : []);
 $ const { adUnitPath } = input;
 $ const applyStyle = typeof input.applyStyle === 'undefined' ? false : input.applyStyle;
