@@ -14,22 +14,20 @@ const renderError = (res, { statusCode, err, template }) => {
   });
 };
 
-const handleNetworkError = (res, { statusCode, err, template }) => {
-  const { result } = err;
+const handleNetworkErrorResult = (res, { statusCode, result, template }) => {
   const message = result.errors && isArray(result.errors) ? result.errors[0].message : 'Unknown fatal.';
   return renderError(res, { statusCode, err: new Error(message), template });
 };
 
 const render = (res, { statusCode, err, template }) => {
-  if (err.errors && err.errors[0]) {
-    const error = err.errors[0];
-    return error.result
-      ? handleNetworkError(res, { statusCode, err: error, template })
-      : renderError(res, { statusCode, err, template });
+  const { networkError } = err;
+  if (networkError) {
+    if (networkError.result) {
+      return handleNetworkErrorResult(res, { statusCode, result: networkError.result, template });
+    }
+    return renderError(res, { statusCode, err: networkError, template });
   }
-  return err.networkError
-    ? handleNetworkError(res, { statusCode, err: err.networkError, template })
-    : renderError(res, { statusCode, err, template });
+  return renderError(res, { statusCode, err, template });
 };
 
 module.exports = (app, { template }) => {
