@@ -27,3 +27,5 @@ Once the `.env` is created and is configured for the appropriate website, run th
 `$ docker-compose run -e TENANT_KEY=account_group --rm  --entrypoint node graphql-server build-fallback-teasers.js`
 
 `$ docker-compose run -e TENANT_KEY=account_group --rm  --entrypoint node graphql-server set-company-logos.js`
+
+`$ docker-compose run -e TENANT_KEY=account_group --rm  --entrypoint node graphql-server missing-primary-sections.js`
