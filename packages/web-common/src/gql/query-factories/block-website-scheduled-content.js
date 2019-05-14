@@ -10,10 +10,10 @@ const { extractFragmentData } = require('../../utils');
  *                                        to apply to `edges.node` on
  *                                        the `websiteScheduledContent` query.
  */
-module.exports = ({ queryFragment }) => {
+module.exports = ({ queryFragment, queryName = '' } = {}) => {
   const { spreadFragmentName, processedFragment } = extractFragmentData(queryFragment);
   return gql`
-    query BlockWebsiteScheduledContent($input: WebsiteScheduledContentQueryInput!) {
+    query BlockWebsiteScheduledContent${queryName}($input: WebsiteScheduledContentQueryInput!) {
       websiteScheduledContent(input: $input) {
         edges {
           node {

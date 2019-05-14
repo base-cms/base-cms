@@ -34,6 +34,7 @@ module.exports = async (apolloClient, {
   sectionBubbling,
 
   queryFragment,
+  queryName,
 } = {}) => {
   const pagination = { limit, skip, after };
   const input = {
@@ -47,7 +48,7 @@ module.exports = async (apolloClient, {
     sectionId,
     optionId,
   };
-  const query = buildQuery({ queryFragment });
+  const query = buildQuery({ queryFragment, queryName });
   const variables = { input };
 
   const { data } = await apolloClient.query({ query, variables });
