@@ -57,6 +57,7 @@ enum WebsiteSiteSortField {
 
 input WebsiteRedirectQueryInput {
   from: String!
+  params: JSON
 }
 
 input WebsiteSiteQueryInput {
