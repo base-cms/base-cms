@@ -1,0 +1,14 @@
+import generateId from './utils/generate-id';
+
+$ const id = input.id || generateId(input.inc);
+$ const { adUnitPath } = input;
+
+$ const calls = [];
+$ calls.push(`googletag.defineOutOfPageSlot('${adUnitPath}', '${id}').addService(googletag.pubads());`);
+$ calls.push(`googletag.display('${id}');`);
+
+<if(adUnitPath)>
+  <div id=id>
+    <script>googletag.cmd.push(function() { ${calls.join(' ')} });</script>
+  </div>
+</if>
