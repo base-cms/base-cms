@@ -5,7 +5,7 @@ module.exports = gql`
 extend type Query {
   websiteSite(input: WebsiteSiteQueryInput!): WebsiteSite @findOne(model: "platform.Product", using: { id: "_id" }, criteria: "websiteSite")
   websiteSites(input: WebsiteSitesQueryInput = {}): WebsiteSiteConnection! @findMany(model: "platform.Product", criteria: "websiteSite")
-  websiteRedirect(input: WebsiteRedirectQueryInput!): WebsiteRedirect @findOne(model: "website.Redirects", using: { from: "from" })
+  websiteRedirect(input: WebsiteRedirectQueryInput!): WebsiteRedirect
 }
 
 type WebsiteSite {
