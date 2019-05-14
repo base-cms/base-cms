@@ -10,8 +10,8 @@ const query = gql`
 `;
 
 module.exports = async (req) => {
-  const { apollo, path: from } = req;
-  const variables = { input: { from } };
+  const { apollo, path: from, query: params } = req;
+  const variables = { input: { from, params } };
   const { data } = await apollo.query({ query, variables });
   const { websiteRedirect } = data;
   return websiteRedirect;
