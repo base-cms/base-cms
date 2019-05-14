@@ -9,10 +9,10 @@ const { extractFragmentData } = require('../../utils');
  * @param {string} [params.queryFragment] The `graphql-tag` fragment
  *                                        to apply to the `magazineSubscribeUrl` query.
  */
-module.exports = ({ queryFragment } = {}) => {
+module.exports = ({ queryFragment, queryName = '' } = {}) => {
   const { spreadFragmentName, processedFragment } = extractFragmentData(queryFragment);
   return gql`
-    query WithMagazineSubscribeUrl($input: MagazineSubscribeUrlQueryInput!) {
+    query WithMagazineSubscribeUrl${queryName}($input: MagazineSubscribeUrlQueryInput!) {
       magazineSubscribeUrl(input: $input) {
         ...WithMagazineSubscribeUrlFragment
         ${spreadFragmentName}
