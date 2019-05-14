@@ -18,10 +18,12 @@ MONGO_DSN=mongodb://[production-server-list]/?replicaSet=[replica-set-name]&conn
 ## Running the Scripts
 Once the `.env` is created and is configured for the appropriate website, run the following commands (from the project root) in the terminal. _Make sure to replace the `TENANT_KEY=account_group` env value before running, e.g. `TENANT_KEY=cygnus_ofcr`._
 
-`$ docker-compose run -e TENANT_KEY=account_group --rm  --entrypoint node graphql-server build-redirects.js`
-
 `$ docker-compose run -e TENANT_KEY=account_group --rm  --entrypoint node graphql-server create-indexes.js`
+
+`$ docker-compose run -e TENANT_KEY=account_group --rm  --entrypoint node graphql-server build-redirects.js`
 
 `$ docker-compose run -e TENANT_KEY=account_group --rm  --entrypoint node graphql-server build-section-query.js`
 
 `$ docker-compose run -e TENANT_KEY=account_group --rm  --entrypoint node graphql-server build-fallback-teasers.js`
+
+`$ docker-compose run -e TENANT_KEY=account_group --rm  --entrypoint node graphql-server set-company-logos.js`
