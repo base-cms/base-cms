@@ -1,15 +1,17 @@
 const { titleize } = require('@base-cms/inflector');
 
 const altFrom = (value = '') => {
-  const pos = value.lastIndexOf('.');
-  if (pos === -1) return value;
-  const offset = value.length - pos;
+  if (!value) return value;
+  const v = String(value);
+  const pos = v.lastIndexOf('.');
+  if (pos === -1) return v;
+  const offset = v.length - pos;
   if (offset < 6) {
-    const replaced = value.replace(value.substring(pos), '');
+    const replaced = v.replace(v.substring(pos), '');
     const titleized = titleize(replaced);
     return titleized.replace(/\./g, ' ');
   }
-  return value;
+  return v;
 };
 
 module.exports = ({ caption, name, fileName } = {}) => {
