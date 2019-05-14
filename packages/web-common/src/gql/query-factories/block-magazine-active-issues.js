@@ -10,10 +10,10 @@ const { extractFragmentData } = require('../../utils');
  *                                        to apply to `edges.node` on
  *                                        the `magazineActiveIssues` query.
  */
-module.exports = ({ queryFragment }) => {
+module.exports = ({ queryFragment, queryName = '' } = {}) => {
   const { spreadFragmentName, processedFragment } = extractFragmentData(queryFragment);
   return gql`
-    query BlockMagazineActiveIssues($input: MagazineActiveIssuesQueryInput!) {
+    query BlockMagazineActiveIssues${queryName}($input: MagazineActiveIssuesQueryInput!) {
       magazineActiveIssues(input: $input) {
         edges {
           node {

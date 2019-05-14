@@ -10,12 +10,13 @@ module.exports = async (apolloClient, input = {}) => {
   const {
     publicationId,
     queryFragment,
+    queryName,
     limit,
     skip,
     after,
     sort,
   } = input;
-  const query = buildQuery({ queryFragment });
+  const query = buildQuery({ queryFragment, queryName });
   const pagination = { limit, skip, after };
   const variables = { input: { publicationId, sort, pagination } };
 

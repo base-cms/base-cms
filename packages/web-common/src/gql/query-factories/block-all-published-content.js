@@ -10,10 +10,10 @@ const { extractFragmentData } = require('../../utils');
  *                                        to apply to `edges.node` on
  *                                        the `allPublishedContent` query.
  */
-module.exports = ({ queryFragment }) => {
+module.exports = ({ queryFragment, queryName = '' } = {}) => {
   const { spreadFragmentName, processedFragment } = extractFragmentData(queryFragment);
   return gql`
-    query BlockAllPublishedContent($input: AllPublishedContentQueryInput!) {
+    query BlockAllPublishedContent${queryName}($input: AllPublishedContentQueryInput!) {
       allPublishedContent(input: $input) {
         edges {
           node {

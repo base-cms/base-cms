@@ -9,10 +9,10 @@ const { extractFragmentData } = require('../../utils');
  * @param {string} [params.queryFragment] The `graphql-tag` fragment
  *                                        to apply to the `websiteSectionAlias` query.
  */
-module.exports = ({ queryFragment } = {}) => {
+module.exports = ({ queryFragment, queryName = '' } = {}) => {
   const { spreadFragmentName, processedFragment } = extractFragmentData(queryFragment);
   return gql`
-    query WithWebsiteSection($input: WebsiteSectionAliasQueryInput!, $redirect: WebsiteSectionRedirectQueryInput!) {
+    query WithWebsiteSection${queryName}($input: WebsiteSectionAliasQueryInput!, $redirect: WebsiteSectionRedirectQueryInput!) {
       websiteSectionAlias(input: $input) {
         ...WithWebsiteSectionFragment
         ${spreadFragmentName}

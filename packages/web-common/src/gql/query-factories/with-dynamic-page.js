@@ -9,10 +9,10 @@ const { extractFragmentData } = require('../../utils');
  * @param {string} [params.queryFragment] The `graphql-tag` fragment
  *                                        to apply to the `contentPage` query.
  */
-module.exports = ({ queryFragment } = {}) => {
+module.exports = ({ queryFragment, queryName = '' } = {}) => {
   const { spreadFragmentName, processedFragment } = extractFragmentData(queryFragment);
   return gql`
-    query WithDynamicPage($input: ContentPageQueryInput!) {
+    query WithDynamicPage${queryName}($input: ContentPageQueryInput!) {
       contentPage(input: $input) {
         ...WithDynamicPageFragment
         ${spreadFragmentName}

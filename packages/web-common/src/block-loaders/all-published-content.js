@@ -42,6 +42,7 @@ module.exports = async (apolloClient, {
   sectionBubbling,
 
   queryFragment,
+  queryName,
 } = {}) => {
   const pagination = { limit, skip, after };
   const input = {
@@ -55,7 +56,7 @@ module.exports = async (apolloClient, {
     ending: { after: date(endingAfter), before: date(endingBefore) },
   };
   if (field || order) input.sort = { field, order };
-  const query = buildQuery({ queryFragment });
+  const query = buildQuery({ queryFragment, queryName });
   const variables = { input };
 
   const { data } = await apolloClient.query({ query, variables });

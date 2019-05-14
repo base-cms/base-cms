@@ -26,6 +26,7 @@ module.exports = async (apolloClient, {
   requiresImage,
 
   queryFragment,
+  queryName,
 } = {}) => {
   const pagination = { limit, skip, after };
   const input = {
@@ -36,7 +37,7 @@ module.exports = async (apolloClient, {
     includeContentTypes,
     requiresImage,
   };
-  const query = buildQuery({ queryFragment });
+  const query = buildQuery({ queryFragment, queryName });
   const variables = { input };
 
   const { data } = await apolloClient.query({ query, variables });
