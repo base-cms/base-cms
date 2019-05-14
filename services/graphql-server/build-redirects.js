@@ -96,6 +96,7 @@ const buildGlobalRedirects = () => {
   const key = code === 'pia' ? 'sr' : code;
   return [
     { from: `/content/${key}/en/video.html`, to: '/videos' },
+    { from: `/content/${key}/en/video/video-landing-page.html`, to: '/videos' },
     { from: `/content/${key}/en/currentissue`, to: '/magazine' },
     { from: `/content/${key}/en/past-issues.html`, to: '/magazine' },
     { from: `/content/${key}/en/events.html`, to: '/events' },
@@ -104,6 +105,7 @@ const buildGlobalRedirects = () => {
     { from: `/content/${key}/en/index.html`, to: '/' },
     { from: `/content/${key}/en/whitpapers.html`, to: '/white-papers' },
     { from: `/content/${key}/en/whitepaper-listings.html`, to: '/white-papers' },
+    { from: `/content/${key}/en/whitepaper-listing.html`, to: '/white-papers' },
     { from: `/content/${key}/en/search.html`, to: '/search' },
     { from: `/content/${key}/en/advertise.html`, to: '/page/advertise' },
     { from: `/content/${key}/en/webcasts.html`, to: '/webcasts' },
@@ -117,6 +119,7 @@ const buildGlobalRedirects = () => {
     { from: '/search.html', to: '/search' },
     { from: '/whitepapers.html', to: '/white-papers' },
     { from: '/whitepaper-listings.html', to: '/white-papers' },
+    { from: '/whitepaper-listing.html', to: '/white-papers' },
     { from: '/events.html', to: '/events' },
     { from: '/advertise', to: '/page/advertise' },
     { from: '/advertise.html', to: '/advertise' },
@@ -133,6 +136,7 @@ const buildGlobalRedirects = () => {
     { from: '/about-us.html', to: '/page/about-us' },
     { from: '/newsletter.html', to: '/suscribe/email' },
     { from: '/video.html', to: '/videos' },
+    { from: '/video/video-landing-page.html', to: '/videos' },
     { from: '/index.html', to: '/' },
   ];
 };
