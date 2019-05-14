@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/marko-web",
-  "version": "0.9.17",
+  "version": "0.9.18",
   "description": "Core Marko+Express components for BaseCMS websites",
   "author": "Jacob Bare <jacob@limit0.io>",
   "main": "src/index.js",
@@ -12,7 +12,7 @@
     "@base-cms/object-path": "^0.9.0",
     "@base-cms/tenant-context": "^0.9.1",
     "@base-cms/utils": "^0.9.0",
-    "@base-cms/web-common": "^0.9.0",
+    "@base-cms/web-common": "^0.9.18",
     "@godaddy/terminus": "^4.1.0",
     "cookie-parser": "^1.4.4",
     "express": "^4.16.4",
