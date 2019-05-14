@@ -1,7 +1,7 @@
 const { titleize } = require('@base-cms/inflector');
 
 const altFrom = (value = '') => {
-  if (!value) return value;
+  if (!value) return '';
   const v = String(value);
   const pos = v.lastIndexOf('.');
   if (pos === -1) return v;
