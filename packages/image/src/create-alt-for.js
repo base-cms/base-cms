@@ -1,6 +1,6 @@
 const { titleize } = require('@base-cms/inflector');
 
-const altFrom = (value) => {
+const altFrom = (value = '') => {
   const pos = value.lastIndexOf('.');
   if (pos === -1) return value;
   const offset = value.length - pos;
