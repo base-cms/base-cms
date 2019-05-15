@@ -14,6 +14,7 @@ module.exports = (config = {}) => {
   const distDir = path.resolve(rootDir, 'dist');
   const app = express();
   const serverDir = path.resolve(rootDir, 'server');
+  const { siteName: name } = config.coreConfig;
 
   // Add cookie parsing
   app.use(cookieParser());
@@ -32,7 +33,7 @@ module.exports = (config = {}) => {
 
   // Register apollo.
   const headers = buildRequestHeaders(config);
-  apollo(app, config.graphqlUri, { link: { headers } });
+  apollo(app, config.graphqlUri, { name, link: { headers } });
 
   // Register the Marko middleware.
   marko(app);
