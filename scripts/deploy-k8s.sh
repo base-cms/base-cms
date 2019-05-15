@@ -14,4 +14,4 @@ payload="{
 curl -f -X POST --data "$payload" \
   -H 'Content-type: application/json' \
   -H "X-Api-Key:$NR_APIKEY" \
-  https://api.newrelic.com/v2/applications/222815958/deployments.json
+  https://api.newrelic.com/v2/applications/$3/deployments.json
