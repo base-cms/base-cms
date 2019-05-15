@@ -64,7 +64,7 @@ if (!existsSync(servicePath)) error(`Could not read ${servicePath}!`);
 const pkg = require(`../${servicePath}/package.json`); // eslint-disable-line import/no-dynamic-require
 
 if (version !== `v${pkg.version}`) {
-  log(`Site ${service} is at version ${pkg.version}. Skipping deployment.`);
+  log(`Service ${service} is at version ${pkg.version}. Skipping deployment.`);
   process.exit(0);
 }
 
