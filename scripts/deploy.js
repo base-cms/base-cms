@@ -26,6 +26,12 @@ const service = process.argv[2];
 const servicePath = join('services', service);
 const image = `basecms/${service}`;
 
+const nrIds = {
+  'graphql-server': 222815958,
+  rss: 222849027,
+  sitemaps: 222844922,
+};
+
 const error = (message) => {
   log(`ERROR: ${message}`);
   const text = `Deployment of \`${image}\` @ \`${version}\` to production FAILED!\n${message}`;
@@ -58,7 +64,7 @@ if (!existsSync(servicePath)) error(`Could not read ${servicePath}!`);
 const pkg = require(`../${servicePath}/package.json`); // eslint-disable-line import/no-dynamic-require
 
 if (version !== `v${pkg.version}`) {
-  log(`Site ${service} is at version ${pkg.version}. Skipping deployment.`);
+  log(`Service ${service} is at version ${pkg.version}. Skipping deployment.`);
   process.exit(0);
 }
 
@@ -99,7 +105,8 @@ const build = async () => {
 
 const deploy = async () => {
   log(`Deploying ${image}:${version} on Kubernertes`);
-  const { status } = await spawnSync('bash', ['scripts/deploy-k8s.sh', service, version], { stdio: 'inherit' });
+  const nrid = nrIds[service];
+  const { status } = await spawnSync('bash', ['scripts/deploy-k8s.sh', service, version, nrid], { stdio: 'inherit' });
   if (status !== 0) error('Image deploy failed!');
 };
 
