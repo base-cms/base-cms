@@ -39,7 +39,7 @@ module.exports = (config = {}) => {
   marko(app);
 
   // Serve static assets
-  app.use('/dist', express.static(distDir));
+  app.use('/dist', express.static(distDir, { maxAge: '2y', immutable: true }));
 
   // Register public files.
   app.use(express.static(path.join(serverDir, 'public')));
