@@ -9,6 +9,7 @@
   "private": true,
   "dependencies": {
     "@base-cms/db": "^0.9.3",
+    "@base-cms/object-path": "^0.9.0",
     "@base-cms/utils": "^0.9.0",
     "@godaddy/terminus": "^4.1.0",
     "@newrelic/native-metrics": "^4.1.0",
