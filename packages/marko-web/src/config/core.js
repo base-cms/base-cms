@@ -22,6 +22,16 @@ class CoreConfig extends AbstractConfig {
     }
     return this.scripts;
   }
+
+  styles() {
+    if (!this.stylesheets) {
+      const distDir = this.get('distDir');
+      // eslint-disable-next-line global-require, import/no-dynamic-require
+      const manifest = this.manifest || require(`${distDir}/rev-manifest.json`);
+      this.stylesheets = Object.values(manifest).filter(f => /\.css$/.test(f)).map(f => `/dist/${f}`);
+    }
+    return this.stylesheets;
+  }
 }
 
 module.exports = CoreConfig;

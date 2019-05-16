@@ -1,6 +1,11 @@
 $ const { config } = out.global;
 $ const scripts = config.sources();
+$ const stylesheets = config.styles();
 
 <for|src| of=scripts>
   <script src=src></script>
+</for>
+
+<for|src| of=stylesheets>
+  <link rel="stylesheet" href=src />
 </for>
