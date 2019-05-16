@@ -1,14 +1,35 @@
-const express = require('express');
-const bodyParser = require('body-parser');
+const http = require('http');
+const { createTerminus } = require('@godaddy/terminus');
+require('./newrelic');
+const app = require('./app');
+const pkg = require('../package.json');
+const services = require('./services');
+const { log } = require('./output');
 
-const { log } = console;
+const server = http.createServer(app);
 
-const app = express();
-app.use(bodyParser.json());
+const run = async () => {
+  await services.start();
 
-app.post('/platform-history', (req, res) => {
-  log(req.body);
-  res.json(req.body);
+  createTerminus(server, {
+    timeout: 1000,
+    signals: ['SIGTERM', 'SIGINT', 'SIGHUP', 'SIGQUIT'],
+    healthChecks: { '/_health': () => services.ping() },
+    onSignal: () => {
+      log('> Cleaning up...');
+      return services.stop().catch(e => log('> CLEANUP ERRORS:', e));
+    },
+    onShutdown: () => log('> Cleanup finished. Shutting down.'),
+  });
+
+  server.listen(80, () => log('> Ready on http://0.0.0.0:10012'));
+};
+
+// Simulate future NodeJS behavior by throwing unhandled Promise rejections.
+process.on('unhandledRejection', (e) => {
+  log('> Unhandled promise rejection. Throwing error...');
+  throw e;
 });
 
-app.listen(80, () => log('> Ready on http://0.0.0.0:10012'));
+log(`> Booting ${pkg.name} v${pkg.version}...`);
+run().catch(e => setImmediate(() => { throw e; }));

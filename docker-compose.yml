@@ -164,6 +164,9 @@ services:
     environment:
       <<: *env
       <<: *env-mongo
+      CAPRICA_DSN: ${CAPRICA_DSN-mongodb://mongodb:27017}
+      AERILON_DSN: ${AERILON_DSN-mongodb://mongodb:27017}
+      PICON_DSN: ${PICON_DSN-mongodb://mongodb:27017}
     depends_on:
       - mongodb
     ports:

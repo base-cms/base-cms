@@ -30,6 +30,7 @@ const nrIds = {
   'graphql-server': 222815958,
   rss: 222849027,
   sitemaps: 222844922,
+  hooks: 231283772,
 };
 
 const error = (message) => {
