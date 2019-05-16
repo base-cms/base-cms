@@ -297,7 +297,15 @@ class BaseDB {
    * @param {object} [options] Options to pass to the `Db.collection` call.
    */
   async collection(namespace, resource, options) {
-    return this.client.collection(this.dbNameFor(namespace), resource, options);
+    const dbName = this.dbNameFor(namespace);
+    if (options.strict) {
+      return new Promise((resolve, reject) => {
+        this.client.collection(dbName, resource, options, (err, coll) => {
+          if (err) { reject(err); } else { resolve(coll); }
+        });
+      });
+    }
+    return this.client.collection(dbName, resource, options);
   }
 
   /**

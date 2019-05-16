@@ -26,10 +26,11 @@ class Client {
    * @param {string} dbName
    * @param {string} name
    * @param {object} [options]
+   * @param {function} [cb]
    */
-  async collection(dbName, name, options) {
+  async collection(dbName, name, options, cb) {
     const db = await this.db(dbName);
-    return db.collection(name, options);
+    return db.collection(name, options, cb);
   }
 
   /**
