@@ -30,3 +30,7 @@ jobs:
     - stage: deploy
       name: RSS
       script: scripts/deploy.js rss
+
+    - stage: deploy
+      name: Hooks
+      script: scripts/deploy.js hooks
