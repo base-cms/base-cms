@@ -13,14 +13,14 @@ class CoreConfig extends AbstractConfig {
     return this.get('siteName', '');
   }
 
-  assets() {
-    if (!this.manifest) {
+  sources() {
+    if (!this.scripts) {
       const distDir = this.get('distDir');
       // eslint-disable-next-line global-require, import/no-dynamic-require
-      const manifest = require(`${distDir}/asset-manifest.json`);
-      this.manifest = Object.values(manifest);
+      const manifest = this.manifest || require(`${distDir}/rev-manifest.json`);
+      this.scripts = Object.values(manifest).filter(f => /\.js$/.test(f)).map(f => `/dist/${f}`);
     }
-    return this.manifest;
+    return this.scripts;
   }
 }
 
