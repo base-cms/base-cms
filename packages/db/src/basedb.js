@@ -349,6 +349,18 @@ class BaseDB {
     }
   }
 
+  async tenantExists() {
+    try {
+      await this.collection('platform', 'Content', { strict: true });
+      return true;
+    } catch (e) {
+      if (/collection content does not exist/i.test(e.message)) {
+        return false;
+      }
+      throw e;
+    }
+  }
+
   /**
    * Coerces a string ID to either a MongoDB ObjectID or an integer.
    *
