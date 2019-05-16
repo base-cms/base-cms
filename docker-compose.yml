@@ -157,6 +157,18 @@ services:
     ports:
       - "10011:80"
 
+  hooks:
+    << : *node
+    working_dir: /base-cms/services/hooks
+    command: ["/base-cms/node_modules/.bin/gulp"]
+    environment:
+      <<: *env
+      <<: *env-mongo
+    depends_on:
+      - mongodb
+    ports:
+      - "10012:80"
+
 volumes:
   esdata: {}
   mongodb: {}

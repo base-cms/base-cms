@@ -1,0 +1,15 @@
+{
+  "name": "@base-cms/hooks",
+  "version": "0.9.0",
+  "description": "The BaseCMS hooks server using Express.",
+  "main": "src/index.js",
+  "author": "Jacob Bare <jacob@limit0.io>",
+  "repository": "https://github.com/base-cms/base-cms/tree/master/packages/hooks",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@base-cms/db": "^0.9.3",
+    "body-parser": "^1.19.0",
+    "express": "^4.16.4"
+  }
+}
