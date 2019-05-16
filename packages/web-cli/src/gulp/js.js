@@ -1,5 +1,4 @@
 /* eslint-disable global-require */
-const ManifestPlugin = require('webpack-manifest-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const path = require('path');
 const pump = require('pump');
@@ -65,7 +64,7 @@ module.exports = cwd => (cb) => {
         library: 'CMSBrowserComponents',
         libraryExport: 'default',
         libraryTarget: 'umd',
-        filename: 'index.[chunkhash:8].js',
+        filename: 'index.js',
       },
       module: {
         rules: [
@@ -115,11 +114,6 @@ module.exports = cwd => (cb) => {
       },
       plugins: [
         new VueLoaderPlugin(),
-        new ManifestPlugin({
-          fileName: 'asset-manifest.json',
-          publicPath: '/dist/',
-          filter: ({ name }) => /\.js$/.test(name),
-        }),
       ],
       // @todo Explore splitting vendor code vs. core website code vs. userland website code
       // optimization: {
@@ -134,6 +128,6 @@ module.exports = cwd => (cb) => {
       //   },
       // },
     }, wp),
-    dest('dist', { cwd }),
+    dest('dist/tmp', { cwd }),
   ], e => completeTask(e, cb));
 };
