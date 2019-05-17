@@ -33,6 +33,6 @@ module.exports = cwd => (cb) => {
       cssnano(),
     ]),
     sourcemaps.write('.'),
-    dest('dist/tmp', { cwd }),
+    dest('dist/css', { cwd }),
   ], e => completeTask(e, cb));
 };

@@ -128,6 +128,6 @@ module.exports = cwd => (cb) => {
       //   },
       // },
     }, wp),
-    dest('dist/tmp', { cwd }),
+    dest('dist/js', { cwd }),
   ], e => completeTask(e, cb));
 };

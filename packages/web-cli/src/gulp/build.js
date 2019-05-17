@@ -11,5 +11,4 @@ module.exports = cwd => series(
   () => del('dist/**/*', { cwd }),
   parallel(css(cwd), js(cwd)),
   manifest(cwd),
-  () => del('dist/tmp', { cwd }),
 );
