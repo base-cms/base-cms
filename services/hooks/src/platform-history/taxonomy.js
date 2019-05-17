@@ -1,7 +1,5 @@
 const { BaseDB } = require('@base-cms/db');
-const slugFn = require('slug');
-
-const sluggify = value => slugFn(value).toLowerCase();
+const { createAlias } = require('./utils');
 
 const loadParents = async (taxonomy, db, projection, parents = []) => {
   const ref = BaseDB.get(taxonomy, 'parent');
@@ -14,8 +12,6 @@ const loadParents = async (taxonomy, db, projection, parents = []) => {
 };
 
 const updateTaxonomy = (id, db, $set) => db.updateOne('platform.Taxonomy', { _id: id }, { $set });
-
-const createAlias = tree => tree.map(name => sluggify(name)).join('/');
 
 const createFullName = (id, tree) => {
   const v = tree.slice();
