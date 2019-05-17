@@ -342,7 +342,7 @@ class BaseDB {
    */
   async collection(namespace, resource, options) {
     const dbName = this.dbNameFor(namespace);
-    if (options.strict) {
+    if (options && options.strict) {
       return new Promise((resolve, reject) => {
         this.client.collection(dbName, resource, options, (err, coll) => {
           if (err) { reject(err); } else { resolve(coll); }
