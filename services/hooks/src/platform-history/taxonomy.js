@@ -23,16 +23,22 @@ const createFullName = (id, tree) => {
   return `${type}: ${v.join(' > ')} (${id})`;
 };
 
-const updateChildren = async (tree, taxonomy, db, projection, data = []) => {
+const buildTaxonomyUpdate = (id, tree, status) => {
+  const $set = {
+    alias: createAlias(tree),
+    fullName: createFullName(id, tree),
+  };
+  if (status === 1 || status === 0) $set.status = status;
+  return $set;
+};
+
+const updateChildren = async (tree, taxonomy, db, projection, status, data = []) => {
   const children = await db.find('platform.Taxonomy', { 'parent.$id': taxonomy._id }, { projection });
   if (!children.length) return data;
   await Promise.all(children.map(async (child) => {
     const { _id: id, name } = child;
     const childTree = tree.concat(name);
-    const $set = {
-      alias: createAlias(childTree),
-      fullName: createFullName(id, childTree),
-    };
+    const $set = buildTaxonomyUpdate(id, childTree, status);
     await updateTaxonomy(id, db, $set);
     data.push({ id, ...$set });
     return updateChildren(childTree, child, db, projection, data);
@@ -43,6 +49,7 @@ const updateChildren = async (tree, taxonomy, db, projection, data = []) => {
 
 const update = async (db, h) => {
   const id = h.id();
+  const status = h.field('status');
   const projection = {
     _id: 1,
     name: 1,
@@ -58,12 +65,9 @@ const update = async (db, h) => {
     return arr;
   }, [taxonomy.type]);
 
-  const $set = {
-    alias: createAlias(tree),
-    fullName: createFullName(id, tree),
-  };
+  const $set = buildTaxonomyUpdate(id, tree, status);
   await updateTaxonomy(id, db, $set);
-  return updateChildren(tree, taxonomy, db, projection, [{ id, ...$set }]);
+  return updateChildren(tree, taxonomy, db, projection, status, [{ id, ...$set }]);
 };
 
 const updateContent = async (db, content) => {
@@ -88,8 +92,9 @@ const updateRelatedContent = async (db, taxonomy) => {
 
 module.exports = async (db, history) => {
   const parent = history.field('parent');
+  const status = history.field('status');
   if (history.wasChanged()) {
-    if (history.field('name') || parent || parent === null) {
+    if (history.field('name') || parent || parent === null || status === 1 || status === 0) {
       const taxonomy = await update(db, history);
       const content = await updateRelatedContent(db, taxonomy);
       return { taxonomy, content };
