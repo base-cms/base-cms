@@ -11,6 +11,10 @@ class History {
     return id;
   }
 
+  modelName() {
+    return `${this.namespace()}.${this.resource()}`;
+  }
+
   namespace() {
     const parts = this.typeParts();
     return parts[0].toLowerCase();
@@ -29,6 +33,22 @@ class History {
 
   typeParts() {
     return this.type().split('\\');
+  }
+
+  wasChanged() {
+    return this.event('changed');
+  }
+
+  wasCreated() {
+    return this.event('created');
+  }
+
+  event(name) {
+    return get(this.history, 'event') === name;
+  }
+
+  field(path, def) {
+    return get(this.history, `fields.${path}`, def);
   }
 }
 
