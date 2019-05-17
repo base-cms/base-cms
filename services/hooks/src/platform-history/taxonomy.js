@@ -101,4 +101,9 @@ const handle = async (db, history) => {
   return { taxonomy: [], content: [] };
 };
 
-module.exports = { handle, update, updateRelatedContent };
+module.exports = {
+  handle,
+  update,
+  updateRelatedContent,
+  updateContent,
+};
