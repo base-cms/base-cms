@@ -1,6 +1,8 @@
 /* eslint-disable no-new */
 import Vue from './vue';
 import components from './components';
+// eslint-disable-next-line no-unused-vars
+import lazysizes from './lazysizes';
 
 const loadComponent = (el, name, props) => {
   const Component = components[name];

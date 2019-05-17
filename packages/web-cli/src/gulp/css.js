@@ -8,7 +8,7 @@ const { dest, src } = require('gulp');
 const completeTask = require('../utils/task-callback');
 
 sass.compiler = require('node-sass');
-// @todo Add fingerprinting!
+
 module.exports = cwd => (cb) => {
   pump([
     src('server/styles/index.scss', { cwd }),
