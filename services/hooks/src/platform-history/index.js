@@ -5,8 +5,7 @@ module.exports = async (db, data) => {
   const history = new History(data);
   switch (history.modelName()) {
     case 'platform.Taxonomy':
-      await taxonomy(db, history);
-      break;
+      return taxonomy(db, history);
     default:
       break;
   }

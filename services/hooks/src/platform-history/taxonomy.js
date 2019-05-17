@@ -66,10 +66,37 @@ const update = async (db, h) => {
   return updateChildren(tree, taxonomy, db, projection, [{ id, ...$set }]);
 };
 
+const updateContent = async (db, content) => {
+  const { _id } = content;
+  const taxIds = BaseDB.extractRefIds(content.taxonomy);
+  const taxonomies = await db.find('platform.Taxonomy', { _id: { $in: taxIds } }, { projection: { alias: 1 } });
+  const taxonomyAliases = taxonomies.map(t => t.alias).filter(v => v);
+  await db.updateOne('platform.Content', { _id }, { $set: { taxonomyAliases } });
+  return { id: _id, taxonomyAliases };
+};
+
+const updateRelatedContent = async (db, taxonomy) => {
+  const taxIds = taxonomy.map(row => row.id);
+  const content = await db.find('platform.Content', { 'taxonomy.$id': { $in: taxIds } }, { projection: { _id: 1, 'taxonomy.$id': 1 } });
+  const data = [];
+  await Promise.all(content.map(async (c) => {
+    const updated = await updateContent(db, c);
+    data.push(updated);
+  }));
+  return data;
+};
+
 module.exports = async (db, history) => {
-  console.log(history);
-  if ((history.wasChanged() && history.field('name')) || history.wasCreated()) {
-    const data = await update(db, history);
-    console.log(data);
+  const parent = history.field('parent');
+  if (history.wasChanged()) {
+    if (history.field('name') || parent || parent === null) {
+      const taxonomy = await update(db, history);
+      const content = await updateRelatedContent(db, taxonomy);
+      return { taxonomy, content };
+    }
+  } else if (history.wasCreated()) {
+    const taxonomy = await update(db, history);
+    return { taxonomy, content: [] };
   }
+  return { taxonomy: [], content: [] };
 };
