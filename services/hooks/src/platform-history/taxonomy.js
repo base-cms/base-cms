@@ -43,7 +43,7 @@ const updateChildren = async (tree, taxonomy, db, projection, status, data = [])
 };
 
 
-const update = async (db, id, { status }) => {
+const update = async (db, id, { status } = {}) => {
   const projection = {
     _id: 1,
     name: 1,
