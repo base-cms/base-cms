@@ -13,14 +13,25 @@ class CoreConfig extends AbstractConfig {
     return this.get('siteName', '');
   }
 
-  assets() {
-    if (!this.manifest) {
-      const distDir = this.get('distDir');
-      // eslint-disable-next-line global-require, import/no-dynamic-require
-      const manifest = require(`${distDir}/asset-manifest.json`);
-      this.manifest = Object.values(manifest);
-    }
+  loadManifest() {
+    const distDir = this.get('distDir');
+    // eslint-disable-next-line global-require, import/no-dynamic-require
+    if (!this.manifest) this.manifest = require(`${distDir}/rev-manifest.json`);
     return this.manifest;
+  }
+
+  sources() {
+    if (!this.scripts) {
+      this.scripts = Object.values(this.loadManifest()).filter(f => /\.js$/.test(f)).map(f => `/dist/${f}`);
+    }
+    return this.scripts;
+  }
+
+  styles() {
+    if (!this.stylesheets) {
+      this.stylesheets = Object.values(this.loadManifest()).filter(f => /\.css$/.test(f)).map(f => `/dist/${f}`);
+    }
+    return this.stylesheets;
   }
 }
 

@@ -6,7 +6,6 @@ $ const { config } = out.global;
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content=(input.viewport || 'width=device-width, initial-scale=1, shrink-to-fit=no')>
-    <link rel="stylesheet" href="/dist/index.css">
     <!-- @todo determine if this should go at the bottom of the page -->
     <!-- @todo determine how to split assets out by vendor, core, site, etc. -->
     <script src ="https://polyfill.io/v3/polyfill.min.js?flags=gated&features=es7%2Cfetch%2Ces6%2CPromise.prototype.finally"></script>
@@ -16,9 +15,6 @@ $ const { config } = out.global;
   <body>
     <${input.bodyHeader} />
     <${input.renderBody} />
-    <!-- @todo This should use internal JS -->
-    <!-- Must always be included now since loadmore uses it (regardless if lazyload images are enabled) -->
-    <script src="https://afarkas.github.io/lazysizes/lazysizes.min.js" async></script>
     <${input.bodyFooter} />
     <cms-document-live-reload />
   </body>
