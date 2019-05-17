@@ -26,7 +26,7 @@ type AssetImage {
   approvedMagazine: Boolean @projection(localField: "mutations.Magazine.approved") @value(localField: "mutations.Magazine.approved")
 
   # GraphQL specific fields
-  src: String! @projection(localField: "fileName", needs: ["filePath"])
+  src: String! @projection(localField: "fileName", needs: ["filePath", "cropDimensions"])
   alt: String! @projection(localField: "name", needs: ["caption", "fileName"])
 }
 
