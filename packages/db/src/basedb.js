@@ -175,6 +175,50 @@ class BaseDB {
   }
 
   /**
+   * Update a single document in a collection.
+   *
+   * @param {string} modelName The model name, e.g. `platform.Content`.
+   * @param {object} filter The Filter used to select the document to update.
+   * @param {object} update The update operations to be applied to the document.
+   * @param {object} [options] Options to pass to `Collection.updateOne`.
+   */
+  async updateOne(modelName, filter, update, options) {
+    const start = hrtime();
+    const { namespace, resource } = BaseDB.parseModelName(modelName);
+    const coll = await this.collection(namespace, resource);
+    const result = await coll.updateOne(filter, update, options);
+    this.log('updateOne', start, {
+      modelName,
+      filter,
+      update,
+      options,
+    });
+    return result;
+  }
+
+  /**
+   * Update multiple documents in a collection.
+   *
+   * @param {string} modelName The model name, e.g. `platform.Content`.
+   * @param {object} filter The Filter used to select the documents to update.
+   * @param {object} update The update operations to be applied to the documents.
+   * @param {object} [options] Options to pass to `Collection.updateMany`.
+   */
+  async updateMany(modelName, filter, update, options) {
+    const start = hrtime();
+    const { namespace, resource } = BaseDB.parseModelName(modelName);
+    const coll = await this.collection(namespace, resource);
+    const result = await coll.updateMany(filter, update, options);
+    this.log('updateMany', start, {
+      modelName,
+      filter,
+      update,
+      options,
+    });
+    return result;
+  }
+
+  /**
    *
    * @param {string} modelName The model name, e.g. `platform.Content`.
    * @param {object} params
