@@ -175,6 +175,50 @@ class BaseDB {
   }
 
   /**
+   * Update a single document in a collection.
+   *
+   * @param {string} modelName The model name, e.g. `platform.Content`.
+   * @param {object} filter The Filter used to select the document to update.
+   * @param {object} update The update operations to be applied to the document.
+   * @param {object} [options] Options to pass to `Collection.updateOne`.
+   */
+  async updateOne(modelName, filter, update, options) {
+    const start = hrtime();
+    const { namespace, resource } = BaseDB.parseModelName(modelName);
+    const coll = await this.collection(namespace, resource);
+    const result = await coll.updateOne(filter, update, options);
+    this.log('updateOne', start, {
+      modelName,
+      filter,
+      update,
+      options,
+    });
+    return result;
+  }
+
+  /**
+   * Update multiple documents in a collection.
+   *
+   * @param {string} modelName The model name, e.g. `platform.Content`.
+   * @param {object} filter The Filter used to select the documents to update.
+   * @param {object} update The update operations to be applied to the documents.
+   * @param {object} [options] Options to pass to `Collection.updateMany`.
+   */
+  async updateMany(modelName, filter, update, options) {
+    const start = hrtime();
+    const { namespace, resource } = BaseDB.parseModelName(modelName);
+    const coll = await this.collection(namespace, resource);
+    const result = await coll.updateMany(filter, update, options);
+    this.log('updateMany', start, {
+      modelName,
+      filter,
+      update,
+      options,
+    });
+    return result;
+  }
+
+  /**
    *
    * @param {string} modelName The model name, e.g. `platform.Content`.
    * @param {object} params
@@ -297,7 +341,15 @@ class BaseDB {
    * @param {object} [options] Options to pass to the `Db.collection` call.
    */
   async collection(namespace, resource, options) {
-    return this.client.collection(this.dbNameFor(namespace), resource, options);
+    const dbName = this.dbNameFor(namespace);
+    if (options && options.strict) {
+      return new Promise((resolve, reject) => {
+        this.client.collection(dbName, resource, options, (err, coll) => {
+          if (err) { reject(err); } else { resolve(coll); }
+        });
+      });
+    }
+    return this.client.collection(dbName, resource, options);
   }
 
   /**
@@ -338,6 +390,18 @@ class BaseDB {
     if (typeof logger === 'function') {
       const [secs, ns] = hrtime(start);
       logger({ method, data, time: `${(secs * 1000) + (ns / 1000000)}ms` });
+    }
+  }
+
+  async tenantExists() {
+    try {
+      await this.collection('platform', 'Content', { strict: true });
+      return true;
+    } catch (e) {
+      if (/collection content does not exist/i.test(e.message)) {
+        return false;
+      }
+      throw e;
     }
   }
 
