@@ -77,7 +77,7 @@ const updateContent = async (db, content) => {
 
 const updateRelatedContent = async (db, taxonomy) => {
   const taxIds = taxonomy.map(row => row.id);
-  const content = await db.find('platform.Content', { 'taxonomy.$id': { $in: taxIds } }, { projection: { _id: 1, 'taxonomy.$id': 1 } });
+  const content = await db.find('platform.Content', { 'taxonomy.$id': { $in: taxIds } }, { projection: { _id: 1, taxonomy: 1 } });
   const data = [];
   await Promise.all(content.map(async (c) => {
     const updated = await updateContent(db, c);
