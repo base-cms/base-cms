@@ -1,4 +1,5 @@
 const History = require('./history');
+const content = require('./content');
 const taxonomy = require('./taxonomy');
 
 module.exports = async (db, data) => {
@@ -6,6 +7,8 @@ module.exports = async (db, data) => {
   switch (history.modelName()) {
     case 'platform.Taxonomy':
       return taxonomy.handle(db, history);
+    case 'platform.Content':
+      return content.handle(db, history);
     default:
       break;
   }
