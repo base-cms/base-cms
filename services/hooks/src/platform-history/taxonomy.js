@@ -43,9 +43,7 @@ const updateChildren = async (tree, taxonomy, db, projection, status, data = [])
 };
 
 
-const update = async (db, h) => {
-  const id = h.id();
-  const status = h.field('status');
+const update = async (db, id, { status }) => {
   const projection = {
     _id: 1,
     name: 1,
@@ -86,18 +84,21 @@ const updateRelatedContent = async (db, taxonomy) => {
   return data;
 };
 
-module.exports = async (db, history) => {
+const handle = async (db, history) => {
+  const id = history.id();
   const parent = history.field('parent');
   const status = history.field('status');
   if (history.wasChanged()) {
     if (history.field('name') || parent || parent === null || status === 1 || status === 0) {
-      const taxonomy = await update(db, history);
+      const taxonomy = await update(db, id, { status });
       const content = await updateRelatedContent(db, taxonomy);
       return { taxonomy, content };
     }
   } else if (history.wasCreated()) {
-    const taxonomy = await update(db, history);
+    const taxonomy = await update(db, id, { status });
     return { taxonomy, content: [] };
   }
   return { taxonomy: [], content: [] };
 };
+
+module.exports = { handle, update, updateRelatedContent };
