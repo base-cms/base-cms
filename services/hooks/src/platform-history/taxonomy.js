@@ -67,7 +67,7 @@ const update = async (db, id, { status } = {}) => {
 const updateContent = async (db, content) => {
   const { _id } = content;
   const taxIds = BaseDB.extractRefIds(content.taxonomy);
-  const taxonomies = await db.find('platform.Taxonomy', { _id: { $in: taxIds }, status: 1 }, { projection: { alias: 1 } });
+  const taxonomies = taxIds.length ? await db.find('platform.Taxonomy', { _id: { $in: taxIds }, status: 1 }, { projection: { alias: 1 } }) : [];
   const taxonomyAliases = taxonomies.map(t => t.alias).filter(v => v);
   await db.updateOne('platform.Content', { _id }, { $set: { taxonomyAliases } });
   return { id: _id, taxonomyAliases };
