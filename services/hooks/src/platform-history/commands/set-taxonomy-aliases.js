@@ -1,11 +1,12 @@
 const { eachSeries } = require('@base-cms/async');
 const { update } = require('../taxonomy');
 const getDB = require('../utils/get-db');
+const getArgs = require('../utils/get-args');
 
 const { log } = console;
 
 const run = async () => {
-  const [, , stack, tenant] = process.argv;
+  const { stack, tenant } = getArgs();
   const db = await getDB(stack, tenant);
 
   const topLevel = await db.find('platform.Taxonomy', { parent: { $exists: false } }, {
