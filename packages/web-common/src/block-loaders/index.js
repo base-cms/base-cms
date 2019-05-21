@@ -6,6 +6,7 @@ const magazineActiveIssues = require('./magazine-active-issues');
 const magazineScheduledContent = require('./magazine-scheduled-content');
 const allPublishedContent = require('./all-published-content');
 const allAuthorContent = require('./all-author-content');
+const allCompanyContent = require('./all-company-content');
 
 module.exports = {
   relatedPublishedContent,
@@ -16,4 +17,5 @@ module.exports = {
   magazineScheduledContent,
   allPublishedContent,
   allAuthorContent,
+  allCompanyContent,
 };
