@@ -163,7 +163,7 @@ input AllPublishedContentQueryInput {
 input AllAuthorContentQueryInput {
   contactId: Int!
   since: Date
-  authorTypes: [ContentAuthorType!] = [author, contributor]
+  authorTypes: [ContentAuthorType!] = [author, contributor, photographer]
   includeContentTypes: [ContentType!] = []
   requiresImage: Boolean = false
   sort: ContentSortInput = { field: published, order: desc }
