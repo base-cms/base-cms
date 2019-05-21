@@ -4,6 +4,7 @@ const blockMagazineLatestIssue = require('./block-magazine-latest-issue');
 const blockMagazineActiveIssues = require('./block-magazine-active-issues');
 const blockMagazineScheduledContent = require('./block-magazine-scheduled-content');
 const blockAllPublishedContent = require('./block-all-published-content');
+const blockAllAuthorContent = require('./block-all-author-content');
 
 const withContent = require('./with-content');
 const withDynamicPage = require('./with-dynamic-page');
@@ -19,6 +20,7 @@ module.exports = {
   blockMagazineActiveIssues,
   blockMagazineScheduledContent,
   blockAllPublishedContent,
+  blockAllAuthorContent,
 
   // Pages
   withContent,
