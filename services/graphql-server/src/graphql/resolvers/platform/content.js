@@ -195,6 +195,40 @@ module.exports = {
     },
 
     /**
+     *
+     */
+    allAuthorContent: async (_, { input }, { basedb }, info) => {
+      const {
+        since,
+        contactId,
+        authorTypes,
+        includeContentTypes,
+        requiresImage,
+        sort,
+        pagination,
+      } = input;
+
+      if (!authorTypes.length) throw new UserInputError('At least one `authorType` must be provided.');
+
+      const query = getPublishedCriteria({ since, contentTypes: includeContentTypes });
+      query.$or = authorTypes.map((type) => {
+        const field = `${type}s`;
+        return { [field]: contactId };
+      });
+
+      if (requiresImage) {
+        query.primaryImage = { $exists: true };
+      }
+      const projection = connectionProjection(info);
+      return basedb.paginate('platform.Content', {
+        query,
+        sort,
+        projection,
+        ...pagination,
+      });
+    },
+
+    /**
      * @todo add content publishing fields to magaazine schedules
      */
     magazineScheduledContent: async (_, { input }, { basedb }, info) => {

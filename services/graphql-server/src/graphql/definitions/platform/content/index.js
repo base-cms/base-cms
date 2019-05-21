@@ -9,6 +9,7 @@ extend type Query {
   contentHash(input: ContentHashQueryInput = {}): Content @findOne(model: "platform.Content", using: { hash: "hash" }, criteria: "content")
   allContent(input: AllContentQueryInput = {}): ContentConnection! @findMany(model: "platform.Content", criteria: "content")
   allPublishedContent(input: AllPublishedContentQueryInput = {}): ContentConnection!
+  allAuthorContent(input: AllAuthorContentQueryInput = {}): ContentConnection!
   magazineScheduledContent(input: MagazineScheduledContentQueryInput = {}): ContentConnection!
   websiteScheduledContent(input: WebsiteScheduledContentQueryInput = {}): ContentConnection!
   relatedPublishedContent(input: RelatedPublishedContentQueryInput = {}): ContentConnection!
@@ -88,6 +89,12 @@ enum ContentPathField {
   sectionAlias
 }
 
+enum ContentAuthorType {
+  author
+  contributor
+  photographer
+}
+
 enum RelatedContentQueryType {
   # returns related content from doc.relatedTo
   owned
@@ -151,6 +158,16 @@ input AllPublishedContentQueryInput {
   pagination: PaginationInput = {}
   beginning: ContentBeginningInput = {}
   ending: ContentEndingInput = {}
+}
+
+input AllAuthorContentQueryInput {
+  contactId: Int!
+  since: Date
+  authorTypes: [ContentAuthorType!] = [author, contributor]
+  includeContentTypes: [ContentType!] = []
+  requiresImage: Boolean = false
+  sort: ContentSortInput = { field: published, order: desc }
+  pagination: PaginationInput = {}
 }
 
 input ContentBeginningInput {
