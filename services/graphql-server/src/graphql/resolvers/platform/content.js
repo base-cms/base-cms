@@ -229,6 +229,37 @@ module.exports = {
     },
 
     /**
+     *
+     */
+    allCompanyContent: async (_, { input }, { basedb }, info) => {
+      const {
+        since,
+        companyId,
+        includeContentTypes,
+        requiresImage,
+        sort,
+        pagination,
+      } = input;
+
+      const query = getPublishedCriteria({ since, contentTypes: includeContentTypes });
+      query.$or = [
+        { company: companyId },
+        { 'relatedTo.$id': companyId },
+      ];
+
+      if (requiresImage) {
+        query.primaryImage = { $exists: true };
+      }
+      const projection = connectionProjection(info);
+      return basedb.paginate('platform.Content', {
+        query,
+        sort,
+        projection,
+        ...pagination,
+      });
+    },
+
+    /**
      * @todo add content publishing fields to magaazine schedules
      */
     magazineScheduledContent: async (_, { input }, { basedb }, info) => {

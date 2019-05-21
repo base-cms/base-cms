@@ -10,6 +10,7 @@ extend type Query {
   allContent(input: AllContentQueryInput = {}): ContentConnection! @findMany(model: "platform.Content", criteria: "content")
   allPublishedContent(input: AllPublishedContentQueryInput = {}): ContentConnection!
   allAuthorContent(input: AllAuthorContentQueryInput = {}): ContentConnection!
+  allCompanyContent(input: AllCompanyContentQueryInput = {}): ContentConnection!
   magazineScheduledContent(input: MagazineScheduledContentQueryInput = {}): ContentConnection!
   websiteScheduledContent(input: WebsiteScheduledContentQueryInput = {}): ContentConnection!
   relatedPublishedContent(input: RelatedPublishedContentQueryInput = {}): ContentConnection!
@@ -164,6 +165,15 @@ input AllAuthorContentQueryInput {
   contactId: Int!
   since: Date
   authorTypes: [ContentAuthorType!] = [author, contributor, photographer]
+  includeContentTypes: [ContentType!] = []
+  requiresImage: Boolean = false
+  sort: ContentSortInput = { field: published, order: desc }
+  pagination: PaginationInput = {}
+}
+
+input AllCompanyContentQueryInput {
+  companyId: Int!
+  since: Date
   includeContentTypes: [ContentType!] = []
   requiresImage: Boolean = false
   sort: ContentSortInput = { field: published, order: desc }
