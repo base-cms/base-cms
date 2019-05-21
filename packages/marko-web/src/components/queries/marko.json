@@ -12,6 +12,9 @@
     "cms-query-all-author-content": {
       "template": "./all-author-content.marko"
     },
+    "cms-query-all-company-content": {
+      "template": "./all-company-content.marko"
+    },
     "cms-query-magazine-publications": {
       "template": "./magazine-publications.marko"
     },
