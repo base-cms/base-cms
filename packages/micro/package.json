@@ -1,0 +1,24 @@
+{
+  "name": "@base-cms/micro",
+  "version": "0.9.0",
+  "description": "Service registration and client library for Micro(services).",
+  "main": "src/index.js",
+  "repository": "https://github.com/base-cms/base-cms/tree/master/packages/micro",
+  "author": "Jacob Bare <jacob@limit0.io>",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.17.2",
+    "micro": "^9.3.4"
+  },
+  "peerDependencies": {
+    "micro": "^9.3.0"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
