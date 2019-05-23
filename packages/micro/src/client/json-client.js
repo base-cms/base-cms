@@ -17,7 +17,7 @@ module.exports = ({ url } = {}) => {
       });
       const json = await res.json();
       if (!res.ok) throw createError(res.status, `Error from ${url}: ${json.message}`);
-      return json;
+      return json.data;
     },
   });
 };
