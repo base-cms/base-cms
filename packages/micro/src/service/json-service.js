@@ -6,11 +6,15 @@ module.exports = ({
   init,
   actions = {},
   ctx = {},
-  statusPath = '/_status',
+  healthPath = '/_health',
+  ping,
 } = {}) => jsonErrors(async (req, res) => {
   if (typeof init === 'function') await init(req, res);
   const { url } = req;
-  if (url === statusPath) return { ok: true };
+  if (url === healthPath) {
+    if (typeof ping === 'function') await ping(req);
+    return { ok: true };
+  }
 
   const input = await json(req);
   const { action, params, meta } = input;
