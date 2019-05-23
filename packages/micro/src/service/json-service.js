@@ -24,12 +24,12 @@ module.exports = async ({
     const fn = actions[action];
     if (typeof fn !== 'function') throw createParamError('action', action, Object.keys(actions));
 
-    const output = await fn(params || {}, {
+    const data = await fn(params || {}, {
+      ...ctx,
       req,
       res,
       meta: meta || {},
-      ...ctx,
     });
-    return output || {};
+    return { data };
   });
 };
