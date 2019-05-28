@@ -4,8 +4,7 @@ const { createError } = require('micro');
 module.exports = ({ url } = {}) => {
   if (!url) throw createError(500, 'No service URL was provided.');
   return Object.create({
-    async request(action, {
-      params = {},
+    async request(action, params = {}, {
       meta = {},
       fetchOptions = {},
     } = {}) {
