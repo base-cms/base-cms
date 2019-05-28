@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/micro",
-  "version": "0.9.27",
+  "version": "0.9.28",
   "description": "Service registration and client library for Micro(services).",
   "main": "src/index.js",
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/micro",
