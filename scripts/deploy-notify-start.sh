@@ -4,8 +4,8 @@ set -e
 
 payload="{
   \"attachments\": [{
-    \"color\": \"good\",
-    \"text\": \"Deployment of \`$TRAVIS_REPO_SLUG\` @ \`$TRAVIS_TAG\` to \`$ENVIRONMENT\` has finished.\"
+    \"color\": \"#1d9bd1\",
+    \"text\": \"Deployment of \`$TRAVIS_REPO_SLUG\` @ \`$TRAVIS_TAG\` to \`$ENVIRONMENT\` has started.\"
   }]
 }"
 curl -f -X POST --data "$payload" \
