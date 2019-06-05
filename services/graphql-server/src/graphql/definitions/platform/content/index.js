@@ -24,6 +24,7 @@ enum GateableSurveyProvider {
   wufoo
   idme
   app_form_com
+  idx
 }
 
 enum ContentMutation {
