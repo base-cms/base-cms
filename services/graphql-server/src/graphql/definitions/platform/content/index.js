@@ -114,6 +114,11 @@ type ContentGating {
   surveyId: String
 }
 
+type ContentUserRegistration {
+  isRequired: Boolean!
+  accessLevels: [String]!
+}
+
 type ContentConnection @projectUsing(type: "Content") {
   totalCount: Int!
   edges: [ContentEdge]!

@@ -87,6 +87,20 @@ module.exports = {
       });
     },
 
+    userRegistration: (content) => {
+      const requiresRegistration = get(content, 'mutations.Website.requiresRegistration');
+      const requiresAccessLevels = get(content, 'mutations.Website.requiresAccessLevels');
+
+      const userRegistration = {
+        isRequired: Boolean(requiresRegistration),
+        accessLevels: [],
+      };
+
+      if (!requiresRegistration) return userRegistration;
+      if (isArray(requiresAccessLevels)) userRegistration.accessLevels = requiresAccessLevels;
+      return userRegistration;
+    },
+
     metadata: content => content,
 
     canonicalPath: (content, _, ctx) => canonicalPathFor(content, ctx),
