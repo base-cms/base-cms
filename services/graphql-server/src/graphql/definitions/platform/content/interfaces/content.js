@@ -65,6 +65,7 @@ interface Content @requiresProject(fields: ["type"]) {
   redirectTo: String @projection(localField: "type", needs: ["linkUrl"])
   # Returns related, published content based on input flags
   relatedContent(input: ContentRelatedContentInput = {}): ContentConnection! @projection(localField: "_id", needs: ["relatedTo", "mutations.Website.primarySection"])
+  userRegistration: ContentUserRegistration! @projection(localField: "mutations.Website.requiresAccessLevels", needs: ["mutations.Website.requiresRegistration"])
 }
 
 `;
