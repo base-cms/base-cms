@@ -133,6 +133,7 @@ type ContentEdge {
 type ContentMetadata {
   title: String
   description: String
+  publishedDate(input: FormatDate = {}): String @projection(localField: "published") @momentFormat(localField: "published")
   image: AssetImage @refOne(localField: "primaryImage", loader: "platformAsset", criteria: "assetImage")
 }
 

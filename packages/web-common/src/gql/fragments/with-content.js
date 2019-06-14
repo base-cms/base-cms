@@ -10,6 +10,7 @@ fragment WithContentFragment on Content {
   metadata {
     title
     description
+    publishedDate
     image {
       id
       src
