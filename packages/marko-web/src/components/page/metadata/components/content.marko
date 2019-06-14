@@ -17,9 +17,6 @@ $ const src = get(image, 'src');
 
 <!-- Schema.org -->
 <meta item-prop="name" content=title />
-<if (description)>
-  <meta item-prop="description" content=description />
-</if>
 <if (src)>
   <meta item-prop="image" content=src />
 </if>
@@ -36,9 +33,6 @@ $ const src = get(image, 'src');
 
 <!-- OpenGraph (Facebook, etc.) -->
 <meta name="og:title" content=title />
-<if (description)>
-  <meta name="og:description" content=description />
-</if>
 <if(src)>
   <!-- @todo Create a new focal point preview for FB's 1200x630 ratio -->
   <meta name="og:image" content=src />
