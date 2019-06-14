@@ -3,6 +3,7 @@ import { get } from '@base-cms/object-path';
 $ const { config } = out.global;
 $ const metadata = input.metadata;
 $ const { title, description, image } = metadata;
+$ const { publishedDate } = metadata;
 $ const src = get(image, 'src');
 
 <!-- Standard Fields -->
@@ -43,3 +44,6 @@ $ const src = get(image, 'src');
 <meta name="og:site_name" content=config.siteName() />
 <meta name="og:locale" content=config.locale() />
 <meta name="og:type" content="article" />
+<if (publishedDate)>
+  <meta property="article:published_time" content=publishedDate />
+</if>
