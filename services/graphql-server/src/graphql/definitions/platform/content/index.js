@@ -13,6 +13,7 @@ extend type Query {
   allCompanyContent(input: AllCompanyContentQueryInput = {}): ContentConnection!
   magazineScheduledContent(input: MagazineScheduledContentQueryInput = {}): ContentConnection!
   websiteScheduledContent(input: WebsiteScheduledContentQueryInput = {}): ContentConnection!
+  websiteScheduledContentByYear(input: WebsiteScheduledContentQueryInput = {}): [String!]!
   relatedPublishedContent(input: RelatedPublishedContentQueryInput = {}): ContentConnection!
 }
 

@@ -22,6 +22,72 @@ const { isArray } = Array;
 
 const resolveType = async ({ type }) => `Content${type}`;
 
+const buildWebsiteScheduledContentQuery = async (input, basedb) => {
+  const {
+    sectionId,
+    sectionAlias,
+    optionId,
+    excludeContentIds,
+    excludeSectionIds,
+    includeContentTypes,
+    excludeContentTypes,
+    requiresImage,
+    sectionBubbling,
+  } = input;
+
+  if (!sectionId && !sectionAlias) throw new UserInputError('Either a sectionId or sectionAlias input must be provided.');
+  if (sectionId && sectionAlias) throw new UserInputError('You cannot provided both a sectionId and sectionAlias as input.');
+
+  let sid = sectionId;
+  if (sectionAlias) {
+    const section = await basedb.strictFindOne('website.Section', { status: 1, alias: sectionAlias }, { projection: { _id: 1 } });
+    sid = section._id;
+  }
+
+  const [descendantIds, defaultOption] = await Promise.all([
+    sectionBubbling ? getDescendantIds(sid, basedb) : Promise.resolve([]),
+    !optionId ? getDefaultOption(basedb) : Promise.resolve(null),
+  ]);
+
+  const now = new Date();
+  const $elemMatch = {
+    sectionId: descendantIds.length ? { $in: descendantIds } : sid,
+    optionId: defaultOption ? defaultOption._id : optionId,
+    start: { $lte: now },
+    $and: [
+      {
+        $or: [
+          { end: { $gt: now } },
+          { end: { $exists: false } },
+        ],
+      },
+    ],
+  };
+
+  if (excludeSectionIds.length) {
+    $elemMatch.$and.push({ sid: { $nin: excludeSectionIds } });
+  }
+  const query = { sectionQuery: { $elemMatch } };
+  if (requiresImage) {
+    query.primaryImage = { $exists: true };
+  }
+  if (includeContentTypes.length) {
+    if (!isArray(query.$and)) query.$and = [];
+    query.$and.push({ type: { $in: includeContentTypes } });
+  } else {
+    if (!isArray(query.$and)) query.$and = [];
+    query.$and.push({ type: { $in: getDefaultContentTypes() } });
+  }
+  if (excludeContentTypes.length) {
+    if (!isArray(query.$and)) query.$and = [];
+    query.$and.push({ type: { $nin: excludeContentTypes } });
+  }
+  if (excludeContentIds.length) {
+    query._id = { $nin: excludeContentIds };
+  }
+  return query;
+};
+
 module.exports = {
   Addressable: {
     __resolveType: resolveType,
@@ -312,70 +378,8 @@ module.exports = {
      *
      */
     websiteScheduledContent: async (_, { input }, { basedb }, info) => {
-      const {
-        sectionId,
-        sectionAlias,
-        optionId,
-        excludeContentIds,
-        excludeSectionIds,
-        includeContentTypes,
-        excludeContentTypes,
-        requiresImage,
-        sectionBubbling,
-        pagination,
-      } = input;
-
-      if (!sectionId && !sectionAlias) throw new UserInputError('Either a sectionId or sectionAlias input must be provided.');
-      if (sectionId && sectionAlias) throw new UserInputError('You cannot provided both a sectionId and sectionAlias as input.');
-
-      let sid = sectionId;
-      if (sectionAlias) {
-        const section = await basedb.strictFindOne('website.Section', { status: 1, alias: sectionAlias }, { projection: { _id: 1 } });
-        sid = section._id;
-      }
-
-      const [descendantIds, defaultOption] = await Promise.all([
-        sectionBubbling ? getDescendantIds(sid, basedb) : Promise.resolve([]),
-        !optionId ? getDefaultOption(basedb) : Promise.resolve(null),
-      ]);
-
-      const now = new Date();
-      const $elemMatch = {
-        sectionId: descendantIds.length ? { $in: descendantIds } : sid,
-        optionId: defaultOption ? defaultOption._id : optionId,
-        start: { $lte: now },
-        $and: [
-          {
-            $or: [
-              { end: { $gt: now } },
-              { end: { $exists: false } },
-            ],
-          },
-        ],
-      };
-
-      if (excludeSectionIds.length) {
-        $elemMatch.$and.push({ sid: { $nin: excludeSectionIds } });
-      }
-      const query = { sectionQuery: { $elemMatch } };
-      if (requiresImage) {
-        query.primaryImage = { $exists: true };
-      }
-      if (includeContentTypes.length) {
-        if (!isArray(query.$and)) query.$and = [];
-        query.$and.push({ type: { $in: includeContentTypes } });
-      } else {
-        if (!isArray(query.$and)) query.$and = [];
-        query.$and.push({ type: { $in: getDefaultContentTypes() } });
-      }
-      if (excludeContentTypes.length) {
-        if (!isArray(query.$and)) query.$and = [];
-        query.$and.push({ type: { $nin: excludeContentTypes } });
-      }
-      if (excludeContentIds.length) {
-        query._id = { $nin: excludeContentIds };
-      }
-
+      const { pagination } = input;
+      const query = await buildWebsiteScheduledContentQuery(input, basedb);
       const projection = connectionProjection(info);
       return basedb.paginate('platform.Content', {
         query,
@@ -384,6 +388,24 @@ module.exports = {
         excludeProjection: ['sectionQuery.start'],
         ...pagination,
       });
+    },
+
+    /**
+     *
+     */
+    websiteScheduledContentByYear: async (_, { input }, { basedb }) => {
+      const query = await buildWebsiteScheduledContentQuery(input, basedb);
+      const pipeline = [
+        { $match: query },
+        { $project: { year: { $year: '$published' } } },
+        { $group: { _id: '$year', count: { $sum: 1 } } },
+        { $sort: { _id: 1 } },
+        { $group: { _id: 'total', years: { $addToSet: '$_id' } } },
+      ];
+
+      const res = await basedb.aggregate('platform.Content', pipeline);
+      const arr = await res.toArray();
+      return arr[0].years || [];
     },
 
     /**
