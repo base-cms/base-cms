@@ -8,6 +8,16 @@ const basedb = createDB(TENANT_KEY);
 
 const canonicalRules = getCanonicalRules({ headers: {} });
 
+const iterateCursor = (cursor, cb) => new Promise((resolve, reject) => {
+  cursor.forEach(cb, (err) => {
+    if (err) {
+      reject(err);
+    } else {
+      resolve();
+    }
+  });
+});
+
 const getPrimarySectionLoader = async (ids) => {
   const query = {
     _id: { $in: ids },
@@ -23,8 +33,26 @@ const getPrimarySectionLoader = async (ids) => {
 
 const buildContentRedirects = async (contentColl) => {
   log('Retrieving content redirects...');
+  const sectionIds = await contentColl.distinct('mutations.Website.primarySection.$id', {
+    'mutations.Website.redirects.0': { $exists: true },
+  });
+  log('Getting primarySection references...');
+
+  const load = await getPrimarySectionLoader(sectionIds);
+  log('Primary section references loaded.');
+
+  const context = { canonicalRules, load };
+
   const cursor = await contentColl.aggregate([
     { $match: { 'mutations.Website.redirects.0': { $exists: true } } },
+    {
+      $project: {
+        type: 1,
+        'mutations.Website.redirects': 1,
+        'mutations.Website.slug': 1,
+        'mutations.Website.primarySection': 1,
+      },
+    },
     { $unwind: '$mutations.Website.redirects' },
     {
       $project: {
@@ -35,26 +63,18 @@ const buildContentRedirects = async (contentColl) => {
       },
     },
   ]);
-  const docs = await cursor.toArray();
 
-  log('Getting primarySection references...');
-  const sectionIds = [...new Set(docs.map((content) => {
-    const ref = BaseDB.get(content, 'mutations.Website.primarySection');
-    return BaseDB.extractRefId(ref);
-  }))];
-
-  const load = await getPrimarySectionLoader(sectionIds);
-  const context = { canonicalRules, load };
-
-  log(`Found ${docs.length} content redirects.`);
-
-  return Promise.all(docs.map(async (doc) => {
+  const results = [];
+  await iterateCursor(cursor, async (doc) => {
     const redirect = doc.mutations.Website.redirects;
     const from = redirect.charAt(0) === '/' ? redirect : `/${redirect}`;
     const slug = BaseDB.get(doc, 'mutations.Website.slug');
     const to = await canonicalPathFor({ slug, ...doc }, context);
-    return { from, to };
-  }));
+    results.push({ from, to });
+  });
+  log(`Found ${results.length} content redirects.`);
+
+  return results;
 };
 
 const buildSectionRedirects = async (sectionColl) => {
