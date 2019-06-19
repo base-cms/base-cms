@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/hooks",
-  "version": "0.9.23",
+  "version": "0.9.35",
   "description": "The BaseCMS hooks server using Express.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
@@ -8,8 +8,8 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "@base-cms/async": "^0.9.0",
-    "@base-cms/db": "^0.9.22",
+    "@base-cms/async": "^0.9.35",
+    "@base-cms/db": "^0.9.35",
     "@base-cms/object-path": "^0.9.0",
     "@base-cms/utils": "^0.9.0",
     "@godaddy/terminus": "^4.1.0",

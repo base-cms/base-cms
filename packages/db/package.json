@@ -1,13 +1,13 @@
 {
   "name": "@base-cms/db",
-  "version": "0.9.22",
+  "version": "0.9.35",
   "description": "The BaseCMS database driver. Requires direct MongoDB access.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/db",
   "license": "MIT",
   "dependencies": {
-    "@base-cms/async": "^0.9.0",
+    "@base-cms/async": "^0.9.35",
     "@base-cms/utils": "^0.9.0",
     "base64-url": "^2.2.0",
     "deepmerge": "^3.0.0",
