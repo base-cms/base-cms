@@ -16,6 +16,9 @@ module.exports = (config = {}) => {
   const serverDir = path.resolve(rootDir, 'server');
   const { siteName } = config.coreConfig;
 
+  // Add async block error handler.
+  app.locals.onAsyncBlockError = config.onAsyncBlockError;
+
   // Add cookie parsing
   app.use(cookieParser());
 

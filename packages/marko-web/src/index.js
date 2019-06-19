@@ -26,6 +26,7 @@ const startServer = async ({
   cdnImageHostname = env.CDN_IMAGE_HOSTNAME || 'base.imgix.net',
   cdnAssetHostname = env.CDN_ASSET_HOSTNAME || 'media.baseplatform.io',
   errorTemplate,
+  onAsyncBlockError,
 
   // Terminus settings.
   timeout = 1000,
@@ -46,6 +47,7 @@ const startServer = async ({
     tenantKey,
     cdnImageHostname,
     cdnAssetHostname,
+    onAsyncBlockError,
   });
 
   // Await required services here...
