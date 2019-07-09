@@ -7,6 +7,8 @@ interface Inquirable {
   # fields from platform.model::Content mutations
   enableRmi: Boolean @projection(localField: "mutations.Website.enableRmi") @value(localField: "mutations.Website.enableRmi")
   leadsDelivery: Boolean @projection(localField: "mutations.Website.leadsDelivery") @value(localField: "mutations.Website.leadsDelivery")
+  # GraphQL-only fields
+  inquiryContacts: [ContentContact!]! @projection(localField: "salesContacts", needs: ["company", "parentCompany", "venue", "parentVenue", "supplier", "parentSupplier"])
 }
 
 `;
