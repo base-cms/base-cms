@@ -6,7 +6,7 @@ extend type Query {
   contentCompany(input: ContentCompanyQueryInput!): ContentCompany @findOne(model: "platform.Content", using: { id: "_id" }, criteria: "contentCompany")
 }
 
-type ContentCompany implements Content & Contactable & Addressable & SocialLinkable & Inquirable & ContentContactable @applyInterfaceFields {
+type ContentCompany implements Content & Contactable & Addressable & SocialLinkable & Inquirable & OrganizationContactable @applyInterfaceFields {
   # fields directly on platform.model::Content\Company
   companyType: String @projection
   parentCompany(input: ContentCompanyParentCompanyInput = {}): ContentCompany @projection @refOne(loader: "platformContent" criteria: "contentCompany")

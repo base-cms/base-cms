@@ -42,7 +42,7 @@ module.exports = {
   Authorable: { __resolveType: resolveType },
   Contactable: { __resolveType: resolveType },
   SocialLinkable: { __resolveType: resolveType },
-  ContentContactable: { __resolveType: resolveType },
+  OrganizationContactable: { __resolveType: resolveType },
   Inquirable: {
     __resolveType: resolveType,
     inquiryContacts,

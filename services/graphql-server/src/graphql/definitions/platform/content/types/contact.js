@@ -55,4 +55,9 @@ input ContentContactOwnedContentInput {
   pagination: PaginationInput = {}
 }
 
+input ContentContactSortInput {
+  field: ContentContactSortField = id
+  order: SortOrder = desc
+}
+
 `;

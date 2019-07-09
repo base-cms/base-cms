@@ -6,7 +6,7 @@ extend type Query {
   contentSupplier(input: ContentSupplierQueryInput!): ContentSupplier @findOne(model: "platform.Content", using: { id: "_id" }, criteria: "contentSupplier")
 }
 
-type ContentSupplier implements Content & Contactable & Addressable & SocialLinkable & Inquirable & ContentContactable @applyInterfaceFields {
+type ContentSupplier implements Content & Contactable & Addressable & SocialLinkable & Inquirable & OrganizationContactable @applyInterfaceFields {
   # fields directly on platform.model::Content\Supplier
   parentSupplier(input: ContentSupplierParentSupplierInput = {}): ContentSupplier @projection @refOne(loader: "platformContent" criteria: "contentSupplier")
 }
