@@ -22,7 +22,9 @@ const product = require('./product');
 const promotion = require('./promotion');
 const review = require('./review');
 const sponsored = require('./sponsored');
+const supplier = require('./supplier');
 const textAd = require('./text-ad');
+const venue = require('./venue');
 const video = require('./video');
 const webinar = require('./webinar');
 const whitepaper = require('./whitepaper');
@@ -52,7 +54,9 @@ ${product}
 ${promotion}
 ${review}
 ${sponsored}
+${supplier}
 ${textAd}
+${venue}
 ${video}
 ${webinar}
 ${whitepaper}

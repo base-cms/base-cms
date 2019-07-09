@@ -7,6 +7,7 @@ const { parser: embedParser } = require('@base-cms/embedded-media');
 const { underscore, dasherize, titleize } = require('@base-cms/inflector');
 
 const relatedContent = require('../../utils/related-content');
+const inquiryContacts = require('../../utils/inquiry-contacts');
 const connectionProjection = require('../../utils/connection-projection');
 const getDefaultOption = require('../../utils/get-default-option');
 const getDescendantIds = require('../../utils/website-section-child-ids');
@@ -41,6 +42,11 @@ module.exports = {
   Authorable: { __resolveType: resolveType },
   Contactable: { __resolveType: resolveType },
   SocialLinkable: { __resolveType: resolveType },
+  OrganizationContactable: { __resolveType: resolveType },
+  Inquirable: {
+    __resolveType: resolveType,
+    inquiryContacts,
+  },
 
   /**
    *
