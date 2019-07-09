@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/utils",
-  "version": "0.9.0",
+  "version": "0.9.37",
   "description": "Utility functions for JavaScript projects.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",

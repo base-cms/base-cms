@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/rss",
-  "version": "0.9.35",
+  "version": "0.9.37",
   "description": "The BaseCMS RSS service",
   "main": "src/index.js",
   "author": "Josh Worden <josh@limit0.io>",
@@ -8,11 +8,11 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "@base-cms/canonical-path": "^0.9.35",
-    "@base-cms/db": "^0.9.35",
-    "@base-cms/object-path": "^0.9.0",
+    "@base-cms/canonical-path": "^0.9.37",
+    "@base-cms/db": "^0.9.37",
+    "@base-cms/object-path": "^0.9.37",
     "@base-cms/tooling": "^0.9.0",
-    "@base-cms/utils": "^0.9.0",
+    "@base-cms/utils": "^0.9.37",
     "@godaddy/terminus": "^4.1.0",
     "@newrelic/native-metrics": "^4.1.0",
     "express": "^4.16.4",

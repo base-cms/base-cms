@@ -1,13 +1,13 @@
 {
   "name": "@base-cms/object-path",
-  "version": "0.9.0",
+  "version": "0.9.37",
   "description": "Utility functions for accessing JavaScript objects by path.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/object-path",
   "license": "MIT",
   "dependencies": {
-    "@base-cms/utils": "^0.9.0",
+    "@base-cms/utils": "^0.9.37",
     "object-path": "^0.11.4"
   },
   "publishConfig": {
