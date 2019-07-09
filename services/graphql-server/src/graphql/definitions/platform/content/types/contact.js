@@ -55,6 +55,12 @@ input ContentContactOwnedContentInput {
   pagination: PaginationInput = {}
 }
 
+input ContentContactsInput {
+  status: ModelStatus = active
+  sort: ContentContactSortInput = {}
+  pagination: PaginationInput = {}
+}
+
 input ContentContactSortInput {
   field: ContentContactSortField = id
   order: SortOrder = desc

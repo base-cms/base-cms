@@ -6,16 +6,12 @@ extend type Query {
   contentCompany(input: ContentCompanyQueryInput!): ContentCompany @findOne(model: "platform.Content", using: { id: "_id" }, criteria: "contentCompany")
 }
 
-type ContentCompany implements Content & Contactable & Addressable & SocialLinkable @applyInterfaceFields {
+type ContentCompany implements Content & Contactable & Addressable & SocialLinkable & CompanyContactable @applyInterfaceFields {
   # fields directly on platform.model::Content\Company
   companyType: String @projection
   parentCompany(input: ContentCompanyParentCompanyInput = {}): ContentCompany @projection @refOne(loader: "platformContent" criteria: "contentCompany")
   brandsCarried(input: ContentCompanyBrandsCarriedInput = {}): ContentCompanyConnection! @projection @refMany(model: "platform.Content" criteria: "contentCompany")
   statesServed: [String]! @projection @arrayValue
-  listingContacts(input: ContentCompanyListingContactsInput = {}): ContentContactConnection! @projection @refMany(model: "platform.Content", criteria: "contentContact")
-  publicContacts(input: ContentCompanyPublicContactsInput = {}): ContentContactConnection! @projection @refMany(model: "platform.Content", criteria: "contentContact")
-  salesContacts(input: ContentCompanySalesContactsInput = {}): ContentContactConnection! @projection @refMany(model: "platform.Content", criteria: "contentContact")
-  marketingContacts(input: ContentCompanyMarketingContactsInput = {}): ContentContactConnection! @projection @refMany(model: "platform.Content", criteria: "contentContact")
   companyCompetitors(input: ContentCompanyCompanyCompetitorsInput = {}): ContentCompanyConnection! @projection @refMany(model: "platform.Content", criteria: "contentCompany")
 
   # fields directly on platform.model::Content\Company from mutations
@@ -39,30 +35,6 @@ type ContentCompanyEdge {
 input ContentCompanyQueryInput {
   id: Int!
   status: ModelStatus = active
-}
-
-input ContentCompanyListingContactsInput {
-  status: ModelStatus = active
-  sort: ContentContactSortInput = {}
-  pagination: PaginationInput = {}
-}
-
-input ContentCompanyPublicContactsInput {
-  status: ModelStatus = active
-  sort: ContentContactSortInput = {}
-  pagination: PaginationInput = {}
-}
-
-input ContentCompanySalesContactsInput {
-  status: ModelStatus = active
-  sort: ContentContactSortInput = {}
-  pagination: PaginationInput = {}
-}
-
-input ContentCompanyMarketingContactsInput {
-  status: ModelStatus = active
-  sort: ContentContactSortInput = {}
-  pagination: PaginationInput = {}
 }
 
 input ContentCompanyCompanyCompetitorsInput {
