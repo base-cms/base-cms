@@ -57,8 +57,10 @@ enum ContentType {
   Promotion
   Review
   Sponsored
+  Supplier
   TextAd
   Video
+  Venue
   Webinar
   Whitepaper
 }
