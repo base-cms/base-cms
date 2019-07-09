@@ -6,7 +6,7 @@ extend type Query {
   contentCompany(input: ContentCompanyQueryInput!): ContentCompany @findOne(model: "platform.Content", using: { id: "_id" }, criteria: "contentCompany")
 }
 
-type ContentCompany implements Content & Contactable & Addressable & SocialLinkable & CompanyContactable @applyInterfaceFields {
+type ContentCompany implements Content & Contactable & Addressable & SocialLinkable & Inquirable & CompanyContactable @applyInterfaceFields {
   # fields directly on platform.model::Content\Company
   companyType: String @projection
   parentCompany(input: ContentCompanyParentCompanyInput = {}): ContentCompany @projection @refOne(loader: "platformContent" criteria: "contentCompany")
@@ -15,8 +15,6 @@ type ContentCompany implements Content & Contactable & Addressable & SocialLinka
   companyCompetitors(input: ContentCompanyCompanyCompetitorsInput = {}): ContentCompanyConnection! @projection @refMany(model: "platform.Content", criteria: "contentCompany")
 
   # fields directly on platform.model::Content\Company from mutations
-  leadsDelivery: Boolean @projection(localField: "mutations.Website.leadsDelivery") @value(localField: "mutations.Website.leadsDelivery")
-  enableRmi: Boolean @projection(localField: "mutations.Website.enableRmi") @value(localField: "mutations.Website.enableRmi")
   featuredCategories(input: ContentCompanyFeaturedCategoriesInput = {}): TaxonomyConnection! @projection(localField: "mutations.Website.featuredCategories") @refMany(model: "platform.Taxonomy", localField: "mutations.Website.featuredCategories", criteria: "taxonomyCategory")
   primaryCategory(input: ContentCompanyPrimaryCategoryInput = {}): Taxonomy @projection(localField: "mutations.Website.primaryCategory") @refOne(loader: "platformTaxonomy", localField: "mutations.Website.primaryCategory")
 }

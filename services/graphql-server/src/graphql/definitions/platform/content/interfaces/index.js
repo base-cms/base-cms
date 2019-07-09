@@ -4,6 +4,7 @@ const authorable = require('./authorable');
 const companyContactable = require('./company-contactable');
 const contactable = require('./contactable');
 const content = require('./content');
+const inquirable = require('./inquirable');
 const media = require('./media');
 const socialLinkable = require('./social-linkable');
 
@@ -14,6 +15,7 @@ ${authorable}
 ${companyContactable}
 ${contactable}
 ${content}
+${inquirable}
 ${media}
 ${socialLinkable}
 

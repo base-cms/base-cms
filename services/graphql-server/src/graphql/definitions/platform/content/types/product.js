@@ -6,7 +6,7 @@ extend type Query {
   contentProduct(input: ContentProductQueryInput!): ContentProduct @findOne(model: "platform.Content", using: { id: "_id" }, criteria: "contentProduct")
 }
 
-type ContentProduct implements Content @applyInterfaceFields {
+type ContentProduct implements Content & Inquirable @applyInterfaceFields {
   # fields directly on platform.model::Content\Product
   bodyOriginal: String @projection
   productUrl: String @projection
