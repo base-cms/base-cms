@@ -72,7 +72,7 @@ input AssetImageQueryInput {
 
 input AssetImageSortInput {
   field: AssetImageSortField = id
-  order: SortOrder = natural
+  order: SortOrder = desc
 }
 
 `;
