@@ -16,6 +16,7 @@ type AssetImage {
   filePath: String @projection
   fileName: String @projection
   source: AssetImageSource @projection
+  displayName: String @projection
   caption: String @projection
   credit: String @projection
   cropDimensions: AssetImageCrop @projection
@@ -71,7 +72,7 @@ input AssetImageQueryInput {
 
 input AssetImageSortInput {
   field: AssetImageSortField = id
-  order: SortOrder = desc
+  order: SortOrder = natural
 }
 
 `;
