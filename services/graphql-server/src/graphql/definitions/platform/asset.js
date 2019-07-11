@@ -16,6 +16,7 @@ type AssetImage {
   filePath: String @projection
   fileName: String @projection
   source: AssetImageSource @projection
+  displayName: String @projection
   caption: String @projection
   credit: String @projection
   cropDimensions: AssetImageCrop @projection

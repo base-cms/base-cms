@@ -36,6 +36,7 @@ type PageInfo {
 enum SortOrder {
   asc
   desc
+  natural
 }
 
 enum ModelStatus {
