@@ -22,8 +22,8 @@ const config = {
   cacheControl: isProduction,
   extensions: isProduction ? [() => new ApolloNewrelicExtension()] : [],
   engine: isProduction ? { apiKey: ENGINE_API_KEY } : false,
+  introspection: true,
   // Enable in dev
-  introspection: !isProduction,
   debug: !isProduction,
   playground: !isProduction ? { endpoint: GRAPHQL_ENDPOINT } : false,
 };
