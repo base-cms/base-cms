@@ -10,6 +10,9 @@ type ContentVenue implements Content & Contactable & Addressable & SocialLinkabl
   # fields directly on platform.model::Content\Venue
   totalCapacity: String @projection
   parentVenue(input: ContentVenueParentVenueInput = {}): ContentVenue @projection @refOne(loader: "platformContent" criteria: "contentVenue")
+
+  # GraphQL-only fields
+  spaces(input: ContentVenueSpacesQueryInput = {}): ContentSpaceConnection!
 }
 
 input ContentVenueQueryInput {
@@ -18,6 +21,10 @@ input ContentVenueQueryInput {
 }
 
 input ContentVenueParentVenueInput {
+  status: ModelStatus = active
+}
+
+input ContentVenueSpacesQueryInput {
   status: ModelStatus = active
 }
 

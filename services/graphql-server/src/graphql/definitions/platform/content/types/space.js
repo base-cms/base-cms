@@ -16,6 +16,17 @@ type ContentSpace implements Content @applyInterfaceFields {
   area: String @projection
 }
 
+type ContentSpaceConnection {
+  totalCount: Int!
+  edges: [ContentSpaceEdge]!
+  pageInfo: PageInfo!
+}
+
+type ContentSpaceEdge {
+  node: ContentSpace!
+  cursor: String!
+}
+
 input ContentSpaceQueryInput {
   id: Int!
   status: ModelStatus = active

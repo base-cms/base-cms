@@ -68,6 +68,7 @@ module.exports = {
         // Section query indexes
         { 'sectionQuery.sectionId': 1, 'sectionQuery.optionId': 1 },
         { 'sectionQuery.sectionId': 1, 'sectionQuery.optionId': 1, primaryImage: 1 },
+        { status: 1, type: 1, venue: 1 },
       ],
       sort: [
         [{ name: 1, _id: 1 }, { collation: { locale: 'en_US' } }],

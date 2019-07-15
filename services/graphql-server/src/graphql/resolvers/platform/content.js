@@ -163,6 +163,25 @@ module.exports = {
     },
   },
 
+
+  /**
+   *
+   */
+  ContentVenue: {
+    spaces: ({ _id: venue }, { input }, { basedb }, info) => {
+      const { pagination } = input;
+      const query = { ...getPublishedCriteria({ contentTypes: ['Space'] }), venue };
+      const projection = connectionProjection(info);
+
+      return basedb.paginate('platform.Content', {
+        query,
+        sort: { field: 'id', order: 'asc' },
+        projection,
+        ...pagination,
+      });
+    },
+  },
+
   /**
    *
    */
