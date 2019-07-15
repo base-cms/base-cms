@@ -21,6 +21,7 @@ module.exports = [
   'Product',
   'Promotion',
   'Review',
+  'Space',
   'Sponsored',
   'Supplier',
   'TextAd',

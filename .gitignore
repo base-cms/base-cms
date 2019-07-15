@@ -80,3 +80,4 @@ typings/
 *.marko.js
 .marko-cli
 .marko-devtools
+/packages/graphql-fragment-types/build.sh

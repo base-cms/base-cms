@@ -5,8 +5,8 @@ The BaseCMS GraphQL server using Apollo and Express.
 1. Create the GraphQL definition in `graphql/definitions/platform/content/types`
 2. Import the type definition into `graphql/definitions/platform/content/types/index.js`
 3. Add the type (e.g. `Event`) to the `ContentType` enum found in `graphql/definitions/platform/content/index.js`
-4. Add the type (e.g. `Event`) to the content types array found in `graphql/utils/content-types.js`
-5. Rebuild the GraphQL fragment types using the `packages/graphql-fragment-types/build.js` utility.
+4. Add the type (e.g. `Event`) to the content types array found in `/packages/utils/content-types.js`
+5. Rebuild the GraphQL fragment types using the `/packages/graphql-fragment-types/build.js` utility.
 
 ## Query Best Practices
 Don't request more fields than you need! Data will only be returned from the database for fields _defined_ within the GraphQL query. Don't request large or time-consuming fields like `Content.body` or `Connection.totalCount` or `Connection.edges.cursor` or `Content.taxonomy.edges.node` when you don't need the data!

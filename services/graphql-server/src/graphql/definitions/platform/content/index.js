@@ -56,6 +56,7 @@ enum ContentType {
   Product
   Promotion
   Review
+  Space
   Sponsored
   Supplier
   TextAd
