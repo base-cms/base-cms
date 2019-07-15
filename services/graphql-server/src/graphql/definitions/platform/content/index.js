@@ -60,6 +60,7 @@ enum ContentType {
   Sponsored
   Supplier
   TextAd
+  TopList
   Video
   Venue
   Webinar
