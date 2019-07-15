@@ -234,6 +234,7 @@ class BaseDB {
     projection,
     excludeProjection,
     ignoreCompoundAfterSort,
+    ids,
   }) {
     return paginateFind(this, modelName, {
       query,
@@ -245,6 +246,7 @@ class BaseDB {
       projection,
       excludeProjection,
       ignoreCompoundAfterSort,
+      ids,
     });
   }
 

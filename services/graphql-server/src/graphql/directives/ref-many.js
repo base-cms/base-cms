@@ -54,6 +54,7 @@ class RefManyDirective extends SchemaDirectiveVisitor {
         ...pagination,
         collate: shouldCollate(sort.field),
         projection,
+        ids: sort.order === 'natural' ? ids : undefined,
       });
       basedb.log('@refMany', start, { model });
       return result;

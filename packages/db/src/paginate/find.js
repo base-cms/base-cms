@@ -27,6 +27,7 @@ module.exports = async (basedb, modelName, {
   excludeProjection,
   ignoreCompoundAfterSort,
   collate = false,
+  ids = [],
 }) => {
   const $limit = new Limit({ value: limit });
   const $sort = new Sort(sort);
@@ -59,6 +60,13 @@ module.exports = async (basedb, modelName, {
   if (collate) options.collation = $sort.collation;
 
   const results = await basedb.find(modelName, $query, options);
-
+  if (isArray(ids) && ids.length) {
+    const sorted = ids
+      // Resort the items to match the ID order
+      .map(id => results.find(({ _id }) => `${_id}` === `${id}`))
+      // If we have less results than expected, filter out bad ones
+      .filter(id => id);
+    return createResponse(basedb, modelName, sorted, params);
+  }
   return createResponse(basedb, modelName, results, params);
 };
