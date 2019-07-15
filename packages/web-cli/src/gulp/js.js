@@ -53,7 +53,7 @@ const readRcFile = (cwd) => {
 // @todo Add default polyfills to entry point
 module.exports = cwd => (cb) => {
   const { exclude, targets, debug } = readRcFile(cwd);
-  const { ifProduction, ifNotProduction } = getIfUtils(process.env.NODE_ENV);
+  const { ifProduction, ifNotProduction } = getIfUtils(process.env.NODE_ENV || 'development');
   pump([
     src('browser/index.js', { cwd }),
     webpack({
