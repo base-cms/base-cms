@@ -21,9 +21,11 @@ const pressRelease = require('./press-release');
 const product = require('./product');
 const promotion = require('./promotion');
 const review = require('./review');
+const space = require('./space');
 const sponsored = require('./sponsored');
 const supplier = require('./supplier');
 const textAd = require('./text-ad');
+const topList = require('./top-list');
 const venue = require('./venue');
 const video = require('./video');
 const webinar = require('./webinar');
@@ -53,9 +55,11 @@ ${pressRelease}
 ${product}
 ${promotion}
 ${review}
+${space}
 ${sponsored}
 ${supplier}
 ${textAd}
+${topList}
 ${venue}
 ${video}
 ${webinar}
