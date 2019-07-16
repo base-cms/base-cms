@@ -12,7 +12,7 @@ type ContentVenue implements Content & Contactable & Addressable & SocialLinkabl
   parentVenue(input: ContentVenueParentVenueInput = {}): ContentVenue @projection @refOne(loader: "platformContent" criteria: "contentVenue")
 
   # GraphQL-only fields
-  spaces(input: ContentSpacesQueryInput = { sort: { order: natural } }): ContentSpaceConnection! @projection(localField: "_id") @refMany(model: "platform.Content", localField: "_id", foreignField: "venue", criteria: "contentSpace")
+  spaces(input: ContentSpacesQueryInput = {}): ContentSpaceConnection! @projection(localField: "_id") @refMany(model: "platform.Content", localField: "_id", foreignField: "venue", criteria: "contentSpace")
 }
 
 input ContentVenueQueryInput {
@@ -26,7 +26,7 @@ input ContentVenueParentVenueInput {
 
 input ContentSpacesQueryInput {
   status: ModelStatus = active
-  sort: ContentSortInput = {}
+  sort: ContentSpaceSortInput = { order: natural }
 }
 
 `;

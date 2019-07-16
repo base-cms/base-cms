@@ -27,9 +27,15 @@ type ContentSpaceEdge {
   cursor: String!
 }
 
+input ContentSpaceSortInput {
+  field: ContentSortField = id
+  order: SortOrder = desc
+}
+
 input ContentSpaceQueryInput {
   id: Int!
   status: ModelStatus = active
+  sort: ContentSpaceSortInput = {}
 }
 
 input ContentSpaceVenueInput {
