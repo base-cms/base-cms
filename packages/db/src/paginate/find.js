@@ -22,7 +22,7 @@ module.exports = async (basedb, modelName, {
   limit = 10,
   skip,
   after,
-  sort = { field: '_id', order: 1 },
+  sort = { field: '_id', order: 1, values: [] },
   projection,
   excludeProjection,
   ignoreCompoundAfterSort,
@@ -59,6 +59,6 @@ module.exports = async (basedb, modelName, {
   if (collate) options.collation = $sort.collation;
 
   const results = await basedb.find(modelName, $query, options);
-
-  return createResponse(basedb, modelName, results, params);
+  const sorted = $sort.sortResults(results);
+  return createResponse(basedb, modelName, sorted, params);
 };

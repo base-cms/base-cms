@@ -50,7 +50,7 @@ class RefManyDirective extends SchemaDirectiveVisitor {
       const projection = connectionProjection(info);
       const result = await basedb.paginate(model, {
         query,
-        sort,
+        sort: { ...sort, values: ids },
         ...pagination,
         collate: shouldCollate(sort.field),
         projection,

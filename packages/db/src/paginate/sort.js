@@ -10,12 +10,32 @@ class Sort {
    * @param {string} params.field
    * @param {number} params.order
    * @param {object} params.options
+   * @param {array}  params.values
    */
-  constructor({ field, order, options } = {}) {
+  constructor({
+    field,
+    order,
+    options,
+    values,
+  } = {}) {
     this.options = options;
     this.values = {};
     this.field = field;
     this.order = order;
+    this.orderValues = values;
+    this.sortByValues = order === 'values';
+  }
+
+  /**
+   * Sorts a result set using the configured field, order, and values.
+   */
+  sortResults(results = []) {
+    const { field, sortByValues, orderValues } = this;
+    if (sortByValues && orderValues.length) {
+      const map = results.reduce((m, r) => m.set(`${r[field]}`, r), new Map());
+      return orderValues.map(value => map.get(`${value}`)).filter(value => value);
+    }
+    return results;
   }
 
   /**
@@ -99,6 +119,9 @@ class Sort {
       this.values.order = 1;
     } else if (order === 'desc') {
       this.values.order = -1;
+    } else if (order === 'values') {
+      this.values.order = 1;
+      this.sortByValues = true;
     } else if (!order) {
       this.values.order = 1;
     } else {

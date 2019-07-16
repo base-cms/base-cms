@@ -289,7 +289,7 @@ input ContentCompanyInput {
 }
 
 input ContentImagesInput {
-  sort: AssetImageSortInput = { order: natural }
+  sort: AssetImageSortInput = { order: values }
   pagination: PaginationInput = {}
 }
 

@@ -26,7 +26,7 @@ input ContentVenueParentVenueInput {
 
 input ContentSpacesQueryInput {
   status: ModelStatus = active
-  sort: ContentSpaceSortInput = { order: natural }
+  sort: ContentSpaceSortInput = { order: values }
 }
 
 `;
