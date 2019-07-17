@@ -1,5 +1,4 @@
 const { createAltFor, createSrcFor } = require('@base-cms/image');
-const cheerio = require('cheerio');
 const AbstractTag = require('./abstract-tag');
 
 class ImageAssetTag extends AbstractTag {
@@ -24,19 +23,22 @@ class ImageAssetTag extends AbstractTag {
       auto: 'format',
     };
     const src = createSrcFor(imageHost, image, options);
-    const $ = cheerio.load('<img>');
 
-    $('img').attr('alt', alt);
-    if (lazyload) {
-      $('img').addClass('lazyload');
-      $('img').attr('data-src', src);
-    } else {
-      $('img').attr('src', src);
-    }
-    if (image.caption) $.root().append(`<span class="caption">${image.caption}</span>`);
-    if (image.credit) $.root().append(`<span class="credit">${image.credit}</span>`);
+    const attrs = {
+      class: lazyload ? 'lazyload' : null,
+      src: lazyload ? 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' : src,
+      'data-src': lazyload ? src : null,
+      alt,
+    };
+    const stringifiedAttrs = Object.keys(attrs).reduce((arr, key) => {
+      const value = attrs[key];
+      if (value) arr.push(`${key}="${value}"`);
+      return arr;
+    }, []).join(' ');
 
-    return $('body').html();
+    const caption = image.caption ? `<span class="caption">${image.caption}</span>` : '';
+    const credit = image.credit ? `<span class="credit">${image.credit}</span>` : '';
+    return `<img ${stringifiedAttrs}>${caption}${credit}`;
   }
 }
 
