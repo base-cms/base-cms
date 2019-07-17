@@ -36,7 +36,7 @@ class ImageAssetTag extends AbstractTag {
     if (image.caption) $.root().append(`<span class="caption">${image.caption}</span>`);
     if (image.credit) $.root().append(`<span class="credit">${image.credit}</span>`);
 
-    return $.html();
+    return $('body').html();
   }
 }
 
