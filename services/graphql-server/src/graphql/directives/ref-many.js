@@ -1,5 +1,6 @@
 const { SchemaDirectiveVisitor } = require('graphql-tools');
 const { BaseDB } = require('@base-cms/db');
+const { UserInputError } = require('apollo-server-express');
 const formatStatus = require('../utils/format-status');
 const criteriaFor = require('../utils/criteria-for');
 const applyInput = require('../utils/apply-input');
@@ -37,6 +38,7 @@ class RefManyDirective extends SchemaDirectiveVisitor {
         sort,
         pagination,
       } = input;
+      if (sort.order === 'values' && localField) throw new UserInputError('Cannot use `values` sort on an inverse reference.');
       const query = applyInput({
         query: {
           ...criteriaFor(criteria),
