@@ -38,9 +38,8 @@ class RefManyDirective extends SchemaDirectiveVisitor {
         sort,
         pagination,
       } = input;
-      if (sort.order === 'values' && foreignField !== '_id') {
-        throw new UserInputError('Cannot use `values` sort on an inverse reference.');
-      }
+      const isInverse = foreignField !== '_id';
+      if (sort.order === 'values' && isInverse) throw new UserInputError('Cannot use `values` sort on an inverse reference.');
       const query = applyInput({
         query: {
           ...criteriaFor(criteria),
