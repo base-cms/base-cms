@@ -11,7 +11,7 @@ const logger = (obj) => {
 };
 
 const shouldLog = () => {
-  if (!NODE_ENV !== 'development') return false;
+  if (NODE_ENV !== 'development') return false;
   return ENABLE_BASEDB_LOGGING;
 };
 
