@@ -1,4 +1,4 @@
-const { createAltFor, createSrcFor } = require('@base-cms/image');
+const { createAltFor, createSrcFor, createCaptionFor } = require('@base-cms/image');
 const AbstractTag = require('./abstract-tag');
 
 class ImageAssetTag extends AbstractTag {
@@ -36,9 +36,11 @@ class ImageAssetTag extends AbstractTag {
       return arr;
     }, []).join(' ');
 
-    const caption = image.caption ? `<span class="caption">${image.caption}</span>` : '';
-    const credit = image.credit ? `<span class="credit">${image.credit}</span>` : '';
-    return `<img ${stringifiedAttrs}>${caption}${credit}`;
+    const caption = createCaptionFor(image.caption);
+
+    const captionElement = caption ? `<span class="caption">${caption}</span>` : '';
+    const creditElement = image.credit ? `<span class="credit">${image.credit}</span>` : '';
+    return `<img ${stringifiedAttrs}>${captionElement}${creditElement}`;
   }
 }
 
