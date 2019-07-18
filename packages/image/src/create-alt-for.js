@@ -1,4 +1,5 @@
 const { titleize } = require('@base-cms/inflector');
+const { htmlEntities, stripHtml } = require('@base-cms/html');
 
 const altFrom = (value = '') => {
   if (!value) return '';
@@ -14,8 +15,10 @@ const altFrom = (value = '') => {
   return v;
 };
 
+const clean = v => htmlEntities.encode(stripHtml(v));
+
 module.exports = ({ caption, name, fileName } = {}) => {
-  if (caption) return caption;
-  if (name) return altFrom(name);
-  return altFrom(fileName);
+  if (caption) return clean(caption);
+  if (name) return clean(altFrom(name));
+  return clean(altFrom(fileName));
 };

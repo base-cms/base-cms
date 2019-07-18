@@ -1,8 +1,5 @@
-const { createAltFor, createSrcFor } = require('@base-cms/image');
-const { htmlEntities, stripHtml } = require('@base-cms/html');
+const { createAltFor, createSrcFor, createCaptionFor } = require('@base-cms/image');
 const AbstractTag = require('./abstract-tag');
-
-const clean = v => htmlEntities.encode(stripHtml(v));
 
 class ImageAssetTag extends AbstractTag {
   async buildHtmlTagContents({ imageHost, basedb, lazyload }) {
@@ -31,7 +28,7 @@ class ImageAssetTag extends AbstractTag {
       class: lazyload ? 'lazyload' : null,
       src: lazyload ? 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' : src,
       'data-src': lazyload ? src : null,
-      alt: clean(alt),
+      alt,
     };
     const stringifiedAttrs = Object.keys(attrs).reduce((arr, key) => {
       const value = attrs[key];
@@ -39,9 +36,11 @@ class ImageAssetTag extends AbstractTag {
       return arr;
     }, []).join(' ');
 
-    const caption = image.caption ? `<span class="caption">${image.caption}</span>` : '';
-    const credit = image.credit ? `<span class="credit">${image.credit}</span>` : '';
-    return `<img ${stringifiedAttrs}>${caption}${credit}`;
+    const caption = createCaptionFor(image.caption);
+
+    const captionElement = caption ? `<span class="caption">${caption}</span>` : '';
+    const creditElement = image.credit ? `<span class="credit">${image.credit}</span>` : '';
+    return `<img ${stringifiedAttrs}>${captionElement}${creditElement}`;
   }
 }
 

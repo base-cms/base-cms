@@ -1,4 +1,4 @@
-const { createAltFor, createSrcFor } = require('@base-cms/image');
+const { createAltFor, createSrcFor, createCaptionFor } = require('@base-cms/image');
 
 module.exports = {
   /**
@@ -7,5 +7,6 @@ module.exports = {
   AssetImage: {
     src: (image, _, { imageHost }) => createSrcFor(imageHost, image, undefined, { w: 320, auto: 'format' }),
     alt: image => createAltFor(image),
+    caption: image => createCaptionFor(image.caption),
   },
 };
