@@ -1,8 +1,5 @@
 const { createAltFor, createSrcFor } = require('@base-cms/image');
-const { htmlEntities, stripHtml } = require('@base-cms/html');
 const AbstractTag = require('./abstract-tag');
-
-const clean = v => htmlEntities.encode(stripHtml(v));
 
 class ImageAssetTag extends AbstractTag {
   async buildHtmlTagContents({ imageHost, basedb, lazyload }) {
@@ -31,7 +28,7 @@ class ImageAssetTag extends AbstractTag {
       class: lazyload ? 'lazyload' : null,
       src: lazyload ? 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' : src,
       'data-src': lazyload ? src : null,
-      alt: clean(alt),
+      alt,
     };
     const stringifiedAttrs = Object.keys(attrs).reduce((arr, key) => {
       const value = attrs[key];

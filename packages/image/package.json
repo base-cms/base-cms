@@ -7,6 +7,7 @@
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/image",
   "license": "MIT",
   "dependencies": {
+    "@base-cms/html": "^0.9.44",
     "@base-cms/inflector": "^0.9.0"
   },
   "publishConfig": {
