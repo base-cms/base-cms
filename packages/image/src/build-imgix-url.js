@@ -56,6 +56,12 @@ const params = [
   'fill-mode', // Fill Mode
 
   // Focal Point Crop
+  'fp-debug', // Focal Point Debug
+  'fp-x', // Focal Point X Position
+  'fp-y', // Focal Point Y Position
+  'fp-z', // Focal Point Zoom
+
+  // Format
   'ch', // Client Hints
   'chromasub', // Chroma Subsampling
   'colorquant', // Color Quantization
