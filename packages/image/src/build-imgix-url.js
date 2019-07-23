@@ -36,7 +36,7 @@ const params = [
 
   // Border & Padding
   'border-radius-inner', // Inner Border Radius
-  'border-radius', // Outher Border Radius
+  'border-radius', // Outer Border Radius
   'border', // Border Size Color
   'pad', // Padding
 
@@ -85,7 +85,7 @@ const params = [
   'page', // PDF Page Number
 
   // Pixel Density
-  'dpr', // Device Pixel Ration
+  'dpr', // Device Pixel Ratio
 
   // Rotation
   'flip', // Flip Axis
