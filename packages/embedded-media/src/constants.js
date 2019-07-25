@@ -12,7 +12,7 @@ module.exports = {
   /**
    * The default HTML element to use for HTML tags.
    */
-  DEFAULT_HTML_ELEMENT: 'aside',
+  DEFAULT_HTML_ELEMENT: 'span',
 
   /**
    * The attribute name that siginfies the html element the tag should use.
