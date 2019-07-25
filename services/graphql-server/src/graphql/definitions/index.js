@@ -28,6 +28,10 @@ type Query {
   ping: String!
 }
 
+type Mutation {
+  ping: String!
+}
+
 type PageInfo {
   hasNextPage: Boolean!
   endCursor: String

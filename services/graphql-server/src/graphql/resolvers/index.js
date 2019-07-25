@@ -27,5 +27,14 @@ module.exports = deepAssign(
        */
       ping: () => 'pong',
     },
+    /**
+     * Root mutations.
+     */
+    Mutation: {
+      /**
+       *
+       */
+      ping: () => 'pong',
+    },
   },
 );
