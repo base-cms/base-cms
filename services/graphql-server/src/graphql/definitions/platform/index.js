@@ -2,6 +2,7 @@ const gql = require('graphql-tag');
 const asset = require('./asset');
 const entity = require('./entity');
 const content = require('./content');
+const inquirySubmission = require('./inquiry-submission');
 const security = require('./security');
 const taxonomy = require('./taxonomy');
 
@@ -17,6 +18,7 @@ type StubExternal {
 ${asset}
 ${entity}
 ${content}
+${inquirySubmission}
 ${security}
 ${taxonomy}
 
