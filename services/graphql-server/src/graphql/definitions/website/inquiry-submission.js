@@ -3,12 +3,13 @@ const gql = require('graphql-tag');
 module.exports = gql`
 
 extend type Mutation {
-  createInquirySubmission(input: CreateInquirySubmissionInput!): InquirySubmission!
+  createInquirySubmission(input: CreateInquirySubmissionMutationInput!): InquirySubmission!
 }
 
 type InquirySubmission {
   id: ObjectID! @projection(localField: "_id") @value(localField: "_id")
-  contentId: Int!
+  contentId: Int! @projection
+  payload: JSON @projection
   addresses: InquirySubmissionAddresses! @projection
   created: Date @projection
 }
@@ -20,17 +21,10 @@ type InquirySubmissionAddresses {
   from: String! @projection
 }
 
-input CreateInquirySubmissionInput {
-  content: InquirySubmissionContentInput!
+input CreateInquirySubmissionMutationInput {
+  contentId: Int!
   addresses: InquirySubmissionAddressesInput!
-  payload: JSON
-}
-
-input InquirySubmissionContentInput {
-  id: Int!
-  name: String
-  companyId: Int
-  companyName: String
+  payload: JSON!
 }
 
 input InquirySubmissionAddressesInput {
