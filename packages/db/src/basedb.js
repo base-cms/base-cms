@@ -197,6 +197,26 @@ class BaseDB {
   }
 
   /**
+   * Inserts a single document to a collection.
+   *
+   * @param {string} modelName The model name, e.g. `platform.Content`.
+   * @param {object} document The update operations to be applied to the document.
+   * @param {object} [options] Options to pass to `Collection.insertOne`.
+   */
+  async insertOne(modelName, document, options) {
+    const start = hrtime();
+    const { namespace, resource } = BaseDB.parseModelName(modelName);
+    const coll = await this.collection(namespace, resource);
+    const result = await coll.insertOne(document, options);
+    this.log('insertOne', start, {
+      modelName,
+      document,
+      options,
+    });
+    return result;
+  }
+
+  /**
    * Update multiple documents in a collection.
    *
    * @param {string} modelName The model name, e.g. `platform.Content`.
