@@ -1,15 +1,5 @@
 const { getAsObject } = require('@base-cms/object-path');
 
-const options = {
-  projection: {
-    company: 1,
-    salesContacts: 1,
-    parentCompany: 1,
-    parentSupplier: 1,
-    parentVenue: 1,
-  },
-};
-
 /**
  * Returns the first set of sales contacts in the heirarchy tree.
  * If no results are found, returns an empty array.
@@ -27,7 +17,14 @@ const contactsFor = async (content, basedb) => {
   }, null);
 
   if (relatedId) {
-    const item = await basedb.findOne('platform.Content', { _id: relatedId, 'mutations.Website.enableRmi': true }, options);
+    const projection = {
+      company: 1,
+      salesContacts: 1,
+      parentCompany: 1,
+      parentSupplier: 1,
+      parentVenue: 1,
+    };
+    const item = await basedb.findOne('platform.Content', { _id: relatedId, 'mutations.Website.enableRmi': true }, { projection });
     return contactsFor(item, basedb);
   }
 
