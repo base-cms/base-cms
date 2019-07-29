@@ -1,12 +1,4 @@
-const options = {
-  fields: {
-    company: 1,
-    salesContacts: 1,
-    parentCompany: 1,
-    parentSupplier: 1,
-    parentVenue: 1,
-  },
-};
+const { get, getAsArray } = require('@base-cms/object-path');
 
 /**
  * Returns the first set of sales contacts in the heirarchy tree.
@@ -14,8 +6,9 @@ const options = {
  */
 const contactsFor = async (content, basedb) => {
   if (!content) return [];
-  const { leadsDelivery, salesContacts } = content;
-  if (leadsDelivery && salesContacts && salesContacts.length) return salesContacts;
+  const enableRmi = get(content, 'mutations.Website.enableRmi');
+  const salesContacts = getAsArray(content, 'salesContacts');
+  if (enableRmi && salesContacts.length) return salesContacts;
 
   const relatedId = ['company', 'parentCompany', 'parentSupplier', 'parentVenue'].reduce((id, key) => {
     if (id) return id;
@@ -24,7 +17,14 @@ const contactsFor = async (content, basedb) => {
   }, null);
 
   if (relatedId) {
-    const item = await basedb.findOne('platform.Content', { _id: relatedId, leadsDelivery: true }, options);
+    const projection = {
+      company: 1,
+      salesContacts: 1,
+      parentCompany: 1,
+      parentSupplier: 1,
+      parentVenue: 1,
+    };
+    const item = await basedb.findOne('platform.Content', { _id: relatedId, 'mutations.Website.enableRmi': true }, { projection });
     return contactsFor(item, basedb);
   }
 
