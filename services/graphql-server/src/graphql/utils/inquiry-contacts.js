@@ -1,4 +1,4 @@
-const { getAsObject } = require('@base-cms/object-path');
+const { get } = require('@base-cms/object-path');
 
 /**
  * Returns the first set of sales contacts in the heirarchy tree.
@@ -7,7 +7,7 @@ const { getAsObject } = require('@base-cms/object-path');
 const contactsFor = async (content, basedb) => {
   if (!content) return [];
   const { salesContacts } = content;
-  const { enableRmi } = getAsObject(content, 'mutations.Website');
+  const enableRmi = get(content, 'mutations.Website.enableRmi');
   if (enableRmi && salesContacts && salesContacts.length) return salesContacts;
 
   const relatedId = ['company', 'parentCompany', 'parentSupplier', 'parentVenue'].reduce((id, key) => {
