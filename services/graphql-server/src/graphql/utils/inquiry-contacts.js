@@ -1,5 +1,7 @@
+const { getAsObject } = require('@base-cms/object-path');
+
 const options = {
-  fields: {
+  projection: {
     company: 1,
     salesContacts: 1,
     parentCompany: 1,
@@ -14,8 +16,9 @@ const options = {
  */
 const contactsFor = async (content, basedb) => {
   if (!content) return [];
-  const { leadsDelivery, salesContacts } = content;
-  if (leadsDelivery && salesContacts && salesContacts.length) return salesContacts;
+  const { salesContacts } = content;
+  const { enableRmi } = getAsObject(content, 'mutations.Website');
+  if (enableRmi && salesContacts && salesContacts.length) return salesContacts;
 
   const relatedId = ['company', 'parentCompany', 'parentSupplier', 'parentVenue'].reduce((id, key) => {
     if (id) return id;
@@ -24,7 +27,7 @@ const contactsFor = async (content, basedb) => {
   }, null);
 
   if (relatedId) {
-    const item = await basedb.findOne('platform.Content', { _id: relatedId, leadsDelivery: true }, options);
+    const item = await basedb.findOne('platform.Content', { _id: relatedId, 'mutations.Website.enableRmi': true }, options);
     return contactsFor(item, basedb);
   }
 
