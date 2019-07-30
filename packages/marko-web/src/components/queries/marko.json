@@ -26,6 +26,9 @@
     },
     "cms-query-magazine-scheduled-content": {
       "template": "./magazine-scheduled-content.marko"
+    },
+    "cms-query-website-optioned-content": {
+      "template": "./website-optioned-content.marko"
     }
   }
 }
