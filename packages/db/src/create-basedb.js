@@ -6,7 +6,7 @@ const { log } = console;
 
 const logger = (obj) => {
   log('');
-  Object.keys(obj).forEach(key => log(`${key}:`, inspect(obj[key], { colors: true, depth: 5 })));
+  Object.keys(obj).forEach(key => log(`${key}:`, inspect(obj[key], { colors: true, depth: 10 })));
   log('');
 };
 
