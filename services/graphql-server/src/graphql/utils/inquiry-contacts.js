@@ -39,5 +39,5 @@ module.exports = async (content, _, { basedb }) => {
       { publicEmail: { $exists: true } },
     ],
   };
-  return basedb.find('platform.Content', { _id: { $in: contactIds }, ...emails }, { fields: { name: 1, email: 1, publicEmail: 1 } });
+  return basedb.find('platform.Content', { _id: { $in: contactIds }, ...emails }, { projection: { name: 1, email: 1, publicEmail: 1 } });
 };
