@@ -9,7 +9,7 @@ module.exports = {
     createInquirySubmission: async (_, { input }, { basedb }) => {
       const { payload, addresses, contentId } = input;
       const clean = Object.keys(payload)
-        .reduce((obj, key) => (payload[key] ? { ...obj, [key]: payload[key] } : obj));
+        .reduce((obj, key) => (payload[key] ? { ...obj, [key]: payload[key] } : obj), {});
       const document = {
         payload: clean,
         created: new Date(),
