@@ -2,8 +2,8 @@ $ const isDevelopment = process.env.NODE_ENV === 'development';
 $ const { onAsyncBlockError } = out.global;
 
 <await(input.loader(out.global.apollo, input))>
-  <@then|{ node }|>
-    <${input.renderBody} node=node />
+  <@then|results|>
+    <${input.renderBody} ...results />
   </@then>
   <@catch|err|>
     $ if (typeof onAsyncBlockError === 'function') onAsyncBlockError(err);
