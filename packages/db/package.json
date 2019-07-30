@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/db",
-  "version": "0.9.47",
+  "version": "0.9.49",
   "description": "The BaseCMS database driver. Requires direct MongoDB access.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
