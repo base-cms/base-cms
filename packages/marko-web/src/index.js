@@ -27,6 +27,7 @@ const startServer = async ({
   cdnAssetHostname = env.CDN_ASSET_HOSTNAME || 'media.baseplatform.io',
   errorTemplate,
   onAsyncBlockError,
+  redirectHandler,
 
   // Terminus settings.
   timeout = 1000,
@@ -58,7 +59,7 @@ const startServer = async ({
   routes(app);
 
   // Apply error handlers.
-  errorHandlers(app, { template: errorTemplate });
+  errorHandlers(app, { template: errorTemplate, redirectHandler });
 
   const server = http.createServer(app);
 

@@ -30,7 +30,7 @@ const render = (res, { statusCode, err, template }) => {
   return renderError(res, { statusCode, err, template });
 };
 
-module.exports = (app, { template }) => {
+module.exports = (app, { template, redirectHandler }) => {
   // Force Express to throw an error on 404s.
   app.use((req, res, next) => { // eslint-disable-line no-unused-vars
     throw createError(404, `No page found for '${req.path}'`);
@@ -41,7 +41,7 @@ module.exports = (app, { template }) => {
   app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
     const statusCode = err.status || err.statusCode || 500;
 
-    getRedirect(req).then((redirect) => {
+    getRedirect(req, redirectHandler).then((redirect) => {
       if (redirect) {
         const { code, to } = redirect;
         res.redirect(code, to);

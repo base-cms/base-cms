@@ -1,6 +1,15 @@
 const { content: canonicalPathFor, requestParser: getCanonicalRules } = require('@base-cms/canonical-path');
 const { BaseDB } = require('@base-cms/db');
+const { get } = require('@base-cms/object-path');
 const createDB = require('./src/basedb');
+
+const cleanPath = (value) => {
+  if (!value) return '';
+  const v = value.trim();
+  if (!v) return v;
+  if (/^http/.test(v)) return v;
+  return `/${v.replace(/^\/+/, '')}`;
+};
 
 const { log } = console;
 const { TENANT_KEY } = process.env;
@@ -66,11 +75,13 @@ const buildContentRedirects = async (contentColl) => {
 
   const results = [];
   await iterateCursor(cursor, async (doc) => {
-    const redirect = doc.mutations.Website.redirects;
-    const from = redirect.charAt(0) === '/' ? redirect : `/${redirect}`;
-    const slug = BaseDB.get(doc, 'mutations.Website.slug');
-    const to = await canonicalPathFor({ slug, ...doc }, context);
-    results.push({ from, to });
+    if (typeof doc === 'object') {
+      const redirect = get(doc, 'mutations.Website.redirects');
+      const from = redirect;
+      const slug = BaseDB.get(doc, 'mutations.Website.slug');
+      const to = await canonicalPathFor({ slug, ...doc }, context);
+      results.push({ from, to });
+    }
   });
   log(`Found ${results.length} content redirects.`);
 
@@ -87,9 +98,9 @@ const buildSectionRedirects = async (sectionColl) => {
   const docs = await cursor.toArray();
 
   log(`Found ${docs.length} section redirects.`);
-  return Promise.all(docs.map(async ({ alias, redirects }) => {
-    const from = redirects.charAt(0) === '/' ? redirects : `/${redirects}`;
-    const to = alias.charAt(0) === '/' ? alias : `/${alias}`;
+  return Promise.all(docs.filter(doc => typeof doc === 'object').map(async ({ alias, redirects }) => {
+    const from = redirects;
+    const to = alias;
     return { from, to };
   }));
 };
@@ -104,8 +115,8 @@ const buildIssueRedirects = async (issueColl) => {
   const docs = await cursor.toArray();
 
   log(`Found ${docs.length} issue redirects.`);
-  return Promise.all(docs.map(async ({ _id, redirects }) => {
-    const from = redirects.charAt(0) === '/' ? redirects : `/${redirects}`;
+  return Promise.all(docs.filter(doc => typeof doc === 'object').map(async ({ _id, redirects }) => {
+    const from = redirects;
     const to = `/magazine/${_id}`;
     return { from, to };
   }));
@@ -161,15 +172,27 @@ const buildGlobalRedirects = () => {
   ];
 };
 
+const buildWebsiteProductRedirects = async (productColl) => {
+  const cursor = await productColl.find({ type: 'Site', redirects: { $exists: true } }, { projection: { redirects: 1 } });
+  const docs = await cursor.toArray();
+  return docs.filter(({ redirects }) => typeof redirects === 'object').reduce((arr, { redirects }) => {
+    Object.keys(redirects).forEach((from) => {
+      arr.push({ from, to: redirects[from] });
+    });
+    return arr;
+  }, []);
+};
+
 const run = async () => {
   const client = await basedb.client.connect();
   log(`BaseCMS DB connected to ${client.s.url} for ${basedb.tenant}`);
 
-  const [redirectsColl, contentColl, sectionColl, issueColl] = await Promise.all([
+  const [redirectsColl, contentColl, sectionColl, issueColl, productColl] = await Promise.all([
     basedb.collection('website', 'Redirects'),
     basedb.collection('platform', 'Content'),
     basedb.collection('website', 'Section'),
     basedb.collection('magazine', 'Issue'),
+    basedb.collection('platform', 'Product'),
   ]);
 
   const promised = await Promise.all([
@@ -177,9 +200,13 @@ const run = async () => {
     buildSectionRedirects(sectionColl),
     buildIssueRedirects(issueColl),
     buildGlobalRedirects(),
+    buildWebsiteProductRedirects(productColl),
   ]);
 
-  const redirects = promised.reduce((arr, el) => arr.concat(el), []);
+  const redirects = promised
+    .reduce((arr, el) => arr.concat(el), [])
+    .map(({ from, to }) => ({ from: cleanPath(from), to: cleanPath(to) }))
+    .filter(({ from, to }) => from && to);
 
   log('Beginning bulk write process...');
 
