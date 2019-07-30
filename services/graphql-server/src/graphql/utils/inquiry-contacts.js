@@ -33,5 +33,11 @@ const contactsFor = async (content, basedb) => {
 
 module.exports = async (content, _, { basedb }) => {
   const contactIds = await contactsFor(content, basedb);
-  return basedb.find('platform.Content', { _id: { $in: contactIds }, status: 1, email: { $exists: true } }, { fields: { name: 1, email: 1 } });
+  const emails = {
+    $or: [
+      { email: { $exists: true } },
+      { publicEmail: { $exists: true } },
+    ],
+  };
+  return basedb.find('platform.Content', { _id: { $in: contactIds }, ...emails }, { fields: { name: 1, email: 1, publicEmail: 1 } });
 };
