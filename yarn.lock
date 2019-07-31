@@ -13675,14 +13675,6 @@ object.values@^1.1.0:
     function-bind "^1.1.1"
     has "^1.0.3"
 
-oembed-parser@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/oembed-parser/-/oembed-parser-1.2.2.tgz#0ababb60eb6bef0538878b690eb71ecb7fdfb4d1"
-  integrity sha512-dFsRPQZTUvIG5EA0Gq9kWCfxxdt+hBk0D9xvYkrGq1lh0NyzJTMWkrJWFXGu7P/9MiP7t2VHvlRFsC4I3SuGPw==
-  dependencies:
-    node-fetch "^2.3.0"
-    promise-wtf "^1.2.4"
-
 on-finished@~2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/on-finished/-/on-finished-2.3.0.tgz#20f1336481b083cd75337992a16971aa2d906947"
@@ -15120,11 +15112,6 @@ promise-retry@^1.1.1:
   dependencies:
     err-code "^1.0.0"
     retry "^0.10.0"
-
-promise-wtf@^1.2.4:
-  version "1.2.4"
-  resolved "https://registry.yarnpkg.com/promise-wtf/-/promise-wtf-1.2.4.tgz#8cbdd31ea10dee074fbb6387cbc96e413993376c"
-  integrity sha512-wOZ+ZUG0/Lsk+muOElLtteIteyvF5B1bNcVLhmlv6PDKcAAQGa5Bf0maN3rj73FWyjJE840MzeQyNE6KOKpgrg==
 
 promise.prototype.finally@^3.1.0:
   version "3.1.0"
