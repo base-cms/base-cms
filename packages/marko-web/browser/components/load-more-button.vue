@@ -1,10 +1,15 @@
 <template>
-  <div v-bind:class="wrappingClassObj" v-bind:style="{ display: display }" v-if="error">
+  <div v-if="error" :class="wrappingClassObj" :style="{ display: display }">
     <pre>An unexpected error occurred: {{ error.message }}</pre>
     <pre>{{ error.stack }}</pre>
   </div>
-  <div v-bind:class="wrappingClassObj" v-bind:style="{ display: display }" v-else>
-    <button v-bind:id="buttonId" v-on:click="load()" v-bind:disabled="loading" v-bind:class="buttonClass">
+  <div v-else :class="wrappingClassObj" :style="{ display: display }">
+    <button
+      :id="buttonId"
+      :class="buttonClass"
+      :disabled="loading"
+      @click="load()"
+    >
       <template v-if="loading">
         Loading...
       </template>
@@ -28,9 +33,18 @@ export default {
       type: Number,
       required: true,
     },
-    provide: Object,
-    buttonClassObj: Object,
-    wrappingClassObj: Object,
+    provide: {
+      type: Object,
+      default: () => ({}),
+    },
+    buttonClassObj: {
+      type: Object,
+      default: () => ({}),
+    },
+    wrappingClassObj: {
+      type: Object,
+      default: () => ({}),
+    },
     label: {
       type: String,
       default: 'Load More',
@@ -39,7 +53,10 @@ export default {
       type: String,
       required: true,
     },
-    maxPages: Number,
+    maxPages: {
+      type: Number,
+      default: 3,
+    },
   },
   data: () => ({ loading: false, hasLoaded: false, error: null }),
   computed: {
@@ -47,7 +64,7 @@ export default {
       return { ...this.buttonClassObj, lazyload: true };
     },
     buttonId() {
-      return `load-more-${Date.now()}`
+      return `load-more-${Date.now()}`;
     },
     display() {
       if (this.hasLoaded) return 'none';
@@ -74,7 +91,7 @@ export default {
       };
       this.error = null;
       this.loading = true;
-      const href = `/load-more/${this.blockName}?input=${encodeURIComponent(JSON.stringify(input))}`
+      const href = `/load-more/${this.blockName}?input=${encodeURIComponent(JSON.stringify(input))}`;
       try {
         const r = await fetch(href);
         const html = await r.text();
@@ -94,7 +111,7 @@ export default {
         this.hasLoaded = true;
         document.removeEventListener('lazybeforeunveil', this.lazyload);
       }
-    }
+    },
   },
-}
+};
 </script>
