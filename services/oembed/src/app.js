@@ -11,13 +11,13 @@ app.use(helmet());
 app.use(json());
 app.set('trust proxy', ['loopback', 'linklocal', 'uniquelocal']);
 
-app.post('/embed', asyncRoute(async (req, res) => {
+app.post('/', asyncRoute(async (req, res) => {
   const { body } = req;
   const data = await embedly.oembed(body.url, body.params);
   res.json(data);
 }));
 
-app.get('/embed', asyncRoute(async (req, res) => {
+app.get('/', asyncRoute(async (req, res) => {
   const { query } = req;
   const data = await embedly.oembed(query.url, query);
   res.json(data);
