@@ -1,0 +1,15 @@
+{
+  "name": "@base-cms/embedly",
+  "version": "0.9.0",
+  "description": "BaseCMS embedly API library.",
+  "main": "src/index.js",
+  "author": "Jacob Bare <jacob@limit0.io>",
+  "repository": "https://github.com/base-cms/base-cms/tree/master/packages/embedly",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.0"
+  }
+}
