@@ -172,6 +172,16 @@ services:
     ports:
       - "10012:80"
 
+  oembed:
+    << : *node
+    working_dir: /base-cms/services/oembed
+    command: ["/base-cms/node_modules/.bin/gulp"]
+    environment:
+      <<: *env
+      EMBEDLY_API_KEY: ${EMBEDLY_API_KEY}
+    ports:
+      - "10013:80"
+
 volumes:
   esdata: {}
   mongodb: {}
