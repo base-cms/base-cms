@@ -1,3 +1,4 @@
+const oembed = require('oembed-parser');
 const AbstractTag = require('./abstract-tag');
 
 const { log } = console;
