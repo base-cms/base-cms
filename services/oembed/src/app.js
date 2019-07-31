@@ -17,6 +17,12 @@ app.post('/embed', asyncRoute(async (req, res) => {
   res.json(data);
 }));
 
+app.get('/embed', asyncRoute(async (req, res) => {
+  const { query } = req;
+  const data = await embedly.oembed(query.url, query);
+  res.json(data);
+}));
+
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
   const { message, stack } = err;
