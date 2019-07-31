@@ -5,5 +5,5 @@ WORKDIR /base-cms
 
 RUN yarn --production
 
-WORKDIR /base-cms/services/rss
+WORKDIR /base-cms/services/oembed
 ENTRYPOINT [ "node", "src/index.js" ]
