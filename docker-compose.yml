@@ -98,6 +98,7 @@ services:
       GRAPHQL_URI: ${GRAPHQL_URI-http://graphql-server}
       SITEMAPS_URI: ${SITEMAPS_URI-http://sitemaps}
       RSS_URI: ${RSS_URI-http://rss}
+      OEMBED_URI: ${RSS_URI-http://oembed}
       TENANT_KEY: ${TENANT_KEY-cygnus_ofcr}
       CDN_IMAGE_HOSTNAME: ${CDN_IMAGE_HOSTNAME-base.imgix.net}
       CDN_ASSET_HOSTNAME: ${CDN_ASSET_HOSTNAME-cdn.baseplatform.io}
@@ -105,6 +106,7 @@ services:
       - graphql-server
       - sitemaps
       - rss
+      - oembed
     ports:
       - "10007:80"
       - "10008:10008" # livereload port
