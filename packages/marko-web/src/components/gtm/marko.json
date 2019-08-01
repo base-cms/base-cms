@@ -1,7 +1,7 @@
 {
   "tags": {
-    "cms-gtm-container-init": {
-      "template": "./container-init.marko",
+    "cms-gtm-container": {
+      "template": "./container.marko",
       "@container-id": {
         "type": "expression",
         "required": true
@@ -10,7 +10,8 @@
         "type": "string",
         "required": true,
         "default-value": "dataLayer"
-      }
+      },
+      "@push": "object"
     },
     "cms-gtm-container-push": {
       "template": "./container-push.marko",
