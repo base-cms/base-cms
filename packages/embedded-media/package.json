@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/embedded-media",
-  "version": "0.9.54",
+  "version": "0.9.55",
   "description": "BaseCMS embedded media parsing.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
