@@ -31,6 +31,7 @@ const nrIds = {
   rss: 222849027,
   sitemaps: 222844922,
   hooks: 231283772,
+  oembed: 260472160,
 };
 
 const error = (message) => {
