@@ -6,12 +6,12 @@
         "type": "expression",
         "required": true
       },
+      "@push": "object",
       "@name": {
         "type": "string",
         "required": true,
         "default-value": "dataLayer"
-      },
-      "@push": "object"
+      }
     },
     "cms-gtm-container-push": {
       "template": "./container-push.marko",
