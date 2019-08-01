@@ -9,12 +9,11 @@ $ const context = {
 
 <document>
   <@head>
-    <cms-gtm-container-init container-id=site.get('gtm.containerId') />
-    <cms-gtm-container-push data=context />
-    <cms-gtm-container-start />
+    <cms-gtm-container container-id=site.get('gtm.containerId') push=context />
     <cms-page-metadata for="dynamic-page" ...page />
     <${input.head} />
   </@head>
+  <cms-gtm-container-start />
   <cms-page-container for="dynamic-page" class="container-fluid-max" data=page>
     <${input.renderBody} />
   </cms-page-container>
