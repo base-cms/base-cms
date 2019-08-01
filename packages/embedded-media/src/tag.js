@@ -3,10 +3,16 @@ const extractAttributes = require('./utils/extract-attributes');
 class Tag {
   constructor(value) {
     const attrs = extractAttributes(value);
-    this.id = attrs.id;
-    this.type = attrs.type;
     this.attrs = attrs;
     this.value = value;
+  }
+
+  get id() {
+    return this.attrs.id;
+  }
+
+  get type() {
+    return this.attrs.type;
   }
 
   isValid() {
