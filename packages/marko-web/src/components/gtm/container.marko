@@ -20,3 +20,7 @@ $ const scripts = containerIds.map(containerId => createContainerScript(containe
 <if(input.push)>
   <cms-gtm-container-push name=input.name data=input.push />
 </if>
+
+<if(input.start)>
+  <cms-gtm-container-start name=input.name />
+</if>

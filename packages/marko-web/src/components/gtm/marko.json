@@ -11,6 +11,11 @@
         "type": "string",
         "required": true,
         "default-value": "dataLayer"
+      },
+      "@start": {
+        "type": "boolean",
+        "default-value": true,
+        "deprecated": true
       }
     },
     "cms-gtm-container-push": {
