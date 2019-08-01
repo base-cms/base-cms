@@ -22,7 +22,7 @@ $ const handlers = ['image', 'oembed', 'invalid'].reduce((o, type) => {
 $ const replacements = extractEmbeddedTags(body).map((tag) => {
   const type = ['image', 'oembed'].includes(tag.type) && tag.isValid() ? tag.type : 'invalid';
   const pattern = tag.getRegExp();
-  const replacement = handlers[type](tag);
+  const replacement = handlers[type](tag, out.global);
   return { pattern, replacement };
 });
 
