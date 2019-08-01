@@ -10,7 +10,8 @@ module.exports = (app) => {
         id
         name
         teaser(input: { useFallback: false })
-        body
+        # @deprecated
+        body(input: { embeds: { parse: false } })
         published
         createdBy {
           id
