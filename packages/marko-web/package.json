@@ -8,6 +8,7 @@
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/marko-web",
   "dependencies": {
     "@base-cms/express-apollo": "^0.9.40",
+    "@base-cms/embedded-media": "^0.9.54",
     "@base-cms/image": "^0.9.46",
     "@base-cms/object-path": "^0.9.40",
     "@base-cms/tenant-context": "^0.9.1",
@@ -28,6 +29,10 @@
     "graphql-tag": "^2.10.0"
   },
   "devDependencies": {
+    "eslint": "^5.15.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-vue": "^5.2.3",
     "graphql": "^14.2.1",
     "graphql-tag": "^2.10.1"
   },

@@ -42,3 +42,7 @@ jobs:
     - stage: deploy
       name: Hooks
       script: scripts/deploy.js hooks
+
+    - stage: deploy
+      name: oEmbed
+      script: scripts/deploy.js oembed

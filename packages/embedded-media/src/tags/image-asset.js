@@ -1,6 +1,9 @@
 const { createAltFor, createSrcFor, createCaptionFor } = require('@base-cms/image');
 const AbstractTag = require('./abstract-tag');
 
+/**
+ * @deprecated
+ */
 class ImageAssetTag extends AbstractTag {
   async buildHtmlTagContents({ imageHost, basedb, lazyload }) {
     const image = await basedb.findById('platform.Asset', this.identifier, {

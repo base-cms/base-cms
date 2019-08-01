@@ -8,6 +8,9 @@ const {
   TAG_INVALID_ATTR_NAME,
 } = require('../constants');
 
+/**
+ * @deprecated
+ */
 class AbstractTag {
   constructor(identifier, attributes) {
     if (!identifier) throw new Error('Tag identifier cannont be empty.');

@@ -3,6 +3,9 @@ const AbstractTag = require('./abstract-tag');
 
 const { log } = console;
 
+/**
+ * @deprecated
+ */
 class OEmbedTag extends AbstractTag {
   async buildHtmlTagContents() {
     try {

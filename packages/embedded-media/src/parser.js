@@ -6,6 +6,9 @@ const {
   TAG_TYPE_ATTR_NAME,
 } = require('./constants');
 
+/**
+ * @deprecated
+ */
 module.exports = {
   /**
    * Converts database tags to HTML tags within a block of text.

@@ -6,6 +6,7 @@ const { get } = require('@base-cms/object-path');
 const { parser: embedParser } = require('@base-cms/embedded-media');
 const { underscore, dasherize, titleize } = require('@base-cms/inflector');
 
+const getEmbeddedImageTags = require('../../utils/embedded-image-tags');
 const relatedContent = require('../../utils/related-content');
 const inquiryContacts = require('../../utils/inquiry-contacts');
 const inquiryEmails = require('../../utils/inquiry-emails');
@@ -79,20 +80,28 @@ module.exports = {
       return contentTeaser.generateTeaser(teaser, teaserFallback, input) || null;
     },
 
-    body: (content, { input }, { imageHost, basedb }) => {
+    body: async (content, { input }, { imageHost, basedb }) => {
       const { mutation, embeds } = input;
       const { body } = content;
       const mutated = get(content, `mutations.${mutation}.body`);
 
-      const value = mutation ? mutated || body : body;
-      // @todo Should likely have a better way of using the basedb in more than one place.
-      // Ultimately, the db should become a service that multiple services can share.
-      return embedParser.convertFromDbToHtml(value, {
-        basedb,
-        parse: embeds.parse,
-        imageHost,
-        lazyload: embeds.lazyloadImages,
+      let value = mutation ? mutated || body : body;
+      if (embeds.parse) {
+        return embedParser.convertFromDbToHtml(value, {
+          basedb,
+          parse: embeds.parse,
+          imageHost,
+          lazyload: embeds.lazyloadImages,
+        });
+      }
+
+      // Convert image tags to include image attributes (src, alt, caption, credit).
+      const imageTags = await getEmbeddedImageTags(value, { imageHost, basedb });
+      imageTags.forEach((tag) => {
+        const replacement = tag.isValid() ? tag.build() : '';
+        value = value.replace(tag.getRegExp(), replacement);
       });
+      return value;
     },
 
     userRegistration: (content) => {

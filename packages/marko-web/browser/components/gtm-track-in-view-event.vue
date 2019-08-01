@@ -1,5 +1,5 @@
 <template>
-  <div v-bind:id="elementId" class="lazyload" v-bind:data-expand="expand"></div>
+  <div :id="elementId" class="lazyload" :data-expand="expand" />
 </template>
 
 <script>
@@ -13,12 +13,18 @@ export default {
       type: Number,
       default: -100,
     },
-    vars: Object,
+    vars: {
+      type: Object,
+      default: () => ({}),
+    },
   },
   computed: {
     elementId() {
       return `gtm-track-event-${Date.now()}`;
     },
+  },
+  created() {
+    document.addEventListener('lazybeforeunveil', this.lazyload.bind(this));
   },
   methods: {
     lazyload({ target }) {
@@ -31,8 +37,5 @@ export default {
       dataLayer.push(data);
     },
   },
-  created() {
-    document.addEventListener('lazybeforeunveil', this.lazyload.bind(this));
-  },
-}
+};
 </script>

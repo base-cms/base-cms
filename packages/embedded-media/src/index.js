@@ -1,5 +1,7 @@
 const parser = require('./parser');
+const extract = require('./extract');
 
 module.exports = {
-  parser,
+  parser, // @deprecated
+  extractEmbeddedTags: extract,
 };

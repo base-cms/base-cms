@@ -1,6 +1,35 @@
+import { extractEmbeddedTags } from '@base-cms/embedded-media';
+import { getAsObject, set, get } from '@base-cms/object-path';
+import defaultHandlers from '../../../utils/embedded-media';
+
+$ const field = 'body';
 $ const props = {
   ...input,
-  field: 'body',
+  field,
 };
+
+$ const mediaInput = getAsObject(input, 'embeddedMedia');
+
+$ const result = get(props.obj, props.field, props.defaultValue);
+$ let body = result == null ? '' : `${result}`.trim();
+
+$ const handlers = ['image', 'oembed', 'invalid'].reduce((o, type) => {
+  const name = `${type}Handler`;
+  const fn = typeof mediaInput[name] === 'function' ? mediaInput[name] : defaultHandlers[name];
+  return { ...o, [type]: fn };
+}, {});
+
+$ const replacements = extractEmbeddedTags(body).map((tag) => {
+  const type = ['image', 'oembed'].includes(tag.type) && tag.isValid() ? tag.type : 'invalid';
+  const pattern = tag.getRegExp();
+  const replacement = handlers[type](tag, out.global);
+  return { pattern, replacement };
+});
+
+$ replacements.forEach(({ pattern, replacement }) => {
+  body = body.replace(pattern, replacement);
+});
+
+$ set(props, `obj.${field}`, body);
 
 <cms-html-element ...props />
