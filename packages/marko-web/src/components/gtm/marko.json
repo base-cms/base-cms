@@ -11,6 +11,31 @@
         "type": "string",
         "required": true,
         "default-value": "dataLayer"
+      },
+      "@start": {
+        "type": "boolean",
+        "default-value": true,
+        "deprecated": true
+      }
+    },
+    "cms-gtm-container-push": {
+      "template": "./container-push.marko",
+      "@name": {
+        "type": "expression",
+        "required": true,
+        "default-value": "dataLayer"
+      },
+      "@data": {
+        "type": "object",
+        "required": true
+      }
+    },
+    "cms-gtm-container-start": {
+      "template": "./container-start.marko",
+      "@name": {
+        "type": "expression",
+        "required": true,
+        "default-value": "dataLayer"
       }
     },
     "cms-gtm-track-inview-event": {
