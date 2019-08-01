@@ -22,8 +22,13 @@ class Tag {
   }
 
   isValid() {
+    if (this.valid === false) return false;
     if (this.id && this.type) return true;
     return false;
+  }
+
+  setValid(bit = true) {
+    this.valid = Boolean(bit);
   }
 
   build() {
