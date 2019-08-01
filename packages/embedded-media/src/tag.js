@@ -27,6 +27,15 @@ class Tag {
     return false;
   }
 
+  set(key, value) {
+    this.attrs[key] = value;
+    return this;
+  }
+
+  get(key, def = undefined) {
+    return this.attrs[key] || def;
+  }
+
   setValid(bit = true) {
     this.valid = Boolean(bit);
   }
