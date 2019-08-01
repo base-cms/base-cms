@@ -23,6 +23,9 @@ const createTag = (type, attrs) => {
   return instance;
 };
 
+/**
+ * @deprecated
+ */
 module.exports = {
   /**
    *
