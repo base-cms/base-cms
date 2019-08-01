@@ -26,7 +26,9 @@ $ const context = {
 
 <document>
   <@head>
-    <cms-gtm-container container-id=site.get('gtm.containerId') push=context />
+    <cms-gtm-container-init container-id=site.get('gtm.containerId') />
+    <cms-gtm-container-push data=context />
+    <cms-gtm-container-start />
     <cms-page-metadata for="content" ...content />
     <${input.head} />
   </@head>

@@ -15,7 +15,13 @@ $ const context = {
 
 <document>
   <@head>
-    <cms-gtm-container container-id=site.get('gtm.containerId') push=context />
+    <cms-gtm-container-init container-id=site.get('gtm.containerId') />
+    <cms-gtm-container-push data=context />
+    <cms-gtm-container-push data={
+      event: 'test',
+      includedBefore: 'gtm.start',
+    } />
+    <cms-gtm-container-start />
   </@head>
   <cms-page-container for="home" class="container-fluid">
     <h1>Homepage</h1>
