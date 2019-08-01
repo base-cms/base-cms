@@ -10,15 +10,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','${name}','${containerId}');
 `;
 
-$ const start = (name = 'dataLayer', context) => {
-  const contextCall = isObject(context) ? `${name}.push(${JSON.stringify(context)});` : '';
-  return `${contextCall}${name}.push({'gtm.start':new Date().getTime(),event:'gtm.js'});`;
-};
-
 $ const containerIds = (isArray(input.containerId) ? input.containerId : [input.containerId]).filter(v => v);
 $ const scripts = containerIds.map(containerId => createContainerScript(containerId, input.name));
 
 <if(scripts.length)>
   <script>${scripts.join().replace(/\n/g, '')}</script>
-  <script>${start(input.name, input.push)}</script>
 </if>

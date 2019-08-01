@@ -1,14 +1,33 @@
 {
   "tags": {
-    "cms-gtm-container": {
-      "template": "./container.marko",
+    "cms-gtm-container-init": {
+      "template": "./container-init.marko",
       "@container-id": {
         "type": "expression",
         "required": true
       },
-      "@push": "object",
       "@name": {
         "type": "string",
+        "required": true,
+        "default-value": "dataLayer"
+      }
+    },
+    "cms-gtm-container-push": {
+      "template": "./container-push.marko",
+      "@name": {
+        "type": "expression",
+        "required": true,
+        "default-value": "dataLayer"
+      },
+      "@data": {
+        "type": "object",
+        "required": true
+      }
+    },
+    "cms-gtm-container-start": {
+      "template": "./container-start.marko",
+      "@name": {
+        "type": "expression",
         "required": true,
         "default-value": "dataLayer"
       }
