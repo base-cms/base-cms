@@ -1,3 +1,4 @@
+const escapeRegex = require('escape-string-regexp');
 const extractAttributes = require('./utils/extract-attributes');
 const createAttribute = require('./utils/create-attribute');
 const {
@@ -33,6 +34,10 @@ class Tag {
       return arr;
     }, []).join(' ');
     return `${DB_TAG_START} ${contents} ${DB_TAG_END}`;
+  }
+
+  getRegExp(flags = 'g') {
+    return new RegExp(escapeRegex(this.value), flags);
   }
 
   toString() {
