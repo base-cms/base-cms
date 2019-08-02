@@ -5,6 +5,7 @@
     class="lazyload"
     :data-embed-type="attrs.type"
     :data-oembed-type="oembedType"
+    :data-oembed-provider="provider"
     :data-expand="expand"
     v-html="html"
   />
@@ -35,6 +36,7 @@ export default {
     error: null,
     embed: null,
     oembedType: null,
+    provider: null,
   }),
   computed: {
     id() {
@@ -59,8 +61,9 @@ export default {
       const href = `${this.endpoint}?url=${encodeURIComponent(this.url)}`;
       try {
         const r = await fetch(href);
-        const { html, type } = await r.json();
+        const { html, type, provider_name: provider } = await r.json();
         this.oembedType = type;
+        this.provider = provider;
         this.embed = html;
       } catch (e) {
         // @todo Log this!
