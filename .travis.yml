@@ -27,9 +27,9 @@ jobs:
       name: GraphQL Server
       script: scripts/deploy.js graphql-server
 
-    - stage: deploy
-      name: Manage
-      script: scripts/deploy.js manage
+    # - stage: deploy
+    #   name: Manage
+    #   script: scripts/deploy.js manage
 
     - stage: deploy
       name: Sitemaps
