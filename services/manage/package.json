@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/manage",
-  "version": "0.9.40",
+  "version": "0.10.0",
   "private": true,
   "description": "The BaseCMS Management Interface",
   "author": "Jacob Bare <jacob@limit0.io>",
@@ -18,7 +18,7 @@
     "test": "ember test"
   },
   "devDependencies": {
-    "@base-cms/graphql-fragment-types": "^0.9.40",
+    "@base-cms/graphql-fragment-types": "^0.10.0",
     "@ember/jquery": "^0.5.2",
     "@ember/optional-features": "^0.6.3",
     "animate.css": "^3.7.0",
