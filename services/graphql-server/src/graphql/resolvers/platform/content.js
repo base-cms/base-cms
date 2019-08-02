@@ -3,12 +3,10 @@ const { UserInputError } = require('apollo-server-express');
 const { cleanPath } = require('@base-cms/utils');
 const { content: canonicalPathFor } = require('@base-cms/canonical-path');
 const { get } = require('@base-cms/object-path');
-const { parser: embedParser } = require('@base-cms/embedded-media');
 const { underscore, dasherize, titleize } = require('@base-cms/inflector');
 
 const getEmbeddedImageTags = require('../../utils/embedded-image-tags');
 const relatedContent = require('../../utils/related-content');
-const inquiryContacts = require('../../utils/inquiry-contacts');
 const inquiryEmails = require('../../utils/inquiry-emails');
 const connectionProjection = require('../../utils/connection-projection');
 const getDefaultOption = require('../../utils/get-default-option');
@@ -47,7 +45,6 @@ module.exports = {
   OrganizationContactable: { __resolveType: resolveType },
   Inquirable: {
     __resolveType: resolveType,
-    inquiryContacts,
     inquiryEmails,
   },
 
@@ -81,20 +78,11 @@ module.exports = {
     },
 
     body: async (content, { input }, { imageHost, basedb }) => {
-      const { mutation, embeds } = input;
+      const { mutation } = input;
       const { body } = content;
       const mutated = get(content, `mutations.${mutation}.body`);
 
       let value = mutation ? mutated || body : body;
-      if (embeds.parse) {
-        return embedParser.convertFromDbToHtml(value, {
-          basedb,
-          parse: embeds.parse,
-          imageHost,
-          lazyload: embeds.lazyloadImages,
-        });
-      }
-
       // Convert image tags to include image attributes (src, alt, caption, credit).
       const imageTags = await getEmbeddedImageTags(value, { imageHost, basedb });
       imageTags.forEach((tag) => {
