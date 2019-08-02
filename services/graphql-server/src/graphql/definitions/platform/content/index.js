@@ -263,12 +263,6 @@ input ContentTeaserInput {
 
 input ContentBodyInput {
   mutation: ContentMutation = Website
-  embeds: ContentBodyEmbedsInput = {}
-}
-
-input ContentBodyEmbedsInput {
-  parse: Boolean = true
-  lazyloadImages: Boolean = true
 }
 
 input ContentTaxonomyInput {
