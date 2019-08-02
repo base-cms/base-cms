@@ -14,7 +14,6 @@
     "@base-cms/image": "^0.10.0",
     "@base-cms/inflector": "^0.10.0",
     "cheerio": "^1.0.0-rc.2",
-    "escape-string-regexp": "^1.0.5",
-    "oembed-parser": "^1.2.2"
+    "escape-string-regexp": "^1.0.5"
   }
 }
