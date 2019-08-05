@@ -5726,10 +5726,17 @@ compare-func@^1.3.1:
     array-ify "^1.0.0"
     dot-prop "^3.0.0"
 
-complain@^1.0.0, complain@^1.3.0:
+complain@^1.0.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/complain/-/complain-1.3.0.tgz#a182d5003489126c038bbf98b906866acbfa77b2"
   integrity sha512-PA9uGpaS4BXKrhFx3rl2nZMWySnGoW1pWf+dpBqNdDx3uR6PA0EPxjD17H9OxvW5w/bODBSziQ516Guf59rW+w==
+  dependencies:
+    error-stack-parser "^2.0.1"
+
+complain@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/complain/-/complain-1.6.0.tgz#e8a1ff3f7dc03ff2b396b4b3e27af35236a3c25c"
+  integrity sha512-9oBfSEfxveaNmo2eSp/vEPkaBVxUhiJTZVgGYayzBchSAXQM6CK1PAQeV5ICShnSgfT+biYzrN7egKwwX+HkCw==
   dependencies:
     error-stack-parser "^2.0.1"
 
@@ -10366,10 +10373,10 @@ html2plaintext@^2.1.0:
     he "1.1.0"
     plumb "0.1.0"
 
-htmljs-parser@^2.6.5:
-  version "2.6.6"
-  resolved "https://registry.yarnpkg.com/htmljs-parser/-/htmljs-parser-2.6.6.tgz#e3121346524acdaa7574cd8ce167c90da8985d94"
-  integrity sha512-cwIV9dkA5WgDuhZigrL6Aw1+sGdhlVi5b4csijnGVHe0GATGY0ibHt68q2O7nULTtg5HTMtR8tdvd2yVfPIZxg==
+htmljs-parser@^2.6.7:
+  version "2.6.8"
+  resolved "https://registry.yarnpkg.com/htmljs-parser/-/htmljs-parser-2.6.8.tgz#cce8237aea2b3141dc69cc282f3920f51079fa3f"
+  integrity sha512-il0NrLbNyt29nZuciLbrRKRMBi8VVVjVpv/x37z9qyubQscsoMzcsw3Fp35QvPR9p2eurQ/TBKrfdZ+joDX/rw==
   dependencies:
     char-props "^0.1.5"
     complain "^1.0.0"
@@ -12521,17 +12528,17 @@ marked@^0.3.6:
   resolved "https://registry.yarnpkg.com/marked/-/marked-0.3.19.tgz#5d47f709c4c9fc3c216b6d46127280f40b39d790"
   integrity sha512-ea2eGWOqNxPcXv8dyERdSr/6FmzvWwzjMxpfGB/sbMccXoct+xY+YukPD+QTUZwyvK7BZwcr4m21WBOW41pAkg==
 
-marko@^4.15.2:
-  version "4.15.2"
-  resolved "https://registry.yarnpkg.com/marko/-/marko-4.15.2.tgz#e068e3731667dfd74425b89f2c2e3910cf764f17"
-  integrity sha512-Wn2SCjMS13q8UC+loaG6fX10NTrF4XbgXS0OafosvGu9w6XMhFuJFSUaUk1thtKMQEOKbueo/NFfg9kRbb7b/Q==
+marko@^4.18.10:
+  version "4.18.10"
+  resolved "https://registry.yarnpkg.com/marko/-/marko-4.18.10.tgz#02889b00a9dd5d12e064db720080951a3bc0c148"
+  integrity sha512-X2pmJIOBZ/39D2fCQZYtWprIjvrLF+cpEK0vjzMVwxBh13tRCyUhwoqlQO84d8Xif+RMEuR3/9fRDlwnURMSTw==
   dependencies:
     app-module-path "^2.2.0"
     argly "^1.0.0"
     browser-refresh-client "^1.0.0"
     camelcase "^5.0.0"
     char-props "~0.1.5"
-    complain "^1.3.0"
+    complain "^1.6.0"
     deresolve "^1.1.2"
     escodegen "^1.8.1"
     esprima "^4.0.0"
@@ -12539,7 +12546,7 @@ marko@^4.15.2:
     events "^1.0.2"
     events-light "^1.0.0"
     he "^1.1.0"
-    htmljs-parser "^2.6.5"
+    htmljs-parser "^2.6.7"
     lasso-caching-fs "^1.0.1"
     lasso-modules-client "^2.0.4"
     lasso-package-root "^1.0.1"
