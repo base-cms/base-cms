@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/graphql-server",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "description": "The BaseCMS GraphQL server using Apollo and Express.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
@@ -10,7 +10,7 @@
   "dependencies": {
     "@base-cms/canonical-path": "^0.10.0",
     "@base-cms/db": "^0.10.0",
-    "@base-cms/embedded-media": "^0.10.0",
+    "@base-cms/embedded-media": "^0.10.1",
     "@base-cms/html": "^0.10.0",
     "@base-cms/image": "^0.10.0",
     "@base-cms/inflector": "^0.10.0",
