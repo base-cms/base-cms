@@ -60,7 +60,7 @@ export default {
       this.loading = true;
       const href = `${this.endpoint}?url=${encodeURIComponent(this.url)}`;
       try {
-        const r = await fetch(href);
+        const r = await fetch(href, { credentials: 'same-origin' });
         const { html, type, provider_name: provider } = await r.json();
         this.oembedType = type;
         this.provider = provider;
