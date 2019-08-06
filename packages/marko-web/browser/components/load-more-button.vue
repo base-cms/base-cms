@@ -55,7 +55,7 @@ export default {
     },
     maxPages: {
       type: Number,
-      default: 3,
+      default: null,
     },
   },
   data: () => ({ loading: false, hasLoaded: false, error: null }),
