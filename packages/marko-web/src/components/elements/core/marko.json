@@ -1,46 +1,44 @@
 {
-  "tags": {
-    "cms-text-element": {
-      "template": "./text.marko"
+  "<cms-text-element>": {
+    "template": "./text.marko"
+  },
+  "<cms-html-element>": {
+    "template": "./html.marko"
+  },
+  "<cms-image-element>": {
+    "template": "./image.marko"
+  },
+  "<cms-date-element>": {
+    "template": "./date.marko"
+  },
+  "<cms-link-element>": {
+    "template": "./link.marko"
+  },
+  "<cms-load-more-element>": {
+    "template": "./load-more.marko",
+    "@page-number": {
+      "type": "number",
+      "default-value": 1
     },
-    "cms-html-element": {
-      "template": "./html.marko"
+    "@append-to": {
+      "type": "string",
+      "required": true
     },
-    "cms-image-element": {
-      "template": "./image.marko"
+    "@show": {
+      "type": "boolean",
+      "default-value": true
     },
-    "cms-date-element": {
-      "template": "./date.marko"
+    "@max-pages": "number",
+    "@block-name": "string",
+    "@provide": {
+      "type": "object",
+      "required": true
     },
-    "cms-link-element": {
-      "template": "./link.marko"
+    "@label": {
+      "type": "string",
+      "default-value": "Load More"
     },
-    "cms-load-more-element": {
-      "template": "./load-more.marko",
-      "@page-number": {
-        "type": "number",
-        "default-value": 1
-      },
-      "@append-to": {
-        "type": "string",
-        "required": true
-      },
-      "@show": {
-        "type": "boolean",
-        "default-value": true
-      },
-      "@max-pages": "number",
-      "@block-name": "string",
-      "@provide": {
-        "type": "object",
-        "required": true
-      },
-      "@label": {
-        "type": "string",
-        "default-value": "Load More"
-      },
-      "@button-class-obj": "object",
-      "@wrapping-class-obj": "object"
-    }
+    "@button-class-obj": "object",
+    "@wrapping-class-obj": "object"
   }
 }

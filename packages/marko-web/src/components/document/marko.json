@@ -1,12 +1,10 @@
 {
-  "tags": {
-    "cms-document": {
-      "template": "./index.marko",
-      "<head>": {},
-      "<body-header>": {},
-      "<body-footer>": {},
-      "@dir": "string",
-      "@viewport": "string"
-    }
+  "<cms-document>": {
+    "template": "./index.marko",
+    "<head>": {},
+    "<body-header>": {},
+    "<body-footer>": {},
+    "@dir": "string",
+    "@viewport": "string"
   }
 }

@@ -1,7 +1,5 @@
 {
-  "tags": {
-    "cms-browser-component": {
-      "template": "./component.marko"
-    }
+  "<cms-browser-component>": {
+    "template": "./component.marko"
   }
 }
