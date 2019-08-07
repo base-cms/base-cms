@@ -1,0 +1,7 @@
+import isDev from '../../../utils/is-dev';
+
+$ const { LIVERELOAD_PORT } = process.env;
+
+<if(isDev && LIVERELOAD_PORT)>
+  <script src=`http://0.0.0.0:${LIVERELOAD_PORT}/livereload.js` async></script>
+</if>
