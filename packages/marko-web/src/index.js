@@ -10,8 +10,6 @@ if (!process.env.LIVERELOAD_PORT) {
 }
 const { env } = process;
 
-
-// @todo Perhaps this should be configured...
 process.on('unhandledRejection', (e) => { throw e; });
 
 const startServer = async ({
