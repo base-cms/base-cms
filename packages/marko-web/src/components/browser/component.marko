@@ -1,4 +1,6 @@
-$ const id = `vue-${Date.now()}`;
+import { randomElementId } from '@base-cms/utils';
+
+$ const id = randomElementId({ prefix: 'vue' });
 $ const props = JSON.stringify(input.props || {});
 $ const contents = `<script>CMSBrowserComponents.loadComponent('#${id}', '${input.name}', ${props});</script>`;
 
