@@ -32,7 +32,10 @@
   },
   "<gam-display-ad>": {
     "template": "./display-ad.marko",
-    "@id": "string",
+    "@id": {
+      "type": "string",
+      "required": true
+    },
     "@class": "string",
     "@style": "string",
     "@modifiers": "array",
