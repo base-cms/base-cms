@@ -5,7 +5,6 @@
     "./src/components/browser/marko.json",
     "./src/components/document/marko.json",
     "./src/components/elements/marko.json",
-    "./src/components/gtm/marko.json",
     "./src/components/page/marko.json",
     "./src/components/queries/marko.json"
   ]
