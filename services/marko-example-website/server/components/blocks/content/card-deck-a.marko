@@ -1,5 +1,6 @@
 import gql from 'graphql-tag';
 import { asArray } from '@base-cms/utils';
+import GAM from '../../../../config/gam';
 
 $ const queryFragment = gql`
   fragment CardDeckAWebsiteScheduleQueryFragment on Content {
@@ -50,7 +51,7 @@ $ const coreClass = 'mb-4 col-12 col-md-6 col-lg-4';
         <div class=coreClass>
           <div class="card content-card-deck">
             <div class="card-body d-flex justify-content-center align-items-center">
-              <gam-ad alias="MR" />
+              <gam-define-display-ad ...GAM.getAdUnit({ name: "MR" }) />
             </div>
           </div>
         </div>

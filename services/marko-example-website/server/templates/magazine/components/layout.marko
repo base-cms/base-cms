@@ -1,4 +1,5 @@
 import { getAsObject } from '@base-cms/object-path';
+import GAM from '../../../../config/gam';
 
 $ const publications = getAsObject(input, 'publications');
 $ const { config, site } = out.global;
@@ -11,9 +12,9 @@ $ const description = site.get('magazines.description');
     <cms-page-description content=description />
     <gam-head
       slots={
-        'gpt-ad-bs': { path: '/21687441225/Officer/Officer_BS', size: [[970, 250], [970, 90]] },
-        'gpt-ad-mr': { path: '/21687441225/Officer/Officer_MR', size: [300, 250] },
-        'gpt-ad-hp': { path: '/21687441225/Officer/Officer_HP', size: [300, 600] },
+        'gpt-ad-bs': GAM.getAdUnit({ name: 'BS' }),
+        'gpt-ad-mr': GAM.getAdUnit({ name: 'MR' }),
+        'gpt-ad-hp': GAM.getAdUnit({ name: 'HP' }),
       }
     />
     <${input.head} />
