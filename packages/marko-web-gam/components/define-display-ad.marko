@@ -2,9 +2,10 @@ import { BEM } from '@base-cms/utils';
 import generateId from '../utils/generate-id';
 import buildSizeMapping from '../utils/build-size-mapping';
 import slotStyle from '../utils/slot-size-style';
+import warn from './warn';
 
 $ const { isArray } = Array;
-$ const { adUnitPath, inc } = input;
+$ const { path, inc } = input;
 $ const id = input.id || generateId({ inc });
 
 $ const size = typeof input.size === 'string' ? [input.size] : (isArray(input.size) ? input.size : []);
@@ -13,12 +14,17 @@ $ const style = applyStyle ? slotStyle(size) : null;
 
 $ const calls = [];
 $ const sizeMapping = buildSizeMapping(input.sizeMapping);
-$ calls.push(`googletag.defineSlot('${adUnitPath}', ${JSON.stringify(size)}, '${id}')${sizeMapping}.addService(googletag.pubads());`);
+$ calls.push(`googletag.defineSlot('${path}', ${JSON.stringify(size)}, '${id}')${sizeMapping}.addService(googletag.pubads());`);
 $ calls.push(`googletag.display('${id}');`);
 
 $ const blockName = input.blockName || 'ad-container';
 $ const classNames = [blockName, ...BEM.applyModifiers(blockName, input.modifiers), input.class];
 
-<div id=id style=style class=classNames>
-  <script>googletag.cmd.push(function() { ${calls.join(' ')} });</script>
-</div>
+<if(path)>
+  <div id=id style=style class=classNames>
+    <script>googletag.cmd.push(function() { ${calls.join(' ')} });</script>
+  </div>
+</if>
+<else>
+  $ warn('Unable to render ad unit: no `path` was provided.');
+</else>

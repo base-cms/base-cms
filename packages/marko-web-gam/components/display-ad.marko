@@ -1,9 +1,15 @@
 import { BEM } from '@base-cms/utils';
+import warn from './warn';
 
 $ const { id } = input;
 $ const blockName = input.blockName || 'ad-container';
 $ const classNames = [blockName, ...BEM.applyModifiers(blockName, input.modifiers), input.class];
 
-<div id=id class=classNames style=input.style>
-  <script>googletag.cmd.push(function() { googletag.display('${id}'); });</script>
-</div>
+<if(id)>
+  <div id=id class=classNames style=input.style>
+    <script>googletag.cmd.push(function() { googletag.display('${id}'); });</script>
+  </div>
+</if>
+<else>
+  $ warn('Unable to render ad unit: no `id` was provided.');
+</else>

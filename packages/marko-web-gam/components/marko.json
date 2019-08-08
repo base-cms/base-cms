@@ -12,10 +12,7 @@
   "<gam-define-display-ad>": {
     "template": "./define-display-ad.marko",
     "@id": "string",
-    "@ad-unit-path": {
-      "type": "string",
-      "required": true
-    },
+    "@path": "string",
     "@inc": "number",
     "@size": "expression",
     "@size-mapping": "array",
@@ -32,10 +29,7 @@
   },
   "<gam-display-ad>": {
     "template": "./display-ad.marko",
-    "@id": {
-      "type": "string",
-      "required": true
-    },
+    "@id": "string",
     "@class": "string",
     "@style": "string",
     "@modifiers": "array",
@@ -47,10 +41,7 @@
   "<gam-out-of-page-ad>":  {
     "template": "./out-of-page-ad.marko",
     "@id": "string",
-    "@ad-unit-path": {
-      "type": "string",
-      "required": true
-    },
+    "@path": "string",
     "@inc": "number",
     "@class": "string",
     "@style": "string"

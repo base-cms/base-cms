@@ -1,12 +1,18 @@
 import generateId from '../utils/generate-id';
+import warn from './warn';
 
-$ const { adUnitPath, inc } = input;
+$ const { path, inc } = input;
 $ const id = input.id || generateId({ inc });
 
 $ const calls = [];
-$ calls.push(`googletag.defineOutOfPageSlot('${adUnitPath}', '${id}').addService(googletag.pubads());`);
+$ calls.push(`googletag.defineOutOfPageSlot('${path}', '${id}').addService(googletag.pubads());`);
 $ calls.push(`googletag.display('${id}');`);
 
-<div id=id class=input.class style=input.style>
-  <script>googletag.cmd.push(function() { ${calls.join(' ')} });</script>
-</div>
+<if(path)>
+  <div id=id class=input.class style=input.style>
+    <script>googletag.cmd.push(function() { ${calls.join(' ')} });</script>
+  </div>
+</if>
+<else>
+  $ warn('Unable to render ad unit: no `path` was provided.');
+</else>
