@@ -4,9 +4,8 @@ $ const { site } = out.global;
 
 <document>
   <@head>
-    <cms-gtm-container container-id=site.get('gtm.containerId') />
+    <gtm-init container-id=site.get('gtm.containerId') start=true />
   </@head>
-  <cms-gtm-container-start />
   <cms-page-container class="container-fluid-max">
     <div class="row">
       <div class="col">

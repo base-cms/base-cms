@@ -15,9 +15,8 @@ $ const context = {
 
 <document>
   <@head>
-    <cms-gtm-container container-id=site.get('gtm.containerId') push=context />
+    <gtm-init container-id=site.get('gtm.containerId') push=context start=true />
   </@head>
-  <cms-gtm-container-start />
   <cms-page-container for="home" class="container-fluid">
     <h1>Homepage</h1>
     $ const block = 'content-list';

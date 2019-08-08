@@ -26,11 +26,11 @@ $ const context = {
 
 <document>
   <@head>
-    <cms-gtm-container container-id=site.get('gtm.containerId') push=context />
+    <gtm-init container-id=site.get('gtm.containerId') push=context />
     <cms-page-metadata for="content" ...content />
     <${input.head} />
   </@head>
-  <cms-gtm-container-start />
+  <gtm-start />
 
   <div class="container-fluid-max">
     <${input.renderBody} />

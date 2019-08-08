@@ -1,4 +1,7 @@
 import Browser from '@base-cms/marko-web/browser';
+import GTM from '@base-cms/marko-web-gtm/browser';
+
+GTM(Browser);
 
 // Register custom Vue components here...
 /*

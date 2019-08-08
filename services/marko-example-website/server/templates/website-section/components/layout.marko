@@ -15,11 +15,11 @@ $ const context = {
 
 <document>
   <@head>
-    <cms-gtm-container container-id=site.get('gtm.containerId') push=context />
+    <gtm-init container-id=site.get('gtm.containerId') push=context />
     <cms-page-metadata for="website-section" ...section />
     <${input.head} />
   </@head>
-  <cms-gtm-container-start />
+  <gtm-start />
   <cms-page-container for="website-section" class="container-fluid-max" data=section>
     <${input.renderBody} />
   </cms-page-container>

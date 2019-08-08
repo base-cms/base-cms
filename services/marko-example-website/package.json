@@ -14,6 +14,7 @@
   "dependencies": {
     "@base-cms/marko-web": "^0.10.3",
     "@base-cms/marko-web-gam": "^0.10.3-alpha.0",
+    "@base-cms/marko-web-gtm": "^0.10.3-alpha.0",
     "@base-cms/object-path": "^0.10.0",
     "@base-cms/utils": "^0.10.0",
     "@base-cms/web-cli": "^0.10.3",
