@@ -27,10 +27,7 @@
   },
   "<gam-display-ad>": {
     "template": "./display-ad.marko",
-    "@id": {
-      "type": "string",
-      "required": true
-    },
+    "@id": "string",
     "@class": "string",
     "@style": "string"
   },

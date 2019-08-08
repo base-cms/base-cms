@@ -1,5 +1,7 @@
 $ const { id } = input;
 
-<div id=id class=input.class style=input.style>
-  <script>googletag.cmd.push(function() { googletag.display('${id}'); });</script>
-</div>
+<if(id)>
+  <div id=id class=input.class style=input.style>
+    <script>googletag.cmd.push(function() { googletag.display('${id}'); });</script>
+  </div>
+</if>
