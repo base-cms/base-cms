@@ -13,6 +13,7 @@ const isObject = require('./is-object');
 const parseDelimitedString = require('./parse-delimited-string');
 const randomElementId = require('./random-element-id');
 const sleep = require('./sleep');
+const warn = require('./warn');
 
 module.exports = {
   BEM,
@@ -30,4 +31,5 @@ module.exports = {
   parseDelimitedString,
   randomElementId,
   sleep,
+  warn,
 };
