@@ -1,0 +1,22 @@
+{
+  "name": "@base-cms/marko-web-gtm",
+  "version": "0.10.3-alpha.0",
+  "description": "Google Tag Manager (GAM) Marko components for BaseCMS websites",
+  "author": "Jacob Bare <jacob@limit0.io>",
+  "license": "MIT",
+  "repository": "https://github.com/base-cms/base-cms/tree/master/packages/marko-web-gtm",
+  "dependencies": {
+    "@base-cms/utils": "^0.10.0"
+  },
+  "peerDependencies": {
+    "@base-cms/marko-web": "^0.10.3"
+  },
+  "devDependencies": {
+    "eslint": "^5.15.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

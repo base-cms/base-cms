@@ -1,0 +1,25 @@
+{
+  "<gtm-init>": {
+    "template": "./init.marko",
+    "@container-id": "expression",
+    "@name": {
+      "type": "string",
+      "default-value": "dataLayer"
+    }
+  },
+  "<gtm-start>": {
+    "template": "./start.marko",
+    "@name": {
+      "type": "string",
+      "default-value": "dataLayer"
+    }
+  },
+  "<gtm-push>": {
+    "template": "./push.marko",
+    "@name": {
+      "type": "string",
+      "default-value": "dataLayer"
+    },
+    "@data": "object"
+  }
+}
