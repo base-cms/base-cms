@@ -26,5 +26,8 @@
       "default-value": "dataLayer"
     },
     "@data": "object"
+  },
+  "<gtm-track-inview-event>": {
+    "template": "./track-inview-event.marko"
   }
 }
