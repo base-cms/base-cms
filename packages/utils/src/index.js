@@ -1,3 +1,4 @@
+const BEM = require('./bem');
 const Profiler = require('./profiler');
 const asArray = require('./as-array');
 const asObject = require('./as-object');
@@ -14,6 +15,7 @@ const randomElementId = require('./random-element-id');
 const sleep = require('./sleep');
 
 module.exports = {
+  BEM,
   Profiler,
   asArray,
   asObject,
