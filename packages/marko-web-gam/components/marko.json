@@ -9,8 +9,8 @@
     "@slots": "object",
     "@targeting": "object"
   },
-  "<gam-define-display>": {
-    "template": "./define-display.marko",
+  "<gam-define-display-ad>": {
+    "template": "./define-display-ad.marko",
     "@id": "string",
     "@ad-unit-path": {
       "type": "string",
@@ -25,8 +25,8 @@
     },
     "@class": "string"
   },
-  "<gam-display>": {
-    "template": "./display.marko",
+  "<gam-display-ad>": {
+    "template": "./display-ad.marko",
     "@id": {
       "type": "string",
       "required": true
@@ -34,8 +34,8 @@
     "@class": "string",
     "@style": "string"
   },
-  "<gam-out-of-page>":  {
-    "template": "./out-of-page.marko",
+  "<gam-out-of-page-ad>":  {
+    "template": "./out-of-page-ad.marko",
     "@id": "string",
     "@ad-unit-path": {
       "type": "string",

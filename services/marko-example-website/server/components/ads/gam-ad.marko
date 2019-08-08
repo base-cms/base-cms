@@ -4,5 +4,5 @@ $ const adunit = site.getAsObject(path);
 $ const display = input.alias && adunit.path && adunit.size;
 
 <if(display)>
-  <gam-define-display ad-unit-path=adunit.path size=adunit.size size-mapping=adunit.sizeMapping class=input.class />
+  <gam-define-display-ad ad-unit-path=adunit.path size=adunit.size size-mapping=adunit.sizeMapping class=input.class />
 </if>
