@@ -5,6 +5,11 @@
     "@name": {
       "type": "string",
       "default-value": "dataLayer"
+    },
+    "@push": "object",
+    "@start": {
+      "type": "boolean",
+      "default-value": false
     }
   },
   "<gtm-start>": {

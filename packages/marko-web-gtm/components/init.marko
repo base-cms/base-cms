@@ -13,9 +13,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 $ const name = input.name || 'dataLayer';
 $ const containerIds = (isArray(input.containerId) ? input.containerId : [input.containerId]).filter(v => v);
 $ const scripts = containerIds.map(containerId => createContainerScript(containerId, name));
+$ const start = input.start == null ? false : input.start;
 
 <if(scripts.length)>
   <script>${scripts.join().replace(/\n/g, '')}</script>
+  <if(input.push)>
+    <!-- Immediately push data to the container -->
+    <gtm-push name=name data=input.push />
+  </if>
+  <if(start)>
+    <!-- Immediately start the container -->
+    <gtm-start name=name />
+  </if>
 </if>
 <else>
   $ warn('Unable to create GTM container script: no container IDs were provided.');
