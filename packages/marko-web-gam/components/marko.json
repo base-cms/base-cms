@@ -23,13 +23,23 @@
       "type": "boolean",
       "default-value": false
     },
-    "@class": "string"
+    "@class": "string",
+    "@modifiers": "array",
+    "@block-name": {
+      "type": "string",
+      "default-value": "ad-container"
+    }
   },
   "<gam-display-ad>": {
     "template": "./display-ad.marko",
     "@id": "string",
     "@class": "string",
-    "@style": "string"
+    "@style": "string",
+    "@modifiers": "array",
+    "@block-name": {
+      "type": "string",
+      "default-value": "ad-container"
+    }
   },
   "<gam-out-of-page-ad>":  {
     "template": "./out-of-page-ad.marko",

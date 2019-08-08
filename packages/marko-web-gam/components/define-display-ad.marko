@@ -1,3 +1,4 @@
+import { BEM } from '@base-cms/utils';
 import generateId from '../utils/generate-id';
 import buildSizeMapping from '../utils/build-size-mapping';
 import slotStyle from '../utils/slot-size-style';
@@ -15,6 +16,9 @@ $ const sizeMapping = buildSizeMapping(input.sizeMapping);
 $ calls.push(`googletag.defineSlot('${adUnitPath}', ${JSON.stringify(size)}, '${id}')${sizeMapping}.addService(googletag.pubads());`);
 $ calls.push(`googletag.display('${id}');`);
 
-<div id=id style=style class=input.class>
+$ const blockName = input.blockName || 'ad-container';
+$ const classNames = [blockName, ...BEM.applyModifiers(blockName, input.modifiers), input.class];
+
+<div id=id style=style class=classNames>
   <script>googletag.cmd.push(function() { ${calls.join(' ')} });</script>
 </div>
