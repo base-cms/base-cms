@@ -1,0 +1,48 @@
+{
+  "<gam-init>": {
+    "template": "./init.marko",
+    "@src": "string"
+  },
+  "<gam-head>": {
+    "template": "./head.marko",
+    "@options": "object",
+    "@slots": "object",
+    "@targeting": "object"
+  },
+  "<gam-define-display>": {
+    "template": "./define-display.marko",
+    "@id": "string",
+    "@ad-unit-path": {
+      "type": "string",
+      "required": true
+    },
+    "@inc": "number",
+    "@size": "expression",
+    "@size-mapping": "array",
+    "@apply-style": {
+      "type": "boolean",
+      "default-value": false
+    },
+    "@class": "string"
+  },
+  "<gam-display>": {
+    "template": "./display.marko",
+    "@id": {
+      "type": "string",
+      "required": true
+    },
+    "@class": "string",
+    "@style": "string"
+  },
+  "<gam-out-of-page>":  {
+    "template": "./out-of-page.marko",
+    "@id": "string",
+    "@ad-unit-path": {
+      "type": "string",
+      "required": true
+    },
+    "@inc": "number",
+    "@class": "string",
+    "@style": "string"
+  }
+}
