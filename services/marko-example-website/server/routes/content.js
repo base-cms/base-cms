@@ -46,6 +46,9 @@ module.exports = (app) => {
           source
           byline
         }
+        ... on ContentArticle {
+          sidebars
+        }
         ... on Authorable {
           authors {
             edges {
