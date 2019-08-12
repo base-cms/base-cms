@@ -162,6 +162,13 @@ module.exports = {
     },
   },
 
+  ContentArticle: {
+    sidebars: ({ sidebars }) => {
+      if (!isArray(sidebars)) return [];
+      return sidebars.map(({ body } = {}) => body).filter(v => v);
+    },
+  },
+
   /**
    *
    */

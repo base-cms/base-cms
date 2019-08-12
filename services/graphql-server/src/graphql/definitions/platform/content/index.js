@@ -146,10 +146,6 @@ type ContentStubLocation {
   longitude: Float
 }
 
-type ContentStubSidebar {
-  body: String
-}
-
 input ContentQueryInput {
   status: ModelStatus = active
   id: Int!

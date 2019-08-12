@@ -8,7 +8,7 @@ extend type Query {
 
 type ContentArticle implements Content & Authorable @applyInterfaceFields {
   # fields directly on platform.model::Content\Article
-  sidebars: [ContentStubSidebar]! @projection @arrayValue
+  sidebars: [String]! @projection
 }
 
 type ContentArticleConnection {
