@@ -35,6 +35,9 @@
     },
     "cms-content-embed-code": {
       "template": "./embed-code.marko"
+    },
+    "cms-content-sidebars": {
+      "template": "./sidebars.marko"
     }
   }
 }
