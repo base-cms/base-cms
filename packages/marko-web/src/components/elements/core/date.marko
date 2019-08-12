@@ -1,10 +1,14 @@
 import moment from 'moment';
 import { get, set } from '@base-cms/object-path';
 
+$ const { config } = out.global;
+$ const locale = config.dateLocale();
+$ if (locale) moment.locale(locale);
+
 $ const path = input.from ? `${input.from}.${input.field}` : input.field;
 $ const result = get(input.obj, path);
 $ let date = result ? moment(result) : null;
-$ date = date && date.isValid() ? date.format(input.format || 'MMM Do, YYYY') : null;
+$ date = date && date.isValid() ? date.format(input.format || config.dateFormat()) : null;
 $ const obj = { ...input.obj };
 $ set(obj, path, date);
 $ const props = {

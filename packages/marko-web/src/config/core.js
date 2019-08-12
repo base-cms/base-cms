@@ -2,7 +2,19 @@ const AbstractConfig = require('./abstract-config');
 
 class CoreConfig extends AbstractConfig {
   locale() {
-    return this.get('locale', 'en_US');
+    const locale = this.get('locale', 'en');
+    if (locale === 'en_US') return 'en';
+    return locale;
+  }
+
+  dateLocale() {
+    const locale = this.get('date.locale', this.locale());
+    if (!locale || locale.toLowerCase() === 'en') return null;
+    return locale;
+  }
+
+  dateFormat() {
+    return this.get('date.format', 'MMM Do, YYYY');
   }
 
   lazyloadImages() {
