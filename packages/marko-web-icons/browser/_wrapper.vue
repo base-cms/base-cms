@@ -1,13 +1,16 @@
 <template>
-  <span
+  <tag
+    :is="tag"
     v-if="name"
     :class="classNames"
   >
     <slot />
-  </span>
+  </tag>
 </template>
 
 <script>
+import createClasses from '../utils/create-classes';
+
 export default {
   props: {
     name: {
@@ -27,11 +30,20 @@ export default {
       type: Array,
       default: () => ([]),
     },
+    tag: {
+      type: String,
+      default: 'span',
+    },
   },
   computed: {
     classNames() {
-      const { name, modifiers: mods, blockName } = this;
-      return [blockName, `${blockName}--${name}`, ...mods.map(mod => `${blockName}--${mod}`), this.class];
+      const { name, modifiers, blockName } = this;
+      return createClasses({
+        iconName: name,
+        blockName,
+        modifiers,
+        className: this.class,
+      });
     },
   },
 };

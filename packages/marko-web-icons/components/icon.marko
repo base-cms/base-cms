@@ -1,11 +1,16 @@
-import { getAsArray } from '@base-cms/object-path';
+import createClasses from '../utils/create-classes';
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
 
 $ const tag = input.tag || 'span';
 $ const blockName = input.blockName || 'icon';
 $ const modifiers = getAsArray(input, 'modifiers');
-$ const classNames = [blockName, `${blockName}--${input.name}`, ...modifiers.map(mod => `${blockName}--${mod}`), input.class];
+$ const classNames = createClasses({
+  iconName: input.name,
+  blockName,
+  modifiers,
+  className: input.class,
+});
 
 $ const load = () => {
   try {
