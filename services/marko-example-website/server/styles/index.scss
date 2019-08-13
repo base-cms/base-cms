@@ -1,6 +1,7 @@
 $site-font-family-sans-serif: "PT Sans", sans-serif !default;
 $site-font-family-serif: "PT Serif", serif !default;
 
+@import "../../node_modules/@base-cms/marko-web-icons/scss/icons";
 @import "core";
 @import "embedded-media";
 @import "bootstrap";
