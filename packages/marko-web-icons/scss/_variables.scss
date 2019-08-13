@@ -26,6 +26,7 @@ $marko-web-icon-whatsapp:     #25d366 !default;
 $marko-web-icon-youtube:      #f00 !default;
 
 $marko-web-icon-brand-colors: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
 $marko-web-icon-brand-colors: map-merge(
   (
     "dribbble":     $marko-web-icon-dribbble,
