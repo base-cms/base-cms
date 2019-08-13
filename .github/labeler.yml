@@ -1,0 +1,30 @@
+"package: db":
+  - "packages/db"
+"package: embedded-media":
+  - "packages/embedded-media"
+"package: graphql-fragment-types":
+  - "packages/graphql-fragment-types"
+"package: html":
+  - "packages/htmldb"
+"package: image":
+  - "packages/image"
+"package: marko-web":
+  - "packages/marko-web"
+"package: micro":
+  - "packages/micro"
+"package: utils":
+  - "packages/utils"
+"package: web-common":
+  - "packages/web-common"
+"service: graphql-server":
+  - "services/graphql-server"
+"service: hooks":
+  - "services/hooks"
+"service: keyword-analysis":
+  - "services/keyword-analysis"
+"service: marko-example-website":
+  - "services/marko-example-website"
+"service: oembed":
+  - "services/oembed"
+"service: sitemaps":
+  - "services/sitemaps"
