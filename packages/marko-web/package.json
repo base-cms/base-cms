@@ -3,7 +3,7 @@
   "version": "0.10.3",
   "description": "Core Marko+Express components for BaseCMS websites",
   "author": "Jacob Bare <jacob@limit0.io>",
-  "main": "src/index.js",
+  "main": "index.js",
   "license": "MIT",
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/marko-web",
   "dependencies": {
