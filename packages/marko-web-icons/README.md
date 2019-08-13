@@ -55,5 +55,25 @@ This package comes with baseline SASS variables and styles. To use them, import 
 @import "@base-cms/marko-web-icons/scss/icons";
 ```
 
+By default, a width/height of `1rem` will be applied to all icons classed with `icon` (applied by default). In addition, the SVG will be filled with black and a ease transition will be applied. Additional (optional) modifiers include:
+- `md`
+- `lg`
+- `xl`
+- `light`
+- `dark`
+- `shadow`
+
+For example, for a light, extra large icon with drop shadow, you would call the icon as follows:
+```vue
+// In Vue:
+<template>
+  <icon-alert modifiers=["xl", "light", "shadow"] />
+</template>
+```
+```marko
+// In Marko:
+<icon name="alert" modifiers=["xl", "light", "shadow"] />
+```
+
 ## Development
 Anytime a new icon `svg` file is added (or the wrapping Vue component template changes), run the `build.js` file found in the project root. This will generate a new Vue file for the icon.
