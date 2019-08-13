@@ -1,0 +1,20 @@
+{
+  "name": "@base-cms/marko-web-icons",
+  "version": "0.10.3",
+  "description": "Vue/Marko icon components for BaseCMS websites",
+  "author": "Jacob Bare <jacob@limit0.io>",
+  "license": "MIT",
+  "repository": "https://github.com/base-cms/base-cms/tree/master/packages/marko-web-icons",
+  "dependencies": {
+    "@base-cms/object-path": "^0.10.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.15.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-vue": "^5.2.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

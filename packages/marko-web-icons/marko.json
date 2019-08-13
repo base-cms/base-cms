@@ -1,0 +1,6 @@
+{
+  "taglib-id": "@base-cms/marko-web-icons",
+  "taglib-imports": [
+    "./components/marko.json"
+  ]
+}

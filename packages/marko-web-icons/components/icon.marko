@@ -1,0 +1,23 @@
+import { getAsArray } from '@base-cms/object-path';
+import { readFileSync } from 'fs';
+import { resolve } from 'path';
+
+$ const tag = input.tag || 'span';
+$ const blockName = input.blockName || 'icon';
+$ const modifiers = getAsArray(input, 'modifiers');
+$ const classNames = [blockName, `${blockName}--${input.name}`, ...modifiers.map(mod => `${blockName}--${mod}`), input.class];
+
+$ const load = () => {
+  try {
+    const file = resolve(__dirname, `../icons/${input.name}.svg`);
+    return readFileSync(file, 'utf8').toString();
+  } catch (e) {
+    return null;
+  }
+};
+
+$ const svg = load();
+
+<if(svg)>
+  <${tag} ...input.attrs class=classNames>$!{svg}</>
+</if>

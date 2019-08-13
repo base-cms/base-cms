@@ -1,0 +1,19 @@
+{
+  "<icon>": {
+    "@name": {
+      "type": "string",
+      "required": true
+    },
+    "@block-name": {
+      "type": "string",
+      "default-value": "icon"
+    },
+    "@tag": {
+      "type": "string",
+      "default-value": "span"
+    },
+    "@modifiers": "array",
+    "@class": "string",
+    "@attrs": "object"
+  }
+}
