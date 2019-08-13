@@ -18,8 +18,8 @@ const { hrtime } = process;
  */
 const namespaces = [
   'email',
-  'magazine',
   'platform',
+  'magazine',
   'website',
 ];
 
