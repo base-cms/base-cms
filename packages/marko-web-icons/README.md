@@ -1,0 +1,59 @@
+# BaseCMS Marko/Vue Icon Components
+Icon components for BaseCMS websites.
+
+## Install
+Add `@base-cms/marko-web-icons` as a dependency to your website project.
+
+## Usage
+Icons can be used on the server (as a Marko component) or the browser (as a Vue component).
+
+### On The Server
+Call the `<icon>` component within your Marko template. The `name` input/attribute is required. For example:
+```marko
+<!-- Your template file -->
+<icon name="alert" />
+```
+See the `svg` folder for a complete list of available icons.
+
+Optional input/attributes:
+- `tag`: changes the wrapping HTML element. Default `<span>`
+- `blockName`: changes the wrapping BEM block class. Default `icon`
+- `modifiers`: additional BEM modifiers (as an array) to apply the icon wrapper. Default `[]`
+- `class`: an additional class name string to apply to the icon wrapper. Default `undefined `
+
+### In The Browser
+Import the icon component into your Vue component and then use it within your template. For example:
+```vue
+// Your Vue component
+<template>
+  <icon-alert />
+</template>
+<script>
+import IconAlert from '@base-cms/marko-web-icons/browser/alert.vue';
+
+export default {
+  components: { IconAlert },
+  // The rest of your component...
+}
+</script>
+```
+See the `browser` folder for a complete list of available icons (mirrors the `svg` folder).
+
+Optional props:
+- `tag`: changes the wrapping HTML element. Default `<span>`
+- `blockName`: changes the wrapping BEM block class. Default `icon`
+- `modifiers`: additional BEM modifiers (as an array) to apply the icon wrapper. Default `[]`
+- `className`: an additional class name string to apply to the icon wrapper. Default `null`
+
+### Importing Styles (SASS/SCSS)
+This package comes with baseline SASS variables and styles. To use them, import them into your website's style file:
+```scss
+// Your main website styles file.
+
+// Override any desired variables here...
+
+@import "@base-cms/marko-web-icons/scss/icons";
+```
+
+## Development
+Anytime a new icon `svg` file is added (or the wrapping Vue component template changes), run the `build.js` file found in the project root. This will generate a new Vue file for the icon.
