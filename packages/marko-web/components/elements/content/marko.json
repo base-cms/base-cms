@@ -37,5 +37,11 @@
   },
   "<cms-content-sidebars>": {
     "template": "./sidebars.marko"
+  },
+  "<cms-content-starts>": {
+    "template": "./starts.marko"
+  },
+  "<cms-content-ends>": {
+    "template": "./ends.marko"
   }
 }
