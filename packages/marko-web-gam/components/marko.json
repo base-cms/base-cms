@@ -1,15 +1,15 @@
 {
-  "<gam-init>": {
+  "<marko-web-gam-init>": {
     "template": "./init.marko",
     "@src": "string"
   },
-  "<gam-head>": {
+  "<marko-web-gam-head>": {
     "template": "./head.marko",
     "@options": "object",
     "@slots": "object",
     "@targeting": "object"
   },
-  "<gam-define-display-ad>": {
+  "<marko-web-gam-define-display-ad>": {
     "template": "./define-display-ad.marko",
     "@id": "string",
     "@path": "string",
@@ -27,7 +27,7 @@
       "default-value": "ad-container"
     }
   },
-  "<gam-display-ad>": {
+  "<marko-web-gam-display-ad>": {
     "template": "./display-ad.marko",
     "@id": "string",
     "@class": "string",
@@ -38,7 +38,7 @@
       "default-value": "ad-container"
     }
   },
-  "<gam-out-of-page-ad>":  {
+  "<marko-web-gam-out-of-page-ad>":  {
     "template": "./out-of-page-ad.marko",
     "@id": "string",
     "@path": "string",

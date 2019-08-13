@@ -6,7 +6,7 @@ $ const block = 'content-page';
 
 <layout content=content>
   <@head>
-    <gam-head
+    <marko-web-gam-head
       slots={
         'gpt-ad-bs': GAM.getAdUnit({ name: 'BS' }),
         'gpt-ad-mr': GAM.getAdUnit({ name: 'MR' }),
@@ -15,7 +15,7 @@ $ const block = 'content-page';
   </@head>
 
   <cms-page-container for="content" data=content>
-    <gam-display-ad id="gpt-ad-bs" class="text-center" />
+    <marko-web-gam-display-ad id="gpt-ad-bs" class="text-center" />
 
     <div class="row">
       <div class="col">
@@ -95,7 +95,7 @@ $ const block = 'content-page';
       <aside class="col-lg-4">
         <div class="card mb-4">
           <div class="card-body px-1 d-flex justify-content-center">
-            <gam-display-ad id="gpt-ad-mr" />
+            <marko-web-gam-display-ad id="gpt-ad-mr" />
           </div>
         </div>
 
