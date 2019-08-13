@@ -9,7 +9,7 @@ $ const classNames = [blockName, `${blockName}--${input.name}`, ...modifiers.map
 
 $ const load = () => {
   try {
-    const file = resolve(__dirname, `../icons/${input.name}.svg`);
+    const file = resolve(__dirname, `../svg/${input.name}.svg`);
     return readFileSync(file, 'utf8').toString();
   } catch (e) {
     return null;
