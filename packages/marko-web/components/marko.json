@@ -1,5 +1,13 @@
 {
   "<marko-web-browser-component>": {
     "template": "./browser-component.marko"
+  },
+  "<marko-web-document>": {
+    "template": "./document/index.marko",
+    "<head>": {},
+    "<body-header>": {},
+    "<body-footer>": {},
+    "@dir": "string",
+    "@viewport": "string"
   }
 }
