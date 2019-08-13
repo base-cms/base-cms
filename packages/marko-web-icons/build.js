@@ -28,15 +28,16 @@ export default {
 `;
 
 const build = () => {
-  const dir = fs.readdirSync(__dirname);
+  const svgPath = path.join(__dirname, 'svg');
+  const dir = fs.readdirSync(svgPath);
   dir.forEach((filename) => {
-    const filepath = path.join(__dirname, filename);
+    const filepath = path.join(svgPath, filename);
     const stats = fs.statSync(filepath);
     if (stats.isFile() && path.extname(filename) === '.svg') {
       const name = path.basename(filepath, '.svg');
       const contents = fs.readFileSync(filepath, 'utf8').toString();
       const template = vue({ name, contents });
-      fs.writeFileSync(path.join(__dirname, 'vue', `${name}.vue`), template);
+      fs.writeFileSync(path.join(__dirname, 'browser', `${name}.vue`), template);
     }
   });
 };
