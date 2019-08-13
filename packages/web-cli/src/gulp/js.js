@@ -20,6 +20,8 @@ const readRcFile = (cwd) => {
   const excludeFn = file => (
     /node_modules/.test(file)
     && !/packages\/marko-web\/browser/.test(file)
+    && !/packages\/marko-web-gam\/browser/.test(file)
+    && !/packages\/marko-web-gtm\/browser/.test(file)
     && !/\.vue\.js/.test(file)
   );
 
