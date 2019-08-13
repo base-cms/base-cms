@@ -1,11 +1,14 @@
 name: "Pull Request Labeler"
-on: 
-- pull-request
+on: [pull-request, push]
 
 jobs:
   triage:
+
     runs-on: ubuntu-latest
+    
     steps:
+    - name: Run a one-line script
+      run: echo Hello, world!
     - name: Labeler
       uses: actions/labeler@v2
       with:
