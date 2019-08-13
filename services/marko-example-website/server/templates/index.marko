@@ -20,7 +20,7 @@ $ const context = {
   <cms-page-container for="home" class="container-fluid">
     <h1>Homepage</h1>
     $ const block = 'content-list';
-    <cms-query-website-scheduled-content|{ nodes }|
+    <marko-web-query-website-scheduled-content|{ nodes }|
       query-fragment=queryFragment
       section-id=section.id
       limit=18
@@ -52,7 +52,7 @@ $ const context = {
           </div>
         </div>
       </for>
-    </cms-query-website-scheduled-content>
+    </marko-web-query-website-scheduled-content>
     <site-footer />
   </cms-page-container>
 </document>

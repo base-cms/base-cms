@@ -25,7 +25,7 @@ $ const loadMore = {
 };
 
 
-<cms-query-magazine-active-issues|{ nodes, pageInfo }| ...query>
+<marko-web-query-magazine-active-issues|{ nodes, pageInfo }| ...query>
   <div class="row">
     <for|issue| of=nodes>
       <div class="col col-md-6 col-lg-4 col-xl-3 text-center">
@@ -63,4 +63,4 @@ $ const loadMore = {
       wrapping-class-obj={ col: true, 'text-center': true, 'pb-3': true }
     />
   </div>
-</cms-query-magazine-active-issues>
+</marko-web-query-magazine-active-issues>

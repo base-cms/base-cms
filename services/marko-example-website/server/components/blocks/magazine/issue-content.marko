@@ -41,7 +41,7 @@ $ const loadMore = {
   ...input.loadMore,
 };
 
-<cms-query-magazine-scheduled-content|{ nodes, pageInfo }| ...query>
+<marko-web-query-magazine-scheduled-content|{ nodes, pageInfo }| ...query>
   <div class="row">
     <content-flow-card-deck-a nodes=nodes.slice(0, 11) />
     <content-flow-card-list-a nodes=nodes.slice(11) />
@@ -63,4 +63,4 @@ $ const loadMore = {
       wrapping-class-obj={ 'text-center': true, 'pb-3': true }
     />
   </div>
-</cms-query-magazine-scheduled-content>
+</marko-web-query-magazine-scheduled-content>

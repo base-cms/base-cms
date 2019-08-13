@@ -44,7 +44,7 @@ $ const loadMore = {
 $ const section = getAsObject(input, 'section');
 $ const channel = getAsObject(section, 'hierarchy.0');
 
-<cms-query-website-scheduled-content|{ nodes, pageInfo }| ...query>
+<marko-web-query-website-scheduled-content|{ nodes, pageInfo }| ...query>
   <div class="load-more-page">
     <marko-web-gtm-track-inview-event event="page_load" vars={ page_number: pageNumber + 1 } />
     <content-flow-card-deck-a nodes=nodes.slice(0, 11) />
@@ -67,4 +67,4 @@ $ const channel = getAsObject(section, 'hierarchy.0');
       wrapping-class-obj={ 'text-center': true, 'pb-3': true }
     />
   </div>
-</cms-query-website-scheduled-content>
+</marko-web-query-website-scheduled-content>

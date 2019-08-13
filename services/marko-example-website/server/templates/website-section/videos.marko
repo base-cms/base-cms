@@ -18,7 +18,7 @@ $ const chunk = (array, size) => {
     <p>${section.description}</p>
   </if>
   $ const block = 'content-list';
-  <cms-query-all-published-content|{ nodes }|
+  <marko-web-query-all-published-content|{ nodes }|
     query-fragment=queryFragment
     limit=18
     content-types=["Video"]
@@ -52,5 +52,5 @@ $ const chunk = (array, size) => {
         </for>
       </div>
     </for>
-  </cms-query-all-published-content>
+  </marko-web-query-all-published-content>
 </layout>
