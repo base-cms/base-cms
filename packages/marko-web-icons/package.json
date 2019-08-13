@@ -5,9 +5,6 @@
   "author": "Jacob Bare <jacob@limit0.io>",
   "license": "MIT",
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/marko-web-icons",
-  "dependencies": {
-    "@base-cms/object-path": "^0.10.0"
-  },
   "devDependencies": {
     "eslint": "^5.15.1",
     "eslint-config-airbnb-base": "^13.1.0",
