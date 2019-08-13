@@ -1,4 +1,9 @@
 {
+  "taglib-imports": [
+    "./elements/marko.json",
+    "./page/marko.json",
+    "./queries/marko.json"
+  ],
   "<marko-web-browser-component>": {
     "template": "./browser-component.marko"
   },
