@@ -22,6 +22,7 @@ const readRcFile = (cwd) => {
     && !/packages\/marko-web\/browser/.test(file)
     && !/packages\/marko-web-gam\/browser/.test(file)
     && !/packages\/marko-web-gtm\/browser/.test(file)
+    && !/packages\/marko-web-icons\/browser/.test(file)
     && !/\.vue\.js/.test(file)
   );
 
