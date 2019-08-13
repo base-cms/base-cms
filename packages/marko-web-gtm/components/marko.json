@@ -1,5 +1,5 @@
 {
-  "<gtm-init>": {
+  "<marko-web-gtm-init>": {
     "template": "./init.marko",
     "@container-id": "expression",
     "@name": {
@@ -12,14 +12,14 @@
       "default-value": false
     }
   },
-  "<gtm-start>": {
+  "<marko-web-gtm-start>": {
     "template": "./start.marko",
     "@name": {
       "type": "string",
       "default-value": "dataLayer"
     }
   },
-  "<gtm-push>": {
+  "<marko-web-gtm-push>": {
     "template": "./push.marko",
     "@name": {
       "type": "string",
@@ -27,7 +27,7 @@
     },
     "@data": "object"
   },
-  "<gtm-track-inview-event>": {
+  "<marko-web-gtm-track-inview-event>": {
     "template": "./track-inview-event.marko"
   }
 }

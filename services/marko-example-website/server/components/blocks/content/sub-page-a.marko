@@ -46,7 +46,7 @@ $ const channel = getAsObject(section, 'hierarchy.0');
 
 <cms-query-website-scheduled-content|{ nodes, pageInfo }| ...query>
   <div class="load-more-page">
-    <gtm-track-inview-event event="page_load" vars={ page_number: pageNumber + 1 } />
+    <marko-web-gtm-track-inview-event event="page_load" vars={ page_number: pageNumber + 1 } />
     <content-flow-card-deck-a nodes=nodes.slice(0, 11) />
     <content-flow-card-list-a nodes=nodes.slice(11) />
 

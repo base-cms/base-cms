@@ -19,11 +19,11 @@ $ const start = input.start == null ? false : input.start;
   <script>${scripts.join().replace(/\n/g, '')}</script>
   <if(input.push)>
     <!-- Immediately push data to the container -->
-    <gtm-push name=name data=input.push />
+    <marko-web-gtm-push name=name data=input.push />
   </if>
   <if(start)>
     <!-- Immediately start the container -->
-    <gtm-start name=name />
+    <marko-web-gtm-start name=name />
   </if>
 </if>
 <else>

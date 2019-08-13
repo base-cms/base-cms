@@ -15,11 +15,11 @@ $ const context = {
 
 <document>
   <@head>
-    <gtm-init container-id=site.get('gtm.containerId') push=context />
+    <marko-web-gtm-init container-id=site.get('gtm.containerId') push=context />
     <cms-page-metadata for="website-section" ...section />
     <${input.head} />
   </@head>
-  <gtm-start />
+  <marko-web-gtm-start />
   <cms-page-container for="website-section" class="container-fluid-max" data=section>
     <${input.renderBody} />
   </cms-page-container>
