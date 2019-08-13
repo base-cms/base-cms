@@ -75,5 +75,7 @@ For example, for a light, extra large icon with drop shadow, you would call the 
 <icon name="alert" modifiers=["xl", "light", "shadow"] />
 ```
 
+Finally, any icon not specifically set to `light` or `dark` that also matches a brand (e.g. `facebook`) will have its brand color applied. See the `$marko-web-icon-brand-colors` map variable within `scss/_variables.scss` for a list of supported brands.
+
 ## Development
 Anytime a new icon `svg` file is added (or the wrapping Vue component template changes), run the `build.js` file found in the project root. This will generate a new Vue file for the icon.

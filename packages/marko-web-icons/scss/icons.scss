@@ -36,4 +36,21 @@
   &--shadow svg {
     filter: drop-shadow($marko-web-icon-drop-shadow);
   }
+
+  @each $provider, $color in $marko-web-icon-brand-colors {
+    &--#{$provider} {
+      &:not(#{$self}--dark):not(#{$self}--light) svg {
+        fill: $color;
+        &:hover {
+          fill: darken($color, $marko-web-dark-brand-hover);
+        }
+      }
+    }
+
+    &--#{$provider} svg {
+      &:hover {
+        fill: $color;
+      }
+    }
+  }
 }
