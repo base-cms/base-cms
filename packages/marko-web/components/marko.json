@@ -5,7 +5,12 @@
     "./queries/marko.json"
   ],
   "<marko-web-browser-component>": {
-    "template": "./browser-component.marko"
+    "template": "./browser-component.marko",
+    "@name": {
+      "type": "string",
+      "required": true
+    },
+    "@props": "object"
   },
   "<marko-web-document>": {
     "template": "./document/index.marko",
