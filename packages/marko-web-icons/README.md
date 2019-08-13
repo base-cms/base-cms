@@ -8,10 +8,10 @@ Add `@base-cms/marko-web-icons` as a dependency to your website project.
 Icons can be used on the server (as a Marko component) or the browser (as a Vue component).
 
 ### On The Server
-Call the `<icon>` component within your Marko template. The `name` input/attribute is required. For example:
+Call the `<marko-web-icon>` component within your Marko template. The `name` input/attribute is required. For example:
 ```marko
 <!-- Your template file -->
-<icon name="alert" />
+<marko-web-icon name="alert" />
 ```
 See the `svg` folder for a complete list of available icons.
 
@@ -52,7 +52,7 @@ This package comes with baseline SASS variables and styles. To use them, import 
 
 // Override any desired variables here...
 
-@import "@base-cms/marko-web-icons/scss/icons";
+@import "[path-to-node_modules]/marko-web-icons/scss/icons";
 ```
 
 By default, a width/height of `1rem` will be applied to all icons classed with `marko-web-icon` (applied by default). In addition, the SVG will be filled with black and a ease transition will be applied. Additional (optional) modifiers include:
@@ -72,7 +72,7 @@ For example, for a light, extra large icon with drop shadow, you would call the 
 ```
 ```marko
 // In Marko:
-<icon name="alert" modifiers=["xl", "light", "shadow"] />
+<marko-web-icon name="alert" modifiers=["xl", "light", "shadow"] />
 ```
 
 Finally, any icon not specifically set to `light` or `dark` that also matches a brand (e.g. `facebook`) will have its brand color applied. See the `$marko-web-icon-brand-colors` map variable within `scss/_variables.scss` for a list of supported brands.
