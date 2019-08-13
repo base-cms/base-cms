@@ -1,4 +1,4 @@
-const BrowserComponent = require('../../components/browser/component');
+const BrowserComponent = require('../../../components/browser-component');
 
 module.exports = (tag, $global) => {
   const url = tag.id;

@@ -1,0 +1,5 @@
+{
+  "<marko-web-browser-component>": {
+    "template": "./browser-component.marko"
+  }
+}
