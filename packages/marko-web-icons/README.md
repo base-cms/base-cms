@@ -17,7 +17,7 @@ See the `svg` folder for a complete list of available icons.
 
 Optional input/attributes:
 - `tag`: changes the wrapping HTML element. Default `<span>`
-- `blockName`: changes the wrapping BEM block class. Default `icon`
+- `blockName`: changes the wrapping BEM block class. Default `marko-web-icon`
 - `modifiers`: additional BEM modifiers (as an array) to apply the icon wrapper. Default `[]`
 - `class`: an additional class name string to apply to the icon wrapper. Default `undefined `
 
@@ -41,7 +41,7 @@ See the `browser` folder for a complete list of available icons (mirrors the `sv
 
 Optional props:
 - `tag`: changes the wrapping HTML element. Default `<span>`
-- `blockName`: changes the wrapping BEM block class. Default `icon`
+- `blockName`: changes the wrapping BEM block class. Default `marko-web-icon`
 - `modifiers`: additional BEM modifiers (as an array) to apply the icon wrapper. Default `[]`
 - `className`: an additional class name string to apply to the icon wrapper. Default `null`
 
@@ -55,7 +55,7 @@ This package comes with baseline SASS variables and styles. To use them, import 
 @import "@base-cms/marko-web-icons/scss/icons";
 ```
 
-By default, a width/height of `1rem` will be applied to all icons classed with `icon` (applied by default). In addition, the SVG will be filled with black and a ease transition will be applied. Additional (optional) modifiers include:
+By default, a width/height of `1rem` will be applied to all icons classed with `marko-web-icon` (applied by default). In addition, the SVG will be filled with black and a ease transition will be applied. Additional (optional) modifiers include:
 - `md`
 - `lg`
 - `xl`

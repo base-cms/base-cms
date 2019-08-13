@@ -23,7 +23,7 @@ export default {
   props: {
     blockName: {
       type: String,
-      default: 'icon',
+      default: 'marko-web-icon',
     },
     className: {
       type: String,
