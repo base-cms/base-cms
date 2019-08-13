@@ -5,6 +5,9 @@ const vue = ({ name, contents }) => `
 <template>
   <icon-wrapper
     name="${name}"
+    :tag="tag"
+    :block-name="blockName"
+    :class-name="className"
     :modifiers="modifiers"
   >
     <!-- eslint-disable-next-line -->
@@ -18,9 +21,21 @@ import IconWrapper from './_wrapper.vue';
 export default {
   components: { IconWrapper },
   props: {
+    blockName: {
+      type: String,
+      default: 'icon',
+    },
+    className: {
+      type: String,
+      default: null,
+    },
     modifiers: {
       type: Array,
       default: () => ([]),
+    },
+    tag: {
+      type: String,
+      default: 'span',
     },
   },
 };

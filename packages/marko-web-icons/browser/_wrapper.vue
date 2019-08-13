@@ -22,7 +22,7 @@ export default {
       type: String,
       default: 'icon',
     },
-    class: {
+    className: {
       type: String,
       default: null,
     },
@@ -37,12 +37,11 @@ export default {
   },
   computed: {
     classNames() {
-      const { name, modifiers, blockName } = this;
       return createClasses({
-        iconName: name,
-        blockName,
-        modifiers,
-        className: this.class,
+        iconName: this.name,
+        blockName: this.blockName,
+        modifiers: this.modifiers,
+        className: this.className,
       });
     },
   },
