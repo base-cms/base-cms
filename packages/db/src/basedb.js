@@ -17,10 +17,10 @@ const { hrtime } = process;
  * @type {string[]}
  */
 const namespaces = [
+  'website',
   'email',
   'magazine',
   'platform',
-  'website',
 ];
 
 class BaseDB {
