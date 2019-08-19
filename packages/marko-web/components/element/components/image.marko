@@ -1,0 +1,30 @@
+import { getAsArray } from "@base-cms/object-path";
+
+$ const { config } = out.global;
+$ const { src, alt } = input;
+$ const lazyload = config.lazyloadImages() && input.lazyload !== false
+$ const srcset = getAsArray(input.srcset).join(",") || null;
+
+$ const classNames = [input.class];
+$ if (lazyload) classNames.push("lazyload");
+
+<if(lazyload)>
+  <img
+    ...input.attrs
+    src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+    srcset=null
+    data-src=src
+    data-srcset=srcset
+    class=classNames
+    alt=alt
+  />
+</if>
+<else>
+  <img
+    ...input.attrs
+    src=src
+    srcset=srcset
+    class=classNames
+    alt=alt
+  />
+</else>

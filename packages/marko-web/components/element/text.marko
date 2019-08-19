@@ -4,7 +4,7 @@ import { get } from "@base-cms/object-path";
 $ const tag = input.tag === undefined ? "div" : input.tag;
 $ const value = input.value != null ? `${input.value}`.trim() : null;
 
-$ const contentsInput = {
+$ const textInput = {
   asHTML: input.asHTML,
   renderBody: input.renderBody,
   value,
@@ -15,24 +15,24 @@ $ const contentsInput = {
     <if(tag)>
       <${tag} ...input.attrs class=input.class>
         <marko-web-link ...input.link>
-          <contents ...contentsInput />
+          <text ...textInput />
         </marko-web-link>
       </>
     </if>
     <else>
       <marko-web-link ...input.link>
-        <contents ...contentsInput />
+        <text ...textInput />
       </marko-web-link>
     </else>
   </if>
   <else>
     <if(tag)>
       <${tag} ...input.attrs class=input.class>
-        <contents ...contentsInput />
+        <text ...textInput />
       </>
     </if>
     <else>
-      <contents ...contentsInput />
+      <text ...textInput />
     </else>
   </else>
 </if>

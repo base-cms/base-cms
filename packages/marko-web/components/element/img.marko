@@ -1,34 +1,12 @@
-import { getAsArray } from "@base-cms/object-path";
-
-$ const { config } = out.global;
-$ const { src, alt } = input;
-$ const lazyload = config.lazyloadImages() && input.lazyload !== false
-$ const srcset = getAsArray(input.srcset).join(",") || null;
-
-$ const hasImage = Boolean(src);
-$ const classNames = [input.class];
-$ if (lazyload) classNames.push("lazyload");
-
+$ const hasImage = Boolean(input.src);
 
 <if(hasImage)>
-  <if(lazyload)>
-    <img
-      ...input.attrs
-      src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-      srcset=null
-      data-src=src
-      data-srcset=srcset
-      class=classNames
-      alt=alt
-    />
+  <if(input.link)>
+    <marko-web-link ...input.link>
+      <image ...input />
+    </marko-web-link>
   </if>
   <else>
-    <img
-      ...input.attrs
-      src=src
-      srcset=srcset
-      class=classNames
-      alt=alt
-    />
+    <image ...input />
   </else>
 </if>

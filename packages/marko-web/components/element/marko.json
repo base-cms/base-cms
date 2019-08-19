@@ -9,7 +9,8 @@
       "default-value": true
     },
     "@class": "string",
-    "@attrs": "object"
+    "@attrs": "object",
+    "@link": "object"
   },
   "<marko-web-link>": {
     "template": "./link.marko",
