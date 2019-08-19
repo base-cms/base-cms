@@ -21,6 +21,10 @@ class CoreConfig extends AbstractConfig {
     return this.get('images.lazyload', true);
   }
 
+  fallbackImage() {
+    return this.get('images.fallback');
+  }
+
   siteName() {
     return this.get('siteName', '');
   }
