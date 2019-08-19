@@ -38,12 +38,23 @@
       "default-value": "ad-container"
     }
   },
-  "<marko-web-gam-out-of-page-ad>":  {
+  "<marko-web-gam-out-of-page-ad>": {
     "template": "./out-of-page-ad.marko",
     "@id": "string",
     "@path": "string",
     "@inc": "number",
     "@class": "string",
     "@style": "string"
+  },
+  "<marko-web-gam-fixed-ad-bottom>": {
+    "template": "./fixed-ad-bottom",
+    "@id": "string",
+    "@path": "string",
+    "@inc": "number",
+    "@size": "expression",
+    "@size-mapping": "array",
+    "@closeable": "boolean",
+    "@refresh-interaval": "number",
+    "@scroll-offset": "number"
   }
 }
