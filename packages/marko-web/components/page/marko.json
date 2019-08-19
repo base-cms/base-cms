@@ -23,8 +23,9 @@
     "template": "./rel-canonical.marko",
     "@path": "string"
   },
-  "<cms-page-description>": {
-    "template": "./description.marko"
+  "<marko-web-page-description>": {
+    "template": "./description.marko",
+    "@value": "string"
   },
   "<marko-web-page-metadata>": {
     "template": "./metadata/index.marko",
