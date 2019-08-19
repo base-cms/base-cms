@@ -1,0 +1,10 @@
+$ const tag = input.tag || "main";
+$ const classes = ["page"];
+$ if (input.for) classes.push(`page--${input.for}`);
+$ if (input.for && input.id) classes.push(`page--${input.for}-${input.id}`);
+$ if (input.for && input.type) classes.push(`page--${input.for}-${input.type}`);
+$ if (input.class) classes.push(input.class);
+
+<${tag} ...input.attrs class=classes>
+  <${input.renderBody} />
+</>

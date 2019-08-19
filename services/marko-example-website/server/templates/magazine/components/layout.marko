@@ -1,7 +1,6 @@
 import { getAsObject } from '@base-cms/object-path';
 import GAM from '../../../../config/gam';
 
-$ const publications = getAsObject(input, 'publications');
 $ const { config, site } = out.global;
 $ const title = `${config.get('siteName')} Magazines`;
 $ const description = site.get('magazines.description');
@@ -19,9 +18,9 @@ $ const description = site.get('magazines.description');
     />
     <${input.head} />
   </@head>
-  <cms-page-container for="magazine" class="container-fluid-max" data=publications>
+  <marko-web-page-container for="magazine" class="container-fluid-max">
     <${input.renderBody} />
-  </cms-page-container>
+  </marko-web-page-container>
   <hr>
   <site-footer />
 </document>

@@ -17,7 +17,7 @@ $ const context = {
   <@head>
     <marko-web-gtm-init container-id=site.get('gtm.containerId') push=context start=true />
   </@head>
-  <cms-page-container for="home" class="container-fluid">
+  <marko-web-page-container for="home" class="container-fluid">
     <h1>Homepage</h1>
     $ const block = 'content-list';
     <marko-web-query-website-scheduled-content|{ nodes }|
@@ -54,5 +54,5 @@ $ const context = {
       </for>
     </marko-web-query-website-scheduled-content>
     <site-footer />
-  </cms-page-container>
+  </marko-web-page-container>
 </document>

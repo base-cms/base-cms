@@ -1,6 +1,15 @@
 {
-  "<cms-page-container>": {
-    "template": "./container/index.marko"
+  "<marko-web-page-container>": {
+    "template": "./container.marko",
+    "@tag": {
+      "type": "string",
+      "default-value": "main"
+    },
+    "@for": "string",
+    "@id": "string",
+    "@type": "string",
+    "@class": "string",
+    "@attrs": "object"
   },
   "<cms-page-title>": {
     "template": "./title.marko"

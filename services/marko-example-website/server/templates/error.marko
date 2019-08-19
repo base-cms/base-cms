@@ -6,7 +6,7 @@ $ const { site } = out.global;
   <@head>
     <marko-web-gtm-init container-id=site.get('gtm.containerId') start=true />
   </@head>
-  <cms-page-container class="container-fluid-max">
+  <marko-web-page-container class="container-fluid-max">
     <div class="row">
       <div class="col">
         <h2>${input.statusCode} ${input.statusMessage}</h2>
@@ -16,5 +16,5 @@ $ const { site } = out.global;
         </if>
       </div>
     </div>
-  </cms-page-container>
+  </marko-web-page-container>
 </document>

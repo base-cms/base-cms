@@ -14,7 +14,7 @@ $ const block = 'content-page';
     />
   </@head>
 
-  <cms-page-container for="content" data=content>
+  <marko-web-page-container for="content" tag="article" id=content.id type=content.type>
     <marko-web-gam-display-ad id="gpt-ad-bs" class="text-center" />
 
     <div class="row">
@@ -107,7 +107,7 @@ $ const block = 'content-page';
         />
       </aside>
     </div>
-  </cms-page-container>
+  </marko-web-page-container>
 
   $ const section = getAsObject(content, 'primarySection');
   <if(section.id)>
