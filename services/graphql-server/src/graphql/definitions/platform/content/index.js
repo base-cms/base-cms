@@ -134,10 +134,13 @@ type ContentEdge {
   cursor: String!
 }
 
+# Note: any required projections must be set at the root "metadata" field
 type ContentMetadata {
   title: String
   description: String
-  publishedDate(input: FormatDate = {}): String @projection(localField: "published") @momentFormat(localField: "published")
+  publishedDate(input: FormatDate = {}): String @momentFormat(localField: "published")
+  updatedDate(input: FormatDate = {}): String @momentFormat(localField: "updated")
+  expiresDate(input: FormatDate = {}): String @momentFormat(localField: "unpublished")
   image: AssetImage @refOne(localField: "primaryImage", loader: "platformAsset", criteria: "assetImage")
 }
 
