@@ -8,7 +8,7 @@ $ const { config } = out.global;
     <meta name="viewport" content=(input.viewport || 'width=device-width, initial-scale=1, shrink-to-fit=no')>
     <!-- @todo determine if this should go at the bottom of the page -->
     <!-- @todo determine how to split assets out by vendor, core, site, etc. -->
-    <script src ="https://polyfill.io/v3/polyfill.min.js?flags=gated&features=es7%2Cfetch%2Ces6%2CPromise.prototype.finally"></script>
+    <polyfill features=["es6", "es7", "fetch", "Promise.prototype.finally"] />
     <assets />
     <${input.head} />
   </head>
