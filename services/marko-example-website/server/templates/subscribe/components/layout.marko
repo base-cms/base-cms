@@ -5,7 +5,11 @@ $ const publication = getAsObject(input, 'publication');
 
 <document>
   <@head>
-    <cms-page-metadata for="magazine-publication" ...publication />
+    <marko-web-page-metadata
+      title=get(publication, "metadata.title")
+      description=get(ipublicationssue, "metadata.description")
+      canonical-path=publication.canonicalPath
+    />
     <marko-web-gam-head
       slots={
         'gpt-ad-bs': GAM.getAdUnit({ name: 'BS' }),

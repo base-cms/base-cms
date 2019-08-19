@@ -14,13 +14,29 @@
   "<cms-page-title>": {
     "template": "./title.marko"
   },
-  "<cms-page-rel-canonical>": {
-    "template": "./rel-canonical.marko"
+  "<marko-web-page-rel-canonical>": {
+    "template": "./rel-canonical.marko",
+    "@path": "string"
   },
   "<cms-page-description>": {
     "template": "./description.marko"
   },
-  "<cms-page-metadata>": {
-    "template": "./metadata/index.marko"
+  "<marko-web-page-metadata>": {
+    "template": "./metadata/index.marko",
+    "@title": "string",
+    "@description": "string",
+    "@canonical-path": "string",
+    "@image-src": "string"
+  },
+  "<marko-web-page-content-metadata>": {
+    "template": "./metadata/content.marko",
+    "@type": "string",
+    "@title": "string",
+    "@description": "string",
+    "@canonical-path": "string",
+    "@image-src": "string",
+    "@published-date": "date",
+    "@updated-date": "date",
+    "@expires-date": "date"
   }
 }

@@ -2,13 +2,11 @@ import { getAsObject } from '@base-cms/object-path';
 import GAM from '../../../../config/gam';
 
 $ const { config, site } = out.global;
-$ const title = `${config.get('siteName')} Magazines`;
 $ const description = site.get('magazines.description');
 
 <document>
   <@head>
-    <cms-page-title value=title />
-    <cms-page-description content=description />
+    <marko-web-page-metadata title="Magazines" description=description />
     <marko-web-gam-head
       slots={
         'gpt-ad-bs': GAM.getAdUnit({ name: 'BS' }),

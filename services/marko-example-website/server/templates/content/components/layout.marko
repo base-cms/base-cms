@@ -1,4 +1,4 @@
-import { getAsObject } from '@base-cms/object-path';
+import { getAsObject, get } from '@base-cms/object-path';
 
 $ const { site } = out.global;
 $ const content = getAsObject(input, 'content');
@@ -26,8 +26,17 @@ $ const context = {
 
 <document>
   <@head>
-    <marko-web-gtm-init container-id=site.get('gtm.containerId') push=context />
-    <cms-page-metadata for="content" ...content />
+    <marko-web-gtm-init container-id=site.get("gtm.containerId") push=context />
+    <marko-web-page-content-metadata
+      type=content.type
+      title=get(content, "metadata.title")
+      description=get(content, "metadata.description")
+      canonical-path=content.canonicalPath
+      image-src=get(content, "metadata.image.src")
+      published-date=get(content, "metadata.publishedDate")
+      updated-date=get(content, "metadata.updatedDate")
+      expires-date=get(content, "metadata.expiresDate")
+    />
     <${input.head} />
   </@head>
   <marko-web-gtm-start />

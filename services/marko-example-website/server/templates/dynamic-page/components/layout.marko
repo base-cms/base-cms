@@ -1,4 +1,4 @@
-import { getAsObject } from '@base-cms/object-path';
+import { getAsObject, get } from '@base-cms/object-path';
 
 $ const { site } = out.global;
 $ const page = getAsObject(input, 'page');
@@ -10,7 +10,11 @@ $ const context = {
 <document>
   <@head>
     <marko-web-gtm-init container-id=site.get('gtm.containerId') push=context />
-    <cms-page-metadata for="dynamic-page" ...page />
+    <marko-web-page-metadata
+      title=get(page, "metadata.title")
+      description=get(page, "metadata.description")
+      canonical-path=page.canonicalPath
+    />
     <${input.head} />
   </@head>
   <marko-web-gtm-start />

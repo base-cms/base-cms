@@ -16,7 +16,11 @@ $ const context = {
 <document>
   <@head>
     <marko-web-gtm-init container-id=site.get('gtm.containerId') push=context />
-    <cms-page-metadata for="website-section" ...section />
+    <marko-web-page-metadata
+      title=get(section, "metadata.title")
+      description=get(section, "metadata.description")
+      canonical-path=section.canonicalPath
+    />
     <${input.head} />
   </@head>
   <marko-web-gtm-start />
