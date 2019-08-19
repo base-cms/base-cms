@@ -1,12 +1,12 @@
-import { cleanPath } from '@base-cms/utils';
+import { cleanPath } from "@base-cms/utils";
 
 $ const { config } = out.global;
 $ const parts = [
   input.value,
   config.siteName(),
 ];
-$ const concateWith = input.concateWith || '|';
-$ const title = parts.filter(v => v).join(` ${concateWith} `);
+$ const concatWith = input.concatWith || "|";
+$ const title = parts.filter(v => v).join(` ${concatWith} `);
 
 <title>
   <if(input.renderBody)>

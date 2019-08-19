@@ -11,8 +11,13 @@
     "@class": "string",
     "@attrs": "object"
   },
-  "<cms-page-title>": {
-    "template": "./title.marko"
+  "<marko-web-page-title>": {
+    "template": "./title.marko",
+    "@value": "string",
+    "@concat-with": {
+      "type": "string",
+      "default-value": "|"
+    }
   },
   "<marko-web-page-rel-canonical>": {
     "template": "./rel-canonical.marko",
