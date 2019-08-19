@@ -1,5 +1,6 @@
 import queryFragment from '../api/fragments/website-scheduled-content';
 import { getAsObject } from '@base-cms/object-path';
+import GAM from '../../config/gam';
 
 $ const { site } = out.global;
 $ const section = getAsObject(data, 'section');
@@ -15,6 +16,7 @@ $ const context = {
 
 <document>
   <@head>
+    <marko-web-gam-head />
     <marko-web-gtm-init container-id=site.get('gtm.containerId') push=context start=true />
   </@head>
   <marko-web-page-container for="home" class="container-fluid">
@@ -54,5 +56,6 @@ $ const context = {
       </for>
     </marko-web-query-website-scheduled-content>
     <site-footer />
+    <marko-web-gam-fixed-ad-bottom ...GAM.getAdUnit({ name: "BS" }) />
   </marko-web-page-container>
 </document>
