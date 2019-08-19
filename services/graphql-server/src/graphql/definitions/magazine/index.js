@@ -5,11 +5,6 @@ const section = require('./section');
 
 module.exports = gql`
 
-type MagazinePageMetadata {
-  title: String
-  description: String
-}
-
 ${issue}
 ${publication}
 ${section}
