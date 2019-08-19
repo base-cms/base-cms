@@ -67,8 +67,7 @@ class GAMConfiguration {
     if (isArray(size)) adunit.size = size;
     if (isArray(sizeMapping)) adunit.sizeMapping = sizeMapping;
 
-    // Only return the adunit if a path was indeed found.
-    return adunit.path ? adunit : undefined;
+    return adunit;
   }
 
   setTemplate(name, { size, sizeMapping } = {}) {
