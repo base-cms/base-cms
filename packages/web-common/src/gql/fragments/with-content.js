@@ -11,9 +11,11 @@ fragment WithContentFragment on Content {
     title
     description
     publishedDate
+    updatedDate
+    expiresDate
     image {
       id
-      src
+      src(input: { options: { auto: "format", w: "1200", fit: "max" } })
     }
   }
 }
