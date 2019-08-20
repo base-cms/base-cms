@@ -6,6 +6,7 @@ $site-font-family-serif: "PT Serif", serif !default;
 @import "core";
 @import "embedded-media";
 @import "bootstrap";
+@import "node";
 
 .content-card {
   &__content-short-name {

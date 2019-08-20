@@ -6,7 +6,7 @@
 import { get, getAsObject } from "@base-cms/object-path";
 import imageValues from "./utils/image-values";
 
-$ const element = "node__image-container";
+$ const element = "node-card__image-container";
 $ const { width, height, modifier } = imageValues(input);
 $ const classNames = [element];
 $ if (modifier) classNames.push(`${element}--${modifier}`);
@@ -15,10 +15,10 @@ $ const {
   src,
   alt,
   isLogo,
-  usePlaceholder,
   lazyload,
   imageAttrs,
 } =  input;
+$ const usePlaceholder = input.usePlaceholder == null ? true : input.usePlaceholder;
 
 $ const hasImage = Boolean(src);
 $ const hasLink = Boolean(get(input, "link.href"));

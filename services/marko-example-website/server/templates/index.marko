@@ -1,5 +1,5 @@
 import queryFragment from '../api/fragments/website-scheduled-content';
-import { getAsObject } from '@base-cms/object-path';
+import { getAsObject, get } from '@base-cms/object-path';
 import GAM from '../../config/gam';
 
 $ const { site } = out.global;
@@ -22,15 +22,363 @@ $ const context = {
   <marko-web-page-container for="home" class="container-fluid">
     <h1>Homepage</h1>
     $ const block = 'content-list';
+
+
     <marko-web-query-website-scheduled-content|{ nodes }|
       query-fragment=queryFragment
       section-id=section.id
-      limit=18
+      limit=4
     >
-      <for|content| of=nodes>
-        <div class="row">
-          <div class="col">
-            <div class="card border-0 shadow-sm mb-4 w-100">
+
+      <div class="row">
+        <for|content, index| of=nodes>
+          $ const flush = index === 1 ? 'node-card--flush' : '';
+          $ const shortName = index === 1 ? `${content.shortName} lets make this a longer title` : content.shortName;
+          $ const src = get(content, "primaryImage.src");
+          $ const primarySection = getAsObject(content, "primarySection");
+          $ const primaryImage = getAsObject(content, "primaryImage");
+          <div class="mb-4 col-3">
+
+            <div class=`node-card node-card node-card--image-top node-card--full-height ${flush}`>
+              <div class="node-card__header">
+                <div class="node-card__header-left">Outer Left</div>
+                <div class="node-card__header-right">Outer Right</div>
+              </div>
+
+              <div class="node-card__contents">
+
+                <marko-web-node-image-container
+                  src=primaryImage.src
+                  alt=primaryImage.alt
+                  fluid=true
+                  ar="6:5"
+                  width=200
+                  options={ auto: "format", fit: "crop", crop: "focalpoint" }
+                  link={ href: content.canonicalPath }
+                />
+
+
+                <div class="node-card__body">
+
+                  <div class="node-card__body-header">
+                    <div class="node-card__body-header-left">Body Left</div>
+                    <div class="node-card__body-header-right">Body Right</div>
+                  </div>
+
+                  <h5 class="node-card__title">
+                    <marko-web-text
+                      asHTML=true
+                      value=content.shortName
+                      tag=null
+                    />
+                  </h5>
+
+                  <div class="node-card__text">
+                    <marko-web-text
+                      asHTML=true
+                      value=content.teaser
+                      tag=null
+                    />
+                  </div>
+
+                  <div class="node-card__body-footer">
+                    <div class="node-card__body-footer-left">Body Left</div>
+                    <div class="node-card__body-footer-right">Body Right</div>
+                  </div>
+
+                </div>
+
+              </div>
+
+              <div class="node-card__footer">
+                <div class="node-card__footer-left">Outer Left</div>
+                <div class="node-card__footer-right">Outer Right</div>
+              </div>
+            </div>
+
+          </div>
+        </for>
+      </div>
+
+      <hr>
+      <hr>
+
+      <div class="row">
+        <for|content, index| of=nodes>
+          $ const flush = index === 1 ? 'node-card--flush' : '';
+          $ const shortName = index === 1 ? `${content.shortName} lets make this a longer title` : content.shortName;
+          $ const src = get(content, "primaryImage.src");
+          $ const primarySection = getAsObject(content, "primarySection");
+          $ const primaryImage = getAsObject(content, "primaryImage");
+          <div class="mb-4 col-3">
+
+            <div class=`node-card node-card node-card--image-left node-card--full-height ${flush}`>
+              <div class="node-card__header">
+                <div class="node-card__header-left">Outer Left</div>
+                <div class="node-card__header-right">Outer Right</div>
+              </div>
+
+              <div class="node-card__contents">
+
+                <marko-web-node-image-container
+                  src=primaryImage.src
+                  alt=primaryImage.alt
+                  fluid=false
+                  ar="6:5"
+                  width=120
+                  options={ auto: "format", fit: "crop", crop: "focalpoint" }
+                  link={ href: content.canonicalPath }
+                />
+
+
+                <div class="node-card__body">
+
+                  <div class="node-card__body-header">
+                    <div class="node-card__body-header-left">Body Left</div>
+                    <div class="node-card__body-header-right">Body Right</div>
+                  </div>
+
+                  <h5 class="node-card__title">
+                    <marko-web-text
+                      asHTML=true
+                      value=content.shortName
+                      tag=null
+                    />
+                  </h5>
+
+                  <div class="node-card__text">
+                    <marko-web-text
+                      asHTML=true
+                      value=content.teaser
+                      tag=null
+                    />
+                  </div>
+
+                  <div class="node-card__body-footer">
+                    <div class="node-card__body-footer-left">Body Left</div>
+                    <div class="node-card__body-footer-right">Body Right</div>
+                  </div>
+
+                </div>
+
+              </div>
+
+              <div class="node-card__footer">
+                <div class="node-card__footer-left">Outer Left</div>
+                <div class="node-card__footer-right">Outer Right</div>
+              </div>
+            </div>
+
+          </div>
+        </for>
+      </div>
+
+      <hr>
+      <hr>
+
+      <div class="row">
+        <for|content, index| of=nodes>
+          $ const flush = index === 1 ? 'node-card--flush' : '';
+          $ const shortName = index === 1 ? `${content.shortName} lets make this a longer title` : content.shortName;
+          $ const src = get(content, "primaryImage.src");
+          $ const primarySection = getAsObject(content, "primarySection");
+          $ const primaryImage = getAsObject(content, "primaryImage");
+          <div class="mb-4 col-3">
+
+            <div class=`node-card node-card node-card--image-right node-card--full-height ${flush}`>
+              <div class="node-card__header">
+                <div class="node-card__header-left">Outer Left</div>
+                <div class="node-card__header-right">Outer Right</div>
+              </div>
+
+              <div class="node-card__contents">
+
+                <marko-web-node-image-container
+                  src=primaryImage.src
+                  alt=primaryImage.alt
+                  fluid=false
+                  ar="6:5"
+                  width=120
+                  options={ auto: "format", fit: "crop", crop: "focalpoint" }
+                  link={ href: content.canonicalPath }
+                />
+
+
+                <div class="node-card__body">
+
+                  <div class="node-card__body-header">
+                    <div class="node-card__body-header-left">Body Left</div>
+                    <div class="node-card__body-header-right">Body Right</div>
+                  </div>
+
+                  <h5 class="node-card__title">
+                    <marko-web-text
+                      asHTML=true
+                      value=content.shortName
+                      tag=null
+                    />
+                  </h5>
+
+                  <div class="node-card__text">
+                    <marko-web-text
+                      asHTML=true
+                      value=content.teaser
+                      tag=null
+                    />
+                  </div>
+
+                  <div class="node-card__body-footer">
+                    <div class="node-card__body-footer-left">Body Left</div>
+                    <div class="node-card__body-footer-right">Body Right</div>
+                  </div>
+
+                </div>
+
+              </div>
+
+              <div class="node-card__footer">
+                <div class="node-card__footer-left">Outer Left</div>
+                <div class="node-card__footer-right">Outer Right</div>
+              </div>
+            </div>
+
+          </div>
+        </for>
+      </div>
+
+
+      <div class="row">
+        <for|content, index| of=nodes>
+          <div class="mb-4 col-3">
+            $ const shortName = index === 1 ? `${content.shortName} lets make this a longer title` : content.shortName;
+            $ const src = get(content, "primaryImage.src");
+            $ const primarySection = getAsObject(content, "primarySection");
+            $ const primaryImage = getAsObject(content, "primaryImage");
+
+            <!-- <marko-web-node>
+              <@image
+                position="overlay" -- forces fluid=true!
+                ar="16:9"
+                width=320
+                fluid=true
+                options={ format: "auto", fit: "crop", crop: "focalpoint" }
+                src=primaryImage.src
+                alt=primaryImage.alt
+                link={ href: content.canonicalPath }
+              />
+            </marko-web-node>
+
+            <marko-web-node-image-container ar="16:9" fluid=true>
+              <@image class="foo" />
+            </marko-web-node-image-container> -->
+
+            <div class="node node--image-overlay node--full-height">
+              <!-- @todo image-overlay requires fluidity -->
+              <!-- @todo a fluid left or right image needs full-height -->
+              <div class="node__container">
+
+                <!-- <div class="node__contents-above"> -->
+
+
+<!--
+                  <p class="node__description">
+                    <marko-web-text
+                      asHTML=true
+                      value=content.teaser
+                      tag=null
+                    />
+                  </p> -->
+
+                <!-- </div> -->
+
+                <marko-web-node-image-container
+                  src=primaryImage.src
+                  alt=primaryImage.alt
+                  fluid=true
+                  ar="6:5"
+                  width=200
+                  options={ auto: "format", fit: "crop", crop: "focalpoint" }
+                  link={ href: content.canonicalPath }
+                />
+
+                <div class="node__header">
+                  <div class="node__header-left">
+                    <marko-web-text value=primarySection.name link={ href: primarySection.canonicalPath } />
+                  </div>
+                  <div class="node__header-right">
+                    <marko-web-date value=content.published format="MM/DD/YYYY" class="foo-date" />
+                  </div>
+                </div>
+
+                <div class="node__body">
+                  <div class="node__title">
+                    <marko-web-text
+                      asHTML=true
+                      value=shortName
+                      tag="h5"
+                      link={ href: content.canonicalPath, class: "some-link-class" }
+                    />
+                  </div>
+
+                  <div class="node__description">
+                    <marko-web-text
+                      asHTML=true
+                      value=content.teaser
+                      tag="p"
+                    />
+                  </div>
+                </div>
+
+                <!-- <div class="node__footer">
+                  <div class="node__footer-left">
+                    <marko-web-date value=content.published format="MM/DD/YYYY" class="foo-date" />
+                  </div>
+                  <div class="node__footer-right">
+                    <marko-web-text value=primarySection.name link={ href: primarySection.canonicalPath } />
+                  </div>
+                </div> -->
+
+                <!-- <div class="node__contents-below">
+
+                  <div class="node__header">
+                    <div class="node__header-left">
+                      <marko-web-text value=primarySection.name link={ href: primarySection.canonicalPath } />
+                    </div>
+                    <div class="node__header-right">
+                      <marko-web-date value=content.published format="MM/DD/YYYY" class="foo-date" />
+                    </div>
+                  </div>
+
+                  <div class="node__title">
+                    <marko-web-text
+                      asHTML=true
+                      value=shortName
+                      tag="h5"
+                      link={ href: content.canonicalPath, class: "some-link-class" }
+                    />
+                  </div>
+
+                  <div class="node__description">
+                    <marko-web-text
+                      asHTML=true
+                      value=content.teaser
+                      tag="p"
+                    />
+                  </div>
+
+                  <div class="node__footer">
+                    <div class="node__footer-left">
+                      <marko-web-date value=content.published format="MM/DD/YYYY" class="foo-date" />
+                    </div>
+                    <div class="node__footer-right">
+                      <marko-web-text value=primarySection.name link={ href: primarySection.canonicalPath } />
+                    </div>
+                  </div>
+
+                </div> -->
+              </div>
+            </div>
+            <!-- <div class="card border-0 shadow-sm mb-4 w-100">
               <div class="card-body d-flex flex-row py-4">
                 <div class="d-flex my-auto mr-3">
                   <a href=content.canonicalPath>
@@ -38,8 +386,6 @@ $ const context = {
                       <img class="lazyload" data-src=`${content.primaryImage.src}?auto=format&w=160&h=160&fit=crop&crop=focalpoint&fp-x=0.5&fp-y=0.5` style="max-width: 160px; max-height: 160px; border-radius: 0.5rem;" />
                     </if>
                     <else>
-                      <!-- @todo Add a site logo within the no-image, image? -->
-                      <!-- @todo Generate random gradient directions based on overall theme -->
                       <div style="width: 160px; height: 160px; border-radius: 0.5rem; background: linear-gradient(to right, rgba(122,188,255,1) 0%,rgba(96,171,248,1) 44%,rgba(64,150,238,1) 100%);"></div>
                     </else>
                   </a>
@@ -50,10 +396,11 @@ $ const context = {
                   <cms-website-section-name tag="small" block=block content=content link=true />
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
-        </div>
-      </for>
+        </for>
+
+      </div>
     </marko-web-query-website-scheduled-content>
     <site-footer />
     <marko-web-gam-fixed-ad-bottom ...GAM.getAdUnit({ name: "BS" }) />

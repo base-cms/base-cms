@@ -49,9 +49,299 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
   border: 0;
 }
 
+.node-card {
+  $self: &;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  width: 100%;
+  padding: $marko-web-node-spacer;
+  background-color: $marko-web-node-bg-color;
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    &:empty {
+      display: none;
+    }
+
+    &-left {
+      margin-bottom: $marko-web-node-spacer;
+      white-space: nowrap; // eval
+      &:empty {
+        display: none;
+      }
+    }
+
+    &-right {
+      margin-bottom: $marko-web-node-spacer;
+      white-space: nowrap; // eval (was originally set)
+      &:empty {
+        display: none;
+      }
+    }
+  }
+
+  &__footer {
+    display: flex;
+    flex-direction: row; // check for column vs row at small res
+    justify-content: space-between;
+    &:empty {
+      display: none;
+    }
+    &-left {
+      margin-top: $marko-web-node-spacer;
+      // margin-top: auto; // eval (was orginally set)
+      white-space: nowrap; // eval
+      &:empty {
+        display: none;
+      }
+    }
+    &-right {
+      margin-top: $marko-web-node-spacer;
+      // margin-top: auto; // eval (was orginally set)
+      white-space: nowrap; // eval (was orginally set)
+      &:empty {
+        display: none;
+      }
+    }
+  }
+
+  &__contents {
+    position: relative;
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  &__body {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  &__title {
+    &:empty {
+      display: none;
+    }
+  }
+
+  &__text {
+    &:empty {
+      display: none;
+    }
+  }
+
+  &__body-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    &:empty {
+      display: none;
+    }
+    &-left {
+      margin-bottom: $marko-web-node-spacer;
+      white-space: nowrap; // eval
+      &:empty {
+        display: none;
+      }
+    }
+
+    &-right {
+      margin-bottom: $marko-web-node-spacer;
+      white-space: nowrap; // eval (was originally set)
+      &:empty {
+        display: none;
+      }
+    }
+  }
+
+  &__body-footer {
+    display: flex;
+    flex-direction: row; // check for column vs row at small res
+    justify-content: space-between;
+    margin-top: auto;
+    &:empty {
+      display: none;
+    }
+    &-left {
+      white-space: nowrap; // eval
+      &:empty {
+        display: none;
+      }
+    }
+    &-right {
+      white-space: nowrap; // eval (was orginally set)
+      &:empty {
+        display: none;
+      }
+    }
+  }
+
+  &__image-container {
+    display: inline-block;
+
+    &--fluid {
+      #{ $self } {
+        &__image {
+          width: 100%;
+          height: auto;
+        }
+      }
+      // review
+      // #{ $self } {
+      //   &__image {
+      //     @include marko-web-embed-responsive-item();
+      //   }
+      //   &__image-placeholder {
+      //     @include marko-web-embed-responsive-item();
+      //   }
+      // }
+    }
+
+    // need to add option to comp
+    &--align-middle {
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+
+    // need to add option to comp
+    &--align-center {
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    // keep
+    @each $ar in $marko-web-node-image-aspect-ratios {
+      $x: nth($ar, 1);
+      $y: nth($ar, 2);
+
+      &--fluid-#{$x}by#{$y} {
+        @include marko-web-embed-responsive($x, $y);
+        #{ $self } {
+          &__image {
+            @include marko-web-embed-responsive-item();
+          }
+        }
+      }
+    }
+  }
+
+  &--full-height {
+    height: 100%;
+  }
+
+  &--flush {
+    padding: 0;
+  }
+
+  &--image-top {
+    #{ $self } {
+      &__image-container {
+        margin-bottom: $marko-web-node-spacer;
+      }
+    }
+  }
+
+  &--image-left {
+    #{ $self } {
+      &__contents {
+        flex-direction: row;
+      }
+      &__image-container {
+        margin-right: $marko-web-node-spacer;
+      }
+    }
+  }
+
+  &--image-bottom {
+    #{ $self } {
+      &__image-container {
+        margin-top: $marko-web-node-spacer;
+      }
+    }
+  }
+
+  &--image-right {
+    #{ $self } {
+      &__contents {
+        flex-direction: row-reverse;
+      }
+      &__image-container {
+        margin-left: $marko-web-node-spacer;
+      }
+    }
+  }
+}
+
 .node {
   $self: &;
   background-color: $marko-web-node-bg-color;
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: $marko-web-node-spacer;
+    &:empty {
+      display: none;
+    }
+  }
+
+  &__header-left {
+    white-space: nowrap; // eval
+    &:empty {
+      display: none;
+    }
+  }
+
+  &__header-right {
+    white-space: nowrap; // eval (was originally set)
+    &:empty {
+      display: none;
+    }
+  }
+
+  &__title {
+    &:empty {
+      display: none;
+    }
+  }
+
+  &__text {
+    &:empty {
+      display: none;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    flex-direction: row; // check for column vs row at small res
+    justify-content: space-between;
+    margin-top: auto; // eval
+    &:empty {
+      display: none;
+    }
+  }
+
+  &__footer-left {
+    // margin-top: auto; // eval (was orginally set)
+    white-space: nowrap; // eval
+    &:empty {
+      display: none;
+    }
+  }
+
+  &__footer-right {
+    // margin-top: auto; // eval (was orginally set)
+    white-space: nowrap; // eval (was orginally set)
+    &:empty {
+      display: none;
+    }
+  }
 
   &__container {
     // keep
@@ -62,14 +352,30 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
     padding: $marko-web-node-spacer;
   }
 
-  // keep
-  &__contents {
+  // was __contents
+  &__body {
     display: flex;
     flex: 1 1 auto;
     flex-direction: column;
     width: 100%;
     padding-right: $marko-web-node-contents-padding;
     padding-left: $marko-web-node-contents-padding;
+  }
+
+  // keep
+  &__contents {
+    // display: flex;
+    // flex: 1 1 auto;
+    // flex-direction: column;
+    width: 100%;
+    padding-right: $marko-web-node-contents-padding;
+    padding-left: $marko-web-node-contents-padding;
+    // &:last-child {
+    //   display: flex;
+    //   flex: 1 1 auto;
+    //   flex-direction: column;
+    //   color: #f00;
+    // }
   }
 
   &__image-container {
@@ -128,7 +434,7 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
       &__container {
         padding: 0;
       }
-      &__contents {
+      &__body {
         padding: $marko-web-node-spacer;
       }
     }
@@ -139,7 +445,7 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
       &__container {
         padding: 0;
       }
-      &__contents {
+      &__body {
         padding-right: 0;
         padding-left: 0;
       }
@@ -153,6 +459,20 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
       &__container {
         height: 100%;
       }
+    }
+  }
+
+  // need to add option to comp
+  &--grow {
+    height: 100%;
+    #{ $self } {
+      &__container {
+        height: 100%;
+      }
+      // &__contents {
+      //   flex-grow: 1;
+      //   justify-content: space-between;
+      // }
     }
   }
 
@@ -235,7 +555,15 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
         }
       }
 
-      &__contents {
+      &__header {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        padding: $marko-web-node-overlay-image-padding;
+      }
+
+      &__body {
         position: absolute;
         right: 0;
         bottom: 0;
