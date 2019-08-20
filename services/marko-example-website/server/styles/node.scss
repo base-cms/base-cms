@@ -123,6 +123,17 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
     }
   }
 
+  &--image-flush {
+    #{ $self } {
+      &__container {
+        padding: 0;
+      }
+      &__contents {
+        padding: $marko-web-node-spacer;
+      }
+    }
+  }
+
   &--flush {
     #{ $self } {
       &__container {
@@ -151,6 +162,11 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
         margin-bottom: $marko-web-node-spacer;
       }
     }
+    &#{ $self }--image-flush {
+      #{ $self }__image-container {
+        margin-bottom: 0;
+      }
+    }
   }
 
   &--image-right {
@@ -160,6 +176,11 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
       }
       &__image-container {
         margin-left: $marko-web-node-spacer;
+      }
+    }
+    &#{ $self }--image-flush {
+      #{ $self }__image-container {
+        margin-left: 0;
       }
     }
   }
@@ -173,6 +194,11 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
         margin-top: $marko-web-node-spacer;
       }
     }
+    &#{ $self }--image-flush {
+      #{ $self }__image-container {
+        margin-top: 0;
+      }
+    }
   }
 
   &--image-left {
@@ -182,6 +208,11 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
       }
       &__image-container {
         margin-right: $marko-web-node-spacer;
+      }
+    }
+    &#{ $self }--image-flush {
+      #{ $self }__image-container {
+        margin-right: 0;
       }
     }
   }
