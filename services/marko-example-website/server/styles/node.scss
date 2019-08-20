@@ -126,6 +126,11 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
   // need to add option to comp
   &--full-height {
     height: 100%;
+    #{ $self } {
+      &__container {
+        height: 100%;
+      }
+    }
   }
 
   &--image-top {
