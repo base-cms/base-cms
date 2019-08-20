@@ -1,0 +1,37 @@
+{
+  "<marko-web-node-image-container>": {
+    "template": "image-container.marko",
+    "@src": "string",
+    "@alt": "string",
+    "@ar": "string",
+    "@fluid": "boolean",
+    "@width": "number",
+    "@link": "object",
+    "@use-placeholder": "boolean",
+    "@options": "object",
+    "@is-logo": "boolean",
+    "@lazyload": {
+      "type": "boolean",
+      "default-value": true
+    },
+    "@attrs": "object",
+    "@image-attrs": "object"
+  },
+  "<marko-web-node-image>": {
+    "template": "image.marko",
+    "@src": "string",
+    "@alt": "string",
+    "@width": "number",
+    "@height": "number",
+    "@options": "object",
+    "@is-logo": "boolean",
+    "@default-options": "object",
+    "@use-placeholder": "boolean",
+    "@class": "string",
+    "@attrs": "object",
+    "@lazyload": {
+      "type": "boolean",
+      "default-value": true
+    }
+  }
+}

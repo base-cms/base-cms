@@ -1,0 +1,58 @@
+<!-- support imgix options -->
+<!-- link support -->
+<!-- pass other image options? -->
+<!-- placeholder -->
+
+import { get, getAsObject } from "@base-cms/object-path";
+import imageValues from "./utils/image-values";
+
+$ const element = "node__image-container";
+$ const { width, height, modifier } = imageValues(input);
+$ const classNames = [element];
+$ if (modifier) classNames.push(`${element}--${modifier}`);
+
+$ const {
+  src,
+  alt,
+  isLogo,
+  usePlaceholder,
+  lazyload,
+  imageAttrs,
+} =  input;
+
+$ const hasImage = Boolean(src);
+$ const hasLink = Boolean(get(input, "link.href"));
+
+$ const options = {
+  ...input.options,
+  w: input.width,
+  ar: input.ar,
+  h: undefined,
+};
+
+$ const imageInput = {
+  src,
+  alt,
+  width,
+  height,
+  options,
+  isLogo,
+  usePlaceholder,
+  lazyload,
+  attrs: imageAttrs,
+};
+
+<!-- @todo add modifiers -->
+
+<if(hasImage || usePlaceholder)>
+  <if(hasLink)>
+    <marko-web-link ...input.link attrs=input.attrs class=classNames>
+      <marko-web-node-image ...imageInput />
+    </marko-web-link>
+  </if>
+  <else>
+    <div ...input.attrs class=classNames>
+      <marko-web-node-image ...imageInput />
+    </div>
+  </else>
+</if>
