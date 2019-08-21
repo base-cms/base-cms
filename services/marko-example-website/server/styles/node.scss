@@ -74,12 +74,7 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
       right: 0;
       left: 0;
       padding: $marko-web-node-spacer;
-      #{ $self } {
-        &__header-left,
-        &__header-right {
-          margin-bottom: initial;
-        }
-      }
+      margin-bottom: initial;
     }
   }
 
