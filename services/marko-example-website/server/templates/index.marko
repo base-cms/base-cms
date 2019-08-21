@@ -32,8 +32,8 @@ $ const context = {
 
       <div class="row">
         <for|content, index| of=nodes>
-          $ const flush = index === 1 ? 'node-card--flush' : '';
-          $ const shortName = index === 1 ? `${content.shortName} lets make this a longer title` : content.shortName;
+          $ const flush = index === 3 ? 'node-card--flush' : '';
+          $ const shortName = index === 0 ? `${content.shortName} lets make this a longer title` : content.shortName;
           $ const src = get(content, "primaryImage.src");
           $ const primarySection = getAsObject(content, "primarySection");
           $ const primaryImage = getAsObject(content, "primaryImage");
@@ -60,30 +60,30 @@ $ const context = {
 
                 <div class="node-card__body">
 
-                  <div class="node-card__body-header">
-                    <div class="node-card__body-header-left">Body Left</div>
-                    <div class="node-card__body-header-right">Body Right</div>
+                  <div class="node-card__header node-card__header--body">
+                    <div class="node-card__header-left">Body Left</div>
+                    <div class="node-card__header-right">Body Right</div>
                   </div>
 
                   <h5 class="node-card__title">
                     <marko-web-text
                       asHTML=true
-                      value=content.shortName
+                      value=shortName
                       tag=null
                     />
                   </h5>
 
-                  <div class="node-card__text">
+                  <p class="node-card__text">
                     <marko-web-text
                       asHTML=true
                       value=content.teaser
                       tag=null
                     />
-                  </div>
+                  </p>
 
-                  <div class="node-card__body-footer">
-                    <div class="node-card__body-footer-left">Body Left</div>
-                    <div class="node-card__body-footer-right">Body Right</div>
+                  <div class="node-card__footer node-card__footer--body">
+                    <div class="node-card__footer-left">Body Left</div>
+                    <div class="node-card__footer-right">Body Right</div>
                   </div>
 
                 </div>
@@ -105,8 +105,8 @@ $ const context = {
 
       <div class="row">
         <for|content, index| of=nodes>
-          $ const flush = index === 1 ? 'node-card--flush' : '';
-          $ const shortName = index === 1 ? `${content.shortName} lets make this a longer title` : content.shortName;
+          $ const flush = index === 3 ? 'node-card--flush' : '';
+          $ const shortName = index === 0 ? `${content.shortName} lets make this a longer title` : content.shortName;
           $ const src = get(content, "primaryImage.src");
           $ const primarySection = getAsObject(content, "primarySection");
           $ const primaryImage = getAsObject(content, "primaryImage");
@@ -133,15 +133,15 @@ $ const context = {
 
                 <div class="node-card__body">
 
-                  <div class="node-card__body-header">
-                    <div class="node-card__body-header-left">Body Left</div>
-                    <div class="node-card__body-header-right">Body Right</div>
+                  <div class="node-card__header node-card__header--body">
+                    <div class="node-card__header-left">Body Left</div>
+                    <div class="node-card__header-right">Body Right</div>
                   </div>
 
                   <h5 class="node-card__title">
                     <marko-web-text
                       asHTML=true
-                      value=content.shortName
+                      value=shortName
                       tag=null
                     />
                   </h5>
@@ -154,9 +154,9 @@ $ const context = {
                     />
                   </div>
 
-                  <div class="node-card__body-footer">
-                    <div class="node-card__body-footer-left">Body Left</div>
-                    <div class="node-card__body-footer-right">Body Right</div>
+                  <div class="node-card__footer node-card__footer--body">
+                    <div class="node-card__footer-left">Body Left</div>
+                    <div class="node-card__footer-right">Body Right</div>
                   </div>
 
                 </div>
@@ -178,8 +178,8 @@ $ const context = {
 
       <div class="row">
         <for|content, index| of=nodes>
-          $ const flush = index === 1 ? 'node-card--flush' : '';
-          $ const shortName = index === 1 ? `${content.shortName} lets make this a longer title` : content.shortName;
+          $ const flush = index === 3 ? 'node-card--flush' : '';
+          $ const shortName = index === 0 ? `${content.shortName} lets make this a longer title` : content.shortName;
           $ const src = get(content, "primaryImage.src");
           $ const primarySection = getAsObject(content, "primarySection");
           $ const primaryImage = getAsObject(content, "primaryImage");
@@ -206,15 +206,15 @@ $ const context = {
 
                 <div class="node-card__body">
 
-                  <div class="node-card__body-header">
-                    <div class="node-card__body-header-left">Body Left</div>
-                    <div class="node-card__body-header-right">Body Right</div>
+                  <div class="node-card__header node-card__header--body">
+                    <div class="node-card__header-left">Body Left</div>
+                    <div class="node-card__header-right">Body Right</div>
                   </div>
 
                   <h5 class="node-card__title">
                     <marko-web-text
                       asHTML=true
-                      value=content.shortName
+                      value=shortName
                       tag=null
                     />
                   </h5>
@@ -227,9 +227,9 @@ $ const context = {
                     />
                   </div>
 
-                  <div class="node-card__body-footer">
-                    <div class="node-card__body-footer-left">Body Left</div>
-                    <div class="node-card__body-footer-right">Body Right</div>
+                  <div class="node-card__footer node-card__footer--body">
+                    <div class="node-card__footer-left">Body Left</div>
+                    <div class="node-card__footer-right">Body Right</div>
                   </div>
 
                 </div>

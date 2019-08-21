@@ -65,21 +65,14 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
     &:empty {
       display: none;
     }
+  }
 
-    &-left {
-      margin-bottom: $marko-web-node-spacer;
-      white-space: nowrap; // eval
-      &:empty {
-        display: none;
-      }
-    }
-
-    &-right {
-      margin-bottom: $marko-web-node-spacer;
-      white-space: nowrap; // eval (was originally set)
-      &:empty {
-        display: none;
-      }
+  &__header-left,
+  &__header-right {
+    margin-bottom: $marko-web-node-spacer;
+    white-space: nowrap; // eval
+    &:empty {
+      display: none;
     }
   }
 
@@ -90,21 +83,23 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
     &:empty {
       display: none;
     }
-    &-left {
-      margin-top: $marko-web-node-spacer;
-      // margin-top: auto; // eval (was orginally set)
-      white-space: nowrap; // eval
-      &:empty {
-        display: none;
+    &--body {
+      margin-top: auto;
+      #{ $self } {
+        &__footer-left,
+        &__footer-right {
+          margin-top: auto;
+        }
       }
     }
-    &-right {
-      margin-top: $marko-web-node-spacer;
-      // margin-top: auto; // eval (was orginally set)
-      white-space: nowrap; // eval (was orginally set)
-      &:empty {
-        display: none;
-      }
+  }
+
+  &__footer-left,
+  &__footer-right {
+    margin-top: $marko-web-node-spacer;
+    white-space: nowrap; // eval
+    &:empty {
+      display: none;
     }
   }
 
@@ -132,52 +127,6 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
   &__text {
     &:empty {
       display: none;
-    }
-  }
-
-  &__body-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    &:empty {
-      display: none;
-    }
-    &-left {
-      margin-bottom: $marko-web-node-spacer;
-      white-space: nowrap; // eval
-      &:empty {
-        display: none;
-      }
-    }
-
-    &-right {
-      margin-bottom: $marko-web-node-spacer;
-      white-space: nowrap; // eval (was originally set)
-      &:empty {
-        display: none;
-      }
-    }
-  }
-
-  &__body-footer {
-    display: flex;
-    flex-direction: row; // check for column vs row at small res
-    justify-content: space-between;
-    margin-top: auto;
-    &:empty {
-      display: none;
-    }
-    &-left {
-      white-space: nowrap; // eval
-      &:empty {
-        display: none;
-      }
-    }
-    &-right {
-      white-space: nowrap; // eval (was orginally set)
-      &:empty {
-        display: none;
-      }
     }
   }
 
