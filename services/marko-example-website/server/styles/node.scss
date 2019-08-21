@@ -85,12 +85,6 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
     }
     &--body {
       margin-top: auto;
-      #{ $self } {
-        &__footer-left,
-        &__footer-right {
-          margin-top: auto;
-        }
-      }
     }
   }
 
@@ -109,6 +103,12 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
     flex: 1 1 auto;
     flex-direction: column;
     width: 100%;
+
+    &--body {
+      > :last-child {
+        margin-bottom: 0;
+      }
+    }
   }
 
   &__body {
@@ -199,6 +199,9 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
     #{ $self } {
       &__contents {
         flex-direction: row;
+        &--body {
+          flex-direction: column;
+        }
       }
       &__image-container {
         margin-right: $marko-web-node-spacer;
@@ -208,6 +211,12 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
 
   &--image-bottom {
     #{ $self } {
+      &__contents {
+        flex-direction: column-reverse;
+        &--body {
+          flex-direction: column;
+        }
+      }
       &__image-container {
         margin-top: $marko-web-node-spacer;
       }
@@ -218,6 +227,9 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
     #{ $self } {
       &__contents {
         flex-direction: row-reverse;
+        &--body {
+          flex-direction: column;
+        }
       }
       &__image-container {
         margin-left: $marko-web-node-spacer;
