@@ -1,6 +1,6 @@
 {
-  "<marko-web-node-image-container>": {
-    "template": "image-container.marko",
+  "<marko-web-node-image-wrapper>": {
+    "template": "image-wrapper.marko",
     "@src": "string",
     "@alt": "string",
     "@ar": "string",

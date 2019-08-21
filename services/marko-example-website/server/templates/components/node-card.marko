@@ -31,7 +31,7 @@ $ const classNames = [blockName, ...mods.map(mod => `${blockName}--${mod}`)];
     $ if (height) style.push(`height: ${height}px;`);
     <div class="node__overlay" style=style>
       <!-- overlay needs image height/width -->
-      <marko-web-node-image-container
+      <marko-web-node-image-wrapper
         ...imageOptions
         gradient=true
         src=primaryImage.src
@@ -50,6 +50,17 @@ $ const classNames = [blockName, ...mods.map(mod => `${blockName}--${mod}`)];
         <div class="node__header node__header--body">
           <div class="node__header-left">BL</div>
           <div class="node__header-right">BR</div>
+        </div>
+
+        <div class="node__contents node__contents--body">
+
+          <h5 class="node__title">
+            <marko-web-text
+              asHTML=true
+              value=shortName
+              tag=null
+            />
+          </h5>
         </div>
 
         <div class="node__footer node__footer--body">

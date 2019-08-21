@@ -85,7 +85,6 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
 
   &__header-left,
   &__header-right {
-    // margin-bottom: $marko-web-node-spacer;
     white-space: nowrap; // eval
     &:empty {
       display: none;
@@ -96,6 +95,7 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
     display: flex;
     flex-direction: row; // check for column vs row at small res
     justify-content: space-between;
+    margin-top: $marko-web-node-spacer;
     &:empty {
       display: none;
     }
@@ -106,7 +106,6 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
 
   &__footer-left,
   &__footer-right {
-    margin-top: $marko-web-node-spacer;
     white-space: nowrap; // eval
     &:empty {
       display: none;
@@ -119,8 +118,10 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
     flex: 1 1 auto;
     flex-direction: column;
     width: 100%;
+    overflow: hidden;
 
     &--body {
+      margin-bottom: $marko-web-node-spacer;
       > :last-child {
         margin-bottom: 0;
       }
@@ -138,10 +139,6 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
       bottom: 0;
       left: 0;
       padding: $marko-web-node-spacer;
-    }
-
-    > :last-child {
-      margin-bottom: 0;
     }
   }
 
@@ -166,26 +163,7 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
     }
   }
 
-  // &__overlay-body {
-  //   position: absolute;
-  //   top: 0;
-  //   right: 0;
-  //   bottom: 0;
-  //   left: 0;
-  //   display: flex;
-  //   flex: 1 1 auto;
-  //   flex-direction: column;
-  //   width: 100%;
-  //   padding: $marko-web-node-spacer;
-  //   overflow: hidden;
-  //   color: #fff;
-  //   text-shadow: $marko-web-node-overlay-image-text-shadow;
-  //   a {
-  //     color: #fff;
-  //   }
-  // }
-
-  &__image-container {
+  &__image-wrapper {
     display: inline-block;
 
     &--gradient {
