@@ -84,7 +84,6 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
 
   &__header-left,
   &__header-right {
-    white-space: nowrap; // eval
     &:empty {
       display: none;
     }
@@ -106,10 +105,14 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
   &__footer-left,
   &__footer-right {
     margin-top: auto;
-    white-space: nowrap; // eval
     &:empty {
       display: none;
     }
+  }
+
+  &__header-right,
+  &__footer-right {
+    text-align: right;
   }
 
   &__contents {
