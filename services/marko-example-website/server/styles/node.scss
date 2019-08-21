@@ -52,6 +52,12 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
 // @todo check against non-bootstrap
 
 .node {
+  *,
+  ::after,
+  ::before {
+    box-sizing: border-box;
+  }
+
   $self: &;
   display: flex;
   flex: 1 1 auto;
@@ -227,6 +233,29 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
     padding: 0;
   }
 
+  &--image-flush {
+    padding: 0;
+    > #{ $self } {
+      &__header {
+        padding-top: $marko-web-node-spacer;
+        padding-right: $marko-web-node-spacer;
+        padding-left: $marko-web-node-spacer;
+      }
+      &__footer {
+        padding-right: $marko-web-node-spacer;
+        padding-bottom: $marko-web-node-spacer;
+        padding-left: $marko-web-node-spacer;
+      }
+    }
+
+    #{ $self } {
+      &__body {
+        padding-right: $marko-web-node-spacer;
+        padding-left: $marko-web-node-spacer;
+      }
+    }
+  }
+
   &--image-top {
     #{ $self } {
       &__body {
@@ -251,6 +280,11 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
         &--overlay {
           margin-left: 0;
         }
+      }
+    }
+    &#{ $self }--image-flush {
+      #{ $self }__body {
+        padding-left: 0;
       }
     }
   }
@@ -285,6 +319,11 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
         &--overlay {
           margin-right: 0;
         }
+      }
+    }
+    &#{ $self }--image-flush {
+      #{ $self }__body {
+        padding-right: 0;
       }
     }
   }

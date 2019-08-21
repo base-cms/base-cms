@@ -11,6 +11,7 @@ $ const primaryImage = getAsObject(content, "primaryImage");
 $ const blockName = "node";
 $ const mods = ["full-height", ...getAsArray(input.mods)];
 $ if (index === 3) mods.push("flush");
+$ if (index === 2) mods.push("image-flush");
 $ const classNames = [blockName, ...mods.map(mod => `${blockName}--${mod}`)];
 
 <div class=classNames>
