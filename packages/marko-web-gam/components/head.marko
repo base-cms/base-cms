@@ -21,6 +21,7 @@ $ if (options.collapseEmptyDivs) calls.push('googletag.pubads().collapseEmptyDiv
 <!-- Build targeting calls -->
 $ const targeting = {
   ...input.targeting,
+  env: process.env.NODE_ENV,
 };
 $ if (options.targetingIncludePath) targeting.path = req.path;
 $ if (options.targetingIncludeHost) targeting.host = req.hostname.replace(/\./g, '|');
