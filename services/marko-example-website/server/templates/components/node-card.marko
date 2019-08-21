@@ -1,0 +1,71 @@
+import { getAsArray, getAsObject, get } from "@base-cms/object-path";
+
+$ const { index, content, imageOptions } = input;
+
+$ const shortName = index === 0 ? `${content.shortName} lets make this a longer title` : content.shortName;
+$ const src = get(content, "primaryImage.src");
+$ const primarySection = getAsObject(content, "primarySection");
+$ const primaryImage = getAsObject(content, "primaryImage");
+
+$ const blockName = "node-card";
+$ const mods = ["full-height", ...getAsArray(input.mods)];
+$ if (index === 3) mods.push("flush");
+$ const classNames = [blockName, ...mods.map(mod => `${blockName}--${mod}`)];
+
+<div class=classNames>
+  <div class="node-card__header">
+    <div class="node-card__header-left">Outer Left</div>
+    <div class="node-card__header-right">Outer Right</div>
+  </div>
+
+  <div class="node-card__contents">
+
+    <marko-web-node-image-container
+      ...imageOptions
+      src=primaryImage.src
+      alt=primaryImage.alt
+      options={ auto: "format", fit: "crop", crop: "focalpoint" }
+      link={ href: content.canonicalPath }
+    />
+
+    <div class="node-card__body">
+
+      <div class="node-card__header node-card__header--body">
+        <div class="node-card__header-left">Body Left</div>
+        <div class="node-card__header-right">Body Right</div>
+      </div>
+
+      <div class="node-card__contents node-card__contents--body">
+
+        <h5 class="node-card__title">
+          <marko-web-text
+            asHTML=true
+            value=shortName
+            tag=null
+          />
+        </h5>
+
+        <p class="node-card__text">
+          <marko-web-text
+            asHTML=true
+            value=content.teaser
+            tag=null
+          />
+        </p>
+
+      </div>
+
+      <div class="node-card__footer node-card__footer--body">
+        <div class="node-card__footer-left">Body Left</div>
+        <div class="node-card__footer-right">Body Right</div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="node-card__footer">
+    <div class="node-card__footer-left">Outer Left</div>
+    <div class="node-card__footer-right">Outer Right</div>
+  </div>
+</div>
