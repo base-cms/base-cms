@@ -6,10 +6,11 @@
 import { get, getAsObject } from "@base-cms/object-path";
 import imageValues from "./utils/image-values";
 
-$ const element = "node-card__image-container";
+$ const element = "node__image-container";
 $ const { width, height, modifier } = imageValues(input);
-$ const classNames = [element];
+$ const classNames = [element, input.class];
 $ if (modifier) classNames.push(`${element}--${modifier}`);
+$ if (input.gradient) classNames.push(`${element}--gradient`);
 
 $ const {
   src,

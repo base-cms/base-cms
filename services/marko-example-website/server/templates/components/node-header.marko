@@ -1,0 +1,12 @@
+<node-element name="header">
+  <if(input.left)>
+    <node-element name="header-left">
+      <${input.left} />
+    </node-element>
+  </if>
+  <if(input.right)>
+    <node-element name="header-right">
+      <${input.right} />
+    </node-element>
+  </if>
+</node-element>

@@ -37,7 +37,17 @@ $ const context = {
               content=content
               index=index
               image-options={ fluid: true, ar: "6:5", width: 200 }
-            />
+            >
+              <@header>
+                <@left>Left</@left>
+                <@right>Right</@right>
+              </@header>
+
+              <@footer>
+                <@left>Left</@left>
+                <@right>Right</@right>
+              </@footer>
+            </node-card>
           </div>
         </for>
       </div>

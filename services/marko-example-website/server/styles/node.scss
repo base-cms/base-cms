@@ -49,7 +49,9 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
   border: 0;
 }
 
-.node-card {
+// @todo check against non-bootstrap
+
+.node {
   $self: &;
   display: flex;
   flex: 1 1 auto;
@@ -62,14 +64,28 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin-bottom: $marko-web-node-spacer;
     &:empty {
       display: none;
+    }
+    &--overlay {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      padding: $marko-web-node-spacer;
+      #{ $self } {
+        &__header-left,
+        &__header-right {
+          margin-bottom: initial;
+        }
+      }
     }
   }
 
   &__header-left,
   &__header-right {
-    margin-bottom: $marko-web-node-spacer;
+    // margin-bottom: $marko-web-node-spacer;
     white-space: nowrap; // eval
     &:empty {
       display: none;
@@ -116,6 +132,17 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
     flex: 1 1 auto;
     flex-direction: column;
     width: 100%;
+    &--overlay {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      padding: $marko-web-node-spacer;
+    }
+
+    > :last-child {
+      margin-bottom: 0;
+    }
   }
 
   &__title {
@@ -130,8 +157,48 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
     }
   }
 
+  &__overlay {
+    position: relative;
+    color: #fff;
+    text-shadow: $marko-web-node-overlay-image-text-shadow;
+    a {
+      color: #fff;
+    }
+  }
+
+  // &__overlay-body {
+  //   position: absolute;
+  //   top: 0;
+  //   right: 0;
+  //   bottom: 0;
+  //   left: 0;
+  //   display: flex;
+  //   flex: 1 1 auto;
+  //   flex-direction: column;
+  //   width: 100%;
+  //   padding: $marko-web-node-spacer;
+  //   overflow: hidden;
+  //   color: #fff;
+  //   text-shadow: $marko-web-node-overlay-image-text-shadow;
+  //   a {
+  //     color: #fff;
+  //   }
+  // }
+
   &__image-container {
     display: inline-block;
+
+    &--gradient {
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        content: "";
+        background: $marko-web-node-overlay-image-gradient;
+      }
+    }
 
     &--fluid {
       #{ $self } {
@@ -189,8 +256,11 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
 
   &--image-top {
     #{ $self } {
-      &__image-container {
-        margin-bottom: $marko-web-node-spacer;
+      &__body {
+        margin-top: $marko-web-node-spacer;
+        &--overlay {
+          margin-top: 0;
+        }
       }
     }
   }
@@ -203,8 +273,11 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
           flex-direction: column;
         }
       }
-      &__image-container {
-        margin-right: $marko-web-node-spacer;
+      &__body {
+        margin-left: $marko-web-node-spacer;
+        &--overlay {
+          margin-left: 0;
+        }
       }
     }
   }
@@ -217,328 +290,27 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
           flex-direction: column;
         }
       }
-      &__image-container {
-        margin-top: $marko-web-node-spacer;
-      }
-    }
-  }
-
-  &--image-right {
-    #{ $self } {
-      &__contents {
-        flex-direction: row-reverse;
-        &--body {
-          flex-direction: column;
-        }
-      }
-      &__image-container {
-        margin-left: $marko-web-node-spacer;
-      }
-    }
-  }
-}
-
-.node {
-  $self: &;
-  background-color: $marko-web-node-bg-color;
-
-  &__header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-bottom: $marko-web-node-spacer;
-    &:empty {
-      display: none;
-    }
-  }
-
-  &__header-left {
-    white-space: nowrap; // eval
-    &:empty {
-      display: none;
-    }
-  }
-
-  &__header-right {
-    white-space: nowrap; // eval (was originally set)
-    &:empty {
-      display: none;
-    }
-  }
-
-  &__title {
-    &:empty {
-      display: none;
-    }
-  }
-
-  &__text {
-    &:empty {
-      display: none;
-    }
-  }
-
-  &__footer {
-    display: flex;
-    flex-direction: row; // check for column vs row at small res
-    justify-content: space-between;
-    margin-top: auto; // eval
-    &:empty {
-      display: none;
-    }
-  }
-
-  &__footer-left {
-    // margin-top: auto; // eval (was orginally set)
-    white-space: nowrap; // eval
-    &:empty {
-      display: none;
-    }
-  }
-
-  &__footer-right {
-    // margin-top: auto; // eval (was orginally set)
-    white-space: nowrap; // eval (was orginally set)
-    &:empty {
-      display: none;
-    }
-  }
-
-  &__container {
-    // keep
-    display: flex;
-    flex: 1 1 auto;
-    flex-direction: column;
-    width: 100%;
-    padding: $marko-web-node-spacer;
-  }
-
-  // was __contents
-  &__body {
-    display: flex;
-    flex: 1 1 auto;
-    flex-direction: column;
-    width: 100%;
-    padding-right: $marko-web-node-contents-padding;
-    padding-left: $marko-web-node-contents-padding;
-  }
-
-  // keep
-  &__contents {
-    // display: flex;
-    // flex: 1 1 auto;
-    // flex-direction: column;
-    width: 100%;
-    padding-right: $marko-web-node-contents-padding;
-    padding-left: $marko-web-node-contents-padding;
-    // &:last-child {
-    //   display: flex;
-    //   flex: 1 1 auto;
-    //   flex-direction: column;
-    //   color: #f00;
-    // }
-  }
-
-  &__image-container {
-    // keep
-    position: relative;
-
-    // keep
-    &--fluid {
-      #{ $self } {
-        &__image {
-          width: 100%;
-          height: auto;
-        }
-      }
-      // review
-      // #{ $self } {
-      //   &__image {
-      //     @include marko-web-embed-responsive-item();
-      //   }
-      //   &__image-placeholder {
-      //     @include marko-web-embed-responsive-item();
-      //   }
-      // }
-    }
-
-    // need to add option to comp
-    &--align-middle {
-      margin-top: auto;
-      margin-bottom: auto;
-    }
-
-    // need to add option to comp
-    &--align-center {
-      margin-right: auto;
-      margin-left: auto;
-    }
-
-    // keep
-    @each $ar in $marko-web-node-image-aspect-ratios {
-      $x: nth($ar, 1);
-      $y: nth($ar, 2);
-
-      &--fluid-#{$x}by#{$y} {
-        @include marko-web-embed-responsive($x, $y);
-        #{ $self } {
-          &__image {
-            @include marko-web-embed-responsive-item();
-          }
-        }
-      }
-    }
-  }
-
-  &--image-flush {
-    #{ $self } {
-      &__container {
-        padding: 0;
-      }
       &__body {
-        padding: $marko-web-node-spacer;
-      }
-    }
-  }
-
-  &--flush {
-    #{ $self } {
-      &__container {
-        padding: 0;
-      }
-      &__body {
-        padding-right: 0;
-        padding-left: 0;
-      }
-    }
-  }
-
-  // need to add option to comp
-  &--full-height {
-    height: 100%;
-    #{ $self } {
-      &__container {
-        height: 100%;
-      }
-    }
-  }
-
-  // need to add option to comp
-  &--grow {
-    height: 100%;
-    #{ $self } {
-      &__container {
-        height: 100%;
-      }
-      // &__contents {
-      //   flex-grow: 1;
-      //   justify-content: space-between;
-      // }
-    }
-  }
-
-  &--image-top {
-    #{ $self } {
-      &__image-container {
         margin-bottom: $marko-web-node-spacer;
-      }
-    }
-    &#{ $self }--image-flush {
-      #{ $self }__image-container {
-        margin-bottom: 0;
+        &--overlay {
+          margin-bottom: 0;
+        }
       }
     }
   }
 
   &--image-right {
     #{ $self } {
-      &__container {
+      &__contents {
         flex-direction: row-reverse;
-      }
-      &__image-container {
-        margin-left: $marko-web-node-spacer;
-      }
-    }
-    &#{ $self }--image-flush {
-      #{ $self }__image-container {
-        margin-left: 0;
-      }
-    }
-  }
-
-  &--image-bottom {
-    #{ $self } {
-      &__container {
-        flex-direction: column-reverse;
-      }
-      &__image-container {
-        margin-top: $marko-web-node-spacer;
-      }
-    }
-    &#{ $self }--image-flush {
-      #{ $self }__image-container {
-        margin-top: 0;
-      }
-    }
-  }
-
-  &--image-left {
-    #{ $self } {
-      &__container {
-        flex-direction: row;
-      }
-      &__image-container {
-        margin-right: $marko-web-node-spacer;
-      }
-    }
-    &#{ $self }--image-flush {
-      #{ $self }__image-container {
-        margin-right: 0;
-      }
-    }
-  }
-
-  &--image-overlay {
-    #{ $self } {
-      &__container {
-        position: relative;
-      }
-
-      &__image-container {
-        &::after {
-          position: absolute;
-          top: 0;
-          right: 0;
-          bottom: 0;
-          left: 0;
-          content: "";
-          background: $marko-web-node-overlay-image-gradient;
+        &--body {
+          flex-direction: column;
         }
       }
-
-      &__header {
-        position: absolute;
-        top: 0;
-        right: 0;
-        left: 0;
-        padding: $marko-web-node-overlay-image-padding;
-      }
-
       &__body {
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        padding: $marko-web-node-overlay-image-padding;
-        color: $marko-web-node-overlay-image-link-color;
-        text-shadow: $marko-web-node-overlay-image-text-shadow;
-        // stylelint-disable-next-line
-        a {
-          color: $marko-web-node-overlay-image-link-color;
-          // stylelint-disable-next-line
-          &:hover {
-            color: $marko-web-node-overlay-image-link-color;
-          }
+        margin-right: $marko-web-node-spacer;
+        &--overlay {
+          margin-right: 0;
         }
       }
     }

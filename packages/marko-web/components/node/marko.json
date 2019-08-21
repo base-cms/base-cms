@@ -15,7 +15,9 @@
       "default-value": true
     },
     "@attrs": "object",
-    "@image-attrs": "object"
+    "@image-attrs": "object",
+    "@class": "string",
+    "@gradient": "boolean"
   },
   "<marko-web-node-image>": {
     "template": "image.marko",

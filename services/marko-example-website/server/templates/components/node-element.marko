@@ -1,0 +1,11 @@
+import { getAsArray } from "@base-cms/object-path";
+
+$ const block = input.blockName || "node";
+$ const element = `${block}__${input.name}`;
+$ const classNames = [element, ...getAsArray(input.mods).map(mod => `${element}--${mod}`)];
+
+<if(input.renderBody)>
+  <div class=classNames>
+    <${input.renderBody} />
+  </div>
+</if>
