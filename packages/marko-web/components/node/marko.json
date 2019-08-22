@@ -1,6 +1,65 @@
 {
+  "<marko-web-node>": {
+    "template": "./index.marko",
+    "<header>": {},
+    "<footer>": {},
+    "<body>": {}
+  },
+  "<marko-web-node-body>": {
+    "template": "./body.marko",
+    "<header>": {},
+    "<footer>": {}
+  },
+  "<marko-web-node-element>": {
+    "template": "./element.marko",
+    "@name": "string",
+    "@tag": {
+      "type": "string",
+      "default-value": "div"
+    },
+    "@block-name": {
+      "type": "string",
+      "default-value": "node"
+    },
+    "@modifiers": "array",
+    "@attrs": "object"
+  },
+  "<marko-web-node-header>": {
+    "template": "./header.marko",
+    "<left>": {
+      "@tag": "string",
+      "@modifiers": "array",
+      "@attrs": "object"
+    },
+    "<right>": {
+      "@tag": "string",
+      "@modifiers": "array",
+      "@attrs": "object"
+    },
+    "@tag": "string",
+    "@block-name": "string",
+    "@modifiers": "array",
+    "@attrs": "object"
+  },
+  "<marko-web-node-footer>": {
+    "template": "./footer.marko",
+    "<left>": {
+      "@tag": "string",
+      "@modifiers": "array",
+      "@attrs": "object"
+    },
+    "<right>": {
+      "@tag": "string",
+      "@modifiers": "array",
+      "@attrs": "object"
+    },
+    "@tag": "string",
+    "@block-name": "string",
+    "@modifiers": "array",
+    "@attrs": "object"
+  },
   "<marko-web-node-image-wrapper>": {
-    "template": "image-wrapper.marko",
+    "template": "./image-wrapper.marko",
     "@src": "string",
     "@alt": "string",
     "@ar": "string",
@@ -20,7 +79,7 @@
     "@gradient": "boolean"
   },
   "<marko-web-node-image>": {
-    "template": "image.marko",
+    "template": "./image.marko",
     "@src": "string",
     "@alt": "string",
     "@width": "number",
