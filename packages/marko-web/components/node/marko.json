@@ -78,6 +78,7 @@
   },
   "<marko-web-node-image-inner-wrapper>": {
     "template": "./image-inner-wrapper.marko",
+    "@block-name": "string",
     "@src": "string",
     "@alt": "string",
     "@ar": "string",

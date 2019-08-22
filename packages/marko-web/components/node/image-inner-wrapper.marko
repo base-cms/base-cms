@@ -1,16 +1,15 @@
-<!-- support imgix options -->
-<!-- link support -->
-<!-- pass other image options? -->
-<!-- placeholder -->
-
-import { get, getAsObject } from "@base-cms/object-path";
+import { get } from "@base-cms/object-path";
 import imageValues from "./utils/image-values";
 
-$ const element = "node__image-inner-wrapper";
+$ const blockName = input.blockName || "node";
+$ const element = `${blockName}__image-inner-wrapper`;
+
 $ const { width, height, modifier } = imageValues(input);
-$ const classNames = [element, input.class];
-$ if (modifier) classNames.push(`${element}--${modifier}`);
-$ if (input.gradient) classNames.push(`${element}--gradient`);
+
+$ const modifiers = [];
+$ if (modifier) modifiers.push(modifier);
+$ if (input.gradient) modifiers.push("gradient");
+$ const classNames = [element, ...modifiers.map(mod => `${element}--${mod}`), input.class];
 
 $ const {
   src,
