@@ -76,8 +76,8 @@
     "@modifiers": "array",
     "@attrs": "object"
   },
-  "<marko-web-node-image-wrapper>": {
-    "template": "./image-wrapper.marko",
+  "<marko-web-node-image-inner-wrapper>": {
+    "template": "./image-inner-wrapper.marko",
     "@src": "string",
     "@alt": "string",
     "@ar": "string",
