@@ -31,6 +31,7 @@ $ const context = {
     >
       <div class="row">
         <for|content, index| of=nodes>
+          $ const primaryImage = getAsObject(content, "primaryImage");
           <div class="mb-4 col-3">
             <node-card
               mods=["image-top"]
@@ -38,32 +39,6 @@ $ const context = {
               index=index
               image-options={ fluid: true, ar: "6:5", width: 200 }
             >
-              <!-- <@image /> -->
-
-              <!-- <@header>
-                <@left>Left</@left>
-                <@right>Right</@right>
-              </@header>
-
-              <@overlay>
-                <@header />
-                <@body>
-                  <@header />
-                  <@contents />
-                  <@footer />
-                </@body>
-              </@overlay>
-
-              <@body>
-                <@header />
-                <@contents />
-                <@footer />
-              </@body>
-
-              <@footer>
-                <@left>Left</@left>
-                <@right>Right</@right>
-              </@footer> -->
             </node-card>
           </div>
 
@@ -73,6 +48,13 @@ $ const context = {
                 <@left>Outer Left</@left>
                 <@right>Outer Right</@right>
               </@header>
+              <@image
+                src=primaryImage.src
+                alt=primaryImage.alt
+                fluid=true
+                ar="6:5"
+                width=200
+              />
               <@body>
                 <@header>
                   <@left>Body Left</@left>
@@ -99,6 +81,7 @@ $ const context = {
 
       <div class="row">
         <for|content, index| of=nodes>
+          $ const primaryImage = getAsObject(content, "primaryImage");
           <div class="mb-4 col-3">
             <node-card
               mods=["image-bottom"]
@@ -114,6 +97,13 @@ $ const context = {
                 <@left>Outer Left</@left>
                 <@right>Outer Right</@right>
               </@header>
+              <@image
+                src=primaryImage.src
+                alt=primaryImage.alt
+                fluid=true
+                ar="6:5"
+                width=200
+              />
               <@body>
                 <@header>
                   <@left>Body Left</@left>
@@ -140,6 +130,7 @@ $ const context = {
 
       <div class="row">
         <for|content, index| of=nodes>
+          $ const primaryImage = getAsObject(content, "primaryImage");
           <div class="mb-4 col-3">
             <node-card
               mods=["image-left"]
@@ -155,6 +146,12 @@ $ const context = {
                 <@left>Outer Left</@left>
                 <@right>Outer Right</@right>
               </@header>
+              <@image
+                src=primaryImage.src
+                alt=primaryImage.alt
+                ar="16:9"
+                width=150
+              />
               <@body>
                 <@header>
                   <@left>Body Left</@left>
@@ -181,6 +178,7 @@ $ const context = {
 
       <div class="row">
         <for|content, index| of=nodes>
+          $ const primaryImage = getAsObject(content, "primaryImage");
           <div class="mb-4 col-3">
             <node-card
               mods=["image-right"]
@@ -196,6 +194,12 @@ $ const context = {
                 <@left>Outer Left</@left>
                 <@right>Outer Right</@right>
               </@header>
+              <@image
+                src=primaryImage.src
+                alt=primaryImage.alt
+                ar="16:9"
+                width=150
+              />
               <@body>
                 <@header>
                   <@left>Body Left</@left>

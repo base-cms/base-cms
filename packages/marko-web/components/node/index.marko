@@ -18,6 +18,9 @@ $ const classNames = [blockName, ...modifiers.map(mod => `${blockName}--${mod}`)
   </if>
 
   <marko-web-node-element name="contents">
+    <if(input.image)>
+      <marko-web-node-image-wrapper ...input.image />
+    </if>
     <if(input.body)>
       <marko-web-node-body ...input.body />
     </if>

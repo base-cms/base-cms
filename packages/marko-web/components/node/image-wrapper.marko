@@ -1,0 +1,15 @@
+import imageValues from "./utils/image-values";
+
+$ const usePlaceholder = input.usePlaceholder == null ? true : input.usePlaceholder;
+$ const hasImage = Boolean(input.src);
+$ const { width, height } = imageValues(input);
+
+$ const style = [];
+$ if (width) style.push(`width: ${width}px;`);
+$ if (height) style.push(`height: ${height}px;`);
+
+<if(hasImage || usePlaceholder)>
+  <marko-web-node-element name="image-wrapper" block-name=input.blockName attrs={ style }>
+    <marko-web-node-image-inner-wrapper ...input />
+  </marko-web-node-element>
+</if>

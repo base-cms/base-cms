@@ -5,6 +5,7 @@
       "<left>": {},
       "<right>": {}
     },
+    "<image>": {},
     "<body>": {
       "<header>": {},
       "<footer>": {},
@@ -75,6 +76,33 @@
     "@block-name": "string",
     "@modifiers": "array",
     "@attrs": "object"
+  },
+  "<marko-web-node-image-wrapper>": {
+    "template": "./image-wrapper.marko",
+    "@block-name": "string",
+    "@src": "string",
+    "@alt": "string",
+    "@ar": {
+      "type": "string",
+      "default-value": "1:1"
+    },
+    "@fluid": "boolean",
+    "@width": {
+      "type": "number",
+      "default-value": 320
+    },
+    "@link": "object",
+    "@use-placeholder": "boolean",
+    "@options": "object",
+    "@is-logo": "boolean",
+    "@lazyload": {
+      "type": "boolean",
+      "default-value": true
+    },
+    "@attrs": "object",
+    "@image-attrs": "object",
+    "@class": "string",
+    "@gradient": "boolean"
   },
   "<marko-web-node-image-inner-wrapper>": {
     "template": "./image-inner-wrapper.marko",
