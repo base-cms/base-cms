@@ -38,9 +38,9 @@ $ const context = {
               index=index
               image-options={ fluid: true, ar: "6:5", width: 200 }
             >
-              <@image />
+              <!-- <@image /> -->
 
-              <@header>
+              <!-- <@header>
                 <@left>Left</@left>
                 <@right>Right</@right>
               </@header>
@@ -63,8 +63,31 @@ $ const context = {
               <@footer>
                 <@left>Left</@left>
                 <@right>Right</@right>
-              </@footer>
+              </@footer> -->
             </node-card>
+          </div>
+
+          <div class="mb-4 col-3">
+            <marko-web-node full-height=true>
+              <@header>
+                <@left>Outer Left</@left>
+                <@right>Outer Right</@right>
+              </@header>
+              <@body>
+                <@header>
+                  <@left>Body Left</@left>
+                  <@right>Body Right</@right>
+                </@header>
+                <@footer>
+                  <@left>Body Left</@left>
+                  <@right>Body Right</@right>
+                </@footer>
+              </@body>
+              <@footer>
+                <@left>Outer Left</@left>
+                <@right>Outer Right</@right>
+              </@footer>
+            </marko-web-node>
           </div>
         </for>
       </div>
@@ -82,6 +105,29 @@ $ const context = {
               image-options={ fluid: true, ar: "6:5", width: 200 }
             />
           </div>
+
+          <div class="mb-4 col-3">
+            <marko-web-node image-position="bottom" full-height=true>
+              <@header>
+                <@left>Outer Left</@left>
+                <@right>Outer Right</@right>
+              </@header>
+              <@body>
+                <@header>
+                  <@left>Body Left</@left>
+                  <@right>Body Right</@right>
+                </@header>
+                <@footer>
+                  <@left>Body Left</@left>
+                  <@right>Body Right</@right>
+                </@footer>
+              </@body>
+              <@footer>
+                <@left>Outer Left</@left>
+                <@right>Outer Right</@right>
+              </@footer>
+            </marko-web-node>
+          </div>
         </for>
       </div>
 
@@ -98,6 +144,29 @@ $ const context = {
               image-options={ fluid: false, ar: "16:9", width: 150 }
             />
           </div>
+
+          <div class="mb-4 col-3">
+            <marko-web-node image-position="left" full-height=true>
+              <@header>
+                <@left>Outer Left</@left>
+                <@right>Outer Right</@right>
+              </@header>
+              <@body>
+                <@header>
+                  <@left>Body Left</@left>
+                  <@right>Body Right</@right>
+                </@header>
+                <@footer>
+                  <@left>Body Left</@left>
+                  <@right>Body Right</@right>
+                </@footer>
+              </@body>
+              <@footer>
+                <@left>Outer Left</@left>
+                <@right>Outer Right</@right>
+              </@footer>
+            </marko-web-node>
+          </div>
         </for>
       </div>
 
@@ -113,6 +182,29 @@ $ const context = {
               index=index
               image-options={ fluid: false, ar: "16:9", width: 150 }
             />
+          </div>
+
+          <div class="mb-4 col-3">
+            <marko-web-node image-position="right" full-height=true>
+              <@header>
+                <@left>Outer Left</@left>
+                <@right>Outer Right</@right>
+              </@header>
+              <@body>
+                <@header>
+                  <@left>Body Left</@left>
+                  <@right>Body Right</@right>
+                </@header>
+                <@footer>
+                  <@left>Body Left</@left>
+                  <@right>Body Right</@right>
+                </@footer>
+              </@body>
+              <@footer>
+                <@left>Outer Left</@left>
+                <@right>Outer Right</@right>
+              </@footer>
+            </marko-web-node>
           </div>
         </for>
       </div>
