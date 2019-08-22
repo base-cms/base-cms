@@ -4,7 +4,7 @@ $ const blockName = input.blockName || "node";
 $ const tag = input.tag || "div";
 
 $ const image = getAsObject(input, "image");
-$ const imagePosition = image.position || "top";
+$ const imagePosition = input.imagePosition || "top";
 
 $ const modifiers = [`image-${imagePosition}`, ...getAsArray(input.modifiers)];
 $ if (input.flush) modifiers.push("flush");
