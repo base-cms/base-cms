@@ -294,10 +294,8 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
         }
       }
     }
-    &#{ $self }--image-flush {
-      #{ $self }__body {
-        padding-left: 0;
-      }
+    &#{ $self }--image-flush #{ $self }__image-wrapper + #{ $self }__body {
+      padding-left: 0;
     }
   }
 
@@ -337,10 +335,8 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
         }
       }
     }
-    &#{ $self }--image-flush {
-      #{ $self }__body {
-        padding-right: 0;
-      }
+    &#{ $self }--image-flush #{ $self }__image-wrapper + #{ $self }__body {
+      padding-right: 0;
     }
   }
 }
