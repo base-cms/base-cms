@@ -93,18 +93,24 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
     display: flex;
     flex-direction: row; // check for column vs row at small res
     justify-content: space-between;
-    margin-top: $marko-web-node-spacer;
+    margin-top: auto;
     &:empty {
       display: none;
     }
     &--body {
       margin-top: auto;
+      #{ $self } {
+        &__footer-left,
+        &__footer-right {
+          margin-top: 0;
+        }
+      }
     }
   }
 
   &__footer-left,
   &__footer-right {
-    margin-top: auto;
+    margin-top: $marko-web-node-spacer;
     &:empty {
       display: none;
     }
