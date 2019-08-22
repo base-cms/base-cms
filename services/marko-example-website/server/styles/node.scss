@@ -266,8 +266,10 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
 
   &--image-top {
     #{ $self } {
-      &__body {
+      &__image-wrapper + #{ $self }__body {
         margin-top: $marko-web-node-spacer;
+      }
+      &__body {
         &--overlay {
           margin-top: 0;
         }
@@ -283,8 +285,10 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
           flex-direction: column;
         }
       }
-      &__body {
+      &__image-wrapper + #{ $self }__body {
         margin-left: $marko-web-node-spacer;
+      }
+      &__body {
         &--overlay {
           margin-left: 0;
         }
@@ -305,8 +309,10 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
           flex-direction: column;
         }
       }
-      &__body {
+      &__image-wrapper + #{ $self }__body {
         margin-bottom: $marko-web-node-spacer;
+      }
+      &__body {
         &--overlay {
           margin-bottom: 0;
         }
@@ -322,8 +328,10 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
           flex-direction: column;
         }
       }
-      &__body {
+      &__image-wrapper + #{ $self }__body {
         margin-right: $marko-web-node-spacer;
+      }
+      &__body {
         &--overlay {
           margin-right: 0;
         }
