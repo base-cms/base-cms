@@ -27,7 +27,11 @@
       "@modifiers": "array",
       "@block-name": "string",
       "@attrs": "object"
-    }
+    },
+    "@block-name": "string",
+    "@tag": "string",
+    "@modifiers": "array",
+    "@attrs": "object"
   },
   "<marko-web-node-element>": {
     "template": "./element.marko",
@@ -78,9 +82,9 @@
     "@attrs": "object"
   },
   "<marko-web-node-image-wrapper>": {
-    "<header>": {},
-    "<footer>": {},
     "template": "./image-wrapper.marko",
+    "<header>": {},
+    "<body>": {},
     "@block-name": "string",
     "@src": "string",
     "@alt": "string",
