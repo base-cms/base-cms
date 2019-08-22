@@ -68,7 +68,7 @@ $ const context = {
           </div>
 
           <div class="mb-4 col-3">
-            <marko-web-node full-height=true>
+            <marko-web-node full-height=true flush=(index === 3) image-flush=(index === 2)>
               <@header>
                 <@left>Outer Left</@left>
                 <@right>Outer Right</@right>
@@ -78,6 +78,8 @@ $ const context = {
                   <@left>Body Left</@left>
                   <@right>Body Right</@right>
                 </@header>
+                <@title tag="h5">${content.shortName}</@title>
+                <@text tag="p">${content.teaser}</@text>
                 <@footer>
                   <@left>Body Left</@left>
                   <@right>Body Right</@right>
@@ -107,7 +109,7 @@ $ const context = {
           </div>
 
           <div class="mb-4 col-3">
-            <marko-web-node image-position="bottom" full-height=true>
+            <marko-web-node image-position="bottom" full-height=true flush=(index === 3) image-flush=(index === 2)>
               <@header>
                 <@left>Outer Left</@left>
                 <@right>Outer Right</@right>
@@ -117,6 +119,8 @@ $ const context = {
                   <@left>Body Left</@left>
                   <@right>Body Right</@right>
                 </@header>
+                <@title tag="h5">${content.shortName}</@title>
+                <@text tag="p">${content.teaser}</@text>
                 <@footer>
                   <@left>Body Left</@left>
                   <@right>Body Right</@right>
@@ -146,7 +150,7 @@ $ const context = {
           </div>
 
           <div class="mb-4 col-3">
-            <marko-web-node image-position="left" full-height=true>
+            <marko-web-node image-position="left" full-height=true flush=(index === 3) image-flush=(index === 2)>
               <@header>
                 <@left>Outer Left</@left>
                 <@right>Outer Right</@right>
@@ -156,6 +160,8 @@ $ const context = {
                   <@left>Body Left</@left>
                   <@right>Body Right</@right>
                 </@header>
+                <@title tag="h5">${content.shortName}</@title>
+                <@text tag="p">${content.teaser}</@text>
                 <@footer>
                   <@left>Body Left</@left>
                   <@right>Body Right</@right>
@@ -185,7 +191,7 @@ $ const context = {
           </div>
 
           <div class="mb-4 col-3">
-            <marko-web-node image-position="right" full-height=true>
+            <marko-web-node image-position="right" full-height=true flush=(index === 3) image-flush=(index === 2)>
               <@header>
                 <@left>Outer Left</@left>
                 <@right>Outer Right</@right>
@@ -195,6 +201,8 @@ $ const context = {
                   <@left>Body Left</@left>
                   <@right>Body Right</@right>
                 </@header>
+                <@title tag="h5">${content.shortName}</@title>
+                <@text tag="p">${content.teaser}</@text>
                 <@footer>
                   <@left>Body Left</@left>
                   <@right>Body Right</@right>
