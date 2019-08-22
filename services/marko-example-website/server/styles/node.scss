@@ -163,7 +163,7 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
     }
   }
 
-  &__overlay {
+  &__image-wrapper {
     position: relative;
     color: #fff;
     text-shadow: $marko-web-node-overlay-image-text-shadow;
@@ -172,7 +172,7 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
     }
   }
 
-  &__image-wrapper {
+  &__image-inner-wrapper {
     display: inline-block;
 
     &--gradient {

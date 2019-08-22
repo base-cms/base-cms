@@ -15,10 +15,6 @@ $ if (index === 2) mods.push("image-flush");
 $ const classNames = [blockName, ...mods.map(mod => `${blockName}--${mod}`)];
 
 <div class=classNames>
-  <!-- <if(input.header)>
-    <node-header ...input.header />
-  </if> -->
-
   <div class="node__header">
     <div class="node__header-left">Outer Left</div>
     <div class="node__header-right">Outer Right</div>
@@ -30,7 +26,7 @@ $ const classNames = [blockName, ...mods.map(mod => `${blockName}--${mod}`)];
     $ const style = [];
     $ if (width) style.push(`width: ${width}px;`);
     $ if (height) style.push(`height: ${height}px;`);
-    <div class="node__overlay" style=style>
+    <div class="node__image-wrapper" style=style>
       <!-- overlay needs image height/width -->
       <marko-web-node-image-wrapper
         ...imageOptions
@@ -113,8 +109,4 @@ $ const classNames = [blockName, ...mods.map(mod => `${blockName}--${mod}`)];
     <div class="node__footer-left">Outer Left</div>
     <div class="node__footer-right">Outer Right</div>
   </div>
-
-  <!-- <if(input.footer)>
-    <node-footer ...input.footer />
-  </if> -->
 </div>

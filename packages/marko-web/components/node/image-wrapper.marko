@@ -6,7 +6,7 @@
 import { get, getAsObject } from "@base-cms/object-path";
 import imageValues from "./utils/image-values";
 
-$ const element = "node__image-wrapper";
+$ const element = "node__image-inner-wrapper";
 $ const { width, height, modifier } = imageValues(input);
 $ const classNames = [element, input.class];
 $ if (modifier) classNames.push(`${element}--${modifier}`);
