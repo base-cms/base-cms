@@ -1,3 +1,4 @@
+import { getAsArray } from "@base-cms/object-path";
 import imageValues from "./utils/image-values";
 
 $ const usePlaceholder = input.usePlaceholder == null ? true : input.usePlaceholder;
@@ -8,8 +9,14 @@ $ const style = [];
 $ if (width) style.push(`width: ${width}px;`);
 $ if (height) style.push(`height: ${height}px;`);
 
+$ const { header } = input;
+$ delete input.header;
+
 <if(hasImage || usePlaceholder)>
   <marko-web-node-element name="image-wrapper" block-name=input.blockName attrs={ style }>
     <marko-web-node-image-inner-wrapper ...input />
+    <if(header)>
+      <marko-web-node-header ...header modifiers=["overlay", getAsArray(header, "modifiers")] />
+    </if>
   </marko-web-node-element>
 </if>

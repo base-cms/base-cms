@@ -78,6 +78,8 @@
     "@attrs": "object"
   },
   "<marko-web-node-image-wrapper>": {
+    "<header>": {},
+    "<footer>": {},
     "template": "./image-wrapper.marko",
     "@block-name": "string",
     "@src": "string",
