@@ -1,14 +1,32 @@
 {
   "<marko-web-node>": {
     "template": "./index.marko",
-    "<header>": {},
-    "<footer>": {},
-    "<body>": {}
+    "<header>": {
+      "<left>": {},
+      "<right>": {}
+    },
+    "<body>": {
+      "<header>": {},
+      "<footer>": {},
+      "<title>": {},
+      "@text <text>[]": {}
+    },
+    "<footer>": {
+      "<left>": {},
+      "<right>": {}
+    }
   },
   "<marko-web-node-body>": {
     "template": "./body.marko",
     "<header>": {},
-    "<footer>": {}
+    "<footer>": {},
+    "<title>": {},
+    "@text <text>[]": {
+      "@tag": "string",
+      "@modifiers": "array",
+      "@block-name": "string",
+      "@attrs": "object"
+    }
   },
   "<marko-web-node-element>": {
     "template": "./element.marko",
