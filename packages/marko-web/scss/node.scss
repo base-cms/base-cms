@@ -233,7 +233,7 @@ $marko-web-node-placeholder-image-opacity:      .2 !default;
           }
         }
       }
-      // Add the inverse types.
+      // Add the inverse ratios (16by9 becomes 9by16, 4by3 becomes 3by4, etc)
       @if $x != $y {
         &--fluid-#{$y}by#{$x} {
           @include marko-web-node-fluid-image($y, $x);
