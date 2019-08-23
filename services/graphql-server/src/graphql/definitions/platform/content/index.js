@@ -14,6 +14,7 @@ extend type Query {
   magazineScheduledContent(input: MagazineScheduledContentQueryInput = {}): ContentConnection!
   websiteScheduledContent(input: WebsiteScheduledContentQueryInput = {}): ContentConnection!
   relatedPublishedContent(input: RelatedPublishedContentQueryInput = {}): ContentConnection!
+  websiteExpiringContent(input: WebsiteExpiringContentQueryInput = {}): ContentConnection!
 }
 
 enum GateableUserRole {
@@ -211,6 +212,18 @@ input MagazineScheduledContentQueryInput {
   excludeContentTypes: [ContentType!] = []
   includeContentTypes: [ContentType!] = []
   requiresImage: Boolean = false
+  pagination: PaginationInput = {}
+}
+
+input WebsiteExpiringContentQueryInput {
+  before: Date
+  after: Date
+  sectionId: Int
+  optionId: Int
+  excludeContentIds: [Int!] = []
+  excludeSectionIds: [Int!] = []
+  excludeContentTypes: [ContentType!] = []
+  includeContentTypes: [ContentType!] = []
   pagination: PaginationInput = {}
 }
 
