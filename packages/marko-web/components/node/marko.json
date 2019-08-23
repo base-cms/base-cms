@@ -15,7 +15,16 @@
     "<footer>": {
       "<left>": {},
       "<right>": {}
-    }
+    },
+    "@block-name": "string",
+    "@tag": "string",
+    "@image-position": "string",
+    "@flush": "boolean",
+    "@image-flush": "boolean",
+    "@full-height": "boolean",
+    "@class": "string",
+    "@attrs": "object",
+    "@modifiers": "array"
   },
   "<marko-web-node-body>": {
     "template": "./body.marko",
