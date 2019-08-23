@@ -7,7 +7,6 @@ $marko-web-node-image-aspect-ratios: join(
     (16 9),
     (6 5),
     (4 3),
-    (3 4),
     (3 2),
     (2 1),
     (1 1),
@@ -228,6 +227,17 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
         #{ $self } {
           &__image {
             @include marko-web-embed-responsive-item();
+          }
+        }
+      }
+      // Add the inverse types.
+      @if $x != $y {
+        &--fluid-#{$y}by#{$x} {
+          @include marko-web-embed-responsive($y, $x);
+          #{ $self } {
+            &__image {
+              @include marko-web-embed-responsive-item();
+            }
           }
         }
       }
