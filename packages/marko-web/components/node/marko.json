@@ -108,7 +108,8 @@
     "@attrs": "object",
     "@image-attrs": "object",
     "@class": "string",
-    "@gradient": "boolean"
+    "@gradient": "boolean",
+    "@align": "boolean"
   },
   "<marko-web-node-image-inner-wrapper>": {
     "template": "./image-inner-wrapper.marko",

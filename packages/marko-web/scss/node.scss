@@ -90,7 +90,7 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
 
   &__footer {
     display: flex;
-    flex-direction: row; // check for column vs row at small res
+    flex-direction: row;
     justify-content: space-between;
     margin-top: auto;
     &:empty {
@@ -169,6 +169,16 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
     a {
       color: #fff;
     }
+
+    &--align-middle {
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+
+    &--align-center {
+      margin-right: auto;
+      margin-left: auto;
+    }
   }
 
   &__image-inner-wrapper {
@@ -203,18 +213,6 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
       //     @include marko-web-node-fluid-image-item();
       //   }
       // }
-    }
-
-    // need to add option to comp
-    &--align-middle {
-      margin-top: auto;
-      margin-bottom: auto;
-    }
-
-    // need to add option to comp
-    &--align-center {
-      margin-right: auto;
-      margin-left: auto;
     }
 
     // keep

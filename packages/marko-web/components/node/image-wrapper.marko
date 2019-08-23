@@ -9,12 +9,16 @@ $ const style = [];
 $ if (width) style.push(`width: ${width}px;`);
 $ if (height) style.push(`height: ${height}px;`);
 
-$ const { header, body } = input;
+$ const { header, body, align } = input;
 $ delete input.header;
 $ delete input.body;
+$ delete input.align;
+
+$ const modifiers = [];
+$ if (align) modifiers.push(`align-${align}`);
 
 <if(hasImage || usePlaceholder)>
-  <marko-web-node-element name="image-wrapper" block-name=input.blockName attrs={ style }>
+  <marko-web-node-element name="image-wrapper" block-name=input.blockName attrs={ style } modifiers=modifiers>
     <marko-web-node-image-inner-wrapper ...input />
     <if(header)>
       <marko-web-node-header ...header modifiers=["overlay", getAsArray(header, "modifiers")] />
