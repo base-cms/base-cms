@@ -22,7 +22,7 @@ $marko-web-node-overlay-image-gradient:     linear-gradient(to top, rgba(0, 0, 0
 $marko-web-node-overlay-image-link-color:   #fff !default;
 $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !default;
 
-@mixin marko-web-embed-responsive($ratio-x, $ratio-y) {
+@mixin marko-web-node-fluid-image($ratio-x, $ratio-y) {
   position: relative;
   display: block;
   width: 100%;
@@ -38,7 +38,7 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
   }
 }
 
-@mixin marko-web-embed-responsive-item() {
+@mixin marko-web-node-fluid-image-item() {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -197,10 +197,10 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
       // @todo test image placeholders!
       // #{ $self } {
       //   &__image {
-      //     @include marko-web-embed-responsive-item();
+      //     @include marko-web-node-fluid-image-item();
       //   }
       //   &__image-placeholder {
-      //     @include marko-web-embed-responsive-item();
+      //     @include marko-web-node-fluid-image-item();
       //   }
       // }
     }
@@ -223,20 +223,20 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
       $y: nth($ar, 2);
 
       &--fluid-#{$x}by#{$y} {
-        @include marko-web-embed-responsive($x, $y);
+        @include marko-web-node-fluid-image($x, $y);
         #{ $self } {
           &__image {
-            @include marko-web-embed-responsive-item();
+            @include marko-web-node-fluid-image-item();
           }
         }
       }
       // Add the inverse types.
       @if $x != $y {
         &--fluid-#{$y}by#{$x} {
-          @include marko-web-embed-responsive($y, $x);
+          @include marko-web-node-fluid-image($y, $x);
           #{ $self } {
             &__image {
-              @include marko-web-embed-responsive-item();
+              @include marko-web-node-fluid-image-item();
             }
           }
         }
