@@ -14,6 +14,7 @@ extend type Query {
   magazineScheduledContent(input: MagazineScheduledContentQueryInput = {}): ContentConnection!
   websiteScheduledContent(input: WebsiteScheduledContentQueryInput = {}): ContentConnection!
   relatedPublishedContent(input: RelatedPublishedContentQueryInput = {}): ContentConnection!
+  websiteExpiringContent(input: WebsiteExpiringContentQueryInput = {}): ContentConnection!
 }
 
 enum GateableUserRole {
@@ -146,6 +147,15 @@ type ContentStubLocation {
   longitude: Float
 }
 
+type ContentWebsiteSchedule {
+  section: WebsiteSection @refOne(loader: "websiteSection", localField: "sectionId")
+  option: WebsiteOption @refOne(loader: "websiteOption", localField: "optionId")
+  start: Date
+  startDate(input: FormatDate = {}): String @momentFormat(localField: "start")
+  end: Date
+  endDate(input: FormatDate = {}): String @momentFormat(localField: "end")
+}
+
 input ContentQueryInput {
   status: ModelStatus = active
   id: Int!
@@ -211,6 +221,18 @@ input MagazineScheduledContentQueryInput {
   excludeContentTypes: [ContentType!] = []
   includeContentTypes: [ContentType!] = []
   requiresImage: Boolean = false
+  pagination: PaginationInput = {}
+}
+
+input WebsiteExpiringContentQueryInput {
+  before: Date
+  after: Date
+  sectionId: Int
+  optionId: Int
+  excludeContentIds: [Int!] = []
+  excludeSectionIds: [Int!] = []
+  excludeContentTypes: [ContentType!] = []
+  includeContentTypes: [ContentType!] = []
   pagination: PaginationInput = {}
 }
 

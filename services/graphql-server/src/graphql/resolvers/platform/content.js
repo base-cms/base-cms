@@ -321,6 +321,71 @@ module.exports = {
     },
 
     /**
+     * Retrieves expiring (or expired) website scheduled content.
+     *
+     * Date range examples (a before or after _must_ be provided):
+     *
+     * - Expiring/expired between Aug 1 and Aug 31: `before: Aug 31` and `after: Aug 1`
+     * - Expiring/expired after Aug 31: `after: Aug 31`
+     * - Expiring/expire before Aug 1: `before: Aug 1`
+     *
+     */
+    websiteExpiringContent: async (_, { input }, { basedb }, info) => {
+      const {
+        before,
+        after,
+        sectionId,
+        optionId,
+        excludeContentIds,
+        excludeSectionIds,
+        includeContentTypes,
+        excludeContentTypes,
+        pagination,
+      } = input;
+
+      if (!sectionId && !optionId) throw new UserInputError('Either a sectionId or optionId input must be provided.');
+      if (!before && !after) throw new UserInputError('Either a sectionId or optionId input must be provided.');
+
+      const defaultOption = await optionId ? null : getDefaultOption(basedb);
+      const $elemMatch = {
+        optionId: defaultOption ? defaultOption._id : optionId,
+        $and: [],
+      };
+      if (before) $elemMatch.$and.push({ end: { $lte: before } });
+      if (after) $elemMatch.$and.push({ end: { $gte: after } });
+      if (sectionId) $elemMatch.sectionId = sectionId;
+      if (excludeSectionIds.length) {
+        $elemMatch.$and.push({ sectionId: { $nin: excludeSectionIds } });
+      }
+
+      const query = { sectionQuery: { $elemMatch } };
+
+      if (includeContentTypes.length) {
+        if (!isArray(query.$and)) query.$and = [];
+        query.$and.push({ type: { $in: includeContentTypes } });
+      } else {
+        if (!isArray(query.$and)) query.$and = [];
+        query.$and.push({ type: { $in: getDefaultContentTypes() } });
+      }
+      if (excludeContentTypes.length) {
+        if (!isArray(query.$and)) query.$and = [];
+        query.$and.push({ type: { $nin: excludeContentTypes } });
+      }
+      if (excludeContentIds.length) {
+        query._id = { $nin: excludeContentIds };
+      }
+
+      const projection = connectionProjection(info);
+      return basedb.paginate('platform.Content', {
+        query,
+        sort: { field: 'sectionQuery.0.end', order: 'desc' },
+        projection: { 'sectionQuery.$.end': 1, ...projection },
+        excludeProjection: ['sectionQuery.end'],
+        ...pagination,
+      });
+    },
+
+    /**
      *
      */
     websiteScheduledContent: async (_, { input }, { basedb }, info) => {

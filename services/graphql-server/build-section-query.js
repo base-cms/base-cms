@@ -100,6 +100,7 @@ const run = async () => {
     contentColl.createIndex({ 'sectionQuery.sectionId': 1, 'sectionQuery.optionId': 1 }),
     contentColl.createIndex({ 'sectionQuery.sectionId': 1, 'sectionQuery.optionId': 1, primaryImage: 1 }),
     contentColl.createIndex({ 'sectionQuery.start': -1, _id: -1 }),
+    contentColl.createIndex({ 'sectionQuery.end': -1, _id: -1 }),
   ]);
   log('Indexing complete.');
 
