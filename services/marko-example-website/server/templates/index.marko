@@ -19,16 +19,64 @@ $ const context = {
     <marko-web-gam-head />
     <marko-web-gtm-init container-id=site.get('gtm.containerId') push=context start=true />
   </@head>
-  <marko-web-page-container for="home" class="container-fluid">
-    <h1>Homepage</h1>
-    $ const block = 'content-list';
-
+  <marko-web-page-container for="home" class="container-fluid-max">
 
     <marko-web-query-website-scheduled-content|{ nodes }|
       query-fragment=queryFragment
       section-id=section.id
       limit=4
     >
+      $ const heroNode = nodes[0];
+      $ const listNodes = nodes.slice(1);
+      <div class="row">
+        <div class="col-8">
+          <marko-web-node full-height=true>
+            <@image
+              src=get(heroNode, "primaryImage.src")
+              alt=get(heroNode, "primaryImage.alt")
+              fluid=true
+              ar="16:9"
+              width=750
+              link={ href: heroNode.canonicalPath }
+            />
+            <@body>
+              <@title tag="h5">
+                <marko-web-text
+                  asHTML=true
+                  value=heroNode.shortName
+                  tag=null
+                  link={ href: heroNode.canonicalPath }
+                />
+              </@title>
+              <@text tag="p">
+                <marko-web-text
+                  asHTML=true
+                  value=heroNode.teaser
+                  tag=null
+                />
+              </@text>
+              <@footer>
+                <@left>
+                  <marko-web-text
+                    value=get(heroNode, "primarySection.name")
+                    tag="span"
+                    link={ href: get(heroNode, "primarySection.canonicalPath") }
+                  />
+                  <marko-web-date
+                    value=heroNode.published
+                    tag="span"
+                  />
+                </@left>
+              </@footer>
+            </@body>
+          </marko-web-node>
+        </div>
+        <div class="col-4">
+          <marko-web-node-list nodes=listNodes />
+        </div>
+      </div>
+
+
       <div class="row">
         <for|content, index| of=nodes>
           $ const primaryImage = getAsObject(content, "primaryImage");

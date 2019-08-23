@@ -8,6 +8,14 @@ $site-font-family-serif: "PT Serif", serif !default;
 @import "embedded-media";
 @import "bootstrap";
 
+.container-fluid-max {
+  @include make-container();
+  @include media-breakpoint-up(xl, $grid-breakpoints) {
+    max-width: map-get($grid-breakpoints, xl);
+  }
+  position: relative;
+}
+
 .content-card {
   &__content-short-name {
     margin-top: map-get($spacers, 3);
