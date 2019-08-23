@@ -147,6 +147,15 @@ type ContentStubLocation {
   longitude: Float
 }
 
+type ContentWebsiteSchedule {
+  section: WebsiteSection @refOne(loader: "websiteSection", localField: "sectionId")
+  option: WebsiteOption @refOne(loader: "websiteOption", localField: "optionId")
+  start: Date
+  startDate(input: FormatDate = {}): String @momentFormat(localField: "start")
+  end: Date
+  endDate(input: FormatDate = {}): String @momentFormat(localField: "end")
+}
+
 input ContentQueryInput {
   status: ModelStatus = active
   id: Int!
