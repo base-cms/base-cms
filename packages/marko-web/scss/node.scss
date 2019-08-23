@@ -215,7 +215,6 @@ $marko-web-node-overlay-image-text-shadow:  1px 1px 4px rgba(0, 0, 0, .65) !defa
       // }
     }
 
-    // keep
     @each $ar in $marko-web-node-image-aspect-ratios {
       $x: nth($ar, 1);
       $y: nth($ar, 2);
