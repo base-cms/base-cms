@@ -3,6 +3,7 @@
     "./element/marko.json",
     "./elements/marko.json",
     "./node/marko.json",
+    "./node-list/marko.json",
     "./page/marko.json",
     "./queries/marko.json"
   ],

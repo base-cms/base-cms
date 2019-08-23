@@ -1,0 +1,28 @@
+{
+  "<marko-web-node-list>": {
+    "template": "./index.marko",
+    "@block-name": {
+      "type": "string",
+      "default-value": "node-list"
+    },
+    "@tag": {
+      "type": "string",
+      "default-value": "div"
+    },
+    "@nodes": "array",
+    "@justified": {
+      "type": "boolean",
+      "default-value": false
+    },
+    "@flush":  {
+      "type": "boolean",
+      "default-value": false
+    },
+    "@full-height": {
+      "type": "boolean",
+      "default-value": false
+    },
+    "@class": "string",
+    "@modifiers": "array"
+  }
+}

@@ -1,0 +1,71 @@
+$marko-web-node-list-spacer: .75rem !default;
+
+.node-list {
+  $self: &;
+  display: flex;
+  flex-direction: column;
+  min-height: auto;
+
+  &__header {
+    &:empty {
+      display: none;
+    }
+    > :last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__footer {
+    margin-top: auto;
+    &:empty {
+      display: none;
+    }
+    > :first-child {
+      margin-top: 0;
+    }
+  }
+
+  &__header,
+  &__footer,
+  &__body {
+    padding: $marko-web-node-list-spacer;
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__header,
+  &__footer,
+  &__item,
+  &__body {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+  }
+
+  &--full-height {
+    height: 100%;
+  }
+
+  &--justified {
+    height: 100%;
+    #{ $self } {
+      &__items {
+        flex-grow: 1;
+        justify-content: space-between;
+      }
+    }
+  }
+
+  &--flush {
+    #{ $self } {
+      &__header,
+      &__footer,
+      &__body {
+        padding: 0;
+      }
+    }
+  }
+}
