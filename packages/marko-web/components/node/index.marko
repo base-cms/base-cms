@@ -3,9 +3,8 @@ import { getAsArray } from "@base-cms/object-path";
 $ const blockName = input.blockName || "node";
 $ const tag = input.tag || "div";
 
-$ const imagePosition = input.imagePosition || "top";
-
-$ const modifiers = [`image-${imagePosition}`, ...getAsArray(input.modifiers)];
+$ const modifiers = [...getAsArray(input.modifiers)];
+$ if (input.imagePosition) modifiers.push(`image-${input.imagePosition}`);
 $ if (input.flush) modifiers.push("flush");
 $ if (input.flushX) modifiers.push("flush-x");
 $ if (input.flushY) modifiers.push("flush-y");

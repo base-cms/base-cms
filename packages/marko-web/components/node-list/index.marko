@@ -1,29 +1,33 @@
 import { getAsArray, get } from "@base-cms/object-path";
+import shouldCollapse from "../../utils/should-collapse";
 
 $ const blockName = input.blockName || "node-list";
 $ const tag = input.tag || "div";
 $ const nodes = getAsArray(input, "nodes");
 $ const justified = get(input, "justified", false);
+$ const innerJustified = get(input, "innerJustified", false);
 
 $ const modifiers = [...getAsArray(input.modifiers)];
 $ if (input.flush) modifiers.push("flush");
 $ if (input.fullHeight) modifiers.push("full-height");
 $ if (justified) modifiers.push("justified");
+$ if (innerJustified) modifiers.push("inner-justified");
+
+$ const collapsible = shouldCollapse(input.collapsible);
 
 $ const classNames = [blockName, ...modifiers.map(mod => `${blockName}--${mod}`), input.class];
 
-<if(nodes.length)>
+<if(nodes.length || !collapsible)>
   <div ...input.attrs class=classNames>
     <if(input.header)>
       <marko-web-node-list-element ...input.header name="header" />
-      <!-- <marko-web-node-header ...input.header /> -->
     </if>
-    <if(input.description)>
-      <!-- <marko-web-node-header ...input.header /> -->
+    <if(input.body)>
+      <marko-web-node-list-element ...input.body name="body" />
     </if>
-    <for|node| of=nodes>
-      <span>${node.id}</span>
-    </for>
+    <if(input.render)>
+      <marko-web-node-list-render ...input.render nodes=nodes />
+    </if>
     <if(input.footer)>
       <marko-web-node-list-element ...input.footer name="footer" />
     </if>

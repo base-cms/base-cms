@@ -1,15 +1,30 @@
-$marko-web-node-list-spacer: .75rem !default;
+$marko-web-node-list-enable-borders:  true !default;
+
+$marko-web-node-list-spacer:          .75rem !default;
+$marko-web-node-list-bg-color:        #fff !default;
+$marko-web-node-list-border-width:    1px !default;
+$marko-web-node-list-border-color:    rgba(0, 0, 0, .125) !default;
+
+@mixin marko-web-node-list-border(
+  $property,
+  $enabled: $marko-web-node-list-enable-borders,
+  $width: $marko-web-node-list-border-width,
+  $color: $marko-web-node-list-border-color
+) {
+  @if $enabled {
+    #{ $property }: $width solid $color;
+  }
+}
 
 .node-list {
   $self: &;
   display: flex;
   flex-direction: column;
   min-height: auto;
+  background-color: $marko-web-node-list-bg-color;
+  @include marko-web-node-list-border($property: border);
 
   &__header {
-    &:empty {
-      display: none;
-    }
     > :last-child {
       margin-bottom: 0;
     }
@@ -17,9 +32,6 @@ $marko-web-node-list-spacer: .75rem !default;
 
   &__footer {
     margin-top: auto;
-    &:empty {
-      display: none;
-    }
     > :first-child {
       margin-top: 0;
     }
@@ -28,33 +40,58 @@ $marko-web-node-list-spacer: .75rem !default;
   &__header,
   &__footer,
   &__body {
-    padding: $marko-web-node-list-spacer;
-  }
-
-  &__items {
-    display: flex;
-    flex-direction: column;
-  }
-
-  &__header,
-  &__footer,
-  &__item,
-  &__body {
     position: relative;
     display: flex;
     flex-direction: row;
+    padding: $marko-web-node-list-spacer;
+    @include marko-web-node-list-border($property: border-bottom);
+    &:empty {
+      display: none;
+    }
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &__nodes {
+    display: flex;
+    flex-direction: column;
+    @include marko-web-node-list-border($property: border-bottom);
+    &:empty {
+      display: none;
+    }
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &__node {
+    @include marko-web-node-list-border($property: border-bottom);
+    &:last-child {
+      border-bottom: none;
+    }
   }
 
   &--full-height {
     height: 100%;
   }
 
-  &--justified {
+  &--justified,
+  &--inner-justified {
     height: 100%;
     #{ $self } {
-      &__items {
+      &__nodes {
         flex-grow: 1;
         justify-content: space-between;
+      }
+    }
+  }
+
+  &--inner-justified {
+    #{ $self } {
+      &__node {
+        display: flex;
+        flex-grow: 1;
       }
     }
   }

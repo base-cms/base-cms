@@ -3,6 +3,8 @@
     "template": "./index.marko",
     "<header>": {},
     "<footer>": {},
+    "<body>": {},
+    "<render>": {},
     "@block-name": {
       "type": "string",
       "default-value": "node-list"
@@ -16,6 +18,10 @@
       "type": "boolean",
       "default-value": false
     },
+    "@inner-justified": {
+      "type": "boolean",
+      "default-value": false
+    },
     "@flush":  {
       "type": "boolean",
       "default-value": false
@@ -24,9 +30,16 @@
       "type": "boolean",
       "default-value": false
     },
+    "@collapsible": {
+      "type": "boolean",
+      "default-value": true
+    },
     "@class": "string",
     "@modifiers": "array",
     "@attrs": "object"
+  },
+  "<marko-web-node-list-render>": {
+    "template": "./render.marko"
   },
   "<marko-web-node-list-element>": {
     "template": "./element.marko",
