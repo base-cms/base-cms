@@ -26,7 +26,6 @@ $marko-web-node-placeholder-image-bg-color:     #007bff !default;
 $marko-web-node-placeholder-image-bg-position:  .5rem .5rem !default;
 $marko-web-node-placeholder-image-opacity:      .2 !default;
 
-
 @mixin marko-web-node-fluid-image($ratio-x, $ratio-y) {
   position: relative;
   display: block;
