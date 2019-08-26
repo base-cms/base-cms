@@ -2,17 +2,17 @@ import { getAsObject, get } from '@base-cms/object-path';
 
 $ const node = getAsObject(input, "node");
 
-<marko-web-node full-height=true flush=true image-position="top">
+<marko-web-node flush=true image-position="left">
   <@image
     src=get(node, "primaryImage.src")
     alt=get(node, "primaryImage.alt")
-    fluid=true
+    fluid=false
     ar="16:9"
-    width=750
+    width=128
     link={ href: node.canonicalPath }
   />
   <@body>
-    <@title tag="h5">
+    <@title tag="h6">
       <marko-web-text
         asHTML=true
         value=node.shortName
@@ -20,13 +20,6 @@ $ const node = getAsObject(input, "node");
         link={ href: node.canonicalPath }
       />
     </@title>
-    <@text tag="p">
-      <marko-web-text
-        asHTML=true
-        value=node.teaser
-        tag=null
-      />
-    </@text>
     <@footer>
       <@left tag="small">
         <marko-web-text

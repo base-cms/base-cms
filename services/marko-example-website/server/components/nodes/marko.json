@@ -2,6 +2,9 @@
   "<site-list-node-no-image>": {
     "template": "./list-no-image.marko"
   },
+  "<site-list-node-with-image>": {
+    "template": "./list-with-image.marko"
+  },
   "<site-hero-node>": {
     "template": "./hero.marko"
   }

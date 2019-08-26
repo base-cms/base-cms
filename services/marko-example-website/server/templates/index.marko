@@ -20,6 +20,7 @@ $ const context = {
       slots={
         'gpt-ad-bs': GAM.getAdUnit({ name: 'BS' }),
         'gpt-ad-mr': GAM.getAdUnit({ name: 'MR' }),
+        'gpt-ad-hp': GAM.getAdUnit({ name: 'HP' }),
       }
     />
     <marko-web-gtm-init container-id=site.get('gtm.containerId') push=context start=true />
@@ -29,13 +30,14 @@ $ const context = {
 
       <marko-web-gam-display-ad id="gpt-ad-bs" class="text-center mb-4" />
 
+      <!-- "Hero" block -->
       <marko-web-query-website-optioned-content|{ nodes }|
         section-id=section.id
         option-id=40097
         query-fragment=queryFragment
         requires-image=true
         exclude-content-type=["Company", "Contact"]
-        limit=6
+        limit=7
       >
         $ const heroNodes = nodes.slice(0, 1);
         $ const listNodes = nodes.slice(1);
@@ -98,6 +100,33 @@ $ const context = {
           </div>
         </div>
       </marko-web-query-website-optioned-content>
+
+      <div class="row">
+        <div class="col-lg-4">
+          <marko-web-query-website-scheduled-content|{ nodes }|
+            section-id=section.id
+            exclude-content-type=["Company", "Contact"]
+            query-fragment=queryFragment
+            limit=5
+            skip=7
+          >
+            <marko-web-node-list inner-justified=true>
+              <@header>Latest</@header>
+              <@nodes nodes=nodes>
+                <@slot|{ node }|>
+                  <site-list-node-with-image node=node />
+                </@slot>
+              </@nodes>
+            </marko-web-node-list>
+
+          </marko-web-query-website-scheduled-content>
+        </div>
+
+        <div class="col-lg-4">
+          <marko-web-gam-display-ad id="gpt-ad-hp" class="text-center my-auto" />
+        </div>
+      </div>
+
     </marko-web-page-container>
   </div>
 
