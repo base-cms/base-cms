@@ -24,13 +24,13 @@ $ const context = {
     <marko-web-query-website-scheduled-content|{ nodes }|
       query-fragment=queryFragment
       section-id=section.id
-      limit=4
+      limit=6
     >
       $ const heroNode = nodes[0];
       $ const listNodes = nodes.slice(1);
       <div class="row">
         <div class="col-8">
-          <marko-web-node full-height=true>
+          <marko-web-node full-height=true flush-y=true>
             <@image
               src=get(heroNode, "primaryImage.src")
               alt=get(heroNode, "primaryImage.alt")
@@ -72,7 +72,10 @@ $ const context = {
           </marko-web-node>
         </div>
         <div class="col-4">
-          <marko-web-node-list nodes=listNodes />
+          <marko-web-node-list nodes=listNodes>
+            <@header>Header</@header>
+            <@footer>Footer</@footer>
+          </marko-web-node-list>
         </div>
       </div>
 
