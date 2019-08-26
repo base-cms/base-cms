@@ -4,6 +4,14 @@
     "<header>": {},
     "<footer>": {},
     "<body>": {},
+    "<nodes>": {
+      "@slots <slot>[]": {},
+      "@nodes": "array",
+      "@block-name": "string",
+      "@tag": "string",
+      "@modifiers": "array",
+      "@attrs": "object"
+    },
     "<render>": {},
     "@block-name": {
       "type": "string",
@@ -13,7 +21,6 @@
       "type": "string",
       "default-value": "div"
     },
-    "@nodes": "array",
     "@justified": {
       "type": "boolean",
       "default-value": false
@@ -38,8 +45,29 @@
     "@modifiers": "array",
     "@attrs": "object"
   },
-  "<marko-web-node-list-render>": {
-    "template": "./render.marko"
+  "<marko-web-node-list-nodes>": {
+    "template": "./nodes.marko",
+    "@nodes": "array",
+    "@block-name": "string",
+    "@tag": "string",
+    "@modifiers": "array",
+    "@attrs": "object",
+    "@slots <slot>[]": {
+      "@position": "number",
+      "@index": "number",
+      "@tag": "string",
+      "@modifiers": "array",
+      "@attrs": "object"
+    }
+  },
+  "<marko-web-node-list-node>": {
+    "template": "./node.marko",
+    "@node": "object",
+    "@index": "number",
+    "@block-name": "string",
+    "@tag": "string",
+    "@modifiers": "array",
+    "@attrs": "object"
   },
   "<marko-web-node-list-element>": {
     "template": "./element.marko",

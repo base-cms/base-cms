@@ -3,7 +3,7 @@ import shouldCollapse from "../../utils/should-collapse";
 
 $ const blockName = input.blockName || "node-list";
 $ const tag = input.tag || "div";
-$ const nodes = getAsArray(input, "nodes");
+$ const nodes = getAsArray(input, "nodes.nodes");
 $ const justified = get(input, "justified", false);
 $ const innerJustified = get(input, "innerJustified", false);
 
@@ -25,8 +25,8 @@ $ const classNames = [blockName, ...modifiers.map(mod => `${blockName}--${mod}`)
     <if(input.body)>
       <marko-web-node-list-element ...input.body name="body" />
     </if>
-    <if(input.render)>
-      <marko-web-node-list-render ...input.render nodes=nodes />
+    <if(input.nodes)>
+      <marko-web-node-list-nodes ...input.nodes />
     </if>
     <if(input.footer)>
       <marko-web-node-list-element ...input.footer name="footer" />

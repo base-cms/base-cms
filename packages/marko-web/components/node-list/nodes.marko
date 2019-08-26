@@ -1,0 +1,49 @@
+import { getAsArray } from "@base-cms/object-path";
+
+$ const nodes = getAsArray(input, "nodes");
+$ const blockName = input.blockName || "node-list";
+
+$ const slots = getAsArray(input, "slots");
+$ const defaultSlot = slots.find(slot => slot.index == null);
+$ const slotMap = getAsArray(input, "slots").reduce((map, slot) => {
+  const { index } = slot;
+  map.set(index, slot)
+  return map;
+}, new Map());
+
+<if(nodes.length)>
+  <marko-web-node-list-element
+    block-name=blockName
+    name="nodes"
+    tag=input.tag
+    modifiers=input.modifiers
+    attrs=input.attrs
+  >
+    <for|node, index| of=nodes>
+      $ const slot = slotMap.get(index) || defaultSlot;
+      $ const slotObj = slot || {};
+      $ const nodeInput = {
+        node,
+        index,
+        blockName,
+        tag: slotObj.tag,
+        modifiers: slotObj.modifiers,
+        attrs: slotObj.attrs,
+        renderBody: slotObj.renderBody,
+      };
+
+      <if(slot && slot.position === "before")>
+        <marko-web-node-list-node ...nodeInput modifiers=["position-before", ...getAsArray(nodeInput.modifiers)] />
+      </if>
+      <if(slot && slot.position === "at")>
+        <marko-web-node-list-node ...nodeInput modifiers=["position-at", ...getAsArray(nodeInput.modifiers)] />
+      </if>
+      <else-if(slot)>
+        <marko-web-node-list-node ...nodeInput />
+      </else-if>
+      <if(slot && slot.position === "after")>
+        <marko-web-node-list-node ...nodeInput modifiers=["position-after", ...getAsArray(nodeInput.modifiers)] />
+      </if>
+    </for>
+  </marko-web-node-list-element>
+</if>

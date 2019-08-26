@@ -1,0 +1,15 @@
+import { getAsArray } from "@base-cms/object-path";
+
+$ const blockName = input.blockName || "node-list";
+
+<if(input.renderBody)>
+  <marko-web-node-list-element
+    block-name=blockName
+    name="node"
+    tag=input.tag
+    modifiers=input.modifiers
+    attrs=input.attrs
+  >
+    <${input.renderBody} node=input.node index=input.index />
+  </marko-web-node-list-element>
+</if>
