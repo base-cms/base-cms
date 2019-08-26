@@ -23,6 +23,21 @@
       "default-value": false
     },
     "@class": "string",
-    "@modifiers": "array"
+    "@modifiers": "array",
+    "@attrs": "object"
+  },
+  "<marko-web-node-list-element>": {
+    "template": "./element.marko",
+    "@name": "string",
+    "@tag": {
+      "type": "string",
+      "default-value": "div"
+    },
+    "@block-name": {
+      "type": "string",
+      "default-value": "node-list"
+    },
+    "@modifiers": "array",
+    "@attrs": "object"
   }
 }
