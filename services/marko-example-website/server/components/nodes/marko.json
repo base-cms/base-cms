@@ -5,6 +5,9 @@
   "<site-list-node-with-image>": {
     "template": "./list-with-image.marko"
   },
+  "<site-list-node-hero-image>": {
+    "template": "./list-hero-image.marko"
+  },
   "<site-hero-node>": {
     "template": "./hero.marko"
   }
