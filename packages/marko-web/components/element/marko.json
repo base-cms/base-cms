@@ -1,4 +1,18 @@
 {
+  "<marko-web-element>": {
+    "template": "./index.marko",
+    "@name": {
+      "type": "string",
+      "default-value": "default"
+    },
+    "@block-name": "string",
+    "@tag": {
+      "type": "string",
+      "default-value": "div"
+    },
+    "@modifiers": "@array",
+    "@attrs": "object"
+  },
   "<marko-web-img>": {
     "template": "./img.marko",
     "@src": "string",
