@@ -8,7 +8,8 @@ $ const justified = get(input, "justified", false);
 $ const innerJustified = get(input, "innerJustified", false);
 
 $ const modifiers = [...getAsArray(input.modifiers)];
-$ if (input.flush) modifiers.push("flush");
+$ if (input.flushX) modifiers.push("flush-x");
+$ if (input.flushY) modifiers.push("flush-y");
 $ if (input.fullHeight) modifiers.push("full-height");
 $ if (justified) modifiers.push("justified");
 $ if (innerJustified) modifiers.push("inner-justified");

@@ -59,6 +59,18 @@ $marko-web-node-list-border-color:    rgba(0, 0, 0, .125) !default;
     padding-top: $marko-web-node-list-spacer;
     padding-bottom: $marko-web-node-list-spacer;
     @include marko-web-node-list-border($property: border-bottom);
+    &--flush-x {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+    &--flush-y {
+      #{ $self } {
+        &__node {
+          padding-right: 0;
+          padding-left: 0;
+        }
+      }
+    }
     &:empty {
       display: none;
     }

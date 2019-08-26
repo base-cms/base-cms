@@ -11,12 +11,16 @@ $ const slotMap = getAsArray(input, "slots").reduce((map, slot) => {
   return map;
 }, new Map());
 
+$ const modifiers = [...getAsArray(input, "modifiers")];
+$ if (input.flushX) modifiers.push("flush-x");
+$ if (input.flushY) modifiers.push("flush-y");
+
 <if(nodes.length)>
   <marko-web-node-list-element
     block-name=blockName
     name="nodes"
     tag=input.tag
-    modifiers=input.modifiers
+    modifiers=modifiers
     attrs=input.attrs
   >
     <for|node, index| of=nodes>

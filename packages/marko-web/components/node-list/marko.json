@@ -10,7 +10,9 @@
       "@block-name": "string",
       "@tag": "string",
       "@modifiers": "array",
-      "@attrs": "object"
+      "@attrs": "object",
+      "@flush-x": "boolean",
+      "@flush-y": "boolean"
     },
     "<render>": {},
     "@block-name": {
@@ -29,7 +31,11 @@
       "type": "boolean",
       "default-value": false
     },
-    "@flush":  {
+    "@flush-x":  {
+      "type": "boolean",
+      "default-value": false
+    },
+    "@flush-y":  {
       "type": "boolean",
       "default-value": false
     },
@@ -52,6 +58,8 @@
     "@tag": "string",
     "@modifiers": "array",
     "@attrs": "object",
+    "@flush-x": "boolean",
+    "@flush-y": "boolean",
     "@slots <slot>[]": {
       "@position": "number",
       "@index": "number",
