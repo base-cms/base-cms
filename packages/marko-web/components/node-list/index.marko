@@ -21,16 +21,16 @@ $ const classNames = [blockName, ...modifiers.map(mod => `${blockName}--${mod}`)
 <if(nodes.length || !collapsible)>
   <div ...input.attrs class=classNames>
     <if(input.header)>
-      <marko-web-node-list-element ...input.header name="header" />
+      <marko-web-node-list-header ...input.header />
     </if>
     <if(input.body)>
-      <marko-web-node-list-element ...input.body name="body" />
+      <marko-web-node-list-body ...input.body />
     </if>
     <if(input.nodes)>
       <marko-web-node-list-nodes ...input.nodes />
     </if>
     <if(input.footer)>
-      <marko-web-node-list-element ...input.footer name="footer" />
+      <marko-web-node-list-footer ...input.footer />
     </if>
   </div>
 </if>

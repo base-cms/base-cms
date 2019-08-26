@@ -51,6 +51,33 @@
     "@modifiers": "array",
     "@attrs": "object"
   },
+  "<marko-web-node-list-header>": {
+    "template": "./header.marko",
+    "@block-name": "string",
+    "@tag": "string",
+    "@flush-x": "boolean",
+    "@flush-y": "boolean",
+    "@modifiers": "array",
+    "@attrs": "object"
+  },
+  "<marko-web-node-list-footer>": {
+    "template": "./footer.marko",
+    "@block-name": "string",
+    "@tag": "string",
+    "@flush-x": "boolean",
+    "@flush-y": "boolean",
+    "@modifiers": "array",
+    "@attrs": "object"
+  },
+  "<marko-web-node-list-body>": {
+    "template": "./body.marko",
+    "@block-name": "string",
+    "@tag": "string",
+    "@flush-x": "boolean",
+    "@flush-y": "boolean",
+    "@modifiers": "array",
+    "@attrs": "object"
+  },
   "<marko-web-node-list-nodes>": {
     "template": "./nodes.marko",
     "@nodes": "array",

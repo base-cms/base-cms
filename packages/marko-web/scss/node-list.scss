@@ -51,6 +51,14 @@ $marko-web-node-list-border-color:    rgba(0, 0, 0, .125) !default;
     &:last-child {
       border-bottom: none;
     }
+    &--flush-y {
+      padding-right: 0;
+      padding-left: 0;
+    }
+    &--flush-x {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
   }
 
   &__nodes {
