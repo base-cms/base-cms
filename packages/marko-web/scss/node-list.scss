@@ -41,8 +41,6 @@ $marko-web-node-list-border-color:    rgba(0, 0, 0, .125) !default;
   &__footer,
   &__body {
     position: relative;
-    display: flex;
-    flex-direction: row;
     padding: $marko-web-node-list-spacer;
     @include marko-web-node-list-border($property: border-bottom);
     &:empty {
