@@ -56,6 +56,8 @@ $marko-web-node-list-border-color:    rgba(0, 0, 0, .125) !default;
   &__nodes {
     display: flex;
     flex-direction: column;
+    padding-top: $marko-web-node-list-spacer;
+    padding-bottom: $marko-web-node-list-spacer;
     @include marko-web-node-list-border($property: border-bottom);
     &:empty {
       display: none;
@@ -67,7 +69,12 @@ $marko-web-node-list-border-color:    rgba(0, 0, 0, .125) !default;
 
   &__node {
     @include marko-web-node-list-border($property: border-bottom);
+    padding: $marko-web-node-list-spacer;
+    &:first-child {
+      padding-top: 0;
+    }
     &:last-child {
+      padding-bottom: 0;
       border-bottom: none;
     }
   }
@@ -96,12 +103,23 @@ $marko-web-node-list-border-color:    rgba(0, 0, 0, .125) !default;
     }
   }
 
-  &--flush {
+  &--flush-y {
+    :first-child {
+      padding-top: 0;
+    }
+    :last-child {
+      padding-bottom: 0;
+    }
+  }
+
+  &--flush-x {
     #{ $self } {
+      &__node,
       &__header,
       &__footer,
       &__body {
-        padding: 0;
+        padding-right: 0;
+        padding-left: 0;
       }
     }
   }
