@@ -1,6 +1,8 @@
 {
   "<marko-web-node-list>": {
     "template": "./index.marko",
+    "<header>": {},
+    "<footer>": {},
     "@block-name": {
       "type": "string",
       "default-value": "node-list"

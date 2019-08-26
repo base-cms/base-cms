@@ -13,9 +13,19 @@ $ if (justified) modifiers.push("justified");
 $ const classNames = [blockName, ...modifiers.map(mod => `${blockName}--${mod}`), input.class];
 
 <if(nodes.length)>
-  <div class=classNames>
+  <div ...input.attrs class=classNames>
+    <if(input.header)>
+      <marko-web-node-list-element ...input.header name="header" />
+      <!-- <marko-web-node-header ...input.header /> -->
+    </if>
+    <if(input.description)>
+      <!-- <marko-web-node-header ...input.header /> -->
+    </if>
     <for|node| of=nodes>
       <span>${node.id}</span>
     </for>
+    <if(input.footer)>
+      <marko-web-node-list-element ...input.footer name="footer" />
+    </if>
   </div>
 </if>
