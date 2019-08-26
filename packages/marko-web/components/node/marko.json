@@ -20,6 +20,8 @@
     "@tag": "string",
     "@image-position": "string",
     "@flush": "boolean",
+    "@flush-x": "boolean",
+    "@flush-y": "boolean",
     "@image-flush": "boolean",
     "@full-height": "boolean",
     "@class": "string",

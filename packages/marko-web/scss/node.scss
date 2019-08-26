@@ -255,6 +255,16 @@ $marko-web-node-placeholder-image-opacity:      .2 !default;
     padding: 0;
   }
 
+  &--flush-x {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  &--flush-y {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
   &--image-flush {
     padding: 0;
     > #{ $self } {
