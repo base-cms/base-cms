@@ -16,421 +16,158 @@ $ const context = {
 
 <document>
   <@head>
-    <marko-web-gam-head />
+    <marko-web-gam-head
+      slots={
+        'gpt-ad-bs': GAM.getAdUnit({ name: 'BS' }),
+        'gpt-ad-mr': GAM.getAdUnit({ name: 'MR' }),
+      }
+    />
     <marko-web-gtm-init container-id=site.get('gtm.containerId') push=context start=true />
   </@head>
-  <marko-web-page-container for="home" class="container-fluid-max">
+  <div class="container-fluid-max">
+    <marko-web-page-container for="home">
 
-    <marko-web-query-website-optioned-content|{ nodes }|
-      section-id=section.id
-      option-id=40097
-      query-fragment=queryFragment
-      requires-image=true
-      exclude-content-type=["Company", "Contact"]
-      limit=6
-    >
-      $ const heroNodes = nodes.slice(0, 1);
-      $ const listNodes = nodes.slice(1);
-      <div class="row">
+      <marko-web-gam-display-ad id="gpt-ad-bs" class="text-center mb-4" />
 
-        <div class="col-8">
-          <marko-web-node-list inner-justified=true>
-            <@nodes nodes=heroNodes>
-              <@slot|{ node }|>
-                <marko-web-node full-height=true image-position="top">
-                  <@image
-                    src=get(node, "primaryImage.src")
-                    alt=get(node, "primaryImage.alt")
-                    fluid=true
-                    ar="16:9"
-                    width=750
-                    link={ href: node.canonicalPath }
-                  />
-                  <@body>
-                    <@title tag="h5">
-                      <marko-web-text
-                        asHTML=true
-                        value=node.shortName
-                        tag=null
-                        link={ href: node.canonicalPath }
-                      />
-                    </@title>
-                    <@text tag="p">
-                      <marko-web-text
-                        asHTML=true
-                        value=node.teaser
-                        tag=null
-                      />
-                    </@text>
-                    <@footer>
-                      <@left>
+      <marko-web-query-website-optioned-content|{ nodes }|
+        section-id=section.id
+        option-id=40097
+        query-fragment=queryFragment
+        requires-image=true
+        exclude-content-type=["Company", "Contact"]
+        limit=6
+      >
+        $ const heroNodes = nodes.slice(0, 1);
+        $ const listNodes = nodes.slice(1);
+        <div class="row mb-4">
+
+          <div class="col-8">
+            <marko-web-node-list inner-justified=true full-height=true>
+              <@nodes nodes=heroNodes>
+                <@slot|{ node }|>
+                  <marko-web-node full-height=true flush=true image-position="top">
+                    <@image
+                      src=get(node, "primaryImage.src")
+                      alt=get(node, "primaryImage.alt")
+                      fluid=true
+                      ar="16:9"
+                      width=750
+                      link={ href: node.canonicalPath }
+                    />
+                    <@body>
+                      <@title tag="h5">
                         <marko-web-text
-                          value=get(node, "primarySection.name")
-                          tag="span"
-                          link={ href: get(node, "primarySection.canonicalPath") }
+                          asHTML=true
+                          value=node.shortName
+                          tag=null
+                          link={ href: node.canonicalPath }
                         />
-                        <marko-web-date
-                          value=node.published
-                          tag="span"
+                      </@title>
+                      <@text tag="p">
+                        <marko-web-text
+                          asHTML=true
+                          value=node.teaser
+                          tag=null
                         />
-                      </@left>
-                    </@footer>
-                  </@body>
-                </marko-web-node>
-              </@slot>
-            </@nodes>
-          </marko-web-node-list>
+                      </@text>
+                      <@footer>
+                        <@left>
+                          <marko-web-text
+                            value=get(node, "primarySection.name")
+                            tag="span"
+                            link={ href: get(node, "primarySection.canonicalPath") }
+                          />
+                          <marko-web-date
+                            value=node.published
+                            tag="span"
+                          />
+                        </@left>
+                      </@footer>
+                    </@body>
+                  </marko-web-node>
+                </@slot>
+              </@nodes>
+            </marko-web-node-list>
+          </div>
+
+          <div class="col-4">
+            <marko-web-node-list inner-justified=true>
+              <@header>Lateset</@header>
+              <@footer>Read more...</@footer>
+              <@body>The latest cool stuff from officer.com</@body>
+              <@nodes nodes=listNodes>
+                <!-- <@slot|{ node }| position="at" index=0>
+                  <marko-web-node full-height=true image-position="top">
+                    <@image
+                      src=get(node, "primaryImage.src")
+                      alt=get(node, "primaryImage.alt")
+                      fluid=true
+                      ar="16:9"
+                      width=300
+                      link={ href: node.canonicalPath }
+                    />
+                    <@body>
+                      <@title tag="h5">
+                        <marko-web-text
+                          asHTML=true
+                          value=node.shortName
+                          tag=null
+                          link={ href: node.canonicalPath }
+                        />
+                      </@title>
+                      <@footer>
+                        <@left>
+                          <marko-web-text
+                            value=get(node, "primarySection.name")
+                            tag="span"
+                            link={ href: get(node, "primarySection.canonicalPath") }
+                          />
+                          <marko-web-date
+                            value=node.published
+                            tag="span"
+                          />
+                        </@left>
+                      </@footer>
+                    </@body>
+                  </marko-web-node>
+                </@slot> -->
+
+                <@slot|{ node }|>
+                  <marko-web-node flush=true>
+                    <@body>
+                      <@title tag="h5">
+                        <marko-web-text
+                          asHTML=true
+                          value=node.shortName
+                          tag=null
+                          link={ href: node.canonicalPath }
+                        />
+                      </@title>
+                      <@footer>
+                        <@left>
+                          <marko-web-text
+                            value=get(node, "primarySection.name")
+                            tag="span"
+                            link={ href: get(node, "primarySection.canonicalPath") }
+                          />
+                          <marko-web-date
+                            value=node.published
+                            tag="span"
+                          />
+                        </@left>
+                      </@footer>
+                    </@body>
+                  </marko-web-node>
+                </@slot>
+              </@nodes>
+            </marko-web-node-list>
+          </div>
         </div>
+      </marko-web-query-website-optioned-content>
+    </marko-web-page-container>
+  </div>
 
-        <div class="col-4">
-          <marko-web-node-list inner-justified=true>
-            <@nodes nodes=listNodes modifiers=["my-nodes"]>
-              <!-- <@slot|{ node }| position="at" index=0>
-                <marko-web-node full-height=true image-position="top">
-                  <@image
-                    src=get(node, "primaryImage.src")
-                    alt=get(node, "primaryImage.alt")
-                    fluid=true
-                    ar="16:9"
-                    width=300
-                    link={ href: node.canonicalPath }
-                  />
-                  <@body>
-                    <@title tag="h5">
-                      <marko-web-text
-                        asHTML=true
-                        value=node.shortName
-                        tag=null
-                        link={ href: node.canonicalPath }
-                      />
-                    </@title>
-                    <@footer>
-                      <@left>
-                        <marko-web-text
-                          value=get(node, "primarySection.name")
-                          tag="span"
-                          link={ href: get(node, "primarySection.canonicalPath") }
-                        />
-                        <marko-web-date
-                          value=node.published
-                          tag="span"
-                        />
-                      </@left>
-                    </@footer>
-                  </@body>
-                </marko-web-node>
-              </@slot> -->
-              <@slot|{ node }|>
-                <marko-web-node>
-                  <@body>
-                    <@title tag="h5">
-                      <marko-web-text
-                        asHTML=true
-                        value=node.shortName
-                        tag=null
-                        link={ href: node.canonicalPath }
-                      />
-                    </@title>
-                    <@footer>
-                      <@left>
-                        <marko-web-text
-                          value=get(node, "primarySection.name")
-                          tag="span"
-                          link={ href: get(node, "primarySection.canonicalPath") }
-                        />
-                        <marko-web-date
-                          value=node.published
-                          tag="span"
-                        />
-                      </@left>
-                    </@footer>
-                  </@body>
-                </marko-web-node>
-              </@slot>
-            </@nodes>
-          </marko-web-node-list>
-        </div>
-      </div>
+  <site-footer />
+  <marko-web-gam-fixed-ad-bottom ...GAM.getAdUnit({ name: "BS" }) />
 
-
-      <div class="row">
-        <for|content, index| of=nodes>
-          $ const primaryImage = getAsObject(content, "primaryImage");
-          <div class="mb-4 col-3">
-            <node-card
-              mods=["image-top"]
-              content=content
-              index=index
-              image-options={ fluid: true, ar: "6:5", width: 200 }
-            >
-            </node-card>
-          </div>
-
-          <div class="mb-4 col-3">
-            <marko-web-node full-height=true flush=(index === 3) image-flush=(index === 2)>
-              <@header>
-                <@left>Outer Left</@left>
-                <@right>Outer Right</@right>
-              </@header>
-              <@image
-                src=primaryImage.src
-                alt=primaryImage.alt
-                fluid=true
-                ar="6:5"
-                width=200
-                gradient=true
-                link={ href: content.canonicalPath }
-              >
-                <@header>
-                  <@left>OL</@left>
-                  <@right>OR</@right>
-                </@header>
-
-                <@body>
-                  <@header>
-                    <@left>BL</@left>
-                    <@right>BR</@right>
-                  </@header>
-                  <@title tag="h5">${content.shortName}</@title>
-                  <@text tag="p">${content.teaser}</@text>
-                  <@footer>
-                    <@left>BL</@left>
-                    <@right>BR</@right>
-                  </@footer>
-                </@body>
-
-              </@image>
-              <@body>
-                <@header>
-                  <@left>Body Left</@left>
-                  <@right>Body Right</@right>
-                </@header>
-                <@title tag="h5">${content.shortName}</@title>
-                <@text tag="p">${content.teaser}</@text>
-                <@footer>
-                  <@left>Body Left</@left>
-                  <@right>Body Right</@right>
-                </@footer>
-              </@body>
-              <@footer>
-                <@left>Outer Left</@left>
-                <@right>Outer Right</@right>
-              </@footer>
-            </marko-web-node>
-          </div>
-        </for>
-      </div>
-
-      <hr>
-      <hr>
-
-      <div class="row">
-        <for|content, index| of=nodes>
-          $ const primaryImage = getAsObject(content, "primaryImage");
-          <div class="mb-4 col-3">
-            <node-card
-              mods=["image-bottom"]
-              content=content
-              index=index
-              image-options={ fluid: true, ar: "6:5", width: 200 }
-            />
-          </div>
-
-          <div class="mb-4 col-3">
-            <marko-web-node image-position="bottom" full-height=true flush=(index === 3) image-flush=(index === 2)>
-              <@header>
-                <@left>Outer Left</@left>
-                <@right>Outer Right</@right>
-              </@header>
-              <@image
-                src=primaryImage.src
-                alt=primaryImage.alt
-                fluid=true
-                ar="6:5"
-                width=200
-                gradient=true
-                link={ href: content.canonicalPath }
-              >
-                <@header>
-                  <@left>OL</@left>
-                  <@right>OR</@right>
-                </@header>
-
-                <@body>
-                  <@header>
-                    <@left>BL</@left>
-                    <@right>BR</@right>
-                  </@header>
-                  <@title tag="h5">${content.shortName}</@title>
-                  <@text tag="p">${content.teaser}</@text>
-                  <@footer>
-                    <@left>BL</@left>
-                    <@right>BR</@right>
-                  </@footer>
-                </@body>
-
-              </@image>
-              <@body>
-                <@header>
-                  <@left>Body Left</@left>
-                  <@right>Body Right</@right>
-                </@header>
-                <@title tag="h5">${content.shortName}</@title>
-                <@text tag="p">${content.teaser}</@text>
-                <@footer>
-                  <@left>Body Left</@left>
-                  <@right>Body Right</@right>
-                </@footer>
-              </@body>
-              <@footer>
-                <@left>Outer Left</@left>
-                <@right>Outer Right</@right>
-              </@footer>
-            </marko-web-node>
-          </div>
-        </for>
-      </div>
-
-      <hr>
-      <hr>
-
-      <div class="row">
-        <for|content, index| of=nodes>
-          $ const primaryImage = getAsObject(content, "primaryImage");
-          <div class="mb-4 col-3">
-            <node-card
-              mods=["image-left"]
-              content=content
-              index=index
-              image-options={ fluid: false, ar: "16:9", width: 150 }
-            />
-          </div>
-
-          <div class="mb-4 col-3">
-            <marko-web-node image-position="left" full-height=true flush=(index === 3) image-flush=(index === 2)>
-              <@header>
-                <@left>Outer Left</@left>
-                <@right>Outer Right</@right>
-              </@header>
-              <@image
-                src=primaryImage.src
-                alt=primaryImage.alt
-                ar="16:9"
-                width=150
-                gradient=true
-                link={ href: content.canonicalPath }
-              >
-                <@header>
-                  <@left>OL</@left>
-                  <@right>OR</@right>
-                </@header>
-
-                <@body>
-                  <@header>
-                    <@left>BL</@left>
-                    <@right>BR</@right>
-                  </@header>
-                  <@title tag="h5">${content.shortName}</@title>
-                  <@text tag="p">${content.teaser}</@text>
-                  <@footer>
-                    <@left>BL</@left>
-                    <@right>BR</@right>
-                  </@footer>
-                </@body>
-
-              </@image>
-              <@body>
-                <@header>
-                  <@left>Body Left</@left>
-                  <@right>Body Right</@right>
-                </@header>
-                <@title tag="h5">${content.shortName}</@title>
-                <@text tag="p">${content.teaser}</@text>
-                <@footer>
-                  <@left>Body Left</@left>
-                  <@right>Body Right</@right>
-                </@footer>
-              </@body>
-              <@footer>
-                <@left>Outer Left</@left>
-                <@right>Outer Right</@right>
-              </@footer>
-            </marko-web-node>
-          </div>
-        </for>
-      </div>
-
-      <hr>
-      <hr>
-
-      <div class="row">
-        <for|content, index| of=nodes>
-          $ const primaryImage = getAsObject(content, "primaryImage");
-          <div class="mb-4 col-3">
-            <node-card
-              mods=["image-right"]
-              content=content
-              index=index
-              image-options={ fluid: false, ar: "16:9", width: 150 }
-            />
-          </div>
-
-          <div class="mb-4 col-3">
-            <marko-web-node image-position="right" full-height=true flush=(index === 3) image-flush=(index === 2)>
-              <@header>
-                <@left>Outer Left</@left>
-                <@right>Outer Right</@right>
-              </@header>
-              <@image
-                src=primaryImage.src
-                alt=primaryImage.alt
-                ar="16:9"
-                width=150
-                gradient=true
-                link={ href: content.canonicalPath }
-              >
-                <@header>
-                  <@left>OL</@left>
-                  <@right>OR</@right>
-                </@header>
-
-                <@body>
-                  <@header>
-                    <@left>BL</@left>
-                    <@right>BR</@right>
-                  </@header>
-                  <@title tag="h5">${content.shortName}</@title>
-                  <@text tag="p">${content.teaser}</@text>
-                  <@footer>
-                    <@left>BL</@left>
-                    <@right>BR</@right>
-                  </@footer>
-                </@body>
-
-              </@image>
-              <@body>
-                <@header>
-                  <@left>Body Left</@left>
-                  <@right>Body Right</@right>
-                </@header>
-                <@title tag="h5">${content.shortName}</@title>
-                <@text tag="p">${content.teaser}</@text>
-                <@footer>
-                  <@left>Body Left</@left>
-                  <@right>Body Right</@right>
-                </@footer>
-              </@body>
-              <@footer>
-                <@left>Outer Left</@left>
-                <@right>Outer Right</@right>
-              </@footer>
-            </marko-web-node>
-          </div>
-        </for>
-      </div>
-
-    </marko-web-query-website-optioned-content>
-    <site-footer />
-    <marko-web-gam-fixed-ad-bottom ...GAM.getAdUnit({ name: "BS" }) />
-  </marko-web-page-container>
 </document>
