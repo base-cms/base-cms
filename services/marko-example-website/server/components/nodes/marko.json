@@ -1,0 +1,8 @@
+{
+  "<site-list-node-no-image>": {
+    "template": "./list-no-image.marko"
+  },
+  "<site-hero-node>": {
+    "template": "./hero.marko"
+  }
+}

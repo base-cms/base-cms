@@ -45,46 +45,7 @@ $ const context = {
             <marko-web-node-list inner-justified=true full-height=true>
               <@nodes nodes=heroNodes>
                 <@slot|{ node }|>
-                  <marko-web-node full-height=true flush=true image-position="top">
-                    <@image
-                      src=get(node, "primaryImage.src")
-                      alt=get(node, "primaryImage.alt")
-                      fluid=true
-                      ar="16:9"
-                      width=750
-                      link={ href: node.canonicalPath }
-                    />
-                    <@body>
-                      <@title tag="h5">
-                        <marko-web-text
-                          asHTML=true
-                          value=node.shortName
-                          tag=null
-                          link={ href: node.canonicalPath }
-                        />
-                      </@title>
-                      <@text tag="p">
-                        <marko-web-text
-                          asHTML=true
-                          value=node.teaser
-                          tag=null
-                        />
-                      </@text>
-                      <@footer>
-                        <@left>
-                          <marko-web-text
-                            value=get(node, "primarySection.name")
-                            tag="span"
-                            link={ href: get(node, "primarySection.canonicalPath") }
-                          />
-                          <marko-web-date
-                            value=node.published
-                            tag="span"
-                          />
-                        </@left>
-                      </@footer>
-                    </@body>
-                  </marko-web-node>
+                  <site-hero-node node=node />
                 </@slot>
               </@nodes>
             </marko-web-node-list>
@@ -92,9 +53,6 @@ $ const context = {
 
           <div class="col-4">
             <marko-web-node-list inner-justified=true>
-              <@header>Lateset</@header>
-              <@footer>Read more...</@footer>
-              <@body>The latest cool stuff from officer.com</@body>
               <@nodes nodes=listNodes>
                 <!-- <@slot|{ node }| position="at" index=0>
                   <marko-web-node full-height=true image-position="top">
@@ -133,31 +91,7 @@ $ const context = {
                 </@slot> -->
 
                 <@slot|{ node }|>
-                  <marko-web-node flush=true>
-                    <@body>
-                      <@title tag="h5">
-                        <marko-web-text
-                          asHTML=true
-                          value=node.shortName
-                          tag=null
-                          link={ href: node.canonicalPath }
-                        />
-                      </@title>
-                      <@footer>
-                        <@left>
-                          <marko-web-text
-                            value=get(node, "primarySection.name")
-                            tag="span"
-                            link={ href: get(node, "primarySection.canonicalPath") }
-                          />
-                          <marko-web-date
-                            value=node.published
-                            tag="span"
-                          />
-                        </@left>
-                      </@footer>
-                    </@body>
-                  </marko-web-node>
+                  <site-list-node-no-image node=node />
                 </@slot>
               </@nodes>
             </marko-web-node-list>
