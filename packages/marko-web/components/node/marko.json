@@ -5,7 +5,15 @@
       "<left>": {},
       "<right>": {}
     },
-    "<image>": {},
+    "<image>": {
+      "<header>": {},
+      "<body>": {
+        "<header>": {},
+        "<footer>": {},
+        "<title>": {},
+        "@text <text>[]": {}
+      }
+    },
     "<body>": {
       "<header>": {},
       "<footer>": {},
@@ -95,7 +103,11 @@
   "<marko-web-node-image-wrapper>": {
     "template": "./image-wrapper.marko",
     "<header>": {},
-    "<body>": {},
+    "<body>": {
+      "<header>": {},
+      "<title>": {},
+      "@text <text>[]": {}
+    },
     "@block-name": "string",
     "@src": "string",
     "@alt": "string",
