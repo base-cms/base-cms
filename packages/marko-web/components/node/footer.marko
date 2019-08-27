@@ -11,23 +11,9 @@ $ const right = getAsObject(input, "right");
   attrs=input.attrs
 >
   <if(left.renderBody)>
-    <marko-web-node-element
-      name="footer-left"
-      tag=left.tag
-      modifiers=left.modifiers
-      attrs=left.attrs
-    >
-      <${left.renderBody} />
-    </marko-web-node-element>
+    <marko-web-node-element ...left name="footer-left" />
   </if>
   <if(right.renderBody)>
-    <marko-web-node-element
-      name="footer-right"
-      tag=right.tag
-      modifiers=right.modifiers
-      attrs=right.attrs
-    >
-      <${right.renderBody} />
-    </marko-web-node-element>
+    <marko-web-node-element ...right name="footer-right" />
   </if>
 </marko-web-node-element>
