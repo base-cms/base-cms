@@ -194,6 +194,82 @@ $ const context = {
         </div>
       </div>
 
+      <hr class="mt-0 mb-4">
+
+      <div class="row">
+        <div class="col-lg-4 mb-4">
+          <marko-web-query-website-scheduled-content|{ nodes }|
+            section-alias="investigations"
+            query-fragment=queryFragment
+            limit=4
+          >
+            <marko-web-node-list inner-justified=true>
+              <@header>
+                <marko-web-link href="/investigations">
+                  Investigations
+                </marko-web-link>
+              </@header>
+              <@nodes nodes=nodes>
+                <@slot|{ node }| position="at" index=0>
+                  <site-list-node-hero-image node=node />
+                </@slot>
+                <@slot|{ node }|>
+                  <site-list-node-no-image node=node />
+                </@slot>
+              </@nodes>
+            </marko-web-node-list>
+          </marko-web-query-website-scheduled-content>
+        </div>
+
+        <div class="col-lg-4 mb-4">
+          <marko-web-query-website-scheduled-content|{ nodes }|
+            section-alias="command-hq"
+            query-fragment=queryFragment
+            limit=4
+          >
+            <marko-web-node-list inner-justified=true>
+              <@header>
+                <marko-web-link href="/command-hq">
+                  Command/HQ
+                </marko-web-link>
+              </@header>
+              <@nodes nodes=nodes>
+                <@slot|{ node }| position="at" index=0>
+                  <site-list-node-hero-image node=node />
+                </@slot>
+                <@slot|{ node }|>
+                  <site-list-node-no-image node=node />
+                </@slot>
+              </@nodes>
+            </marko-web-node-list>
+          </marko-web-query-website-scheduled-content>
+        </div>
+
+        <div class="col-lg-4 mb-4">
+          <marko-web-query-website-scheduled-content|{ nodes }|
+            section-alias="features/honoring-the-fallen"
+            query-fragment=queryFragment
+            limit=4
+          >
+            <marko-web-node-list inner-justified=true>
+              <@header>
+                <marko-web-link href="/features/honoring-the-fallen">
+                  Honoring the Fallen
+                </marko-web-link>
+              </@header>
+              <@nodes nodes=nodes>
+                <@slot|{ node }| position="at" index=0>
+                  <site-list-node-hero-image node=node />
+                </@slot>
+                <@slot|{ node }|>
+                  <site-list-node-no-image node=node />
+                </@slot>
+              </@nodes>
+            </marko-web-node-list>
+          </marko-web-query-website-scheduled-content>
+        </div>
+      </div>
+
     </marko-web-page-container>
   </div>
 
