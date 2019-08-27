@@ -122,51 +122,23 @@ $ const context = {
 
       <div class="row">
         <div class="col-lg-4 mb-4">
-          <marko-web-query-website-scheduled-content|{ nodes }|
-            section-alias="tactical"
-            query-fragment=queryFragment
-            limit=4
-          >
-            <marko-web-node-list inner-justified=true>
+          <marko-web-query|{ nodes }| name="website-scheduled-content" params={ sectionAlias: "tactical", limit: 4, queryFragment }>
+            <site-node-layout-section-list nodes=nodes>
               <@header>
-                <marko-web-link href="/tactical">
-                  Tactical
-                </marko-web-link>
+                <marko-web-link href="/tactical">Tactical</marko-web-link>
               </@header>
-              <@nodes nodes=nodes>
-                <@slot|{ node }| position="at" index=0>
-                  <site-list-node-hero-image node=node />
-                </@slot>
-                <@slot|{ node }|>
-                  <site-list-node-no-image node=node />
-                </@slot>
-              </@nodes>
-            </marko-web-node-list>
-          </marko-web-query-website-scheduled-content>
+            </site-node-layout-section-list>
+          </marko-web-query>
         </div>
 
         <div class="col-lg-4 mb-4">
-          <marko-web-query-website-scheduled-content|{ nodes }|
-            section-alias="training-careers"
-            query-fragment=queryFragment
-            limit=4
-          >
-            <marko-web-node-list inner-justified=true>
+          <marko-web-query|{ nodes }| name="all-published-content" params={ contentTypes: ["Video"], limit: 4, queryFragment }>
+            <site-node-layout-section-list nodes=nodes>
               <@header>
-                <marko-web-link href="/training-careers">
-                  Traning &amp; Careers
-                </marko-web-link>
+                <marko-web-link href="/videos">Videos</marko-web-link>
               </@header>
-              <@nodes nodes=nodes>
-                <@slot|{ node }| position="at" index=0>
-                  <site-list-node-hero-image node=node />
-                </@slot>
-                <@slot|{ node }|>
-                  <site-list-node-no-image node=node />
-                </@slot>
-              </@nodes>
-            </marko-web-node-list>
-          </marko-web-query-website-scheduled-content>
+            </site-node-layout-section-list>
+          </marko-web-query>
         </div>
 
         <div class="col-lg-4 mb-4">
