@@ -1,0 +1,5 @@
+{
+  "<site-node-layout-section-list>": {
+    "template": "./section-list.marko"
+  }
+}

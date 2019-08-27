@@ -3,6 +3,7 @@
     "./components/ads/marko.json",
     "./components/blocks/marko.json",
     "./components/content/marko.json",
+    "./components/node-layouts/marko.json",
     "./components/nodes/marko.json"
   ]
 }
