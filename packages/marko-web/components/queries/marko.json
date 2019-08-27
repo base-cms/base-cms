@@ -1,4 +1,13 @@
 {
+  "<marko-web-query>": {
+    "template": "./index.marko",
+    "@name": "string",
+    "@params": "object",
+    "@collapsible": {
+      "type": "boolean",
+      "default-value": true
+    }
+  },
   "<marko-web-query-website-scheduled-content>": {
     "template": "./website-scheduled-content.marko"
   },
