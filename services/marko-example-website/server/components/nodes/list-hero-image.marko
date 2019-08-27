@@ -28,7 +28,7 @@ $ const node = getAsObject(input, "node");
           link={ href: get(node, "primarySection.canonicalPath") }
         />
       </@left>
-      <@right>
+      <@right tag="small">
         <marko-web-date
           value=node.published
           tag=null
