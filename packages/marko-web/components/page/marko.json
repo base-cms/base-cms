@@ -11,6 +11,29 @@
     "@class": "string",
     "@attrs": "object"
   },
+  "<marko-web-page-wrapper>": {
+    "template": "./wrapper.marko",
+    "@sections <section>[]": {
+      "@tag": {
+        "type": "string",
+        "default-value": "div"
+      },
+      "@modifiers": "array",
+      "@class": "string",
+      "@attrs": "object"
+    },
+    "@block-name": {
+      "type": "string",
+      "default-value": "page-wrapper"
+    },
+    "@tag": {
+      "type": "string",
+      "default-value": "div"
+    },
+    "@modifiers": "array",
+    "@class": "string",
+    "@attrs": "object"
+  },
   "<marko-web-page-title>": {
     "template": "./title.marko",
     "@value": "string",
