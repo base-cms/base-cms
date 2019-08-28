@@ -17,6 +17,7 @@ body {
 }
 
 .document-container {
+  position: relative;
   flex-grow: 1;
   width: 100%;
   padding-right: $marko-web-document-container-gutter;
