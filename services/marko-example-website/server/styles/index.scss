@@ -1,6 +1,7 @@
 $site-font-family-sans-serif: "PT Sans", sans-serif !default;
 $site-font-family-serif: "PT Serif", serif !default;
 
+@import "../../node_modules/@base-cms/marko-web/scss/document";
 @import "../../node_modules/@base-cms/marko-web/scss/node";
 @import "../../node_modules/@base-cms/marko-web/scss/node-list";
 @import "../../node_modules/@base-cms/marko-web-icons/scss/icons";
@@ -8,29 +9,6 @@ $site-font-family-serif: "PT Serif", serif !default;
 @import "core";
 @import "embedded-media";
 @import "bootstrap";
-
-html {
-  // @todo add to core?
-  height: 100%;
-}
-
-body {
-  // @todo add to core?
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-.container-fluid-max {
-  // @todo add to core?
-  @include make-container();
-  @include media-breakpoint-up("xl", $grid-breakpoints) {
-    max-width: map-get($grid-breakpoints, "xl");
-  }
-  flex-grow: 1;
-  background-color: $white;
-  box-shadow: $box-shadow-sm;
-}
 
 .page {
   // @todo add to core?
