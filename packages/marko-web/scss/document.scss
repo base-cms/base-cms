@@ -1,0 +1,27 @@
+$marko-web-document-container-gutter:     12px !default;
+$marko-web-document-container-max-width:  1200px !default;
+
+html {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.document-container {
+  flex-grow: 1;
+  width: 100%;
+  padding-right: $marko-web-document-container-gutter;
+  padding-left: $marko-web-document-container-gutter;
+  margin-right: auto;
+  margin-left: auto;
+
+  @if $marko-web-document-container-max-width {
+    @media (min-width: $marko-web-document-container-max-width) {
+      max-width: $marko-web-document-container-max-width;
+    }
+  }
+}

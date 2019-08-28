@@ -18,9 +18,35 @@
   "<marko-web-document>": {
     "template": "./document/index.marko",
     "<head>": {},
-    "<body-header>": {},
-    "<body-footer>": {},
-    "@dir": "string",
-    "@viewport": "string"
+    "<before-container>": {},
+    "<after-container>": {},
+    "@dir": {
+      "type": "string",
+      "default-value": "ltr"
+    },
+    "@lang": "string",
+    "@viewport": {
+      "type": "string",
+      "default-value": "width=device-width, initial-scale=1, shrink-to-fit=no"
+    },
+    "@with-container": {
+      "type": "boolean",
+      "default-value": true
+    },
+    "@container": "object"
+  },
+  "<marko-web-document-container>": {
+    "template": "./document/container.marko",
+    "@block-name": {
+      "type": "string",
+      "default-value": "document-container"
+    },
+    "@tag": {
+      "type": "string",
+      "default-value": "div"
+    },
+    "@modifiers": "array",
+    "@class": "string",
+    "@attrs": "object"
   }
 }
