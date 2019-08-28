@@ -18,9 +18,7 @@ export default {
   created() {
     this.EventBus.$on('load-more-in-view', ({ data }) => {
       const dataLayer = window[this.name];
-      if (dataLayer) {
-        dataLayer.push({ ...data, event: this.event });
-      }
+      if (dataLayer) dataLayer.push({ ...data, event: this.event });
     });
   },
 };
