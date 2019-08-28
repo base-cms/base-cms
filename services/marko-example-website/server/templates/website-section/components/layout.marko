@@ -24,7 +24,9 @@ $ const context = {
     <${input.head} />
     <marko-web-gtm-start />
   </@head>
+  <${input.beforePage} />
   <marko-web-page-container for="website-section" id=section.id>
     <${input.renderBody} />
   </marko-web-page-container>
+  <${input.afterPage} />
 </document>
