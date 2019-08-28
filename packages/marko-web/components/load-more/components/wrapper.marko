@@ -1,0 +1,37 @@
+import { getAsObject, getAsArray } from "@base-cms/object-path";
+
+$ const pageNumber = input.pageNumber || 1;
+
+$ const query = {
+  ...getAsObject(input, "query"),
+  queryName: "LoadMore",
+};
+
+<marko-web-query|{ nodes, pageInfo }| ...query>
+  <if(nodes.length)>
+    <marko-web-page-container ...input.page>
+      <!-- Fire generic `load-more-in-view` event (other services can attach to this, e.g. GTM) -->
+      <marko-web-browser-component name="TriggerInViewEvent" props={ eventName: "load-more-in-view", data: { page_number: pageNumber + 1 } } />
+      <${input.renderBody} nodes=nodes page-info=pageInfo />
+    </marko-web-page-container>
+
+    $ const { endCursor, hasNextPage } = pageInfo;
+    $ delete query.skip;
+    $ delete query.queryFragment;
+    $ delete query.renderBody;
+    $ const provide = {
+      ...input,
+      query: { ...query, after: endCursor },
+    };
+
+    <!-- <endeavor-load-more-button
+      append-to=(input.appendTo || '.container-fluid-max')
+      block-name="load-more"
+      label="Load More Content"
+      max-pages=input.maxPages
+      page-number=pageNumber
+      provide=provide
+      show=hasNextPage
+    /> -->
+  </if>
+</marko-web-query>
