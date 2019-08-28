@@ -1,6 +1,7 @@
 /* eslint-disable no-new */
 import Vue from './vue';
 import components from './components';
+import EventBus from './event-bus';
 import './lazysizes';
 
 const injections = {};
@@ -24,4 +25,5 @@ const registerComponent = (name, Component, inject) => {
 export default {
   loadComponent,
   registerComponent,
+  EventBus,
 };
