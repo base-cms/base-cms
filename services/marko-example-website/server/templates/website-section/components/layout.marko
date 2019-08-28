@@ -1,9 +1,9 @@
-import { getAsObject, get } from '@base-cms/object-path';
+import { getAsObject, get } from "@base-cms/object-path";
 
-$ const section = getAsObject(input, 'section');
-$ const channel = getAsObject(section, 'hierarchy.0');
+$ const section = getAsObject(input, "section");
+$ const channel = getAsObject(section, "hierarchy.0");
 $ const context = {
-  page_type: 'website-section',
+  page_type: "website-section",
   canonical_path: section.canonicalPath,
   section_id: section.id,
   section_name: section.name,
