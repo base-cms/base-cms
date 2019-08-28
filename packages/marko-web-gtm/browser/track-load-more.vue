@@ -1,5 +1,5 @@
 <template>
-  <div class="gtm-track-load-more" />
+  <div class="marko-web-gtm-track-load-more" />
 </template>
 
 <script>

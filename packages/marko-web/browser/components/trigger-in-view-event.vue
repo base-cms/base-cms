@@ -22,7 +22,7 @@ export default {
   },
   computed: {
     elementId() {
-      return `${this.eventName}-event-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+      return `marko-web-${this.eventName}-event-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
     },
   },
   created() {
