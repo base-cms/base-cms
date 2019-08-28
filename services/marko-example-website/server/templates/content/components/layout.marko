@@ -1,13 +1,12 @@
-import { getAsObject, get } from '@base-cms/object-path';
+import { getAsObject, get } from "@base-cms/object-path";
 
-$ const { site } = out.global;
-$ const content = getAsObject(input, 'content');
-$ const company = getAsObject(content, 'company');
-$ const createdBy = getAsObject(content, 'createdBy');
-$ const section = getAsObject(content, 'primarySection');
-$ const channel = getAsObject(section, 'hierarchy.0');
+$ const content = getAsObject(input, "content");
+$ const company = getAsObject(content, "company");
+$ const createdBy = getAsObject(content, "createdBy");
+$ const section = getAsObject(content, "primarySection");
+$ const channel = getAsObject(section, "hierarchy.0");
 $ const context = {
-  page_type: 'content',
+  page_type: "content",
   canonical_path: content.canonicalPath,
   content_id: content.id,
   content_type: content.type,
@@ -26,7 +25,7 @@ $ const context = {
 
 <document>
   <@head>
-    <marko-web-gtm-init container-id=site.get("gtm.containerId") push=context />
+    <marko-web-gtm-push data=context />
     <marko-web-page-content-metadata
       type=content.type
       title=get(content, "metadata.title")
@@ -38,10 +37,9 @@ $ const context = {
       expires-date=get(content, "metadata.expiresDate")
     />
     <${input.head} />
+    <marko-web-gtm-start />
   </@head>
-  <marko-web-gtm-start />
-
-  <div class="container-fluid-max">
+  <marko-web-page-container for="content" tag="article" id=content.id type=content.type>
     <${input.renderBody} />
-  </div>
+  </marko-web-page-container>
 </document>
