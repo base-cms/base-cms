@@ -29,5 +29,8 @@
   },
   "<marko-web-gtm-track-inview-event>": {
     "template": "./track-inview-event.marko"
+  },
+  "<marko-web-gtm-track-load-more>": {
+    "template": "./track-load-more.marko"
   }
 }
