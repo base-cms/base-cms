@@ -13,7 +13,11 @@ $ const context = {
   root_section_name: channel.name,
 };
 
-<document>
+<!-- Ensure before/after is passed to the root -->
+<document
+  after-container=input.afterContainer
+  before-container=input.beforeContainer
+>
   <@head>
     <marko-web-gtm-init container-id=site.get('gtm.containerId') push=context />
     <marko-web-page-metadata
@@ -22,11 +26,9 @@ $ const context = {
       canonical-path=section.canonicalPath
     />
     <${input.head} />
+    <marko-web-gtm-start />
   </@head>
-  <marko-web-gtm-start />
-  <marko-web-page-container for="website-section" class="container-fluid-max" id=section.id>
+  <marko-web-page-container for="website-section" id=section.id>
     <${input.renderBody} />
   </marko-web-page-container>
-  <hr>
-  <site-footer />
 </document>
