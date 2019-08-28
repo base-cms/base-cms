@@ -1,6 +1,5 @@
 import { getAsObject, get } from '@base-cms/object-path';
 
-$ const { site } = out.global;
 $ const section = getAsObject(input, 'section');
 $ const channel = getAsObject(section, 'hierarchy.0');
 $ const context = {
@@ -14,12 +13,9 @@ $ const context = {
 };
 
 <!-- Ensure before/after is passed to the root -->
-<document
-  after-container=input.afterContainer
-  before-container=input.beforeContainer
->
+<document after-container=input.afterContainer before-container=input.beforeContainer>
   <@head>
-    <marko-web-gtm-init container-id=site.get('gtm.containerId') push=context />
+    <marko-web-gtm-push data=context />
     <marko-web-page-metadata
       title=get(section, "metadata.title")
       description=get(section, "metadata.description")

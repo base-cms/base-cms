@@ -1,9 +1,12 @@
 import GAM from '../../../config/gam';
 
+$ const { site } = out.global;
+
 <marko-web-document ...input>
   <@head>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,700|PT+Serif:400,700">
     <marko-web-gam-init />
+    <marko-web-gtm-init container-id=site.get('gtm.containerId') />
     <${input.head} />
   </@head>
   <@before-container>

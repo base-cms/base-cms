@@ -1,12 +1,8 @@
 $ const isDevelopment = process.env.NODE_ENV === 'development';
 $ const error = input.error || {};
-$ const { site } = out.global;
 
 <document>
-  <@head>
-    <marko-web-gtm-init container-id=site.get('gtm.containerId') start=true />
-  </@head>
-  <marko-web-page-container class="container-fluid-max">
+  <marko-web-page-container for="error">
     <div class="row">
       <div class="col">
         <h2>${input.statusCode} ${input.statusMessage}</h2>
