@@ -1,9 +1,19 @@
+import GAM from '../../../config/gam';
+
 <marko-web-document ...input>
   <@head>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,700|PT+Serif:400,700">
     <marko-web-gam-init />
     <${input.head} />
   </@head>
-  <site-navbar />
-  <${input.renderBody} />
+  <@before-container>
+    <site-navbar />
+    <${input.beforeContainer} />
+  </@before-container>
+
+  <@after-container>
+    <${input.afterContainer} />
+    <site-footer />
+    <marko-web-gam-fixed-ad-bottom ...GAM.getAdUnit({ name: "BS" }) />
+  </@after-container>
 </marko-web-document>
