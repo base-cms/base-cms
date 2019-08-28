@@ -10,5 +10,8 @@
   },
   "<site-hero-node>": {
     "template": "./hero.marko"
+  },
+  "<site-card-node>": {
+    "template": "./card.marko"
   }
 }

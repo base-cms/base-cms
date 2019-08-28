@@ -1,0 +1,39 @@
+import { getAsObject, get } from '@base-cms/object-path';
+
+$ const node = getAsObject(input, "node");
+
+<marko-web-node full-height=true image-position="top">
+  <@image
+    src=get(node, "primaryImage.src")
+    alt=get(node, "primaryImage.alt")
+    fluid=true
+    ar="16:9"
+    width=300
+    link={ href: node.canonicalPath }
+  />
+  <@body>
+    <@title tag="h5">
+      <marko-web-text
+        asHTML=true
+        value=node.shortName
+        tag=null
+        link={ href: node.canonicalPath }
+      />
+    </@title>
+    <@footer>
+      <@left tag="small">
+        <marko-web-text
+          value=get(node, "primarySection.name")
+          tag=null
+          link={ href: get(node, "primarySection.canonicalPath") }
+        />
+      </@left>
+      <@right tag="small">
+        <marko-web-date
+          value=node.published
+          tag=null
+        />
+      </@right>
+    </@footer>
+  </@body>
+</marko-web-node>

@@ -1,5 +1,8 @@
 {
   "<site-node-layout-section-list>": {
     "template": "./section-list.marko"
+  },
+  "<site-node-layout-card-deck>": {
+    "template": "./card-deck.marko"
   }
 }
