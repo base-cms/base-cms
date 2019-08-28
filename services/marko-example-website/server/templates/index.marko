@@ -1,19 +1,18 @@
-import queryFragment from '../api/fragments/website-scheduled-content';
-import { getAsObject, get } from '@base-cms/object-path';
-import GAM from '../../config/gam';
-import Layout from './website-section/components/layout';
+import queryFragment from "../api/fragments/website-scheduled-content";
+import { getAsObject, get } from "@base-cms/object-path";
+import GAM from "../../config/gam";
+import Layout from "./website-section/components/layout";
 
-$ const { site } = out.global;
-$ const section = getAsObject(data, 'section');
+$ const section = getAsObject(data, "section");
 
 <${Layout} section=section>
   <@head>
     <marko-web-gam-head
       slots={
-        'gpt-ad-bs': GAM.getAdUnit({ name: 'BS' }),
-        'gpt-ad-mr': GAM.getAdUnit({ name: 'MR' }),
-        'gpt-ad-hp': GAM.getAdUnit({ name: 'HP' }),
-        'gpt-ad-ms': GAM.getAdUnit({ name: 'MS' }),
+        "gpt-ad-bs": GAM.getAdUnit({ name: "BS" }),
+        "gpt-ad-mr": GAM.getAdUnit({ name: "MR" }),
+        "gpt-ad-hp": GAM.getAdUnit({ name: "HP" }),
+        "gpt-ad-ms": GAM.getAdUnit({ name: "MS" }),
       }
     />
   </@head>
