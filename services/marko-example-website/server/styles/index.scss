@@ -10,16 +10,21 @@ $site-font-family-serif: "PT Serif", serif !default;
 @import "embedded-media";
 @import "bootstrap";
 
-.page {
-  // @todo add to core?
-  // For both primary page and "sub-page" load more??
-  padding-top: map-get($spacers, 4);
-  padding-bottom: map-get($spacers, 4);
-}
-
 .site-footer {
   // @todo add to core?
   margin-top: auto;
+}
+
+body {
+  background-color: $gray-200;
+}
+
+.document-container {
+  background-color: $gray-400;
+}
+
+.page {
+  background-color: $gray-600;
 }
 
 .content-card {

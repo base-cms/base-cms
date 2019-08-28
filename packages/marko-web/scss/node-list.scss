@@ -22,7 +22,6 @@ $marko-web-node-list-border-color:    rgba(0, 0, 0, .125) !default;
   flex-direction: column;
   min-height: auto;
   background-color: $marko-web-node-list-bg-color;
-  @include marko-web-node-list-border($property: border);
 
   &__header {
     > :last-child {

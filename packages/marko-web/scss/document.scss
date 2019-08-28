@@ -1,5 +1,10 @@
-$marko-web-document-container-gutter:     12px !default;
+$marko-web-document-container-gutter:     .75rem !default;
 $marko-web-document-container-max-width:  1200px !default;
+
+$marko-web-page-padding:                  $marko-web-document-container-gutter !default;
+
+$marko-web-page-wrapper-bg-color:         #fff !default;
+$marko-web-page-wrapper-padding:          $marko-web-page-padding !default;
 
 html {
   height: 100%;
@@ -22,6 +27,28 @@ body {
   @if $marko-web-document-container-max-width {
     @media (min-width: $marko-web-document-container-max-width) {
       max-width: $marko-web-document-container-max-width;
+    }
+  }
+}
+
+.page {
+  padding-top: $marko-web-page-padding;
+  padding-bottom: $marko-web-page-padding;
+  &:first-child {
+    padding-top: $marko-web-page-padding * 2;
+  }
+  &:last-child {
+    padding-bottom: $marko-web-page-padding * 2;
+  }
+}
+
+.page-wrapper {
+  padding: $marko-web-page-wrapper-padding;
+  background-color: $marko-web-page-wrapper-bg-color;
+  &__section {
+    margin-bottom: $marko-web-page-wrapper-padding;
+    &:last-child {
+      margin-bottom: 0;
     }
   }
 }

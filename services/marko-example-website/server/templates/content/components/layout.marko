@@ -23,7 +23,7 @@ $ const context = {
   root_section_name: channel.name,
 };
 
-<document>
+<document above-container=input.aboveContainer below-container=input.belowContainer>
   <@head>
     <marko-web-gtm-push data=context />
     <marko-web-page-content-metadata
@@ -42,4 +42,13 @@ $ const context = {
   <marko-web-page-container for="content" tag="article" id=content.id type=content.type>
     <${input.renderBody} />
   </marko-web-page-container>
+
+  <div class="page">
+    <div class="page-wrapper">
+      <div class="page-wrapper__section">
+        <h1>Another page</h1>
+        <p class="mb-0">Example page wrapper with section</p>
+      </div>
+    </div>
+  </div>
 </document>

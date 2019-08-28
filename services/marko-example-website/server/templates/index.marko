@@ -19,7 +19,14 @@ $ const section = getAsObject(data, "section");
 
   <marko-web-gam-display-ad id="gpt-ad-bs" class="text-center mb-4" />
 
-  <div class="row">
+  <div class="page-wrapper">
+    <div class="page-wrapper__section">
+      <h1>Homepage</h1>
+      <p class="mb-0">Example page wrapper with section</p>
+    </div>
+  </div>
+
+  <div class="row mt-4">
     <marko-web-query-website-optioned-content|{ nodes }|
       section-id=section.id
       option-id=40097
