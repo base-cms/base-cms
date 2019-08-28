@@ -1,15 +1,15 @@
-import { getAsObject, get } from '@base-cms/object-path';
-import GAM from '../../../config/gam';
+import { getAsObject, get } from "@base-cms/object-path";
+import GAM from "../../../config/gam";
 
-$ const content = getAsObject(data, 'content');
-$ const block = 'content-page';
+$ const content = getAsObject(data, "content");
+$ const block = "content-page";
 
 <layout content=content>
   <@head>
     <marko-web-gam-head
       slots={
-        'gpt-ad-bs': GAM.getAdUnit({ name: 'BS' }),
-        'gpt-ad-mr': GAM.getAdUnit({ name: 'MR' }),
+        "gpt-ad-bs": GAM.getAdUnit({ name: "BS" }),
+        "gpt-ad-mr": GAM.getAdUnit({ name: "MR" }),
       }
     />
   </@head>
@@ -102,12 +102,12 @@ $ const block = 'content-page';
 
       <content-related-b
         exclude-content-ids=[content.id]
-        section-id=get(content, 'primarySection.id')
+        section-id=get(content, "primarySection.id")
       />
     </aside>
   </div>
 
-  <!-- $ const section = getAsObject(content, 'primarySection');
+  <!-- $ const section = getAsObject(content, "primarySection");
   <if(section.id)>
     <hr>
     <div class="text-center">
@@ -119,7 +119,7 @@ $ const block = 'content-page';
         excludeContentIds: [content.id],
         sectionId: section.id,
       }
-      load-more={ appendTo: '.container-fluid-max', maxPages: 5 }
+      load-more={ appendTo: ".container-fluid-max", maxPages: 5 }
       section=section
     />
   </if> -->
