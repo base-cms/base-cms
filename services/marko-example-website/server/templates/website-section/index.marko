@@ -8,10 +8,13 @@ $ const section = getAsObject(data, "section");
     <marko-web-gam-head />
   </@head>
 
-  <h1 class="mb-4">${section.metadata.title}</h1>
-  <if(section.description)>
-    <p>${section.description}</p>
-  </if>
+  <marko-web-page-wrapper class="mb-4">
+    <@section>
+      <h1>${section.metadata.title}</h1>
+      <p class="mb-0">${section.description}</p>
+    </@section>
+  </marko-web-page-wrapper>
+
   $ const block = "content-list";
   <marko-web-query-website-scheduled-content|{ nodes }|
     query-fragment=queryFragment
