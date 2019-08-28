@@ -1,7 +1,10 @@
-import { getAsObject } from '@base-cms/object-path';
+import { getAsObject } from "@base-cms/object-path";
 
-$ const page = getAsObject(data, 'page');
+$ const page = getAsObject(data, "page");
 
 <layout page=page>
+  <@head>
+    <marko-web-gam-head />
+  </@head>
   $!{page.body}
 </layout>
