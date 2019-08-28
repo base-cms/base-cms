@@ -3,14 +3,18 @@ $ const error = input.error || {};
 
 <document>
   <marko-web-page-container for="error">
-    <div class="row">
-      <div class="col">
-        <h2>${input.statusCode} ${input.statusMessage}</h2>
-        <h3>${error.message}</h3>
-        <if(isDevelopment)>
-          <pre>${error.stack}</pre>
-        </if>
-      </div>
-    </div>
+    <marko-web-page-wrapper>
+      <@section>
+        <div class="row">
+          <div class="col">
+            <h2>${input.statusCode} ${input.statusMessage}</h2>
+            <h3>${error.message}</h3>
+            <if(isDevelopment)>
+              <pre>${error.stack}</pre>
+            </if>
+          </div>
+        </div>
+      </@section>
+    </marko-web-page-wrapper>
   </marko-web-page-container>
 </document>
