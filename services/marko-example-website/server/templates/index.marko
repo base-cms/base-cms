@@ -60,8 +60,6 @@ $ const section = getAsObject(data, "section");
     </marko-web-query-website-optioned-content>
   </div>
 
-  <hr class="mt-0 mb-4">
-
   <div class="row">
     <div class="col-lg-4 mb-4">
       <marko-web-query-website-scheduled-content|{ nodes }|
@@ -112,8 +110,6 @@ $ const section = getAsObject(data, "section");
     </div>
   </div>
 
-  <hr class="mt-0 mb-4">
-
   <div class="row">
     <div class="col-lg-4 mb-4">
       <marko-web-query|{ nodes }| name="website-scheduled-content" params={ sectionAlias: "tactical", limit: 4, queryFragment }>
@@ -159,8 +155,6 @@ $ const section = getAsObject(data, "section");
       </marko-web-query-website-scheduled-content>
     </div>
   </div>
-
-  <hr class="mt-0 mb-4">
 
   <div class="row">
     <div class="col-lg-4 mb-4">
@@ -235,8 +229,6 @@ $ const section = getAsObject(data, "section");
       </marko-web-query-website-scheduled-content>
     </div>
   </div>
-
-  <hr class="mt-0 mb-4">
 
   <marko-web-query|{ nodes }| name="website-scheduled-content" params={ sectionId: section.id, skip: 12, limit: 11, queryFragment }>
     <site-node-layout-card-deck nodes=nodes />
