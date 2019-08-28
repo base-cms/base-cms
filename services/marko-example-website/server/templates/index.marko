@@ -17,9 +17,9 @@ $ const section = getAsObject(data, "section");
     />
   </@head>
 
-  <marko-web-gam-display-ad id="gpt-ad-bs" class="text-center mb-4" />
+  <marko-web-gam-display-ad id="gpt-ad-bs" class="text-center" />
 
-  <div class="page-wrapper mb-4">
+  <div class="page-wrapper mt-4">
     <div class="page-wrapper__section">
       <h1>Homepage</h1>
       <p class="mb-0">Example page wrapper with section</p>
@@ -38,7 +38,7 @@ $ const section = getAsObject(data, "section");
       $ const heroNodes = nodes.slice(0, 1);
       $ const listNodes = nodes.slice(1);
 
-      <div class="col-8 mb-4">
+      <div class="col-lg-8 mt-4">
         <marko-web-node-list inner-justified=true full-height=true>
           <@nodes nodes=heroNodes>
             <@slot|{ node }|>
@@ -48,7 +48,7 @@ $ const section = getAsObject(data, "section");
         </marko-web-node-list>
       </div>
 
-      <div class="col-4 mb-4">
+      <div class="col-lg-4 mt-4">
         <marko-web-node-list inner-justified=true>
           <@nodes nodes=listNodes>
             <@slot|{ node }|>
@@ -61,7 +61,7 @@ $ const section = getAsObject(data, "section");
   </div>
 
   <div class="row">
-    <div class="col-lg-4 mb-4">
+    <div class="col-lg-4 mt-4">
       <marko-web-query-website-scheduled-content|{ nodes }|
         section-id=section.id
         exclude-content-type=["Company", "Contact"]
@@ -81,11 +81,11 @@ $ const section = getAsObject(data, "section");
       </marko-web-query-website-scheduled-content>
     </div>
 
-    <div class="col-lg-4 mb-4">
+    <div class="col-lg-4 mt-4">
       <marko-web-gam-display-ad id="gpt-ad-hp" class="text-center my-auto" />
     </div>
 
-    <div class="col-lg-4 mb-4">
+    <div class="col-lg-4 mt-4">
       <marko-web-query-website-optioned-content|{ nodes }|
         section-id=section.id
         exclude-content-type=["Company"]
@@ -111,7 +111,7 @@ $ const section = getAsObject(data, "section");
   </div>
 
   <div class="row">
-    <div class="col-lg-4 mb-4">
+    <div class="col-lg-4 mt-4">
       <marko-web-query|{ nodes }| name="website-scheduled-content" params={ sectionAlias: "tactical", limit: 4, queryFragment }>
         <site-node-layout-section-list nodes=nodes>
           <@header>
@@ -121,7 +121,7 @@ $ const section = getAsObject(data, "section");
       </marko-web-query>
     </div>
 
-    <div class="col-lg-4 mb-4">
+    <div class="col-lg-4 mt-4">
       <marko-web-query|{ nodes }| name="all-published-content" params={ contentTypes: ["Video"], limit: 4, queryFragment }>
         <site-node-layout-section-list nodes=nodes>
           <@header>
@@ -131,7 +131,7 @@ $ const section = getAsObject(data, "section");
       </marko-web-query>
     </div>
 
-    <div class="col-lg-4 mb-4">
+    <div class="col-lg-4 mt-4">
       <marko-web-query-website-scheduled-content|{ nodes }|
         section-alias="on-the-street"
         query-fragment=queryFragment
@@ -157,7 +157,7 @@ $ const section = getAsObject(data, "section");
   </div>
 
   <div class="row">
-    <div class="col-lg-4 mb-4">
+    <div class="col-lg-4 mt-4">
       <marko-web-query-website-scheduled-content|{ nodes }|
         section-alias="investigations"
         query-fragment=queryFragment
@@ -181,7 +181,7 @@ $ const section = getAsObject(data, "section");
       </marko-web-query-website-scheduled-content>
     </div>
 
-    <div class="col-lg-4 mb-4">
+    <div class="col-lg-4 mt-4">
       <marko-web-query-website-scheduled-content|{ nodes }|
         section-alias="command-hq"
         query-fragment=queryFragment
@@ -205,7 +205,7 @@ $ const section = getAsObject(data, "section");
       </marko-web-query-website-scheduled-content>
     </div>
 
-    <div class="col-lg-4 mb-4">
+    <div class="col-lg-4 mt-4">
       <marko-web-query-website-scheduled-content|{ nodes }|
         section-alias="features/honoring-the-fallen"
         query-fragment=queryFragment
