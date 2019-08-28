@@ -1,14 +1,18 @@
-import { getAsObject } from '@base-cms/object-path';
-import queryFragment from '../../api/fragments/website-scheduled-content';
+import { getAsObject } from "@base-cms/object-path";
+import queryFragment from "../../api/fragments/website-scheduled-content";
 
-$ const section = getAsObject(data, 'section');
+$ const section = getAsObject(data, "section");
 
 <layout section=section>
+  <@head>
+    <marko-web-gam-head />
+  </@head>
+
   <h1 class="mb-4">${section.metadata.title}</h1>
   <if(section.description)>
     <p>${section.description}</p>
   </if>
-  $ const block = 'content-list';
+  $ const block = "content-list";
   <marko-web-query-website-scheduled-content|{ nodes }|
     query-fragment=queryFragment
     section-id=section.id

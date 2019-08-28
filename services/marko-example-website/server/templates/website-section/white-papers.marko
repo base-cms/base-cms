@@ -1,7 +1,7 @@
-import { getAsObject } from '@base-cms/object-path';
-import queryFragment from '../../api/fragments/all-published-content';
+import { getAsObject } from "@base-cms/object-path";
+import queryFragment from "../../api/fragments/all-published-content";
 
-$ const section = getAsObject(data, 'section');
+$ const section = getAsObject(data, "section");
 $ const chunk = (array, size) => {
   const chunked = [];
   let index = 0;
@@ -13,11 +13,15 @@ $ const chunk = (array, size) => {
 };
 
 <layout section=section>
+  <@head>
+    <marko-web-gam-head />
+  </@head>
+
   <h1 class="mb-4">${section.metadata.title}</h1>
   <if(section.description)>
     <p>${section.description}</p>
   </if>
-  $ const block = 'content-list';
+  $ const block = "content-list";
   <marko-web-query-all-published-content|{ nodes }|
     query-fragment=queryFragment
     limit=18
