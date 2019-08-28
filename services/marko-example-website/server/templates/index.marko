@@ -3,6 +3,7 @@ import { getAsObject, get } from "@base-cms/object-path";
 import GAM from "../../config/gam";
 import Layout from "./website-section/components/layout";
 
+$ const { config } = out.global;
 $ const section = getAsObject(data, "section");
 
 <${Layout} section=section>
@@ -21,8 +22,8 @@ $ const section = getAsObject(data, "section");
 
   <div class="page-wrapper mt-4">
     <div class="page-wrapper__section">
-      <h1>Homepage</h1>
-      <p class="mb-0">Example page wrapper with section</p>
+      <h1>${config.siteName()}</h1>
+      <p class="mb-0">${section.description}</p>
     </div>
   </div>
 
