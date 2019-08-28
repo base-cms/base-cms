@@ -14,32 +14,20 @@ $ const block = "content-page";
     />
   </@head>
 
-  <marko-web-gam-display-ad id="gpt-ad-bs" class="text-center mb-4" />
+  <marko-web-gam-display-ad id="gpt-ad-bs" class="text-center" />
 
-  <div class="page-wrapper">
-    <div class="page-wrapper__section">
+  <marko-web-page-wrapper class="mt-4">
+    <@section>
       <div class="row">
         <div class="col">
           <div class="card">
             <div class="card-body p-0">
 
-              <!-- <nav aria-label="breadcrumb">
+              <nav aria-label="breadcrumb">
                 <cms-website-section-hierarchy|{ section }| tag="ol" class="breadcrumb" block=block obj=content.primarySection>
                   <cms-website-section-name tag="li" class="text-uppercase breadcrumb-item small" block=block obj=section link=true />
                 </cms-website-section-hierarchy>
               </nav>
-
-              <div>
-                <marko-web-icon name="alert" />
-                <marko-web-icon name="alert" modifiers=["md"] />
-                <marko-web-icon name="alert" modifiers=["lg"] />
-                <marko-web-icon name="alert" modifiers=["xl"] />
-              </div>
-              <div>
-                <marko-web-icon name="facebook" modifiers=["lg"] />
-                <marko-web-icon name="facebook" modifiers=["lg", "light", "shadow"] />
-                <marko-web-icon name="facebook" modifiers=["lg", "dark"] />
-              </div> -->
 
               <cms-content-name tag="h1" class="mb-2" block=block obj=content />
               <cms-content-teaser tag="p" block=block obj=content />
@@ -82,9 +70,8 @@ $ const block = "content-page";
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="page-wrapper__section">
+    </@section>
+    <@section>
       <div class="row">
         <div class="col-lg-8">
           <div class="card">
@@ -110,8 +97,8 @@ $ const block = "content-page";
           />
         </aside>
       </div>
-    </div>
-  </div>
+    </@section>
+  </marko-web-page-wrapper>
 
   <!-- $ const section = getAsObject(content, "primarySection");
   <if(section.id)>

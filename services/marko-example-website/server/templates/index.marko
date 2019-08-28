@@ -20,12 +20,12 @@ $ const section = getAsObject(data, "section");
 
   <marko-web-gam-display-ad id="gpt-ad-bs" class="text-center" />
 
-  <div class="page-wrapper mt-4">
-    <div class="page-wrapper__section">
+  <marko-web-page-wrapper class="mt-4">
+    <@section>
       <h1>${config.siteName()}</h1>
       <p class="mb-0">${section.description}</p>
-    </div>
-  </div>
+    </@section>
+  </marko-web-page-wrapper>
 
   <div class="row">
     <marko-web-query-website-optioned-content|{ nodes }|
