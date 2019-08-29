@@ -18,6 +18,8 @@ $ const section = getAsObject(data, "section");
     />
   </@head>
 
+  <!-- Should this be wrapped in @page??? -->
+
   <marko-web-gam-display-ad id="gpt-ad-bs" class="text-center" />
 
   <marko-web-page-wrapper class="mt-4">
@@ -231,14 +233,14 @@ $ const section = getAsObject(data, "section");
     </div>
   </div>
 
-  <!-- Note: this should become the first load more page. -->
-  <marko-web-query|{ nodes }| name="website-scheduled-content" params={ sectionId: section.id, skip: 12, limit: 11, queryFragment }>
-    <site-node-layout-card-deck nodes=nodes />
-  </marko-web-query>
-
   <@after-page>
     <marko-web-load-more
-      query={ name: "website-scheduled-content", params: { sectionId: section.id, skip: 23, limit: 11, queryFragment } }
+      component-name="card-deck"
+      component-input={}
+      fragment-name="content-list"
+      query-name="website-scheduled-content"
+      query-params={ sectionId: section.id, skip: 12, limit: 11 }
+      header="More Content"
     />
   </@after-page>
 </>
