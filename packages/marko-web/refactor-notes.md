@@ -58,3 +58,5 @@
   - update sass vars to match theme
 - Update `<endeavor-item>` and `<endeavor-item-list>` to `<marko-web-node>` and `<marko-web-node-list>`
 - Update `&__contents` to `&__nodes` for `<marko-web-node-list>`, `&__item` to `&__node`
+- Need to add `/__load-more` to no-follow
+- Remove `load-more` routes from sites

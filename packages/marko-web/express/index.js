@@ -7,6 +7,7 @@ const loadObject = require('./load-object');
 const marko = require('./marko');
 const oembed = require('./oembed');
 const rss = require('./rss');
+const loadMore = require('./load-more');
 const sitemaps = require('./sitemaps');
 const CoreConfig = require('../config/core');
 const SiteConfig = require('../config/site');
@@ -54,6 +55,9 @@ module.exports = (config = {}) => {
 
   // Register public files.
   app.use(express.static(path.join(serverDir, 'public')));
+
+  // Register load more.
+  loadMore(app);
 
   // Register sitemaps.
   sitemaps(app, headers);
