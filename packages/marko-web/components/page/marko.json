@@ -9,7 +9,8 @@
     "@id": "string",
     "@type": "string",
     "@class": "string",
-    "@attrs": "object"
+    "@attrs": "object",
+    "@modifiers": "array"
   },
   "<marko-web-page-wrapper>": {
     "template": "./wrapper.marko",
