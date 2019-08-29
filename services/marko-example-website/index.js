@@ -3,6 +3,8 @@ const errorTemplate = require('./server/templates/error');
 const routes = require('./server/routes');
 const coreConfig = require('./config/core');
 const siteConfig = require('./config/site');
+const components = require('./components');
+const fragments = require('./fragments');
 
 startServer({
   rootDir: __dirname,
@@ -10,4 +12,6 @@ startServer({
   siteConfig,
   routes,
   errorTemplate,
+  components,
+  fragments,
 });
