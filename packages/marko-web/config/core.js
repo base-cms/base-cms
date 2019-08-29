@@ -25,8 +25,8 @@ class CoreConfig extends AbstractConfig {
     return this.get('images.fallback');
   }
 
-  loadMoreMountTo() {
-    return this.get('loadMore.mountTo', '/__load-more');
+  loadMoreMountPoint() {
+    return this.get('loadMore.mountPoint', '/__load-more');
   }
 
   siteName() {
