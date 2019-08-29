@@ -2,7 +2,6 @@
   "taglib-imports": [
     "./element/marko.json",
     "./elements/marko.json",
-    "./load-more/marko.json",
     "./node/marko.json",
     "./node-list/marko.json",
     "./page/marko.json",
@@ -49,5 +48,16 @@
     "@modifiers": "array",
     "@class": "string",
     "@attrs": "object"
+  },
+  "<marko-web-load-more>": {
+    "template": "./load-more.marko",
+    "@page-number": "number",
+    "@component-name": "string",
+    "@component-input": "object",
+    "@query-name": "string",
+    "@query-params": "object",
+    "@fragment-name": "string",
+    "@page-input": "object",
+    "@header": "string"
   }
 }
