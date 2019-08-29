@@ -9,7 +9,7 @@ $ const query = {
 
 <marko-web-query|{ nodes, pageInfo }| ...query>
   <if(nodes.length)>
-    <marko-web-page-container ...input.page>
+    <marko-web-page-container tag="section" ...input.page>
       <!-- Fire generic `load-more-in-view` event (other services can attach to this, e.g. GTM) -->
       <marko-web-browser-component name="TriggerInViewEvent" props={ eventName: "load-more-in-view", data: { page_number: pageNumber + 1 } } />
       <${input.renderBody} nodes=nodes page-info=pageInfo />
