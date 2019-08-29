@@ -3,6 +3,7 @@ const cookieParser = require('cookie-parser');
 const express = require('express');
 const path = require('path');
 const apollo = require('./apollo');
+const loadObject = require('./load-object');
 const marko = require('./marko');
 const oembed = require('./oembed');
 const rss = require('./rss');
@@ -19,6 +20,10 @@ module.exports = (config = {}) => {
 
   // Add async block error handler.
   app.locals.onAsyncBlockError = config.onAsyncBlockError;
+
+  // Register global components and fragments.
+  app.locals.components = loadObject(config.components);
+  app.locals.fragments = loadObject(config.fragments);
 
   // Add cookie parsing
   app.use(cookieParser());

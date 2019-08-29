@@ -24,6 +24,8 @@ module.exports = async ({
   cdnImageHostname = env.CDN_IMAGE_HOSTNAME || 'base.imgix.net',
   cdnAssetHostname = env.CDN_ASSET_HOSTNAME || 'cdn.baseplatform.io',
   errorTemplate,
+  components, // components to register globally (e.g. for load more, etc)
+  fragments, // fragments to register globally
   onAsyncBlockError,
   redirectHandler,
 
@@ -47,6 +49,8 @@ module.exports = async ({
     cdnImageHostname,
     cdnAssetHostname,
     onAsyncBlockError,
+    components,
+    fragments,
   });
 
   // Await required services here...
