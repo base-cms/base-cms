@@ -1,0 +1,13 @@
+{
+  "<marko-web-load-more>": {
+    "template": "./index.marko",
+    "@page-number": "number",
+    "@component-name": "string",
+    "@component-input": "object",
+    "@query-name": "string",
+    "@query-params": "object",
+    "@fragment-name": "string",
+    "@page-input": "object",
+    "@header": "string"
+  }
+}
