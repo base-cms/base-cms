@@ -241,6 +241,9 @@ $ const section = getAsObject(data, "section");
       query-name="website-scheduled-content"
       query-params={ sectionId: section.id, skip: 12, limit: 11 }
       header="More Content"
+      max-pages=3
+      page-input={ for: "website-section", id: section.id }
+      trigger-input={ buttonClass: "btn btn-large btn-primary" }
     />
   </@after-page>
 </>
