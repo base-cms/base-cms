@@ -1,0 +1,11 @@
+$ const { config } = out.global;
+
+$ const props = {
+  ...input,
+  mountPoint: config.loadMoreMountPoint(),
+  appendTo: input.appendTo || ".document-container",
+};
+
+<if(input.show)>
+  <marko-web-browser-component name="LoadMoreTrigger" props=props/>
+</if>

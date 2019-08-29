@@ -2,12 +2,26 @@
   "<marko-web-load-more>": {
     "template": "./index.marko",
     "@page-number": "number",
+    "@max-pages": "number",
     "@component-name": "string",
     "@component-input": "object",
     "@query-name": "string",
     "@query-params": "object",
     "@fragment-name": "string",
     "@page-input": "object",
-    "@header": "string"
+    "@header": "string",
+    "@trigger-input": "object"
+  },
+  "<marko-web-load-more-trigger>": {
+    "template": "./trigger.marko",
+    "@show": "number",
+    "@page-number": "number",
+    "@provide": "object",
+    "@append-to": "string",
+    "@max-pages": "number",
+    "@expand": "number",
+    "@class-name": "string",
+    "@button-class": "string",
+    "@button-label": "string"
   }
 }
