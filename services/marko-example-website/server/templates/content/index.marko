@@ -100,21 +100,30 @@ $ const block = "content-page";
     </@section>
   </marko-web-page-wrapper>
 
-  <!-- $ const section = getAsObject(content, "primarySection");
-  <if(section.id)>
-    <hr>
-    <div class="text-center">
-      <h2 class="text-uppercase mb-3">More in ${section.name}</h2>
+  <@after-page>
+    <div class="page">
+      <marko-web-page-wrapper>
+        <@section>
+          <h1>Another page</h1>
+          <p class="mb-0">Example page wrapper with section</p>
+        </@section>
+      </marko-web-page-wrapper>
     </div>
-    <content-block-sub-page-a
-      query={
-        skip: 5,
-        excludeContentIds: [content.id],
-        sectionId: section.id,
-      }
-      load-more={ appendTo: ".container-fluid-max", maxPages: 5 }
-      section=section
-    />
-  </if> -->
 
+    $ const section = getAsObject(content, "primarySection");
+
+    <if(section.id)>
+      <marko-web-load-more
+        component-name="card-deck"
+        component-input={}
+        fragment-name="content-list"
+        query-name="website-scheduled-content"
+        query-params={ sectionId: section.id, limit: 11, skip: 5, excludeContentIds: [content.id] }
+        header=`More in ${section.name}`
+        max-pages=5
+        page-input={ for: "content", id: content.id, type: content.type }
+        trigger-input={ buttonClass: "btn btn-large btn-primary" }
+      />
+    </if>
+  </@after-page>
 </layout>
