@@ -1,4 +1,17 @@
 {
+  "<marko-web-block>": {
+    "template": "./block.marko",
+    "@name": {
+      "type": "string",
+      "default-value": "block"
+    },
+    "@tag": {
+      "type": "string",
+      "default-value": "div"
+    },
+    "@modifiers": "@array",
+    "@attrs": "object"
+  },
   "<marko-web-element>": {
     "template": "./index.marko",
     "@name": {
