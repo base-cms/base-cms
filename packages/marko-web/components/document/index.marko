@@ -1,6 +1,5 @@
 $ const { config } = out.global;
 
-$ const withContainer = input.withContainer == null ? true : input.withContainer;
 $ const dir = input.dir || "ltr";
 $ const lang = input.lang || config.locale();
 $ const viewport = input.viewport || "width=device-width, initial-scale=1, shrink-to-fit=no";
@@ -18,16 +17,11 @@ $ const viewport = input.viewport || "width=device-width, initial-scale=1, shrin
     <${input.head} />
   </head>
   <body>
-    <${input.beforeContainer} />
-    <if(withContainer)>
-      <marko-web-document-container ...input.container>
-        <${input.renderBody} />
-      </marko-web-document-container>
+    <${input.aboveContainer} />
+    <if(input.container)>
+      <marko-web-document-container ...input.container />
     </if>
-    <else>
-      <${input.renderBody} />
-    </else>
-    <${input.afterContainer} />
+    <${input.belowContainer} />
     <live-reload />
   </body>
 </html>

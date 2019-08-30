@@ -7,5 +7,9 @@ $ const modifiers = [...getAsArray(input.modifiers)];
 $ const classNames = [blockName, ...modifiers.map(mod => `${blockName}--${mod}`), input.class];
 
 <${tag} ...input.attrs class=classNames>
-  <${input.renderBody} />
+  <${input.abovePage} />
+  <if(input.page)>
+    <marko-web-page-container ...input.page />
+  </if>
+  <${input.belowPage} />
 </>
