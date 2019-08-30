@@ -1,0 +1,8 @@
+import { get } from "@base-cms/object-path";
+
+$ const { parseEmbeddedMedia, res } = out.global;
+
+$ const body = get(input.obj, "body");
+$ const value = body == null ? '' : `${body}`.trim();
+
+<marko-web-text value=parseEmbeddedMedia(value, res) asHTML=true />

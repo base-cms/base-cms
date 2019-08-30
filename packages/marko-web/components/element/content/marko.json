@@ -1,0 +1,7 @@
+{
+  "<marko-web-content-body>": {
+    "template": "./body.marko",
+    "@obj": "object",
+    "@block-name": "string"
+  }
+}

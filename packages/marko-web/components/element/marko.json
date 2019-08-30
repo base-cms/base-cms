@@ -1,4 +1,7 @@
 {
+  "taglib-imports": [
+    "./content/marko.json"
+  ],
   "<marko-web-block>": {
     "template": "./block.marko",
     "@name": {
