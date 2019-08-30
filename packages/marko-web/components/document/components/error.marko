@@ -3,10 +3,18 @@ import isDev from '../../../utils/is-dev';
 $ const error = input.error || {};
 
 <marko-web-document>
-  <h1>An Error Occurred</h1>
-  <h2>${input.statusCode} ${input.statusMessage}</h2>
-  <h3>${error.message}</h3>
-  <if(isDev)>
-    <pre>${error.stack}</pre>
-  </if>
+  <@container>
+    <@page for="error">
+      <marko-web-page-wrapper>
+        <@section>
+          <h1>An Error Occurred</h1>
+          <h2>${input.statusCode} ${input.statusMessage}</h2>
+          <h3>${error.message}</h3>
+          <if(isDev)>
+            <pre>${error.stack}</pre>
+          </if>
+        </@section>
+      </marko-web-page-wrapper>
+    </@page>
+  </@container>
 </marko-web-document>
