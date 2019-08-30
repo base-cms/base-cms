@@ -105,7 +105,7 @@ export default {
       this.loading = true;
       const href = `${this.mountPoint}/?input=${encodeURIComponent(JSON.stringify(input))}`;
       try {
-        const r = await fetch(href);
+        const r = await fetch(href, { credentials: 'same-origin' });
         const html = await r.text();
         const temp = document.createElement('div');
         if (this.appendTo) {
