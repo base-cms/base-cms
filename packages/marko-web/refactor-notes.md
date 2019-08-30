@@ -60,3 +60,4 @@
 - Update `&__contents` to `&__nodes` for `<marko-web-node-list>`, `&__item` to `&__node`
 - Need to add `/__load-more` to no-follow
 - Remove `load-more` routes from sites
+- Remove the `routing-utils` package from endeavor and use the `json-error-handler` from `@base-cms/marko-web/express/json-error-handler`
