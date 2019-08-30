@@ -1,9 +1,10 @@
 
 $marko-web-gam-fixed-ad-bottom-background-color:      rgba(0, 0, 0, .8) !default;
 
+$marko-web-gam-fixed-ad-bottom-container-height:      90px !default;
 $marko-web-gam-fixed-ad-bottom-container-padding:     .5rem !default;
 $marko-web-gam-fixed-ad-bottom-container-z-index:     100000 !default;
-$marko-web-gam-fixed-ad-bottom-container-transition:  visibility linear 250ms, opacity ease 250ms !default;
+$marko-web-gam-fixed-ad-bottom-container-transition:  visibility linear 250ms, opacity ease 250ms, padding ease 250ms !default;
 $marko-web-gam-fixed-ad-bottom-container-width:       100% !default;
 
 $marko-web-gam-fixed-ad-bottom-close-color:           #fff !default;
@@ -35,7 +36,7 @@ $marko-web-gam-fixed-ad-bottom-close-z-index:         $marko-web-gam-fixed-ad-bo
   }
 
   &--visible {
-    padding-top: calc(100px + #{$marko-web-gam-fixed-ad-bottom-container-padding} + #{$marko-web-gam-fixed-ad-bottom-container-padding});
+    padding-top: calc(#{$marko-web-gam-fixed-ad-bottom-container-height} + #{$marko-web-gam-fixed-ad-bottom-container-padding} + #{$marko-web-gam-fixed-ad-bottom-container-padding});
 
     #{ $self } {
       &__container {
