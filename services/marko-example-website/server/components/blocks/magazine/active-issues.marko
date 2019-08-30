@@ -44,23 +44,5 @@ $ const loadMore = {
         </div>
       </div>
     </for>
-
-    $ const { endCursor, hasNextPage } = pageInfo;
-    $ delete query.skip;
-    $ delete query.queryFragment;
-    $ query.after = endCursor;
-    $ const provide = { ...input, query };
-
-    <cms-load-more-element
-      show=hasNextPage
-      page-number=pageNumber
-      append-to=loadMore.appendTo
-      max-pages=loadMore.maxPages
-      block-name="magazine-block-active-issues"
-      label="Load More Issues"
-      provide=provide
-      button-class-obj={ btn: true, 'btn-lg': true, 'btn-primary': true }
-      wrapping-class-obj={ col: true, 'text-center': true, 'pb-3': true }
-    />
   </div>
 </marko-web-query-magazine-active-issues>
