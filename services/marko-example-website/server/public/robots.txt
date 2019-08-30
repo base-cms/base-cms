@@ -3,6 +3,7 @@
 
 User-agent: *
 Disallow: /
+Disallow: /__load-more
 
 Sitemap: https://www.evaluationengineering.com/sitemap.xml
 Sitemap: https://www.evaluationengineering.com/sitemap-google-news.xml
