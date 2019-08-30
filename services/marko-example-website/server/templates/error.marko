@@ -1,4 +1,5 @@
-$ const isDevelopment = process.env.NODE_ENV === "development";
+import isDev from "@base-cms/marko-web/utils/is-dev";
+
 $ const error = input.error || {};
 
 <document>
@@ -10,7 +11,7 @@ $ const error = input.error || {};
             <div class="col">
               <h2>${input.statusCode} ${input.statusMessage}</h2>
               <h3>${error.message}</h3>
-              <if(isDevelopment)>
+              <if(isDev)>
                 <pre>${error.stack}</pre>
               </if>
             </div>

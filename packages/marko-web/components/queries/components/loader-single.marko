@@ -1,3 +1,5 @@
+import isDev from "../../../utils/is-dev";
+
 $ const isDevelopment = process.env.NODE_ENV === 'development';
 $ const { onAsyncBlockError } = out.global;
 
@@ -12,7 +14,7 @@ $ const { onAsyncBlockError } = out.global;
     </if>
     <else>
       <pre>An unexpected error occurred: ${err.message}</pre>
-      <if(isDevelopment)>
+      <if(isDev)>
         <pre>${err.stack}</pre>
       </if>
     </else>
