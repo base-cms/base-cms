@@ -26,6 +26,7 @@ module.exports = async ({
   errorTemplate,
   components, // components to register globally (e.g. for load more, etc)
   fragments, // fragments to register globally
+  embeddedMediaHandlers,
   onAsyncBlockError,
   redirectHandler,
 
@@ -51,6 +52,7 @@ module.exports = async ({
     onAsyncBlockError,
     components,
     fragments,
+    embeddedMediaHandlers,
   });
 
   // Await required services here...

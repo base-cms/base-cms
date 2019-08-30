@@ -3,6 +3,7 @@ const cookieParser = require('cookie-parser');
 const express = require('express');
 const path = require('path');
 const apollo = require('./apollo');
+const embeddedMedia = require('./embedded-media');
 const loadObject = require('./load-object');
 const marko = require('./marko');
 const oembed = require('./oembed');
@@ -34,6 +35,9 @@ module.exports = (config = {}) => {
 
   // Set the website config to the app.
   app.locals.site = new SiteConfig(config.siteConfig);
+
+  // Apply embedded media handlers.
+  embeddedMedia(app, config.embeddedMediaHandlers);
 
   // Apply request origin.
   app.use((req, res, next) => {
