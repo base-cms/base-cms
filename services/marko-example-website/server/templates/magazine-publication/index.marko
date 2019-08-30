@@ -4,33 +4,35 @@ $ const publication = getAsObject(data, 'publication');
 $ const magazines = { canonicalPath: '/magazine' };
 
 <layout publication=publication>
-  <marko-web-gam-display-ad id="gpt-ad-bs" class="text-center" />
+  <@page>
+    <marko-web-gam-display-ad id="gpt-ad-bs" class="text-center" />
 
-  <div class="row">
-    <div class="col">
-      <div class="card">
-        <div class="card-body pb-0">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-body pb-0">
 
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-              <li class="text-uppercase breadcrumb-item small"><cms-link-element to=magazines>Magazines</cms-link-element></li>
-              <li class="text-uppercase breadcrumb-item small">${publication.name}</li>
-            </ol>
-          </nav>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="text-uppercase breadcrumb-item small"><cms-link-element to=magazines>Magazines</cms-link-element></li>
+                <li class="text-uppercase breadcrumb-item small">${publication.name}</li>
+              </ol>
+            </nav>
 
-          <h1 class="mb-2">${publication.name}</h1>
-          <div class="row">
-            <cms-image-element obj=publication.coverImage width=160 class="col-3 text-center" />
-            <div class="col">${publication.description}</div>
+            <h1 class="mb-2">${publication.name}</h1>
+            <div class="row">
+              <cms-image-element obj=publication.coverImage width=160 class="col-3 text-center" />
+              <div class="col">${publication.description}</div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <hr>
+    <hr>
 
-  <div class="row mt-3 mx-2">
-    <magazine-block-active-issues query={ publicationId: publication.id } load-more={ appendTo: '.container-fluid-max' } />
-  </div>
+    <div class="row mt-3 mx-2">
+      <magazine-block-active-issues query={ publicationId: publication.id } load-more={ appendTo: '.container-fluid-max' } />
+    </div>
+  </@page>
 </layout>

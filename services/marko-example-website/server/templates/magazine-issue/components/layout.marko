@@ -3,7 +3,7 @@ import GAM from '../../../../config/gam';
 
 $ const issue = getAsObject(input, 'issue');
 
-<document>
+<document above-container=input.aboveContainer below-container=input.belowContainer>
   <@head>
     <marko-web-page-metadata
       title=get(issue, "metadata.title")
@@ -19,9 +19,9 @@ $ const issue = getAsObject(input, 'issue');
     />
     <${input.head} />
   </@head>
-  <marko-web-page-container for="magazine-issue" class="container-fluid-max" id=issue.id>
-    <${input.renderBody} />
-  </marko-web-page-container>
-  <hr>
-  <site-footer />
+  <@container above-page=input.abovePage below-page=input.belowPage>
+    <@page for="magazine-issue" id=issue.id>
+      <${input.page} />
+    </@page>
+  </@container>
 </document>

@@ -1,24 +1,15 @@
-import { getAsObject } from '@base-cms/object-path';
-import GAM from '../../../../config/gam';
-
 $ const { config, site } = out.global;
 $ const description = site.get('magazines.description');
 
-<document>
+<document above-container=input.aboveContainer below-container=input.belowContainer>
   <@head>
     <marko-web-page-metadata title="Magazines" description=description />
-    <marko-web-gam-head
-      slots={
-        'gpt-ad-bs': GAM.getAdUnit({ name: 'BS' }),
-        'gpt-ad-mr': GAM.getAdUnit({ name: 'MR' }),
-        'gpt-ad-hp': GAM.getAdUnit({ name: 'HP' }),
-      }
-    />
     <${input.head} />
+    <marko-web-gtm-start />
   </@head>
-  <marko-web-page-container for="magazine" class="container-fluid-max">
-    <${input.renderBody} />
-  </marko-web-page-container>
-  <hr>
-  <site-footer />
+  <@container above-page=input.abovePage below-page=input.belowPage>
+    <@page for="magazine">
+      <${input.page} />
+    </@page>
+  </@container>
 </document>

@@ -19,9 +19,9 @@ $ const publication = getAsObject(input, 'publication');
     />
     <${input.head} />
   </@head>
-  <marko-web-page-container for="magazine-publication" class="container-fluid-max" id=publication.id>
-    <${input.renderBody} />
-  </marko-web-page-container>
-  <hr>
-  <site-footer />
+  <@container above-page=input.abovePage below-page=input.belowPage>
+    <@page for="magazine-publication" id=publication.id>
+      <${input.page} />
+    </@page>
+  </@container>
 </document>
