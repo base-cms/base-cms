@@ -39,9 +39,9 @@ $ const context = {
     <${input.head} />
     <marko-web-gtm-start />
   </@head>
-  <${input.beforePage} />
-  <marko-web-page-container for="content" tag="article" id=content.id type=content.type>
-    <${input.renderBody} />
-  </marko-web-page-container>
-  <${input.afterPage} />
+  <@container above-page=input.abovePage below-page=input.belowPage>
+    <@page for="content" tag="article" id=content.id type=content.type>
+      <${input.page} />
+    </@page>
+  </@container>
 </document>

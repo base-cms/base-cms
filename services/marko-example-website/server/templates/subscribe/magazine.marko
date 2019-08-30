@@ -1,11 +1,17 @@
 import { getAsObject, get } from '@base-cms/object-path';
+import GAM from "../../../config/gam";
 
-$ const publication = getAsObject(data, 'publication');
+<layout>
+  <@head>
+    <marko-web-gam-head
+      slots={
+        "gpt-ad-bs": GAM.getAdUnit({ name: "BS" }),
+      }
+    />
+  </@head>
 
-<layout publication=publication>
-
-  <marko-web-gam-display-ad id="gpt-ad-bs" class="text-center" />
-
-  <h1>${publication.name}</h1>
-
+  <@page>
+    <marko-web-gam-define-display-ad id="gpt-ad-bs" class="text-center" />
+    <h1>${publication.name}</h1>
+  </@page>
 </layout>

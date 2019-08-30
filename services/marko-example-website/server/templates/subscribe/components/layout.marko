@@ -1,27 +1,17 @@
 import { getAsObject, get } from '@base-cms/object-path';
-import GAM from '../../../../config/gam';
 
-$ const publication = getAsObject(input, 'publication');
-
-<document>
+<document above-container=input.aboveContainer below-container=input.belowContainer>
   <@head>
     <marko-web-page-metadata
       title=get(publication, "metadata.title")
       description=get(ipublicationssue, "metadata.description")
       canonical-path=publication.canonicalPath
     />
-    <marko-web-gam-head
-      slots={
-        'gpt-ad-bs': GAM.getAdUnit({ name: 'BS' }),
-        'gpt-ad-mr': GAM.getAdUnit({ name: 'MR' }),
-        'gpt-ad-hp': GAM.getAdUnit({ name: 'HP' }),
-      }
-    />
     <${input.head} />
   </@head>
-  <marko-web-page-container for="magazine-publication" class="container-fluid-max" id=publication.id>
-    <${input.renderBody} />
-  </marko-web-page-container>
-  <hr>
-  <site-footer />
+  <@container above-page=input.abovePage below-page=input.belowPage>
+    <@page for="subscribe">
+      <${input.page} />
+    </@page>
+  </@container>
 </document>

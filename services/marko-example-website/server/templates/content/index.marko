@@ -14,93 +14,95 @@ $ const block = "content-page";
     />
   </@head>
 
-  <marko-web-gam-display-ad id="gpt-ad-bs" class="text-center" />
+  <@page>
+    <marko-web-gam-display-ad id="gpt-ad-bs" class="text-center" />
 
-  <marko-web-page-wrapper class="mt-4">
-    <@section>
-      <div class="row">
-        <div class="col">
-          <div class="card">
-            <div class="card-body p-0">
+    <marko-web-page-wrapper class="mt-4">
+      <@section>
+        <div class="row">
+          <div class="col">
+            <div class="card">
+              <div class="card-body p-0">
 
-              <nav aria-label="breadcrumb">
-                <cms-website-section-hierarchy|{ section }| tag="ol" class="breadcrumb" block=block obj=content.primarySection>
-                  <cms-website-section-name tag="li" class="text-uppercase breadcrumb-item small" block=block obj=section link=true />
-                </cms-website-section-hierarchy>
-              </nav>
+                <nav aria-label="breadcrumb">
+                  <cms-website-section-hierarchy|{ section }| tag="ol" class="breadcrumb" block=block obj=content.primarySection>
+                    <cms-website-section-name tag="li" class="text-uppercase breadcrumb-item small" block=block obj=section link=true />
+                  </cms-website-section-hierarchy>
+                </nav>
 
-              <cms-content-name tag="h1" class="mb-2" block=block obj=content />
-              <cms-content-teaser tag="p" block=block obj=content />
+                <cms-content-name tag="h1" class="mb-2" block=block obj=content />
+                <cms-content-teaser tag="p" block=block obj=content />
 
-              <div class="content-authorable mb-2">
-                <cms-content-byline tag="div" class="small" block=block obj=content>
-                  <@before>By:&nbsp;</@before>
-                </cms-content-byline>
+                <div class="content-authorable mb-2">
+                  <cms-content-byline tag="div" class="small" block=block obj=content>
+                    <@before>By:&nbsp;</@before>
+                  </cms-content-byline>
 
-                <cms-content-authors|{ contact }| tag="div" class="small" block=block obj=content>
-                  <@before|{ length }|>
-                    Author<if(length > 1)>s</if>:&nbsp;
-                  </@before>
-                  <cms-content-name tag="span" block=block obj=contact link=true />
-                </cms-content-authors>
-                <cms-content-contributors|{ contact }| tag="div" class="small" block=block obj=content>
-                  <@before|{ length }|>
-                    Contributor<if(length > 1)>s</if>:&nbsp;
-                  </@before>
-                  <cms-content-name tag="span" block=block obj=contact link=true />
-                </cms-content-contributors>
-                <cms-content-photographers|{ contact }| tag="div" class="small" block=block obj=content>
-                  <@before|{ length }|>
-                    Photographer<if(length > 1)>s</if>:&nbsp;
-                  </@before>
-                  <cms-content-name tag="span" block=block obj=contact link=true />
-                </cms-content-photographers>
+                  <cms-content-authors|{ contact }| tag="div" class="small" block=block obj=content>
+                    <@before|{ length }|>
+                      Author<if(length > 1)>s</if>:&nbsp;
+                    </@before>
+                    <cms-content-name tag="span" block=block obj=contact link=true />
+                  </cms-content-authors>
+                  <cms-content-contributors|{ contact }| tag="div" class="small" block=block obj=content>
+                    <@before|{ length }|>
+                      Contributor<if(length > 1)>s</if>:&nbsp;
+                    </@before>
+                    <cms-content-name tag="span" block=block obj=contact link=true />
+                  </cms-content-contributors>
+                  <cms-content-photographers|{ contact }| tag="div" class="small" block=block obj=content>
+                    <@before|{ length }|>
+                      Photographer<if(length > 1)>s</if>:&nbsp;
+                    </@before>
+                    <cms-content-name tag="span" block=block obj=contact link=true />
+                  </cms-content-photographers>
 
-                <cms-content-source tag="div" class="small" block=block obj=content>
-                  <@before>Source:&nbsp;</@before>
-                </cms-content-source>
+                  <cms-content-source tag="div" class="small" block=block obj=content>
+                    <@before>Source:&nbsp;</@before>
+                  </cms-content-source>
 
-                <cms-content-name tag="div" class="small" block=block obj=content.company link=true>
-                  <@before>From:&nbsp;</@before>
-                </cms-content-name>
+                  <cms-content-name tag="div" class="small" block=block obj=content.company link=true>
+                    <@before>From:&nbsp;</@before>
+                  </cms-content-name>
+                </div>
+
+                <cms-content-published tag="small" class="text-uppercase text-muted" block=block obj=content />
               </div>
-
-              <cms-content-published tag="small" class="text-uppercase text-muted" block=block obj=content />
             </div>
           </div>
         </div>
-      </div>
-    </@section>
-    <@section>
-      <div class="row">
-        <div class="col-lg-8">
-          <div class="card">
-            <div class="card-body p-0">
-              <cms-content-embed-code class="embed-responsive embed-responsive-16by9 mb-3" block=block obj=content />
-              <cms-content-body tag="div" block=block obj=content />
-              <cms-content-sidebars obj=content />
+      </@section>
+      <@section>
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="card">
+              <div class="card-body p-0">
+                <cms-content-embed-code class="embed-responsive embed-responsive-16by9 mb-3" block=block obj=content />
+                <cms-content-body tag="div" block=block obj=content />
+                <cms-content-sidebars obj=content />
+              </div>
             </div>
           </div>
+          <aside class="col-lg-4">
+            <div class="card mb-4">
+              <div class="card-body p-0 d-flex justify-content-center">
+                <marko-web-gam-display-ad id="gpt-ad-mr" />
+              </div>
+            </div>
+
+            <content-related-a content-id=content.id />
+
+            <content-related-b
+              exclude-content-ids=[content.id]
+              section-id=get(content, "primarySection.id")
+            />
+          </aside>
         </div>
-        <aside class="col-lg-4">
-          <div class="card mb-4">
-            <div class="card-body p-0 d-flex justify-content-center">
-              <marko-web-gam-display-ad id="gpt-ad-mr" />
-            </div>
-          </div>
+      </@section>
+    </marko-web-page-wrapper>
+  </@page>
 
-          <content-related-a content-id=content.id />
-
-          <content-related-b
-            exclude-content-ids=[content.id]
-            section-id=get(content, "primarySection.id")
-          />
-        </aside>
-      </div>
-    </@section>
-  </marko-web-page-wrapper>
-
-  <@after-page>
+  <@below-page>
     <div class="page">
       <marko-web-page-wrapper>
         <@section>
@@ -125,5 +127,5 @@ $ const block = "content-page";
         trigger-input={ buttonClass: "btn btn-large btn-primary" }
       />
     </if>
-  </@after-page>
+  </@below-page>
 </layout>

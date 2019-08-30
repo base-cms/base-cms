@@ -9,31 +9,33 @@ $ const section = getAsObject(data, "section");
     <marko-web-gam-head />
   </@head>
 
-  <content-hero-block-a
-    section-id=section.id
-    limit=6
-    requires-image=true
-  />
-  <marko-web-gam-define-display-ad ...GAM.getAdUnit({ name: "BS" }) class="text-center my-4" />
-  <content-card-deck-a
-    skip=6
-    section-id=section.id
-    requires-image=true
-  />
-  <content-card-deck-a
-    skip=17
-    section-id=section.id
-    requires-image=true
-  />
-  <marko-web-gam-define-display-ad ...GAM.getAdUnit({ name: "BS" }) class="text-center my-4" />
-  <content-card-deck-a
-    skip=28
-    section-id=section.id
-    requires-image=true
-  />
-  <content-card-deck-a
-    skip=39
-    section-id=section.id
-    requires-image=true
-  />
+  <@page>
+    <content-hero-block-a
+      section-id=section.id
+      limit=6
+      requires-image=true
+    />
+    <marko-web-gam-define-display-ad ...GAM.getAdUnit({ name: "BS" }) class="text-center my-4" />
+    <content-card-deck-a
+      skip=6
+      section-id=section.id
+      requires-image=true
+    />
+    <content-card-deck-a
+      skip=17
+      section-id=section.id
+      requires-image=true
+    />
+    <marko-web-gam-define-display-ad ...GAM.getAdUnit({ name: "BS" }) class="text-center my-4" />
+    <content-card-deck-a
+      skip=28
+      section-id=section.id
+      requires-image=true
+    />
+    <content-card-deck-a
+      skip=39
+      section-id=section.id
+      requires-image=true
+    />
+  </@page>
 </layout>

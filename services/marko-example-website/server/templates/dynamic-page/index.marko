@@ -7,7 +7,9 @@ $ const page = getAsObject(data, "page");
     <marko-web-gam-head />
   </@head>
 
-  <marko-web-page-wrapper>
-    <@section>$!{page.body}</@section>
-  </marko-web-page-wrapper>
+  <@page>
+    <marko-web-page-wrapper>
+      <@section>$!{page.body}</@section>
+    </marko-web-page-wrapper>
+  </@page>
 </layout>

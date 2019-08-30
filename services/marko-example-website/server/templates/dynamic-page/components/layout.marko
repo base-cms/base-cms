@@ -17,7 +17,9 @@ $ const context = {
     <${input.head} />
     <marko-web-gtm-start />
   </@head>
-  <marko-web-page-container for="dynamic-page" id=page.id>
-    <${input.renderBody} />
-  </marko-web-page-container>
+  <@container above-page=input.abovePage below-page=input.belowPage>
+    <@page for="dynamic-page" id=page.id>
+      <${input.page} />
+    </@page>
+  </@container>
 </document>
