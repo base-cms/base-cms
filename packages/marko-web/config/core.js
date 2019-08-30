@@ -29,6 +29,10 @@ class CoreConfig extends AbstractConfig {
     return this.get('loadMore.mountPoint', '/__load-more');
   }
 
+  oembedMountPoint() {
+    return this.get('oembed.mountPoint', '/__oembed');
+  }
+
   siteName() {
     return this.get('siteName', '');
   }
