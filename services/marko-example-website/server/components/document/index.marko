@@ -9,15 +9,14 @@ $ const { site } = out.global;
     <marko-web-gtm-init container-id=site.get('gtm.containerId') />
     <${input.head} />
   </@head>
-  <@before-container>
+  <@above-container>
     <marko-web-gtm-track-load-more />
     <site-navbar />
-    <${input.beforeContainer} />
-  </@before-container>
-
-  <@after-container>
-    <${input.afterContainer} />
+    <${input.aboveContainer} />
+  </@above-container>
+  <@below-container>
+    <${input.belowContainer} />
     <site-footer />
     <marko-web-gam-fixed-ad-bottom ...GAM.getAdUnit({ name: "BS" }) />
-  </@after-container>
+  </@below-container>
 </marko-web-document>

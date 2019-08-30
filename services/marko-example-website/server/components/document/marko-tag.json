@@ -1,5 +1,10 @@
 {
   "<head>": {},
-  "<body-header>": {},
-  "<body-footer>": {}
+  "<above-container>": {},
+  "<container>": {
+    "<above-page>": {},
+    "<page>": {},
+    "<below-page>": {}
+  },
+  "<below-container>": {}
 }
