@@ -1,0 +1,17 @@
+import { get, getAsObject, getAsArray } from "@base-cms/object-path";
+import { dasherize } from "@base-cms/inflector";
+
+$ const field = input.field || "id";
+$ const obj = getAsObject(input, "obj");
+$ const value = get(obj, field, input.defaultValue);
+
+$ const classNames = [input.class];
+$ if (input.blockName) {
+  const elementName = `${input.blockName}__content-${field.split(".").map(part => dasherize(part)).join("-")}`;
+  classNames.push(elementName);
+  classNames.push(...getAsArray(input.modifiers).map(mod => `${elementName}--${mod}`));
+}
+
+<if(value && input.renderBody)>
+  <${input.renderBody} value=value class-names=classNames />
+</if>

@@ -1,7 +1,21 @@
 {
+  "<marko-web-content-element>": {
+    "template": "./index.marko",
+    "@obj": "object",
+    "@field": "string",
+    "@default-value": "string",
+    "@block-name": "string",
+    "@class": "string",
+    "@modifiers": "array"
+  },
   "<marko-web-content-body>": {
     "template": "./body.marko",
+    "@block-name": "string",
     "@obj": "object",
-    "@block-name": "string"
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object",
+    "@link": "object"
   }
 }
