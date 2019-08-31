@@ -1,0 +1,20 @@
+import { get } from "@base-cms/object-path";
+
+<marko-web-obj|{ value, classNames }|
+  type=input.type
+  block-name=input.blockName
+  obj=input.obj
+  field=input.field
+  class=input.class
+  modifiers=input.modifiers
+>
+  <marko-web-date
+    tag=input.tag
+    value=value
+    class=classNames
+    format=input.format
+    locale=input.locale
+    attrs=input.attrs
+    link=input.link
+  />
+</marko-web-obj>

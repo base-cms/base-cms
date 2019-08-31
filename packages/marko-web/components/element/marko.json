@@ -91,5 +91,19 @@
     "@modifiers": "string",
     "@attrs": "object",
     "@link": "object"
+  },
+  "<marko-web-obj-date>": {
+    "template": "./obj-date.marko",
+    "@type": "string",
+    "@block-name": "string",
+    "@obj": "object",
+    "@field": "string",
+    "@format": "string",
+    "@locale": "string",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object",
+    "@link": "object"
   }
 }
