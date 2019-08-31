@@ -18,5 +18,17 @@
     "@modifiers": "string",
     "@attrs": "object",
     "@link": "object"
+  },
+  "<marko-web-content-published>": {
+    "template": "./published.marko",
+    "@block-name": "string",
+    "@obj": "object",
+    "@format": "string",
+    "@locale": "string",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object",
+    "@link": "object"
   }
 }
