@@ -1,6 +1,7 @@
 import { getAsObject, get } from '@base-cms/object-path';
 
 $ const node = getAsObject(input, "node");
+$ const section = getAsObject(node, "primarySection");
 
 <marko-web-node flush=true>
   <@body>
@@ -13,18 +14,11 @@ $ const node = getAsObject(input, "node");
       />
     </@title>
     <@footer>
-      <@left tag="small">
-        <marko-web-text
-          value=get(node, "primarySection.name")
-          tag=null
-          link={ href: get(node, "primarySection.canonicalPath") }
-        />
+      <@left|{ blockName }| tag="small">
+        <marko-web-website-section-name block-name=blockName obj=section link={ href: section.canonicalPath } />
       </@left>
-      <@right tag="small">
-        <marko-web-date
-          value=node.published
-          tag=null
-        />
+      <@right|{ blockName }|  tag="small">
+        <marko-web-content-published block-name=blockName obj=node />
       </@right>
     </@footer>
   </@body>
