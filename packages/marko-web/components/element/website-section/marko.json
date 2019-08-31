@@ -1,0 +1,12 @@
+{
+  "<marko-web-website-section-name>": {
+    "template": "./name.marko",
+    "@block-name": "string",
+    "@obj": "object",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object",
+    "@link": "object"
+  }
+}

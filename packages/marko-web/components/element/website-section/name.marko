@@ -1,0 +1,15 @@
+import { get } from "@base-cms/object-path";
+
+$ const attrs = { title: get(input.obj, "fullName"), ...input.attrs };
+
+<marko-web-obj-text
+  block-name=input.blockName
+  obj=input.obj
+  type="website-section"
+  field="name"
+  tag=input.tag
+  class=input.class
+  modifiers=input.modifiers
+  attrs=attrs
+  link=input.link
+/>
