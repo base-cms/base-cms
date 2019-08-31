@@ -27,8 +27,7 @@ $ const block = "content-page";
                 <cms-website-section-name tag="li" class="text-uppercase breadcrumb-item small" block=block obj=section link=true />
               </cms-website-section-hierarchy>
             </nav>
-
-            <cms-content-name tag="h1" class="mb-2" block=block obj=content />
+            <marko-web-content-name tag="h1" class="mb-2" block-name=block obj=content />
             <cms-content-teaser tag="p" block=block obj=content />
 
             <div class="content-authorable mb-2">
@@ -72,7 +71,7 @@ $ const block = "content-page";
         <div class="row">
           <div class="col-lg-8">
             <cms-content-embed-code class="embed-responsive embed-responsive-16by9 mb-3" block=block obj=content />
-            <cms-content-body tag="div" block=block obj=content />
+            <marko-web-content-body obj=content />
             <cms-content-sidebars obj=content />
           </div>
           <aside class="col-lg-4">
