@@ -8,6 +8,16 @@
     "@class": "string",
     "@modifiers": "array"
   },
+  "<marko-web-content-name>": {
+    "template": "./name.marko",
+    "@block-name": "string",
+    "@obj": "object",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object",
+    "@link": "object"
+  },
   "<marko-web-content-body>": {
     "template": "./body.marko",
     "@block-name": "string",
