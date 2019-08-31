@@ -1,13 +1,4 @@
 {
-  "<marko-web-content-element>": {
-    "template": "./index.marko",
-    "@obj": "object",
-    "@field": "string",
-    "@default-value": "string",
-    "@block-name": "string",
-    "@class": "string",
-    "@modifiers": "array"
-  },
   "<marko-web-content-name>": {
     "template": "./name.marko",
     "@block-name": "string",

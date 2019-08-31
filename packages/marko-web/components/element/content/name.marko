@@ -1,18 +1,12 @@
-import { get } from "@base-cms/object-path";
-
-<marko-web-content-element|{ value, classNames }|
+<marko-web-obj-text
   block-name=input.blockName
   obj=input.obj
+  type="content"
   field="name"
+  asHTML=true
+  tag=input.tag
   class=input.class
   modifiers=input.modifiers
->
-  <marko-web-text
-    tag=input.tag
-    value=value
-    asHTML=true
-    class=classNames
-    attrs=input.attrs
-    link=input.link
-  />
-</marko-web-content-element>
+  attrs=input.attrs
+  link=input.link
+/>

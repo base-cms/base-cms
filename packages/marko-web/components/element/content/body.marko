@@ -6,19 +6,15 @@ $ const body = get(input.obj, "body");
 $ const v = body == null ? '' : `${body}`.trim();
 $ const obj = { body: parseEmbeddedMedia(v, res) };
 
-<marko-web-content-element|{ value, classNames }|
+<marko-web-obj-text
   block-name=input.blockName
   obj=obj
+  type="content"
   field="body"
+  asHTML=true
+  tag=input.tag
   class=input.class
   modifiers=input.modifiers
->
-  <marko-web-text
-    tag=input.tag
-    value=value
-    asHTML=true
-    class=classNames
-    attrs=input.attrs
-    link=input.link
-  />
-</marko-web-content-element>
+  attrs=input.attrs
+  link=input.link
+/>
