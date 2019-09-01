@@ -1,9 +1,10 @@
 import { get, getAsObject, getAsArray } from "@base-cms/object-path";
 import { dasherize } from "@base-cms/inflector";
+import objectType from "./object-type";
 
-$ const type = input.type || "obj";
-$ const field = input.field || "id";
 $ const obj = getAsObject(input, "obj");
+$ const type = objectType(input.type || get(obj, "__typename"));
+$ const field = input.field || "id";
 $ const value = get(obj, field);
 
 $ const classNames = [];
