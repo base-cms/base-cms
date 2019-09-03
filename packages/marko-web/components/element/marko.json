@@ -98,17 +98,6 @@
     "@attrs": "object",
     "@modifiers": "array"
   },
-  "<marko-web-obj-nodes>": {
-    "template": "./obj-nodes.marko",
-    "@type": "string",
-    "@block-name": "string",
-    "@obj": "object",
-    "@field": "string",
-    "@tag": "string",
-    "@class": "string",
-    "@attrs": "object",
-    "@modifiers": "array"
-  },
   "<marko-web-obj-text>": {
     "template": "./obj-text.marko",
     "@type": "string",
@@ -122,8 +111,33 @@
     "@attrs": "object",
     "@link": "expression"
   },
-  "<marko-web-obj-text-nodes>": {
-    "template": "./obj-text-nodes.marko",
+  "<marko-web-obj-date>": {
+    "template": "./obj-date.marko",
+    "@type": "string",
+    "@block-name": "string",
+    "@obj": "object",
+    "@field": "string",
+    "@format": "string",
+    "@locale": "string",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object",
+    "@link": "expression"
+  },
+  "<marko-web-obj-nodes>": {
+    "template": "./obj-nodes.marko",
+    "@type": "string",
+    "@block-name": "string",
+    "@obj": "object",
+    "@field": "string",
+    "@tag": "string",
+    "@class": "string",
+    "@attrs": "object",
+    "@modifiers": "array"
+  },
+  "<marko-web-obj-nodes-text>": {
+    "template": "./obj-nodes-text.marko",
     "<node>":  {
       "@type": "string",
       "@field": "string",
@@ -142,19 +156,5 @@
     "@class": "string",
     "@attrs": "object",
     "@modifiers": "array"
-  },
-  "<marko-web-obj-date>": {
-    "template": "./obj-date.marko",
-    "@type": "string",
-    "@block-name": "string",
-    "@obj": "object",
-    "@field": "string",
-    "@format": "string",
-    "@locale": "string",
-    "@tag": "string",
-    "@class": "string",
-    "@modifiers": "string",
-    "@attrs": "object",
-    "@link": "expression"
   }
 }
