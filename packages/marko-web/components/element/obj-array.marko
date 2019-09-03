@@ -1,0 +1,19 @@
+import { get } from "@base-cms/object-path";
+
+<marko-web-obj|{ value, classNames }|
+  type=input.type
+  block-name=input.blockName
+  obj=input.obj
+  field=input.field
+  class=input.class
+  modifiers=input.modifiers
+>
+  <marko-web-array|{ value: v, index }|
+    ...input.attrs
+    tag=input.tag
+    value=value
+    class=classNames
+  >
+    <${input.renderBody} value=v index=index />
+  </marko-web-array>
+</marko-web-obj>
