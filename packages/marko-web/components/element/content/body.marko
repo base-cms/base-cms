@@ -3,13 +3,12 @@ import { get } from "@base-cms/object-path";
 $ const { parseEmbeddedMedia, res } = out.global;
 
 $ const body = get(input.obj, "body");
-$ const v = body == null ? '' : `${body}`.trim();
+$ const v = body == null ? "" : `${body}`.trim();
 $ const obj = { body: parseEmbeddedMedia(v, res) };
 
 <marko-web-obj-text
   block-name=input.blockName
   obj=obj
-  type="content"
   field="body"
   asHTML=true
   tag=input.tag
