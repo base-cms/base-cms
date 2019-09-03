@@ -10,7 +10,7 @@ import { getAsArray, getAsObject } from "@base-cms/object-path";
 >
   $ const nodes = getAsArray(value, "edges").map(edge => getAsObject(edge, "node"));
   <marko-web-array|{ value: node, index, length }|
-    ...input.attrs
+    attrs=input.attrs
     tag=input.tag
     value=nodes
     class=classNames
