@@ -21,12 +21,12 @@ $ const block = "content-page";
       <@section>
         <div class="row">
           <div class="col">
-
-            <nav aria-label="breadcrumb">
-              <cms-website-section-hierarchy|{ section }| tag="ol" class="breadcrumb" block=block obj=content.primarySection>
-                <cms-website-section-name tag="li" class="text-uppercase breadcrumb-item small" block=block obj=section link=true />
-              </cms-website-section-hierarchy>
+            <nav>
+              <marko-web-website-section-hierarchy tag="ol" class="breadcrumb" block-name=block obj=content.primarySection>
+                <@node field="name" tag="li" class="text-uppercase breadcrumb-item small" link=true />
+              </marko-web-website-section-hierarchy>
             </nav>
+
             <marko-web-content-name tag="h1" class="mb-2" block-name=block obj=content />
             <marko-web-content-teaser tag="p" block-name=block obj=content />
 
