@@ -1,4 +1,6 @@
-<marko-web-obj|{ value, classNames }|
+import objectLink from "./object-link";
+
+<marko-web-obj|{ value, classNames, resolvedObj }|
   type=input.type
   block-name=input.blockName
   obj=input.obj
@@ -13,6 +15,6 @@
     format=input.format
     locale=input.locale
     attrs=input.attrs
-    link=input.link
+    link=objectLink(input.link, resolvedObj)
   />
 </marko-web-obj>

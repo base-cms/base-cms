@@ -7,7 +7,7 @@
     "@class": "string",
     "@modifiers": "string",
     "@attrs": "object",
-    "@link": "object"
+    "@link": "expression"
   },
   "<marko-web-content-body>": {
     "template": "./body.marko",
@@ -17,7 +17,7 @@
     "@class": "string",
     "@modifiers": "string",
     "@attrs": "object",
-    "@link": "object"
+    "@link": "expression"
   },
   "<marko-web-content-published>": {
     "template": "./published.marko",
@@ -29,6 +29,6 @@
     "@class": "string",
     "@modifiers": "string",
     "@attrs": "object",
-    "@link": "object"
+    "@link": "expression"
   }
 }

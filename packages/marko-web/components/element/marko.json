@@ -120,7 +120,7 @@
     "@class": "string",
     "@modifiers": "string",
     "@attrs": "object",
-    "@link": "object"
+    "@link": "expression"
   },
   "<marko-web-obj-text-nodes>": {
     "template": "./obj-text-nodes.marko",
@@ -153,6 +153,6 @@
     "@class": "string",
     "@modifiers": "string",
     "@attrs": "object",
-    "@link": "object"
+    "@link": "expression"
   }
 }

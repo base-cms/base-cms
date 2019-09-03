@@ -7,6 +7,6 @@
     "@class": "string",
     "@modifiers": "string",
     "@attrs": "object",
-    "@link": "object"
+    "@link": "expression"
   }
 }

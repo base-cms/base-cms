@@ -4,7 +4,8 @@ import objectType from "./object-type";
 
 $ const obj = getAsObject(input, "obj");
 $ const field = input.field || "id";
-$ const type = objectType(input.type || get(getLastObject(obj, field), "__typename"));
+$ const resolvedObj = getLastObject(obj, field);
+$ const type = objectType(input.type || get(resolvedObj, "__typename"));
 $ const value = get(obj, field);
 
 $ const classNames = [];
@@ -16,5 +17,5 @@ $ if (input.blockName) {
 $ classNames.push(input.class);
 
 <if(value)>
-  <${input.renderBody} value=value class-names=classNames />
+  <${input.renderBody} value=value class-names=classNames resolved-obj=resolvedObj />
 </if>
