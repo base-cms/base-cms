@@ -30,6 +30,7 @@ module.exports = (app) => {
           hierarchy {
             id
             name
+            fullName
             alias
             canonicalPath
           }
