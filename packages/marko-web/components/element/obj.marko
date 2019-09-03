@@ -1,15 +1,15 @@
-import { get, getAsObject, getAsArray } from "@base-cms/object-path";
+import { get, getAsObject, getAsArray, getLastObject } from "@base-cms/object-path";
 import { dasherize } from "@base-cms/inflector";
 import objectType from "./object-type";
 
 $ const obj = getAsObject(input, "obj");
-$ const type = objectType(input.type || get(obj, "__typename"));
 $ const field = input.field || "id";
+$ const type = objectType(input.type || get(getLastObject(obj, field), "__typename"));
 $ const value = get(obj, field);
 
 $ const classNames = [];
 $ if (input.blockName) {
-  const elementName = `${input.blockName}__${type}-${field.split(".").map(part => dasherize(part)).join("-")}`;
+  const elementName = `${input.blockName}__${type}-${dasherize(field.split(".").pop())}`;
   classNames.push(elementName);
   classNames.push(...getAsArray(input.modifiers).map(mod => `${elementName}--${mod}`));
 }
