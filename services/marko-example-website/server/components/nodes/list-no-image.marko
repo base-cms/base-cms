@@ -15,7 +15,7 @@ $ const section = getAsObject(node, "primarySection");
     </@title>
     <@footer>
       <@left|{ blockName }| tag="small">
-        <marko-web-website-section-name block-name=blockName obj=section link={ href: section.canonicalPath } />
+        <marko-web-website-section-name block-name=blockName obj=section link=true />
       </@left>
       <@right|{ blockName }|  tag="small">
         <marko-web-content-published block-name=blockName obj=node />
