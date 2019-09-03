@@ -47,5 +47,39 @@
     "@class": "string",
     "@modifiers": "string",
     "@attrs": "object"
+  },
+  "<marko-web-content-contributors>": {
+    "template": "./contributors.marko",
+    "<node>": {
+      "@field": "string",
+      "@tag": "string",
+      "@class": "string",
+      "@modifiers": "array",
+      "@attrs": "object",
+      "@link": "expression"
+    },
+    "@block-name": "string",
+    "@obj": "object",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object"
+  },
+  "<marko-web-content-photographers>": {
+    "template": "./photographers.marko",
+    "<node>": {
+      "@field": "string",
+      "@tag": "string",
+      "@class": "string",
+      "@modifiers": "array",
+      "@attrs": "object",
+      "@link": "expression"
+    },
+    "@block-name": "string",
+    "@obj": "object",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object"
   }
 }
