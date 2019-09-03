@@ -30,6 +30,13 @@
     "@modifiers": "@array",
     "@attrs": "object"
   },
+  "<marko-web-array>": {
+    "template": "./array.marko",
+    "@value": "array",
+    "@tag": "string",
+    "@class": "string",
+    "@attrs": "object"
+  },
   "<marko-web-img>": {
     "template": "./img.marko",
     "@src": "string",
