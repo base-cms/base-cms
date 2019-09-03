@@ -1,4 +1,4 @@
-<marko-web-obj-nodes-text|{ node }|
+<marko-web-obj-nodes|result|
   block-name=input.blockName
   obj=input.obj
   field="authors"
@@ -7,5 +7,5 @@
   modifiers=input.modifiers
   attrs=input.attrs
 >
-  <@node ...input.node />
-</marko-web-obj-nodes-text>
+  <${input.renderBody} ...result />
+</marko-web-obj-nodes>

@@ -14,10 +14,6 @@ import { getAsArray, getAsObject } from "@base-cms/object-path";
     value=value
     class=classNames
   >
-    <marko-web-obj-text
-      ...input.node
-      block-name=input.blockName
-      obj=node
-    />
+    <${input.renderBody} node=node index=index length=length />
   </marko-web-array>
 </marko-web-obj>
