@@ -127,10 +127,12 @@
     "<node>":  {
       "@type": "string",
       "@field": "string",
+      "@html": "boolean",
       "@tag": "string",
       "@class": "string",
+      "@modifiers": "array",
       "@attrs": "object",
-      "@modifiers": "array"
+      "@link": "expression"
     },
     "@type": "string",
     "@block-name": "string",
