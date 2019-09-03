@@ -29,6 +29,36 @@
     "@attrs": "object",
     "@link": "expression"
   },
+  "<marko-web-content-teaser>": {
+    "template": "./teaser.marko",
+    "@block-name": "string",
+    "@obj": "object",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object",
+    "@link": "expression"
+  },
+  "<marko-web-content-short-name>": {
+    "template": "./short-name.marko",
+    "@block-name": "string",
+    "@obj": "object",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object",
+    "@link": "expression"
+  },
+  "<marko-web-content-embed-code>": {
+    "template": "./embed-code.marko",
+    "@block-name": "string",
+    "@obj": "object",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object",
+    "@link": "expression"
+  },
   "<marko-web-content-source>": {
     "template": "./source.marko",
     "@block-name": "string",
