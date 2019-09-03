@@ -1,5 +1,3 @@
-import { get } from "@base-cms/object-path";
-
 <marko-web-obj|{ value, classNames }|
   type=input.type
   block-name=input.blockName
@@ -8,12 +6,12 @@ import { get } from "@base-cms/object-path";
   class=input.class
   modifiers=input.modifiers
 >
-  <marko-web-array|{ value: v, index }|
+  <marko-web-array|{ value: v, index, length }|
     ...input.attrs
     tag=input.tag
     value=value
     class=classNames
   >
-    <${input.renderBody} value=v index=index />
+    <${input.renderBody} value=v index=index length=length />
   </marko-web-array>
 </marko-web-obj>
