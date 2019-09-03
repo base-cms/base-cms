@@ -1,0 +1,30 @@
+{
+  "name": "@base-cms/example-laserfocusworld",
+  "version": "0.10.3",
+  "main": "src/index.js",
+  "author": "Jacob Bare <jacob@limit0.io>",
+  "repository": "https://github.com/base-cms/base-cms/tree/master/packages/example-laserfocusworld",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "basecms-website dev index.js",
+    "build": "basecms-website build",
+    "lint": "basecms-website lint"
+  },
+  "dependencies": {
+    "@base-cms/marko-web": "^0.10.3",
+    "@base-cms/marko-web-gam": "^0.10.3",
+    "@base-cms/marko-web-gtm": "^0.10.3",
+    "@base-cms/marko-web-icons": "^0.10.3",
+    "@base-cms/object-path": "^0.10.0",
+    "@base-cms/utils": "^0.10.0",
+    "@base-cms/web-cli": "^0.10.3",
+    "graphql": "^14.2.1",
+    "graphql-tag": "^2.10.1"
+  },
+  "devDependencies": {
+    "eslint": "^5.14.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0"
+  }
+}

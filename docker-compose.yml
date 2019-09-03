@@ -154,6 +154,44 @@ services:
       - "11162:80"
       - "25162:25162"
 
+  graphql-server-bzb:
+    << : *node
+    working_dir: /base-cms/services/graphql-server
+    entrypoint: ["/base-cms/node_modules/.bin/gulp"]
+    environment:
+      <<: *env
+      <<: *env-newrelic
+      MONGO_DSN: ${BZB_MONGO_DSN-mongodb://mongodb:27017}
+      ENABLE_BASEDB_LOGGING: ${ENABLE_BASEDB_LOGGING-}
+      ENGINE_API_KEY: ${ENGINE_API_KEY-(unset)}
+    depends_on:
+      - mongodb
+
+  example-bizbash:
+    <<: *node
+    working_dir: /base-cms/services/example-bizbash
+    command: ["/base-cms/node_modules/.bin/basecms-website", "dev", "index.js"]
+    environment:
+      <<: *env
+      PORT: 80
+      EXPOSED_PORT: 11163
+      LIVERELOAD_PORT: 25163
+      TENANT_KEY: bizbash_bzb
+      GRAPHQL_URI: http://graphql-server-bzb
+      SITEMAPS_URI: http://sitemaps
+      RSS_URI: http://rss
+      OEMBED_URI: http://oembed
+      CDN_IMAGE_HOSTNAME: img.bizbash.com
+      CDN_ASSET_HOSTNAME: cdn.bizbash.com
+    depends_on:
+      - graphql-server-bzb
+      - sitemaps
+      - rss
+      - oembed
+    ports:
+      - "11163:80"
+      - "25163:25163"
+
   haproxy:
     image: haproxy:alpine
     ports: [ "${PORT-10010}:80" ]
