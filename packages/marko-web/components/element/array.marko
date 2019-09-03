@@ -14,9 +14,7 @@ $ const value = getAsArray(input, "value");
   </if>
   <else>
     <for|v, index| of=value>
-      <for|v, index| of=value>
-        <${input.renderBody} value=v index=index />
-      </for>
+      <${input.renderBody} value=v index=index />
     </for>
   </else>
 </if>
