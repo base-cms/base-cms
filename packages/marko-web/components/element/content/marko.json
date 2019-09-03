@@ -131,5 +131,22 @@
     "@class": "string",
     "@modifiers": "string",
     "@attrs": "object"
+  },
+  "<marko-web-content-sponsors>": {
+    "template": "./sponsors.marko",
+    "<node>": {
+      "@field": "string",
+      "@tag": "string",
+      "@class": "string",
+      "@modifiers": "array",
+      "@attrs": "object",
+      "@link": "expression"
+    },
+    "@block-name": "string",
+    "@obj": "object",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object"
   }
 }
