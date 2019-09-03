@@ -116,6 +116,31 @@ services:
       - "10007:80"
       - "10008:10008" # livereload port
 
+  example-laserfocusworld:
+    <<: *node
+    working_dir: /base-cms/services/example-laserfocusworld
+    command: ["/base-cms/node_modules/.bin/basecms-website", "dev", "index.js"]
+    environment:
+      <<: *env
+      PORT: 80
+      EXPOSED_PORT: 11162
+      LIVERELOAD_PORT: 25162
+      TENANT_KEY: ebm_lfw
+      GRAPHQL_URI: http://graphql-server
+      SITEMAPS_URI: http://sitemaps
+      RSS_URI: http://rss
+      OEMBED_URI: http://oembed
+      CDN_IMAGE_HOSTNAME: img.laserfocusworld.com
+      CDN_ASSET_HOSTNAME: cdn.laserfocusworld.com
+    depends_on:
+      - graphql-server
+      - sitemaps
+      - rss
+      - oembed
+    ports:
+      - "11162:80"
+      - "25162:25162"
+
   haproxy:
     image: haproxy:alpine
     ports: [ "${PORT-10010}:80" ]
