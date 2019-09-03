@@ -81,6 +81,30 @@
     "@attrs": "object",
     "@link": "expression"
   },
+  "<marko-web-content-starts>": {
+    "template": "./starts.marko",
+    "@block-name": "string",
+    "@obj": "object",
+    "@format": "string",
+    "@locale": "string",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object",
+    "@link": "expression"
+  },
+  "<marko-web-content-ends>": {
+    "template": "./ends.marko",
+    "@block-name": "string",
+    "@obj": "object",
+    "@format": "string",
+    "@locale": "string",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object",
+    "@link": "expression"
+  },
   "<marko-web-content-authors>": {
     "template": "./authors.marko",
     "<node>": {
