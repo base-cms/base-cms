@@ -1,0 +1,23 @@
+import { getAsArray, getAsObject } from "@base-cms/object-path";
+
+<marko-web-obj|{ value, classNames }|
+  type="website-section"
+  block-name=input.blockName
+  obj=input.obj
+  field="hierarchy"
+  class=input.class
+  modifiers=input.modifiers
+>
+  <marko-web-array|{ value: node, index, length }|
+    attrs=input.attrs
+    tag=input.tag
+    value=value
+    class=classNames
+  >
+    <marko-web-obj-text
+      ...input.node
+      block-name=input.blockName
+      obj=node
+    />
+  </marko-web-array>
+</marko-web-obj>

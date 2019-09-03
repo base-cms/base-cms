@@ -8,5 +8,22 @@
     "@modifiers": "string",
     "@attrs": "object",
     "@link": "expression"
+  },
+  "<marko-web-website-section-hierarchy>": {
+    "template": "./hierarchy.marko",
+    "<node>": {
+      "@field": "string",
+      "@tag": "string",
+      "@class": "string",
+      "@modifiers": "array",
+      "@attrs": "object",
+      "@link": "expression"
+    },
+    "@block-name": "string",
+    "@obj": "object",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object"
   }
 }
