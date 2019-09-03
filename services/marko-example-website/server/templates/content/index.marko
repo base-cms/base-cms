@@ -22,8 +22,8 @@ $ const block = "content-page";
         <div class="row">
           <div class="col">
             <nav>
-              <marko-web-website-section-hierarchy tag="ol" class="breadcrumb" block-name=block obj=content.primarySection>
-                <@node field="name" tag="li" class="text-uppercase breadcrumb-item small" link=true />
+              <marko-web-website-section-hierarchy|{ node }| tag="ol" class="breadcrumb" block-name=block obj=content.primarySection>
+                <marko-web-content-name tag="li" class="text-uppercase breadcrumb-item small" block-name=block obj=node link=true />
               </marko-web-website-section-hierarchy>
             </nav>
 
@@ -33,17 +33,21 @@ $ const block = "content-page";
             <div class="content-authorable mb-2">
               <marko-web-content-byline tag="div" class="small" block-name=block obj=content />
 
-              <marko-web-content-authors tag="small" block-name=block obj=content>
-                <@node tag="span" field="name" link=true />
+              <marko-web-content-authors|{ node }| tag="small" block-name=block obj=content>
+                <marko-web-content-name tag="span" block-name=block obj=node link=true />
               </marko-web-content-authors>
 
-              <marko-web-content-contributors tag="small" block-name=block obj=content>
-                <@node tag="span" field="name" link=true />
+              <marko-web-content-contributors|{ node }| tag="small" block-name=block obj=content>
+                <marko-web-content-name tag="span" block-name=block obj=node link=true />
               </marko-web-content-contributors>
 
-              <marko-web-content-photographers tag="small" block-name=block obj=content>
-                <@node tag="span" field="name" link=true />
+              <marko-web-content-photographers|{ node }| tag="small" block-name=block obj=content>
+                <marko-web-content-name tag="span" block-name=block obj=node link=true />
               </marko-web-content-photographers>
+
+              <marko-web-content-sponsors|{ node }| tag="small" block-name=block obj=content>
+                <marko-web-content-name tag="span" block-name=block obj=node link=true />
+              </marko-web-content-sponsors>
 
               <marko-web-content-source tag="div" class="small" block-name=block obj=content />
 

@@ -42,6 +42,17 @@ module.exports = (app) => {
         ... on ContentVideo {
           embedCode
         }
+        ... on ContentWebinar {
+          sponsors {
+            edges {
+              node {
+                id
+                name
+                canonicalPath
+              }
+            }
+          }
+        }
         ... on ContentNews {
           source
           byline
