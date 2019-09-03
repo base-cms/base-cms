@@ -105,6 +105,15 @@
     "@attrs": "object",
     "@link": "expression"
   },
+  "<marko-web-content-sidebars>": {
+    "template": "./sidebars.marko",
+    "@block-name": "string",
+    "@obj": "object",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object"
+  },
   "<marko-web-content-authors>": {
     "template": "./authors.marko",
     "<node>": {
