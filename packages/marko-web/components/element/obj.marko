@@ -15,6 +15,6 @@ $ if (input.blockName) {
 }
 $ classNames.push(input.class);
 
-<if(value && input.renderBody)>
+<if(value)>
   <${input.renderBody} value=value class-names=classNames />
 </if>
