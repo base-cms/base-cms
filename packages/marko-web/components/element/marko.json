@@ -90,9 +90,9 @@
   "<marko-web-obj-array>": {
     "template": "./obj-array.marko",
     "@type": "string",
+    "@block-name": "string",
     "@obj": "object",
     "@field": "string",
-    "@block-name": "string",
     "@tag": "string",
     "@class": "string",
     "@attrs": "object",
