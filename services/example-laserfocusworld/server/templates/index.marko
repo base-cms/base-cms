@@ -1,9 +1,10 @@
 $ const { config } = out.global;
+$ const { section } = data;
 
 <marko-web-document>
   <@container>
     <@page>
-      <h1>Hello, ${config.siteName()}!</h1>
+      <h1>${config.siteName()} - Section ID ${section.id}</h1>
     </@page>
   </@container>
 </marko-web-document>
