@@ -1,0 +1,20 @@
+import { getAsArray, getAsObject } from "@base-cms/object-path";
+
+<marko-web-obj|{ value, classNames }|
+  type=input.type
+  block-name=input.blockName
+  obj=input.obj
+  field=input.field
+  class=input.class
+  modifiers=input.modifiers
+>
+  $ const nodes = getAsArray(value, "edges").map(edge => getAsObject(edge, "node"));
+  <marko-web-array|{ value: node, index, length }|
+    ...input.attrs
+    tag=input.tag
+    value=nodes
+    class=classNames
+  >
+    <${input.renderBody} node=node index=index length=length />
+  </marko-web-array>
+</marko-web-obj>

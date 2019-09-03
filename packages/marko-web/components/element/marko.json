@@ -98,6 +98,17 @@
     "@attrs": "object",
     "@modifiers": "array"
   },
+  "<marko-web-obj-nodes>": {
+    "template": "./obj-nodes.marko",
+    "@type": "string",
+    "@block-name": "string",
+    "@obj": "object",
+    "@field": "string",
+    "@tag": "string",
+    "@class": "string",
+    "@attrs": "object",
+    "@modifiers": "array"
+  },
   "<marko-web-obj-text>": {
     "template": "./obj-text.marko",
     "@type": "string",
