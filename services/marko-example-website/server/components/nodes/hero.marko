@@ -14,7 +14,7 @@ $ const node = getAsObject(input, "node");
   <@body>
     <@title tag="h5">
       <marko-web-text
-        asHTML=true
+        html=true
         value=node.shortName
         tag=null
         link={ href: node.canonicalPath }
@@ -22,7 +22,7 @@ $ const node = getAsObject(input, "node");
     </@title>
     <@text tag="p">
       <marko-web-text
-        asHTML=true
+        html=true
         value=node.teaser
         tag=null
       />

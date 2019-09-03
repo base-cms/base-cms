@@ -1,9 +1,9 @@
-$ const { value, renderBody, asHTML } = input;
+$ const { value, renderBody, html } = input;
 
 <if(renderBody)>
   <${renderBody} value=value />
 </if>
-<else-if(asHTML)>
+<else-if(html)>
   $!{value}
 </else-if>
 <else>

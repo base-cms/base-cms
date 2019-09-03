@@ -73,7 +73,7 @@
     "template": "./text.marko",
     "@value": "expression",
     "@tag": "string",
-    "@asHTML": "boolean",
+    "@html": "boolean",
     "@class": "string",
     "@attrs": "object",
     "@link": "object"
@@ -115,7 +115,7 @@
     "@block-name": "string",
     "@obj": "object",
     "@field": "string",
-    "@asHTML": "boolean",
+    "@html": "boolean",
     "@tag": "string",
     "@class": "string",
     "@modifiers": "string",
