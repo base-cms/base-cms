@@ -116,6 +116,19 @@ services:
       - "10007:80"
       - "10008:10008" # livereload port
 
+  graphql-server-lfw:
+    << : *node
+    working_dir: /base-cms/services/graphql-server
+    entrypoint: ["/base-cms/node_modules/.bin/gulp"]
+    environment:
+      <<: *env
+      <<: *env-newrelic
+      MONGO_DSN: ${LFW_MONGO_DSN-mongodb://mongodb:27017}
+      ENABLE_BASEDB_LOGGING: ${ENABLE_BASEDB_LOGGING-}
+      ENGINE_API_KEY: ${ENGINE_API_KEY-(unset)}
+    depends_on:
+      - mongodb
+
   example-laserfocusworld:
     <<: *node
     working_dir: /base-cms/services/example-laserfocusworld
@@ -126,14 +139,14 @@ services:
       EXPOSED_PORT: 11162
       LIVERELOAD_PORT: 25162
       TENANT_KEY: ebm_lfw
-      GRAPHQL_URI: http://graphql-server
+      GRAPHQL_URI: http://graphql-server-lfw
       SITEMAPS_URI: http://sitemaps
       RSS_URI: http://rss
       OEMBED_URI: http://oembed
       CDN_IMAGE_HOSTNAME: img.laserfocusworld.com
       CDN_ASSET_HOSTNAME: cdn.laserfocusworld.com
     depends_on:
-      - graphql-server
+      - graphql-server-lfw
       - sitemaps
       - rss
       - oembed
