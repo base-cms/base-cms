@@ -156,5 +156,27 @@
     "@class": "string",
     "@attrs": "object",
     "@modifiers": "array"
+  },
+  "<marko-web-obj-nodes-date>": {
+    "template": "./obj-nodes-date.marko",
+    "<node>":  {
+      "@type": "string",
+      "@field": "string",
+      "@format": "string",
+      "@locale": "string",
+      "@tag": "string",
+      "@class": "string",
+      "@modifiers": "array",
+      "@attrs": "object",
+      "@link": "expression"
+    },
+    "@type": "string",
+    "@block-name": "string",
+    "@obj": "object",
+    "@field": "string",
+    "@tag": "string",
+    "@class": "string",
+    "@attrs": "object",
+    "@modifiers": "array"
   }
 }
