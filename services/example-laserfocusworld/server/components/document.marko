@@ -1,3 +1,4 @@
+$ const { site } = out.global;
 
 <marko-web-document ...input>
   <@head>
@@ -6,9 +7,10 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
     <marko-web-gam-init />
+    <marko-web-gtm-init container-id=site.get("gtm.containerId") />
     <${input.head} />
+    <marko-web-gtm-start />
   </@head>
-  <marko-web-gtm-start />
 </marko-web-document>
 
 
