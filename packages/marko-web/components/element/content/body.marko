@@ -7,6 +7,7 @@ $ const v = body == null ? "" : `${body}`.trim();
 $ const obj = { body: parseEmbeddedMedia(v, res) };
 
 <marko-web-obj-text
+  type="content"
   block-name=input.blockName
   obj=obj
   field="body"
