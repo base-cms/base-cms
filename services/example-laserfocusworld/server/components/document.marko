@@ -11,6 +11,19 @@ $ const { site } = out.global;
     <${input.head} />
     <marko-web-gtm-start />
   </@head>
+  <@above-container>
+    <header>
+      <nav>Header Navigation</nav>
+    </header>
+    <${input.aboveContainer} />
+  </@above-container>
+
+  <@below-container>
+    <${input.belowContainer} />
+    <footer>
+      <nav>Footer Navigation</nav>
+    </footer>
+  </@below-container>
 </marko-web-document>
 
 
