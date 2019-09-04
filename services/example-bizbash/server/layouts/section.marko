@@ -1,0 +1,12 @@
+$ const { section } = input;
+
+<website-document above-container=input.aboveContainer below-container=input.belowContainer>
+  <@head>
+    <${input.head} />
+  </@head>
+  <@container above-page=input.abovePage below-page=input.belowPage>
+    <@page for="website-section" id=section.id>
+      <${input.page} />
+    </@page>
+  </@container>
+</website-document>
