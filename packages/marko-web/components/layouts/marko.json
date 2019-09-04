@@ -1,0 +1,12 @@
+{
+  "<marko-web-layout-website-section>": {
+    "template": "./website-section.marko",
+    "<head>": {},
+    "<above-container>": {},
+    "<below-container>": {},
+    "<page>": {},
+    "<above-page>": {},
+    "<below-page>": {},
+    "@section": "object"
+  }
+}

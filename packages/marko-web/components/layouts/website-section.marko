@@ -1,0 +1,16 @@
+import { getAsObject } from "@base-cms/object-path";
+
+$ const section = getAsObject(input, "section");
+$ const { document } = out.global;
+
+<${document}
+  head=input.head
+  above-container=input.aboveContainer
+  below-container=input.belowContainer
+>
+  <@container above-page=input.abovePage below-page=input.belowPage>
+    <@page for="website-section" id=section.id>
+      <${input.page} />
+    </@page>
+  </@container>
+</>
