@@ -1,9 +1,9 @@
 {
-  "name": "@base-cms/example-laserfocusworld",
+  "name": "@base-cms/example-bizbash",
   "version": "0.10.3",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
-  "repository": "https://github.com/base-cms/base-cms/tree/master/packages/example-laserfocusworld",
+  "repository": "https://github.com/base-cms/base-cms/tree/master/packages/example-bizbash",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -16,6 +16,7 @@
     "@base-cms/marko-web-gam": "^0.10.3",
     "@base-cms/marko-web-gtm": "^0.10.3",
     "@base-cms/marko-web-icons": "^0.10.3",
+    "@base-cms/marko-web-theme-default": "^0.10.3",
     "@base-cms/object-path": "^0.10.0",
     "@base-cms/utils": "^0.10.0",
     "@base-cms/web-cli": "^0.10.3",

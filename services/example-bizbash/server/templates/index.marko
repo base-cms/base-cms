@@ -7,29 +7,38 @@ $ const { section } = data;
   <@page>
     <h1>${config.siteName()}</h1>
 
-    <marko-web-query|{ nodes }| name="website-scheduled-content" params={ sectionAlias: "industry-buzz", limit: 5, queryFragment }>
-      <website-content-list-block nodes=nodes display-image=false>
-        <@header tag="h3">
-          <marko-web-link href="/industry-buzz">Industry Buzz</marko-web-link>
-        </@header>
-      </website-content-list-block>
-    </marko-web-query>
+    <div class="row">
 
-    <marko-web-query|{ nodes }| name="website-scheduled-content" params={ sectionAlias: "production-strategy", limit: 5, requiresImage: true, queryFragment }>
-      <website-content-list-block nodes=nodes>
-        <@header tag="h3">
-          <marko-web-link href="/production-strategy">Production & Strategy</marko-web-link>
-        </@header>
-      </website-content-list-block>
-    </marko-web-query>
+      <div class="col-lg-4 mt-4">
+        <marko-web-query|{ nodes }| name="website-scheduled-content" params={ sectionAlias: "industry-buzz", limit: 5, queryFragment }>
+          <website-content-list-block nodes=nodes display-image=false>
+            <@header tag="h3">
+              <marko-web-link href="/industry-buzz">Industry Buzz</marko-web-link>
+            </@header>
+          </website-content-list-block>
+        </marko-web-query>
+      </div>
 
-    <marko-web-query|{ nodes }| name="website-scheduled-content" params={ sectionAlias: "style-decor", limit: 5, requiresImage: true, queryFragment }>
-      <website-content-list-block nodes=nodes>
-        <@header tag="h3">
-          <marko-web-link href="/style-decor">Style & Decor</marko-web-link>
-        </@header>
-      </website-content-list-block>
-    </marko-web-query>
+      <div class="col-lg-4 mt-4">
+        <marko-web-query|{ nodes }| name="website-scheduled-content" params={ sectionAlias: "production-strategy", limit: 5, requiresImage: true, queryFragment }>
+          <website-content-list-block nodes=nodes>
+            <@header tag="h3">
+              <marko-web-link href="/production-strategy">Production & Strategy</marko-web-link>
+            </@header>
+          </website-content-list-block>
+        </marko-web-query>
+      </div>
 
+      <div class="col-lg-4 mt-4">
+        <marko-web-query|{ nodes }| name="website-scheduled-content" params={ sectionAlias: "style-decor", limit: 5, requiresImage: true, queryFragment }>
+          <website-content-list-block nodes=nodes>
+            <@header tag="h3">
+              <marko-web-link href="/style-decor">Style & Decor</marko-web-link>
+            </@header>
+          </website-content-list-block>
+        </marko-web-query>
+      </div>
+
+    </div>
   </@page>
 </marko-web-layout-website-section>

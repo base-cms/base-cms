@@ -7,8 +7,24 @@ $ const { content } = data;
     </marko-web-gtm-context>
   </@head>
   <@page>
-    <marko-web-content-name tag="h1" obj=content />
-    <marko-web-content-teaser tag="p" obj=content />
-    <marko-web-content-body obj=content />
+    <marko-web-page-wrapper class="mt-4">
+      <@section>
+        <div class="row">
+          <div class="col">
+            <marko-web-content-name tag="h1" obj=content />
+            <marko-web-content-teaser tag="p" class="mb-0" obj=content />
+          </div>
+        </div>
+      </@section>
+      <@section>
+        <div class="row">
+          <div class="col-lg-8">
+            <marko-web-content-body obj=content />
+            <marko-web-content-sidebars obj=content />
+          </div>
+          <div class="col-lg-4"></div>
+        </div>
+      </@section>
+    </marko-web-page-wrapper>
   </@page>
 </marko-web-layout-content>
