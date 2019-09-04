@@ -12,5 +12,15 @@
       "type": "boolean",
       "default-value": true
     }
+  },
+  "<marko-web-layout-content>": {
+    "template": "./content.marko",
+    "<head>": {},
+    "<above-container>": {},
+    "<below-container>": {},
+    "<page>": {},
+    "<above-page>": {},
+    "<below-page>": {},
+    "@content": "object"
   }
 }

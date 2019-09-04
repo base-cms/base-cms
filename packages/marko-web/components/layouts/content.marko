@@ -1,0 +1,25 @@
+import { get, getAsObject } from "@base-cms/object-path";
+
+$ const content = getAsObject(input, "content");
+$ const { document } = out.global;
+
+<${document} above-container=input.aboveContainer below-container=input.belowContainer>
+  <@head>
+    <marko-web-page-content-metadata
+      type=content.type
+      title=get(content, "metadata.title")
+      description=get(content, "metadata.description")
+      canonical-path=content.canonicalPath
+      image-src=get(content, "metadata.image.src")
+      published-date=get(content, "metadata.publishedDate")
+      updated-date=get(content, "metadata.updatedDate")
+      expires-date=get(content, "metadata.expiresDate")
+    />
+    <${input.head} />
+  </@head>
+  <@container above-page=input.abovePage below-page=input.belowPage>
+    <@page for="content" tag="article" id=content.id type=content.type>
+      <${input.page} />
+    </@page>
+  </@container>
+</>
