@@ -1,13 +1,17 @@
-import { getAsObject } from "@base-cms/object-path";
+import { get, getAsObject } from "@base-cms/object-path";
 
 $ const section = getAsObject(input, "section");
 $ const { document } = out.global;
 
-<${document}
-  head=input.head
-  above-container=input.aboveContainer
-  below-container=input.belowContainer
->
+<${document} above-container=input.aboveContainer below-container=input.belowContainer>
+  <@head>
+    <marko-web-page-metadata
+      title=get(section, "metadata.title")
+      description=get(section, "metadata.description")
+      canonical-path=section.canonicalPath
+    />
+    <${input.head} />
+  </@head>
   <@container above-page=input.abovePage below-page=input.belowPage>
     <@page for="website-section" id=section.id>
       <${input.page} />
