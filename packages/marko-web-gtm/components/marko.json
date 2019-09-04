@@ -27,6 +27,12 @@
     },
     "@data": "object"
   },
+  "<marko-web-gtm-context>": {
+    "template": "./context.marko",
+    "@for": "string",
+    "@obj": "object",
+    "@builder": "function"
+  },
   "<marko-web-gtm-track-inview-event>": {
     "template": "./track-inview-event.marko"
   },

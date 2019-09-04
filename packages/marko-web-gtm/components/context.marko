@@ -1,0 +1,18 @@
+import { isFunction } from "@base-cms/utils";
+import {
+  defaultBuilder,
+  contentBuilder,
+  websiteSectionBuilder,
+  dynamicPageBuilder
+} from "../context";
+
+$ const builderMap = {
+  content: contentBuilder,
+  "website-section": websiteSectionBuilder,
+  "dynamic-page": dynamicPageBuilder,
+};
+$ const { req } = out.global;
+$ const builder = isFunction(input.builder) ? input.builder : builderMap[input.for] || builderMap.default;
+$ const context = builder({ type: input.for, obj: input.obj, req });
+
+<${input.renderBody} context=context />

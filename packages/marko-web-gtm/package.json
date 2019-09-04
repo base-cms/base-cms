@@ -6,6 +6,7 @@
   "license": "MIT",
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/marko-web-gtm",
   "dependencies": {
+    "@base-cms/object-path": "^0.10.0",
     "@base-cms/utils": "^0.10.0"
   },
   "peerDependencies": {
