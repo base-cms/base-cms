@@ -1,6 +1,11 @@
 $ const { content } = data;
 
 <marko-web-layout-content content=content>
+  <@head>
+    <marko-web-gtm-context|{ context }| for="content" obj=content>
+      <marko-web-gtm-push data=context />
+    </marko-web-gtm-context>
+  </@head>
   <@page>
     <marko-web-content-name tag="h1" obj=content />
     <marko-web-content-teaser tag="p" obj=content />
