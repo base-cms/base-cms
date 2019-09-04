@@ -1,0 +1,11 @@
+{
+  "<website-content-list-block>": {
+    "template": "./content-list.marko",
+    "<header>": {},
+    "@nodes": "array",
+    "@display-image": {
+      "type": "boolean",
+      "default-value": true
+    }
+  }
+}
