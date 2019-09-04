@@ -7,6 +7,7 @@
     "./node/marko.json",
     "./node-list/marko.json",
     "./page/marko.json",
+    "./rss/marko.json",
     "./queries/marko.json"
   ],
   "<marko-web-browser-component>": {

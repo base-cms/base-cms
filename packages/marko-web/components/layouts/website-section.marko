@@ -1,7 +1,7 @@
 import { get, getAsObject } from "@base-cms/object-path";
 
 $ const section = getAsObject(input, "section");
-$ const { document } = out.global;
+$ const { document, config } = out.global;
 
 <${document} above-container=input.aboveContainer below-container=input.belowContainer>
   <@head>
@@ -10,6 +10,7 @@ $ const { document } = out.global;
       description=get(section, "metadata.description")
       canonical-path=section.canonicalPath
     />
+    <marko-web-rss-website-section alias=section.alias name=section.name />
     <${input.head} />
   </@head>
   <@container above-page=input.abovePage below-page=input.belowPage>
