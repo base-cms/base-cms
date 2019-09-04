@@ -4,8 +4,10 @@ const SERVICE_URI = process.env.RSS_URI;
 if (!SERVICE_URI) throw new Error('Missing required environment variable: RSS_URI.');
 
 module.exports = (app, tenantContext) => {
+  const { config } = app.locals;
+  const mountPoint = config.rssMountPoint();
   const opts = {
-    proxyReqPathResolver: ({ originalUrl }) => originalUrl,
+    proxyReqPathResolver: ({ originalUrl }) => originalUrl.replace(mountPoint, '/rss'),
     proxyReqOptDecorator: (reqOpts, req) => {
       const headers = { ...reqOpts.headers, ...tenantContext };
       headers['x-publication-name'] = app.locals.config.siteName();
@@ -14,5 +16,5 @@ module.exports = (app, tenantContext) => {
       return { ...reqOpts, headers };
     },
   };
-  app.use('/rss/:alias([a-z-_/]+).xml', proxy(SERVICE_URI, opts));
+  app.use(`${mountPoint}/:alias([a-z-_/]+).xml`, proxy(SERVICE_URI, opts));
 };

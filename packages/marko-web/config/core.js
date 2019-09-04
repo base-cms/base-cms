@@ -33,6 +33,10 @@ class CoreConfig extends AbstractConfig {
     return this.get('oembed.mountPoint', '/__oembed');
   }
 
+  rssMountPoint() {
+    return this.get('rss.mountPoint', '/__rss');
+  }
+
   siteName() {
     return this.get('siteName', '');
   }
