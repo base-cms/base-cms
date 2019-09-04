@@ -1,8 +1,20 @@
+import contentListFragment from "../../api/content-list-fragment";
+
 $ const { config } = out.global;
 $ const { section } = data;
 
 <marko-web-layout-website-section section=section>
   <@page>
-    <h1>${config.siteName()} Section ${section.id}</h1>
+    <h1>${config.siteName()} ${section.name}</h1>
+    <marko-web-query|{ nodes }| name="website-scheduled-content" params={ sectionAlias: section.alias, limit: 10, queryFragment: contentListFragment }>
+      <for|content| of=nodes>
+        <div style="margin-bottom: 1rem; padding: 1rem; border: 1px solid #ccc;">
+          <marko-web-content-short-name tag="h3" obj=content link=true />
+          <marko-web-content-teaser tag="p" obj=content />
+          <marko-web-content-published tag="small" obj=content attrs={ style: "margin-right: .25rem" } />
+          <marko-web-website-section-name tag="small" obj=content.primarySection link=true />
+        </div>
+      </for>
+    </marko-web-query>
   </@page>
 </marko-web-layout-website-section>
