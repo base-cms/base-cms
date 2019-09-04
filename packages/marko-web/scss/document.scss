@@ -5,6 +5,7 @@ $marko-web-page-padding:                  $marko-web-document-container-gutter !
 
 $marko-web-page-wrapper-bg-color:         #fff !default;
 $marko-web-page-wrapper-padding:          $marko-web-page-padding !default;
+$marko-web-page-wrapper-section-margin:   $marko-web-document-container-gutter !default;
 
 html {
   height: 100%;
@@ -51,7 +52,7 @@ body {
   padding: $marko-web-page-wrapper-padding;
   background-color: $marko-web-page-wrapper-bg-color;
   &__section {
-    margin-bottom: $marko-web-page-wrapper-padding;
+    margin-bottom: $marko-web-page-wrapper-section-margin;
     &:last-child {
       margin-bottom: 0;
     }
