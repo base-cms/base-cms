@@ -1,0 +1,5 @@
+{
+  "taglib-imports": [
+    "./breadcrumbs/marko.json"
+  ]
+}

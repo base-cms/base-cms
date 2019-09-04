@@ -1,0 +1,27 @@
+.breadcrumbs {
+  @include media-breakpoint-down($theme-responsive-text-breakpoint) {
+    font-size: $theme-breadcrumbs-font-size-sm;
+    line-height: $theme-breadcrumbs-line-height-sm;
+  }
+
+  font-family: $theme-breadcrumbs-font-family;
+  font-size: $theme-breadcrumbs-font-size;
+  font-weight: $theme-breadcrumbs-font-weight;
+  line-height: $theme-breadcrumbs-line-height;
+  text-transform: $theme-breadcrumbs-transform;
+  letter-spacing: $theme-breadcrumbs-letter-spacing;
+
+  .breadcrumb {
+    background-color: $theme-breadcrumbs-background-color;
+  }
+
+  a {
+    color: $theme-breadcrumbs-link-color;
+    text-decoration: $theme-breadcrumbs-link-decoration;
+
+    &:hover {
+      color: $theme-breadcrumbs-link-hover-color;
+      text-decoration: $theme-breadcrumbs-link-hover-decoration;
+    }
+  }
+}

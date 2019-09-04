@@ -1,0 +1,6 @@
+{
+  "<endeavor-breadcrumbs>": {
+    "template": "./index.marko",
+    "@items <item>[]": {}
+  }
+}
