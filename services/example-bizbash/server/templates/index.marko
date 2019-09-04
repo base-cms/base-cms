@@ -1,10 +1,8 @@
 $ const { config } = out.global;
 $ const { section } = data;
 
-<website-document>
-  <@container>
-    <@page>
-      <h1>${config.siteName()} - Section ID ${section.id}</h1>
-    </@page>
-  </@container>
-</website-document>
+<website-section-layout section=section>
+  <@page>
+    <h1>${config.siteName()} Section ${section.id}</h1>
+  </@page>
+</website-section-layout>
