@@ -1,8 +1,9 @@
 import isDev from '../../../utils/is-dev';
 
+$ const { document } = out.global;
 $ const error = input.error || {};
 
-<marko-web-document>
+<${document}>
   <@container>
     <@page for="error">
       <marko-web-page-wrapper>
@@ -17,4 +18,4 @@ $ const error = input.error || {};
       </marko-web-page-wrapper>
     </@page>
   </@container>
-</marko-web-document>
+</>
