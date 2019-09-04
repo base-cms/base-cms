@@ -1,2 +1,9 @@
 $ const { content } = data;
-$ console.log(content);
+
+<marko-web-layout-content content=content>
+  <@page>
+    <marko-web-content-name tag="h1" obj=content />
+    <marko-web-content-teaser tag="p" obj=content />
+    <marko-web-content-body obj=content />
+  </@page>
+</marko-web-layout-content>
