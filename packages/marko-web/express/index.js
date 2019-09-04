@@ -5,6 +5,7 @@ const path = require('path');
 const apollo = require('./apollo');
 const embeddedMedia = require('./embedded-media');
 const loadObject = require('./load-object');
+const loadDocument = require('./load-document');
 const marko = require('./marko');
 const oembed = require('./oembed');
 const rss = require('./rss');
@@ -23,9 +24,10 @@ module.exports = (config = {}) => {
   // Add async block error handler.
   app.locals.onAsyncBlockError = config.onAsyncBlockError;
 
-  // Register global components and fragments.
+  // Register global document, components and fragments.
   app.locals.components = loadObject(config.components);
   app.locals.fragments = loadObject(config.fragments);
+  app.locals.document = loadDocument(config.document);
 
   // Add cookie parsing
   app.use(cookieParser());

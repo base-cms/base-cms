@@ -24,6 +24,7 @@ module.exports = async ({
   cdnImageHostname = env.CDN_IMAGE_HOSTNAME || 'base.imgix.net',
   cdnAssetHostname = env.CDN_ASSET_HOSTNAME || 'cdn.baseplatform.io',
   errorTemplate,
+  document, // custom marko-web-document component
   components, // components to register globally (e.g. for load more, etc)
   fragments, // fragments to register globally
   embeddedMediaHandlers,
@@ -50,6 +51,7 @@ module.exports = async ({
     cdnImageHostname,
     cdnAssetHostname,
     onAsyncBlockError,
+    document,
     components,
     fragments,
     embeddedMediaHandlers,
