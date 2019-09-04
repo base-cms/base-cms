@@ -1,5 +1,6 @@
 import { get } from "@base-cms/object-path";
 import imageValues from "./utils/image-values";
+import imageHeight from "./utils/image-height";
 
 $ const blockName = input.blockName || "node";
 $ const element = `${blockName}__image-inner-wrapper`;
@@ -29,7 +30,7 @@ $ const options = {
   ...input.options,
   w: input.width,
   ar: input.ar,
-  h: undefined,
+  h: input.ar ? imageHeight(input.width, input.ar) : undefined,
 };
 
 $ const imageInput = {
