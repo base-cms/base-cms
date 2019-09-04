@@ -1,0 +1,14 @@
+$black:           #000 !default;
+$body-color:      $black !default;
+$body-bg:         #f5f5f5 !default;
+$border-radius:   .5rem !default;
+
+$grid-gutter-width: 24px !default;
+
+$enable-shadows: true !default;
+$enable-rounded: true !default;
+
+$breadcrumb-margin-bottom:  0 !default;
+$breadcrumb-padding-x:      0 !default;
+
+@import "../../node_modules/bootstrap/scss/variables";

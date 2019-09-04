@@ -1,0 +1,24 @@
+{
+  "name": "@base-cms/marko-web-theme-default",
+  "version": "0.10.3",
+  "description": "Default theme for Marko BaseCMS websites",
+  "author": "Jacob Bare <jacob@limit0.io>",
+  "main": "index.js",
+  "license": "MIT",
+  "repository": "https://github.com/base-cms/base-cms/tree/master/packages/marko-web-theme-default",
+  "dependencies": {
+    "bootstrap": "4.3.1",
+    "graphql": "^14.3.1",
+    "graphql-tag": "^2.10.1"
+  },
+  "peerDependencies": {
+    "@base-cms/marko-web": "^0.10.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.15.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "stylelint": "^9.10.1",
+    "stylelint-config-twbs-bootstrap": "^0.3.0"
+  }
+}
