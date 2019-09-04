@@ -1,5 +1,6 @@
 {
-  "<website-document>": {
-    "template": "./document.marko"
-  }
+  "taglib-imports": [
+    "./blocks/marko.json",
+    "./nodes/marko.json"
+  ]
 }

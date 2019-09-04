@@ -1,0 +1,17 @@
+import contentListFragment from "../../api/fragments/content-list";
+
+$ const { section } = data;
+
+<marko-web-layout-website-section section=section>
+  <@head>
+    <marko-web-gtm-context|{ context }| for="website-section" obj=section>
+      <marko-web-gtm-push data=context />
+    </marko-web-gtm-context>
+  </@head>
+  <@page>
+    <h1>${section.name}</h1>
+    <marko-web-query|{ nodes }| name="website-scheduled-content" params={ sectionAlias: section.alias, limit: 10, requiresImage: true, queryFragment: contentListFragment }>
+      <website-content-list-block nodes=nodes />
+    </marko-web-query>
+  </@page>
+</marko-web-layout-website-section>

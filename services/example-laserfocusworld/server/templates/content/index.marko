@@ -1,0 +1,33 @@
+$ const { content } = data;
+
+<marko-web-layout-content content=content>
+  <@head>
+    <marko-web-gtm-context|{ context }| for="content" obj=content>
+      <marko-web-gtm-push data=context />
+    </marko-web-gtm-context>
+  </@head>
+  <@page>
+    <marko-web-page-wrapper>
+      <@section>
+        <div class="row">
+          <div class="col">
+            <!-- breadcrumbs here -->
+            <marko-web-content-name tag="h1" class="page-wrapper__title" obj=content />
+            <marko-web-content-teaser tag="p" class="page-wrapper__deck" obj=content />
+            <!-- dates -->
+            <!-- attribution (authors, etc) -->
+          </div>
+        </div>
+      </@section>
+      <@section>
+        <div class="row">
+          <div class="col-lg-8">
+            <marko-web-content-body obj=content />
+            <marko-web-content-sidebars obj=content />
+          </div>
+          <div class="col-lg-4"></div>
+        </div>
+      </@section>
+    </marko-web-page-wrapper>
+  </@page>
+</marko-web-layout-content>

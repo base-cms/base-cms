@@ -1,10 +1,53 @@
+import queryFragment from "../api/fragments/content-list";
+
 $ const { config } = out.global;
 $ const { section } = data;
 
-<website-document>
-  <@container>
-    <@page>
-      <h1>${config.siteName()} - Section ID ${section.id}</h1>
-    </@page>
-  </@container>
-</website-document>
+<marko-web-layout-website-section section=section>
+  <@page>
+    <h1>${config.siteName()}</h1>
+
+    <div class="row">
+
+      <div class="col-lg-4 mt-4">
+        <marko-web-query|{ nodes }|
+          name="website-scheduled-content"
+          params={ sectionAlias: "detectors-imaging", limit: 3, requiresImage: true, queryFragment }
+        >
+          <website-content-list-block nodes=nodes>
+            <@header tag="h3">
+              <marko-web-link href="/detectors-imaging">Detectors & Imaging</marko-web-link>
+            </@header>
+          </website-content-list-block>
+        </marko-web-query>
+      </div>
+
+      <div class="col-lg-4 mt-4">
+        <marko-web-query|{ nodes }|
+          name="website-scheduled-content"
+          params={ sectionAlias: "lasers-sources", limit: 3, requiresImage: true, queryFragment }
+        >
+          <website-content-list-block nodes=nodes>
+            <@header tag="h3">
+              <marko-web-link href="/lasers-sources">Lasers & Sources</marko-web-link>
+            </@header>
+          </website-content-list-block>
+        </marko-web-query>
+      </div>
+
+      <div class="col-lg-4 mt-4">
+        <marko-web-query|{ nodes }|
+          name="website-scheduled-content"
+          params={ sectionAlias: "optics", limit: 3, requiresImage: true, queryFragment }
+        >
+          <website-content-list-block nodes=nodes>
+            <@header tag="h3">
+              <marko-web-link href="/optics">Optics</marko-web-link>
+            </@header>
+          </website-content-list-block>
+        </marko-web-query>
+      </div>
+
+    </div>
+  </@page>
+</marko-web-layout-website-section>
