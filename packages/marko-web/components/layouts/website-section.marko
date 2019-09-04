@@ -1,7 +1,7 @@
 import { get, getAsObject } from "@base-cms/object-path";
 
 $ const section = getAsObject(input, "section");
-$ const { document, config } = out.global;
+$ const { document } = out.global;
 $ const withRss = input.withRss != null ? input.withRss : true;
 
 <${document} above-container=input.aboveContainer below-container=input.belowContainer>
