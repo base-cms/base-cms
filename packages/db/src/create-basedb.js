@@ -12,7 +12,8 @@ const logger = (obj) => {
 
 const shouldLog = () => {
   if (NODE_ENV !== 'development') return false;
-  return ENABLE_BASEDB_LOGGING;
+  if (ENABLE_BASEDB_LOGGING === '1' || ENABLE_BASEDB_LOGGING === 'true') return true;
+  return false;
 };
 
 module.exports = ({ tenant, client }) => new BaseDB({

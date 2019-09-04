@@ -10,7 +10,7 @@ x-env-newrelic: &env-newrelic
 
 x-env-mongo: &env-mongo
   MONGO_DSN: ${MONGO_DSN-mongodb://mongodb:27017}
-  ENABLE_BASEDB_LOGGING: ${ENABLE_BASEDB_LOGGING-}
+  ENABLE_BASEDB_LOGGING: ${ENABLE_BASEDB_LOGGING-0}
 
 x-env-elastic: &env-elastic
   ELASTICSEARCH_URL: ${ELASTICSEARCH_URL-http://elasticsearch:9200}
