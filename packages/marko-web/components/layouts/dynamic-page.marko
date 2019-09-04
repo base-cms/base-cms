@@ -1,0 +1,20 @@
+import { getAsObject, get } from "@base-cms/object-path";
+
+$ const page = getAsObject(input, "page");
+$ const { document } = out.global;
+
+<${document} above-container=input.aboveContainer below-container=input.belowContainer>
+  <@head>
+    <marko-web-page-metadata
+      title=get(page, "metadata.title")
+      description=get(page, "metadata.description")
+      canonical-path=page.canonicalPath
+    />
+    <${input.head} />
+  </@head>
+  <@container above-page=input.abovePage below-page=input.belowPage>
+    <@page for="dynamic-page" id=page.id>
+      <${input.page} />
+    </@page>
+  </@container>
+</>

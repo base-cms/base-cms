@@ -22,5 +22,15 @@
     "<above-page>": {},
     "<below-page>": {},
     "@content": "object"
+  },
+  "<marko-web-layout-dynamic-page>": {
+    "template": "./dynamic-page.marko",
+    "<head>": {},
+    "<above-container>": {},
+    "<below-container>": {},
+    "<page>": {},
+    "<above-page>": {},
+    "<below-page>": {},
+    "@page": "object"
   }
 }
