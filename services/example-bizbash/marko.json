@@ -1,4 +1,7 @@
 {
+  "taglib-imports": [
+    "./server/components/marko.json"
+  ],
   "<website-document>": {
     "template": "./server/document.marko"
   }

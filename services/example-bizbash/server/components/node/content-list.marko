@@ -1,0 +1,31 @@
+import { getAsObject, get } from '@base-cms/object-path';
+
+$ const content = getAsObject(input, "node");
+$ const primaryImage = getAsObject(content, "primaryImage");
+$ const primarySection = getAsObject(content, "primarySection");
+
+<marko-web-node flush=true image-position="left">
+  <if(input.displayImage)>
+    <@image
+      src=primaryImage.src
+      alt=primaryImage.alt
+      fluid=false
+      ar="16:9"
+      width=128
+      link={ href: content.canonicalPath }
+    />
+  </if>
+  <@body>
+    <@title tag="h5">
+      <marko-web-content-short-name tag=null obj=content link=true />
+    </@title>
+    <@footer>
+      <@left tag="small">
+        <marko-web-website-section-name tag="span" obj=primarySection link=true />
+      </@left>
+      <@right tag="small">
+        <marko-web-content-published tag="span" obj=content />
+      </@right>
+    </@footer>
+  </@body>
+</marko-web-node>
