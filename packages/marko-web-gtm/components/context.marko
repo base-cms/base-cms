@@ -1,4 +1,4 @@
-import { isFunction } from "@base-cms/utils";
+import { isFunction, warn } from "@base-cms/utils";
 import {
   defaultBuilder,
   contentBuilder,
@@ -8,11 +8,17 @@ import {
 
 $ const builderMap = {
   content: contentBuilder,
+  default: defaultBuilder,
   "website-section": websiteSectionBuilder,
   "dynamic-page": dynamicPageBuilder,
 };
 $ const { req } = out.global;
-$ const builder = isFunction(input.builder) ? input.builder : builderMap[input.for] || builderMap.default;
-$ const context = builder({ type: input.for, obj: input.obj, req });
+$ const builder = isFunction(input.builder) ? input.builder : (builderMap[input.for] || builderMap.default);
 
-<${input.renderBody} context=context />
+<if(isFunction(builder))>
+  $ const context = builder({ type: input.for, obj: input.obj, req });
+  <${input.renderBody} context=context />
+</if>
+<else>
+  $ warn('Unable to create GTM context: the specified builder is not a function.');
+</else>
