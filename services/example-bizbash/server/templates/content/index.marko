@@ -7,12 +7,15 @@ $ const { content } = data;
     </marko-web-gtm-context>
   </@head>
   <@page>
-    <marko-web-page-wrapper class="mt-4">
+    <marko-web-page-wrapper>
       <@section>
         <div class="row">
           <div class="col">
-            <marko-web-content-name tag="h1" obj=content />
-            <marko-web-content-teaser tag="p" class="mb-0" obj=content />
+            <!-- breadcrumbs here -->
+            <marko-web-content-name tag="h1" class="page-wrapper__title" obj=content />
+            <marko-web-content-teaser tag="p" class="page-wrapper__deck" obj=content />
+            <!-- dates -->
+            <!-- attribution (authors, etc) -->
           </div>
         </div>
       </@section>
