@@ -1,3 +1,9 @@
+import { get } from "@base-cms/object-path";
+
+$ if (input.link === true) {
+  input.link = { href: `mailto:${get(input.obj, "publicEmail")}`, target: "_blank" };
+}
+
 <marko-web-obj-text
   type="content"
   block-name=input.blockName
