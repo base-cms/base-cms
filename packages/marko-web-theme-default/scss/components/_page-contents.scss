@@ -1,0 +1,20 @@
+.page-contents {
+  &__content-body {
+    @include theme-content-body();
+    &:empty {
+      display: none;
+    }
+  }
+
+  &__content-sidebar {
+    @include border-radius($theme-page-border-radius);
+    @include theme-content-body();
+    @include theme-page-body-spacing();
+    padding: map-get($spacers, 4);
+    background-color: $gray-100;
+    border-left: 8px solid $gray-300;
+    &:empty {
+      display: none;
+    }
+  }
+}
