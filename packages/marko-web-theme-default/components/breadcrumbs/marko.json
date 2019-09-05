@@ -2,5 +2,11 @@
   "<marko-theme-default-breadcrumbs>": {
     "template": "./index.marko",
     "@items <item>[]": {}
+  },
+  "<marko-theme-default-breadcrumbs-website-section>": {
+    "template": "./website-section.marko",
+    "@section": "object",
+    "@home-title": "string",
+    "@home-alias": "string"
   }
 }

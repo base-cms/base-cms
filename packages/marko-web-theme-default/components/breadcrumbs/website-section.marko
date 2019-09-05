@@ -1,0 +1,19 @@
+import { getAsObject, getAsArray } from "@base-cms/object-path";
+
+$ const section = getAsObject(input, "section");
+$ const children = getAsArray(section, "hierarchy");
+$ const homeTitle = input.homeTitle || "Home";
+$ const homeAlias = input.homeAlias || "home";
+
+<marko-theme-default-breadcrumbs>
+  <@item>
+    <marko-web-link href="/" title=homeTitle>${homeTitle}</marko-web-link>
+  </@item>
+  <for|child| of=children>
+    <if(section.alias !== homeAlias)>
+      <@item>
+        <marko-web-link title=child.name href=`/${child.alias}`>${child.name}</marko-web-link>
+      </@item>
+    </if>
+  </for>
+</marko-theme-default-breadcrumbs>
