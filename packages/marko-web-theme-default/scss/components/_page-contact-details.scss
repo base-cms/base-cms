@@ -1,0 +1,23 @@
+.page-contact-details {
+  font-family: $theme-contact-details-font-family;
+  font-size: $theme-contact-details-font-size;
+  font-weight: $theme-contact-details-font-weight;
+  line-height: $theme-contact-details-line-height;
+  color: $theme-contact-details-color;
+
+  &__section {
+    margin-bottom: $theme-contact-details-section-margin;
+
+    &--social-links {
+      a {
+        margin-right: map-get($spacers, 2);
+      }
+    }
+  }
+
+  &__label {
+    margin-right: $theme-contact-details-label-margin;
+    margin-bottom: 0;
+    font-weight: $theme-contact-details-label-font-weight;
+  }
+}

@@ -28,5 +28,15 @@
     "@class": "string",
     "@modifiers": "@array",
     "@attrs": "object"
+  },
+  "<marko-theme-default-page-contact-details>": {
+    "template": "./contact-details.marko",
+    "@tag": {
+      "type": "string",
+      "default-value": "div"
+    },
+    "@class": "string",
+    "@modifiers": "@array",
+    "@attrs": "object"
   }
 }
