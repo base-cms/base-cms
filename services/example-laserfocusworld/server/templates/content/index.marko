@@ -21,10 +21,16 @@ $ const { content } = data;
       </@section>
       <@section>
         <div class="row">
-          <div class="col-lg-8">
-            <marko-web-content-body obj=content />
-            <marko-web-content-sidebars obj=content />
-          </div>
+          <marko-theme-default-page-contents|{ blockName }| class="col-lg-8">
+            <if(content.embedCode)>
+              <marko-web-content-embed-code block-name=blockName obj=content />
+            </if>
+            <else>
+              <marko-web-block-page-image width=500 obj=content.primaryImage />
+            </else>
+            <marko-web-content-body block-name=blockName obj=content />
+            <marko-web-content-sidebars block-name=blockName obj=content />
+          </marko-theme-default-page-contents>
           <div class="col-lg-4"></div>
         </div>
       </@section>
