@@ -11,5 +11,15 @@
     "@class": "string",
     "@modifiers": "@array",
     "@attrs": "object"
+  },
+  "<marko-theme-default-page-dates>": {
+    "template": "./page-dates.marko",
+    "@tag": {
+      "type": "string",
+      "default-value": "div"
+    },
+    "@class": "string",
+    "@modifiers": "@array",
+    "@attrs": "object"
   }
 }

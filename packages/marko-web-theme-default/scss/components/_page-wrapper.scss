@@ -25,13 +25,4 @@
     );
     color: $theme-page-deck-color;
   }
-
-  &__content-published {
-    font-family: $theme-content-published-date-font-family;
-    font-size: $theme-content-published-date-font-size;
-    font-weight: $theme-content-published-date-font-weight;
-    line-height: $theme-content-published-date-line-height;
-    color: $theme-content-published-date-color;
-    text-transform: $theme-content-published-date-text-transform;
-  }
 }
