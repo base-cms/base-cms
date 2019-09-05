@@ -1,0 +1,9 @@
+$marko-web-page-image-margin: 1.5rem !default;
+
+.page-image {
+  margin-bottom: $marko-web-page-image-margin;
+  &__image {
+    width: 100%;
+    height: auto;
+  }
+}
