@@ -13,5 +13,16 @@
     "@class": "string",
     "@modifiers": "@array",
     "@attrs": "object"
+  },
+  "<marko-theme-default-content-contact-details>": {
+    "template": "./contact-details/index.marko",
+    "@obj": "object",
+    "@tag": {
+      "type": "string",
+      "default-value": "div"
+    },
+    "@class": "string",
+    "@modifiers": "@array",
+    "@attrs": "object"
   }
 }
