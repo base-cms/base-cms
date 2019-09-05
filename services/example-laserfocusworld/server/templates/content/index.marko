@@ -44,6 +44,7 @@ $ const displayPublishedDate = ['event', 'webinar', 'contact', 'whitepapter'].in
             <else-if(displayPrimaryImage)>
               <marko-web-block-page-image width=500 obj=content.primaryImage />
             </else-if>
+            <marko-theme-default-content-contact-details obj=content />
             <marko-web-content-body block-name=blockName obj=content />
             <marko-web-content-sidebars block-name=blockName obj=content />
           </marko-theme-default-page-contents>
