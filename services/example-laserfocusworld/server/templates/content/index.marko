@@ -1,5 +1,7 @@
 $ const { content } = data;
 
+$ const displayPrimaryImage = ['whitepaper', 'media-gallery'].includes(content.type) ? false : true;
+
 <marko-web-layout-content content=content>
   <@head>
     <marko-web-gtm-context|{ context }| for="content" obj=content>
@@ -25,9 +27,9 @@ $ const { content } = data;
             <if(content.embedCode)>
               <marko-web-content-embed-code block-name=blockName obj=content />
             </if>
-            <else>
+            <else-if(displayPrimaryImage)>
               <marko-web-block-page-image width=500 obj=content.primaryImage />
-            </else>
+            </else-if>
             <marko-web-content-body block-name=blockName obj=content />
             <marko-web-content-sidebars block-name=blockName obj=content />
           </marko-theme-default-page-contents>
