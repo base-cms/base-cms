@@ -1,6 +1,7 @@
 {
   "taglib-imports": [
     "./content/marko.json",
+    "./image/marko.json",
     "./website-section/marko.json"
   ],
   "<marko-web-block>": {
