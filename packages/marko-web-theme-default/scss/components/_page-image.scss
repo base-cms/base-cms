@@ -1,4 +1,5 @@
 .page-image {
+  $self: &;
   &__image-caption {
     @include theme-media-caption();
   }
@@ -22,9 +23,12 @@
   &__image {
     @include border-radius($theme-primary-media-border-radius);
   }
+
+  > :last-child:not(#{ $self }__wrapper) {
+    border-bottom: 1px solid #ccc;
+  }
 }
 
-.page-image,
 [data-embed-type="image"] {
   border-bottom: 1px solid #ccc;
 }
