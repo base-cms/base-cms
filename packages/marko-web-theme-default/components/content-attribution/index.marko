@@ -1,0 +1,34 @@
+import { getAsObject } from "@base-cms/object-path";
+import authors from "./components/authors";
+import byline from "./components/byline";
+import company from "./components/company";
+import contributors from "./components/contributors";
+import photographers from "./components/photographers";
+import source from "./components/source";
+import sponsors from "./components/sponsors";
+
+$ const content = getAsObject(input, "obj");
+$ const elements = Array.isArray(input.elements) ? input.elements : ["byline", "authors", "contributors", "photographers", "source", "company", "sponsors"];
+
+<marko-theme-default-page-attribution|{ blockName }|
+  tag=input.tag
+  class=input.class
+  modifiers=input.modifiers
+  attrs=input.attrs
+>
+  $ const elementMap = {
+    authors: { component: authors, input: { blockName, content } },
+    byline: { component: byline, input: { blockName, content } },
+    company: { component: company, input: { blockName, company: getAsObject(content, "company") } },
+    contributors: { component: contributors, input: { blockName, content } },
+    photographers: { component: photographers, input: { blockName, content } },
+    source: { component: source, input: { blockName, content } },
+    sponsors: { component: sponsors, input: { blockName, content } },
+  };
+  <for|elementName| of=elements>
+    $ const element = elementMap[elementName];
+    <if(element)>
+      <${element.component} ...element.input />
+    </if>
+  </for>
+</marko-theme-default-page-attribution>
