@@ -21,6 +21,10 @@
     "@with-credit": {
       "type": "boolean",
       "default-value": true
+    },
+    "@with-display-name": {
+      "type": "boolean",
+      "default-value": false
     }
   }
 }
