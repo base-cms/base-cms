@@ -1,6 +1,7 @@
 $ const { content } = data;
 
 $ const displayPrimaryImage = ['whitepaper', 'media-gallery'].includes(content.type) ? false : true;
+$ const displayPublishedDate = ['event', 'webinar', 'contact', 'whitepapter'].includes(content.type) ? false : true;
 
 <marko-web-layout-content content=content>
   <@head>
@@ -16,7 +17,10 @@ $ const displayPrimaryImage = ['whitepaper', 'media-gallery'].includes(content.t
             <!-- breadcrumbs here -->
             <marko-web-content-name tag="h1" class="page-wrapper__title" obj=content />
             <marko-web-content-teaser tag="p" class="page-wrapper__deck" obj=content />
-            <!-- dates -->
+            <!-- additional dates -->
+            <if(displayPublishedDate)>
+              <marko-web-content-published block-name="page-wrapper" obj=content />
+            </if>
             <!-- attribution (authors, etc) -->
           </div>
         </div>
