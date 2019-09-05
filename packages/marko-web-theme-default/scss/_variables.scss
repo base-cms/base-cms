@@ -153,8 +153,8 @@ $theme-content-paragraph-image-border-radius:   $border-radius !default;
 $theme-content-paragraph-image-box-shadow:      $theme-box-shadow-lg !default;
 
 // Content Primary Media
-$theme-primary-media-border-radius:   $border-radius !default;
-$theme-primary-media-box-shadow:      $theme-box-shadow-lg !default;
+$theme-primary-media-border-radius:   initial !default;
+$theme-primary-media-box-shadow:      none !default;
 $theme-primary-media-margin-bottom:   map-get($spacers, block) !default;
 
 $theme-primary-media-video-aspect-ratio-x: 16 !default;
@@ -198,19 +198,19 @@ $theme-contact-details-social-icon-margin:  map-get($spacers, 2) !default;
 
 // Media
 $theme-media-footer-font-family:  $theme-font-family-sans-serif !default;
-$theme-media-footer-font-size:    $font-size-base !default;
+$theme-media-footer-font-size:    14px !default;
 $theme-media-footer-line-height:  $line-height-sm !default;
 $theme-media-footer-padding-x:    0 !default;
-$theme-media-footer-padding-y:    map-get($spacers, 1) !default;
+$theme-media-footer-padding-y:    .5rem !default;
 
-$theme-media-caption-color:       $gray-600 !default;
+$theme-media-caption-color:       #464646 !default;
 $theme-media-caption-font-size:   $theme-media-footer-font-size !default;
-$theme-media-caption-font-weight: 600 !default;
+$theme-media-caption-font-weight: 400 !default;
 $theme-media-caption-line-height: $theme-media-footer-line-height !default;
 
-$theme-media-credit-color:        $body-color !default;
-$theme-media-credit-font-size:    $theme-media-footer-font-size !default;
-$theme-media-credit-font-style:   italic !default;
+$theme-media-credit-color:        #777 !default;
+$theme-media-credit-font-size:    12px !default;
+$theme-media-credit-font-style:   initial !default;
 $theme-media-credit-font-weight:  400 !default;
 $theme-media-credit-line-height:  $theme-media-footer-line-height !default;
 

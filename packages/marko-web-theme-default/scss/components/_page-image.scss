@@ -1,0 +1,30 @@
+.page-image {
+  &__image-caption {
+    @include theme-media-caption();
+  }
+
+  &__image-credit {
+    @include theme-media-credit();
+  }
+
+  &__image-display-name {
+    font-family: $theme-page-body-images-title-font-family;
+    font-size: $theme-page-body-images-title-font-size;
+    font-weight: $theme-page-body-images-title-font-weight;
+    line-height: $theme-page-body-images-title-line-height;
+  }
+
+  &__wrapper {
+    @include border-radius($theme-primary-media-border-radius);
+    @include box-shadow($theme-primary-media-box-shadow);
+  }
+
+  &__image {
+    @include border-radius($theme-primary-media-border-radius);
+  }
+}
+
+.page-image,
+[data-embed-type="image"] {
+  border-bottom: 1px solid #ccc;
+}

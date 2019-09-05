@@ -5,10 +5,12 @@
 @import "../../node_modules/@base-cms/marko-web/scss/load-more";
 @import "../../node_modules/@base-cms/marko-web/scss/node";
 @import "../../node_modules/@base-cms/marko-web/scss/node-list";
+@import "../../node_modules/@base-cms/marko-web/scss/page-image";
 
 // Theme components
 @import "components/breadcrumbs";
 @import "components/embedded-media";
 @import "components/lazyload";
 @import "components/page-contents";
+@import "components/page-image";
 @import "components/page-wrapper";
