@@ -1,0 +1,17 @@
+{
+  "<marko-theme-default-content-attribution>": {
+    "template": "./attribution/index.marko",
+    "@obj": "object",
+    "@elements": {
+      "type": "array",
+      "default-value": ["byline", "authors", "contributors", "photographers", "source", "company", "sponsors"]
+    },
+    "@tag": {
+      "type": "string",
+      "default-value": "div"
+    },
+    "@class": "string",
+    "@modifiers": "@array",
+    "@attrs": "object"
+  }
+}
