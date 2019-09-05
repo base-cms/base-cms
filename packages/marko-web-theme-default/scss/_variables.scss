@@ -3,6 +3,9 @@ $theme-font-family-sans-serif: -apple-system, "BlinkMacSystemFont", "Segoe UI", 
 $theme-font-family-serif: "Georgia", "Cambria", "Times New Roman", "Times", serif !default;
 $theme-font-family-page-title: $theme-font-family-serif !default;
 
+// Set default Bootstrap font to theme font.
+$font-family-sans-serif: $theme-font-family-sans-serif !default;
+
 $black:           #000 !default;
 $body-color:      $black !default;
 $body-bg:         #f5f5f5 !default;
