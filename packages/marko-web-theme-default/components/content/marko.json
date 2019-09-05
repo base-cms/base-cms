@@ -17,6 +17,10 @@
   "<marko-theme-default-content-contact-details>": {
     "template": "./contact-details/index.marko",
     "@obj": "object",
+    "@show-email": {
+      "type": "boolean",
+      "default-value": true
+    },
     "@tag": {
       "type": "string",
       "default-value": "div"
