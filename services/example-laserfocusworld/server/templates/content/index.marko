@@ -17,10 +17,18 @@ $ const displayPublishedDate = ['event', 'webinar', 'contact', 'whitepapter'].in
             <!-- breadcrumbs here -->
             <marko-web-content-name tag="h1" class="page-wrapper__title" obj=content />
             <marko-web-content-teaser tag="p" class="page-wrapper__deck" obj=content />
-            <!-- additional dates -->
-            <if(displayPublishedDate)>
-              <marko-web-content-published block-name="page-wrapper" obj=content />
-            </if>
+            <marko-theme-default-page-dates|{ blockName }|>
+              <if(content.type === "event")>
+                <marko-web-content-starts block-name=blockName obj=content />
+                <marko-web-content-ends block-name=blockName obj=content />
+              </if>
+              <if(content.type === "webinar")>
+                <marko-web-content-starts block-name=blockName obj=content />
+              </if>
+              <if(displayPublishedDate)>
+                <marko-web-content-published block-name=blockName obj=content />
+              </if>
+            </marko-theme-default-page-dates>
             <!-- attribution (authors, etc) -->
           </div>
         </div>
