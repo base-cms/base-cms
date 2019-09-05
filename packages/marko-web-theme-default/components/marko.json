@@ -21,5 +21,26 @@
     "@class": "string",
     "@modifiers": "@array",
     "@attrs": "object"
+  },
+  "<marko-theme-default-page-attribution>": {
+    "template": "./page-attribution.marko",
+    "@tag": {
+      "type": "string",
+      "default-value": "div"
+    },
+    "@class": "string",
+    "@modifiers": "@array",
+    "@attrs": "object"
+  },
+  "<marko-theme-default-content-attribution>": {
+    "template": "./content-attribution.marko",
+    "@obj": "object",
+    "@tag": {
+      "type": "string",
+      "default-value": "div"
+    },
+    "@class": "string",
+    "@modifiers": "@array",
+    "@attrs": "object"
   }
 }

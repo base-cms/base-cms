@@ -1,0 +1,38 @@
+import { getAsObject } from "@base-cms/object-path";
+
+$ const content = getAsObject(input, "obj");
+$ const company = getAsObject(content, "company");
+$ console.log(content);
+
+<marko-theme-default-page-attribution|{ blockName }|
+  tag=input.tag
+  class=input.class
+  modifiers=input.modifiers
+  attrs=input.attrs
+>
+  <marko-web-content-byline block-name=blockName obj=content />
+
+  <marko-web-content-authors|{ node }| block-name=blockName obj=content>
+    <marko-web-content-name tag="span" block-name=blockName obj=node link=true />
+  </marko-web-content-authors>
+
+  <marko-web-content-contributors|{ node }| block-name=blockName obj=content>
+    <marko-web-content-name tag="span" block-name=blockName obj=node link=true />
+  </marko-web-content-contributors>
+
+  <marko-web-content-photographers|{ node }| block-name=blockName obj=content>
+    <marko-web-content-name tag="span" block-name=blockName obj=node link=true />
+  </marko-web-content-photographers>
+
+  <marko-web-content-source block-name=blockName obj=content />
+
+  <if(company.name)>
+    <div class=`${blockName}__content-company-name`>
+      <marko-web-content-name tag="span" block-name=blockName obj=company link=true />
+    </div>
+  </if>
+
+  <marko-web-content-sponsors|{ node }| block-name=blockName obj=content>
+    <marko-web-content-name tag="span" block-name=blockName obj=node link=true />
+  </marko-web-content-sponsors>
+</marko-theme-default-page-attribution>
