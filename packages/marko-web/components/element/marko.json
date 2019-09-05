@@ -13,6 +13,7 @@
       "type": "string",
       "default-value": "div"
     },
+    "@class": "string",
     "@modifiers": "@array",
     "@attrs": "object"
   },
