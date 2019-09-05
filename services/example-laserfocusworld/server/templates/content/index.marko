@@ -14,7 +14,7 @@ $ const displayPublishedDate = ['event', 'webinar', 'contact', 'whitepapter'].in
       <@section>
         <div class="row">
           <div class="col">
-            <!-- breadcrumbs here -->
+            <marko-theme-default-breadcrumbs-website-section section=content.primarySection />
             <marko-web-content-name tag="h1" class="page-wrapper__title" obj=content />
             <marko-web-content-teaser tag="p" class="page-wrapper__deck" obj=content />
             <if(content.type !== "contact")>
@@ -47,7 +47,7 @@ $ const displayPublishedDate = ['event', 'webinar', 'contact', 'whitepapter'].in
             <marko-web-content-body block-name=blockName obj=content />
             <marko-web-content-sidebars block-name=blockName obj=content />
           </marko-theme-default-page-contents>
-          <div class="col-lg-4"></div>
+          <aside class="col-lg-4 page-rail"></aside>
         </div>
       </@section>
     </marko-web-page-wrapper>
