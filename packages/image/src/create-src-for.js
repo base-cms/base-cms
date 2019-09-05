@@ -5,9 +5,8 @@ module.exports = (host, image, options, defaultOptions) => {
     filePath,
     fileName,
     cropDimensions,
-    isLogo,
   } = image;
   const path = cropDimensions && cropDimensions.aspectRatio ? `${filePath}/${cropDimensions.aspectRatio}` : filePath;
   const src = `https://${host}/${path}/${fileName}`;
-  return buildImgixUrl(src, options, defaultOptions, isLogo);
+  return buildImgixUrl(src, options, defaultOptions);
 };
