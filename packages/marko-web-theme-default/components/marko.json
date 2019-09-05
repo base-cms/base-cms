@@ -1,5 +1,15 @@
 {
   "taglib-imports": [
     "./breadcrumbs/marko.json"
-  ]
+  ],
+  "<marko-theme-default-page-contents>": {
+    "template": "./page-contents.marko",
+    "@tag": {
+      "type": "string",
+      "default-value": "div"
+    },
+    "@class": "string",
+    "@modifiers": "@array",
+    "@attrs": "object"
+  }
 }
