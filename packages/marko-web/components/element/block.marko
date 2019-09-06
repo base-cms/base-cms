@@ -2,7 +2,7 @@ import { getAsArray } from "@base-cms/object-path";
 
 $ const tag = input.tag || "div";
 $ const blockName = input.name || "block";
-$ const classNames = [blockName, ...getAsArray(input.modifiers).map(mod => `${blockName}--${mod}`), input.class];
+$ const classNames = [blockName, ...getAsArray(input, "modifiers").map(mod => `${blockName}--${mod}`), input.class];
 
 <if(input.renderBody)>
   <${tag} ...input.attrs class=classNames>
