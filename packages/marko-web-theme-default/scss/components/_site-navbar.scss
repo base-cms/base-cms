@@ -25,6 +25,17 @@
     }
   }
 
+  &__toggler {
+    @include theme-toggle-button();
+    padding: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+
+    & > .marko-web-icon {
+      @include theme-navbar-link-color($theme-site-navbar-secondary-colors);
+    }
+  }
+
   &__items {
     display: flex;
     flex-direction: row;
