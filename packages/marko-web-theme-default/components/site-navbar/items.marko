@@ -1,0 +1,23 @@
+import { getAsArray } from "@base-cms/object-path";
+import { asObject } from "@base-cms/utils";
+import getNavItems from "./utils/get-nav-items";
+
+$ const blockName = input.blockName || "site-navbar";
+$ const items = getAsArray(input, "items");
+$ const regEnabled = input.regEnabled != null ? input.regEnabled : false;
+$ const hasUser = input.hasUser != null ? input.hasUser : false;
+
+<if(items.length)>
+  <marko-web-element tag="ul" block-name=blockName name="items" modifiers=input.modifiers>
+    <for|item| of=getNavItems({ items, hasUser, regEnabled })>
+      $ const obj = asObject(item);
+      <default-theme-site-navbar-item
+        block-name=blockName
+        href=obj.href
+        title=obj.title
+        target=obj.target
+        label=obj.label
+      />
+    </for>
+  </marko-web-element>
+</if>
