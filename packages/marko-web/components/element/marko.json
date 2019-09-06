@@ -29,7 +29,8 @@
       "type": "string",
       "default-value": "div"
     },
-    "@modifiers": "@array",
+    "@class": "string",
+    "@modifiers": "array",
     "@attrs": "object"
   },
   "<marko-web-array>": {
