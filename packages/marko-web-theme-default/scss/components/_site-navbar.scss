@@ -1,4 +1,5 @@
 .site-navbar {
+  $self: &;
   &__container {
     @include make-container();
     @include media-breakpoint-up(xl, $grid-breakpoints) {
@@ -22,6 +23,65 @@
     @media (max-width: map-get($theme-site-header-breakpoints, small-logo)) {
       height: $theme-site-navbar-logo-height-sm;
     }
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: row;
+    padding-left: 0;
+    margin-bottom: 0;
+    text-transform: uppercase;
+    list-style: none;
+
+    &--secondary {
+      @include theme-hide-scrollbars();
+      margin-top: auto;
+      overflow: scroll;
+      font-family: $theme-site-navbar-secondary-font-family;
+      font-size: $theme-site-navbar-secondary-font-size;
+      font-weight: $theme-site-navbar-secondary-font-weight;
+      line-height: $theme-site-navbar-secondary-line-height;
+
+      @media (max-width: map-get($theme-site-header-breakpoints, small-text-secondary)) {
+        font-size: $theme-site-navbar-secondary-font-size-sm;
+        line-height: $theme-site-navbar-secondary-line-height-sm;
+      }
+
+      @media (max-width: map-get($theme-site-header-breakpoints, small-logo)) {
+        margin-top: initial;
+      }
+
+      #{ $self } {
+        &__item {
+          @include theme-navbar-link-background-color($theme-site-navbar-secondary-background-colors);
+          @media (max-width: map-get($theme-site-header-breakpoints, hide-secondary)) {
+            display: none;
+          }
+        }
+        &__link {
+          @include theme-navbar-link-color($theme-site-navbar-secondary-colors);
+          @include theme-navbar-link-decoration($theme-site-navbar-secondary-decorations);
+          padding: $theme-site-navbar-secondary-link-padding;
+          padding-bottom: 0;
+        }
+      }
+    }
+  }
+
+  &__item {
+    &:first-child a {
+      padding-left: 0;
+    }
+
+    &:last-child a {
+      padding-right: 0;
+    }
+  }
+
+  &__link {
+    display: block;
+    white-space: nowrap;
+    transition: $theme-site-navbar-link-transition;
   }
 
   &--primary {
