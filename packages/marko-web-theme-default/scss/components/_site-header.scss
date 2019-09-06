@@ -1,0 +1,8 @@
+.site-header {
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: $theme-site-header-z-index;
+  box-shadow: $theme-site-header-box-shadow;
+  opacity: $theme-site-header-opacity;
+}

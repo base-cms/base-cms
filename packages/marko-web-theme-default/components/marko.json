@@ -2,6 +2,9 @@
   "taglib-imports": [
     "./breadcrumbs/marko.json",
     "./content/marko.json",
-    "./page/marko.json"
+    "./page/marko.json",
+    "./site-header/marko.json",
+    "./site-menu/marko.json",
+    "./site-navbar/marko.json"
   ]
 }

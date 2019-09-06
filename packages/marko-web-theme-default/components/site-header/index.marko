@@ -1,0 +1,49 @@
+$ const { config, site } = out.global;
+
+$ const blockName = input.blockName || "site-header";
+
+<marko-web-block
+  name=blockName
+  tag=(input.tag || "header")
+  class=input.class
+  modifiers=input.modifiers
+  attrs=input.attrs
+>
+  <default-theme-site-navbar modifiers=["secondary"]>
+    <!-- toggler here -->
+    <default-theme-site-navbar-brand title=`${config.siteName()} Homepage`>
+      <default-theme-site-navbar-logo
+        alt=config.siteName()
+        src=site.get('logos.navbar.src')
+        srcset=site.getAsArray('logos.navbar.srcset').join(',')
+      />
+    </default-theme-site-navbar-brand>
+  </default-theme-site-navbar>
+
+  <default-theme-site-navbar modifiers=["primary"]>
+
+  </default-theme-site-navbar>
+  <!-- <nav class="site-navbar__secondary">
+    <div class="site-navbar__container">
+      <a class="site-navbar__brand" href="/">
+
+      </a>
+      <ul class="site-navbar__items site-navbar__items--secondary">
+
+      </ul>
+      <ul class="site-navbar__items site-navbar__items--tertiary">
+
+      </ul>
+    </div>
+  </nav>
+
+  <nav class="site-navbar__primary">
+    <div class="site-navbar__container">
+      <ul class="site-navbar__items site-navbar__items--primary">
+
+      </ul>
+    </div>
+  </nav> -->
+</marko-web-block>
+
+<default-theme-site-menu />

@@ -1,0 +1,5 @@
+{
+  "<default-theme-site-menu>": {
+    "template": "./index.marko"
+  }
+}

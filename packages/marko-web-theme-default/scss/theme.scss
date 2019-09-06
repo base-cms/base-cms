@@ -2,3 +2,23 @@
 @import "variables";
 @import "mixins";
 @import "components";
+
+body {
+  text-rendering: $theme-text-rendering;
+}
+
+.document-container {
+  flex-shrink: 0;
+  padding-top: calculate-navbar-height-for(default);
+
+  @each $breakpoint, $width in sort-map-by-values($theme-site-header-breakpoints, desc) {
+    @media (max-width: $width) {
+      padding-top: calculate-navbar-height-for($breakpoint);
+    }
+  }
+
+  // > .ad-container--top-of-page {
+  //   margin-top: $theme-ad-margin;
+  //   margin-bottom: calc(#{$theme-ad-margin} - #{($grid-gutter-width / 2)});
+  // }
+}

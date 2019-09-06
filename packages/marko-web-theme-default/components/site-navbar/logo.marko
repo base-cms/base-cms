@@ -1,0 +1,10 @@
+$ const blockName = input.blockName || "site-navbar";
+$ const elementName = input.name || "logo";
+$ const classNames = [`${blockName}__${elementName}`, input.class];
+
+<img
+  class=classNames
+  alt=input.alt
+  src=input.src
+  srcset=input.srcset
+>

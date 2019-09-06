@@ -1,0 +1,8 @@
+$ const blockName = input.blockName || "site-navbar";
+$ const elementName = input.name || "brand";
+$ const classNames = [`${blockName}__${elementName}`, input.class];
+$ const href = input.href || "/";
+
+<marko-web-link href=(input.href || "/") class=classNames>
+  <${input.renderBody} />
+</marko-web-link>

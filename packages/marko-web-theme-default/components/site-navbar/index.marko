@@ -1,0 +1,13 @@
+$ const blockName = input.blockName || "site-navbar";
+
+<marko-web-block
+  name=blockName
+  tag=(input.tag || "nav")
+  class=input.class
+  modifiers=input.modifiers
+  attrs=input.attrs
+>
+  <marko-web-element block-name=blockName name="container">
+    <${input.renderBody} />
+  </marko-web-element>
+</marko-web-block>

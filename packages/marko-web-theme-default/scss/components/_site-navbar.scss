@@ -1,0 +1,38 @@
+.site-navbar {
+  &__container {
+    @include make-container();
+    @include media-breakpoint-up(xl, $grid-breakpoints) {
+      max-width: map-get($grid-breakpoints, xl);
+    }
+    display: flex;
+    flex-direction: row;
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  &__brand {
+    display: inline-block;
+    margin: $theme-site-navbar-brand-margin-y $theme-site-navbar-brand-margin-x;
+    white-space: nowrap;
+  }
+
+  &__logo {
+    height: $theme-site-navbar-logo-height;
+    filter: drop-shadow($theme-site-navbar-logo-drop-shadow);
+    @media (max-width: map-get($theme-site-header-breakpoints, small-logo)) {
+      height: $theme-site-navbar-logo-height-sm;
+    }
+  }
+
+  &--primary {
+    @include theme-navbar();
+    padding: $theme-site-navbar-primary-padding-y $theme-site-navbar-primary-padding-x;
+    background-color: $theme-site-navbar-primary-bg-color;
+  }
+
+  &--secondary {
+    @include theme-navbar();
+    padding: $theme-site-navbar-secondary-padding-y $theme-site-navbar-secondary-padding-x;
+    background-color: $theme-site-navbar-secondary-bg-color;
+  }
+}
