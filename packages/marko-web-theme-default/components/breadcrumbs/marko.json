@@ -1,9 +1,9 @@
 {
-  "<marko-theme-default-breadcrumbs>": {
+  "<default-theme-breadcrumbs>": {
     "template": "./index.marko",
     "@items <item>[]": {}
   },
-  "<marko-theme-default-breadcrumbs-website-section>": {
+  "<default-theme-website-section-breadcrumbs>": {
     "template": "./website-section.marko",
     "@section": "object",
     "@home-title": "string",

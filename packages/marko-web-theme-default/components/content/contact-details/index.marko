@@ -13,7 +13,7 @@ $ const fields = ["title", "website"];
 $ if (showEmail) fields.push("publicEmail");
 $ const showFields = fields.some(k => content[k]);
 
-<marko-theme-default-page-contact-details|{ blockName }|
+<default-theme-page-contact-details|{ blockName }|
   tag=input.tag
   class=input.class
   modifiers=input.modifiers
@@ -68,4 +68,4 @@ $ const showFields = fields.some(k => content[k]);
       </if>
     </div>
   </if>
-</marko-theme-default-page-contact-details>
+</default-theme-page-contact-details>

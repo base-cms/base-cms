@@ -10,7 +10,7 @@ import sponsors from "./components/sponsors";
 $ const content = getAsObject(input, "obj");
 $ const elements = Array.isArray(input.elements) ? input.elements : ["byline", "authors", "contributors", "photographers", "source", "company", "sponsors"];
 
-<marko-theme-default-page-attribution|{ blockName }|
+<default-theme-page-attribution|{ blockName }|
   tag=input.tag
   class=input.class
   modifiers=input.modifiers
@@ -31,4 +31,4 @@ $ const elements = Array.isArray(input.elements) ? input.elements : ["byline", "
       <${element.component} ...element.input />
     </if>
   </for>
-</marko-theme-default-page-attribution>
+</default-theme-page-attribution>

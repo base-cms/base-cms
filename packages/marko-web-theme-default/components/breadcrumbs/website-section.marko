@@ -5,7 +5,7 @@ $ const children = getAsArray(section, "hierarchy");
 $ const homeTitle = input.homeTitle || "Home";
 $ const homeAlias = input.homeAlias || "home";
 
-<marko-theme-default-breadcrumbs>
+<default-theme-breadcrumbs>
   <@item>
     <marko-web-link href="/" title=homeTitle>${homeTitle}</marko-web-link>
   </@item>
@@ -16,4 +16,4 @@ $ const homeAlias = input.homeAlias || "home";
       </@item>
     </if>
   </for>
-</marko-theme-default-breadcrumbs>
+</default-theme-breadcrumbs>

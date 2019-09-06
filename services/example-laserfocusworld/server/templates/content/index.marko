@@ -14,13 +14,13 @@ $ const displayPublishedDate = ['event', 'webinar', 'contact', 'whitepapter'].in
       <@section>
         <div class="row">
           <div class="col">
-            <marko-theme-default-breadcrumbs-website-section section=content.primarySection />
+            <default-theme-website-section-breadcrumbs section=content.primarySection />
             <marko-web-content-name tag="h1" class="page-wrapper__title" obj=content />
             <marko-web-content-teaser tag="p" class="page-wrapper__deck" obj=content />
             <if(content.type !== "contact")>
-              <marko-theme-default-content-attribution obj=content />
+              <default-theme-content-attribution obj=content />
             </if>
-            <marko-theme-default-page-dates|{ blockName }|>
+            <default-theme-page-dates|{ blockName }|>
               <if(content.type === "event")>
                 <marko-web-content-starts block-name=blockName obj=content />
                 <marko-web-content-ends block-name=blockName obj=content />
@@ -31,23 +31,23 @@ $ const displayPublishedDate = ['event', 'webinar', 'contact', 'whitepapter'].in
               <if(displayPublishedDate)>
                 <marko-web-content-published block-name=blockName obj=content />
               </if>
-            </marko-theme-default-page-dates>
+            </default-theme-page-dates>
           </div>
         </div>
       </@section>
       <@section>
         <div class="row">
-          <marko-theme-default-page-contents|{ blockName }| class="col-lg-8">
+          <default-theme-page-contents|{ blockName }| class="col-lg-8">
             <if(content.embedCode)>
               <marko-web-content-embed-code block-name=blockName obj=content />
             </if>
             <else-if(displayPrimaryImage)>
               <marko-web-block-page-image width=500 obj=content.primaryImage />
             </else-if>
-            <marko-theme-default-content-contact-details obj=content />
+            <default-theme-content-contact-details obj=content />
             <marko-web-content-body block-name=blockName obj=content />
             <marko-web-content-sidebars block-name=blockName obj=content />
-          </marko-theme-default-page-contents>
+          </default-theme-page-contents>
           <aside class="col-lg-4 page-rail"></aside>
         </div>
       </@section>

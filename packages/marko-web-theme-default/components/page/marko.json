@@ -1,5 +1,5 @@
 {
-  "<marko-theme-default-page-contents>": {
+  "<default-theme-page-contents>": {
     "template": "./contents.marko",
     "@tag": {
       "type": "string",
@@ -9,7 +9,7 @@
     "@modifiers": "@array",
     "@attrs": "object"
   },
-  "<marko-theme-default-page-dates>": {
+  "<default-theme-page-dates>": {
     "template": "./dates.marko",
     "@tag": {
       "type": "string",
@@ -19,7 +19,7 @@
     "@modifiers": "@array",
     "@attrs": "object"
   },
-  "<marko-theme-default-page-attribution>": {
+  "<default-theme-page-attribution>": {
     "template": "./attribution.marko",
     "@tag": {
       "type": "string",
@@ -29,7 +29,7 @@
     "@modifiers": "@array",
     "@attrs": "object"
   },
-  "<marko-theme-default-page-contact-details>": {
+  "<default-theme-page-contact-details>": {
     "template": "./contact-details.marko",
     "@tag": {
       "type": "string",

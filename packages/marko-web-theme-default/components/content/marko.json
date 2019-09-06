@@ -1,5 +1,5 @@
 {
-  "<marko-theme-default-content-attribution>": {
+  "<default-theme-content-attribution>": {
     "template": "./attribution/index.marko",
     "@obj": "object",
     "@elements": {
@@ -14,7 +14,7 @@
     "@modifiers": "@array",
     "@attrs": "object"
   },
-  "<marko-theme-default-content-contact-details>": {
+  "<default-theme-content-contact-details>": {
     "template": "./contact-details/index.marko",
     "@obj": "object",
     "@show-email": {
