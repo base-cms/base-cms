@@ -3,9 +3,9 @@ $ const { config, site } = out.global;
 $ const blockName = input.blockName || "site-header";
 
 $ const navigation = {
-  primary: site.getAsArray('navigation.primary.items'),
-  secondary: site.getAsArray('navigation.secondary.items'),
-  tertiary: site.getAsArray('navigation.tertiary.items'),
+  primary: site.getAsArray("navigation.primary.items"),
+  secondary: site.getAsArray("navigation.secondary.items"),
+  tertiary: site.getAsArray("navigation.tertiary.items"),
 };
 
 <marko-web-block
@@ -16,12 +16,17 @@ $ const navigation = {
   attrs=input.attrs
 >
   <default-theme-site-navbar modifiers=["secondary"]>
-    <!-- toggler here -->
+    <default-theme-menu-toggle-button
+      class-name="site-navbar__toggler"
+      targets=[".site-menu"]
+      toggle-class="site-menu--open"
+      icon-modifiers=["lg"]
+    />
     <default-theme-site-navbar-brand title=`${config.siteName()} Homepage`>
       <default-theme-site-navbar-logo
         alt=config.siteName()
-        src=site.get('logos.navbar.src')
-        srcset=site.getAsArray('logos.navbar.srcset').join(',')
+        src=site.get("logos.navbar.src")
+        srcset=site.getAsArray("logos.navbar.srcset").join(",")
       />
     </default-theme-site-navbar-brand>
     <default-theme-site-navbar-items items=navigation.secondary modifiers=["secondary"] />
