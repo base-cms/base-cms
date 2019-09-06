@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import createClasses from '../utils/create-classes';
+import createClasses from './create-classes';
 
 export default {
   props: {
