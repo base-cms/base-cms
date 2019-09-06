@@ -21,6 +21,11 @@ module.exports = {
       { href: 'https://www.marketplaceseminar.com/index.html', label: 'L&P Market Seminar', target: '_blank' },
     ],
   },
+  tertiary: {
+    items: [
+      { href: '/search', label: 'Search', icon: 'search' },
+    ],
+  },
   footer: {
     items: [
       { href: '/page/about-us', label: 'About Us' },
