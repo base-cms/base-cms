@@ -150,10 +150,10 @@ $theme-content-paragraph-margin-bottom:         29px !default;
 $theme-content-paragraph-margin-bottom-sm:      21px !default;
 $theme-content-paragraph-strong-font-weight:    700 !default;
 $theme-content-paragraph-image-border-radius:   $border-radius !default;
-$theme-content-paragraph-image-box-shadow:      $theme-box-shadow-lg !default;
+$theme-content-paragraph-image-box-shadow:      none !default;
 
 // Content Primary Media
-$theme-primary-media-border-radius:   initial !default;
+$theme-primary-media-border-radius:   $border-radius !default;
 $theme-primary-media-box-shadow:      none !default;
 $theme-primary-media-margin-bottom:   map-get($spacers, block) !default;
 
@@ -375,7 +375,7 @@ $theme-item-list-footer-font-weight:      $theme-item-list-body-font-weight !def
 $theme-item-list-footer-line-height-sm:   $theme-item-list-body-line-height-sm !default;
 $theme-item-list-footer-line-height:      $theme-item-list-body-line-height !default;
 
-// Pages
+// Pages @todo re-evaluate these classes (these should likely be page-wrapper values)
 $theme-page-padding:                    map-get($spacers, 3) !default;
 $theme-page-padding-sm:                 0 !default;
 
