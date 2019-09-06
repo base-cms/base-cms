@@ -2,6 +2,12 @@ $ const { config, site } = out.global;
 
 $ const blockName = input.blockName || "site-header";
 
+$ const navigation = {
+  primary: site.getAsArray('navigation.primary.items'),
+  secondary: site.getAsArray('navigation.secondary.items'),
+  tertiary: site.getAsArray('navigation.tertiary.items'),
+};
+
 <marko-web-block
   name=blockName
   tag=(input.tag || "header")
@@ -18,32 +24,11 @@ $ const blockName = input.blockName || "site-header";
         srcset=site.getAsArray('logos.navbar.srcset').join(',')
       />
     </default-theme-site-navbar-brand>
+    <default-theme-site-navbar-items items=navigation.secondary modifiers=["secondary"] />
+    <default-theme-site-navbar-items items=navigation.tertiary modifiers=["tertiary"] />
   </default-theme-site-navbar>
 
   <default-theme-site-navbar modifiers=["primary"]>
-
+    <default-theme-site-navbar-items items=navigation.primary modifiers=["primary"] />
   </default-theme-site-navbar>
-  <!-- <nav class="site-navbar__secondary">
-    <div class="site-navbar__container">
-      <a class="site-navbar__brand" href="/">
-
-      </a>
-      <ul class="site-navbar__items site-navbar__items--secondary">
-
-      </ul>
-      <ul class="site-navbar__items site-navbar__items--tertiary">
-
-      </ul>
-    </div>
-  </nav>
-
-  <nav class="site-navbar__primary">
-    <div class="site-navbar__container">
-      <ul class="site-navbar__items site-navbar__items--primary">
-
-      </ul>
-    </div>
-  </nav> -->
 </marko-web-block>
-
-<default-theme-site-menu />
