@@ -33,6 +33,43 @@
     text-transform: uppercase;
     list-style: none;
 
+    &--primary {
+      @include theme-hide-scrollbars();
+      width: 100%;
+      overflow: scroll;
+      font-family: $theme-site-navbar-primary-font-family;
+      font-size: $theme-site-navbar-primary-font-size;
+      font-weight: $theme-site-navbar-primary-font-weight;
+      line-height: $theme-site-navbar-primary-line-height;
+
+      @media (max-width: map-get($theme-site-header-breakpoints, small-text-primary)) {
+        font-size: $theme-site-navbar-primary-font-size-sm;
+        line-height: $theme-site-navbar-primary-line-height-sm;
+      }
+
+      @media (max-width: map-get($theme-site-header-breakpoints, hide-primary)) {
+        height: $theme-site-navbar-primary-height-sm;
+      }
+
+      #{ $self } {
+        &__item {
+          @include theme-navbar-link-background-color($theme-site-navbar-primary-background-colors);
+          flex-grow: 1;
+          padding: $theme-site-navbar-primary-link-padding;
+          text-align: center;
+
+          @media (max-width: map-get($theme-site-header-breakpoints, hide-primary)) {
+            display: none;
+          }
+        }
+
+        &__link {
+          @include theme-navbar-link-color($theme-site-navbar-primary-colors);
+          @include theme-navbar-link-decoration($theme-site-navbar-primary-decorations);
+        }
+      }
+    }
+
     &--secondary {
       @include theme-hide-scrollbars();
       margin-top: auto;
@@ -62,6 +99,43 @@
           @include theme-navbar-link-color($theme-site-navbar-secondary-colors);
           @include theme-navbar-link-decoration($theme-site-navbar-secondary-decorations);
           padding: $theme-site-navbar-secondary-link-padding;
+          padding-bottom: 0;
+        }
+      }
+    }
+
+    &--tertiary {
+      padding-left: $theme-site-navbar-padding-x;
+      margin-top: auto;
+      margin-left: auto;
+      font-family: $theme-site-navbar-secondary-font-family;
+      font-size: $theme-site-navbar-secondary-font-size;
+      font-weight: $theme-site-navbar-secondary-font-weight;
+      line-height: $theme-site-navbar-secondary-line-height;
+
+      @media (max-width: map-get($theme-site-header-breakpoints, small-text-secondary)) {
+        font-size: $theme-site-navbar-secondary-font-size-sm;
+        line-height: $theme-site-navbar-secondary-line-height-sm;
+      }
+
+      @media (max-width: map-get($theme-site-header-breakpoints, small-logo)) {
+        margin-top: initial;
+      }
+
+      #{ $self } {
+        &__item {
+          @include theme-navbar-link-background-color($theme-site-navbar-secondary-background-colors);
+          align-self: center;
+
+          @media (max-width: map-get($theme-site-header-breakpoints, hide-tertiary)) {
+            display: none;
+          }
+        }
+        &__link {
+          @include theme-navbar-link-color($theme-site-navbar-tertiary-colors);
+          @include theme-navbar-link-decoration($theme-site-navbar-secondary-decorations);
+          padding: $theme-site-navbar-secondary-link-padding;
+          padding-top: 0;
           padding-bottom: 0;
         }
       }
