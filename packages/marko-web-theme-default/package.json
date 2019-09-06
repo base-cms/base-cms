@@ -7,6 +7,8 @@
   "license": "MIT",
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/marko-web-theme-default",
   "dependencies": {
+    "@base-cms/object-path": "^0.10.0",
+    "@base-cms/utils": "^0.10.0",
     "bootstrap": "4.3.1",
     "graphql": "^14.3.1",
     "graphql-tag": "^2.10.1"
