@@ -24,6 +24,11 @@ $ const linkMods = (href) => {
     target=input.target
     class=classNames
   >
-    $!{input.label}
+    <if(input.icon)>
+      <marko-web-icon name=input.icon attrs={ title: input.label } />
+    </if>
+    <else>
+      $!{input.label}
+    </else>
   </marko-web-link>
 </marko-web-element>
