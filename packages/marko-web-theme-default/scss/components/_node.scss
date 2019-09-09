@@ -1,0 +1,126 @@
+.node {
+  &__header {
+    font-family: $theme-item-header-font-family;
+    font-size: $theme-item-header-font-size;
+    font-weight: $theme-item-header-font-weight;
+    line-height: $theme-item-header-line-height;
+    color: $theme-item-header-color;
+    letter-spacing: $theme-item-header-letter-spacing;
+
+    a {
+      color: $theme-item-header-link-color;
+      text-decoration: $theme-item-header-link-decoration;
+      &:hover {
+        color: $theme-item-header-link-hover-color;
+        text-decoration: $theme-item-header-link-hover-decoration;
+      }
+    }
+  }
+
+  &__title {
+    @include theme-apply-fonts(
+      $font-family: $theme-item-title-font-family,
+      $font-size-sm: $theme-item-title-font-size-sm,
+      $font-size: $theme-item-title-font-size,
+      $font-weight: $theme-item-title-font-weight,
+      $letter-spacing: $theme-item-title-letter-spacing,
+      $line-height-sm: $theme-item-title-line-height-sm,
+      $line-height: $theme-item-title-line-height
+    );
+    margin-bottom: $theme-item-title-margin;
+    color: $theme-item-title-color;
+
+    a {
+      @include theme-max-lines(
+        $font-size: $theme-item-title-font-size,
+        $font-size-sm: $theme-item-title-font-size-sm,
+        $line-height: $theme-item-title-line-height,
+        $line-height-sm: $theme-item-title-line-height-sm,
+        $num: $theme-item-title-max-lines
+      );
+      color: $theme-item-title-link-color;
+      text-decoration: $theme-item-title-link-decoration;
+      &:hover {
+        color: $theme-item-title-link-hover-color;
+        text-decoration: $theme-item-title-link-hover-decoration;
+      }
+    }
+
+    &--large {
+      @include theme-apply-fonts(
+        $font-family: $theme-item-title-font-family,
+        $font-size-sm: $theme-item-title-large-font-size-sm,
+        $font-size: $theme-item-title-large-font-size,
+        $font-weight: $theme-item-title-large-font-weight,
+        $letter-spacing: $theme-item-title-large-letter-spacing,
+        $line-height-sm: $theme-item-title-large-line-height-sm,
+        $line-height: $theme-item-title-large-line-height
+      );
+
+      a {
+        @include theme-max-lines(
+          $font-size: $theme-item-title-large-font-size,
+          $font-size-sm: $theme-item-title-large-font-size-sm,
+          $line-height: $theme-item-title-large-line-height,
+          $line-height-sm: $theme-item-title-large-line-height-sm,
+          $num: $theme-item-title-large-max-lines
+        );
+      }
+    }
+
+    &--locked {
+      a::before {
+        content: $theme-item-title-locked-content;
+      }
+    }
+  }
+
+  &__text {
+    &--teaser {
+      @include theme-apply-fonts(
+        $font-family: $theme-item-description-font-family,
+        $font-size-sm: $theme-item-description-font-size-sm,
+        $font-size: $theme-item-description-font-size,
+        $font-weight: $theme-item-description-font-weight,
+        $line-height-sm: $theme-item-description-line-height-sm,
+        $line-height: $theme-item-description-line-height
+      );
+      margin-bottom: $theme-item-description-margin;
+      color: $theme-item-description-color;
+
+      a {
+        @include theme-max-lines(
+          $font-size: $theme-item-description-font-size,
+          $font-size-sm: $theme-item-description-font-size-sm,
+          $line-height: $theme-item-description-line-height,
+          $line-height-sm: $theme-item-description-line-height-sm,
+          $num: $theme-item-description-max-lines
+        );
+        color: $theme-item-description-link-color;
+        text-decoration: $theme-item-description-link-decoration;
+        &:hover {
+          color: $theme-item-description-link-hover-color;
+          text-decoration: $theme-item-description-link-hover-decoration;
+        }
+      }
+    }
+  }
+
+  &__footer {
+    font-family: $theme-item-footer-font-family;
+    font-size: $theme-item-footer-font-size;
+    font-weight: $theme-item-footer-font-weight;
+    line-height: $theme-item-footer-line-height;
+    color: $theme-item-footer-color;
+    text-transform: $theme-item-footer-text-transform;
+  }
+
+  &__image-inner-wrapper {
+    @include border-radius($theme-item-image-border-radius);
+    @include box-shadow($theme-item-image-box-shadow);
+  }
+
+  &__image {
+    @include border-radius($theme-item-image-border-radius);
+  }
+}
