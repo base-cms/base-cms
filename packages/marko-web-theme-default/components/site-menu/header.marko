@@ -1,0 +1,10 @@
+$ const blockName = input.blockName || "site-menu";
+
+<marko-web-element
+  block-name=blockName
+  name="header"
+  tag=input.tag
+  modifiers=input.modifiers
+>
+  <${input.renderBody} />
+</marko-web-element>
