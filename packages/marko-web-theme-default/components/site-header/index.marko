@@ -6,6 +6,7 @@ $ const navigation = {
   primary: site.getAsArray("navigation.primary.items"),
   secondary: site.getAsArray("navigation.secondary.items"),
   tertiary: site.getAsArray("navigation.tertiary.items"),
+  menu: site.getAsArray("navigation.menu"),
 };
 
 <marko-web-block
@@ -16,12 +17,14 @@ $ const navigation = {
   attrs=input.attrs
 >
   <default-theme-site-navbar modifiers=["secondary"]>
-    <default-theme-menu-toggle-button
-      class-name="site-navbar__toggler"
-      targets=[".site-menu"]
-      toggle-class="site-menu--open"
-      icon-modifiers=["lg"]
-    />
+    <if(navigation.menu.length)>
+      <default-theme-menu-toggle-button
+        class-name="site-navbar__toggler"
+        targets=[".site-menu"]
+        toggle-class="site-menu--open"
+        icon-modifiers=["lg"]
+      />
+    </if>
     <default-theme-site-navbar-brand title=`${config.siteName()} Homepage`>
       <default-theme-site-navbar-logo
         alt=config.siteName()
