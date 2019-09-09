@@ -1,0 +1,17 @@
+<!-- Create default options and merge with input -->
+$ const options = {
+  enableSingleRequest: true,
+  collapseEmptyDivs: true,
+  ...input.options,
+};
+
+<!-- Build options -->
+$ const calls = [];
+$ if (options.enableSingleRequest) calls.push('googletag.pubads().enableSingleRequest();');
+$ if (options.collapseEmptyDivs) calls.push('googletag.pubads().collapseEmptyDivs();');
+
+<!-- Enable services -->
+$ calls.push('googletag.enableServices();');
+
+<!-- Render the script tag -->
+<script>googletag.cmd.push(function() { ${calls.join(' ')} });</script>

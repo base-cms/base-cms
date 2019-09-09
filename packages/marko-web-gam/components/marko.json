@@ -9,6 +9,26 @@
     "@slots": "object",
     "@targeting": "object"
   },
+  "<marko-web-gam-targeting>": {
+    "template": "./targeting.marko",
+    "@key-values": "object",
+    "@include-path": {
+      "type": "boolean",
+      "default-value": true
+    },
+    "@include-host": {
+      "type": "boolean",
+      "default-value": true
+    }
+  },
+  "<marko-web-gam-slots>": {
+    "template": "./slots.marko",
+    "@slots": "object"
+  },
+  "<marko-web-gam-enable>": {
+    "template": "./enable.marko",
+    "@options": "object"
+  },
   "<marko-web-gam-define-display-ad>": {
     "template": "./define-display-ad.marko",
     "@id": "string",

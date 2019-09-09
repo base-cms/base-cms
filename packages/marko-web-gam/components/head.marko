@@ -1,35 +1,3 @@
-import buildSlots from '../utils/build-slots';
-import buildTargeting from '../utils/build-targeting';
-
-$ const { req } = out.global;
-
-<!-- Create default options and merge with input -->
-$ const options = {
-  enableSingleRequest: true,
-  collapseEmptyDivs: true,
-  targetingIncludePath: true,
-  targetingIncludeHost: true,
-  ...input.options,
-};
-
-<!-- Build calls for the requested ad slots and options -->
-$ const calls = [];
-$ buildSlots(input.slots).forEach(slot => calls.push(slot));
-$ if (options.enableSingleRequest) calls.push('googletag.pubads().enableSingleRequest();');
-$ if (options.collapseEmptyDivs) calls.push('googletag.pubads().collapseEmptyDivs();');
-
-<!-- Build targeting calls -->
-$ const targeting = {
-  ...input.targeting,
-  env: process.env.NODE_ENV,
-};
-$ if (options.targetingIncludePath) targeting.path = req.path;
-$ if (options.targetingIncludeHost) targeting.host = req.hostname.replace(/\./g, '|');
-$ const targetingStr = buildTargeting(targeting);
-$ if (targetingStr) calls.push(`googletag.pubads().${targetingStr};`);
-
-<!-- Enable services -->
-$ calls.push('googletag.enableServices();');
-
-<!-- Render the script tag -->
-<script>googletag.cmd.push(function() { ${calls.join(' ')} });</script>
+<marko-web-gam-slots slots=input.slots />
+<marko-web-gam-targeting key-values=input.targeting />
+<marko-web-gam-enable options=input.options />
