@@ -13,6 +13,26 @@ $ const { page } = data;
     <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "reskin" }) />
   </@above-container>
   <@page>
-    <marko-web-content-body obj=page />
+    <marko-web-gam-define-display-ad ...GAM.getAdUnit({ name: "lb1" }) modifiers=["top-of-page"] />
+
+    <marko-web-page-wrapper>
+      <@section>
+        <div class="row">
+          <div class="col">
+            <default-theme-dynamic-page-breadcrumbs name=page.name />
+            <div class="page-wrapper__title">
+              ${page.name}
+            </div>
+          </div>
+        </div>
+      </@section>
+      <@section>
+        <div class="row">
+          <default-theme-page-contents|{ blockName }| class="col">
+            <marko-web-content-body block-name=blockName obj=page />
+          </default-theme-page-contents>
+        </div>
+      </@section>
+    </marko-web-page-wrapper>
   </@page>
 </marko-web-layout-dynamic-page>
