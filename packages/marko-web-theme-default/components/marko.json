@@ -6,7 +6,8 @@
     "./site-header/marko.json",
     "./site-footer/marko.json",
     "./site-menu/marko.json",
-    "./site-navbar/marko.json"
+    "./site-navbar/marko.json",
+    "./social/marko.json"
   ],
   "<default-theme-menu-toggle-button>": {
     "template": "./menu-toggle-button.marko"

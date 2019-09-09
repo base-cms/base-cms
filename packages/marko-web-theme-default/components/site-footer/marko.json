@@ -7,5 +7,8 @@
   },
   "<default-theme-site-footer-copyright>": {
     "template": "./copyright.marko"
+  },
+  "<default-theme-site-footer-social-icons>": {
+    "template": "./social-icons.marko"
   }
 }

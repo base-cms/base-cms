@@ -1,0 +1,11 @@
+{
+  "<default-theme-social-icon-link>": {
+    "template": "./icon-link.marko",
+    "@provider": "string",
+    "@label": "string",
+    "@href": "string",
+    "@target": "string",
+    "@modifiers": "array",
+    "@class": "string"
+  }
+}
