@@ -35,8 +35,8 @@ module.exports = {
       { href: 'https://www.endeavorbusinessmedia.com/endeavor-terms', label: 'Terms & Conditions', target: '_blank' },
     ],
   },
-  menu: {
-    topics: {
+  menu: [
+    {
       label: 'Topics',
       items: [
         { href: '/detectors-imaging', label: 'Detectors & Imaging' },
@@ -48,7 +48,7 @@ module.exports = {
         { href: '/photonics-business', label: 'Photonics Business' },
       ],
     },
-    resources: {
+    {
       label: 'Resources',
       items: [
         { href: '/blogs', label: 'Commentary' },
@@ -63,7 +63,7 @@ module.exports = {
         { href: 'https://www.strategies-u.com/reports', label: 'Photonics Market Reports', target: '_blank' },
       ],
     },
-    userTools: {
+    {
       label: 'User Tools',
       items: [
         { href: '/subscribe', label: 'Subscribe' },
@@ -74,5 +74,5 @@ module.exports = {
         { href: 'https://www.endeavorbusinessmedia.com/endeavor-terms', label: 'Terms & Conditions', target: '_blank' },
       ],
     },
-  },
+  ],
 };
