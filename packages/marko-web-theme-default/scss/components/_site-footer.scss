@@ -91,6 +91,23 @@
     }
   }
 
+  &__social-icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: $theme-site-footer-spacer;
+    @include media-breakpoint-down($theme-responsive-text-breakpoint) {
+      margin-bottom: $theme-site-footer-spacer-sm;
+    }
+
+    a {
+      margin: 0 $theme-site-footer-spacer;
+      @include media-breakpoint-down($theme-responsive-text-breakpoint) {
+        margin: 0 $theme-site-footer-spacer-sm;
+      }
+    }
+  }
+
   &__copyright {
     font-size: $theme-site-footer-copyright-font-size;
     font-weight: $theme-site-footer-copyright-font-weight;

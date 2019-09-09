@@ -21,6 +21,11 @@ $ const blockName = input.blockName || "site-footer";
     </default-theme-site-navbar-brand>
   </default-theme-site-footer-container>
   <default-theme-site-footer-container block-name=blockName modifiers=["primary"]>
+    <default-theme-site-footer-social-icons
+      block-name=blockName
+      items=site.getAsArray('socialMediaLinks')
+      icon-modifiers=["light", "xl", "shadow"]
+    />
     <default-theme-site-navbar-items
       block-name=blockName
       items=site.getAsArray("navigation.footer.items")
