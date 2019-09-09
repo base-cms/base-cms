@@ -23,6 +23,9 @@ $ const items = site.getAsArray("navigation.footer.items");
     </default-theme-site-navbar-brand>
   </default-theme-site-footer-container>
   <default-theme-site-footer-container block-name=blockName modifiers=["links"]>
-    Links
+    <default-theme-site-footer-copyright
+      company=site.get("company")
+      notice=site.get("copyrightNotice")
+    />
   </default-theme-site-footer-container>
 </marko-web-block>

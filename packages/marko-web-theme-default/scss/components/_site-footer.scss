@@ -48,4 +48,11 @@
       height: $theme-site-footer-logo-height-sm;
     }
   }
+
+  &__copyright {
+    font-size: $theme-site-footer-copyright-font-size;
+    font-weight: $theme-site-footer-copyright-font-weight;
+    line-height: $theme-site-footer-copyright-line-height;
+    color: $theme-site-footer-copyright-color;
+  }
 }

@@ -1,6 +1,7 @@
 const navigation = require('./navigation');
 
 module.exports = {
+  company: 'Endeavor Business Media, LLC',
   navigation,
   logos: {
     navbar: {

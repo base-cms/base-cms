@@ -4,5 +4,8 @@
   },
   "<default-theme-site-footer-container>": {
     "template": "./container.marko"
+  },
+  "<default-theme-site-footer-copyright>": {
+    "template": "./copyright.marko"
   }
 }
