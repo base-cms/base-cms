@@ -32,11 +32,26 @@ $ const navigation = {
         srcset=site.getAsArray("logos.navbar.srcset").join(",")
       />
     </default-theme-site-navbar-brand>
-    <default-theme-site-navbar-items items=navigation.secondary modifiers=["secondary"] />
-    <default-theme-site-navbar-items items=navigation.tertiary modifiers=["tertiary"] />
+    <default-theme-site-navbar-items
+      items=navigation.secondary
+      modifiers=["secondary"]
+      reg-enabled=input.regEnabled
+      has-user=input.hasUser
+    />
+    <default-theme-site-navbar-items
+      items=navigation.tertiary
+      modifiers=["tertiary"]
+      reg-enabled=input.regEnabled
+      has-user=input.hasUser
+    />
   </default-theme-site-navbar>
 
   <default-theme-site-navbar modifiers=["primary"]>
-    <default-theme-site-navbar-items items=navigation.primary modifiers=["primary"] />
+    <default-theme-site-navbar-items
+      items=navigation.primary
+      modifiers=["primary"]
+      reg-enabled=input.regEnabled
+      has-user=input.hasUser
+    />
   </default-theme-site-navbar>
 </marko-web-block>
