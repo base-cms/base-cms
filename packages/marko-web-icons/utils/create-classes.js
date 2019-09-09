@@ -12,6 +12,6 @@ module.exports = ({
   className,
 } = {}) => {
   const mods = Array.isArray(modifiers) ? modifiers.slice() : [];
-  mods.push(iconName);
+  mods.push(iconName.toLowerCase());
   return [blockName, ...mods.map(mod => `${blockName}--${mod}`), className];
 };
