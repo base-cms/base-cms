@@ -18,4 +18,5 @@ $theme-site-header-breakpoints: (
   small-text-secondary: 1105px
 );
 
+@import "../../node_modules/@base-cms/marko-web-gam/scss/fixed-ad-bottom";
 @import "../../node_modules/@base-cms/marko-web-theme-default/skins/orion/skin.scss";
