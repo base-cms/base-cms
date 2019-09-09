@@ -79,7 +79,7 @@
     "@size": "expression",
     "@size-mapping": "array",
     "@closeable": "boolean",
-    "@refresh-interaval": "number",
+    "@refresh-interval": "number",
     "@scroll-offset": "number"
   }
 }
