@@ -6,6 +6,10 @@
     "@display-image": {
       "type": "boolean",
       "default-value": true
+    },
+    "@with-teaser": {
+      "type": "boolean",
+      "default-value": false
     }
   }
 }

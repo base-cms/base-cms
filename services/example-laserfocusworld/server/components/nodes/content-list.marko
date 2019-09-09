@@ -26,6 +26,11 @@ $ const company = getAsObject(content, "company")
     <@title tag="h5">
       <marko-web-content-short-name tag=null obj=content link=true />
     </@title>
+    <@text modifiers=["teaser"]>
+      <if(input.withTeaser)>
+        <marko-web-content-teaser tag=null obj=content link=true />
+      </if>
+    </@text>
     <@footer>
       <@left>
         <if(company.id)>

@@ -8,7 +8,7 @@ $ const nodes = getAsArray(input, "nodes");
   </if>
   <@nodes nodes=nodes>
     <@slot|{ node }|>
-      <website-content-list-node node=node display-image=input.displayImage />
+      <website-content-list-node node=node display-image=input.displayImage with-teaser=input.withTeaser />
     </@slot>
   </@nodes>
 </marko-web-node-list>
