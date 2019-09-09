@@ -1,9 +1,15 @@
+import hierarchyAliases from "@base-cms/marko-web-gam/utils/hierarchy-aliases";
 import queryFragment from "../api/fragments/content-list";
 import GAM from "../../config/gam";
 
-$ const { config } = out.global;
 $ const { section } = data;
-$ const adSlots = {};
+
+$ const aliases = hierarchyAliases(section);
+$ const adSlots = {
+  "gpt-ad-lb1":   GAM.getAdUnit({ name: "lb1", aliases }),
+  "gpt-ad-rail1": GAM.getAdUnit({ name: "rail1", aliases, size: [300, 250] }),
+  "gpt-ad-rail2": GAM.getAdUnit({ name: "rail2", aliases, size: [300, 600] }),
+}
 
 <marko-web-layout-website-section section=section>
   <@head>
@@ -14,11 +20,10 @@ $ const adSlots = {};
     <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "reskin" }) />
   </@above-container>
   <@page>
-    <h1>${config.siteName()}</h1>
-
+    <marko-web-gam-display-ad id="gpt-ad-lb1" modifiers=["top-of-page"] />
     <div class="row">
 
-      <div class="col-lg-4 mt-4">
+      <div class="col-lg-4 mb-4">
         <marko-web-query|{ nodes }|
           name="website-scheduled-content"
           params={ sectionAlias: "detectors-imaging", limit: 3, requiresImage: true, queryFragment }
@@ -31,7 +36,7 @@ $ const adSlots = {};
         </marko-web-query>
       </div>
 
-      <div class="col-lg-4 mt-4">
+      <div class="col-lg-4 mb-4">
         <marko-web-query|{ nodes }|
           name="website-scheduled-content"
           params={ sectionAlias: "lasers-sources", limit: 3, requiresImage: true, queryFragment }
@@ -44,7 +49,7 @@ $ const adSlots = {};
         </marko-web-query>
       </div>
 
-      <div class="col-lg-4 mt-4">
+      <div class="col-lg-4 mb-4">
         <marko-web-query|{ nodes }|
           name="website-scheduled-content"
           params={ sectionAlias: "optics", limit: 3, requiresImage: true, queryFragment }

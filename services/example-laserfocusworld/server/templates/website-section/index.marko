@@ -1,21 +1,29 @@
+import hierarchyAliases from "@base-cms/marko-web-gam/utils/hierarchy-aliases";
 import contentListFragment from "../../api/fragments/content-list";
 import GAM from "../../../config/gam";
 
 $ const { section } = data;
+
+$ const aliases = hierarchyAliases(section);
+$ const adSlots = {
+  "gpt-ad-lb1":   GAM.getAdUnit({ name: "lb1", aliases }),
+  "gpt-ad-rail1": GAM.getAdUnit({ name: "rail1", aliases, size: [300, 250] }),
+  "gpt-ad-rail2": GAM.getAdUnit({ name: "rail2", aliases, size: [300, 600] }),
+}
 
 <marko-web-layout-website-section section=section>
   <@head>
     <marko-web-gtm-context|{ context }| for="website-section" obj=section>
       <marko-web-gtm-push data=context />
     </marko-web-gtm-context>
-    <marko-web-gam-slots slots={} />
+    <marko-web-gam-slots slots=adSlots />
   </@head>
   <@above-container>
     <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "wa" }) />
     <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "reskin" }) />
   </@above-container>
   <@page>
-    <h1>${section.name}</h1>
+    <marko-web-gam-display-ad id="gpt-ad-lb1" modifiers=["top-of-page"] />
     <marko-web-query|{ nodes }| name="website-scheduled-content" params={ sectionAlias: section.alias, limit: 10, requiresImage: true, queryFragment: contentListFragment }>
       <website-content-list-block nodes=nodes />
     </marko-web-query>

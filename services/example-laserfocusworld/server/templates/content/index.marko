@@ -1,16 +1,26 @@
+import hierarchyAliases from "@base-cms/marko-web-gam/utils/hierarchy-aliases";
+import { getAsObject } from "@base-cms/object-path";
 import GAM from "../../../config/gam";
 
 $ const { content } = data;
+$ const section = getAsObject(content, "primarySection");
 
-$ const displayPrimaryImage = ['whitepaper', 'media-gallery'].includes(content.type) ? false : true;
-$ const displayPublishedDate = ['event', 'webinar', 'contact', 'whitepapter'].includes(content.type) ? false : true;
+$ const aliases = hierarchyAliases(section);
+$ const adSlots = {
+  "gpt-ad-lb1":   GAM.getAdUnit({ name: "lb1", aliases }),
+  "gpt-ad-rail1": GAM.getAdUnit({ name: "rail1", aliases }),
+  "gpt-ad-rail2": GAM.getAdUnit({ name: "rail2", aliases }),
+}
+
+$ const displayPrimaryImage = ["whitepaper", "media-gallery"].includes(content.type) ? false : true;
+$ const displayPublishedDate = ["event", "webinar", "contact", "whitepapter"].includes(content.type) ? false : true;
 
 <marko-web-layout-content content=content>
   <@head>
     <marko-web-gtm-context|{ context }| for="content" obj=content>
       <marko-web-gtm-push data=context />
     </marko-web-gtm-context>
-    <marko-web-gam-slots slots={} />
+    <marko-web-gam-slots slots=adSlots />
     <marko-web-gam-targeting key-values={ cont_id: content.id, cont_type: content.type } />
   </@head>
   <@above-container>
@@ -18,6 +28,7 @@ $ const displayPublishedDate = ['event', 'webinar', 'contact', 'whitepapter'].in
     <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "reskin" }) />
   </@above-container>
   <@page>
+    <marko-web-gam-display-ad id="gpt-ad-lb1" modifiers=["top-of-page"] />
     <marko-web-page-wrapper>
       <@section>
         <div class="row">
