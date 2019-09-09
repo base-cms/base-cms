@@ -1,0 +1,21 @@
+import GAM from "../../config/gam";
+
+$ const { content } = input;
+
+<marko-web-layout-content
+  below-container=input.belowContainer
+  above-page=input.abovePage
+  page=input.page
+  below-page=input.belowPage
+  content=content
+>
+  <@head>
+    <marko-web-gam-targeting key-values={ cont_id: content.id, cont_type: content.type } />
+    <${input.head} />
+  </@head>
+  <@above-container>
+    <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "wa" }) />
+    <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "reskin" }) />
+    <${input.aboveContainer} />
+  </@above-container>
+</marko-web-layout-content>

@@ -1,0 +1,18 @@
+import GAM from "../../config/gam";
+
+$ const { section } = input;
+
+<marko-web-layout-website-section
+  head=input.head
+  below-container=input.belowContainer
+  above-page=input.abovePage
+  page=input.page
+  below-page=input.belowPage
+  section=section
+>
+  <@above-container>
+    <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "wa" }) />
+    <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "reskin" }) />
+    <${input.aboveContainer} />
+  </@above-container>
+</marko-web-layout-website-section>
