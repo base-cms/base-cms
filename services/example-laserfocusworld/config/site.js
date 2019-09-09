@@ -4,9 +4,9 @@ module.exports = {
   navigation,
   logos: {
     navbar: {
-      src: 'https://base.imgix.net/files/base/pennwell/lfw/logo.png?h=60',
+      src: 'https://base.imgix.net/files/base/pennwell/lfw/logo.png?h=45',
       srcset: [
-        'https://base.imgix.net/files/base/pennwell/lfw/logo.png?h=120 2x',
+        'https://base.imgix.net/files/base/pennwell/lfw/logo.png?h=90 2x',
       ],
     },
     footer: {
