@@ -2,7 +2,7 @@ import contentListFragment from "../../api/fragments/content-list";
 
 $ const { section } = data;
 
-<marko-web-layout-website-section section=section>
+<website-layout-website-section section=section>
   <@head>
     <marko-web-gtm-context|{ context }| for="website-section" obj=section>
       <marko-web-gtm-push data=context />
@@ -14,4 +14,4 @@ $ const { section } = data;
       <website-content-list-block nodes=nodes />
     </marko-web-query>
   </@page>
-</marko-web-layout-website-section>
+</website-layout-website-section>

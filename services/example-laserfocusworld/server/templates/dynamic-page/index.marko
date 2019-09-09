@@ -1,3 +1,5 @@
+import GAM from "../../../config/gam";
+
 $ const { page } = data;
 
 <marko-web-layout-dynamic-page page=page>
@@ -6,6 +8,10 @@ $ const { page } = data;
       <marko-web-gtm-push data=context />
     </marko-web-gtm-context>
   </@head>
+  <@above-container>
+    <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "wa" }) />
+    <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "reskin" }) />
+  </@above-container>
   <@page>
     <marko-web-content-body obj=page />
   </@page>

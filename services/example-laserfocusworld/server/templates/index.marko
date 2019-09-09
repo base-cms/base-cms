@@ -1,9 +1,14 @@
 import queryFragment from "../api/fragments/content-list";
+import GAM from "../../config/gam";
 
 $ const { config } = out.global;
 $ const { section } = data;
+$ const adSlots = {};
 
-<marko-web-layout-website-section section=section>
+<website-layout-website-section section=section>
+  <@head>
+    <marko-web-gam-slots slots=adSlots />
+  </@head>
   <@page>
     <h1>${config.siteName()}</h1>
 
@@ -50,4 +55,4 @@ $ const { section } = data;
 
     </div>
   </@page>
-</marko-web-layout-website-section>
+</website-layout-website-section>

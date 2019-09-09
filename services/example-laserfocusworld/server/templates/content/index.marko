@@ -3,7 +3,7 @@ $ const { content } = data;
 $ const displayPrimaryImage = ['whitepaper', 'media-gallery'].includes(content.type) ? false : true;
 $ const displayPublishedDate = ['event', 'webinar', 'contact', 'whitepapter'].includes(content.type) ? false : true;
 
-<marko-web-layout-content content=content>
+<website-layout-content content=content>
   <@head>
     <marko-web-gtm-context|{ context }| for="content" obj=content>
       <marko-web-gtm-push data=context />
@@ -53,4 +53,4 @@ $ const displayPublishedDate = ['event', 'webinar', 'contact', 'whitepapter'].in
       </@section>
     </marko-web-page-wrapper>
   </@page>
-</marko-web-layout-content>
+</website-layout-content>
