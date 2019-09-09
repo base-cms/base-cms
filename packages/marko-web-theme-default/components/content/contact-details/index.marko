@@ -9,6 +9,9 @@ $ const showAddress = addressFields.some(k => content[k]);
 $ const phoneFields = ["phone", "fax", "mobile", "tollfree"];
 $ const showPhones = phoneFields.some(k => content[k]);
 
+$ const socialLinks = getAsArray(content, "socialLinks");
+$ const showSocial = socialLinks.length;
+
 $ const fields = ["title", "website"];
 $ if (showEmail) fields.push("publicEmail");
 $ const showFields = fields.some(k => content[k]);
@@ -38,6 +41,19 @@ $ const showFields = fields.some(k => content[k]);
       </if>
       <marko-web-content-website block-name=blockName obj=content link=true />
     </div>
+  </if>
+
+  <if(showSocial)>
+    <default-theme-content-contact-details-section block-name=blockName modifiers=["social-links"]>
+      <for|item| of=socialLinks>
+        <default-theme-social-icon-link
+          label=item.label
+          provider=item.provider
+          href=item.url
+          modifiers=["dark", "lg"]
+        />
+      </for>
+    </default-theme-content-contact-details-section>
   </if>
 
   <if(showPhones)>

@@ -1,25 +1,13 @@
 {
+  "taglib-imports": [
+    "./contact-details/marko.json"
+  ],
   "<default-theme-content-attribution>": {
     "template": "./attribution/index.marko",
     "@obj": "object",
     "@elements": {
       "type": "array",
       "default-value": ["byline", "authors", "contributors", "photographers", "source", "company", "sponsors"]
-    },
-    "@tag": {
-      "type": "string",
-      "default-value": "div"
-    },
-    "@class": "string",
-    "@modifiers": "@array",
-    "@attrs": "object"
-  },
-  "<default-theme-content-contact-details>": {
-    "template": "./contact-details/index.marko",
-    "@obj": "object",
-    "@show-email": {
-      "type": "boolean",
-      "default-value": true
     },
     "@tag": {
       "type": "string",

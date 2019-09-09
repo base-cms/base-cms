@@ -1,0 +1,24 @@
+{
+  "<default-theme-content-contact-details>": {
+    "template": "./index.marko",
+    "@obj": "object",
+    "@show-email": {
+      "type": "boolean",
+      "default-value": true
+    },
+    "@tag": {
+      "type": "string",
+      "default-value": "div"
+    },
+    "@class": "string",
+    "@modifiers": "array",
+    "@attrs": "object"
+  },
+  "<default-theme-content-contact-details-section>": {
+    "template": "./section.marko",
+    "@block-name": "string",
+    "@tag": "string",
+    "@modifiers": "array",
+    "@attrs": "object"
+  }
+}
