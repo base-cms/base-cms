@@ -25,7 +25,7 @@ $ const adSlots = {
   <@page>
     <marko-web-gam-display-ad id="gpt-ad-lb1" modifiers=["top-of-page"] />
     <marko-web-query|{ nodes }| name="website-scheduled-content" params={ sectionAlias: section.alias, limit: 25, requiresImage: true, queryFragment: contentListFragment }>
-      <website-content-list-block nodes=nodes />
+      <website-content-list-block nodes=nodes with-teaser=true />
     </marko-web-query>
   </@page>
   <@foot>
