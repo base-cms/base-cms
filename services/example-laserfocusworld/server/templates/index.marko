@@ -5,10 +5,14 @@ $ const { config } = out.global;
 $ const { section } = data;
 $ const adSlots = {};
 
-<website-layout-website-section section=section>
+<marko-web-layout-website-section section=section>
   <@head>
     <marko-web-gam-slots slots=adSlots />
   </@head>
+  <@above-container>
+    <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "wa" }) />
+    <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "reskin" }) />
+  </@above-container>
   <@page>
     <h1>${config.siteName()}</h1>
 
@@ -55,4 +59,4 @@ $ const adSlots = {};
 
     </div>
   </@page>
-</website-layout-website-section>
+</marko-web-layout-website-section>

@@ -1,17 +1,23 @@
 import contentListFragment from "../../api/fragments/content-list";
+import GAM from "../../../config/gam";
 
 $ const { section } = data;
 
-<website-layout-website-section section=section>
+<marko-web-layout-website-section section=section>
   <@head>
     <marko-web-gtm-context|{ context }| for="website-section" obj=section>
       <marko-web-gtm-push data=context />
     </marko-web-gtm-context>
+    <marko-web-gam-slots slots={} />
   </@head>
+  <@above-container>
+    <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "wa" }) />
+    <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "reskin" }) />
+  </@above-container>
   <@page>
     <h1>${section.name}</h1>
     <marko-web-query|{ nodes }| name="website-scheduled-content" params={ sectionAlias: section.alias, limit: 10, requiresImage: true, queryFragment: contentListFragment }>
       <website-content-list-block nodes=nodes />
     </marko-web-query>
   </@page>
-</website-layout-website-section>
+</marko-web-layout-website-section>

@@ -1,14 +1,22 @@
+import GAM from "../../../config/gam";
+
 $ const { content } = data;
 
 $ const displayPrimaryImage = ['whitepaper', 'media-gallery'].includes(content.type) ? false : true;
 $ const displayPublishedDate = ['event', 'webinar', 'contact', 'whitepapter'].includes(content.type) ? false : true;
 
-<website-layout-content content=content>
+<marko-web-layout-content content=content>
   <@head>
     <marko-web-gtm-context|{ context }| for="content" obj=content>
       <marko-web-gtm-push data=context />
     </marko-web-gtm-context>
+    <marko-web-gam-slots slots={} />
+    <marko-web-gam-targeting key-values={ cont_id: content.id, cont_type: content.type } />
   </@head>
+  <@above-container>
+    <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "wa" }) />
+    <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "reskin" }) />
+  </@above-container>
   <@page>
     <marko-web-page-wrapper>
       <@section>
@@ -53,4 +61,4 @@ $ const displayPublishedDate = ['event', 'webinar', 'contact', 'whitepapter'].in
       </@section>
     </marko-web-page-wrapper>
   </@page>
-</website-layout-content>
+</marko-web-layout-content>
