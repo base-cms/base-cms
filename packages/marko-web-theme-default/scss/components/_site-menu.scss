@@ -37,41 +37,50 @@
     height: 100%;
   }
 
-  &__card {
-    border: none;
-    border-radius: 0;
+  &__section {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: $white;
+    background-clip: border-box;
   }
 
-  &__card-header {
+  &__header {
     padding: .5rem 1rem;
     font-weight: 600;
     color: $black;
     letter-spacing: normal;
     background-color: $gray-100;
-    border-radius: 0;
-    &:first-child {
-      border-radius: 0;
-    }
+    border-bottom: $list-group-border-width solid $list-group-border-color;
   }
 
-  &__list-group-item {
-    padding: .5rem 1rem;
-    font-size: 14px;
+  &__items {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+  }
 
+  &__item {
+    font-size: 14px;
+    border-bottom: $list-group-border-width solid $list-group-border-color;
+  }
+
+  &__link {
+    display: block;
+    padding: .5rem 1rem;
+    color: $gray-700;
     &:hover {
+      color: $gray-700;
+      text-decoration: none;
       background-color: $theme-site-navbar-menu-hover-background-color;
     }
-
-    &:last-child {
-      border-bottom-right-radius: 0;
-      border-bottom-left-radius: 0;
-    }
-  }
-
-  &__card-footer {
-    background-color: $gray-100;
-    &:last-child {
-      border-radius: 0;
+    &--active {
+      font-weight: 600;
+      background-color: $theme-site-navbar-menu-hover-background-color;
     }
   }
 }
