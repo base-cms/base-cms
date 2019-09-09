@@ -13,11 +13,15 @@ $theme-font-family-page-title: "Cardo", "Georgia", "Cambria", "Times New Roman",
 
 $theme-card-header-letter-spacing: 1px !default;
 
-$theme-item-description-font-size-sm:       11px !default;
+// Item descriptions
+$theme-item-description-font-size-sm:       13px !default;
 $theme-item-description-font-size:          13px !default;
 $theme-item-description-max-lines:          4 !default;
-$theme-item-description-line-height-sm-px:  17px !default;
+$theme-item-description-line-height-sm-px:  19px !default;
 $theme-item-description-line-height-px:     19px !default;
+
+$marko-web-page-wrapper-padding:  1rem !default;
+$marko-web-page-wrapper-section-margin: 1.25rem !default;
 
 @import "../../scss/theme.scss";
 
