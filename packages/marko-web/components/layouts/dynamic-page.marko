@@ -3,7 +3,11 @@ import { getAsObject, get } from "@base-cms/object-path";
 $ const page = getAsObject(input, "page");
 $ const { document } = out.global;
 
-<${document} above-container=input.aboveContainer below-container=input.belowContainer>
+<${document}
+  above-container=input.aboveContainer
+  below-container=input.belowContainer
+  foot=input.foot
+>
   <@head>
     <marko-web-page-metadata
       title=get(page, "metadata.title")

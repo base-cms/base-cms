@@ -3,7 +3,11 @@ import { get, getAsObject } from "@base-cms/object-path";
 $ const content = getAsObject(input, "content");
 $ const { document } = out.global;
 
-<${document} above-container=input.aboveContainer below-container=input.belowContainer>
+<${document}
+  above-container=input.aboveContainer
+  below-container=input.belowContainer
+  foot=input.foot
+>
   <@head>
     <marko-web-page-content-metadata
       type=content.type

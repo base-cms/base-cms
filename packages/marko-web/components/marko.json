@@ -29,6 +29,7 @@
       "<below-page>": {}
     },
     "<below-container>": {},
+    "<foot>": {},
     "@dir": {
       "type": "string",
       "default-value": "ltr"

@@ -2,6 +2,7 @@
   "<marko-web-layout-website-section>": {
     "template": "./website-section.marko",
     "<head>": {},
+    "<foot>": {},
     "<above-container>": {},
     "<below-container>": {},
     "<page>": {},
@@ -16,6 +17,7 @@
   "<marko-web-layout-content>": {
     "template": "./content.marko",
     "<head>": {},
+    "<foot>": {},
     "<above-container>": {},
     "<below-container>": {},
     "<page>": {},
@@ -26,6 +28,7 @@
   "<marko-web-layout-dynamic-page>": {
     "template": "./dynamic-page.marko",
     "<head>": {},
+    "<foot>": {},
     "<above-container>": {},
     "<below-container>": {},
     "<page>": {},

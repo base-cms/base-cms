@@ -4,7 +4,11 @@ $ const section = getAsObject(input, "section");
 $ const { document } = out.global;
 $ const withRss = input.withRss != null ? input.withRss : true;
 
-<${document} above-container=input.aboveContainer below-container=input.belowContainer>
+<${document}
+  above-container=input.aboveContainer
+  below-container=input.belowContainer
+  foot=input.foot
+>
   <@head>
     <marko-web-page-metadata
       title=get(section, "metadata.title")
