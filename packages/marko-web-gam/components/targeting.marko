@@ -1,21 +1,7 @@
 import buildTargeting from '../utils/build-targeting';
 
-$ const { req } = out.global;
 $ const calls = [];
-
-$ const options = {
-  includePath: input.includePath =! null ? input.includePath : true,
-  includeHost: input.includeHost =! null ? input.includeHost : true,
-};
-
-<!-- Build targeting calls -->
-$ const keyValues = {
-  ...input.keyValues,
-  env: process.env.NODE_ENV,
-};
-$ if (options.includePath) keyValues.path = req.path;
-$ if (options.includeHost) keyValues.host = req.hostname.replace(/\./g, '|');
-$ const targetingStr = buildTargeting(keyValues);
+$ const targetingStr = buildTargeting(input.keyValues);
 $ if (targetingStr) calls.push(`googletag.pubads().${targetingStr};`);
 
 <if(calls.length)>
