@@ -1,13 +1,32 @@
+import { asObject } from "@base-cms/utils";
+
 $ const blockName = input.blockName || "site-menu";
 
-<marko-web-block
-  name=blockName
-  tag=(input.tag || "aside")
-  class=input.class
-  modifiers=input.modifiers
-  attrs=input.attrs
->
-  <marko-web-element block-name=blockName name="contents">
-    <${input.renderBody} />
-  </marko-web-element>
-</marko-web-block>
+$ const { site } = out.global;
+$ const menu = site.getAsArray("navigation.menu");
+
+$ const regEnabled = input.regEnabled != null ? input.regEnabled : false;
+$ const hasUser = input.hasUser != null ? input.hasUser : false;
+
+<if(menu.length)>
+  <marko-web-block
+    name=blockName
+    tag=(input.tag || "aside")
+    class=input.class
+    modifiers=input.modifiers
+    attrs=input.attrs
+  >
+    <marko-web-element block-name=blockName name="contents">
+      <for|section| of=menu>
+        $ const s = asObject(section);
+        <default-theme-site-menu-section
+          block-name=blockName
+          label=s.label
+          items=s.items
+          reg-enabled=regEnabled
+          has-user=hasUser
+        />
+      </for>
+    </marko-web-element>
+  </marko-web-block>
+</if>
