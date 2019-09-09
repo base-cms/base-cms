@@ -1,7 +1,7 @@
-import { BEM, warn } from '@base-cms/utils';
+import { BEM, warn } from "@base-cms/utils";
 
 $ const { id } = input;
-$ const blockName = input.blockName || 'ad-container';
+$ const blockName = input.blockName || "ad-container";
 $ const classNames = [blockName, ...BEM.applyModifiers(blockName, input.modifiers), input.class];
 
 <if(id)>
@@ -10,5 +10,5 @@ $ const classNames = [blockName, ...BEM.applyModifiers(blockName, input.modifier
   </div>
 </if>
 <else>
-  $ warn('Unable to render ad unit: no `id` was provided.');
+  $ warn("Unable to render ad unit: no `id` was provided.");
 </else>

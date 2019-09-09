@@ -1,8 +1,8 @@
-import buildSlots from '../utils/build-slots';
+import buildSlots from "../utils/build-slots";
 
 $ const calls = [];
 $ buildSlots(input.slots).forEach(slot => calls.push(slot));
 
 <if(calls.length)>
-  <script>googletag.cmd.push(function() { ${calls.join(' ')} });</script>
+  <script>googletag.cmd.push(function() { ${calls.join(" ")} });</script>
 </if>

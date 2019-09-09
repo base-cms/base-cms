@@ -1,5 +1,5 @@
-import { warn } from '@base-cms/utils';
-import generateId from '../utils/generate-id';
+import { warn } from "@base-cms/utils";
+import generateId from "../utils/generate-id";
 
 $ const { path, inc } = input;
 $ const id = input.id || generateId({ inc });
@@ -18,5 +18,5 @@ $ const props = {
   <marko-web-browser-component name="GAMFixedAdBottom" props=props />
 </if>
 <else>
-  $ warn('Unable to render sticky leaderboard: no `path` was provided.');
+  $ warn("Unable to render sticky leaderboard: no `path` was provided.");
 </else>

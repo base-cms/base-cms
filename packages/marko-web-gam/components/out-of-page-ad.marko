@@ -1,5 +1,5 @@
-import { warn } from '@base-cms/utils';
-import generateId from '../utils/generate-id';
+import { warn } from "@base-cms/utils";
+import generateId from "../utils/generate-id";
 
 $ const { path, inc } = input;
 $ const id = input.id || generateId({ inc });
@@ -10,9 +10,9 @@ $ calls.push(`googletag.display('${id}');`);
 
 <if(path)>
   <div id=id class=input.class style=input.style>
-    <script>googletag.cmd.push(function() { ${calls.join(' ')} });</script>
+    <script>googletag.cmd.push(function() { ${calls.join(" ")} });</script>
   </div>
 </if>
 <else>
-  $ warn('Unable to render ad unit: no `path` was provided.');
+  $ warn("Unable to render ad unit: no `path` was provided.");
 </else>
