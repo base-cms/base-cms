@@ -1,0 +1,8 @@
+{
+  "<default-theme-site-footer>": {
+    "template": "./index.marko"
+  },
+  "<default-theme-site-footer-container>": {
+    "template": "./container.marko"
+  }
+}

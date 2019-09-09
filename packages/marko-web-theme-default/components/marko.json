@@ -4,6 +4,7 @@
     "./content/marko.json",
     "./page/marko.json",
     "./site-header/marko.json",
+    "./site-footer/marko.json",
     "./site-menu/marko.json",
     "./site-navbar/marko.json"
   ],

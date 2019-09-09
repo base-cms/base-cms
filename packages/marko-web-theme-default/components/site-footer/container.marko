@@ -1,0 +1,10 @@
+$ const blockName = input.blockName || "site-footer";
+
+<marko-web-element
+  block-name=blockName
+  name="container"
+  tag=input.tag
+  modifiers=input.modifiers
+>
+  <${input.renderBody} />
+</marko-web-element>

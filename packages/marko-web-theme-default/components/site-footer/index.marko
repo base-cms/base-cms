@@ -1,0 +1,28 @@
+$ const { config, site } = out.global;
+
+$ const blockName = input.blockName || "site-footer";
+
+$ const items = site.getAsArray("navigation.footer.items");
+
+<marko-web-block
+  name=blockName
+  tag=(input.tag || "footer")
+  class=input.class
+  modifiers=input.modifiers
+  attrs=input.attrs
+>
+  <default-theme-site-footer-container block-name=blockName modifiers=["brand"]>
+    <default-theme-site-navbar-brand block-name=blockName title=`${config.siteName()} Homepage`>
+      <default-theme-site-navbar-logo
+        block-name=blockName
+        alt=config.siteName()
+        src=site.get("logos.footer.src")
+        srcset=site.getAsArray("logos.footer.srcset").join(",")
+        lazyload=true
+      />
+    </default-theme-site-navbar-brand>
+  </default-theme-site-footer-container>
+  <default-theme-site-footer-container block-name=blockName modifiers=["links"]>
+    Links
+  </default-theme-site-footer-container>
+</marko-web-block>
