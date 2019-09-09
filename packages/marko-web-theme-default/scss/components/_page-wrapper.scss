@@ -1,6 +1,10 @@
 .page-wrapper {
   @include border-radius($theme-page-border-radius);
   @include box-shadow($theme-page-box-shadow);
+  @include media-breakpoint-down($theme-responsive-text-breakpoint) {
+    padding-right: .75rem;
+    padding-left: .75rem;
+  }
 
   &__title {
     @include theme-apply-fonts(

@@ -376,6 +376,8 @@ $theme-item-list-footer-line-height-sm:   $theme-item-list-body-line-height-sm !
 $theme-item-list-footer-line-height:      $theme-item-list-body-line-height !default;
 
 // Pages @todo re-evaluate these classes (these should likely be page-wrapper values)
+$theme-page-bg-color:                   $body-bg !default;
+
 $theme-page-padding:                    map-get($spacers, 3) !default;
 $theme-page-padding-sm:                 0 !default;
 
@@ -535,7 +537,7 @@ $theme-site-header-breakpoints: map-merge(
 
 $theme-site-header-box-shadow:  $theme-box-shadow-lg !default;
 $theme-site-header-font-family: $theme-font-family-sans-serif !default;
-$theme-site-header-opacity:     .98 !default;
+$theme-site-header-opacity:     1 !default;
 $theme-site-header-z-index:     5000000 !default;
 
 $theme-site-navbar-dark-color:          rgba($white, .75) !default;
@@ -672,7 +674,7 @@ $theme-site-footer-font-family: $theme-site-header-font-family !default;
 $theme-site-footer-font-size:   16px !default;
 $theme-site-footer-font-weight: $font-weight-normal !default;
 $theme-site-footer-line-height: get-line-height($theme-site-footer-font-size, 24px) !default;
-$theme-site-footer-opacity:     .98 !default;
+$theme-site-footer-opacity:     1 !default;
 $theme-site-footer-spacer:      map-get($spacers, 3) !default;
 $theme-site-footer-spacer-sm:   map-get($spacers, 2) !default;
 

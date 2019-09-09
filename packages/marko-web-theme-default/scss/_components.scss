@@ -11,9 +11,11 @@
 @import "../../node_modules/@base-cms/marko-web-icons/scss/icons";
 
 // Theme components
+@import "components/ad-container";
 @import "components/breadcrumbs";
 @import "components/embedded-media";
 @import "components/lazyload";
+@import "components/page";
 @import "components/page-attribution";
 @import "components/page-contact-details";
 @import "components/page-contents";
