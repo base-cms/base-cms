@@ -34,8 +34,7 @@ body {
 }
 
 .page {
-  padding-top: $marko-web-page-padding;
-  padding-bottom: $marko-web-page-padding;
+  padding: $marko-web-page-padding;
   &:first-child {
     padding-top: $marko-web-page-padding * 2;
   }
