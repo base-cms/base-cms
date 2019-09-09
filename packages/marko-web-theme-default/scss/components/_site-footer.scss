@@ -18,7 +18,7 @@
       padding-bottom: $theme-site-footer-spacer-sm;
     }
 
-    &--brand {
+    &--secondary {
       @if $theme-site-footer-secondary-type == dark {
         @extend .navbar-dark;
       } @else {
@@ -27,7 +27,7 @@
       background-color: $theme-site-footer-secondary-bg-color;
     }
 
-    &--links {
+    &--primary {
       @if $theme-site-footer-primary-type == dark {
         @extend .navbar-dark;
       } @else {
@@ -46,6 +46,48 @@
     filter: drop-shadow($theme-site-footer-logo-box-shadow);
     @include media-breakpoint-down($theme-responsive-text-breakpoint) {
       height: $theme-site-footer-logo-height-sm;
+    }
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-left: 0;
+    margin-bottom: $theme-site-footer-spacer;
+    list-style: none;
+    @include media-breakpoint-down($theme-responsive-text-breakpoint) {
+      margin-bottom: $theme-site-footer-spacer-sm;
+      font-size: $font-size-sm;
+    }
+  }
+
+  &__item {
+    margin: 0 $theme-site-footer-spacer;
+    @include media-breakpoint-down($theme-responsive-text-breakpoint) {
+      margin: 0 $theme-site-footer-spacer-sm;
+    }
+  }
+
+  &__link {
+    display: block;
+    padding: 0;
+    @if $theme-site-footer-primary-type == dark {
+      color: $navbar-dark-color;
+      &:hover {
+        color: $navbar-dark-hover-color;
+      }
+      &:active {
+        color: $navbar-dark-active-color;
+      }
+    } @else {
+      color: $navbar-light-color;
+      &:hover {
+        color: $navbar-light-hover-color;
+      }
+      &:active {
+        color: $navbar-light-active-color;
+      }
     }
   }
 
