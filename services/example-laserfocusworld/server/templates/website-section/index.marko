@@ -19,8 +19,8 @@ $ const adSlots = {
     <marko-web-gam-slots slots=adSlots />
   </@head>
   <@above-container>
-    <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "wa" }) />
-    <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "reskin" }) />
+    <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "wa", aliases }) />
+    <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "reskin", aliases }) />
   </@above-container>
   <@page>
     <marko-web-gam-display-ad id="gpt-ad-lb1" modifiers=["top-of-page"] />
