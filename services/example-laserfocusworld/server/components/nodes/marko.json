@@ -15,6 +15,10 @@
     "template": "./content-card.marko",
     "@node": "object",
     "@title-modifiers": "array",
+    "@image-width": {
+      "type": "number",
+      "default-value": 300
+    },
     "@display-image": {
       "type": "boolean",
       "default-value": true
