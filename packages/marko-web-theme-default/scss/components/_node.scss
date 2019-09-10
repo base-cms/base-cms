@@ -127,16 +127,6 @@
     @include border-radius($theme-item-image-border-radius);
   }
 
-  &--image-left,
-  &--image-right {
-    #{ $self } {
-      &__image-wrapper {
-        margin-top: auto;
-        margin-bottom: auto;
-      }
-    }
-  }
-
   &--card {
     @include theme-card();
   }
