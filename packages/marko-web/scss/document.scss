@@ -41,10 +41,6 @@ body {
   &:last-child {
     padding-bottom: $marko-web-page-padding * 2;
   }
-  &--load-more {
-    padding-top: 0;
-    padding-bottom: 0;
-  }
 }
 
 .page-wrapper {
