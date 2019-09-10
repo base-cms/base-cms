@@ -1,4 +1,8 @@
 {
+  "<website-content-hero-block>": {
+    "template": "./content-hero.marko",
+    "@nodes": "array"
+  },
   "<website-content-list-block>": {
     "template": "./content-list.marko",
     "<header>": {},

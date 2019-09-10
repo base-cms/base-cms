@@ -26,14 +26,7 @@ $ const adSlots = {
       name="website-optioned-content"
       params={ sectionId: section.id, optionId: 9, limit: 5, queryFragment }
     >
-      <default-theme-hero-node-block nodes=nodes>
-        <@hero|{ node }|>
-          <website-content-card-node node=node title-modifiers=["large"] />
-        </@hero>
-        <@list|{ nodes }|>
-          <website-content-list-block nodes=nodes />
-        </@list>
-      </default-theme-hero-node-block>
+      <website-content-hero-block nodes=nodes />
     </marko-web-query>
 
     <!-- <div class="row">
