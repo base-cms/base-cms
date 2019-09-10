@@ -29,6 +29,68 @@ $ const adSlots = {
       <website-content-hero-block nodes=nodes />
     </marko-web-query>
 
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="row">
+          <div class="col-lg-6 mb-block">
+            <marko-web-query|{ nodes }|
+              name="website-scheduled-content"
+              params={ sectionAlias: "detectors-imaging", limit: 3, requiresImage: true, queryFragment }
+            >
+              <website-content-list-block nodes=nodes>
+                <@header>
+                  <marko-web-link href="/detectors-imaging">Detectors & Imaging</marko-web-link>
+                </@header>
+              </website-content-list-block>
+            </marko-web-query>
+          </div>
+          <div class="col-lg-6 mb-block">
+            <marko-web-query|{ nodes }|
+              name="website-scheduled-content"
+              params={ sectionAlias: "lasers-sources", limit: 3, requiresImage: true, queryFragment }
+            >
+              <website-content-list-block nodes=nodes>
+                <@header>
+                  <marko-web-link href="/lasers-sources">Lasers & Sources</marko-web-link>
+                </@header>
+              </website-content-list-block>
+            </marko-web-query>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6 mb-block">
+             <marko-web-query|{ nodes }|
+              name="website-scheduled-content"
+              params={ sectionAlias: "optics", limit: 3, requiresImage: true, queryFragment }
+            >
+              <website-content-list-block nodes=nodes>
+                <@header tag="h3">
+                  <marko-web-link href="/optics">Optics</marko-web-link>
+                </@header>
+              </website-content-list-block>
+            </marko-web-query>
+          </div>
+          <div class="col-lg-6 mb-block">
+            <marko-web-query|{ nodes }|
+              name="website-scheduled-content"
+              params={ sectionAlias: "fiber-optics", limit: 3, requiresImage: true, queryFragment }
+            >
+              <website-content-list-block nodes=nodes>
+                <@header tag="h3">
+                  <marko-web-link href="/fiber-optics">Fiber Optics</marko-web-link>
+                </@header>
+              </website-content-list-block>
+            </marko-web-query>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 page-rail">
+        <marko-web-gam-display-ad id="gpt-ad-rail1" />
+        <marko-web-gam-display-ad id="gpt-ad-rail2" />
+      </div>
+    </div>
+
     <!-- <div class="row">
 
       <div class="col-lg-4 mb-4">
