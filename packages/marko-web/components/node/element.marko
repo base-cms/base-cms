@@ -1,3 +1,6 @@
 $ const block = input.blockName || "node";
+$ const show = input.show != null ? input.show : true;
 
-<marko-web-element ...input block-name=block />
+<if(show)>
+  <marko-web-element ...input block-name=block />
+</if>

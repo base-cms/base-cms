@@ -41,11 +41,18 @@
     "template": "./body.marko",
     "<header>": {},
     "<footer>": {},
-    "<title>": {},
-    "@text <text>[]": {
+    "<title>": {
+      "@show": "boolean",
       "@tag": "string",
-      "@modifiers": "array",
       "@block-name": "string",
+      "@modifiers": "array",
+      "@attrs": "object"
+    },
+    "@text <text>[]": {
+      "@show": "boolean",
+      "@tag": "string",
+      "@block-name": "string",
+      "@modifiers": "array",
       "@attrs": "object"
     },
     "@block-name": "string",
@@ -56,6 +63,10 @@
   "<marko-web-node-element>": {
     "template": "./element.marko",
     "@name": "string",
+    "@show": {
+      "type": "boolean",
+      "default-value": true
+    },
     "@tag": {
       "type": "string",
       "default-value": "div"
