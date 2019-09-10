@@ -5,12 +5,19 @@ $ const elementName = "node";
 $ const nodes = getAsArray(input, "nodes");
 
 $ const slots = getAsArray(input, "slots");
-$ const defaultSlot = slots.find(slot => slot.index == null);
 $ const slotMap = getAsArray(input, "slots").reduce((map, slot) => {
-  const { index } = slot;
-  map.set(index, slot)
+  const { index, position } = slot;
+  if (index == null && !position) {
+    map.set("default", slot);
+    return map;
+  }
+  if (!position) return map;
+  map.set(`${position}_${index}`, slot)
   return map;
 }, new Map());
+
+$ const getSlot = (position, index) => (slotMap.get(`${position}_${index}`) || {});
+$ const defaultSlot = slotMap.get("default") || {};
 
 <if(nodes.length)>
   <marko-web-block
@@ -21,33 +28,30 @@ $ const slotMap = getAsArray(input, "slots").reduce((map, slot) => {
     attrs=input.attrs
   >
     <for|node, index| of=nodes>
-      $ const slot = slotMap.get(index) || defaultSlot;
-      $ const slotInput = slot || {};
-      $ const elementInput = {
-        tag: slotInput.tag,
-        class: slotInput.class,
-        modifiers: slotInput.modifiers,
-        attrs: slotInput.attrs,
-        renderBody: slotInput.renderBody,
-      };
-      <if(slot && slot.position === "before")>
-        <marko-web-element ...elementInput name=elementName block-name=blockName modifiers=["position-before", ...getAsArray(elementInput.modifiers)]>
-          <${slotInput.renderBody} node=node index=index />
+      $ const at = getSlot("at", index);
+      $ const before = getSlot("before", index);
+      $ const after = getSlot("after", index);
+
+      <if(before.renderBody)>
+        <marko-web-element ...before name=elementName block-name=blockName modifiers=["position-before", ...getAsArray(before.modifiers)]>
+          <${before.renderBody} node=node index=index />
         </marko-web-element>
       </if>
-      <if(slot && slot.position === "at")>
-        <marko-web-element ...elementInput name=elementName block-name=blockName modifiers=["position-at", ...getAsArray(elementInput.modifiers)]>
-          <${slotInput.renderBody} node=node index=index />
+
+      <if(at.renderBody)>
+        <marko-web-element ...at name=elementName block-name=blockName modifiers=["position-at", ...getAsArray(at.modifiers)]>
+          <${at.renderBody} node=node index=index />
         </marko-web-element>
       </if>
-      <else-if(slot)>
-        <marko-web-element ...elementInput name=elementName block-name=blockName>
-          <${slotInput.renderBody} node=node index=index />
+      <else-if(defaultSlot.renderBody)>
+        <marko-web-element ...defaultSlot name=elementName block-name=blockName>
+          <${defaultSlot.renderBody} node=node index=index />
         </marko-web-element>
       </else-if>
-      <if(slot && slot.position === "after")>
-        <marko-web-element ...elementInput name=elementName block-name=blockName modifiers=["position-after", ...getAsArray(elementInput.modifiers)]>
-          <${slotInput.renderBody} node=node index=index />
+
+      <if(after.renderBody)>
+        <marko-web-element ...after name=elementName block-name=blockName modifiers=["position-after", ...getAsArray(after.modifiers)]>
+          <${after.renderBody} node=node index=index />
         </marko-web-element>
       </if>
     </for>
