@@ -15,7 +15,8 @@ $marko-web-node-image-aspect-ratios: join(
 );
 
 $marko-web-node-bg-color:                   #fff !default;
-$marko-web-node-spacer:                     .75rem !default;
+$marko-web-node-padding:                    .75rem !default;
+$marko-web-node-spacer:                     .375rem !default;
 $marko-web-node-overlay-image-padding:      1.25rem !default;
 $marko-web-node-overlay-image-gradient:     linear-gradient(to top, rgba(0, 0, 0, .65), transparent) !default;
 $marko-web-node-overlay-image-link-color:   #fff !default;
@@ -64,7 +65,7 @@ $marko-web-node-placeholder-image-opacity:      .2 !default;
   flex: 1 1 auto;
   flex-direction: column;
   width: 100%;
-  padding: $marko-web-node-spacer;
+  padding: $marko-web-node-padding;
   background-color: $marko-web-node-bg-color;
 
   &__header {
@@ -80,7 +81,7 @@ $marko-web-node-placeholder-image-opacity:      .2 !default;
       top: 0;
       right: 0;
       left: 0;
-      padding: $marko-web-node-spacer;
+      padding: $marko-web-node-padding;
       margin-bottom: initial;
     }
   }
@@ -149,7 +150,7 @@ $marko-web-node-placeholder-image-opacity:      .2 !default;
       right: 0;
       bottom: 0;
       left: 0;
-      padding: $marko-web-node-spacer;
+      padding: $marko-web-node-padding;
     }
   }
 
@@ -267,21 +268,21 @@ $marko-web-node-placeholder-image-opacity:      .2 !default;
     padding: 0;
     > #{ $self } {
       &__header {
-        padding-top: $marko-web-node-spacer;
-        padding-right: $marko-web-node-spacer;
-        padding-left: $marko-web-node-spacer;
+        padding-top: $marko-web-node-padding;
+        padding-right: $marko-web-node-padding;
+        padding-left: $marko-web-node-padding;
       }
       &__footer {
-        padding-right: $marko-web-node-spacer;
-        padding-bottom: $marko-web-node-spacer;
-        padding-left: $marko-web-node-spacer;
+        padding-right: $marko-web-node-padding;
+        padding-bottom: $marko-web-node-padding;
+        padding-left: $marko-web-node-padding;
       }
     }
 
     #{ $self } {
       &__body {
-        padding-right: $marko-web-node-spacer;
-        padding-left: $marko-web-node-spacer;
+        padding-right: $marko-web-node-padding;
+        padding-left: $marko-web-node-padding;
       }
     }
   }
@@ -289,7 +290,7 @@ $marko-web-node-placeholder-image-opacity:      .2 !default;
   &--image-top {
     #{ $self } {
       &__image-wrapper + #{ $self }__body {
-        margin-top: $marko-web-node-spacer;
+        margin-top: $marko-web-node-spacer * 2;
       }
       &__body {
         &--overlay {
