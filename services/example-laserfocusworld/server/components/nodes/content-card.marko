@@ -25,10 +25,8 @@ $ const primarySection = getAsObject(content, "primarySection");
     <@title tag="h5" modifiers=input.titleModifiers>
       <marko-web-content-short-name tag=null obj=content link=true />
     </@title>
-    <@text modifiers=["teaser"]>
-      <if(input.withTeaser)>
-        <marko-web-content-teaser tag=null obj=content link=true />
-      </if>
+    <@text modifiers=["teaser"] show=(input.withTeaser && content.teaser)>
+      <marko-web-content-teaser tag=null obj=content link=true />
     </@text>
     <@footer>
       <@left>
