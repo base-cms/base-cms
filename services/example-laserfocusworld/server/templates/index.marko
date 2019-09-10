@@ -64,7 +64,7 @@ $ const adSlots = {
               params={ sectionAlias: "optics", limit: 3, requiresImage: true, queryFragment }
             >
               <website-content-list-block nodes=nodes>
-                <@header tag="h3">
+                <@header>
                   <marko-web-link href="/optics">Optics</marko-web-link>
                 </@header>
               </website-content-list-block>
@@ -76,7 +76,7 @@ $ const adSlots = {
               params={ sectionAlias: "fiber-optics", limit: 3, requiresImage: true, queryFragment }
             >
               <website-content-list-block nodes=nodes>
-                <@header tag="h3">
+                <@header>
                   <marko-web-link href="/fiber-optics">Fiber Optics</marko-web-link>
                 </@header>
               </website-content-list-block>
@@ -98,7 +98,7 @@ $ const adSlots = {
           params={ sectionAlias: "software-accessories", limit: 3, requiresImage: true, queryFragment }
         >
           <website-content-list-block nodes=nodes>
-            <@header tag="h3">
+            <@header>
               <marko-web-link href="/software-accessories">Software & Accessories</marko-web-link>
             </@header>
           </website-content-list-block>
@@ -110,7 +110,7 @@ $ const adSlots = {
           params={ sectionAlias: "test-measurement", limit: 3, requiresImage: true, queryFragment }
         >
           <website-content-list-block nodes=nodes>
-            <@header tag="h3">
+            <@header>
               <marko-web-link href="/test-measurement">Test & Measurement</marko-web-link>
             </@header>
           </website-content-list-block>
@@ -122,11 +122,46 @@ $ const adSlots = {
           params={ contentTypes: ["Webinar"], limit: 3, queryFragment }
         >
           <website-content-list-block nodes=nodes>
-            <@header tag="h3">
+            <@header>
               <marko-web-link href="/webcasts">Webcasts</marko-web-link>
             </@header>
           </website-content-list-block>
         </marko-web-query>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-4 mb-block">
+        <marko-web-query|{ nodes }|
+          name="all-published-content"
+          params={ contentTypes: ["Whitepaper"], limit: 5, queryFragment }
+        >
+          <website-content-list-block nodes=nodes display-image=false>
+            <@header>
+              <marko-web-link href="/white-papers">White Papers</marko-web-link>
+            </@header>
+          </website-content-list-block>
+        </marko-web-query>
+      </div>
+      <div class="col-lg-4 mb-block">
+        <marko-web-query|{ nodes }|
+          name="all-published-content"
+          params={ contentTypes: ["Video"], limit: 5, queryFragment }
+        >
+          <website-content-list-block nodes=nodes>
+            <@header>
+              <marko-web-link href="/videos">Videos</marko-web-link>
+            </@header>
+          </website-content-list-block>
+        </marko-web-query>
+      </div>
+      <div class="col-lg-4 mb-block">
+        <!-- <endeavor-magazine-query-latest-issue
+          publication-id="5ca4e38b75a25490050041a9"
+          header="Current Issue"
+          as-card=true
+          content-count=0
+        /> -->
       </div>
     </div>
 
