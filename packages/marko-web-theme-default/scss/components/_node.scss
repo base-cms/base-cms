@@ -123,4 +123,8 @@
   &__image {
     @include border-radius($theme-item-image-border-radius);
   }
+
+  &--card {
+    @include theme-card();
+  }
 }
