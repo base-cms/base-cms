@@ -4,13 +4,15 @@ $ const { document } = out.global;
 $ const error = input.error || {};
 
 <${document}>
+  <@head>
+    <marko-web-page-title value=`${input.statusCode} ${input.statusMessage}` />
+  </@head>
   <@container>
     <@page for="error">
       <marko-web-page-wrapper>
         <@section>
-          <h1>An Error Occurred</h1>
-          <h2>${input.statusCode} ${input.statusMessage}</h2>
-          <h3>${error.message}</h3>
+          <h3>${input.statusCode} ${input.statusMessage}</h3>
+          <h4>${error.message}</h4>
           <if(isDev)>
             <pre>${error.stack}</pre>
           </if>
