@@ -85,7 +85,7 @@ $ const adSlots = {
         </div>
       </div>
 
-      <div class="col-lg-4 page-rail">
+      <div class="col-lg-4 mb-block page-rail">
         <marko-web-gam-display-ad id="gpt-ad-rail1" />
         <marko-web-gam-display-ad id="gpt-ad-rail2" />
       </div>
@@ -203,15 +203,19 @@ $ const adSlots = {
         </marko-web-query>
       </div>
     </div>
-
-    <marko-web-query|{ nodes }|
-      name="website-scheduled-content"
-      params={ sectionId: section.id, limit: 14, skip: 5, queryFragment }
-    >
-      <website-content-load-more-block nodes=nodes aliases=aliases />
-    </marko-web-query>
-
   </@page>
+  <@below-page>
+    <marko-web-load-more
+      component-name="content-load-more-block"
+      component-input={ aliases }
+      fragment-name="content-list"
+      query-name="website-scheduled-content"
+      query-params={ sectionId: section.id, limit: 14, skip: 5 }
+      max-pages=0
+      page-input={ for: "website-section", id: section.id }
+      trigger-input={ buttonClass: "btn btn-lg btn-primary" }
+    />
+  </@below-page>
   <@foot>
     <marko-web-gam-fixed-ad-bottom ...GAM.getAdUnit({ name: "lb2", aliases }) refresh-interval=0 />
   </@foot>
