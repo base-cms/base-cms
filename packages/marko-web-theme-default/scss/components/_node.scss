@@ -1,4 +1,6 @@
 .node {
+  $self: &;
+
   &__header {
     font-family: $theme-item-header-font-family;
     font-size: $theme-item-header-font-size;
@@ -115,6 +117,7 @@
     text-transform: $theme-item-footer-text-transform;
   }
 
+
   &__image-inner-wrapper {
     @include border-radius($theme-item-image-border-radius);
     @include box-shadow($theme-item-image-box-shadow);
@@ -122,6 +125,16 @@
 
   &__image {
     @include border-radius($theme-item-image-border-radius);
+  }
+
+  &--image-left,
+  &--image-right {
+    #{ $self } {
+      &__image-wrapper {
+        margin-top: auto;
+        margin-bottom: auto;
+      }
+    }
   }
 
   &--card {
