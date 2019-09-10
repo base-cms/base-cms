@@ -24,5 +24,16 @@
     "@class": "string",
     "@modifiers": "array",
     "@attrs": "object"
+  },
+  "<default-theme-column-list-block>": {
+    "template": "./column-list.marko",
+    "<column>": {},
+    "<list>": {},
+    "@nodes": "array",
+    "@reverse": "boolean",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "array",
+    "@attrs": "object"
   }
 }
