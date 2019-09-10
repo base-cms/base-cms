@@ -1,5 +1,5 @@
 import hierarchyAliases from "@base-cms/marko-web-gam/utils/hierarchy-aliases";
-import contentListFragment from "../../api/fragments/content-list";
+import queryFragment from "../../api/fragments/content-list";
 import GAM from "../../../config/gam";
 
 $ const { section } = data;
@@ -24,8 +24,11 @@ $ const adSlots = {
   </@above-container>
   <@page>
     <marko-web-gam-display-ad id="gpt-ad-lb1" modifiers=["top-of-page"] />
-    <marko-web-query|{ nodes }| name="website-scheduled-content" params={ sectionAlias: section.alias, limit: 25, requiresImage: true, queryFragment: contentListFragment }>
-      <website-content-list-block nodes=nodes with-teaser=true />
+    <marko-web-query|{ nodes }|
+      name="website-optioned-content"
+      params={ sectionId: section.id, optionId: 9, limit: 5, queryFragment }
+    >
+      <website-content-hero-block nodes=nodes />
     </marko-web-query>
   </@page>
   <@foot>
