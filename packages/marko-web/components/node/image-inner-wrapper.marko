@@ -29,7 +29,6 @@ $ const classNames = [element, ...modifiers.map(mod => `${element}--${mod}`), in
 $ const options = {
   ...input.options,
   w: input.width,
-  ar: input.ar,
   h: input.ar ? imageHeight(input.width, input.ar) : undefined,
 };
 

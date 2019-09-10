@@ -10,7 +10,7 @@ $ if (input.height) style.push(`height: ${input.height}px;`);
 $ const attrs = { ...input.attrs, style };
 
 $ const options = {
-  fit: get(input, "options.ar") ? "crop" : undefined,
+  fit: get(input, "options.w") && get(input, "options.h") ? "crop" : undefined,
   ...input.options,
 }
 
