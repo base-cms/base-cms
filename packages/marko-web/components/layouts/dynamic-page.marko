@@ -16,7 +16,8 @@ $ const { document } = out.global;
     />
     <${input.head} />
   </@head>
-  <@container above-page=input.abovePage below-page=input.belowPage>
+  <!-- Note: camelcased vars due to nest input of dynamic document. perhaps a marko bug -->
+  <@container abovePage=input.abovePage belowPage=input.belowPage>
     <@page for="dynamic-page" id=page.id>
       <${input.page} />
     </@page>
