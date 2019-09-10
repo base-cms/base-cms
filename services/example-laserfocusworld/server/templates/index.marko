@@ -21,7 +21,22 @@ $ const adSlots = {
   </@above-container>
   <@page>
     <marko-web-gam-display-ad id="gpt-ad-lb1" modifiers=["top-of-page"] />
-    <div class="row">
+
+    <marko-web-query|{ nodes }|
+      name="website-optioned-content"
+      params={ sectionId: section.id, optionId: 9, limit: 5, queryFragment }
+    >
+      <default-theme-hero-node-block nodes=nodes>
+        <@hero|{ node }|>
+          <website-content-card-node node=node title-modifiers=["large"] />
+        </@hero>
+        <@list|{ nodes }|>
+          <website-content-list-block nodes=nodes />
+        </@list>
+      </default-theme-hero-node-block>
+    </marko-web-query>
+
+    <!-- <div class="row">
 
       <div class="col-lg-4 mb-4">
         <marko-web-query|{ nodes }|
@@ -62,7 +77,7 @@ $ const adSlots = {
         </marko-web-query>
       </div>
 
-    </div>
+    </div> -->
   </@page>
   <@foot>
     <marko-web-gam-fixed-ad-bottom ...GAM.getAdUnit({ name: "lb2", aliases }) refresh-interval=0 />
