@@ -32,6 +32,7 @@
     "@flush-y": "boolean",
     "@image-flush": "boolean",
     "@full-height": "boolean",
+    "@card": "boolean",
     "@class": "string",
     "@attrs": "object",
     "@modifiers": "array"
