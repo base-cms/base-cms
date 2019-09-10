@@ -1,5 +1,12 @@
 @import "functions";
 @import "variables";
+
+// Set core marko web variables from theme vars.
+$marko-web-node-placeholder-image-bg-color:     $theme-item-image-placeholder-color !default;
+$marko-web-node-placeholder-image:              $theme-item-image-placeholder-image !default;
+$marko-web-node-placeholder-image-bg-position:  $theme-item-image-placeholder-position !default;
+$marko-web-node-placeholder-image-opacity:      $theme-item-image-placeholder-opacity !default;
+
 @import "mixins";
 @import "components";
 
