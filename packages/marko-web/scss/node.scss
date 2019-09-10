@@ -133,7 +133,7 @@ $marko-web-node-placeholder-image-opacity:      .2 !default;
     width: 100%;
 
     &--body {
-      margin-bottom: $marko-web-node-spacer;
+      // margin-bottom: $marko-web-node-spacer;
       > :last-child {
         margin-bottom: 0;
       }
