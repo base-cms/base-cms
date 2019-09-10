@@ -206,10 +206,12 @@ $ const adSlots = {
 
     <marko-web-query|{ nodes }|
       name="website-scheduled-content"
-      params={ sectionId: section.id, limit: 10, skip: 5, queryFragment }
+      params={ sectionId: section.id, limit: 14, skip: 5, queryFragment }
     >
-      <default-theme-card-deck-block nodes=nodes>
-        <@slot|{ node }| modifiers=["default-mod"]>
+      $ const cardNodes = nodes.slice(0, 10);
+      $ const listNodes = nodes.slice(10);
+      <default-theme-card-deck-block nodes=cardNodes>
+        <@slot|{ node }|>
           <website-content-card-node image-width=340 node=node />
         </@slot>
         <@slot position="after" index=1>
@@ -219,6 +221,14 @@ $ const adSlots = {
           <marko-web-gam-define-display-ad ...GAM.getAdUnit({ name: "load-more", size: [300, 250], aliases }) modifiers=["in-card"] />
         </@slot>
       </default-theme-card-deck-block>
+      <default-theme-column-list-block nodes=listNodes>
+        <@column>
+          <marko-web-gam-define-display-ad ...GAM.getAdUnit({ name: "load-more", size: [300, 600], aliases }) modifiers=["in-card"] />
+        </@column>
+        <@list|{ nodes }|>
+          <website-content-list-block nodes=nodes with-teaser=true />
+        </@list>
+      </default-theme-column-list-block>
     </marko-web-query>
 
   </@page>
