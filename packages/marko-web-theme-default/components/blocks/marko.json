@@ -1,0 +1,5 @@
+{
+  "<default-theme-hero-node-block>": {
+    "template": "./hero.marko"
+  }
+}
