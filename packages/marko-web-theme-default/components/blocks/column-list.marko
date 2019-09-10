@@ -14,12 +14,12 @@ $ if (input.reverse) modifiers.push("reverse");
     attrs=input.attrs
   >
     <if(input.column)>
-      <marko-web-element name="column" block-name=blockName>
+      <marko-web-element ...input.column name="column" block-name=blockName>
         <${input.column} block-name=blockName />
       </marko-web-element>
     </if>
     <if(input.list)>
-      <marko-web-element name="list" block-name=blockName>
+      <marko-web-element ...input.list name="list" block-name=blockName>
         <${input.list} nodes=nodes block-name=blockName />
       </marko-web-element>
     </if>
