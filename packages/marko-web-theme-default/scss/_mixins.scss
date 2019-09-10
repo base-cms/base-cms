@@ -332,6 +332,7 @@
   }
 }
 
+// @todo handle small breaks for page-wrapper__section instead
 @mixin theme-page-body-spacing() {
   padding-right: $theme-page-body-padding;
   padding-left: $theme-page-body-padding;

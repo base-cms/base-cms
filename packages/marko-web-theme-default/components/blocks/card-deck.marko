@@ -1,0 +1,55 @@
+import { getAsArray } from "@base-cms/object-path";
+
+$ const blockName = "card-deck-block";
+$ const elementName = "node";
+$ const nodes = getAsArray(input, "nodes");
+
+$ const slots = getAsArray(input, "slots");
+$ const defaultSlot = slots.find(slot => slot.index == null);
+$ const slotMap = getAsArray(input, "slots").reduce((map, slot) => {
+  const { index } = slot;
+  map.set(index, slot)
+  return map;
+}, new Map());
+
+<if(nodes.length)>
+  <marko-web-block
+    name=blockName
+    tag=input.tag
+    class=input.class
+    modifiers=input.modifiers
+    attrs=input.attrs
+  >
+    <for|node, index| of=nodes>
+      $ const slot = slotMap.get(index) || defaultSlot;
+      $ const slotInput = slot || {};
+      $ const elementInput = {
+        tag: slotInput.tag,
+        class: slotInput.class,
+        modifiers: slotInput.modifiers,
+        attrs: slotInput.attrs,
+        renderBody: slotInput.renderBody,
+      };
+      <if(slot && slot.position === "before")>
+        <marko-web-element ...elementInput name=elementName block-name=blockName modifiers=["position-before", ...getAsArray(elementInput.modifiers)]>
+          <${slotInput.renderBody} node=node index=index />
+        </marko-web-element>
+      </if>
+      <if(slot && slot.position === "at")>
+        <marko-web-element ...elementInput name=elementName block-name=blockName modifiers=["position-at", ...getAsArray(elementInput.modifiers)]>
+          <${slotInput.renderBody} node=node index=index />
+        </marko-web-element>
+      </if>
+      <else-if(slot)>
+        <marko-web-element ...elementInput name=elementName block-name=blockName>
+          <${slotInput.renderBody} node=node index=index />
+        </marko-web-element>
+      </else-if>
+      <if(slot && slot.position === "after")>
+        <marko-web-element ...elementInput name=elementName block-name=blockName modifiers=["position-after", ...getAsArray(elementInput.modifiers)]>
+          <${slotInput.renderBody} node=node index=index />
+        </marko-web-element>
+      </if>
+    </for>
+  </marko-web-block>
+</if>

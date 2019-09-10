@@ -1,5 +1,28 @@
 {
   "<default-theme-hero-block>": {
-    "template": "./hero.marko"
+    "template": "./hero.marko",
+    "<hero>": {},
+    "<list>": {},
+    "@nodes": "array",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "array",
+    "@attrs": "object"
+  },
+  "<default-theme-card-deck-block>": {
+    "template": "./card-deck.marko",
+    "@slots <slot>[]": {
+      "@position": "number",
+      "@index": "number",
+      "@tag": "string",
+      "@class": "string",
+      "@modifiers": "array",
+      "@attrs": "object"
+    },
+    "@nodes": "array",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "array",
+    "@attrs": "object"
   }
 }
