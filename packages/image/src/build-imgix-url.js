@@ -158,7 +158,7 @@ const coreDefaults = {
 module.exports = (src, selected, defaults, isLogo) => {
   const options = { ...(selected || defaults || coreDefaults) };
   if (isLogo) {
-    options.fit = 'fillmax';
+    options.fit = 'fill';
     options.fillColor = options.fillColor || 'fff';
     options.pad = options.pad || '5';
   }
