@@ -91,48 +91,45 @@ $ const adSlots = {
       </div>
     </div>
 
-    <!-- <div class="row">
-
-      <div class="col-lg-4 mb-4">
+    <div class="row">
+      <div class="col-lg-4 mb-block">
         <marko-web-query|{ nodes }|
           name="website-scheduled-content"
-          params={ sectionAlias: "detectors-imaging", limit: 3, requiresImage: true, queryFragment }
+          params={ sectionAlias: "software-accessories", limit: 3, requiresImage: true, queryFragment }
         >
           <website-content-list-block nodes=nodes>
             <@header tag="h3">
-              <marko-web-link href="/detectors-imaging">Detectors & Imaging</marko-web-link>
+              <marko-web-link href="/software-accessories">Software & Accessories</marko-web-link>
             </@header>
           </website-content-list-block>
         </marko-web-query>
       </div>
-
-      <div class="col-lg-4 mb-4">
+      <div class="col-lg-4 mb-block">
         <marko-web-query|{ nodes }|
           name="website-scheduled-content"
-          params={ sectionAlias: "lasers-sources", limit: 3, requiresImage: true, queryFragment }
+          params={ sectionAlias: "test-measurement", limit: 3, requiresImage: true, queryFragment }
         >
           <website-content-list-block nodes=nodes>
             <@header tag="h3">
-              <marko-web-link href="/lasers-sources">Lasers & Sources</marko-web-link>
+              <marko-web-link href="/test-measurement">Test & Measurement</marko-web-link>
             </@header>
           </website-content-list-block>
         </marko-web-query>
       </div>
-
-      <div class="col-lg-4 mb-4">
+      <div class="col-lg-4 mb-block">
         <marko-web-query|{ nodes }|
-          name="website-scheduled-content"
-          params={ sectionAlias: "optics", limit: 3, requiresImage: true, queryFragment }
+          name="all-published-content"
+          params={ contentTypes: ["Webinar"], limit: 3, queryFragment }
         >
           <website-content-list-block nodes=nodes>
             <@header tag="h3">
-              <marko-web-link href="/optics">Optics</marko-web-link>
+              <marko-web-link href="/webcasts">Webcasts</marko-web-link>
             </@header>
           </website-content-list-block>
         </marko-web-query>
       </div>
+    </div>
 
-    </div> -->
   </@page>
   <@foot>
     <marko-web-gam-fixed-ad-bottom ...GAM.getAdUnit({ name: "lb2", aliases }) refresh-interval=0 />
