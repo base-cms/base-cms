@@ -15,5 +15,10 @@
       "type": "boolean",
       "default-value": false
     }
+  },
+  "<website-content-load-more-block>": {
+    "template": "./content-load-more.marko",
+    "@nodes": "array",
+    "@aliases": "array"
   }
 }
