@@ -1,9 +1,8 @@
-import { getAsObject, get } from '@base-cms/object-path';
+import { getAsObject } from '@base-cms/object-path';
 
 $ const content = getAsObject(input, "node");
 $ const primaryImage = getAsObject(content, "primaryImage");
 $ const primarySection = getAsObject(content, "primarySection");
-$ const company = getAsObject(content, "company")
 
 <marko-web-node image-position="top" card=true full-height=true>
   <if(input.displayImage)>
@@ -33,25 +32,10 @@ $ const company = getAsObject(content, "company")
     </@text>
     <@footer>
       <@left>
-        <if(company.id)>
-          <marko-web-content-name modifiers=["company-name"] obj=company link=true />
-        </if>
-        <else>
-          <marko-web-content-authors|{ node: author }| obj=content>
-            <marko-web-content-name obj=author link=true />
-          </marko-web-content-authors>
-        </else>
+        <attribution content=content />
       </@left>
       <@right|{ blockName }|>
-        <if(content.type === "event" || content.type === "webinar")>
-          <span class=`${blockName}__content-event-dates`>
-            <marko-web-content-starts block-name=blockName obj=content />
-            <marko-web-content-ends block-name=blockName obj=content />
-          </span>
-        </if>
-        <else>
-          <marko-web-content-published obj=content />
-        </else>
+        <dates block-name=blockName content=content />
       </@right>
     </@footer>
   </@body>
