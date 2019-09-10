@@ -22,4 +22,8 @@
       @include make-col(4);
     }
   }
+
+  &--reverse {
+    flex-direction: row-reverse;
+  }
 }

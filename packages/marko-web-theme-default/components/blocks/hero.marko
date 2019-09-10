@@ -4,13 +4,15 @@ $ const blockName = "hero-block";
 $ const nodes = getAsArray(input, "nodes");
 $ const heroNode = nodes.slice(0, 1)[0];
 $ const listNodes = nodes.slice(1);
+$ const modifiers = getAsArray(input, "modifiers");
+$ if (input.reverse) modifiers.push("reverse");
 
 <if(nodes.length)>
   <marko-web-block
     name=blockName
     tag=input.tag
     class=input.class
-    modifiers=input.modifiers
+    modifiers=modifiers
     attrs=input.attrs
   >
     <if(input.hero)>

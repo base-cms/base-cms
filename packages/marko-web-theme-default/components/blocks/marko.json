@@ -4,6 +4,7 @@
     "<hero>": {},
     "<list>": {},
     "@nodes": "array",
+    "@reverse": "boolean",
     "@tag": "string",
     "@class": "string",
     "@modifiers": "array",
