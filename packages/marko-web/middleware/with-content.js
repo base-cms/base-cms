@@ -1,6 +1,6 @@
 const { asyncRoute, isFunction: isFn } = require('@base-cms/utils');
 const { content: loader } = require('@base-cms/web-common/page-loaders');
-const { withContent: queryFactory } = require('@base-cms/web-common/query-factories');
+const { blockContent: queryFactory } = require('@base-cms/web-common/query-factories');
 const PageNode = require('./page-node');
 
 module.exports = ({
