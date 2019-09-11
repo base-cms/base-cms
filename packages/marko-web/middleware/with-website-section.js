@@ -1,5 +1,7 @@
 const { asyncRoute, isFunction: isFn } = require('@base-cms/utils');
 const { websiteSection: loader } = require('@base-cms/web-common/page-loaders');
+const { withWebsiteSection: queryFactory } = require('@base-cms/web-common/query-factories');
+const PageNode = require('./page-node');
 
 module.exports = ({
   template,
@@ -10,7 +12,7 @@ module.exports = ({
   const alias = isFn(aliasResolver) ? await aliasResolver(req, res) : req.params.alias;
   const { apollo } = req;
 
-  const section = await loader(apollo, { alias, queryFragment });
+  const section = await loader(apollo, { alias });
   const { redirectTo, canonicalPath } = section;
   if (redirectTo) {
     return res.redirect(301, redirectTo);
@@ -18,5 +20,11 @@ module.exports = ({
   if (redirectOnPathMismatch && canonicalPath !== req.path) {
     return res.redirect(301, canonicalPath);
   }
-  return res.marko(template, { section });
+  const pageNode = new PageNode(apollo, {
+    queryFactory,
+    queryFragment,
+    variables: { input: { alias } },
+    resultField: 'websiteSectionAlias',
+  });
+  return res.marko(template, { ...section, pageNode });
 });
