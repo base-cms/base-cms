@@ -4,15 +4,10 @@ module.exports = gql`
 
 fragment WithWebsiteSectionFragment on WebsiteSection {
   id
-  name
-  description
   alias
+  name
   redirectTo
   canonicalPath
-  metadata {
-    title
-    description
-  }
 }
 
 `;

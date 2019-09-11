@@ -9,6 +9,7 @@ const allPublishedContent = require('./all-published-content');
 const allAuthorContent = require('./all-author-content');
 const allCompanyContent = require('./all-company-content');
 const websiteOptionedContent = require('./website-optioned-content');
+const websiteSection = require('./website-section');
 
 module.exports = {
   content,
@@ -22,4 +23,5 @@ module.exports = {
   allAuthorContent,
   allCompanyContent,
   websiteOptionedContent,
+  websiteSection,
 };
