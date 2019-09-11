@@ -58,7 +58,7 @@
     "@canonical-path": "string",
     "@image-src": "string"
   },
-  "<marko-web-page-content-metadata>": {
+  "<marko-web-page-metadata-content>": {
     "template": "./metadata/content.marko",
     "@id": "number"
   },
