@@ -9,6 +9,7 @@ module.exports = ({ obj }) => {
   const hierarchy = getAsArray(section, 'hierarchy').map(s => ({
     id: s.id,
     name: s.name,
+    alias: s.alias,
   }));
   const taxonomy = getAsArray(content, 'taxonomy.edges').map(({ node }) => ({
     id: node.id,
@@ -42,6 +43,7 @@ module.exports = ({ obj }) => {
     section: {
       id: section.id,
       name: section.name,
+      alias: section.alias,
       fullName: section.fullName,
     },
     section_hierarchy: hierarchy,

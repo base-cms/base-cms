@@ -6,6 +6,7 @@ module.exports = ({ obj }) => {
   const hierarchy = getAsArray(section, 'hierarchy').map(s => ({
     id: s.id,
     name: s.name,
+    alias: s.alias,
   }));
   return {
     page_type: 'website-section',
@@ -13,6 +14,7 @@ module.exports = ({ obj }) => {
     section: {
       id: section.id,
       name: section.name,
+      alias: section.alias,
       fullName: section.fullName,
     },
     section_hierarchy: hierarchy,
