@@ -37,5 +37,8 @@
   },
   "<marko-web-query-website-optioned-content>": {
     "template": "./website-optioned-content.marko"
+  },
+  "<marko-web-query-content>": {
+    "template": "./content.marko"
   }
 }

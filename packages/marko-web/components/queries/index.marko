@@ -1,26 +1,28 @@
-import AllAuthorContent from './all-author-content';
-import AllCompanyContent from './all-company-content';
-import AllPublishedContent from './all-published-content';
-import MagazineActiveIssues from './magazine-active-issues';
-import MagazineLatestIssue from './magazine-latest-issue';
-import MagazinePublications from './magazine-publications';
-import MagazineScheduledContent from './magazine-scheduled-content';
-import RelatedPublishedContent from './related-published-content';
-import WebsiteOptionedContent from './website-optioned-content';
-import WebsiteScheduledContent from './website-scheduled-content';
+import AllAuthorContent from "./all-author-content";
+import AllCompanyContent from "./all-company-content";
+import AllPublishedContent from "./all-published-content";
+import Content from "./content";
+import MagazineActiveIssues from "./magazine-active-issues";
+import MagazineLatestIssue from "./magazine-latest-issue";
+import MagazinePublications from "./magazine-publications";
+import MagazineScheduledContent from "./magazine-scheduled-content";
+import RelatedPublishedContent from "./related-published-content";
+import WebsiteOptionedContent from "./website-optioned-content";
+import WebsiteScheduledContent from "./website-scheduled-content";
 import shouldCollapse from "../../utils/should-collapse";
 
 $ const map = {
-  'all-author-content': AllAuthorContent,
-  'all-company-content': AllCompanyContent,
-  'all-published-content': AllPublishedContent,
-  'magazine-active-issues': MagazineActiveIssues,
-  'magazine-latest-issue': MagazineLatestIssue,
-  'magazine-publications': MagazinePublications,
-  'magazine-scheduled-content': MagazineScheduledContent,
-  'related-published-content': RelatedPublishedContent,
-  'website-optioned-content': WebsiteOptionedContent,
-  'website-scheduled-content': WebsiteScheduledContent,
+  "all-author-content": AllAuthorContent,
+  "all-company-content": AllCompanyContent,
+  "all-published-content": AllPublishedContent,
+  "content": Content,
+  "magazine-active-issues": MagazineActiveIssues,
+  "magazine-latest-issue": MagazineLatestIssue,
+  "magazine-publications": MagazinePublications,
+  "magazine-scheduled-content": MagazineScheduledContent,
+  "related-published-content": RelatedPublishedContent,
+  "website-optioned-content": WebsiteOptionedContent,
+  "website-scheduled-content": WebsiteScheduledContent,
 };
 $ const name = input.name;
 $ const collapsible = shouldCollapse(input.collapsible);
@@ -29,9 +31,14 @@ $ const Component = map[input.name];
 
 <if(Component)>
   <${Component}|data| ...input.params>
-    $ const { nodes } = data;
-    <if(nodes.length || !collapsible)>
-      <${input.renderBody} ...data />
+    $ const { nodes, node } = data;
+    <if(nodes)>
+      <if(nodes.length || !collapsible)>
+        <${input.renderBody} ...data />
+      </if>
     </if>
+    <else-if(node || !collapsible)>
+      <${input.renderBody} ...data />
+    </else-if>
   </>
 </if>
