@@ -40,5 +40,8 @@
   },
   "<marko-web-query-content>": {
     "template": "./content.marko"
+  },
+  "<marko-web-query-website-section>": {
+    "template": "./website-section.marko"
   }
 }

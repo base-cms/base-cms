@@ -9,6 +9,7 @@ import MagazineScheduledContent from "./magazine-scheduled-content";
 import RelatedPublishedContent from "./related-published-content";
 import WebsiteOptionedContent from "./website-optioned-content";
 import WebsiteScheduledContent from "./website-scheduled-content";
+import WebsiteSection from "./website-section";
 import shouldCollapse from "../../utils/should-collapse";
 
 $ const map = {
@@ -23,6 +24,7 @@ $ const map = {
   "related-published-content": RelatedPublishedContent,
   "website-optioned-content": WebsiteOptionedContent,
   "website-scheduled-content": WebsiteScheduledContent,
+  "website-section": WebsiteSection,
 };
 $ const name = input.name;
 $ const collapsible = shouldCollapse(input.collapsible);
