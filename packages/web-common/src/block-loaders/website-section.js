@@ -18,6 +18,6 @@ module.exports = async (apolloClient, {
   const variables = { input };
 
   const { data } = await apolloClient.query({ query, variables });
-  if (!data || !data.websiteSection) return { node: null };
-  return { node: data.websiteSection };
+  if (!data || !data.websiteSectionAlias) return { node: null };
+  return { node: data.websiteSectionAlias };
 };
