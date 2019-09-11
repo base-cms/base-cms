@@ -1,3 +1,4 @@
+const blockContent = require('./block-content');
 const blockWebsiteScheduledContent = require('./block-website-scheduled-content');
 const blockWebsiteSection = require('./block-website-section');
 const blockMagazinePublications = require('./block-magazine-publications');
@@ -16,6 +17,7 @@ const withMagazinePublication = require('./with-magazine-publication');
 
 module.exports = {
   // Blocks
+  blockContent,
   blockWebsiteScheduledContent,
   blockWebsiteSection,
   blockMagazinePublications,
