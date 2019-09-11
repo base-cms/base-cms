@@ -23,5 +23,6 @@ fragment WebsiteSectionPageMetadataFragment on WebsiteSection {
       canonicalPath: node.canonicalPath,
     };
     <common ...metadata />
+    <meta property="og:type" content="website" />
   </marko-web-query>
 </if>
