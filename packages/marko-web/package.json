@@ -20,22 +20,18 @@
     "express": "^4.16.4",
     "express-http-proxy": "^1.5.1",
     "http-errors": "^1.7.2",
+    "graphql": "^14.2.1",
+    "graphql-tag": "^2.10.1",
     "jquery": "^3.4.0",
     "marko": "^4.18.10",
     "moment": "^2.24.0",
     "vue": "^2.6.10"
-  },
-  "peerDependencies": {
-    "graphql": "^14.0.0",
-    "graphql-tag": "^2.10.0"
   },
   "devDependencies": {
     "eslint": "^5.15.1",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-vue": "^5.2.3",
-    "graphql": "^14.2.1",
-    "graphql-tag": "^2.10.1",
     "stylelint": "^9.10.1",
     "stylelint-config-twbs-bootstrap": "^0.3.0"
   },
