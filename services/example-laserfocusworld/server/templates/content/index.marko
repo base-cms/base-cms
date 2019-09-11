@@ -2,81 +2,90 @@ import hierarchyAliases from "@base-cms/marko-web-gam/utils/hierarchy-aliases";
 import { getAsObject } from "@base-cms/object-path";
 import GAM from "../../../config/gam";
 
-$ const { content } = data;
-$ const section = getAsObject(content, "primarySection");
+$ const { id, type, pageNode } = data;
 
-$ const aliases = hierarchyAliases(section);
-$ const adSlots = {
-  "gpt-ad-lb1":   GAM.getAdUnit({ name: "lb1", aliases }),
-  "gpt-ad-rail1": GAM.getAdUnit({ name: "rail1", aliases }),
-  "gpt-ad-rail2": GAM.getAdUnit({ name: "rail2", aliases }),
-}
+$ const displayPrimaryImage = ["whitepaper", "media-gallery"].includes(type) ? false : true;
+$ const displayPublishedDate = ["event", "webinar", "contact", "whitepapter"].includes(type) ? false : true;
 
-$ const displayPrimaryImage = ["whitepaper", "media-gallery"].includes(content.type) ? false : true;
-$ const displayPublishedDate = ["event", "webinar", "contact", "whitepapter"].includes(content.type) ? false : true;
-
-<marko-web-layout-content content=content>
+<marko-web-layout-content id=id type=type>
   <@head>
-    <marko-web-gtm-context|{ context }| for="content" obj=content>
+    <marko-web-gtm-context-content|{ context }| id=id>
       <marko-web-gtm-push data=context />
-    </marko-web-gtm-context>
-    <marko-web-gam-slots slots=adSlots />
-    <marko-web-gam-targeting key-values={ cont_id: content.id, cont_type: content.type } />
+    </marko-web-gtm-context-content>
+    <marko-web-gam-targeting key-values={ cont_id: id, cont_type: type } />
+    <marko-web-resolve-page|{ data: content }| node=pageNode>
+      $ const aliases = hierarchyAliases(content.primarySection);
+      $ const adSlots = {
+        "gpt-ad-lb1":   GAM.getAdUnit({ name: "lb1", aliases }),
+        "gpt-ad-rail1": GAM.getAdUnit({ name: "rail1", aliases }),
+        "gpt-ad-rail2": GAM.getAdUnit({ name: "rail2", aliases }),
+      }
+       <marko-web-gam-slots slots=adSlots />
+    </marko-web-resolve-page>
   </@head>
   <@above-container>
-    <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "wa" }) />
-    <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "reskin" }) />
+    <marko-web-resolve-page|{ data: content }| node=pageNode>
+      $ const aliases = hierarchyAliases(content.primarySection);
+      <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "wa", aliases }) />
+      <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "reskin", aliases }) />
+    </marko-web-resolve-page>
+
   </@above-container>
   <@page>
     <marko-web-gam-display-ad id="gpt-ad-lb1" modifiers=["top-of-page"] />
     <!-- @todo Deal with media galleries, whitepapers, contacts, and companies -->
-    <marko-web-page-wrapper>
-      <@section>
-        <div class="row">
-          <div class="col">
-            <default-theme-website-section-breadcrumbs section=content.primarySection />
-            <marko-web-content-name tag="h1" class="page-wrapper__title" obj=content />
-            <marko-web-content-teaser tag="p" class="page-wrapper__deck" obj=content />
-            <if(content.type !== "contact")>
-              <default-theme-content-attribution obj=content />
-            </if>
-            <default-theme-page-dates|{ blockName }|>
-              <if(content.type === "event")>
-                <marko-web-content-starts block-name=blockName obj=content />
-                <marko-web-content-ends block-name=blockName obj=content />
+    <marko-web-resolve-page|{ data: content }| node=pageNode>
+      <marko-web-page-wrapper>
+        <@section>
+          <div class="row">
+            <div class="col">
+              <default-theme-website-section-breadcrumbs section=content.primarySection />
+              <marko-web-content-name tag="h1" class="page-wrapper__title" obj=content />
+              <marko-web-content-teaser tag="p" class="page-wrapper__deck" obj=content />
+              <if(content.type !== "contact")>
+                <default-theme-content-attribution obj=content />
               </if>
-              <if(content.type === "webinar")>
-                <marko-web-content-starts block-name=blockName obj=content />
-              </if>
-              <if(displayPublishedDate)>
-                <marko-web-content-published block-name=blockName obj=content />
-              </if>
-            </default-theme-page-dates>
+              <default-theme-page-dates|{ blockName }|>
+                <if(content.type === "event")>
+                  <marko-web-content-starts block-name=blockName obj=content />
+                  <marko-web-content-ends block-name=blockName obj=content />
+                </if>
+                <if(content.type === "webinar")>
+                  <marko-web-content-starts block-name=blockName obj=content />
+                </if>
+                <if(displayPublishedDate)>
+                  <marko-web-content-published block-name=blockName obj=content />
+                </if>
+              </default-theme-page-dates>
+            </div>
           </div>
-        </div>
-      </@section>
-      <@section>
-        <div class="row">
-          <default-theme-page-contents|{ blockName }| class="col-lg-8">
-            <if(content.embedCode)>
-              <marko-web-content-embed-code block-name=blockName obj=content />
-            </if>
-            <else-if(displayPrimaryImage)>
-              <marko-web-block-page-image width=500 obj=content.primaryImage />
-            </else-if>
-            <default-theme-content-contact-details obj=content />
-            <marko-web-content-body block-name=blockName obj=content />
-            <marko-web-content-sidebars block-name=blockName obj=content />
-          </default-theme-page-contents>
-          <aside class="col-lg-4 page-rail">
-            <marko-web-gam-display-ad id="gpt-ad-rail1" />
-            <marko-web-gam-display-ad id="gpt-ad-rail2" />
-          </aside>
-        </div>
-      </@section>
-    </marko-web-page-wrapper>
+        </@section>
+        <@section>
+          <div class="row">
+            <default-theme-page-contents|{ blockName }| class="col-lg-8">
+              <if(content.embedCode)>
+                <marko-web-content-embed-code block-name=blockName obj=content />
+              </if>
+              <else-if(displayPrimaryImage)>
+                <marko-web-block-page-image width=500 obj=content.primaryImage />
+              </else-if>
+              <default-theme-content-contact-details obj=content />
+              <marko-web-content-body block-name=blockName obj=content />
+              <marko-web-content-sidebars block-name=blockName obj=content />
+            </default-theme-page-contents>
+            <aside class="col-lg-4 page-rail">
+              <marko-web-gam-display-ad id="gpt-ad-rail1" />
+              <marko-web-gam-display-ad id="gpt-ad-rail2" />
+            </aside>
+          </div>
+        </@section>
+      </marko-web-page-wrapper>
+    </marko-web-resolve-page>
   </@page>
   <@foot>
-    <marko-web-gam-fixed-ad-bottom ...GAM.getAdUnit({ name: "lb2", aliases }) refresh-interval=0 />
+    <marko-web-resolve-page|{ data: content }| node=pageNode>
+      $ const aliases = hierarchyAliases(content.primarySection);
+      <marko-web-gam-fixed-ad-bottom ...GAM.getAdUnit({ name: "lb2", aliases }) refresh-interval=0 />
+    </marko-web-resolve-page>
   </@foot>
 </marko-web-layout-content>
