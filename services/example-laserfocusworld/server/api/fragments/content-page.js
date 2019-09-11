@@ -36,26 +36,6 @@ fragment ContentPageFragment on Content {
     surveyType
     surveyId
   }
-  userRegistration {
-    isRequired
-    accessLevels
-  }
-  taxonomy(input: { pagination:  { limit: 20 } }) {
-    edges {
-      node {
-        id
-        type
-        name
-        fullName
-      }
-    }
-  }
-  createdBy {
-    id
-    firstName
-    lastName
-    username
-  }
   ... on ContentVideo {
     embedCode
   }
