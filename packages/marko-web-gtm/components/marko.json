@@ -1,4 +1,7 @@
 {
+  "taglib-imports": [
+    "./context/marko.json"
+  ],
   "<marko-web-gtm-init>": {
     "template": "./init.marko",
     "@container-id": "expression",

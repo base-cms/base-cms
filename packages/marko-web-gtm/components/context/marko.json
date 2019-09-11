@@ -1,0 +1,8 @@
+{
+  "<marko-web-gtm-context-content>": {
+    "template": "./content.marko",
+    "@id": "number",
+    "@builder": "function",
+    "@query-fragment": "expression"
+  }
+}
