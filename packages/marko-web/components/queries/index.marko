@@ -38,9 +38,15 @@ $ const Component = map[input.name];
       <if(nodes.length || !collapsible)>
         <${input.renderBody} ...data />
       </if>
+      <else>
+        <${input.whenEmpty} />
+      </else>
     </if>
     <else-if(node || !collapsible)>
       <${input.renderBody} ...data />
     </else-if>
+    <else>
+      <${input.whenEmpty} />
+    </else>
   </>
 </if>

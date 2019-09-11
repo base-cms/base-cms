@@ -1,6 +1,7 @@
 {
   "<marko-web-query>": {
     "template": "./index.marko",
+    "<when-empty>": {},
     "@name": "string",
     "@params": "object",
     "@collapsible": {
