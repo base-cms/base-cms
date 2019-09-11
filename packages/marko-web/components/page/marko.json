@@ -61,5 +61,9 @@
   "<marko-web-page-content-metadata>": {
     "template": "./metadata/content.marko",
     "@id": "number"
+  },
+  "<marko-web-page-metadata-website-section>": {
+    "template": "./metadata/website-section.marko",
+    "@alias": "string"
   }
 }
