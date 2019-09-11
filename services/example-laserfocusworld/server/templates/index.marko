@@ -2,29 +2,36 @@ import hierarchyAliases from "@base-cms/marko-web-gam/utils/hierarchy-aliases";
 import queryFragment from "../api/fragments/content-list";
 import GAM from "../../config/gam";
 
-$ const { section } = data;
+$ const { id, alias, name, pageNode } = data;
 
-$ const aliases = hierarchyAliases(section);
-$ const adSlots = {
-  "gpt-ad-lb1":   GAM.getAdUnit({ name: "lb1", aliases }),
-  "gpt-ad-rail1": GAM.getAdUnit({ name: "rail1", aliases, size: [300, 250] }),
-  "gpt-ad-rail2": GAM.getAdUnit({ name: "rail2", aliases, size: [300, 600] }),
-}
-
-<marko-web-layout-website-section section=section>
+<marko-web-layout-website-section id=id alias=alias name=name>
   <@head>
-    <marko-web-gam-slots slots=adSlots />
+    <marko-web-gtm-context-website-section|{ context }| alias=alias>
+      <marko-web-gtm-push data=context />
+    </marko-web-gtm-context-website-section>
+    <marko-web-resolve-page|{ data: section }| node=pageNode>
+      $ const aliases = hierarchyAliases(section);
+      $ const adSlots = {
+          "gpt-ad-lb1":   GAM.getAdUnit({ name: "lb1", aliases }),
+          "gpt-ad-rail1": GAM.getAdUnit({ name: "rail1", aliases, size: [300, 250] }),
+          "gpt-ad-rail2": GAM.getAdUnit({ name: "rail2", aliases, size: [300, 600] }),
+        }
+       <marko-web-gam-slots slots=adSlots />
+    </marko-web-resolve-page>
   </@head>
   <@above-container>
-    <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "wa", aliases }) />
-    <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "reskin", aliases }) />
+    <marko-web-resolve-page|{ data: section }| node=pageNode>
+      $ const aliases = hierarchyAliases(section);
+      <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "wa", aliases }) />
+      <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "reskin", aliases }) />
+    </marko-web-resolve-page>
   </@above-container>
   <@page>
     <marko-web-gam-display-ad id="gpt-ad-lb1" modifiers=["top-of-page"] />
 
     <marko-web-query|{ nodes }|
       name="website-optioned-content"
-      params={ sectionId: section.id, optionId: 9, limit: 5, queryFragment }
+      params={ sectionId: id, optionId: 9, limit: 5, queryFragment }
     >
       <website-content-hero-block nodes=nodes />
     </marko-web-query>
@@ -205,18 +212,24 @@ $ const adSlots = {
     </div>
   </@page>
   <@below-page>
-    <marko-web-load-more
-      component-name="content-load-more-block"
-      component-input={ aliases }
-      fragment-name="content-list"
-      query-name="website-scheduled-content"
-      query-params={ sectionId: section.id, limit: 14, skip: 5 }
-      max-pages=0
-      page-input={ for: "website-section", id: section.id }
-      trigger-input={ buttonClass: "btn btn-lg btn-primary" }
-    />
+    <marko-web-resolve-page|{ data: section }| node=pageNode>
+      $ const aliases = hierarchyAliases(section);
+      <marko-web-load-more
+        component-name="content-load-more-block"
+        component-input={ aliases }
+        fragment-name="content-list"
+        query-name="website-scheduled-content"
+        query-params={ sectionId: id, limit: 14, skip: 5 }
+        max-pages=0
+        page-input={ for: "website-section", id }
+        trigger-input={ buttonClass: "btn btn-lg btn-primary" }
+      />
+    </marko-web-resolve-page>
   </@below-page>
   <@foot>
-    <marko-web-gam-fixed-ad-bottom ...GAM.getAdUnit({ name: "lb2", aliases }) refresh-interval=0 />
+    <marko-web-resolve-page|{ data: section }| node=pageNode>
+      $ const aliases = hierarchyAliases(section);
+      <marko-web-gam-fixed-ad-bottom ...GAM.getAdUnit({ name: "lb2", aliases }) refresh-interval=0 />
+    </marko-web-resolve-page>
   </@foot>
 </marko-web-layout-website-section>
