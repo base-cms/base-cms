@@ -1,27 +1,59 @@
-<!-- @todo This data should be generated via GraphQL for each object type. -->
+import gql from "graphql-tag";
+import { get } from "@base-cms/object-path";
 
-$ const {
-  publishedDate,
-  updatedDate,
-  expiresDate,
-} = input;
+<!-- @todo This data should generated and saved to the content object as flat data, so no relationships are required. -->
 
-<common ...input />
-<if(input.type === "video")>
-  <meta property="og:type" content="video.other" />
-  <if(publishedDate)>
-    <meta property="video:release_date" content=publishedDate />
-  </if>
+$ const { id } = input;
+$ const queryFragment = gql`
+fragment ContentPageMetadataFragment on Content {
+  id
+  type
+  canonicalPath
+  metadata {
+    title
+    description
+    publishedDate
+    updatedDate
+    expiresDate
+    image {
+      id
+      src(input: { options: { auto: "format", w: "1200", fit: "max" } })
+    }
+  }
+}
+`;
+
+<if(id)>
+  <marko-web-query|{ node }| name="content" params={ id, queryFragment }>
+    $ const metadata = {
+      type: node.type,
+      title: get(node, "metadata.title"),
+      description: get(node, "metadata.description"),
+      canonicalPath: node.canonicalPath,
+      imageSrc: get(node, "metadata.image.src"),
+    };
+    $ const publishedDate = get(node, "metadata.publishedDate");
+    $ const updatedDate = get(node, "metadata.updatedDate");
+    $ const expiresDate = get(node, "metadata.expiresDate");
+
+    <common ...metadata />
+    <if(node.type === "video")>
+      <meta property="og:type" content="video.other" />
+      <if(publishedDate)>
+        <meta property="video:release_date" content=publishedDate />
+      </if>
+    </if>
+    <else>
+      <meta property="og:type" content="article" />
+      <if(publishedDate)>
+        <meta property="article:published_time" content=publishedDate />
+      </if>
+      <if(updatedDate)>
+        <meta property="article:modified_time" content=updatedDate />
+      </if>
+      <if(expiresDate)>
+        <meta property="article:expiration_time" content=expiresDate />
+      </if>
+    </else>
+  </marko-web-query>
 </if>
-<else>
-  <meta property="og:type" content="article" />
-  <if(publishedDate)>
-    <meta property="article:published_time" content=publishedDate />
-  </if>
-  <if(updatedDate)>
-    <meta property="article:modified_time" content=updatedDate />
-  </if>
-  <if(expiresDate)>
-    <meta property="article:expiration_time" content=expiresDate />
-  </if>
-</else>

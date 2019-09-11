@@ -60,13 +60,6 @@
   },
   "<marko-web-page-content-metadata>": {
     "template": "./metadata/content.marko",
-    "@type": "string",
-    "@title": "string",
-    "@description": "string",
-    "@canonical-path": "string",
-    "@image-src": "string",
-    "@published-date": "date",
-    "@updated-date": "date",
-    "@expires-date": "date"
+    "@id": "number"
   }
 }

@@ -23,7 +23,8 @@
     "<page>": {},
     "<above-page>": {},
     "<below-page>": {},
-    "@content": "object"
+    "@id": "number",
+    "@type": "string"
   },
   "<marko-web-layout-dynamic-page>": {
     "template": "./dynamic-page.marko",

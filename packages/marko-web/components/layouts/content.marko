@@ -1,6 +1,4 @@
-import { get, getAsObject } from "@base-cms/object-path";
-
-$ const content = getAsObject(input, "content");
+$ const { id, type } = input;
 $ const { document } = out.global;
 
 <${document}
@@ -9,21 +7,12 @@ $ const { document } = out.global;
   foot=input.foot
 >
   <@head>
-    <marko-web-page-content-metadata
-      type=content.type
-      title=get(content, "metadata.title")
-      description=get(content, "metadata.description")
-      canonical-path=content.canonicalPath
-      image-src=get(content, "metadata.image.src")
-      published-date=get(content, "metadata.publishedDate")
-      updated-date=get(content, "metadata.updatedDate")
-      expires-date=get(content, "metadata.expiresDate")
-    />
+    <marko-web-page-content-metadata id=id />
     <${input.head} />
   </@head>
   <!-- Note: camelcased vars due to nest input of dynamic document. perhaps a marko bug -->
   <@container abovePage=input.abovePage belowPage=input.belowPage>
-    <@page for="content" tag="article" id=content.id type=content.type>
+    <@page for="content" tag="article" id=id type=type>
       <${input.page} />
     </@page>
   </@container>
