@@ -4,5 +4,11 @@
     "@id": "number",
     "@builder": "function",
     "@query-fragment": "expression"
+  },
+  "<marko-web-gtm-context-website-section>": {
+    "template": "./website-section.marko",
+    "@alias": "string",
+    "@builder": "function",
+    "@query-fragment": "expression"
   }
 }

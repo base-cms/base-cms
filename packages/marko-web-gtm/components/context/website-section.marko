@@ -1,0 +1,32 @@
+import gql from "graphql-tag";
+import { isFunction, warn } from "@base-cms/utils";
+import { websiteSectionBuilder } from "../../context";
+
+$ const { req } = out.global;
+$ const { alias } = input;
+$ const builder = isFunction(input.builder) ? input.builder : websiteSectionBuilder;
+
+$ const queryFragment = input.queryFragment || gql`
+fragment WebsiteSectionContextFragment on WebsiteSection {
+  id
+  alias
+  name
+  fullName
+  canonicalPath
+  hierarchy {
+    id
+    name
+    alias
+  }
+}
+`;
+
+<if(alias)>
+  <marko-web-query|{ node }| name="website-section" params={ alias, queryFragment }>
+    $ const context = builder({ type: "website-section", obj: node, req });
+    <${input.renderBody} context=context />
+  </marko-web-query>
+</if>
+<else>
+  $ warn('Unable to create GTM website section context: no section alias was provided.');
+</else>
