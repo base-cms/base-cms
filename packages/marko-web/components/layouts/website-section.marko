@@ -1,6 +1,6 @@
 import { get, getAsObject } from "@base-cms/object-path";
 
-$ const section = getAsObject(input, "section");
+$ const { id, alias, name } = input;
 $ const { document } = out.global;
 $ const withRss = input.withRss != null ? input.withRss : true;
 
@@ -10,19 +10,15 @@ $ const withRss = input.withRss != null ? input.withRss : true;
   foot=input.foot
 >
   <@head>
-    <marko-web-page-metadata
-      title=get(section, "metadata.title")
-      description=get(section, "metadata.description")
-      canonical-path=section.canonicalPath
-    />
+    <marko-web-page-metadata-website-section alias=alias />
     <if(withRss)>
-      <marko-web-rss-website-section alias=section.alias name=section.name />
+      <marko-web-rss-website-section alias=alias name=name />
     </if>
     <${input.head} />
   </@head>
   <!-- Note: camelcased vars due to nest input of dynamic document. perhaps a marko bug -->
   <@container abovePage=input.abovePage belowPage=input.belowPage>
-    <@page for="website-section" id=section.id>
+    <@page for="website-section" id=id>
       <${input.page} />
     </@page>
   </@container>

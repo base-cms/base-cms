@@ -8,7 +8,9 @@
     "<page>": {},
     "<above-page>": {},
     "<below-page>": {},
-    "@section": "object",
+    "@id": "object",
+    "@alias": "string",
+    "@name": "string",
     "@with-rss": {
       "type": "boolean",
       "default-value": true
