@@ -56,5 +56,13 @@
     "@modifiers": "array",
     "@class": "string",
     "@attrs": "object"
+  },
+  "<marko-web-resolve>": {
+    "template": "./resolve.marko",
+    "@promise": "object"
+  },
+  "<marko-web-resolve-page>": {
+    "template": "./resolve-page.marko",
+    "@node": "object"
   }
 }

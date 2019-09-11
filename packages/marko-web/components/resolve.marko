@@ -1,0 +1,23 @@
+import isDev from "../utils/is-dev";
+
+$ const isDevelopment = process.env.NODE_ENV === 'development';
+$ const { onAsyncBlockError } = out.global;
+
+<await(input.promise)>
+  <@then|resolved|>
+    <${input.renderBody} resolved=resolved />
+  </@then>
+  <@catch|err|>
+    $ if (typeof onAsyncBlockError === 'function') onAsyncBlockError(err);
+    <if(input.onError)>
+      <${input.onError} err=err />
+    </if>
+    <else>
+      <pre>An unexpected error occurred: ${err.message}</pre>
+      <if(isDev)>
+        <pre>${err.stack}</pre>
+        $ console.error(err);
+      </if>
+    </else>
+  </@catch>
+</await>
