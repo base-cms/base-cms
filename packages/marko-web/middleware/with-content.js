@@ -1,5 +1,7 @@
 const { asyncRoute, isFunction: isFn } = require('@base-cms/utils');
 const { content: loader } = require('@base-cms/web-common/page-loaders');
+const { withContent: queryFactory } = require('@base-cms/web-common/query-factories');
+const PageNode = require('./page-node');
 
 module.exports = ({
   template,
@@ -12,8 +14,7 @@ module.exports = ({
 
   const additionalInput = {};
   if (req.cookies['preview-mode']) additionalInput.status = 'any';
-
-  const content = await loader(apollo, { id, queryFragment, additionalInput });
+  const content = await loader(apollo, { id, additionalInput });
   const { redirectTo, canonicalPath } = content;
   if (redirectTo) {
     return res.redirect(301, redirectTo);
@@ -21,5 +22,11 @@ module.exports = ({
   if (redirectOnPathMismatch && canonicalPath !== req.path) {
     return res.redirect(301, canonicalPath);
   }
-  return res.marko(template, { content });
+  const pageNode = new PageNode(apollo, {
+    queryFactory,
+    queryFragment,
+    variables: { input: { id: Number(id), ...additionalInput } },
+    resultField: 'content',
+  });
+  return res.marko(template, { ...content, pageNode });
 });
