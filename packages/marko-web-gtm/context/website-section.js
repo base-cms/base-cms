@@ -1,16 +1,20 @@
-const { getAsObject } = require('@base-cms/object-path');
+const { getAsArray } = require('@base-cms/object-path');
 const { asObject } = require('@base-cms/utils');
 
 module.exports = ({ obj }) => {
   const section = asObject(obj);
-  const channel = getAsObject(section, 'hierarchy.0');
+  const hierarchy = getAsArray(section, 'hierarchy').map(s => ({
+    id: s.id,
+    name: s.name,
+  }));
   return {
     page_type: 'website-section',
     canonical_path: section.canonicalPath,
-    section_id: section.id,
-    section_name: section.name,
-    section_path: section.fullName,
-    root_section_id: channel.id,
-    root_section_name: channel.name,
+    section: {
+      id: section.id,
+      name: section.name,
+      fullName: section.fullName,
+    },
+    section_hierarchy: hierarchy,
   };
 };

@@ -5,5 +5,9 @@ module.exports = ({ obj }) => {
   return {
     page_type: 'dynamic-page',
     canonical_path: page.canonicalPath,
+    page: {
+      id: page.id,
+      name: page.name,
+    },
   };
 };
