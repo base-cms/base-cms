@@ -1,5 +1,6 @@
 import gql from "graphql-tag";
 import { get } from "@base-cms/object-path";
+import { warn } from "@base-cms/utils";
 
 <!-- @todo This data should generated and saved to the content object as flat data, so no relationships are required. -->
 
@@ -55,5 +56,12 @@ fragment ContentPageMetadataFragment on Content {
         <meta property="article:expiration_time" content=expiresDate />
       </if>
     </else>
+
+    <@when-empty>
+      $ warn(`Unable to create content metadata: no content found for ${id}.`);
+    </@when-empty>
   </marko-web-query>
 </if>
+<else>
+  $ warn('Unable to create content metadata: no content id was provided.');
+</else>

@@ -1,5 +1,6 @@
 import gql from "graphql-tag";
 import { get } from "@base-cms/object-path";
+import { warn } from "@base-cms/utils";
 
 <!-- @todo This data should generated and saved to the section object as flat data, so no relationships are required. -->
 
@@ -24,5 +25,11 @@ fragment WebsiteSectionPageMetadataFragment on WebsiteSection {
     };
     <common ...metadata />
     <meta property="og:type" content="website" />
+    <@when-empty>
+      $ warn(`Unable to create website section metadata: no section found for ${alias}.`);
+    </@when-empty>
   </marko-web-query>
 </if>
+<else>
+  $ warn('Unable to create website section metadata: no section alias was provided.');
+</else>
