@@ -1,3 +1,4 @@
+const content = require('./content');
 const relatedPublishedContent = require('./related-published-content');
 const websiteScheduledContent = require('./website-scheduled-content');
 const magazinePublications = require('./magazine-publications');
@@ -10,6 +11,7 @@ const allCompanyContent = require('./all-company-content');
 const websiteOptionedContent = require('./website-optioned-content');
 
 module.exports = {
+  content,
   relatedPublishedContent,
   websiteScheduledContent,
   magazinePublications,
