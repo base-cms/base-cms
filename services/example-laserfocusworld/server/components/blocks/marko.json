@@ -14,6 +14,10 @@
     "@with-teaser": {
       "type": "boolean",
       "default-value": false
+    },
+    "@inner-justified": {
+      "type": "boolean",
+      "default-value": true
     }
   },
   "<website-content-load-more-block>": {
