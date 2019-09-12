@@ -1,0 +1,38 @@
+import defaultDescription from "@base-cms/marko-web/utils/published-content/description";
+import GAM from "../../../config/gam";
+
+$ const { config } = out.global;
+
+$ const title = "Events";
+$ const description = defaultDescription(title, config);
+
+<marko-web-layout-published-content title=title description=description>
+  <@head>
+    <marko-web-gtm-context-default|{ context }| type="published-content">
+      <marko-web-gtm-push data=context />
+    </marko-web-gtm-context-default>
+  </@head>
+  <@above-container>
+    <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "wa" }) />
+    <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "reskin" }) />
+  </@above-container>
+  <@page>
+    <marko-web-gam-define-display-ad ...GAM.getAdUnit({ name: "lb1" }) modifiers=["top-of-page"] />
+    <marko-web-page-wrapper>
+      <@section>
+        <div class="row">
+          <div class="col">
+            <default-theme-breadcrumbs-with-home>
+              <@item>${title}</@item>
+            </default-theme-breadcrumbs-with-home>
+            <h1 class="page-wrapper__title">${title}</h1>
+            <div class="page-wrapper__deck">${description}</div>
+          </div>
+        </div>
+      </@section>
+    </marko-web-page-wrapper>
+  </@page>
+  <@foot>
+    <marko-web-gam-fixed-ad-bottom ...GAM.getAdUnit({ name: "lb2" }) refresh-interval=0 />
+  </@foot>
+</marko-web-layout-published-content>
