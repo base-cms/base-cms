@@ -1,4 +1,10 @@
 {
+  "<marko-web-gtm-context-default>": {
+    "template": "./default.marko",
+    "@type": "string",
+    "@obj": "object",
+    "@builder": "function"
+  },
   "<marko-web-gtm-context-content>": {
     "template": "./content.marko",
     "@id": "number",
