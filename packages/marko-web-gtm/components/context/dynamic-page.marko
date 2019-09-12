@@ -1,0 +1,26 @@
+import gql from "graphql-tag";
+import { isFunction, warn } from "@base-cms/utils";
+import { dynamicPageBuilder } from "../../context";
+
+$ const { req } = out.global;
+$ const { alias } = input;
+$ const builder = isFunction(input.builder) ? input.builder : dynamicPageBuilder;
+
+$ const queryFragment = input.queryFragment || gql`
+fragment DynamicPageContextFragment on ContentPage {
+  id
+  name
+  alias
+  canonicalPath
+}
+`;
+
+<if(alias)>
+  <marko-web-query|{ node }| name="dynamic-page" params={ alias, queryFragment }>
+    $ const context = builder({ type: "dynamic-page", obj: node, req });
+    <${input.renderBody} context=context />
+  </marko-web-query>
+</if>
+<else>
+  $ warn('Unable to create GTM dynamic page context: no page alias was provided.');
+</else>

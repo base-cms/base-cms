@@ -10,5 +10,11 @@
     "@alias": "string",
     "@builder": "function",
     "@query-fragment": "expression"
+  },
+  "<marko-web-gtm-context-dynamic-page>": {
+    "template": "./dynamic-page.marko",
+    "@alias": "string",
+    "@builder": "function",
+    "@query-fragment": "expression"
   }
 }

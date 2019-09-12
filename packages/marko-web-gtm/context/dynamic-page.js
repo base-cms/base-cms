@@ -8,6 +8,7 @@ module.exports = ({ obj }) => {
     page: {
       id: page.id,
       name: page.name,
+      alias: page.alias,
     },
   };
 };
