@@ -4,7 +4,7 @@ module.exports = gql`
 
 fragment BlockDynamicPageFragment on ContentPage {
   id
-  type
+  alias
 }
 
 `;

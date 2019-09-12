@@ -4,6 +4,7 @@ module.exports = gql`
 
 fragment WithDynamicPageFragment on ContentPage {
   id
+  alias
   redirectTo
   canonicalPath
 }
