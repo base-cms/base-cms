@@ -3,9 +3,11 @@ import { getAsObject } from "@base-cms/object-path";
 $ const content = getAsObject(input, "node");
 $ const primaryImage = getAsObject(content, "primaryImage");
 $ const primarySection = getAsObject(content, "primarySection");
+$ const displayImage = input.displayImage != null ? input.displayImage : true;
+$ const withTeaser = input.withTeaser != null ? input.withTeaser : false;
 
 <marko-web-node flush=true image-position="right">
-  <if(input.displayImage)>
+  <if(displayImage)>
     <@image
       src=primaryImage.src
       alt=primaryImage.alt
@@ -26,7 +28,7 @@ $ const primarySection = getAsObject(content, "primarySection");
     <@title tag="h5">
       <marko-web-content-short-name tag=null obj=content link=true />
     </@title>
-    <@text modifiers=["teaser"] show=(input.withTeaser && content.teaser)>
+    <@text modifiers=["teaser"] show=(withTeaser && content.teaser)>
       <marko-web-content-teaser tag=null obj=content link=true />
     </@text>
     <@footer>
