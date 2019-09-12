@@ -1,24 +1,19 @@
-import { getAsObject, get } from "@base-cms/object-path";
-
-$ const page = getAsObject(input, "page");
+$ const { id, alias } = input;
 $ const { document } = out.global;
 
 <${document}
   above-container=input.aboveContainer
   below-container=input.belowContainer
   foot=input.foot
+  head=input.head
 >
   <@head>
-    <marko-web-page-metadata
-      title=get(page, "metadata.title")
-      description=get(page, "metadata.description")
-      canonical-path=page.canonicalPath
-    />
+    <marko-web-page-metadata-dynamic-page alias=alias />
     <${input.head} />
   </@head>
   <!-- Note: camelcased vars due to nest input of dynamic document. perhaps a marko bug -->
   <@container abovePage=input.abovePage belowPage=input.belowPage>
-    <@page for="dynamic-page" id=page.id>
+    <@page for="dynamic-page" id=id>
       <${input.page} />
     </@page>
   </@container>

@@ -37,6 +37,7 @@
     "<page>": {},
     "<above-page>": {},
     "<below-page>": {},
-    "@page": "object"
+    "@id": "string",
+    "@alias": "string"
   }
 }
