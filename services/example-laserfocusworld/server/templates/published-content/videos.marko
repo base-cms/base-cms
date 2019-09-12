@@ -7,11 +7,11 @@ $ const title = "Videos";
 $ const description = defaultDescription(title, config);
 
 <marko-web-layout-published-content title=title description=description>
-  <!-- <@head>
-    <marko-web-gtm-context-dynamic-page|{ context }| alias=alias>
+  <@head>
+    <marko-web-gtm-context-default|{ context }| type="published-content">
       <marko-web-gtm-push data=context />
-    </marko-web-gtm-context-dynamic-page>
-  </@head> -->
+    </marko-web-gtm-context-default>
+  </@head>
   <@above-container>
     <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "wa" }) />
     <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "reskin" }) />
