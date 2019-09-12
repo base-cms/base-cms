@@ -9,10 +9,9 @@
     "services/*"
   ],
   "scripts": {
-    "build": "scripts/lerna.sh run build",
-    "test": "scripts/lerna.sh run test",
-    "patch": "scripts/lerna.sh version",
-    "lint": "scripts/lint.sh"
+    "build": "lerna run build",
+    "test": "lerna run test",
+    "lint": "lerna run lint"
   },
   "devDependencies": {
     "@2fd/graphdoc": "^2.4.0",
