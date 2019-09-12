@@ -13,10 +13,5 @@
     "@section": "object",
     "@home-title": "string",
     "@home-alias": "string"
-  },
-  "<default-theme-dynamic-page-breadcrumbs>": {
-    "template": "./dynamic-page.marko",
-    "@name": "string",
-    "@home-title": "string"
   }
 }
