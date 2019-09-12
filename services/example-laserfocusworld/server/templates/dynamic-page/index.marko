@@ -19,7 +19,9 @@ $ const { id, alias, pageNode } = data;
         <@section>
           <div class="row">
             <div class="col">
-              <default-theme-dynamic-page-breadcrumbs name=page.name />
+              <default-theme-breadcrumbs-with-home>
+                <@item>${page.name}</@item>
+              </default-theme-breadcrumbs-with-home>
               <div class="page-wrapper__title">
                 ${page.name}
               </div>
