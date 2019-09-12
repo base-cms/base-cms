@@ -2,6 +2,10 @@
   @extend .btn;
   @extend .btn-lg;
   @extend .btn-primary;
+  font-family: $theme-load-more-button-font-family;
+  color: $theme-load-more-button-color;
+  background-color: $theme-load-more-button-background-color;
+  border-color: $theme-load-more-button-border-color;
 }
 
 .load-more-header {
