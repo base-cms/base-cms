@@ -89,33 +89,6 @@ services:
     ports:
       - "10002:80"
 
-  marko-example-website:
-    << : *node
-    working_dir: /base-cms/services/marko-example-website
-    command: ["/base-cms/node_modules/.bin/basecms-website", "dev", "index.js"]
-    environment:
-      <<: *env
-      <<: *env-mongo
-      <<: *env-newrelic
-      PORT: 80
-      EXPOSED_PORT: 10007
-      LIVERELOAD_PORT: 10008
-      GRAPHQL_URI: ${GRAPHQL_URI-http://graphql-server}
-      SITEMAPS_URI: ${SITEMAPS_URI-http://sitemaps}
-      RSS_URI: ${RSS_URI-http://rss}
-      OEMBED_URI: ${OEMBED_URI-http://oembed}
-      TENANT_KEY: ${TENANT_KEY-cygnus_ofcr}
-      CDN_IMAGE_HOSTNAME: ${CDN_IMAGE_HOSTNAME-base.imgix.net}
-      CDN_ASSET_HOSTNAME: ${CDN_ASSET_HOSTNAME-cdn.baseplatform.io}
-    depends_on:
-      - graphql-server
-      - sitemaps
-      - rss
-      - oembed
-    ports:
-      - "10007:80"
-      - "10008:10008" # livereload port
-
   graphql-server-lfw:
     << : *node
     working_dir: /base-cms/services/graphql-server

@@ -1,8 +1,0 @@
-$ const { site } = out.global;
-$ const path = `ad.units.${input.alias}`;
-$ const adunit = site.getAsObject(path);
-$ const display = input.alias && adunit.path && adunit.size;
-
-<if(display)>
-  <marko-web-gam-define-display-ad ad-unit-path=adunit.path size=adunit.size size-mapping=adunit.sizeMapping class=input.class />
-</if>
