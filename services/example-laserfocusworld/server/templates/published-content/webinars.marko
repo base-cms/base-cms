@@ -4,12 +4,13 @@ import queryFragment from "../../api/fragments/content-list";
 
 $ const { config } = out.global;
 
+$ const type = "published-content";
 $ const title = "Webcasts";
 $ const description = defaultDescription(title, config);
 
-<marko-web-layout-published-content title=title description=description>
+<marko-web-layout-default type=type title=title description=description>
   <@head>
-    <marko-web-gtm-context-default|{ context }| type="published-content">
+    <marko-web-gtm-context-default|{ context }| type=type>
       <marko-web-gtm-push data=context />
     </marko-web-gtm-context-default>
   </@head>
@@ -52,4 +53,4 @@ $ const description = defaultDescription(title, config);
   <@foot>
     <marko-web-gam-fixed-ad-bottom ...GAM.getAdUnit({ name: "lb2" }) refresh-interval=0 />
   </@foot>
-</marko-web-layout-published-content>
+</marko-web-layout-default>
