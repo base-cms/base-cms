@@ -29,4 +29,8 @@
     );
     color: $theme-page-deck-color;
   }
+
+  .col > :last-child {
+    margin-bottom: 0;
+  }
 }
