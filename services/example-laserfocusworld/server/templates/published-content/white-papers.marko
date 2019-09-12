@@ -1,5 +1,6 @@
 import defaultDescription from "@base-cms/marko-web/utils/published-content/description";
 import GAM from "../../../config/gam";
+import queryFragment from "../../api/fragments/content-list";
 
 $ const { config } = out.global;
 
@@ -18,7 +19,7 @@ $ const description = defaultDescription(title, config);
   </@above-container>
   <@page>
     <marko-web-gam-define-display-ad ...GAM.getAdUnit({ name: "lb1" }) modifiers=["top-of-page"] />
-    <marko-web-page-wrapper>
+    <marko-web-page-wrapper class="mb-block">
       <@section>
         <div class="row">
           <div class="col">
@@ -31,7 +32,24 @@ $ const description = defaultDescription(title, config);
         </div>
       </@section>
     </marko-web-page-wrapper>
+
+    <marko-web-query|{ nodes }|
+      name="all-published-content"
+      params={ contentTypes: ["Whitepaper"], limit: 18, queryFragment }
+    >
+      <website-content-list-block nodes=nodes />
+    </marko-web-query>
   </@page>
+  <@below-page>
+    <marko-web-load-more
+      component-name="content-list-block"
+      fragment-name="content-list"
+      query-name="all-published-content"
+      query-params={ contentTypes: ["Whitepaper"], limit: 18, skip: 18 }
+      page-input={ for: "published-content" }
+      trigger-input={ buttonClass: "btn btn-lg btn-primary" }
+    />
+  </@below-page>
   <@foot>
     <marko-web-gam-fixed-ad-bottom ...GAM.getAdUnit({ name: "lb2" }) refresh-interval=0 />
   </@foot>
