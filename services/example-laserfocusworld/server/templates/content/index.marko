@@ -83,6 +83,23 @@ $ const displayPublishedDate = ["event", "webinar", "contact", "whitepapter"].in
       </marko-web-page-wrapper>
     </marko-web-resolve-page>
   </@page>
+  <@below-page>
+    <marko-web-resolve-page|{ resolved }| node=pageNode>
+      $ const section = resolved.getAsObject("primarySection");
+      $ const aliases = hierarchyAliases(section);
+      <if(section.id)>
+        <marko-web-load-more
+          header=`More in ${section.name}`
+          component-name="content-load-more-block"
+          component-input={ aliases }
+          fragment-name="content-list"
+          query-name="website-scheduled-content"
+          query-params={ sectionId: section.id, limit: 14 }
+          page-input={ for: "content", id, type }
+        />
+      </if>
+    </marko-web-resolve-page>
+  </@below-page>
   <@foot>
     <marko-web-resolve-page|{ data: content }| node=pageNode>
       $ const aliases = hierarchyAliases(content.primarySection);
