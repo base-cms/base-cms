@@ -171,7 +171,7 @@ services:
     volumes:
       - ./services/haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
     depends_on:
-      - marko-example-website
+      - example-laserfocusworld
       - graphql-server
 
   sitemaps:
