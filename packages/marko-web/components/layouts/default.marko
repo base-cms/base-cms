@@ -1,3 +1,4 @@
+$ const type = input.type || "default";
 $ const { title, description } = input;
 $ const { document } = out.global;
 
@@ -7,12 +8,12 @@ $ const { document } = out.global;
   foot=input.foot
 >
   <@head>
-    <marko-web-page-metadata-published-content title=title description=description />
+    <marko-web-page-metadata title=title description=description />
     <${input.head} />
   </@head>
   <!-- Note: camelcased vars due to nest input of dynamic document. perhaps a marko bug -->
   <@container abovePage=input.abovePage belowPage=input.belowPage>
-    <@page for="published-content">
+    <@page for=type>
       <${input.page} />
     </@page>
   </@container>
