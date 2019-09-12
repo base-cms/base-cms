@@ -1,5 +1,6 @@
 import hierarchyAliases from "@base-cms/marko-web-gam/utils/hierarchy-aliases";
 import { getAsObject } from "@base-cms/object-path";
+import queryFragment from "../../api/fragments/content-list";
 import GAM from "../../../config/gam";
 
 $ const { id, type, pageNode } = data;
@@ -35,7 +36,8 @@ $ const displayPublishedDate = ["event", "webinar", "contact", "whitepapter"].in
     <marko-web-gam-display-ad id="gpt-ad-lb1" modifiers=["top-of-page"] />
     <!-- @todo Deal with media galleries, whitepapers, contacts, and companies -->
     <!-- @todo Add play button overlay on videos -->
-    <marko-web-resolve-page|{ data: content }| node=pageNode>
+    <marko-web-resolve-page|{ data: content, resolved }| node=pageNode>
+      $ const section = resolved.getAsObject("primarySection");
       <marko-web-page-wrapper>
         <@section>
           <div class="row">
@@ -77,6 +79,24 @@ $ const displayPublishedDate = ["event", "webinar", "contact", "whitepapter"].in
             <aside class="col-lg-4 page-rail">
               <marko-web-gam-display-ad id="gpt-ad-rail1" />
               <marko-web-gam-display-ad id="gpt-ad-rail2" />
+              <marko-web-query|{ nodes }|
+                name="related-published-content"
+                params={ contentId: id, limit: 10, queryFragment }
+              >
+                <website-content-list-block nodes=nodes inner-justified=false>
+                  <@header>Related</@header>
+                </website-content-list-block>
+              </marko-web-query>
+              <if(!['contact', 'company'].includes(type))>
+                <marko-web-query|{ nodes }|
+                  name="website-scheduled-content"
+                  params={ sectionId: section.id, excludeContentIds: [id], limit: 5, queryFragment }
+                >
+                  <website-content-list-block nodes=nodes inner-justified=false>
+                    <@header>Latest in ${section.name}</@header>
+                  </website-content-list-block>
+                </marko-web-query>
+              </if>
             </aside>
           </div>
         </@section>
@@ -116,7 +136,7 @@ $ const displayPublishedDate = ["event", "webinar", "contact", "whitepapter"].in
           component-input={ aliases }
           fragment-name="content-list"
           query-name="website-scheduled-content"
-          query-params={ sectionId: section.id, limit: 14 }
+          query-params={ sectionId: section.id, excludeContentIds: [id], limit: 14, skip: 5 }
           page-input={ for: "content", id, type }
         />
       </else-if>
