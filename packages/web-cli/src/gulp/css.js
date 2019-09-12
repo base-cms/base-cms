@@ -16,7 +16,7 @@ module.exports = cwd => (cb) => {
     sass(),
     postcss([
       autoprefixer({
-        browsers: [
+        overrideBrowserslist: [
           '>= 1%',
           'not dead',
           'last 1 major version',

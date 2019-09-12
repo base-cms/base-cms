@@ -6,11 +6,6 @@
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/env",
   "author": "Jacob Bare <jacob@limit0.io>",
   "license": "MIT",
-  "devDependencies": {
-    "eslint": "^5.16.0",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.17.2"
-  },
   "dependencies": {
     "envalid": "^5.0.0",
     "validator": "^11.0.0"

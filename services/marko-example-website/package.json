@@ -24,10 +24,5 @@
     "graphql-tag": "^2.10.1",
     "jquery": "^3.4.1",
     "vue": "^2.6.10"
-  },
-  "devDependencies": {
-    "eslint": "^5.14.1",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.16.0"
   }
 }
