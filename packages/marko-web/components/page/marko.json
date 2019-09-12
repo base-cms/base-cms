@@ -65,5 +65,9 @@
   "<marko-web-page-metadata-website-section>": {
     "template": "./metadata/website-section.marko",
     "@alias": "string"
+  },
+  "<marko-web-page-metadata-dynamic-page>": {
+    "template": "./metadata/dynamic-page.marko",
+    "@alias": "string"
   }
 }
