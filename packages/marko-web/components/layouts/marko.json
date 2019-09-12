@@ -39,5 +39,17 @@
     "<below-page>": {},
     "@id": "string",
     "@alias": "string"
+  },
+  "<marko-web-layout-published-content>": {
+    "template": "./published-content.marko",
+    "<head>": {},
+    "<foot>": {},
+    "<above-container>": {},
+    "<below-container>": {},
+    "<page>": {},
+    "<above-page>": {},
+    "<below-page>": {},
+    "@title": "string",
+    "@description": "string"
   }
 }
