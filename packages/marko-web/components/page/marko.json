@@ -69,5 +69,10 @@
   "<marko-web-page-metadata-dynamic-page>": {
     "template": "./metadata/dynamic-page.marko",
     "@alias": "string"
+  },
+  "<marko-web-page-metadata-published-content>": {
+    "template": "./metadata/published-content.marko",
+    "@title": "string",
+    "@description": "string"
   }
 }
