@@ -9,10 +9,11 @@
   "scripts": {
     "dev": "basecms-website dev index.js",
     "build": "basecms-website build",
+    "compile": "basecms-marko-compile compile --dir ./ --silent true",
     "lint": "yarn lint:js && yarn lint:css",
     "lint:js": "eslint --ext .js --ext .vue --max-warnings 5 ./",
     "lint:css": "stylelint ./**/*.scss --max-warnings 5",
-    "test": "yarn lint && yarn build"
+    "test": "yarn lint && yarn compile && yarn build"
   },
   "dependencies": {
     "@base-cms/marko-web": "^0.10.3",

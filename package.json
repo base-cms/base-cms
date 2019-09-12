@@ -11,10 +11,12 @@
   "scripts": {
     "build": "lerna run build",
     "test": "lerna run test",
-    "lint": "lerna run lint"
+    "lint": "lerna run lint",
+    "compile": "lerna run compile"
   },
   "devDependencies": {
     "@2fd/graphdoc": "^2.4.0",
+    "@base-cms/marko-compiler": "^0.10.0",
     "apollo-client": "^2.6.4",
     "chai": "^4.2.0",
     "eslint": "^5.16.0",

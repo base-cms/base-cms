@@ -34,9 +34,6 @@
     "moment": "^2.24.0",
     "vue": "^2.6.10"
   },
-  "devDependencies": {
-    "@base-cms/marko-compiler": "^0.10.0"
-  },
   "publishConfig": {
     "access": "public"
   }
