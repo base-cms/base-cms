@@ -72,7 +72,7 @@
     "@style": "string"
   },
   "<marko-web-gam-fixed-ad-bottom>": {
-    "template": "./fixed-ad-bottom",
+    "template": "./fixed-ad-bottom.marko",
     "@id": "string",
     "@path": "string",
     "@inc": "number",

@@ -1,6 +1,6 @@
 {
   "<marko-web-icon>": {
-    "template": "./icon",
+    "template": "./icon.marko",
     "@name": {
       "type": "string",
       "required": true
