@@ -53,7 +53,10 @@ module.exports = {
    */
   Media: {
     __resolveType: resolveType,
-    fileSrc: ({ fileName, filePath }, _, { assetHost }) => `https://${assetHost}/${cleanPath(filePath)}/${fileName}`,
+    fileSrc: ({ fileName, filePath }, _, { assetHost }) => {
+      if (!fileName || !filePath) return null;
+      return `https://${assetHost}/${cleanPath(filePath)}/${fileName}`;
+    },
   },
 
   /**
