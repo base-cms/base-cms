@@ -82,6 +82,7 @@ module.exports = {
         [{ endDate: 1, _id: 1 }, { sparse: true }],
         // Section query sort
         { 'sectionQuery.start': -1, _id: -1 },
+        { 'sectionQuery.end': -1, _id: -1 },
       ],
     },
     Product: {
