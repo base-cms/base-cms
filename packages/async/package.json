@@ -7,7 +7,7 @@
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/async",
   "license": "MIT",
   "dependencies": {
-    "async": "^2.6.1"
+    "async": "^2.6.3"
   },
   "publishConfig": {
     "access": "public"

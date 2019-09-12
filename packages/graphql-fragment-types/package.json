@@ -6,7 +6,7 @@
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/graphql-fragment-types",
   "license": "MIT",
   "dependencies": {
-    "isomorphic-unfetch": "^3.0.0"
+    "node-fetch": "^2.6.0"
   },
   "publishConfig": {
     "access": "public"

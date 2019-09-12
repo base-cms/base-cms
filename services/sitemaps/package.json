@@ -11,11 +11,11 @@
     "@base-cms/canonical-path": "^0.10.0",
     "@base-cms/db": "^0.10.0",
     "@base-cms/tooling": "^0.10.0",
-    "@godaddy/terminus": "^4.1.0",
+    "@godaddy/terminus": "^4.2.0",
     "@newrelic/native-metrics": "^4.1.0",
-    "express": "^4.16.4",
-    "helmet": "^3.15.0",
+    "express": "^4.17.1",
+    "helmet": "^3.21.0",
     "moment": "^2.24.0",
-    "newrelic": "^5.7.0"
+    "newrelic": "^5.11.0"
   }
 }

@@ -8,7 +8,7 @@
   "license": "MIT",
   "dependencies": {
     "html-entities": "^1.2.1",
-    "html2plaintext": "^2.1.0",
+    "html2plaintext": "^2.1.2",
     "striptags": "^3.1.1"
   },
   "publishConfig": {

@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-const fetch = require('isomorphic-unfetch');
+const fetch = require('node-fetch');
 const fs = require('fs');
 const path = require('path');
 
