@@ -7,7 +7,9 @@
   "license": "MIT",
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/marko-web",
   "scripts": {
-    "lint": "eslint --ext .js --ext .vue --max-warnings 5 ./",
+    "lint": "yarn lint:js && yarn lint:css",
+    "lint:js": "eslint --ext .js --ext .vue --max-warnings 5 ./",
+    "lint:css": "stylelint ./**/*.scss --max-warnings 5",
     "test": "yarn lint"
   },
   "dependencies": {
