@@ -14,8 +14,7 @@
     "build": "ember build",
     "lint:hbs": "ember-template-lint .",
     "lint:js": "eslint .",
-    "start": "ember serve",
-    "test": "ember test"
+    "start": "ember serve"
   },
   "devDependencies": {
     "@base-cms/graphql-fragment-types": "^0.10.0",
@@ -62,7 +61,7 @@
     "graphql": "^14.5.4",
     "loader.js": "^4.7.0",
     "moment": "^2.24.0",
-    "node-sass": "^4.11.0",
+    "node-sass": "^4.12.0",
     "numeral": "^2.0.6",
     "qunit-dom": "^0.8.0",
     "spinkit": "^1.2.5"
