@@ -84,10 +84,32 @@ $ const displayPublishedDate = ["event", "webinar", "contact", "whitepapter"].in
     </marko-web-resolve-page>
   </@page>
   <@below-page>
-    <marko-web-resolve-page|{ resolved }| node=pageNode>
+    <marko-web-resolve-page|{ resolved, data: content }| node=pageNode>
       $ const section = resolved.getAsObject("primarySection");
       $ const aliases = hierarchyAliases(section);
-      <if(section.id)>
+      <if(type === "contact")>
+        <marko-web-load-more
+          header=`More from ${content.name}`
+          component-name="content-load-more-block"
+          component-input={ aliases }
+          fragment-name="content-list"
+          query-name="all-author-content"
+          query-params={ contactId: content.id }
+          page-input={ for: "content", id, type }
+        />
+      </if>
+      <else-if(type === "company")>
+        <marko-web-load-more
+          header=`More from ${content.name}`
+          component-name="content-load-more-block"
+          component-input={ aliases }
+          fragment-name="content-list"
+          query-name="all-company-content"
+          query-params={ companyId: content.id }
+          page-input={ for: "content", id, type }
+        />
+      </else-if>
+      <else-if(section.id)>
         <marko-web-load-more
           header=`More in ${section.name}`
           component-name="content-load-more-block"
@@ -97,7 +119,7 @@ $ const displayPublishedDate = ["event", "webinar", "contact", "whitepapter"].in
           query-params={ sectionId: section.id, limit: 14 }
           page-input={ for: "content", id, type }
         />
-      </if>
+      </else-if>
     </marko-web-resolve-page>
   </@below-page>
   <@foot>
