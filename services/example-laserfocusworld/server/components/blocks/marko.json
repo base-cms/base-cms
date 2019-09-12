@@ -20,5 +20,10 @@
     "template": "./content-load-more.marko",
     "@nodes": "array",
     "@aliases": "array"
+  },
+  "<website-content-card-deck-block>": {
+    "template": "./content-card-deck.marko",
+    "@nodes": "array",
+    "@aliases": "array"
   }
 }
