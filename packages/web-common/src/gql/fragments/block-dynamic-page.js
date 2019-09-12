@@ -2,7 +2,7 @@ const gql = require('graphql-tag');
 
 module.exports = gql`
 
-fragment BlockDynamicPageFragment on DynamicPage {
+fragment BlockDynamicPageFragment on ContentPage {
   id
   type
 }

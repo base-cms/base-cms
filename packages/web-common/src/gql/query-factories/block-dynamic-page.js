@@ -13,7 +13,7 @@ module.exports = ({ queryFragment, queryName = '' } = {}) => {
   const { spreadFragmentName, processedFragment } = extractFragmentData(queryFragment);
   return gql`
     query BlockDynamicPage${queryName}($input: ContentPageQueryInput!) {
-      content(input: $input) {
+      contentPage(input: $input) {
         ...BlockDynamicPageFragment
         ${spreadFragmentName}
       }
