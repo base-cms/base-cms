@@ -6,6 +6,10 @@
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/env",
   "author": "Jacob Bare <jacob@limit0.io>",
   "license": "MIT",
+  "scripts": {
+    "lint": "eslint --ext .js --max-warnings 5 ./",
+    "test": "yarn lint"
+  },
   "dependencies": {
     "envalid": "^5.0.0",
     "validator": "^11.0.0"

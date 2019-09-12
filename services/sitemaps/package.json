@@ -7,10 +7,16 @@
   "repository": "https://github.com/base-cms/base-cms/tree/master/services/sitemaps",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "lint": "eslint --ext .js --max-warnings 5 ./",
+    "test": "yarn lint"
+  },
   "dependencies": {
     "@base-cms/canonical-path": "^0.10.0",
     "@base-cms/db": "^0.10.0",
+    "@base-cms/tenant-context": "^0.10.0",
     "@base-cms/tooling": "^0.10.0",
+    "@base-cms/utils": "^0.10.0",
     "@godaddy/terminus": "^4.2.0",
     "@newrelic/native-metrics": "^4.1.0",
     "express": "^4.17.1",

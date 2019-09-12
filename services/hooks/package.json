@@ -7,10 +7,15 @@
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/hooks",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "lint": "eslint --ext .js --max-warnings 5 ./",
+    "test": "yarn lint"
+  },
   "dependencies": {
     "@base-cms/async": "^0.10.0",
     "@base-cms/db": "^0.10.0",
     "@base-cms/object-path": "^0.10.0",
+    "@base-cms/tooling": "^0.10.0",
     "@base-cms/utils": "^0.10.0",
     "@godaddy/terminus": "^4.2.0",
     "@newrelic/native-metrics": "^4.1.0",

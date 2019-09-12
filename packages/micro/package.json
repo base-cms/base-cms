@@ -6,6 +6,10 @@
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/micro",
   "author": "Jacob Bare <jacob@limit0.io>",
   "license": "MIT",
+  "scripts": {
+    "lint": "eslint --ext .js --max-warnings 5 ./",
+    "test": "yarn lint"
+  },
   "devDependencies": {
     "micro": "^9.3.4"
   },

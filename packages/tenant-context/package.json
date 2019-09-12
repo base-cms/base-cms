@@ -6,6 +6,10 @@
   "author": "Josh Worden <josh@limit0.io>",
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/tenant-context",
   "license": "MIT",
+  "scripts": {
+    "lint": "eslint --ext .js --max-warnings 5 ./",
+    "test": "yarn lint"
+  },
   "publishConfig": {
     "access": "public"
   }

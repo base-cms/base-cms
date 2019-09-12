@@ -7,6 +7,10 @@
   "repository": "https://github.com/base-cms/base-cms/tree/master/services/oembed",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "lint": "eslint --ext .js --max-warnings 5 ./",
+    "test": "yarn lint"
+  },
   "dependencies": {
     "@base-cms/embedly": "^0.10.0",
     "@base-cms/tooling": "^0.10.0",

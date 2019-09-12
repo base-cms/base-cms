@@ -9,6 +9,10 @@
   },
   "license": "MIT",
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/web-cli",
+  "scripts": {
+    "lint": "eslint --ext .js --max-warnings 5 ./",
+    "test": "yarn lint"
+  },
   "dependencies": {
     "@babel/core": "^7.6.0",
     "@babel/plugin-transform-runtime": "^7.6.0",

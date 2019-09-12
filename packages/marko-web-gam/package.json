@@ -5,6 +5,10 @@
   "author": "Jacob Bare <jacob@limit0.io>",
   "license": "MIT",
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/marko-web-gam",
+  "scripts": {
+    "lint": "eslint --ext .js --ext .vue --max-warnings 5 ./",
+    "test": "yarn lint"
+  },
   "dependencies": {
     "@base-cms/object-path": "^0.10.0",
     "@base-cms/utils": "^0.10.0",

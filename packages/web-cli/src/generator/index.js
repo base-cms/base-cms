@@ -5,24 +5,24 @@ const buildFiles = require('./build-files');
 const { mkdir, copy, write } = require('../utils/filesystem');
 const createPkg = require('./create-pkg');
 
-const writeTemplates = async (dir, answers, templateDir) => {
-  const toWrite = await buildFiles(templateDir, answers);
+// const writeTemplates = async (dir, answers, templateDir) => {
+//   const toWrite = await buildFiles(templateDir, answers);
 
-  toWrite.targets.forEach(target => mkdir(dir, target));
-  toWrite.files.forEach(({ target, file, contents }) => {
-    const src = join(templateDir, target);
-    const dest = join(dir, target);
-    if (contents) {
-      write(dest, file, contents);
-    } else {
-      let destination = join(dest, file);
-      if (/gitignore$/.test(file)) {
-        destination = join(dest, file.replace('gitignore', '.gitignore'));
-      }
-      copy(join(src, file), destination);
-    }
-  });
-};
+//   toWrite.targets.forEach(target => mkdir(dir, target));
+//   toWrite.files.forEach(({ target, file, contents }) => {
+//     const src = join(templateDir, target);
+//     const dest = join(dir, target);
+//     if (contents) {
+//       write(dest, file, contents);
+//     } else {
+//       let destination = join(dest, file);
+//       if (/gitignore$/.test(file)) {
+//         destination = join(dest, file.replace('gitignore', '.gitignore'));
+//       }
+//       copy(join(src, file), destination);
+//     }
+//   });
+// };
 
 module.exports = async (dir, answers) => {
   const { projectName, withBootstrap, templateDir } = answers;
