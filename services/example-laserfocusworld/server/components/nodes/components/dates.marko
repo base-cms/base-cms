@@ -1,10 +1,10 @@
 $ const { content, blockName } = input;
 
 <if(content.type === "event" || content.type === "webinar")>
-  <span class=`${blockName}__content-event-dates`>
-    <marko-web-content-starts block-name=blockName obj=content />
-    <marko-web-content-ends block-name=blockName obj=content />
-  </span>
+  <div class=`${blockName}__content-event-dates`>
+    <marko-web-content-starts tag="span" block-name=blockName obj=content />
+    <marko-web-content-ends tag="span" block-name=blockName obj=content />
+  </div>
 </if>
 <else>
   <marko-web-content-published obj=content />

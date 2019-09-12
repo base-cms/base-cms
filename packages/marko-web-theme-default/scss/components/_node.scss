@@ -127,6 +127,14 @@
     @include border-radius($theme-item-image-border-radius);
   }
 
+  &__content-starts + &__content-ends {
+    &::before {
+      margin-right: map-get($spacers, 1);
+      margin-left: map-get($spacers, 1);
+      content: "\2014";
+    }
+  }
+
   &--card {
     @include theme-card();
   }
