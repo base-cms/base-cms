@@ -2,6 +2,7 @@ const { buildRequestHeaders } = require('@base-cms/tenant-context');
 const cookieParser = require('cookie-parser');
 const express = require('express');
 const path = require('path');
+const helmet = require('helmet');
 const apollo = require('./apollo');
 const embeddedMedia = require('./embedded-media');
 const loadObject = require('./load-object');
@@ -32,6 +33,14 @@ module.exports = (config = {}) => {
 
   // Add cookie parsing
   app.use(cookieParser());
+
+  // Add helment
+  if (config.helmetConfig !== false) {
+    app.use(helmet({
+      ...config.helmetConfig,
+      frameguard: false,
+    }));
+  }
 
   // Set the core config.
   app.locals.config = new CoreConfig({ ...config.coreConfig, distDir });
