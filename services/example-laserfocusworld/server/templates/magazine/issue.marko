@@ -1,0 +1,34 @@
+import GAM from "../../../config/gam";
+
+$ const { id, pageNode } = data;
+
+<marko-web-magazine-issue-page-layout id=id>
+  <!-- <@head>
+    <marko-web-gtm-default-context|{ context }| type=type>
+      <marko-web-gtm-push data=context />
+    </marko-web-gtm-default-context>
+  </@head> -->
+  <@above-container>
+    <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "wa" }) />
+    <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "reskin" }) />
+  </@above-container>
+  <@page>
+    <marko-web-gam-define-display-ad ...GAM.getAdUnit({ name: "lb1" }) modifiers=["top-of-page"] />
+    <marko-web-page-wrapper class="mb-block">
+      <@section>
+        <div class="row">
+          <div class="col">
+            <h1 class="page-wrapper__title">Magazine Issue!</h1>
+            <!-- <default-theme-breadcrumbs-with-home>
+              <@item>${title}</@item>
+            </default-theme-breadcrumbs-with-home>
+            <h1 class="page-wrapper__title">${title}</h1>
+            <if(description)>
+              <h1 class="page-wrapper__deck">${description}</h1>
+            </if> -->
+          </div>
+        </div>
+      </@section>
+    </marko-web-page-wrapper>
+  </@page>
+</marko-web-magazine-issue-page-layout>
