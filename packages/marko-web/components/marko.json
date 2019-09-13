@@ -7,8 +7,9 @@
     "./node/marko.json",
     "./node-list/marko.json",
     "./page/marko.json",
-    "./rss/marko.json",
-    "./queries/marko.json"
+    "./queries/marko.json",
+    "./resolve/marko.json",
+    "./rss/marko.json"
   ],
   "<marko-web-browser-component>": {
     "template": "./browser-component.marko",
@@ -17,13 +18,5 @@
       "required": true
     },
     "@props": "object"
-  },
-  "<marko-web-resolve>": {
-    "template": "./resolve.marko",
-    "@promise": "object"
-  },
-  "<marko-web-resolve-page>": {
-    "template": "./resolve-page.marko",
-    "@node": "object"
   }
 }
