@@ -1,0 +1,18 @@
+import extractRender from "../extract-render";
+
+$ if (input.link === true) {
+  input.link = { field: "subscribeUrl" };
+}
+
+<marko-web-obj-text
+  type="magazine-publication"
+  block-name=input.blockName
+  obj=input.obj
+  field="subscribeUrl"
+  tag=input.tag
+  class=input.class
+  modifiers=input.modifiers
+  attrs=input.attrs
+  link=input.link
+  ...extractRender(input)
+/>
