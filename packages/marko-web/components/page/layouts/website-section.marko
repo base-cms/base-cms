@@ -12,7 +12,7 @@ $ const withRss = input.withRss != null ? input.withRss : true;
   <@head>
     <marko-web-website-section-page-metadata alias=alias />
     <if(withRss)>
-      <marko-web-rss-website-section alias=alias name=name />
+      <marko-web-website-section-rss alias=alias name=name />
     </if>
     <${input.head} />
   </@head>
