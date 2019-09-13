@@ -1,0 +1,10 @@
+{
+  "<website-related-content-block>": {
+    "template": "./related-content",
+    "@id": "number",
+    "@type": "string",
+    "@section-id": "number",
+    "@section-name": "string",
+    "@query-fragment": "object"
+  }
+}

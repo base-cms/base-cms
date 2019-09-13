@@ -79,25 +79,13 @@ $ const displayPublishedDate = ["event", "webinar", "contact", "whitepapter"].in
             <aside class="col-lg-4 page-rail">
               <marko-web-gam-display-ad id="gpt-ad-rail1" />
               <marko-web-gam-display-ad id="gpt-ad-rail2" />
-              <!-- @todo should this be a website component? -->
-              <marko-web-query|{ nodes }|
-                name="related-published-content"
-                params={ contentId: id, limit: 10, queryFragment }
-              >
-                <website-content-list-flow nodes=nodes inner-justified=false>
-                  <@header>Related</@header>
-                </website-content-list-flow>
-              </marko-web-query>
-              <if(!['contact', 'company'].includes(type))>
-                <marko-web-query|{ nodes }|
-                  name="website-scheduled-content"
-                  params={ sectionId: section.id, excludeContentIds: [id], limit: 5, queryFragment }
-                >
-                  <website-content-list-flow nodes=nodes inner-justified=false>
-                    <@header>Latest in ${section.name}</@header>
-                  </website-content-list-flow>
-                </marko-web-query>
-              </if>
+              <website-related-content-block
+                id=id
+                type=type
+                section-id=section.id
+                section-name=section.name
+                query-fragment=queryFragment
+              />
             </aside>
           </div>
         </@section>
