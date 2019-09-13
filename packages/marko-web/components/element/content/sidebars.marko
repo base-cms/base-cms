@@ -1,3 +1,5 @@
+import extractRender from "../extract-render";
+
 <marko-web-obj-array|{ value }|
   type="content"
   block-name=input.blockName
@@ -14,5 +16,6 @@
     obj={ sidebar: value }
     field="sidebar"
     html=true
+    ...extractRender(input)
   />
 </marko-web-obj-array>

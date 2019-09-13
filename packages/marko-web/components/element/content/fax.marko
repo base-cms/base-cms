@@ -1,3 +1,5 @@
+import extractRender from "../extract-render";
+
 <marko-web-obj-text
   type="content"
   block-name=input.blockName
@@ -8,4 +10,5 @@
   modifiers=input.modifiers
   attrs=input.attrs
   link=input.link
+  ...extractRender(input)
 />

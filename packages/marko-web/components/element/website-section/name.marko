@@ -1,4 +1,5 @@
 import { get } from "@base-cms/object-path";
+import extractRender from "../extract-render";
 
 $ const attrs = { title: get(input.obj, "fullName"), ...input.attrs };
 
@@ -12,4 +13,5 @@ $ const attrs = { title: get(input.obj, "fullName"), ...input.attrs };
   modifiers=input.modifiers
   attrs=attrs
   link=input.link
+  ...extractRender(input)
 />

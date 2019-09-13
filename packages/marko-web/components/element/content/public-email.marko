@@ -1,4 +1,5 @@
 import { get } from "@base-cms/object-path";
+import extractRender from "../extract-render";
 
 $ if (input.link === true) {
   input.link = { href: `mailto:${get(input.obj, "publicEmail")}`, target: "_blank" };
@@ -14,4 +15,5 @@ $ if (input.link === true) {
   modifiers=input.modifiers
   attrs=input.attrs
   link=input.link
+  ...extractRender(input)
 />

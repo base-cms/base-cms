@@ -1,4 +1,5 @@
 import objectLink from "./object-link";
+import extractRender from "./extract-render";
 
 <marko-web-obj|{ value, classNames, resolvedObj }|
   type=input.type
@@ -15,5 +16,6 @@ import objectLink from "./object-link";
     class=classNames
     attrs=input.attrs
     link=objectLink(input.link, resolvedObj)
+    ...extractRender(input)
   />
 </marko-web-obj>
