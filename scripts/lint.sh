@@ -2,8 +2,6 @@
 docker-compose run \
   --rm \
   --no-deps \
-  --entrypoint node_modules/.bin/eslint \
+  --entrypoint yarn \
   commands \
-  packages services \
-    --ext .js \
-    --ext .jsx
+  run lint
