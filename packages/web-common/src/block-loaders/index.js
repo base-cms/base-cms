@@ -2,6 +2,7 @@ const content = require('./content');
 const dynamicPage = require('./dynamic-page');
 const relatedPublishedContent = require('./related-published-content');
 const websiteScheduledContent = require('./website-scheduled-content');
+const magazineIssue = require('./magazine-issue');
 const magazinePublications = require('./magazine-publications');
 const magazineLatestIssue = require('./magazine-latest-issue');
 const magazineActiveIssues = require('./magazine-active-issues');
@@ -17,6 +18,7 @@ module.exports = {
   dynamicPage,
   relatedPublishedContent,
   websiteScheduledContent,
+  magazineIssue,
   magazinePublications,
   magazineLatestIssue,
   magazineActiveIssues,
