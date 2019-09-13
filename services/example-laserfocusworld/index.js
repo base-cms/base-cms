@@ -19,5 +19,6 @@ module.exports = startServer({
   components,
   fragments,
   version,
+  onStart: app => app.set('trust proxy', 'loopback, linklocal, uniquelocal'),
   onAsyncBlockError: e => newrelic.noticeError(e),
 }).then(() => log('Website started!')).catch(e => setImmediate(() => { throw e; }));
