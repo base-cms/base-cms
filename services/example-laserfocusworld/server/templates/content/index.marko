@@ -79,22 +79,23 @@ $ const displayPublishedDate = ["event", "webinar", "contact", "whitepapter"].in
             <aside class="col-lg-4 page-rail">
               <marko-web-gam-display-ad id="gpt-ad-rail1" />
               <marko-web-gam-display-ad id="gpt-ad-rail2" />
+              <!-- @todo should this be a website component? -->
               <marko-web-query|{ nodes }|
                 name="related-published-content"
                 params={ contentId: id, limit: 10, queryFragment }
               >
-                <website-content-list-block nodes=nodes inner-justified=false>
+                <website-content-list-flow nodes=nodes inner-justified=false>
                   <@header>Related</@header>
-                </website-content-list-block>
+                </website-content-list-flow>
               </marko-web-query>
               <if(!['contact', 'company'].includes(type))>
                 <marko-web-query|{ nodes }|
                   name="website-scheduled-content"
                   params={ sectionId: section.id, excludeContentIds: [id], limit: 5, queryFragment }
                 >
-                  <website-content-list-block nodes=nodes inner-justified=false>
+                  <website-content-list-flow nodes=nodes inner-justified=false>
                     <@header>Latest in ${section.name}</@header>
-                  </website-content-list-block>
+                  </website-content-list-flow>
                 </marko-web-query>
               </if>
             </aside>
@@ -110,29 +111,29 @@ $ const displayPublishedDate = ["event", "webinar", "contact", "whitepapter"].in
       <if(type === "contact")>
         <marko-web-load-more
           header=`More from ${content.name}`
-          component-name="content-load-more-block"
+          component-name="content-load-more-flow"
           component-input={ aliases }
           fragment-name="content-list"
           query-name="all-author-content"
-          query-params={ contactId: content.id }
+          query-params={ contactId: id }
           page-input={ for: "content", id, type }
         />
       </if>
       <else-if(type === "company")>
         <marko-web-load-more
           header=`More from ${content.name}`
-          component-name="content-load-more-block"
+          component-name="content-load-more-flow"
           component-input={ aliases }
           fragment-name="content-list"
           query-name="all-company-content"
-          query-params={ companyId: content.id }
+          query-params={ companyId: id }
           page-input={ for: "content", id, type }
         />
       </else-if>
       <else-if(section.id)>
         <marko-web-load-more
           header=`More in ${section.name}`
-          component-name="content-load-more-block"
+          component-name="content-load-more-flow"
           component-input={ aliases }
           fragment-name="content-list"
           query-name="website-scheduled-content"

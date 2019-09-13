@@ -1,9 +1,9 @@
 {
-  "<website-content-hero-block>": {
+  "<website-content-hero-flow>": {
     "template": "./content-hero.marko",
     "@nodes": "array"
   },
-  "<website-content-list-block>": {
+  "<website-content-list-flow>": {
     "template": "./content-list.marko",
     "<header>": {},
     "@nodes": "array",
@@ -20,12 +20,12 @@
       "default-value": true
     }
   },
-  "<website-content-load-more-block>": {
+  "<website-content-load-more-flow>": {
     "template": "./content-load-more.marko",
     "@nodes": "array",
     "@aliases": "array"
   },
-  "<website-content-card-deck-block>": {
+  "<website-content-card-deck-flow>": {
     "template": "./content-card-deck.marko",
     "@nodes": "array",
     "@aliases": "array"

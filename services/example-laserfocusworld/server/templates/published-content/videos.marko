@@ -38,12 +38,12 @@ $ const description = defaultDescription(title, config);
       name="all-published-content"
       params={ contentTypes: ["Video"], limit: 10, queryFragment }
     >
-      <website-content-card-deck-block nodes=nodes />
+      <website-content-card-deck-flow nodes=nodes />
     </marko-web-query>
   </@page>
   <@below-page>
     <marko-web-load-more
-      component-name="content-card-deck-block"
+      component-name="content-card-deck-flow"
       fragment-name="content-list"
       query-name="all-published-content"
       query-params={ contentTypes: ["Video"], limit: 10, skip: 10 }

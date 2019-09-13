@@ -5,13 +5,13 @@ $ const { aliases } = input;
 $ const nodes = getAsArray(input, "nodes");
 
 <if(nodes.length)>
-  <website-content-card-deck-block nodes=nodes.slice(0, 10) aliases=aliases />
+  <website-content-card-deck-flow nodes=nodes.slice(0, 10) aliases=aliases />
   <default-theme-column-list-block nodes=nodes.slice(10)>
     <@column>
       <marko-web-gam-define-display-ad ...GAM.getAdUnit({ name: "load-more", size: [300, 600], aliases }) modifiers=["in-card"] />
     </@column>
     <@list|{ nodes: listNodes }|>
-      <website-content-list-block nodes=listNodes with-teaser=true />
+      <website-content-list-flow nodes=listNodes with-teaser=true />
     </@list>
   </default-theme-column-list-block>
 </if>

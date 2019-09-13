@@ -39,12 +39,12 @@ $ const now = (new Date()).valueOf();
       name="all-published-content"
       params={ contentTypes: ["Event"], sortField: "startDate", sortOrder: "asc", endingAfter: now, limit: 18, queryFragment }
     >
-      <website-content-list-block nodes=nodes />
+      <website-content-list-flow nodes=nodes />
     </marko-web-query>
   </@page>
   <@below-page>
     <marko-web-load-more
-      component-name="content-list-block"
+      component-name="content-list-flow"
       fragment-name="content-list"
       query-name="all-published-content"
       query-params={ contentTypes: ["Event"], sortField: "startDate", sortOrder: "asc", endingAfter: now, limit: 18, skip: 18 }
