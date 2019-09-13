@@ -5,7 +5,7 @@ import GAM from "../../../config/gam";
 
 $ const { id, type, pageNode } = data;
 
-$ const displayPrimaryImage = ["whitepaper", "media-gallery"].includes(type) ? false : true;
+$ const displayPrimaryImage = ["whitepaper", "media-gallery", "contact"].includes(type) ? false : true;
 $ const displayPublishedDate = ["event", "webinar", "contact", "whitepapter"].includes(type) ? false : true;
 
 <marko-web-content-page-layout id=id type=type>
@@ -71,6 +71,9 @@ $ const displayPublishedDate = ["event", "webinar", "contact", "whitepapter"].in
               </if>
               <else-if(displayPrimaryImage)>
                 <marko-web-page-image width=500 obj=content.primaryImage />
+              </else-if>
+              <else-if(type === "contact")>
+                <marko-web-page-image width=300 fluid=false obj=content.primaryImage />
               </else-if>
               <default-theme-content-contact-details obj=content />
               <marko-web-content-body block-name=blockName obj=content />
