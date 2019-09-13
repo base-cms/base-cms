@@ -1,0 +1,6 @@
+$ const { apollo } = out.global;
+$ const promise = input.loader(apollo, input);
+
+<marko-web-resolve|{ resolved }| promise=promise>
+  <${input.renderBody} ...resolved />
+</marko-web-resolve>
