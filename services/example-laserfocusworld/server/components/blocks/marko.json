@@ -1,10 +1,20 @@
 {
   "<website-related-content-block>": {
-    "template": "./related-content",
+    "template": "./related-content.marko",
     "@id": "number",
     "@type": "string",
     "@section-id": "number",
     "@section-name": "string",
     "@query-fragment": "object"
+  },
+  "<website-content-load-more-block>": {
+    "template": "./content-load-more.marko",
+    "@id": "number",
+    "@type": "string",
+    "@name": "string",
+    "@aliases": "array",
+    "@section-id": "number",
+    "@section-name": "string",
+    "@section-skip": "number"
   }
 }

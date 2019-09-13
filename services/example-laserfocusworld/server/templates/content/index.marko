@@ -34,7 +34,7 @@ $ const displayPublishedDate = ["event", "webinar", "contact", "whitepapter"].in
   </@above-container>
   <@page>
     <marko-web-gam-display-ad id="gpt-ad-lb1" modifiers=["top-of-page"] />
-    <!-- @todo Deal with media galleries, whitepapers, contacts, and companies -->
+    <!-- @todo Deal with media galleries and whitepapers -->
     <!-- @todo Add play button overlay on videos -->
     <marko-web-resolve-page|{ data: content, resolved }| node=pageNode>
       $ const section = resolved.getAsObject("primarySection");
@@ -99,39 +99,15 @@ $ const displayPublishedDate = ["event", "webinar", "contact", "whitepapter"].in
     <marko-web-resolve-page|{ resolved, data: content }| node=pageNode>
       $ const section = resolved.getAsObject("primarySection");
       $ const aliases = hierarchyAliases(section);
-      <if(type === "contact")>
-        <marko-web-load-more
-          header=`More from ${content.name}`
-          component-name="content-load-more-flow"
-          component-input={ aliases }
-          fragment-name="content-list"
-          query-name="all-author-content"
-          query-params={ contactId: id }
-          page-input={ for: "content", id, type }
-        />
-      </if>
-      <else-if(type === "company")>
-        <marko-web-load-more
-          header=`More from ${content.name}`
-          component-name="content-load-more-flow"
-          component-input={ aliases }
-          fragment-name="content-list"
-          query-name="all-company-content"
-          query-params={ companyId: id }
-          page-input={ for: "content", id, type }
-        />
-      </else-if>
-      <else-if(section.id)>
-        <marko-web-load-more
-          header=`More in ${section.name}`
-          component-name="content-load-more-flow"
-          component-input={ aliases }
-          fragment-name="content-list"
-          query-name="website-scheduled-content"
-          query-params={ sectionId: section.id, excludeContentIds: [id], limit: 14, skip: 5 }
-          page-input={ for: "content", id, type }
-        />
-      </else-if>
+      <website-content-load-more-block
+        id=id
+        type=type
+        name=content.name
+        aliases=aliases
+        section-id=section.id
+        section-name=section.name
+        section-skip=5
+      />
     </marko-web-resolve-page>
   </@below-page>
   <@foot>
