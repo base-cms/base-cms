@@ -18,17 +18,28 @@ $ const { id, pageNode } = data;
       <@section>
         <div class="row">
           <div class="col">
-            <h1 class="page-wrapper__title">Magazine Issue!</h1>
-            <!-- <default-theme-breadcrumbs-with-home>
-              <@item>${title}</@item>
-            </default-theme-breadcrumbs-with-home>
-            <h1 class="page-wrapper__title">${title}</h1>
-            <if(description)>
-              <h1 class="page-wrapper__deck">${description}</h1>
-            </if> -->
+            <marko-web-resolve-page|{ data: issue }| node=pageNode>
+              <default-theme-breadcrumbs-with-home>
+                <@item><marko-web-link href="/magazine">Magazines</marko-web-link></@item>
+                <@item><marko-web-magazine-publication-name tag=null obj=issue.publication link=true /></@item>
+                <@item><marko-web-magazine-issue-name tag=null obj=issue /></@item>
+              </default-theme-breadcrumbs-with-home>
+            </marko-web-resolve-page>
           </div>
         </div>
       </@section>
     </marko-web-page-wrapper>
   </@page>
+  <@below-page>
+    <marko-web-resolve-page|{ data: issue }| node=pageNode>
+      <marko-web-load-more
+        header=`Content from ${issue.name}`
+        component-name="content-load-more-flow"
+        fragment-name="content-list"
+        query-name="magazine-scheduled-content"
+        query-params={ issueId: id, limit: 14 }
+        page-input={ for: "magazine-issue", id }
+      />
+    </marko-web-resolve-page>
+  </@below-page>
 </marko-web-magazine-issue-page-layout>
