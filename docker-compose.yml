@@ -118,6 +118,8 @@ services:
       OEMBED_URI: http://oembed
       CDN_IMAGE_HOSTNAME: img.laserfocusworld.com
       CDN_ASSET_HOSTNAME: cdn.laserfocusworld.com
+      NEW_RELIC_ENABLED: 0
+      NEW_RELIC_LICENSE_KEY: (unset)
     depends_on:
       - graphql-server-lfw
       - sitemaps
@@ -156,6 +158,8 @@ services:
       OEMBED_URI: http://oembed
       CDN_IMAGE_HOSTNAME: img.bizbash.com
       CDN_ASSET_HOSTNAME: cdn.bizbash.com
+      NEW_RELIC_ENABLED: 0
+      NEW_RELIC_LICENSE_KEY: (unset)
     depends_on:
       - graphql-server-bzb
       - sitemaps

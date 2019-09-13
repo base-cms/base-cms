@@ -25,6 +25,7 @@
     "@base-cms/utils": "^0.10.0",
     "@base-cms/web-cli": "^0.10.3",
     "graphql": "^14.5.4",
-    "graphql-tag": "^2.10.1"
+    "graphql-tag": "^2.10.1",
+    "newrelic": "^5.11.0"
   }
 }
