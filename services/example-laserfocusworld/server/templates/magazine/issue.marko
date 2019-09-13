@@ -34,10 +34,10 @@ $ const { id, pageNode } = data;
     <marko-web-resolve-page|{ data: issue }| node=pageNode>
       <marko-web-load-more
         header=`Content from ${issue.name}`
-        component-name="content-load-more-flow"
+        component-name="content-card-deck-flow"
         fragment-name="content-list"
         query-name="magazine-scheduled-content"
-        query-params={ issueId: id, limit: 14 }
+        query-params={ issueId: id, limit: 10 }
         page-input={ for: "magazine-issue", id }
       />
     </marko-web-resolve-page>
