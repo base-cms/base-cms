@@ -52,5 +52,16 @@
     "<below-page>": {},
     "@id": "string",
     "@alias": "string"
+  },
+  "<marko-web-magazine-issue-page-layout>": {
+    "template": "./magazine-issue.marko",
+    "<head>": {},
+    "<foot>": {},
+    "<above-container>": {},
+    "<below-container>": {},
+    "<page>": {},
+    "<above-page>": {},
+    "<below-page>": {},
+    "@id": "number"
   }
 }
