@@ -14,6 +14,8 @@ stages:
 jobs:
   include:
     - stage: test
+      env:
+        - NODE_ENV=test
 
     - stage: notify_start
       script: scripts/deploy-notify-start.sh
