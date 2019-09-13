@@ -28,7 +28,7 @@ type MagazineIssue {
   status: Int @projection
 
   # GraphQL only fields
-  metadata: MagazineIssueMetadata! @projection(localField: "fullName", needs: ["description", "seoTitle"])
+  metadata: MagazineIssueMetadata! @projection(localField: "name", needs: ["fullName", "description", "seoTitle"])
   mailDate(input: FormatDate = {}): String @projection(localField: "mailDate") @momentFormat(localField: "mailDate")
   canonicalPath: String! @projection(localField: "_id")
 }
