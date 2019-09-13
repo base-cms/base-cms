@@ -4,7 +4,7 @@ import GAM from "../../config/gam";
 
 $ const { id, alias, name, pageNode } = data;
 
-<marko-web-layout-website-section id=id alias=alias name=name>
+<marko-web-website-section-page-layout id=id alias=alias name=name>
   <@head>
     <marko-web-gtm-context-website-section|{ context }| alias=alias>
       <marko-web-gtm-push data=context />
@@ -231,4 +231,4 @@ $ const { id, alias, name, pageNode } = data;
       <marko-web-gam-fixed-ad-bottom ...GAM.getAdUnit({ name: "lb2", aliases }) refresh-interval=0 />
     </marko-web-resolve-page>
   </@foot>
-</marko-web-layout-website-section>
+</marko-web-website-section-page-layout>

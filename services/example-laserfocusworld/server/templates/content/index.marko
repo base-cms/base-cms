@@ -8,7 +8,7 @@ $ const { id, type, pageNode } = data;
 $ const displayPrimaryImage = ["whitepaper", "media-gallery"].includes(type) ? false : true;
 $ const displayPublishedDate = ["event", "webinar", "contact", "whitepapter"].includes(type) ? false : true;
 
-<marko-web-layout-content id=id type=type>
+<marko-web-content-page-layout id=id type=type>
   <@head>
     <marko-web-gtm-context-content|{ context }| id=id>
       <marko-web-gtm-push data=context />
@@ -149,4 +149,4 @@ $ const displayPublishedDate = ["event", "webinar", "contact", "whitepapter"].in
       <marko-web-gam-fixed-ad-bottom ...GAM.getAdUnit({ name: "lb2", aliases }) refresh-interval=0 />
     </marko-web-resolve-page>
   </@foot>
-</marko-web-layout-content>
+</marko-web-content-page-layout>

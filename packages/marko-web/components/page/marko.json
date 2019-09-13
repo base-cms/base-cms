@@ -1,4 +1,7 @@
 {
+  "taglib-imports": [
+    "./layouts/marko.json"
+  ],
   "<marko-web-page-container>": {
     "template": "./container.marko",
     "@tag": {

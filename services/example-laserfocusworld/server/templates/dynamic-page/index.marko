@@ -2,7 +2,7 @@ import GAM from "../../../config/gam";
 
 $ const { id, alias, pageNode } = data;
 
-<marko-web-layout-dynamic-page id=id alias=alias>
+<marko-web-dynamic-page-layout id=id alias=alias>
   <@head>
     <marko-web-gtm-context-dynamic-page|{ context }| alias=alias>
       <marko-web-gtm-push data=context />
@@ -41,4 +41,4 @@ $ const { id, alias, pageNode } = data;
   <@foot>
     <marko-web-gam-fixed-ad-bottom ...GAM.getAdUnit({ name: "lb2" }) refresh-interval=0 />
   </@foot>
-</marko-web-layout-dynamic-page>
+</marko-web-dynamic-page-layout>

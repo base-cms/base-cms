@@ -8,7 +8,7 @@ $ const type = "published-content";
 $ const title = "White Papers";
 $ const description = defaultDescription(title, config);
 
-<marko-web-layout-default type=type title=title description=description>
+<marko-web-default-page-layout type=type title=title description=description>
   <@head>
     <marko-web-gtm-context-default|{ context }| type=type>
       <marko-web-gtm-push data=context />
@@ -53,4 +53,4 @@ $ const description = defaultDescription(title, config);
   <@foot>
     <marko-web-gam-fixed-ad-bottom ...GAM.getAdUnit({ name: "lb2" }) refresh-interval=0 />
   </@foot>
-</marko-web-layout-default>
+</marko-web-default-page-layout>

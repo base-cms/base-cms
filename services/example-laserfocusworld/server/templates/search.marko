@@ -7,7 +7,7 @@ $ const type = "search";
 $ const title = "Search";
 $ const description = `Search ${config.siteName()}`;
 
-<marko-web-layout-default type=type title=title description=description>
+<marko-web-default-page-layout type=type title=title description=description>
   <@head>
     <marko-web-gtm-context-default|{ context }| type=type>
       <marko-web-gtm-push data=context />
@@ -41,4 +41,4 @@ $ const description = `Search ${config.siteName()}`;
       </@section>
     </marko-web-page-wrapper>
   </@page>
-</marko-web-layout-default>
+</marko-web-default-page-layout>
