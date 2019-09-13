@@ -17,5 +17,9 @@
   "<marko-web-dynamic-page-metadata>": {
     "template": "./dynamic-page.marko",
     "@alias": "string"
+  },
+  "<marko-web-magazine-issue-page-metadata>": {
+    "template": "./magazine-issue.marko",
+    "@id": "number"
   }
 }
