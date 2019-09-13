@@ -1,0 +1,40 @@
+{
+  "<marko-web-document>": {
+    "template": "./index.marko",
+    "<head>": {},
+    "<above-container>": {},
+    "<container>": {
+      "<above-page>": {},
+      "<page>": {},
+      "<below-page>": {}
+    },
+    "<below-container>": {},
+    "<foot>": {},
+    "@dir": {
+      "type": "string",
+      "default-value": "ltr"
+    },
+    "@lang": "string",
+    "@viewport": {
+      "type": "string",
+      "default-value": "width=device-width, initial-scale=1, shrink-to-fit=no"
+    }
+  },
+  "<marko-web-document-container>": {
+    "template": "./container.marko",
+    "<above-page>": {},
+    "<page>": {},
+    "<below-page>": {},
+    "@block-name": {
+      "type": "string",
+      "default-value": "document-container"
+    },
+    "@tag": {
+      "type": "string",
+      "default-value": "div"
+    },
+    "@modifiers": "array",
+    "@class": "string",
+    "@attrs": "object"
+  }
+}
