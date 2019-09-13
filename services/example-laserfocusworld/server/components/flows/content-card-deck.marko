@@ -5,7 +5,7 @@ $ const { aliases } = input;
 $ const nodes = getAsArray(input, "nodes");
 
 <if(nodes.length)>
-  <default-theme-card-deck-flow nodes=nodes>
+  <default-theme-card-deck-flow cols=3 nodes=nodes>
     <@slot|{ node }|>
       <website-content-card-node image-width=340 node=node />
     </@slot>
