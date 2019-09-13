@@ -70,6 +70,10 @@
       "type": "boolean",
       "default-value": true
     },
+    "@fluid": {
+      "type": "boolean",
+      "default-value": true
+    },
     "@with-caption": {
       "type": "boolean",
       "default-value": true

@@ -1,9 +1,15 @@
 $marko-web-page-image-margin: 1.5rem !default;
 
 .page-image {
+  $self: &;
   margin-bottom: $marko-web-page-image-margin;
-  &__image {
-    width: 100%;
-    height: auto;
+
+  &--fluid {
+    #{ $self } {
+      &__image {
+        width: 100%;
+        height: auto;
+      }
+    }
   }
 }
