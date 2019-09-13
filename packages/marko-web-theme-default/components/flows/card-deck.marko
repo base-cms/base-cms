@@ -19,12 +19,16 @@ $ const slotMap = getAsArray(input, "slots").reduce((map, slot) => {
 $ const getSlot = (position, index) => (slotMap.get(`${position}_${index}`) || {});
 $ const defaultSlot = slotMap.get("default") || {};
 
+$ const cols = input.cols != null ? input.cols : 3;
+$ const modifiers = getAsArray(input, "modifiers");
+$ modifiers.push(`${cols}-cols`);
+
 <if(nodes.length)>
   <marko-web-block
     name=blockName
     tag=input.tag
     class=input.class
-    modifiers=input.modifiers
+    modifiers=modifiers
     attrs=input.attrs
   >
     <for|node, index| of=nodes>

@@ -21,6 +21,7 @@
       "@attrs": "object"
     },
     "@nodes": "array",
+    "@cols": "number",
     "@tag": "string",
     "@class": "string",
     "@modifiers": "array",
