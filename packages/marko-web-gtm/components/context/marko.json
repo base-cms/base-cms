@@ -1,23 +1,23 @@
 {
-  "<marko-web-gtm-context-default>": {
+  "<marko-web-gtm-default-context>": {
     "template": "./default.marko",
     "@type": "string",
     "@obj": "object",
     "@builder": "function"
   },
-  "<marko-web-gtm-context-content>": {
+  "<marko-web-gtm-content-context>": {
     "template": "./content.marko",
     "@id": "number",
     "@builder": "function",
     "@query-fragment": "expression"
   },
-  "<marko-web-gtm-context-website-section>": {
+  "<marko-web-gtm-website-section-context>": {
     "template": "./website-section.marko",
     "@alias": "string",
     "@builder": "function",
     "@query-fragment": "expression"
   },
-  "<marko-web-gtm-context-dynamic-page>": {
+  "<marko-web-gtm-dynamic-page-context>": {
     "template": "./dynamic-page.marko",
     "@alias": "string",
     "@builder": "function",

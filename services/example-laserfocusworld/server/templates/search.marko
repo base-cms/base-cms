@@ -9,9 +9,9 @@ $ const description = `Search ${config.siteName()}`;
 
 <marko-web-default-page-layout type=type title=title description=description>
   <@head>
-    <marko-web-gtm-context-default|{ context }| type=type>
+    <marko-web-gtm-default-context|{ context }| type=type>
       <marko-web-gtm-push data=context />
-    </marko-web-gtm-context-default>
+    </marko-web-gtm-default-context>
   </@head>
   <@page>
     <marko-web-gam-define-display-ad ...GAM.getAdUnit({ name: "lb1" }) modifiers=["top-of-page"] />

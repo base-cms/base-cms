@@ -10,9 +10,9 @@ $ const displayPublishedDate = ["event", "webinar", "contact", "whitepapter"].in
 
 <marko-web-content-page-layout id=id type=type>
   <@head>
-    <marko-web-gtm-context-content|{ context }| id=id>
+    <marko-web-gtm-content-context|{ context }| id=id>
       <marko-web-gtm-push data=context />
-    </marko-web-gtm-context-content>
+    </marko-web-gtm-content-context>
     <marko-web-gam-targeting key-values={ cont_id: id, cont_type: type } />
     <marko-web-resolve-page|{ data: content }| node=pageNode>
       $ const aliases = hierarchyAliases(content.primarySection);

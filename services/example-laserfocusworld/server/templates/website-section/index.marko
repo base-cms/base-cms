@@ -6,9 +6,9 @@ $ const { id, alias, name, pageNode } = data;
 
 <marko-web-website-section-page-layout id=id alias=alias name=name>
   <@head>
-    <marko-web-gtm-context-website-section|{ context }| alias=alias>
+    <marko-web-gtm-website-section-context|{ context }| alias=alias>
       <marko-web-gtm-push data=context />
-    </marko-web-gtm-context-website-section>
+    </marko-web-gtm-website-section-context>
     <marko-web-resolve-page|{ data: section }| node=pageNode>
       $ const aliases = hierarchyAliases(section);
       $ const adSlots = {

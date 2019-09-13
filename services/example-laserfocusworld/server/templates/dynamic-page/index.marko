@@ -4,9 +4,9 @@ $ const { id, alias, pageNode } = data;
 
 <marko-web-dynamic-page-layout id=id alias=alias>
   <@head>
-    <marko-web-gtm-context-dynamic-page|{ context }| alias=alias>
+    <marko-web-gtm-dynamic-page-context|{ context }| alias=alias>
       <marko-web-gtm-push data=context />
-    </marko-web-gtm-context-dynamic-page>
+    </marko-web-gtm-dynamic-page-context>
   </@head>
   <@above-container>
     <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "wa" }) />
