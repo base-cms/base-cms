@@ -1,5 +1,5 @@
 {
-  "<default-theme-hero-block>": {
+  "<default-theme-hero-flow>": {
     "template": "./hero.marko",
     "<hero>": {},
     "<list>": {},
@@ -10,7 +10,7 @@
     "@modifiers": "array",
     "@attrs": "object"
   },
-  "<default-theme-card-deck-block>": {
+  "<default-theme-card-deck-flow>": {
     "template": "./card-deck.marko",
     "@slots <slot>[]": {
       "@position": "number",
@@ -26,7 +26,7 @@
     "@modifiers": "array",
     "@attrs": "object"
   },
-  "<default-theme-column-list-block>": {
+  "<default-theme-column-list-flow>": {
     "template": "./column-list.marko",
     "<column>": {},
     "<list>": {},
