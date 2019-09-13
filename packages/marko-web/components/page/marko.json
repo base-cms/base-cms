@@ -1,6 +1,7 @@
 {
   "taglib-imports": [
-    "./layouts/marko.json"
+    "./layouts/marko.json",
+    "./metadata/marko.json"
   ],
   "<marko-web-page-container>": {
     "template": "./container.marko",
@@ -53,24 +54,5 @@
   "<marko-web-page-description>": {
     "template": "./description.marko",
     "@value": "string"
-  },
-  "<marko-web-page-metadata>": {
-    "template": "./metadata/index.marko",
-    "@title": "string",
-    "@description": "string",
-    "@canonical-path": "string",
-    "@image-src": "string"
-  },
-  "<marko-web-page-metadata-content>": {
-    "template": "./metadata/content.marko",
-    "@id": "number"
-  },
-  "<marko-web-page-metadata-website-section>": {
-    "template": "./metadata/website-section.marko",
-    "@alias": "string"
-  },
-  "<marko-web-page-metadata-dynamic-page>": {
-    "template": "./metadata/dynamic-page.marko",
-    "@alias": "string"
   }
 }

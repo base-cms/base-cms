@@ -1,0 +1,21 @@
+{
+  "<marko-web-default-page-metadata>": {
+    "template": "./default.marko",
+    "@title": "string",
+    "@description": "string",
+    "@canonical-path": "string",
+    "@image-src": "string"
+  },
+  "<marko-web-content-page-metadata>": {
+    "template": "./content.marko",
+    "@id": "number"
+  },
+  "<marko-web-website-section-page-metadata>": {
+    "template": "./website-section.marko",
+    "@alias": "string"
+  },
+  "<marko-web-dynamic-page-metadata>": {
+    "template": "./dynamic-page.marko",
+    "@alias": "string"
+  }
+}
