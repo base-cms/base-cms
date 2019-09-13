@@ -27,6 +27,7 @@ module.exports = async ({
   document, // custom marko-web-document component
   components, // components to register globally (e.g. for load more, etc)
   fragments, // fragments to register globally
+  version, // The website version
   embeddedMediaHandlers,
   onAsyncBlockError,
   redirectHandler,
@@ -54,6 +55,7 @@ module.exports = async ({
     document,
     components,
     fragments,
+    version,
     embeddedMediaHandlers,
   });
 

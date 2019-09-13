@@ -11,6 +11,7 @@ const oembed = require('./oembed');
 const rss = require('./rss');
 const loadMore = require('./load-more');
 const sitemaps = require('./sitemaps');
+const { version } = require('../package.json');
 const CoreConfig = require('../config/core');
 const SiteConfig = require('../config/site');
 
@@ -44,6 +45,12 @@ module.exports = (config = {}) => {
   // Apply request origin.
   app.use((req, res, next) => {
     res.locals.requestOrigin = `${req.protocol}://${req.get('host')}`;
+    next();
+  });
+
+  // Apply versions.
+  app.use((req, res, next) => {
+    res.set('x-version', `${config.version}|${version}`);
     next();
   });
 
