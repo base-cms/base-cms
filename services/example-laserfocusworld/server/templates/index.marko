@@ -1,5 +1,6 @@
 import hierarchyAliases from "@base-cms/marko-web-gam/utils/hierarchy-aliases";
 import queryFragment from "../api/fragments/content-list";
+import latestIssueFragment from "../api/fragments/magazine-latest-issue";
 import GAM from "../../config/gam";
 
 $ const { id, alias, name, pageNode } = data;
@@ -163,12 +164,15 @@ $ const { id, alias, name, pageNode } = data;
         </marko-web-query>
       </div>
       <div class="col-lg-4 mb-block">
-        <!-- <endeavor-magazine-query-latest-issue
-          publication-id="5ca4e38b75a25490050041a9"
-          header="Current Issue"
-          as-card=true
-          content-count=0
-        /> -->
+        <marko-web-query|{ node: issue }| name="magazine-latest-issue" params={ publicationId: "5ca4e38b75a25490050041a9", queryFragment: latestIssueFragment }>
+          <website-magazine-latest-issue-flow issue-node=issue>
+            <@header>
+              <marko-web-magazine-issue-name tag=null obj=issue link=true>
+                Current Issue
+              </marko-web-magazine-issue-name>
+            </@header>
+          </website-magazine-latest-issue-flow>
+        </marko-web-query>
       </div>
     </div>
 
