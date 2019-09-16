@@ -32,7 +32,7 @@ type MagazinePublication {
   # socialLinks: [PlatformEntityStubSocial]! @arrayValue
 
   # GraphQL only fields
-  metadata: MagazinePublicationMetadata! @projection(localField: "fullName", needs: ["description", "seoTitle"])
+  metadata: MagazinePublicationMetadata! @projection(localField: "name", needs: ["description"])
   canonicalPath: String! @projection(localField: "_id")
 }
 
