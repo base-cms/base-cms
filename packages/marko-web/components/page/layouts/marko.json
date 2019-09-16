@@ -63,5 +63,16 @@
     "<above-page>": {},
     "<below-page>": {},
     "@id": "number"
+  },
+  "<marko-web-magazine-publication-page-layout>": {
+    "template": "./magazine-publication.marko",
+    "<head>": {},
+    "<foot>": {},
+    "<above-container>": {},
+    "<below-container>": {},
+    "<page>": {},
+    "<above-page>": {},
+    "<below-page>": {},
+    "@id": "number"
   }
 }
