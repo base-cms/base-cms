@@ -6,14 +6,8 @@ fragment MagazineIssuePageFragment on MagazineIssue {
   id
   name
   description
-  coverDescription
-  credit
   digitalEditionUrl
   canonicalPath
-  metadata {
-    title
-    description
-  }
   coverImage {
     id
     src
@@ -21,7 +15,6 @@ fragment MagazineIssuePageFragment on MagazineIssue {
   publication {
     id
     name
-    description
     subscribeUrl
     canonicalPath
   }
