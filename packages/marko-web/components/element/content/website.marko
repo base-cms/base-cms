@@ -1,7 +1,11 @@
+import { isObject } from "@base-cms/utils";
 import extractRender from "../extract-render";
 
+$ const linkInput = { field: "website", target: "_blank" };
 $ if (input.link === true) {
-  input.link = { field: "website", target: "_blank" };
+  input.link = linkInput;
+} else if (isObject(input.link)) {
+  input.link = { ...input.link, ...linkInput };
 }
 
 <marko-web-obj-text
