@@ -1,0 +1,27 @@
+import { getAsArray, getAsObject } from "@base-cms/object-path";
+
+$ const blockName = "magazine-publication-buttons";
+$ const link = { class: `${blockName}__button` };
+$ const modifiers = getAsArray(input, "modifiers");
+$ if (input.position) modifiers.push(input.position);
+
+$ const publication = getAsObject(input, "publication");
+$ const issue = getAsObject(input, "issue");
+
+<marko-web-block
+  name=blockName
+  tag=input.tag
+  class=input.class
+  modifiers=modifiers
+  attrs=input.attrs
+>
+  <marko-web-magazine-publication-subscribe-url tag=null obj=publication link=link>
+    Subscribe
+  </marko-web-magazine-publication-subscribe-url>
+  <marko-web-magazine-issue-digital-edition-url tag=null obj=issue link=link>
+    Digital Edition
+  </marko-web-magazine-issue-digital-edition-url>
+  <marko-web-magazine-publication-name tag=null obj=publication link=link>
+    Archives
+  </marko-web-magazine-publication-name>
+</marko-web-block>

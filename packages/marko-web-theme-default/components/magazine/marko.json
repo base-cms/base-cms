@@ -1,0 +1,12 @@
+{
+  "<default-theme-magazine-publication-buttons>": {
+    "template": "./publication-buttons.marko",
+    "@publication": "object",
+    "@issue": "object",
+    "@position": "string",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "array",
+    "@attrs": "object"
+  }
+}

@@ -3,6 +3,7 @@
     "./breadcrumbs/marko.json",
     "./content/marko.json",
     "./flows/marko.json",
+    "./magazine/marko.json",
     "./page/marko.json",
     "./site-header/marko.json",
     "./site-footer/marko.json",
