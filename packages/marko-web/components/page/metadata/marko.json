@@ -21,5 +21,9 @@
   "<marko-web-magazine-issue-page-metadata>": {
     "template": "./magazine-issue.marko",
     "@id": "number"
+  },
+  "<marko-web-magazine-publication-page-metadata>": {
+    "template": "./magazine-publication.marko",
+    "@id": "number"
   }
 }
