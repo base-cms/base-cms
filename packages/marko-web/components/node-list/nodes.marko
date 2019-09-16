@@ -41,7 +41,7 @@ $ if (input.flushY) modifiers.push("flush-y");
           block-name=blockName
           node=node
           index=index
-          modifiers=["position-before", ...getAsArray(nodeInput.modifiers)]
+          modifiers=["position-before", ...getAsArray(before.modifiers)]
         />
       </if>
 
@@ -51,7 +51,7 @@ $ if (input.flushY) modifiers.push("flush-y");
           block-name=blockName
           node=node
           index=index
-          modifiers=["position-at", ...getAsArray(nodeInput.modifiers)]
+          modifiers=["position-at", ...getAsArray(at.modifiers)]
         />
       </if>
       <else-if(defaultSlot.renderBody)>
@@ -69,7 +69,7 @@ $ if (input.flushY) modifiers.push("flush-y");
           block-name=blockName
           node=node
           index=index
-          modifiers=["position-after", ...getAsArray(nodeInput.modifiers)]
+          modifiers=["position-after", ...getAsArray(after.modifiers)]
         />
       </if>
     </for>
