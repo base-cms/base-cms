@@ -32,6 +32,15 @@
   },
   "<website-magazine-issue-archive-flow>": {
     "template": "./magazine-issue-archive.marko",
-    "@nodes": "array"
+    "@nodes": "array",
+    "@flush": {
+      "type": "boolean",
+      "default-value": false
+    },
+    "@with-title": {
+      "type": "boolean",
+      "default-value": true
+    },
+    "@modifiers": "array"
   }
 }
