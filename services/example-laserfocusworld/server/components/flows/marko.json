@@ -42,5 +42,10 @@
       "default-value": true
     },
     "@modifiers": "array"
+  },
+  "<website-magazine-latest-issue-flow>": {
+    "template": "./magazine-latest-issue.marko",
+    "<header>": {},
+    "@issue-node": "object"
   }
 }
