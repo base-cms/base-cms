@@ -4,18 +4,22 @@ $ const issue = getAsObject(input, "node");
 $ const publication = getAsObject(issue, "publication");
 $ const coverImage = getAsObject(issue, "coverImage");
 
-<marko-web-node image-position="top" card=true full-height=true>
+$ const withTitle = input.withTitle != null ? input.withTitle : true;
+$ const flush = input.flush != null ? input.flush : false;
+$ const alt = `${publication.name} ${issue.name}`;
+
+<marko-web-node image-position="top" card=true flush=flush full-height=true>
   <@image
     src=coverImage.src
-    alt=(coverImage.alt || `${publication.name} ${issue.name}`)
+    alt=(coverImage.alt || alt)
     fluid=true
     ar="3:4"
     width=(input.imageWidth || 400)
-    link={ href: issue.canonicalPath }
+    link={ href: issue.canonicalPath, title: alt }
   />
   <@body>
-    <@title tag="h5">
-      <marko-web-magazine-issue-name tag=null obj=issue link=true />
+    <@title tag="h5" show=withTitle>
+      <marko-web-magazine-issue-name tag=null obj=issue link={ title: alt } />
     </@title>
   </@body>
 </marko-web-node>
