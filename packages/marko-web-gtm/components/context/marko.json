@@ -28,5 +28,11 @@
     "@id": "string",
     "@builder": "function",
     "@query-fragment": "expression"
+  },
+  "<marko-web-gtm-magazine-publication-context>": {
+    "template": "./magazine-publication.marko",
+    "@id": "string",
+    "@builder": "function",
+    "@query-fragment": "expression"
   }
 }

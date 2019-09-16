@@ -1,0 +1,25 @@
+import gql from "graphql-tag";
+import { isFunction, warn } from "@base-cms/utils";
+import { magazinePublicationBuilder } from "../../context";
+
+$ const { req } = out.global;
+$ const { id } = input;
+$ const builder = isFunction(input.builder) ? input.builder : magazinePublicationBuilder;
+
+$ const queryFragment = input.queryFragment || gql`
+fragment MagazinePublicationContextFragment on MagazinePublication {
+  id
+  name
+  canonicalPath
+}
+`;
+
+<if(id)>
+  <marko-web-query|{ node }| name="magazine-publication" params={ id, queryFragment }>
+    $ const context = builder({ type: "magazine-publication", obj: node, req });
+    <${input.renderBody} context=context />
+  </marko-web-query>
+</if>
+<else>
+  $ warn('Unable to create GTM magazine publication context: no publication id was provided.');
+</else>
