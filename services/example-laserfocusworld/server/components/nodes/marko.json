@@ -28,6 +28,9 @@
       "default-value": true
     }
   },
+  "<website-magazine-latest-issue-node>": {
+    "template": "./magazine-latest-issue.marko"
+  },
   "<website-magazine-issue-archive-node>": {
     "template": "./magazine-issue-archive.marko",
     "@node": "object",
