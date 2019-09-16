@@ -152,6 +152,10 @@ $marko-web-node-placeholder-image-opacity:      .2 !default;
       left: 0;
       padding: $marko-web-node-padding;
     }
+
+    > :last-child {
+      margin-bottom: 0;
+    }
   }
 
   &__title {
