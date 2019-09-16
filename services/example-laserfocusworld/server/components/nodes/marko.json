@@ -27,5 +27,13 @@
       "type": "boolean",
       "default-value": true
     }
+  },
+  "<website-magazine-issue-archive-node>": {
+    "template": "./magazine-issue-archive.marko",
+    "@node": "object",
+    "@image-width": {
+      "type": "number",
+      "default-value": 400
+    }
   }
 }
