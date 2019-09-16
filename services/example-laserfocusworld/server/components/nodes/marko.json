@@ -29,7 +29,12 @@
     }
   },
   "<website-magazine-latest-issue-node>": {
-    "template": "./magazine-latest-issue.marko"
+    "template": "./magazine-latest-issue.marko",
+    "@node": "object",
+    "@image-width": {
+      "type": "number",
+      "default-value": 300
+    }
   },
   "<website-magazine-issue-archive-node>": {
     "template": "./magazine-issue-archive.marko",
