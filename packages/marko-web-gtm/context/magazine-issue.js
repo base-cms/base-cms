@@ -4,8 +4,6 @@ const { asObject } = require('@base-cms/utils');
 module.exports = ({ obj }) => {
   const issue = asObject(obj);
   const publication = getAsObject(issue, 'publication');
-
-  // mailed
   return {
     page_type: 'magazine-issue',
     canonical_path: issue.canonicalPath,
