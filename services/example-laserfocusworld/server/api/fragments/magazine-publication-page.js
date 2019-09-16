@@ -6,15 +6,7 @@ fragment MagazinePublicationPageFragment on MagazinePublication {
   id
   name
   description
-  coverImage {
-    id
-    src
-  }
   canonicalPath
-  metadata {
-    title
-    description
-  }
 }
 
 `;
