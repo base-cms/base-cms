@@ -5,7 +5,7 @@ module.exports = gql`
 extend type Query {
   magazineIssue(input: MagazineIssueQueryInput!): MagazineIssue @findOne(model: "magazine.Issue", using: { id: "_id" })
   magazineIssues(input: MagazineIssuesQueryInput = {}): MagazineIssueConnection! @findMany(model: "magazine.Issue")
-  magazineActiveIssues(input: MagazineActiveIssuesQueryInput = {}): MagazineIssueConnection! @findMany(model: "magazine.Issue", criteria: "magazineActiveIssues", using: { publicationId: "publication.$id" })
+  magazineActiveIssues(input: MagazineActiveIssuesQueryInput = {}): MagazineIssueConnection!
   magazineLatestIssue(input: MagazineLatestIssueQueryInput!): MagazineIssue
 }
 
@@ -68,6 +68,7 @@ input MagazineLatestIssueQueryInput {
 
 input MagazineActiveIssuesQueryInput {
   publicationId: ObjectID!
+  excludeIssueIds: [Int!] = []
   sort: MagazineIssueSortInput = { field: mailDate, order: desc }
   pagination: PaginationInput = {}
 }
