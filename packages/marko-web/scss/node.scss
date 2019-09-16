@@ -313,7 +313,7 @@ $marko-web-node-placeholder-image-opacity:      .2 !default;
         }
       }
       &__image-wrapper + #{ $self }__body {
-        margin-left: $marko-web-node-spacer;
+        margin-left: $marko-web-node-padding;
       }
       &__body {
         &--overlay {
@@ -354,7 +354,7 @@ $marko-web-node-placeholder-image-opacity:      .2 !default;
         }
       }
       &__image-wrapper + #{ $self }__body {
-        margin-right: $marko-web-node-spacer;
+        margin-right: $marko-web-node-padding;
       }
       &__body {
         &--overlay {
