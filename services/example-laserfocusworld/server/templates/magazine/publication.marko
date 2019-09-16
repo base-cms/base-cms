@@ -3,11 +3,11 @@ import GAM from "../../../config/gam";
 $ const { id, pageNode } = data;
 
 <marko-web-magazine-publication-page-layout id=id>
-  <!-- <@head>
-    <marko-web-gtm-magazine-issue-context|{ context }| id=id>
+  <@head>
+    <marko-web-gtm-magazine-publication-context|{ context }| id=id>
       <marko-web-gtm-push data=context />
-    </marko-web-gtm-magazine-issue-context>
-  </@head> -->
+    </marko-web-gtm-magazine-publication-context>
+  </@head>
   <@above-container>
     <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "wa" }) />
     <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "reskin" }) />
