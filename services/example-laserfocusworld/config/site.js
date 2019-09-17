@@ -25,6 +25,9 @@ module.exports = {
   gtm: {
     containerId: 'GTM-M7H8VJG',
   },
+  wufoo: {
+    userName: 'cygnuscorporate',
+  },
   magazines: {
     description: '',
   },

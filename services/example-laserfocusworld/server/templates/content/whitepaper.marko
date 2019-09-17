@@ -2,6 +2,7 @@ import hierarchyAliases from "@base-cms/marko-web-gam/utils/hierarchy-aliases";
 import { getAsObject } from "@base-cms/object-path";
 import queryFragment from "../../api/fragments/content-list";
 
+$ const { site } = out.global;
 $ const { id, type, pageNode } = data;
 
 $ const displayPrimaryImage = ["whitepaper", "media-gallery", "contact"].includes(type) ? false : true;
@@ -54,10 +55,16 @@ $ const displayPrimaryImage = ["whitepaper", "media-gallery", "contact"].include
               <if(fileSrc)>
                 <if(surveyId)>
                   <if(surveyType === "app_form_com")>
-                    <marko-web-browser-component name="FormDotComGatedDownload" props={ surveyId, target: fileSrc } />
+                    <marko-web-browser-component
+                      name="FormDotComGatedDownload"
+                      props={ surveyId, target: fileSrc }
+                    />
                   </if>
                   <else-if(surveyType === "wufoo")>
-
+                    <marko-web-browser-component
+                      name="WufooGatedDownload"
+                      props={ userName: site.get("wufoo.userName"), formHash: surveyId, target: fileSrc }
+                    />
                   </else-if>
                 </if>
                 <else>
