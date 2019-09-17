@@ -1,0 +1,34 @@
+import { getAsObject } from "@base-cms/object-path";
+import latestIssueFragment from "./fragments/latest-issue";
+import issueArchiveListFragment from "./fragments/issue-archive";
+
+$ const blockName = "magazine-publication-card-block";
+
+<div class=blockName>
+  <if(input.header)>
+    <div class=`${blockName}__header`>
+      <${input.header} block-name=blockName />
+    </div>
+  </if>
+
+  <div class=`${blockName}__body`>
+    <div class="row">
+      <marko-web-query|{ node: issue }| name="magazine-issue" params={ id: input.issueId, queryFragment: latestIssueFragment }>
+        <div class="col-md-5 mb-block">
+          <latest-issue node=issue />
+        </div>
+      </marko-web-query>
+      <marko-web-query|{ nodes: issues }| name="magazine-active-issues" params={ publicationId: input.publicationId, excludeIssueIds: [input.issueId], queryFragment: issueArchiveListFragment, limit: 12 }>
+          <div class="col-md-7 mb-block">
+            <div class="row">
+              <for|issue| of=issues>
+                <div class="col-3 mb-block">
+                  <archived-issue node=issue />
+                </div>
+              </for>
+            </div>
+          </div>
+        </marko-web-query>
+    </div>
+  </div>
+</div>
