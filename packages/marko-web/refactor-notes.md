@@ -6,6 +6,7 @@
 - [x] Search: Google
 - [x] Subscribe
 - [x] Reveal Ad
+- [ ] Video Play Overlay
 - [ ] NativeX Plugin
 - [ ] Content: Media Galleries (really only Bizbash)
 - [ ] Search: Bing (EE and Bizbash only)
