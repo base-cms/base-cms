@@ -19,10 +19,10 @@ $marko-web-reveal-ad-link-margin-x:     0 !default;
   position: relative;
   width: 100%;
   &--light-shadow {
-    @include box-shadow($marko-web-reveal-ad-box-shadow-light);
+    box-shadow: $marko-web-reveal-ad-box-shadow-light;
   }
   &--dark-shadow {
-    @include box-shadow($marko-web-reveal-ad-box-shadow-dark);
+    box-shadow: $marko-web-reveal-ad-box-shadow-dark;
   }
   a {
     display: block;
