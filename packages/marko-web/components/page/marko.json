@@ -85,6 +85,7 @@
     "@with-display-name": {
       "type": "boolean",
       "default-value": false
-    }
+    },
+    "@modifiers": "array"
   }
 }

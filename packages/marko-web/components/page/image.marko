@@ -1,5 +1,5 @@
 import { buildImgixUrl } from "@base-cms/image";
-import { getAsObject } from "@base-cms/object-path";
+import { getAsObject, getAsArray } from "@base-cms/object-path";
 
 $ const blockName = input.blockName || "page-image";
 $ const image = getAsObject(input, "obj");
@@ -9,7 +9,7 @@ $ const withDisplayName = input.withDisplayName != null ? input.withDisplayName 
 $ const lazyload = input.lazyload != null ? input.lazyload : true;
 $ const width = input.width != null ? input.width : 320;
 
-$ const modifiers = [];
+$ const modifiers = [...getAsArray(input, "modifiers")];
 $ const fluid = input.fluid != null ? input.fluid : true;
 $ if (fluid) modifiers.push("fluid");
 
