@@ -30,6 +30,18 @@
     color: $theme-page-deck-color;
   }
 
+  &__description {
+    @include theme-apply-fonts(
+      $font-family: $theme-page-description-font-family,
+      $font-size-sm: $theme-page-description-font-size-sm,
+      $font-size: $theme-page-description-font-size,
+      $font-weight: $theme-page-description-font-weight,
+      $line-height-sm: $theme-page-description-line-height-sm,
+      $line-height: $theme-page-description-line-height,
+    );
+    color: $theme-page-description-color;
+  }
+
   .col > :last-child {
     margin-bottom: 0;
   }
