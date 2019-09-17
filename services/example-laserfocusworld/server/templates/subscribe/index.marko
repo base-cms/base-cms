@@ -1,6 +1,6 @@
 import GAM from "../../../config/gam";
 
-$ const { config } = out.global;
+$ const { config, site } = out.global;
 
 $ const type = "subscribe";
 $ const title = "Subscribe";
@@ -27,6 +27,10 @@ $ const description = `${config.siteName()} has products that deliver powerful c
             </default-theme-breadcrumbs-with-home>
             <h1 class="page-wrapper__title">Information at Your Fingertips</h1>
             <p class="page-wrapper__description">${description}</p>
+            <default-theme-social-icons
+              items=site.getAsArray('socialMediaLinks')
+              icon-modifiers=["xl"]
+            />
             <hr>
           </div>
         </div>
