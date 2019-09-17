@@ -1,0 +1,45 @@
+.contact-us-form {
+  &__container {
+    @include theme-card();
+  }
+
+  &__header {
+    @include theme-card-header();
+    @include border-top-radius($theme-card-border-radius);
+    padding: $theme-item-padding ($theme-item-padding + $theme-item-contents-padding);
+    margin-bottom: 0;
+  }
+
+  &__contents {
+    flex: 1 1 auto;
+    padding: $card-spacer-x;
+    color: $card-color;
+  }
+
+  &__label {
+    display: block;
+  }
+
+  &__field,
+  &__submit {
+    width: 100%;
+    margin-bottom: map-get($spacers, 1);
+  }
+
+  &__submit:disabled {
+    cursor: not-allowed;
+  }
+
+  &__text {
+    &--success {
+      color: $success;
+    }
+    &--loading {
+      color: $text-muted;
+      cursor: wait;
+    }
+    &--danger {
+      color: $danger;
+    }
+  }
+}
