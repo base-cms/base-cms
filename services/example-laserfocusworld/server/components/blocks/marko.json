@@ -16,5 +16,8 @@
     "@section-id": "number",
     "@section-name": "string",
     "@section-skip": "number"
+  },
+  "<website-magazine-publications-block>": {
+    "template": "./magazine-publications.marko"
   }
 }
