@@ -6,7 +6,11 @@ $ const publication = getAsObject(issue, "publication");
 $ const coverImage = getAsObject(issue, "coverImage");
 $ const linkTitle = `${publication.name} ${issue.name}`;
 
-<marko-web-node image-position="top" flush=true>
+<marko-web-node
+  image-position="top"
+  card=defaultValue(input.card, false)
+  flush=defaultValue(input.flush, true)
+>
   <@image
     src=coverImage.src
     alt=(coverImage.alt || linkTitle)

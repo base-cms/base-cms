@@ -1,4 +1,7 @@
 import GAM from "../../../config/gam";
+import latestIssueFragment from "../../api/fragments/magazine-latest-issue";
+import publicationListFragment from "../../api/fragments/magazine-publication-list";
+import issueArchiveListFragment from "../../api/fragments/magazine-issue-archive";
 
 $ const { site } = out.global;
 
@@ -27,13 +30,23 @@ $ const description = site.get("magazines.description");
             </default-theme-breadcrumbs-with-home>
             <h1 class="page-wrapper__title">${title}</h1>
             <if(description)>
-              <h1 class="page-wrapper__deck">${description}</h1>
+              <p class="page-wrapper__deck">${description}</p>
             </if>
           </div>
         </div>
       </@section>
       <@section>
-        Stuff here
+        <marko-web-query|{ nodes }| name="magazine-publications" params={ queryFragmet: publicationListFragment }>
+          <for|publication| of=nodes>
+            <marko-web-query|{ node: latestIssue }| name="magazine-latest-issue" params={ publicationId: publication.id }>
+              <default-theme-magazine-publication-card-block publication-id=publication.id issue-id=latestIssue.id>
+                <@header>
+                  <marko-web-magazine-publication-name tag=null obj=publication link=true />
+                </@header>
+              </default-theme-magazine-publication-card-block>
+            </marko-web-query>
+          </for>
+        </marko-web-query>
       </@section>
     </marko-web-page-wrapper>
   </@page>
