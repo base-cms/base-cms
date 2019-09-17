@@ -18,6 +18,7 @@
   "dependencies": {
     "@base-cms/marko-web": "^0.10.3",
     "@base-cms/marko-web-gam": "^0.10.3",
+    "@base-cms/marko-web-gcse": "^0.10.3",
     "@base-cms/marko-web-gtm": "^0.10.3",
     "@base-cms/marko-web-icons": "^0.10.3",
     "@base-cms/marko-web-theme-default": "^0.10.3",
