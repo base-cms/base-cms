@@ -9,6 +9,7 @@ $ const { id, alias, name, pageNode } = data;
     <marko-web-gtm-website-section-context|{ context }| alias=alias>
       <marko-web-gtm-push data=context />
     </marko-web-gtm-website-section-context>
+    <script src="https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit" async defer></script>
   </@head>
   <@above-container>
     <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "wa" }) />
@@ -37,7 +38,7 @@ $ const { id, alias, name, pageNode } = data;
               </marko-web-query>
             </default-theme-page-contents>
             <aside class="col-lg-4 page-rail">
-              Form here
+              <marko-web-browser-component name="DefaultThemeContactUsForm" />
             </aside>
           </div>
         </@section>
