@@ -5,7 +5,7 @@
 - [ ] Contact Us (w/submission stuff)
 - [x] Search: Google
 - [ ] Subscribe
-- [ ] Reveal Ad
+- [x] Reveal Ad
 - [ ] NativeX Plugin
 - [ ] Content: Media Galleries (really only Bizbash)
 - [ ] Search: Bing (EE and Bizbash only)
