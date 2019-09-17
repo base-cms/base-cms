@@ -11,6 +11,7 @@
 - [ ] Search: Bing (EE and Bizbash only)
 - [ ] IdentityX Plugin (OGJ only)
 - [ ] Inquiry Plugin (Bizbash only)
+- [ ] Review unused theme CSS
 
 ## Core
 - Page loaders should not use routes
