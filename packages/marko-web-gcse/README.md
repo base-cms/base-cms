@@ -1,2 +1,2 @@
-# BaseCMS Marko Web GTM Components
-Google Tag Manager components for BaseCMS/Marko websites.
+# BaseCMS Marko Web GCSE Components
+Google Custom Search Engine components for BaseCMS/Marko websites.
