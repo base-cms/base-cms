@@ -4,15 +4,15 @@
 - [ ] Content: Whitepapers (forms, downloads, etc)
 - [x] Contact Us Page
 - [x] Search: Google
-- [ ] Subscribe
+- [x] Subscribe
 - [x] Reveal Ad
 - [ ] NativeX Plugin
-- [ ] Contact Us Submissions - move to site package for now
-- [ ] Mailer Service for Contact Us and Inquiry
 - [ ] Content: Media Galleries (really only Bizbash)
 - [ ] Search: Bing (EE and Bizbash only)
 - [ ] IdentityX Plugin (OGJ only)
 - [ ] Inquiry Plugin (Bizbash only)
+- [ ] Contact Us Submissions - move to site package for now
+- [ ] Mailer Service for Contact Us and Inquiry
 - [ ] Review unused theme CSS
 
 ## Core
