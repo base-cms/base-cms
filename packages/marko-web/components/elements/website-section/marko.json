@@ -1,8 +1,0 @@
-{
-  "<cms-website-section-name>": {
-    "template": "./name.marko"
-  },
-  "<cms-website-section-hierarchy>": {
-    "template": "./hierarchy.marko"
-  }
-}
