@@ -1,5 +1,17 @@
 # Marko Web Refactor
 
+## Punch List
+- [ ] Content: Whitepapers (forms, downloads, etc)
+- [ ] Contact Us (w/submission stuff)
+- [x] Search: Google
+- [ ] Subscribe
+- [ ] Reveal Ad
+- [ ] NativeX Plugin
+- [ ] Content: Media Galleries (really only Bizbash)
+- [ ] Search: Bing (EE and Bizbash only)
+- [ ] IdentityX Plugin (OGJ only)
+- [ ] Inquiry Plugin (Bizbash only)
+
 ## Core
 - Page loaders should not use routes
 - Document / page wrappers should support all types
