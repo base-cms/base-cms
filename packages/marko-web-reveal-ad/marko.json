@@ -1,0 +1,6 @@
+{
+  "taglib-id": "@base-cms/marko-web-reveal-ad",
+  "taglib-imports": [
+    "./components/marko.json"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "<marko-web-reveal-ad-listener>": {
+    "template": "./listener.marko",
+    "@target": "string",
+    "@defaults": "object"
+  }
+}
