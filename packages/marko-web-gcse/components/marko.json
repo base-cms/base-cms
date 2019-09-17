@@ -1,0 +1,6 @@
+{
+  "<marko-web-gcse-simple-search-box>": {
+    "template": "./simple-search-box.marko",
+    "@apiKey": "string"
+  }
+}
