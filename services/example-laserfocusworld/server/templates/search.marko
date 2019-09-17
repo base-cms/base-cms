@@ -1,7 +1,7 @@
 import GAM from "../../config/gam";
+import GCSE from "../../config/gcse";
 
-$ const { config, req } = out.global;
-$ const { q } = req.query;
+$ const { config } = out.global;
 
 $ const type = "search";
 $ const title = "Search";
@@ -29,13 +29,7 @@ $ const description = `Search ${config.siteName()}`;
       <@section>
         <div class="row">
           <div class="col">
-            <!-- @todo Actually implement search. -->
-            <form>
-              <input type="search" name="q" value=q class="form-control mb-3" placeholder="Enter search phrase...">
-              <button type="submit" class="btn btn-primary">
-                <marko-web-icon name="search" modifiers=["light"] /> Search
-              </button>
-            </form>
+            <marko-web-gcse-simple-search-box api-key=GCSE.getApiKey() />
           </div>
         </div>
       </@section>
