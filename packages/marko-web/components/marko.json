@@ -2,7 +2,6 @@
   "taglib-imports": [
     "./document/marko.json",
     "./element/marko.json",
-    "./elements/marko.json",
     "./load-more/marko.json",
     "./node/marko.json",
     "./node-list/marko.json",
