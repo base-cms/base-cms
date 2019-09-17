@@ -27,6 +27,27 @@
   > :last-child:not(#{ $self }__wrapper) {
     border-bottom: 1px solid #ccc;
   }
+
+  &--primary-image-inline {
+    float: left;
+    margin-top: calc((#{$theme-page-body-line-height} - 1) * .5em);
+    margin-right: .75rem;
+    margin-bottom: 0;
+
+    @include media-breakpoint-down($theme-responsive-text-breakpoint) {
+      margin-top: calc((#{$theme-page-body-line-height-sm} - 1) * .5em);
+    }
+
+    #{ $self } {
+      &__wrapper {
+        border-radius: 0;
+        box-shadow: none;
+      }
+      &__image {
+        border-radius: 0;
+      }
+    }
+  }
 }
 
 [data-embed-type="image"] {
