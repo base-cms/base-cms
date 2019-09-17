@@ -1,0 +1,33 @@
+$marko-web-reveal-ad-box-shadow-light:  0 4px 8px 0 rgba(255, 255, 255, .2), 0 6px 20px 0 rgba(255, 255, 255, .19) !default;
+$marko-web-reveal-ad-box-shadow-dark:   0 4px 8px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .19) !default;
+$marko-web-reveal-ad-link-margin-y:     1.5rem !default;
+$marko-web-reveal-ad-link-margin-x:     0 !default;
+
+.reveal-ad-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+}
+
+.reveal-ad {
+  position: relative;
+  width: 100%;
+  &--light-shadow {
+    @include box-shadow($marko-web-reveal-ad-box-shadow-light);
+  }
+  &--dark-shadow {
+    @include box-shadow($marko-web-reveal-ad-box-shadow-dark);
+  }
+  a {
+    display: block;
+    width: 100%;
+    padding: $marko-web-reveal-ad-link-margin-y $marko-web-reveal-ad-link-margin-x;
+    text-align: center;
+  }
+}
