@@ -21,6 +21,7 @@
     "@base-cms/marko-web-gcse": "^0.10.3",
     "@base-cms/marko-web-gtm": "^0.10.3",
     "@base-cms/marko-web-icons": "^0.10.3",
+    "@base-cms/marko-web-reveal-ad": "^0.10.3",
     "@base-cms/marko-web-theme-default": "^0.10.3",
     "@base-cms/object-path": "^0.10.0",
     "@base-cms/utils": "^0.10.0",
