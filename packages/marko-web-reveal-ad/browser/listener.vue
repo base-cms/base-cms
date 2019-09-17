@@ -1,10 +1,9 @@
 <template>
-  <div :id="elementId" />
+  <div id="marko-web-reveal-ad-listener" />
 </template>
 
 <script>
 import $ from '@base-cms/marko-web/browser/jquery';
-import elementId from '@base-cms/marko-web/browser/components/element-id';
 
 const parseJson = (str) => {
   try {
@@ -23,11 +22,6 @@ export default {
     defaults: {
       type: Object,
       default: () => ({ backgroundColor: 'transparent' }),
-    },
-  },
-  computed: {
-    elementId() {
-      return elementId('reveal-ad-listener');
     },
   },
   created() {
