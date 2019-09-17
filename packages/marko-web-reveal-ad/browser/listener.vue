@@ -18,7 +18,7 @@ export default {
   props: {
     target: {
       type: String,
-      default: '.container-fluid-max .page-section',
+      default: '.document-container .page',
     },
     defaults: {
       type: Object,
