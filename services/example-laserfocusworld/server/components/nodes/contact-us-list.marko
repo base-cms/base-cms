@@ -14,19 +14,11 @@ $ const primaryImage = getAsObject(content, "primaryImage");
     use-placeholder=false
   />
   <@body>
-    <@header>
-      <@left>
-        <marko-web-content-title tag=null obj=content />
-      </@left>
-    </@header>
     <@title tag="h5">
       <marko-web-content-name tag=null obj=content link=true />
     </@title>
-    <@text show=content.publicEmail>
-      <marko-web-content-public-email tag=null obj=content />
-    </@text>
-    <@text show=content.phone>
-      <marko-web-content-phone tag=null obj=content />
+    <@text>
+      <default-theme-content-contact-details obj=content />
     </@text>
   </@body>
 </marko-web-node>
