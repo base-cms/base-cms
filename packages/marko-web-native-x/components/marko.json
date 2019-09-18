@@ -12,6 +12,15 @@
     "@opts": "object",
     "@section-name": "string"
   },
+  "<marko-web-native-x-render>": {
+    "template": "./render.marko",
+    "@config": "object",
+    "@name": "string",
+    "@aliases": "array",
+    "@node": "object",
+    "@when": "boolean",
+    "@section-name": "string"
+  },
   "<marko-web-native-x-fetch-elements>": {
     "template": "./fetch-elements.marko",
     "@uri": "string",
