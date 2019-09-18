@@ -1,0 +1,121 @@
+{
+  "<marko-web-node-list>": {
+    "template": "./index.marko",
+    "<header>": {},
+    "<footer>": {},
+    "<body>": {},
+    "<nodes>": {
+      "@slots <slot>[]": {},
+      "@nodes": "array",
+      "@block-name": "string",
+      "@tag": "string",
+      "@modifiers": "array",
+      "@attrs": "object",
+      "@flush-x": "boolean",
+      "@flush-y": "boolean"
+    },
+    "<render>": {},
+    "@block-name": {
+      "type": "string",
+      "default-value": "node-list"
+    },
+    "@tag": {
+      "type": "string",
+      "default-value": "div"
+    },
+    "@justified": {
+      "type": "boolean",
+      "default-value": false
+    },
+    "@inner-justified": {
+      "type": "boolean",
+      "default-value": false
+    },
+    "@flush-x":  {
+      "type": "boolean",
+      "default-value": false
+    },
+    "@flush-y":  {
+      "type": "boolean",
+      "default-value": false
+    },
+    "@full-height": {
+      "type": "boolean",
+      "default-value": false
+    },
+    "@collapsible": {
+      "type": "boolean",
+      "default-value": true
+    },
+    "@class": "string",
+    "@modifiers": "array",
+    "@attrs": "object"
+  },
+  "<marko-web-node-list-header>": {
+    "template": "./header.marko",
+    "@block-name": "string",
+    "@tag": "string",
+    "@flush-x": "boolean",
+    "@flush-y": "boolean",
+    "@modifiers": "array",
+    "@attrs": "object"
+  },
+  "<marko-web-node-list-footer>": {
+    "template": "./footer.marko",
+    "@block-name": "string",
+    "@tag": "string",
+    "@flush-x": "boolean",
+    "@flush-y": "boolean",
+    "@modifiers": "array",
+    "@attrs": "object"
+  },
+  "<marko-web-node-list-body>": {
+    "template": "./body.marko",
+    "@block-name": "string",
+    "@tag": "string",
+    "@flush-x": "boolean",
+    "@flush-y": "boolean",
+    "@modifiers": "array",
+    "@attrs": "object"
+  },
+  "<marko-web-node-list-nodes>": {
+    "template": "./nodes.marko",
+    "@nodes": "array",
+    "@block-name": "string",
+    "@tag": "string",
+    "@modifiers": "array",
+    "@attrs": "object",
+    "@flush-x": "boolean",
+    "@flush-y": "boolean",
+    "@slots <slot>[]": {
+      "@position": "number",
+      "@index": "number",
+      "@tag": "string",
+      "@modifiers": "array",
+      "@attrs": "object"
+    }
+  },
+  "<marko-web-node-list-node>": {
+    "template": "./node.marko",
+    "@node": "object",
+    "@index": "number",
+    "@block-name": "string",
+    "@tag": "string",
+    "@modifiers": "array",
+    "@attrs": "object"
+  },
+  "<marko-web-node-list-element>": {
+    "template": "./element.marko",
+    "@name": "string",
+    "@tag": {
+      "type": "string",
+      "default-value": "div"
+    },
+    "@block-name": {
+      "type": "string",
+      "default-value": "node-list"
+    },
+    "@modifiers": "array",
+    "@attrs": "object"
+  }
+}

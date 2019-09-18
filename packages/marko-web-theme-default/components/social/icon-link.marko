@@ -1,0 +1,16 @@
+import { get } from "@base-cms/object-path";
+import getProvider from "./get-provider";
+
+$ const classNames = [(input.class || "social-icon-link")];
+$ const provider = get(input, "provider", "");
+$ const label = get(input, "label", "");
+
+$ const formatted = getProvider({ provider, label });
+$ const name = label || provider;
+$ const title = name ? `Visit us on ${name.charAt(0).toUpperCase()}${name.slice(1)}` : null;
+
+<if(formatted && input.href)>
+  <marko-web-link class=classNames href=input.href target=input.target title=title>
+    <marko-web-icon name=provider modifiers=input.modifiers />
+  </marko-web-link>
+</if>

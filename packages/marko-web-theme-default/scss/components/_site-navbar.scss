@@ -1,0 +1,183 @@
+.site-navbar {
+  $self: &;
+  &__container {
+    @include make-container();
+    @include media-breakpoint-up(xl, $grid-breakpoints) {
+      max-width: map-get($grid-breakpoints, xl);
+    }
+    display: flex;
+    flex-direction: row;
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  &__brand {
+    display: inline-block;
+    margin: $theme-site-navbar-brand-margin-y $theme-site-navbar-brand-margin-x;
+    white-space: nowrap;
+  }
+
+  &__logo {
+    height: $theme-site-navbar-logo-height;
+    filter: drop-shadow($theme-site-navbar-logo-drop-shadow);
+    @media (max-width: map-get($theme-site-header-breakpoints, small-logo)) {
+      height: $theme-site-navbar-logo-height-sm;
+    }
+  }
+
+  &__toggler {
+    @include theme-toggle-button();
+    padding: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+
+    & > .marko-web-icon {
+      @include theme-navbar-link-color($theme-site-navbar-secondary-colors);
+    }
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: row;
+    padding-left: 0;
+    margin-bottom: 0;
+    text-transform: uppercase;
+    list-style: none;
+
+    &--primary {
+      @include theme-hide-scrollbars();
+      width: 100%;
+      overflow: scroll;
+      font-family: $theme-site-navbar-primary-font-family;
+      font-size: $theme-site-navbar-primary-font-size;
+      font-weight: $theme-site-navbar-primary-font-weight;
+      line-height: $theme-site-navbar-primary-line-height;
+
+      @media (max-width: map-get($theme-site-header-breakpoints, small-text-primary)) {
+        font-size: $theme-site-navbar-primary-font-size-sm;
+        line-height: $theme-site-navbar-primary-line-height-sm;
+      }
+
+      @media (max-width: map-get($theme-site-header-breakpoints, hide-primary)) {
+        height: $theme-site-navbar-primary-height-sm;
+      }
+
+      #{ $self } {
+        &__item {
+          @include theme-navbar-link-background-color($theme-site-navbar-primary-background-colors);
+          flex-grow: 1;
+          padding: $theme-site-navbar-primary-link-padding;
+          text-align: center;
+
+          @media (max-width: map-get($theme-site-header-breakpoints, hide-primary)) {
+            display: none;
+          }
+        }
+
+        &__link {
+          @include theme-navbar-link-color($theme-site-navbar-primary-colors);
+          @include theme-navbar-link-decoration($theme-site-navbar-primary-decorations);
+        }
+      }
+    }
+
+    &--secondary {
+      @include theme-hide-scrollbars();
+      margin-top: auto;
+      overflow: scroll;
+      font-family: $theme-site-navbar-secondary-font-family;
+      font-size: $theme-site-navbar-secondary-font-size;
+      font-weight: $theme-site-navbar-secondary-font-weight;
+      line-height: $theme-site-navbar-secondary-line-height;
+
+      @media (max-width: map-get($theme-site-header-breakpoints, small-text-secondary)) {
+        font-size: $theme-site-navbar-secondary-font-size-sm;
+        line-height: $theme-site-navbar-secondary-line-height-sm;
+      }
+
+      @media (max-width: map-get($theme-site-header-breakpoints, small-logo)) {
+        margin-top: initial;
+      }
+
+      #{ $self } {
+        &__item {
+          @include theme-navbar-link-background-color($theme-site-navbar-secondary-background-colors);
+          @media (max-width: map-get($theme-site-header-breakpoints, hide-secondary)) {
+            display: none;
+          }
+        }
+        &__link {
+          @include theme-navbar-link-color($theme-site-navbar-secondary-colors);
+          @include theme-navbar-link-decoration($theme-site-navbar-secondary-decorations);
+          padding: $theme-site-navbar-secondary-link-padding;
+          padding-bottom: 0;
+        }
+      }
+    }
+
+    &--tertiary {
+      padding-left: $theme-site-navbar-padding-x;
+      margin-top: auto;
+      margin-left: auto;
+      font-family: $theme-site-navbar-secondary-font-family;
+      font-size: $theme-site-navbar-secondary-font-size;
+      font-weight: $theme-site-navbar-secondary-font-weight;
+      line-height: $theme-site-navbar-secondary-line-height;
+
+      @media (max-width: map-get($theme-site-header-breakpoints, small-text-secondary)) {
+        font-size: $theme-site-navbar-secondary-font-size-sm;
+        line-height: $theme-site-navbar-secondary-line-height-sm;
+      }
+
+      @media (max-width: map-get($theme-site-header-breakpoints, small-logo)) {
+        margin-top: initial;
+      }
+
+      #{ $self } {
+        &__item {
+          @include theme-navbar-link-background-color($theme-site-navbar-secondary-background-colors);
+          align-self: center;
+
+          @media (max-width: map-get($theme-site-header-breakpoints, hide-tertiary)) {
+            display: none;
+          }
+        }
+        &__link {
+          @include theme-navbar-link-color($theme-site-navbar-tertiary-colors);
+          @include theme-navbar-link-decoration($theme-site-navbar-secondary-decorations);
+          padding: $theme-site-navbar-secondary-link-padding;
+          padding-top: 0;
+          padding-bottom: 0;
+        }
+      }
+    }
+  }
+
+  &__item {
+    &:first-child a {
+      padding-left: 0;
+    }
+
+    &:last-child a {
+      padding-right: 0;
+    }
+  }
+
+  &__link {
+    display: block;
+    white-space: nowrap;
+    transition: $theme-site-navbar-link-transition;
+  }
+
+  &--primary {
+    @include theme-navbar();
+    padding: $theme-site-navbar-primary-padding-y $theme-site-navbar-primary-padding-x;
+    background-color: $theme-site-navbar-primary-bg-color;
+  }
+
+  &--secondary {
+    @include theme-navbar();
+    padding: $theme-site-navbar-secondary-padding-y $theme-site-navbar-secondary-padding-x;
+    background-color: $theme-site-navbar-secondary-bg-color;
+  }
+}

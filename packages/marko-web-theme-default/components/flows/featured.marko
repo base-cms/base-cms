@@ -1,0 +1,28 @@
+import { getAsArray, get } from "@base-cms/object-path";
+
+$ const blockName = "featured-flow";
+$ const featuredNode = get(input, "featured.node");
+$ const listNodes = getAsArray(input, "list.nodes");
+$ const modifiers = getAsArray(input, "modifiers");
+$ if (input.reverse) modifiers.push("reverse");
+
+<if(featuredNode || listNodes.length)>
+  <marko-web-block
+    name=blockName
+    tag=input.tag
+    class=input.class
+    modifiers=modifiers
+    attrs=input.attrs
+  >
+    <if(input.featured && featuredNode)>
+      <marko-web-element name="featured" block-name=blockName>
+        <${input.featured} node=featuredNode block-name=blockName />
+      </marko-web-element>
+    </if>
+    <if(input.list && listNodes.length)>
+      <marko-web-element name="list" block-name=blockName>
+        <${input.list} nodes=listNodes block-name=blockName />
+      </marko-web-element>
+    </if>
+  </marko-web-block>
+</if>

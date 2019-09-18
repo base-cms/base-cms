@@ -1,0 +1,22 @@
+import { getAsObject } from "@base-cms/object-path";
+import { defaultValue } from "@base-cms/marko-web/utils";
+
+$ const issue = getAsObject(input, "node");
+$ const coverImage = getAsObject(issue, "coverImage");
+$ const alt = issue.name;
+
+<marko-web-node
+  image-position="top"
+  card=true
+  flush=true
+  full-height=true
+>
+  <@image
+    src=coverImage.src
+    alt=(coverImage.alt || alt)
+    fluid=true
+    ar="3:4"
+    width=190
+    link={ href: issue.canonicalPath, title: alt }
+  />
+</marko-web-node>

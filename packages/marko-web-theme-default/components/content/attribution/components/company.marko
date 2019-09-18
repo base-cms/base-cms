@@ -1,0 +1,7 @@
+$ const { company } = input;
+
+<if(company && company.name)>
+  <div class=`${input.blockName}__content-company-name`>
+    <marko-web-content-name tag="span" block-name=input.blockName obj=company link=true />
+  </div>
+</if>

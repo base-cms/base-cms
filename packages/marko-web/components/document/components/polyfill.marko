@@ -1,0 +1,8 @@
+import { getAsArray } from "@base-cms/object-path";
+
+$ const features = getAsArray(input, "features");
+$ const src = `https://polyfill.io/v3/polyfill.min.js?flags=gated&features=${encodeURIComponent(features.join(','))}`;
+
+<if(features.length)>
+  <script src=src></script>
+</if>

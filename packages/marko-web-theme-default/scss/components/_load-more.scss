@@ -1,0 +1,24 @@
+.load-more-trigger > button {
+  @extend .btn;
+  @extend .btn-lg;
+  @extend .btn-primary;
+  font-family: $theme-load-more-button-font-family;
+  color: $theme-load-more-button-color;
+  background-color: $theme-load-more-button-background-color;
+  border-color: $theme-load-more-button-border-color;
+}
+
+.load-more-header {
+  margin-bottom: $theme-load-more-bottom-spacing;
+  font-family: $theme-load-more-header-font-family;
+  font-size: $theme-load-more-header-font-size;
+  font-weight: $theme-load-more-header-font-weight;
+  line-height: $theme-load-more-header-line-height;
+  color: $theme-load-more-header-color;
+  text-align: $theme-load-more-header-text-align;
+  text-transform: $theme-load-more-header-text-transform;
+  @include theme-apply-responsive-fonts(
+    $font-size: $theme-load-more-header-font-size-sm,
+    $line-height: $theme-load-more-header-line-height-sm
+  );
+}

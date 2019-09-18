@@ -7,15 +7,6 @@ fragment WithContentFragment on Content {
   type
   redirectTo
   canonicalPath
-  metadata {
-    title
-    description
-    publishedDate
-    image {
-      id
-      src
-    }
-  }
 }
 
 `;

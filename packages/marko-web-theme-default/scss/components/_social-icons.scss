@@ -1,0 +1,12 @@
+.social-icons {
+  display: flex;
+  flex-direction: row;
+
+  > a {
+    margin-right: map-get($spacers, 3);
+
+    :last-child {
+      margin-right: 0;
+    }
+  }
+}

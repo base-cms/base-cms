@@ -1,0 +1,144 @@
+{
+  "taglib-imports": [
+    "./content/marko.json",
+    "./magazine-issue/marko.json",
+    "./magazine-publication/marko.json",
+    "./image/marko.json",
+    "./website-section/marko.json"
+  ],
+  "<marko-web-block>": {
+    "template": "./block.marko",
+    "@name": {
+      "type": "string",
+      "default-value": "block"
+    },
+    "@tag": {
+      "type": "string",
+      "default-value": "div"
+    },
+    "@class": "string",
+    "@modifiers": "@array",
+    "@attrs": "object"
+  },
+  "<marko-web-element>": {
+    "template": "./index.marko",
+    "@name": {
+      "type": "string",
+      "default-value": "default"
+    },
+    "@block-name": "string",
+    "@tag": {
+      "type": "string",
+      "default-value": "div"
+    },
+    "@class": "string",
+    "@modifiers": "array",
+    "@attrs": "object"
+  },
+  "<marko-web-array>": {
+    "template": "./array.marko",
+    "@value": "array",
+    "@tag": "string",
+    "@class": "string",
+    "@attrs": "object"
+  },
+  "<marko-web-img>": {
+    "template": "./img.marko",
+    "@src": "string",
+    "@srcset": "array",
+    "@alt": "string",
+    "@lazyload": {
+      "type": "boolean",
+      "default-value": true
+    },
+    "@class": "string",
+    "@attrs": "object",
+    "@link": "object"
+  },
+  "<marko-web-link>": {
+    "template": "./link.marko",
+    "@href": "string",
+    "@target": "string",
+    "@title": "string",
+    "@rel": "string",
+    "@class": "string",
+    "@attrs": "object"
+  },
+  "<marko-web-date>": {
+    "template": "./date.marko",
+    "@value": "expression",
+    "@tag": "string",
+    "@format": "string",
+    "@locale": "string",
+    "@class": "string",
+    "@attrs": "object",
+    "@link": "object"
+  },
+  "<marko-web-text>": {
+    "template": "./text.marko",
+    "@value": "expression",
+    "@tag": "string",
+    "@html": "boolean",
+    "@class": "string",
+    "@attrs": "object",
+    "@link": "object"
+  },
+  "<marko-web-obj>": {
+    "template": "./obj.marko",
+    "@type": "string",
+    "@obj": "object",
+    "@field": "string",
+    "@block-name": "string",
+    "@class": "string",
+    "@modifiers": "array"
+  },
+  "<marko-web-obj-array>": {
+    "template": "./obj-array.marko",
+    "@type": "string",
+    "@block-name": "string",
+    "@obj": "object",
+    "@field": "string",
+    "@tag": "string",
+    "@class": "string",
+    "@attrs": "object",
+    "@modifiers": "array"
+  },
+  "<marko-web-obj-text>": {
+    "template": "./obj-text.marko",
+    "@type": "string",
+    "@block-name": "string",
+    "@obj": "object",
+    "@field": "string",
+    "@html": "boolean",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object",
+    "@link": "expression"
+  },
+  "<marko-web-obj-date>": {
+    "template": "./obj-date.marko",
+    "@type": "string",
+    "@block-name": "string",
+    "@obj": "object",
+    "@field": "string",
+    "@format": "string",
+    "@locale": "string",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object",
+    "@link": "expression"
+  },
+  "<marko-web-obj-nodes>": {
+    "template": "./obj-nodes.marko",
+    "@type": "string",
+    "@block-name": "string",
+    "@obj": "object",
+    "@field": "string",
+    "@tag": "string",
+    "@class": "string",
+    "@attrs": "object",
+    "@modifiers": "array"
+  }
+}

@@ -1,0 +1,35 @@
+import gql from "graphql-tag";
+import { get } from "@base-cms/object-path";
+import { warn } from "@base-cms/utils";
+
+<!-- @todo This data should generated and saved to the page object as flat data, so no relationships are required. -->
+
+$ const { id } = input;
+$ const queryFragment = gql`
+fragment MagazinePublicationMetadataFragment on MagazinePublication {
+  id
+  canonicalPath
+  metadata {
+    title
+    description
+  }
+}
+`;
+
+<if(id)>
+  <marko-web-query|{ node }| name="magazine-publication" params={ id, queryFragment }>
+    $ const metadata = {
+      title: get(node, "metadata.title"),
+      description: get(node, "metadata.description"),
+      canonicalPath: node.canonicalPath,
+    };
+    <common ...metadata />
+    <meta property="og:type" content="website" />
+    <@when-empty>
+      $ warn(`Unable to create magazine publication metadata: no publication found for ${id}.`);
+    </@when-empty>
+  </marko-web-query>
+</if>
+<else>
+  $ warn('Unable to create magazine publication metadata: no publication id was provided.');
+</else>

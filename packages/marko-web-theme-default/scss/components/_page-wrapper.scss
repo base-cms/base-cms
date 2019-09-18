@@ -1,0 +1,48 @@
+.page-wrapper {
+  @include border-radius($theme-page-border-radius);
+  @include box-shadow($theme-page-box-shadow);
+  @include media-breakpoint-down($theme-responsive-text-breakpoint) {
+    padding-right: .75rem;
+    padding-left: .75rem;
+  }
+
+  &__title {
+    @include theme-apply-fonts(
+      $font-family: $theme-page-title-font-family,
+      $font-size-sm: $theme-page-title-font-size-sm,
+      $font-size: $theme-page-title-font-size,
+      $font-weight: $theme-page-title-font-weight,
+      $line-height-sm: $theme-page-title-line-height-sm,
+      $line-height: $theme-page-title-line-height,
+    );
+    color: $theme-page-title-color;
+  }
+
+  &__deck {
+    @include theme-apply-fonts(
+      $font-family: $theme-page-deck-font-family,
+      $font-size-sm: $theme-page-deck-font-size-sm,
+      $font-size: $theme-page-deck-font-size,
+      $font-weight: $theme-page-deck-font-weight,
+      $line-height-sm: $theme-page-deck-line-height-sm,
+      $line-height: $theme-page-deck-line-height,
+    );
+    color: $theme-page-deck-color;
+  }
+
+  &__description {
+    @include theme-apply-fonts(
+      $font-family: $theme-page-description-font-family,
+      $font-size-sm: $theme-page-description-font-size-sm,
+      $font-size: $theme-page-description-font-size,
+      $font-weight: $theme-page-description-font-weight,
+      $line-height-sm: $theme-page-description-line-height-sm,
+      $line-height: $theme-page-description-line-height,
+    );
+    color: $theme-page-description-color;
+  }
+
+  .col > :last-child {
+    margin-bottom: 0;
+  }
+}

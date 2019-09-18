@@ -14,6 +14,8 @@ stages:
 jobs:
   include:
     - stage: test
+      env:
+        - NODE_ENV=test
 
     - stage: notify_start
       script: scripts/deploy-notify-start.sh
@@ -26,10 +28,6 @@ jobs:
     - stage: deploy
       name: GraphQL Server
       script: scripts/deploy.js graphql-server
-
-    # - stage: deploy
-    #   name: Manage
-    #   script: scripts/deploy.js manage
 
     - stage: deploy
       name: Sitemaps

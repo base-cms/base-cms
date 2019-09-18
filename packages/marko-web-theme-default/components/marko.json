@@ -1,0 +1,18 @@
+{
+  "taglib-imports": [
+    "./blocks/marko.json",
+    "./breadcrumbs/marko.json",
+    "./content/marko.json",
+    "./flows/marko.json",
+    "./magazine/marko.json",
+    "./page/marko.json",
+    "./site-header/marko.json",
+    "./site-footer/marko.json",
+    "./site-menu/marko.json",
+    "./site-navbar/marko.json",
+    "./social/marko.json"
+  ],
+  "<default-theme-menu-toggle-button>": {
+    "template": "./menu-toggle-button.marko"
+  }
+}

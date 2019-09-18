@@ -1,0 +1,8 @@
+{
+  "<marko-web-website-section-rss>": {
+    "template": "./website-section.marko",
+    "@alias": "string",
+    "@name": "string",
+    "@title": "string"
+  }
+}

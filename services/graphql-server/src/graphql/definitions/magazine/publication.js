@@ -32,7 +32,7 @@ type MagazinePublication {
   # socialLinks: [PlatformEntityStubSocial]! @arrayValue
 
   # GraphQL only fields
-  metadata: MagazinePageMetadata! @projection(localField: "fullName", needs: ["description", "seoTitle"])
+  metadata: MagazinePublicationMetadata! @projection(localField: "name", needs: ["description"])
   canonicalPath: String! @projection(localField: "_id")
 }
 
@@ -45,6 +45,11 @@ type MagazinePublicationConnection @projectUsing(type: "MagazinePublication") {
 type MagazinePublicationEdge {
   node: MagazinePublication!
   cursor: String!
+}
+
+type MagazinePublicationMetadata {
+  title: String
+  description: String
 }
 
 enum MagazinePublicationSortField {

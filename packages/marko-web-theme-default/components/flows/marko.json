@@ -1,0 +1,55 @@
+{
+  "<default-theme-hero-flow>": {
+    "template": "./hero.marko",
+    "<hero>": {},
+    "<list>": {},
+    "@nodes": "array",
+    "@reverse": "boolean",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "array",
+    "@attrs": "object"
+  },
+  "<default-theme-featured-flow>": {
+    "template": "./featured.marko",
+    "<featured>": {
+      "@node": "object"
+    },
+    "<list>": {
+      "@nodes": "array"
+    },
+    "@reverse": "boolean",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "array",
+    "@attrs": "object"
+  },
+  "<default-theme-card-deck-flow>": {
+    "template": "./card-deck.marko",
+    "@slots <slot>[]": {
+      "@position": "number",
+      "@index": "number",
+      "@tag": "string",
+      "@class": "string",
+      "@modifiers": "array",
+      "@attrs": "object"
+    },
+    "@nodes": "array",
+    "@cols": "number",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "array",
+    "@attrs": "object"
+  },
+  "<default-theme-column-list-flow>": {
+    "template": "./column-list.marko",
+    "<column>": {},
+    "<list>": {},
+    "@nodes": "array",
+    "@reverse": "boolean",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "array",
+    "@attrs": "object"
+  }
+}

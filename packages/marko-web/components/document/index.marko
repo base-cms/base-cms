@@ -1,0 +1,28 @@
+$ const { config } = out.global;
+
+$ const dir = input.dir || "ltr";
+$ const lang = input.lang || config.locale();
+$ const viewport = input.viewport || "width=device-width, initial-scale=1, shrink-to-fit=no";
+
+<!doctype html>
+<html lang=lang dir=dir>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content=viewport>
+    <!-- @todo determine if this should go at the bottom of the page -->
+    <!-- @todo determine how to split assets out by vendor, core, site, etc. -->
+    <polyfill features=["es6", "es7", "fetch", "Promise.prototype.finally"] />
+    <assets />
+    <${input.head} />
+  </head>
+  <body>
+    <${input.aboveContainer} />
+    <if(input.container)>
+      <marko-web-document-container ...input.container />
+    </if>
+    <${input.belowContainer} />
+    <live-reload />
+    <${input.foot} />
+  </body>
+</html>

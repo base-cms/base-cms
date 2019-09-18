@@ -1,0 +1,26 @@
+.node-list {
+  @include theme-card();
+
+  &__header,
+  &__footer {
+    &:first-child {
+      @include border-top-radius($theme-item-list-border-radius);
+    }
+
+    &:last-child {
+      @include border-bottom-radius($theme-item-list-border-radius);
+    }
+  }
+
+  &__header {
+    @include theme-card-header();
+    margin-bottom: 0;
+    &:empty {
+      display: none;
+    }
+
+    a {
+      @include theme-card-header-link();
+    }
+  }
+}

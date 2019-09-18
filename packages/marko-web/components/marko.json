@@ -1,0 +1,21 @@
+{
+  "taglib-imports": [
+    "./document/marko.json",
+    "./element/marko.json",
+    "./load-more/marko.json",
+    "./node/marko.json",
+    "./node-list/marko.json",
+    "./page/marko.json",
+    "./queries/marko.json",
+    "./resolve/marko.json",
+    "./rss/marko.json"
+  ],
+  "<marko-web-browser-component>": {
+    "template": "./browser-component.marko",
+    "@name": {
+      "type": "string",
+      "required": true
+    },
+    "@props": "object"
+  }
+}

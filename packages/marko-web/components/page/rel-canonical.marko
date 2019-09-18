@@ -1,0 +1,13 @@
+import { cleanPath } from "@base-cms/utils";
+
+$ const { req, requestOrigin } = out.global;
+$ const path = input.path || req.path
+
+$ const href = `${out.global.requestOrigin}/${cleanPath(path)}`;
+
+<if(input.renderBody)>
+  <${input.renderBody} href=href />
+</if>
+<else>
+  <link rel="canonical" href=href />
+</else>

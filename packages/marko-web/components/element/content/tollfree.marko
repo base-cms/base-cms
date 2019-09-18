@@ -1,0 +1,14 @@
+import extractRender from "../extract-render";
+
+<marko-web-obj-text
+  type="content"
+  block-name=input.blockName
+  obj=input.obj
+  field="tollfree"
+  tag=(input.tag || "tel")
+  class=input.class
+  modifiers=input.modifiers
+  attrs=input.attrs
+  link=input.link
+  ...extractRender(input)
+/>

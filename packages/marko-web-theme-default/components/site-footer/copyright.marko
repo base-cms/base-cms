@@ -1,0 +1,18 @@
+$ const blockName = input.blockName || "site-footer";
+$ const year = input.year || (new Date().getFullYear());
+$ const notice = input.notice || "All rights reserved.";
+$ const company = input.company ? `${input.company}.` : "";
+
+<marko-web-element
+  block-name=blockName
+  name="copyright"
+  tag=input.tag
+  modifiers=input.modifiers
+>
+  <if(input.renderBody)>
+    <${input.renderBody} />
+  </if>
+  <else>
+    &copy; ${year} ${company} ${notice}
+  </else>
+</marko-web-element>

@@ -1,0 +1,13 @@
+import { getAsArray } from "@base-cms/object-path";
+
+$ const tag = input.tag || "main";
+$ const blockName = "page";
+$ const classes = [blockName, ...getAsArray(input.modifiers).map(mod => `${blockName}--${mod}`)];
+$ if (input.for) classes.push(`${blockName}--${input.for}`);
+$ if (input.for && input.id) classes.push(`${blockName}--${input.for}-${input.id}`);
+$ if (input.for && input.type) classes.push(`${blockName}--${input.for}-${input.type}`);
+$ if (input.class) classes.push(input.class);
+
+<${tag} ...input.attrs class=classes>
+  <${input.renderBody} />
+</>

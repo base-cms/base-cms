@@ -1,0 +1,21 @@
+.magazine-publication-buttons {
+  $self: &;
+  &__button {
+    @extend .btn;
+    @extend .btn-sm;
+    @extend .btn-primary;
+    margin-right: $marko-web-node-spacer;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  &--bottom {
+    #{ $self } {
+      &__button {
+        margin-top: $marko-web-node-spacer;
+      }
+    }
+  }
+}

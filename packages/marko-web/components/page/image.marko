@@ -1,0 +1,45 @@
+import { buildImgixUrl } from "@base-cms/image";
+import { getAsObject, getAsArray } from "@base-cms/object-path";
+
+$ const blockName = input.blockName || "page-image";
+$ const image = getAsObject(input, "obj");
+$ const withCaption = input.withCaption != null ? input.withCaption : true;
+$ const withCredit = input.withCredit != null ? input.withCredit : true;
+$ const withDisplayName = input.withDisplayName != null ? input.withDisplayName : false;
+$ const lazyload = input.lazyload != null ? input.lazyload : true;
+$ const width = input.width != null ? input.width : 320;
+
+$ const modifiers = [...getAsArray(input, "modifiers")];
+$ const fluid = input.fluid != null ? input.fluid : true;
+$ if (fluid) modifiers.push("fluid");
+
+$ const hasImage = Boolean(image.src);
+
+<if(hasImage)>
+  $ const src = buildImgixUrl(image.src, { w: width });
+  $ const srcset = [`${buildImgixUrl(src, { dpr: 2 })} 2x`];
+
+  <marko-web-block
+    name=blockName
+    modifiers=modifiers
+  >
+    <if(withDisplayName)>
+      <marko-web-image-display-name block-name=blockName obj=image />
+    </if>
+    <div class=`${blockName}__wrapper`>
+      <marko-web-img
+        src=src
+        srcset=srcset
+        alt=image.alt
+        class=`${blockName}__image`
+        lazyload=lazyload
+      />
+    </div>
+    <if(withCaption)>
+      <marko-web-image-caption block-name=blockName obj=image />
+    </if>
+    <if(withCredit)>
+      <marko-web-image-credit block-name=blockName obj=image />
+    </if>
+  </marko-web-block>
+</if>

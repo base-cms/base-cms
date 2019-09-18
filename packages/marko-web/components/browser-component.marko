@@ -1,0 +1,11 @@
+import { randomElementId } from '@base-cms/utils';
+
+$ const id = randomElementId({ prefix: 'vue' });
+$ const props = JSON.stringify(input.props || {});
+$ const contents = `<script>CMSBrowserComponents.loadComponent('#${id}', '${input.name}', ${props});</script>`;
+
+<!-- @todo The loadComponent function should be proxied, e.g. cms('loadComponent', id, name, props); -->
+
+<div id=id>
+  $!{contents}
+</div>

@@ -1,0 +1,693 @@
+// Fonts
+$theme-font-family-sans-serif: -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+$theme-font-family-serif: "Georgia", "Cambria", "Times New Roman", "Times", serif !default;
+$theme-font-family-page-title: $theme-font-family-serif !default;
+
+// Set default Bootstrap font to theme font.
+$font-family-sans-serif: $theme-font-family-sans-serif !default;
+
+$black:           #000 !default;
+$body-color:      $black !default;
+$body-bg:         #f5f5f5 !default;
+$border-radius:   .5rem !default;
+
+$grid-gutter-width: 24px !default;
+
+$enable-shadows: true !default;
+$enable-rounded: true !default;
+
+$breadcrumb-margin-bottom:  0 !default;
+$breadcrumb-padding-x:      0 !default;
+
+$block-spacer: 1.5rem !default;
+$spacers: (
+  block: $block-spacer
+) !default;
+
+@import "../../node_modules/bootstrap/scss/variables";
+
+// Generic
+$theme-box-shadow-sm:   0 1px 7px rgba(0, 0, 0, .05) !default;
+$theme-box-shadow-lg:   0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12) !default;
+$theme-text-rendering:  optimizeLegibility !default;
+
+// Responsive Text
+$theme-responsive-max-lines:                  2 !default;
+$theme-responsive-text-breakpoint:            sm !default;
+$theme-responsive-text-max-lines-breakpoint:  $theme-responsive-text-breakpoint !default;
+
+// General Heading Defaults
+$theme-heading-font-family:           $theme-font-family-sans-serif !default;
+$theme-heading-font-weight:           600 !default;
+
+$theme-heading-large-font-size:       34px !default;
+$theme-heading-large-font-size-sm:    30px !default;
+$theme-heading-large-line-height:     get-line-height($theme-heading-large-font-size, 40px) !default;
+$theme-heading-large-line-height-sm:  get-line-height($theme-heading-large-font-size-sm, 36px) !default;
+
+$theme-heading-h1-font-family:        $theme-heading-font-family !default;
+$theme-heading-h1-font-weight:        $theme-heading-font-weight !default;
+$theme-heading-h1-font-size:          $theme-heading-large-font-size !default;
+$theme-heading-h1-font-size-sm:       $theme-heading-large-font-size-sm !default;
+$theme-heading-h1-line-height:        $theme-heading-large-line-height !default;
+$theme-heading-h1-line-height-sm:     $theme-heading-large-line-height-sm !default;
+
+$theme-heading-h2-font-family:        $theme-heading-font-family !default;
+$theme-heading-h2-font-weight:        $theme-heading-font-weight !default;
+$theme-heading-h2-font-size:          $theme-heading-large-font-size !default;
+$theme-heading-h2-font-size-sm:       $theme-heading-large-font-size-sm !default;
+$theme-heading-h2-line-height:        $theme-heading-large-line-height !default;
+$theme-heading-h2-line-height-sm:     $theme-heading-large-line-height-sm !default;
+
+$theme-heading-h3-font-family:        $theme-heading-font-family !default;
+$theme-heading-h3-font-weight:        $theme-heading-font-weight !default;
+$theme-heading-h3-font-size:          $theme-heading-large-font-size !default;
+$theme-heading-h3-font-size-sm:       $theme-heading-large-font-size-sm !default;
+$theme-heading-h3-line-height:        $theme-heading-large-line-height !default;
+$theme-heading-h3-line-height-sm:     $theme-heading-large-line-height-sm !default;
+
+$theme-heading-h4-font-family:        $theme-heading-font-family !default;
+$theme-heading-h4-font-weight:        $theme-heading-font-weight !default;
+$theme-heading-h4-font-size:          26px !default;
+$theme-heading-h4-font-size-sm:       22px !default;
+$theme-heading-h4-line-height:        get-line-height($theme-heading-h4-font-size, 32px) !default;
+$theme-heading-h4-line-height-sm:     get-line-height($theme-heading-h4-font-size-sm, 28px) !default;
+
+$theme-heading-h5-font-family:        $theme-heading-font-family !default;
+$theme-heading-h5-font-weight:        $theme-heading-font-weight !default;
+$theme-heading-h5-font-size:          24px !default;
+$theme-heading-h5-font-size-sm:       20px !default;
+$theme-heading-h5-line-height:        get-line-height($theme-heading-h5-font-size, 30px) !default;
+$theme-heading-h5-line-height-sm:     get-line-height($theme-heading-h5-font-size-sm, 26px) !default;
+
+$theme-heading-h6-font-family:        $theme-heading-font-family !default;
+$theme-heading-h6-font-weight:        $theme-heading-font-weight !default;
+$theme-heading-h6-font-size:          19px !default;
+$theme-heading-h6-font-size-sm:       17px !default;
+$theme-heading-h6-line-height:        get-line-height($theme-heading-h6-font-size, 24px) !default;
+$theme-heading-h6-line-height-sm:     get-line-height($theme-heading-h6-font-size-sm, 20px) !default;
+
+// Content Headings
+$theme-content-heading-large-margin-bottom:     53px !default;
+$theme-content-heading-large-margin-bottom-sm:  48px !default;
+
+$theme-content-heading-h1-font-family:          $theme-heading-h1-font-family !default;
+$theme-content-heading-h1-font-weight:          $theme-heading-h1-font-weight !default;
+$theme-content-heading-h1-font-size:            $theme-heading-h1-font-size !default;
+$theme-content-heading-h1-font-size-sm:         $theme-heading-h1-font-size-sm !default;
+$theme-content-heading-h1-line-height:          $theme-heading-h1-line-height !default;
+$theme-content-heading-h1-line-height-sm:       $theme-heading-h1-line-height-sm !default;
+$theme-content-heading-h1-margin-bottom:        $theme-content-heading-large-margin-bottom !default;
+$theme-content-heading-h1-margin-bottom-sm:     $theme-content-heading-large-margin-bottom-sm !default;
+
+$theme-content-heading-h2-font-family:          $theme-heading-h2-font-family !default;
+$theme-content-heading-h2-font-weight:          $theme-heading-h2-font-weight !default;
+$theme-content-heading-h2-font-size:            $theme-heading-h2-font-size !default;
+$theme-content-heading-h2-font-size-sm:         $theme-heading-h2-font-size-sm !default;
+$theme-content-heading-h2-line-height:          $theme-heading-h2-line-height !default;
+$theme-content-heading-h2-line-height-sm:       $theme-heading-h2-line-height-sm !default;
+$theme-content-heading-h2-margin-bottom:        $theme-content-heading-large-margin-bottom !default;
+$theme-content-heading-h2-margin-bottom-sm:     $theme-content-heading-large-margin-bottom-sm !default;
+
+$theme-content-heading-h3-font-family:          $theme-heading-h3-font-family !default;
+$theme-content-heading-h3-font-weight:          $theme-heading-h3-font-weight !default;
+$theme-content-heading-h3-font-size:            $theme-heading-h3-font-size !default;
+$theme-content-heading-h3-font-size-sm:         $theme-heading-h3-font-size-sm !default;
+$theme-content-heading-h3-line-height:          $theme-heading-h3-line-height !default;
+$theme-content-heading-h3-line-height-sm:       $theme-heading-h3-line-height-sm !default;
+$theme-content-heading-h3-margin-bottom:        $theme-content-heading-large-margin-bottom !default;
+$theme-content-heading-h3-margin-bottom-sm:     $theme-content-heading-large-margin-bottom-sm !default;
+
+$theme-content-heading-h4-font-family:          $theme-heading-h4-font-family !default;
+$theme-content-heading-h4-font-weight:          $theme-heading-h4-font-weight !default;
+$theme-content-heading-h4-font-size:            $theme-heading-h4-font-size !default;
+$theme-content-heading-h4-font-size-sm:         $theme-heading-h4-font-size-sm !default;
+$theme-content-heading-h4-line-height:          $theme-heading-h4-line-height !default;
+$theme-content-heading-h4-line-height-sm:       $theme-heading-h4-line-height-sm !default;
+$theme-content-heading-h4-margin-bottom:        39px !default;
+$theme-content-heading-h4-margin-bottom-sm:     31px !default;
+
+$theme-content-heading-h5-font-family:          $theme-heading-h5-font-family !default;
+$theme-content-heading-h5-font-weight:          $theme-heading-h5-font-weight !default;
+$theme-content-heading-h5-font-size:            $theme-heading-h5-font-size !default;
+$theme-content-heading-h5-font-size-sm:         $theme-heading-h5-font-size-sm !default;
+$theme-content-heading-h5-line-height:          $theme-heading-h5-line-height !default;
+$theme-content-heading-h5-line-height-sm:       $theme-heading-h5-line-height-sm !default;
+$theme-content-heading-h5-margin-bottom:        25px !default;
+$theme-content-heading-h5-margin-bottom-sm:     17px !default;
+
+$theme-content-heading-h6-font-family:          $theme-heading-h6-font-family !default;
+$theme-content-heading-h6-font-weight:          $theme-heading-h6-font-weight !default;
+$theme-content-heading-h6-font-size:            $theme-heading-h6-font-size !default;
+$theme-content-heading-h6-font-size-sm:         $theme-heading-h6-font-size-sm !default;
+$theme-content-heading-h6-line-height:          $theme-heading-h6-line-height !default;
+$theme-content-heading-h6-line-height-sm:       $theme-heading-h6-line-height-sm !default;
+$theme-content-heading-h6-margin-bottom:        11px !default;
+$theme-content-heading-h6-margin-bottom-sm:     $theme-content-heading-h6-margin-bottom !default;
+
+// Content Paragraphs
+$theme-content-paragraph-margin-bottom:         29px !default;
+$theme-content-paragraph-margin-bottom-sm:      21px !default;
+$theme-content-paragraph-strong-font-weight:    700 !default;
+$theme-content-paragraph-image-border-radius:   $border-radius !default;
+$theme-content-paragraph-image-box-shadow:      none !default;
+
+// Content Primary Media
+$theme-primary-media-border-radius:   $border-radius !default;
+$theme-primary-media-box-shadow:      none !default;
+$theme-primary-media-margin-bottom:   map-get($spacers, block) !default;
+
+$theme-primary-media-video-aspect-ratio-x: 16 !default;
+$theme-primary-media-video-aspect-ratio-y: 9 !default;
+
+// Content Attribution
+$theme-content-attribution-color:                     $body-color !default;
+$theme-content-attribution-font-family:               $theme-font-family-sans-serif !default;
+$theme-content-attribution-font-size:                 16px !default;
+$theme-content-attribution-font-weight:               $font-weight-normal !default;
+$theme-content-attribution-line-height:               $line-height-base !default;
+$theme-content-attribution-text-transform:            initial !default;
+
+$theme-content-attribution-name-content:              ", " !default;
+$theme-content-attribution-name-margin:               map-get($spacers, 2) !default;
+
+$theme-content-attribution-prefix-font-weight:        600 !default;
+$theme-content-attribution-prefix-margin:             map-get($spacers, 1) !default;
+$theme-content-attribution-prefix-margin-after:       $theme-content-attribution-prefix-margin !default;
+$theme-content-attribution-prefix-spacer-content:     "\2014" !default;
+$theme-content-attribution-prefix-spacer-font-weight: $font-weight-normal !default;
+
+// Content Published Date
+$theme-content-published-date-color:                     $body-color !default;
+$theme-content-published-date-font-family:               $theme-font-family-sans-serif !default;
+$theme-content-published-date-font-size:                 16px !default;
+$theme-content-published-date-font-weight:               $font-weight-normal !default;
+$theme-content-published-date-line-height:               $line-height-base !default;
+$theme-content-published-date-text-transform:            initial !default;
+
+// Contact Details
+$theme-contact-details-color:               $body-color !default;
+$theme-contact-details-font-family:         $theme-font-family-sans-serif !default;
+$theme-contact-details-font-size:           16px !default;
+$theme-contact-details-font-weight:         $font-weight-normal !default;
+$theme-contact-details-line-height:         $line-height-base !default;
+$theme-contact-details-label-font-weight:   600 !default;
+$theme-contact-details-label-margin:        map-get($spacers, 2) !default;
+$theme-contact-details-section-margin:      map-get($spacers, 3) !default;
+$theme-contact-details-social-icon-margin:  map-get($spacers, 2) !default;
+
+// Media
+$theme-media-footer-font-family:  $theme-font-family-sans-serif !default;
+$theme-media-footer-font-size:    14px !default;
+$theme-media-footer-line-height:  $line-height-sm !default;
+$theme-media-footer-padding-x:    0 !default;
+$theme-media-footer-padding-y:    .5rem !default;
+
+$theme-media-caption-color:       #464646 !default;
+$theme-media-caption-font-size:   $theme-media-footer-font-size !default;
+$theme-media-caption-font-weight: 400 !default;
+$theme-media-caption-line-height: $theme-media-footer-line-height !default;
+
+$theme-media-credit-color:        #777 !default;
+$theme-media-credit-font-size:    12px !default;
+$theme-media-credit-font-style:   initial !default;
+$theme-media-credit-font-weight:  400 !default;
+$theme-media-credit-line-height:  $theme-media-footer-line-height !default;
+
+// Embedded Media
+$theme-embedded-media-color:        $gray-600 !default;
+$theme-embedded-media-font-family:  $theme-font-family-sans-serif !default;
+$theme-embedded-media-font-size:    $font-size-base !default;
+$theme-embedded-media-line-height:  $line-height-sm !default;
+$theme-embedded-media-margin:       1rem 0 0 !default;
+
+$theme-embedded-media-align-left-margin:  1rem !default;
+$theme-embedded-media-align-left-width:   50% !default;
+
+$theme-embedded-media-align-right-margin: 1rem !default;
+$theme-embedded-media-align-right-width:  50% !default;
+
+// Load More
+$theme-load-more-font-family:     $theme-font-family-sans-serif !default;
+$theme-load-more-bottom-spacing:  map-get($spacers, 3) !default;
+
+$theme-load-more-button-background-color: $primary !default;
+$theme-load-more-button-border-color:     $primary !default;
+$theme-load-more-button-color:            $white !default;
+$theme-load-more-button-font-family:      $theme-load-more-font-family !default;
+$theme-load-more-button-text-align:       center !default;
+
+$theme-load-more-header-color:            $body-color !default;
+$theme-load-more-header-font-family:      $theme-load-more-font-family !default;
+$theme-load-more-header-font-size-sm:     $theme-heading-h4-font-size-sm !default;
+$theme-load-more-header-font-size:        $theme-heading-h4-font-size !default;
+$theme-load-more-header-font-weight:      $font-weight-bold !default;
+$theme-load-more-header-line-height-sm:   $theme-heading-h4-line-height-sm !default;
+$theme-load-more-header-line-height:      $theme-heading-h4-line-height !default;
+$theme-load-more-header-text-align:       center !default;
+$theme-load-more-header-text-transform:   uppercase !default;
+
+
+// Cards
+$theme-card-background-color:             $white !default;
+$theme-card-border:                       none !default;
+$theme-card-border-radius:                $border-radius !default;
+$theme-card-box-shadow:                   $theme-box-shadow-sm !default;
+
+$theme-card-header-color:                 $white !default;
+$theme-card-header-background-color:      $primary !default;
+$theme-card-header-border-color:          $black !default;
+$theme-card-header-border-size:           1px !default;
+$theme-card-header-border:                $theme-card-header-border-size solid $theme-card-header-border-color !default;
+$theme-card-header-font-family:           $theme-font-family-sans-serif !default;
+$theme-card-header-font-size:             $font-size-base !default;
+$theme-card-header-font-weight:           400 !default;
+$theme-card-header-letter-spacing:        normal !default;
+$theme-card-header-link-color:            $theme-card-header-color !default;
+$theme-card-header-link-decoration:       $link-decoration !default;
+$theme-card-header-link-hover-color:      $theme-card-header-link-color !default;
+$theme-card-header-link-hover-decoration: $link-hover-decoration !default;
+$theme-card-header-text-transform:        uppercase !default;
+
+// Items
+$theme-item-padding:                           .75rem !default;
+$theme-item-element-margin:                    .375rem !default;
+$theme-item-letter-spacing:                    normal !default;
+$theme-item-link-decoration:                   $link-decoration !default;
+$theme-item-link-hover-decoration:             $link-hover-decoration !default;
+
+$theme-item-contents-padding:                  .25rem !default;
+
+$theme-item-header-color:                      $gray-600 !default;
+$theme-item-header-font-family:                $theme-font-family-sans-serif !default;
+$theme-item-header-font-size:                  14px !default;
+$theme-item-header-font-weight:                $font-weight-normal !default;
+$theme-item-header-line-height:                get-line-height($theme-item-header-font-size, 20px) !default;
+$theme-item-header-link-color:                 $theme-item-header-color !default;
+$theme-item-header-link-decoration:            $theme-item-link-decoration !default;
+$theme-item-header-link-hover-color:           $theme-item-header-link-color !default;
+$theme-item-header-link-hover-decoration:      $theme-item-link-hover-decoration !default;
+
+$theme-item-header-letter-spacing:             $theme-item-letter-spacing !default;
+$theme-item-header-margin:                     $theme-item-element-margin !default;
+
+$theme-item-title-color:                       $body-color !default;
+$theme-item-title-font-family:                 $theme-font-family-sans-serif !default;
+$theme-item-title-font-size-sm:                16px !default;
+$theme-item-title-font-size:                   17px !default;
+$theme-item-title-font-weight:                 600 !default;
+$theme-item-title-letter-spacing:              inherit !default;
+$theme-item-title-line-height-sm:              get-line-height($theme-item-title-font-size-sm, 20px) !default;
+$theme-item-title-line-height:                 get-line-height($theme-item-title-font-size, 22px) !default;
+$theme-item-title-margin:                      $theme-item-element-margin !default;
+$theme-item-title-max-lines:                   3 !default;
+
+$theme-item-title-link-color:                  $theme-item-title-color !default;
+$theme-item-title-link-decoration:             $theme-item-link-decoration !default;
+$theme-item-title-link-hover-color:            $theme-item-title-link-color !default;
+$theme-item-title-link-hover-decoration:       $theme-item-link-hover-decoration !default;
+
+$theme-item-title-large-font-size-sm:          $theme-heading-h5-font-size-sm !default;
+$theme-item-title-large-font-size:             $theme-heading-h5-font-size !default;
+$theme-item-title-large-font-weight:           $theme-item-title-font-weight !default;
+$theme-item-title-large-letter-spacing:        $theme-item-title-letter-spacing !default;
+$theme-item-title-large-line-height-sm:        $theme-heading-h5-line-height-sm !default;
+$theme-item-title-large-line-height:           $theme-heading-h5-line-height !default;
+$theme-item-title-large-max-lines:             $theme-responsive-max-lines !default;
+
+$theme-item-title-locked-content:              "\1F512" !default;
+
+$theme-item-description-font-family:          $theme-font-family-serif !default;
+$theme-item-description-font-size-sm:         16px !default;
+$theme-item-description-font-size:            17px !default;
+$theme-item-description-font-weight:          $font-weight-normal !default;
+$theme-item-description-line-height-sm-px:    23px !default;
+$theme-item-description-line-height-sm:       get-line-height($theme-item-description-font-size-sm, $theme-item-description-line-height-sm-px) !default;
+$theme-item-description-line-height-px:       25px !default;
+$theme-item-description-line-height:          get-line-height($theme-item-description-font-size, $theme-item-description-line-height-px) !default;
+
+$theme-item-description-margin:                $theme-item-element-margin !default;
+$theme-item-description-color:                 $body-color !default;
+$theme-item-description-link-color:            $theme-item-description-color !default;
+$theme-item-description-link-decoration:       $theme-item-link-decoration !default;
+$theme-item-description-link-hover-color:      $theme-item-description-link-color !default;
+$theme-item-description-link-hover-decoration: none !default;
+$theme-item-description-max-lines:             $theme-responsive-max-lines !default;
+
+$theme-item-footer-color:                      $gray-600 !default;
+$theme-item-footer-font-family:                $theme-font-family-sans-serif !default;
+$theme-item-footer-font-size:                  14px !default;
+$theme-item-footer-font-weight:                $font-weight-normal !default;
+$theme-item-footer-line-height:                get-line-height($theme-item-footer-font-size, 20px) !default;
+$theme-item-footer-link-color:                 $link-color !default;
+$theme-item-footer-link-decoration:            $theme-item-link-decoration !default;
+$theme-item-footer-link-hover-color:           $link-hover-color !default;
+$theme-item-footer-link-hover-decoration:      $theme-item-link-hover-decoration !default;
+$theme-item-footer-text-transform:             initial !default;
+
+$theme-item-image-border-radius:               $border-radius !default;
+$theme-item-image-box-shadow:                  $theme-box-shadow-lg !default;
+
+$theme-item-image-placeholder-color:           lighten($primary, 5%) !default;
+$theme-item-image-placeholder-blend-mode:      color-burn !default;
+$theme-item-image-placeholder-image:           url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cpath d='M0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM0 1.4l2.83 2.83 1.41-1.41L1.41 0H0v1.41zM38.59 40l-2.83-2.83 1.41-1.41L40 38.59V40h-1.41zM40 1.41l-2.83 2.83-1.41-1.41L38.59 0H40v1.41zM20 18.6l2.83-2.83 1.41 1.41L21.41 20l2.83 2.83-1.41 1.41L20 21.41l-2.83 2.83-1.41-1.41L18.59 20l-2.83-2.83 1.41-1.41L20 18.59z' fill-rule='evenodd'/%3E%3C/svg%3E") !default;
+$theme-item-image-placeholder-position:        $theme-item-image-border-radius $theme-item-image-border-radius !default;
+$theme-item-image-placeholder-opacity:         .2 !default;
+
+$theme-item-card-min-height:                   100% !default;
+
+
+// Item Lists
+$theme-item-list-card-min-height:         100% !default;
+$theme-item-list-border-radius:           $theme-card-border-radius !default;
+
+$theme-item-list-body-font-family:        $theme-item-description-font-family !default;
+$theme-item-list-body-font-size-sm:       $theme-item-description-font-size-sm !default;
+$theme-item-list-body-font-size:          $theme-item-description-font-size !default;
+$theme-item-list-body-font-weight:        $theme-item-description-font-weight !default;
+$theme-item-list-body-line-height-sm:     $theme-item-description-line-height-sm !default;
+$theme-item-list-body-line-height:        $theme-item-description-line-height !default;
+
+$theme-item-list-footer-font-family:      $theme-item-list-body-font-family !default;
+$theme-item-list-footer-font-size-sm:     $theme-item-list-body-font-size-sm !default;
+$theme-item-list-footer-font-size:        $theme-item-list-body-font-size !default;
+$theme-item-list-footer-font-weight:      $theme-item-list-body-font-weight !default;
+$theme-item-list-footer-line-height-sm:   $theme-item-list-body-line-height-sm !default;
+$theme-item-list-footer-line-height:      $theme-item-list-body-line-height !default;
+
+// Pages @todo re-evaluate these classes (these should likely be page-wrapper values)
+$theme-page-bg-color:                   $body-bg !default;
+
+$theme-page-padding:                    map-get($spacers, 3) !default;
+$theme-page-padding-sm:                 0 !default;
+
+$theme-page-background-color:           $white !default;
+$theme-page-border-radius:              $border-radius !default;
+$theme-page-box-shadow:                 $theme-box-shadow-sm !default;
+$theme-page-padding-bottom:             .75rem !default;
+$theme-page-padding-bottom-sm:          0 !default;
+$theme-page-margin-bottom:              map-get($spacers, block) !default;
+
+$theme-page-body-color:                 $body-color !default;
+$theme-page-body-font-family:           $theme-font-family-serif !default;
+$theme-page-body-font-size:             19px !default;
+$theme-page-body-font-size-sm:          $theme-page-body-font-size - 2 !default;
+$theme-page-body-font-weight:           $font-weight-normal !default;
+$theme-page-body-line-height:           get-line-height($theme-page-body-font-size, $theme-page-body-font-size + 14) !default;
+$theme-page-body-line-height-sm:        get-line-height($theme-page-body-font-size-sm, $theme-page-body-font-size-sm + 10) !default;
+$theme-page-body-padding:               $theme-page-padding !default;
+$theme-page-body-padding-sm:            $theme-page-padding-sm !default;
+$theme-page-body-margin-bottom:         map-get($spacers, block) !default;
+$theme-page-body-margin-bottom-sm:      .75rem !default;
+
+$theme-page-body-images-title-color:        $body-color !default;
+$theme-page-body-images-title-font-family:  $theme-heading-h6-font-family !default;
+$theme-page-body-images-title-font-size:    $theme-heading-h6-font-size !default;
+$theme-page-body-images-title-font-weight:  $theme-heading-h6-font-weight !default;
+$theme-page-body-images-title-line-height:  $theme-heading-h6-line-height !default;
+$theme-page-body-images-title-margin:       .5rem !default;
+
+$theme-page-body-media-gallery-title-color:                 $theme-page-body-images-title-color !default;
+$theme-page-body-media-gallery-title-font-family:           $theme-page-body-images-title-font-family !default;
+$theme-page-body-media-gallery-title-font-size:             $theme-page-body-images-title-font-size !default;
+$theme-page-body-media-gallery-title-font-weight:           $theme-page-body-images-title-font-weight !default;
+$theme-page-body-media-gallery-title-line-height:           $theme-page-body-images-title-line-height !default;
+$theme-page-body-media-gallery-title-margin:                $theme-page-body-images-title-margin !default;
+$theme-page-body-media-gallery-title-link-color:            $theme-page-body-images-title-color !default;
+$theme-page-body-media-gallery-title-link-decoration:       $link-decoration !default;
+$theme-page-body-media-gallery-title-link-hover-color:      $theme-page-body-media-gallery-title-link-color !default;
+$theme-page-body-media-gallery-title-link-hover-decoration: $link-hover-decoration !default;
+
+$theme-page-body-media-gallery-image-name-color:        $white !default;
+$theme-page-body-media-gallery-image-name-font-family:  $theme-font-family-sans-serif !default;
+$theme-page-body-media-gallery-image-name-font-weight:  $theme-heading-font-weight !default;
+$theme-page-body-media-gallery-image-name-font-size:    $font-size-base !default;
+$theme-page-body-media-gallery-image-name-line-height:  $line-height-base !default;
+$theme-page-body-media-gallery-image-name-text-shadow:  1px 1px 4px $black !default;
+
+$theme-page-body-media-gallery-image-overlay-bg:        rgba(0, 0, 0, .5) !default;
+
+
+$theme-page-deck-color:                 $gray-600 !default;
+$theme-page-deck-font-family:           $theme-font-family-sans-serif !default;
+$theme-page-deck-font-size:             24px !default;
+$theme-page-deck-font-size-sm:          22px !default;
+$theme-page-deck-font-weight:           $font-weight-normal !default;
+$theme-page-deck-line-height:           get-line-height($theme-page-deck-font-size, 34px) !default;
+$theme-page-deck-line-height-sm:        get-line-height($theme-page-deck-font-size-sm, 30px) !default;
+
+$theme-page-description-color:          $gray-600 !default;
+$theme-page-description-font-family:    $theme-font-family-sans-serif !default;
+$theme-page-description-font-size:      20px !default;
+$theme-page-description-font-size-sm:   18px !default;
+$theme-page-description-font-weight:    $font-weight-normal !default;
+$theme-page-description-line-height:    get-line-height($theme-page-description-font-size, 28px) !default;
+$theme-page-description-line-height-sm: get-line-height($theme-page-description-font-size-sm, 26px) !default;
+
+$theme-page-title-color:                $body-color !default;
+$theme-page-title-font-family:          $theme-font-family-page-title !default;
+$theme-page-title-font-size:            40px !default;
+$theme-page-title-font-size-sm:         $theme-page-title-font-size - 8 !default;
+$theme-page-title-font-weight:          $font-weight-normal !default;
+$theme-page-title-line-height:          get-line-height($theme-page-title-font-size, $theme-page-title-font-size + 10) !default;
+$theme-page-title-line-height-sm:       get-line-height($theme-page-title-font-size-sm, $theme-page-title-font-size-sm + 8) !default;
+
+$theme-page-header-padding:             $theme-page-padding !default;
+$theme-page-header-padding-sm:          $theme-page-padding-sm !default;
+
+// Breadcrumbs
+$theme-breadcrumbs-background-color:      $theme-page-background-color !default;
+$theme-breadcrumbs-font-family:           $theme-font-family-sans-serif !default;
+$theme-breadcrumbs-font-size:             16px !default;
+$theme-breadcrumbs-font-size-sm:          14px !default;
+$theme-breadcrumbs-font-weight:           $font-weight-normal !default;
+$theme-breadcrumbs-letter-spacing:        normal !default;
+$theme-breadcrumbs-line-height:           $line-height-base !default;
+$theme-breadcrumbs-line-height-sm:        $line-height-base !default;
+$theme-breadcrumbs-link-color:            $link-color !default;
+$theme-breadcrumbs-link-decoration:       $link-decoration !default;
+$theme-breadcrumbs-link-hover-color:      $link-hover-color !default;
+$theme-breadcrumbs-link-hover-decoration: $link-hover-decoration !default;
+$theme-breadcrumbs-transform:             uppercase !default;
+
+// Icons
+$theme-icon-drop-shadow:  1px 1px 1px rgba(0, 0, 0, .3) !default;
+$theme-icon-fill-dark:    $black !default;
+$theme-icon-fill-light:   $white !default;
+$theme-icon-fill:         $black !default;
+$theme-icon-size-lg:      1.5rem !default;
+$theme-icon-size-md:      1.25rem !default;
+$theme-icon-size-xl:      2.5rem !default;
+$theme-icon-size:         1rem !default;
+$theme-icon-transition:   fill ease 250ms !default;
+
+// Magazine
+$theme-magazine-archives-padding:   1rem !default;
+
+// Social Colors
+$dribbble:      #ea4c89 !default;
+$facebook:      #4172b8 !default;
+$github:        #181717 !default;
+$googleplus:    #dc4e41 !default;
+$instagram:     #e4405f !default;
+$linkedin:      #0077b5 !default;
+$pinterest:     #bd081c !default;
+$reddit:        #ff4500 !default;
+$slack:         #4a154b !default;
+$twitter:       #1da1f2 !default;
+$whatsapp:      #25d366 !default;
+$youtube:       #f00 !default;
+
+// Lazyload Images
+$theme-lazyloaded-tranisition: opacity 250ms !default;
+
+// Ads
+$theme-ad-box-shadow:                           0 .125rem .25rem rgba($black, .075) !default;
+$theme-ad-margin:                               map-get($spacers, block) !default;
+$theme-ad-padding:                              $theme-ad-margin !default;
+
+$theme-ad-reveal-box-shadow-light:              0 4px 8px 0 rgba(255, 255, 255, .2), 0 6px 20px 0 rgba(255, 255, 255, .19) !default;
+$theme-ad-reveal-box-shadow-dark:               0 4px 8px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .19) !default;
+
+$theme-ad-sticky-leaderboard-background-color:  rgba(0, 0, 0, .8) !default;
+$theme-ad-sticky-leaderboard-border-radius:     $border-radius !default;
+$theme-ad-sticky-leaderboard-box-shadow:        $theme-box-shadow-lg !default;
+$theme-ad-sticky-leaderboard-padding:           map-get($spacers, 2) !default;
+$theme-ad-sticky-leaderboard-transition:        visibility linear 250ms, opacity ease 250ms !default;
+$theme-ad-sticky-leaderboard-z-index:           100000 !default;
+
+$theme-ad-sticky-leaderboard-close-color:       $white !default;
+$theme-ad-sticky-leaderboard-close-position:    .25rem !default;
+$theme-ad-sticky-leaderboard-close-size:        1.25rem !default;
+
+// Navbar / Header
+$theme-site-header-breakpoints: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$theme-site-header-breakpoints: map-merge(
+  (
+    hide-primary: 768px,
+    hide-secondary: 576px,
+    hide-tertiary: 0,
+    small-logo: 768px,
+    small-text-primary: 992px,
+    small-text-secondary: 992px
+  ),
+  $theme-site-header-breakpoints
+);
+
+$theme-site-header-box-shadow:  $theme-box-shadow-lg !default;
+$theme-site-header-font-family: $theme-font-family-sans-serif !default;
+$theme-site-header-opacity:     1 !default;
+$theme-site-header-z-index:     5000000 !default;
+
+$theme-site-navbar-dark-color:          rgba($white, .75) !default;
+$theme-site-navbar-dark-hover-color:    $white !default;
+$theme-site-navbar-dark-active-color:   $theme-site-navbar-dark-hover-color !default;
+$theme-site-navbar-light-color:         rgba($black, .75) !default;
+$theme-site-navbar-light-hover-color:   $black !default;
+$theme-site-navbar-light-active-color:  $theme-site-navbar-light-hover-color !default;
+$theme-site-navbar-padding-x:           16px !default;
+$theme-site-navbar-padding-y:           0 !default;
+
+$theme-site-navbar-dark-colors: (
+  default: $theme-site-navbar-dark-color,
+  hover: $theme-site-navbar-dark-hover-color,
+  active: $theme-site-navbar-dark-active-color
+) !default;
+
+$theme-site-navbar-light-colors: (
+  default: $theme-site-navbar-light-color,
+  hover: $theme-site-navbar-light-hover-color,
+  active: $theme-site-navbar-light-active-color
+) !default;
+
+$theme-site-navbar-brand-margin-y: 0 !default;
+$theme-site-navbar-brand-margin-x: 12px !default;
+
+$theme-site-navbar-primary-bg-color:        $primary !default;
+$theme-site-navbar-primary-font-family:     $theme-site-header-font-family !default;
+$theme-site-navbar-primary-font-size:       16px !default;
+$theme-site-navbar-primary-font-size-sm:    $theme-site-navbar-primary-font-size - 2 !default;
+$theme-site-navbar-primary-font-weight:     $font-weight-normal !default;
+$theme-site-navbar-primary-height-sm:       4px !default;
+$theme-site-navbar-primary-line-height:     get-line-height($theme-site-navbar-primary-font-size, 24px) !default;
+$theme-site-navbar-primary-line-height-sm:  get-line-height($theme-site-navbar-primary-font-size-sm, 21px) !default;
+$theme-site-navbar-primary-padding-x:       16px !default;
+$theme-site-navbar-primary-padding-y:       0 !default;
+$theme-site-navbar-primary-type:            dark !default;
+
+$theme-site-navbar-primary-link-active-background-color:  initial !default;
+$theme-site-navbar-primary-link-active-color:             navbar-link-color($theme-site-navbar-primary-type, active) !default;
+$theme-site-navbar-primary-link-active-decoration:        underline !default;
+$theme-site-navbar-primary-link-background-color:         initial !default;
+$theme-site-navbar-primary-link-color:                    navbar-link-color($theme-site-navbar-primary-type, default) !default;
+$theme-site-navbar-primary-link-decoration:               none !default;
+$theme-site-navbar-primary-link-hover-background-color:   initial !default;
+$theme-site-navbar-primary-link-hover-color:              navbar-link-color($theme-site-navbar-primary-type, hover) !default;
+$theme-site-navbar-primary-link-hover-decoration:         underline !default;
+$theme-site-navbar-primary-link-padding:                  8px !default;
+
+$theme-site-navbar-primary-colors: (
+  default: $theme-site-navbar-primary-link-color,
+  hover: $theme-site-navbar-primary-link-hover-color,
+  active: $theme-site-navbar-primary-link-active-color
+) !default;
+
+$theme-site-navbar-primary-decorations: (
+  default: $theme-site-navbar-primary-link-decoration,
+  hover: $theme-site-navbar-primary-link-hover-decoration,
+  active: $theme-site-navbar-primary-link-active-decoration
+) !default;
+
+$theme-site-navbar-primary-background-colors: (
+  default: $theme-site-navbar-primary-link-background-color,
+  hover: $theme-site-navbar-primary-link-hover-background-color,
+  active: $theme-site-navbar-primary-link-active-background-color
+) !default;
+
+$theme-site-navbar-secondary-bg-color:        $dark !default;
+$theme-site-navbar-secondary-font-family:     $theme-site-header-font-family !default;
+$theme-site-navbar-secondary-font-size:       14px !default;
+$theme-site-navbar-secondary-font-size-sm:    $theme-site-navbar-secondary-font-size - 2 !default;
+$theme-site-navbar-secondary-font-weight:     $font-weight-normal !default;
+$theme-site-navbar-secondary-line-height:     get-line-height($theme-site-navbar-secondary-font-size, 21px) !default;
+$theme-site-navbar-secondary-line-height-sm:  get-line-height($theme-site-navbar-secondary-font-size-sm, 18px) !default;
+$theme-site-navbar-secondary-padding-x:       16px !default;
+$theme-site-navbar-secondary-padding-y:       10px !default;
+$theme-site-navbar-secondary-type:            dark !default;
+
+$theme-site-navbar-secondary-link-active-background-color:  initial !default;
+$theme-site-navbar-secondary-link-active-color:             navbar-link-color($theme-site-navbar-secondary-type, active) !default;
+$theme-site-navbar-secondary-link-active-decoration:        underline !default;
+$theme-site-navbar-secondary-link-background-color:         initial !default;
+$theme-site-navbar-secondary-link-color:                    navbar-link-color($theme-site-navbar-secondary-type, default) !default;
+$theme-site-navbar-secondary-link-decoration:               none !default;
+$theme-site-navbar-secondary-link-hover-background-color:   initial !default;
+$theme-site-navbar-secondary-link-hover-color:              navbar-link-color($theme-site-navbar-secondary-type, hover) !default;
+$theme-site-navbar-secondary-link-hover-decoration:         underline !default;
+$theme-site-navbar-secondary-link-padding:                  8px !default;
+
+$theme-site-navbar-secondary-colors: (
+  default: $theme-site-navbar-secondary-link-color,
+  hover: $theme-site-navbar-secondary-link-hover-color,
+  active: $theme-site-navbar-secondary-link-active-color
+) !default;
+
+$theme-site-navbar-secondary-decorations: (
+  default: $theme-site-navbar-secondary-link-decoration,
+  hover: $theme-site-navbar-secondary-link-hover-decoration,
+  active: $theme-site-navbar-secondary-link-active-decoration
+) !default;
+
+$theme-site-navbar-secondary-background-colors: (
+  default: $theme-site-navbar-secondary-link-background-color,
+  hover: $theme-site-navbar-secondary-link-hover-background-color,
+  active: $theme-site-navbar-secondary-link-active-background-color
+) !default;
+
+$theme-site-navbar-tertiary-link-active-color:             navbar-link-color($theme-site-navbar-secondary-type, active) !default;
+$theme-site-navbar-tertiary-link-color:                    navbar-link-color($theme-site-navbar-secondary-type, default) !default;
+$theme-site-navbar-tertiary-link-hover-color:              navbar-link-color($theme-site-navbar-secondary-type, hover) !default;
+
+$theme-site-navbar-tertiary-colors: (
+  default: $theme-site-navbar-tertiary-link-color,
+  hover: $theme-site-navbar-tertiary-link-hover-color,
+  active: $theme-site-navbar-tertiary-link-active-color
+) !default;
+
+$theme-site-navbar-link-transition: color ease 300ms, text-decoration ease 300ms, background-color ease 300ms !default;
+
+$theme-site-navbar-logo-drop-shadow:   1px 1px 1px rgba(0, 0, 0, .35) !default;
+$theme-site-navbar-logo-height:        60px !default;
+$theme-site-navbar-logo-height-sm:     $theme-site-navbar-logo-height / 2 !default;
+
+$theme-site-navbar-icon-transition:  fill ease 300ms !default;
+
+$theme-site-navbar-menu-box-shadow:             0 8px 17px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .19) !default;
+$theme-site-navbar-menu-width:                  264px !default;
+$theme-site-navbar-menu-max-width:              75vw !default;
+$theme-site-navbar-menu-hover-background-color: lighten($theme-site-navbar-primary-bg-color, 60%) !default;
+
+// Site Footer
+$theme-site-footer-box-shadow:  $theme-box-shadow-lg !default;
+$theme-site-footer-font-family: $theme-site-header-font-family !default;
+$theme-site-footer-font-size:   16px !default;
+$theme-site-footer-font-weight: $font-weight-normal !default;
+$theme-site-footer-line-height: get-line-height($theme-site-footer-font-size, 24px) !default;
+$theme-site-footer-opacity:     1 !default;
+$theme-site-footer-spacer:      map-get($spacers, 3) !default;
+$theme-site-footer-spacer-sm:   map-get($spacers, 2) !default;
+
+$theme-site-footer-copyright-color:       $light !default;
+$theme-site-footer-copyright-font-size:   14px !default;
+$theme-site-footer-copyright-font-weight: $font-weight-normal !default;
+$theme-site-footer-copyright-line-height: get-line-height($theme-site-footer-copyright-font-size, 21px) !default;
+
+$theme-site-footer-logo-box-shadow: 2px 2px 2px rgba(0, 0, 0, .5) !default;
+$theme-site-footer-logo-height:     60px !default;
+$theme-site-footer-logo-height-sm:  $theme-site-footer-logo-height / 2 !default;
+
+$theme-site-footer-primary-bg-color:    $theme-site-navbar-primary-bg-color !default;
+$theme-site-footer-primary-type:        dark !default;
+$theme-site-footer-secondary-bg-color:  $theme-site-navbar-secondary-bg-color !default;
+$theme-site-footer-secondary-type:      dark !default;

@@ -1,0 +1,5 @@
+{
+  "<default-theme-magazine-publication-card-block>": {
+    "template": "./magazine-publication-card/index.marko"
+  }
+}

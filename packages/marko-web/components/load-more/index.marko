@@ -1,0 +1,47 @@
+import { getAsObject, getAsArray } from "@base-cms/object-path";
+
+$ const { components, fragments } = out.global;
+
+$ const Component = components.get(input.componentName);
+$ const pageNumber = input.pageNumber || 1;
+
+$ const queryParams = {
+  ...getAsObject(input, "queryParams"),
+  queryName: "LoadMore",
+  queryFragment: fragments.get(input.fragmentName),
+};
+
+<if(Component)>
+  <marko-web-query|{ nodes, pageInfo }| name=input.queryName params=queryParams>
+    <if(nodes.length)>
+      <marko-web-page-container tag="section" ...input.pageInput modifiers=["load-more", ...getAsArray(input, "page.modifiers")]>
+        <!-- Fire generic `load-more-in-view` event (other services can attach to this, e.g. GTM) -->
+        <marko-web-browser-component name="TriggerInViewEvent" props={ eventName: "load-more-in-view", data: { page_number: pageNumber + 1 } } />
+        <if(pageNumber === 1 && input.header)>
+          <div class="load-more-header">
+            $!{input.header}
+          </div>
+        </if>
+        <${Component} ...input.componentInput nodes=nodes page-info=pageInfo />
+
+        $ const { endCursor, hasNextPage } = pageInfo;
+        $ delete queryParams.skip;
+        $ delete queryParams.queryFragment;
+        $ delete queryParams.renderBody;
+        $ const provide = {
+          ...input,
+          queryParams: { ...queryParams, after: endCursor },
+        };
+
+        <marko-web-load-more-trigger
+          ...input.triggerInput
+          append-to=input.appendTo
+          max-pages=input.maxPages
+          page-number=pageNumber
+          provide=provide
+          show=hasNextPage
+        />
+      </marko-web-page-container>
+    </if>
+  </marko-web-query>
+</if>

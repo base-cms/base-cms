@@ -1,0 +1,36 @@
+import { getAsArray, get } from "@base-cms/object-path";
+import shouldCollapse from "../../utils/should-collapse";
+
+$ const blockName = input.blockName || "node-list";
+$ const tag = input.tag || "div";
+$ const nodes = getAsArray(input, "nodes.nodes");
+$ const justified = get(input, "justified", false);
+$ const innerJustified = get(input, "innerJustified", false);
+
+$ const modifiers = [...getAsArray(input.modifiers)];
+$ if (input.flushX) modifiers.push("flush-x");
+$ if (input.flushY) modifiers.push("flush-y");
+$ if (input.fullHeight) modifiers.push("full-height");
+$ if (justified) modifiers.push("justified");
+$ if (innerJustified) modifiers.push("inner-justified");
+
+$ const collapsible = shouldCollapse(input.collapsible);
+
+$ const classNames = [blockName, ...modifiers.map(mod => `${blockName}--${mod}`), input.class];
+
+<if(nodes.length || !collapsible)>
+  <div ...input.attrs class=classNames>
+    <if(input.header)>
+      <marko-web-node-list-header ...input.header />
+    </if>
+    <if(input.body)>
+      <marko-web-node-list-body ...input.body />
+    </if>
+    <if(input.nodes)>
+      <marko-web-node-list-nodes ...input.nodes />
+    </if>
+    <if(input.footer)>
+      <marko-web-node-list-footer ...input.footer />
+    </if>
+  </div>
+</if>

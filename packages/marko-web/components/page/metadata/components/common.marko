@@ -1,0 +1,42 @@
+$ const { config } = out.global;
+$ const {
+  title,
+  canonicalPath,
+  imageSrc,
+  description,
+} = input;
+$ const fallbackImage = config.fallbackImage();
+$ const image = imageSrc || fallbackImage;
+
+<!-- Standard Fields -->
+<marko-web-page-title value=title />
+<marko-web-page-description value=description />
+<marko-web-page-rel-canonical path=canonicalPath />
+
+<!-- Name/Title (OpenGrah, and Schema.org respectively) -->
+<if(title)>
+  <meta property="og:title" item-prop="name" content=title />
+</if>
+
+<if(image)>
+  <!-- Image (standard, OpenGrah, and Schema.org respectively) -->
+  <meta name="image" property="og:image" item-prop="image" content=image />
+  <!-- @todo Create a new focal point preview for FB's 1200x630 ratio -->
+</if>
+
+<!-- OpenGraph -->
+<marko-web-page-rel-canonical|{ href }| path=canonicalPath>
+  <meta property="og:url" content=href />
+</marko-web-page-rel-canonical>
+<meta property="og:site_name" content=config.siteName() />
+<meta property="og:locale" content=config.locale() />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content=title />
+<if(description)>
+  <meta name="twitter:description" content=description />
+</if>
+<if(image)>
+  <meta name="twitter:image:src" content=image />
+</if>

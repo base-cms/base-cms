@@ -1,0 +1,15 @@
+img {
+  // stylelint-disable-next-line selector-no-qualifying-type
+  &.lazyload:not([src]) {
+    visibility: hidden;
+  }
+  // stylelint-disable-next-line selector-no-qualifying-type
+  &.lazyloaded {
+    opacity: 1;
+    transition: $theme-lazyloaded-tranisition;
+  }
+}
+
+.lazyloading {
+  opacity: 0;
+}

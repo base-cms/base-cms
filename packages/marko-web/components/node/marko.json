@@ -1,0 +1,188 @@
+{
+  "<marko-web-node>": {
+    "template": "./index.marko",
+    "<header>": {
+      "<left>": {},
+      "<right>": {}
+    },
+    "<image>": {
+      "<header>": {},
+      "<body>": {
+        "<header>": {},
+        "<footer>": {},
+        "<title>": {},
+        "@text <text>[]": {}
+      }
+    },
+    "<body>": {
+      "<header>": {},
+      "<footer>": {},
+      "<title>": {},
+      "@text <text>[]": {}
+    },
+    "<footer>": {
+      "<left>": {},
+      "<right>": {}
+    },
+    "@type": "string",
+    "@block-name": "string",
+    "@tag": "string",
+    "@image-position": "string",
+    "@flush": "boolean",
+    "@flush-x": "boolean",
+    "@flush-y": "boolean",
+    "@image-flush": "boolean",
+    "@full-height": "boolean",
+    "@card": "boolean",
+    "@class": "string",
+    "@attrs": "object",
+    "@modifiers": "array"
+  },
+  "<marko-web-node-body>": {
+    "template": "./body.marko",
+    "<header>": {},
+    "<footer>": {},
+    "<title>": {
+      "@show": "boolean",
+      "@tag": "string",
+      "@block-name": "string",
+      "@modifiers": "array",
+      "@attrs": "object"
+    },
+    "@text <text>[]": {
+      "@show": "boolean",
+      "@tag": "string",
+      "@block-name": "string",
+      "@modifiers": "array",
+      "@attrs": "object"
+    },
+    "@block-name": "string",
+    "@tag": "string",
+    "@modifiers": "array",
+    "@attrs": "object"
+  },
+  "<marko-web-node-element>": {
+    "template": "./element.marko",
+    "@name": "string",
+    "@show": {
+      "type": "boolean",
+      "default-value": true
+    },
+    "@tag": {
+      "type": "string",
+      "default-value": "div"
+    },
+    "@block-name": {
+      "type": "string",
+      "default-value": "node"
+    },
+    "@modifiers": "array",
+    "@attrs": "object"
+  },
+  "<marko-web-node-header>": {
+    "template": "./header.marko",
+    "<left>": {
+      "@tag": "string",
+      "@modifiers": "array",
+      "@attrs": "object"
+    },
+    "<right>": {
+      "@tag": "string",
+      "@modifiers": "array",
+      "@attrs": "object"
+    },
+    "@tag": "string",
+    "@block-name": "string",
+    "@modifiers": "array",
+    "@attrs": "object"
+  },
+  "<marko-web-node-footer>": {
+    "template": "./footer.marko",
+    "<left>": {
+      "@tag": "string",
+      "@modifiers": "array",
+      "@attrs": "object"
+    },
+    "<right>": {
+      "@tag": "string",
+      "@modifiers": "array",
+      "@attrs": "object"
+    },
+    "@tag": "string",
+    "@block-name": "string",
+    "@modifiers": "array",
+    "@attrs": "object"
+  },
+  "<marko-web-node-image-wrapper>": {
+    "template": "./image-wrapper.marko",
+    "<header>": {},
+    "<body>": {
+      "<header>": {},
+      "<title>": {},
+      "@text <text>[]": {}
+    },
+    "@block-name": "string",
+    "@src": "string",
+    "@alt": "string",
+    "@ar": {
+      "type": "string",
+      "default-value": "1:1"
+    },
+    "@fluid": "boolean",
+    "@width": {
+      "type": "number",
+      "default-value": 320
+    },
+    "@link": "object",
+    "@use-placeholder": "boolean",
+    "@options": "object",
+    "@is-logo": "boolean",
+    "@lazyload": {
+      "type": "boolean",
+      "default-value": true
+    },
+    "@attrs": "object",
+    "@image-attrs": "object",
+    "@class": "string",
+    "@gradient": "boolean",
+    "@align": "boolean"
+  },
+  "<marko-web-node-image-inner-wrapper>": {
+    "template": "./image-inner-wrapper.marko",
+    "@block-name": "string",
+    "@src": "string",
+    "@alt": "string",
+    "@ar": "string",
+    "@fluid": "boolean",
+    "@width": "number",
+    "@link": "object",
+    "@use-placeholder": "boolean",
+    "@options": "object",
+    "@is-logo": "boolean",
+    "@lazyload": {
+      "type": "boolean",
+      "default-value": true
+    },
+    "@attrs": "object",
+    "@image-attrs": "object",
+    "@class": "string",
+    "@gradient": "boolean"
+  },
+  "<marko-web-node-image>": {
+    "template": "./image.marko",
+    "@src": "string",
+    "@alt": "string",
+    "@width": "number",
+    "@height": "number",
+    "@options": "object",
+    "@is-logo": "boolean",
+    "@default-options": "object",
+    "@use-placeholder": "boolean",
+    "@class": "string",
+    "@attrs": "object",
+    "@lazyload": {
+      "type": "boolean",
+      "default-value": true
+    }
+  }
+}

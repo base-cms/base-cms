@@ -1,0 +1,9 @@
+import { isFunction, warn } from "@base-cms/utils";
+import { defaultBuilder } from "../../context";
+
+$ const { req } = out.global;
+$ const builder = isFunction(input.builder) ? input.builder : defaultBuilder;
+$ const type = input.type || "page";
+
+$ const context = builder({ type, obj: input.obj, req });
+<${input.renderBody} context=context />

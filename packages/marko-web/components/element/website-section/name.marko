@@ -1,0 +1,17 @@
+import { get } from "@base-cms/object-path";
+import extractRender from "../extract-render";
+
+$ const attrs = { title: get(input.obj, "fullName"), ...input.attrs };
+
+<marko-web-obj-text
+  type="website-section"
+  block-name=input.blockName
+  obj=input.obj
+  field="name"
+  tag=input.tag
+  class=input.class
+  modifiers=input.modifiers
+  attrs=attrs
+  link=input.link
+  ...extractRender(input)
+/>

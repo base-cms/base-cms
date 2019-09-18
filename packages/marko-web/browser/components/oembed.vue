@@ -26,9 +26,9 @@ export default {
       type: Object,
       default: () => ({}),
     },
-    endpoint: {
+    mountPoint: {
       type: String,
-      default: '/__oembed',
+      required: true,
     },
   },
   data: () => ({
@@ -58,7 +58,7 @@ export default {
     },
     async load() {
       this.loading = true;
-      const href = `${this.endpoint}?url=${encodeURIComponent(this.url)}`;
+      const href = `${this.mountPoint}?url=${encodeURIComponent(this.url)}`;
       try {
         const r = await fetch(href, { credentials: 'same-origin' });
         const { html, type, provider_name: provider } = await r.json();

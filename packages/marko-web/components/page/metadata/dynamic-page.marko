@@ -1,0 +1,35 @@
+import gql from "graphql-tag";
+import { get } from "@base-cms/object-path";
+import { warn } from "@base-cms/utils";
+
+<!-- @todo This data should generated and saved to the page object as flat data, so no relationships are required. -->
+
+$ const { alias } = input;
+$ const queryFragment = gql`
+fragment DynamicPageMetadataFragment on ContentPage {
+  id
+  canonicalPath
+  metadata {
+    title
+    description
+  }
+}
+`;
+
+<if(alias)>
+  <marko-web-query|{ node }| name="dynamic-page" params={ alias, queryFragment }>
+    $ const metadata = {
+      title: get(node, "metadata.title"),
+      description: get(node, "metadata.description"),
+      canonicalPath: node.canonicalPath,
+    };
+    <common ...metadata />
+    <meta property="og:type" content="website" />
+    <@when-empty>
+      $ warn(`Unable to create dynamic page metadata: no page found for ${alias}.`);
+    </@when-empty>
+  </marko-web-query>
+</if>
+<else>
+  $ warn('Unable to create dynamic page metadata: no page alias was provided.');
+</else>

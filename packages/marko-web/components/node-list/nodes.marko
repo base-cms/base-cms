@@ -1,0 +1,82 @@
+import { getAsArray } from "@base-cms/object-path";
+
+$ const nodes = getAsArray(input, "nodes");
+$ const blockName = input.blockName || "node-list";
+
+$ const slots = getAsArray(input, "slots");
+$ const slotMap = getAsArray(input, "slots").reduce((map, slot) => {
+  const { index, position } = slot;
+  if (index == null && !position) {
+    map.set("default", slot);
+    return map;
+  }
+  if (!position) return map;
+  map.set(`${position}_${index}`, slot)
+  return map;
+}, new Map());
+
+$ const getSlot = (position, index) => (slotMap.get(`${position}_${index}`) || {});
+$ const defaultSlot = slotMap.get("default") || {};
+
+$ const modifiers = [...getAsArray(input, "modifiers")];
+$ if (input.flushX) modifiers.push("flush-x");
+$ if (input.flushY) modifiers.push("flush-y");
+
+<if(nodes.length)>
+  <marko-web-node-list-element
+    block-name=blockName
+    name="nodes"
+    tag=input.tag
+    modifiers=modifiers
+    attrs=input.attrs
+  >
+    <if(input.renderBody)>
+      <${input.renderBody} nodes=nodes block-name=blockName />
+    </if>
+    <else>
+      <for|node, index| of=nodes>
+        $ const at = getSlot("at", index);
+        $ const before = getSlot("before", index);
+        $ const after = getSlot("after", index);
+
+        <if(before.renderBody)>
+          <marko-web-node-list-node
+            ...before
+            block-name=blockName
+            node=node
+            index=index
+            modifiers=["position-before", ...getAsArray(before.modifiers)]
+          />
+        </if>
+
+        <if(at.renderBody)>
+          <marko-web-node-list-node
+            ...at
+            block-name=blockName
+            node=node
+            index=index
+            modifiers=["position-at", ...getAsArray(at.modifiers)]
+          />
+        </if>
+        <else-if(defaultSlot.renderBody)>
+          <marko-web-node-list-node
+            ...defaultSlot
+            block-name=blockName
+            node=node
+            index=index
+          />
+        </else-if>
+
+        <if(after.renderBody)>
+          <marko-web-node-list-node
+            ...after
+            block-name=blockName
+            node=node
+            index=index
+            modifiers=["position-after", ...getAsArray(after.modifiers)]
+          />
+        </if>
+      </for>
+    </else>
+  </marko-web-node-list-element>
+</if>

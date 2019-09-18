@@ -1,0 +1,57 @@
+$ const { config, site } = out.global;
+
+$ const blockName = input.blockName || "site-header";
+
+$ const navigation = {
+  primary: site.getAsArray("navigation.primary.items"),
+  secondary: site.getAsArray("navigation.secondary.items"),
+  tertiary: site.getAsArray("navigation.tertiary.items"),
+  menu: site.getAsArray("navigation.menu"),
+};
+
+<marko-web-block
+  name=blockName
+  tag=(input.tag || "header")
+  class=input.class
+  modifiers=input.modifiers
+  attrs=input.attrs
+>
+  <default-theme-site-navbar modifiers=["secondary"]>
+    <if(navigation.menu.length)>
+      <default-theme-menu-toggle-button
+        class-name="site-navbar__toggler"
+        targets=[".site-menu"]
+        toggle-class="site-menu--open"
+        icon-modifiers=["lg"]
+      />
+    </if>
+    <default-theme-site-navbar-brand title=`${config.siteName()} Homepage`>
+      <default-theme-site-navbar-logo
+        alt=config.siteName()
+        src=site.get("logos.navbar.src")
+        srcset=site.getAsArray("logos.navbar.srcset").join(",")
+      />
+    </default-theme-site-navbar-brand>
+    <default-theme-site-navbar-items
+      items=navigation.secondary
+      modifiers=["secondary"]
+      reg-enabled=input.regEnabled
+      has-user=input.hasUser
+    />
+    <default-theme-site-navbar-items
+      items=navigation.tertiary
+      modifiers=["tertiary"]
+      reg-enabled=input.regEnabled
+      has-user=input.hasUser
+    />
+  </default-theme-site-navbar>
+
+  <default-theme-site-navbar modifiers=["primary"]>
+    <default-theme-site-navbar-items
+      items=navigation.primary
+      modifiers=["primary"]
+      reg-enabled=input.regEnabled
+      has-user=input.hasUser
+    />
+  </default-theme-site-navbar>
+</marko-web-block>

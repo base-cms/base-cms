@@ -1,0 +1,22 @@
+import { warn } from "@base-cms/utils";
+import generateId from "../utils/generate-id";
+
+$ const { path, inc } = input;
+$ const id = input.id || generateId({ inc });
+
+$ const props = {
+  id,
+  path,
+  size: input.size,
+  sizeMapping: input.sizeMapping,
+  closeable: input.closeable,
+  refreshInterval: input.refreshInterval,
+  scrollOffset: input.scrollOffset,
+};
+
+<if(path)>
+  <marko-web-browser-component name="GAMFixedAdBottom" props=props />
+</if>
+<else>
+  $ warn("Unable to render sticky leaderboard: no `path` was provided.");
+</else>

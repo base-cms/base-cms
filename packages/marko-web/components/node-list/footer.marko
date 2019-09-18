@@ -1,0 +1,19 @@
+import { getAsArray } from "@base-cms/object-path";
+
+$ const blockName = input.blockName || "node-list";
+
+$ const modifiers = [...getAsArray(input, "modifiers")];
+$ if (input.flushX) modifiers.push("flush-x");
+$ if (input.flushY) modifiers.push("flush-y");
+
+<if(input.renderBody)>
+  <marko-web-node-list-element
+    block-name=blockName
+    name="footer"
+    tag=input.tag
+    modifiers=modifiers
+    attrs=input.attrs
+  >
+    <${input.renderBody} />
+  </marko-web-node-list-element>
+</if>

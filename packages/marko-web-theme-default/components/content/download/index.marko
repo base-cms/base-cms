@@ -1,0 +1,22 @@
+import { getAsObject } from "@base-cms/object-path";
+
+$ const blockName = "content-download"
+$ const content = getAsObject(input, "obj");
+$ const { fileSrc } = content;
+$ const { surveyId, surveyType } = getAsObject(content, "gating");
+
+<if(fileSrc)>
+  <marko-web-block name=blockName>
+    <if(surveyId)>
+      <if(surveyType === "app_form_com")>
+        <default-theme-content-download-form-dot-com ...input.formDotCom survey-id=surveyId target=fileSrc />
+      </if>
+      <else-if(surveyType === "wufoo")>
+        <default-theme-content-download-wufoo ...input.wufoo survey-id=surveyId target=fileSrc />
+      </else-if>
+    </if>
+    <else>
+      <default-theme-content-download-link ...input.link href=fileSrc block-name=blockName />
+    </else>
+  </marko-web-block>
+</if>

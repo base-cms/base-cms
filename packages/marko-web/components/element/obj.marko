@@ -1,0 +1,21 @@
+import { get, getAsObject, getAsArray, getLastObject } from "@base-cms/object-path";
+import { dasherize } from "@base-cms/inflector";
+import objectType from "./object-type";
+
+$ const obj = getAsObject(input, "obj");
+$ const field = input.field || "id";
+$ const resolvedObj = getLastObject(obj, field);
+$ const type = objectType(input.type || get(resolvedObj, "__typename"));
+$ const value = get(obj, field);
+
+$ const classNames = [];
+$ if (input.blockName) {
+  const elementName = `${input.blockName}__${type}-${dasherize(field.split(".").pop())}`;
+  classNames.push(elementName);
+  classNames.push(...getAsArray(input.modifiers).map(mod => `${elementName}--${mod}`));
+}
+$ classNames.push(input.class);
+
+<if(value)>
+  <${input.renderBody} value=value class-names=classNames resolved-obj=resolvedObj />
+</if>

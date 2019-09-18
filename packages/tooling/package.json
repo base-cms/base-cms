@@ -6,9 +6,13 @@
   "author": "Jacob Bare <jacob@limit0.io>",
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/tooling",
   "license": "MIT",
+  "scripts": {
+    "lint": "eslint --ext .js --max-warnings 5 ./",
+    "test": "yarn lint"
+  },
   "dependencies": {
-    "envalid": "^4.1.4",
-    "validator": "^10.9.0"
+    "envalid": "^5.0.0",
+    "validator": "^11.0.0"
   },
   "publishConfig": {
     "access": "public"

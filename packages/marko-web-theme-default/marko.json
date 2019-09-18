@@ -1,0 +1,6 @@
+{
+  "taglib-id": "@base-cms/marko-web-theme-default",
+  "taglib-imports": [
+    "./components/marko.json"
+  ]
+}

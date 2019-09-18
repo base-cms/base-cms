@@ -1,0 +1,102 @@
+.page-attribution {
+  $self: &;
+  font-family: $theme-content-attribution-font-family;
+  font-size: $theme-content-attribution-font-size;
+  font-weight: $theme-content-attribution-font-weight;
+  line-height: $theme-content-attribution-line-height;
+  color: $theme-content-attribution-color;
+  text-transform: $theme-content-attribution-text-transform;
+
+  &__content-authors {
+    &::before {
+      margin-right: $theme-content-attribution-prefix-margin;
+      font-weight: $theme-content-attribution-prefix-font-weight;
+      content: "Author";
+    }
+  }
+
+  &__content-byline {
+    &::before {
+      margin-right: $theme-content-attribution-prefix-margin;
+      font-weight: $theme-content-attribution-prefix-font-weight;
+      content: "By";
+    }
+  }
+
+  &__content-company-name {
+    &::before {
+      margin-right: $theme-content-attribution-prefix-margin;
+      font-weight: $theme-content-attribution-prefix-font-weight;
+      content: "From";
+    }
+  }
+
+  &__content-contributors {
+    &::before {
+      margin-right: $theme-content-attribution-prefix-margin;
+      font-weight: $theme-content-attribution-prefix-font-weight;
+      content: "Contributor";
+    }
+  }
+
+  &__content-photographers {
+    &::before {
+      margin-right: $theme-content-attribution-prefix-margin;
+      font-weight: $theme-content-attribution-prefix-font-weight;
+      content: "Photographer";
+    }
+  }
+
+  &__content-source {
+    &::before {
+      margin-right: $theme-content-attribution-prefix-margin;
+      font-weight: $theme-content-attribution-prefix-font-weight;
+      content: "Source";
+    }
+  }
+
+  &__content-sponsors {
+    &::before {
+      margin-right: $theme-content-attribution-prefix-margin;
+      font-weight: $theme-content-attribution-prefix-font-weight;
+      content: "Sponsor";
+    }
+  }
+
+  &__content-authors,
+  &__content-byline,
+  &__content-company-name,
+  &__content-contributors,
+  &__content-photographers,
+  &__content-source,
+  &__content-sponsors {
+    #{ $self } {
+      &__content-name {
+        &:first-child {
+          &::before {
+            margin-right: $theme-content-attribution-prefix-margin-after;
+            font-weight: $theme-content-attribution-prefix-spacer-font-weight;
+            content: $theme-content-attribution-prefix-spacer-content;
+          }
+        }
+      }
+    }
+  }
+
+  &__content-name {
+    margin-right: $theme-content-attribution-name-margin;
+    &::after {
+      display: inline-block;
+      content: $theme-content-attribution-name-content;
+    }
+    &:last-child {
+      margin-right: 0;
+      &::after {
+        content: "";
+      }
+    }
+  }
+  div:last-child {
+    margin-bottom: $theme-content-attribution-name-margin;
+  }
+}

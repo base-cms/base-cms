@@ -1,0 +1,20 @@
+import { warn } from "@base-cms/utils";
+
+$ const { uri, enabled } = input;
+
+<if(uri)>
+  <if(enabled)>
+    <script>
+      (function (i, s, o, g, r, a, m) {
+        i['FortnightObject'] = r; i[r] = i[r] || function () {
+          (i[r].q = i[r].q || []).push(arguments)
+        }, a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; a.crossOrigin = 'anonymous'; m.parentNode.insertBefore(a, m)
+      })(window, document, 'script', 'https://d24bnj4f1s1f8m.cloudfront.net/1.0.0-rc.4.3/fortnight.min.js', 'fortnight');
+      fortnight('init', { domain: '${uri}' });
+    </script>
+  </if>
+</if>
+<else>
+  $ warn('Unable to init NativeX: a uri is required.');
+</else>

@@ -1,0 +1,7 @@
+import { asObject } from '@base-cms/utils';
+
+$ const name = input.name || 'dataLayer';
+$ const obj = asObject(input.data);
+$ const script = `${name}.push(${JSON.stringify(obj)});`;
+
+<script>${script}</script>

@@ -1,0 +1,64 @@
+import { getAsObject } from "@base-cms/object-path";
+import contentListFragment from "../../api/fragments/content-list";
+import GAM from "../../../config/gam";
+
+$ const { id, pageNode } = data;
+
+<marko-web-magazine-issue-page-layout id=id>
+  <@head>
+    <marko-web-gtm-magazine-issue-context|{ context }| id=id>
+      <marko-web-gtm-push data=context />
+    </marko-web-gtm-magazine-issue-context>
+  </@head>
+  <@above-container>
+    <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "wa" }) />
+    <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "reskin" }) />
+  </@above-container>
+  <@page>
+    <marko-web-gam-define-display-ad ...GAM.getAdUnit({ name: "lb1" }) modifiers=["top-of-page"] />
+    <marko-web-page-wrapper class="mb-block">
+      <@section>
+        <div class="row">
+          <div class="col">
+            <marko-web-resolve-page|{ data: issue }| node=pageNode>
+              <default-theme-breadcrumbs-with-home>
+                <@item><marko-web-link href="/magazine">Magazines</marko-web-link></@item>
+                <@item><marko-web-magazine-publication-name tag=null obj=issue.publication link=true /></@item>
+                <@item><marko-web-magazine-issue-name tag=null obj=issue /></@item>
+              </default-theme-breadcrumbs-with-home>
+              <h1 class="page-wrapper__title">${issue.name}</h1>
+              <if(issue.description)>
+                <p class="page-wrapper__deck">${issue.description}</p>
+              </if>
+            </marko-web-resolve-page>
+          </div>
+        </div>
+      </@section>
+    </marko-web-page-wrapper>
+
+    <marko-web-resolve-page|{ data: issue }| node=pageNode>
+      <marko-web-query|{ nodes: issueContent }| name="magazine-scheduled-content" collapsible=false params={ issueId: id, limit: 5, queryFragment: contentListFragment }>
+        <default-theme-featured-flow>
+          <@featured node=issue>
+            <website-magazine-latest-issue-node card=true flush=false node=issue />
+          </@featured>
+          <@list nodes=issueContent>
+            <website-content-list-flow nodes=issueContent />
+          </@list>
+        </default-theme-featured-flow>
+      </marko-web-query>
+    </marko-web-resolve-page>
+  </@page>
+  <@below-page>
+    <marko-web-resolve-page|{ data: issue }| node=pageNode>
+      <marko-web-load-more
+        header=`More Content from ${issue.name}`
+        component-name="content-card-deck-flow"
+        fragment-name="content-list"
+        query-name="magazine-scheduled-content"
+        query-params={ issueId: id, limit: 10, skip: 5 }
+        page-input={ for: "magazine-issue", id }
+      />
+    </marko-web-resolve-page>
+  </@below-page>
+</marko-web-magazine-issue-page-layout>

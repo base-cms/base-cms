@@ -1,0 +1,38 @@
+import GAM from "../../config/gam";
+import GCSE from "../../config/gcse";
+
+$ const { config } = out.global;
+
+$ const type = "search";
+$ const title = "Search";
+$ const description = `Search ${config.siteName()}`;
+
+<marko-web-default-page-layout type=type title=title description=description>
+  <@head>
+    <marko-web-gtm-default-context|{ context }| type=type>
+      <marko-web-gtm-push data=context />
+    </marko-web-gtm-default-context>
+  </@head>
+  <@page>
+    <marko-web-gam-define-display-ad ...GAM.getAdUnit({ name: "lb1" }) modifiers=["top-of-page"] />
+    <marko-web-page-wrapper class="mb-block">
+      <@section>
+        <div class="row">
+          <div class="col">
+            <default-theme-breadcrumbs-with-home>
+              <@item>${title}</@item>
+            </default-theme-breadcrumbs-with-home>
+            <h1 class="page-wrapper__title">${description}</h1>
+          </div>
+        </div>
+      </@section>
+      <@section>
+        <div class="row">
+          <div class="col">
+            <marko-web-gcse-simple-search-box api-key=GCSE.getApiKey() />
+          </div>
+        </div>
+      </@section>
+    </marko-web-page-wrapper>
+  </@page>
+</marko-web-default-page-layout>

@@ -1,0 +1,42 @@
+{
+  "<default-theme-page-contents>": {
+    "template": "./contents.marko",
+    "@tag": {
+      "type": "string",
+      "default-value": "div"
+    },
+    "@class": "string",
+    "@modifiers": "@array",
+    "@attrs": "object"
+  },
+  "<default-theme-page-dates>": {
+    "template": "./dates.marko",
+    "@tag": {
+      "type": "string",
+      "default-value": "div"
+    },
+    "@class": "string",
+    "@modifiers": "@array",
+    "@attrs": "object"
+  },
+  "<default-theme-page-attribution>": {
+    "template": "./attribution.marko",
+    "@tag": {
+      "type": "string",
+      "default-value": "div"
+    },
+    "@class": "string",
+    "@modifiers": "@array",
+    "@attrs": "object"
+  },
+  "<default-theme-page-contact-details>": {
+    "template": "./contact-details.marko",
+    "@tag": {
+      "type": "string",
+      "default-value": "div"
+    },
+    "@class": "string",
+    "@modifiers": "@array",
+    "@attrs": "object"
+  }
+}

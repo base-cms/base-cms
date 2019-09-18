@@ -18,8 +18,7 @@ const absoluteRuntime = path.dirname(require.resolve('@babel/runtime/package.jso
  */
 const readRcFile = (cwd) => {
   const excludeFn = file => (
-    /node_modules/.test(file)
-    && !/packages\/marko-web\/browser/.test(file)
+    /node_modules\/(?!@base-cms\/marko-web.*?\/browser)/.test(file)
     && !/\.vue\.js/.test(file)
   );
 

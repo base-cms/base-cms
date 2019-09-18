@@ -1,0 +1,12 @@
+import { getAsArray } from "@base-cms/object-path";
+
+$ const { aliases } = input;
+$ const nodes = getAsArray(input, "nodes");
+
+<if(nodes.length)>
+  <default-theme-card-deck-flow nodes=nodes modifiers=input.modifiers cols=4>
+    <@slot|{ node }|>
+      <website-magazine-issue-archive-node node=node flush=input.flush with-title=input.withTitle />
+    </@slot>
+  </default-theme-card-deck-flow>
+</if>

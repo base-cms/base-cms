@@ -1,0 +1,27 @@
+import createClasses from '../utils/create-classes';
+import { readFileSync } from 'fs';
+import { resolve } from 'path';
+
+$ const tag = input.tag || 'span';
+$ const blockName = input.blockName || 'marko-web-icon';
+$ const classNames = createClasses({
+  iconName: input.name,
+  blockName,
+  modifiers: input.modifiers,
+  className: input.class,
+});
+
+$ const load = () => {
+  try {
+    const file = resolve(__dirname, `../svg/${input.name}.svg`);
+    return readFileSync(file, 'utf8').toString();
+  } catch (e) {
+    return null;
+  }
+};
+
+$ const svg = load();
+
+<if(svg)>
+  <${tag} ...input.attrs class=classNames>$!{svg}</>
+</if>

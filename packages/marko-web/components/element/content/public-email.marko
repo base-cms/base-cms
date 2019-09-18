@@ -1,0 +1,19 @@
+import { get } from "@base-cms/object-path";
+import extractRender from "../extract-render";
+
+$ if (input.link === true) {
+  input.link = { href: `mailto:${get(input.obj, "publicEmail")}`, target: "_blank" };
+}
+
+<marko-web-obj-text
+  type="content"
+  block-name=input.blockName
+  obj=input.obj
+  field="publicEmail"
+  tag=input.tag
+  class=input.class
+  modifiers=input.modifiers
+  attrs=input.attrs
+  link=input.link
+  ...extractRender(input)
+/>

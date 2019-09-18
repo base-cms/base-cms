@@ -1,0 +1,78 @@
+{
+  "<marko-web-default-page-layout>": {
+    "template": "./default.marko",
+    "<head>": {},
+    "<foot>": {},
+    "<above-container>": {},
+    "<below-container>": {},
+    "<page>": {},
+    "<above-page>": {},
+    "<below-page>": {},
+    "@type": "string",
+    "@title": "string",
+    "@description": "string"
+  },
+  "<marko-web-website-section-page-layout>": {
+    "template": "./website-section.marko",
+    "<head>": {},
+    "<foot>": {},
+    "<above-container>": {},
+    "<below-container>": {},
+    "<page>": {},
+    "<above-page>": {},
+    "<below-page>": {},
+    "@id": "object",
+    "@alias": "string",
+    "@name": "string",
+    "@with-rss": {
+      "type": "boolean",
+      "default-value": true
+    }
+  },
+  "<marko-web-content-page-layout>": {
+    "template": "./content.marko",
+    "<head>": {},
+    "<foot>": {},
+    "<above-container>": {},
+    "<below-container>": {},
+    "<page>": {},
+    "<above-page>": {},
+    "<below-page>": {},
+    "@id": "number",
+    "@type": "string"
+  },
+  "<marko-web-dynamic-page-layout>": {
+    "template": "./dynamic-page.marko",
+    "<head>": {},
+    "<foot>": {},
+    "<above-container>": {},
+    "<below-container>": {},
+    "<page>": {},
+    "<above-page>": {},
+    "<below-page>": {},
+    "@id": "string",
+    "@alias": "string"
+  },
+  "<marko-web-magazine-issue-page-layout>": {
+    "template": "./magazine-issue.marko",
+    "<head>": {},
+    "<foot>": {},
+    "<above-container>": {},
+    "<below-container>": {},
+    "<page>": {},
+    "<above-page>": {},
+    "<below-page>": {},
+    "@id": "number"
+  },
+  "<marko-web-magazine-publication-page-layout>": {
+    "template": "./magazine-publication.marko",
+    "<head>": {},
+    "<foot>": {},
+    "<above-container>": {},
+    "<below-container>": {},
+    "<page>": {},
+    "<above-page>": {},
+    "<below-page>": {},
+    "@id": "number"
+  }
+}

@@ -1,0 +1,35 @@
+import gql from "graphql-tag";
+import { get } from "@base-cms/object-path";
+import { warn } from "@base-cms/utils";
+
+<!-- @todo This data should generated and saved to the section object as flat data, so no relationships are required. -->
+
+$ const { alias } = input;
+$ const queryFragment = gql`
+fragment WebsiteSectionPageMetadataFragment on WebsiteSection {
+  id
+  canonicalPath
+  metadata {
+    title
+    description
+  }
+}
+`;
+
+<if(alias)>
+  <marko-web-query|{ node }| name="website-section" params={ alias, queryFragment }>
+    $ const metadata = {
+      title: get(node, "metadata.title"),
+      description: get(node, "metadata.description"),
+      canonicalPath: node.canonicalPath,
+    };
+    <common ...metadata />
+    <meta property="og:type" content="website" />
+    <@when-empty>
+      $ warn(`Unable to create website section metadata: no section found for ${alias}.`);
+    </@when-empty>
+  </marko-web-query>
+</if>
+<else>
+  $ warn('Unable to create website section metadata: no section alias was provided.');
+</else>

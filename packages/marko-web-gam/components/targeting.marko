@@ -1,0 +1,9 @@
+import buildTargeting from "../utils/build-targeting";
+
+$ const calls = [];
+$ const targetingStr = buildTargeting(input.keyValues);
+$ if (targetingStr) calls.push(`googletag.pubads().${targetingStr};`);
+
+<if(calls.length)>
+  <script>googletag.cmd.push(function() { ${calls.join(" ")} });</script>
+</if>

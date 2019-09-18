@@ -1,0 +1,17 @@
+import { getAsArray } from "@base-cms/object-path";
+
+$ const items = getAsArray(input, "items");
+
+<if(items.length)>
+  <nav class="breadcrumbs" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <for|item| of=items>
+        <if(item.renderBody)>
+          <li class="breadcrumb-item">
+            <${item.renderBody} />
+          </li>
+        </if>
+      </for>
+    </ol>
+  </nav>
+</if>

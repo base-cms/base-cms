@@ -27,7 +27,7 @@ type AssetImage {
   approvedMagazine: Boolean @projection(localField: "mutations.Magazine.approved") @value(localField: "mutations.Magazine.approved")
 
   # GraphQL specific fields
-  src: String! @projection(localField: "fileName", needs: ["filePath", "cropDimensions"])
+  src(input: AssetImageSrcInput = {}): String! @projection(localField: "fileName", needs: ["filePath", "cropDimensions", "isLogo"])
   alt: String! @projection(localField: "name", needs: ["caption", "fileName"])
 }
 
@@ -73,6 +73,10 @@ input AssetImageQueryInput {
 input AssetImageSortInput {
   field: AssetImageSortField = id
   order: SortOrder = desc
+}
+
+input AssetImageSrcInput {
+  options: JSON
 }
 
 `;

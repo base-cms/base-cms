@@ -1,0 +1,37 @@
+.card-deck-flow {
+  $self: &;
+  @include make-row();
+
+  &__node {
+    margin-bottom: map-get($spacers, block);
+    @include make-col-ready();
+  }
+
+  &--3-cols {
+    #{ $self } {
+      &__node {
+        @include media-breakpoint-up(md) {
+          @include make-col(6);
+        }
+        @include media-breakpoint-up(lg) {
+          @include make-col(4);
+        }
+      }
+    }
+  }
+  &--4-cols {
+    #{ $self } {
+      &__node {
+        @include media-breakpoint-up(sm) {
+          @include make-col(6);
+        }
+        @include media-breakpoint-up(md) {
+          @include make-col(4);
+        }
+        @include media-breakpoint-up(lg) {
+          @include make-col(3);
+        }
+      }
+    }
+  }
+}

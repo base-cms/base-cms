@@ -1,11 +1,15 @@
-import GTMTrackInViewEvent from './gtm-track-in-view-event.vue';
-import LoadMoreButton from './load-more-button.vue';
+import LoadMoreTrigger from './load-more-trigger.vue';
 import OEmbed from './oembed.vue';
+import TriggerInViewEvent from './trigger-in-view-event.vue';
+import FormDotComGatedDownload from './gated-download/form-dot-com.vue';
+import WufooGatedDownload from './gated-download/wufoo.vue';
 
 const components = {
-  GTMTrackInViewEvent,
-  LoadMoreButton,
+  LoadMoreTrigger,
   OEmbed,
+  TriggerInViewEvent,
+  FormDotComGatedDownload,
+  WufooGatedDownload,
 };
 
 export default components;

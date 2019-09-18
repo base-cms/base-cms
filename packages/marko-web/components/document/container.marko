@@ -1,0 +1,15 @@
+import { getAsArray } from "@base-cms/object-path";
+
+$ const blockName = input.blockName || "document-container";
+$ const tag = input.tag || "div";
+
+$ const modifiers = [...getAsArray(input.modifiers)];
+$ const classNames = [blockName, ...modifiers.map(mod => `${blockName}--${mod}`), input.class];
+
+<${tag} ...input.attrs class=classNames>
+  <${input.abovePage} />
+  <if(input.page)>
+    <marko-web-page-container ...input.page />
+  </if>
+  <${input.belowPage} />
+</>

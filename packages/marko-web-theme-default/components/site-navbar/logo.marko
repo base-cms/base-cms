@@ -1,0 +1,12 @@
+$ const blockName = input.blockName || "site-navbar";
+$ const elementName = input.name || "logo";
+$ const classNames = [`${blockName}__${elementName}`, input.class];
+$ const lazyload = input.lazyload != null ? input.lazyload : false;
+$ if (lazyload) classNames.push("lazyload");
+
+<img
+  class=classNames
+  alt=input.alt
+  src=input.src
+  srcset=input.srcset
+>

@@ -1,0 +1,32 @@
+{
+  "<marko-web-magazine-publication-name>": {
+    "template": "./name.marko",
+    "@block-name": "string",
+    "@obj": "object",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object",
+    "@link": "expression"
+  },
+  "<marko-web-magazine-publication-description>": {
+    "template": "./description.marko",
+    "@block-name": "string",
+    "@obj": "object",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object",
+    "@link": "expression"
+  },
+  "<marko-web-magazine-publication-subscribe-url>": {
+    "template": "./subscribe-url.marko",
+    "@block-name": "string",
+    "@obj": "object",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object",
+    "@link": "expression"
+  }
+}

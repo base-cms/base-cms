@@ -1,0 +1,7 @@
+{
+  "taglib-imports": [
+    "./attribution/marko.json",
+    "./contact-details/marko.json",
+    "./download/marko.json"
+  ]
+}

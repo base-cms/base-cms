@@ -1,0 +1,67 @@
+import gql from "graphql-tag";
+import { isFunction, warn } from "@base-cms/utils";
+import { contentBuilder } from "../../context";
+
+$ const { req } = out.global;
+$ const { id } = input;
+$ const builder = isFunction(input.builder) ? input.builder : contentBuilder;
+
+$ const queryFragment = input.queryFragment || gql`
+fragment ContentContextFragment on Content {
+  id
+  type
+  name
+  published
+  createdBy {
+    id
+    username
+    firstName
+    lastName
+  }
+  company {
+    id
+    name
+  }
+  primarySection {
+    id
+    name
+    alias
+    fullName
+    hierarchy {
+      id
+      name
+      alias
+    }
+  }
+  taxonomy {
+    edges {
+      node {
+        id
+        type
+        name
+        fullName
+      }
+    }
+  }
+  ... on Authorable {
+    authors {
+      edges {
+        node {
+          id
+          name
+        }
+      }
+    }
+  }
+}
+`;
+
+<if(id)>
+  <marko-web-query|{ node }| name="content" params={ id, queryFragment }>
+    $ const context = builder({ type: "content", obj: node, req });
+    <${input.renderBody} context=context />
+  </marko-web-query>
+</if>
+<else>
+  $ warn('Unable to create GTM content context: no content id was provided.');
+</else>

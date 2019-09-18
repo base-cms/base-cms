@@ -1,0 +1,23 @@
+$ const { href, target } = input;
+$ const classNames = input.class;
+$ const hasHref = Boolean(href);
+$ const rels = [];
+$ if (input.rel) rels.push(input.rel);
+$ if (target === "_blank") rels.push("noopener");
+$ const rel = rels.length ? rels.join(" ") : null;
+
+<if(hasHref)>
+  <a
+    ...input.attrs
+    href=href
+    title=input.title
+    target=target
+    rel=rel
+    class=classNames
+  >
+    <${input.renderBody} />
+  </a>
+</if>
+<else>
+  <${input.renderBody} />
+</else>

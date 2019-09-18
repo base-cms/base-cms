@@ -1,0 +1,10 @@
+$ const { config } = out.global;
+
+$ const { alias } = input;
+$ const defaultTitle = input.name ? `RSS Feed for ${input.name}` : "RSS Feed";
+$ const title = input.title || defaultTitle;
+$ const href = `${config.rssMountPoint()}/${alias}.xml`;
+
+<if(alias)>
+  <link rel="alternate" type="application/rss+xml" title=title href=href />
+</if>

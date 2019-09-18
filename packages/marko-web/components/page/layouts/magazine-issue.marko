@@ -1,0 +1,19 @@
+$ const { id } = input;
+$ const { document } = out.global;
+
+<${document}
+  above-container=input.aboveContainer
+  below-container=input.belowContainer
+  foot=input.foot
+>
+  <@head>
+    <marko-web-magazine-issue-page-metadata id=id />
+    <${input.head} />
+  </@head>
+  <!-- Note: camelcased vars due to nest input of dynamic document. perhaps a marko bug -->
+  <@container abovePage=input.abovePage belowPage=input.belowPage>
+    <@page for="magazine-issue" id=id>
+      <${input.page} />
+    </@page>
+  </@container>
+</>

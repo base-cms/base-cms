@@ -1,0 +1,16 @@
+import { getAsArray } from "@base-cms/object-path";
+
+$ const blockName = input.blockName || "page-wrapper";
+$ const tag = input.tag || "div";
+$ const sections = getAsArray(input.sections);
+
+$ const modifiers = [...getAsArray(input.modifiers)];
+$ const classNames = [blockName, ...modifiers.map(mod => `${blockName}--${mod}`), input.class];
+
+<if(sections.length)>
+  <${tag} ...input.attrs class=classNames>
+    <for|section| of=sections>
+      <marko-web-element ...section block-name=blockName name="section" />
+    </for>
+  </>
+</if>

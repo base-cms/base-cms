@@ -10,7 +10,7 @@ x-env-newrelic: &env-newrelic
 
 x-env-mongo: &env-mongo
   MONGO_DSN: ${MONGO_DSN-mongodb://mongodb:27017}
-  ENABLE_BASEDB_LOGGING: ${ENABLE_BASEDB_LOGGING-}
+  ENABLE_BASEDB_LOGGING: ${ENABLE_BASEDB_LOGGING-0}
 
 x-env-elastic: &env-elastic
   ELASTICSEARCH_URL: ${ELASTICSEARCH_URL-http://elasticsearch:9200}
@@ -89,32 +89,85 @@ services:
     ports:
       - "10002:80"
 
-  marko-example-website:
+  graphql-server-lfw:
     << : *node
-    working_dir: /base-cms/services/marko-example-website
+    working_dir: /base-cms/services/graphql-server
+    entrypoint: ["/base-cms/node_modules/.bin/gulp"]
+    environment:
+      <<: *env
+      <<: *env-newrelic
+      MONGO_DSN: ${LFW_MONGO_DSN-mongodb://mongodb:27017}
+      ENABLE_BASEDB_LOGGING: ${ENABLE_BASEDB_LOGGING-}
+      ENGINE_API_KEY: ${ENGINE_API_KEY-(unset)}
+    depends_on:
+      - mongodb
+
+  example-laserfocusworld:
+    <<: *node
+    working_dir: /base-cms/services/example-laserfocusworld
     command: ["/base-cms/node_modules/.bin/basecms-website", "dev", "index.js"]
     environment:
       <<: *env
-      <<: *env-mongo
-      <<: *env-newrelic
       PORT: 80
-      EXPOSED_PORT: 10007
-      LIVERELOAD_PORT: 10008
-      GRAPHQL_URI: ${GRAPHQL_URI-http://graphql-server}
-      SITEMAPS_URI: ${SITEMAPS_URI-http://sitemaps}
-      RSS_URI: ${RSS_URI-http://rss}
-      OEMBED_URI: ${OEMBED_URI-http://oembed}
-      TENANT_KEY: ${TENANT_KEY-cygnus_ofcr}
-      CDN_IMAGE_HOSTNAME: ${CDN_IMAGE_HOSTNAME-base.imgix.net}
-      CDN_ASSET_HOSTNAME: ${CDN_ASSET_HOSTNAME-cdn.baseplatform.io}
+      EXPOSED_PORT: 11162
+      LIVERELOAD_PORT: 25162
+      TENANT_KEY: ebm_lfw
+      GRAPHQL_URI: http://graphql-server-lfw
+      SITEMAPS_URI: http://sitemaps
+      RSS_URI: http://rss
+      OEMBED_URI: http://oembed
+      CDN_IMAGE_HOSTNAME: img.laserfocusworld.com
+      CDN_ASSET_HOSTNAME: cdn.laserfocusworld.com
+      NEW_RELIC_ENABLED: 0
+      NEW_RELIC_LICENSE_KEY: (unset)
     depends_on:
-      - graphql-server
+      - graphql-server-lfw
       - sitemaps
       - rss
       - oembed
     ports:
-      - "10007:80"
-      - "10008:10008" # livereload port
+      - "11162:80"
+      - "25162:25162"
+
+  graphql-server-bzb:
+    << : *node
+    working_dir: /base-cms/services/graphql-server
+    entrypoint: ["/base-cms/node_modules/.bin/gulp"]
+    environment:
+      <<: *env
+      <<: *env-newrelic
+      MONGO_DSN: ${BZB_MONGO_DSN-mongodb://mongodb:27017}
+      ENABLE_BASEDB_LOGGING: ${ENABLE_BASEDB_LOGGING-}
+      ENGINE_API_KEY: ${ENGINE_API_KEY-(unset)}
+    depends_on:
+      - mongodb
+
+  example-bizbash:
+    <<: *node
+    working_dir: /base-cms/services/example-bizbash
+    command: ["/base-cms/node_modules/.bin/basecms-website", "dev", "index.js"]
+    environment:
+      <<: *env
+      PORT: 80
+      EXPOSED_PORT: 11163
+      LIVERELOAD_PORT: 25163
+      TENANT_KEY: bizbash_bzb
+      GRAPHQL_URI: http://graphql-server-bzb
+      SITEMAPS_URI: http://sitemaps
+      RSS_URI: http://rss
+      OEMBED_URI: http://oembed
+      CDN_IMAGE_HOSTNAME: img.bizbash.com
+      CDN_ASSET_HOSTNAME: cdn.bizbash.com
+      NEW_RELIC_ENABLED: 0
+      NEW_RELIC_LICENSE_KEY: (unset)
+    depends_on:
+      - graphql-server-bzb
+      - sitemaps
+      - rss
+      - oembed
+    ports:
+      - "11163:80"
+      - "25163:25163"
 
   haproxy:
     image: haproxy:alpine
@@ -122,24 +175,8 @@ services:
     volumes:
       - ./services/haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
     depends_on:
-      - marko-example-website
+      - example-laserfocusworld
       - graphql-server
-
-  manage:
-    <<: *node
-    image: danlynn/ember-cli:3.7.1
-    working_dir: /base-cms/services/manage
-    entrypoint: ["node_modules/.bin/ember"]
-    command: ["serve", "--port", "10004", "--proxy", "http://graphql-server"]
-    environment:
-      <<: *env
-      <<: *env-mongo
-      <<: *env-newrelic
-    depends_on:
-      - graphql-server
-    ports:
-      - "10004:10004" # serve port
-      - "10005:10005" # test port (needs to be configured)
 
   sitemaps:
     << : *node

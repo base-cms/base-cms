@@ -1,0 +1,34 @@
+{
+  "name": "@base-cms/example-laserfocusworld",
+  "version": "0.10.3",
+  "main": "src/index.js",
+  "author": "Jacob Bare <jacob@limit0.io>",
+  "repository": "https://github.com/base-cms/base-cms/tree/master/packages/example-laserfocusworld",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "basecms-website dev index.js",
+    "build": "basecms-website build",
+    "compile": "basecms-marko-compile compile --dir ./ --silent true",
+    "lint": "yarn lint:js && yarn lint:css",
+    "lint:js": "eslint --ext .js --ext .vue --max-warnings 5 ./",
+    "lint:css": "stylelint ./**/*.scss --max-warnings 5",
+    "test": "yarn lint && yarn compile && yarn build"
+  },
+  "dependencies": {
+    "@base-cms/marko-web": "^0.10.3",
+    "@base-cms/marko-web-gam": "^0.10.3",
+    "@base-cms/marko-web-gcse": "^0.10.3",
+    "@base-cms/marko-web-gtm": "^0.10.3",
+    "@base-cms/marko-web-icons": "^0.10.3",
+    "@base-cms/marko-web-native-x": "^0.10.3",
+    "@base-cms/marko-web-reveal-ad": "^0.10.3",
+    "@base-cms/marko-web-theme-default": "^0.10.3",
+    "@base-cms/object-path": "^0.10.0",
+    "@base-cms/utils": "^0.10.0",
+    "@base-cms/web-cli": "^0.10.3",
+    "graphql": "^14.5.4",
+    "graphql-tag": "^2.10.1",
+    "newrelic": "^5.11.0"
+  }
+}

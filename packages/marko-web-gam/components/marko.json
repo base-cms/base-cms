@@ -1,0 +1,85 @@
+{
+  "<marko-web-gam-init>": {
+    "template": "./init.marko",
+    "@src": "string"
+  },
+  "<marko-web-gam-head>": {
+    "template": "./head.marko",
+    "@options": "object",
+    "@slots": "object",
+    "@targeting": "object"
+  },
+  "<marko-web-gam-targeting>": {
+    "template": "./targeting.marko",
+    "@key-values": "object"
+  },
+  "<marko-web-gam-slots>": {
+    "template": "./slots.marko",
+    "@slots": "object"
+  },
+  "<marko-web-gam-enable>": {
+    "template": "./enable.marko",
+    "@options": "object",
+    "@key-values": "object",
+    "@include-path": {
+      "type": "boolean",
+      "default-value": true
+    },
+    "@include-host": {
+      "type": "boolean",
+      "default-value": true
+    },
+    "@include-env": {
+      "type": "boolean",
+      "default-value": true
+    }
+  },
+  "<marko-web-gam-define-display-ad>": {
+    "template": "./define-display-ad.marko",
+    "@id": "string",
+    "@path": "string",
+    "@inc": "number",
+    "@size": "expression",
+    "@size-mapping": "array",
+    "@apply-style": {
+      "type": "boolean",
+      "default-value": false
+    },
+    "@class": "string",
+    "@modifiers": "array",
+    "@block-name": {
+      "type": "string",
+      "default-value": "ad-container"
+    }
+  },
+  "<marko-web-gam-display-ad>": {
+    "template": "./display-ad.marko",
+    "@id": "string",
+    "@class": "string",
+    "@style": "string",
+    "@modifiers": "array",
+    "@block-name": {
+      "type": "string",
+      "default-value": "ad-container"
+    }
+  },
+  "<marko-web-gam-out-of-page-ad>": {
+    "template": "./out-of-page-ad.marko",
+    "@id": "string",
+    "@path": "string",
+    "@inc": "number",
+    "@class": "string",
+    "@style": "string"
+  },
+  "<marko-web-gam-fixed-ad-bottom>": {
+    "template": "./fixed-ad-bottom.marko",
+    "@id": "string",
+    "@path": "string",
+    "@inc": "number",
+    "@size": "expression",
+    "@size-mapping": "array",
+    "@closeable": "boolean",
+    "@refresh-interval": "number",
+    "@scroll-offset": "number"
+  }
+}

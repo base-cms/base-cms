@@ -1,0 +1,91 @@
+{
+  "taglib-imports": [
+    "./layouts/marko.json",
+    "./metadata/marko.json"
+  ],
+  "<marko-web-page-container>": {
+    "template": "./container.marko",
+    "@tag": {
+      "type": "string",
+      "default-value": "main"
+    },
+    "@for": "string",
+    "@id": "string",
+    "@type": "string",
+    "@class": "string",
+    "@attrs": "object",
+    "@modifiers": "array"
+  },
+  "<marko-web-page-wrapper>": {
+    "template": "./wrapper.marko",
+    "@sections <section>[]": {
+      "@tag": {
+        "type": "string",
+        "default-value": "div"
+      },
+      "@modifiers": "array",
+      "@class": "string",
+      "@attrs": "object"
+    },
+    "@block-name": {
+      "type": "string",
+      "default-value": "page-wrapper"
+    },
+    "@tag": {
+      "type": "string",
+      "default-value": "div"
+    },
+    "@modifiers": "array",
+    "@class": "string",
+    "@attrs": "object"
+  },
+  "<marko-web-page-title>": {
+    "template": "./title.marko",
+    "@value": "string",
+    "@concat-with": {
+      "type": "string",
+      "default-value": "|"
+    }
+  },
+  "<marko-web-page-rel-canonical>": {
+    "template": "./rel-canonical.marko",
+    "@path": "string"
+  },
+  "<marko-web-page-description>": {
+    "template": "./description.marko",
+    "@value": "string"
+  },
+  "<marko-web-page-image>": {
+    "template": "./image.marko",
+    "@obj": "object",
+    "@width": {
+      "type": "number",
+      "default-value": 320
+    },
+    "@block-name": {
+      "type": "string",
+      "default-value": "page-image"
+    },
+    "@lazyload": {
+      "type": "boolean",
+      "default-value": true
+    },
+    "@fluid": {
+      "type": "boolean",
+      "default-value": true
+    },
+    "@with-caption": {
+      "type": "boolean",
+      "default-value": true
+    },
+    "@with-credit": {
+      "type": "boolean",
+      "default-value": true
+    },
+    "@with-display-name": {
+      "type": "boolean",
+      "default-value": false
+    },
+    "@modifiers": "array"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "<default-theme-breadcrumbs>": {
+    "template": "./index.marko",
+    "@items <item>[]": {}
+  },
+  "<default-theme-breadcrumbs-with-home>": {
+    "template": "./with-home.marko",
+    "@items <item>[]": {},
+    "@home-title": "string"
+  },
+  "<default-theme-website-section-breadcrumbs>": {
+    "template": "./website-section.marko",
+    "@section": "object",
+    "@home-title": "string",
+    "@home-alias": "string"
+  }
+}

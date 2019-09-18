@@ -1,0 +1,23 @@
+import { warn } from "@base-cms/utils";
+
+$ const blockName = input.blockName || "content-download";
+$ const { surveyId, target } = input;
+$ const props = {
+  surveyId,
+  target,
+  label: input.label,
+  height: input.height,
+  width: input.width,
+};
+
+<if(surveyId && target)>
+  <marko-web-element block-name=blockName name="form-dot-com">
+    <marko-web-browser-component
+      name="FormDotComGatedDownload"
+      props=props
+    />
+  </marko-web-element>
+</if>
+<else>
+  $ warn('Unable to create Form.com download form: a survey ID and file target are required.');
+</else>

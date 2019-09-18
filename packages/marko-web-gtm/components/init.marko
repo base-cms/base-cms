@@ -1,0 +1,31 @@
+import { isObject, warn } from '@base-cms/utils';
+
+$ const { isArray } = Array;
+
+$ const createContainerScript = (containerId, name) => `
+(function(w,d,s,l,i){w[l]=w[l]||[];
+var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','${name}','${containerId}');
+`;
+
+$ const name = input.name || 'dataLayer';
+$ const containerIds = (isArray(input.containerId) ? input.containerId : [input.containerId]).filter(v => v);
+$ const scripts = containerIds.map(containerId => createContainerScript(containerId, name));
+$ const start = input.start == null ? false : input.start;
+
+<if(scripts.length)>
+  <script>${scripts.join().replace(/\n/g, '')}</script>
+  <if(input.push)>
+    <!-- Immediately push data to the container -->
+    <marko-web-gtm-push name=name data=input.push />
+  </if>
+  <if(start)>
+    <!-- Immediately start the container -->
+    <marko-web-gtm-start name=name />
+  </if>
+</if>
+<else>
+  $ warn('Unable to create GTM container script: no container IDs were provided.');
+</else>

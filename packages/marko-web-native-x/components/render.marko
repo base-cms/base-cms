@@ -1,0 +1,33 @@
+$ const {
+  config,
+  name,
+  aliases,
+  node,
+  when,
+  sectionName,
+} = input;
+
+$ const results = {
+  node,
+  containerAttrs: {},
+  linkAttrs: {},
+};
+
+<if(config)>
+  <if(when)>
+    <marko-web-native-x-retrieve|{ wasFound, hasCampaign, campaign, linkAttrs, containerAttrs }| ...config.getPlacement({ name, aliases }) section-name=sectionName>
+      <if(wasFound)>
+        $ results.node = hasCampaign ? campaign : node;
+        $ results.containerAttrs = containerAttrs;
+        $ results.linkAttrs = linkAttrs;
+        <${input.renderBody} ...results />
+      </if>
+      <else>
+        <${input.renderBody} ...results />
+      </else>
+    </marko-web-native-x-retrieve>
+  </if>
+  <else>
+    <${input.renderBody} ...results />
+  </else>
+</if>

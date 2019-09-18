@@ -1,0 +1,20 @@
+import { get, getAsObject, getAsArray } from "@base-cms/object-path";
+import { dasherize } from "@base-cms/inflector";
+
+$ const tag = input.tag === undefined ? "div" : input.tag;
+$ const value = getAsArray(input, "value");
+
+<if(value.length)>
+  <if(tag)>
+    <${tag} ...input.attrs class=input.class>
+      <for|v, index| of=value>
+        <${input.renderBody} value=v index=index length=value.length />
+      </for>
+    </>
+  </if>
+  <else>
+    <for|v, index| of=value>
+      <${input.renderBody} value=v index=index length=value.length />
+    </for>
+  </else>
+</if>

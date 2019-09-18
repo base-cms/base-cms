@@ -1,0 +1,83 @@
+
+$marko-web-gam-fixed-ad-bottom-background-color:      rgba(0, 0, 0, .8) !default;
+
+$marko-web-gam-fixed-ad-bottom-container-height:      90px !default;
+$marko-web-gam-fixed-ad-bottom-container-padding:     .5rem !default;
+$marko-web-gam-fixed-ad-bottom-container-z-index:     100000 !default;
+$marko-web-gam-fixed-ad-bottom-container-transition:  visibility linear 250ms, opacity ease 250ms, padding ease 250ms !default;
+$marko-web-gam-fixed-ad-bottom-container-width:       100% !default;
+
+$marko-web-gam-fixed-ad-bottom-close-color:           #fff !default;
+$marko-web-gam-fixed-ad-bottom-close-font-size:       2.25rem !default;
+$marko-web-gam-fixed-ad-bottom-close-size:            2.25rem !default;
+$marko-web-gam-fixed-ad-bottom-close-font-weight:     400 !default;
+$marko-web-gam-fixed-ad-bottom-close-padding:         .375rem .75rem !default;
+$marko-web-gam-fixed-ad-bottom-close-z-index:         $marko-web-gam-fixed-ad-bottom-container-z-index + 1 !default;
+
+
+.marko-web-gam-fixed-ad-bottom {
+  $self: &;
+
+  &__container {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: $marko-web-gam-fixed-ad-bottom-container-z-index;
+    width: $marko-web-gam-fixed-ad-bottom-container-width;
+    padding: $marko-web-gam-fixed-ad-bottom-container-padding;
+    text-align: center;
+    visibility: hidden;
+    background-color: transparent;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    opacity: 0;
+    transition: $marko-web-gam-fixed-ad-bottom-container-transition;
+  }
+
+  &--visible {
+    padding-top: calc(#{$marko-web-gam-fixed-ad-bottom-container-height} + #{$marko-web-gam-fixed-ad-bottom-container-padding} + #{$marko-web-gam-fixed-ad-bottom-container-padding});
+
+    #{ $self } {
+      &__container {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+  }
+
+  &__background {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    background-color: $marko-web-gam-fixed-ad-bottom-background-color;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  &__close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: $marko-web-gam-fixed-ad-bottom-close-z-index;
+    display: inline-block;
+    width: $marko-web-gam-fixed-ad-bottom-close-size;
+    height: $marko-web-gam-fixed-ad-bottom-close-size;
+    padding: 0;
+    font-size: $marko-web-gam-fixed-ad-bottom-close-font-size;
+    font-weight: $marko-web-gam-fixed-ad-bottom-close-font-weight;
+    line-height: 0;
+    color: $marko-web-gam-fixed-ad-bottom-close-color;
+    text-align: center;
+    vertical-align: middle;
+    background-color: transparent;
+    border: none;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

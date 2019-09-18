@@ -1,0 +1,115 @@
+@import "../../node_modules/bootstrap/scss/functions";
+
+@function get-line-height($font-size-px, $line-height-px) {
+  @if $line-height-px < $font-size-px {
+    @return 1;
+  }
+  @return $line-height-px / $font-size-px;
+}
+
+@function navbar-link-color($navbar-type, $color-type) {
+  @if $navbar-type == dark {
+    @return map-get($theme-site-navbar-dark-colors, $color-type);
+  }
+  @return map-get($theme-site-navbar-light-colors, $color-type);
+}
+
+@function list-remove($list, $index) {
+  $new-list: ();
+  @for $i from 1 through length($list) {
+    @if $i != $index {
+      $new-list: append($new-list, nth($list, $i), "space");
+    }
+  }
+  @return $new-list;
+}
+
+@function list-sort($list, $direction: asc) {
+  $sorted-list: ();
+  @while length($list) > 0 {
+    $value: nth($list, 1);
+    @each $item in $list {
+      @if $direction == desc {
+        @if $item > $value {
+          $value: $item;
+        }
+      } @else {
+        @if $item < $value {
+          $value: $item;
+        }
+      }
+    }
+    $sorted-list: append($sorted-list, $value, "space");
+    $list: list-remove($list, index($list, $value));
+  }
+  @return $sorted-list;
+}
+
+@function sort-map-by-values($map, $direction: asc) {
+  $values: ();
+  $new-map: ();
+  @each $key, $val in $map {
+    $values: append($values, $val);
+  }
+  $sorted-values: list-sort($values, $direction);
+
+  @each $val in $sorted-values {
+    $keys: get-map-keys($map, $val);
+    @each $key in $keys {
+      $new-map: map-merge($new-map, ($key: $val));
+    }
+  }
+  @return $new-map;
+}
+
+@function get-map-keys($map, $value) {
+  $keys: ();
+  @each $key, $val in $map {
+    @if $val == $value {
+      $keys: append($keys, $key);
+    }
+  }
+  @return $keys;
+}
+
+@function get-navbar-breakpoints-for($target) {
+  $target-size: map-get($theme-site-header-breakpoints, $target);
+  $elgible-breakpoints: [];
+  @if $target-size == null {
+    @return $elgible-breakpoints;
+  }
+  @each $name, $size in $theme-site-header-breakpoints {
+    @if $size >= $target-size {
+      $elgible-breakpoints: append($elgible-breakpoints, $name);
+    }
+  }
+  @return $elgible-breakpoints;
+}
+
+@function calculate-navbar-height-for($target-breakpoint) {
+  $breakpoints: get-navbar-breakpoints-for($target-breakpoint);
+
+  // Variable defaults.
+  $logo-height: $theme-site-navbar-logo-height;
+  $primary-font-size: $theme-site-navbar-primary-font-size * $theme-site-navbar-primary-line-height;
+  $primary-link-padding: $theme-site-navbar-primary-link-padding * 2;
+  // These are constant.
+  $brand-margin: $theme-site-navbar-brand-margin-y * 2;
+  $secondary-padding: $theme-site-navbar-secondary-padding-y * 2;
+
+  @if length($breakpoints) == 0 {
+    @return calc(#{$logo-height} + #{$primary-font-size} + #{$brand-margin} + #{$primary-link-padding} + #{$secondary-padding});
+  }
+  @if index($breakpoints, small-logo) != null {
+    $logo-height: $theme-site-navbar-logo-height-sm;
+  }
+  @if index($breakpoints, small-text-primary) != null {
+    $primary-font-size: $theme-site-navbar-primary-font-size-sm * $theme-site-navbar-primary-line-height-sm;
+  }
+  @if index($breakpoints, hide-primary) != null {
+    // Orverride font size again with hidden height and set padding to none
+    $primary-font-size: $theme-site-navbar-primary-height-sm;
+    $primary-link-padding: 0;
+  }
+  @return calc(#{$logo-height} + #{$primary-font-size} + #{$brand-margin} + #{$primary-link-padding} + #{$secondary-padding});
+}

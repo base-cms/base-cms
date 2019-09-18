@@ -1,0 +1,29 @@
+import { BEM, warn } from "@base-cms/utils";
+import generateId from "../utils/generate-id";
+import buildSizeMapping from "../utils/build-size-mapping";
+import slotStyle from "../utils/slot-size-style";
+
+$ const { isArray } = Array;
+$ const { path, inc } = input;
+$ const id = input.id || generateId({ inc });
+
+$ const size = typeof input.size === 'string' ? [input.size] : (isArray(input.size) ? input.size : []);
+$ const applyStyle = input.applyStyle == null ? false : input.applyStyle;
+$ const style = applyStyle ? slotStyle(size) : null;
+
+$ const calls = [];
+$ const sizeMapping = buildSizeMapping(input.sizeMapping);
+$ calls.push(`googletag.defineSlot('${path}', ${JSON.stringify(size)}, '${id}')${sizeMapping}.addService(googletag.pubads());`);
+$ calls.push(`googletag.display('${id}');`);
+
+$ const blockName = input.blockName || "ad-container";
+$ const classNames = [blockName, ...BEM.applyModifiers(blockName, input.modifiers), input.class];
+
+<if(path)>
+  <div id=id style=style class=classNames>
+    <script>googletag.cmd.push(function() { ${calls.join(" ")} });</script>
+  </div>
+</if>
+<else>
+  $ warn("Unable to render ad unit: no `path` was provided.");
+</else>

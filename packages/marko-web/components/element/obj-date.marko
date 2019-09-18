@@ -1,0 +1,22 @@
+import objectLink from "./object-link";
+import extractRender from "./extract-render";
+
+<marko-web-obj|{ value, classNames, resolvedObj }|
+  type=input.type
+  block-name=input.blockName
+  obj=input.obj
+  field=input.field
+  class=input.class
+  modifiers=input.modifiers
+>
+  <marko-web-date
+    tag=input.tag
+    value=value
+    class=classNames
+    format=input.format
+    locale=input.locale
+    attrs=input.attrs
+    link=objectLink(input.link, resolvedObj)
+    ...extractRender(input)
+  />
+</marko-web-obj>

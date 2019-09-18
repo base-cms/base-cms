@@ -1,0 +1,40 @@
+import { getAsArray, get } from "@base-cms/object-path";
+import showElement from "../element/show-element";
+
+$ const showHeader = showElement(get(input.header, "left")) || showElement(get(input.header, "right"));
+$ const showTitle = showElement(input.title);
+$ const showText = getAsArray(input.text).some(t => showElement(t));
+$ const showFooter = showElement(get(input.footer, "left")) || showElement(get(input.footer, "right"));
+
+$ const showBody = showHeader || showTitle || showText || showFooter;
+
+<if(showBody)>
+  <marko-web-node-element
+    block-name=input.blockName
+    name="body"
+    tag=input.tag
+    modifiers=input.modifiers
+    attrs=input.attrs
+  >
+    <if(showHeader)>
+      <marko-web-node-header ...input.header modifiers=["body", getAsArray(input, "header.modifiers")] />
+    </if>
+    <if(showTitle || showText)>
+      <marko-web-node-element name="contents" modifiers=["body"]>
+        <if(showTitle)>
+          <marko-web-node-element name="title" ...input.title />
+        </if>
+        <if(showText)>
+          <for|text| of=input.text>
+            <if(showElement(text))>
+              <marko-web-node-element name="text" ...text />
+            </if>
+          </for>
+        </if>
+      </marko-web-node-element>
+    </if>
+    <if(showFooter)>
+      <marko-web-node-footer ...input.footer modifiers=["body", getAsArray(input, "footer.modifiers")] />
+    </if>
+  </marko-web-node-element>
+</if>

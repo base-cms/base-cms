@@ -1,0 +1,24 @@
+{
+  "name": "@base-cms/marko-web-native-x",
+  "version": "0.10.3",
+  "description": "NativeX Marko components for BaseCMS websites",
+  "author": "Jacob Bare <jacob@limit0.io>",
+  "license": "MIT",
+  "repository": "https://github.com/base-cms/base-cms/tree/master/packages/marko-web-native-x",
+  "scripts": {
+    "lint": "eslint --ext .js --max-warnings 5 ./",
+    "compile": "basecms-marko-compile compile --dir ./ --silent true",
+    "test": "yarn compile && yarn lint"
+  },
+  "dependencies": {
+    "@base-cms/object-path": "^0.10.0",
+    "@base-cms/utils": "^0.10.0",
+    "node-fetch": "^2.6.0"
+  },
+  "peerDependencies": {
+    "@base-cms/marko-web": "^0.10.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

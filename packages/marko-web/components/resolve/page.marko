@@ -1,0 +1,10 @@
+import { isFunction } from "@base-cms/utils";
+import { getAsObject } from "@base-cms/object-path";
+
+$ const node = getAsObject(input, "node");
+
+<if(isFunction(node.load))>
+  <marko-web-resolve|{ resolved }| promise=node.load()>
+    <${input.renderBody} resolved=resolved data=resolved.data />
+  </marko-web-resolve>
+</if>

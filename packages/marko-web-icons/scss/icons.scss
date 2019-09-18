@@ -1,0 +1,56 @@
+@import "variables";
+
+.marko-web-icon {
+  $self: &;
+  svg {
+    width: $marko-web-icon-size;
+    height: $marko-web-icon-size;
+    transition: $marko-web-icon-transition;
+    fill: $marko-web-icon-fill;
+  }
+
+  &--md svg {
+    width: $marko-web-icon-size-md;
+    height: $marko-web-icon-size-md;
+  }
+
+
+  &--lg svg {
+    width: $marko-web-icon-size-lg;
+    height: $marko-web-icon-size-lg;
+  }
+
+  &--xl svg {
+    width: $marko-web-icon-size-xl;
+    height: $marko-web-icon-size-xl;
+  }
+
+  &--light svg {
+    fill: $marko-web-icon-fill-light;
+  }
+
+  &--dark svg {
+    fill: $marko-web-icon-fill-dark;
+  }
+
+  &--shadow svg {
+    filter: drop-shadow($marko-web-icon-drop-shadow);
+  }
+
+  @each $provider, $color in $marko-web-icon-brand-colors {
+    &--#{$provider} {
+      &:not(#{$self}--dark):not(#{$self}--light) svg {
+        fill: $color;
+        &:hover {
+          fill: darken($color, $marko-web-dark-brand-hover);
+        }
+      }
+    }
+
+    &--#{$provider} svg {
+      &:hover {
+        fill: $color;
+      }
+    }
+  }
+}

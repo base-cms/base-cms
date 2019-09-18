@@ -1,0 +1,30 @@
+.magazine-publication-card-block {
+  @include theme-card();
+  &__header {
+    @include theme-card-header();
+    @include border-top-radius($theme-card-border-radius);
+    padding: $theme-item-padding ($theme-item-padding + $theme-item-contents-padding);
+    margin-bottom: 0;
+
+    &:empty {
+      display: none;
+    }
+
+    &:last-child {
+      @include border-bottom-radius(0);
+    }
+
+    a {
+      @include theme-card-header-link();
+    }
+  }
+
+  &__body {
+    padding: $marko-web-node-padding;
+  }
+
+  &--flush {
+    border-radius: 0;
+    box-shadow: none;
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "<marko-web-website-section-name>": {
+    "template": "./name.marko",
+    "@block-name": "string",
+    "@obj": "object",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object",
+    "@link": "expression"
+  },
+  "<marko-web-website-section-hierarchy>": {
+    "template": "./hierarchy.marko",
+    "@block-name": "string",
+    "@obj": "object",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object"
+  }
+}

@@ -1,0 +1,22 @@
+import { isObject } from "@base-cms/utils";
+import extractRender from "../extract-render";
+
+$ const linkInput = { field: "website", target: "_blank" };
+$ if (input.link === true) {
+  input.link = linkInput;
+} else if (isObject(input.link)) {
+  input.link = { ...input.link, ...linkInput };
+}
+
+<marko-web-obj-text
+  type="content"
+  block-name=input.blockName
+  obj=input.obj
+  field="website"
+  tag=input.tag
+  class=input.class
+  modifiers=input.modifiers
+  attrs=input.attrs
+  link=input.link
+  ...extractRender(input)
+/>

@@ -1,0 +1,36 @@
+import { buildImgixUrl } from "@base-cms/image";
+import { get } from "@base-cms/object-path";
+
+$ const element = "node__image";
+$ const hasImage = Boolean(input.src);
+
+$ const style = [];
+$ if (input.width) style.push(`width: ${input.width}px;`);
+$ if (input.height) style.push(`height: ${input.height}px;`);
+$ const attrs = { ...input.attrs, style };
+
+$ const options = {
+  fit: get(input, "options.w") && get(input, "options.h") ? "crop" : undefined,
+  ...input.options,
+}
+
+<!-- @todo add modifiers -->
+
+<if(hasImage)>
+  $ const src = buildImgixUrl(input.src, options, input.defaultOptions, input.isLogo);
+  $ const srcset = [`${buildImgixUrl(src, { dpr: 2 })} 2x`];
+  <marko-web-img
+    src=src
+    srcset=srcset
+    alt=input.alt
+    attrs=attrs
+    class=[element, input.class]
+    lazyload=input.lazyload
+  />
+</if>
+<else-if(input.usePlaceholder)>
+  <div
+    ...attrs
+    class=[element, `${element}--placeholder`, input.class]
+  />
+</else-if>

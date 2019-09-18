@@ -3,9 +3,10 @@ const { stripTags } = require('@base-cms/html');
 
 const createTitle = (doc) => {
   if (!isObject(doc)) return null;
-  const { name, fullName } = doc;
-  const title = name || fullName;
-  return stripTags(title || '') || null;
+  const { name } = doc;
+  const title = stripTags(name || '');
+  if (title) return `${title} Magazine Issue Archive`;
+  return null;
 };
 
 const createDescription = (doc) => {

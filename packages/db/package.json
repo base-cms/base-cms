@@ -6,11 +6,15 @@
   "author": "Jacob Bare <jacob@limit0.io>",
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/db",
   "license": "MIT",
+  "scripts": {
+    "lint": "eslint --ext .js --max-warnings 5 ./",
+    "test": "yarn lint"
+  },
   "dependencies": {
     "@base-cms/async": "^0.10.0",
     "@base-cms/utils": "^0.10.0",
-    "base64-url": "^2.2.0",
-    "deepmerge": "^3.0.0",
+    "base64-url": "^2.3.2",
+    "deepmerge": "^3.3.0",
     "mongodb": "^3.1.10",
     "mongodb-extended-json": "1.10.1",
     "object-path": "^0.11.4"

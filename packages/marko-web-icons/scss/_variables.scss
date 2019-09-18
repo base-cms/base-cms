@@ -1,0 +1,46 @@
+$marko-web-icon-size:         1rem !default;
+$marko-web-icon-size-md:      1.25rem !default;
+$marko-web-icon-size-lg:      1.5rem !default;
+$marko-web-icon-size-xl:      2.5rem !default;
+
+$marko-web-icon-fill:         #000 !default;
+$marko-web-icon-fill-dark:    #000 !default;
+$marko-web-icon-fill-light:   #fff !default;
+
+$marko-web-icon-drop-shadow:  1px 1px 1px rgba(0, 0, 0, .3) !default;
+$marko-web-icon-transition:   fill ease 250ms !default;
+$marko-web-dark-brand-hover:  10% !default;
+
+// Brand Colors
+$marko-web-icon-dribbble:     #ea4c89 !default;
+$marko-web-icon-facebook:     #4172b8 !default;
+$marko-web-icon-github:       #181717 !default;
+$marko-web-icon-googleplus:   #dc4e41 !default;
+$marko-web-icon-instagram:    #e4405f !default;
+$marko-web-icon-linkedin:     #0077b5 !default;
+$marko-web-icon-pinterest:    #bd081c !default;
+$marko-web-icon-reddit:       #ff4500 !default;
+$marko-web-icon-slack:        #4a154b !default;
+$marko-web-icon-twitter:      #1da1f2 !default;
+$marko-web-icon-whatsapp:     #25d366 !default;
+$marko-web-icon-youtube:      #f00 !default;
+
+$marko-web-icon-brand-colors: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$marko-web-icon-brand-colors: map-merge(
+  (
+    "dribbble":     $marko-web-icon-dribbble,
+    "facebook":     $marko-web-icon-facebook,
+    "github":       $marko-web-icon-github,
+    "googleplus":   $marko-web-icon-googleplus,
+    "instagram":    $marko-web-icon-instagram,
+    "linkedin":     $marko-web-icon-linkedin,
+    "pinterest":    $marko-web-icon-pinterest,
+    "reddit":       $marko-web-icon-reddit,
+    "slack":        $marko-web-icon-slack,
+    "twitter":      $marko-web-icon-twitter,
+    "whatsapp":     $marko-web-icon-whatsapp,
+    "youtube":      $marko-web-icon-youtube
+  ),
+  $marko-web-icon-brand-colors
+);

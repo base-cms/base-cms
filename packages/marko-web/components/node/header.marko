@@ -1,0 +1,19 @@
+import { getAsObject } from "@base-cms/object-path";
+
+$ const left = getAsObject(input, "left");
+$ const right = getAsObject(input, "right");
+
+<marko-web-node-element
+  block-name=input.blockName
+  name="header"
+  tag=input.tag
+  modifiers=input.modifiers
+  attrs=input.attrs
+>
+  <if(left.renderBody)>
+    <marko-web-node-element ...left name="header-left" />
+  </if>
+  <if(right.renderBody)>
+    <marko-web-node-element ...right name="header-right" />
+  </if>
+</marko-web-node-element>

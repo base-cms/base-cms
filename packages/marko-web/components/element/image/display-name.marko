@@ -1,0 +1,14 @@
+import extractRender from "../extract-render";
+
+<marko-web-obj-text
+  type="image"
+  block-name=input.blockName
+  obj=input.obj
+  field="displayName"
+  tag=input.tag
+  class=input.class
+  modifiers=input.modifiers
+  attrs=input.attrs
+  link=input.link
+  ...extractRender(input)
+/>

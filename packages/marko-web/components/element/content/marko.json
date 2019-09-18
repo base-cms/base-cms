@@ -1,0 +1,272 @@
+{
+  "<marko-web-content-name>": {
+    "template": "./name.marko",
+    "@block-name": "string",
+    "@obj": "object",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object",
+    "@link": "expression"
+  },
+  "<marko-web-content-body>": {
+    "template": "./body.marko",
+    "@block-name": "string",
+    "@obj": "object",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object",
+    "@link": "expression"
+  },
+  "<marko-web-content-byline>": {
+    "template": "./byline.marko",
+    "@block-name": "string",
+    "@obj": "object",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object",
+    "@link": "expression"
+  },
+  "<marko-web-content-teaser>": {
+    "template": "./teaser.marko",
+    "@block-name": "string",
+    "@obj": "object",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object",
+    "@link": "expression"
+  },
+  "<marko-web-content-short-name>": {
+    "template": "./short-name.marko",
+    "@block-name": "string",
+    "@obj": "object",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object",
+    "@link": "expression"
+  },
+  "<marko-web-content-embed-code>": {
+    "template": "./embed-code.marko",
+    "@block-name": "string",
+    "@obj": "object",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object",
+    "@link": "expression"
+  },
+  "<marko-web-content-source>": {
+    "template": "./source.marko",
+    "@block-name": "string",
+    "@obj": "object",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object",
+    "@link": "expression"
+  },
+  "<marko-web-content-published>": {
+    "template": "./published.marko",
+    "@block-name": "string",
+    "@obj": "object",
+    "@format": "string",
+    "@locale": "string",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object",
+    "@link": "expression"
+  },
+  "<marko-web-content-starts>": {
+    "template": "./starts.marko",
+    "@block-name": "string",
+    "@obj": "object",
+    "@format": "string",
+    "@locale": "string",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object",
+    "@link": "expression"
+  },
+  "<marko-web-content-ends>": {
+    "template": "./ends.marko",
+    "@block-name": "string",
+    "@obj": "object",
+    "@format": "string",
+    "@locale": "string",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object",
+    "@link": "expression"
+  },
+  "<marko-web-content-sidebars>": {
+    "template": "./sidebars.marko",
+    "@block-name": "string",
+    "@obj": "object",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object"
+  },
+  "<marko-web-content-images>": {
+    "template": "./images.marko",
+    "@block-name": "string",
+    "@obj": "object",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object"
+  },
+  "<marko-web-content-address1>": {
+    "template": "./address1.marko",
+    "@block-name": "string",
+    "@obj": "object",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object",
+    "@link": "expression"
+  },
+  "<marko-web-content-address2>": {
+    "template": "./address2.marko",
+    "@block-name": "string",
+    "@obj": "object",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object",
+    "@link": "expression"
+  },
+  "<marko-web-content-city-state-zip>": {
+    "template": "./city-state-zip.marko",
+    "@block-name": "string",
+    "@obj": "object",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object",
+    "@link": "expression"
+  },
+  "<marko-web-content-country>": {
+    "template": "./country.marko",
+    "@block-name": "string",
+    "@obj": "object",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object",
+    "@link": "expression"
+  },
+  "<marko-web-content-fax>": {
+    "template": "./fax.marko",
+    "@block-name": "string",
+    "@obj": "object",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object",
+    "@link": "expression"
+  },
+  "<marko-web-content-mobile>": {
+    "template": "./mobile.marko",
+    "@block-name": "string",
+    "@obj": "object",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object",
+    "@link": "expression"
+  },
+  "<marko-web-content-phone>": {
+    "template": "./phone.marko",
+    "@block-name": "string",
+    "@obj": "object",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object",
+    "@link": "expression"
+  },
+  "<marko-web-content-public-email>": {
+    "template": "./public-email.marko",
+    "@block-name": "string",
+    "@obj": "object",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object",
+    "@link": "expression"
+  },
+  "<marko-web-content-title>": {
+    "template": "./title.marko",
+    "@block-name": "string",
+    "@obj": "object",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object",
+    "@link": "expression"
+  },
+  "<marko-web-content-tollfree>": {
+    "template": "./tollfree.marko",
+    "@block-name": "string",
+    "@obj": "object",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object",
+    "@link": "expression"
+  },
+  "<marko-web-content-website>": {
+    "template": "./website.marko",
+    "@block-name": "string",
+    "@obj": "object",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object",
+    "@link": "expression"
+  },
+  "<marko-web-content-authors>": {
+    "template": "./authors.marko",
+    "@block-name": "string",
+    "@obj": "object",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object"
+  },
+  "<marko-web-content-contributors>": {
+    "template": "./contributors.marko",
+    "@block-name": "string",
+    "@obj": "object",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object"
+  },
+  "<marko-web-content-photographers>": {
+    "template": "./photographers.marko",
+    "@block-name": "string",
+    "@obj": "object",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object"
+  },
+  "<marko-web-content-sponsors>": {
+    "template": "./sponsors.marko",
+    "@block-name": "string",
+    "@obj": "object",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object"
+  }
+}

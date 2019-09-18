@@ -1,0 +1,25 @@
+import { get, getAsObject } from "@base-cms/object-path";
+
+$ const { id, alias, name } = input;
+$ const { document } = out.global;
+$ const withRss = input.withRss != null ? input.withRss : true;
+
+<${document}
+  above-container=input.aboveContainer
+  below-container=input.belowContainer
+  foot=input.foot
+>
+  <@head>
+    <marko-web-website-section-page-metadata alias=alias />
+    <if(withRss)>
+      <marko-web-website-section-rss alias=alias name=name />
+    </if>
+    <${input.head} />
+  </@head>
+  <!-- Note: camelcased vars due to nest input of dynamic document. perhaps a marko bug -->
+  <@container abovePage=input.abovePage belowPage=input.belowPage>
+    <@page for="website-section" id=id>
+      <${input.page} />
+    </@page>
+  </@container>
+</>

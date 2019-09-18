@@ -1,0 +1,26 @@
+$ const {
+  id,
+  type,
+  queryFragment,
+  sectionId,
+  sectionName,
+} = input;
+
+<marko-web-query|{ nodes }|
+  name="related-published-content"
+  params={ contentId: id, limit: 10, queryFragment }
+>
+  <website-content-list-flow nodes=nodes inner-justified=false>
+    <@header>Related</@header>
+  </website-content-list-flow>
+</marko-web-query>
+<if(!['contact', 'company'].includes(type))>
+  <marko-web-query|{ nodes }|
+    name="website-scheduled-content"
+    params={ sectionId, excludeContentIds: [id], limit: 5, queryFragment }
+  >
+    <website-content-list-flow nodes=nodes inner-justified=false native-x=input.nativeX>
+      <@header>Latest in ${sectionName}</@header>
+    </website-content-list-flow>
+  </marko-web-query>
+</if>

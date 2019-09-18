@@ -1,0 +1,87 @@
+import { getAsArray, getAsObject } from "@base-cms/object-path";
+
+$ const content = getAsObject(input, "obj");
+$ const showEmail = input.showEmail != null ? input.showEmail : true;
+
+$ const addressFields = ["address1", "address2", "cityStateZip", "country"];
+$ const showAddress = addressFields.some(k => content[k]);
+
+$ const phoneFields = ["phone", "fax", "mobile", "tollfree"];
+$ const showPhones = phoneFields.some(k => content[k]);
+
+$ const socialLinks = getAsArray(content, "socialLinks");
+$ const showSocial = socialLinks.length;
+
+$ const fields = ["title", "website"];
+$ if (showEmail) fields.push("publicEmail");
+$ const showFields = fields.some(k => content[k]);
+
+<default-theme-page-contact-details|{ blockName }|
+  tag=input.tag
+  class=input.class
+  modifiers=input.modifiers
+  attrs=input.attrs
+>
+  <if(showAddress)>
+    <default-theme-content-contact-details-section block-name=blockName>
+      <address class=`${blockName}__address`>
+        <marko-web-content-address1 block-name=blockName obj=content />
+        <marko-web-content-address2 block-name=blockName obj=content />
+        <marko-web-content-city-state-zip block-name=blockName obj=content />
+        <marko-web-content-country block-name=blockName obj=content />
+      </address>
+    </default-theme-content-contact-details-section>
+  </if>
+
+  <if(showFields)>
+    <default-theme-content-contact-details-section block-name=blockName>
+      <marko-web-content-title block-name=blockName obj=content />
+      <if(showEmail)>
+        <marko-web-content-public-email block-name=blockName obj=content link=true/>
+      </if>
+      <marko-web-content-website block-name=blockName obj=content link=true />
+    </default-theme-content-contact-details-section>
+  </if>
+
+  <if(showSocial)>
+    <default-theme-content-contact-details-section block-name=blockName modifiers=["social-links"]>
+      <for|item| of=socialLinks>
+        <default-theme-social-icon-link
+          label=item.label
+          provider=item.provider
+          href=item.url
+          modifiers=["dark", "lg"]
+        />
+      </for>
+    </default-theme-content-contact-details-section>
+  </if>
+
+  <if(showPhones)>
+    <default-theme-content-contact-details-section block-name=blockName>
+      <if(content.phone)>
+        <div class=`${blockName}__field`>
+          <span class=`${blockName}__label`>Phone:</span>
+          <marko-web-content-phone block-name=blockName obj=content />
+        </div>
+      </if>
+      <if(content.mobile)>
+        <div class=`${blockName}__field`>
+          <span class=`${blockName}__label`>Mobile:</span>
+          <marko-web-content-mobile block-name=blockName obj=content />
+        </div>
+      </if>
+      <if(content.tollfree)>
+        <div class=`${blockName}__field`>
+          <span class=`${blockName}__label`>Toll Free:</span>
+          <marko-web-content-tollfree block-name=blockName obj=content />
+        </div>
+      </if>
+      <if(content.fax)>
+        <div class=`${blockName}__field`>
+          <span class=`${blockName}__label`>Fax:</span>
+          <marko-web-content-fax block-name=blockName obj=content />
+        </div>
+      </if>
+    </default-theme-content-contact-details-section>
+  </if>
+</default-theme-page-contact-details>

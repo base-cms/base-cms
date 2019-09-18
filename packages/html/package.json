@@ -6,9 +6,13 @@
   "author": "Jacob Bare <jacob@limit0.io>",
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/html",
   "license": "MIT",
+  "scripts": {
+    "lint": "eslint --ext .js --max-warnings 5 ./",
+    "test": "yarn lint"
+  },
   "dependencies": {
     "html-entities": "^1.2.1",
-    "html2plaintext": "^2.1.0",
+    "html2plaintext": "^2.1.2",
     "striptags": "^3.1.1"
   },
   "publishConfig": {

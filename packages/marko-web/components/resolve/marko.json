@@ -1,0 +1,10 @@
+{
+  "<marko-web-resolve>": {
+    "template": "./index.marko",
+    "@promise": "object"
+  },
+  "<marko-web-resolve-page>": {
+    "template": "./page.marko",
+    "@node": "object"
+  }
+}

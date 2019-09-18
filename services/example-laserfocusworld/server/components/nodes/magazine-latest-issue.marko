@@ -1,0 +1,32 @@
+import { getAsObject } from "@base-cms/object-path";
+import { defaultValue } from "@base-cms/marko-web/utils";
+
+$ const issue = getAsObject(input, "node");
+$ const publication = getAsObject(issue, "publication");
+$ const coverImage = getAsObject(issue, "coverImage");
+$ const linkTitle = `${publication.name} ${issue.name}`;
+
+<marko-web-node
+  image-position="top"
+  card=defaultValue(input.card, false)
+  flush=defaultValue(input.flush, true)
+>
+  <@image
+    src=coverImage.src
+    alt=(coverImage.alt || linkTitle)
+    fluid=true
+    ar="3:4"
+    width=(input.imageWidth || 300)
+    link={ href: issue.canonicalPath, title: linkTitle }
+  />
+  <@body>
+    <@title tag="h5">
+      <marko-web-magazine-issue-name tag=null obj=issue link={ title: linkTitle } />
+    </@title>
+    <@footer>
+      <@left>
+        <default-theme-magazine-publication-buttons publication=publication issue=issue />
+      </@left>
+    </@footer>
+  </@body>
+</marko-web-node>

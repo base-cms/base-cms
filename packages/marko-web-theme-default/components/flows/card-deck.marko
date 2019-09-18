@@ -1,0 +1,63 @@
+import { getAsArray } from "@base-cms/object-path";
+
+$ const blockName = "card-deck-flow";
+$ const elementName = "node";
+$ const nodes = getAsArray(input, "nodes");
+
+$ const slots = getAsArray(input, "slots");
+$ const slotMap = getAsArray(input, "slots").reduce((map, slot) => {
+  const { index, position } = slot;
+  if (index == null && !position) {
+    map.set("default", slot);
+    return map;
+  }
+  if (!position) return map;
+  map.set(`${position}_${index}`, slot)
+  return map;
+}, new Map());
+
+$ const getSlot = (position, index) => (slotMap.get(`${position}_${index}`) || {});
+$ const defaultSlot = slotMap.get("default") || {};
+
+$ const cols = input.cols != null ? input.cols : 3;
+$ const modifiers = getAsArray(input, "modifiers");
+$ modifiers.push(`${cols}-cols`);
+
+<if(nodes.length)>
+  <marko-web-block
+    name=blockName
+    tag=input.tag
+    class=input.class
+    modifiers=modifiers
+    attrs=input.attrs
+  >
+    <for|node, index| of=nodes>
+      $ const at = getSlot("at", index);
+      $ const before = getSlot("before", index);
+      $ const after = getSlot("after", index);
+
+      <if(before.renderBody)>
+        <marko-web-element ...before name=elementName block-name=blockName modifiers=["position-before", ...getAsArray(before.modifiers)]>
+          <${before.renderBody} node=node index=index />
+        </marko-web-element>
+      </if>
+
+      <if(at.renderBody)>
+        <marko-web-element ...at name=elementName block-name=blockName modifiers=["position-at", ...getAsArray(at.modifiers)]>
+          <${at.renderBody} node=node index=index />
+        </marko-web-element>
+      </if>
+      <else-if(defaultSlot.renderBody)>
+        <marko-web-element ...defaultSlot name=elementName block-name=blockName>
+          <${defaultSlot.renderBody} node=node index=index />
+        </marko-web-element>
+      </else-if>
+
+      <if(after.renderBody)>
+        <marko-web-element ...after name=elementName block-name=blockName modifiers=["position-after", ...getAsArray(after.modifiers)]>
+          <${after.renderBody} node=node index=index />
+        </marko-web-element>
+      </if>
+    </for>
+  </marko-web-block>
+</if>

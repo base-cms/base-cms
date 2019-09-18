@@ -1,0 +1,67 @@
+import gql from "graphql-tag";
+import { get } from "@base-cms/object-path";
+import { warn } from "@base-cms/utils";
+
+<!-- @todo This data should generated and saved to the content object as flat data, so no relationships are required. -->
+
+$ const { id } = input;
+$ const queryFragment = gql`
+fragment ContentPageMetadataFragment on Content {
+  id
+  type
+  canonicalPath
+  metadata {
+    title
+    description
+    publishedDate
+    updatedDate
+    expiresDate
+    image {
+      id
+      src(input: { options: { auto: "format", w: "1200", fit: "max" } })
+    }
+  }
+}
+`;
+
+<if(id)>
+  <marko-web-query|{ node }| name="content" params={ id, queryFragment }>
+    $ const metadata = {
+      type: node.type,
+      title: get(node, "metadata.title"),
+      description: get(node, "metadata.description"),
+      canonicalPath: node.canonicalPath,
+      imageSrc: get(node, "metadata.image.src"),
+    };
+    $ const publishedDate = get(node, "metadata.publishedDate");
+    $ const updatedDate = get(node, "metadata.updatedDate");
+    $ const expiresDate = get(node, "metadata.expiresDate");
+
+    <common ...metadata />
+    <if(node.type === "video")>
+      <meta property="og:type" content="video.other" />
+      <if(publishedDate)>
+        <meta property="video:release_date" content=publishedDate />
+      </if>
+    </if>
+    <else>
+      <meta property="og:type" content="article" />
+      <if(publishedDate)>
+        <meta property="article:published_time" content=publishedDate />
+      </if>
+      <if(updatedDate)>
+        <meta property="article:modified_time" content=updatedDate />
+      </if>
+      <if(expiresDate)>
+        <meta property="article:expiration_time" content=expiresDate />
+      </if>
+    </else>
+
+    <@when-empty>
+      $ warn(`Unable to create content metadata: no content found for ${id}.`);
+    </@when-empty>
+  </marko-web-query>
+</if>
+<else>
+  $ warn('Unable to create content metadata: no content id was provided.');
+</else>

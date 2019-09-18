@@ -1,0 +1,39 @@
+{
+  "taglib-imports": [
+    "./context/marko.json"
+  ],
+  "<marko-web-gtm-init>": {
+    "template": "./init.marko",
+    "@container-id": "expression",
+    "@name": {
+      "type": "string",
+      "default-value": "dataLayer"
+    },
+    "@push": "object",
+    "@start": {
+      "type": "boolean",
+      "default-value": false
+    }
+  },
+  "<marko-web-gtm-start>": {
+    "template": "./start.marko",
+    "@name": {
+      "type": "string",
+      "default-value": "dataLayer"
+    }
+  },
+  "<marko-web-gtm-push>": {
+    "template": "./push.marko",
+    "@name": {
+      "type": "string",
+      "default-value": "dataLayer"
+    },
+    "@data": "object"
+  },
+  "<marko-web-gtm-track-inview-event>": {
+    "template": "./track-inview-event.marko"
+  },
+  "<marko-web-gtm-track-load-more>": {
+    "template": "./track-load-more.marko"
+  }
+}
