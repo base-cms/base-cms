@@ -107,8 +107,13 @@ const build = async () => {
 
 const deploy = async () => {
   log(`Deploying ${image}:${version} on Kubernertes`);
+  const env = { RANCHER_CLUSTERID: process.env.RANCHER_CLUSTERID };
+  if (/^v1\./.test(TRAVIS_TAG)) {
+    log('Using v1.x cluster.');
+    env.RANCHER_CLUSTERID = process.env.RANCHER_CLUSTERID_V1;
+  }
   const nrid = nrIds[service];
-  const { status } = await spawnSync('bash', ['scripts/deploy-k8s.sh', service, version, nrid], { stdio: 'inherit' });
+  const { status } = await spawnSync('bash', ['scripts/deploy-k8s.sh', service, version, nrid], { stdio: 'inherit', env });
   if (status !== 0) error('Image deploy failed!');
 };
 
