@@ -11,6 +11,7 @@ $ if (input.flushY) modifiers.push("flush-y");
 $ if (input.card) modifiers.push("card");
 $ if (input.imageFlush) modifiers.push("image-flush");
 $ if (input.fullHeight) modifiers.push("full-height");
+$ if (input.type) modifiers.push(`${input.type}-type`);
 
 $ const classNames = [blockName, ...modifiers.map(mod => `${blockName}--${mod}`), input.class];
 
