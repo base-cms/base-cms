@@ -1,0 +1,21 @@
+import { warn } from "@base-cms/utils";
+import fetchElements from "../services/fetch-elements";
+
+$ const { req } = out.global;
+
+$ const { uri, placementId, opts } = input;
+$ const args = {
+  uri,
+  placementId,
+  opts,
+  req,
+};
+
+<if(uri && placementId)>
+  <marko-web-resolve|{ resolved }| promise=fetchElements(args)>
+    <${input.renderBody} ads=resolved.ads />
+  </marko-web-resolve>
+</if>
+<else>
+  $ warn('Unable to fetch elements from NativeX: a uri and placement ID are required.');
+</else>

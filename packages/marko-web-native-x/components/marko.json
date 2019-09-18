@@ -1,0 +1,8 @@
+{
+  "<marko-web-native-x-fetch-elements>": {
+    "template": "./fetch-elements.marko",
+    "@uri": "string",
+    "@placement-id": "string",
+    "@opts": "object"
+  }
+}

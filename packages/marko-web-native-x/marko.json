@@ -1,5 +1,6 @@
 {
   "taglib-id": "@base-cms/marko-web-native-x",
   "taglib-imports": [
+    "./components/marko.json"
   ]
 }
