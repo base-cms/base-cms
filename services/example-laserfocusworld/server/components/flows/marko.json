@@ -1,6 +1,11 @@
 {
   "<website-content-hero-flow>": {
     "template": "./content-hero.marko",
+    "<native-x>": {
+      "@index": "number",
+      "@name": "string",
+      "@aliases": "array"
+    },
     "@nodes": "array"
   },
   "<website-content-list-flow>": {
