@@ -8,7 +8,13 @@ $ const withTeaser = input.withTeaser != null ? input.withTeaser : true;
 
 $ const { linkAttrs } = input;
 
-<marko-web-node attrs=input.attrs image-position="top" card=true full-height=true>
+<marko-web-node
+  type=`${content.type}-content`
+  image-position="top"
+  card=true
+  full-height=true
+  attrs=input.attrs
+>
   <if(displayImage)>
     <@image
       src=primaryImage.src

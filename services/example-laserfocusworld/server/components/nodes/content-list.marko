@@ -8,7 +8,12 @@ $ const withTeaser = input.withTeaser != null ? input.withTeaser : false;
 
 $ const { linkAttrs } = input;
 
-<marko-web-node attrs=input.attrs flush=true image-position="right">
+<marko-web-node
+  type=`${content.type}-content`
+  flush=true
+  image-position="right"
+  attrs=input.attrs
+>
   <if(displayImage)>
     <@image
       src=primaryImage.src
