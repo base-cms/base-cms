@@ -108,6 +108,7 @@ const build = async () => {
 const deploy = async () => {
   log(`Deploying ${image}:${version} on Kubernertes`);
   const env = { RANCHER_CLUSTERID: process.env.RANCHER_CLUSTERID };
+  // @todo revert
   if (/^v1\./.test(TRAVIS_TAG)) {
     log('Using v1.x cluster.');
     env.RANCHER_CLUSTERID = process.env.RANCHER_CLUSTERID_V1;
