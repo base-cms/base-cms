@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/sitemaps",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "description": "The BaseCMS Sitemaps service",
   "main": "src/index.js",
   "author": "Josh Worden <josh@limit0.io>",
