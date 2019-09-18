@@ -73,6 +73,14 @@ module.exports = {
   Content: {
     __resolveType: resolveType,
 
+    shortName: (content) => {
+      const shortName = get(content, 'shortName', '').trim();
+      const mutatedName = get(content, 'mutations.Website.name', '').trim();
+      if (mutatedName) return mutatedName;
+      if (shortName) return shortName;
+      return content.name;
+    },
+
     teaser: (content, { input }) => {
       const { mutation } = input;
       const teaser = contentTeaser.getTeaser(mutation, content);
