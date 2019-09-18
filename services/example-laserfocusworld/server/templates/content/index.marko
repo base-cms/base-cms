@@ -35,8 +35,6 @@ $ const displayPublishedDate = ["event", "webinar", "contact"].includes(type) ? 
   </@above-container>
   <@page>
     <marko-web-gam-display-ad id="gpt-ad-lb1" modifiers=["top-of-page"] />
-    <!-- @todo Deal with media galleries -->
-    <!-- @todo Add play button overlay on videos -->
     <marko-web-resolve-page|{ data: content, resolved }| node=pageNode>
       $ const section = resolved.getAsObject("primarySection");
       <marko-web-page-wrapper>
