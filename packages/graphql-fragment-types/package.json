@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/graphql-fragment-types",
-  "version": "0.10.0",
+  "version": "1.0.0-alpha.1",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/graphql-fragment-types",

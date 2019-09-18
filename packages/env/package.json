@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/env",
-  "version": "0.10.0",
+  "version": "1.0.0-alpha.1",
   "description": "Enviroment variable management and validation.",
   "main": "src/index.js",
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/env",

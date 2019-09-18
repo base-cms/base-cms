@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/example-bizbash",
-  "version": "0.10.3",
+  "version": "1.0.0-alpha.1",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/example-bizbash",
@@ -16,14 +16,14 @@
     "test": "yarn lint && yarn compile && yarn build"
   },
   "dependencies": {
-    "@base-cms/marko-web": "^0.10.3",
-    "@base-cms/marko-web-gam": "^0.10.3",
-    "@base-cms/marko-web-gtm": "^0.10.3",
-    "@base-cms/marko-web-icons": "^0.10.3",
-    "@base-cms/marko-web-theme-default": "^0.10.3",
-    "@base-cms/object-path": "^0.10.0",
-    "@base-cms/utils": "^0.10.0",
-    "@base-cms/web-cli": "^0.10.3",
+    "@base-cms/marko-web": "^1.0.0-alpha.1",
+    "@base-cms/marko-web-gam": "^1.0.0-alpha.1",
+    "@base-cms/marko-web-gtm": "^1.0.0-alpha.1",
+    "@base-cms/marko-web-icons": "^1.0.0-alpha.1",
+    "@base-cms/marko-web-theme-default": "^1.0.0-alpha.1",
+    "@base-cms/object-path": "^1.0.0-alpha.1",
+    "@base-cms/utils": "^1.0.0-alpha.1",
+    "@base-cms/web-cli": "^1.0.0-alpha.1",
     "graphql": "^14.5.4",
     "graphql-tag": "^2.10.1"
   }

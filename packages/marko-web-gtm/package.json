@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/marko-web-gtm",
-  "version": "0.10.3",
+  "version": "1.0.0-alpha.1",
   "description": "Google Tag Manager (GAM) Marko components for BaseCMS websites",
   "author": "Jacob Bare <jacob@limit0.io>",
   "license": "MIT",
@@ -11,8 +11,8 @@
     "test": "yarn compile && yarn lint"
   },
   "dependencies": {
-    "@base-cms/object-path": "^0.10.0",
-    "@base-cms/utils": "^0.10.0",
+    "@base-cms/object-path": "^1.0.0-alpha.1",
+    "@base-cms/utils": "^1.0.0-alpha.1",
     "graphql": "^14.5.4",
     "graphql-tag": "^2.10.1"
   },
