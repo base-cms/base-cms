@@ -29,5 +29,6 @@ The `WORKSPACE_NAME` is equivalent to the `name` field found in the `package.jso
 ## Yarn
 Do _NOT_ run Yarn from your local machine. Instead run Yarn commands using `scripts/yarn.sh [command]`
 
+
 ## Terminal Access
 To access the terminal inside Docker run `scripts/terminal.sh`
