@@ -28,7 +28,9 @@
     "@with-teaser": {
       "type": "boolean",
       "default-value": true
-    }
+    },
+    "@attrs": "object",
+    "@link-attrs": "object"
   },
   "<website-magazine-latest-issue-node>": {
     "template": "./magazine-latest-issue.marko",
