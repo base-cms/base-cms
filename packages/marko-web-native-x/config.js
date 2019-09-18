@@ -44,7 +44,11 @@ class NativeXConfiguration {
     const foundPlacement = asArray(aliases).map(alias => get(this.placements, `${alias}.${name}`)).filter(v => v)[0];
 
     // Ensure placement is duplicated so property re-assignment doesn't "stick."
-    return { ...getAsObject(foundPlacement || defaultPlacement) };
+    return {
+      ...getAsObject(foundPlacement || defaultPlacement),
+      enabled: this.enabled,
+      uri: this.uri,
+    };
   }
 
   /**
