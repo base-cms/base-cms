@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/marko-web-gam",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "description": "Google Ad Manager (GAM) Marko components for BaseCMS websites",
   "author": "Jacob Bare <jacob@limit0.io>",
   "license": "MIT",
