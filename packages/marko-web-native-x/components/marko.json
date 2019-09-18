@@ -4,6 +4,9 @@
     "@uri": "string",
     "@enabled": "boolean"
   },
+  "<marko-web-native-x-render>": {
+    "template": "./render.marko"
+  },
   "<marko-web-native-x-fetch-elements>": {
     "template": "./fetch-elements.marko",
     "@uri": "string",

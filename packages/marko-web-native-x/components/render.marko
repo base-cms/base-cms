@@ -1,0 +1,44 @@
+import { defaultValue } from "@base-cms/marko-web/utils";
+import { warn } from "@base-cms/utils";
+import convertAdToContent from "../utils/convert-ad-to-content";
+
+$ const { uri, id } = input;
+$ const enabled = defaultValue(input.enabled, true);
+$ const results = {
+  wasFound: false,
+  hasCampaign: false,
+  campaign: {},
+  containerAttrs: {},
+  linkAttrs: {},
+  response: {},
+};
+
+<if(enabled)>
+  <if(uri && id)>
+    <marko-web-native-x-fetch-elements|{ ads }| uri=uri placement-id=id opts=input.opts>
+      $ const hasAd = ads && ads.length && ads[0];
+      <if(hasAd)>
+        $ const ad = ads[0];
+
+        $ results.wasFound = true;
+        $ results.response = ad;
+        $ results.hasCampaign = ad.hasCampaign;
+        $ results.containerAttrs = ad.attributes.container;
+        $ results.linkAttrs = ad.attributes.link;
+        $ if (ad.hasCampaign) results.campaign = convertAdToContent(ad);
+
+        <${input.renderBody} ...results />
+      </if>
+      <else>
+        <${input.renderBody} ...results />
+      </else>
+    </marko-web-native-x-fetch-elements>
+  </if>
+  <else>
+     $ warn('Unable to render NativeX placement: a uri and placement ID are required.');
+     <${input.renderBody} ...results />
+  </else>
+</if>
+<else>
+  <${input.renderBody} ...results />
+</else>
