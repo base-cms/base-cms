@@ -1,7 +1,7 @@
 # Marko Web Refactor
 
 ## Punch List
-- [ ] Content: Whitepapers (forms, downloads, etc)
+- [x] Content: Whitepapers (forms, downloads, etc)
 - [x] Contact Us Page
 - [x] Search: Google
 - [x] Subscribe
