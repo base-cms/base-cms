@@ -3,15 +3,15 @@ import fetchElements from "../services/fetch-elements";
 
 $ const { req } = out.global;
 
-$ const { uri, placementId, opts } = input;
+$ const { uri, id, opts } = input;
 $ const args = {
   uri,
-  placementId,
+  placementId: id,
   opts,
   req,
 };
 
-<if(uri && placementId)>
+<if(uri && id)>
   <marko-web-resolve|{ resolved }| promise=fetchElements(args)>
     <${input.renderBody} ads=resolved.ads />
   </marko-web-resolve>

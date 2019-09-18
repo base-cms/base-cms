@@ -4,13 +4,18 @@
     "@uri": "string",
     "@enabled": "boolean"
   },
-  "<marko-web-native-x-render>": {
-    "template": "./render.marko"
+  "<marko-web-native-x-retrieve>": {
+    "template": "./retrieve.marko",
+    "@uri": "string",
+    "@id": "string",
+    "@enabled": "boolean",
+    "@opts": "object",
+    "@section-name": "string"
   },
   "<marko-web-native-x-fetch-elements>": {
     "template": "./fetch-elements.marko",
     "@uri": "string",
-    "@placement-id": "string",
+    "@id": "string",
     "@opts": "object"
   }
 }

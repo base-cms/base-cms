@@ -2,7 +2,7 @@ import { defaultValue } from "@base-cms/marko-web/utils";
 import { warn } from "@base-cms/utils";
 import convertAdToContent from "../utils/convert-ad-to-content";
 
-$ const { uri, id } = input;
+$ const { uri, id, sectionName } = input;
 $ const enabled = defaultValue(input.enabled, true);
 $ const results = {
   wasFound: false,
@@ -15,7 +15,7 @@ $ const results = {
 
 <if(enabled)>
   <if(uri && id)>
-    <marko-web-native-x-fetch-elements|{ ads }| uri=uri placement-id=id opts=input.opts>
+    <marko-web-native-x-fetch-elements|{ ads }| uri=uri id=id opts=input.opts>
       $ const hasAd = ads && ads.length && ads[0];
       <if(hasAd)>
         $ const ad = ads[0];
@@ -25,7 +25,7 @@ $ const results = {
         $ results.hasCampaign = ad.hasCampaign;
         $ results.containerAttrs = ad.attributes.container;
         $ results.linkAttrs = ad.attributes.link;
-        $ if (ad.hasCampaign) results.campaign = convertAdToContent(ad);
+        $ if (ad.hasCampaign) results.campaign = convertAdToContent(ad, { sectionName });
 
         <${input.renderBody} ...results />
       </if>

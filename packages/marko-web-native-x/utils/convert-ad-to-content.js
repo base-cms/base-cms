@@ -1,4 +1,4 @@
-module.exports = (ad = {}, sectionName = 'Sponsored') => {
+module.exports = (ad = {}, { sectionName = 'Sponsored' } = {}) => {
   const { campaign, creative, image } = ad;
   return {
     id: campaign.id,
