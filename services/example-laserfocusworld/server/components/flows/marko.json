@@ -6,6 +6,11 @@
   "<website-content-list-flow>": {
     "template": "./content-list.marko",
     "<header>": {},
+    "<native-x>": {
+      "@index": "number",
+      "@name": "string",
+      "@aliases": "array"
+    },
     "@nodes": "array",
     "@display-image": {
       "type": "boolean",
