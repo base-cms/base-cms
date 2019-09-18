@@ -1,5 +1,10 @@
 {
   "version": "0.10.7",
   "npmClient": "yarn",
-  "useWorkspaces": true
+  "useWorkspaces": true,
+  "command": {
+    "version": {
+      "allowBranch": "v1.x"
+    }
+  }
 }
