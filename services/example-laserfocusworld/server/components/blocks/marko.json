@@ -9,6 +9,11 @@
   },
   "<website-content-load-more-block>": {
     "template": "./content-load-more.marko",
+    "<native-x>": {
+      "@index": "number",
+      "@name": "string",
+      "@aliases": "array"
+    },
     "@id": "number",
     "@type": "string",
     "@name": "string",

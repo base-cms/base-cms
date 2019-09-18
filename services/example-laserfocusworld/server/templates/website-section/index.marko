@@ -61,7 +61,10 @@ $ const { id, alias, name, pageNode } = data;
       $ const aliases = hierarchyAliases(section);
       <marko-web-load-more
         component-name="content-load-more-flow"
-        component-input={ aliases }
+        component-input={
+          aliases,
+          nativeX: { index: 0, name: 'card', aliases },
+        }
         fragment-name="content-list"
         query-name="website-scheduled-content"
         query-params={ sectionId: id, limit: 14, skip: 12 }

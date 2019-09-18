@@ -34,7 +34,7 @@ $ const {
   <marko-web-load-more
     header=`More in ${sectionName}`
     component-name="content-load-more-flow"
-    component-input={ aliases }
+    component-input={ aliases, nativeX: input.nativeX }
     fragment-name="content-list"
     query-name="website-scheduled-content"
     query-params={ sectionId, excludeContentIds: [id], limit: 14, skip: sectionSkip }
