@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/oembed",
-  "version": "1.0.0-alpha.2",
+  "version": "1.0.0-alpha.3",
   "description": "The BaseCMS oEmbed service",
   "main": "src/index.js",
   "author": "Josh Worden <josh@limit0.io>",
