@@ -107,11 +107,15 @@ const build = async () => {
 
 const deploy = async () => {
   log(`Deploying ${image}:${version} on Kubernertes`);
-  const env = { RANCHER_CLUSTERID: process.env.RANCHER_CLUSTERID };
+  const env = {
+    RANCHER_CLUSTERID: process.env.RANCHER_CLUSTERID,
+    RANCHER_TOKEN: process.env.RANCHER_TOKEN,
+  };
   // @todo revert
   if (/^v1\./.test(TRAVIS_TAG)) {
     log('Using v1.x cluster.');
     env.RANCHER_CLUSTERID = process.env.RANCHER_CLUSTERID_V1;
+    env.RANCHER_TOKEN = process.env.RANCHER_TOKEN_V1;
   }
   const nrid = nrIds[service];
   const { status } = await spawnSync('bash', ['scripts/deploy-k8s.sh', service, version, nrid], { stdio: 'inherit', env });
