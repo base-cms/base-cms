@@ -9,6 +9,7 @@ class GAMConfiguration {
    * @param {string} accountId
    * @param {object} params
    * @param {string} [params.basePath]
+   * @param {string} [params.defaultAlias=default]
    */
   constructor(accountId, { basePath, defaultAlias = 'default' } = {}) {
     if (!accountId) throw new Error('Unable to configure GAM: no account ID was provided.');
