@@ -32,11 +32,21 @@
   },
   "<website-content-load-more-flow>": {
     "template": "./content-load-more.marko",
+    "<native-x>": {
+      "@index": "number",
+      "@name": "string",
+      "@aliases": "array"
+    },
     "@nodes": "array",
     "@aliases": "array"
   },
   "<website-content-card-deck-flow>": {
     "template": "./content-card-deck.marko",
+    "<native-x>": {
+      "@index": "number",
+      "@name": "string",
+      "@aliases": "array"
+    },
     "@nodes": "array",
     "@aliases": "array"
   },
