@@ -16,7 +16,7 @@
     "node-fetch": "^2.6.0"
   },
   "peerDependencies": {
-    "@base-cms/marko-web": "^0.10.3"
+    "@base-cms/marko-web": "^1.0.0-alpha.1"
   },
   "publishConfig": {
     "access": "public"
