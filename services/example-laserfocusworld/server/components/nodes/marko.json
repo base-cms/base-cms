@@ -9,7 +9,9 @@
     "@with-teaser": {
       "type": "boolean",
       "default-value": false
-    }
+    },
+    "@attrs": "object",
+    "@link-attrs": "object"
   },
   "<website-content-card-node>": {
     "template": "./content-card.marko",

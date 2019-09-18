@@ -6,7 +6,9 @@ $ const primarySection = getAsObject(content, "primarySection");
 $ const displayImage = input.displayImage != null ? input.displayImage : true;
 $ const withTeaser = input.withTeaser != null ? input.withTeaser : false;
 
-<marko-web-node flush=true image-position="right">
+$ const { linkAttrs } = input;
+
+<marko-web-node attrs=input.attrs flush=true image-position="right">
   <if(displayImage)>
     <@image
       src=primaryImage.src
@@ -16,7 +18,7 @@ $ const withTeaser = input.withTeaser != null ? input.withTeaser : false;
       ar="1:1"
       width=75
       align="middle"
-      link={ href: content.canonicalPath }
+      link={ href: content.canonicalPath, attrs: linkAttrs }
     />
   </if>
   <@body>
@@ -26,10 +28,10 @@ $ const withTeaser = input.withTeaser != null ? input.withTeaser : false;
       </@left>
     </@header>
     <@title tag="h5">
-      <marko-web-content-short-name tag=null obj=content link=true />
+      <marko-web-content-short-name tag=null obj=content link={ attrs: linkAttrs } />
     </@title>
     <@text modifiers=["teaser"] show=(withTeaser && content.teaser)>
-      <marko-web-content-teaser tag=null obj=content link=true />
+      <marko-web-content-teaser tag=null obj=content link={ attrs: linkAttrs } />
     </@text>
     <@footer>
       <@left>
