@@ -7,7 +7,7 @@
 - [x] Subscribe
 - [x] Reveal Ad
 - [ ] Video Play Overlay
-- [ ] NativeX Plugin
+- [x] NativeX Plugin
 - [ ] Content: Media Galleries (really only Bizbash)
 - [ ] Search: Bing (EE and Bizbash only)
 - [ ] IdentityX Plugin (OGJ only)
@@ -15,6 +15,7 @@
 - [ ] Contact Us Submissions - move to site package for now
 - [ ] Mailer Service for Contact Us and Inquiry
 - [ ] Review unused theme CSS
+- [ ] Verify page model resolver speed once converted
 
 ## Core
 - Page loaders should not use routes
