@@ -1,0 +1,12 @@
+$ const blockName = input.blockName || "content-download";
+$ const classNames = [blockName, `${blockName}__link`, input.class];
+$ const target = input.target || "_blank";
+
+<marko-web-link href=input.href target=target class=classNames>
+  <if(input.renderBody)>
+    <${input.renderBody} />
+  </if>
+  <else>
+    Download
+  </else>
+</marko-web-link>

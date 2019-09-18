@@ -17,8 +17,6 @@ $ const displayPrimaryImage = ["whitepaper", "media-gallery", "contact"].include
     <!-- @todo Deal with media galleries and whitepapers -->
     <!-- @todo Add play button overlay on videos -->
     <marko-web-resolve-page|{ data: content, resolved }| node=pageNode>
-      $ const { surveyId, surveyType } = resolved.getAsObject("gating");
-      $ const { fileSrc } = content;
       $ const primaryImage = resolved.getAsObject("primaryImage");
       <marko-web-page-wrapper>
         <@section>
@@ -52,25 +50,10 @@ $ const displayPrimaryImage = ["whitepaper", "media-gallery", "contact"].include
 
             </default-theme-page-contents>
             <aside class="col-lg-4 page-rail">
-              <if(fileSrc)>
-                <if(surveyId)>
-                  <if(surveyType === "app_form_com")>
-                    <marko-web-browser-component
-                      name="FormDotComGatedDownload"
-                      props={ surveyId, target: fileSrc }
-                    />
-                  </if>
-                  <else-if(surveyType === "wufoo")>
-                    <marko-web-browser-component
-                      name="WufooGatedDownload"
-                      props={ userName: site.get("wufoo.userName"), formHash: surveyId, target: fileSrc }
-                    />
-                  </else-if>
-                </if>
-                <else>
-                  <marko-web-link href=fileSrc target="_blank" class="btn btn-lg btn-primary">Download</marko-web-link>
-                </else>
-              </if>
+              <default-theme-content-download obj=content>
+                <@wufoo user-name=site.get("wufoo.userName") />
+                <@link class="btn btn-lg btn-primary" />
+              </default-theme-content-download>
             </aside>
           </div>
         </@section>

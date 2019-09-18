@@ -1,0 +1,17 @@
+{
+  "<default-theme-content-download>": {
+    "template": "./index.marko",
+    "<link>": {},
+    "<wufoo>": {},
+    "<form-dot-com>": {}
+  },
+  "<default-theme-content-download-link>": {
+    "template": "./link.marko"
+  },
+  "<default-theme-content-download-wufoo>": {
+    "template": "./wufoo.marko"
+  },
+  "<default-theme-content-download-form-dot-com>": {
+    "template": "./form-dot-com.marko"
+  }
+}
