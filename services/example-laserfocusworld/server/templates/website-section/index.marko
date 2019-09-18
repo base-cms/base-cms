@@ -33,7 +33,9 @@ $ const { id, alias, name, pageNode } = data;
       name="website-optioned-content"
       params={ sectionId: id, optionId: 9, limit: 5, queryFragment }
     >
-      <website-content-hero-flow nodes=nodes />
+      <website-content-hero-flow nodes=nodes>
+        <@native-x index=3 name="list1" aliases=[alias] />
+      </website-content-hero-flow>
     </marko-web-query>
 
     <div class="row">
@@ -44,6 +46,7 @@ $ const { id, alias, name, pageNode } = data;
         >
           <website-content-list-flow nodes=nodes>
             <@header>Featured</@header>
+            <@native-x index=6 name="list2" aliases=[alias] />
           </website-content-list-flow>
         </marko-web-query>
       </div>
