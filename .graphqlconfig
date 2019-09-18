@@ -20,6 +20,14 @@
               "x-cdn-asset-hostname": "media.cygnus.com"
             }
           },
+          "staging-aerilon": {
+            "url": "https://aerilon.graphql-staging.base-cms.io",
+            "headers": {
+              "x-tenant-key": "${env:TENANT_KEY}",
+              "x-cdn-image-hostname": "base.imgix.net",
+              "x-cdn-asset-hostname": "media.cygnus.com"
+            }
+          },
           "prod-caprica": {
             "url": "https://caprica.graphql.base-cms.io",
             "headers": {
