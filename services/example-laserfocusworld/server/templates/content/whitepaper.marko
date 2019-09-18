@@ -14,8 +14,6 @@ $ const displayPrimaryImage = ["whitepaper", "media-gallery", "contact"].include
     </marko-web-gtm-content-context>
   </@head>
   <@page>
-    <!-- @todo Deal with media galleries and whitepapers -->
-    <!-- @todo Add play button overlay on videos -->
     <marko-web-resolve-page|{ data: content, resolved }| node=pageNode>
       $ const primaryImage = resolved.getAsObject("primaryImage");
       <marko-web-page-wrapper>
