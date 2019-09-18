@@ -3,6 +3,7 @@ import { getAsObject } from "@base-cms/object-path";
 import queryFragment from "../../api/fragments/content-list";
 import GAM from "../../../config/gam";
 
+$ const { site } = out.global;
 $ const { id, type, pageNode } = data;
 
 $ const displayPrimaryImage = ["whitepaper", "media-gallery", "contact"].includes(type) ? false : true;
@@ -34,7 +35,7 @@ $ const displayPublishedDate = ["event", "webinar", "contact"].includes(type) ? 
   </@above-container>
   <@page>
     <marko-web-gam-display-ad id="gpt-ad-lb1" modifiers=["top-of-page"] />
-    <!-- @todo Deal with media galleries and whitepapers -->
+    <!-- @todo Deal with media galleries -->
     <!-- @todo Add play button overlay on videos -->
     <marko-web-resolve-page|{ data: content, resolved }| node=pageNode>
       $ const section = resolved.getAsObject("primarySection");
@@ -78,6 +79,12 @@ $ const displayPublishedDate = ["event", "webinar", "contact"].includes(type) ? 
               <default-theme-content-contact-details obj=content />
               <marko-web-content-body block-name=blockName obj=content />
               <marko-web-content-sidebars block-name=blockName obj=content />
+              <if(type === "document")>
+                <default-theme-content-download obj=content>
+                  <@wufoo user-name=site.get("wufoo.userName") />
+                  <@link class="btn btn-lg btn-primary" />
+                </default-theme-content-download>
+              </if>
             </default-theme-page-contents>
             <aside class="col-lg-4 page-rail">
               <marko-web-gam-display-ad id="gpt-ad-rail1" />
