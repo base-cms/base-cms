@@ -11,6 +11,7 @@
     "test": "yarn compile && yarn lint"
   },
   "dependencies": {
+    "@base-cms/object-path": "^0.10.0",
     "@base-cms/utils": "^0.10.0",
     "node-fetch": "^2.6.0"
   },
