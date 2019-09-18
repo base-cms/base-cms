@@ -1,6 +1,11 @@
 {
   "<website-related-content-block>": {
     "template": "./related-content.marko",
+    "<native-x>": {
+      "@index": "number",
+      "@name": "string",
+      "@aliases": "array"
+    },
     "@id": "number",
     "@type": "string",
     "@section-id": "number",

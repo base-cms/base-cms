@@ -19,7 +19,7 @@ $ const {
     name="website-scheduled-content"
     params={ sectionId, excludeContentIds: [id], limit: 5, queryFragment }
   >
-    <website-content-list-flow nodes=nodes inner-justified=false>
+    <website-content-list-flow nodes=nodes inner-justified=false native-x=input.nativeX>
       <@header>Latest in ${sectionName}</@header>
     </website-content-list-flow>
   </marko-web-query>
