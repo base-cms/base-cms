@@ -58,6 +58,14 @@ class NativeXConfiguration {
     });
     return this;
   }
+
+  getUri() {
+    return this.uri;
+  }
+
+  isEnabled() {
+    return this.enabled;
+  }
 }
 
 module.exports = NativeXConfiguration;
