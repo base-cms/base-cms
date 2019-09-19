@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/web-cli",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.4",
   "description": "Command line interface for BaseCMS+Marko websites",
   "author": "Jacob Bare <jacob@limit0.io>",
   "main": "src/index.js",
