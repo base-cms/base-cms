@@ -42,7 +42,7 @@
     "gulp-eslint": "^5.0.0",
     "gulp-livereload": "^4.0.1",
     "gulp-postcss": "^8.0.0",
-    "gulp-rev-all": "^1.0.0",
+    "gulp-rev-all": "^2.0.2",
     "gulp-rev-delete-original": "^0.2.3",
     "gulp-sass": "^4.0.2",
     "gulp-sourcemaps": "^2.6.5",
