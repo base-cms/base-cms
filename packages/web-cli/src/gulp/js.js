@@ -64,6 +64,7 @@ module.exports = cwd => (cb) => {
         libraryExport: 'default',
         libraryTarget: 'umd',
         filename: 'index.js',
+        publicPath: '/dist/js/',
       },
       module: {
         rules: [
