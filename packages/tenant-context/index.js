@@ -8,7 +8,12 @@ module.exports = {
     if (!siteId) throw new Error('A required header `x-site-id` was not sent!');
     if (!imageHost) throw new Error('A required header `x-cdn-image-hostname` was not sent!');
     if (!assetHost) throw new Error('A required header `x-cdn-asset-hostname` was not sent!');
-    return { tenant, imageHost, assetHost };
+    return {
+      tenant,
+      siteId,
+      imageHost,
+      assetHost,
+    };
   },
   buildRequestHeaders: (config = {}) => {
     const {
