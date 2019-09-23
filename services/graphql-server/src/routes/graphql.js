@@ -3,6 +3,7 @@ const { get } = require('@base-cms/object-path');
 const { getFromRequest } = require('@base-cms/tenant-context');
 const { Router } = require('express');
 const { isObject } = require('@base-cms/utils');
+const { MongoDB } = require('@base-cms/db');
 const { requestParser: canonicalRules } = require('@base-cms/canonical-path');
 const ApolloNewrelicExtension = require('apollo-newrelic-extension');
 const newrelic = require('../newrelic');
@@ -13,6 +14,7 @@ const { NODE_ENV, GRAPHQL_ENDPOINT, ENGINE_API_KEY } = require('../env');
 
 const isProduction = NODE_ENV === 'production';
 
+const { ObjectID } = MongoDB;
 const { keys } = Object;
 const router = Router();
 
@@ -28,10 +30,21 @@ const config = {
   playground: !isProduction ? { endpoint: GRAPHQL_ENDPOINT } : false,
 };
 
+const loadSite = async ({ basedb, siteId, tenant }) => {
+  const site = await basedb.findOne('platform.Product', {
+    status: 1,
+    type: 'Site',
+    _id: new ObjectID(siteId),
+  }, { projection: { _id: 1, name: 1, url: 1 } });
+  if (!site) throw new Error(`No site was found for tenant '${tenant}' using ID '${siteId}'`);
+  return site;
+};
+
 const server = new ApolloServer({
   schema,
   ...config,
-  context: ({ req }) => {
+  context: async ({ req }) => {
+    // @todo Should the siteId be required?
     const {
       tenant,
       siteId,
@@ -40,9 +53,12 @@ const server = new ApolloServer({
     } = getFromRequest(req);
     const basedb = basedbFactory(tenant);
     const loaders = createLoaders(basedb);
+
+    const site = await loadSite({ siteId, basedb, tenant });
+
     return {
       basedb,
-      siteId,
+      site,
       load: async (loader, id, projection, criteria = {}) => {
         if (!loaders[loader]) throw new Error(`No dataloader found for '${loader}'`);
 
