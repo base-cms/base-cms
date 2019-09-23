@@ -2,6 +2,7 @@ import { getAsObject } from "@base-cms/object-path";
 
 $ const content = getAsObject(input, "obj");
 $ const { linkUrl } = content;
+$ const label = input.label || "Click Here to View";
 
 <if(linkUrl)>
   <marko-web-link
@@ -10,6 +11,6 @@ $ const { linkUrl } = content;
     title=input.title
     target=input.target
   >
-    ${input.label}
+    ${label}
   </marko-web-link>
 </if>
