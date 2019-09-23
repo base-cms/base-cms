@@ -16,13 +16,14 @@ class RefManyDirective extends SchemaDirectiveVisitor {
    */
   visitFieldDefinition(field) {
     // eslint-disable-next-line no-param-reassign
-    field.resolve = async (doc, { input = {} }, { basedb }, info) => {
+    field.resolve = async (doc, { input = {} }, { basedb, site }, info) => {
       const {
         model,
         localField,
         foreignField,
         criteria,
         using,
+        withSite,
       } = this.args;
 
       const fieldName = localField || field.name;
@@ -48,6 +49,7 @@ class RefManyDirective extends SchemaDirectiveVisitor {
         },
         using,
         input,
+        ...(withSite && { siteId: site._id }),
       });
 
       const projection = connectionProjection(info);

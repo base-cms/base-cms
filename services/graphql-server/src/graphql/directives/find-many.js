@@ -12,13 +12,14 @@ class FindManyDirective extends SchemaDirectiveVisitor {
    */
   visitFieldDefinition(field) {
     // eslint-disable-next-line no-param-reassign
-    field.resolve = async (_, { input = {} }, { basedb }, info) => {
+    field.resolve = async (_, { input = {} }, { basedb, site }, info) => {
       const start = process.hrtime();
 
       const {
         model,
         using,
         criteria,
+        withSite,
       } = this.args;
 
       const {
@@ -31,6 +32,7 @@ class FindManyDirective extends SchemaDirectiveVisitor {
         query: { ...criteriaFor(criteria), ...formatStatus(status) },
         using,
         input,
+        ...(withSite && { siteId: site._id }),
       });
 
       const projection = connectionProjection(info);

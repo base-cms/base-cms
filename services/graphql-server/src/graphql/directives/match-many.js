@@ -79,13 +79,14 @@ class MatchManyDirective extends SchemaDirectiveVisitor {
    */
   visitFieldDefinition(field) {
     // eslint-disable-next-line no-param-reassign
-    field.resolve = async (_, { input = {} }, { basedb }, info) => {
+    field.resolve = async (_, { input = {} }, { basedb, site }, info) => {
       const start = process.hrtime();
 
       const {
         model,
         using,
         criteria,
+        withSite,
       } = this.args;
 
       const {
@@ -107,6 +108,7 @@ class MatchManyDirective extends SchemaDirectiveVisitor {
         },
         using,
         input,
+        ...(withSite && { siteId: site._id }),
       });
 
       if (isArray(excludeIds) && excludeIds.length) {

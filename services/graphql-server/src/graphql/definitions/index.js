@@ -12,15 +12,15 @@ scalar ObjectID
 
 directive @applyInterfaceFields on OBJECT
 directive @arrayValue(localField: String) on FIELD_DEFINITION
-directive @findMany(model: String!, using: JSON, criteria: String) on FIELD_DEFINITION
-directive @findOne(model: String!, using: JSON, criteria: String) on FIELD_DEFINITION
-directive @matchMany(model: String!, using: JSON, criteria: String) on FIELD_DEFINITION
+directive @findMany(model: String!, using: JSON, withSite: Boolean = false, criteria: String) on FIELD_DEFINITION
+directive @findOne(model: String!, using: JSON, withSite: Boolean = false, criteria: String) on FIELD_DEFINITION
+directive @matchMany(model: String!, using: JSON, withSite: Boolean = false, criteria: String) on FIELD_DEFINITION
 directive @momentFormat(localField: String, defaultFormat: String! = "YYYY-MM-DDTHH:mm:ssZ", defaultTimezone: String! = "America/Chicago") on FIELD_DEFINITION
 directive @mutatedValue(localField: String) on FIELD_DEFINITION
 directive @projection(localField: String, needs: [String] = []) on FIELD_DEFINITION
 directive @projectUsing(type: String!) on OBJECT
-directive @refMany(model: String!, localField: String, foreignField: String = "_id", criteria: String, using: JSON) on FIELD_DEFINITION
-directive @refOne(loader: String!, localField: String, criteria: String) on FIELD_DEFINITION
+directive @refMany(model: String!, localField: String, foreignField: String = "_id", criteria: String, withSite: Boolean = false, using: JSON) on FIELD_DEFINITION
+directive @refOne(loader: String!, localField: String, withSite: Boolean = false, criteria: String) on FIELD_DEFINITION
 directive @requiresProject(fields: [String] = []) on OBJECT | INTERFACE
 directive @value(localField: String, fallbackField: String) on FIELD_DEFINITION
 
