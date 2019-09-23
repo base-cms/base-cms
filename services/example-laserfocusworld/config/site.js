@@ -18,9 +18,9 @@ module.exports = {
     },
   },
   socialMediaLinks: [
-    { provider: 'linkedin', href: 'http://www.linkedin.com/groups/Laser-Focus-World-2896249' },
-    { provider: 'twitter', href: 'https://twitter.com/LaserFocusWorld' },
-    { provider: 'facebook', href: 'https://www.facebook.com/pages/Laser-Focus-World/126899915297' },
+    { provider: 'linkedin', href: 'http://www.linkedin.com/groups/Laser-Focus-World-2896249', target: '_blank' },
+    { provider: 'twitter', href: 'https://twitter.com/LaserFocusWorld', target: '_blank' },
+    { provider: 'facebook', href: 'https://www.facebook.com/pages/Laser-Focus-World/126899915297', target: '_blank' },
   ],
   gtm: {
     containerId: 'GTM-M7H8VJG',
