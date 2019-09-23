@@ -1,5 +1,9 @@
 {
   "<default-theme-content-link-url>": {
-    "template": "./index.marko"
+    "template": "./index.marko",
+    "@obj": "object",
+    "@title": "string",
+    "@target": "string",
+    "@label": "string"
   }
 }
