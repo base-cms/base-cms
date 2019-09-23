@@ -54,6 +54,7 @@ const server = new ApolloServer({
     const basedb = basedbFactory(tenant);
     const loaders = createLoaders(basedb);
 
+    // If this becomes optional, an empty, faux object should be returned instead.
     const site = await loadSite({ siteId, basedb, tenant });
 
     return {
