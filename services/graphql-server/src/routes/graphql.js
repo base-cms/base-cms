@@ -32,11 +32,17 @@ const server = new ApolloServer({
   schema,
   ...config,
   context: ({ req }) => {
-    const { tenant, imageHost, assetHost } = getFromRequest(req);
+    const {
+      tenant,
+      siteId,
+      imageHost,
+      assetHost,
+    } = getFromRequest(req);
     const basedb = basedbFactory(tenant);
     const loaders = createLoaders(basedb);
     return {
       basedb,
+      siteId,
       load: async (loader, id, projection, criteria = {}) => {
         if (!loaders[loader]) throw new Error(`No dataloader found for '${loader}'`);
 
