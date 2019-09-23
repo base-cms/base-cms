@@ -104,6 +104,7 @@ module.exports = async ({
           process.send({
             event: 'ready',
             name: coreConfig.siteName,
+            siteId,
             graphqlUri,
             location: `http://0.0.0.0:${exposedPort}`,
           });
