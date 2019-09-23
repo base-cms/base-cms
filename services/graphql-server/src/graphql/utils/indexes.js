@@ -127,9 +127,11 @@ module.exports = {
     },
     Section: {
       query: [
-        { status: 1, _id: 1 },
-        { status: 1, alias: 1 },
-        { status: 1, redirects: 1 },
+        { status: 1, _id: 1 }, // @todo require the site id?
+        { status: 1, alias: 1 }, // @todo remove this for site index?
+        { status: 1, 'site.$id': 1, alias: 1 },
+        { status: 1, 'site.$id': 1, redirects: 1 },
+        { status: 1, redirects: 1 }, // @todo remove this for site index?
         { status: 1, 'parent.$id': 1 },
         { status: 1, 'site.$id': 1, 'parent.$id': 1 },
       ],
