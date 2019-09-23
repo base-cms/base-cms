@@ -37,6 +37,10 @@ class CoreConfig extends AbstractConfig {
     return this.get('rss.mountPoint', '/__rss');
   }
 
+  siteId() {
+    return this.get('siteId');
+  }
+
   siteName() {
     return this.get('siteName', '');
   }

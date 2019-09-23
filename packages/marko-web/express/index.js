@@ -17,7 +17,7 @@ const CoreConfig = require('../config/core');
 const SiteConfig = require('../config/site');
 
 module.exports = (config = {}) => {
-  const { rootDir } = config;
+  const { rootDir, siteId } = config;
   const distDir = path.resolve(rootDir, 'dist');
   const app = express();
   const serverDir = path.resolve(rootDir, 'server');
@@ -43,7 +43,7 @@ module.exports = (config = {}) => {
   }
 
   // Set the core config.
-  app.locals.config = new CoreConfig({ ...config.coreConfig, distDir });
+  app.locals.config = new CoreConfig({ ...config.coreConfig, siteId, distDir });
 
   // Set the website config to the app.
   app.locals.site = new SiteConfig(config.siteConfig);

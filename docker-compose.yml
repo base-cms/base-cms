@@ -112,6 +112,7 @@ services:
       EXPOSED_PORT: 11162
       LIVERELOAD_PORT: 25162
       TENANT_KEY: ebm_lfw
+      SITE_ID: 5ca4e38775a25490050041a7
       GRAPHQL_URI: http://graphql-server-lfw
       SITEMAPS_URI: http://sitemaps
       RSS_URI: http://rss
@@ -152,6 +153,7 @@ services:
       EXPOSED_PORT: 11163
       LIVERELOAD_PORT: 25163
       TENANT_KEY: bizbash_bzb
+      SITE_ID: 5b295afea1c1c62c008b4572
       GRAPHQL_URI: http://graphql-server-bzb
       SITEMAPS_URI: http://sitemaps
       RSS_URI: http://rss
