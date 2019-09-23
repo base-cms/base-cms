@@ -83,6 +83,13 @@ $ const displayPublishedDate = ["event", "webinar", "contact"].includes(type) ? 
                   <@link class="btn btn-lg btn-primary" />
                 </default-theme-content-download>
               </if>
+              <if(type === 'webinar')>
+                <default-theme-content-link-url
+                  obj=content
+                  label="Register/View"
+                  target="_blank"
+                />
+              </if>
             </default-theme-page-contents>
             <aside class="col-lg-4 page-rail">
               <marko-web-gam-display-ad id="gpt-ad-rail1" />

@@ -1,0 +1,5 @@
+{
+  "<default-theme-content-link-url>": {
+    "template": "./index.marko"
+  }
+}

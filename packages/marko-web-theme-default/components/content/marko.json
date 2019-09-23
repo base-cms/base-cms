@@ -2,6 +2,7 @@
   "taglib-imports": [
     "./attribution/marko.json",
     "./contact-details/marko.json",
-    "./download/marko.json"
+    "./download/marko.json",
+    "./link-url/marko.json"
   ]
 }
