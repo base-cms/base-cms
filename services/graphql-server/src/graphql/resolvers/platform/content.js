@@ -23,6 +23,35 @@ const { isArray } = Array;
 
 const resolveType = async ({ type }) => `Content${type}`;
 
+const loadSectionAndOption = async ({
+  basedb,
+  siteId,
+  sectionAlias,
+  sectionId,
+  optionId,
+}) => {
+  const sectionQuery = { status: 1 };
+  if (siteId) sectionQuery['site.$id'] = siteId;
+  if (sectionAlias) {
+    sectionQuery.alias = sectionAlias;
+  } else {
+    sectionQuery._id = sectionId;
+  }
+
+  const optionQuery = { status: 1 };
+  if (siteId) optionQuery['site.$id'] = siteId;
+  if (optionId) {
+    optionQuery._id = optionId;
+  } else {
+    optionQuery.name = 'Standard';
+  }
+
+  return Promise.all([
+    basedb.strictFindOne('website.Section', sectionQuery, { projection: { _id: 1 } }),
+    basedb.strictFindOne('website.Option', optionQuery, { projection: { _id: 1 } }),
+  ]);
+};
+
 module.exports = {
   Addressable: {
     __resolveType: resolveType,
@@ -399,7 +428,7 @@ module.exports = {
     /**
      *
      */
-    websiteScheduledContent: async (_, { input }, { basedb }, info) => {
+    websiteScheduledContent: async (_, { input }, { basedb, site }, info) => {
       const {
         sectionId,
         sectionAlias,
@@ -416,21 +445,19 @@ module.exports = {
       if (!sectionId && !sectionAlias) throw new UserInputError('Either a sectionId or sectionAlias input must be provided.');
       if (sectionId && sectionAlias) throw new UserInputError('You cannot provided both a sectionId and sectionAlias as input.');
 
-      let sid = sectionId;
-      if (sectionAlias) {
-        const section = await basedb.strictFindOne('website.Section', { status: 1, alias: sectionAlias }, { projection: { _id: 1 } });
-        sid = section._id;
-      }
-
-      const [descendantIds, defaultOption] = await Promise.all([
-        sectionBubbling ? getDescendantIds(sid, basedb) : Promise.resolve([]),
-        !optionId ? getDefaultOption(basedb) : Promise.resolve(null),
-      ]);
+      const [section, option] = await loadSectionAndOption({
+        basedb,
+        siteId: site._id,
+        sectionAlias,
+        sectionId,
+        optionId,
+      });
+      const descendantIds = await sectionBubbling ? getDescendantIds(section._id, basedb) : [];
 
       const now = new Date();
       const $elemMatch = {
-        sectionId: descendantIds.length ? { $in: descendantIds } : sid,
-        optionId: defaultOption ? defaultOption._id : optionId,
+        sectionId: descendantIds.length ? { $in: descendantIds } : section._id,
+        optionId: option._id,
         start: { $lte: now },
         $and: [
           {
@@ -443,7 +470,7 @@ module.exports = {
       };
 
       if (excludeSectionIds.length) {
-        $elemMatch.$and.push({ sid: { $nin: excludeSectionIds } });
+        $elemMatch.$and.push({ sectionId: { $nin: excludeSectionIds } });
       }
       const query = { sectionQuery: { $elemMatch } };
       if (requiresImage) {
