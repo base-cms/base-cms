@@ -5,6 +5,9 @@ const { content: canonicalPathFor } = require('@base-cms/canonical-path');
 const { get } = require('@base-cms/object-path');
 const { underscore, dasherize, titleize } = require('@base-cms/inflector');
 
+const applyInput = require('../../utils/apply-input');
+const getProjection = require('../../utils/get-projection');
+const formatStatus = require('../../utils/format-status');
 const getEmbeddedImageTags = require('../../utils/embedded-image-tags');
 const relatedContent = require('../../utils/related-content');
 const inquiryEmails = require('../../utils/inquiry-emails');
@@ -56,6 +59,17 @@ const loadOption = async ({
   return basedb.strictFindOne('website.Option', optionQuery, { projection: { _id: 1 } });
 };
 
+const loadHomeSection = async ({
+  basedb,
+  siteId,
+  status,
+  projection,
+}) => basedb.findOne('website.Section', {
+  alias: 'home',
+  ...formatStatus(status),
+  ...(siteId && { 'site.$id': siteId }),
+}, { projection });
+
 module.exports = {
   Addressable: {
     __resolveType: resolveType,
@@ -105,6 +119,52 @@ module.exports = {
    */
   Content: {
     __resolveType: resolveType,
+
+    /**
+     * Load primary section of content.
+     * If primary section's site matches the current site, return the section.
+     * If not, check for alternative site + section (@todo).
+     * Return alternate section (if found), otherwise return home section of current site.
+     * If no site is provided, simply return the current section.
+     */
+    primarySection: async (content, { input }, { load, site, basedb }, info) => {
+      const { status } = input;
+      const {
+        returnType,
+        fieldNodes,
+        schema,
+        fragments,
+      } = info;
+      const projection = getProjection(schema, returnType, fieldNodes[0].selectionSet, fragments);
+
+      const ref = BaseDB.get(content, 'mutations.Website.primarySection');
+      const id = BaseDB.extractRefId(ref);
+      if (!id) {
+        // No primary section reference found. Load home section for current site.
+        return loadHomeSection({
+          basedb,
+          siteId: site._id,
+          status,
+          projection,
+        });
+      }
+
+      const query = applyInput({
+        query: { ...formatStatus(status) },
+        ...(site._id && { 'site.$id': site._id }),
+      });
+      const section = await load('websiteSection', id, projection, query);
+      if (section) return section;
+
+      // Current section does not match site, load alternate.
+      // @todo This should eventually account for secondary sites/sections. For now, load home.
+      return loadHomeSection({
+        basedb,
+        siteId: site._id,
+        status,
+        projection,
+      });
+    },
 
     shortName: (content) => {
       const shortName = get(content, 'shortName', '').trim();
