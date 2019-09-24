@@ -269,7 +269,7 @@ module.exports = {
     /**
      *
      */
-    allAuthorContent: async (_, { input }, { basedb }, info) => {
+    allAuthorContent: async (_, { input }, { basedb, site }, info) => {
       const {
         since,
         contactId,
@@ -283,6 +283,8 @@ module.exports = {
       if (!authorTypes.length) throw new UserInputError('At least one `authorType` must be provided.');
 
       const query = getPublishedCriteria({ since, contentTypes: includeContentTypes });
+
+      if (site._id) query['mutations.Website.primarySite'] = site._id;
       query.$or = authorTypes.map((type) => {
         const field = `${type}s`;
         return { [field]: contactId };
@@ -303,7 +305,7 @@ module.exports = {
     /**
      *
      */
-    allCompanyContent: async (_, { input }, { basedb }, info) => {
+    allCompanyContent: async (_, { input }, { basedb, site }, info) => {
       const {
         since,
         companyId,
@@ -314,6 +316,8 @@ module.exports = {
       } = input;
 
       const query = getPublishedCriteria({ since, contentTypes: includeContentTypes });
+
+      if (site._id) query['mutations.Website.primarySite'] = site._id;
       query.$or = [
         { company: companyId },
         { 'relatedTo.$id': companyId },
