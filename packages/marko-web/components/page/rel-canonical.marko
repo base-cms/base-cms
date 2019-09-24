@@ -1,9 +1,9 @@
 import { cleanPath } from "@base-cms/utils";
 
 $ const { req, requestOrigin } = out.global;
-$ const path = input.path || req.path
+$ const path = input.path || req.path;
 
-$ const href = `${out.global.requestOrigin}/${cleanPath(path)}`;
+$ const href = input.url || `${out.global.requestOrigin}/${cleanPath(path)}`;
 
 <if(input.renderBody)>
   <${input.renderBody} href=href />
