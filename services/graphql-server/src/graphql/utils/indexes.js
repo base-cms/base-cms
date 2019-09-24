@@ -72,6 +72,8 @@ module.exports = {
         // Needed for related content queries
         { 'relatedTo.$id': 1 },
         { company: 1 },
+        // @todo confirm this index covers primary site queries!
+        { 'mutations.Website.primarySite': 1 },
       ],
       sort: [
         [{ name: 1, _id: 1 }, { collation: { locale: 'en_US' } }],
