@@ -1,5 +1,10 @@
 # Content Mange
 
+## Punch List
+- [ ] Add support for secondary site+section contexts
+- [ ] Ensure ContentPage respects primary site
+- [ ] Update canonical path/url to support site context
+
 ## Primary Site + Section
 - Must select primary site + section
   - This will generate the canonical URL base on site and section
