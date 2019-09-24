@@ -4,6 +4,7 @@
 - [ ] Add support for secondary site+section contexts
 - [ ] Ensure ContentPage respects primary site
 - [ ] Update canonical path/url to support site context
+- [ ] Handle newsletters (this requires more thought)
 
 ## Primary Site + Section
 - Must select primary site + section
