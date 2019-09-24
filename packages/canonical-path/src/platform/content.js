@@ -7,11 +7,19 @@ const pathResolvers = {
   id: content => content._id,
   slug: content => get(content, 'mutations.Website.slug'),
   type: content => dasherize(content.type),
-  sectionAlias: async (content, { load }) => {
+  sectionAlias: async (content, { load, site }) => {
     const ref = BaseDB.get(content, 'mutations.Website.primarySection');
     const id = BaseDB.extractRefId(ref);
-    if (!id) return 'home';
-    const section = await load('websiteSection', id, { alias: 1 }, { status: 1 });
+    if (!id) return 'home'; // No primary section. Load home.
+
+    // Attempt to load section for the current site.
+    const query = {
+      status: 1,
+      ...(site._id && { 'site.$id': site._id }),
+    };
+    const section = await load('websiteSection', id, { alias: 1 }, query);
+    // @todo This should eventually account for secondary sites/sections.
+    // For now load home when not found.
     return section ? section.alias : 'home';
   },
 };
