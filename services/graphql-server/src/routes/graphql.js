@@ -37,6 +37,7 @@ const loadSite = async ({ basedb, siteId, tenant }) => {
     _id: new ObjectID(siteId),
   }, { projection: { _id: 1, name: 1, url: 1 } });
   if (!site) throw new Error(`No site was found for tenant '${tenant}' using ID '${siteId}'`);
+  if (!site.url) throw new Error(`No site url is set for tenant '${tenant}' using ID '${siteId}'`);
   return site;
 };
 
