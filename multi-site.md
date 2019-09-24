@@ -5,6 +5,7 @@
 - [ ] Ensure ContentPage respects primary site
 - [ ] Update canonical path/url to support site context
 - [ ] Handle newsletters (this requires more thought)
+- [ ] Add multi-site support to RSS and sitemap services
 
 ## Primary Site + Section
 - Must select primary site + section
