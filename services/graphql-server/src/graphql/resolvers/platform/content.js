@@ -119,6 +119,32 @@ module.exports = {
   Content: {
     __resolveType: resolveType,
 
+    canonicalUrl: async (content, _, { load, basedb, site }) => {
+      const projection = { alias: 1, 'site.$id': 1 };
+
+      const ref = BaseDB.get(content, 'mutations.Website.primarySection');
+      const id = BaseDB.extractRefId(ref);
+      const section = (id) ? await load('websiteSection', id, projection) : await loadHomeSection({
+        basedb,
+        siteId: site._id,
+        status: 'active',
+        projection,
+      });
+
+      const owningSiteId = BaseDB.extractRefId(section.site);
+      const owningSite = await load('platformProduct', owningSiteId, { url: 1 }, { type: 'Site' });
+
+      const origin = `https://${owningSite.url}`;
+      const values = [
+        section.alias,
+        dasherize(content.type),
+        content._id,
+        get(content, 'mutations.Website.slug'),
+      ];
+      const path = cleanPath(values.filter(v => v).map(v => String(v).trim()).join('/'));
+      return `${origin}/${cleanPath(path)}`;
+    },
+
     /**
      * Load primary section of content.
      * If primary section's site matches the current site, return the section.
