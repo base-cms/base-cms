@@ -10,6 +10,7 @@ fragment ContentPageMetadataFragment on Content {
   id
   type
   canonicalPath
+  canonicalUrl
   metadata {
     title
     description
@@ -31,6 +32,7 @@ fragment ContentPageMetadataFragment on Content {
       title: get(node, "metadata.title"),
       description: get(node, "metadata.description"),
       canonicalPath: node.canonicalPath,
+      canonicalUrl: node.canonicalUrl,
       imageSrc: get(node, "metadata.image.src"),
     };
     $ const publishedDate = get(node, "metadata.publishedDate");
