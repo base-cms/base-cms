@@ -9,7 +9,6 @@ const getEmbeddedImageTags = require('../../utils/embedded-image-tags');
 const relatedContent = require('../../utils/related-content');
 const inquiryEmails = require('../../utils/inquiry-emails');
 const connectionProjection = require('../../utils/connection-projection');
-const getDefaultOption = require('../../utils/get-default-option');
 const getDescendantIds = require('../../utils/website-section-child-ids');
 const {
   createTitle,
