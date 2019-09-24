@@ -5,7 +5,6 @@ const { content: canonicalPathFor } = require('@base-cms/canonical-path');
 const { get } = require('@base-cms/object-path');
 const { underscore, dasherize, titleize } = require('@base-cms/inflector');
 
-const applyInput = require('../../utils/apply-input');
 const getProjection = require('../../utils/get-projection');
 const formatStatus = require('../../utils/format-status');
 const getEmbeddedImageTags = require('../../utils/embedded-image-tags');
@@ -149,10 +148,10 @@ module.exports = {
         });
       }
 
-      const query = applyInput({
-        query: { ...formatStatus(status) },
+      const query = {
+        ...formatStatus(status),
         ...(site._id && { 'site.$id': site._id }),
-      });
+      };
       const section = await load('websiteSection', id, projection, query);
       if (section) return section;
 
