@@ -220,7 +220,7 @@ module.exports = {
     /**
      *
      */
-    allPublishedContent: async (_, { input }, { basedb }, info) => {
+    allPublishedContent: async (_, { input }, { basedb, site }, info) => {
       const {
         since,
         sectionId,
@@ -234,6 +234,8 @@ module.exports = {
       } = input;
 
       const query = getPublishedCriteria({ since, contentTypes });
+
+      if (site._id) query['mutations.Website.primarySite'] = site._id;
 
       if (beginning.before) query.$and.push({ startDate: { $lte: beginning.before } });
       if (beginning.after) query.$and.push({ startDate: { $gte: beginning.after } });
