@@ -5,7 +5,7 @@ const { get } = require('@base-cms/object-path');
 const connectionProjection = require('./connection-projection');
 const { getPublishedCriteria } = require('./content');
 
-const buildQuery = (doc, { input }) => {
+const buildQuery = (doc, siteId, { input }) => {
   const {
     excludeContentTypes,
     includeContentTypes,
@@ -22,6 +22,7 @@ const buildQuery = (doc, { input }) => {
     excludeContentIds: [doc._id],
     contentTypes: includeContentTypes,
   });
+  if (siteId) criteria.primarySite = siteId;
 
   // Apply additional criteria based on input values.
   if (requiresImage) criteria.primaryImage = { $exists: true };
@@ -48,10 +49,15 @@ const buildQuery = (doc, { input }) => {
   };
 };
 
-const performQuery = (doc, { input, basedb, info }) => {
+const performQuery = (doc, {
+  siteId,
+  input,
+  basedb,
+  info,
+}) => {
   const { pagination } = input;
 
-  const query = buildQuery(doc, { input });
+  const query = buildQuery(doc, siteId, { input });
   const projection = connectionProjection(info);
 
   return basedb.paginate('platform.Content', {

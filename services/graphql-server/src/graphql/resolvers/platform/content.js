@@ -194,7 +194,7 @@ module.exports = {
       }
     },
 
-    relatedContent: (doc, { input }, { basedb }, info) => {
+    relatedContent: (doc, { input }, { basedb, site }, info) => {
       const {
         queryTypes,
       } = input;
@@ -202,7 +202,12 @@ module.exports = {
       if (!queryTypes.length) return BaseDB.paginateEmpty();
 
       // Run perform the related content query.
-      return relatedContent.performQuery(doc, { input, basedb, info });
+      return relatedContent.performQuery(doc, {
+        siteId: site._id,
+        input,
+        basedb,
+        info,
+      });
     },
   },
 
@@ -537,7 +542,7 @@ module.exports = {
     /**
      *
      */
-    relatedPublishedContent: async (_, { input }, { basedb }, info) => {
+    relatedPublishedContent: async (_, { input }, { basedb, site }, info) => {
       const {
         contentId,
         queryTypes,
@@ -554,7 +559,12 @@ module.exports = {
       if (!doc) return BaseDB.paginateEmpty();
 
       // Run perform the related content query.
-      return relatedContent.performQuery(doc, { input, basedb, info });
+      return relatedContent.performQuery(doc, {
+        siteId: site._id,
+        input,
+        basedb,
+        info,
+      });
     },
   },
 };
