@@ -46,6 +46,14 @@ module.exports = (resultSets, keys) => {
     const doc = resultHash[id] || null;
     if (!doc) return doc;
     // Fallback to an empty `{}` filter when `query` is not set.
-    return sift(query || {}, [doc])[0];
+    // Convert `[field].$id` values to `[field].oid` values so DBRefs are properly queried.
+    const q = query || {};
+    const regex = /\.\$id$/;
+    const siftQuery = Object.keys(q).reduce((o, key) => {
+      const value = q[key];
+      const newKey = regex.test(key) ? key.replace(regex, '.oid') : key;
+      return { ...o, [newKey]: value };
+    }, {});
+    return sift(siftQuery, [doc])[0];
   });
 };
