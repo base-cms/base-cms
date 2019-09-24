@@ -7,6 +7,8 @@
 - [ ] Handle newsletters (this requires more thought)
 - [ ] Add multi-site support to RSS and sitemap services
 - [ ] Add site to Redirects collection
+- [ ] Determine if `canonicalPath` should be renamed to `websitePath`
+- [ ] Should content path rules be stored on the Site object?
 
 ## Primary Site + Section
 - Must select primary site + section
