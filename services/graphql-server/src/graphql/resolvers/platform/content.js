@@ -375,7 +375,7 @@ module.exports = {
      * - Expiring/expire before Aug 1: `before: Aug 1`
      *
      */
-    websiteExpiringContent: async (_, { input }, { basedb }, info) => {
+    websiteExpiringContent: async (_, { input }, { basedb, site }, info) => {
       const {
         before,
         after,
@@ -391,14 +391,28 @@ module.exports = {
       if (!sectionId && !optionId) throw new UserInputError('Either a sectionId or optionId input must be provided.');
       if (!before && !after) throw new UserInputError('Either a sectionId or optionId input must be provided.');
 
-      const defaultOption = await optionId ? null : getDefaultOption(basedb);
+      const siteId = site._id;
+      const [section, option] = await Promise.all([
+        loadSection({
+          basedb,
+          siteId,
+          id: sectionId,
+        }),
+        loadOption({
+          basedb,
+          siteId,
+          id: optionId,
+          name: 'Standard',
+        }),
+      ]);
+
       const $elemMatch = {
-        optionId: defaultOption ? defaultOption._id : optionId,
+        optionId: option._id,
         $and: [],
       };
       if (before) $elemMatch.$and.push({ end: { $lte: before } });
       if (after) $elemMatch.$and.push({ end: { $gte: after } });
-      if (sectionId) $elemMatch.sectionId = sectionId;
+      if (section) $elemMatch.sectionId = section._id;
       if (excludeSectionIds.length) {
         $elemMatch.$and.push({ sectionId: { $nin: excludeSectionIds } });
       }
