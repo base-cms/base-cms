@@ -23,33 +23,38 @@ const { isArray } = Array;
 
 const resolveType = async ({ type }) => `Content${type}`;
 
-const loadSectionAndOption = async ({
+const loadSection = async ({
   basedb,
   siteId,
-  sectionAlias,
-  sectionId,
-  optionId,
+  id,
+  alias,
 }) => {
+  if (!id && !alias) return null;
   const sectionQuery = { status: 1 };
   if (siteId) sectionQuery['site.$id'] = siteId;
-  if (sectionAlias) {
-    sectionQuery.alias = sectionAlias;
+  if (alias) {
+    sectionQuery.alias = alias;
   } else {
-    sectionQuery._id = sectionId;
+    sectionQuery._id = id;
   }
+  return basedb.strictFindOne('website.Section', sectionQuery, { projection: { _id: 1 } });
+};
 
+const loadOption = async ({
+  basedb,
+  siteId,
+  id,
+  name,
+}) => {
+  if (!id && !name) return null;
   const optionQuery = { status: 1 };
   if (siteId) optionQuery['site.$id'] = siteId;
-  if (optionId) {
-    optionQuery._id = optionId;
+  if (id) {
+    optionQuery._id = id;
   } else {
-    optionQuery.name = 'Standard';
+    optionQuery.name = name;
   }
-
-  return Promise.all([
-    basedb.strictFindOne('website.Section', sectionQuery, { projection: { _id: 1 } }),
-    basedb.strictFindOne('website.Option', optionQuery, { projection: { _id: 1 } }),
-  ]);
+  return basedb.strictFindOne('website.Option', optionQuery, { projection: { _id: 1 } });
 };
 
 module.exports = {
@@ -445,13 +450,22 @@ module.exports = {
       if (!sectionId && !sectionAlias) throw new UserInputError('Either a sectionId or sectionAlias input must be provided.');
       if (sectionId && sectionAlias) throw new UserInputError('You cannot provided both a sectionId and sectionAlias as input.');
 
-      const [section, option] = await loadSectionAndOption({
-        basedb,
-        siteId: site._id,
-        sectionAlias,
-        sectionId,
-        optionId,
-      });
+      const siteId = site._id;
+      const [section, option] = await Promise.all([
+        loadSection({
+          basedb,
+          siteId,
+          id: sectionId,
+          alias: sectionAlias,
+        }),
+        loadOption({
+          basedb,
+          siteId,
+          id: optionId,
+          name: 'Standard',
+        }),
+      ]);
+
       const descendantIds = await sectionBubbling ? getDescendantIds(section._id, basedb) : [];
 
       const now = new Date();
