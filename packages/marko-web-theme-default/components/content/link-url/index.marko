@@ -1,0 +1,16 @@
+import { getAsObject } from "@base-cms/object-path";
+
+$ const content = getAsObject(input, "obj");
+$ const { linkUrl } = content;
+$ const label = input.label || "Click Here to View";
+
+<if(linkUrl)>
+  <marko-web-link
+    class="btn btn-primary btn-lg"
+    href=linkUrl
+    title=input.title
+    target=input.target
+  >
+    ${label}
+  </marko-web-link>
+</if>
