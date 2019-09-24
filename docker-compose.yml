@@ -102,6 +102,30 @@ services:
     depends_on:
       - mongodb
 
+  sitemaps-lfw:
+    << : *node
+    working_dir: /base-cms/services/sitemaps
+    command: ["/base-cms/node_modules/.bin/gulp"]
+    environment:
+      <<: *env
+      <<: *env-newrelic
+      MONGO_DSN: ${LFW_MONGO_DSN-mongodb://mongodb:27017}
+      ENABLE_BASEDB_LOGGING: ${ENABLE_BASEDB_LOGGING-}
+    depends_on:
+      - mongodb
+
+  rss-lfw:
+    << : *node
+    working_dir: /base-cms/services/rss
+    command: ["/base-cms/node_modules/.bin/gulp"]
+    environment:
+      <<: *env
+      <<: *env-newrelic
+      MONGO_DSN: ${LFW_MONGO_DSN-mongodb://mongodb:27017}
+      ENABLE_BASEDB_LOGGING: ${ENABLE_BASEDB_LOGGING-}
+    depends_on:
+      - mongodb
+
   example-laserfocusworld:
     <<: *node
     working_dir: /base-cms/services/example-laserfocusworld
@@ -114,8 +138,8 @@ services:
       TENANT_KEY: ebm_lfw
       SITE_ID: 5ca4e38775a25490050041a7
       GRAPHQL_URI: http://graphql-server-lfw
-      SITEMAPS_URI: http://sitemaps
-      RSS_URI: http://rss
+      SITEMAPS_URI: http://sitemaps-lfw
+      RSS_URI: http://rss-lfw
       OEMBED_URI: http://oembed
       CDN_IMAGE_HOSTNAME: img.laserfocusworld.com
       CDN_ASSET_HOSTNAME: cdn.laserfocusworld.com
@@ -123,7 +147,7 @@ services:
       NEW_RELIC_LICENSE_KEY: (unset)
     depends_on:
       - graphql-server-lfw
-      - sitemaps
+      - sitemaps-lfw
       - rss
       - oembed
     ports:
