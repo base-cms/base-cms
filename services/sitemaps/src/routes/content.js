@@ -13,21 +13,39 @@ query ContentSitemapUrls($input: ContentSitemapUrlsQueryInput) {
     lastmod
     changefreq
     priority
+    images {
+      id
+      loc
+      caption
+    }
   }
 }
 
 `;
+
+const createImage = ({
+  loc,
+  caption,
+  title,
+}) => {
+  const parts = [];
+  if (caption) parts.push(`<image:caption>${caption}</image:caption>`);
+  if (title) parts.push(`<image:title>${title}</image:title>`);
+  return `<image:image><image:loc>${loc}</image:loc>${parts.join('')}</image:image>`;
+};
 
 const createUrl = ({
   loc,
   lastmod,
   changefreq,
   priority,
+  images,
 }) => {
   const parts = [];
   if (lastmod) parts.push(`<lastmod>${moment(lastmod).toISOString()}</lastmod>`);
   if (changefreq) parts.push(`<changefreq>${changefreq}</changefreq>`);
   if (priority) parts.push(`<priority>${priority}</priority>`);
+  if (images && images.length) parts.push(...images.map(image => createImage(image)));
   return `<url><loc>${loc}</loc>${parts.join('')}</url>`;
 };
 
@@ -42,6 +60,7 @@ module.exports = asyncRoute(async (req, res) => {
   const skip = limit * page;
 
   const input = { contentTypes: [type], pagination: { limit, skip } };
+
   const { data } = await apollo.query({ query, variables: { input } });
   const { contentSitemapUrls } = data;
 
@@ -49,7 +68,7 @@ module.exports = asyncRoute(async (req, res) => {
 
   const urlset = contentSitemapUrls.map(url => createUrl(url));
   const lines = ['<?xml version="1.0" encoding="utf-8"?>'];
-  lines.push('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">');
+  lines.push('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">');
   lines.push(...urlset);
   lines.push('</urlset>');
 
