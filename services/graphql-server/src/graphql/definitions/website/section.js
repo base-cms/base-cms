@@ -9,6 +9,7 @@ extend type Query {
   websiteSections(input: WebsiteSectionsQueryInput = {}): WebsiteSectionConnection! @findMany(model: "website.Section", withSite: true)
   rootWebsiteSections(input: RootWebsiteSectionsQueryInput = {}): WebsiteSectionConnection! @findMany(model: "website.Section", withSite: true, criteria: "rootWebsiteSection")
   websiteSectionsFromIds(input: WebsiteSectionsFromIdsQueryInput!): WebsiteSectionConnection! @findMany(model: "website.Section", withSite: true, using: { ids: "_id" })
+  websiteSectionSitemapUrls(input: WebsiteSectionSitemapUrlsInput = {}): [WebsiteSectionSitemapUrl!]!
 }
 
 type WebsiteSection {
@@ -61,11 +62,25 @@ type WebsiteSectionMetadata {
   description: String
 }
 
+type WebsiteSectionSitemapUrl {
+  id: String! @value(localField: "_id")
+  loc: String!
+  lastmod: Date
+  changefreq: SitemapChangeFreq!
+  priority: Float!
+}
+
 enum WebsiteSectionSortField {
   id
   name
   fullName
   sequence
+}
+
+input WebsiteSectionSitemapUrlsInput {
+  changefreq: SitemapChangeFreq = daily
+  priority: Float = 0.7
+  pagination: PaginationInput = { limit: null }
 }
 
 input WebsiteSectionQueryInput {

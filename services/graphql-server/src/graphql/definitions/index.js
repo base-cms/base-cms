@@ -62,6 +62,16 @@ enum MatchWords {
   all
 }
 
+enum SitemapChangeFreq {
+  always
+  hourly
+  daily
+  weekly
+  monthly
+  yearly
+  never
+}
+
 input PaginationInput {
   limit: Int = 10
   skip: Int
