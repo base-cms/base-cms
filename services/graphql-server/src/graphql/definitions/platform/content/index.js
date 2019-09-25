@@ -9,6 +9,7 @@ extend type Query {
   contentHash(input: ContentHashQueryInput = {}): Content @findOne(model: "platform.Content", using: { hash: "hash" }, criteria: "content")
   allContent(input: AllContentQueryInput = {}): ContentConnection! @findMany(model: "platform.Content", criteria: "content")
   allPublishedContent(input: AllPublishedContentQueryInput = {}): ContentConnection!
+  publishedContentCounts(input: PublishedContentCountsQueryInput = {}): [PublishedContentCount!]!
   allAuthorContent(input: AllAuthorContentQueryInput = {}): ContentConnection!
   allCompanyContent(input: AllCompanyContentQueryInput = {}): ContentConnection!
   magazineScheduledContent(input: MagazineScheduledContentQueryInput = {}): ContentConnection!
@@ -159,6 +160,12 @@ type ContentWebsiteSchedule {
   endDate(input: FormatDate = {}): String @momentFormat(localField: "end")
 }
 
+type PublishedContentCount {
+  id: String! @value(localField: "_id")
+  type(input: ContentTypeInput = {}): String!
+  count: Int!
+}
+
 input ContentQueryInput {
   status: ModelStatus = active
   id: Int!
@@ -179,6 +186,12 @@ input AllPublishedContentQueryInput {
   pagination: PaginationInput = {}
   beginning: ContentBeginningInput = {}
   ending: ContentEndingInput = {}
+}
+
+input PublishedContentCountsQueryInput {
+  since: Date
+  excludeContentTypes: [ContentType!] = []
+  includeContentTypes: [ContentType!] = []
 }
 
 input AllAuthorContentQueryInput {

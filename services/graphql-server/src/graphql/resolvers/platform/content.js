@@ -69,7 +69,24 @@ const loadHomeSection = async ({
   ...(siteId && { 'site.$id': siteId }),
 }, { projection });
 
+const formatContentType = ({ type }, { input }) => {
+  const { format } = input;
+  switch (format) {
+    case 'dasherize':
+      return dasherize(type);
+    case 'underscore':
+      return underscore(type);
+    case 'titleize':
+      return titleize(type);
+    default:
+      return type;
+  }
+};
+
 module.exports = {
+  /**
+   *
+   */
   Addressable: {
     __resolveType: resolveType,
     cityStateZip: ({ city, state, zip }) => {
@@ -85,10 +102,30 @@ module.exports = {
       return out || null;
     },
   },
+
+  /**
+   *
+   */
   Authorable: { __resolveType: resolveType },
+
+  /**
+   *
+   */
   Contactable: { __resolveType: resolveType },
+
+  /**
+   *
+   */
   SocialLinkable: { __resolveType: resolveType },
+
+  /**
+   *
+   */
   OrganizationContactable: { __resolveType: resolveType },
+
+  /**
+   *
+   */
   Inquirable: {
     __resolveType: resolveType,
     inquiryEmails,
@@ -248,19 +285,7 @@ module.exports = {
       return linkUrl;
     },
 
-    type: ({ type }, { input }) => {
-      const { format } = input;
-      switch (format) {
-        case 'dasherize':
-          return dasherize(type);
-        case 'underscore':
-          return underscore(type);
-        case 'titleize':
-          return titleize(type);
-        default:
-          return type;
-      }
-    },
+    type: formatContentType,
 
     statusText: ({ status, published, unpublished }) => {
       const now = Date.now();
@@ -296,11 +321,21 @@ module.exports = {
     },
   },
 
+  /**
+   *
+   */
   ContentArticle: {
     sidebars: ({ sidebars }) => {
       if (!isArray(sidebars)) return [];
       return sidebars.map(({ body } = {}) => body).filter(v => v);
     },
+  },
+
+  /**
+   *
+   */
+  PublishedContentCount: {
+    type: formatContentType,
   },
 
   /**
@@ -354,6 +389,33 @@ module.exports = {
         projection,
         ...pagination,
       });
+    },
+
+    /**
+     *
+     */
+    publishedContentCounts: async (_, { input }, { basedb, site }) => {
+      const {
+        since,
+        includeContentTypes: contentTypes,
+        excludeContentTypes,
+      } = input;
+
+      const $match = getPublishedCriteria({
+        since,
+        contentTypes,
+        excludeContentTypes,
+      });
+      if (site._id) $match['mutations.Website.primarySite'] = site._id;
+
+      const pipeline = [
+        { $match },
+        { $group: { _id: '$type', count: { $sum: 1 } } },
+        { $sort: { _id: 1 } },
+        { $project: { type: '$_id', count: 1 } },
+      ];
+      const results = await basedb.aggregate('platform.Content', pipeline);
+      return results.toArray();
     },
 
     /**
