@@ -341,6 +341,16 @@ module.exports = {
   /**
    *
    */
+  ContentSitemapUrl: {
+    loc: async (content, _, ctx) => {
+      const path = await canonicalPathFor(content, ctx);
+      return `${ctx.site.origin}${path}`;
+    },
+  },
+
+  /**
+   *
+   */
   Query: {
     /**
      *
@@ -416,6 +426,40 @@ module.exports = {
       ];
       const results = await basedb.aggregate('platform.Content', pipeline);
       return results.toArray();
+    },
+
+    contentSitemapUrls: async (_, { input }, { basedb, site }) => {
+      const {
+        since,
+        contentTypes,
+        changefreq,
+        priority,
+        pagination,
+      } = input;
+
+      const query = getPublishedCriteria({ since, contentTypes, excludeContentTypes: ['Promotion', 'TextAd'] });
+
+      if (site._id) query['mutations.Website.primarySite'] = site._id;
+
+      const projection = {
+        type: 1,
+        'mutations.Website.slug': 1,
+        'mutations.Website.primarySection': 1,
+        updated: 1,
+      };
+      const sort = { updated: -1 };
+      const { limit, skip } = pagination;
+      const cursor = await basedb.find('platform.Content', query, {
+        limit,
+        skip,
+        projection,
+        sort,
+      });
+      const docs = [];
+      await cursor.forEach((doc) => {
+        docs.push({ ...doc, changefreq, priority });
+      });
+      return docs;
     },
 
     /**

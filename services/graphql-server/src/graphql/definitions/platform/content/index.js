@@ -10,6 +10,7 @@ extend type Query {
   allContent(input: AllContentQueryInput = {}): ContentConnection! @findMany(model: "platform.Content", criteria: "content")
   allPublishedContent(input: AllPublishedContentQueryInput = {}): ContentConnection!
   publishedContentCounts(input: PublishedContentCountsQueryInput = {}): [PublishedContentCount!]!
+  contentSitemapUrls(input: ContentSitemapUrlsQueryInput = {}): [ContentSitemapUrl!]!
   allAuthorContent(input: AllAuthorContentQueryInput = {}): ContentConnection!
   allCompanyContent(input: AllCompanyContentQueryInput = {}): ContentConnection!
   magazineScheduledContent(input: MagazineScheduledContentQueryInput = {}): ContentConnection!
@@ -166,6 +167,14 @@ type PublishedContentCount {
   count: Int!
 }
 
+type ContentSitemapUrl {
+  id: String! @value(localField: "_id")
+  loc: String!
+  lastmod: Date @value(localField: "updated")
+  changefreq: SitemapChangeFreq!
+  priority: Float!
+}
+
 input ContentQueryInput {
   status: ModelStatus = active
   id: Int!
@@ -174,6 +183,14 @@ input ContentQueryInput {
 input ContentHashQueryInput {
   status: ModelStatus = active
   hash: String!
+}
+
+input ContentSitemapUrlsQueryInput {
+  since: Date
+  contentTypes: [ContentType!]!
+  changefreq: SitemapChangeFreq = weekly
+  priority: Float = 0.5
+  pagination: PaginationInput = { limit: 100 }
 }
 
 input AllPublishedContentQueryInput {
