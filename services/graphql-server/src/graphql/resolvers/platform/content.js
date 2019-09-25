@@ -347,7 +347,7 @@ module.exports = {
   ContentSitemapUrl: {
     loc: async (content, _, ctx) => {
       const path = await canonicalPathFor(content, ctx);
-      return encodeURI(sitemap.escape(`${ctx.site.origin}${path}`);
+      return encodeURI(sitemap.escape(`${ctx.site.origin}${path}`));
     },
     images: async (content, _, { basedb }) => {
       const { images } = content;
