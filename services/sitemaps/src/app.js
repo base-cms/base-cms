@@ -1,6 +1,7 @@
 const express = require('express');
 const helmet = require('helmet');
 const { apollo, websiteContext } = require('./middleware');
+const routes = require('./routes');
 
 const app = express();
 
@@ -14,8 +15,6 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/', (req, res) => {
-  res.json(res.locals.websiteContext);
-});
+routes(app);
 
 module.exports = app;
