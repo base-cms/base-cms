@@ -112,11 +112,25 @@ class BaseDB {
    */
   async find(modelName, query, options) {
     const start = hrtime();
-    const { namespace, resource } = BaseDB.parseModelName(modelName);
-    const coll = await this.collection(namespace, resource);
-    const docs = await coll.find(query, options).toArray();
+    const cursor = await this.findCursor(modelName, query, options);
+    const docs = await cursor.toArray();
     this.log('find', start, { modelName, query, options });
     return docs;
+  }
+
+  /**
+   * Finds a multiple documents for the provided model name and (optional) query criteria.
+   * Will return a Cursor object.
+   *
+   * @param {string} modelName The model name, e.g. `platform.Content`.
+   * @param {object} [query] The query criteria.
+   * @param {object} [options] Options to pass to `Collection.find`.
+   * @return {Promise<object[]>}
+   */
+  async findCursor(modelName, query, options) {
+    const { namespace, resource } = BaseDB.parseModelName(modelName);
+    const coll = await this.collection(namespace, resource);
+    return coll.find(query, options);
   }
 
   /**
