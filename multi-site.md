@@ -9,6 +9,7 @@
 - [ ] Add site to Redirects collection
 - [ ] Determine if `canonicalPath` should be renamed to `websitePath`
 - [ ] Should content path rules be stored on the Site object?
+- [ ] Add image and asset hostnames to Site object
 
 ## Primary Site + Section
 - Must select primary site + section
