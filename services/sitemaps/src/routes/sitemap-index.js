@@ -34,7 +34,7 @@ const getSuffixes = (count, limit = PAGE_SIZE) => {
 
 const sitemapUrl = (origin, type, suffix) => `${origin}/sitemap/${type}${suffix}.xml`;
 const createSitemap = (origin, type, suffix) => `<sitemap><loc>${sitemapUrl(origin, type, suffix)}</loc></sitemap>`;
-const createIndex = maps => `<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${maps.join('')}</sitemapindex>`;
+const createIndex = maps => `<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/siteindex.xsd">${maps.join('')}</sitemapindex>`;
 
 module.exports = asyncRoute(async (req, res) => {
   const { apollo, websiteContext } = res.locals;
