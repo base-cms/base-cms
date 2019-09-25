@@ -1,48 +1,57 @@
-const { content: canonicalPathFor, requestParser: getCanonicalRules } = require('@base-cms/canonical-path');
-const { asyncRoute } = require('@base-cms/utils');
-const { BaseDB } = require('@base-cms/db');
+const { asyncRoute, getDefaultContentTypes } = require('@base-cms/utils');
+const createError = require('http-errors');
 const moment = require('moment');
+const gql = require('graphql-tag');
 const { PAGE_SIZE } = require('../env');
 
-const { getContent, getPrimarySectionLoader } = require('../util');
+const query = gql`
 
-const formatter = (docs = []) => `<?xml version="1.0" encoding="utf-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-${docs.reduce((str, { url, updated }) => `${str}  <url>
-    <loc>${url}</loc>
-    <lastmod>${moment(updated).format()}</lastmod>
-    <priority>0.5</priority>
-    <changefreq>weekly</changefreq>
-  </url>\n`, '')}
-</urlset>`;
+query ContentSitemapUrls($input: ContentSitemapUrlsQueryInput) {
+  contentSitemapUrls(input: $input) {
+    id
+    loc
+    lastmod
+    changefreq
+    priority
+  }
+}
+
+`;
+
+const createUrl = ({
+  loc,
+  lastmod,
+  changefreq,
+  priority,
+}) => {
+  const parts = [];
+  if (lastmod) parts.push(`<lastmod>${moment(lastmod).toISOString()}</lastmod>`);
+  if (changefreq) parts.push(`<changefreq>${changefreq}</changefreq>`);
+  if (priority) parts.push(`<priority>${priority}</priority>`);
+  return `<url><loc>${loc}</loc>${parts.join('')}</url>`;
+};
 
 module.exports = asyncRoute(async (req, res) => {
-  const { baseUri, basedb } = res.locals;
-  const canonicalRules = getCanonicalRules(req);
+  const { apollo } = res.locals;
+  const { type, suffix } = req.params;
+  const types = getDefaultContentTypes();
+  if (!types.includes(type)) throw createError(404, `No content type found for ${type}`);
 
-  try {
-    const regex = /sitemap\/(?<type>[a-zA-Z]+)\.*(?<suffix>.*).xml$/;
-    const { type, suffix } = req.path.match(regex).groups;
-    const skip = suffix ? parseInt(suffix, 10) * PAGE_SIZE : 0;
-    const docs = await getContent(basedb, type, skip);
+  const page = suffix ? parseInt(suffix.replace('.', ''), 10) : 0;
+  const limit = PAGE_SIZE;
+  const skip = limit * page;
 
-    const sectionIds = [...new Set(docs.map((content) => {
-      const ref = BaseDB.get(content, 'mutations.Website.primarySection');
-      return BaseDB.extractRefId(ref);
-    }))];
+  const input = { contentTypes: [type], pagination: { limit, skip } };
+  const { data } = await apollo.query({ query, variables: { input } });
+  const { contentSitemapUrls } = data;
 
-    // Inject a loader function into the context
-    const load = await getPrimarySectionLoader(basedb, sectionIds);
-    const context = { canonicalRules, load };
+  if (!contentSitemapUrls.length) throw createError(404, 'No content found.');
 
-    const toFormat = await Promise.all(docs.map(async (content) => {
-      const slug = BaseDB.get(content, 'mutations.Website.slug');
-      const path = await canonicalPathFor({ slug, ...content }, context);
-      const url = `${baseUri}${path}`;
-      return { ...content, url };
-    }));
-    res.end(formatter(toFormat));
-  } catch (e) {
-    res.status(500).send();
-  }
+  const urlset = contentSitemapUrls.map(url => createUrl(url));
+  const lines = ['<?xml version="1.0" encoding="utf-8"?>'];
+  lines.push('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">');
+  lines.push(...urlset);
+  lines.push('</urlset>');
+
+  res.send(lines.join(''));
 });
