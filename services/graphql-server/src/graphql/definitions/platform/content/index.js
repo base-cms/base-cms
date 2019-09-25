@@ -173,6 +173,14 @@ type ContentSitemapUrl {
   lastmod: Date @value(localField: "updated")
   changefreq: SitemapChangeFreq!
   priority: Float!
+  images: [ContentSitemapImage!]!
+}
+
+type ContentSitemapImage {
+  id: String @value(localField: "_id")
+  loc: String!
+  caption: String
+  title: String
 }
 
 input ContentQueryInput {

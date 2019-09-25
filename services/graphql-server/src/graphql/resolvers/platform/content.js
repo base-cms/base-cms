@@ -4,7 +4,10 @@ const { cleanPath } = require('@base-cms/utils');
 const { content: canonicalPathFor } = require('@base-cms/canonical-path');
 const { get } = require('@base-cms/object-path');
 const { underscore, dasherize, titleize } = require('@base-cms/inflector');
+const { createSrcFor, createCaptionFor } = require('@base-cms/image');
 
+const sitemap = require('../../utils/sitemap');
+const criteriaFor = require('../../utils/criteria-for');
 const getProjection = require('../../utils/get-projection');
 const formatStatus = require('../../utils/format-status');
 const getEmbeddedImageTags = require('../../utils/embedded-image-tags');
@@ -344,8 +347,27 @@ module.exports = {
   ContentSitemapUrl: {
     loc: async (content, _, ctx) => {
       const path = await canonicalPathFor(content, ctx);
-      return `${ctx.site.origin}${path}`;
+      return encodeURI(sitemap.escape(`${ctx.site.origin}${path}`);
     },
+    images: async (content, _, { basedb }) => {
+      const { images } = content;
+      if (!isArray(images) || !images.length) return [];
+      const query = { ...criteriaFor('assetImage'), _id: { $in: images } };
+      const projection = {
+        name: 1,
+        caption: 1,
+        filePath: 1,
+        fileName: 1,
+        cropDimensions: 1,
+      };
+      return basedb.find('platform.Asset', query, { projection });
+    },
+  },
+
+  ContentSitemapImage: {
+    loc: (image, _, { imageHost }) => encodeURI(sitemap.escape(createSrcFor(imageHost, image, undefined, { w: 640, auto: 'format' }))),
+    caption: image => sitemap.escape(createCaptionFor(image.caption)),
+    title: image => sitemap.escape(image.name),
   },
 
   /**
@@ -446,6 +468,7 @@ module.exports = {
         'mutations.Website.slug': 1,
         'mutations.Website.primarySection': 1,
         updated: 1,
+        images: 1,
       };
       const sort = { updated: -1 };
       const { limit, skip } = pagination;
