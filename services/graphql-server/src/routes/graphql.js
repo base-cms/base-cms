@@ -10,6 +10,7 @@ const newrelic = require('../newrelic');
 const basedbFactory = require('../basedb');
 const createLoaders = require('../dataloaders');
 const schema = require('../graphql/schema');
+const websiteContext = require('../graphql/utils/website-context');
 const { NODE_ENV, GRAPHQL_ENDPOINT, ENGINE_API_KEY } = require('../env');
 
 const isProduction = NODE_ENV === 'production';
@@ -38,7 +39,7 @@ const loadSite = async ({ basedb, siteId, tenant }) => {
   }, { projection: { _id: 1, name: 1, url: 1 } });
   if (!site) throw new Error(`No site was found for tenant '${tenant}' using ID '${siteId}'`);
   if (!site.url) throw new Error(`No site url is set for tenant '${tenant}' using ID '${siteId}'`);
-  return site;
+  return websiteContext(site);
 };
 
 const server = new ApolloServer({
