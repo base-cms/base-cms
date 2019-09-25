@@ -4,8 +4,8 @@ const { PAGE_SIZE } = require('../env');
 
 const query = gql`
 
-query PublishedContentCounts {
-  publishedContentCounts {
+query PublishedContentCounts($input: PublishedContentCountsQueryInput) {
+  publishedContentCounts(input: $input) {
     id
     type(input: { format: standard })
     count
@@ -39,8 +39,9 @@ const createIndex = maps => `<sitemapindex xmlns="http://www.sitemaps.org/schema
 module.exports = asyncRoute(async (req, res) => {
   const { apollo, websiteContext } = res.locals;
   const { origin } = websiteContext;
+  const input = { excludeContentTypes: ['Promotion', 'TextAd'] };
 
-  const { data } = await apollo.query({ query });
+  const { data } = await apollo.query({ query, variables: { input } });
   const { publishedContentCounts } = data;
 
   const sitemaps = publishedContentCounts.reduce((arr, { type, count }) => {
