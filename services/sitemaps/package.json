@@ -14,6 +14,7 @@
   "dependencies": {
     "@base-cms/canonical-path": "^1.0.0-alpha.1",
     "@base-cms/db": "^1.0.0-alpha.1",
+    "@base-cms/express-apollo": "^1.0.0-alpha.1",
     "@base-cms/tenant-context": "^1.0.0-alpha.1",
     "@base-cms/tooling": "^1.0.0-alpha.1",
     "@base-cms/utils": "^1.0.0-alpha.1",

@@ -9,7 +9,7 @@ const {
 const { nonemptystr } = custom;
 
 module.exports = cleanEnv(process.env, {
-  MONGO_DSN: nonemptystr({ desc: 'The Base MongoDB connection URL.' }),
+  GRAPHQL_URI: nonemptystr({ desc: 'The BaseCMS GraphQL API URL.' }),
   PAGE_SIZE: num({ desc: 'The number of urls per page', default: 5000 }),
   NEW_RELIC_ENABLED: bool({ desc: 'Whether New Relic is enabled.', default: true, devDefault: false }),
   NEW_RELIC_LICENSE_KEY: nonemptystr({ desc: 'The license key for New Relic.', devDefault: '(unset)' }),
