@@ -1,21 +1,21 @@
 const express = require('express');
 const helmet = require('helmet');
-const { apolloClient } = require('@base-cms/express-apollo');
-const { passRequestHeaders } = require('@base-cms/tenant-context');
-const { GRAPHQL_URI } = require('./env');
-const routes = require('./routes');
+const { apollo, websiteContext } = require('./middleware');
 
 const app = express();
 
 app.use(helmet());
 app.set('trust proxy', ['loopback', 'linklocal', 'uniquelocal']);
 
+app.use(apollo());
+app.use(websiteContext());
 app.use((req, res, next) => {
-  const headers = passRequestHeaders(req);
-  app.use(apolloClient(GRAPHQL_URI, { name: 'Sitemaps', link: { headers } }));
+  res.setHeader('X-Robots-Tag', 'noindex');
   next();
 });
 
-routes(app);
+app.get('/', (req, res) => {
+  res.json(res.locals.websiteContext);
+});
 
 module.exports = app;
