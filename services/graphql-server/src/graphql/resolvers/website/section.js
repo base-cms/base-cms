@@ -4,6 +4,7 @@ const getProjection = require('../../utils/get-projection');
 const getGraphType = require('../../utils/get-graph-type');
 const { createTitle, createDescription } = require('../../utils/website-section');
 const getDescendantIds = require('../../utils/website-section-child-ids');
+const sitemap = require('../../utils/sitemap');
 
 const loadHierarchy = async (section, load, projection, sections = []) => {
   const ref = BaseDB.get(section, 'parent');
@@ -61,7 +62,7 @@ module.exports = {
   WebsiteSectionSitemapUrl: {
     loc: async (section, _, ctx) => {
       const path = await canonicalPathFor(section, ctx);
-      return `${ctx.site.origin}${path}`;
+      return encodeURI(sitemap.escape(`${ctx.site.origin}${path}`));
     },
     lastmod: async (section, _, { basedb }) => {
       const now = new Date();
