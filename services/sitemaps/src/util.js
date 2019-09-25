@@ -2,26 +2,7 @@ const moment = require('moment');
 const { getPublishedContentCriteria } = require('@base-cms/utils');
 const { PAGE_SIZE } = require('./env');
 
-/**
- * Returns an array of file suffixes based on counts e.g;
- * count=    1 = ['']
- * count=10000 = ['']
- * count=10001 = ['', '.1']
- * count=20000 = ['', '.1']
- * count=20001 = ['', '.1', '.2']
- *
- * @param {*} count
- * @param {*} limit
- */
-const getSuffixes = (count, limit = PAGE_SIZE) => {
-  const num = count % limit === 0
-    ? count / limit
-    : ((count - (count % limit)) / limit) + 1;
-  return [...Array(num).keys()].map(x => (x === 0 ? '' : `.${x}`));
-};
-
 module.exports = {
-  getSuffixes,
   getContent: (basedb, type, skip) => {
     const query = {
       ...getPublishedContentCriteria(),
@@ -49,14 +30,6 @@ module.exports = {
       sort: { sequence: 1 },
     };
     return basedb.find('website.Section', { status: 1 }, options);
-  },
-  getContentCounts: (basedb) => {
-    const pipeline = [
-      { $match: getPublishedContentCriteria() },
-      { $group: { _id: '$type', count: { $sum: 1 } } },
-      { $sort: { count: -1 } },
-    ];
-    return basedb.aggregate('platform.Content', pipeline);
   },
   getPrimarySectionLoader: async (basedb, ids) => {
     const query = {
