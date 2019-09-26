@@ -4,7 +4,7 @@ const content = require('./content');
 const googleNews = require('./google-news');
 
 const xml = () => (req, res, next) => {
-  res.setHeader('Content-Type', 'text/xml');
+  res.setHeader('Content-Type', 'text/xml; charset=utf-8');
   next();
 };
 

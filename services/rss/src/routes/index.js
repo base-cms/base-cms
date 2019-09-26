@@ -22,7 +22,7 @@ const rss = () => (req, res, next) => {
   const mountPoint = req.get('x-mount-point') || '/__rss';
   res.locals.mountHref = `${website.origin}${mountPoint}${req.url}`;
 
-  res.setHeader('Content-Type', 'application/rss+xml');
+  res.setHeader('Content-Type', 'application/rss+xml; charset=utf-8');
   next();
 };
 
