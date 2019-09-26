@@ -9,6 +9,8 @@ const cleanUrl = (url) => {
 
 module.exports = (site) => {
   const s = {
+    imageHost: 'base.imgix.net',
+    assetHost: 'cdn.baseplatform.io',
     ...site,
     language: {
       primaryCode: 'en',

@@ -159,9 +159,9 @@ module.exports = {
    */
   Media: {
     __resolveType: resolveType,
-    fileSrc: ({ fileName, filePath }, _, { assetHost }) => {
+    fileSrc: ({ fileName, filePath }, _, { site }) => {
       if (!fileName || !filePath) return null;
-      return `https://${assetHost}/${cleanPath(filePath)}/${fileName}`;
+      return `https://${site.assetHost}/${cleanPath(filePath)}/${fileName}`;
     },
   },
 
@@ -266,14 +266,14 @@ module.exports = {
       return contentTeaser.generateTeaser(teaser, teaserFallback, input) || null;
     },
 
-    body: async (content, { input }, { imageHost, basedb }) => {
+    body: async (content, { input }, { site, basedb }) => {
       const { mutation } = input;
       const { body } = content;
       const mutated = get(content, `mutations.${mutation}.body`);
 
       let value = mutation ? mutated || body : body;
       // Convert image tags to include image attributes (src, alt, caption, credit).
-      const imageTags = await getEmbeddedImageTags(value, { imageHost, basedb });
+      const imageTags = await getEmbeddedImageTags(value, { imageHost: site.imageHost, basedb });
       imageTags.forEach((tag) => {
         const replacement = tag.isValid() ? tag.build() : '';
         value = value.replace(tag.getRegExp(), replacement);
@@ -380,7 +380,7 @@ module.exports = {
   },
 
   ContentSitemapImage: {
-    loc: (image, _, { imageHost }) => encodeURI(sitemap.escape(createSrcFor(imageHost, image, {}))),
+    loc: (image, _, { site }) => encodeURI(sitemap.escape(createSrcFor(site.imageHost, image, {}))),
     caption: image => sitemap.escape(createCaptionFor(image.caption)),
     title: image => sitemap.escape(image.name),
   },

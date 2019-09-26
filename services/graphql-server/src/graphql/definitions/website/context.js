@@ -11,6 +11,8 @@ type WebsiteContext {
   name: String!
   url: String!
   origin: String!
+  imageHost: String!
+  assetHost: String!
   language: WebsiteContextLanguage!
 }
 

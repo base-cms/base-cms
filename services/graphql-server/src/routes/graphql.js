@@ -37,6 +37,8 @@ const loadSite = async ({ basedb, siteId, tenant }) => {
     url: 1,
     decription: 1,
     language: 1,
+    imageHost: 1,
+    assetHost: 1,
   };
   const site = await basedb.findOne('platform.Product', {
     status: 1,
@@ -52,17 +54,10 @@ const server = new ApolloServer({
   schema,
   ...config,
   context: async ({ req }) => {
-    // @todo Should the siteId be required?
-    const {
-      tenant,
-      siteId,
-      imageHost,
-      assetHost,
-    } = getFromRequest(req);
+    const { tenant, siteId } = getFromRequest(req);
     const basedb = basedbFactory(tenant);
     const loaders = createLoaders(basedb);
 
-    // If this becomes optional, an empty, faux object should be returned instead.
     const site = await loadSite({ siteId, basedb, tenant });
 
     return {
@@ -86,8 +81,6 @@ const server = new ApolloServer({
         ]);
       },
       canonicalRules: canonicalRules(req),
-      imageHost,
-      assetHost,
     };
   },
   formatError: (e) => {

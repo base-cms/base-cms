@@ -23,8 +23,6 @@ module.exports = async ({
   graphqlUri = env.GRAPHQL_URI,
   tenantKey = env.TENANT_KEY,
   siteId = env.SITE_ID,
-  cdnImageHostname = env.CDN_IMAGE_HOSTNAME || 'base.imgix.net',
-  cdnAssetHostname = env.CDN_ASSET_HOSTNAME || 'cdn.baseplatform.io',
   errorTemplate,
   document, // custom marko-web-document component
   components, // components to register globally (e.g. for load more, etc)
@@ -53,8 +51,6 @@ module.exports = async ({
     graphqlUri,
     tenantKey,
     siteId,
-    cdnImageHostname,
-    cdnAssetHostname,
     onAsyncBlockError,
     document,
     components,
