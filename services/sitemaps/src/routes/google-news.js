@@ -15,9 +15,6 @@ query ContentSitemapNewsUrls {
     publication {
       id
       name
-      language {
-        primaryCode
-      }
     }
     images {
       id
@@ -29,15 +26,15 @@ query ContentSitemapNewsUrls {
 
 `;
 
-const createPublication = ({ name, language }) => {
+const createPublication = (name, language) => {
   const parts = [
     `<news:name>${name}</news:name>`,
-    `<news:language>${language.primaryCode}</news:language>`,
+    `<news:language>${language}</news:language>`,
   ];
   return `<news:publication>${parts.join('')}</news:publication>`;
 };
 
-const createUrl = ({
+const createUrl = (website, {
   loc,
   title,
   published,
@@ -47,7 +44,7 @@ const createUrl = ({
   // News requires a publication, a published date and a title.
   if (!publication || !published || !title) return null;
   const parts = [
-    createPublication(publication),
+    createPublication(publication.name, website.language.primaryCode),
     `<news:publication_date>${moment(published).toISOString()}</news:publication_date>`,
     `<news:title>${title}</news:title>`,
   ];
@@ -57,7 +54,7 @@ const createUrl = ({
 };
 
 module.exports = asyncRoute(async (req, res) => {
-  const { apollo } = res.locals;
+  const { apollo, websiteContext: website } = res.locals;
   const { data } = await apollo.query({ query });
   const { contentSitemapNewsUrls } = data;
 
@@ -68,7 +65,7 @@ module.exports = asyncRoute(async (req, res) => {
     .setAttr('xmlns:image', 'http://www.google.com/schemas/sitemap-image/1.1')
     .setAttr('xmlns:xsi', 'http://www.w3.org/2001/XMLSchema-instance')
     .setAttr('xsi:schemaLocation', 'http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd http://www.google.com/schemas/sitemap-news/0.9 http://www.google.com/schemas/sitemap-news/0.9/sitemap-news.xsd')
-    .setUrls(contentSitemapNewsUrls.map(url => createUrl(url)));
+    .setUrls(contentSitemapNewsUrls.map(url => createUrl(website, url)));
 
   res.end(urlset.build());
 });
