@@ -31,9 +31,9 @@ module.exports = {
      */
     redirectTo: () => null,
 
-    metadata: section => ({
+    metadata: (section, _, { site }) => ({
       title: () => createTitle(section),
-      description: (_, args, { site }) => createDescription(section, site),
+      description: () => createDescription(section, site),
     }),
 
     hierarchy: async (section, _, { load }, info) => {
