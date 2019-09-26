@@ -1,13 +1,13 @@
-const { envalid } = require('@base-cms/tooling');
+const envalid = require('@base-cms/env');
 
 const {
-  custom,
+  validators,
   cleanEnv,
   bool,
   num,
   port,
 } = envalid;
-const { nonemptystr } = custom;
+const { nonemptystr } = validators;
 
 module.exports = cleanEnv(process.env, {
   GRAPHQL_URI: nonemptystr({ desc: 'The BaseCMS GraphQL API URL.' }),
