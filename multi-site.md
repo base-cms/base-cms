@@ -10,7 +10,7 @@
 - [ ] Determine if `canonicalPath` should be renamed to `websitePath`
 - [ ] Should content path rules be stored on the Site object?
 - [ ] Add image and asset hostnames to Site object
-- [ ] Add locales to Site object (both `en` and `en_US` versions)
+- [ ] Add locales language primary and subcodes to Site object
 
 ## Primary Site + Section
 - Must select primary site + section
