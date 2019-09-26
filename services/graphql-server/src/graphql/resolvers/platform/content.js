@@ -5,6 +5,7 @@ const { content: canonicalPathFor } = require('@base-cms/canonical-path');
 const { get } = require('@base-cms/object-path');
 const { underscore, dasherize, titleize } = require('@base-cms/inflector');
 const { createSrcFor, createCaptionFor } = require('@base-cms/image');
+const moment = require('moment');
 
 const sitemap = require('../../utils/sitemap');
 const criteriaFor = require('../../utils/criteria-for');
@@ -84,6 +85,25 @@ const formatContentType = ({ type }, { input }) => {
     default:
       return type;
   }
+};
+
+const createSitemapLoc = async (content, ctx) => {
+  const path = await canonicalPathFor(content, ctx);
+  return encodeURI(sitemap.escape(`${ctx.site.origin}${path}`));
+};
+
+const loadSitemapImages = ({ content, basedb }) => {
+  const { images } = content;
+  if (!isArray(images) || !images.length) return [];
+  const query = { ...criteriaFor('assetImage'), _id: { $in: images } };
+  const projection = {
+    name: 1,
+    caption: 1,
+    filePath: 1,
+    fileName: 1,
+    cropDimensions: 1,
+  };
+  return basedb.find('platform.Asset', query, { projection });
 };
 
 module.exports = {
@@ -345,27 +365,22 @@ module.exports = {
    *
    */
   ContentSitemapUrl: {
-    loc: async (content, _, ctx) => {
-      const path = await canonicalPathFor(content, ctx);
-      return encodeURI(sitemap.escape(`${ctx.site.origin}${path}`));
-    },
-    images: async (content, _, { basedb }) => {
-      const { images } = content;
-      if (!isArray(images) || !images.length) return [];
-      const query = { ...criteriaFor('assetImage'), _id: { $in: images } };
-      const projection = {
-        name: 1,
-        caption: 1,
-        filePath: 1,
-        fileName: 1,
-        cropDimensions: 1,
-      };
-      return basedb.find('platform.Asset', query, { projection });
-    },
+    loc: (content, _, ctx) => createSitemapLoc(content, ctx),
+    images: (content, _, { basedb }) => loadSitemapImages({ content, basedb }),
+  },
+
+  /**
+   *
+   */
+  ContentSitemapNewsUrl: {
+    loc: (content, _, ctx) => createSitemapLoc(content, ctx),
+    title: content => BaseDB.fillMutation(content, 'Website', 'name'),
+    publication: (content, _, { site }) => site,
+    images: (content, _, { basedb }) => loadSitemapImages({ content, basedb }),
   },
 
   ContentSitemapImage: {
-    loc: (image, _, { imageHost }) => encodeURI(sitemap.escape(createSrcFor(imageHost, image, undefined, { w: 640, auto: 'format' }))),
+    loc: (image, _, { imageHost }) => encodeURI(sitemap.escape(createSrcFor(imageHost, image, {}))),
     caption: image => sitemap.escape(createCaptionFor(image.caption)),
     title: image => sitemap.escape(image.name),
   },
@@ -483,6 +498,26 @@ module.exports = {
         docs.push({ ...doc, changefreq, priority });
       });
       return docs;
+    },
+
+    contentSitemapNewsUrls: async (_, args, { basedb, site }) => {
+      const contentTypes = ['News', 'PressRelease', 'Blog'];
+      const query = getPublishedCriteria({ contentTypes });
+      query.$and.push({ published: { $gte: moment().subtract(2, 'days').toDate() } });
+      if (site._id) query['mutations.Website.primarySite'] = site._id;
+
+      const limit = 1000;
+      const sort = { published: -1 };
+      const projection = {
+        type: 1,
+        'mutations.Website.name': 1,
+        'mutations.Website.slug': 1,
+        'mutations.Website.primarySection': 1,
+        published: 1,
+        name: 1,
+        images: 1,
+      };
+      return basedb.find('platform.Content', query, { limit, sort, projection });
     },
 
     /**

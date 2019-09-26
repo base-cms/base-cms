@@ -11,6 +11,7 @@ extend type Query {
   allPublishedContent(input: AllPublishedContentQueryInput = {}): ContentConnection!
   publishedContentCounts(input: PublishedContentCountsQueryInput = {}): [PublishedContentCount!]!
   contentSitemapUrls(input: ContentSitemapUrlsQueryInput = {}): [ContentSitemapUrl!]!
+  contentSitemapNewsUrls: [ContentSitemapNewsUrl!]!
   allAuthorContent(input: AllAuthorContentQueryInput = {}): ContentConnection!
   allCompanyContent(input: AllCompanyContentQueryInput = {}): ContentConnection!
   magazineScheduledContent(input: MagazineScheduledContentQueryInput = {}): ContentConnection!
@@ -174,6 +175,21 @@ type ContentSitemapUrl {
   changefreq: SitemapChangeFreq!
   priority: Float!
   images: [ContentSitemapImage!]!
+}
+
+type ContentSitemapNewsUrl {
+  id: String! @value(localField: "_id")
+  loc: String!
+  title: String!
+  publication: ContentSitemapNewsPublication!
+  published: Date
+  images: [ContentSitemapImage!]!
+}
+
+type ContentSitemapNewsPublication {
+  id: ObjectID! @value(localField: "_id")
+  name: String!
+  language: String!
 }
 
 type ContentSitemapImage {
