@@ -33,7 +33,6 @@ const config = {
 
 const loadSite = async ({ basedb, siteId, tenant }) => {
   const projection = {
-    _id: 1,
     name: 1,
     url: 1,
     decription: 1,
