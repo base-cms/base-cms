@@ -159,8 +159,12 @@ services:
       <<: *env-newrelic
       GRAPHQL_URI: http://graphql-server-lfw
       ENABLE_BASEDB_LOGGING: ${ENABLE_BASEDB_LOGGING-}
+      PORT: 80
+      EXPOSED_PORT: 10016
     depends_on:
       - graphql-server-lfw
+    ports:
+      - "10016:80"
 
   example-laserfocusworld:
     <<: *node
@@ -184,7 +188,7 @@ services:
     depends_on:
       - graphql-server-lfw
       - sitemaps-lfw
-      - rss
+      - rss-lfw
       - oembed
     ports:
       - "11162:80"
