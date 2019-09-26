@@ -11,6 +11,7 @@ type WebsiteContext {
   name: String
   url: String
   origin: String
+  language: String # ISO 639-1
 }
 
 `;

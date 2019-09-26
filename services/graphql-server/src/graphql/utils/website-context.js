@@ -8,7 +8,7 @@ const cleanUrl = (url) => {
 };
 
 module.exports = (site) => {
-  const s = { ...site };
+  const s = { language: 'en', ...site };
   s.url = cleanUrl(site.url);
   s.origin = `https://${cleanUrl(site.url)}`;
   return s;
