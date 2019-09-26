@@ -31,6 +31,8 @@ const query = gql`
               edges {
                 node {
                   id
+                  firstName
+                  lastName
                   publicEmail
                 }
               }
@@ -57,20 +59,22 @@ module.exports = asyncRoute(async (req, res) => {
     input,
     channel,
     websiteContext: website,
+    mountHref,
   } = res.locals;
 
   const { data } = await apollo.query({ query, variables: { input } });
   const { section, edges } = data.websiteScheduledContent;
 
   const parts = [
-    '<rss version="2.0">',
+    '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">',
     createChannel({
       title: channel.title || `${section.fullName || section.name} | ${website.name}`,
       link: channel.link || `${website.origin}${section.canonicalPath}`,
       description: channel.description || createDescription(section, website),
       language: website.language.code,
+      mountHref,
+      items: edges.map(edge => createItem(edge.node, website)),
     }),
-    ...edges.map(edge => createItem(edge.node, website)),
     '</rss>',
   ];
   res.send(parts.join(''));
