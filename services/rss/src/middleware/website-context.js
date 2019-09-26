@@ -9,6 +9,9 @@ query WebsiteContext {
     name
     url
     origin
+    language {
+      code
+    }
   }
 }
 
