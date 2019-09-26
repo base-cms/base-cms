@@ -114,7 +114,7 @@ module.exports = {
   website: {
     Redirects: {
       query: [
-        [{ from: 1 }, { unique: true }],
+        [{ siteId: 1, from: 1 }, { unique: true }],
       ],
     },
     Option: {
