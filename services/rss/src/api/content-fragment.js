@@ -11,6 +11,7 @@ fragment RSSItemContentFragment on Content {
   primarySection {
     id
     alias
+    name
     fullName
   }
   ... on Authorable {
