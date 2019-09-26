@@ -14,6 +14,11 @@
 - [ ] Update document and date components to use language/locale from site object
 - [x] Need to send RSS mount point to service from marko web
 
+## Fix Redirects
+Set `MONGO_DSN` in the `.env` file, then run:
+
+`$ docker-compose run -e TENANT_KEY=account_group --rm  --entrypoint node graphql-server fix-redirects.js`
+
 ## Primary Site + Section
 - Must select primary site + section
   - This will generate the canonical URL base on site and section
