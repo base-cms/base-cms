@@ -65,6 +65,7 @@ module.exports = asyncRoute(async (req, res) => {
     .setAttr('xmlns:news', 'http://www.google.com/schemas/sitemap-news/0.9')
     .setAttr('xmlns:image', 'http://www.google.com/schemas/sitemap-image/1.1')
     .setAttr('xmlns:xsi', 'http://www.w3.org/2001/XMLSchema-instance')
+    .setAttr('xsi:schemaLocation', 'http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd http://www.google.com/schemas/sitemap-news/0.9 http://www.google.com/schemas/sitemap-news/0.9/sitemap-news.xsd')
     .setUrls(contentSitemapNewsUrls.map(url => createUrl(url)).filter(v => v));
 
   res.send(urlset.build());
