@@ -7,7 +7,7 @@ class URLSet {
   }
 
   addUrl(value) {
-    this.urls.push(`<url>${value}</url>`);
+    if (value) this.urls.push(`<url>${value}</url>`);
     return this;
   }
 
@@ -33,7 +33,7 @@ class URLSet {
 
   // eslint-disable-next-line class-methods-use-this
   closingTag() {
-    return '</urlet>';
+    return '</urlset>';
   }
 }
 
