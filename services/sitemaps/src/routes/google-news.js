@@ -15,7 +15,9 @@ query ContentSitemapNewsUrls {
     publication {
       id
       name
-      language
+      language {
+        primaryCode
+      }
     }
     images {
       id
@@ -30,7 +32,7 @@ query ContentSitemapNewsUrls {
 const createPublication = ({ name, language }) => {
   const parts = [
     `<news:name>${name}</news:name>`,
-    `<news:language>${language}</news:language>`,
+    `<news:language>${language.primaryCode}</news:language>`,
   ];
   return `<news:publication>${parts.join('')}</news:publication>`;
 };
