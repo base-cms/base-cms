@@ -32,11 +32,18 @@ const config = {
 };
 
 const loadSite = async ({ basedb, siteId, tenant }) => {
+  const projection = {
+    _id: 1,
+    name: 1,
+    url: 1,
+    decription: 1,
+    language: 1,
+  };
   const site = await basedb.findOne('platform.Product', {
     status: 1,
     type: 'Site',
     _id: new ObjectID(siteId),
-  }, { projection: { _id: 1, name: 1, url: 1 } });
+  }, { projection });
   if (!site) throw new Error(`No site was found for tenant '${tenant}' using ID '${siteId}'`);
   if (!site.url) throw new Error(`No site url is set for tenant '${tenant}' using ID '${siteId}'`);
   return websiteContext(site);
