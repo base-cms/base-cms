@@ -5,13 +5,14 @@
 - [ ] Ensure ContentPage respects primary site
 - [ ] Update canonical path/url to support site context
 - [ ] Handle newsletters (this requires more thought)
-- [ ] Add multi-site support to RSS and sitemap services
+- [x] Add multi-site support to RSS and sitemap services
 - [ ] Add site to Redirects collection
 - [ ] Determine if `canonicalPath` should be renamed to `websitePath`
 - [ ] Should content path rules be stored on the Site object?
 - [ ] Add image and asset hostnames to Site object
 - [ ] Add locales language primary and subcodes to Site object
-- [ ] Need to send RSS mount point to service from marko web
+- [ ] Update document and date components to use language/locale from site object
+- [x] Need to send RSS mount point to service from marko web
 
 ## Primary Site + Section
 - Must select primary site + section
