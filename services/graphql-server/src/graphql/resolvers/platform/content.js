@@ -36,7 +36,7 @@ const loadSection = async ({
 }) => {
   if (!id && !alias) return null;
   const sectionQuery = { status: 1 };
-  if (siteId) sectionQuery['site.$id'] = siteId;
+  sectionQuery['site.$id'] = siteId;
   if (alias) {
     sectionQuery.alias = alias;
   } else {
@@ -53,7 +53,7 @@ const loadOption = async ({
 }) => {
   if (!id && !name) return null;
   const optionQuery = { status: 1 };
-  if (siteId) optionQuery['site.$id'] = siteId;
+  optionQuery['site.$id'] = siteId;
   if (id) {
     optionQuery._id = id;
   } else {
@@ -407,7 +407,7 @@ module.exports = {
 
       const query = getPublishedCriteria({ since, contentTypes });
 
-      if (site._id) query['mutations.Website.primarySite'] = site._id;
+      query['mutations.Website.primarySite'] = site._id;
 
       if (beginning.before) query.$and.push({ startDate: { $lte: beginning.before } });
       if (beginning.after) query.$and.push({ startDate: { $gte: beginning.after } });
@@ -453,7 +453,7 @@ module.exports = {
         contentTypes,
         excludeContentTypes,
       });
-      if (site._id) $match['mutations.Website.primarySite'] = site._id;
+      $match['mutations.Website.primarySite'] = site._id;
 
       const pipeline = [
         { $match },
@@ -476,7 +476,7 @@ module.exports = {
 
       const query = getPublishedCriteria({ since, contentTypes, excludeContentTypes: ['Promotion', 'TextAd'] });
 
-      if (site._id) query['mutations.Website.primarySite'] = site._id;
+      query['mutations.Website.primarySite'] = site._id;
 
       const projection = {
         type: 1,
@@ -504,7 +504,7 @@ module.exports = {
       const contentTypes = ['News', 'PressRelease', 'Blog'];
       const query = getPublishedCriteria({ contentTypes });
       query.$and.push({ published: { $gte: moment().subtract(2, 'days').toDate() } });
-      if (site._id) query['mutations.Website.primarySite'] = site._id;
+      query['mutations.Website.primarySite'] = site._id;
 
       const limit = 1000;
       const sort = { published: -1 };
@@ -538,7 +538,7 @@ module.exports = {
 
       const query = getPublishedCriteria({ since, contentTypes: includeContentTypes });
 
-      if (site._id) query['mutations.Website.primarySite'] = site._id;
+      query['mutations.Website.primarySite'] = site._id;
       query.$or = authorTypes.map((type) => {
         const field = `${type}s`;
         return { [field]: contactId };
@@ -571,7 +571,7 @@ module.exports = {
 
       const query = getPublishedCriteria({ since, contentTypes: includeContentTypes });
 
-      if (site._id) query['mutations.Website.primarySite'] = site._id;
+      query['mutations.Website.primarySite'] = site._id;
       query.$or = [
         { company: companyId },
         { 'relatedTo.$id': companyId },

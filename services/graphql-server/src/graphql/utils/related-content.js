@@ -22,7 +22,7 @@ const buildQuery = (doc, siteId, { input }) => {
     excludeContentIds: [doc._id],
     contentTypes: includeContentTypes,
   });
-  if (siteId) criteria.primarySite = siteId;
+  criteria.primarySite = siteId;
 
   // Apply additional criteria based on input values.
   if (requiresImage) criteria.primaryImage = { $exists: true };
