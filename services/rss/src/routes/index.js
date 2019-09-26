@@ -10,6 +10,7 @@ const parseJson = (value) => {
 };
 
 const rss = () => (req, res, next) => {
+  const { websiteContext: website } = res.locals;
   const { query } = req;
   if (!query.input) throw createError(400, 'No input was provided with the request.');
   const input = parseJson(query.input);
@@ -17,6 +18,10 @@ const rss = () => (req, res, next) => {
   if (!input) throw createError(400, 'The provided input is invalid.');
   res.locals.input = { ...input, pagination: { limit: 50, ...input.pagination } };
   res.locals.channel = channel || {};
+
+  const mountPoint = req.get('x-mount-point') || '/__rss';
+  res.locals.mountHref = `${website.origin}${mountPoint}${req.url}`;
+
   res.setHeader('Content-Type', 'application/rss+xml; charset=utf8');
   next();
 };
