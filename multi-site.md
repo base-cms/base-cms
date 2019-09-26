@@ -3,8 +3,8 @@
 ## Punch List
 - [ ] Add support for secondary site+section contexts
 - [ ] Ensure ContentPage respects primary site
-- [x] Update canonical path/url to support site context
 - [ ] Handle newsletters (this requires more thought)
+- [x] Update canonical path/url to support site context
 - [x] Add multi-site support to RSS and sitemap services
 - [x] Add site to Redirects collection
 - [ ] Update build-redirects.js to use site
@@ -14,6 +14,7 @@
 - [ ] Write script to update all sites URLs (ensure `www.`) and add image/asset hosts
 - [ ] Add locales language primary and subcodes to Site object
 - [ ] Update document and date components to use language/locale from site object
+- [ ] Add website context to marko global and use for site title, etc.
 - [x] Need to send RSS mount point to service from marko web
 
 ## Fix Redirects
