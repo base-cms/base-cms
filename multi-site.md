@@ -11,6 +11,7 @@
 - [ ] Should content path rules be stored on the Site object?
 - [ ] Add image and asset hostnames to Site object
 - [ ] Add locales language primary and subcodes to Site object
+- [ ] Need to send RSS mount point to service from marko web
 
 ## Primary Site + Section
 - Must select primary site + section
