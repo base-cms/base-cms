@@ -739,7 +739,7 @@ module.exports = {
         }),
       ]);
 
-      const descendantIds = await sectionBubbling ? getDescendantIds(section._id, basedb) : [];
+      const descendantIds = sectionBubbling ? await getDescendantIds(section._id, basedb) : [];
 
       const now = new Date();
       const $elemMatch = {
