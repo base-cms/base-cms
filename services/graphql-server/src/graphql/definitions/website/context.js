@@ -8,10 +8,16 @@ extend type Query {
 
 type WebsiteContext {
   id: ObjectID! @value(localField: "_id")
-  name: String
-  url: String
-  origin: String
-  language: String # ISO 639-1
+  name: String!
+  url: String!
+  origin: String!
+  language: WebsiteContextLanguage!
+}
+
+type WebsiteContextLanguage {
+  code: String!
+  primaryCode: String! # ISO 639-1
+  subCode: String # https://www.w3.org/TR/REC-html40/struct/dirlang.html#langcodes
 }
 
 `;
