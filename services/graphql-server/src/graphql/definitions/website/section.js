@@ -39,6 +39,7 @@ type WebsiteSection {
 
   # GraphQL-only fields.
   metadata: WebsiteSectionMetadata! @projection(localField: "fullName", needs: ["description", "seoTitle", "alias", "name"])
+  # @todo should this be renamed to websitePath?
   canonicalPath: String! @projection(localField: "alias")
   # Determines if this content item should redirect to another location.
   redirectTo: String
