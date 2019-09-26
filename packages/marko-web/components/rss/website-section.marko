@@ -1,10 +1,17 @@
+import { URLSearchParams } from "url";
+
 $ const { config } = out.global;
 
-$ const { alias } = input;
+$ const { queryName, queryParams, channelParams } = input;
 $ const defaultTitle = input.name ? `RSS Feed for ${input.name}` : "RSS Feed";
 $ const title = input.title || defaultTitle;
-$ const href = `${config.rssMountPoint()}/${alias}.xml`;
 
-<if(alias)>
+$ const query = new URLSearchParams();
+$ query.append("input", JSON.stringify(queryParams));
+$ if (channelParams) query.append("channel", JSON.stringify(channelParams));
+
+$ const href = `${config.rssMountPoint()}/${queryName}.xml?${query}`;
+
+<if(queryName)>
   <link rel="alternate" type="application/rss+xml" title=title href=href />
 </if>
