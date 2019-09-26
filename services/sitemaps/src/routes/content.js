@@ -3,6 +3,7 @@ const createError = require('http-errors');
 const moment = require('moment');
 const gql = require('graphql-tag');
 const { PAGE_SIZE } = require('../env');
+const createImage = require('../utils/create-image');
 
 const query = gql`
 
@@ -22,17 +23,6 @@ query ContentSitemapUrls($input: ContentSitemapUrlsQueryInput) {
 }
 
 `;
-
-const createImage = ({
-  loc,
-  caption,
-  title,
-}) => {
-  const parts = [];
-  if (caption) parts.push(`<image:caption>${caption}</image:caption>`);
-  if (title) parts.push(`<image:title>${title}</image:title>`);
-  return `<image:image><image:loc>${loc}</image:loc>${parts.join('')}</image:image>`;
-};
 
 const createUrl = ({
   loc,
