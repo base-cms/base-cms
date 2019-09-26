@@ -27,6 +27,7 @@ module.exports = async (basedb, modelName, {
   excludeProjection,
   ignoreCompoundAfterSort,
   collate = false,
+  additionalData,
 }) => {
   const $limit = new Limit({ value: limit });
   const $sort = new Sort(sort);
@@ -60,5 +61,5 @@ module.exports = async (basedb, modelName, {
 
   const results = await basedb.find(modelName, $query, options);
   const sorted = $sort.sortResults(results);
-  return createResponse(basedb, modelName, sorted, params);
+  return createResponse(basedb, modelName, sorted, params, additionalData);
 };

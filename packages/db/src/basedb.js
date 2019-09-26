@@ -268,6 +268,7 @@ class BaseDB {
     projection,
     excludeProjection,
     ignoreCompoundAfterSort,
+    additionalData,
   }) {
     return paginateFind(this, modelName, {
       query,
@@ -279,6 +280,7 @@ class BaseDB {
       projection,
       excludeProjection,
       ignoreCompoundAfterSort,
+      additionalData,
     });
   }
 
@@ -528,9 +530,11 @@ class BaseDB {
 
   /**
    * Returns an empty paginated response.
+   *
+   * @param {object} [additionalData] Additional data to append to the response.
    */
-  static paginateEmpty() {
-    return paginateEmpty();
+  static paginateEmpty(additionalData) {
+    return paginateEmpty(additionalData);
   }
 
   /**
