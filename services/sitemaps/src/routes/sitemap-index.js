@@ -51,5 +51,5 @@ module.exports = asyncRoute(async (req, res) => {
     return arr;
   }, [createSitemap(origin, 'sections', [''])]);
 
-  res.send(`<?xml version="1.0" encoding="utf-8"?>${createIndex(sitemaps)}`);
+  res.end(`<?xml version="1.0" encoding="utf-8"?>${createIndex(sitemaps)}`);
 });

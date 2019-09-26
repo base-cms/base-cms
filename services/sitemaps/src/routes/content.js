@@ -65,5 +65,5 @@ module.exports = asyncRoute(async (req, res) => {
     .setAttr('xsi:schemaLocation', 'http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd')
     .setUrls(contentSitemapUrls.map(url => createUrl(url)));
 
-  res.send(urlset.build());
+  res.end(urlset.build());
 });
