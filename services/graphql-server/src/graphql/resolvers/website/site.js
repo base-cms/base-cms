@@ -21,10 +21,10 @@ module.exports = {
   },
 
   Query: {
-    websiteRedirect: async (_, { input }, { basedb }) => {
+    websiteRedirect: async (_, { input }, { basedb, site }) => {
       const { from, params } = input;
       const query = querystring.stringify(params);
-      const redirect = await basedb.findOne('website.Redirects', { from });
+      const redirect = await basedb.findOne('website.Redirects', { siteId: site._id, from });
       const cleaned = await cleanRedirect(redirect, from, basedb);
       // Preserve query string params (if applicable);
       if (cleaned && cleaned.to && query) cleaned.to = `${cleaned.to}?${query}`;
