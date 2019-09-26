@@ -33,7 +33,7 @@ module.exports = {
 
     metadata: section => ({
       title: () => createTitle(section),
-      description: () => createDescription(section),
+      description: (_, args, { site }) => createDescription(section, site),
     }),
 
     hierarchy: async (section, _, { load }, info) => {
