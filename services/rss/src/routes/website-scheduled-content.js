@@ -1,6 +1,7 @@
 const { asyncRoute } = require('@base-cms/utils');
 const gql = require('graphql-tag');
 const createChannel = require('../utils/create-channel');
+const createItem = require('../utils/create-item');
 
 const query = gql`
   query RSSWebsiteScheduledContent($input: WebsiteScheduledContentQueryInput) {
@@ -16,16 +17,21 @@ const query = gql`
       edges {
         node {
           id
-          name # encode xml entities
-          teaser # encode xml entities
+          name
+          teaser(input: { useFallback: false, maxLength: null })
           canonicalPath
           publishedDate(input: { format: "ddd, DD MMM YYYY HH:mm:ss ZZ" })
+          primarySection {
+            id
+            alias
+            fullName
+          }
           ... on Authorable {
             authors(input: { pagination: { limit: 1 } }) {
               edges {
                 node {
                   id
-
+                  publicEmail
                 }
               }
             }
@@ -54,7 +60,7 @@ module.exports = asyncRoute(async (req, res) => {
   } = res.locals;
 
   const { data } = await apollo.query({ query, variables: { input } });
-  const { section } = data.websiteScheduledContent;
+  const { section, edges } = data.websiteScheduledContent;
 
   const parts = [
     '<rss version="2.0">',
@@ -64,6 +70,7 @@ module.exports = asyncRoute(async (req, res) => {
       description: channel.description || createDescription(section, website),
       language: website.language.code,
     }),
+    ...edges.map(edge => createItem(edge.node, website)),
     '</rss>',
   ];
   res.send(parts.join(''));
