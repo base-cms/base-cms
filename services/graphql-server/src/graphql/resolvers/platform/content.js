@@ -784,6 +784,7 @@ module.exports = {
         sort: { field: 'sectionQuery.0.start', order: 'desc' },
         projection: { 'sectionQuery.$.start': 1, ...projection },
         excludeProjection: ['sectionQuery.start'],
+        additionalData: { sectionId: section._id },
         ...pagination,
       });
     },

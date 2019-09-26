@@ -15,7 +15,7 @@ extend type Query {
   allAuthorContent(input: AllAuthorContentQueryInput = {}): ContentConnection!
   allCompanyContent(input: AllCompanyContentQueryInput = {}): ContentConnection!
   magazineScheduledContent(input: MagazineScheduledContentQueryInput = {}): ContentConnection!
-  websiteScheduledContent(input: WebsiteScheduledContentQueryInput = {}): ContentConnection!
+  websiteScheduledContent(input: WebsiteScheduledContentQueryInput = {}): WebsiteScheduledContentConnection!
   relatedPublishedContent(input: RelatedPublishedContentQueryInput = {}): ContentConnection!
   websiteExpiringContent(input: WebsiteExpiringContentQueryInput = {}): ContentConnection!
 }
@@ -130,6 +130,13 @@ type ContentUserRegistration {
 type ContentConnection @projectUsing(type: "Content") {
   totalCount: Int!
   edges: [ContentEdge]!
+  pageInfo: PageInfo!
+}
+
+type WebsiteScheduledContentConnection @projectUsing(type: "Content") {
+  totalCount: Int!
+  edges: [ContentEdge]!
+  section: WebsiteSection! @refOne(localField: "sectionId", loader: "websiteSection")
   pageInfo: PageInfo!
 }
 
