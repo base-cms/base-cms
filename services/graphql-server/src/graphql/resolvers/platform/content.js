@@ -487,7 +487,7 @@ module.exports = {
       };
       const sort = { updated: -1 };
       const { limit, skip } = pagination;
-      const cursor = await basedb.find('platform.Content', query, {
+      const cursor = await basedb.findCursor('platform.Content', query, {
         limit,
         skip,
         projection,
