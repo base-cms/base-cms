@@ -4,6 +4,7 @@ const moment = require('moment');
 const gql = require('graphql-tag');
 const { PAGE_SIZE } = require('../env');
 const createImage = require('../utils/create-image');
+const URLSet = require('../utils/urlset');
 
 const query = gql`
 
@@ -36,7 +37,7 @@ const createUrl = ({
   if (changefreq) parts.push(`<changefreq>${changefreq}</changefreq>`);
   if (priority) parts.push(`<priority>${priority}</priority>`);
   if (images && images.length) parts.push(...images.map(image => createImage(image)));
-  return `<url><loc>${loc}</loc>${parts.join('')}</url>`;
+  return `<loc>${loc}</loc>${parts.join('')}`;
 };
 
 module.exports = asyncRoute(async (req, res) => {
@@ -56,11 +57,13 @@ module.exports = asyncRoute(async (req, res) => {
 
   if (!contentSitemapUrls.length) throw createError(404, 'No content found.');
 
-  const urlset = contentSitemapUrls.map(url => createUrl(url));
-  const lines = ['<?xml version="1.0" encoding="utf-8"?>'];
-  lines.push('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">');
-  lines.push(...urlset);
-  lines.push('</urlset>');
+  const urlset = new URLSet();
+  urlset
+    .setAttr('xmlns', 'http://www.sitemaps.org/schemas/sitemap/0.9')
+    .setAttr('xmlns:image', 'http://www.google.com/schemas/sitemap-image/1.1')
+    .setAttr('xmlns:xsi', 'http://www.w3.org/2001/XMLSchema-instance')
+    .setAttr('xsi:schemaLocation', 'http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd')
+    .setUrls(contentSitemapUrls.map(url => createUrl(url)));
 
-  res.send(lines.join(''));
+  res.send(urlset.build());
 });
