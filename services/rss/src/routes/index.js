@@ -15,7 +15,7 @@ const rss = () => (req, res, next) => {
   const input = parseJson(query.input);
   const channel = parseJson(query.channel);
   if (!input) throw createError(400, 'The provided input is invalid.');
-  res.locals.input = input;
+  res.locals.input = { ...input, pagination: { limit: 50, ...input.pagination } };
   res.locals.channel = channel || {};
   res.setHeader('Content-Type', 'application/rss+xml; charset=utf8');
   next();
