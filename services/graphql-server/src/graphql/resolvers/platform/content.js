@@ -236,7 +236,7 @@ module.exports = {
 
       const query = {
         ...formatStatus(status),
-        ...(site._id && { 'site.$id': site._id }),
+        'site.$id': site._id,
       };
       const section = await load('websiteSection', id, projection, query);
       if (section) return section;
