@@ -14,17 +14,13 @@ class CoreConfig extends AbstractConfig {
    * @deprecated Use this.website('language.code') instead
    */
   locale() {
-    const locale = this.get('locale', 'en');
-    if (locale === 'en_US') return 'en';
-    return locale;
+    return this.website('language.code', 'en-us');
   }
 
-  /**
-   * @deprecated Use this.website('language.primaryCode') instead
-   */
   dateLocale() {
-    const locale = this.get('date.locale', this.locale());
-    if (!locale || locale.toLowerCase() === 'en') return null;
+    const primaryLang = this.website('language.primaryCode', 'en');
+    const locale = this.get('date.locale', primaryLang);
+    if (!locale || locale === 'en') return null;
     return locale;
   }
 
