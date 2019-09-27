@@ -3,7 +3,7 @@ import { cleanPath } from "@base-cms/utils";
 $ const { config } = out.global;
 $ const parts = [
   input.value,
-  config.siteName(),
+  config.website("name"),
 ];
 $ const concatWith = input.concatWith || "|";
 $ const title = parts.filter(v => v).join(` ${concatWith} `);

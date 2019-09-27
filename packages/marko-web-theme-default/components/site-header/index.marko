@@ -25,9 +25,9 @@ $ const navigation = {
         icon-modifiers=["lg"]
       />
     </if>
-    <default-theme-site-navbar-brand title=`${config.siteName()} Homepage`>
+    <default-theme-site-navbar-brand title=`${config.website("name")} Homepage`>
       <default-theme-site-navbar-logo
-        alt=config.siteName()
+        alt=config.website("name")
         src=site.get("logos.navbar.src")
         srcset=site.getAsArray("logos.navbar.srcset").join(",")
       />

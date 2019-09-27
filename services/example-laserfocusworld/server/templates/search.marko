@@ -5,7 +5,7 @@ $ const { config } = out.global;
 
 $ const type = "search";
 $ const title = "Search";
-$ const description = `Search ${config.siteName()}`;
+$ const description = `Search ${config.website("name")}`;
 
 <marko-web-default-page-layout type=type title=title description=description>
   <@head>

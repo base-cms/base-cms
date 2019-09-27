@@ -29,8 +29,8 @@ $ const image = imageSrc || fallbackImage;
 <marko-web-page-rel-canonical|{ href }| path=canonicalPath url=canonicalUrl>
   <meta property="og:url" content=href />
 </marko-web-page-rel-canonical>
-<meta property="og:site_name" content=config.siteName() />
-<meta property="og:locale" content=config.locale() />
+<meta property="og:site_name" content=config.website("name") />
+<meta property="og:locale" content=config.website("language.primaryCode") />
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary" />
