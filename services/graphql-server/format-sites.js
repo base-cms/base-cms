@@ -21,6 +21,7 @@ const run = async () => {
         url: 1,
         assetHost: 1,
         imageHost: 1,
+        language: 1,
       };
       const sites = await coll.find({ type: 'Site', url: { $exists: true } }, { projection }).toArray();
       await eachSeries(sites, async (site) => {
@@ -33,6 +34,7 @@ const run = async () => {
           .replace(/^www\./, '')}`;
         if (!site.assetHost) $set.assetHost = $set.url.replace(/^www\./, 'cdn.');
         if (!site.imageHost) $set.imageHost = $set.url.replace(/^www\./, 'img.');
+        if (!site.language) $set.language = { primaryCode: 'en', subCode: 'us' };
         log($set);
         await coll.updateOne({ _id: site._id }, { $set });
         log('Update complete.');
