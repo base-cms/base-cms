@@ -13,6 +13,7 @@ const rss = require('./rss');
 const loadMore = require('./load-more');
 const sitemaps = require('./sitemaps');
 const { version } = require('../package.json');
+const websiteContext = require('./website-context');
 const CoreConfig = require('../config/core');
 const SiteConfig = require('../config/site');
 
@@ -66,6 +67,9 @@ module.exports = (config = {}) => {
   // Register apollo.
   const headers = buildRequestHeaders(config);
   apollo(app, config.graphqlUri, { name: siteName, link: { headers } });
+
+  // Set website context.
+  app.use(websiteContext(app.locals.config));
 
   // Register the Marko middleware.
   marko(app);

@@ -1,12 +1,27 @@
+const { get } = require('@base-cms/object-path');
 const AbstractConfig = require('./abstract-config');
 
 class CoreConfig extends AbstractConfig {
+  setWebsiteContext(context) {
+    this.websiteContext = context;
+  }
+
+  website(path, def) {
+    return get(this.websiteContext, path, def);
+  }
+
+  /**
+   * @deprecated Use this.website('language.code') instead
+   */
   locale() {
     const locale = this.get('locale', 'en');
     if (locale === 'en_US') return 'en';
     return locale;
   }
 
+  /**
+   * @deprecated Use this.website('language.primaryCode') instead
+   */
   dateLocale() {
     const locale = this.get('date.locale', this.locale());
     if (!locale || locale.toLowerCase() === 'en') return null;
@@ -37,12 +52,18 @@ class CoreConfig extends AbstractConfig {
     return this.get('rss.mountPoint', '/__rss');
   }
 
+  /**
+   * @deprecated Use this.website('id') instead
+   */
   siteId() {
-    return this.get('siteId');
+    return this.website('id');
   }
 
+  /**
+   * @deprecated Use this.website('name') instead
+   */
   siteName() {
-    return this.get('siteName', '');
+    return this.website('name', '');
   }
 
   loadManifest() {
