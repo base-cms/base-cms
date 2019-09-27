@@ -11,7 +11,7 @@
 - [ ] Determine if `canonicalPath` should be renamed to `websitePath`
 - [ ] Should content path rules be stored on the Site object?
 - [x] Add image and asset hostnames to Site object
-- [ ] Write script to update all sites URLs (ensure `www.`) and add image/asset hosts
+- [x] Write script to set all site hosts (ensure `www.`) and add image/asset hosts
 - [ ] Add locales language primary and subcodes to Site object
 - [ ] Update document and date components to use language/locale from site object
 - [ ] Add website context to marko global and use for site title, etc.

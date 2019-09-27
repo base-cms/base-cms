@@ -28,12 +28,12 @@ const run = async () => {
         log(`Processing site ${site.name}...`);
         if (!site.url) throw new Error(`No URL found for ${site.name}`);
         const $set = {};
-        $set.url = `www.${site.url.trim()
+        $set.host = `www.${site.url.trim()
           .replace(/^http:\/\//, '')
           .replace(/^https:\/\//, '')
           .replace(/^www\./, '')}`;
-        if (!site.assetHost) $set.assetHost = $set.url.replace(/^www\./, 'cdn.');
-        if (!site.imageHost) $set.imageHost = $set.url.replace(/^www\./, 'img.');
+        if (!site.assetHost) $set.assetHost = $set.host.replace(/^www\./, 'cdn.');
+        if (!site.imageHost) $set.imageHost = $set.host.replace(/^www\./, 'img.');
         if (!site.language) $set.language = { primaryCode: 'en', subCode: 'us' };
         log($set);
         await coll.updateOne({ _id: site._id }, { $set });
