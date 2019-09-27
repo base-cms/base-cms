@@ -18,7 +18,7 @@ const CoreConfig = require('../config/core');
 const SiteConfig = require('../config/site');
 
 module.exports = (config = {}) => {
-  const { rootDir, siteId } = config;
+  const { rootDir, tenantKey, siteId } = config;
   const distDir = path.resolve(rootDir, 'dist');
   const app = express();
   const serverDir = path.resolve(rootDir, 'server');
@@ -44,7 +44,7 @@ module.exports = (config = {}) => {
   }
 
   // Set the core config.
-  app.locals.config = new CoreConfig({ ...config.coreConfig, siteId, distDir });
+  app.locals.config = new CoreConfig({ ...config.coreConfig, distDir });
 
   // Set the website config to the app.
   app.locals.site = new SiteConfig(config.siteConfig);
@@ -65,7 +65,7 @@ module.exports = (config = {}) => {
   });
 
   // Register apollo.
-  const headers = buildRequestHeaders(config);
+  const headers = buildRequestHeaders({ tenantKey, siteId });
   apollo(app, config.graphqlUri, { name: siteName, link: { headers } });
 
   // Set website context.
