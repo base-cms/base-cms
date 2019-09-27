@@ -12,9 +12,9 @@
 - [ ] Should content path rules be stored on the Site object?
 - [x] Add image and asset hostnames to Site object
 - [x] Write script to set all site hosts (ensure `www.`) and add image/asset hosts
-- [ ] Add locales language primary and subcodes to Site object
-- [ ] Update document and date components to use language/locale from site object
-- [ ] Add website context to marko global and use for site title, etc.
+- [x] Add locales language primary and subcodes to Site object
+- [x] Update document and date components to use language/locale from site object
+- [x] Add website context to marko global and use for site title, etc.
 - [x] Need to send RSS mount point to service from marko web
 
 ## Fix Redirects
