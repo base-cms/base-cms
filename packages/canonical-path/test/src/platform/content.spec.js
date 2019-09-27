@@ -5,6 +5,9 @@ const requestParser = require('../../../src/request-parser');
 
 describe('platform/content', () => {
   describe('the default configuration', () => {
+    const site = {
+      _id: 5678,
+    };
     const section = {
       alias: '/primary-section',
     };
@@ -21,7 +24,7 @@ describe('platform/content', () => {
     };
     const canonicalRules = requestParser({ headers: {} });
     const load = () => section;
-    const context = { load, canonicalRules };
+    const context = { load, canonicalRules, site };
     it('should return "/home/article/1234" when passed no website mutation date', async () => {
       const out = await content({ ...contentObj, mutations: undefined }, context);
       expect(out).to.equal('/home/article/1234');
