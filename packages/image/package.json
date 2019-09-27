@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/image",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-beta.1",
   "description": "Common image utilities for BaseCMS projects.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
@@ -11,8 +11,8 @@
     "test": "yarn lint"
   },
   "dependencies": {
-    "@base-cms/html": "^1.0.0-alpha.1",
-    "@base-cms/inflector": "^1.0.0-alpha.1"
+    "@base-cms/html": "^1.0.0-beta.1",
+    "@base-cms/inflector": "^1.0.0-beta.1"
   },
   "publishConfig": {
     "access": "public"
