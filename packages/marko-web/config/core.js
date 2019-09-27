@@ -53,13 +53,6 @@ class CoreConfig extends AbstractConfig {
   }
 
   /**
-   * @deprecated Use this.website('id') instead
-   */
-  siteId() {
-    return this.website('id');
-  }
-
-  /**
    * @deprecated Use this.website('name') instead
    */
   siteName() {
