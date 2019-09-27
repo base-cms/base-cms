@@ -9,7 +9,7 @@ extend type Query {
 type WebsiteContext {
   id: ObjectID! @value(localField: "_id")
   name: String!
-  url: String!
+  host: String!
   origin: String!
   imageHost: String!
   assetHost: String!

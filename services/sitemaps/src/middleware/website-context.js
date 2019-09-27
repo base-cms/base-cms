@@ -7,7 +7,7 @@ query WebsiteContext {
   websiteContext {
     id
     name
-    url
+    host
     origin
     language {
       primaryCode

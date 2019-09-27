@@ -34,7 +34,7 @@ const config = {
 const loadSite = async ({ basedb, siteId, tenant }) => {
   const projection = {
     name: 1,
-    url: 1,
+    host: 1,
     decription: 1,
     language: 1,
     imageHost: 1,
@@ -46,7 +46,7 @@ const loadSite = async ({ basedb, siteId, tenant }) => {
     _id: new ObjectID(siteId),
   }, { projection });
   if (!site) throw new Error(`No site was found for tenant '${tenant}' using ID '${siteId}'`);
-  if (!site.url) throw new Error(`No site url is set for tenant '${tenant}' using ID '${siteId}'`);
+  if (!site.host) throw new Error(`No site host is set for tenant '${tenant}' using ID '${siteId}'`);
   return websiteContext(site);
 };
 

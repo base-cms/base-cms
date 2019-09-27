@@ -192,9 +192,9 @@ module.exports = {
       });
 
       const owningSiteId = BaseDB.extractRefId(section.site);
-      const owningSite = await load('platformProduct', owningSiteId, { url: 1 }, { type: 'Site' });
+      const owningSite = await load('platformProduct', owningSiteId, { host: 1 }, { type: 'Site' });
 
-      const origin = `https://${owningSite.url}`;
+      const origin = `https://${owningSite.host}`;
       const values = [
         section.alias,
         dasherize(content.type),
