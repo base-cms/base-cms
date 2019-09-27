@@ -46,6 +46,15 @@ class Client {
 
   /**
    *
+   */
+  async admin() {
+    const client = await this.connect();
+    const db = await client.db('test');
+    return db.admin();
+  }
+
+  /**
+   *
    * @param {boolean} force
    */
   async close(force) {

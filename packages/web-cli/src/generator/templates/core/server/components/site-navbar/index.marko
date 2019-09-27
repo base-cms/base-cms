@@ -6,10 +6,10 @@ $ const logo = site.get('logo');
 <nav class="site-navigation">
   <a href="/">
     <if(logo)>
-      <img title=config.siteName() src=logo height="40">
+      <img title=config.website("name") src=logo height="40">
     </if>
     <else>
-      <h3>${config.siteName()}</h3>
+      <h3>${config.website("name")}</h3>
     </else>
   </a>
 

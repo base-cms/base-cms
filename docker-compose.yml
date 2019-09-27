@@ -10,7 +10,7 @@ x-env-newrelic: &env-newrelic
 
 x-env-mongo: &env-mongo
   MONGO_DSN: ${MONGO_DSN-mongodb://mongodb:27017}
-  ENABLE_BASEDB_LOGGING: ${ENABLE_BASEDB_LOGGING-0}
+  ENABLE_BASEDB_LOGGING: ${ENABLE_BASEDB_LOGGING-}
 
 x-env-elastic: &env-elastic
   ELASTICSEARCH_URL: ${ELASTICSEARCH_URL-http://elasticsearch:9200}
@@ -89,6 +89,38 @@ services:
     ports:
       - "10002:80"
 
+  sitemaps:
+    << : *node
+    working_dir: /base-cms/services/sitemaps
+    command: ["/base-cms/node_modules/.bin/gulp"]
+    environment:
+      <<: *env
+      <<: *env-newrelic
+      GRAPHQL_URI: http://graphql-server
+      ENABLE_BASEDB_LOGGING: ${ENABLE_BASEDB_LOGGING-}
+      PORT: 80
+      EXPOSED_PORT: 10009
+    depends_on:
+      - graphql-server
+    ports:
+      - "10009:80"
+
+  rss:
+    << : *node
+    working_dir: /base-cms/services/rss
+    command: ["/base-cms/node_modules/.bin/gulp"]
+    environment:
+      <<: *env
+      <<: *env-newrelic
+      GRAPHQL_URI: http://graphql-server
+      ENABLE_BASEDB_LOGGING: ${ENABLE_BASEDB_LOGGING-}
+      PORT: 80
+      EXPOSED_PORT: 10011
+    depends_on:
+      - graphql-server
+    ports:
+      - "10011:80"
+
   graphql-server-lfw:
     << : *node
     working_dir: /base-cms/services/graphql-server
@@ -102,6 +134,38 @@ services:
     depends_on:
       - mongodb
 
+  sitemaps-lfw:
+    << : *node
+    working_dir: /base-cms/services/sitemaps
+    command: ["/base-cms/node_modules/.bin/gulp"]
+    environment:
+      <<: *env
+      <<: *env-newrelic
+      GRAPHQL_URI: http://graphql-server-lfw
+      ENABLE_BASEDB_LOGGING: ${ENABLE_BASEDB_LOGGING-}
+      PORT: 80
+      EXPOSED_PORT: 10015
+    depends_on:
+      - graphql-server-lfw
+    ports:
+      - "10015:80"
+
+  rss-lfw:
+    << : *node
+    working_dir: /base-cms/services/rss
+    command: ["/base-cms/node_modules/.bin/gulp"]
+    environment:
+      <<: *env
+      <<: *env-newrelic
+      GRAPHQL_URI: http://graphql-server-lfw
+      ENABLE_BASEDB_LOGGING: ${ENABLE_BASEDB_LOGGING-}
+      PORT: 80
+      EXPOSED_PORT: 10016
+    depends_on:
+      - graphql-server-lfw
+    ports:
+      - "10016:80"
+
   example-laserfocusworld:
     <<: *node
     working_dir: /base-cms/services/example-laserfocusworld
@@ -112,18 +176,17 @@ services:
       EXPOSED_PORT: 11162
       LIVERELOAD_PORT: 25162
       TENANT_KEY: ebm_lfw
+      SITE_ID: 5ca4e38775a25490050041a7
       GRAPHQL_URI: http://graphql-server-lfw
-      SITEMAPS_URI: http://sitemaps
-      RSS_URI: http://rss
+      SITEMAPS_URI: http://sitemaps-lfw
+      RSS_URI: http://rss-lfw
       OEMBED_URI: http://oembed
-      CDN_IMAGE_HOSTNAME: img.laserfocusworld.com
-      CDN_ASSET_HOSTNAME: cdn.laserfocusworld.com
       NEW_RELIC_ENABLED: 0
       NEW_RELIC_LICENSE_KEY: (unset)
     depends_on:
       - graphql-server-lfw
-      - sitemaps
-      - rss
+      - sitemaps-lfw
+      - rss-lfw
       - oembed
     ports:
       - "11162:80"
@@ -152,12 +215,11 @@ services:
       EXPOSED_PORT: 11163
       LIVERELOAD_PORT: 25163
       TENANT_KEY: bizbash_bzb
+      SITE_ID: 5b295afea1c1c62c008b4572
       GRAPHQL_URI: http://graphql-server-bzb
       SITEMAPS_URI: http://sitemaps
       RSS_URI: http://rss
       OEMBED_URI: http://oembed
-      CDN_IMAGE_HOSTNAME: img.bizbash.com
-      CDN_ASSET_HOSTNAME: cdn.bizbash.com
       NEW_RELIC_ENABLED: 0
       NEW_RELIC_LICENSE_KEY: (unset)
     depends_on:
@@ -177,32 +239,6 @@ services:
     depends_on:
       - example-laserfocusworld
       - graphql-server
-
-  sitemaps:
-    << : *node
-    working_dir: /base-cms/services/sitemaps
-    command: ["/base-cms/node_modules/.bin/gulp"]
-    environment:
-      <<: *env
-      <<: *env-mongo
-      <<: *env-newrelic
-    depends_on:
-      - mongodb
-    ports:
-      - "10009:80"
-
-  rss:
-    << : *node
-    working_dir: /base-cms/services/rss
-    command: ["/base-cms/node_modules/.bin/gulp"]
-    environment:
-      <<: *env
-      <<: *env-mongo
-      <<: *env-newrelic
-    depends_on:
-      - mongodb
-    ports:
-      - "10011:80"
 
   hooks:
     << : *node

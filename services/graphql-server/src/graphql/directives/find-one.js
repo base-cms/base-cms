@@ -11,7 +11,7 @@ class FindOneDirective extends SchemaDirectiveVisitor {
    */
   visitFieldDefinition(field) {
     // eslint-disable-next-line no-param-reassign
-    field.resolve = async (_, { input = {} }, { basedb }, info) => {
+    field.resolve = async (_, { input = {} }, { basedb, site }, info) => {
       const {
         fieldNodes,
         returnType,
@@ -24,6 +24,7 @@ class FindOneDirective extends SchemaDirectiveVisitor {
         model,
         using,
         criteria,
+        withSite,
       } = this.args;
 
       const { status } = input;
@@ -32,6 +33,7 @@ class FindOneDirective extends SchemaDirectiveVisitor {
         query: { ...criteriaFor(criteria), ...formatStatus(status) },
         using,
         input,
+        ...(withSite && { siteId: site._id }),
       });
 
       const result = await basedb.findOne(model, query, { projection });

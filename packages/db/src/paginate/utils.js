@@ -13,7 +13,7 @@ module.exports = {
   createResponse(basedb, modelName, results, {
     query,
     limit,
-  } = {}) {
+  } = {}, additionalData = {}) {
     const hasNextPage = results.length > limit.value;
     // Remove the extra model that was queried to peek for the page.
     if (hasNextPage) results.pop();
@@ -25,6 +25,7 @@ module.exports = {
       endCursor: () => (hasNextPage ? cursor.encode(results[results.length - 1]._id) : null),
     };
     return {
+      ...additionalData,
       edges: () => results.map(node => ({ node, cursor: () => cursor.encode(node._id) })),
       pageInfo,
       totalCount: () => basedb.count(modelName, query),
@@ -34,12 +35,13 @@ module.exports = {
   /**
    *
    */
-  createEmptyResponse() {
+  createEmptyResponse(additionalData = {}) {
     const pageInfo = {
       hasNextPage: false,
       endCursor: null,
     };
     return {
+      ...additionalData,
       edges: [],
       pageInfo,
       totalCount: () => 0,

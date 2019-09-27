@@ -3,12 +3,13 @@ const gql = require('graphql-tag');
 module.exports = gql`
 
 extend type Query {
-  websiteSection(input: WebsiteSectionQueryInput!): WebsiteSection @findOne(model: "website.Section", using: { id: "_id" })
-  websiteSectionAlias(input: WebsiteSectionAliasQueryInput!): WebsiteSection @findOne(model: "website.Section", using: { alias: "alias" })
-  websiteSectionRedirect(input: WebsiteSectionRedirectQueryInput!): WebsiteSection @findOne(model: "website.Section", using: { alias: "redirects" })
-  websiteSections(input: WebsiteSectionsQueryInput = {}): WebsiteSectionConnection! @findMany(model: "website.Section")
-  rootWebsiteSections(input: RootWebsiteSectionsQueryInput = {}): WebsiteSectionConnection! @findMany(model: "website.Section", criteria: "rootWebsiteSection")
-  websiteSectionsFromIds(input: WebsiteSectionsFromIdsQueryInput!): WebsiteSectionConnection! @findMany(model: "website.Section", using: { ids: "_id" })
+  websiteSection(input: WebsiteSectionQueryInput!): WebsiteSection @findOne(model: "website.Section", withSite: true, using: { id: "_id" })
+  websiteSectionAlias(input: WebsiteSectionAliasQueryInput!): WebsiteSection @findOne(model: "website.Section", withSite: true, using: { alias: "alias" })
+  websiteSectionRedirect(input: WebsiteSectionRedirectQueryInput!): WebsiteSection @findOne(model: "website.Section", withSite: true, using: { alias: "redirects" })
+  websiteSections(input: WebsiteSectionsQueryInput = {}): WebsiteSectionConnection! @findMany(model: "website.Section", withSite: true)
+  rootWebsiteSections(input: RootWebsiteSectionsQueryInput = {}): WebsiteSectionConnection! @findMany(model: "website.Section", withSite: true, criteria: "rootWebsiteSection")
+  websiteSectionsFromIds(input: WebsiteSectionsFromIdsQueryInput!): WebsiteSectionConnection! @findMany(model: "website.Section", withSite: true, using: { ids: "_id" })
+  websiteSectionSitemapUrls(input: WebsiteSectionSitemapUrlsInput = {}): [WebsiteSectionSitemapUrl!]!
 }
 
 type WebsiteSection {
@@ -37,7 +38,8 @@ type WebsiteSection {
   slug: String @projection
 
   # GraphQL-only fields.
-  metadata: WebsiteSectionMetadata! @projection(localField: "fullName", needs: ["description", "seoTitle", "alias"])
+  metadata: WebsiteSectionMetadata! @projection(localField: "fullName", needs: ["description", "seoTitle", "alias", "name"])
+  # @todo should this be renamed to websitePath?
   canonicalPath: String! @projection(localField: "alias")
   # Determines if this content item should redirect to another location.
   redirectTo: String
@@ -61,11 +63,25 @@ type WebsiteSectionMetadata {
   description: String
 }
 
+type WebsiteSectionSitemapUrl {
+  id: String! @value(localField: "_id")
+  loc: String!
+  lastmod: Date
+  changefreq: SitemapChangeFreq!
+  priority: Float!
+}
+
 enum WebsiteSectionSortField {
   id
   name
   fullName
   sequence
+}
+
+input WebsiteSectionSitemapUrlsInput {
+  changefreq: SitemapChangeFreq = daily
+  priority: Float = 0.7
+  pagination: PaginationInput = { limit: null }
 }
 
 input WebsiteSectionQueryInput {

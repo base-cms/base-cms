@@ -1,7 +1,7 @@
 $ const { config } = out.global;
 
 $ const dir = input.dir || "ltr";
-$ const lang = input.lang || config.locale();
+$ const lang = input.lang || config.website("language.code", "en-us");
 $ const viewport = input.viewport || "width=device-width, initial-scale=1, shrink-to-fit=no";
 
 <!doctype html>

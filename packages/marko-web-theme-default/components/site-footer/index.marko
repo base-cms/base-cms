@@ -10,10 +10,10 @@ $ const blockName = input.blockName || "site-footer";
   attrs=input.attrs
 >
   <default-theme-site-footer-container block-name=blockName modifiers=["secondary"]>
-    <default-theme-site-navbar-brand block-name=blockName title=`${config.siteName()} Homepage`>
+    <default-theme-site-navbar-brand block-name=blockName title=`${config.website("name")} Homepage`>
       <default-theme-site-navbar-logo
         block-name=blockName
-        alt=config.siteName()
+        alt=config.website("name")
         src=site.get("logos.footer.src")
         srcset=site.getAsArray("logos.footer.srcset").join(",")
         lazyload=true

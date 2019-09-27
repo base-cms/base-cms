@@ -12,15 +12,17 @@
     "test": "yarn lint"
   },
   "dependencies": {
-    "@base-cms/canonical-path": "^1.0.0-alpha.1",
-    "@base-cms/db": "^1.0.0-alpha.1",
+    "@base-cms/env": "^1.0.0-alpha.1",
+    "@base-cms/express-apollo": "^1.0.0-alpha.1",
     "@base-cms/tenant-context": "^1.0.0-alpha.1",
-    "@base-cms/tooling": "^1.0.0-alpha.1",
     "@base-cms/utils": "^1.0.0-alpha.1",
     "@godaddy/terminus": "^4.2.0",
     "@newrelic/native-metrics": "^4.1.0",
     "express": "^4.17.1",
+    "graphql": "^14.5.4",
+    "graphql-tag": "^2.10.1",
     "helmet": "^3.21.0",
+    "http-errors": "^1.7.3",
     "moment": "^2.24.0",
     "newrelic": "^5.11.0"
   }

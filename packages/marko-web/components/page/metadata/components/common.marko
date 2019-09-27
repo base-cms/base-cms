@@ -2,6 +2,7 @@ $ const { config } = out.global;
 $ const {
   title,
   canonicalPath,
+  canonicalUrl,
   imageSrc,
   description,
 } = input;
@@ -11,7 +12,7 @@ $ const image = imageSrc || fallbackImage;
 <!-- Standard Fields -->
 <marko-web-page-title value=title />
 <marko-web-page-description value=description />
-<marko-web-page-rel-canonical path=canonicalPath />
+<marko-web-page-rel-canonical path=canonicalPath url=canonicalUrl />
 
 <!-- Name/Title (OpenGrah, and Schema.org respectively) -->
 <if(title)>
@@ -25,11 +26,11 @@ $ const image = imageSrc || fallbackImage;
 </if>
 
 <!-- OpenGraph -->
-<marko-web-page-rel-canonical|{ href }| path=canonicalPath>
+<marko-web-page-rel-canonical|{ href }| path=canonicalPath url=canonicalUrl>
   <meta property="og:url" content=href />
 </marko-web-page-rel-canonical>
-<meta property="og:site_name" content=config.siteName() />
-<meta property="og:locale" content=config.locale() />
+<meta property="og:site_name" content=config.website("name") />
+<meta property="og:locale" content=config.website("language.primaryCode") />
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary" />

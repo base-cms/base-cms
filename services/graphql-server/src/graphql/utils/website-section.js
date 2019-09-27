@@ -5,14 +5,14 @@ const createTitle = (doc) => {
   if (!isObject(doc)) return null;
   const { seoTitle, fullName } = doc;
   const title = seoTitle || fullName;
-  return stripTags(title || '') || null;
+  return stripTags(title || '') || doc.name;
 };
 
-const createDescription = (doc) => {
+const createDescription = (doc, site) => {
   const { alias, description } = doc;
   const defaultDesc = alias !== 'home'
-    ? `Articles, news, products, blogs and videos covering the ${doc.fullName} market.`
-    : '';
+    ? `Articles, news, products, blogs and videos covering the ${doc.fullName || doc.name} market.`
+    : site.description || `Articles, news, products, blogs and videos from ${site.name}.`;
   return stripTags((description || defaultDesc).trim()) || null;
 };
 

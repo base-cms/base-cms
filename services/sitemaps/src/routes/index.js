@@ -1,12 +1,16 @@
-const sitemap = require('./sitemap');
-const sitemapSections = require('./sitemap-sections');
-const sitemapContent = require('./sitemap-content');
-const sitemapGoogleNews = require('./sitemap-google-news');
-const sitemapMiddleware = require('./middleware');
+const index = require('./sitemap-index');
+const sections = require('./sections');
+const content = require('./content');
+const googleNews = require('./google-news');
+
+const xml = () => (req, res, next) => {
+  res.setHeader('Content-Type', 'text/xml; charset=utf-8');
+  next();
+};
 
 module.exports = (app) => {
-  app.get('/sitemap.xml', sitemapMiddleware, sitemap);
-  app.get('/sitemap-google-news.xml', sitemapMiddleware, sitemapGoogleNews);
-  app.get('/sitemap/sections.xml', sitemapMiddleware, sitemapSections);
-  app.get('/sitemap/*.xml', sitemapMiddleware, sitemapContent);
+  app.get('/sitemap.xml', xml(), index);
+  app.get('/sitemap-google-news.xml', xml(), googleNews);
+  app.get('/sitemap/sections.xml', xml(), sections);
+  app.get('/sitemap/:type([a-z]+):suffix(.\\d+)?.xml', xml(), content);
 };

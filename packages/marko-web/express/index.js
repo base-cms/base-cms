@@ -13,11 +13,12 @@ const rss = require('./rss');
 const loadMore = require('./load-more');
 const sitemaps = require('./sitemaps');
 const { version } = require('../package.json');
+const websiteContext = require('./website-context');
 const CoreConfig = require('../config/core');
 const SiteConfig = require('../config/site');
 
 module.exports = (config = {}) => {
-  const { rootDir } = config;
+  const { rootDir, tenantKey, siteId } = config;
   const distDir = path.resolve(rootDir, 'dist');
   const app = express();
   const serverDir = path.resolve(rootDir, 'server');
@@ -64,8 +65,11 @@ module.exports = (config = {}) => {
   });
 
   // Register apollo.
-  const headers = buildRequestHeaders(config);
+  const headers = buildRequestHeaders({ tenantKey, siteId });
   apollo(app, config.graphqlUri, { name: siteName, link: { headers } });
+
+  // Set website context.
+  app.use(websiteContext(app.locals.config));
 
   // Register the Marko middleware.
   marko(app);

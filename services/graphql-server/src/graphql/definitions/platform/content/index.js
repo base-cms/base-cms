@@ -9,10 +9,13 @@ extend type Query {
   contentHash(input: ContentHashQueryInput = {}): Content @findOne(model: "platform.Content", using: { hash: "hash" }, criteria: "content")
   allContent(input: AllContentQueryInput = {}): ContentConnection! @findMany(model: "platform.Content", criteria: "content")
   allPublishedContent(input: AllPublishedContentQueryInput = {}): ContentConnection!
+  publishedContentCounts(input: PublishedContentCountsQueryInput = {}): [PublishedContentCount!]!
+  contentSitemapUrls(input: ContentSitemapUrlsQueryInput = {}): [ContentSitemapUrl!]!
+  contentSitemapNewsUrls: [ContentSitemapNewsUrl!]!
   allAuthorContent(input: AllAuthorContentQueryInput = {}): ContentConnection!
   allCompanyContent(input: AllCompanyContentQueryInput = {}): ContentConnection!
   magazineScheduledContent(input: MagazineScheduledContentQueryInput = {}): ContentConnection!
-  websiteScheduledContent(input: WebsiteScheduledContentQueryInput = {}): ContentConnection!
+  websiteScheduledContent(input: WebsiteScheduledContentQueryInput = {}): WebsiteScheduledContentConnection!
   relatedPublishedContent(input: RelatedPublishedContentQueryInput = {}): ContentConnection!
   websiteExpiringContent(input: WebsiteExpiringContentQueryInput = {}): ContentConnection!
 }
@@ -130,6 +133,13 @@ type ContentConnection @projectUsing(type: "Content") {
   pageInfo: PageInfo!
 }
 
+type WebsiteScheduledContentConnection @projectUsing(type: "Content") {
+  totalCount: Int!
+  edges: [ContentEdge]!
+  section: WebsiteSection! @refOne(localField: "sectionId", loader: "websiteSection")
+  pageInfo: PageInfo!
+}
+
 type ContentEdge {
   node: Content!
   cursor: String!
@@ -159,6 +169,43 @@ type ContentWebsiteSchedule {
   endDate(input: FormatDate = {}): String @momentFormat(localField: "end")
 }
 
+type PublishedContentCount {
+  id: String! @value(localField: "_id")
+  type(input: ContentTypeInput = {}): String!
+  count: Int!
+}
+
+type ContentSitemapUrl {
+  id: String! @value(localField: "_id")
+  loc: String!
+  lastmod: Date @value(localField: "updated")
+  changefreq: SitemapChangeFreq!
+  priority: Float!
+  images: [ContentSitemapImage!]!
+}
+
+type ContentSitemapNewsUrl {
+  id: String! @value(localField: "_id")
+  loc: String!
+  title: String!
+  publication: ContentSitemapNewsPublication!
+  published: Date
+  images: [ContentSitemapImage!]!
+}
+
+type ContentSitemapNewsPublication {
+  id: ObjectID! @value(localField: "_id")
+  name: String!
+  language: String!
+}
+
+type ContentSitemapImage {
+  id: String @value(localField: "_id")
+  loc: String!
+  caption: String
+  title: String
+}
+
 input ContentQueryInput {
   status: ModelStatus = active
   id: Int!
@@ -167,6 +214,14 @@ input ContentQueryInput {
 input ContentHashQueryInput {
   status: ModelStatus = active
   hash: String!
+}
+
+input ContentSitemapUrlsQueryInput {
+  since: Date
+  contentTypes: [ContentType!]!
+  changefreq: SitemapChangeFreq = weekly
+  priority: Float = 0.5
+  pagination: PaginationInput = { limit: 100 }
 }
 
 input AllPublishedContentQueryInput {
@@ -179,6 +234,12 @@ input AllPublishedContentQueryInput {
   pagination: PaginationInput = {}
   beginning: ContentBeginningInput = {}
   ending: ContentEndingInput = {}
+}
+
+input PublishedContentCountsQueryInput {
+  since: Date
+  excludeContentTypes: [ContentType!] = []
+  includeContentTypes: [ContentType!] = []
 }
 
 input AllAuthorContentQueryInput {

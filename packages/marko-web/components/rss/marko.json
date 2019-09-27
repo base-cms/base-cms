@@ -1,7 +1,9 @@
 {
   "<marko-web-website-section-rss>": {
     "template": "./website-section.marko",
-    "@alias": "string",
+    "@query-name": "string",
+    "@query-params": "object",
+    "@channel-params": "object",
     "@name": "string",
     "@title": "string"
   }

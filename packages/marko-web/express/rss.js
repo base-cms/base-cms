@@ -7,14 +7,13 @@ module.exports = (app, tenantContext) => {
   const { config } = app.locals;
   const mountPoint = config.rssMountPoint();
   const opts = {
-    proxyReqPathResolver: ({ originalUrl }) => originalUrl.replace(mountPoint, '/rss'),
+    proxyReqPathResolver: ({ originalUrl }) => originalUrl.replace(mountPoint, ''),
     proxyReqOptDecorator: (reqOpts, req) => {
       const headers = { ...reqOpts.headers, ...tenantContext };
-      headers['x-publication-name'] = app.locals.config.siteName();
       headers['x-forwarded-proto'] = req.protocol;
-      headers['x-website-host'] = req.get('host');
+      headers['x-mount-point'] = mountPoint;
       return { ...reqOpts, headers };
     },
   };
-  app.use(`${mountPoint}/:alias([a-z-_/]+).xml`, proxy(SERVICE_URI, opts));
+  app.use(`${mountPoint}/:query([a-z-]+).xml`, proxy(SERVICE_URI, opts));
 };

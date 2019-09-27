@@ -45,7 +45,7 @@ interface Content @requiresProject(fields: ["type"]) {
   # fields from platform.model::Content mutations
   # schedules: PlatformContentSchedules! @passThru
   primarySite(input: ContentPrimarySiteInput = {}): WebsiteSite @projection(localField: "mutations.Website.primarySite") @refOne(loader: "platformProduct", localField: "mutations.Website.primarySite", criteria: "websiteSite")
-  primarySection(input: ContentPrimarySectionInput = {}): WebsiteSection @projection(localField: "mutations.Website.primarySection") @refOne(loader: "websiteSection", localField: "mutations.Website.primarySection")
+  primarySection(input: ContentPrimarySectionInput = {}): WebsiteSection @projection(localField: "mutations.Website.primarySection")
 
   # fields from platform.trait::Content\SeoFields
   seoTitle: String @projection(localField: "mutations.Website.seoTitle", needs: ["name"]) @value(localField: "mutations.Website.seoTitle", fallbackField: "name")
@@ -60,7 +60,9 @@ interface Content @requiresProject(fields: ["type"]) {
   updatedDate(input: FormatDate = {}): String @projection(localField: "updated") @momentFormat(localField: "updated")
   publishedDate(input: FormatDate = {}): String @projection(localField: "published") @momentFormat(localField: "published")
   unpublishedDate(input: FormatDate = {}): String @projection(localField: "unpublished") @momentFormat(localField: "unpublished")
+  # @todo Should canonicalPath be changed to websitePath?
   canonicalPath: String! @projection(localField: "_id", needs: ["type", "linkUrl", "mutations.Website.slug", "mutations.Website.primarySection", "mutations.Website.alias"])
+  canonicalUrl: String! @projection(localField: "_id", needs: ["type", "mutations.Website.slug", "mutations.Website.primarySection", "mutations.Website.alias"])
   # Determines if this content item should redirect to another location.
   redirectTo: String @projection(localField: "type", needs: ["linkUrl"])
   # Returns related, published content based on input flags

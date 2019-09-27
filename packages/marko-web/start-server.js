@@ -22,8 +22,7 @@ module.exports = async ({
   routes,
   graphqlUri = env.GRAPHQL_URI,
   tenantKey = env.TENANT_KEY,
-  cdnImageHostname = env.CDN_IMAGE_HOSTNAME || 'base.imgix.net',
-  cdnAssetHostname = env.CDN_ASSET_HOSTNAME || 'cdn.baseplatform.io',
+  siteId = env.SITE_ID,
   errorTemplate,
   document, // custom marko-web-document component
   components, // components to register globally (e.g. for load more, etc)
@@ -51,8 +50,7 @@ module.exports = async ({
     helmetConfig,
     graphqlUri,
     tenantKey,
-    cdnImageHostname,
-    cdnAssetHostname,
+    siteId,
     onAsyncBlockError,
     document,
     components,
@@ -102,6 +100,7 @@ module.exports = async ({
           process.send({
             event: 'ready',
             name: coreConfig.siteName,
+            siteId,
             graphqlUri,
             location: `http://0.0.0.0:${exposedPort}`,
           });

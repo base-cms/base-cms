@@ -8,9 +8,7 @@ module.exports = (app, tenantContext) => {
     proxyReqPathResolver: ({ originalUrl }) => originalUrl,
     proxyReqOptDecorator: (reqOpts, req) => {
       const headers = { ...reqOpts.headers, ...tenantContext };
-      headers['x-publication-name'] = app.locals.config.siteName();
       headers['x-forwarded-proto'] = req.protocol;
-      headers['x-website-host'] = req.get('host');
       return { ...reqOpts, headers };
     },
   };

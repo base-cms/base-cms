@@ -10,9 +10,7 @@ module.exports = (app) => {
     proxyReqPathResolver: ({ originalUrl }) => originalUrl.replace(mountPoint, '/'),
     proxyReqOptDecorator: (reqOpts, req) => {
       const headers = { ...reqOpts.headers };
-      headers['x-publication-name'] = app.locals.config.siteName();
       headers['x-forwarded-proto'] = req.protocol;
-      headers['x-website-host'] = req.get('host');
       return { ...reqOpts, headers };
     },
   };
