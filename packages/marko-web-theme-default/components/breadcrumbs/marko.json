@@ -12,6 +12,7 @@
     "template": "./website-section.marko",
     "@section": "object",
     "@home-title": "string",
-    "@home-alias": "string"
+    "@home-alias": "string",
+    "@display-self": "boolean"
   }
 }
