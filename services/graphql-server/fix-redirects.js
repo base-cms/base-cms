@@ -22,8 +22,11 @@ const run = async () => {
   const siteId = site._id;
   await collection.updateMany({}, { $set: { siteId } });
   log('Site ID added to all redirects');
-  await collection.dropIndex('from_1');
-  log('Old index dropped');
+  const exists = await collection.indexExists('from_1');
+  if (exists) {
+    await collection.dropIndex('from_1');
+    log('Old index dropped');
+  }
   await collection.createIndex({ siteId: 1, from: 1 }, { unique: true });
   log('New index created.');
   log('DONE!');
