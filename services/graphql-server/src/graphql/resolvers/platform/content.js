@@ -711,6 +711,7 @@ module.exports = {
         sectionId,
         sectionAlias,
         optionId,
+        optionName,
         excludeContentIds,
         excludeSectionIds,
         includeContentTypes,
@@ -721,7 +722,8 @@ module.exports = {
       } = input;
 
       if (!sectionId && !sectionAlias) throw new UserInputError('Either a sectionId or sectionAlias input must be provided.');
-      if (sectionId && sectionAlias) throw new UserInputError('You cannot provided both a sectionId and sectionAlias as input.');
+      if (sectionId && sectionAlias) throw new UserInputError('You cannot provide both sectionId and sectionAlias as input.');
+      if (optionId && optionName) throw new UserInputError('You cannot provide both optionId and optionName as input.');
 
       const siteId = site._id;
       const [section, option] = await Promise.all([
@@ -735,7 +737,7 @@ module.exports = {
           basedb,
           siteId,
           id: optionId,
-          name: 'Standard',
+          name: optionName || 'Standard',
         }),
       ]);
 

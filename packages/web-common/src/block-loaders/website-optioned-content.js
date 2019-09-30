@@ -13,10 +13,16 @@ const { isArray } = Array;
  * @param {object} params The params object that will be sent to `websiteScheduledContent`.
  */
 module.exports = async (apolloClient, params) => {
-  // Must set a default limit.
-  const { optionId, limit = 20, optionDepleted } = params;
-  // If no option was provided (or the option query is depleted), perform a "regular" query.
-  if (!optionId || optionDepleted) return websiteScheduledContent(apolloClient, params);
+  const {
+    optionId,
+    optionName,
+    limit = 20, // Must set a default limit.
+    optionDepleted,
+  } = params;
+  // If no option id/name was provided (or the option query is depleted), perform a "regular" query.
+  if ((!optionId && !optionName) || optionDepleted) {
+    return websiteScheduledContent(apolloClient, params);
+  }
 
   // Retrieve content with option (do not allow section bubbling).
   const optioned = await websiteScheduledContent(apolloClient, {
@@ -35,6 +41,7 @@ module.exports = async (apolloClient, params) => {
   const scheduled = await websiteScheduledContent(apolloClient, {
     ...params,
     optionId: undefined,
+    optionName: undefined,
     excludeContentIds,
   });
 
