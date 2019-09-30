@@ -4,6 +4,7 @@ $ const section = getAsObject(input, "section");
 $ const children = getAsArray(section, "hierarchy");
 $ const homeTitle = input.homeTitle || "Home";
 $ const homeAlias = input.homeAlias || "home";
+$ const displaySelf = input.displaySelf != null ? input.displaySelf : true;
 
 <default-theme-breadcrumbs>
   <@item>
@@ -11,9 +12,16 @@ $ const homeAlias = input.homeAlias || "home";
   </@item>
   <for|child| of=children>
     <if(section.alias !== homeAlias)>
-      <@item>
-        <marko-web-link title=child.name href=`/${child.alias}`>${child.name}</marko-web-link>
-      </@item>
+      <if(displaySelf)>
+        <@item>
+          <marko-web-link title=child.name href=`/${child.alias}`>${child.name}</marko-web-link>
+        </@item>
+      </if>
+      <else-if(child.alias !== section.alias)>
+        <@item>
+          <marko-web-link title=child.name href=`/${child.alias}`>${child.name}</marko-web-link>
+        </@item>
+      </else-if>
     </if>
   </for>
 </default-theme-breadcrumbs>
