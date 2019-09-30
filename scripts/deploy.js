@@ -10,6 +10,7 @@
  *   - RANCHER_URL
  *   - RANCHER_TOKEN
  *   - RANCHER_CLUSTERID
+ *   - SLACK_WEBHOOK_URL
  */
 
 const { existsSync } = require('fs');
@@ -36,12 +37,10 @@ const nrIds = {
 
 const error = (message) => {
   log(`ERROR: ${message}`);
-  const text = `Deployment of \`${image}\` @ \`${version}\` to production FAILED!\n${message}`;
+  const text = `Deployment of \`${image}\` @ \`${version}\` FAILED!\n${message}`;
   const payload = JSON.stringify({ attachments: [{ color: 'danger', text }] });
-  const req = https.request({
-    hostname: 'hooks.slack.com',
-    path: '/services/TDA6JTAKC/BGCT0SNGY/vJSPL4S2NQN8SDAjCPilP773',
-    port: 443,
+  const { SLACK_WEBHOOK_URL } = process.env;
+  const req = https.request(SLACK_WEBHOOK_URL, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -54,7 +53,10 @@ const error = (message) => {
     });
   });
 
-  req.on('error', e => log(e));
+  req.on('error', (e) => {
+    log(e);
+    process.exit(1);
+  });
   req.write(payload);
   req.end();
 };
@@ -107,18 +109,8 @@ const build = async () => {
 
 const deploy = async () => {
   log(`Deploying ${image}:${version} on Kubernertes`);
-  const env = {
-    RANCHER_CLUSTERID: process.env.RANCHER_CLUSTERID,
-    RANCHER_TOKEN: process.env.RANCHER_TOKEN,
-  };
-  // @todo revert
-  if (/^v1\./.test(TRAVIS_TAG)) {
-    log('Using v1.x cluster.');
-    env.RANCHER_CLUSTERID = process.env.RANCHER_CLUSTERID_V1;
-    env.RANCHER_TOKEN = process.env.RANCHER_TOKEN_V1;
-  }
   const nrid = nrIds[service];
-  const { status } = await spawnSync('bash', ['scripts/deploy-k8s.sh', service, version, nrid], { stdio: 'inherit', env });
+  const { status } = await spawnSync('bash', ['scripts/deploy-k8s.sh', service, version, nrid], { stdio: 'inherit' });
   if (status !== 0) error('Image deploy failed!');
 };
 
