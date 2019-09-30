@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/example-laserfocusworld",
-  "version": "1.0.0-beta.2",
+  "version": "1.0.0-beta.3",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/example-laserfocusworld",
@@ -16,17 +16,17 @@
     "test": "yarn lint && yarn compile && yarn build"
   },
   "dependencies": {
-    "@base-cms/marko-web": "^1.0.0-beta.1",
+    "@base-cms/marko-web": "^1.0.0-beta.3",
     "@base-cms/marko-web-gam": "^1.0.0-beta.2",
     "@base-cms/marko-web-gcse": "^1.0.0-beta.2",
-    "@base-cms/marko-web-gtm": "^1.0.0-beta.2",
+    "@base-cms/marko-web-gtm": "^1.0.0-beta.3",
     "@base-cms/marko-web-icons": "^1.0.0-beta.1",
     "@base-cms/marko-web-native-x": "^1.0.0-beta.2",
     "@base-cms/marko-web-reveal-ad": "^1.0.0-beta.2",
     "@base-cms/marko-web-theme-default": "^1.0.0-beta.2",
     "@base-cms/object-path": "^1.0.0-beta.1",
     "@base-cms/utils": "^1.0.0-beta.1",
-    "@base-cms/web-cli": "^1.0.0-beta.1",
+    "@base-cms/web-cli": "^1.0.0-beta.3",
     "graphql": "^14.5.4",
     "graphql-tag": "^2.10.1",
     "newrelic": "^5.11.0"
