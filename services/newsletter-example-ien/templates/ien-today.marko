@@ -1,4 +1,189 @@
-$ const { newsletter } = data;
+$ const { newsletter, day } = data;
 
-<h1>${newsletter.name}</h1>
-<p>${newsletter.description}</p>
+<document>
+  <@head>
+    <title>${newsletter.name}</title>
+    <style type="text/css">
+      .linkColor a {
+        color: #000000;
+        text-decoration: none;
+      }
+
+      .body h3,
+      .body h3 a {
+        font-size: 28px;
+        color: #000000;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: regular;
+        margin: 10px 0;
+      }
+
+      .body p b,
+      .body p a {
+        font-size: 12px;
+        color: #000000;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .body p {
+        font-size: 13px;
+        color: #666666;
+        margin: 10px 0;
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 1.5;
+      }
+
+      ul {
+        list-style-position: inside;
+        padding-inline-start: 5px;
+      }
+
+      a {
+        text-decoration: none !important;
+      }
+
+      @media only screen and (max-width: 650px) {
+        /* mobile-specific CSS styles go here */
+        .top {
+          width: 340px !important;
+        }
+        .scaleAd {
+          width: 300px !important;
+          height: auto !important;
+        }
+        .main {
+          width: 300px !important;
+        }
+        .main .right {
+          margin-right: 5px;
+          margin-top: 12px;
+        }
+        .right .advertisement {
+          margin-right: 15px;
+          margin-top: 12px;
+        }
+        .img-small {
+          padding-right: 0 !important;
+        }
+        .sponsored {
+          width: 280px !important;
+        }
+        .mobileHide {
+          display: none !important;
+        }
+        .mobileText {
+          font-size: 0.6em;
+          line-height: 1.3em;
+        }
+        .mobilePadding {
+          padding-right: 15px;
+        }
+        .logoScale {
+          width: 300px !important;
+        }
+        .center {
+          text-align: center !important;
+          line-height: 18px !important;
+        }
+        .marginTop {
+          margin-top: 6px !important;
+        }
+        td[class=short] {
+          height: 10px !important;
+        }
+        .breakLn {
+          display: block !important;
+        }
+      }
+    </style>
+  </@head>
+
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="top">
+    <tr>
+      <td bgcolor="#ecedee">
+        <table width="630" border="0" cellspacing="0" cellpadding="0" align="center" class="main">
+          <tr>
+            <td height="20" align="center" valign="middle" style="font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#666666; line-height:12px;">
+              <span class="breakLn">IEN Today</span><span class="mobileHide"> &nbsp; | &nbsp; </span> To view this email as a web page, click <a target="_blank" style="color:#666666;" href="%%view_email_url%%">here.</a>
+            </td>
+          </tr>
+          <tr>
+            <td align="center">
+              <div class="advertisement inline ad-600x100">
+                <!-- <div id="adunit_id__137873098-IEN-Newsletters-600x100__1215182341">
+                  <a href="http://pubads.g.doubleclick.net/gampad/jump?co=1&iu=137873098/IEN-Newsletters-600x100&sz=600x100&c=2022189371&t=dayofweek%3DTue%26nl_date%3D2019-10-01%26weeknum%3D40%26month%3D10%26day%3D1%26year%3D2019%26nl_name%3DIEN%2BToday%26nl_id%3D56781dd03aab46f646b2f060" target="_blank"><img src="http://pubads.g.doubleclick.net/gampad/ad?co=1&iu=137873098/IEN-Newsletters-600x100&sz=600x100&c=2022189371&t=dayofweek%3DTue%26nl_date%3D2019-10-01%26weeknum%3D40%26month%3D10%26day%3D1%26year%3D2019%26nl_name%3DIEN%2BToday%26nl_id%3D56781dd03aab46f646b2f060" width="600" height="100" alt="" class="scaleAd" border="0"></a>
+                </div> -->
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td height="20" class="short">&nbsp;</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+
+  <table width="630" border="0" align="center" class="main">
+    <tr>
+      <td>
+        <div style="line-height:20px; font-size:2px;">&nbsp;</div>
+        <!-- Header -->
+        <table width="630" border="0" cellspacing="0" cellpadding="0" align="center" class="main" style="background-color:#ffffff">
+          <tr>
+            <td>
+              <!--left-->
+              <table width="420" border="0" cellspacing="0" cellpadding="0" align="left" class="main">
+                <tr>
+                  <td align="left" valign="top">
+                    <a href="https://www.ien.com" title="IEN Today" target="_blank">
+                      <img border="0" src="https://cdn.ien.com/files/base/indm/ien/image/2016/03/ientoday.56f0149e9136a.png" width="420" alt="IEN Today" class="logoScale" />
+                    </a>
+                  </td>
+                </tr>
+              </table>
+              <!--right-->
+              <table width="180" border="0" valign="top" cellspacing="0" cellpadding="0" align="right" class="mobileHide">
+                <tr>
+                  <td height="20" align="left" valign="top">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td style="font-size:6px;" align="right"></td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <tr>
+            <td height="20">&nbsp;</td>
+          </tr>
+
+          <tr>
+            <td height="20">
+              <table width="100%" border="0" cellspacing="0" cellpadding="0" class="main">
+                <tr>
+                  <td bgcolor="#000000" width="134" height="20" align="center" valign="middle">
+                    <div style="font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#ffffff; line-height:12px; text-transform: uppercase;">
+                      ${day.format("MMMM Do, YYYY")}
+                    </div>
+                  </td>
+                  <td>
+                    <img border="0" src="https://cdn.ien.com/files/base/newsletter/header-slanted_left.png" width="166" height="20" align="left" alt="" />
+                    <img border="0" src="https://cdn.ien.com/files/base/newsletter/header-slanted_right.png" width="330" height="20" align="left" alt="" class="mobileHide" />
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <tr>
+            <td>&nbsp;</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</document>
