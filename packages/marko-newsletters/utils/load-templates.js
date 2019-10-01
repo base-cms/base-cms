@@ -9,7 +9,7 @@ const load = async ({ rootDir, templatePath }) => {
   if (!fs.existsSync(templateDir)) throw new Error(`The template directory ${templateDir} does not exist.`);
 
   const templates = [];
-  const files = await readdir(templateDir, ['!*.marko']);
+  const files = await readdir(templateDir, ['**/components/*.marko', '!*.marko']);
   files.forEach((file) => {
     const route = file.replace(templateDir, '').replace(/\.marko$/i, '');
     const key = route.replace(/^\//, '');
