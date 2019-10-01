@@ -4,6 +4,7 @@ const { createTerminus } = require('@godaddy/terminus');
 const { isFunction: isFn } = require('@base-cms/utils');
 // const errorHandlers = require('./express/error-handlers');
 const express = require('./express');
+const loadTemplates = require('./utils/load-templates');
 
 const { env } = process;
 
@@ -11,11 +12,11 @@ process.on('unhandledRejection', (e) => { throw e; });
 
 module.exports = async ({
   rootDir,
+  templatePath = 'templates', // Where templates will be resolved from.
   customConfig,
   coreConfig,
   port = env.PORT || 5008,
   exposedPort = env.EXPOSED_PORT || env.PORT || 5008,
-  routes,
   graphqlUri = env.GRAPHQL_URI,
   tenantKey = env.TENANT_KEY,
   siteId = env.SITE_ID,
@@ -33,9 +34,15 @@ module.exports = async ({
   onHealthCheck,
 } = {}) => {
   if (!rootDir) throw new Error('The root project directory is required.');
+  if (!templatePath) throw new Error('A newsletter template location is required.');
   if (!graphqlUri) throw new Error('The GraphQL API URL is required.');
+
+  // Load newsletter marko templates.
+  const templates = await loadTemplates({ rootDir, templatePath });
+
   const app = express({
     rootDir,
+    templates,
     customConfig,
     coreConfig,
     graphqlUri,
@@ -48,11 +55,6 @@ module.exports = async ({
 
   // Await required services here...
   if (isFn(onStart)) await onStart(app);
-
-  // Load website routes.
-  if (!isFn(routes)) throw new Error('A routes function is required.');
-  // @todo This should likely use a Router to load only templates??
-  routes(app);
 
   // Apply error handlers.
   // errorHandlers(app, { template: errorTemplate, redirectHandler });
