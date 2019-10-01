@@ -90,6 +90,7 @@ module.exports = {
     Product: {
       query: [
         { status: 1, type: 1, _id: 1 },
+        { status: 1, type: 1, alias: 1 }, // for newsletter products
       ],
       sort: [
         [{ sequence: 1, _id: 1 }],
