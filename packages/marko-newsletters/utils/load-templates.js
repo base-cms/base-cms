@@ -12,10 +12,12 @@ const load = async ({ rootDir, templatePath }) => {
   const files = await readdir(templateDir, ['!*.marko']);
   files.forEach((file) => {
     const route = file.replace(templateDir, '').replace(/\.marko$/i, '');
+    const key = route.replace(/^\//, '');
     const alias = route.split('/')[1];
     // eslint-disable-next-line global-require, import/no-dynamic-require
     const template = require(file);
     templates.push({
+      key,
       route,
       alias,
       file,
