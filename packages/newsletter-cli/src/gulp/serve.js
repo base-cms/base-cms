@@ -20,7 +20,7 @@ module.exports = (cwd, serverFile) => () => {
       cwd,
       queue: false,
       ignoreInitial: false,
-      ignored: '**/*.marko.js',
+      ignored: ['**/*.marko.js', 'node_modules'],
     },
     parallel(lint(cwd), server(serverFile)),
   );
