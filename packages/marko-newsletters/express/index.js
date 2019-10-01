@@ -7,6 +7,7 @@ const CoreConfig = require('../config/core');
 const CustomConfig = require('../config/custom');
 const { version } = require('../package.json');
 const admin = require('../admin');
+const templateRouter = require('./template-router');
 
 /**
  * graphqlUri
@@ -63,6 +64,9 @@ module.exports = (config = {}) => {
 
   // Register newsletter "admin application."
   app.use('/', admin({ templates }));
+
+  // Register templates
+  app.use('/templates', templateRouter({ templates }));
 
   return app;
 };
