@@ -14,6 +14,5 @@ module.exports = (cwd, options) => (cb) => {
       cb();
     }),
     eslint.format(),
-    eslint.failAfterError(),
   ], e => completeTask(e, cb));
 };
