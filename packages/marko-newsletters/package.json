@@ -7,7 +7,7 @@
   "license": "MIT",
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/marko-newsletters",
   "scripts": {
-    "lint": "eslint --ext .js --ext .vue --max-warnings 5 ./",
+    "lint": "eslint --ext .js --max-warnings 5 ./",
     "compile": "basecms-marko-compile compile --dir ./ --silent true",
     "test": "yarn compile && yarn lint"
   },
