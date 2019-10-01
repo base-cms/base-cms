@@ -75,6 +75,69 @@ services:
       - elasticsearch
       - kibana
 
+  graphql-server-aerilon:
+    << : *node
+    working_dir: /base-cms/services/graphql-server
+    entrypoint: ["/base-cms/node_modules/.bin/gulp"]
+    environment:
+      <<: *env
+      <<: *env-newrelic
+      MONGO_DSN: ${MONGO_DSN_AERILON-mongodb://mongodb:27017}
+      ENABLE_BASEDB_LOGGING: ${ENABLE_BASEDB_LOGGING-}
+      ENGINE_API_KEY: ${ENGINE_API_KEY-(unset)}
+    depends_on:
+      - mongodb
+    ports:
+      - "11000:80"
+
+  graphql-server-caprica:
+    << : *node
+    working_dir: /base-cms/services/graphql-server
+    entrypoint: ["/base-cms/node_modules/.bin/gulp"]
+    environment:
+      <<: *env
+      <<: *env-newrelic
+      MONGO_DSN: ${MONGO_DSN_CAPRICA-mongodb://mongodb:27017}
+      ENABLE_BASEDB_LOGGING: ${ENABLE_BASEDB_LOGGING-}
+      ENGINE_API_KEY: ${ENGINE_API_KEY-(unset)}
+    depends_on:
+      - mongodb
+    ports:
+      - "11001:80"
+
+  graphql-server-picon:
+    << : *node
+    working_dir: /base-cms/services/graphql-server
+    entrypoint: ["/base-cms/node_modules/.bin/gulp"]
+    environment:
+      <<: *env
+      <<: *env-newrelic
+      MONGO_DSN: ${MONGO_DSN_PICON-mongodb://mongodb:27017}
+      ENABLE_BASEDB_LOGGING: ${ENABLE_BASEDB_LOGGING-}
+      ENGINE_API_KEY: ${ENGINE_API_KEY-(unset)}
+    depends_on:
+      - mongodb
+    ports:
+      - "11002:80"
+
+  newsletter-example-ien:
+    <<: *node
+    working_dir: /base-cms/services/newsletter-example-ien
+    command: ["/base-cms/node_modules/.bin/basecms-newsletters", "dev", "index.js"]
+    environment:
+      <<: *env
+      PORT: 80
+      EXPOSED_PORT: 11090
+      TENANT_KEY: indm_ien
+      SITE_ID: 5669a4f16cdeeaf8598b4579
+      GRAPHQL_URI: http://graphql-server-caprica
+      NEW_RELIC_ENABLED: 0
+      NEW_RELIC_LICENSE_KEY: (unset)
+    depends_on:
+      - graphql-server-caprica
+    ports:
+      - "11090:80"
+
   graphql-server:
     << : *node
     working_dir: /base-cms/services/graphql-server
