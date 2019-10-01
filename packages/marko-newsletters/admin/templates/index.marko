@@ -1,6 +1,39 @@
+$ const { newsletters } = data;
+
 <document>
   <@head>
     <page-title value="Newsletters" />
   </@head>
-  <h1>Admin!</h1>
+  <div class="row">
+    <div class="col">
+      <div class="card mb-3">
+        <div class="card-header">BaseCMS Newsletters</div>
+        <div class="list-group list-group-flush">
+          <if(newsletters.length)>
+            <for|newsletter| of=newsletters>
+              <div class="list-group-item">
+                <h5 class="card-title mb-3">${newsletter.name}</h5>
+                <h6 class="card-subtitle mb-1 text-muted">Templates:</h6>
+                <if(newsletter.templates.length)>
+                  <for|template| of=newsletter.templates>
+                    <p class="mb-0">
+                      ${template} <small>[<a href=`/newsletters/${template}`>most recent</a>] [<a href=`/newsletters/${template}`>select day</a>]</small>
+                    </p>
+                  </for>
+                </if>
+                <else>
+                  <p class="mb-0">none</p>
+                </else>
+              </div>
+            </for>
+          </if>
+          <else>
+            <div class="list-group-item text-muted">
+              No newsletters found
+            </div>
+          </else>
+        </div>
+      </div>
+    </div>
+  </div>
 </document>
