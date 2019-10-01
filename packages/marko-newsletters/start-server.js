@@ -5,9 +5,6 @@ const { isFunction: isFn } = require('@base-cms/utils');
 // const errorHandlers = require('./express/error-handlers');
 const express = require('./express');
 
-if (!process.env.LIVERELOAD_PORT) {
-  process.env.LIVERELOAD_PORT = 5010;
-}
 const { env } = process;
 
 process.on('unhandledRejection', (e) => { throw e; });
