@@ -11,7 +11,6 @@ query MarkoNewsletterList {
       node {
         id
         name
-        description
         alias
       }
     }
