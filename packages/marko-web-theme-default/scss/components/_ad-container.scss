@@ -15,6 +15,12 @@
       margin-bottom: auto;
     }
   }
+  > * {
+    margin-bottom: map-get($spacers, block);
+  }
+  &:last-child {
+    margin-bottom: 0;
+  }
   iframe {
     box-shadow: $theme-ad-box-shadow;
   }
