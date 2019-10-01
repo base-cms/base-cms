@@ -87,6 +87,7 @@ class MatchManyDirective extends SchemaDirectiveVisitor {
         using,
         criteria,
         withSite,
+        siteField,
       } = this.args;
 
       const {
@@ -108,7 +109,7 @@ class MatchManyDirective extends SchemaDirectiveVisitor {
         },
         using,
         input,
-        ...(withSite && { siteId: site._id }),
+        ...(withSite && { siteId: site._id, siteField }),
       });
 
       if (isArray(excludeIds) && excludeIds.length) {

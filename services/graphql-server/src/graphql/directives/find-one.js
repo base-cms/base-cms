@@ -25,6 +25,7 @@ class FindOneDirective extends SchemaDirectiveVisitor {
         using,
         criteria,
         withSite,
+        siteField,
       } = this.args;
 
       const { status } = input;
@@ -33,7 +34,7 @@ class FindOneDirective extends SchemaDirectiveVisitor {
         query: { ...criteriaFor(criteria), ...formatStatus(status) },
         using,
         input,
-        ...(withSite && { siteId: site._id }),
+        ...(withSite && { siteId: site._id, siteField }),
       });
 
       const result = await basedb.findOne(model, query, { projection });
