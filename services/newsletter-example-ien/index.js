@@ -11,9 +11,6 @@ module.exports = startServer({
   rootDir: __dirname,
   coreConfig,
   customConfig,
-  routes: app => app.get('/', (req, res) => {
-    res.json({ hello: 'world' });
-  }),
   version,
   publicPath: 'public',
   onStart: app => app.set('trust proxy', 'loopback, linklocal, uniquelocal'),
