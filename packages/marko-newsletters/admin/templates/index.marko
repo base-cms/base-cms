@@ -17,7 +17,7 @@ $ const { newsletters, staticTemplates } = data;
                 <if(newsletter.templates.length)>
                   <for|template| of=newsletter.templates>
                     <p class="mb-0">
-                      ${template} <small>[<a href=`/newsletters/${template}`>most recent</a>] [<a href=`/newsletters/${template}`>select day</a>]</small>
+                      ${template} <small>[<a href=`/templates/${template}`>most recent</a>] [<a href=`/templates/${template}`>select day</a>]</small>
                     </p>
                   </for>
                 </if>
@@ -45,7 +45,7 @@ $ const { newsletters, staticTemplates } = data;
               <div class="list-group-item">
                 <h6 class="card-subtitle mb-1 mt-0 text-muted">Template:</h6>
                 <p class="mb-0">
-                  ${template} <small>[<a href=`/newsletters/${template}`>most recent</a>] [<a href=`/newsletters/${template}`>select day</a>]</small>
+                  ${template} <small>[<a href=`/templates/${template}`>most recent</a>] [<a href=`/templates/${template}`>select day</a>]</small>
                 </p>
               </div>
             </for>
