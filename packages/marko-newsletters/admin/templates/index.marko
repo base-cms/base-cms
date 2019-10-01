@@ -1,11 +1,11 @@
-$ const { newsletters } = data;
+$ const { newsletters, staticTemplates } = data;
 
 <document>
   <@head>
     <page-title value="Newsletters" />
   </@head>
   <div class="row">
-    <div class="col">
+    <div class="col-lg-6">
       <div class="card mb-3">
         <div class="card-header">BaseCMS Newsletters</div>
         <div class="list-group list-group-flush">
@@ -35,5 +35,29 @@ $ const { newsletters } = data;
         </div>
       </div>
     </div>
+
+    <div class="col-lg-6">
+      <div class="card mb-3">
+        <div class="card-header">Static Templates</div>
+        <div class="list-group list-group-flush">
+          <if(staticTemplates.length)>
+            <for|template| of=staticTemplates>
+              <div class="list-group-item">
+                <h6 class="card-subtitle mb-1 mt-0 text-muted">Template:</h6>
+                <p class="mb-0">
+                  ${template} <small>[<a href=`/newsletters/${template}`>most recent</a>] [<a href=`/newsletters/${template}`>select day</a>]</small>
+                </p>
+              </div>
+            </for>
+          </if>
+          <else>
+            <div class="list-group-item text-muted">
+              No templates found
+            </div>
+          </else>
+        </div>
+      </div>
+    </div>
+
   </div>
 </document>
