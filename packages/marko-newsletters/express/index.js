@@ -6,6 +6,7 @@ const websiteContext = require('./website-context');
 const CoreConfig = require('../config/core');
 const CustomConfig = require('../config/custom');
 const { version } = require('../package.json');
+const admin = require('../admin');
 
 /**
  * graphqlUri
@@ -18,6 +19,7 @@ const { version } = require('../package.json');
  * publicPath
  */
 module.exports = (config = {}) => {
+  const { rootDir, publicPath, templates } = config;
   const app = express();
 
   // Add async block error handler.
@@ -55,9 +57,12 @@ module.exports = (config = {}) => {
   marko(app);
 
   // Register public folder, if applicable.
-  if (config.publicPath) {
-    app.use(express.static(path.join(config.rootDir, config.publicPath)));
+  if (publicPath) {
+    app.use(express.static(path.join(rootDir, publicPath)));
   }
+
+  // Register newsletter "admin application."
+  app.use('/', admin({ templates }));
 
   return app;
 };
