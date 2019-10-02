@@ -3,7 +3,7 @@
   "version": "1.0.0-beta.3",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
-  "repository": "https://github.com/base-cms/base-cms/tree/master/packages/example-laserfocusworld",
+  "repository": "https://github.com/base-cms/base-cms/tree/master/services/example-laserfocusworld",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -16,6 +16,7 @@
     "test": "yarn lint && yarn compile && yarn build"
   },
   "dependencies": {
+    "@base-cms/marko-core": "^1.0.0-beta.3",
     "@base-cms/marko-web": "^1.0.0-beta.3",
     "@base-cms/marko-web-gam": "^1.0.0-beta.2",
     "@base-cms/marko-web-gcse": "^1.0.0-beta.2",
