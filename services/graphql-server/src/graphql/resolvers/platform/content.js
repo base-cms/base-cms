@@ -186,15 +186,15 @@ module.exports = {
 
       const ref = BaseDB.get(content, 'mutations.Website.primarySection');
       const id = BaseDB.extractRefId(ref);
-      const section = (id) ? await load('websiteSection', id, projection) : await loadHomeSection({
+      const section = (id) ? await load('websiteSection', id, projection, { status: 1 }) : await loadHomeSection({
         basedb,
         siteId: site._id,
         status: 'active',
         projection,
       });
 
-      const owningSiteId = BaseDB.extractRefId(section.site);
-      const owningSite = await load('platformProduct', owningSiteId, { host: 1 }, { type: 'Site' });
+      const owningSiteId = section ? BaseDB.extractRefId(section.site) : site._id;
+      const owningSite = `${owningSiteId}` === `${site._id}` ? site : await load('platformProduct', owningSiteId, { host: 1 }, { type: 'Site' });
 
       const origin = `https://${owningSite.host}`;
       const values = [
