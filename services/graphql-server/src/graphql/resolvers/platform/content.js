@@ -207,6 +207,13 @@ module.exports = {
       return `${origin}/${cleanPath(path)}`;
     },
 
+    websiteUrl: async (content, _, ctx) => {
+      const { site } = ctx;
+      const path = await canonicalPathFor(content, ctx);
+      if (/^http/i.test(path)) return path;
+      return `${site.origin}${path}`;
+    },
+
     /**
      * Load primary section of content.
      * If primary section's site matches the current site, return the section.
@@ -299,7 +306,12 @@ module.exports = {
 
     metadata: content => content,
 
+    /**
+     * @deprecated use `websitePath` instead.
+     */
     canonicalPath: (content, _, ctx) => canonicalPathFor(content, ctx),
+
+    websitePath: (content, _, ctx) => canonicalPathFor(content, ctx),
 
     redirectTo: (content) => {
       const { type, linkUrl } = content;

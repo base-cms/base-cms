@@ -8,7 +8,8 @@
 - [x] Add multi-site support to RSS and sitemap services
 - [x] Add site to Redirects collection
 - [ ] Update build-redirects.js to use site
-- [ ] Determine if `canonicalPath` should be renamed to `websitePath`
+- [x] Determine if `canonicalPath` should be renamed to `websitePath`
+- [x] Add `websiteUrl` that includes origin and path (so text ads link off properly)
 - [ ] Should content path rules be stored on the Site object?
 - [x] Add image and asset hostnames to Site object
 - [x] Write script to set all site hosts (ensure `www.`) and add image/asset hosts
