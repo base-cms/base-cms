@@ -16,6 +16,7 @@ extend type Query {
   allCompanyContent(input: AllCompanyContentQueryInput = {}): ContentConnection!
   magazineScheduledContent(input: MagazineScheduledContentQueryInput = {}): ContentConnection!
   websiteScheduledContent(input: WebsiteScheduledContentQueryInput = {}): WebsiteScheduledContentConnection!
+  newsletterScheduledContent(input: NewsletterScheduledContentQueryInput = {}): [Content!]!
   relatedPublishedContent(input: RelatedPublishedContentQueryInput = {}): ContentConnection!
   websiteExpiringContent(input: WebsiteExpiringContentQueryInput = {}): ContentConnection!
 }
@@ -298,6 +299,19 @@ input WebsiteExpiringContentQueryInput {
   excludeContentTypes: [ContentType!] = []
   includeContentTypes: [ContentType!] = []
   pagination: PaginationInput = {}
+}
+
+input NewsletterScheduledContentQueryInput {
+  newsletterId: ObjectID!
+  sectionId: Int
+  sectionName: String
+  date: Date!
+  timezone: String = "America/Chicago"
+  ignoreStartDate: Boolean = false
+  excludeContentTypes: [ContentType!] = []
+  includeContentTypes: [ContentType!] = []
+  limit: Int = 25
+  skip: Int
 }
 
 input WebsiteScheduledContentQueryInput {

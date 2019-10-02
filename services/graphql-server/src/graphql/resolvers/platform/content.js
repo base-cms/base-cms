@@ -6,7 +6,9 @@ const { get } = require('@base-cms/object-path');
 const { underscore, dasherize, titleize } = require('@base-cms/inflector');
 const { createSrcFor, createCaptionFor } = require('@base-cms/image');
 const moment = require('moment');
+const momentTZ = require('moment-timezone');
 
+const mapArray = require('../../utils/map-array');
 const sitemap = require('../../utils/sitemap');
 const criteriaFor = require('../../utils/criteria-for');
 const getProjection = require('../../utils/get-projection');
@@ -789,6 +791,68 @@ module.exports = {
         additionalData: { sectionId: section._id },
         ...pagination,
       });
+    },
+
+    newsletterScheduledContent: async (_, { input }, { basedb }, info) => {
+      const {
+        newsletterId,
+        sectionId,
+        sectionName,
+        timezone,
+        ignoreStartDate,
+        includeContentTypes,
+        excludeContentTypes,
+        limit,
+        skip,
+      } = input;
+
+      if (!sectionId && !sectionName) throw new UserInputError('Either a sectionId or sectionName input must be provided.');
+      if (sectionId && sectionName) throw new UserInputError('You cannot provide both sectionId and sectionName as input.');
+
+      const sectionQuery = { status: 1, 'deployment.$id': newsletterId };
+      if (sectionId) sectionQuery._id = sectionId;
+      if (sectionName) sectionQuery.name = sectionName;
+
+      const section = await basedb.strictFindOne('email.Section', sectionQuery, { projection: { _id: 1 } });
+
+      const date = momentTZ(input.date).tz(timezone);
+      const start = date.startOf('day').toDate();
+      const end = date.endOf('day').toDate();
+
+      const scheduleSort = ignoreStartDate
+        ? { deploymentDate: -1, sequence: 1 }
+        : { sequence: 1, deploymentDate: 1 };
+
+      const scheduleQuery = {
+        status: 1,
+        section: section._id,
+        'content.type': { $in: includeContentTypes.length ? includeContentTypes : getDefaultContentTypes() },
+        deploymentDate: ignoreStartDate ? { $lte: end } : { $gte: start, $lte: end },
+      };
+      if (excludeContentTypes.length) scheduleQuery.$and = [{ 'content.type': { $nin: excludeContentTypes } }];
+
+      const schedules = await basedb.find('email.Schedule', scheduleQuery, {
+        limit,
+        skip,
+        sort: scheduleSort,
+        projection: { 'content.$id': 1 },
+      });
+      const contentIds = schedules.map(schedule => BaseDB.extractRefId(schedule.content));
+
+      if (!contentIds.length) return [];
+
+      const {
+        fieldNodes,
+        schema,
+        fragments,
+      } = info;
+      const projection = getProjection(schema, schema.getType('Content'), fieldNodes[0].selectionSet, fragments);
+
+      const content = await basedb.find('platform.Content', { _id: { $in: contentIds } }, { projection });
+
+      // map and resort to match schedule order
+      const contentMap = mapArray(content, '_id');
+      return content.map(v => contentMap.get(`${v._id}`)).filter(v => v);
     },
 
     /**
