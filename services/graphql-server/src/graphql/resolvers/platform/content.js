@@ -864,7 +864,7 @@ module.exports = {
 
       // map and resort to match schedule order
       const contentMap = mapArray(content, '_id');
-      return content.map(v => contentMap.get(`${v._id}`)).filter(v => v);
+      return contentIds.map(id => contentMap.get(`${id}`)).filter(v => v);
     },
 
     /**
