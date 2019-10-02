@@ -40,7 +40,7 @@ module.exports = ({ templates }) => {
 
       if (newsletter && newsletter.status !== 1) throw createError(404, 'No newsletter found for the provided alias.');
       res.marko(template, {
-        day: date.startOf('day'),
+        date,
         newsletter: newsletter || {},
         isStatic: !newsletter,
       });
