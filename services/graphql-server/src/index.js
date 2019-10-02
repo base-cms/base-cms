@@ -1,6 +1,7 @@
 const http = require('http');
 const { createTerminus } = require('@godaddy/terminus');
 require('./newrelic');
+const { PORT, EXPOSED_PORT } = require('./env');
 const app = require('./app');
 const pkg = require('../package.json');
 const services = require('./services');
@@ -22,7 +23,7 @@ const run = async () => {
     onShutdown: () => log('> Cleanup finished. Shutting down.'),
   });
 
-  server.listen(80, () => log('> Ready on http://0.0.0.0:10002'));
+  server.listen(PORT, () => log(`> Ready on http://0.0.0.0:${EXPOSED_PORT}`));
 };
 
 // Simulate future NodeJS behavior by throwing unhandled Promise rejections.

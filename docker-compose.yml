@@ -86,6 +86,8 @@ services:
       <<: *env-mongo
       <<: *env-newrelic
       ENGINE_API_KEY: ${ENGINE_API_KEY-(unset)}
+      PORT: 80
+      EXPOSED_PORT: 10002
     depends_on:
       - mongodb
     ports:
@@ -101,6 +103,8 @@ services:
       MONGO_DSN: ${MONGO_DSN_AERILON-mongodb://mongodb:27017}
       ENABLE_BASEDB_LOGGING: ${ENABLE_BASEDB_LOGGING-}
       ENGINE_API_KEY: ${ENGINE_API_KEY-(unset)}
+      PORT: 80
+      EXPOSED_PORT: 11000
     depends_on:
       - mongodb
     ports:
@@ -116,6 +120,8 @@ services:
       MONGO_DSN: ${MONGO_DSN_CAPRICA-mongodb://mongodb:27017}
       ENABLE_BASEDB_LOGGING: ${ENABLE_BASEDB_LOGGING-}
       ENGINE_API_KEY: ${ENGINE_API_KEY-(unset)}
+      PORT: 80
+      EXPOSED_PORT: 11001
     depends_on:
       - mongodb
     ports:
@@ -131,6 +137,8 @@ services:
       MONGO_DSN: ${MONGO_DSN_PICON-mongodb://mongodb:27017}
       ENABLE_BASEDB_LOGGING: ${ENABLE_BASEDB_LOGGING-}
       ENGINE_API_KEY: ${ENGINE_API_KEY-(unset)}
+      PORT: 80
+      EXPOSED_PORT: 11002
     depends_on:
       - mongodb
     ports:
