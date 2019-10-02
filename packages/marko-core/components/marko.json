@@ -1,0 +1,9 @@
+{
+  "taglib-imports": [
+    "./queries/marko.json"
+  ],
+  "<marko-web-resolve>": {
+    "template": "./resolve.marko",
+    "@promise": "object"
+  }
+}

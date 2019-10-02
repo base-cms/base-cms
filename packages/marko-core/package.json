@@ -1,0 +1,21 @@
+{
+  "name": "@base-cms/marko-core",
+  "version": "1.0.0-beta.3",
+  "description": "Core BaseCMS Marko components.",
+  "author": "Jacob Bare <jacob@limit0.io>",
+  "main": "index.js",
+  "license": "MIT",
+  "repository": "https://github.com/base-cms/base-cms/tree/master/packages/marko-core",
+  "scripts": {
+    "lint": "eslint --ext .js --max-warnings 5 ./",
+    "compile": "basecms-marko-compile compile --dir ./ --silent true",
+    "test": "yarn compile && yarn lint"
+  },
+  "dependencies": {
+    "@base-cms/web-common": "1.0.0-beta.3",
+    "marko": "^4.18.13"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

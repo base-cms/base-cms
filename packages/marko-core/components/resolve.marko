@@ -1,4 +1,4 @@
-import isDev from "../../utils/is-dev";
+import isDev from "../utils/is-dev";
 
 $ const { onAsyncBlockError } = out.global;
 $ const { isArray } = Array;
@@ -8,7 +8,7 @@ $ const { isArray } = Array;
     <${input.renderBody} resolved=resolved />
   </@then>
   <@catch|err|>
-    $ if (typeof onAsyncBlockError === 'function') onAsyncBlockError(err);
+    $ if (typeof onAsyncBlockError === "function") onAsyncBlockError(err);
     <if(input.onError)>
       <${input.onError} err=err />
     </if>

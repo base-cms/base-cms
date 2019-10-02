@@ -1,1 +1,1 @@
-module.exports = ['development', 'dev', 'develop'].includes(process.env.NODE_ENV);
+module.exports = require('@base-cms/marko-core/utils/is-dev');

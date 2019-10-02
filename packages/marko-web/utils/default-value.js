@@ -1,1 +1,1 @@
-module.exports = (value, def) => (value != null ? value : def);
+module.exports = require('@base-cms/marko-core/utils/default-value');
