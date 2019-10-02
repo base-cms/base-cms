@@ -1,7 +1,6 @@
 const newrelic = require('newrelic');
 const { startServer } = require('@base-cms/marko-newsletters');
 const { version } = require('./package.json');
-// const routes = require('./server/routes');
 const coreConfig = require('./config/core');
 const customConfig = require('./config/custom');
 
