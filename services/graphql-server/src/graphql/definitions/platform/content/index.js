@@ -310,7 +310,7 @@ input NewsletterScheduledContentQueryInput {
   ignoreStartDate: Boolean = false
   excludeContentTypes: [ContentType!] = []
   includeContentTypes: [ContentType!] = []
-  limit: Int = 25
+  limit: Int
   skip: Int
 }
 
