@@ -8,6 +8,7 @@ const blockMagazinePublications = require('./block-magazine-publications');
 const blockMagazineLatestIssue = require('./block-magazine-latest-issue');
 const blockMagazineActiveIssues = require('./block-magazine-active-issues');
 const blockMagazineScheduledContent = require('./block-magazine-scheduled-content');
+const blockNewsletterScheduledContent = require('./block-newsletter-scheduled-content');
 const blockAllPublishedContent = require('./block-all-published-content');
 const blockAllAuthorContent = require('./block-all-author-content');
 const blockAllCompanyContent = require('./block-all-company-content');
@@ -30,6 +31,7 @@ module.exports = {
   blockMagazineLatestIssue,
   blockMagazineActiveIssues,
   blockMagazineScheduledContent,
+  blockNewsletterScheduledContent,
   blockAllPublishedContent,
   blockAllAuthorContent,
   blockAllCompanyContent,
