@@ -208,11 +208,12 @@ $ const { newsletter, date } = data;
   }>
     <for|node| of=nodes>
       <h4>
-        <a href=`${node.websiteUrl}` target="_blank" rel="noopener">
+        <a href=node.websiteUrl target="_blank" rel="noopener">
           ${node.name}
         </a>
       </h4>
-      <p>${node.teaser}</p>
+      <p>$!{node.teaser}</p>
+      <hr>
     </for>
   </marko-web-query>
   <hr>
@@ -225,11 +226,12 @@ $ const { newsletter, date } = data;
   }>
     <for|node| of=nodes>
       <h4>
-        <a href=`${node.websiteUrl}` target="_blank" rel="noopener">
+        <a href=node.websiteUrl target="_blank" rel="noopener">
           ${node.name}
         </a>
       </h4>
-      <p>${node.teaser}</p>
+      <p>$!{node.teaser}</p>
+      <hr>
     </for>
   </marko-web-query>
   <hr>
@@ -242,11 +244,22 @@ $ const { newsletter, date } = data;
   }>
     <for|node| of=nodes>
       <h4>
-        <a href=`${node.websiteUrl}` target="_blank" rel="noopener">
+        <a href=node.websiteUrl target="_blank" rel="noopener">
           ${node.name}
         </a>
       </h4>
-      <p>${node.teaser}</p>
+      <if(node.type === "text-ad")>
+        <div>
+          $!{node.body}
+        </div>
+      </if>
+      <else>
+        <p>$!{node.teaser}</p>
+      </else>
+      <if(node.type === "text-ad")>
+        <p><a href=node.websiteUrl target="_blank" rel="noopener">${node.linkText}</a></p>
+      </if>
+      <hr>
     </for>
   </marko-web-query>
   <hr>
@@ -258,11 +271,22 @@ $ const { newsletter, date } = data;
   }>
     <for|node| of=nodes>
       <h4>
-        <a href=`${node.websiteUrl}` target="_blank" rel="noopener">
+        <a href=node.websiteUrl target="_blank" rel="noopener">
           ${node.name}
         </a>
       </h4>
-      <p>${node.teaser}</p>
+      <if(node.type === "text-ad")>
+        <div>
+          $!{node.body}
+        </div>
+      </if>
+      <else>
+        <p>$!{node.teaser}</p>
+      </else>
+      <if(node.type === "text-ad")>
+        <p><a href=node.websiteUrl target="_blank" rel="noopener">${node.linkText}</a></p>
+      </if>
+      <hr>
     </for>
   </marko-web-query>
 
