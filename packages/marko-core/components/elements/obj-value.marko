@@ -1,0 +1,9 @@
+import { get, getAsObject } from "@base-cms/object-path";
+
+$ const obj = getAsObject(input, "obj");
+$ const field = input.field || "id";
+$ const value = get(obj, field);
+
+<if(value)>
+  <${input.renderBody} value=value />
+</if>

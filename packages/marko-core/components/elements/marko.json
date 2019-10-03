@@ -26,5 +26,10 @@
     "@class": "string",
     "@attrs": "object",
     "@link": "object"
+  },
+  "<marko-core-obj-value>": {
+    "template": "./obj-value.marko",
+    "@obj": "object",
+    "@field": "string"
   }
 }
