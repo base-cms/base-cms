@@ -1,0 +1,17 @@
+import extractRenderBody from "../../utils/extract-render-body";
+
+<marko-core-obj-value|{ value }|
+  obj=input.obj
+  field=input.field
+>
+  <marko-core-date
+    tag=input.tag
+    value=value
+    format=input.format
+    locale=input.locale
+    class=input.class
+    attrs=input.attrs
+    link=input.link
+    ...extractRenderBody(input)
+  />
+</marko-core-obj-value>

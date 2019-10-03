@@ -38,8 +38,20 @@
     "@type": "string",
     "@obj": "object",
     "@field": "string",
-    "@tag": "string",
     "@html": "boolean",
+    "@tag": "string",
+    "@class": "string",
+    "@attrs": "object"
+  },
+  "<marko-core-obj-date>": {
+    "template": "./obj-date.marko",
+    "<link>": {},
+    "@type": "string",
+    "@obj": "object",
+    "@field": "string",
+    "@format": "string",
+    "@locale": "string",
+    "@tag": "string",
     "@class": "string",
     "@attrs": "object"
   }
