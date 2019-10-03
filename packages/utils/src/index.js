@@ -6,6 +6,7 @@ const asyncRoute = require('./async-route');
 const callOnce = require('./call-once');
 const cleanPath = require('./clean-path');
 const compareNumbers = require('./compare-numbers');
+const getDefaultTaxonomyTypes = require('./get-default-taxonomy-types');
 const getDefaultContentTypes = require('./get-default-content-types');
 const getPublishedContentCriteria = require('./get-published-content-criteria');
 const isFunction = require('./is-function');
@@ -24,6 +25,7 @@ module.exports = {
   callOnce,
   cleanPath,
   compareNumbers,
+  getDefaultTaxonomyTypes,
   getDefaultContentTypes,
   getPublishedContentCriteria,
   isFunction,
