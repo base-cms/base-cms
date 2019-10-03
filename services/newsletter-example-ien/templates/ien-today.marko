@@ -1,4 +1,5 @@
 import contentList from "../graphql/fragments/content-list";
+import emailX from "../config/email-x";
 
 $ const { config } = out.global;
 $ const { newsletter, date } = data;
@@ -113,6 +114,10 @@ $ const { newsletter, date } = data;
           <tr>
             <td align="center">
               <div class="advertisement inline ad-600x100">
+                <marko-newsletters-email-x-display>
+                  <@ad-unit ...emailX.getAdUnit({ name: "header", alias: newsletter.alias }) />
+                  <@params date=date email="%%emailaddr%%" send="%%jobi%%" />
+                </marko-newsletters-email-x-display>
                 <!-- <div id="adunit_id__137873098-IEN-Newsletters-600x100__1215182341">
                   <a href="http://pubads.g.doubleclick.net/gampad/jump?co=1&iu=137873098/IEN-Newsletters-600x100&sz=600x100&c=2022189371&t=dayofweek%3DTue%26nl_date%3D2019-10-01%26weeknum%3D40%26month%3D10%26day%3D1%26year%3D2019%26nl_name%3DIEN%2BToday%26nl_id%3D56781dd03aab46f646b2f060" target="_blank"><img src="http://pubads.g.doubleclick.net/gampad/ad?co=1&iu=137873098/IEN-Newsletters-600x100&sz=600x100&c=2022189371&t=dayofweek%3DTue%26nl_date%3D2019-10-01%26weeknum%3D40%26month%3D10%26day%3D1%26year%3D2019%26nl_name%3DIEN%2BToday%26nl_id%3D56781dd03aab46f646b2f060" width="600" height="100" alt="" class="scaleAd" border="0"></a>
                 </div> -->

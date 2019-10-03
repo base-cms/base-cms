@@ -15,6 +15,7 @@
   "dependencies": {
     "@base-cms/marko-core": "^1.0.0-beta.3",
     "@base-cms/marko-newsletters": "^1.0.0-beta.3",
+    "@base-cms/marko-newsletters-email-x": "^1.0.0-beta.3",
     "@base-cms/newsletter-cli": "^1.0.0-beta.3",
     "@base-cms/object-path": "^1.0.0-beta.1",
     "graphql": "^14.5.4",
