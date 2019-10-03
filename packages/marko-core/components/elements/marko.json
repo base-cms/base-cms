@@ -10,22 +10,22 @@
   },
   "<marko-core-text>": {
     "template": "./text.marko",
+    "<link>": {},
     "@value": "expression",
     "@tag": "string",
     "@html": "boolean",
     "@class": "string",
-    "@attrs": "object",
-    "@link": "object"
+    "@attrs": "object"
   },
   "<marko-core-date>": {
     "template": "./date.marko",
+    "<link>": {},
     "@value": "expression",
     "@tag": "string",
     "@format": "string",
     "@locale": "string",
     "@class": "string",
-    "@attrs": "object",
-    "@link": "object"
+    "@attrs": "object"
   },
   "<marko-core-obj-value>": {
     "template": "./obj-value.marko",
