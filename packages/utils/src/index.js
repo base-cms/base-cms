@@ -9,8 +9,8 @@ const isFunction = require('./is-function');
 const isObject = require('./is-object');
 const parseDelimitedString = require('./parse-delimited-string');
 const sleep = require('./sleep');
-const getDefaultContentTypes = require('./get-default-content-types');
 const getDefaultTaxonomyTypes = require('./get-default-taxonomy-types');
+const getDefaultContentTypes = require('./get-default-content-types');
 const getPublishedContentCriteria = require('./get-published-content-criteria');
 
 module.exports = {
@@ -25,7 +25,7 @@ module.exports = {
   isObject,
   parseDelimitedString,
   sleep,
+  getDefaultTaxonomyTypes,
   getDefaultContentTypes,
   getPublishedContentCriteria,
-  getDefaultTaxonomyTypes,
 };
