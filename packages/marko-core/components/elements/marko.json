@@ -27,6 +27,13 @@
     "@class": "string",
     "@attrs": "object"
   },
+  "<marko-core-array>": {
+    "template": "./array.marko",
+    "@value": "array",
+    "@tag": "string",
+    "@class": "string",
+    "@attrs": "object"
+  },
   "<marko-core-obj-value>": {
     "template": "./obj-value.marko",
     "@obj": "object",
@@ -35,7 +42,6 @@
   "<marko-core-obj-text>": {
     "template": "./obj-text.marko",
     "<link>": {},
-    "@type": "string",
     "@obj": "object",
     "@field": "string",
     "@html": "boolean",
@@ -46,11 +52,18 @@
   "<marko-core-obj-date>": {
     "template": "./obj-date.marko",
     "<link>": {},
-    "@type": "string",
     "@obj": "object",
     "@field": "string",
     "@format": "string",
     "@locale": "string",
+    "@tag": "string",
+    "@class": "string",
+    "@attrs": "object"
+  },
+  "<marko-core-obj-array>": {
+    "template": "./obj-array.marko",
+    "@obj": "object",
+    "@field": "string",
     "@tag": "string",
     "@class": "string",
     "@attrs": "object"
