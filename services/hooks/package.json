@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/hooks",
-  "version": "0.10.0",
+  "version": "0.10.8",
   "description": "The BaseCMS hooks server using Express.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
@@ -9,9 +9,9 @@
   "private": true,
   "dependencies": {
     "@base-cms/async": "^0.10.0",
-    "@base-cms/db": "^0.10.0",
-    "@base-cms/object-path": "^0.10.0",
-    "@base-cms/utils": "^0.10.0",
+    "@base-cms/db": "^0.10.8",
+    "@base-cms/object-path": "^0.10.8",
+    "@base-cms/utils": "^0.10.8",
     "@godaddy/terminus": "^4.1.0",
     "@newrelic/native-metrics": "^4.1.0",
     "body-parser": "^1.19.0",

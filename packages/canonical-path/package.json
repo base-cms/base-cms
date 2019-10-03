@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/canonical-path",
-  "version": "0.10.0",
+  "version": "0.10.8",
   "description": "Canonical path library for BaseCMS projects.",
   "main": "src/index.js",
   "author": "Josh Worden <josh@limit0.io>",
@@ -11,10 +11,10 @@
     "lint": "../../node_modules/.bin/eslint \"src/**/*.js\""
   },
   "dependencies": {
-    "@base-cms/db": "^0.10.0",
+    "@base-cms/db": "^0.10.8",
     "@base-cms/inflector": "^0.10.0",
-    "@base-cms/object-path": "^0.10.0",
-    "@base-cms/utils": "^0.10.0"
+    "@base-cms/object-path": "^0.10.8",
+    "@base-cms/utils": "^0.10.8"
   },
   "publishConfig": {
     "access": "public"

@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/web-common",
-  "version": "0.10.0",
+  "version": "0.10.8",
   "description": "Common utilities, queries and functions for BaseCMS website projects.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
@@ -8,8 +8,8 @@
   "license": "MIT",
   "dependencies": {
     "@base-cms/inflector": "^0.10.0",
-    "@base-cms/object-path": "^0.10.0",
-    "@base-cms/utils": "^0.10.0",
+    "@base-cms/object-path": "^0.10.8",
+    "@base-cms/utils": "^0.10.8",
     "http-errors": "^1.7.2"
   },
   "peerDependencies": {
