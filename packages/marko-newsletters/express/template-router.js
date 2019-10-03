@@ -3,6 +3,7 @@ const { asyncRoute } = require('@base-cms/utils');
 const gql = require('graphql-tag');
 const createError = require('http-errors');
 const moment = require('moment');
+const cleanResponse = require('@base-cms/marko-core/middleware/clean-marko-response');
 
 const query = gql`
 
@@ -20,6 +21,8 @@ query WithMarkoNewsletter($input: EmailNewsletterAliasQueryInput!) {
 
 module.exports = ({ templates }) => {
   const router = Router();
+
+  router.use(cleanResponse());
 
   templates.forEach(({ route, template, alias }) => {
     router.get(route, asyncRoute(async (req, res) => {
