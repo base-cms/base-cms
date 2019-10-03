@@ -11,7 +11,6 @@ fragment NewsletterContentListFragment on Content {
     id
     src
     alt
-    isLogo
   }
   published
   ... on ContentTextAd {

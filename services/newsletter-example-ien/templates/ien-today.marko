@@ -139,9 +139,9 @@ $ const { newsletter, date } = data;
               <table width="420" border="0" cellspacing="0" cellpadding="0" align="left" class="main">
                 <tr>
                   <td align="left" valign="top">
-                    <marko-newsletter-img path="/files/base/indm/ien/image/2016/03/ientoday.56f0149e9136a.png" options={ w: 420 } alt=newsletter.name class="logoScale" attrs={ border: 0, width: 420 }>
+                    <marko-newsletter-imgix src="/files/base/indm/ien/image/2016/03/ientoday.56f0149e9136a.png" options={ w: 420 } alt=newsletter.name class="logoScale" attrs={ border: 0, width: 420 }>
                       <@link href=config.website("origin") title=newsletter.name target="_blank" />
-                    </marko-newsletter-img>
+                    </marko-newsletter-imgix>
                   </td>
                 </tr>
               </table>
@@ -174,13 +174,13 @@ $ const { newsletter, date } = data;
                     </div>
                   </td>
                   <td>
-                    <marko-newsletter-img
-                      path="/files/base/newsletter/header-slanted_left.png"
+                    <marko-newsletter-imgix
+                      src="/files/base/newsletter/header-slanted_left.png"
                       options={ w: 166, h: 20 }
                       attrs={ border: 0, width: 166, height: 20, align: "left" }
                     />
-                    <marko-newsletter-img
-                      path="/files/base/newsletter/header-slanted_right.png"
+                    <marko-newsletter-imgix
+                      src="/files/base/newsletter/header-slanted_right.png"
                       options={ w: 330, h: 20 }
                       class="mobileHide"
                       attrs={ border: 0, width: 330, height: 20, align: "left" }
@@ -275,6 +275,18 @@ $ const { newsletter, date } = data;
     queryFragment: contentList,
   }>
     <for|node| of=nodes>
+      <marko-core-obj-value|{ value: image }| obj=node field="primaryImage" as="object">
+        <marko-newsletter-imgix
+          src=image.src
+          alt=image.alt
+          options={ w: 150 }
+          class="main"
+          attrs={ border: 0, width: 150 }
+        >
+          <@link href=node.websiteUrl target="_blank" />
+        </marko-newsletter-imgix>
+      </marko-core-obj-value>
+
       <marko-core-obj-text tag="h4" obj=node field="name">
         <@link href=node.websiteUrl target="_blank" />
       </marko-core-obj-text>
