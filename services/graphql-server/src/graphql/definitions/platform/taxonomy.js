@@ -36,12 +36,18 @@ type TaxonomyEdge {
 }
 
 enum TaxonomyType {
+  Award
+  Badge
   Bin
   Category
+  Industry
   Location
+  Market
   Organization
   Person
   PlatformChannel
+  Region
+  System
   Tag
   Topic
   Type
