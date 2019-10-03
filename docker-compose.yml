@@ -286,6 +286,7 @@ services:
       <<: *env
       PORT: 80
       EXPOSED_PORT: 11090
+      LIVERELOAD_PORT: 21090
       TENANT_KEY: indm_ien
       SITE_ID: 5669a4f16cdeeaf8598b4579
       GRAPHQL_URI: http://graphql-server-caprica
@@ -295,6 +296,7 @@ services:
       - graphql-server-caprica
     ports:
       - "11090:80"
+      - "21090:21090"
 
   # EXAMPLE WEBSITES
 
