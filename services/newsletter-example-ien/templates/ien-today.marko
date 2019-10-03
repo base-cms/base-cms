@@ -174,8 +174,17 @@ $ const { newsletter, date } = data;
                     </div>
                   </td>
                   <td>
-                    <img border="0" src="https://cdn.ien.com/files/base/newsletter/header-slanted_left.png" width="166" height="20" align="left" alt="" />
-                    <img border="0" src="https://cdn.ien.com/files/base/newsletter/header-slanted_right.png" width="330" height="20" align="left" alt="" class="mobileHide" />
+                    <marko-newsletter-img
+                      path="/files/base/newsletter/header-slanted_left.png"
+                      options={ w: 166, h: 20 }
+                      attrs={ border: 0, width: 166, height: 20, align: "left" }
+                    />
+                    <marko-newsletter-img
+                      path="/files/base/newsletter/header-slanted_right.png"
+                      options={ w: 330, h: 20 }
+                      class="mobileHide"
+                      attrs={ border: 0, width: 330, height: 20, align: "left" }
+                    />
                   </td>
                 </tr>
               </table>
