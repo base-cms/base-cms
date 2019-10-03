@@ -1,4 +1,5 @@
 .site-footer {
+  z-index: 1; // needed to prevent reveal ad overlap
   margin-top: auto;
   font-family: $theme-site-footer-font-family;
   font-size: $theme-site-footer-font-size;
