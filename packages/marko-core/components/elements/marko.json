@@ -67,5 +67,13 @@
     "@tag": "string",
     "@class": "string",
     "@attrs": "object"
+  },
+  "<marko-core-obj-nodes>": {
+    "template": "./obj-nodes.marko",
+    "@obj": "object",
+    "@field": "string",
+    "@tag": "string",
+    "@class": "string",
+    "@attrs": "object"
   }
 }
