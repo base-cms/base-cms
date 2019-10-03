@@ -31,5 +31,16 @@
     "template": "./obj-value.marko",
     "@obj": "object",
     "@field": "string"
+  },
+  "<marko-core-obj-text>": {
+    "template": "./obj-text.marko",
+    "<link>": {},
+    "@type": "string",
+    "@obj": "object",
+    "@field": "string",
+    "@tag": "string",
+    "@html": "boolean",
+    "@class": "string",
+    "@attrs": "object"
   }
 }
