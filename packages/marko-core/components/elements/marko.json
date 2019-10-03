@@ -8,6 +8,14 @@
     "@class": "string",
     "@attrs": "object"
   },
+  "<marko-core-img>": {
+    "template": "./img.marko",
+    "<link>": {},
+    "@src": "string",
+    "@alt": "string",
+    "@class": "string",
+    "@attrs": "object"
+  },
   "<marko-core-text>": {
     "template": "./text.marko",
     "<link>": {},

@@ -1,0 +1,22 @@
+$ const hasImage = Boolean(input.src);
+
+<if(hasImage)>
+  <if(input.link)>
+    <marko-core-link ...input.link>
+      <img
+        ...input.attrs
+        src=input.src
+        alt=input.alt
+        class=input.class
+      />
+    </marko-core-link>
+  </if>
+  <else>
+    <img
+      ...input.attrs
+      src=input.src
+      alt=input.alt
+      class=input.class
+    />
+  </else>
+</if>
