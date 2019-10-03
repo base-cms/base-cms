@@ -26,7 +26,7 @@ class NativeXConfiguration {
    * @param {string} params.id The placement id, e.g. `5d4b04769f69b200013ab109`.
    */
   setPlacement({ alias, name, id } = {}) {
-    if (!name || !alias || !id) throw new Error('Unable to create GAM ad unit: the name, alias, and path are required');
+    if (!name || !alias || !id) throw new Error('Unable to create NativeX placement: the name, alias, and ID are required');
     const placement = { id };
     set(this.placements, `${alias}.${name}`, placement);
     return this;
