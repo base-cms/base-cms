@@ -12,6 +12,7 @@
     "template": "./img.marko",
     "<link>": {},
     "@src": "string",
+    "@srcset": "array",
     "@alt": "string",
     "@class": "string",
     "@attrs": "object"
