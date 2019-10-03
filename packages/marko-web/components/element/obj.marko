@@ -16,6 +16,8 @@ $ if (input.blockName) {
 }
 $ classNames.push(input.class);
 
+<!-- @deprecated This should use with <marko-core-obj-value>, perhaps? -->
+
 <if(value)>
   <${input.renderBody} value=value class-names=classNames resolved-obj=resolvedObj />
 </if>
