@@ -207,12 +207,11 @@ $ const { newsletter, date } = data;
     queryFragment: contentList,
   }>
     <for|node| of=nodes>
-      <h4>
-        <a href=node.websiteUrl target="_blank" rel="noopener">
-          ${node.name}
-        </a>
-      </h4>
-      <p>$!{node.teaser}</p>
+      <marko-core-obj-text tag="h4" obj=node field="name">
+        <@link href=node.websiteUrl target="_blank" />
+      </marko-core-obj-text>
+      <marko-core-obj-text tag="p" obj=node field="teaser" html=true />
+      <marko-core-obj-date tag="small" obj=node field="published" format="MMMM Do, YYYY" />
       <hr>
     </for>
   </marko-web-query>
@@ -225,12 +224,11 @@ $ const { newsletter, date } = data;
     queryFragment: contentList,
   }>
     <for|node| of=nodes>
-      <h4>
-        <a href=node.websiteUrl target="_blank" rel="noopener">
-          ${node.name}
-        </a>
-      </h4>
-      <p>$!{node.teaser}</p>
+      <marko-core-obj-text tag="h4" obj=node field="name">
+        <@link href=node.websiteUrl target="_blank" />
+      </marko-core-obj-text>
+      <marko-core-obj-text tag="p" obj=node field="teaser" html=true />
+      <marko-core-obj-date tag="small" obj=node field="published" format="MMMM Do, YYYY" />
       <hr>
     </for>
   </marko-web-query>
@@ -243,21 +241,19 @@ $ const { newsletter, date } = data;
     queryFragment: contentList,
   }>
     <for|node| of=nodes>
-      <h4>
-        <a href=node.websiteUrl target="_blank" rel="noopener">
-          ${node.name}
-        </a>
-      </h4>
+      <marko-core-obj-text tag="h4" obj=node field="name">
+        <@link href=node.websiteUrl target="_blank" />
+      </marko-core-obj-text>
       <if(node.type === "text-ad")>
-        <div>
-          $!{node.body}
-        </div>
+        <marko-core-obj-text obj=node field="body" html=true />
       </if>
       <else>
-        <p>$!{node.teaser}</p>
+        <marko-core-obj-text tag="p" obj=node field="teaser" html=true />
       </else>
       <if(node.type === "text-ad")>
-        <p><a href=node.websiteUrl target="_blank" rel="noopener">${node.linkText}</a></p>
+        <marko-core-obj-text tag="p" obj=node field="linkText">
+          <@link href=node.websiteUrl target="_blank" />
+        </marko-core-obj-text>
       </if>
       <hr>
     </for>
@@ -270,21 +266,19 @@ $ const { newsletter, date } = data;
     queryFragment: contentList,
   }>
     <for|node| of=nodes>
-      <h4>
-        <a href=node.websiteUrl target="_blank" rel="noopener">
-          ${node.name}
-        </a>
-      </h4>
+      <marko-core-obj-text tag="h4" obj=node field="name">
+        <@link href=node.websiteUrl target="_blank" />
+      </marko-core-obj-text>
       <if(node.type === "text-ad")>
-        <div>
-          $!{node.body}
-        </div>
+        <marko-core-obj-text obj=node field="body" html=true />
       </if>
       <else>
-        <p>$!{node.teaser}</p>
+        <marko-core-obj-text tag="p" obj=node field="teaser" html=true />
       </else>
       <if(node.type === "text-ad")>
-        <p><a href=node.websiteUrl target="_blank" rel="noopener">${node.linkText}</a></p>
+        <marko-core-obj-text tag="p" obj=node field="linkText">
+          <@link href=node.websiteUrl target="_blank" />
+        </marko-core-obj-text>
       </if>
       <hr>
     </for>
