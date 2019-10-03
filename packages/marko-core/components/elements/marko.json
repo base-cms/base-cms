@@ -46,7 +46,8 @@
   "<marko-core-obj-value>": {
     "template": "./obj-value.marko",
     "@obj": "object",
-    "@field": "string"
+    "@field": "string",
+    "@as": "string"
   },
   "<marko-core-obj-text>": {
     "template": "./obj-text.marko",

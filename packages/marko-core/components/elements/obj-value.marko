@@ -1,9 +1,14 @@
+import { asObject, asArray } from "@base-cms/utils";
 import { get, getAsObject } from "@base-cms/object-path";
 
+$ const { as } = input;
 $ const obj = getAsObject(input, "obj");
 $ const field = input.field || "id";
 $ const value = get(obj, field);
 
 <if(value)>
-  <${input.renderBody} value=value />
+  $ let v = value;
+  $ if (as === "object") v = asObject(v);
+  $ if (as === "array") v = asArray(v);
+  <${input.renderBody} value=v />
 </if>
