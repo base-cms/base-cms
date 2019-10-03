@@ -6,6 +6,8 @@ $ if (input.rel) rels.push(input.rel);
 $ if (target === "_blank") rels.push("noopener");
 $ const rel = rels.length ? rels.join(" ") : null;
 
+<!-- @deprecated This should be replaced with <marko-core-link> -->
+
 <if(hasHref)>
   <a
     ...input.attrs
