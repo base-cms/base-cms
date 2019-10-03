@@ -2,10 +2,10 @@
   "<marko-newsletter-live-reload>": {
     "template": "./live-reload.marko"
   },
-  "<marko-newsletter-img>": {
-    "template": "./img.marko",
+  "<marko-newsletter-imgix>": {
+    "template": "./imgix.marko",
     "<link>": {},
-    "@path": "string",
+    "@src": "string",
     "@options": "object",
     "@alt": "string",
     "@class": "string",
