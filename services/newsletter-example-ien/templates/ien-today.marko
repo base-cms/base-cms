@@ -139,9 +139,9 @@ $ const { newsletter, date } = data;
               <table width="420" border="0" cellspacing="0" cellpadding="0" align="left" class="main">
                 <tr>
                   <td align="left" valign="top">
-                    <a href=config.website("origin") title=newsletter.name target="_blank">
-                      <img border="0" src="https://cdn.ien.com/files/base/indm/ien/image/2016/03/ientoday.56f0149e9136a.png" width="420" alt=newsletter.name class="logoScale" />
-                    </a>
+                    <marko-newsletter-img path="/files/base/indm/ien/image/2016/03/ientoday.56f0149e9136a.png" options={ w: 420 } alt=newsletter.name class="logoScale" attrs={ border: 0, width: 420 }>
+                      <@link href=config.website("origin") title=newsletter.name target="_blank" />
+                    </marko-newsletter-img>
                   </td>
                 </tr>
               </table>
