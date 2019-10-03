@@ -10,7 +10,6 @@ class EmailXConfiguration {
   constructor(uri) {
     if (!uri) throw new Error('Unable to configure EmailX: no URI was provided.');
     this.uri = uri;
-
     this.adUnits = {};
   }
 
@@ -22,7 +21,6 @@ class EmailXConfiguration {
    */
   getAdUnit({ name, alias } = {}) {
     const foundAdUnit = getAsObject(this.adUnits, `${alias}.${name}`);
-
     // Ensure ad unit is duplicated so property re-assignment doesn't "stick."
     return {
       ...foundAdUnit,
@@ -52,7 +50,8 @@ class EmailXConfiguration {
       id,
       width,
       height,
-
+      name,
+      alias,
     };
     set(this.adUnits, `${alias}.${name}`, adUnit);
     return this;
