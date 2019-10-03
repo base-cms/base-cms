@@ -10,6 +10,8 @@ query WebsiteContext {
     description
     host
     origin
+    imageHost
+    assetHost
     language {
       code
       primaryCode

@@ -1,5 +1,14 @@
 {
-  "<marko-web-newsletters-live-reload>": {
+  "<marko-newsletter-live-reload>": {
     "template": "./live-reload.marko"
+  },
+  "<marko-newsletter-img>": {
+    "template": "./img.marko",
+    "<link>": {},
+    "@path": "string",
+    "@options": "object",
+    "@alt": "string",
+    "@class": "string",
+    "@attrs": "object"
   }
 }
