@@ -18,6 +18,17 @@ fragment NewsletterContentListFragment on Content {
     body(input: { mutation: Email })
     linkText
   }
+  ... on Authorable {
+    authors {
+      edges {
+        node {
+          id
+          name
+          websiteUrl
+        }
+      }
+    }
+  }
 }
 
 `;

@@ -280,6 +280,13 @@ $ const { newsletter, date } = data;
           <@link href=node.websiteUrl target="_blank" />
         </marko-core-obj-text>
       </if>
+      <else>
+        <marko-core-obj-nodes|{ node: author }| obj=node field="authors">
+          <marko-core-obj-text obj=author field="name">
+            <@link href=author.websiteUrl target="_blank" />
+          </marko-core-obj-text>
+        </marko-core-obj-nodes>
+      </else>
       <hr>
     </for>
   </marko-web-query>
