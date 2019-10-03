@@ -6,6 +6,9 @@ const { isFunction: isFn } = require('@base-cms/utils');
 const express = require('./express');
 const loadTemplates = require('./utils/load-templates');
 
+if (!process.env.LIVERELOAD_PORT) {
+  process.env.LIVERELOAD_PORT = 5010;
+}
 const { env } = process;
 
 process.on('unhandledRejection', (e) => { throw e; });

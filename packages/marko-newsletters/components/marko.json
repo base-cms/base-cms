@@ -1,0 +1,5 @@
+{
+  "<marko-web-newsletters-live-reload>": {
+    "template": "./live-reload.marko"
+  }
+}
