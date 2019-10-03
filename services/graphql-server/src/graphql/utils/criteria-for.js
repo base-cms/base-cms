@@ -1,24 +1,31 @@
-const { getDefaultContentTypes } = require('@base-cms/utils');
+const { getDefaultContentTypes, getDefaultTaxonomyTypes } = require('@base-cms/utils');
 
 const contentTypes = getDefaultContentTypes();
+const taxonomyTypes = getDefaultTaxonomyTypes();
 
 const criterion = {
   assetImage: () => ({ type: 'Image' }),
   content: () => ({ type: { $in: contentTypes } }),
+  taxonomy: () => ({ type: { $in: taxonomyTypes } }),
   emailNewsletter: () => ({ type: 'Newsletter' }),
   entityOrganization: () => ({ type: 'Organization' }),
   entityVenue: () => ({ type: 'Venue' }),
   globalMagazineSection: () => ({ 'publication.$id': { $exists: true } }),
   issueMagazineSection: () => ({ 'issue.$id': { $exists: true } }),
   magazinePublication: () => ({ type: 'Publication' }),
-  rootTaxonomy: () => ({ 'parent.$id': { $exists: false } }),
+  rootTaxonomies: () => ({ type: { $in: taxonomyTypes }, 'parent.$id': { $exists: false } }),
+  rootTaxonomiesOfType: () => ({ 'parent.$id': { $exists: false } }),
   rootWebsiteSection: () => ({ 'parent.$id': { $exists: false } }),
-  taxonomyCategory: () => ({ type: 'Category' }),
   websiteSite: () => ({ type: 'Site' }),
 };
 
 contentTypes.forEach((type) => {
   const key = `content${type}`;
+  criterion[key] = () => ({ type });
+});
+
+taxonomyTypes.forEach((type) => {
+  const key = `taxonomy${type}`;
   criterion[key] = () => ({ type });
 });
 
