@@ -1,0 +1,30 @@
+{
+  "<marko-core-link>": {
+    "template": "./link.marko",
+    "@href": "string",
+    "@target": "string",
+    "@title": "string",
+    "@rel": "string",
+    "@class": "string",
+    "@attrs": "object"
+  },
+  "<marko-core-text>": {
+    "template": "./text.marko",
+    "@value": "expression",
+    "@tag": "string",
+    "@html": "boolean",
+    "@class": "string",
+    "@attrs": "object",
+    "@link": "object"
+  },
+  "<marko-core-date>": {
+    "template": "./date.marko",
+    "@value": "expression",
+    "@tag": "string",
+    "@format": "string",
+    "@locale": "string",
+    "@class": "string",
+    "@attrs": "object",
+    "@link": "object"
+  }
+}
