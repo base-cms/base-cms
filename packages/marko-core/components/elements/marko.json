@@ -33,6 +33,7 @@
     "@tag": "string",
     "@format": "string",
     "@locale": "string",
+    "@timezone": "string",
     "@class": "string",
     "@attrs": "object"
   },

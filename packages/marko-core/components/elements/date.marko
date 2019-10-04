@@ -1,15 +1,15 @@
-import moment from "moment";
-
+import moment from "moment-timezone";
 import { getAsObject } from "@base-cms/object-path";
 import defaultValue from "../../utils/default-value";
 
 $ const config = getAsObject(out.global, "markoCoreDate");
 
 $ const format = defaultValue(input.format, config.format || "MMM Do, YYYY");
+$ const timezone = defaultValue(input.timezone, config.timezone || "America/Chicago");
 $ const locale = defaultValue(input.locale, config.locale);
 $ if (locale) moment.locale(locale);
 
-$ const date = defaultValue(input.value, null, v => moment(v));
+$ const date = defaultValue(input.value, null, v => moment(v).tz(timezone));
 $ const value = date && date.isValid() ? date.format(format) : null;
 
 $ const textInput = {
