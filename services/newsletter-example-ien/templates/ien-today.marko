@@ -114,8 +114,7 @@ $ const { newsletter, date } = data;
           <tr>
             <td align="center">
               <div class="advertisement inline ad-600x100">
-                <!-- @todo Fix merge vars and date value. -->
-                <marko-newsletters-email-x-display>
+                <marko-newsletters-email-x-display decoded-params=["email", "send"]>
                   <@ad-unit ...emailX.getAdUnit({ name: "header", alias: newsletter.alias }) />
                   <@params date=date email="%%emailaddr%%" send="%%jobid%%" />
                 </marko-newsletters-email-x-display>
