@@ -27,7 +27,7 @@ module.exports = ({ templates }) => {
   templates.forEach(({ route, template, alias }) => {
     router.get(route, asyncRoute(async (req, res) => {
       const { config } = req.app.locals;
-      const timezone = config.website('timezone');
+      const timezone = config.website('date.timezone');
       const ts = req.query.date ? parseInt(req.query.date, 10) : null;
 
       let date = moment().tz(timezone);

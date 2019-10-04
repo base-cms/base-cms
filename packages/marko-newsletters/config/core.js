@@ -9,17 +9,6 @@ class CoreConfig extends AbstractConfig {
   website(path, def) {
     return get(this.websiteContext, path, def);
   }
-
-  dateLocale() {
-    const primaryLang = this.website('language.primaryCode', 'en');
-    const locale = this.get('date.locale', primaryLang);
-    if (!locale || locale === 'en') return null;
-    return locale;
-  }
-
-  dateFormat() {
-    return this.get('date.format', 'MMM Do, YYYY');
-  }
 }
 
 module.exports = CoreConfig;

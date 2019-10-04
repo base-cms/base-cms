@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
+const marko = require('marko/express');
 const apollo = require('./apollo');
-const marko = require('./marko');
 const websiteContext = require('./website-context');
 const CoreConfig = require('../config/core');
 const CustomConfig = require('../config/custom');
@@ -51,11 +51,11 @@ module.exports = (config = {}) => {
     siteId: config.siteId,
   }));
 
-  // Set website context.
+  // Set website context (must run after apollo).
   app.use(websiteContext(app.locals.config));
 
   // Register the Marko middleware.
-  marko(app);
+  app.use(marko());
 
   // Register public folder, if applicable.
   if (publicPath) {
