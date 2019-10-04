@@ -1,0 +1,11 @@
+{
+  "taglib-imports": [
+    "./styles/marko.json"
+  ],
+  "<common-document>": {
+    "template": "./document",
+    "<head>": {},
+    "@newsletter": "object",
+    "@date": "date"
+  }
+}

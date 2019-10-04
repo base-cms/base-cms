@@ -1,4 +1,9 @@
-$ const { newsletter } = data;
+import contentList from "../graphql/fragments/content-list";
+import emailX from "../config/email-x";
 
-<h1>${newsletter.name}</h1>
-<p>${newsletter.description}</p>
+$ const { config } = out.global;
+$ const { newsletter, date } = data;
+
+<common-document newsletter=newsletter date=date>
+
+</common-document>
