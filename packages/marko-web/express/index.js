@@ -1,13 +1,13 @@
 const { buildRequestHeaders } = require('@base-cms/tenant-context');
 const cookieParser = require('cookie-parser');
 const express = require('express');
+const marko = require('marko/express');
 const path = require('path');
 const helmet = require('helmet');
 const apollo = require('./apollo');
 const embeddedMedia = require('./embedded-media');
 const loadObject = require('./load-object');
 const loadDocument = require('./load-document');
-const marko = require('./marko');
 const oembed = require('./oembed');
 const rss = require('./rss');
 const loadMore = require('./load-more');
@@ -72,7 +72,7 @@ module.exports = (config = {}) => {
   app.use(websiteContext(app.locals.config));
 
   // Register the Marko middleware.
-  marko(app);
+  app.use(marko());
 
   // Serve static assets
   app.use('/dist/css', express.static(`${distDir}/css`, { maxAge: '2y', immutable: true }));
