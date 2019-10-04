@@ -1,11 +1,22 @@
 {
   "taglib-imports": [
+    "./blocks/marko.json",
+    "./elements/marko.json",
     "./styles/marko.json"
   ],
   "<common-document>": {
-    "template": "./document",
+    "template": "./document.marko",
     "<head>": {},
     "@newsletter": "object",
     "@date": "date"
+  },
+  "<common-table>": {
+    "template": "./core-table.marko",
+    "@border": "number",
+    "@width": "string",
+    "@class": "string",
+    "@spacing": "number",
+    "@padding": "number",
+    "@align": "string"
   }
 }

@@ -5,32 +5,11 @@ $ const { config } = out.global;
 $ const { newsletter, date } = data;
 
 <common-document newsletter=newsletter date=date>
-  <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="top">
-    <tr>
-      <td bgcolor="#ecedee">
-        <table width="630" border="0" cellspacing="0" cellpadding="0" align="center" class="main">
-          <tr>
-            <td height="20" align="center" valign="middle" style="font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#666666; line-height:12px;">
-              <span class="breakLn">${newsletter.name}</span><span class="mobileHide"> &nbsp; | &nbsp; </span> To view this email as a web page, click <a target="_blank" style="color:#666666;" href="%%view_email_url%%">here.</a>
-            </td>
-          </tr>
-          <tr>
-            <td align="center">
-              <div class="advertisement inline ad-600x100">
-                <marko-newsletters-email-x-display decoded-params=["email", "send"]>
-                  <@ad-unit ...emailX.getAdUnit({ name: "header", alias: newsletter.alias }) />
-                  <@params date=date email="%%emailaddr%%" send="%%jobid%%" />
-                </marko-newsletters-email-x-display>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td height="20" class="short">&nbsp;</td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
+  <common-banner-block
+    name=newsletter.name
+    date=date
+    ad-unit=emailX.getAdUnit({ name: "header", alias: newsletter.alias })
+  />
 
   <table width="630" border="0" align="center" class="main">
     <tr>

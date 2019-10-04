@@ -1,0 +1,6 @@
+{
+  "<common-view-online-element>": {
+    "template": "./view-online.marko",
+    "@name": "string"
+  }
+}

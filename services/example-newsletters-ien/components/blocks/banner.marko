@@ -1,0 +1,30 @@
+import { getAsObject } from "@base-cms/object-path";
+
+$ const adUnit = getAsObject(input, "adUnit");
+
+<common-table width="100%" align="center" class="top">
+  <tr>
+    <td bgcolor="#ecedee">
+      <common-table width="630" align="center" class="main">
+        <tr>
+          <common-view-online-element name=input.name />
+        </tr>
+        <if(adUnit.id)>
+          <tr>
+            <td align="center">
+              <div class="advertisement inline ad-600x100">
+                <marko-newsletters-email-x-display decoded-params=["email", "send"]>
+                  <@ad-unit ...adUnit />
+                  <@params date=input.date email="%%emailaddr%%" send="%%jobid%%" />
+                </marko-newsletters-email-x-display>
+              </div>
+            </td>
+          </tr>
+        </if>
+        <tr>
+          <td height="20" class="short">&nbsp;</td>
+        </tr>
+      </common-table>
+    </td>
+  </tr>
+</common-table>
