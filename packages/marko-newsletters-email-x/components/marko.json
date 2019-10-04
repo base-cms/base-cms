@@ -16,6 +16,7 @@
     },
     "<link>": {},
     "<image>": {},
+    "@decoded-params":  "array",
     "@class": "string",
     "@attrs": "object"
   }

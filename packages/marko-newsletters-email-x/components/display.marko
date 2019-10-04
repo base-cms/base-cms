@@ -1,19 +1,24 @@
 import { warn } from "@base-cms/utils";
-import { getAsObject } from "@base-cms/object-path";
+import { getAsObject, getAsArray } from "@base-cms/object-path";
+import moment from "moment";
 import buildUrl from "../utils/build-url";
 
 $ const adUnit = getAsObject(input, "adUnit");
 $ const params = getAsObject(input, "params");
+$ const decodedParams = getAsArray(input, "decodedParams");
 
 $ const { uri, id, width, height, name, alias } = adUnit;
 $ const { email, date, send } = params;
 
-$ const canDisplay = Boolean(uri && id && email && date);
+$ const momentDate = moment(date);
+$ if (!momentDate.isValid()) warn("The EmailX date parameter is invalid.");
+
+$ const canDisplay = Boolean(uri && id && email && momentDate.isValid());
 
 $ const rand = Math.floor(Math.random() * 100000000);
-$ const query = { date, rand, email, send };
-$ const href = buildUrl({ action: "click", uri, id, query });
-$ const src = buildUrl({ action: "image", uri, id, query });
+$ const query = { date: momentDate.format("YYYY-MM-DDTHH:mm:ssZ"), rand, email, send };
+$ const href = buildUrl({ action: "click", uri, id, query, decodedParams });
+$ const src = buildUrl({ action: "image", uri, id, query, decodedParams });
 $ const imageAttrs = {
   ...getAsObject(input.image, "attrs"),
   width,
