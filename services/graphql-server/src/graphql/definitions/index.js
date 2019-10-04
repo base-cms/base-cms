@@ -15,7 +15,7 @@ directive @arrayValue(localField: String) on FIELD_DEFINITION
 directive @findMany(model: String!, using: JSON, withSite: Boolean = false, siteField: String = "site.$id", criteria: String) on FIELD_DEFINITION
 directive @findOne(model: String!, using: JSON, withSite: Boolean = false, siteField: String = "site.$id", criteria: String) on FIELD_DEFINITION
 directive @matchMany(model: String!, using: JSON, withSite: Boolean = false, siteField: String = "site.$id", criteria: String) on FIELD_DEFINITION
-directive @momentFormat(localField: String, defaultFormat: String! = "YYYY-MM-DDTHH:mm:ssZ", defaultTimezone: String! = "America/Chicago") on FIELD_DEFINITION
+directive @momentFormat(localField: String) on FIELD_DEFINITION
 directive @mutatedValue(localField: String) on FIELD_DEFINITION
 directive @projection(localField: String, needs: [String] = []) on FIELD_DEFINITION
 directive @projectUsing(type: String!) on OBJECT

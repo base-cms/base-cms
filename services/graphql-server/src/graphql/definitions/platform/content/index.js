@@ -306,7 +306,7 @@ input NewsletterScheduledContentQueryInput {
   sectionId: Int
   sectionName: String
   date: Date!
-  timezone: String = "America/Chicago"
+  timezone: String
   ignoreStartDate: Boolean = false
   excludeContentTypes: [ContentType!] = []
   includeContentTypes: [ContentType!] = []

@@ -805,18 +805,20 @@ module.exports = {
       });
     },
 
-    newsletterScheduledContent: async (_, { input }, { basedb }, info) => {
+    newsletterScheduledContent: async (_, { input }, { basedb, site }, info) => {
       const {
         newsletterId,
         sectionId,
         sectionName,
-        timezone,
         ignoreStartDate,
         includeContentTypes,
         excludeContentTypes,
         limit,
         skip,
       } = input;
+
+      // Use input timezone otherwise fallback to site's timezone.
+      const timezone = input.timezone || site.date.timezone;
 
       if (!sectionId && !sectionName) throw new UserInputError('Either a sectionId or sectionName input must be provided.');
       if (sectionId && sectionName) throw new UserInputError('You cannot provide both sectionId and sectionName as input.');
