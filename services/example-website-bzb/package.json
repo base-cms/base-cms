@@ -1,9 +1,9 @@
 {
-  "name": "@base-cms/example-bizbash",
+  "name": "@base-cms/example-website-bzb",
   "version": "1.0.0-beta.3",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
-  "repository": "https://github.com/base-cms/base-cms/tree/master/services/example-bizbash",
+  "repository": "https://github.com/base-cms/base-cms/tree/master/services/example-website-bzb",
   "license": "MIT",
   "private": true,
   "scripts": {

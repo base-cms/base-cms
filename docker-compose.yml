@@ -276,11 +276,11 @@ services:
     ports:
       - "11007:80"
 
-  # EXAMPLE NEWSLETTERS
+  # EXAMPLES
 
-  newsletter-example-ien:
+  example-newsletters-ien:
     <<: *node
-    working_dir: /base-cms/services/newsletter-example-ien
+    working_dir: /base-cms/services/example-newsletters-ien
     command: ["/base-cms/node_modules/.bin/basecms-newsletters", "dev", "index.js"]
     environment:
       <<: *env
@@ -298,11 +298,9 @@ services:
       - "11090:80"
       - "21090:21090"
 
-  # EXAMPLE WEBSITES
-
-  example-laserfocusworld:
+  example-website-lfw:
     <<: *node
-    working_dir: /base-cms/services/example-laserfocusworld
+    working_dir: /base-cms/services/example-website-lfw
     command: ["/base-cms/node_modules/.bin/basecms-website", "dev", "index.js"]
     environment:
       <<: *env
@@ -326,9 +324,9 @@ services:
       - "11162:80"
       - "25162:25162"
 
-  example-bizbash:
+  example-webstie-bzb:
     <<: *node
-    working_dir: /base-cms/services/example-bizbash
+    working_dir: /base-cms/services/example-webstie-bzb
     command: ["/base-cms/node_modules/.bin/basecms-website", "dev", "index.js"]
     environment:
       <<: *env
@@ -358,7 +356,7 @@ services:
     volumes:
       - ./services/haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
     depends_on:
-      - example-laserfocusworld
+      - example-website-lfw
       - graphql-server
 
   hooks:

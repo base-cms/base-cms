@@ -1,9 +1,9 @@
 {
-  "name": "@base-cms/newsletter-example-ien",
+  "name": "@base-cms/example-newsletters-ien",
   "version": "1.0.0-beta.3",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
-  "repository": "https://github.com/base-cms/base-cms/tree/master/services/newsletter-example-ien",
+  "repository": "https://github.com/base-cms/base-cms/tree/master/services/example-newsletters-ien",
   "license": "MIT",
   "private": true,
   "scripts": {
