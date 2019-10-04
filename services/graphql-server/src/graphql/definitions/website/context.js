@@ -14,6 +14,7 @@ type WebsiteContext {
   origin: String!
   imageHost: String!
   assetHost: String!
+  timezone: String! # tz database format, e.g. America/Chicago
   language: WebsiteContextLanguage!
 }
 

@@ -39,6 +39,7 @@ const loadSite = async ({ basedb, siteId, tenant }) => {
     language: 1,
     imageHost: 1,
     assetHost: 1,
+    timezone: 1,
   };
   const site = await basedb.findOne('platform.Product', {
     status: 1,

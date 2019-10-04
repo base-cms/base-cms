@@ -2,6 +2,7 @@ module.exports = (site) => {
   const s = {
     imageHost: 'base.imgix.net',
     assetHost: 'cdn.baseplatform.io',
+    timezone: 'America/Chicago',
     ...site,
     language: {
       primaryCode: 'en',
