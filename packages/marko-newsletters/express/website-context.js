@@ -12,6 +12,7 @@ query WebsiteContext {
     origin
     imageHost
     assetHost
+    timezone
     language {
       code
       primaryCode
