@@ -11,6 +11,7 @@ query WithMarkoNewsletter($input: EmailNewsletterAliasQueryInput!) {
   emailNewsletterAlias(input: $input) {
     id
     name
+    teaser
     alias
     description
     status
