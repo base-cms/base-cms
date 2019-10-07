@@ -24,7 +24,7 @@ class SiteContext {
    * Whether a site object has been set.
    */
   exists() {
-    return Boolean(this.get('id'));
+    return Boolean(this.site && this.site._id);
   }
 
   /**
@@ -33,6 +33,7 @@ class SiteContext {
    * @param {*} def
    */
   get(path, def) {
+    if (!this.exists()) return def;
     return get(this.site, path, def);
   }
 
@@ -41,6 +42,7 @@ class SiteContext {
    * @param {string} path
    */
   getAsArray(path) {
+    if (!this.exists()) return [];
     return getAsArray(this.site, path);
   }
 
@@ -49,6 +51,7 @@ class SiteContext {
    * @param {string} path
    */
   getAsObject(path) {
+    if (!this.exists()) return {};
     return getAsObject(this.site, path);
   }
 }
