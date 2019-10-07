@@ -43,6 +43,8 @@ module.exports = async ({
 } = {}) => {
   if (!rootDir) throw new Error('The root project directory is required.');
   if (!graphqlUri) throw new Error('The GraphQL API URL is required.');
+  if (!siteId) throw new Error('A site ID is required.');
+
   const app = express({
     rootDir,
     siteConfig,

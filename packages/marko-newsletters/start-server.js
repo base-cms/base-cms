@@ -39,6 +39,7 @@ module.exports = async ({
   if (!rootDir) throw new Error('The root project directory is required.');
   if (!templatePath) throw new Error('A newsletter template location is required.');
   if (!graphqlUri) throw new Error('The GraphQL API URL is required.');
+  if (!siteId) throw new Error('A site ID is required.');
 
   // Load newsletter marko templates.
   const templates = await loadTemplates({ rootDir, templatePath });
