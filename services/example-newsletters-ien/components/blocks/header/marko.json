@@ -1,6 +1,6 @@
 {
   "<common-header-wrapper>": {
-    "template": "./wrapper",
+    "template": "./wrapper.marko",
     "@separator-position": "string",
     "@separator-type": "string",
     "@clear-floats": "boolean"
