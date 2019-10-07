@@ -40,6 +40,9 @@ class RefManyDirective extends SchemaDirectiveVisitor {
         sort,
         pagination,
       } = input;
+
+      const siteId = input.siteId || site.id();
+
       const isInverse = foreignField !== '_id';
       if (sort.order === 'values' && isInverse) throw new UserInputError('Cannot use `values` sort on an inverse reference.');
       const query = applyInput({
@@ -50,7 +53,7 @@ class RefManyDirective extends SchemaDirectiveVisitor {
         },
         using,
         input,
-        ...(withSite && { siteId: site._id, siteField }),
+        ...(withSite && siteId && { siteId, siteField }),
       });
 
       const projection = connectionProjection(info);

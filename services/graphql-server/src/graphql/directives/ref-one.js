@@ -34,9 +34,11 @@ class RefOneDirective extends SchemaDirectiveVisitor {
       const id = BaseDB.extractRefId(ref);
       if (!id) return null;
 
+      const siteId = input.siteId || site.id();
+
       const query = applyInput({
         query: { ...criteriaFor(criteria), ...formatStatus(input.status) },
-        ...(withSite && { siteId: site._id, siteField }),
+        ...(withSite && siteId && { siteId, siteField }),
       });
       return load(loader, id, projection, query);
     };
