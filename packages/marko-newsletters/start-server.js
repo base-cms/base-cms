@@ -1,5 +1,6 @@
 require('marko/node-require');
 const http = require('http');
+const path = require('path');
 const { createTerminus } = require('@godaddy/terminus');
 const { isFunction: isFn } = require('@base-cms/utils');
 // const errorHandlers = require('./express/error-handlers');
@@ -24,7 +25,6 @@ module.exports = async ({
   tenantKey = env.TENANT_KEY,
   siteId = env.SITE_ID,
   publicPath, // path to load public assets. will resolve from rootDir.
-  version, // The newsletters version
   onAsyncBlockError,
 
   // Terminus settings.
@@ -41,6 +41,10 @@ module.exports = async ({
   if (!graphqlUri) throw new Error('The GraphQL API URL is required.');
   if (!siteId) throw new Error('A site ID is required.');
 
+  // Load the newsletter package file.
+  // eslint-disable-next-line import/no-dynamic-require, global-require
+  const sitePackage = require(path.resolve(rootDir, 'package.json'));
+
   // Load newsletter marko templates.
   const templates = await loadTemplates({ rootDir, templatePath });
 
@@ -53,8 +57,8 @@ module.exports = async ({
     tenantKey,
     siteId,
     onAsyncBlockError,
-    version,
     publicPath,
+    sitePackage,
   });
 
   // Await required services here...

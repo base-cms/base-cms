@@ -20,7 +20,12 @@ const templateRouter = require('./template-router');
  * publicPath
  */
 module.exports = (config = {}) => {
-  const { rootDir, publicPath, templates } = config;
+  const {
+    rootDir,
+    publicPath,
+    sitePackage,
+    templates,
+  } = config;
   const app = express();
 
   // Add async block error handler.
@@ -40,13 +45,14 @@ module.exports = (config = {}) => {
 
   // Apply versions.
   app.use((req, res, next) => {
-    res.set('x-version', `${config.version}|${version}`);
+    res.set('x-version', `${sitePackage.version}|${version}`);
     next();
   });
 
   // Register apollo.
   app.use(apollo({
     uri: config.graphqlUri,
+    name: sitePackage.name,
     tenantKey: config.tenantKey,
     siteId: config.siteId,
   }));

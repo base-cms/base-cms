@@ -18,11 +18,15 @@ const CoreConfig = require('../config/core');
 const SiteConfig = require('../config/site');
 
 module.exports = (config = {}) => {
-  const { rootDir, tenantKey, siteId } = config;
+  const {
+    rootDir,
+    tenantKey,
+    siteId,
+    sitePackage,
+  } = config;
   const distDir = path.resolve(rootDir, 'dist');
   const app = express();
   const serverDir = path.resolve(rootDir, 'server');
-  const { siteName } = config.coreConfig;
 
   // Add async block error handler.
   app.locals.onAsyncBlockError = config.onAsyncBlockError;
@@ -60,13 +64,13 @@ module.exports = (config = {}) => {
 
   // Apply versions.
   app.use((req, res, next) => {
-    res.set('x-version', `${config.version}|${version}`);
+    res.set('x-version', `${sitePackage.version}|${version}`);
     next();
   });
 
   // Register apollo.
   const headers = buildRequestHeaders({ tenantKey, siteId });
-  apollo(app, config.graphqlUri, { name: siteName, link: { headers } });
+  apollo(app, config.graphqlUri, { name: sitePackage.name, link: { headers } });
 
   // Set website context.
   app.use(websiteContext(app.locals.config));

@@ -1,5 +1,6 @@
 require('marko/node-require');
 const http = require('http');
+const path = require('path');
 const { createTerminus } = require('@godaddy/terminus');
 const { isFunction: isFn } = require('@base-cms/utils');
 const errorHandlers = require('./express/error-handlers');
@@ -27,7 +28,6 @@ module.exports = async ({
   document, // custom marko-web-document component
   components, // components to register globally (e.g. for load more, etc)
   fragments, // fragments to register globally
-  version, // The website version
   embeddedMediaHandlers,
   onAsyncBlockError,
   redirectHandler,
@@ -45,6 +45,10 @@ module.exports = async ({
   if (!graphqlUri) throw new Error('The GraphQL API URL is required.');
   if (!siteId) throw new Error('A site ID is required.');
 
+  // Load the site package file.
+  // eslint-disable-next-line import/no-dynamic-require, global-require
+  const sitePackage = require(path.resolve(rootDir, 'package.json'));
+
   const app = express({
     rootDir,
     siteConfig,
@@ -57,7 +61,7 @@ module.exports = async ({
     document,
     components,
     fragments,
-    version,
+    sitePackage,
     embeddedMediaHandlers,
   });
 
