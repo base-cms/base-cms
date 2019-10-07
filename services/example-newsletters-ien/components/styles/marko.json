@@ -1,5 +1,5 @@
 {
   "<common-styles-static>": {
-    "template": "./static"
+    "template": "./static.marko"
   }
 }
