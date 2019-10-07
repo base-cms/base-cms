@@ -26,6 +26,7 @@ class RefOneDirective extends SchemaDirectiveVisitor {
         localField,
         criteria,
         withSite,
+        siteField,
       } = this.args;
 
       const fieldName = localField || field.name;
@@ -35,7 +36,7 @@ class RefOneDirective extends SchemaDirectiveVisitor {
 
       const query = applyInput({
         query: { ...criteriaFor(criteria), ...formatStatus(input.status) },
-        ...(withSite && { siteId: site._id }),
+        ...(withSite && { siteId: site._id, siteField }),
       });
       return load(loader, id, projection, query);
     };

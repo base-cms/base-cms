@@ -3,8 +3,26 @@ const gql = require('graphql-tag');
 module.exports = gql`
 
 extend type Query {
-  emailNewsletter(input: EmailNewsletterQueryInput!): EmailNewsletter @findOne(model: "platform.Product", using: { id: "_id" }, criteria: "emailNewsletter")
-  emailNewsletters(input: EmailNewslettersQueryInput = {}): EmailNewsletterConnection! @findMany(model: "platform.Product", criteria: "emailNewsletter")
+  emailNewsletter(input: EmailNewsletterQueryInput!): EmailNewsletter @findOne(
+    model: "platform.Product",
+    withSite: true,
+    siteField: "siteId",
+    using: { id: "_id" },
+    criteria: "emailNewsletter"
+  )
+  emailNewsletterAlias(input: EmailNewsletterAliasQueryInput!): EmailNewsletter @findOne(
+    model: "platform.Product",
+    withSite: true,
+    siteField: "siteId",
+    using: { alias: "alias" },
+    criteria: "emailNewsletter"
+  )
+  emailNewsletters(input: EmailNewslettersQueryInput = {}): EmailNewsletterConnection! @findMany(
+    model: "platform.Product",
+    withSite: true,
+    siteField: "siteId",
+    criteria: "emailNewsletter"
+  )
 }
 
 type EmailNewsletter {
@@ -32,6 +50,9 @@ type EmailNewsletter {
   alias: String @projection
   usesDeploymentDates: Boolean @projection
   teaser: String @projection
+
+  # GraphQL-only fields.
+  site(input: EmailNewsletterSiteInput = {}): WebsiteSite @projection(localField: "siteId") @refOne(loader: "platformProduct", localField: "siteId", criteria: "websiteSite")
 }
 
 type EmailNewsletterConnection @projectUsing(type: "EmailNewsletter") {
@@ -68,6 +89,11 @@ input EmailNewsletterQueryInput {
   status: ModelStatus = active
 }
 
+input EmailNewsletterAliasQueryInput {
+  status: ModelStatus = active
+  alias: String!
+}
+
 input EmailNewslettersQueryInput {
   status: ModelStatus = active
   sort: EmailNewsletterSortInput = {}
@@ -82,6 +108,10 @@ input EmailNewsletterSectionsInput {
   status: ModelStatus = active
   sort: EmailSectionSortInput = {}
   pagination: PaginationInput = {}
+}
+
+input EmailNewsletterSiteInput {
+  status: ModelStatus = active
 }
 
 input EmailNewsletterSortInput {

@@ -1,0 +1,18 @@
+{
+  "<common-view-online-element>": {
+    "template": "./view-online.marko",
+    "@name": "string"
+  },
+  "<common-banner-element>": {
+    "template": "./banner.marko",
+    "@name": "string",
+    "@date": "date",
+    "@ad-unit": "object"
+  },
+  "<common-social-icon-element>": {
+    "template": "./social-icon.marko",
+    "@type": "string",
+    "@provider": "string",
+    "@href": "string"
+  }
+}

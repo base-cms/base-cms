@@ -14,7 +14,14 @@ type WebsiteContext {
   origin: String!
   imageHost: String!
   assetHost: String!
+  date: WebsiteContextDate!
   language: WebsiteContextLanguage!
+}
+
+type WebsiteContextDate {
+  timezone: String! # tz database format, e.g. America/Chicago
+  format: String! # moment.format()
+  locale: String! # moment.locale()
 }
 
 type WebsiteContextLanguage {

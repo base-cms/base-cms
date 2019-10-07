@@ -6,7 +6,6 @@
     "./node/marko.json",
     "./node-list/marko.json",
     "./page/marko.json",
-    "./queries/marko.json",
     "./resolve/marko.json",
     "./rss/marko.json"
   ],

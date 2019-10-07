@@ -1,0 +1,6 @@
+{
+  "taglib-id": "@base-cms/marko-newsletters-email-x",
+  "taglib-imports": [
+    "./components/marko.json"
+  ]
+}

@@ -1,0 +1,16 @@
+import { getAsArray, getAsObject } from "@base-cms/object-path";
+
+<marko-core-obj-value|{ value }|
+  obj=input.obj
+  field=input.field
+>
+  $ const nodes = getAsArray(value, "edges").filter(edge => edge).map(edge => getAsObject(edge, "node"));
+  <marko-core-array|{ value: node, index, length }|
+    tag=input.tag
+    value=nodes
+    class=input.class
+    attrs=input.attrs
+  >
+    <${input.renderBody} node=node index=index length=length />
+  </marko-core-array>
+</marko-core-obj-value>

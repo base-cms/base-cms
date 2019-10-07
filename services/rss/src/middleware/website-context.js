@@ -1,25 +1,8 @@
+const loadWebsite = require('@base-cms/web-common/website-context');
 const { asyncRoute } = require('@base-cms/utils');
-const gql = require('graphql-tag');
-
-const query = gql`
-
-query WebsiteContext {
-  websiteContext {
-    id
-    name
-    host
-    origin
-    language {
-      code
-    }
-  }
-}
-
-`;
 
 module.exports = () => asyncRoute(async (req, res, next) => {
   const { apollo } = res.locals;
-  const { data } = await apollo.query({ query });
-  res.locals.websiteContext = data.websiteContext;
+  res.locals.websiteContext = await loadWebsite(apollo);
   next();
 });

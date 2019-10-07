@@ -75,6 +75,8 @@ services:
       - elasticsearch
       - kibana
 
+  # GRAPHQL
+
   graphql-server:
     << : *node
     working_dir: /base-cms/services/graphql-server
@@ -84,26 +86,65 @@ services:
       <<: *env-mongo
       <<: *env-newrelic
       ENGINE_API_KEY: ${ENGINE_API_KEY-(unset)}
+      PORT: 80
+      EXPOSED_PORT: 10002
     depends_on:
       - mongodb
     ports:
       - "10002:80"
 
-  sitemaps:
+  graphql-server-aerilon:
     << : *node
-    working_dir: /base-cms/services/sitemaps
-    command: ["/base-cms/node_modules/.bin/gulp"]
+    working_dir: /base-cms/services/graphql-server
+    entrypoint: ["/base-cms/node_modules/.bin/gulp"]
     environment:
       <<: *env
       <<: *env-newrelic
-      GRAPHQL_URI: http://graphql-server
+      MONGO_DSN: ${MONGO_DSN_AERILON-mongodb://mongodb:27017}
       ENABLE_BASEDB_LOGGING: ${ENABLE_BASEDB_LOGGING-}
+      ENGINE_API_KEY: ${ENGINE_API_KEY-(unset)}
       PORT: 80
-      EXPOSED_PORT: 10009
+      EXPOSED_PORT: 11000
     depends_on:
-      - graphql-server
+      - mongodb
     ports:
-      - "10009:80"
+      - "11000:80"
+
+  graphql-server-caprica:
+    << : *node
+    working_dir: /base-cms/services/graphql-server
+    entrypoint: ["/base-cms/node_modules/.bin/gulp"]
+    environment:
+      <<: *env
+      <<: *env-newrelic
+      MONGO_DSN: ${MONGO_DSN_CAPRICA-mongodb://mongodb:27017}
+      ENABLE_BASEDB_LOGGING: ${ENABLE_BASEDB_LOGGING-}
+      ENGINE_API_KEY: ${ENGINE_API_KEY-(unset)}
+      PORT: 80
+      EXPOSED_PORT: 11001
+    depends_on:
+      - mongodb
+    ports:
+      - "11001:80"
+
+  graphql-server-picon:
+    << : *node
+    working_dir: /base-cms/services/graphql-server
+    entrypoint: ["/base-cms/node_modules/.bin/gulp"]
+    environment:
+      <<: *env
+      <<: *env-newrelic
+      MONGO_DSN: ${MONGO_DSN_PICON-mongodb://mongodb:27017}
+      ENABLE_BASEDB_LOGGING: ${ENABLE_BASEDB_LOGGING-}
+      ENGINE_API_KEY: ${ENGINE_API_KEY-(unset)}
+      PORT: 80
+      EXPOSED_PORT: 11002
+    depends_on:
+      - mongodb
+    ports:
+      - "11002:80"
+
+  # RSS
 
   rss:
     << : *node
@@ -121,54 +162,145 @@ services:
     ports:
       - "10011:80"
 
-  graphql-server-lfw:
-    << : *node
-    working_dir: /base-cms/services/graphql-server
-    entrypoint: ["/base-cms/node_modules/.bin/gulp"]
-    environment:
-      <<: *env
-      <<: *env-newrelic
-      MONGO_DSN: ${LFW_MONGO_DSN-mongodb://mongodb:27017}
-      ENABLE_BASEDB_LOGGING: ${ENABLE_BASEDB_LOGGING-}
-      ENGINE_API_KEY: ${ENGINE_API_KEY-(unset)}
-    depends_on:
-      - mongodb
-
-  sitemaps-lfw:
-    << : *node
-    working_dir: /base-cms/services/sitemaps
-    command: ["/base-cms/node_modules/.bin/gulp"]
-    environment:
-      <<: *env
-      <<: *env-newrelic
-      GRAPHQL_URI: http://graphql-server-lfw
-      ENABLE_BASEDB_LOGGING: ${ENABLE_BASEDB_LOGGING-}
-      PORT: 80
-      EXPOSED_PORT: 10015
-    depends_on:
-      - graphql-server-lfw
-    ports:
-      - "10015:80"
-
-  rss-lfw:
+  rss-aerilon:
     << : *node
     working_dir: /base-cms/services/rss
     command: ["/base-cms/node_modules/.bin/gulp"]
     environment:
       <<: *env
       <<: *env-newrelic
-      GRAPHQL_URI: http://graphql-server-lfw
+      GRAPHQL_URI: http://graphql-server-aerilon
       ENABLE_BASEDB_LOGGING: ${ENABLE_BASEDB_LOGGING-}
       PORT: 80
-      EXPOSED_PORT: 10016
+      EXPOSED_PORT: 11002
     depends_on:
-      - graphql-server-lfw
+      - graphql-server-aerilon
     ports:
-      - "10016:80"
+      - "11002:80"
 
-  example-laserfocusworld:
+  rss-caprica:
+    << : *node
+    working_dir: /base-cms/services/rss
+    command: ["/base-cms/node_modules/.bin/gulp"]
+    environment:
+      <<: *env
+      <<: *env-newrelic
+      GRAPHQL_URI: http://graphql-server-caprica
+      ENABLE_BASEDB_LOGGING: ${ENABLE_BASEDB_LOGGING-}
+      PORT: 80
+      EXPOSED_PORT: 11003
+    depends_on:
+      - graphql-server-caprica
+    ports:
+      - "11003:80"
+
+  rss-picon:
+    << : *node
+    working_dir: /base-cms/services/rss
+    command: ["/base-cms/node_modules/.bin/gulp"]
+    environment:
+      <<: *env
+      <<: *env-newrelic
+      GRAPHQL_URI: http://graphql-server-picon
+      ENABLE_BASEDB_LOGGING: ${ENABLE_BASEDB_LOGGING-}
+      PORT: 80
+      EXPOSED_PORT: 11004
+    depends_on:
+      - graphql-server-picon
+    ports:
+      - "11004:80"
+
+  # SITEMAPS
+
+  sitemaps:
+    << : *node
+    working_dir: /base-cms/services/sitemaps
+    command: ["/base-cms/node_modules/.bin/gulp"]
+    environment:
+      <<: *env
+      <<: *env-newrelic
+      GRAPHQL_URI: http://graphql-server
+      ENABLE_BASEDB_LOGGING: ${ENABLE_BASEDB_LOGGING-}
+      PORT: 80
+      EXPOSED_PORT: 10009
+    depends_on:
+      - graphql-server
+    ports:
+      - "10009:80"
+
+  sitemaps-aerilon:
+    << : *node
+    working_dir: /base-cms/services/sitemaps
+    command: ["/base-cms/node_modules/.bin/gulp"]
+    environment:
+      <<: *env
+      <<: *env-newrelic
+      GRAPHQL_URI: http://graphql-server-aerilon
+      ENABLE_BASEDB_LOGGING: ${ENABLE_BASEDB_LOGGING-}
+      PORT: 80
+      EXPOSED_PORT: 11005
+    depends_on:
+      - graphql-server-aerilon
+    ports:
+      - "11005:80"
+
+  sitemaps-caprica:
+    << : *node
+    working_dir: /base-cms/services/sitemaps
+    command: ["/base-cms/node_modules/.bin/gulp"]
+    environment:
+      <<: *env
+      <<: *env-newrelic
+      GRAPHQL_URI: http://graphql-server-caprica
+      ENABLE_BASEDB_LOGGING: ${ENABLE_BASEDB_LOGGING-}
+      PORT: 80
+      EXPOSED_PORT: 11006
+    depends_on:
+      - graphql-server-caprica
+    ports:
+      - "11006:80"
+
+  sitemaps-picon:
+    << : *node
+    working_dir: /base-cms/services/sitemaps
+    command: ["/base-cms/node_modules/.bin/gulp"]
+    environment:
+      <<: *env
+      <<: *env-newrelic
+      GRAPHQL_URI: http://graphql-server-picon
+      ENABLE_BASEDB_LOGGING: ${ENABLE_BASEDB_LOGGING-}
+      PORT: 80
+      EXPOSED_PORT: 11007
+    depends_on:
+      - graphql-server-picon
+    ports:
+      - "11007:80"
+
+  # EXAMPLES
+
+  example-newsletters-ien:
     <<: *node
-    working_dir: /base-cms/services/example-laserfocusworld
+    working_dir: /base-cms/services/example-newsletters-ien
+    command: ["/base-cms/node_modules/.bin/basecms-newsletters", "dev", "index.js"]
+    environment:
+      <<: *env
+      PORT: 80
+      EXPOSED_PORT: 11090
+      LIVERELOAD_PORT: 21090
+      TENANT_KEY: indm_ien
+      SITE_ID: 5669a4f16cdeeaf8598b4579
+      GRAPHQL_URI: http://graphql-server-caprica
+      NEW_RELIC_ENABLED: 0
+      NEW_RELIC_LICENSE_KEY: (unset)
+    depends_on:
+      - graphql-server-caprica
+    ports:
+      - "11090:80"
+      - "21090:21090"
+
+  example-website-lfw:
+    <<: *node
+    working_dir: /base-cms/services/example-website-lfw
     command: ["/base-cms/node_modules/.bin/basecms-website", "dev", "index.js"]
     environment:
       <<: *env
@@ -177,37 +309,24 @@ services:
       LIVERELOAD_PORT: 25162
       TENANT_KEY: ebm_lfw
       SITE_ID: 5ca4e38775a25490050041a7
-      GRAPHQL_URI: http://graphql-server-lfw
-      SITEMAPS_URI: http://sitemaps-lfw
-      RSS_URI: http://rss-lfw
+      GRAPHQL_URI: http://graphql-server-aerilon
+      SITEMAPS_URI: http://sitemaps-aerilon
+      RSS_URI: http://rss-aerilon
       OEMBED_URI: http://oembed
       NEW_RELIC_ENABLED: 0
       NEW_RELIC_LICENSE_KEY: (unset)
     depends_on:
-      - graphql-server-lfw
-      - sitemaps-lfw
-      - rss-lfw
+      - graphql-server-aerilon
+      - sitemaps-aerilon
+      - rss-aerilon
       - oembed
     ports:
       - "11162:80"
       - "25162:25162"
 
-  graphql-server-bzb:
-    << : *node
-    working_dir: /base-cms/services/graphql-server
-    entrypoint: ["/base-cms/node_modules/.bin/gulp"]
-    environment:
-      <<: *env
-      <<: *env-newrelic
-      MONGO_DSN: ${BZB_MONGO_DSN-mongodb://mongodb:27017}
-      ENABLE_BASEDB_LOGGING: ${ENABLE_BASEDB_LOGGING-}
-      ENGINE_API_KEY: ${ENGINE_API_KEY-(unset)}
-    depends_on:
-      - mongodb
-
-  example-bizbash:
+  example-webstie-bzb:
     <<: *node
-    working_dir: /base-cms/services/example-bizbash
+    working_dir: /base-cms/services/example-webstie-bzb
     command: ["/base-cms/node_modules/.bin/basecms-website", "dev", "index.js"]
     environment:
       <<: *env
@@ -216,16 +335,16 @@ services:
       LIVERELOAD_PORT: 25163
       TENANT_KEY: bizbash_bzb
       SITE_ID: 5b295afea1c1c62c008b4572
-      GRAPHQL_URI: http://graphql-server-bzb
-      SITEMAPS_URI: http://sitemaps
-      RSS_URI: http://rss
+      GRAPHQL_URI: http://graphql-server-caprica
+      SITEMAPS_URI: http://sitemaps-caprica
+      RSS_URI: http://rss-caprica
       OEMBED_URI: http://oembed
       NEW_RELIC_ENABLED: 0
       NEW_RELIC_LICENSE_KEY: (unset)
     depends_on:
-      - graphql-server-bzb
-      - sitemaps
-      - rss
+      - graphql-server-caprica
+      - sitemaps-caprica
+      - rss-caprica
       - oembed
     ports:
       - "11163:80"
@@ -237,7 +356,7 @@ services:
     volumes:
       - ./services/haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
     depends_on:
-      - example-laserfocusworld
+      - example-website-lfw
       - graphql-server
 
   hooks:

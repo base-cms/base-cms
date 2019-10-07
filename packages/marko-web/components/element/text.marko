@@ -1,6 +1,3 @@
-import moment from "moment";
-import { get } from "@base-cms/object-path";
-
 $ const tag = input.tag === undefined ? "div" : input.tag;
 $ const value = input.value != null ? `${input.value}`.trim() : null;
 
@@ -9,6 +6,8 @@ $ const textInput = {
   renderBody: input.renderBody,
   value,
 };
+
+<!-- @deprecated This should be replaced with <marko-core-text> -->
 
 <if(value)>
   <if(input.link)>

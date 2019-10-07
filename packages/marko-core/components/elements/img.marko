@@ -1,0 +1,27 @@
+import { getAsArray } from "@base-cms/object-path";
+
+$ const hasImage = Boolean(input.src);
+$ const srcset = getAsArray(input.srcset).filter(v => v).join(",") || null;
+
+<if(hasImage)>
+  <if(input.link)>
+    <marko-core-link ...input.link>
+      <img
+        ...input.attrs
+        src=input.src
+        srcset=srcset
+        alt=input.alt
+        class=input.class
+      />
+    </marko-core-link>
+  </if>
+  <else>
+    <img
+      ...input.attrs
+      src=input.src
+      srcset=srcset
+      alt=input.alt
+      class=input.class
+    />
+  </else>
+</if>

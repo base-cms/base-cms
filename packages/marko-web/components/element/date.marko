@@ -1,21 +1,2 @@
-import moment from "moment";
-
-$ const { config } = out.global;
-
-$ const format = input.format || config.dateFormat() || "MMM Do, YYYY";
-$ const locale = input.locale || config.dateLocale();
-$ if (locale) moment.locale(locale);
-
-$ const date = input.value ? moment(input.value) : null;
-$ const value = date && date.isValid() ? date.format(format) : null;
-
-$ const textInput = {
-  value,
-  tag: input.tag,
-  class: input.class,
-  attrs: input.attrs,
-  link: input.link,
-  renderBody: input.renderBody,
-};
-
-<marko-web-text ...textInput />
+<!-- @deprecated This should be replaced with <marko-core-date> -->
+<marko-core-date ...input />

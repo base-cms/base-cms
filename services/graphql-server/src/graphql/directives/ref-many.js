@@ -24,6 +24,7 @@ class RefManyDirective extends SchemaDirectiveVisitor {
         criteria,
         using,
         withSite,
+        siteField,
       } = this.args;
 
       const fieldName = localField || field.name;
@@ -49,7 +50,7 @@ class RefManyDirective extends SchemaDirectiveVisitor {
         },
         using,
         input,
-        ...(withSite && { siteId: site._id }),
+        ...(withSite && { siteId: site._id, siteField }),
       });
 
       const projection = connectionProjection(info);

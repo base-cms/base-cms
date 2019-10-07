@@ -7,8 +7,9 @@ module.exports = ({
   using,
   input,
   siteId,
+  siteField = 'site.$id',
 }) => {
-  const q = siteId ? { ...query, 'site.$id': siteId } : query;
+  const q = siteId ? { ...query, [siteField]: siteId } : query;
   if (!isObject(using) || !isObject(input)) return q;
   return Object.keys(using).filter(key => typeof input[key] !== 'undefined').reduce((obj, key) => {
     const field = using[key];

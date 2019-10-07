@@ -1,0 +1,29 @@
+import isDev from "../utils/is-dev";
+
+$ const { onAsyncBlockError } = out.global;
+$ const { isArray } = Array;
+
+<await(input.promise)>
+  <@then|resolved|>
+    <${input.renderBody} resolved=resolved />
+  </@then>
+  <@catch|err|>
+    $ if (typeof onAsyncBlockError === "function") onAsyncBlockError(err);
+    <if(input.onError)>
+      <${input.onError} err=err />
+    </if>
+    <else>
+      <pre>An unexpected error occurred: ${err.message}</pre>
+      <if(isDev)>
+        <pre>${err.stack}</pre>
+        $ console.error(err);
+      </if>
+      <if(err.networkError && err.networkError.result)>
+        $ const { errors } = err.networkError.result;
+        <if(isArray(errors))>
+          <pre>${JSON.stringify(errors, null, 2)}</pre>
+        </if>
+      </if>
+    </else>
+  </@catch>
+</await>

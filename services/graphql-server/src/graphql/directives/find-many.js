@@ -20,6 +20,7 @@ class FindManyDirective extends SchemaDirectiveVisitor {
         using,
         criteria,
         withSite,
+        siteField,
       } = this.args;
 
       const {
@@ -32,7 +33,7 @@ class FindManyDirective extends SchemaDirectiveVisitor {
         query: { ...criteriaFor(criteria), ...formatStatus(status) },
         using,
         input,
-        ...(withSite && { siteId: site._id }),
+        ...(withSite && { siteId: site._id, siteField }),
       });
 
       const projection = connectionProjection(info);

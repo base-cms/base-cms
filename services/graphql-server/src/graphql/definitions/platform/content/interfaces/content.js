@@ -60,9 +60,14 @@ interface Content @requiresProject(fields: ["type"]) {
   updatedDate(input: FormatDate = {}): String @projection(localField: "updated") @momentFormat(localField: "updated")
   publishedDate(input: FormatDate = {}): String @projection(localField: "published") @momentFormat(localField: "published")
   unpublishedDate(input: FormatDate = {}): String @projection(localField: "unpublished") @momentFormat(localField: "unpublished")
-  # @todo Should canonicalPath be changed to websitePath?
+
+  # @deprecated use websitePath instead
   canonicalPath: String! @projection(localField: "_id", needs: ["type", "linkUrl", "mutations.Website.slug", "mutations.Website.primarySection", "mutations.Website.alias"])
+  websitePath: String! @projection(localField: "_id", needs: ["type", "linkUrl", "mutations.Website.slug", "mutations.Website.primarySection", "mutations.Website.alias"])
+
   canonicalUrl: String! @projection(localField: "_id", needs: ["type", "mutations.Website.slug", "mutations.Website.primarySection", "mutations.Website.alias"])
+  websiteUrl: String! @projection(localField: "_id", needs: ["type", "linkUrl", "mutations.Website.slug", "mutations.Website.primarySection", "mutations.Website.alias"])
+
   # Determines if this content item should redirect to another location.
   redirectTo: String @projection(localField: "type", needs: ["linkUrl"])
   # Returns related, published content based on input flags

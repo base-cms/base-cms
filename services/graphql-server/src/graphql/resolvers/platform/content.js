@@ -6,7 +6,9 @@ const { get } = require('@base-cms/object-path');
 const { underscore, dasherize, titleize } = require('@base-cms/inflector');
 const { createSrcFor, createCaptionFor } = require('@base-cms/image');
 const moment = require('moment');
+const momentTZ = require('moment-timezone');
 
+const mapArray = require('../../utils/map-array');
 const sitemap = require('../../utils/sitemap');
 const criteriaFor = require('../../utils/criteria-for');
 const getProjection = require('../../utils/get-projection');
@@ -184,15 +186,15 @@ module.exports = {
 
       const ref = BaseDB.get(content, 'mutations.Website.primarySection');
       const id = BaseDB.extractRefId(ref);
-      const section = (id) ? await load('websiteSection', id, projection) : await loadHomeSection({
+      const section = (id) ? await load('websiteSection', id, projection, { status: 1 }) : await loadHomeSection({
         basedb,
         siteId: site._id,
         status: 'active',
         projection,
       });
 
-      const owningSiteId = BaseDB.extractRefId(section.site);
-      const owningSite = await load('platformProduct', owningSiteId, { host: 1 }, { type: 'Site' });
+      const owningSiteId = section ? BaseDB.extractRefId(section.site) : site._id;
+      const owningSite = `${owningSiteId}` === `${site._id}` ? site : await load('platformProduct', owningSiteId, { host: 1 }, { type: 'Site' });
 
       const origin = `https://${owningSite.host}`;
       const values = [
@@ -203,6 +205,13 @@ module.exports = {
       ];
       const path = cleanPath(values.filter(v => v).map(v => String(v).trim()).join('/'));
       return `${origin}/${cleanPath(path)}`;
+    },
+
+    websiteUrl: async (content, _, ctx) => {
+      const { site } = ctx;
+      const path = await canonicalPathFor(content, ctx);
+      if (/^http/i.test(path)) return path;
+      return `${site.origin}${path}`;
     },
 
     /**
@@ -297,7 +306,12 @@ module.exports = {
 
     metadata: content => content,
 
+    /**
+     * @deprecated use `websitePath` instead.
+     */
     canonicalPath: (content, _, ctx) => canonicalPathFor(content, ctx),
+
+    websitePath: (content, _, ctx) => canonicalPathFor(content, ctx),
 
     redirectTo: (content) => {
       const { type, linkUrl } = content;
@@ -789,6 +803,70 @@ module.exports = {
         additionalData: { sectionId: section._id },
         ...pagination,
       });
+    },
+
+    newsletterScheduledContent: async (_, { input }, { basedb, site }, info) => {
+      const {
+        newsletterId,
+        sectionId,
+        sectionName,
+        ignoreStartDate,
+        includeContentTypes,
+        excludeContentTypes,
+        limit,
+        skip,
+      } = input;
+
+      // Use input timezone otherwise fallback to site's timezone.
+      const timezone = input.timezone || site.date.timezone;
+
+      if (!sectionId && !sectionName) throw new UserInputError('Either a sectionId or sectionName input must be provided.');
+      if (sectionId && sectionName) throw new UserInputError('You cannot provide both sectionId and sectionName as input.');
+
+      const sectionQuery = { status: 1, 'deployment.$id': newsletterId };
+      if (sectionId) sectionQuery._id = sectionId;
+      if (sectionName) sectionQuery.name = sectionName;
+
+      const section = await basedb.strictFindOne('email.Section', sectionQuery, { projection: { _id: 1 } });
+
+      const date = momentTZ(input.date).tz(timezone);
+      const start = date.startOf('day').toDate();
+      const end = date.endOf('day').toDate();
+
+      const scheduleSort = ignoreStartDate
+        ? { deploymentDate: -1, sequence: 1 }
+        : { sequence: 1, deploymentDate: 1 };
+
+      const scheduleQuery = {
+        status: 1,
+        section: section._id,
+        'content.type': { $in: includeContentTypes.length ? includeContentTypes : getDefaultContentTypes() },
+        deploymentDate: ignoreStartDate ? { $lte: end } : { $gte: start, $lte: end },
+      };
+      if (excludeContentTypes.length) scheduleQuery.$and = [{ 'content.type': { $nin: excludeContentTypes } }];
+
+      const schedules = await basedb.find('email.Schedule', scheduleQuery, {
+        limit,
+        skip,
+        sort: scheduleSort,
+        projection: { 'content.$id': 1 },
+      });
+      const contentIds = schedules.map(schedule => BaseDB.extractRefId(schedule.content));
+
+      if (!contentIds.length) return [];
+
+      const {
+        fieldNodes,
+        schema,
+        fragments,
+      } = info;
+      const projection = getProjection(schema, schema.getType('Content'), fieldNodes[0].selectionSet, fragments);
+
+      const content = await basedb.find('platform.Content', { _id: { $in: contentIds } }, { projection });
+
+      // map and resort to match schedule order
+      const contentMap = mapArray(content, '_id');
+      return contentIds.map(id => contentMap.get(`${id}`)).filter(v => v);
     },
 
     /**

@@ -1,0 +1,35 @@
+$ const types = [
+  "standard",
+  "black",
+  "gray-round",
+  "black-round",
+  "white-round",
+  "white-square",
+];
+$ const providers = [
+  "facebook",
+  "twitter",
+  "linkedin",
+  "youtube",
+];
+
+$ const { type, provider, href } = input;
+
+$ const height = ["gray-round", "black-round", "white-round"].includes(type) ? 28 : 18;
+$ const src = `/files/base/newsletter/${provider}-${type}.png`;
+
+<if(type && provider && href)>
+  $ if (!types.includes(type)) throw new Error(`Social icon type ${type} is not supported.`);
+  $ if (!providers.includes(provider)) throw new Error(`Social icon provider ${provider} is not supported.`);
+  <marko-newsletter-imgix
+    src=src
+    options={ h: height }
+    attrs={ border: 0, height }
+  >
+    <@link href=href target="_blank" attrs={ style: "text-decoration:none;" } />
+  </marko-newsletter-imgix>
+  &nbsp;
+  <if(type === "black")>
+    &nbsp;
+  </if>
+</if>

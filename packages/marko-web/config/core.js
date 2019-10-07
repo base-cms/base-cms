@@ -17,17 +17,6 @@ class CoreConfig extends AbstractConfig {
     return this.website('language.code', 'en-us');
   }
 
-  dateLocale() {
-    const primaryLang = this.website('language.primaryCode', 'en');
-    const locale = this.get('date.locale', primaryLang);
-    if (!locale || locale === 'en') return null;
-    return locale;
-  }
-
-  dateFormat() {
-    return this.get('date.format', 'MMM Do, YYYY');
-  }
-
   lazyloadImages() {
     return this.get('images.lazyload', true);
   }

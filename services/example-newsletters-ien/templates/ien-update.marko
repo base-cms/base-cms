@@ -1,0 +1,13 @@
+import contentList from "../graphql/fragments/content-list";
+import emailX from "../config/email-x";
+
+$ const { config } = out.global;
+$ const { newsletter, date } = data;
+
+<common-document newsletter=newsletter date=date>
+  <common-banner-element
+    name=newsletter.name
+    date=date
+    ad-unit=emailX.getAdUnit({ name: "header", alias: newsletter.alias })
+  />
+</common-document>

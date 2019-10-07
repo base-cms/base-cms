@@ -1,0 +1,21 @@
+import { cleanPath } from "@base-cms/utils";
+import { buildImgixUrl } from "@base-cms/image";
+
+$ const { config } = out.global;
+
+$ const hasImage = Boolean(input.src);
+$ const isAbsolute = /^http[s]?:/i.test(input.src);
+
+$ const src = isAbsolute ? buildImgixUrl(input.src, input.options) : buildImgixUrl(`https://${config.website("imageHost")}/${cleanPath(input.src)}`, input.options);
+$ const srcset = [`${buildImgixUrl(src, { dpr: 2 })} 2x`];
+
+<if(hasImage)>
+  <marko-core-img
+    src=src
+    srcset=srcset
+    alt=input.alt
+    class=input.class
+    attrs=input.attrs
+    link=input.link
+  />
+</if>

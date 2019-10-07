@@ -3,11 +3,26 @@ module.exports = {
     Section: {
       query: [
         { status: 1, 'deployment.$id': 1 },
+        { status: 1, 'deployment.$id': 1, name: 1 },
       ],
       sort: [
         [{ name: 1, _id: 1 }, { collation: { locale: 'en_US' } }],
         [{ fullName: 1, _id: 1 }, { collation: { locale: 'en_US' } }],
         { sequence: 1, _id: 1 },
+      ],
+    },
+    Schedule: {
+      query: [
+        {
+          status: 1,
+          'content.type': 1,
+          section: 1,
+          deploymentDate: 1,
+        },
+      ],
+      sort: [
+        { sequence: 1, deploymentDate: 1 },
+        { deploymentDate: -1, sequence: 1 },
       ],
     },
   },
@@ -90,6 +105,7 @@ module.exports = {
     Product: {
       query: [
         { status: 1, type: 1, _id: 1 },
+        { status: 1, type: 1, alias: 1 }, // for newsletter products
       ],
       sort: [
         [{ sequence: 1, _id: 1 }],

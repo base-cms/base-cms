@@ -1,0 +1,82 @@
+$ const { newsletters, staticTemplates } = data;
+
+<document>
+  <@head>
+    <page-title value="Newsletters" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
+  </@head>
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="card mb-3">
+        <div class="card-header">BaseCMS Newsletters</div>
+        <div class="list-group list-group-flush">
+          <if(newsletters.length)>
+            <for|newsletter| of=newsletters>
+              <div class="list-group-item">
+                <h5 class="card-title mb-3">${newsletter.name}</h5>
+                <h6 class="card-subtitle mb-1 text-muted">Templates:</h6>
+                <if(newsletter.templates.length)>
+                  <for|template| of=newsletter.templates>
+                    <p class="mb-0">
+                      ${template} <small>[<a href=`/templates/${template}`>most recent</a>] [<select-day template=template />]</small>
+                    </p>
+                  </for>
+                </if>
+                <else>
+                  <p class="mb-0">none</p>
+                </else>
+              </div>
+            </for>
+          </if>
+          <else>
+            <div class="list-group-item text-muted">
+              No newsletters found
+            </div>
+          </else>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <div class="card mb-3">
+        <div class="card-header">Static Templates</div>
+        <div class="list-group list-group-flush">
+          <if(staticTemplates.length)>
+            <for|template| of=staticTemplates>
+              <div class="list-group-item">
+                <h6 class="card-subtitle mb-1 mt-0 text-muted">Template:</h6>
+                <p class="mb-0">
+                  ${template} <small>[<a href=`/templates/${template}`>most recent</a>] [<select-day template=template />]</small>
+                </p>
+              </div>
+            </for>
+          </if>
+          <else>
+            <div class="list-group-item text-muted">
+              No templates found
+            </div>
+          </else>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+  <script>
+    (function() {
+      var elements = document.getElementsByClassName('template-select-day');
+      Array.prototype.forEach.call(elements, function(element) {
+        element.addEventListener('click', function(event) {
+          event.preventDefault();
+        });
+        new Pikaday({
+          field: element,
+          onSelect: function(date) {
+            window.location.href = element.href + '?date=' + date.valueOf();
+          },
+        });
+      });
+    })();
+  </script>
+</document>

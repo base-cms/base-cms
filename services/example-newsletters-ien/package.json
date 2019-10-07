@@ -1,0 +1,25 @@
+{
+  "name": "@base-cms/example-newsletters-ien",
+  "version": "1.0.0-beta.3",
+  "main": "src/index.js",
+  "author": "Jacob Bare <jacob@limit0.io>",
+  "repository": "https://github.com/base-cms/base-cms/tree/master/services/example-newsletters-ien",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "basecms-newsletters dev index.js",
+    "compile": "basecms-marko-compile compile --dir ./ --silent true",
+    "lint": "eslint --ext .js --max-warnings 5 ./",
+    "test": "yarn lint && yarn compile"
+  },
+  "dependencies": {
+    "@base-cms/marko-core": "^1.0.0-beta.3",
+    "@base-cms/marko-newsletters": "^1.0.0-beta.3",
+    "@base-cms/marko-newsletters-email-x": "^1.0.0-beta.3",
+    "@base-cms/newsletter-cli": "^1.0.0-beta.3",
+    "@base-cms/object-path": "^1.0.0-beta.1",
+    "graphql": "^14.5.4",
+    "graphql-tag": "^2.10.1",
+    "newrelic": "^5.11.0"
+  }
+}

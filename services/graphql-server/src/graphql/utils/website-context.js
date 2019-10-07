@@ -8,6 +8,12 @@ module.exports = (site) => {
       subCode: 'us',
       ...site.language,
     },
+    date: {
+      format: 'MMM Do, YYYY',
+      timezone: 'America/Chicago',
+      locale: 'en',
+      ...site.date,
+    },
   };
   s.origin = `https://${site.host}`;
   return s;

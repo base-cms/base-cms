@@ -1,0 +1,20 @@
+{
+  "<common-header-wrapper>": {
+    "template": "./wrapper.marko",
+    "@separator-position": "string",
+    "@separator-type": "string",
+    "@clear-floats": "boolean"
+  },
+  "<common-default-header-block>": {
+    "template": "./index.marko",
+    "<wrapper>": {
+      "@separator-position": "string",
+      "@separator-type": "string",
+      "@clear-floats": "boolean"
+    },
+    "@name": "string",
+    "@href": "string",
+    "@image-src": "string",
+    "@bg-color": "string"
+  }
+}

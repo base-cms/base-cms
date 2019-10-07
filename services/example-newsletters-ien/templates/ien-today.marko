@@ -1,0 +1,171 @@
+import contentList from "../graphql/fragments/content-list";
+import emailX from "../config/email-x";
+
+$ const { config } = out.global;
+$ const { newsletter, date } = data;
+
+<common-document newsletter=newsletter date=date>
+  <common-banner-element
+    name=newsletter.name
+    date=date
+    ad-unit=emailX.getAdUnit({ name: "header", alias: newsletter.alias })
+  />
+
+  <common-table width="630" align="center" class="main" padding=null spacing=null>
+    <tr>
+      <td>
+        <div style="line-height:20px; font-size:2px;">&nbsp;</div>
+        <common-default-header-block
+          name=newsletter.name
+          href=config.website("origin")
+          image-src="/files/base/indm/ien/image/2016/03/ientoday.56f0149e9136a.png"
+          bg-color="#ffffff"
+        />
+      </td>
+    </tr>
+  </common-table>
+
+  <common-table width="630" align="center" class="main" style="border-collapse:collapse;">
+
+  </common-table>
+
+  <marko-web-query|{ nodes }| name="newsletter-scheduled-content" params={
+    date: date.valueOf(),
+    newsletterId: newsletter.id,
+    sectionName: "Featured Story",
+    limit: 1,
+    queryFragment: contentList,
+  }>
+    <for|node| of=nodes>
+      <marko-core-obj-value|{ value: image }| obj=node field="primaryImage" as="object">
+        <marko-newsletter-imgix
+          src=image.src
+          alt=image.alt
+          options={ w: 150 }
+          class="main"
+          attrs={ border: 0, width: 150 }
+        >
+          <@link href=node.websiteUrl target="_blank" />
+        </marko-newsletter-imgix>
+      </marko-core-obj-value>
+      <marko-core-obj-text tag="h4" obj=node field="name">
+        <@link href=node.websiteUrl target="_blank" />
+      </marko-core-obj-text>
+      <marko-core-obj-text tag="p" obj=node field="teaser" html=true />
+      <marko-core-obj-date tag="small" obj=node field="published" format="MMMM Do, YYYY" />
+      <hr>
+    </for>
+  </marko-web-query>
+  <hr>
+  <marko-web-query|{ nodes }| name="newsletter-scheduled-content" params={
+    date: date.valueOf(),
+    newsletterId: newsletter.id,
+    sectionName: "Co-Features",
+    excludeContentTypes: ["TextAd"],
+    queryFragment: contentList,
+  }>
+    <for|node| of=nodes>
+      <marko-core-obj-value|{ value: image }| obj=node field="primaryImage" as="object">
+        <marko-newsletter-imgix
+          src=image.src
+          alt=image.alt
+          options={ w: 150 }
+          class="main"
+          attrs={ border: 0, width: 150 }
+        >
+          <@link href=node.websiteUrl target="_blank" />
+        </marko-newsletter-imgix>
+      </marko-core-obj-value>
+      <marko-core-obj-text tag="h4" obj=node field="name">
+        <@link href=node.websiteUrl target="_blank" />
+      </marko-core-obj-text>
+      <marko-core-obj-text tag="p" obj=node field="teaser" html=true />
+      <marko-core-obj-date tag="small" obj=node field="published" format="MMMM Do, YYYY" />
+      <hr>
+    </for>
+  </marko-web-query>
+  <hr>
+  <marko-web-query|{ nodes }| name="newsletter-scheduled-content" params={
+    date: date.valueOf(),
+    newsletterId: newsletter.id,
+    sectionName: "Text Ad Sponsors",
+    includeContentTypes: ["TextAd"],
+    queryFragment: contentList,
+  }>
+    <for|node| of=nodes>
+      <marko-core-obj-value|{ value: image }| obj=node field="primaryImage" as="object">
+        <marko-newsletter-imgix
+          src=image.src
+          alt=image.alt
+          options={ w: 150 }
+          class="main"
+          attrs={ border: 0, width: 150 }
+        >
+          <@link href=node.websiteUrl target="_blank" />
+        </marko-newsletter-imgix>
+      </marko-core-obj-value>
+      <marko-core-obj-text tag="h4" obj=node field="name">
+        <@link href=node.websiteUrl target="_blank" />
+      </marko-core-obj-text>
+      <if(node.type === "text-ad")>
+        <marko-core-obj-text obj=node field="body" html=true />
+      </if>
+      <else>
+        <marko-core-obj-text tag="p" obj=node field="teaser" html=true />
+      </else>
+      <if(node.type === "text-ad")>
+        <marko-core-obj-text tag="p" obj=node field="linkText">
+          <@link href=node.websiteUrl target="_blank" />
+        </marko-core-obj-text>
+      </if>
+      <hr>
+    </for>
+  </marko-web-query>
+  <hr>
+  <marko-web-query|{ nodes }| name="newsletter-scheduled-content" params={
+    date: date.valueOf(),
+    newsletterId: newsletter.id,
+    sectionName: "Main",
+    queryFragment: contentList,
+  }>
+    <for|node| of=nodes>
+      <marko-core-obj-value|{ value: image }| obj=node field="primaryImage" as="object">
+        <marko-newsletter-imgix
+          src=image.src
+          alt=image.alt
+          options={ w: 150 }
+          class="main"
+          attrs={ border: 0, width: 150 }
+        >
+          <@link href=node.websiteUrl target="_blank" />
+        </marko-newsletter-imgix>
+      </marko-core-obj-value>
+
+      <marko-core-obj-text tag="h4" obj=node field="name">
+        <@link href=node.websiteUrl target="_blank" />
+      </marko-core-obj-text>
+      <if(node.type === "text-ad")>
+        <marko-core-obj-text obj=node field="body" html=true />
+      </if>
+      <else>
+        <marko-core-obj-text tag="p" obj=node field="teaser" html=true />
+      </else>
+      <if(node.type === "text-ad")>
+        <marko-core-obj-text tag="p" obj=node field="linkText">
+          <@link href=node.websiteUrl target="_blank" />
+        </marko-core-obj-text>
+      </if>
+      <else>
+        <marko-core-obj-nodes|{ node: author }| obj=node field="authors">
+          <marko-core-obj-text obj=author field="name">
+            <@link href=author.websiteUrl target="_blank" />
+          </marko-core-obj-text>
+        </marko-core-obj-nodes>
+      </else>
+      <hr>
+    </for>
+  </marko-web-query>
+
+  $!{'<custom name="opencounter" type="tracking"></custom>'}
+
+</common-document>

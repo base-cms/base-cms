@@ -1,0 +1,90 @@
+{
+  "<marko-core-link>": {
+    "template": "./link.marko",
+    "@href": "string",
+    "@target": "string",
+    "@title": "string",
+    "@rel": "string",
+    "@class": "string",
+    "@attrs": "object"
+  },
+  "<marko-core-img>": {
+    "template": "./img.marko",
+    "<link>": {},
+    "@src": "string",
+    "@srcset": "array",
+    "@alt": "string",
+    "@class": "string",
+    "@attrs": "object"
+  },
+  "<marko-core-text>": {
+    "template": "./text.marko",
+    "<link>": {},
+    "@value": "expression",
+    "@tag": "string",
+    "@html": "boolean",
+    "@class": "string",
+    "@attrs": "object"
+  },
+  "<marko-core-date>": {
+    "template": "./date.marko",
+    "<link>": {},
+    "@value": "expression",
+    "@tag": "string",
+    "@format": "string",
+    "@locale": "string",
+    "@timezone": "string",
+    "@class": "string",
+    "@attrs": "object"
+  },
+  "<marko-core-array>": {
+    "template": "./array.marko",
+    "@value": "array",
+    "@tag": "string",
+    "@class": "string",
+    "@attrs": "object"
+  },
+  "<marko-core-obj-value>": {
+    "template": "./obj-value.marko",
+    "@obj": "object",
+    "@field": "string",
+    "@as": "string"
+  },
+  "<marko-core-obj-text>": {
+    "template": "./obj-text.marko",
+    "<link>": {},
+    "@obj": "object",
+    "@field": "string",
+    "@html": "boolean",
+    "@tag": "string",
+    "@class": "string",
+    "@attrs": "object"
+  },
+  "<marko-core-obj-date>": {
+    "template": "./obj-date.marko",
+    "<link>": {},
+    "@obj": "object",
+    "@field": "string",
+    "@format": "string",
+    "@locale": "string",
+    "@tag": "string",
+    "@class": "string",
+    "@attrs": "object"
+  },
+  "<marko-core-obj-array>": {
+    "template": "./obj-array.marko",
+    "@obj": "object",
+    "@field": "string",
+    "@tag": "string",
+    "@class": "string",
+    "@attrs": "object"
+  },
+  "<marko-core-obj-nodes>": {
+    "template": "./obj-nodes.marko",
+    "@obj": "object",
+    "@field": "string",
+    "@tag": "string",
+    "@class": "string",
+    "@attrs": "object"
+  }
+}

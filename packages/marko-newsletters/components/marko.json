@@ -1,0 +1,14 @@
+{
+  "<marko-newsletter-live-reload>": {
+    "template": "./live-reload.marko"
+  },
+  "<marko-newsletter-imgix>": {
+    "template": "./imgix.marko",
+    "<link>": {},
+    "@src": "string",
+    "@options": "object",
+    "@alt": "string",
+    "@class": "string",
+    "@attrs": "object"
+  }
+}

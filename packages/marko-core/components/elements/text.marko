@@ -1,0 +1,37 @@
+import defaultValue from "../../utils/default-value";
+
+$ const tag = defaultValue(input.tag, "div");
+$ const value = defaultValue(input.value, null, v => `${v}`.trim());
+
+$ const textInput = {
+  html: input.html,
+  renderBody: input.renderBody,
+  value,
+};
+
+<if(value)>
+  <if(input.link)>
+    <if(tag)>
+      <${tag} ...input.attrs class=input.class>
+        <marko-core-link ...input.link>
+          <text ...textInput />
+        </marko-core-link>
+      </>
+    </if>
+    <else>
+      <marko-core-link ...input.link>
+        <text ...textInput />
+      </marko-core-link>
+    </else>
+  </if>
+  <else>
+    <if(tag)>
+      <${tag} ...input.attrs class=input.class>
+        <text ...textInput />
+      </>
+    </if>
+    <else>
+      <text ...textInput />
+    </else>
+  </else>
+</if>

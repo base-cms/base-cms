@@ -1,0 +1,60 @@
+{
+  "<marko-web-query>": {
+    "template": "./index.marko",
+    "<when-empty>": {},
+    "@name": "string",
+    "@params": "object",
+    "@collapsible": {
+      "type": "boolean",
+      "default-value": true
+    }
+  },
+  "<marko-web-query-website-scheduled-content>": {
+    "template": "./website-scheduled-content.marko"
+  },
+  "<marko-web-query-related-published-content>": {
+    "template": "./related-published-content.marko"
+  },
+  "<marko-web-query-all-published-content>": {
+    "template": "./all-published-content.marko"
+  },
+  "<marko-web-query-all-author-content>": {
+    "template": "./all-author-content.marko"
+  },
+  "<marko-web-query-all-company-content>": {
+    "template": "./all-company-content.marko"
+  },
+  "<marko-web-query-magazine-publications>": {
+    "template": "./magazine-publications.marko"
+  },
+  "<marko-web-query-magazine-latest-issue>": {
+    "template": "./magazine-latest-issue.marko"
+  },
+  "<marko-web-query-magazine-active-issues>": {
+    "template": "./magazine-active-issues.marko"
+  },
+  "<marko-web-query-magazine-scheduled-content>": {
+    "template": "./magazine-scheduled-content.marko"
+  },
+  "<marko-web-query-website-optioned-content>": {
+    "template": "./website-optioned-content.marko"
+  },
+  "<marko-web-query-content>": {
+    "template": "./content.marko"
+  },
+  "<marko-web-query-website-section>": {
+    "template": "./website-section.marko"
+  },
+  "<marko-web-query-dynamic-page>": {
+    "template": "./dynamic-page.marko"
+  },
+  "<marko-web-query-magazine-issue>": {
+    "template": "./magazine-issue.marko"
+  },
+  "<marko-web-query-magazine-publication>": {
+    "template": "./magazine-publication.marko"
+  },
+  "<marko-web-query-newsletter-scheduled-content>": {
+    "template": "./newsletter-scheduled-content.marko"
+  }
+}

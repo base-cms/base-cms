@@ -4,7 +4,7 @@
   "description": "The BaseCMS hooks server using Express.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
-  "repository": "https://github.com/base-cms/base-cms/tree/master/packages/hooks",
+  "repository": "https://github.com/base-cms/base-cms/tree/master/services/hooks",
   "license": "MIT",
   "private": true,
   "scripts": {

@@ -1,0 +1,20 @@
+$ const { separatorPosition, separatorType } = input;
+
+
+<if(separatorPosition === "above" || separatorPosition === "both")>
+
+</if>
+
+<${input.renderBody} />
+
+<if(separatorPosition === "below" || separatorPosition === "both")>
+
+</if>
+
+<if(input.clearFloats)>
+  <common-table width="100%" align="center" class="main" style="border-collapse:collapse;">
+    <tr>
+      <td></td>
+    </tr>
+  </common-table>
+</if>
