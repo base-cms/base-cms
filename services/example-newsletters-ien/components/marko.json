@@ -17,6 +17,8 @@
     "@class": "string",
     "@spacing": "number",
     "@padding": "number",
-    "@align": "string"
+    "@align": "string",
+    "@style": "string",
+    "@attrs": "object"
   }
 }
