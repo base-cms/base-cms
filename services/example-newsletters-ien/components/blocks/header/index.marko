@@ -1,0 +1,31 @@
+import { getAsObject } from "@base-cms/object-path";
+
+$ const { config } = out.global;
+
+$ const styles = [];
+$ if (input.bgColor) styles.push(`background-color:${input.bgColor}`);
+
+$ const wrapper = getAsObject(input, "wrapper");
+
+<common-header-wrapper ...wrapper>
+  <common-table width="630" align="center" class="main" style=styles>
+    <tr>
+      <td>
+        <!-- left -->
+        <common-table width="420" align="left" class="main">
+          <tr>
+            <td align="left" valign="top">
+              <marko-newsletter-imgix src=input.imageSrc options={ w: 420 } alt=input.name class="logoScale" attrs={ border: 0, width: 420 }>
+                <@link href=input.href title=input.name target="_blank" />
+              </marko-newsletter-imgix>
+            </td>
+          </tr>
+        </common-table>
+        <!-- right -->
+        <common-table width="180" align="right" class="mobileHide">
+
+        </common-table>
+      </td>
+    </tr>
+  </common-table>
+</common-header-wrapper>

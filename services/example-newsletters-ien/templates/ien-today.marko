@@ -5,92 +5,29 @@ $ const { config } = out.global;
 $ const { newsletter, date } = data;
 
 <common-document newsletter=newsletter date=date>
-  <common-banner-block
+  <common-banner-element
     name=newsletter.name
     date=date
     ad-unit=emailX.getAdUnit({ name: "header", alias: newsletter.alias })
   />
 
-  <table width="630" border="0" align="center" class="main">
+  <common-table width="630" align="center" class="main" padding=null spacing=null>
     <tr>
       <td>
         <div style="line-height:20px; font-size:2px;">&nbsp;</div>
-        <!-- Header -->
-        <table width="630" border="0" cellspacing="0" cellpadding="0" align="center" class="main" style="background-color:#ffffff">
-          <tr>
-            <td>
-              <!--left-->
-              <table width="420" border="0" cellspacing="0" cellpadding="0" align="left" class="main">
-                <tr>
-                  <td align="left" valign="top">
-                    <marko-newsletter-imgix src="/files/base/indm/ien/image/2016/03/ientoday.56f0149e9136a.png" options={ w: 420 } alt=newsletter.name class="logoScale" attrs={ border: 0, width: 420 }>
-                      <@link href=config.website("origin") title=newsletter.name target="_blank" />
-                    </marko-newsletter-imgix>
-                  </td>
-                </tr>
-              </table>
-              <!--right-->
-              <table width="180" border="0" valign="top" cellspacing="0" cellpadding="0" align="right" class="mobileHide">
-                <tr>
-                  <td height="20" align="left" valign="top">
-                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                      <tr>
-                        <td style="font-size:6px;" align="right"></td>
-                      </tr>
-                    </table>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-
-          <tr>
-            <td height="20">&nbsp;</td>
-          </tr>
-
-          <tr>
-            <td height="20">
-              <table width="100%" border="0" cellspacing="0" cellpadding="0" class="main">
-                <tr>
-                  <td bgcolor="#000000" width="134" height="20" align="center" valign="middle">
-                    <div style="font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#ffffff; line-height:12px; text-transform: uppercase;">
-                      <marko-core-date value=date format="MMMM DD, YYYY" />
-                    </div>
-                  </td>
-                  <td>
-                    <marko-newsletter-imgix
-                      src="/files/base/newsletter/header-slanted_left.png"
-                      options={ w: 166, h: 20 }
-                      attrs={ border: 0, width: 166, height: 20, align: "left" }
-                    />
-                    <marko-newsletter-imgix
-                      src="/files/base/newsletter/header-slanted_right.png"
-                      options={ w: 330, h: 20 }
-                      class="mobileHide"
-                      attrs={ border: 0, width: 330, height: 20, align: "left" }
-                    />
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-
-          <tr>
-            <td>&nbsp;</td>
-          </tr>
-        </table>
+        <common-default-header-block
+          name=newsletter.name
+          href=config.website("origin")
+          image-src="/files/base/indm/ien/image/2016/03/ientoday.56f0149e9136a.png"
+          bg-color="#ffffff"
+        />
       </td>
     </tr>
-  </table>
+  </common-table>
 
-  <table width="630" border="0" cellspacing="0" cellpadding="0" align="center" style="border-collapse:collapse;" class="main">
-    <tr>
-      <td>
-        <table width="630" border="0" cellspacing="0" cellpadding="0" align="center" style="border-collapse:collapse;" class="main">
-        </table>
-      </td>
-    </tr>
-  </table>
+  <common-table width="630" align="center" class="main" style="border-collapse:collapse;">
+
+  </common-table>
 
   <marko-web-query|{ nodes }| name="newsletter-scheduled-content" params={
     date: date.valueOf(),

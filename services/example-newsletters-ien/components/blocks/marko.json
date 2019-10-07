@@ -1,8 +1,5 @@
 {
-  "<common-banner-block>": {
-    "template": "banner.marko",
-    "@name": "string",
-    "@date": "date",
-    "@ad-unit": "object"
-  }
+  "taglib-imports": [
+    "./header/marko.json"
+  ]
 }

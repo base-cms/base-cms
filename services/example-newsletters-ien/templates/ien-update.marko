@@ -5,7 +5,7 @@ $ const { config } = out.global;
 $ const { newsletter, date } = data;
 
 <common-document newsletter=newsletter date=date>
-  <common-banner-block
+  <common-banner-element
     name=newsletter.name
     date=date
     ad-unit=emailX.getAdUnit({ name: "header", alias: newsletter.alias })
