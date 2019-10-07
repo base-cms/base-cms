@@ -5,6 +5,7 @@ module.exports = gql`
 extend type Query {
   websiteSite(input: WebsiteSiteQueryInput!): WebsiteSite @findOne(model: "platform.Product", using: { id: "_id" }, criteria: "websiteSite")
   websiteSites(input: WebsiteSitesQueryInput = {}): WebsiteSiteConnection! @findMany(model: "platform.Product", criteria: "websiteSite")
+  matchWebsiteSites(input: MatchWebsiteSitesQueryInput!): WebsiteSiteConnection! @matchMany(model: "platform.Product", criteria: "websiteSite")
   websiteRedirect(input: WebsiteRedirectQueryInput!): WebsiteRedirect
 }
 
@@ -30,6 +31,11 @@ type WebsiteSite {
 
   # fields that are new to GraphQL
   rootSections(input: WebsiteSiteRootSectionsInput = {}): WebsiteSectionConnection! @projection(localField: "_id") @refMany(model: "website.Section", localField: "_id", foreignField: "site.$id", criteria: "rootWebsiteSection")
+  host: String! @projection
+}
+
+enum WebsiteSiteMatchField {
+  name
 }
 
 type WebsiteRedirect {
@@ -63,6 +69,17 @@ input WebsiteRedirectQueryInput {
 input WebsiteSiteQueryInput {
   id: ObjectID!
   status: ModelStatus = active
+}
+
+input MatchWebsiteSitesQueryInput {
+  status: ModelStatus = active
+  pagination: PaginationInput = {}
+  sort: WebsiteSiteSortInput = { order: asc }
+  field: WebsiteSiteMatchField = name
+  phrase: String!
+  position: MatchPosition = contains
+  match: MatchWords = all
+  excludeIds: [Int!] = []
 }
 
 input WebsiteSitesQueryInput {
