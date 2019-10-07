@@ -32,7 +32,7 @@ extend type Query {
     withSite: true,
     using: { ids: "_id" }
   )
-  websiteSectionSitemapUrls(input: WebsiteSectionSitemapUrlsInput = {}): [WebsiteSectionSitemapUrl!]!
+  websiteSectionSitemapUrls(input: WebsiteSectionSitemapUrlsQueryInput = {}): [WebsiteSectionSitemapUrl!]!
 }
 
 type WebsiteSection {
@@ -101,40 +101,47 @@ enum WebsiteSectionSortField {
   sequence
 }
 
-input WebsiteSectionSitemapUrlsInput {
+input WebsiteSectionSitemapUrlsQueryInput {
+  siteId: ObjectID
   changefreq: SitemapChangeFreq = daily
   priority: Float = 0.7
   pagination: PaginationInput = { limit: null }
 }
 
 input WebsiteSectionQueryInput {
+  siteId: ObjectID
   status: ModelStatus = active
   id: Int!
 }
 
 input WebsiteSectionAliasQueryInput {
+  siteId: ObjectID
   status: ModelStatus = active
   alias: String!
 }
 
 input WebsiteSectionRedirectQueryInput {
+  siteId: ObjectID
   status: ModelStatus = active
   alias: String!
 }
 
 input WebsiteSectionsQueryInput {
+  siteId: ObjectID
   status: ModelStatus = active
   sort: WebsiteSectionSortInput = {}
   pagination: PaginationInput = {}
 }
 
 input RootWebsiteSectionsQueryInput {
+  siteId: ObjectID
   status: ModelStatus = active
   sort: WebsiteSectionSortInput = {}
   pagination: PaginationInput = {}
 }
 
 input WebsiteSectionsFromIdsQueryInput {
+  siteId: ObjectID
   ids: [Int!]
   sort: WebsiteSectionSortInput = {}
   pagination: PaginationInput = {}

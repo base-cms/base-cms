@@ -112,7 +112,8 @@ module.exports = {
       const { limit, skip } = pagination;
 
       const query = { status: 1 };
-      query['site.$id'] = site._id;
+      const siteId = input.siteId || site.id();
+      if (siteId) query['site.$id'] = siteId;
 
       const projection = { alias: 1 };
       const sort = { alias: 1 };
