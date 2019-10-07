@@ -20,11 +20,15 @@ class SiteContext {
     }
   }
 
+  id() {
+    return this.site && this.site._id ? this.site._id : undefined;
+  }
+
   /**
    * Whether a site object has been set.
    */
   exists() {
-    return Boolean(this.site && this.site._id);
+    return Boolean(this.id());
   }
 
   /**
