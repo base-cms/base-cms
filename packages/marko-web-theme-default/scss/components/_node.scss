@@ -127,7 +127,8 @@
     @include border-radius($theme-item-image-border-radius);
   }
 
-  &__content-starts + &__content-ends {
+  &__content-starts + &__content-ends,
+  &__content-start-date + &__content-end-date {
     &::before {
       margin-right: map-get($spacers, 1);
       margin-left: map-get($spacers, 1);
