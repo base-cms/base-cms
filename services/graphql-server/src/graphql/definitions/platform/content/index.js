@@ -173,6 +173,12 @@ type ContentMetadata {
   image: AssetImage @refOne(localField: "primaryImage", loader: "platformAsset", criteria: "assetImage")
 }
 
+type ContentSiteContext {
+  url: String!
+  canonicalUrl: String!
+  path: String!
+}
+
 type ContentStubLocation {
   latitude: Float
   longitude: Float

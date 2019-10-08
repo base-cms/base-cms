@@ -61,12 +61,17 @@ interface Content @requiresProject(fields: ["type"]) {
   publishedDate(input: FormatDate = {}): String @projection(localField: "published") @momentFormat(localField: "published")
   unpublishedDate(input: FormatDate = {}): String @projection(localField: "unpublished") @momentFormat(localField: "unpublished")
 
-  # @deprecated use websitePath instead
+  # @deprecated use siteContext.path instead
   canonicalPath: String! @projection(localField: "_id", needs: ["type", "linkUrl", "mutations.Website.slug", "mutations.Website.primarySection", "mutations.Website.alias"])
   websitePath: String! @projection(localField: "_id", needs: ["type", "linkUrl", "mutations.Website.slug", "mutations.Website.primarySection", "mutations.Website.alias"])
 
+  # @deprecated use siteContext.canonicalUrl instead
   canonicalUrl: String! @projection(localField: "_id", needs: ["type", "mutations.Website.slug", "mutations.Website.primarySection", "mutations.Website.alias"])
+  # @deprecated use siteContext.url instead
   websiteUrl: String! @projection(localField: "_id", needs: ["type", "linkUrl", "mutations.Website.slug", "mutations.Website.primarySection", "mutations.Website.alias"])
+
+  # Fields that require site context
+  siteContext: ContentSiteContext! @projection(localField: "_id", needs: ["type", "linkUrl", "mutations.Website.slug", "mutations.Website.primarySection", "mutations.Website.alias"])
 
   # Determines if this content item should redirect to another location.
   redirectTo: String @projection(localField: "type", needs: ["linkUrl"])

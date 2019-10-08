@@ -189,6 +189,43 @@ module.exports = {
   Content: {
     __resolveType: resolveType,
 
+    siteContext: async (content, _, ctx) => {
+      const { site, load, basedb } = ctx;
+      if (!site.exists()) throw new UserInputError('A website context must be set to generate `Content.siteContext` fields.');
+      const path = await canonicalPathFor(content, ctx);
+      return {
+        path: () => path,
+        url: () => {
+          if (/^http/i.test(path)) return path;
+          return `${site.origin}${path}`;
+        },
+        canonicalUrl: async () => {
+          const projection = { alias: 1, 'site.$id': 1 };
+          const ref = BaseDB.get(content, 'mutations.Website.primarySection');
+          const id = BaseDB.extractRefId(ref);
+          const section = (id) ? await load('websiteSection', id, projection, { status: 1 }) : await loadHomeSection({
+            basedb,
+            siteId: site.id(),
+            status: 'active',
+            projection,
+          });
+
+          const owningSiteId = section ? BaseDB.extractRefId(section.site) : site.id();
+          const owningSite = `${owningSiteId}` === `${site.id()}` ? site : await load('platformProduct', owningSiteId, { host: 1 }, { type: 'Site' });
+
+          const origin = `https://${owningSite.host}`;
+          const values = [
+            section.alias,
+            dasherize(content.type),
+            content._id,
+            get(content, 'mutations.Website.slug'),
+          ];
+          const urlPath = cleanPath(values.filter(v => v).map(v => String(v).trim()).join('/'));
+          return `${origin}/${cleanPath(urlPath)}`;
+        },
+      };
+    },
+
     canonicalUrl: async (content, _, { load, basedb, site }) => {
       if (!site.exists()) throw new UserInputError('A website context must be set to generate the `Content.canonicalUrl` field.');
       const projection = { alias: 1, 'site.$id': 1 };
@@ -197,13 +234,13 @@ module.exports = {
       const id = BaseDB.extractRefId(ref);
       const section = (id) ? await load('websiteSection', id, projection, { status: 1 }) : await loadHomeSection({
         basedb,
-        siteId: site._id,
+        siteId: site.id(),
         status: 'active',
         projection,
       });
 
-      const owningSiteId = section ? BaseDB.extractRefId(section.site) : site._id;
-      const owningSite = `${owningSiteId}` === `${site._id}` ? site : await load('platformProduct', owningSiteId, { host: 1 }, { type: 'Site' });
+      const owningSiteId = section ? BaseDB.extractRefId(section.site) : site.id();
+      const owningSite = `${owningSiteId}` === `${site.id()}` ? site : await load('platformProduct', owningSiteId, { host: 1 }, { type: 'Site' });
 
       const origin = `https://${owningSite.host}`;
       const values = [
@@ -216,10 +253,13 @@ module.exports = {
       return `${origin}/${cleanPath(path)}`;
     },
 
+    /**
+     * @deprecated use `siteContext.url` instead
+     */
     websiteUrl: async (content, _, ctx) => {
       const { site } = ctx;
       if (!site.exists()) throw new UserInputError('A website context must be set to generate the `Content.websiteUrl` field.');
-      const path = await canonicalPathFor(content, ctx, site.id());
+      const path = await canonicalPathFor(content, ctx);
       if (/^http/i.test(path)) return path;
       return `${site.origin}${path}`;
     },
@@ -321,7 +361,7 @@ module.exports = {
     metadata: content => content,
 
     /**
-     * @deprecated use `websitePath` instead.
+     * @deprecated use `siteContext.url` instead
      */
     canonicalPath: (content, _, ctx) => {
       const { site } = ctx;
@@ -329,6 +369,9 @@ module.exports = {
       return canonicalPathFor(content, ctx);
     },
 
+    /**
+     * @deprecated use `siteContext.url` instead
+     */
     websitePath: (content, _, ctx) => {
       const { site } = ctx;
       if (!site.exists()) throw new UserInputError('A website context must be set to generate the `Content.websitePath` field.');
