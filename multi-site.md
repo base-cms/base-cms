@@ -2,6 +2,7 @@
 
 ## Punch List
 - [ ] All sites/services should boot and return a 200 when testing
+- [ ] Update whitepaper/webinar start/end dates on content lists and pages
 - [ ] Add support for secondary site+section contexts
 - [ ] Ensure ContentPage respects primary site
 - [ ] Handle newsletters (this requires more thought)
