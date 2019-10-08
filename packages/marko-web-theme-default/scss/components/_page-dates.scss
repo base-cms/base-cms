@@ -10,11 +10,14 @@
 
   &__content-published,
   &__content-starts,
-  &__content-ends {
+  &__content-start-date,
+  &__content-ends,
+  &__content-end-date {
     display: inline;
   }
 
-  &__content-starts + &__content-ends {
+  &__content-starts + &__content-ends,
+  &__content-start-date + &__content-end-date {
     &::before {
       margin-right: map-get($spacers, 1);
       margin-left: map-get($spacers, 1);
