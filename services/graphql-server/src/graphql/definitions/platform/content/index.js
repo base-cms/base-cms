@@ -5,9 +5,26 @@ const types = require('./types');
 module.exports = gql`
 
 extend type Query {
-  content(input: ContentQueryInput = {}): Content @findOne(model: "platform.Content", using: { id: "_id" }, criteria: "content")
-  contentHash(input: ContentHashQueryInput = {}): Content @findOne(model: "platform.Content", using: { hash: "hash" }, criteria: "content")
-  allContent(input: AllContentQueryInput = {}): ContentConnection! @findMany(model: "platform.Content", criteria: "content")
+  content(input: ContentQueryInput = {}): Content @findOne(
+    model: "platform.Content",
+    using: { id: "_id" },
+    criteria: "content",
+    withSite: true,
+    siteField: "mutations.Website.primarySite"
+  )
+  contentHash(input: ContentHashQueryInput = {}): Content @findOne(
+    model: "platform.Content",
+    using: { hash: "hash" },
+    criteria: "content",
+    withSite: true,
+    siteField: "mutations.Website.primarySite"
+  )
+  allContent(input: AllContentQueryInput = {}): ContentConnection! @findMany(
+    model: "platform.Content",
+    criteria: "content",
+    withSite: true,
+    siteField: "mutations.Website.primarySite"
+  )
   allPublishedContent(input: AllPublishedContentQueryInput = {}): ContentConnection!
   publishedContentCounts(input: PublishedContentCountsQueryInput = {}): [PublishedContentCount!]!
   contentSitemapUrls(input: ContentSitemapUrlsQueryInput = {}): [ContentSitemapUrl!]!
@@ -208,11 +225,13 @@ type ContentSitemapImage {
 }
 
 input ContentQueryInput {
+  siteId: ObjectID
   status: ModelStatus = active
   id: Int!
 }
 
 input ContentHashQueryInput {
+  siteId: ObjectID
   status: ModelStatus = active
   hash: String!
 }
@@ -282,6 +301,7 @@ input ContentEndingInput {
 }
 
 input AllContentQueryInput {
+  siteId: ObjectID
   status: ModelStatus = active
   sort: ContentSortInput = {}
   pagination: PaginationInput = {}
