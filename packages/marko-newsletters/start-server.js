@@ -97,7 +97,7 @@ module.exports = async ({
         if (process.send) {
           process.send({
             event: 'ready',
-            name: tenantKey,
+            name: sitePackage.name,
             siteId,
             graphqlUri,
             location: `http://0.0.0.0:${exposedPort}`,
