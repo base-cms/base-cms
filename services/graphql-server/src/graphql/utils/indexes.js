@@ -66,6 +66,7 @@ module.exports = {
       query: [
         { status: 1, type: 1, _id: 1 },
         { status: 1, hash: 1 },
+        { type: 1, status: 1, primarySite: 1 },
         {
           status: 1,
           type: 1,
