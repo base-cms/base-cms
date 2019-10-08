@@ -3,6 +3,7 @@ const gql = require('graphql-tag');
 module.exports = gql`
 
 extend type Query {
+  websiteContext: WebsiteSite
   websiteSite(input: WebsiteSiteQueryInput!): WebsiteSite @findOne(model: "platform.Product", using: { id: "_id" }, criteria: "websiteSite")
   websiteSites(input: WebsiteSitesQueryInput = {}): WebsiteSiteConnection! @findMany(model: "platform.Product", criteria: "websiteSite")
   matchWebsiteSites(input: MatchWebsiteSitesQueryInput!): WebsiteSiteConnection! @matchMany(model: "platform.Product", criteria: "websiteSite")
@@ -12,7 +13,7 @@ extend type Query {
 type WebsiteSite {
   # fields from platform.model::Product
   id: ObjectID! @projection(localField: "_id") @value(localField: "_id")
-  name: String @projection
+  name: String! @projection
   fullName: String @projection
   tagLine: String @projection
   description: String @projection
@@ -32,6 +33,11 @@ type WebsiteSite {
   # fields that are new to GraphQL
   rootSections(input: WebsiteSiteRootSectionsInput = {}): WebsiteSectionConnection! @projection(localField: "_id") @refMany(model: "website.Section", localField: "_id", foreignField: "site.$id", criteria: "rootWebsiteSection")
   host: String! @projection
+  origin: String! @projection(localField: "host")
+  imageHost: String! @projection
+  assetHost: String! @projection
+  date: WebsiteSiteDate! @projection
+  language: WebsiteSiteLanguage! @projection
 }
 
 enum WebsiteSiteMatchField {
@@ -53,6 +59,18 @@ type WebsiteSiteConnection @projectUsing(type: "WebsiteSite") {
 type WebsiteSiteEdge {
   node: WebsiteSite!
   cursor: String!
+}
+
+type WebsiteSiteDate {
+  timezone: String! # tz database format, e.g. America/Chicago
+  format: String! # moment.format()
+  locale: String! # moment.locale()
+}
+
+type WebsiteSiteLanguage {
+  code: String!
+  primaryCode: String! # ISO 639-1
+  subCode: String # https://www.w3.org/TR/REC-html40/struct/dirlang.html#langcodes
 }
 
 enum WebsiteSiteSortField {
