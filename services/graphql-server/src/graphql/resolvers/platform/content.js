@@ -95,6 +95,8 @@ const formatContentType = ({ type }, { input }) => {
 };
 
 const createSitemapLoc = async (content, ctx) => {
+  const { site } = ctx;
+  if (!site.exists()) throw new UserInputError('A website context must be set to generate sitemap `loc` fields.');
   const path = await canonicalPathFor(content, ctx);
   return encodeURI(sitemap.escape(`${ctx.site.origin}${path}`));
 };
@@ -168,7 +170,8 @@ module.exports = {
     __resolveType: resolveType,
     fileSrc: ({ fileName, filePath }, _, { site }) => {
       if (!fileName || !filePath) return null;
-      return `https://${site.assetHost}/${cleanPath(filePath)}/${fileName}`;
+      const assetHost = site.get('assetHost', defaults.assetHost);
+      return `https://${assetHost}/${cleanPath(filePath)}/${fileName}`;
     },
   },
 
@@ -187,6 +190,7 @@ module.exports = {
     __resolveType: resolveType,
 
     canonicalUrl: async (content, _, { load, basedb, site }) => {
+      if (!site.exists()) throw new UserInputError('A website context must be set to generate the `Content.canonicalUrl` field.');
       const projection = { alias: 1, 'site.$id': 1 };
 
       const ref = BaseDB.get(content, 'mutations.Website.primarySection');
@@ -214,7 +218,8 @@ module.exports = {
 
     websiteUrl: async (content, _, ctx) => {
       const { site } = ctx;
-      const path = await canonicalPathFor(content, ctx);
+      if (!site.exists()) throw new UserInputError('A website context must be set to generate the `Content.websiteUrl` field.');
+      const path = await canonicalPathFor(content, ctx, site.id());
       if (/^http/i.test(path)) return path;
       return `${site.origin}${path}`;
     },
@@ -236,13 +241,14 @@ module.exports = {
       } = info;
       const projection = getProjection(schema, returnType, fieldNodes[0].selectionSet, fragments);
 
+      const siteId = input.siteId || site.id();
       const ref = BaseDB.get(content, 'mutations.Website.primarySection');
       const id = BaseDB.extractRefId(ref);
       if (!id) {
         // No primary section reference found. Load home section for current site.
         return loadHomeSection({
           basedb,
-          siteId: site._id,
+          siteId,
           status,
           projection,
         });
@@ -250,16 +256,17 @@ module.exports = {
 
       const query = {
         ...formatStatus(status),
-        'site.$id': site._id,
+        ...(siteId && { 'site.$id': siteId }),
       };
       const section = await load('websiteSection', id, projection, query);
       if (section) return section;
 
       // Current section does not match site, load alternate.
       // @todo This should eventually account for secondary sites/sections. For now, load home.
+      // @todo Should this value be "pure" - meaning, do not override value and simply return?
       return loadHomeSection({
         basedb,
-        siteId: site._id,
+        siteId,
         status,
         projection,
       });
@@ -286,8 +293,10 @@ module.exports = {
       const mutated = get(content, `mutations.${mutation}.body`);
 
       let value = mutation ? mutated || body : body;
+      // Use site image host otherwise fallback to global default.
+      const imageHost = site.get('imageHost', defaults.imageHost);
       // Convert image tags to include image attributes (src, alt, caption, credit).
-      const imageTags = await getEmbeddedImageTags(value, { imageHost: site.imageHost, basedb });
+      const imageTags = await getEmbeddedImageTags(value, { imageHost, basedb });
       imageTags.forEach((tag) => {
         const replacement = tag.isValid() ? tag.build() : '';
         value = value.replace(tag.getRegExp(), replacement);
@@ -314,9 +323,17 @@ module.exports = {
     /**
      * @deprecated use `websitePath` instead.
      */
-    canonicalPath: (content, _, ctx) => canonicalPathFor(content, ctx),
+    canonicalPath: (content, _, ctx) => {
+      const { site } = ctx;
+      if (!site.exists()) throw new UserInputError('A website context must be set to generate the `Content.canonicalPath` field.');
+      return canonicalPathFor(content, ctx);
+    },
 
-    websitePath: (content, _, ctx) => canonicalPathFor(content, ctx),
+    websitePath: (content, _, ctx) => {
+      const { site } = ctx;
+      if (!site.exists()) throw new UserInputError('A website context must be set to generate the `Content.websitePath` field.');
+      return canonicalPathFor(content, ctx);
+    },
 
     redirectTo: (content) => {
       const { type, linkUrl } = content;
@@ -353,9 +370,11 @@ module.exports = {
       // If no query types were specified (owned, inverse, etc), return an empty response.
       if (!queryTypes.length) return BaseDB.paginateEmpty();
 
+      const siteId = input.siteId || site.id();
+
       // Run perform the related content query.
       return relatedContent.performQuery(doc, {
-        siteId: site._id,
+        siteId,
         input,
         basedb,
         info,
@@ -394,12 +413,19 @@ module.exports = {
   ContentSitemapNewsUrl: {
     loc: (content, _, ctx) => createSitemapLoc(content, ctx),
     title: content => BaseDB.fillMutation(content, 'Website', 'name'),
-    publication: (content, _, { site }) => site,
+    publication: (content, _, { site }) => {
+      if (!site.exists()) throw new UserInputError('A website context must be set to generate the `ContentSitemapNewsUrl.publication` field.');
+      return site;
+    },
     images: (content, _, { basedb }) => loadSitemapImages({ content, basedb }),
   },
 
   ContentSitemapImage: {
-    loc: (image, _, { site }) => encodeURI(sitemap.escape(createSrcFor(site.imageHost, image, {}))),
+    loc: (image, _, { site }) => {
+      // Use site image host otherwise fallback to global default.
+      const imageHost = site.get('imageHost', defaults.imageHost);
+      return encodeURI(sitemap.escape(createSrcFor(imageHost, image, {})));
+    },
     caption: image => sitemap.escape(createCaptionFor(image.caption)),
     title: image => sitemap.escape(image.name),
   },
@@ -562,7 +588,9 @@ module.exports = {
 
       const query = getPublishedCriteria({ since, contentTypes: includeContentTypes });
 
-      query['mutations.Website.primarySite'] = site._id;
+      const siteId = input.siteId || site.id();
+      if (siteId) query['mutations.Website.primarySite'] = siteId;
+
       query.$or = authorTypes.map((type) => {
         const field = `${type}s`;
         return { [field]: contactId };
@@ -594,8 +622,9 @@ module.exports = {
       } = input;
 
       const query = getPublishedCriteria({ since, contentTypes: includeContentTypes });
+      const siteId = input.siteId || site.id();
+      if (siteId) query['mutations.Website.primarySite'] = siteId;
 
-      query['mutations.Website.primarySite'] = site._id;
       query.$or = [
         { company: companyId },
         { 'relatedTo.$id': companyId },

@@ -371,6 +371,7 @@ input RelatedPublishedContentQueryInput {
 }
 
 input ContentRelatedContentInput {
+  siteId: ObjectID
   excludeContentTypes: [ContentType!] = []
   includeContentTypes: [ContentType!] = []
   requiresImage: Boolean = false
@@ -421,6 +422,7 @@ input ContentPrimarySiteInput {
 }
 
 input ContentPrimarySectionInput {
+  siteId: ObjectID
   status: ModelStatus = active
 }
 
