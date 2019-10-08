@@ -98,7 +98,7 @@ const createSitemapLoc = async (content, ctx) => {
   const { site } = ctx;
   if (!site.exists()) throw new UserInputError('A website context must be set to generate sitemap `loc` fields.');
   const path = await canonicalPathFor(content, ctx);
-  return encodeURI(sitemap.escape(`${ctx.site.origin}${path}`));
+  return encodeURI(sitemap.escape(`${site.get('origin')}${path}`));
 };
 
 const loadSitemapImages = ({ content, basedb }) => {
@@ -197,7 +197,7 @@ module.exports = {
         path: () => path,
         url: () => {
           if (/^http/i.test(path)) return path;
-          return `${site.origin}${path}`;
+          return `${site.get('origin')}${path}`;
         },
         canonicalUrl: async () => {
           const projection = { alias: 1, 'site.$id': 1 };
@@ -211,7 +211,7 @@ module.exports = {
           });
 
           const owningSiteId = section ? BaseDB.extractRefId(section.site) : site.id();
-          const owningSite = `${owningSiteId}` === `${site.id()}` ? site : await load('platformProduct', owningSiteId, { host: 1 }, { type: 'Site' });
+          const owningSite = `${owningSiteId}` === `${site.id()}` ? site.obj() : await load('platformProduct', owningSiteId, { host: 1 }, { type: 'Site' });
 
           const origin = `https://${owningSite.host}`;
           const values = [
@@ -240,8 +240,7 @@ module.exports = {
       });
 
       const owningSiteId = section ? BaseDB.extractRefId(section.site) : site.id();
-      const owningSite = `${owningSiteId}` === `${site.id()}` ? site : await load('platformProduct', owningSiteId, { host: 1 }, { type: 'Site' });
-
+      const owningSite = `${owningSiteId}` === `${site.id()}` ? site.obj() : await load('platformProduct', owningSiteId, { host: 1 }, { type: 'Site' });
       const origin = `https://${owningSite.host}`;
       const values = [
         section.alias,
@@ -261,7 +260,7 @@ module.exports = {
       if (!site.exists()) throw new UserInputError('A website context must be set to generate the `Content.websiteUrl` field.');
       const path = await canonicalPathFor(content, ctx);
       if (/^http/i.test(path)) return path;
-      return `${site.origin}${path}`;
+      return `${site.get('origin')}${path}`;
     },
 
     /**

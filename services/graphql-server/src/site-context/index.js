@@ -24,6 +24,10 @@ class SiteContext {
     return this.site && this.site._id ? this.site._id : undefined;
   }
 
+  obj() {
+    return this.site;
+  }
+
   /**
    * Whether a site object has been set.
    */
