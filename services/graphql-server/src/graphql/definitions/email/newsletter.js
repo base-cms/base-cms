@@ -86,15 +86,18 @@ enum EmailNewsletterSortField {
 
 input EmailNewsletterQueryInput {
   id: ObjectID!
+  siteId: ObjectID
   status: ModelStatus = active
 }
 
 input EmailNewsletterAliasQueryInput {
+  siteId: ObjectID
   status: ModelStatus = active
   alias: String!
 }
 
 input EmailNewslettersQueryInput {
+  siteId: ObjectID
   status: ModelStatus = active
   sort: EmailNewsletterSortInput = {}
   pagination: PaginationInput = {}
