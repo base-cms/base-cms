@@ -15,7 +15,7 @@ const pathResolvers = {
     // Attempt to load section for the current site.
     const query = {
       status: 1,
-      'site.$id': site._id,
+      'site.$id': site.id(),
     };
     const section = await load('websiteSection', id, { alias: 1 }, query);
     // @todo This should eventually account for secondary sites/sections.

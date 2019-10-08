@@ -1,6 +1,8 @@
 # Content Mange
 
 ## Punch List
+- [ ] All sites/services should boot and return a 200 when testing
+- [ ] Update whitepaper/webinar start/end dates on content lists and pages
 - [ ] Add support for secondary site+section contexts
 - [ ] Ensure ContentPage respects primary site
 - [ ] Handle newsletters (this requires more thought)
@@ -17,6 +19,7 @@
 - [x] Update document and date components to use language/locale from site object
 - [x] Add website context to marko global and use for site title, etc.
 - [x] Need to send RSS mount point to service from marko web
+- [ ] Convert all `websitePath`, `websiteUrl`, `canonicalUrl` fields to use `Content.siteContext` fields
 
 ## Fix Redirects
 Set `MONGO_DSN` in the `.env` file, then run:

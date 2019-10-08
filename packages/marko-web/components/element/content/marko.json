@@ -81,8 +81,8 @@
     "@attrs": "object",
     "@link": "expression"
   },
-  "<marko-web-content-starts>": {
-    "template": "./starts.marko",
+  "<marko-web-content-start-date>": {
+    "template": "./start-date.marko",
     "@block-name": "string",
     "@obj": "object",
     "@format": "string",
@@ -93,12 +93,32 @@
     "@attrs": "object",
     "@link": "expression"
   },
-  "<marko-web-content-ends>": {
-    "template": "./ends.marko",
+  "<marko-web-content-end-date>": {
+    "template": "./end-date.marko",
     "@block-name": "string",
     "@obj": "object",
     "@format": "string",
     "@locale": "string",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object",
+    "@link": "expression"
+  },
+  "<marko-web-content-starts>": {
+    "template": "./starts.marko",
+    "@block-name": "string",
+    "@obj": "object",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object",
+    "@link": "expression"
+  },
+  "<marko-web-content-ends>": {
+    "template": "./ends.marko",
+    "@block-name": "string",
+    "@obj": "object",
     "@tag": "string",
     "@class": "string",
     "@modifiers": "string",

@@ -1,6 +1,5 @@
 const newrelic = require('newrelic');
 const { startServer } = require('@base-cms/marko-newsletters');
-const { version } = require('./package.json');
 const coreConfig = require('./config/core');
 const customConfig = require('./config/custom');
 
@@ -10,7 +9,6 @@ module.exports = startServer({
   rootDir: __dirname,
   coreConfig,
   customConfig,
-  version,
   publicPath: 'public',
   onStart: app => app.set('trust proxy', 'loopback, linklocal, uniquelocal'),
   onAsyncBlockError: e => newrelic.noticeError(e),

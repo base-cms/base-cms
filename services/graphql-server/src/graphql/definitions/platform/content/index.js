@@ -5,13 +5,30 @@ const types = require('./types');
 module.exports = gql`
 
 extend type Query {
-  content(input: ContentQueryInput = {}): Content @findOne(model: "platform.Content", using: { id: "_id" }, criteria: "content")
-  contentHash(input: ContentHashQueryInput = {}): Content @findOne(model: "platform.Content", using: { hash: "hash" }, criteria: "content")
-  allContent(input: AllContentQueryInput = {}): ContentConnection! @findMany(model: "platform.Content", criteria: "content")
+  content(input: ContentQueryInput = {}): Content @findOne(
+    model: "platform.Content",
+    using: { id: "_id" },
+    criteria: "content",
+    withSite: true,
+    siteField: "mutations.Website.primarySite"
+  )
+  contentHash(input: ContentHashQueryInput = {}): Content @findOne(
+    model: "platform.Content",
+    using: { hash: "hash" },
+    criteria: "content",
+    withSite: true,
+    siteField: "mutations.Website.primarySite"
+  )
+  allContent(input: AllContentQueryInput = {}): ContentConnection! @findMany(
+    model: "platform.Content",
+    criteria: "content",
+    withSite: true,
+    siteField: "mutations.Website.primarySite"
+  )
   allPublishedContent(input: AllPublishedContentQueryInput = {}): ContentConnection!
   publishedContentCounts(input: PublishedContentCountsQueryInput = {}): [PublishedContentCount!]!
   contentSitemapUrls(input: ContentSitemapUrlsQueryInput = {}): [ContentSitemapUrl!]!
-  contentSitemapNewsUrls: [ContentSitemapNewsUrl!]!
+  contentSitemapNewsUrls(input: ContentSitemapNewsUrlsQueryInput = {}): [ContentSitemapNewsUrl!]!
   allAuthorContent(input: AllAuthorContentQueryInput = {}): ContentConnection!
   allCompanyContent(input: AllCompanyContentQueryInput = {}): ContentConnection!
   magazineScheduledContent(input: MagazineScheduledContentQueryInput = {}): ContentConnection!
@@ -156,6 +173,12 @@ type ContentMetadata {
   image: AssetImage @refOne(localField: "primaryImage", loader: "platformAsset", criteria: "assetImage")
 }
 
+type ContentSiteContext {
+  url: String!
+  canonicalUrl: String!
+  path: String!
+}
+
 type ContentStubLocation {
   latitude: Float
   longitude: Float
@@ -208,16 +231,19 @@ type ContentSitemapImage {
 }
 
 input ContentQueryInput {
+  siteId: ObjectID
   status: ModelStatus = active
   id: Int!
 }
 
 input ContentHashQueryInput {
+  siteId: ObjectID
   status: ModelStatus = active
   hash: String!
 }
 
 input ContentSitemapUrlsQueryInput {
+  siteId: ObjectID
   since: Date
   contentTypes: [ContentType!]!
   changefreq: SitemapChangeFreq = weekly
@@ -225,7 +251,12 @@ input ContentSitemapUrlsQueryInput {
   pagination: PaginationInput = { limit: 100 }
 }
 
+input ContentSitemapNewsUrlsQueryInput {
+  siteId: ObjectID
+}
+
 input AllPublishedContentQueryInput {
+  siteId: ObjectID
   since: Date
   sectionId: Int
   contentTypes: [ContentType!] = []
@@ -238,12 +269,14 @@ input AllPublishedContentQueryInput {
 }
 
 input PublishedContentCountsQueryInput {
+  siteId: ObjectID
   since: Date
   excludeContentTypes: [ContentType!] = []
   includeContentTypes: [ContentType!] = []
 }
 
 input AllAuthorContentQueryInput {
+  siteId: ObjectID
   contactId: Int!
   since: Date
   authorTypes: [ContentAuthorType!] = [author, contributor, photographer]
@@ -254,6 +287,7 @@ input AllAuthorContentQueryInput {
 }
 
 input AllCompanyContentQueryInput {
+  siteId: ObjectID
   companyId: Int!
   since: Date
   includeContentTypes: [ContentType!] = []
@@ -273,6 +307,7 @@ input ContentEndingInput {
 }
 
 input AllContentQueryInput {
+  siteId: ObjectID
   status: ModelStatus = active
   sort: ContentSortInput = {}
   pagination: PaginationInput = {}
@@ -290,6 +325,7 @@ input MagazineScheduledContentQueryInput {
 }
 
 input WebsiteExpiringContentQueryInput {
+  siteId: ObjectID
   before: Date
   after: Date
   sectionId: Int
@@ -315,6 +351,7 @@ input NewsletterScheduledContentQueryInput {
 }
 
 input WebsiteScheduledContentQueryInput {
+  siteId: ObjectID
   sectionId: Int
   sectionAlias: String
   optionId: Int
@@ -330,6 +367,7 @@ input WebsiteScheduledContentQueryInput {
 }
 
 input RelatedPublishedContentQueryInput {
+  siteId: ObjectID
   contentId: Int!
   excludeContentTypes: [ContentType!] = []
   includeContentTypes: [ContentType!] = []
@@ -339,6 +377,7 @@ input RelatedPublishedContentQueryInput {
 }
 
 input ContentRelatedContentInput {
+  siteId: ObjectID
   excludeContentTypes: [ContentType!] = []
   includeContentTypes: [ContentType!] = []
   requiresImage: Boolean = false
@@ -389,6 +428,7 @@ input ContentPrimarySiteInput {
 }
 
 input ContentPrimarySectionInput {
+  siteId: ObjectID
   status: ModelStatus = active
 }
 

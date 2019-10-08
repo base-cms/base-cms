@@ -1,5 +1,6 @@
 const ApplyInterfaceDirective = require('./apply-interface');
 const ArrayValueDirective = require('./array-value');
+const DeprecatedDirective = require('./deprecated');
 const FindManyDirective = require('./find-many');
 const FindOneDirective = require('./find-one');
 const MatchManyDirective = require('./match-many');
@@ -15,6 +16,7 @@ const ValueDirective = require('./value');
 module.exports = {
   applyInterfaceFields: ApplyInterfaceDirective,
   arrayValue: ArrayValueDirective,
+  deprecated: DeprecatedDirective,
   findMany: FindManyDirective,
   findOne: FindOneDirective,
   matchMany: MatchManyDirective,

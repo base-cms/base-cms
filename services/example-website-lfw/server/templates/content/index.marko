@@ -49,11 +49,11 @@ $ const displayPublishedDate = ["event", "webinar", "contact"].includes(type) ? 
               </if>
               <default-theme-page-dates|{ blockName }|>
                 <if(content.type === "event")>
-                  <marko-web-content-starts block-name=blockName obj=content />
-                  <marko-web-content-ends block-name=blockName obj=content />
+                  <marko-web-content-start-date block-name=blockName obj=content />
+                  <marko-web-content-end-date block-name=blockName obj=content />
                 </if>
                 <if(content.type === "webinar")>
-                  <marko-web-content-starts block-name=blockName obj=content />
+                  <marko-web-content-start-date block-name=blockName obj=content />
                 </if>
                 <if(displayPublishedDate)>
                   <marko-web-content-published block-name=blockName obj=content />

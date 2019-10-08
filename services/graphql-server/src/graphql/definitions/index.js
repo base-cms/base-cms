@@ -23,6 +23,7 @@ directive @refMany(model: String!, localField: String, foreignField: String = "_
 directive @refOne(loader: String!, localField: String, withSite: Boolean = false, siteField: String = "site.$id", criteria: String) on FIELD_DEFINITION
 directive @requiresProject(fields: [String] = []) on OBJECT | INTERFACE
 directive @value(localField: String, fallbackField: String) on FIELD_DEFINITION
+directive @deprecated(reason: String = "No longer supported") on FIELD_DEFINITION | ENUM_VALUE
 
 type Query {
   ping: String!
@@ -79,8 +80,8 @@ input PaginationInput {
 }
 
 input FormatDate {
-  format: String = "YYYY-MM-DDTHH:mm:ssZ"
-  timezone: String = "America/Chicago"
+  format: String
+  timezone: String
 }
 
 ${email}

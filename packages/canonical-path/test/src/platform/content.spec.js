@@ -6,7 +6,7 @@ const requestParser = require('../../../src/request-parser');
 describe('platform/content', () => {
   describe('the default configuration', () => {
     const site = {
-      _id: 5678,
+      id: () => 5678,
     };
     const section = {
       alias: '/primary-section',

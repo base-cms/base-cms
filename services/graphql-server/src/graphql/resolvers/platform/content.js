@@ -8,6 +8,7 @@ const { createSrcFor, createCaptionFor } = require('@base-cms/image');
 const moment = require('moment');
 const momentTZ = require('moment-timezone');
 
+const defaults = require('../../defaults');
 const mapArray = require('../../utils/map-array');
 const sitemap = require('../../utils/sitemap');
 const criteriaFor = require('../../utils/criteria-for');
@@ -37,8 +38,10 @@ const loadSection = async ({
   alias,
 }) => {
   if (!id && !alias) return null;
-  const sectionQuery = { status: 1 };
-  sectionQuery['site.$id'] = siteId;
+  const sectionQuery = {
+    status: 1,
+    ...(siteId && { 'site.$id': siteId }),
+  };
   if (alias) {
     sectionQuery.alias = alias;
   } else {
@@ -54,8 +57,10 @@ const loadOption = async ({
   name,
 }) => {
   if (!id && !name) return null;
-  const optionQuery = { status: 1 };
-  optionQuery['site.$id'] = siteId;
+  const optionQuery = {
+    status: 1,
+    ...(siteId && { 'site.$id': siteId }),
+  };
   if (id) {
     optionQuery._id = id;
   } else {
@@ -90,8 +95,10 @@ const formatContentType = ({ type }, { input }) => {
 };
 
 const createSitemapLoc = async (content, ctx) => {
+  const { site } = ctx;
+  if (!site.exists()) throw new UserInputError('A website context must be set to generate sitemap `loc` fields.');
   const path = await canonicalPathFor(content, ctx);
-  return encodeURI(sitemap.escape(`${ctx.site.origin}${path}`));
+  return encodeURI(sitemap.escape(`${site.get('origin')}${path}`));
 };
 
 const loadSitemapImages = ({ content, basedb }) => {
@@ -163,7 +170,8 @@ module.exports = {
     __resolveType: resolveType,
     fileSrc: ({ fileName, filePath }, _, { site }) => {
       if (!fileName || !filePath) return null;
-      return `https://${site.assetHost}/${cleanPath(filePath)}/${fileName}`;
+      const assetHost = site.get('assetHost', defaults.assetHost);
+      return `https://${assetHost}/${cleanPath(filePath)}/${fileName}`;
     },
   },
 
@@ -181,21 +189,58 @@ module.exports = {
   Content: {
     __resolveType: resolveType,
 
+    siteContext: async (content, _, ctx) => {
+      const { site, load, basedb } = ctx;
+      if (!site.exists()) throw new UserInputError('A website context must be set to generate `Content.siteContext` fields.');
+      const path = await canonicalPathFor(content, ctx);
+      return {
+        path: () => path,
+        url: () => {
+          if (/^http/i.test(path)) return path;
+          return `${site.get('origin')}${path}`;
+        },
+        canonicalUrl: async () => {
+          const projection = { alias: 1, 'site.$id': 1 };
+          const ref = BaseDB.get(content, 'mutations.Website.primarySection');
+          const id = BaseDB.extractRefId(ref);
+          const section = (id) ? await load('websiteSection', id, projection, { status: 1 }) : await loadHomeSection({
+            basedb,
+            siteId: site.id(),
+            status: 'active',
+            projection,
+          });
+
+          const owningSiteId = section ? BaseDB.extractRefId(section.site) : site.id();
+          const owningSite = `${owningSiteId}` === `${site.id()}` ? site.obj() : await load('platformProduct', owningSiteId, { host: 1 }, { type: 'Site' });
+
+          const origin = `https://${owningSite.host}`;
+          const values = [
+            section.alias,
+            dasherize(content.type),
+            content._id,
+            get(content, 'mutations.Website.slug'),
+          ];
+          const urlPath = cleanPath(values.filter(v => v).map(v => String(v).trim()).join('/'));
+          return `${origin}/${cleanPath(urlPath)}`;
+        },
+      };
+    },
+
     canonicalUrl: async (content, _, { load, basedb, site }) => {
+      if (!site.exists()) throw new UserInputError('A website context must be set to generate the `Content.canonicalUrl` field.');
       const projection = { alias: 1, 'site.$id': 1 };
 
       const ref = BaseDB.get(content, 'mutations.Website.primarySection');
       const id = BaseDB.extractRefId(ref);
       const section = (id) ? await load('websiteSection', id, projection, { status: 1 }) : await loadHomeSection({
         basedb,
-        siteId: site._id,
+        siteId: site.id(),
         status: 'active',
         projection,
       });
 
-      const owningSiteId = section ? BaseDB.extractRefId(section.site) : site._id;
-      const owningSite = `${owningSiteId}` === `${site._id}` ? site : await load('platformProduct', owningSiteId, { host: 1 }, { type: 'Site' });
-
+      const owningSiteId = section ? BaseDB.extractRefId(section.site) : site.id();
+      const owningSite = `${owningSiteId}` === `${site.id()}` ? site.obj() : await load('platformProduct', owningSiteId, { host: 1 }, { type: 'Site' });
       const origin = `https://${owningSite.host}`;
       const values = [
         section.alias,
@@ -207,11 +252,15 @@ module.exports = {
       return `${origin}/${cleanPath(path)}`;
     },
 
+    /**
+     * @deprecated use `siteContext.url` instead
+     */
     websiteUrl: async (content, _, ctx) => {
       const { site } = ctx;
+      if (!site.exists()) throw new UserInputError('A website context must be set to generate the `Content.websiteUrl` field.');
       const path = await canonicalPathFor(content, ctx);
       if (/^http/i.test(path)) return path;
-      return `${site.origin}${path}`;
+      return `${site.get('origin')}${path}`;
     },
 
     /**
@@ -231,13 +280,14 @@ module.exports = {
       } = info;
       const projection = getProjection(schema, returnType, fieldNodes[0].selectionSet, fragments);
 
+      const siteId = input.siteId || site.id();
       const ref = BaseDB.get(content, 'mutations.Website.primarySection');
       const id = BaseDB.extractRefId(ref);
       if (!id) {
         // No primary section reference found. Load home section for current site.
         return loadHomeSection({
           basedb,
-          siteId: site._id,
+          siteId,
           status,
           projection,
         });
@@ -245,16 +295,17 @@ module.exports = {
 
       const query = {
         ...formatStatus(status),
-        'site.$id': site._id,
+        ...(siteId && { 'site.$id': siteId }),
       };
       const section = await load('websiteSection', id, projection, query);
       if (section) return section;
 
       // Current section does not match site, load alternate.
       // @todo This should eventually account for secondary sites/sections. For now, load home.
+      // @todo Should this value be "pure" - meaning, do not override value and simply return?
       return loadHomeSection({
         basedb,
-        siteId: site._id,
+        siteId,
         status,
         projection,
       });
@@ -281,8 +332,10 @@ module.exports = {
       const mutated = get(content, `mutations.${mutation}.body`);
 
       let value = mutation ? mutated || body : body;
+      // Use site image host otherwise fallback to global default.
+      const imageHost = site.get('imageHost', defaults.imageHost);
       // Convert image tags to include image attributes (src, alt, caption, credit).
-      const imageTags = await getEmbeddedImageTags(value, { imageHost: site.imageHost, basedb });
+      const imageTags = await getEmbeddedImageTags(value, { imageHost, basedb });
       imageTags.forEach((tag) => {
         const replacement = tag.isValid() ? tag.build() : '';
         value = value.replace(tag.getRegExp(), replacement);
@@ -307,11 +360,22 @@ module.exports = {
     metadata: content => content,
 
     /**
-     * @deprecated use `websitePath` instead.
+     * @deprecated use `siteContext.url` instead
      */
-    canonicalPath: (content, _, ctx) => canonicalPathFor(content, ctx),
+    canonicalPath: (content, _, ctx) => {
+      const { site } = ctx;
+      if (!site.exists()) throw new UserInputError('A website context must be set to generate the `Content.canonicalPath` field.');
+      return canonicalPathFor(content, ctx);
+    },
 
-    websitePath: (content, _, ctx) => canonicalPathFor(content, ctx),
+    /**
+     * @deprecated use `siteContext.url` instead
+     */
+    websitePath: (content, _, ctx) => {
+      const { site } = ctx;
+      if (!site.exists()) throw new UserInputError('A website context must be set to generate the `Content.websitePath` field.');
+      return canonicalPathFor(content, ctx);
+    },
 
     redirectTo: (content) => {
       const { type, linkUrl } = content;
@@ -348,9 +412,11 @@ module.exports = {
       // If no query types were specified (owned, inverse, etc), return an empty response.
       if (!queryTypes.length) return BaseDB.paginateEmpty();
 
+      const siteId = input.siteId || site.id();
+
       // Run perform the related content query.
       return relatedContent.performQuery(doc, {
-        siteId: site._id,
+        siteId,
         input,
         basedb,
         info,
@@ -389,12 +455,19 @@ module.exports = {
   ContentSitemapNewsUrl: {
     loc: (content, _, ctx) => createSitemapLoc(content, ctx),
     title: content => BaseDB.fillMutation(content, 'Website', 'name'),
-    publication: (content, _, { site }) => site,
+    publication: (content, _, { site }) => {
+      if (!site.exists()) throw new UserInputError('A website context must be set to generate the `ContentSitemapNewsUrl.publication` field.');
+      return site;
+    },
     images: (content, _, { basedb }) => loadSitemapImages({ content, basedb }),
   },
 
   ContentSitemapImage: {
-    loc: (image, _, { site }) => encodeURI(sitemap.escape(createSrcFor(site.imageHost, image, {}))),
+    loc: (image, _, { site }) => {
+      // Use site image host otherwise fallback to global default.
+      const imageHost = site.get('imageHost', defaults.imageHost);
+      return encodeURI(sitemap.escape(createSrcFor(imageHost, image, {})));
+    },
     caption: image => sitemap.escape(createCaptionFor(image.caption)),
     title: image => sitemap.escape(image.name),
   },
@@ -421,7 +494,8 @@ module.exports = {
 
       const query = getPublishedCriteria({ since, contentTypes });
 
-      query['mutations.Website.primarySite'] = site._id;
+      const siteId = input.siteId || site.id();
+      if (siteId) query['mutations.Website.primarySite'] = siteId;
 
       if (beginning.before) query.$and.push({ startDate: { $lte: beginning.before } });
       if (beginning.after) query.$and.push({ startDate: { $gte: beginning.after } });
@@ -467,7 +541,8 @@ module.exports = {
         contentTypes,
         excludeContentTypes,
       });
-      $match['mutations.Website.primarySite'] = site._id;
+      const siteId = input.siteId || site.id();
+      if (siteId) $match['mutations.Website.primarySite'] = siteId;
 
       const pipeline = [
         { $match },
@@ -490,7 +565,8 @@ module.exports = {
 
       const query = getPublishedCriteria({ since, contentTypes, excludeContentTypes: ['Promotion', 'TextAd'] });
 
-      query['mutations.Website.primarySite'] = site._id;
+      const siteId = input.siteId || site.id();
+      if (siteId) query['mutations.Website.primarySite'] = siteId;
 
       const projection = {
         type: 1,
@@ -514,11 +590,13 @@ module.exports = {
       return docs;
     },
 
-    contentSitemapNewsUrls: async (_, args, { basedb, site }) => {
+    contentSitemapNewsUrls: async (_, { input }, { basedb, site }) => {
       const contentTypes = ['News', 'PressRelease', 'Blog'];
       const query = getPublishedCriteria({ contentTypes });
       query.$and.push({ published: { $gte: moment().subtract(2, 'days').toDate() } });
-      query['mutations.Website.primarySite'] = site._id;
+
+      const siteId = input.siteId || site.id();
+      if (siteId) query['mutations.Website.primarySite'] = siteId;
 
       const limit = 1000;
       const sort = { published: -1 };
@@ -552,7 +630,9 @@ module.exports = {
 
       const query = getPublishedCriteria({ since, contentTypes: includeContentTypes });
 
-      query['mutations.Website.primarySite'] = site._id;
+      const siteId = input.siteId || site.id();
+      if (siteId) query['mutations.Website.primarySite'] = siteId;
+
       query.$or = authorTypes.map((type) => {
         const field = `${type}s`;
         return { [field]: contactId };
@@ -584,8 +664,9 @@ module.exports = {
       } = input;
 
       const query = getPublishedCriteria({ since, contentTypes: includeContentTypes });
+      const siteId = input.siteId || site.id();
+      if (siteId) query['mutations.Website.primarySite'] = siteId;
 
-      query['mutations.Website.primarySite'] = site._id;
       query.$or = [
         { company: companyId },
         { 'relatedTo.$id': companyId },
@@ -664,7 +745,7 @@ module.exports = {
       if (!sectionId && !optionId) throw new UserInputError('Either a sectionId or optionId input must be provided.');
       if (!before && !after) throw new UserInputError('Either a sectionId or optionId input must be provided.');
 
-      const siteId = site._id;
+      const siteId = input.siteId || site.id();
       const [section, option] = await Promise.all([
         loadSection({
           basedb,
@@ -739,7 +820,7 @@ module.exports = {
       if (sectionId && sectionAlias) throw new UserInputError('You cannot provide both sectionId and sectionAlias as input.');
       if (optionId && optionName) throw new UserInputError('You cannot provide both optionId and optionName as input.');
 
-      const siteId = site._id;
+      const siteId = input.siteId || site.id();
       const [section, option] = await Promise.all([
         loadSection({
           basedb,
@@ -817,8 +898,8 @@ module.exports = {
         skip,
       } = input;
 
-      // Use input timezone otherwise fallback to site's timezone.
-      const timezone = input.timezone || site.date.timezone;
+      // Use input timezone otherwise fallback to site/global timezone.
+      const timezone = input.timezone || site.get('date.timezone', defaults.date.timezone);
 
       if (!sectionId && !sectionName) throw new UserInputError('Either a sectionId or sectionName input must be provided.');
       if (sectionId && sectionName) throw new UserInputError('You cannot provide both sectionId and sectionName as input.');
@@ -888,9 +969,11 @@ module.exports = {
       // If no content document was found, return an empty response.
       if (!doc) return BaseDB.paginateEmpty();
 
+      const siteId = input.siteId || site.id();
+
       // Run perform the related content query.
       return relatedContent.performQuery(doc, {
-        siteId: site._id,
+        siteId,
         input,
         basedb,
         info,

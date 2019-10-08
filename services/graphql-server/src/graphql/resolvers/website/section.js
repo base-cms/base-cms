@@ -1,4 +1,5 @@
 const { BaseDB } = require('@base-cms/db');
+const { UserInputError } = require('apollo-server-express');
 const { websiteSection: canonicalPathFor } = require('@base-cms/canonical-path');
 const getProjection = require('../../utils/get-projection');
 const getGraphType = require('../../utils/get-graph-type');
@@ -61,8 +62,10 @@ module.exports = {
    */
   WebsiteSectionSitemapUrl: {
     loc: async (section, _, ctx) => {
+      const { site } = ctx;
+      if (!site.exists()) throw new UserInputError('A website context must be set to generate the `WebsiteSectionSitemapUrl.loc` field.');
       const path = await canonicalPathFor(section, ctx);
-      return encodeURI(sitemap.escape(`${ctx.site.origin}${path}`));
+      return encodeURI(sitemap.escape(`${site.get('origin')}${path}`));
     },
     lastmod: async (section, _, { basedb }) => {
       const now = new Date();
@@ -112,7 +115,8 @@ module.exports = {
       const { limit, skip } = pagination;
 
       const query = { status: 1 };
-      query['site.$id'] = site._id;
+      const siteId = input.siteId || site.id();
+      if (siteId) query['site.$id'] = siteId;
 
       const projection = { alias: 1 };
       const sort = { alias: 1 };

@@ -101,6 +101,8 @@ class MatchManyDirective extends SchemaDirectiveVisitor {
         match,
       } = input;
 
+      const siteId = input.siteId || site.id();
+
       const query = applyInput({
         query: {
           [searchField]: buildRegex(phrase, position, match),
@@ -109,7 +111,7 @@ class MatchManyDirective extends SchemaDirectiveVisitor {
         },
         using,
         input,
-        ...(withSite && { siteId: site._id, siteField }),
+        ...(withSite && siteId && { siteId, siteField }),
       });
 
       if (isArray(excludeIds) && excludeIds.length) {
