@@ -53,6 +53,10 @@ module.exports = {
   },
 
   Query: {
+    websiteContext: (_, args, { site }) => {
+      if (site.exists()) return site.obj();
+      return null;
+    },
     websiteRedirect: async (_, { input }, { basedb, site }) => {
       const { from, params } = input;
       const siteId = input.siteId || site.id();
