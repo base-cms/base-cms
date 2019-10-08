@@ -3,13 +3,13 @@ const gql = require('graphql-tag');
 module.exports = gql`
 
 extend type Query {
-  websiteSchedule(input: WebsiteScheduleQueryInput = {}): WebsiteSchedule @findOne(
+  websiteSchedule(input: WebsiteScheduleQueryInput!): WebsiteSchedule @findOne(
     model: "website.Schedule",
     using: { id: "_id" },
     withSite: true,
     siteField: "product"
   )
-  contentWebsiteSchedules(input: ContentWebsiteSchedulesQueryInput = {}): WebsiteScheduleConnection! @findMany(
+  contentWebsiteSchedules(input: ContentWebsiteSchedulesQueryInput!): WebsiteScheduleConnection! @findMany(
     model: "website.Schedule",
     using: { contentId: "content.$id" },
     withSite: true,
