@@ -9,6 +9,12 @@ extend type Query {
     withSite: true,
     siteField: "product"
   )
+  contentWebsiteSchedules(input: ContentWebsiteSchedulesQueryInput = {}): WebsiteScheduleConnection! @findMany(
+    model: "website.Schedule",
+    using: { contentId: "content.$id" },
+    withSite: true,
+    siteField: "product"
+  )
 }
 
 type WebsiteSchedule {
@@ -34,10 +40,39 @@ type WebsiteSchedule {
   status: Int @projection
 }
 
+enum WebsiteScheduleSortField {
+  id
+  startDate
+}
+
+type WebsiteScheduleConnection @projectUsing(type: "WebsiteSchedule") {
+  totalCount: Int!
+  edges: [WebsiteScheduleEdge]!
+  pageInfo: PageInfo!
+}
+
+type WebsiteScheduleEdge {
+  node: WebsiteSchedule!
+  cursor: String!
+}
+
 input WebsiteScheduleQueryInput {
   siteId: ObjectID
   status: ModelStatus = active
   id: ObjectID!
+}
+
+input ContentWebsiteSchedulesQueryInput {
+  contentId: Int!
+  status: ModelStatus = active
+  siteId: ObjectID
+  sort: WebsiteSectionSortInput = {}
+  pagination: PaginationInput = {}
+}
+
+input WebsiteScheduleSortInput {
+  field: WebsiteScheduleSortField = id
+  order: SortOrder = desc
 }
 
 input WebsiteScheduleSiteInput {
