@@ -11,7 +11,7 @@ extend type Query {
   allPublishedContent(input: AllPublishedContentQueryInput = {}): ContentConnection!
   publishedContentCounts(input: PublishedContentCountsQueryInput = {}): [PublishedContentCount!]!
   contentSitemapUrls(input: ContentSitemapUrlsQueryInput = {}): [ContentSitemapUrl!]!
-  contentSitemapNewsUrls: [ContentSitemapNewsUrl!]!
+  contentSitemapNewsUrls(input: ContentSitemapNewsUrlsQueryInput = {}): [ContentSitemapNewsUrl!]!
   allAuthorContent(input: AllAuthorContentQueryInput = {}): ContentConnection!
   allCompanyContent(input: AllCompanyContentQueryInput = {}): ContentConnection!
   magazineScheduledContent(input: MagazineScheduledContentQueryInput = {}): ContentConnection!
@@ -218,6 +218,7 @@ input ContentHashQueryInput {
 }
 
 input ContentSitemapUrlsQueryInput {
+  siteId: ObjectID
   since: Date
   contentTypes: [ContentType!]!
   changefreq: SitemapChangeFreq = weekly
@@ -225,7 +226,12 @@ input ContentSitemapUrlsQueryInput {
   pagination: PaginationInput = { limit: 100 }
 }
 
+input ContentSitemapNewsUrlsQueryInput {
+  siteId: ObjectID
+}
+
 input AllPublishedContentQueryInput {
+  siteId: ObjectID
   since: Date
   sectionId: Int
   contentTypes: [ContentType!] = []
@@ -238,12 +244,14 @@ input AllPublishedContentQueryInput {
 }
 
 input PublishedContentCountsQueryInput {
+  siteId: ObjectID
   since: Date
   excludeContentTypes: [ContentType!] = []
   includeContentTypes: [ContentType!] = []
 }
 
 input AllAuthorContentQueryInput {
+  siteId: ObjectID
   contactId: Int!
   since: Date
   authorTypes: [ContentAuthorType!] = [author, contributor, photographer]
@@ -254,6 +262,7 @@ input AllAuthorContentQueryInput {
 }
 
 input AllCompanyContentQueryInput {
+  siteId: ObjectID
   companyId: Int!
   since: Date
   includeContentTypes: [ContentType!] = []
@@ -290,6 +299,7 @@ input MagazineScheduledContentQueryInput {
 }
 
 input WebsiteExpiringContentQueryInput {
+  siteId: ObjectID
   before: Date
   after: Date
   sectionId: Int
@@ -315,6 +325,7 @@ input NewsletterScheduledContentQueryInput {
 }
 
 input WebsiteScheduledContentQueryInput {
+  siteId: ObjectID
   sectionId: Int
   sectionAlias: String
   optionId: Int
@@ -330,6 +341,7 @@ input WebsiteScheduledContentQueryInput {
 }
 
 input RelatedPublishedContentQueryInput {
+  siteId: ObjectID
   contentId: Int!
   excludeContentTypes: [ContentType!] = []
   includeContentTypes: [ContentType!] = []

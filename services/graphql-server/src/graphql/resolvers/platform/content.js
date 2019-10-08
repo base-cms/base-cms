@@ -8,6 +8,7 @@ const { createSrcFor, createCaptionFor } = require('@base-cms/image');
 const moment = require('moment');
 const momentTZ = require('moment-timezone');
 
+const defaults = require('../../defaults');
 const mapArray = require('../../utils/map-array');
 const sitemap = require('../../utils/sitemap');
 const criteriaFor = require('../../utils/criteria-for');
@@ -37,8 +38,10 @@ const loadSection = async ({
   alias,
 }) => {
   if (!id && !alias) return null;
-  const sectionQuery = { status: 1 };
-  sectionQuery['site.$id'] = siteId;
+  const sectionQuery = {
+    status: 1,
+    ...(siteId && { 'site.$id': siteId }),
+  };
   if (alias) {
     sectionQuery.alias = alias;
   } else {
@@ -54,8 +57,10 @@ const loadOption = async ({
   name,
 }) => {
   if (!id && !name) return null;
-  const optionQuery = { status: 1 };
-  optionQuery['site.$id'] = siteId;
+  const optionQuery = {
+    status: 1,
+    ...(siteId && { 'site.$id': siteId }),
+  };
   if (id) {
     optionQuery._id = id;
   } else {
@@ -421,7 +426,8 @@ module.exports = {
 
       const query = getPublishedCriteria({ since, contentTypes });
 
-      query['mutations.Website.primarySite'] = site._id;
+      const siteId = input.siteId || site.id();
+      if (siteId) query['mutations.Website.primarySite'] = siteId;
 
       if (beginning.before) query.$and.push({ startDate: { $lte: beginning.before } });
       if (beginning.after) query.$and.push({ startDate: { $gte: beginning.after } });
@@ -467,7 +473,8 @@ module.exports = {
         contentTypes,
         excludeContentTypes,
       });
-      $match['mutations.Website.primarySite'] = site._id;
+      const siteId = input.siteId || site.id();
+      if (siteId) $match['mutations.Website.primarySite'] = siteId;
 
       const pipeline = [
         { $match },
@@ -490,7 +497,8 @@ module.exports = {
 
       const query = getPublishedCriteria({ since, contentTypes, excludeContentTypes: ['Promotion', 'TextAd'] });
 
-      query['mutations.Website.primarySite'] = site._id;
+      const siteId = input.siteId || site.id();
+      if (siteId) query['mutations.Website.primarySite'] = siteId;
 
       const projection = {
         type: 1,
@@ -514,11 +522,13 @@ module.exports = {
       return docs;
     },
 
-    contentSitemapNewsUrls: async (_, args, { basedb, site }) => {
+    contentSitemapNewsUrls: async (_, { input }, { basedb, site }) => {
       const contentTypes = ['News', 'PressRelease', 'Blog'];
       const query = getPublishedCriteria({ contentTypes });
       query.$and.push({ published: { $gte: moment().subtract(2, 'days').toDate() } });
-      query['mutations.Website.primarySite'] = site._id;
+
+      const siteId = input.siteId || site.id();
+      if (siteId) query['mutations.Website.primarySite'] = siteId;
 
       const limit = 1000;
       const sort = { published: -1 };
@@ -664,7 +674,7 @@ module.exports = {
       if (!sectionId && !optionId) throw new UserInputError('Either a sectionId or optionId input must be provided.');
       if (!before && !after) throw new UserInputError('Either a sectionId or optionId input must be provided.');
 
-      const siteId = site._id;
+      const siteId = input.siteId || site.id();
       const [section, option] = await Promise.all([
         loadSection({
           basedb,
@@ -739,7 +749,7 @@ module.exports = {
       if (sectionId && sectionAlias) throw new UserInputError('You cannot provide both sectionId and sectionAlias as input.');
       if (optionId && optionName) throw new UserInputError('You cannot provide both optionId and optionName as input.');
 
-      const siteId = site._id;
+      const siteId = input.siteId || site.id();
       const [section, option] = await Promise.all([
         loadSection({
           basedb,
@@ -817,8 +827,8 @@ module.exports = {
         skip,
       } = input;
 
-      // Use input timezone otherwise fallback to site's timezone.
-      const timezone = input.timezone || site.date.timezone;
+      // Use input timezone otherwise fallback to site/global timezone.
+      const timezone = input.timezone || site.get('date.timezone', defaults.date.timezone);
 
       if (!sectionId && !sectionName) throw new UserInputError('Either a sectionId or sectionName input must be provided.');
       if (sectionId && sectionName) throw new UserInputError('You cannot provide both sectionId and sectionName as input.');
@@ -888,9 +898,11 @@ module.exports = {
       // If no content document was found, return an empty response.
       if (!doc) return BaseDB.paginateEmpty();
 
+      const siteId = input.siteId || site.id();
+
       // Run perform the related content query.
       return relatedContent.performQuery(doc, {
-        siteId: site._id,
+        siteId,
         input,
         basedb,
         info,
