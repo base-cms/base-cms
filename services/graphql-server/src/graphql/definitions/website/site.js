@@ -31,6 +31,8 @@ type WebsiteSite {
   redirects: [String]! @projection @arrayValue
 
   # fields that are new to GraphQL
+  title: String @projection(localField: "name", needs: ["shortName"])
+  shortName: String @projection
   rootSections(input: WebsiteSiteRootSectionsInput = {}): WebsiteSectionConnection! @projection(localField: "_id") @refMany(model: "website.Section", localField: "_id", foreignField: "site.$id", criteria: "rootWebsiteSection")
   host: String! @projection
   origin: String! @projection(localField: "host")
