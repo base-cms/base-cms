@@ -53,7 +53,7 @@ module.exports = async (basedb, modelName, {
 
   const options = {
     sort: $sort.value,
-    limit: $limit.value + 1, // peek to see if there is another page.
+    limit: $limit.value === 0 ? 0 : $limit.value + 1, // peek to see if there is another page.
     skip,
     projection: $projection,
   };
