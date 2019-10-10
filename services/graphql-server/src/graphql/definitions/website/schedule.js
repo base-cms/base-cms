@@ -17,6 +17,11 @@ extend type Query {
   )
 }
 
+extend type Mutation {
+  quickCreateWebsiteSchedules(input: QuickCreateWebsiteSchedulesMutationInput!): [WebsiteSchedule!]!
+  deleteWebsiteSchedule(input: DeleteWebsiteScheduleMutationInput!): String!
+}
+
 type WebsiteSchedule {
   # fields from platform.model::Schedule
   id: ObjectID @projection(localField: "_id") @value(localField: "_id")
@@ -90,6 +95,15 @@ input WebsiteScheduleSectionInput {
 
 input WebsiteScheduleOptionInput {
   status: ModelStatus = active
+}
+
+input QuickCreateWebsiteSchedulesMutationInput {
+  contentId: Int!
+  sectionIds: [Int!]!
+}
+
+input DeleteWebsiteScheduleMutationInput {
+  id: ObjectID!
 }
 
 `;
