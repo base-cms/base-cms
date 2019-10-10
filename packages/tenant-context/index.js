@@ -1,7 +1,7 @@
 const getFromRequest = (req) => {
-  const tenant = req.get('x-tenant-key');
-  const siteId = req.get('x-site-id');
-  if (!tenant) throw new Error('A required header `x-tenant-key` was not sent!');
+  const tenant = req.get('x-tenant-key') || req.query['tenant-key'];
+  const siteId = req.get('x-site-id') || req.query['site-id'];
+  if (!tenant) throw new Error('A required `tenant-key` was not sent. Provide as a header or a query param.');
   return {
     tenant,
     siteId: siteId || undefined,
