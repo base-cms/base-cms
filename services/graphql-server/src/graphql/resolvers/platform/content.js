@@ -886,6 +886,7 @@ module.exports = {
         excludeProjection,
         additionalData: { sectionId: section._id },
         ...pagination,
+        collate: input.sort.field === 'name',
       });
     },
 
