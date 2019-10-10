@@ -10,11 +10,11 @@ const parseJson = (value) => {
   }
 };
 
-const rss = () => (req, res, next) => {
+const rss = ({ requiresInput = true } = {}) => (req, res, next) => {
   const { websiteContext: website } = res.locals;
   const { query } = req;
-  if (!query.input) throw createError(400, 'No input was provided with the request.');
-  const input = parseJson(query.input);
+  if (requiresInput && !query.input) throw createError(400, 'No input was provided with the request.');
+  const input = parseJson(query.input || '{}');
   const channel = parseJson(query.channel);
   if (!input) throw createError(400, 'The provided input is invalid.');
   res.locals.input = { ...input, pagination: { limit: 25, ...input.pagination } };
@@ -28,6 +28,6 @@ const rss = () => (req, res, next) => {
 };
 
 module.exports = (app) => {
-  app.get('/all-published-content.xml', rss(), allPublishedContent);
+  app.get('/all-published-content.xml', rss({ requiresInput: false }), allPublishedContent);
   app.get('/website-scheduled-content.xml', rss(), websiteScheduledContent);
 };
