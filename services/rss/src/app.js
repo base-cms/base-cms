@@ -8,6 +8,10 @@ const app = express();
 app.use(helmet());
 app.set('trust proxy', ['loopback', 'linklocal', 'uniquelocal']);
 
+app.get('/favicon.ico', (req, res) => {
+  res.status(404).end();
+});
+
 app.use(apollo());
 app.use(websiteContext());
 app.use((req, res, next) => {
