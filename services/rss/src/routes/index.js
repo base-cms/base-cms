@@ -20,8 +20,9 @@ const rss = ({ requiresInput = true } = {}) => (req, res, next) => {
   res.locals.input = { ...input, pagination: { limit: 25, ...input.pagination } };
   res.locals.channel = channel || {};
 
-  const mountPoint = req.get('x-mount-point') || '/__rss';
-  res.locals.mountHref = `${website.origin}${mountPoint}${req.url}`;
+  const mountPoint = req.get('x-mount-point') || req.query['mount-point'] || '/__rss';
+  const useSelf = req.get('x-self-origin') || req.query['self-origin'];
+  res.locals.mountHref = useSelf ? `${req.protocol}://${req.get('host')}${req.url}` : `${website.origin}${mountPoint}${req.url}`;
 
   res.setHeader('Content-Type', 'application/rss+xml; charset=utf-8');
   next();
