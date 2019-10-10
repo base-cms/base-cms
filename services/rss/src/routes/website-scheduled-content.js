@@ -5,7 +5,7 @@ const createItem = require('../utils/create-item');
 const contentFragment = require('../api/content-fragment');
 
 const query = gql`
-  query RSSWebsiteScheduledContent($input: WebsiteScheduledContentQueryInput) {
+  query RSSWebsiteScheduledContent($input: WebsiteScheduledContentQueryInput!) {
     websiteScheduledContent(input: $input) {
       section {
         id
