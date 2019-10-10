@@ -41,6 +41,7 @@ const server = new ApolloServer({
     const site = await loadSiteContext({ siteId, basedb, tenant });
 
     return {
+      tenant,
       basedb,
       site,
       load: async (loader, id, projection, criteria = {}) => {
