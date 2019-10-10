@@ -20,10 +20,10 @@ class Base4RestApiClient {
     this.baseEndpoint = baseEndpoint;
     this.options = {
       ...options,
-      includeMeta: 1,
+      includeMeta: 0,
       queryInversed: 1,
       referenceFormat: 'object',
-      sideloadData: 1,
+      sideloadData: 0,
     };
   }
 
