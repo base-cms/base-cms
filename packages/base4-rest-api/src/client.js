@@ -5,6 +5,8 @@ const { dasherize } = require('@base-cms/inflector');
 const { getAsObject } = require('@base-cms/object-path');
 const pkg = require('../package.json');
 
+const { isArray } = Array;
+
 class Base4RestApiClient {
   constructor({
     hostname,
@@ -30,10 +32,24 @@ class Base4RestApiClient {
   async findOne({ model, id, options } = {}) {
     if (!id) throw new Error('A Base4 model `id` value is required to findOne.');
     if (!model) throw new Error('A Base4 API model type is required to findOne.');
-    return this.get({
+    return this.retrieve({
       endpoint: `/${cleanPath(model)}/${id}`,
       options,
     });
+  }
+
+  async insertOne({ model, body, options } = {}) {
+    if (!model) throw new Error('A Base4 API model type is required to insertOne.');
+    return this.create({
+      endpoint: `/${cleanPath(model)}`,
+      body,
+      options,
+    });
+  }
+
+  async insertMany({ model, bodies, options } = {}) {
+    if (!isArray(bodies)) throw new Error('An array of request bodies is required to insertMany.');
+    return Promise.all(bodies.map(body => this.insertOne({ model, body, options })));
   }
 
   async removeOne({ model, id, options } = {}) {
@@ -45,8 +61,20 @@ class Base4RestApiClient {
     });
   }
 
-  async get({ endpoint, options } = {}) {
-    if (!endpoint) throw new Error('A Base4 API endpoint is required to get.');
+  async create({ endpoint, body, options } = {}) {
+    if (!endpoint) throw new Error('A Base4 API endpoint is required to create.');
+    if (!body) throw new Error('A Base4 API request body is required to create.');
+    return this.fetch({
+      method: 'post',
+      body,
+      type: 'persistence',
+      endpoint,
+      options,
+    });
+  }
+
+  async retrieve({ endpoint, options } = {}) {
+    if (!endpoint) throw new Error('A Base4 API endpoint is required to retrieve.');
     return this.fetch({
       method: 'get',
       type: 'persistence',
