@@ -27,20 +27,39 @@ class Base4RestApiClient {
     };
   }
 
-  async findOne({ id, endpoint, options } = {}) {
+  async findOne({ model, id, options } = {}) {
     if (!id) throw new Error('A Base4 model `id` value is required to findOne.');
-    if (!endpoint) throw new Error('A Base4 API endpoint is required to findOne.');
+    if (!model) throw new Error('A Base4 API model type is required to findOne.');
     return this.get({
-      endpoint: `/${cleanPath(endpoint)}/${id}`,
+      endpoint: `/${cleanPath(model)}/${id}`,
       options,
     });
   }
 
-  async get({ type = 'persistence', endpoint, options } = {}) {
+  async removeOne({ model, id, options } = {}) {
+    if (!id) throw new Error('A Base4 model `id` value is required to removeOne.');
+    if (!model) throw new Error('A Base4 API model type is required to removeOne.');
+    return this.delete({
+      endpoint: `/${cleanPath(model)}/${id}`,
+      options,
+    });
+  }
+
+  async get({ endpoint, options } = {}) {
     if (!endpoint) throw new Error('A Base4 API endpoint is required to get.');
     return this.fetch({
       method: 'get',
-      type,
+      type: 'persistence',
+      endpoint,
+      options,
+    });
+  }
+
+  async delete({ endpoint, options } = {}) {
+    if (!endpoint) throw new Error('A Base4 API endpoint is required to delete.');
+    return this.fetch({
+      method: 'delete',
+      type: 'persistence',
       endpoint,
       options,
     });
@@ -69,17 +88,21 @@ class Base4RestApiClient {
     };
 
     const res = await fetch(url, opts);
+    if (res.status === 204) {
+      // No content.
+      return 'ok';
+    }
     const json = await res.json();
     if (res.ok) return json;
     if (json && json.error) {
       const { error } = json;
-      throw createError(res.statusCode, `Base4 REST API error: ${error.message}`);
+      throw createError(res.status, `Base4 REST API error: ${error.message}`);
     }
     if (json && json.errors) {
       const { errors } = json;
-      throw createError(res.statusCode, `Base4 REST API error: ${errors.detail} Code: ${errors.code}`);
+      throw createError(res.status, `Base4 REST API error: ${errors.detail} Code: ${errors.code}`);
     }
-    throw createError(res.statusCode, `Base4 REST API error: ${res.statusText}`);
+    throw createError(res.status, `Base4 REST API error: ${res.statusText}`);
   }
 
   buildUrl({ type, endpoint } = {}) {
