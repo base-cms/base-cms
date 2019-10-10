@@ -5,12 +5,17 @@ const { Router } = require('express');
 const { isObject } = require('@base-cms/utils');
 const { requestParser: canonicalRules } = require('@base-cms/canonical-path');
 const ApolloNewrelicExtension = require('apollo-newrelic-extension');
+const createBaseRestClient = require('../create-rest-client');
 const newrelic = require('../newrelic');
 const basedbFactory = require('../basedb');
 const createLoaders = require('../dataloaders');
 const schema = require('../graphql/schema');
 const loadSiteContext = require('../site-context/load');
-const { NODE_ENV, GRAPHQL_ENDPOINT, ENGINE_API_KEY } = require('../env');
+const {
+  NODE_ENV,
+  GRAPHQL_ENDPOINT,
+  ENGINE_API_KEY,
+} = require('../env');
 
 const isProduction = NODE_ENV === 'production';
 
@@ -40,9 +45,14 @@ const server = new ApolloServer({
     // Load the (optional) site context from the database.
     const site = await loadSiteContext({ siteId, basedb, tenant });
 
+    // Load the (optional) Base4 REST API client.
+    // Some GraphQL mutations require this.
+    const base4rest = createBaseRestClient({ hostname: req.get('x-base4-api-hostname') });
+
     return {
       tenant,
       basedb,
+      base4rest,
       site,
       load: async (loader, id, projection, criteria = {}) => {
         if (!loaders[loader]) throw new Error(`No dataloader found for '${loader}'`);
