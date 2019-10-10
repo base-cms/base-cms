@@ -1,4 +1,5 @@
 const createError = require('http-errors');
+const allPublishedContent = require('./all-published-content');
 const websiteScheduledContent = require('./website-scheduled-content');
 
 const parseJson = (value) => {
@@ -27,5 +28,6 @@ const rss = () => (req, res, next) => {
 };
 
 module.exports = (app) => {
+  app.get('/all-published-content.xml', rss(), allPublishedContent);
   app.get('/website-scheduled-content.xml', rss(), websiteScheduledContent);
 };
