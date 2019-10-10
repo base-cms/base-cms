@@ -231,6 +231,26 @@ class BaseDB {
   }
 
   /**
+   * Inserts a multiple documents to a collection.
+   *
+   * @param {string} modelName The model name, e.g. `platform.Content`.
+   * @param {object[]} docs The documents to insert
+   * @param {object} [options] Options to pass to `Collection.insertMany`.
+   */
+  async insertMany(modelName, doc, options) {
+    const start = hrtime();
+    const { namespace, resource } = BaseDB.parseModelName(modelName);
+    const coll = await this.collection(namespace, resource);
+    const result = await coll.insertMany(doc, options);
+    this.log('insertMany', start, {
+      modelName,
+      doc,
+      options,
+    });
+    return result;
+  }
+
+  /**
    * Update multiple documents in a collection.
    *
    * @param {string} modelName The model name, e.g. `platform.Content`.
