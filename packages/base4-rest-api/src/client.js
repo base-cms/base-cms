@@ -1,0 +1,103 @@
+const fetch = require('node-fetch');
+const createError = require('http-errors');
+const { cleanPath } = require('@base-cms/utils');
+const { dasherize } = require('@base-cms/inflector');
+const { getAsObject } = require('@base-cms/object-path');
+const pkg = require('../package.json');
+
+class Base4RestApiClient {
+  constructor({
+    hostname,
+    username,
+    password,
+    baseEndpoint = '/api/2.0rcpi',
+    options,
+  } = {}) {
+    if (!hostname || !username || !password) throw new Error('A hostname, username, and password are required for the Base REST API.');
+    this.hostname = hostname.replace('http://', '').replace('https://', '').replace(/\/+$/, '');
+    this.username = username;
+    this.password = password;
+    this.baseEndpoint = baseEndpoint;
+    this.options = {
+      ...options,
+      includeMeta: 1,
+      queryInversed: 1,
+      referenceFormat: 'object',
+      sideloadData: 1,
+    };
+  }
+
+  async findOne({ id, endpoint, options } = {}) {
+    if (!id) throw new Error('A Base4 model `id` value is required to findOne.');
+    if (!endpoint) throw new Error('A Base4 API endpoint is required to findOne.');
+    return this.get({
+      endpoint: `/${cleanPath(endpoint)}/${id}`,
+      options,
+    });
+  }
+
+  async get({ type = 'persistence', endpoint, options } = {}) {
+    if (!endpoint) throw new Error('A Base4 API endpoint is required to get.');
+    return this.fetch({
+      method: 'get',
+      type,
+      endpoint,
+      options,
+    });
+  }
+
+  async fetch({
+    method,
+    type,
+    endpoint,
+    body,
+    options = {},
+  } = {}) {
+    const url = this.buildUrl({ type, endpoint });
+    const headers = {
+      ...getAsObject(options.headers),
+      ...this.buildOptionHeaders(),
+      'content-type': 'application/json',
+      'user-agent': `${pkg.name}/${pkg.version} (+https://github.com/base-cms/base-cms)`,
+      authorization: `Basic ${this.encodeAuth()}`,
+    };
+    const opts = {
+      ...options,
+      method,
+      ...(body && { body: JSON.stringify(body) }),
+      headers,
+    };
+
+    const res = await fetch(url, opts);
+    const json = await res.json();
+    if (res.ok) return json;
+    if (json && json.error) {
+      const { error } = json;
+      throw createError(res.statusCode, `Base4 REST API error: ${error.message}`);
+    }
+    if (json && json.errors) {
+      const { errors } = json;
+      throw createError(res.statusCode, `Base4 REST API error: ${errors.detail} Code: ${errors.code}`);
+    }
+    throw createError(res.statusCode, `Base4 REST API error: ${res.statusText}`);
+  }
+
+  buildUrl({ type, endpoint } = {}) {
+    if (!['persistence', 'search'].includes(type)) throw new Error(`The API resource type '${type}' is not supported.`);
+    if (!endpoint) throw new Error('An API endpoint is required.');
+    return `https://${this.hostname}/${cleanPath(this.baseEndpoint)}/${type}/${cleanPath(endpoint)}`;
+  }
+
+  buildOptionHeaders() {
+    return Object.keys(this.options).reduce((o, key) => {
+      const value = this.options[key];
+      return { ...o, [`x-modlr-api-${dasherize(key)}`]: value };
+    }, {});
+  }
+
+  encodeAuth() {
+    return Buffer.from(`${this.username}:${this.password}`).toString('base64');
+  }
+}
+
+module.exports = Base4RestApiClient;
