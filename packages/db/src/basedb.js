@@ -273,6 +273,26 @@ class BaseDB {
   }
 
   /**
+   * Delete a document from a collection.
+   *
+   * @param {string} modelName The model name, e.g. `platform.Content`.
+   * @param {object} filter The Filter used to select the document to remove.
+   * @param {object} [options] Options to pass to `Collection.deleteOne`.
+   */
+  async deleteOne(modelName, filter, options) {
+    const start = hrtime();
+    const { namespace, resource } = BaseDB.parseModelName(modelName);
+    const coll = await this.collection(namespace, resource);
+    const result = await coll.deleteOne(filter, options);
+    this.log('deleteOne', start, {
+      modelName,
+      filter,
+      options,
+    });
+    return result;
+  }
+
+  /**
    *
    * @param {string} modelName The model name, e.g. `platform.Content`.
    * @param {object} params
