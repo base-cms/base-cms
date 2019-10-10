@@ -879,7 +879,6 @@ module.exports = {
       const sort = input.sort.field ? input.sort : { field: 'sectionQuery.0.start', order: 'desc' };
       const excludeProjection = input.sort.field ? undefined : ['sectionQuery.start'];
 
-      console.log(sort, excludeProjection, { ...(!input.sort.field && { 'sectionQuery.$.start': 1 }), ...projection });
       return basedb.paginate('platform.Content', {
         query,
         sort,
