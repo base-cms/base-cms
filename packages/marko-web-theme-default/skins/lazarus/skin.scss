@@ -58,6 +58,7 @@ body {
   padding-bottom: 40px;
   text-align: center;
   border-top: 5px solid rgba($primary, .8);
+  border-bottom: 2px solid $body-bg;
   &__title {
     text-transform: uppercase;
   }
