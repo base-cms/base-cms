@@ -1,15 +1,19 @@
 // Override variables here.
-@import url("https://fonts.googleapis.com/css?family=Fira+Sans:300i,400,600|Cardo|Lora:400,400i,700,700i");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans+Condensed:700|Source+Serif+Pro&display=swap");
 
-$black:     rgba(0, 0, 0, .84) !default;
-$gray-600:  rgba(0, 0, 0, .54) !default;
+$body-bg:   #f6f6f6 !default;
+$black:     #000 !default;
 
-$font-weight-bold:      600 !default;
+$font-weight-bold:      700 !default;
 $breadcrumb-divider:    "|" !default;
 
-$theme-font-family-sans-serif: "Fira Sans", "Roboto", "Arial", sans-serif !default;
-$theme-font-family-serif: "Lora", "Georgia", "Cambria", "Times New Roman", "Times", serif !default;
-$theme-font-family-page-title: "Cardo", "Georgia", "Cambria", "Times New Roman", "Times", serif !default;
+$font-montserrat: "Montserrat", sans-serif !default;
+$font-open-sans: "Open Sans Condensed", "Roboto", sans-serif !default;
+$font-source-serif: "Source Serif Pro", "Georgia", serif !default;
+
+$theme-font-family-sans-serif: $font-montserrat !default;
+$theme-font-family-serif: $font-source-serif !default;
+$theme-font-family-page-title: $font-open-sans !default;
 
 $theme-card-header-letter-spacing: 1px !default;
 
