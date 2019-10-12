@@ -2,7 +2,8 @@
 # www.google.com/support/webmasters/bin/answer.py?hl=en&answer=156449
 
 User-agent: *
+Disallow: /
 Disallow: /__load-more
 
-Sitemap: https://www.laserfocusworld.com/sitemap.xml
-Sitemap: https://www.laserfocusworld.com/sitemap-google-news.xml
+Sitemap: https://www.vehicleservicepros.com/sitemap.xml
+Sitemap: https://www.vehicleservicepros.com/sitemap-google-news.xml
