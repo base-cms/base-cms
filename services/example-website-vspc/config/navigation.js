@@ -1,25 +1,4 @@
 module.exports = {
-  primary: {
-    items: [
-      { href: '/in-the-bay', label: 'In The Bay' },
-      { href: '/shop-operations', label: 'Shop Operations' },
-      { href: '/vehicles', label: 'Vehicles' },
-      { href: '/distributors', label: 'Distributors' },
-      { href: '/industry-news', label: 'Industry News' },
-      { href: '/directory', label: 'Directory' },
-    ],
-  },
-  secondary: {
-    items: [
-      { href: 'http://www.cdsreportnow.com/GET/INFO?PTEN', label: 'PTEN E-Inquiry', target: '_blank' },
-      { href: 'http://www.cdsreportnow.com/GET/INFO?PRD', label: 'PD E-Inquiry', target: '_blank' },
-      { href: '/magazine', label: 'In Print' },
-      { href: '/advertise', label: 'Advertise' },
-      { href: '/contact-us', label: 'Contact Us' },
-      { href: '/subscribe', label: 'Subscribe' },
-      { href: 'https://vehicleservicepros.jobboard.io/', label: 'Job Board', target: '_blank' },
-    ],
-  },
   tertiary: {
     items: [
       { href: '/search', label: 'Search', icon: 'search' },
