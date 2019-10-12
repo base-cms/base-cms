@@ -1,0 +1,8 @@
+<default-theme-hero-flow nodes=input.nodes>
+  <@hero|{ node }|>
+    <website-content-card-node node=node image-width=630 title-modifiers=["large"] />
+  </@hero>
+  <@list|{ nodes }|>
+    <website-content-list-flow nodes=nodes native-x=input.nativeX />
+  </@list>
+</default-theme-hero-flow>

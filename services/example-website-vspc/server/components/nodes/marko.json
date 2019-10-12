@@ -1,0 +1,58 @@
+{
+  "<website-content-list-node>": {
+    "template": "./content-list.marko",
+    "@node": "object",
+    "@display-image": {
+      "type": "boolean",
+      "default-value": true
+    },
+    "@with-teaser": {
+      "type": "boolean",
+      "default-value": false
+    },
+    "@attrs": "object",
+    "@link-attrs": "object"
+  },
+  "<website-content-card-node>": {
+    "template": "./content-card.marko",
+    "@node": "object",
+    "@title-modifiers": "array",
+    "@image-width": {
+      "type": "number",
+      "default-value": 300
+    },
+    "@display-image": {
+      "type": "boolean",
+      "default-value": true
+    },
+    "@with-teaser": {
+      "type": "boolean",
+      "default-value": true
+    },
+    "@attrs": "object",
+    "@link-attrs": "object"
+  },
+  "<website-magazine-latest-issue-node>": {
+    "template": "./magazine-latest-issue.marko",
+    "@node": "object",
+    "@flush": "boolean",
+    "@card": "boolean",
+    "@image-width": {
+      "type": "number",
+      "default-value": 300
+    }
+  },
+  "<website-magazine-issue-archive-node>": {
+    "template": "./magazine-issue-archive.marko",
+    "@node": "object",
+    "@image-width": "number",
+    "@full-height": "boolean",
+    "@flush": "boolean",
+    "@card": "boolean",
+    "@with-title": "boolean"
+  },
+  "<website-contact-us-list-node>": {
+    "template": "./contact-us-list.marko",
+    "@node": "object"
+  }
+}

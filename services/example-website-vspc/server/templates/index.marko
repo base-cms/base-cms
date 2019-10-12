@@ -1,0 +1,244 @@
+import hierarchyAliases from "@base-cms/marko-web/utils/hierarchy-aliases";
+import queryFragment from "../api/fragments/content-list";
+import latestIssueFragment from "../api/fragments/magazine-latest-issue";
+import GAM from "../../config/gam";
+
+$ const { id, alias, name, pageNode } = data;
+
+<marko-web-website-section-page-layout id=id alias=alias name=name>
+  <@head>
+    <marko-web-gtm-website-section-context|{ context }| alias=alias>
+      <marko-web-gtm-push data=context />
+    </marko-web-gtm-website-section-context>
+    <marko-web-resolve-page|{ data: section }| node=pageNode>
+      $ const aliases = hierarchyAliases(section);
+      $ const adSlots = {
+          "gpt-ad-lb1":   GAM.getAdUnit({ name: "lb1", aliases }),
+          "gpt-ad-rail1": GAM.getAdUnit({ name: "rail1", aliases, size: [300, 250] }),
+          "gpt-ad-rail2": GAM.getAdUnit({ name: "rail2", aliases, size: [300, 600] }),
+        }
+       <marko-web-gam-slots slots=adSlots />
+    </marko-web-resolve-page>
+  </@head>
+  <@above-container>
+    <marko-web-resolve-page|{ data: section }| node=pageNode>
+      $ const aliases = hierarchyAliases(section);
+      <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "wa", aliases }) />
+      <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "reskin", aliases }) />
+    </marko-web-resolve-page>
+  </@above-container>
+  <@page>
+    <marko-web-gam-display-ad id="gpt-ad-lb1" modifiers=["top-of-page"] />
+
+    <marko-web-query|{ nodes }|
+      name="website-optioned-content"
+      params={ sectionId: id, optionName: 'Pinned', limit: 5, queryFragment }
+    >
+      <website-content-hero-flow nodes=nodes />
+    </marko-web-query>
+
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="row">
+          <div class="col-lg-6 mb-block">
+            <marko-web-query|{ nodes }|
+              name="website-scheduled-content"
+              params={ sectionAlias: "detectors-imaging", limit: 3, requiresImage: true, queryFragment }
+            >
+              <website-content-list-flow nodes=nodes>
+                <@header>
+                  <marko-web-link href="/detectors-imaging">Detectors & Imaging</marko-web-link>
+                </@header>
+                <@native-x index=2 name="list1" aliases=["detectors-imaging"] />
+              </website-content-list-flow>
+            </marko-web-query>
+          </div>
+          <div class="col-lg-6 mb-block">
+            <marko-web-query|{ nodes }|
+              name="website-scheduled-content"
+              params={ sectionAlias: "lasers-sources", limit: 3, requiresImage: true, queryFragment }
+            >
+              <website-content-list-flow nodes=nodes>
+                <@header>
+                  <marko-web-link href="/lasers-sources">Lasers & Sources</marko-web-link>
+                </@header>
+                <@native-x index=2 name="list1" aliases=["lasers-sources"] />
+              </website-content-list-flow>
+            </marko-web-query>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6 mb-block">
+             <marko-web-query|{ nodes }|
+              name="website-scheduled-content"
+              params={ sectionAlias: "optics", limit: 3, requiresImage: true, queryFragment }
+            >
+              <website-content-list-flow nodes=nodes>
+                <@header>
+                  <marko-web-link href="/optics">Optics</marko-web-link>
+                </@header>
+                <@native-x index=2 name="list1" aliases=["optics"] />
+              </website-content-list-flow>
+            </marko-web-query>
+          </div>
+          <div class="col-lg-6 mb-block">
+            <marko-web-query|{ nodes }|
+              name="website-scheduled-content"
+              params={ sectionAlias: "fiber-optics", limit: 3, requiresImage: true, queryFragment }
+            >
+              <website-content-list-flow nodes=nodes>
+                <@header>
+                  <marko-web-link href="/fiber-optics">Fiber Optics</marko-web-link>
+                </@header>
+                <@native-x index=2 name="list1" aliases=["fiber-optics"] />
+              </website-content-list-flow>
+            </marko-web-query>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 mb-block page-rail">
+        <marko-web-gam-display-ad id="gpt-ad-rail1" />
+        <marko-web-gam-display-ad id="gpt-ad-rail2" />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-4 mb-block">
+        <marko-web-query|{ nodes }|
+          name="website-scheduled-content"
+          params={ sectionAlias: "software-accessories", limit: 3, requiresImage: true, queryFragment }
+        >
+          <website-content-list-flow nodes=nodes>
+            <@header>
+              <marko-web-link href="/software-accessories">Software & Accessories</marko-web-link>
+            </@header>
+            <@native-x index=2 name="list1" aliases=["software-accessories"] />
+          </website-content-list-flow>
+        </marko-web-query>
+      </div>
+      <div class="col-lg-4 mb-block">
+        <marko-web-query|{ nodes }|
+          name="website-scheduled-content"
+          params={ sectionAlias: "test-measurement", limit: 3, requiresImage: true, queryFragment }
+        >
+          <website-content-list-flow nodes=nodes>
+            <@header>
+              <marko-web-link href="/test-measurement">Test & Measurement</marko-web-link>
+            </@header>
+            <@native-x index=2 name="list1" aliases=["test-measurement"] />
+          </website-content-list-flow>
+        </marko-web-query>
+      </div>
+      <div class="col-lg-4 mb-block">
+        <marko-web-query|{ nodes }|
+          name="all-published-content"
+          params={ contentTypes: ["Webinar"], limit: 3, queryFragment }
+        >
+          <website-content-list-flow nodes=nodes>
+            <@header>
+              <marko-web-link href="/webcasts">Webcasts</marko-web-link>
+            </@header>
+          </website-content-list-flow>
+        </marko-web-query>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-4 mb-block">
+        <marko-web-query|{ nodes }|
+          name="all-published-content"
+          params={ contentTypes: ["Whitepaper"], limit: 5, queryFragment }
+        >
+          <website-content-list-flow nodes=nodes display-image=false>
+            <@header>
+              <marko-web-link href="/white-papers">White Papers</marko-web-link>
+            </@header>
+          </website-content-list-flow>
+        </marko-web-query>
+      </div>
+      <div class="col-lg-4 mb-block">
+        <marko-web-query|{ nodes }|
+          name="all-published-content"
+          params={ contentTypes: ["Video"], limit: 5, queryFragment }
+        >
+          <website-content-list-flow nodes=nodes>
+            <@header>
+              <marko-web-link href="/videos">Videos</marko-web-link>
+            </@header>
+          </website-content-list-flow>
+        </marko-web-query>
+      </div>
+      <div class="col-lg-4 mb-block">
+        <marko-web-query|{ node: issue }| name="magazine-latest-issue" params={ publicationId: "5ca4e38b75a25490050041a9", queryFragment: latestIssueFragment }>
+          <website-magazine-latest-issue-flow issue-node=issue>
+            <@header>
+              <marko-web-magazine-issue-name tag=null obj=issue link=true>
+                Current Issue
+              </marko-web-magazine-issue-name>
+            </@header>
+          </website-magazine-latest-issue-flow>
+        </marko-web-query>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-4 mb-block">
+        <marko-web-query|{ nodes }|
+          name="website-scheduled-content"
+          params={ sectionAlias: "blogs", limit: 3, requiresImage: true, queryFragment }
+        >
+          <website-content-list-flow nodes=nodes>
+            <@header>
+              <marko-web-link href="/blogs">Commentary</marko-web-link>
+            </@header>
+          </website-content-list-flow>
+        </marko-web-query>
+      </div>
+      <div class="col-lg-4 mb-block">
+        <marko-web-query|{ nodes }|
+          name="website-scheduled-content"
+          params={ sectionAlias: "photonics-business", limit: 3, requiresImage: true, queryFragment }
+        >
+          <website-content-list-flow nodes=nodes>
+            <@header>
+              <marko-web-link href="/photonics-business">Photonics Business</marko-web-link>
+            </@header>
+          </website-content-list-flow>
+        </marko-web-query>
+      </div>
+      <div class="col-lg-4 mb-block">
+        <marko-web-query|{ nodes }|
+          name="website-scheduled-content"
+          params={ sectionAlias: "optics/optics-design", limit: 3, requiresImage: true, queryFragment }
+        >
+          <website-content-list-flow nodes=nodes>
+            <@header>
+              <marko-web-link href="/optics/optics-design">Optics & Design</marko-web-link>
+            </@header>
+          </website-content-list-flow>
+        </marko-web-query>
+      </div>
+    </div>
+  </@page>
+  <@below-page>
+    <marko-web-resolve-page|{ data: section }| node=pageNode>
+      $ const aliases = hierarchyAliases(section);
+      <marko-web-load-more
+        component-name="content-load-more-flow"
+        component-input={ aliases }
+        fragment-name="content-list"
+        query-name="website-scheduled-content"
+        query-params={ sectionId: id, limit: 14, skip: 5 }
+        max-pages=0
+        page-input={ for: "website-section", id }
+      />
+    </marko-web-resolve-page>
+  </@below-page>
+  <@foot>
+    <marko-web-resolve-page|{ data: section }| node=pageNode>
+      $ const aliases = hierarchyAliases(section);
+      <marko-web-gam-fixed-ad-bottom ...GAM.getAdUnit({ name: "lb2", aliases }) refresh-interval=0 />
+    </marko-web-resolve-page>
+  </@foot>
+</marko-web-website-section-page-layout>

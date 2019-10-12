@@ -371,6 +371,32 @@ services:
     ports:
       - "11164:11164"
 
+  example-website-vspc:
+    <<: *node
+    working_dir: /base-cms/services/example-website-vspc
+    command: ["/base-cms/node_modules/.bin/basecms-website", "dev", "index.js"]
+    environment:
+      <<: *env
+      PORT: 80
+      EXPOSED_PORT: 11165
+      LIVERELOAD_PORT: 25165
+      TENANT_KEY: cygnus_vspc
+      SITE_ID: 578631623bab465e7f4932d8
+      GRAPHQL_URI: http://graphql-server-picon
+      SITEMAPS_URI: http://sitemaps-picon
+      RSS_URI: http://rss-picon
+      OEMBED_URI: http://oembed
+      NEW_RELIC_ENABLED: 0
+      NEW_RELIC_LICENSE_KEY: (unset)
+    depends_on:
+      - graphql-server-picon
+      - sitemaps-picon
+      - rss-picon
+      - oembed
+    ports:
+      - "11165:80"
+      - "25165:25165"
+
   haproxy:
     image: haproxy:alpine
     ports: [ "${PORT-10010}:80" ]

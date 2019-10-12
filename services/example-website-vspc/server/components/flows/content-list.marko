@@ -1,0 +1,32 @@
+import { getAsArray, getAsObject } from "@base-cms/object-path";
+import nxConfig from "../../../config/native-x";
+
+$ const nodes = getAsArray(input, "nodes");
+$ const nativeX = getAsObject(input, "nativeX");
+$ const displayImage = input.displayImage != null ? input.displayImage : true;
+$ const withTeaser = input.withTeaser != null ? input.withTeaser : false;
+$ const innerJustified = input.innerJustified != null ? input.innerJustified : true;
+
+<marko-web-node-list inner-justified=innerJustified>
+  <if(input.header)>
+    <@header ...input.header />
+  </if>
+  <@nodes nodes=nodes>
+    <@slot|{ node, index }|>
+      <marko-web-native-x-render|{ node: nxNode, linkAttrs, containerAttrs }|
+        ...nativeX
+        when=(index === nativeX.index)
+        node=node
+        config=nxConfig
+      >
+        <website-content-list-node
+          node=nxNode
+          display-image=displayImage
+          with-teaser=withTeaser
+          attrs=containerAttrs
+          link-attrs=linkAttrs
+        />
+      </marko-web-native-x-render>
+    </@slot>
+  </@nodes>
+</marko-web-node-list>

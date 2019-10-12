@@ -1,0 +1,61 @@
+import hierarchyAliases from "@base-cms/marko-web/utils/hierarchy-aliases";
+import { getAsObject } from "@base-cms/object-path";
+import queryFragment from "../../api/fragments/content-list";
+
+$ const { site } = out.global;
+$ const { id, type, pageNode } = data;
+
+$ const displayPrimaryImage = ["whitepaper", "media-gallery", "contact"].includes(type) ? false : true;
+
+<marko-web-content-page-layout id=id type=type>
+  <@head>
+    <marko-web-gtm-content-context|{ context }| id=id>
+      <marko-web-gtm-push data=context />
+    </marko-web-gtm-content-context>
+  </@head>
+  <@page>
+    <marko-web-resolve-page|{ data: content, resolved }| node=pageNode>
+      $ const primaryImage = resolved.getAsObject("primaryImage");
+      <marko-web-page-wrapper>
+        <@section>
+          <div class="row">
+            <div class="col">
+              <default-theme-website-section-breadcrumbs section=content.primarySection />
+              <marko-web-content-name tag="h1" class="page-wrapper__title" obj=content />
+              <marko-web-content-teaser tag="p" class="page-wrapper__deck" obj=content />
+              <default-theme-content-attribution obj=content />
+            </div>
+          </div>
+        </@section>
+        <@section>
+          <div class="row">
+            <default-theme-page-contents|{ blockName }| class="col-lg-8 mb-3 mb-lg-0">
+              <if(content.embedCode)>
+                <marko-web-content-embed-code block-name=blockName obj=content />
+              </if>
+              <else-if(displayPrimaryImage)>
+                <marko-web-page-image width=500 obj=content.primaryImage />
+              </else-if>
+              <marko-web-content-body|{ value }| block-name=blockName obj=content>
+                <marko-web-page-image
+                  modifiers=["primary-image-inline"]
+                  obj=primaryImage
+                  fluid=false
+                  width=160
+                />
+                $!{value}
+              </marko-web-content-body>
+
+            </default-theme-page-contents>
+            <aside class="col-lg-4 page-rail">
+              <default-theme-content-download obj=content>
+                <@wufoo user-name=site.get("wufoo.userName") />
+                <@link class="btn btn-lg btn-primary" />
+              </default-theme-content-download>
+            </aside>
+          </div>
+        </@section>
+      </marko-web-page-wrapper>
+    </marko-web-resolve-page>
+  </@page>
+</marko-web-content-page-layout>
