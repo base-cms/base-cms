@@ -5,9 +5,9 @@ module.exports = {
   navigation,
   logos: {
     navbar: {
-      src: 'https://base.imgix.net/files/base/ebm/amtk/static/amtk_logo.png?h=45',
+      src: 'https://base.imgix.net/files/base/ebm/amtk/static/amtk_logo.png?h=76',
       srcset: [
-        'https://base.imgix.net/files/base/ebm/amtk/static/amtk_logo.png?h=90 2x',
+        'https://base.imgix.net/files/base/ebm/amtk/static/amtk_logo.png?h=152 2x',
       ],
     },
     footer: {
