@@ -364,6 +364,7 @@ input WebsiteScheduledContentQueryInput {
   useOptionFallback: Boolean = false
   sectionBubbling: Boolean = true
   pagination: PaginationInput = {}
+  sort: ContentSortInput = { field: null }
 }
 
 input RelatedPublishedContentQueryInput {
