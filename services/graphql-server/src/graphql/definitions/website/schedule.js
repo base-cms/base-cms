@@ -19,6 +19,7 @@ extend type Query {
 
 extend type Mutation {
   quickCreateWebsiteSchedules(input: QuickCreateWebsiteSchedulesMutationInput!): [WebsiteSchedule!]!
+  updateWebsiteSchedule(input: UpdateWebsiteScheduleMutationInput!): WebsiteSchedule!
   deleteWebsiteSchedule(input: DeleteWebsiteScheduleMutationInput!): String!
 }
 
@@ -104,6 +105,19 @@ input QuickCreateWebsiteSchedulesMutationInput {
 
 input DeleteWebsiteScheduleMutationInput {
   id: ObjectID!
+}
+
+input UpdateWebsiteScheduleMutationInput {
+  id: ObjectID!
+  payload: UpdateWebsiteSchedulePayloadInput!
+}
+
+input UpdateWebsiteSchedulePayloadInput {
+  status: Int = 1
+  sectionId: Int!
+  optionId: Int!
+  startDate: Date!
+  endDate: Date
 }
 
 `;

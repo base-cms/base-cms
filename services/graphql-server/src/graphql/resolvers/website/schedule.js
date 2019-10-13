@@ -1,6 +1,7 @@
 const { BaseDB, MongoDB } = require('@base-cms/db');
 const { Base4RestPayload } = require('@base-cms/base4-rest-api');
 const { dasherize } = require('@base-cms/inflector');
+const { UserInputError } = require('apollo-server-express');
 
 const validateRest = require('../../utils/validate-rest');
 const getProjection = require('../../utils/get-projection');
@@ -12,6 +13,53 @@ module.exports = {
    *
    */
   Mutation: {
+    updateWebsiteSchedule: async (_, { input }, { base4rest, basedb }, info) => {
+      validateRest(base4rest);
+      const { id, payload } = input;
+      const {
+        status,
+        sectionId,
+        optionId,
+        startDate,
+        endDate,
+      } = payload;
+      const [section, option, schedule] = await Promise.all([
+        basedb.strictFindOne('website.Section', { _id: sectionId }, { projection: { 'site.$id': 1 } }),
+        basedb.strictFindOne('website.Option', { _id: optionId }, { projection: { 'site.$id': 1 } }),
+        basedb.strictFindOne('website.Schedule', { _id: id }, { projection: { _id: 1 } }),
+      ]);
+      if (endDate && endDate.valueOf() < startDate.valueOf()) {
+        throw new UserInputError('The end date cannot be before the start date.');
+      }
+      const sectionSiteId = BaseDB.extractRefId(section.site);
+      if (!sectionSiteId) throw new Error(`Unable to extract a site ID for section ${section._id}.`);
+
+      const optionSiteId = BaseDB.extractRefId(option.site);
+      if (!optionSiteId) throw new Error(`Unable to extract a site ID for option ${option._id}.`);
+
+      if (`${sectionSiteId}` !== `${optionSiteId}`) throw new UserInputError('The section and option site IDs do not match');
+
+      const body = new Base4RestPayload({ type: 'website/schedule' });
+      body
+        .set('id', schedule._id)
+        .set('startDate', startDate)
+        .set('endDate', endDate || null)
+        .set('status', status)
+        .setLink('product', { id: sectionSiteId, type: 'website/product/site' })
+        .setLink('section', { id: section._id, type: 'website/section' })
+        .setLink('option', { id: option._id, type: 'website/option' });
+
+      await base4rest.updateOne({ model: 'website/schedule', id: schedule._id, body });
+
+      const {
+        fieldNodes,
+        schema,
+        fragments,
+      } = info;
+      const projection = getProjection(schema, schema.getType('WebsiteSchedule'), fieldNodes[0].selectionSet, fragments);
+      return basedb.find('website.Schedule', { _id: schedule._id }, { projection });
+    },
+
     /**
      *
      */
