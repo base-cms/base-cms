@@ -14,7 +14,8 @@ $ const { id, alias, name, pageNode } = data;
       $ const adSlots = {
           "gpt-ad-lb1":   GAM.getAdUnit({ name: "lb1", aliases }),
           "gpt-ad-rail1": GAM.getAdUnit({ name: "rail1", aliases, size: [300, 250] }),
-          "gpt-ad-rail2": GAM.getAdUnit({ name: "rail2", aliases, size: [300, 600] }),
+          "gpt-ad-rail2": GAM.getAdUnit({ name: "rail1", aliases, size: [300, 250] }),
+          "gpt-ad-rail3": GAM.getAdUnit({ name: "rail2", aliases, size: [300, 600] }),
         }
        <marko-web-gam-slots slots=adSlots />
     </marko-web-resolve-page>
@@ -30,16 +31,26 @@ $ const { id, alias, name, pageNode } = data;
     <marko-web-gam-display-ad id="gpt-ad-lb1" modifiers=["top-of-page"] />
 
     <marko-web-resolve-page|{ data: section }| node=pageNode>
-      <marko-web-page-wrapper>
+      <marko-web-page-wrapper modifiers=["website-section-header"]>
+        <@section>
+          <default-theme-website-section-breadcrumbs display-self=false section=section />
+          <marko-web-website-section-name class="page-wrapper__title" tag="h1" obj=section />
+          <marko-web-website-section-description class="page-wrapper__deck" obj=section />
+        </@section>
+      </marko-web-page-wrapper>
+
+      <marko-web-page-wrapper modifiers=["website-section-contents"]>
         <@section>
           <div class="row">
-            <div class="col">
-
-              <default-theme-website-section-breadcrumbs display-self=false section=section />
-              <marko-web-website-section-name class="page-wrapper__title" tag="h1" obj=section />
-              <marko-web-website-section-description class="page-wrapper__deck" obj=section />
-
+            <aside class="col-3 page-rail">
+              <marko-web-gam-display-ad modifiers=["left"] id="gpt-ad-rail1" />
+            </aside>
+            <div class="col-4">
             </div>
+            <aside class="col-3 page-rail">
+              <marko-web-gam-display-ad modifiers=["right"] id="gpt-ad-rail2" />
+              <marko-web-gam-display-ad modifiers=["right"] id="gpt-ad-rail3" />
+            </aside>
           </div>
         </@section>
       </marko-web-page-wrapper>

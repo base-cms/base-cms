@@ -14,6 +14,9 @@ $gray-600:  #3b3b3b !default;
 $enable-shadows: false !default;
 $enable-rounded: false !default;
 
+$grid-columns: 10 !default;
+$grid-gutter-width: 12px !default;
+
 $font-weight-bold:      800 !default;
 $font-weight-normal:    500 !default;
 $breadcrumb-divider:    ">" !default;
@@ -78,25 +81,47 @@ body {
 }
 
 .page {
-  @media (max-width: $marko-web-document-container-max-width) {
-    padding-right: 0;
-    padding-left: 0;
-  }
+  padding-right: 0;
+  padding-left: 0;
 }
 
 .page-wrapper {
-  text-align: center;
-  border-top: 5px solid rgba($primary, .8);
-  border-bottom: 2px solid $body-bg;
+  $self: &;
   &__title {
     text-transform: uppercase;
   }
+
   &__deck {
     margin: 10px auto 0;
-    @include media-breakpoint-up(md) {
-      max-width: 50%;
+  }
 
+  &--website-section-header {
+    border-top: 5px solid rgba($primary, .8);
+    border-bottom: 2px solid $body-bg;
+    #{ $self } {
+      &__deck {
+        @include media-breakpoint-up(md) {
+          max-width: 50%;
+        }
+      }
+      &__section {
+        text-align: center;
+      }
     }
+  }
+
+  &--website-section-contents {
+    padding-right: .75rem;
+    padding-left: .75rem;
+  }
+}
+
+.ad-container {
+  &--left {
+    text-align: left;
+  }
+  &--right {
+    text-align: right;
   }
 }
 
