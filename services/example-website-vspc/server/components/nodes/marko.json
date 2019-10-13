@@ -11,7 +11,8 @@
       "default-value": false
     },
     "@attrs": "object",
-    "@link-attrs": "object"
+    "@link-attrs": "object",
+    "@image-width": "number"
   },
   "<website-content-card-node>": {
     "template": "./content-card.marko",

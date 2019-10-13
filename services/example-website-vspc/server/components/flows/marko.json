@@ -35,7 +35,8 @@
     },
     "@flush-y": {
       "type": "boolean"
-    }
+    },
+    "@image-width": "number"
   },
   "<website-content-load-more-flow>": {
     "template": "./content-load-more.marko",
