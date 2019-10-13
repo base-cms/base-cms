@@ -39,11 +39,11 @@ $ const { linkAttrs } = input;
       <marko-web-content-teaser tag=null obj=content link={ attrs: linkAttrs } />
     </@text>
     <@footer>
-      <@left>
-        <attribution content=content />
+      <@left|{ blockName }|>
+        <dates block-name=blockName content=content />
       </@left>
       <@right|{ blockName }|>
-        <dates block-name=blockName content=content />
+        <attribution content=content />
       </@right>
     </@footer>
   </@body>
