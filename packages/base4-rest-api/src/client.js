@@ -32,7 +32,7 @@ class Base4RestApiClient {
   async findOne({ model, id, options } = {}) {
     if (!id) throw new Error('A Base4 model `id` value is required to findOne.');
     if (!model) throw new Error('A Base4 API model type is required to findOne.');
-    return this.retrieve({
+    return this.get({
       endpoint: `/${cleanPath(model)}/${id}`,
       options,
     });
@@ -40,7 +40,7 @@ class Base4RestApiClient {
 
   async insertOne({ model, body, options } = {}) {
     if (!model) throw new Error('A Base4 API model type is required to insertOne.');
-    return this.create({
+    return this.post({
       endpoint: `/${cleanPath(model)}`,
       body,
       options,
@@ -52,6 +52,21 @@ class Base4RestApiClient {
     return Promise.all(bodies.map(body => this.insertOne({ model, body, options })));
   }
 
+  async updateOne({
+    model,
+    id,
+    body,
+    options,
+  } = {}) {
+    if (!id) throw new Error('A Base4 model `id` value is required to updateOne.');
+    if (!model) throw new Error('A Base4 API model type is required to updateOne.');
+    return this.patch({
+      endpoint: `/${cleanPath(model)}/${id}`,
+      body,
+      options,
+    });
+  }
+
   async removeOne({ model, id, options } = {}) {
     if (!id) throw new Error('A Base4 model `id` value is required to removeOne.');
     if (!model) throw new Error('A Base4 API model type is required to removeOne.');
@@ -61,9 +76,9 @@ class Base4RestApiClient {
     });
   }
 
-  async create({ endpoint, body, options } = {}) {
-    if (!endpoint) throw new Error('A Base4 API endpoint is required to create.');
-    if (!body) throw new Error('A Base4 API request body is required to create.');
+  async post({ endpoint, body, options } = {}) {
+    if (!endpoint) throw new Error('A Base4 API endpoint is required to execute a post request.');
+    if (!body) throw new Error('A Base4 API request body is required to execute a post request.');
     return this.fetch({
       method: 'post',
       body,
@@ -73,8 +88,20 @@ class Base4RestApiClient {
     });
   }
 
-  async retrieve({ endpoint, options } = {}) {
-    if (!endpoint) throw new Error('A Base4 API endpoint is required to retrieve.');
+  async patch({ endpoint, body, options } = {}) {
+    if (!endpoint) throw new Error('A Base4 API endpoint is required to execute a patch request.');
+    if (!body) throw new Error('A Base4 API request body is required to execute a patch request.');
+    return this.fetch({
+      method: 'patch',
+      body,
+      type: 'persistence',
+      endpoint,
+      options,
+    });
+  }
+
+  async get({ endpoint, options } = {}) {
+    if (!endpoint) throw new Error('A Base4 API endpoint is required to execute a get request.');
     return this.fetch({
       method: 'get',
       type: 'persistence',
@@ -84,7 +111,7 @@ class Base4RestApiClient {
   }
 
   async delete({ endpoint, options } = {}) {
-    if (!endpoint) throw new Error('A Base4 API endpoint is required to delete.');
+    if (!endpoint) throw new Error('A Base4 API endpoint is required to execute a delete request.');
     return this.fetch({
       method: 'delete',
       type: 'persistence',
