@@ -35,27 +35,10 @@ $ const { id, alias, name, pageNode } = data;
           <div class="row">
             <div class="col">
 
+              <default-theme-website-section-breadcrumbs display-self=false section=section />
               <marko-web-website-section-name class="page-wrapper__title" tag="h1" obj=section />
               <marko-web-website-section-description class="page-wrapper__deck" obj=section />
 
-              <!-- <default-theme-website-section-breadcrumbs section=content.primarySection />
-              <marko-web-content-name tag="h1" class="page-wrapper__title" obj=content />
-              <marko-web-content-teaser tag="p" class="page-wrapper__deck" obj=content />
-              <if(content.type !== "contact")>
-                <default-theme-content-attribution obj=content />
-              </if>
-              <default-theme-page-dates|{ blockName }|>
-                <if(content.type === "event")>
-                  <marko-web-content-start-date block-name=blockName obj=content />
-                  <marko-web-content-end-date block-name=blockName obj=content />
-                </if>
-                <if(content.type === "webinar")>
-                  <marko-web-content-start-date block-name=blockName obj=content />
-                </if>
-                <if(displayPublishedDate)>
-                  <marko-web-content-published block-name=blockName obj=content />
-                </if>
-              </default-theme-page-dates> -->
             </div>
           </div>
         </@section>

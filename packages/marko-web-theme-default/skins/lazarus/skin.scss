@@ -1,5 +1,11 @@
 // Override variables here.
-@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans+Condensed:700|Source+Serif+Pro&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Raleway:500,800&display=swap");
+
+@import "../../scss/functions.scss";
+
+// font map
+// promixa-nova -> raleway
+//  - 600 = 800
 
 $body-bg:   #f6f6f6 !default;
 $black:     #000 !default;
@@ -8,28 +14,38 @@ $gray-600:  #3b3b3b !default;
 $enable-shadows: false !default;
 $enable-rounded: false !default;
 
-$font-weight-bold:      700 !default;
-$breadcrumb-divider:    "|" !default;
+$font-weight-bold:      800 !default;
+$font-weight-normal:    500 !default;
+$breadcrumb-divider:    ">" !default;
 
-$font-montserrat: "Montserrat", sans-serif !default;
-$font-open-sans: "Open Sans Condensed", "Roboto", sans-serif !default;
-$font-source-serif: "Source Serif Pro", "Georgia", serif !default;
-
-$theme-font-family-sans-serif: $font-montserrat !default;
-$theme-font-family-serif: $font-source-serif !default;
-$theme-font-family-page-title: $font-open-sans !default;
+$theme-font-family-sans-serif: "Raleway", sans-serif !default;
+$theme-font-family-serif: "Georgia", serif !default;
+$theme-font-family-page-title: "Raleway", sans-serif !default;
 
 $theme-card-header-letter-spacing: 1px !default;
 
+// Nav
+$theme-site-navbar-secondary-padding-y: 5px !default;
+
 // Page wrapper
-$theme-page-title-font-family: $font-montserrat !default;
+$theme-page-title-font-family: "Raleway", sans-serif !default;
 $theme-page-title-font-size: 25px !default;
-$theme-page-title-font-weight: 700 !default;
+$theme-page-title-font-size-sm: $theme-page-title-font-size !default;
+$theme-page-title-font-weight: 800 !default;
 $theme-page-title-line-height: get-line-height($theme-page-title-font-size, 32px) !default;
+$theme-page-title-line-height-sm: $theme-page-title-line-height !default;
 $theme-page-deck-color: $gray-600 !default;
-$theme-page-deck-font-family: $theme-font-family-serif !default;
-$theme-page-deck-font-size: 16px !default;
-$theme-page-deck-line-height: get-line-height($theme-page-deck-font-size, 18px) !default;
+$theme-page-deck-font-family: "Georgia", sans-serif !default;
+$theme-page-deck-font-size: 15px !default;
+$theme-page-deck-font-size-sm: $theme-page-deck-font-size !default;
+$theme-page-deck-line-height: get-line-height($theme-page-deck-font-size, 21px) !default;
+$theme-page-deck-line-height-sm: $theme-page-deck-line-height !default;
+
+// Breadcrumbs
+$theme-breadcrumbs-font-family: "Raleway", sans-serif !default;
+$theme-breadcrumbs-font-size: 14px !default;
+$theme-breadcrumbs-font-weight: 500 !default;
+$theme-breadcrumbs-line-height: get-line-height($theme-breadcrumbs-font-size, 20px) !default;
 
 // Item descriptions
 $theme-item-description-font-size-sm:       13px !default;
@@ -53,9 +69,17 @@ body {
   padding-left: 0;
 }
 
+.site-navbar {
+  &__items {
+    &--tertiary {
+      margin-bottom: auto;
+    }
+  }
+}
+
 .page-wrapper {
-  padding-top: 40px;
-  padding-bottom: 40px;
+  // padding-top: 40px;
+  // padding-bottom: 40px;
   text-align: center;
   border-top: 5px solid rgba($primary, .8);
   border-bottom: 2px solid $body-bg;
@@ -69,4 +93,8 @@ body {
 
     }
   }
+}
+
+.breadcrumb {
+  justify-content: center;
 }
