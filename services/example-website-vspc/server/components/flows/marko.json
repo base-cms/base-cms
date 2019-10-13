@@ -28,6 +28,12 @@
     "@inner-justified": {
       "type": "boolean",
       "default-value": true
+    },
+    "@flush-x": {
+      "type": "boolean"
+    },
+    "@flush-y": {
+      "type": "boolean"
     }
   },
   "<website-content-load-more-flow>": {

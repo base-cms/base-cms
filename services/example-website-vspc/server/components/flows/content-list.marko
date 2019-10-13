@@ -6,8 +6,10 @@ $ const nativeX = getAsObject(input, "nativeX");
 $ const displayImage = input.displayImage != null ? input.displayImage : true;
 $ const withTeaser = input.withTeaser != null ? input.withTeaser : false;
 $ const innerJustified = input.innerJustified != null ? input.innerJustified : true;
+$ const flushX = input.flushX != null ? input.flushX : false;
+$ const flushY = input.flushY != null ? input.flushY : false;
 
-<marko-web-node-list inner-justified=innerJustified>
+<marko-web-node-list inner-justified=innerJustified flush-x=flushX flush-y=flushY>
   <if(input.header)>
     <@header ...input.header />
   </if>
