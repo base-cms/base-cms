@@ -204,7 +204,7 @@ body {
   &--image-top {
     #{ $self } {
       &__image-wrapper + #{ $self }__body {
-        margin-top: -3.875rem;
+        margin-top: -58px;
       }
     }
   }
