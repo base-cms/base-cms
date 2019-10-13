@@ -202,8 +202,9 @@ body {
         z-index: 1;
         width: 90%;
         padding: .25rem;
+        padding-bottom: .75rem;
         background-color: rgba($white, .9);
-        box-shadow: 0 1px 7px rgba(0, 0, 0, .08);
+        border-bottom: 1px solid $marko-web-node-list-border-color;
       }
     }
   }
