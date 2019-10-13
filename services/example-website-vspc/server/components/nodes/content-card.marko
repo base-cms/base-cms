@@ -5,6 +5,7 @@ $ const primaryImage = getAsObject(content, "primaryImage");
 $ const primarySection = getAsObject(content, "primarySection");
 $ const displayImage = input.displayImage != null ? input.displayImage : true;
 $ const withTeaser = input.withTeaser != null ? input.withTeaser : true;
+$ const usePlaceholder = input.usePlaceholder != null ? input.usePlaceholder : false;
 
 $ const { linkAttrs } = input;
 
@@ -21,7 +22,7 @@ $ const { linkAttrs } = input;
       src=primaryImage.src
       alt=primaryImage.alt
       is-logo=primaryImage.isLogo
-      use-placeholder=false
+      use-placeholder=usePlaceholder
       fluid=true
       ar="16:9"
       width=(input.imageWidth || 300)
@@ -29,8 +30,6 @@ $ const { linkAttrs } = input;
     />
   </if>
   <@body>
-    <@header>
-    </@header>
     <@title tag="h5" modifiers=input.titleModifiers>
       <marko-web-content-short-name tag=null obj=content link={ attrs: linkAttrs } />
     </@title>

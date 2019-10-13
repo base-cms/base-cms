@@ -29,6 +29,7 @@
       "type": "boolean",
       "default-value": true
     },
+    "@use-placeholder": "boolean",
     "@attrs": "object",
     "@link-attrs": "object"
   },

@@ -42,7 +42,8 @@ $ const { id, alias, name, pageNode } = data;
       <marko-web-page-wrapper modifiers=["website-section-contents"]>
         <@section>
           <div class="row">
-            <aside class="col-3 page-rail page-rail--left">
+
+            <aside class="col-6 page-rail">
               <marko-web-query|{ nodes }| name="all-published-content" params={ limit: 2, excludeContentTypes: ["Contact"], queryFragment }>
                 <website-content-list-flow
                   nodes=nodes
@@ -54,25 +55,75 @@ $ const { id, alias, name, pageNode } = data;
                   <@header>Recent</@header>
                 </website-content-list-flow>
               </marko-web-query>
+
               <marko-web-gam-display-ad modifiers=["left"] id="gpt-ad-rail1" />
+
               <marko-web-query|{ nodes }| name="all-published-content" params={ limit: 3, skip: 2, excludeContentTypes: ["Contact"], queryFragment }>
                 <website-content-list-flow nodes=nodes display-image=false inner-justified=false flush-x=true flush-y=true />
               </marko-web-query>
-            </aside>
-            <div class="col-5">
+
               <marko-web-query|{ nodes }|
                 name="website-optioned-content"
-                params={ sectionId: id, optionName: "Pinned", limit: 5, queryFragment }
+                params={ sectionAlias: "home", optionName: "Pinned", limit: 4, queryFragment }
               >
-                <website-content-hero-flow nodes=nodes>
-                  <@header>Highlights</@header>
-                </website-content-hero-flow>
+                <website-content-list-flow
+                  nodes=nodes
+                  display-image=false
+                  inner-justified=false
+                  flush-x=true
+                  flush-y=true
+                >
+                  <@header>Featured</@header>
+                </website-content-list-flow>
               </marko-web-query>
-            </div>
-            <aside class="col-3 page-rail page-rail--right">
-              <marko-web-gam-display-ad modifiers=["right"] id="gpt-ad-rail2" />
-              <marko-web-gam-display-ad modifiers=["right"] id="gpt-ad-rail3" />
             </aside>
+
+
+            <div class="col-14">
+              <div class="row">
+                <div class="col-12">
+                  <marko-web-query|{ nodes }|
+                    name="website-optioned-content"
+                    params={ sectionId: id, optionName: "Pinned", limit: 5, queryFragment }
+                  >
+                    <website-content-hero-flow nodes=nodes>
+                      <@header>Highlights</@header>
+                    </website-content-hero-flow>
+                  </marko-web-query>
+                </div>
+                <aside class="col-8 page-rail">
+                  <marko-web-gam-display-ad modifiers=["right"] id="gpt-ad-rail2" />
+                  <marko-web-gam-display-ad modifiers=["right"] id="gpt-ad-rail3" />
+                </aside>
+              </div>
+
+              <div class="row">
+                  <marko-web-query|{ nodes }|
+                    name="website-scheduled-content"
+                    params={ sectionId: id, limit: 8, skip: 5, queryFragment }
+                  >
+                    <if(nodes.length)>
+                      $ const cardNodes = nodes.slice(0, 4);
+                      $ const listNodes = nodes.slice(4);
+                      <if(cardNodes.length)>
+                        <for|node| of=cardNodes>
+                          <div class="col-10 mb-block">
+                            <website-content-card-node node=node use-placeholder=true image-width=240 />
+                          </div>
+                        </for>
+                      </if>
+                      <website-content-list-flow
+                        nodes=listNodes
+                        flush-x=true
+                        flush-y=true
+                        with-teaser=true
+                        inner-justified=false
+                      />
+                    </if>
+                  </marko-web-query>
+              </div>
+            </div>
+
           </div>
         </@section>
       </marko-web-page-wrapper>
