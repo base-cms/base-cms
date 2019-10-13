@@ -98,30 +98,32 @@ $ const { id, alias, name, pageNode } = data;
               </div>
 
               <div class="row">
-                  <marko-web-query|{ nodes }|
-                    name="website-scheduled-content"
-                    params={ sectionId: id, limit: 8, skip: 5, queryFragment }
-                  >
-                    <if(nodes.length)>
-                      $ const cardNodes = nodes.slice(0, 4);
-                      $ const listNodes = nodes.slice(4);
-                      <if(cardNodes.length)>
-                        <for|node| of=cardNodes>
-                          <div class="col-10 mb-block">
-                            <website-content-card-node node=node use-placeholder=true image-width=240 />
-                          </div>
-                        </for>
-                      </if>
-                      <website-content-list-flow
-                        nodes=listNodes
-                        flush-x=true
-                        flush-y=true
-                        with-teaser=true
-                        inner-justified=false
-                      />
+                <marko-web-query|{ nodes }|
+                  name="website-scheduled-content"
+                  params={ sectionId: id, limit: 8, skip: 5, queryFragment }
+                >
+                  <if(nodes.length)>
+                    $ const cardNodes = nodes.slice(0, 4);
+                    $ const listNodes = nodes.slice(4);
+                    <if(cardNodes.length)>
+                      <for|node| of=cardNodes>
+                        <div class="col-10 mb-block">
+                          <website-content-card-node node=node use-placeholder=true image-width=240 />
+                        </div>
+                      </for>
                     </if>
-                  </marko-web-query>
+                    <website-content-list-flow
+                      nodes=listNodes
+                      flush-x=true
+                      flush-y=true
+                      with-teaser=true
+                      inner-justified=false
+                    />
+                  </if>
+                </marko-web-query>
               </div>
+
+              <marko-web-gam-define-display-ad ...GAM.getAdUnit({ name: "lb2" }) size=[728, 90] />
             </div>
 
           </div>
