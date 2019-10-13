@@ -25,21 +25,21 @@ extend type Mutation {
 
 type WebsiteSchedule {
   # fields from platform.model::Schedule
-  id: ObjectID @projection(localField: "_id") @value(localField: "_id")
-  site(input: WebsiteScheduleSiteInput = {}): WebsiteSite @projection(localField: "product") @refOne(
+  id: ObjectID! @projection(localField: "_id") @value(localField: "_id")
+  site(input: WebsiteScheduleSiteInput = {}): WebsiteSite! @projection(localField: "product") @refOne(
     loader: "platformProduct",
     localField: "product"
     withSite: true,
     siteField: "_id"
     criteria: "websiteSite",
   )
-  content(input: WebsiteScheduleContentInput = {}): Content @projection @refOne(
+  content(input: WebsiteScheduleContentInput = {}): Content! @projection @refOne(
     loader: "platformContent",
     criteria: "content"
   )
-  section(input: WebsiteScheduleSectionInput = {}): WebsiteSection @projection @refOne(loader: "websiteSection")
-  option(input: WebsiteScheduleOptionInput = {}): WebsiteOption @projection @refOne(loader: "websiteOption")
-  startDate: Date @projection
+  section(input: WebsiteScheduleSectionInput = {}): WebsiteSection! @projection @refOne(loader: "websiteSection")
+  option(input: WebsiteScheduleOptionInput = {}): WebsiteOption! @projection @refOne(loader: "websiteOption")
+  startDate: Date! @projection
   endDate: Date @projection
 
   # fields from trait.platform::StatusEnabled
