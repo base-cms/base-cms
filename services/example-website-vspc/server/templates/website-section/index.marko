@@ -112,18 +112,21 @@ $ const { id, alias, name, pageNode } = data;
                         </div>
                       </for>
                     </if>
-                    <website-content-list-flow
-                      nodes=listNodes
-                      flush-x=true
-                      flush-y=true
-                      with-teaser=true
-                      inner-justified=false
-                    />
+                    <if(listNodes.length)>
+                      <div class="col-20">
+                        <website-content-list-flow
+                          nodes=listNodes
+                          flush-x=true
+                          flush-y=true
+                          with-teaser=true
+                          inner-justified=false
+                        />
+                      </div>
+                    </if>
                   </if>
                 </marko-web-query>
               </div>
 
-              <marko-web-gam-define-display-ad ...GAM.getAdUnit({ name: "lb2" }) size=[728, 90] />
             </div>
 
           </div>
