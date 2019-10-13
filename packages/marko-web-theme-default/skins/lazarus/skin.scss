@@ -77,9 +77,14 @@ body {
   }
 }
 
+.page {
+  @media (max-width: $marko-web-document-container-max-width) {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
 .page-wrapper {
-  // padding-top: 40px;
-  // padding-bottom: 40px;
   text-align: center;
   border-top: 5px solid rgba($primary, .8);
   border-bottom: 2px solid $body-bg;
