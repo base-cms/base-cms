@@ -11,7 +11,7 @@ $ const { linkAttrs } = input;
 <marko-web-node
   type=`${content.type}-content`
   flush=true
-  image-position="right"
+  image-position="left"
   attrs=input.attrs
 >
   <if(displayImage)>
@@ -20,9 +20,9 @@ $ const { linkAttrs } = input;
       alt=primaryImage.alt
       is-logo=primaryImage.isLogo
       fluid=false
-      ar="1:1"
-      width=75
-      align="middle"
+      ar="3:2"
+      width=120
+      align="top"
       link={ href: content.canonicalPath, attrs: linkAttrs }
     />
   </if>

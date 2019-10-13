@@ -11,6 +11,7 @@ $ const { linkAttrs } = input;
 <marko-web-node
   type=`${content.type}-content`
   image-position="top"
+  flush=true
   card=true
   full-height=true
   attrs=input.attrs
@@ -21,7 +22,7 @@ $ const { linkAttrs } = input;
       alt=primaryImage.alt
       is-logo=primaryImage.isLogo
       fluid=true
-      ar="21:9"
+      ar="16:9"
       width=(input.imageWidth || 300)
       link={ href: content.canonicalPath, attrs: linkAttrs }
     />

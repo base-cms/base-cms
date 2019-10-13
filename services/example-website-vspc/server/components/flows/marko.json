@@ -1,6 +1,7 @@
 {
   "<website-content-hero-flow>": {
     "template": "./content-hero.marko",
+    "<header>": {},
     "<native-x>": {
       "@index": "number",
       "@name": "string",
