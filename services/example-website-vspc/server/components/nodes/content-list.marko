@@ -20,6 +20,7 @@ $ const { linkAttrs } = input;
       alt=primaryImage.alt
       is-logo=primaryImage.isLogo
       fluid=false
+      use-placeholder=false
       ar="3:2"
       width=120
       align="top"
@@ -27,24 +28,20 @@ $ const { linkAttrs } = input;
     />
   </if>
   <@body>
-    <@header>
-      <@left>
-        <marko-web-website-section-name obj=primarySection link=true />
-      </@left>
-    </@header>
     <@title tag="h5">
       <marko-web-content-short-name tag=null obj=content link={ attrs: linkAttrs } />
     </@title>
+    <@text|{ blockName }|>
+      <dates block-name=blockName content=content />
+    </@text>
     <@text modifiers=["teaser"] show=(withTeaser && content.teaser)>
       <marko-web-content-teaser tag=null obj=content link={ attrs: linkAttrs } />
     </@text>
     <@footer>
       <@left|{ blockName }|>
-        <dates block-name=blockName content=content />
+        <marko-web-website-section-name obj=primarySection link=true />
+        <!-- <attribution content=content /> -->
       </@left>
-      <@right|{ blockName }|>
-        <attribution content=content />
-      </@right>
     </@footer>
   </@body>
 </marko-web-node>

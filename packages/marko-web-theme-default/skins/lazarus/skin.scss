@@ -172,6 +172,7 @@ body {
 .node {
   $self: &;
   &__title {
+    margin-bottom: .125rem;
     &--large {
       font-weight: 700;
     }
@@ -184,7 +185,19 @@ body {
   &__footer-left {
     margin-right: map-get($spacers, 2);
   }
+
+  &__contents {
+    &--body {
+      margin-bottom: .2rem;
+    }
+  }
+
   &__content-published {
+    font-family: $theme-item-footer-font-family;
+    font-size: 13px;
+    font-weight: $theme-item-footer-font-weight;
+    line-height: $theme-item-footer-line-height;
+    color: $theme-item-header-color;
     text-transform: uppercase;
   }
 
