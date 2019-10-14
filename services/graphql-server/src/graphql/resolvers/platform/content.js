@@ -422,6 +422,60 @@ module.exports = {
         info,
       });
     },
+
+    /**
+     *
+     */
+    hasWebsiteSchedule: async (doc, { input }, { basedb, site }) => {
+      const {
+        sectionId,
+        sectionAlias,
+        optionId,
+        optionName,
+        sectionBubbling,
+      } = input;
+
+      if (!sectionId && !sectionAlias) throw new UserInputError('Either a sectionId or sectionAlias input must be provided.');
+      if (sectionId && sectionAlias) throw new UserInputError('You cannot provide both sectionId and sectionAlias as input.');
+      if (optionId && optionName) throw new UserInputError('You cannot provide both optionId and optionName as input.');
+
+      const siteId = input.siteId || site.id();
+      const [section, option] = await Promise.all([
+        loadSection({
+          basedb,
+          siteId,
+          id: sectionId,
+          alias: sectionAlias,
+        }),
+        loadOption({
+          basedb,
+          siteId,
+          id: optionId,
+          name: optionName || 'Standard',
+        }),
+      ]);
+
+      const descendantIds = sectionBubbling ? await getDescendantIds(section._id, basedb) : [];
+
+      const now = new Date();
+      const $elemMatch = {
+        sectionId: descendantIds.length ? { $in: descendantIds } : section._id,
+        optionId: option._id,
+        start: { $lte: now },
+        $and: [
+          {
+            $or: [
+              { end: { $gt: now } },
+              { end: { $exists: false } },
+            ],
+          },
+        ],
+      };
+
+      const query = { _id: doc._id, sectionQuery: { $elemMatch } };
+      const matched = await basedb.findOne('platform.Content', query, { projection: { _id: 1 } });
+      return Boolean(matched);
+    },
   },
 
   /**
