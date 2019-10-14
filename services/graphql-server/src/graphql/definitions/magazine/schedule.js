@@ -15,6 +15,7 @@ extend type Query {
 
 extend type Mutation {
   createMagazineSchedule(input: CreateMagazineScheduleMutationInput!): MagazineSchedule!
+  deleteMagazineSchedule(input: DeleteMagazineScheduleMutationInput!): String!
 }
 
 type MagazineSchedule {
@@ -55,6 +56,10 @@ input CreateMagazineScheduleMutationInput {
   contentId: Int!
   issueId: Int!
   sectionId: Int!
+}
+
+input DeleteMagazineScheduleMutationInput {
+  id: ObjectID!
 }
 
 input MagazineScheduleQueryInput {

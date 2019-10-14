@@ -56,5 +56,15 @@ module.exports = {
       const projection = getProjection(schema, returnType, fieldNodes[0].selectionSet, fragments);
       return basedb.findOne('magazine.Schedule', { _id: id }, { projection });
     },
+
+    /**
+     *
+     */
+    deleteMagazineSchedule: async (_, { input }, { base4rest }) => {
+      const { id } = input;
+      validateRest(base4rest);
+      await base4rest.removeOne({ model: 'magazine/schedule', id });
+      return 'ok';
+    },
   },
 };
