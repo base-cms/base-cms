@@ -25,6 +25,9 @@ type MagazineSection {
   # fields directly on magazine.model::Section
   publication(input: MagazineSectionPublicationInput = {}): MagazinePublication @projection @refOne(loader: "platformProduct", criteria: "magazinePublication")
   issue(input: MagazineSectionIssueInput = {}): MagazineIssue @projection @refOne(loader: "magazineIssue")
+
+  # GraphQL only fields
+  isGlobal: Boolean @projection(localField: "publication")
 }
 
 type MagazineSectionConnection @projectUsing(type: "MagazineSection") {

@@ -20,7 +20,7 @@ type MagazineIssue {
   coverDescription: String @projection
   credit: String @projection
   publication(input: MagazineIssuePublicationInput = {}): MagazinePublication @projection @refOne(loader: "platformProduct", criteria: "magazinePublication")
-  sections(input: MagazineIssueSectionsInput = {}): MagazineSectionConnection! @projection(localField: "_id") @refMany(model: "magazine.Section", localField: "_id", foreignField: "issue.$id")
+  sections(input: MagazineIssueSectionsInput = {}): MagazineSectionConnection! @projection(localField: "_id", needs: ["publication"])
   coverImage: AssetImage @projection @refOne(loader: "platformAsset", criteria: "assetImage")
   redirects: [String]! @projection @arrayValue
 
@@ -87,6 +87,7 @@ input MagazineIssueSectionsInput {
   status: ModelStatus = active
   sort: WebsiteSectionSortInput = {}
   pagination: PaginationInput = {}
+  includeGlobal: Boolean = true
 }
 
 input MagazineIssueSortInput {
