@@ -8,6 +8,13 @@ const getProjection = require('../../utils/get-projection');
 
 const { ObjectID } = MongoDB;
 
+const clearSeconds = (date) => {
+  if (date) {
+    date.setSeconds(0);
+    date.setMilliseconds(0);
+  }
+};
+
 module.exports = {
   /**
    *
@@ -31,6 +38,11 @@ module.exports = {
       if (endDate && endDate.valueOf() < startDate.valueOf()) {
         throw new UserInputError('The end date cannot be before the start date.');
       }
+
+      // Ensure seconds and milliseconds are set to 0.
+      clearSeconds(startDate);
+      if (endDate) clearSeconds(endDate);
+
       const sectionSiteId = BaseDB.extractRefId(section.site);
       if (!sectionSiteId) throw new Error(`Unable to extract a site ID for section ${section._id}.`);
 
