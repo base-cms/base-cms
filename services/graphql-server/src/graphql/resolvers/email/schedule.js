@@ -22,6 +22,50 @@ module.exports = {
     /**
      *
      */
+    updateEmailSchedule: async (_, { input }, { base4rest, basedb }, info) => {
+      validateRest(base4rest);
+      const { id, payload } = input;
+      const {
+        status,
+        sectionId,
+        deploymentDate,
+        sequence,
+      } = payload;
+
+      const [section, schedule] = await Promise.all([
+        basedb.strictFindOne('email.Section', { _id: sectionId }, { projection: { deployment: 1 } }),
+        basedb.strictFindOne('email.Schedule', { _id: id }, { projection: { _id: 1 } }),
+      ]);
+
+      // Ensure seconds and milliseconds are set to 0.
+      clearSeconds(deploymentDate);
+
+      const deploymentId = BaseDB.extractRefId(section.deployment);
+      if (!deploymentId) throw new Error(`Unable to extract a deployment ID for section ${section._id}.`);
+
+      const body = new Base4RestPayload({ type: 'email/schedule' });
+      body
+        .set('id', schedule._id)
+        .set('deploymentDate', deploymentDate)
+        .set('status', status)
+        .set('sequence', sequence == null ? 0 : sequence) // set null/undefined to 0
+        .setLink('product', { id: deploymentId, type: 'email/product/deployment' })
+        .setLink('section', { id: section._id, type: 'email/section' });
+
+      await base4rest.updateOne({ model: 'email/schedule', id: schedule._id, body });
+
+      const {
+        fieldNodes,
+        schema,
+        fragments,
+      } = info;
+      const projection = getProjection(schema, schema.getType('EmailSchedule'), fieldNodes[0].selectionSet, fragments);
+      return basedb.strictFindOne('email.Schedule', { _id: schedule._id }, { projection });
+    },
+
+    /**
+     *
+     */
     deleteEmailSchedule: async (_, { input }, { base4rest }) => {
       const { id } = input;
       validateRest(base4rest);

@@ -15,6 +15,7 @@ extend type Query {
 
 extend type Mutation {
   quickCreateEmailSchedules(input: QuickCreateEmailSchedulesMutationInput!): [EmailSchedule!]!
+  updateEmailSchedule(input: UpdateEmailScheduleMutationInput!): EmailSchedule!
   deleteEmailSchedule(input: DeleteEmailScheduleMutationInput!): String!
 }
 
@@ -91,6 +92,18 @@ input QuickCreateEmailSchedulesMutationInput {
   contentId: Int!
   sectionIds: [Int!]!
   deploymentDates: [Date!]!
+}
+
+input UpdateEmailScheduleMutationInput {
+  id: ObjectID!
+  payload: UpdateEmailSchedulePayloadInput!
+}
+
+input UpdateEmailSchedulePayloadInput {
+  status: Int = 1
+  sectionId: Int!
+  deploymentDate: Date!
+  sequence: Int
 }
 
 `;
