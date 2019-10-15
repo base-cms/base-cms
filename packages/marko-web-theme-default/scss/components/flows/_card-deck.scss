@@ -7,6 +7,16 @@
     @include make-col-ready();
   }
 
+  &--2-cols {
+    #{ $self } {
+      &__node {
+        @include media-breakpoint-up(md) {
+          @include make-col(6);
+        }
+      }
+    }
+  }
+
   &--3-cols {
     #{ $self } {
       &__node {
