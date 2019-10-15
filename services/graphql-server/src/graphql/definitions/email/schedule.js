@@ -13,6 +13,10 @@ extend type Query {
   )
 }
 
+extend type Mutation {
+  deleteEmailSchedule(input: DeleteEmailScheduleMutationInput!): String!
+}
+
 type EmailSchedule {
   # fields from email.model::Schedule
   id: ObjectID! @projection(localField: "_id") @value(localField: "_id")
@@ -47,6 +51,10 @@ type EmailScheduleConnection @projectUsing(type: "EmailSchedule") {
 type EmailScheduleEdge {
   node: EmailSchedule!
   cursor: String!
+}
+
+input DeleteEmailScheduleMutationInput {
+  id: ObjectID!
 }
 
 input EmailScheduleNewsletterInput {
