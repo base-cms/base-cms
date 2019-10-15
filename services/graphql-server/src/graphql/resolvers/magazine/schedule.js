@@ -60,6 +60,56 @@ module.exports = {
     /**
      *
      */
+    updateMagazineSchedule: async (_, { input }, { base4rest, basedb }, info) => {
+      validateRest(base4rest);
+      const { id, payload } = input;
+      const {
+        status,
+        issueId,
+        sectionId,
+      } = payload;
+
+      const [issue, section, schedule] = await Promise.all([
+        basedb.strictFindOne('magazine.Issue', { _id: issueId }, { projection: { publication: 1 } }),
+        basedb.strictFindOne('magazine.Section', { _id: sectionId }, { projection: { issue: 1, publication: 1 } }),
+        basedb.strictFindOne('magazine.Schedule', { _id: id }, { projection: { _id: 1 } }),
+      ]);
+
+      const publicationId = BaseDB.extractRefId(issue.publication);
+      if (!publicationId) throw new Error(`Unable to extract a publication ID for issue ${issue._id}.`);
+
+      const sectionPubId = BaseDB.extractRefId(section.publication);
+      const sectionIssueId = BaseDB.extractRefId(section.issue);
+
+      if (sectionPubId && `${sectionPubId}` !== `${publicationId}`) {
+        throw new Error('The section publication ID does not match the issue publication ID.');
+      }
+      if (sectionIssueId && `${sectionIssueId}` !== `${issue._id}`) {
+        throw new Error('The section issue ID does not match the issue ID.');
+      }
+
+      const body = new Base4RestPayload({ type: 'magazine/schedule' });
+      body
+        .set('id', schedule._id)
+        .set('status', status)
+        .setLink('product', { id: publicationId, type: 'magazine/product/publication' })
+        .setLink('issue', { id: issue._id, type: 'magazine/issue' })
+        .setLink('section', { id: section._id, type: 'magazine/section' });
+
+      await base4rest.updateOne({ model: 'magazine/schedule', id: schedule._id, body });
+
+      const {
+        fieldNodes,
+        schema,
+        fragments,
+      } = info;
+      const projection = getProjection(schema, schema.getType('MagazineSchedule'), fieldNodes[0].selectionSet, fragments);
+      return basedb.strictFindOne('magazine.Schedule', { _id: schedule._id }, { projection });
+    },
+
+    /**
+     *
+     */
     deleteMagazineSchedule: async (_, { input }, { base4rest }) => {
       const { id } = input;
       validateRest(base4rest);
