@@ -72,7 +72,7 @@ input ContentWebsiteSchedulesQueryInput {
   contentId: Int!
   status: ModelStatus = active
   siteId: ObjectID
-  sort: WebsiteSectionSortInput = {}
+  sort: WebsiteScheduleSortInput = {}
   pagination: PaginationInput = {}
 }
 
