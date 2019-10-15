@@ -125,7 +125,7 @@ module.exports = {
         schema,
         fragments,
       } = info;
-      const projection = getProjection(schema, schema.getType('Content'), fieldNodes[0].selectionSet, fragments);
+      const projection = getProjection(schema, schema.getType('WebsiteSchedule'), fieldNodes[0].selectionSet, fragments);
       return basedb.find('website.Schedule', { _id: { $in: ids } }, { projection });
     },
   },
