@@ -14,6 +14,7 @@ extend type Query {
 }
 
 extend type Mutation {
+  quickCreateEmailSchedules(input: QuickCreateEmailSchedulesMutationInput!): [EmailSchedule!]!
   deleteEmailSchedule(input: DeleteEmailScheduleMutationInput!): String!
 }
 
@@ -84,6 +85,12 @@ input ContentEmailSchedulesQueryInput {
 input EmailScheduleSortInput {
   field: EmailScheduleSortField = id
   order: SortOrder = desc
+}
+
+input QuickCreateEmailSchedulesMutationInput {
+  contentId: Int!
+  sectionIds: [Int!]!
+  deploymentDates: [Date!]!
 }
 
 `;
