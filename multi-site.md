@@ -1,6 +1,7 @@
 # Content Mange
 
 ## Punch List
+- [ ] Update _all_ post import scripts to support multi-site
 - [ ] All sites/services should boot and return a 200 when testing
 - [ ] Use relative imgix component for site logos
 - [ ] Update whitepaper/webinar start/end dates on content lists and pages
