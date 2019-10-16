@@ -47,7 +47,7 @@ const server = new ApolloServer({
 
     // Load the (optional) Base4 REST API client.
     // Some GraphQL mutations require this.
-    const base4rest = createBaseRestClient({ hostname: req.get('x-base4-api-hostname') });
+    const base4rest = createBaseRestClient({ uri: req.get('x-base4-api-uri') });
 
     return {
       tenant,
