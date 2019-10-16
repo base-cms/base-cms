@@ -9,14 +9,14 @@ const { isArray } = Array;
 
 class Base4RestApiClient {
   constructor({
-    hostname,
+    uri,
     username,
     password,
     baseEndpoint = '/api/2.0rcpi',
     options,
   } = {}) {
-    if (!hostname || !username || !password) throw new Error('A hostname, username, and password are required for the Base REST API.');
-    this.hostname = hostname.replace('http://', '').replace('https://', '').replace(/\/+$/, '');
+    if (!uri || !username || !password) throw new Error('A uri, username, and password are required for the Base REST API.');
+    this.uri = uri.replace(/\/+$/, '');
     this.username = username;
     this.password = password;
     this.baseEndpoint = baseEndpoint;
@@ -163,7 +163,7 @@ class Base4RestApiClient {
   buildUrl({ type, endpoint } = {}) {
     if (!['persistence', 'search'].includes(type)) throw new Error(`The API resource type '${type}' is not supported.`);
     if (!endpoint) throw new Error('An API endpoint is required.');
-    return `https://${this.hostname}/${cleanPath(this.baseEndpoint)}/${type}/${cleanPath(endpoint)}`;
+    return `${this.uri}/${cleanPath(this.baseEndpoint)}/${type}/${cleanPath(endpoint)}`;
   }
 
   buildOptionHeaders() {
