@@ -24,6 +24,10 @@ module.exports = {
     assetHost: ({ assetHost }) => assetHost || defaults.assetHost,
     language: ({ language }) => ({ ...defaults.language, ...language }),
     date: ({ date }) => ({ ...defaults.date, ...date }),
+    title: ({ name, shortName }) => {
+      if (shortName) return `${name} (${shortName})`;
+      return name;
+    },
   },
 
   /**

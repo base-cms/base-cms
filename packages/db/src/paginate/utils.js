@@ -16,7 +16,7 @@ module.exports = {
   } = {}, additionalData = {}) {
     const hasNextPage = results.length > limit.value;
     // Remove the extra model that was queried to peek for the page.
-    if (hasNextPage) results.pop();
+    if (hasNextPage && limit.value !== 0) results.pop();
 
     // Cursor generation is actually pretty slow... 5 - 20ms on large datasets.
     // As such, only return the values if requested (by making the property a function).

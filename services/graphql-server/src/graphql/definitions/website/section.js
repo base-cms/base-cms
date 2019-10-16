@@ -66,7 +66,7 @@ type WebsiteSection {
   canonicalPath: String! @projection(localField: "alias")
   # Determines if this content item should redirect to another location.
   redirectTo: String
-  # Retrieves the flattened hierarchy for this section.
+  # Retrieves the flattened (parent) hierarchy for this section.
   hierarchy: [WebsiteSection!]! @projection(localField: "parent")
 }
 

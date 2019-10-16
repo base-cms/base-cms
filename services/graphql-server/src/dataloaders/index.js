@@ -24,4 +24,7 @@ module.exports = basedb => ({
   platformUser: createProjectLoader({ basedb, modelName: 'platform.User' }),
   websiteOption: createProjectLoader({ basedb, modelName: 'website.Option' }),
   websiteSection: createProjectLoader({ basedb, modelName: 'website.Section' }),
+  magazineIssue: createProjectLoader({ basedb, modelName: 'magazine.Issue' }),
+  magazineSection: createProjectLoader({ basedb, modelName: 'magazine.Section' }),
+  emailSection: createProjectLoader({ basedb, modelName: 'email.Section' }),
 });

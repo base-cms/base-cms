@@ -231,6 +231,26 @@ class BaseDB {
   }
 
   /**
+   * Inserts a multiple documents to a collection.
+   *
+   * @param {string} modelName The model name, e.g. `platform.Content`.
+   * @param {object[]} docs The documents to insert
+   * @param {object} [options] Options to pass to `Collection.insertMany`.
+   */
+  async insertMany(modelName, doc, options) {
+    const start = hrtime();
+    const { namespace, resource } = BaseDB.parseModelName(modelName);
+    const coll = await this.collection(namespace, resource);
+    const result = await coll.insertMany(doc, options);
+    this.log('insertMany', start, {
+      modelName,
+      doc,
+      options,
+    });
+    return result;
+  }
+
+  /**
    * Update multiple documents in a collection.
    *
    * @param {string} modelName The model name, e.g. `platform.Content`.
@@ -247,6 +267,26 @@ class BaseDB {
       modelName,
       filter,
       update,
+      options,
+    });
+    return result;
+  }
+
+  /**
+   * Delete a document from a collection.
+   *
+   * @param {string} modelName The model name, e.g. `platform.Content`.
+   * @param {object} filter The Filter used to select the document to remove.
+   * @param {object} [options] Options to pass to `Collection.deleteOne`.
+   */
+  async deleteOne(modelName, filter, options) {
+    const start = hrtime();
+    const { namespace, resource } = BaseDB.parseModelName(modelName);
+    const coll = await this.collection(namespace, resource);
+    const result = await coll.deleteOne(filter, options);
+    this.log('deleteOne', start, {
+      modelName,
+      filter,
       options,
     });
     return result;

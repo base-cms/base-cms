@@ -44,7 +44,9 @@ class Limit {
   set value(value) {
     const { def, max } = this.opts;
     const v = parseInt(value, 10);
-    if (!v || value < 0) {
+    if (v === 0) {
+      this.v = 0;
+    } else if (!v || value < 0) {
       this.v = def;
     } else if (v > max) {
       this.v = max;
