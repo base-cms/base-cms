@@ -16,7 +16,7 @@
     "node-fetch": "^2.6.0"
   },
   "peerDependencies": {
-    "@base-cms/marko-core": "^1.0.0-beta.3",
+    "@base-cms/marko-core": "^1.0.0-beta.4",
     "@base-cms/marko-web": "^1.0.0-beta.1"
   },
   "publishConfig": {
