@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/base4-rest-api",
-  "version": "1.0.0-beta.5",
+  "version": "1.0.0-beta.6",
   "description": "A Base4 REST API client.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",

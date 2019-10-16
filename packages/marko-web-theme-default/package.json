@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/marko-web-theme-default",
-  "version": "1.0.0-beta.5",
+  "version": "1.0.0-beta.6",
   "description": "Default theme for Marko BaseCMS websites",
   "author": "Jacob Bare <jacob@limit0.io>",
   "main": "index.js",
