@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/graphql-server",
-  "version": "1.0.0-beta.4",
+  "version": "1.0.0-beta.5",
   "description": "The BaseCMS GraphQL server using Apollo and Express.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
@@ -13,9 +13,9 @@
   },
   "dependencies": {
     "@base-cms/async": "^1.0.0-beta.1",
-    "@base-cms/base4-rest-api": "^1.0.0-beta.1",
-    "@base-cms/canonical-path": "^1.0.0-beta.4",
-    "@base-cms/db": "^1.0.0-beta.4",
+    "@base-cms/base4-rest-api": "^1.0.0-beta.5",
+    "@base-cms/canonical-path": "^1.0.0-beta.5",
+    "@base-cms/db": "^1.0.0-beta.5",
     "@base-cms/embedded-media": "^1.0.0-beta.1",
     "@base-cms/html": "^1.0.0-beta.1",
     "@base-cms/image": "^1.0.0-beta.1",

@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/hooks",
-  "version": "1.0.0-beta.4",
+  "version": "1.0.0-beta.5",
   "description": "The BaseCMS hooks server using Express.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@base-cms/async": "^1.0.0-beta.1",
-    "@base-cms/db": "^1.0.0-beta.4",
+    "@base-cms/db": "^1.0.0-beta.5",
     "@base-cms/object-path": "^1.0.0-beta.4",
     "@base-cms/tooling": "^1.0.0-beta.1",
     "@base-cms/utils": "^1.0.0-beta.4",
