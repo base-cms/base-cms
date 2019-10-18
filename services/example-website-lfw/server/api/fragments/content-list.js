@@ -8,14 +8,18 @@ fragment WebsiteContentListFragment on Content {
   typeTitled: type(input: { format: titleize })
   shortName
   teaser(input: { maxLength: 500, useFallback: false, truncatedSuffix: "" })
-  canonicalPath
+  siteContext {
+    path
+  }
   published
   publishedDate(input: { format: "MMM Do, YYYY" })
   company {
     id
     type
     name
-    canonicalPath
+    siteContext {
+      path
+    }
   }
   primarySection {
     id
@@ -39,7 +43,9 @@ fragment WebsiteContentListFragment on Content {
           id
           name
           type
-          canonicalPath
+          siteContext {
+            path
+          }
         }
       }
     }

@@ -8,7 +8,12 @@ module.exports = (ad = {}, { sectionName = 'Sponsored' } = {}) => {
     type: 'text-ad',
     teaser: creative.teaser,
     published: campaign.createdAt,
-    canonicalPath: ad.href,
+    canonicalPath: ad.href, // @deprecated. Use siteContext.path instead
+    siteContext: {
+      path: ad.href,
+      canonicalUrl: ad.href,
+      __typename: 'ContentSiteContext',
+    },
     primaryImage: {
       id: image.id,
       alt: creative.title,

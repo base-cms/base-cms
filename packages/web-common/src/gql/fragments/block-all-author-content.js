@@ -5,7 +5,9 @@ module.exports = gql`
 fragment BlockAllAuthorContentFragment on Content {
   id
   type
-  canonicalPath
+  siteContext {
+    path
+  }
 }
 
 `;

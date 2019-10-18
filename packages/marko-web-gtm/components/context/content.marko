@@ -11,7 +11,9 @@ fragment ContentContextFragment on Content {
   id
   type
   name
-  canonicalPath
+  siteContext {
+    path
+  }
   published
   createdBy {
     id

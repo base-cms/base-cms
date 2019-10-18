@@ -8,7 +8,10 @@ $ const { alias } = input;
 $ const queryFragment = gql`
 fragment DynamicPageMetadataFragment on ContentPage {
   id
-  canonicalPath
+  siteContext {
+    path
+    canonicalUrl
+  }
   metadata {
     title
     description
@@ -21,7 +24,7 @@ fragment DynamicPageMetadataFragment on ContentPage {
     $ const metadata = {
       title: get(node, "metadata.title"),
       description: get(node, "metadata.description"),
-      canonicalPath: node.canonicalPath,
+      canonicalPath: get(node, "siteContext.path"),
     };
     <common ...metadata />
     <meta property="og:type" content="website" />

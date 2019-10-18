@@ -8,7 +8,9 @@ fragment WebsiteContentListFragment on Content {
   typeTitled: type(input: { format: titleize })
   shortName
   teaser(input: { maxLength: 500, useFallback: false, truncatedSuffix: "" })
-  canonicalPath
+  siteContext {
+    path
+  }
   published
   primarySection {
     id

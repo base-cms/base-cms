@@ -4,15 +4,16 @@ const { getAsObject } = require('@base-cms/object-path');
 module.exports = ({
   name,
   teaser,
-  canonicalPath,
+  siteContext,
   publishedDate,
   authors,
   primarySection,
 }, website) => {
+  const { url } = siteContext;
   const parts = [
     `<title>${xml.encode(name)}</title>`,
-    `<link>${website.origin}${canonicalPath}</link>`,
-    `<guid isPermaLink="true">${website.origin}${canonicalPath}</guid>`,
+    `<link>${url}</link>`,
+    `<guid isPermaLink="true">${url}</guid>`,
   ];
   if (teaser) parts.push(`<description>${xml.encode(teaser)}</description>`);
   if (publishedDate) parts.push(`<pubDate>${publishedDate}</pubDate>`);

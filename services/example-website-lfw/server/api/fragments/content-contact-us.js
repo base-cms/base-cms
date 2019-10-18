@@ -6,7 +6,9 @@ fragment WebsiteContentContactUsFragment on Content {
   id
   type
   name
-  canonicalPath
+  siteContext {
+    path
+  }
   primaryImage {
     id
     src

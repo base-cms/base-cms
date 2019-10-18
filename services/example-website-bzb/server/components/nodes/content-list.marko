@@ -12,7 +12,7 @@ $ const primarySection = getAsObject(content, "primarySection");
       fluid=false
       ar="16:9"
       width=128
-      link={ href: content.canonicalPath }
+      link={ href: get(content, "siteContext.path") }
     />
   </if>
   <@body>

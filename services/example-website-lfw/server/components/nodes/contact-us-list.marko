@@ -1,4 +1,4 @@
-import { getAsObject } from "@base-cms/object-path";
+import { getAsObject, get } from "@base-cms/object-path";
 
 $ const content = getAsObject(input, "node");
 $ const primaryImage = getAsObject(content, "primaryImage");
@@ -10,7 +10,7 @@ $ const primaryImage = getAsObject(content, "primaryImage");
     fluid=false
     ar=null
     width=150
-    link={ href: content.canonicalPath }
+    link={ href: get(content, "siteContext.path") }
     use-placeholder=false
   />
   <@body>

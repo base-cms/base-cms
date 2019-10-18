@@ -6,7 +6,9 @@ fragment WithDynamicPageFragment on ContentPage {
   id
   alias
   redirectTo
-  canonicalPath
+  siteContext {
+    path
+  }
 }
 
 `;

@@ -11,7 +11,9 @@ fragment DynamicPageContextFragment on ContentPage {
   id
   name
   alias
-  canonicalPath
+  siteContext {
+    path
+  }
 }
 `;
 
