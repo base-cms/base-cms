@@ -6,7 +6,9 @@ fragment WithContentFragment on Content {
   id
   type
   redirectTo
-  canonicalPath
+  siteContext {
+    path
+  }
 }
 
 `;
