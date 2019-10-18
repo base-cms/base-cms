@@ -158,6 +158,11 @@ module.exports = {
   /**
    *
    */
+  PrimaryCategory: { __resolveType: resolveType },
+
+  /**
+   *
+   */
   Inquirable: {
     __resolveType: resolveType,
     inquiryEmails,

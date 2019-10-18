@@ -6,6 +6,7 @@ const content = require('./content');
 const inquirable = require('./inquirable');
 const media = require('./media');
 const organizationContactable = require('./organization-contactable');
+const primaryCategory = require('./primary-category');
 const socialLinkable = require('./social-linkable');
 
 module.exports = gql`
@@ -17,6 +18,7 @@ ${content}
 ${inquirable}
 ${media}
 ${organizationContactable}
+${primaryCategory}
 ${socialLinkable}
 
 `;

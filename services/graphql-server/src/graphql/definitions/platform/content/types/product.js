@@ -6,7 +6,7 @@ extend type Query {
   contentProduct(input: ContentProductQueryInput!): ContentProduct @findOne(model: "platform.Content", using: { id: "_id" }, criteria: "contentProduct")
 }
 
-type ContentProduct implements Content & Inquirable @applyInterfaceFields {
+type ContentProduct implements Content & PrimaryCategory & Inquirable @applyInterfaceFields {
   # fields directly on platform.model::Content\Product
   bodyOriginal: String @projection
   productUrl: String @projection
@@ -18,7 +18,6 @@ type ContentProduct implements Content & Inquirable @applyInterfaceFields {
   contentStatus: String @projection
 
   # fields directly on platform.model::Content\Product mutations
-  primaryCategory: String @projection(localField: "mutations.Website.primaryCategory") @value(localField: "mutations.Website.primaryCategory")
   headline: String @projection(localField: "mutations.Magazine.headline") @value(localField: "mutations.Magazine.headline")
 }
 
