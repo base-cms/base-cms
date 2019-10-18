@@ -9,21 +9,18 @@ extend type Query {
     model: "platform.Content",
     using: { id: "_id" },
     criteria: "content",
-    withSite: true,
-    siteField: "mutations.Website.primarySite"
+    withSite: false, # allow content to always load, regardless of site context.
   )
   contentHash(input: ContentHashQueryInput = {}): Content @findOne(
     model: "platform.Content",
     using: { hash: "hash" },
     criteria: "content",
-    withSite: true,
-    siteField: "mutations.Website.primarySite"
+    withSite: false, # allow content to always load, regardless of site context.
   )
   allContent(input: AllContentQueryInput = {}): ContentConnection! @findMany(
     model: "platform.Content",
     criteria: "content",
-    withSite: true,
-    siteField: "mutations.Website.primarySite"
+    withSite: false, # allow content to always load, regardless of site context.
   )
   allPublishedContent(input: AllPublishedContentQueryInput = {}): ContentConnection!
   publishedContentCounts(input: PublishedContentCountsQueryInput = {}): [PublishedContentCount!]!
