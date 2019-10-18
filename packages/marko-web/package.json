@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/marko-web",
-  "version": "1.0.0-beta.6",
+  "version": "1.0.0-beta.7",
   "description": "Core Marko+Express components for BaseCMS websites",
   "author": "Jacob Bare <jacob@limit0.io>",
   "main": "index.js",
@@ -15,13 +15,13 @@
   },
   "dependencies": {
     "@base-cms/embedded-media": "^1.0.0-beta.1",
-    "@base-cms/express-apollo": "^1.0.0-beta.1",
+    "@base-cms/express-apollo": "^1.0.0-beta.7",
     "@base-cms/image": "^1.0.0-beta.1",
     "@base-cms/inflector": "^1.0.0-beta.1",
     "@base-cms/object-path": "^1.0.0-beta.4",
     "@base-cms/tenant-context": "^1.0.0-beta.4",
     "@base-cms/utils": "^1.0.0-beta.4",
-    "@base-cms/web-common": "^1.0.0-beta.4",
+    "@base-cms/web-common": "^1.0.0-beta.7",
     "@godaddy/terminus": "^4.2.0",
     "cookie-parser": "^1.4.4",
     "express": "^4.17.1",
