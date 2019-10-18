@@ -22,6 +22,16 @@ const pathResolvers = {
     // For now load home when not found.
     return section ? section.alias : 'home';
   },
+  primaryCategoryPath: async (content, { load }) => {
+    const ref = BaseDB.get(content, 'mutations.Website.primaryCategory');
+    const id = BaseDB.extractRefId(ref);
+    if (!id) return '';
+
+    // Load category and extract path.
+    const query = { status: 1, type: 'Category' };
+    const category = await load('platformTaxonomy', id, { 'mutations.Website.urlPath': 1 }, query);
+    return cleanPath(BaseDB.get(category, 'mutations.Website.urlPath'));
+  },
 };
 
 const dynamicPageResolvers = {

@@ -61,14 +61,14 @@ interface Content @requiresProject(fields: ["type"]) {
   publishedDate(input: FormatDate = {}): String @projection(localField: "published") @momentFormat(localField: "published")
   unpublishedDate(input: FormatDate = {}): String @projection(localField: "unpublished") @momentFormat(localField: "unpublished")
 
-  canonicalPath: String! @deprecated(reason: "Use \`siteContext.path\` instead.") @projection(localField: "_id", needs: ["type", "linkUrl", "mutations.Website.slug", "mutations.Website.primarySection", "mutations.Website.alias"])
-  websitePath: String! @deprecated(reason: "Use \`siteContext.path\` instead.") @projection(localField: "_id", needs: ["type", "linkUrl", "mutations.Website.slug", "mutations.Website.primarySection", "mutations.Website.alias"])
+  canonicalPath: String! @deprecated(reason: "Use \`siteContext.path\` instead.") @projection(localField: "_id", needs: ["type", "linkUrl", "mutations.Website.slug", "mutations.Website.primarySection", "mutations.Website.primaryCategory", "mutations.Website.alias"])
+  websitePath: String! @deprecated(reason: "Use \`siteContext.path\` instead.") @projection(localField: "_id", needs: ["type", "linkUrl", "mutations.Website.slug", "mutations.Website.primarySection", "mutations.Website.primaryCategory", "mutations.Website.alias"])
 
-  canonicalUrl: String! @deprecated(reason: "Use \`siteContext.canonicalUrl\` instead.") @projection(localField: "_id", needs: ["type", "mutations.Website.slug", "mutations.Website.primarySection", "mutations.Website.alias"])
-  websiteUrl: String! @deprecated(reason: "Use \`siteContext.url\` instead.") @projection(localField: "_id", needs: ["type", "linkUrl", "mutations.Website.slug", "mutations.Website.primarySection", "mutations.Website.alias"])
+  canonicalUrl: String! @deprecated(reason: "Use \`siteContext.canonicalUrl\` instead.") @projection(localField: "_id", needs: ["type", "mutations.Website.slug", "mutations.Website.primarySection", "mutations.Website.primaryCategory", "mutations.Website.alias"])
+  websiteUrl: String! @deprecated(reason: "Use \`siteContext.url\` instead.") @projection(localField: "_id", needs: ["type", "linkUrl", "mutations.Website.slug", "mutations.Website.primarySection", "mutations.Website.primaryCategory", "mutations.Website.alias"])
 
   # Fields that require site context
-  siteContext: ContentSiteContext! @projection(localField: "_id", needs: ["type", "linkUrl", "mutations.Website.slug", "mutations.Website.primarySection", "mutations.Website.alias"])
+  siteContext: ContentSiteContext! @projection(localField: "_id", needs: ["type", "linkUrl", "mutations.Website.slug", "mutations.Website.primarySection", "mutations.Website.primaryCategory", "mutations.Website.alias"])
 
   # Determines if this content item should redirect to another location.
   redirectTo: String @projection(localField: "type", needs: ["linkUrl"])

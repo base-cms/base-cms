@@ -158,6 +158,11 @@ module.exports = {
   /**
    *
    */
+  PrimaryCategory: { __resolveType: resolveType },
+
+  /**
+   *
+   */
   Inquirable: {
     __resolveType: resolveType,
     inquiryEmails,
@@ -214,20 +219,20 @@ module.exports = {
           const owningSite = `${owningSiteId}` === `${site.id()}` ? site.obj() : await load('platformProduct', owningSiteId, { host: 1 }, { type: 'Site' });
 
           const origin = `https://${owningSite.host}`;
-          const values = [
-            section.alias,
-            dasherize(content.type),
-            content._id,
-            get(content, 'mutations.Website.slug'),
-          ];
-          const urlPath = cleanPath(values.filter(v => v).map(v => String(v).trim()).join('/'));
-          return `${origin}/${cleanPath(urlPath)}`;
+          return `${origin}/${cleanPath(path)}`;
         },
       };
     },
 
-    canonicalUrl: async (content, _, { load, basedb, site }) => {
+    /**
+     * @deprecated use `siteContext.canonicalUrl` instead
+     */
+    canonicalUrl: async (content, _, ctx) => {
+      const { load, basedb, site } = ctx;
       if (!site.exists()) throw new UserInputError('A website context must be set to generate the `Content.canonicalUrl` field.');
+
+      const path = await canonicalPathFor(content, ctx);
+
       const projection = { alias: 1, 'site.$id': 1 };
 
       const ref = BaseDB.get(content, 'mutations.Website.primarySection');
@@ -242,13 +247,6 @@ module.exports = {
       const owningSiteId = section ? BaseDB.extractRefId(section.site) : site.id();
       const owningSite = `${owningSiteId}` === `${site.id()}` ? site.obj() : await load('platformProduct', owningSiteId, { host: 1 }, { type: 'Site' });
       const origin = `https://${owningSite.host}`;
-      const values = [
-        section.alias,
-        dasherize(content.type),
-        content._id,
-        get(content, 'mutations.Website.slug'),
-      ];
-      const path = cleanPath(values.filter(v => v).map(v => String(v).trim()).join('/'));
       return `${origin}/${cleanPath(path)}`;
     },
 
