@@ -13,8 +13,8 @@ const buildParts = ({
 };
 
 const buildContentParts = (parts) => {
-  const allowed = ['sectionAlias', 'type', 'id', 'slug'];
-  const def = ['sectionAlias', 'type', 'id', 'slug'];
+  const allowed = ['sectionAlias', 'primaryCategoryPath', 'type', 'id', 'slug'];
+  const def = ['sectionAlias', 'primaryCategoryPath', 'type', 'id', 'slug'];
 
   const built = buildParts({ parts, allowed, def });
   if (!built.includes('id')) throw new Error('The `id` field be present in content canonical paths.');
