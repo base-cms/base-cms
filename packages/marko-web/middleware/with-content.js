@@ -1,3 +1,4 @@
+const { get } = require('@base-cms/object-path');
 const { asyncRoute, isFunction: isFn } = require('@base-cms/utils');
 const { content: loader } = require('@base-cms/web-common/page-loaders');
 const { blockContent: queryFactory } = require('@base-cms/web-common/query-factories');
@@ -15,12 +16,13 @@ module.exports = ({
   const additionalInput = {};
   if (req.cookies['preview-mode']) additionalInput.status = 'any';
   const content = await loader(apollo, { id, additionalInput });
-  const { redirectTo, canonicalPath } = content;
+  const { redirectTo } = content;
+  const path = get(content, 'siteContext.path');
   if (redirectTo) {
     return res.redirect(301, redirectTo);
   }
-  if (redirectOnPathMismatch && canonicalPath !== req.path) {
-    return res.redirect(301, canonicalPath);
+  if (redirectOnPathMismatch && path !== req.path) {
+    return res.redirect(301, path);
   }
   const pageNode = new PageNode(apollo, {
     queryFactory,
