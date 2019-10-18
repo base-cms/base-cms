@@ -1,4 +1,4 @@
-const { getAsObject, getAsArray } = require('@base-cms/object-path');
+const { getAsObject, getAsArray, get } = require('@base-cms/object-path');
 const { asObject } = require('@base-cms/utils');
 
 module.exports = ({ obj }) => {
@@ -23,7 +23,7 @@ module.exports = ({ obj }) => {
   }));
   return {
     page_type: 'content',
-    canonical_path: content.canonicalPath,
+    canonical_path: get(content, 'siteContext.path'),
     content: {
       id: content.id,
       type: content.type,
