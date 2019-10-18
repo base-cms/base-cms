@@ -6,7 +6,9 @@ fragment RSSItemContentFragment on Content {
   id
   name
   teaser(input: { useFallback: false, maxLength: null })
-  canonicalPath
+  siteContext {
+    url
+  }
   publishedDate(input: { format: "ddd, DD MMM YYYY HH:mm:ss ZZ" })
   primarySection {
     id
