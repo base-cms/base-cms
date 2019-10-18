@@ -219,14 +219,7 @@ module.exports = {
           const owningSite = `${owningSiteId}` === `${site.id()}` ? site.obj() : await load('platformProduct', owningSiteId, { host: 1 }, { type: 'Site' });
 
           const origin = `https://${owningSite.host}`;
-          const values = [
-            section.alias,
-            dasherize(content.type),
-            content._id,
-            get(content, 'mutations.Website.slug'),
-          ];
-          const urlPath = cleanPath(values.filter(v => v).map(v => String(v).trim()).join('/'));
-          return `${origin}/${cleanPath(urlPath)}`;
+          return `${origin}/${cleanPath(path)}`;
         },
       };
     },
