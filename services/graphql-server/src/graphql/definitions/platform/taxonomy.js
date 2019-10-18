@@ -22,6 +22,12 @@ type Taxonomy {
   sequence: Int @projection
   parent(input: TaxonomyParentInput = {}): Taxonomy @projection @refOne(loader: "platformTaxonomy")
   children(input: TaxonomyChildrenInput = {}): TaxonomyConnection! @projection(localField: "_id") @refMany(model: "platform.Taxonomy", localField: "_id", foreignField: "parent.$id")
+  urlName: String
+    @projection(localField: "mutations.Website.urlName")
+    @value(localField: "mutations.Website.urlName")
+  urlPath: String
+    @projection(localField: "mutations.Website.urlPath")
+    @value(localField: "mutations.Website.urlPath")
 }
 
 type TaxonomyConnection @projectUsing(type: "Taxonomy") {
