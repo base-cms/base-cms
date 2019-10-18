@@ -19,7 +19,6 @@ module.exports = ({
   if (redirectTo) {
     return res.redirect(301, redirectTo);
   }
-  // @todo change me
   if (redirectOnPathMismatch && path !== req.path) {
     return res.redirect(301, path);
   }
