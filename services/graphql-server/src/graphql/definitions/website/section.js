@@ -33,6 +33,11 @@ extend type Query {
     using: { ids: "_id" }
   )
   websiteSectionSitemapUrls(input: WebsiteSectionSitemapUrlsQueryInput = {}): [WebsiteSectionSitemapUrl!]!
+  websiteSectionsFromRelatedTaxonomy(input: WebsiteSectionsFromRelatedTaxonomyQueryInput!): WebsiteSectionConnection! @findMany(
+    model: "website.Section",
+    withSite: true,
+    using: { taxonomyIds: "relatedTaxonomy.$id" }
+  )
 }
 
 type WebsiteSection {
@@ -143,6 +148,13 @@ input RootWebsiteSectionsQueryInput {
 input WebsiteSectionsFromIdsQueryInput {
   siteId: ObjectID
   ids: [Int!]
+  sort: WebsiteSectionSortInput = {}
+  pagination: PaginationInput = {}
+}
+
+input WebsiteSectionsFromRelatedTaxonomyQueryInput {
+  siteId: ObjectID
+  taxonomyIds: [Int!]
   sort: WebsiteSectionSortInput = {}
   pagination: PaginationInput = {}
 }
