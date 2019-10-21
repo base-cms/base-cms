@@ -256,7 +256,8 @@ input AllPublishedContentQueryInput {
   siteId: ObjectID
   since: Date
   sectionId: Int
-  contentTypes: [ContentType!] = [] @deprecated(reason: "Use \`AllPublishedContentQueryInput.includeContentTypes\` instead.")
+  # @deprecated. Use \`AllPublishedContentQueryInput.includeContentTypes\` instead.
+  contentTypes: [ContentType!] = []
   includeContentTypes: [ContentType!] = []
   excludeContentTypes: [ContentType!] = []
   requiresImage: Boolean = false
