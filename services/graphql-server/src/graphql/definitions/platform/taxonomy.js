@@ -3,12 +3,22 @@ const gql = require('graphql-tag');
 module.exports = gql`
 
 extend type Query {
-  taxonomy(input: TaxonomyQueryInput!): Taxonomy @findOne(model: "platform.Taxonomy", using: { id: "_id" }, criteria: "taxonomy")
-  taxonomies(input: TaxonomiesQueryInput = {}): TaxonomyConnection! @findMany(model: "platform.Taxonomy", criteria: "taxonomy")
-  taxonomiesOfType(input: TaxonomiesOfTypeQueryInput!): TaxonomyConnection! @findMany(model: "platform.Taxonomy", using: { type: "type" })
-  rootTaxonomies(input: RootTaxonomiesQueryInput = {}): TaxonomyConnection! @findMany(model: "platform.Taxonomy", criteria: "rootTaxonomies")
-  rootTaxonomiesOfType(input: RootTaxonomiesOfTypeQueryInput!): TaxonomyConnection! @findMany(model: "platform.Taxonomy", using: { type: "type" }, criteria: "rootTaxonomiesOfType")
-  matchTaxonomies(input: MatchTaxonomiesQueryInput!): TaxonomyConnection! @matchMany(model: "platform.Taxonomy", criteria: "taxonomy")
+  taxonomy(input: TaxonomyQueryInput!): Taxonomy
+    @findOne(model: "platform.Taxonomy", using: { id: "_id" }, criteria: "taxonomy")
+
+  taxonomies(input: TaxonomiesQueryInput = {}): TaxonomyConnection!
+
+  taxonomiesOfType(input: TaxonomiesOfTypeQueryInput!): TaxonomyConnection!
+    @findMany(model: "platform.Taxonomy", using: { type: "type" })
+
+  rootTaxonomies(input: RootTaxonomiesQueryInput = {}): TaxonomyConnection!
+    @findMany(model: "platform.Taxonomy", criteria: "rootTaxonomies")
+
+  rootTaxonomiesOfType(input: RootTaxonomiesOfTypeQueryInput!): TaxonomyConnection!
+    @findMany(model: "platform.Taxonomy", using: { type: "type" }, criteria: "rootTaxonomiesOfType")
+
+  matchTaxonomies(input: MatchTaxonomiesQueryInput!): TaxonomyConnection!
+    @matchMany(model: "platform.Taxonomy", criteria: "taxonomy")
 }
 
 type Taxonomy {
@@ -81,6 +91,11 @@ input TaxonomyQueryInput {
 }
 
 input TaxonomiesQueryInput {
+  includeIds: [Int!] = []
+  excludeIds: [Int!] = []
+  includeTypes: [TaxonomyType!] = []
+  excludeTypes: [TaxonomyType!] = []
+  rootOnly: Boolean = false
   status: ModelStatus = active
   sort: TaxonomySortInput = {}
   pagination: PaginationInput = {}
