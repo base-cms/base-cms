@@ -28,6 +28,10 @@ type Taxonomy {
   urlPath: String
     @projection(localField: "mutations.Website.urlPath")
     @value(localField: "mutations.Website.urlPath")
+
+  # GraphQL-only fields.
+  # Retrieves the flattened (parent) hierarchy for this taxonomy.
+  hierarchy: [Taxonomy!]! @projection(localField: "parent")
 }
 
 type TaxonomyConnection @projectUsing(type: "Taxonomy") {
