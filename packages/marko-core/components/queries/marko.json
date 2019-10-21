@@ -45,6 +45,9 @@
   "<marko-web-query-website-section>": {
     "template": "./website-section.marko"
   },
+  "<marko-web-query-website-sections>": {
+    "template": "./website-sections.marko"
+  },
   "<marko-web-query-dynamic-page>": {
     "template": "./dynamic-page.marko"
   },

@@ -2,6 +2,7 @@ const blockContent = require('./block-content');
 const blockDynamicPage = require('./block-dynamic-page');
 const blockWebsiteScheduledContent = require('./block-website-scheduled-content');
 const blockWebsiteSection = require('./block-website-section');
+const blockWebsiteSections = require('./block-website-sections');
 const blockMagazineIssue = require('./block-magazine-issue');
 const blockMagazinePublication = require('./block-magazine-publication');
 const blockMagazinePublications = require('./block-magazine-publications');
@@ -25,6 +26,7 @@ module.exports = {
   blockDynamicPage,
   blockWebsiteScheduledContent,
   blockWebsiteSection,
+  blockWebsiteSections,
   blockMagazineIssue,
   blockMagazinePublication,
   blockMagazinePublications,

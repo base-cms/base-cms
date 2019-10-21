@@ -20,7 +20,8 @@ extend type Query {
   )
   websiteSections(input: WebsiteSectionsQueryInput = {}): WebsiteSectionConnection! @findMany(
     model: "website.Section",
-    withSite: true
+    withSite: true,
+    using: { taxonomyIds: "relatedTaxonomy.$id" },
   )
   rootWebsiteSections(input: RootWebsiteSectionsQueryInput = {}): WebsiteSectionConnection! @findMany(
     model: "website.Section",
@@ -128,6 +129,7 @@ input WebsiteSectionRedirectQueryInput {
 
 input WebsiteSectionsQueryInput {
   siteId: ObjectID
+  taxonomyIds: [Int!] # filter against relatedTaxonomy.$id
   status: ModelStatus = active
   sort: WebsiteSectionSortInput = {}
   pagination: PaginationInput = {}
