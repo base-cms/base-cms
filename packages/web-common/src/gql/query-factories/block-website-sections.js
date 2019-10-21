@@ -12,7 +12,7 @@ const { extractFragmentData } = require('../../utils');
 module.exports = ({ queryFragment, queryName = '' } = {}) => {
   const { spreadFragmentName, processedFragment } = extractFragmentData(queryFragment);
   return gql`
-    query BlockWebsiteSections${queryName}($input: WebsiteSectionsQueryInput!) {
+    query BlockWebsiteSections${queryName}($input: WebsiteSectionsQueryInput = {}) {
       websiteSections(input: $input) {
         edges {
           node {
