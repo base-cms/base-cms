@@ -256,7 +256,9 @@ input AllPublishedContentQueryInput {
   siteId: ObjectID
   since: Date
   sectionId: Int
-  contentTypes: [ContentType!] = []
+  contentTypes: [ContentType!] = [] @deprecated(reason: "Use \`AllPublishedContentQueryInput.includeContentTypes\` instead.")
+  includeContentTypes: [ContentType!] = []
+  excludeContentTypes: [ContentType!] = []
   requiresImage: Boolean = false
   sectionBubbling: Boolean = true
   sort: ContentSortInput = { field: published, order: desc }
