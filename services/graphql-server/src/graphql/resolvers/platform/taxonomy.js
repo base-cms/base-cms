@@ -23,6 +23,15 @@ module.exports = {
    *
    */
   Taxonomy: {
+    fullName: ({ fullName }, { input }) => {
+      const { suppressType, suppressId } = input;
+      if (!fullName) return fullName;
+      let name = fullName;
+      if (suppressType) name = name.replace(/^[a-z]+?:\s/i, '');
+      if (suppressId) name = name.replace(/\s\([0-9]+?\)$/i, '');
+      return name;
+    },
+
     hierarchy: async (taxonomy, _, { load }, info) => {
       const {
         returnType,
