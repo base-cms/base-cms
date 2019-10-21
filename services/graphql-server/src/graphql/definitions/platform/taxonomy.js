@@ -24,7 +24,7 @@ extend type Query {
 type Taxonomy {
   id: Int! @projection(localField: "_id") @value(localField: "_id")
   name: String @projection
-  fullName: String @projection
+  fullName(input: TaxonomyFullNameInput = {}): String @projection
   description: String @projection
   type: String @projection
   status: Int @projection
@@ -83,6 +83,11 @@ enum TaxonomySortField {
 enum TaxonomyMatchField {
   name
   fullName
+}
+
+input TaxonomyFullNameInput {
+  suppressType: Boolean = false
+  suppressId: Boolean = false
 }
 
 input TaxonomyQueryInput {
