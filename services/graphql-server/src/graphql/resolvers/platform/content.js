@@ -535,7 +535,9 @@ module.exports = {
       const {
         since,
         sectionId,
-        contentTypes,
+        contentTypes: deprecatedContentTypes,
+        includeContentTypes,
+        excludeContentTypes,
         requiresImage,
         sectionBubbling,
         sort,
@@ -544,7 +546,10 @@ module.exports = {
         ending,
       } = input;
 
-      const query = getPublishedCriteria({ since, contentTypes });
+      // @deprecated Prefer includeContentTypes over contentTypes.
+      const contentTypes = includeContentTypes.length
+        ? includeContentTypes : deprecatedContentTypes;
+      const query = getPublishedCriteria({ since, contentTypes, excludeContentTypes });
 
       const siteId = input.siteId || site.id();
       if (siteId) query['mutations.Website.primarySite'] = siteId;
