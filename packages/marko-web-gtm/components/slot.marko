@@ -1,0 +1,9 @@
+import { BEM } from "@base-cms/utils";
+import { dasherize } from "@base-cms/inflector";
+
+$ const { prefix, name } = input;
+$ const blockName = "gtm-slot";
+$ const classNames = [blockName, ...BEM.applyModifiers(blockName, input.modifiers), input.class];
+$ const id = prefix ? `${prefix}-${name}` : name;
+
+<div id=dasherize(id) class=classNames />
