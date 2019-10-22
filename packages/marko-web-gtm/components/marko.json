@@ -30,6 +30,13 @@
     },
     "@data": "object"
   },
+  "<marko-web-gtm-slot>": {
+    "template": "./slot.marko",
+    "@prefix": "string",
+    "@name": "string",
+    "@class": "string",
+    "@modifiers": "array"
+  },
   "<marko-web-gtm-track-inview-event>": {
     "template": "./track-inview-event.marko"
   },
