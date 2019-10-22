@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/example-website-bzb",
-  "version": "1.0.0-beta.8",
+  "version": "1.0.0-beta.10",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
   "repository": "https://github.com/base-cms/base-cms/tree/master/services/example-website-bzb",
@@ -19,7 +19,7 @@
     "@base-cms/marko-core": "^1.0.0-beta.8",
     "@base-cms/marko-web": "^1.0.0-beta.8",
     "@base-cms/marko-web-gam": "^1.0.0-beta.4",
-    "@base-cms/marko-web-gtm": "^1.0.0-beta.7",
+    "@base-cms/marko-web-gtm": "^1.0.0-beta.10",
     "@base-cms/marko-web-icons": "^1.0.0-beta.1",
     "@base-cms/marko-web-theme-default": "^1.0.0-beta.6",
     "@base-cms/object-path": "^1.0.0-beta.4",
