@@ -467,7 +467,8 @@ class BaseDB {
     const { logger } = this;
     if (typeof logger === 'function') {
       const [secs, ns] = hrtime(start);
-      logger({ method, data, time: `${(secs * 1000) + (ns / 1000000)}ms` });
+      const time = (secs * 1000) + (ns / 1000000);
+      logger({ method, data, time });
     }
   }
 
