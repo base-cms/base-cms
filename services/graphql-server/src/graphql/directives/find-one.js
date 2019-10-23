@@ -3,7 +3,6 @@ const formatStatus = require('../utils/format-status');
 const criteriaFor = require('../utils/criteria-for');
 const applyInput = require('../utils/apply-input');
 const getProjection = require('../utils/get-projection');
-const queryComment = require('../utils/query-comment');
 
 class FindOneDirective extends SchemaDirectiveVisitor {
   /**
@@ -12,7 +11,7 @@ class FindOneDirective extends SchemaDirectiveVisitor {
    */
   visitFieldDefinition(field) {
     // eslint-disable-next-line no-param-reassign
-    field.resolve = async (_, { input = {} }, { basedb, site, apolloClient }, info) => {
+    field.resolve = async (_, { input = {} }, { basedb, site }, info) => {
       const {
         fieldNodes,
         returnType,
@@ -40,8 +39,7 @@ class FindOneDirective extends SchemaDirectiveVisitor {
         ...(withSite && siteId && { siteId, siteField }),
       });
 
-      const comment = queryComment(info, apolloClient);
-      const result = await basedb.findOne(model, query, { projection, comment });
+      const result = await basedb.findOne(model, query, { projection });
       return result;
     };
   }

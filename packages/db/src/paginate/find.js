@@ -13,7 +13,6 @@ const { isArray } = Array;
  * @param {number} [params.limit=10]
  * @param {number} params.skip
  * @param {object} params.sort
- * @param {string} [params.comment]
  * @param {string} [params.sort.field=_id]
  * @param {number|string} [params.sort.order=1]
  * @param {object} [params.sort.options]
@@ -24,7 +23,6 @@ module.exports = async (basedb, modelName, {
   skip,
   after,
   sort = { field: '_id', order: 1, values: [] },
-  comment,
   projection,
   excludeProjection,
   ignoreCompoundAfterSort,
@@ -58,7 +56,6 @@ module.exports = async (basedb, modelName, {
     limit: $limit.value === 0 ? 0 : $limit.value + 1, // peek to see if there is another page.
     skip,
     projection: $projection,
-    comment,
   };
   if (collate) options.collation = $sort.collation;
 

@@ -27,15 +27,8 @@
   }
   ```
  */
-module.exports = keys => keys.reduce((o, [id, fields, query, comment]) => {
-  if (!o[id]) {
-    o[id] = {
-      _id: id,
-      comment,
-      set: new Set(),
-      queries: [],
-    };
-  }
+module.exports = keys => keys.reduce((o, [id, fields, query]) => {
+  if (!o[id]) o[id] = { _id: id, set: new Set(), queries: [] };
   if (!fields) {
     o[id].set = null;
   } else if (o[id].set) {

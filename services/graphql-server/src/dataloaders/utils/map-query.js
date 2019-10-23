@@ -29,23 +29,11 @@ const { keys } = Object;
   ```
  */
 module.exports = map => keys(map).reduce((o, id) => {
-  const {
-    _id,
-    set,
-    queries,
-    comment,
-  } = map[id];
+  const { _id, set, queries } = map[id];
   const fields = set ? [...set] : [];
   const key = fields.join('|');
   const projection = fields.reduce((p, name) => ({ ...p, [name]: 1 }), {});
-  if (!o[key]) {
-    o[key] = {
-      ids: [],
-      projection,
-      queries,
-      comment,
-    };
-  }
+  if (!o[key]) o[key] = { ids: [], projection, queries };
   o[key].ids.push(_id);
   return o;
 }, {});

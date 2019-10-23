@@ -6,7 +6,6 @@ const criteriaFor = require('../utils/criteria-for');
 const applyInput = require('../utils/apply-input');
 const shouldCollate = require('../utils/should-collate');
 const connectionProjection = require('../utils/connection-projection');
-const queryComment = require('../utils/query-comment');
 
 const { isArray } = Array;
 
@@ -17,7 +16,7 @@ class RefManyDirective extends SchemaDirectiveVisitor {
    */
   visitFieldDefinition(field) {
     // eslint-disable-next-line no-param-reassign
-    field.resolve = async (doc, { input = {} }, { basedb, site, apolloClient }, info) => {
+    field.resolve = async (doc, { input = {} }, { basedb, site }, info) => {
       const {
         model,
         localField,
@@ -57,14 +56,12 @@ class RefManyDirective extends SchemaDirectiveVisitor {
         ...(withSite && siteId && { siteId, siteField }),
       });
 
-      const comment = queryComment(info, apolloClient);
       const projection = connectionProjection(info);
       const result = await basedb.paginate(model, {
         query,
         sort: { ...sort, values: ids },
         ...pagination,
         collate: shouldCollate(sort.field),
-        comment,
         projection,
       });
       basedb.log('@refMany', start, { model });

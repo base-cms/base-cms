@@ -5,7 +5,6 @@ const criteriaFor = require('../utils/criteria-for');
 const applyInput = require('../utils/apply-input');
 const shouldCollate = require('../utils/should-collate');
 const connectionProjection = require('../utils/connection-projection');
-const queryComment = require('../utils/query-comment');
 
 const { isArray } = Array;
 
@@ -80,7 +79,7 @@ class MatchManyDirective extends SchemaDirectiveVisitor {
    */
   visitFieldDefinition(field) {
     // eslint-disable-next-line no-param-reassign
-    field.resolve = async (_, { input = {} }, { basedb, site, apolloClient }, info) => {
+    field.resolve = async (_, { input = {} }, { basedb, site }, info) => {
       const start = process.hrtime();
 
       const {
@@ -119,14 +118,12 @@ class MatchManyDirective extends SchemaDirectiveVisitor {
         query._id = { $nin: excludeIds };
       }
 
-      const comment = queryComment(info, apolloClient);
       const projection = connectionProjection(info);
       const result = await basedb.paginate(model, {
         query,
         sort,
         projection,
         collate: shouldCollate(sort.field),
-        comment,
         ...pagination,
       });
       basedb.log('@matchMany', start, { model });

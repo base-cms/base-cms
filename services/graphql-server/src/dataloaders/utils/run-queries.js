@@ -67,12 +67,7 @@ module.exports = ({
   modelName,
 }) => Promise.all(keys(queryMap).map((key) => {
   const v = queryMap[key];
-  const {
-    ids,
-    projection,
-    queries,
-    comment,
-  } = v;
+  const { ids, projection, queries } = v;
   const query = { _id: { $in: ids } };
   // Only include queries where needed.
   // In other words, if a `null` query is present, no additional filters are needed.
@@ -83,5 +78,5 @@ module.exports = ({
       return { ...o, [hash]: q };
     }, {}));
   }
-  return basedb.find(modelName, query, { projection, comment });
+  return basedb.find(modelName, query, { projection });
 }));
