@@ -28,7 +28,7 @@ class BaseDB {
    * @param {object} params The Base DB params
    * @param {string} baseOpts.tenant The Base tenant key, e.g. `cygnus_ofcr`.
    * @param {string} baseOpts.client The MongoClient instance to use.
-   * @param {object} baseOpts.context Context info to globally append as a comment to all queries.
+   * @param {object} baseOpts.context Context info to append as a comment to all queries.
    */
   constructor({
     tenant,
