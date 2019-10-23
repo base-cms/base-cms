@@ -5,6 +5,7 @@ const criteriaFor = require('../utils/criteria-for');
 const applyInput = require('../utils/apply-input');
 const shouldCollate = require('../utils/should-collate');
 const connectionProjection = require('../utils/connection-projection');
+const queryComment = require('../utils/query-comment');
 
 const { isArray } = Array;
 
@@ -117,12 +118,15 @@ class MatchManyDirective extends SchemaDirectiveVisitor {
       if (isArray(excludeIds) && excludeIds.length) {
         query._id = { $nin: excludeIds };
       }
+
+      const comment = queryComment(info);
       const projection = connectionProjection(info);
       const result = await basedb.paginate(model, {
         query,
         sort,
         projection,
         collate: shouldCollate(sort.field),
+        comment,
         ...pagination,
       });
       basedb.log('@matchMany', start, { model });
