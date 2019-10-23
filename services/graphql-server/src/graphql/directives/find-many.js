@@ -4,6 +4,7 @@ const criteriaFor = require('../utils/criteria-for');
 const applyInput = require('../utils/apply-input');
 const shouldCollate = require('../utils/should-collate');
 const connectionProjection = require('../utils/connection-projection');
+const queryComment = require('../utils/query-comment');
 
 class FindManyDirective extends SchemaDirectiveVisitor {
   /**
@@ -38,12 +39,14 @@ class FindManyDirective extends SchemaDirectiveVisitor {
         ...(withSite && siteId && { siteId, siteField }),
       });
 
+      const comment = queryComment(info);
       const projection = connectionProjection(info);
       const result = await basedb.paginate(model, {
         query,
         sort,
         projection,
         collate: shouldCollate(sort.field),
+        comment,
         ...pagination,
       });
       basedb.log('@findMany', start, { model });
