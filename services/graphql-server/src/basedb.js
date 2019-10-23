@@ -7,8 +7,8 @@ const appname = `${pkg.name} v${pkg.version} (env: ${NODE_ENV})`;
 
 const client = createMongoClient(MONGO_DSN, { appname });
 
-module.exports = (tenant, apolloInfo) => createBaseDB({
+module.exports = (tenant, context) => createBaseDB({
   tenant,
   client,
-  context: apolloInfo,
+  context,
 });
