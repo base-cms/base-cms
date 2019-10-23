@@ -4,6 +4,7 @@ const formatStatus = require('../utils/format-status');
 const criteriaFor = require('../utils/criteria-for');
 const applyInput = require('../utils/apply-input');
 const getProjection = require('../utils/get-projection');
+const queryComment = require('../utils/query-comment');
 
 class RefOneDirective extends SchemaDirectiveVisitor {
   /**
@@ -12,7 +13,7 @@ class RefOneDirective extends SchemaDirectiveVisitor {
    */
   visitFieldDefinition(field) {
     // eslint-disable-next-line no-param-reassign
-    field.resolve = async (doc, { input = {} }, { load, site }, info) => {
+    field.resolve = async (doc, { input = {} }, { load, site, apolloClient }, info) => {
       const {
         returnType,
         fieldNodes,
@@ -36,11 +37,12 @@ class RefOneDirective extends SchemaDirectiveVisitor {
 
       const siteId = input.siteId || site.id();
 
+      const comment = queryComment(info, apolloClient);
       const query = applyInput({
         query: { ...criteriaFor(criteria), ...formatStatus(input.status) },
         ...(withSite && siteId && { siteId, siteField }),
       });
-      return load(loader, id, projection, query);
+      return load(loader, id, projection, query, comment);
     };
   }
 }
