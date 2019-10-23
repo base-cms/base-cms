@@ -117,7 +117,6 @@ class MatchManyDirective extends SchemaDirectiveVisitor {
       if (isArray(excludeIds) && excludeIds.length) {
         query._id = { $nin: excludeIds };
       }
-
       const projection = connectionProjection(info);
       const result = await basedb.paginate(model, {
         query,
