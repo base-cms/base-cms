@@ -70,7 +70,11 @@ module.exports = (config = {}) => {
 
   // Register apollo.
   const headers = buildRequestHeaders({ tenantKey, siteId });
-  apollo(app, config.graphqlUri, { name: sitePackage.name, link: { headers } });
+  apollo(app, config.graphqlUri, {
+    name: sitePackage.name,
+    version: sitePackage.version,
+    link: { headers },
+  });
 
   // Set website context.
   app.use(websiteContext(app.locals.config));

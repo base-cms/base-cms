@@ -38,8 +38,16 @@ const server = new ApolloServer({
   schema,
   ...config,
   context: async ({ req }) => {
+    const { body } = req;
     const { tenant, siteId } = getFromRequest(req);
-    const basedb = basedbFactory(tenant);
+    const dbContext = {
+      type: 'Apollo GraphQL Request',
+      clientName: req.get('apollographql-client-name'),
+      clientVersion: req.get('apollographql-client-version'),
+      operationName: body.operationName,
+      variables: body.variables,
+    };
+    const basedb = basedbFactory(tenant, dbContext);
     const loaders = createLoaders(basedb);
 
     // Load the (optional) site context from the database.
