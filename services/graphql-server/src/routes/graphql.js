@@ -54,11 +54,11 @@ const server = new ApolloServer({
       basedb,
       base4rest,
       site,
-      load: async (loader, id, projection, criteria = {}) => {
       apolloClient: {
         name: req.get('apollographql-client-name'),
         version: req.get('apollographql-client-version'),
       },
+      load: async (loader, id, projection, criteria = {}, comment) => {
         if (!loaders[loader]) throw new Error(`No dataloader found for '${loader}'`);
 
         const query = isObject(criteria) ? criteria : {};
@@ -73,6 +73,7 @@ const server = new ApolloServer({
           id,
           sortedFields.length ? sortedFields : null,
           queryKeys.length ? sortedQuery : null,
+          comment,
         ]);
       },
       canonicalRules: canonicalRules(req),
