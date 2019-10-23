@@ -55,6 +55,10 @@ const server = new ApolloServer({
       base4rest,
       site,
       load: async (loader, id, projection, criteria = {}) => {
+      apolloClient: {
+        name: req.get('apollographql-client-name'),
+        version: req.get('apollographql-client-version'),
+      },
         if (!loaders[loader]) throw new Error(`No dataloader found for '${loader}'`);
 
         const query = isObject(criteria) ? criteria : {};
