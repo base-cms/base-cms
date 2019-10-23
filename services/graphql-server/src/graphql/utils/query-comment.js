@@ -1,7 +1,8 @@
-module.exports = (info) => {
+module.exports = (info, apolloClient) => {
   const { parentType, fieldName, operation } = info;
 
   const data = {
+    apolloClient,
     parentType: parentType.name,
     fieldName,
     operation: {
