@@ -28,8 +28,14 @@ class BaseDB {
    * @param {object} params The Base DB params
    * @param {string} baseOpts.tenant The Base tenant key, e.g. `cygnus_ofcr`.
    * @param {string} baseOpts.client The MongoClient instance to use.
+   * @param {object} baseOpts.context Context info to globally append as a comment to all queries.
    */
-  constructor({ tenant, client, logger } = {}) {
+  constructor({
+    tenant,
+    client,
+    logger,
+    context,
+  } = {}) {
     if (!tenant) {
       throw new Error('No tenant was provided.');
     }
@@ -39,6 +45,7 @@ class BaseDB {
     }
     this.client = client;
     this.logger = logger;
+    this.context = context;
   }
 
   /**
@@ -81,7 +88,7 @@ class BaseDB {
     const start = hrtime();
     const { namespace, resource } = BaseDB.parseModelName(modelName);
     const coll = await this.collection(namespace, resource);
-    const doc = await coll.findOne(query, options);
+    const doc = await coll.findOne(query, this.appendContext(options));
     this.log('findOne', start, { modelName, query, options });
     return doc;
   }
@@ -130,7 +137,7 @@ class BaseDB {
   async findCursor(modelName, query, options) {
     const { namespace, resource } = BaseDB.parseModelName(modelName);
     const coll = await this.collection(namespace, resource);
-    return coll.find(query, options);
+    return coll.find(query, this.appendContext(options));
   }
 
   /**
@@ -480,6 +487,13 @@ class BaseDB {
       }
       throw e;
     }
+  }
+
+  appendContext(options = {}) {
+    const { context } = this;
+    const { comment } = options;
+    const comments = [context ? JSON.stringify(context) : null, comment];
+    return { ...options, comment: comments.filter(v => v).join('\n') || undefined };
   }
 
   /**

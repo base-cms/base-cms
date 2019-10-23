@@ -36,8 +36,9 @@ const shouldLog = () => {
   return false;
 };
 
-module.exports = ({ tenant, client }) => new BaseDB({
+module.exports = ({ tenant, client, context }) => new BaseDB({
   tenant,
   client,
+  context,
   logger: shouldLog() ? logger() : undefined,
 });
