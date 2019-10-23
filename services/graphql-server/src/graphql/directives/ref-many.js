@@ -17,7 +17,7 @@ class RefManyDirective extends SchemaDirectiveVisitor {
    */
   visitFieldDefinition(field) {
     // eslint-disable-next-line no-param-reassign
-    field.resolve = async (doc, { input = {} }, { basedb, site }, info) => {
+    field.resolve = async (doc, { input = {} }, { basedb, site, apolloClient }, info) => {
       const {
         model,
         localField,
@@ -57,7 +57,7 @@ class RefManyDirective extends SchemaDirectiveVisitor {
         ...(withSite && siteId && { siteId, siteField }),
       });
 
-      const comment = queryComment(info);
+      const comment = queryComment(info, apolloClient);
       const projection = connectionProjection(info);
       const result = await basedb.paginate(model, {
         query,

@@ -13,7 +13,7 @@ class FindManyDirective extends SchemaDirectiveVisitor {
    */
   visitFieldDefinition(field) {
     // eslint-disable-next-line no-param-reassign
-    field.resolve = async (_, { input = {} }, { basedb, site }, info) => {
+    field.resolve = async (_, { input = {} }, { basedb, site, apolloClient }, info) => {
       const start = process.hrtime();
 
       const {
@@ -39,7 +39,7 @@ class FindManyDirective extends SchemaDirectiveVisitor {
         ...(withSite && siteId && { siteId, siteField }),
       });
 
-      const comment = queryComment(info);
+      const comment = queryComment(info, apolloClient);
       const projection = connectionProjection(info);
       const result = await basedb.paginate(model, {
         query,

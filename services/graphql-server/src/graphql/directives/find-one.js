@@ -12,7 +12,7 @@ class FindOneDirective extends SchemaDirectiveVisitor {
    */
   visitFieldDefinition(field) {
     // eslint-disable-next-line no-param-reassign
-    field.resolve = async (_, { input = {} }, { basedb, site }, info) => {
+    field.resolve = async (_, { input = {} }, { basedb, site, apolloClient }, info) => {
       const {
         fieldNodes,
         returnType,
@@ -40,7 +40,7 @@ class FindOneDirective extends SchemaDirectiveVisitor {
         ...(withSite && siteId && { siteId, siteField }),
       });
 
-      const comment = queryComment(info);
+      const comment = queryComment(info, apolloClient);
       const result = await basedb.findOne(model, query, { projection, comment });
       return result;
     };
