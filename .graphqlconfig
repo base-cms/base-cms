@@ -10,6 +10,24 @@
               "x-tenant-key": "${env:TENANT_KEY}"
             }
           },
+          "dev-aerilon": {
+            "url": "http://0.0.0.0:11000",
+            "headers": {
+              "x-tenant-key": "${env:TENANT_KEY}"
+            }
+          },
+          "dev-caprica": {
+            "url": "http://0.0.0.0:11001",
+            "headers": {
+              "x-tenant-key": "${env:TENANT_KEY}"
+            }
+          },
+          "dev-picon": {
+            "url": "http://0.0.0.0:11002",
+            "headers": {
+              "x-tenant-key": "${env:TENANT_KEY}"
+            }
+          },
           "prod-aerilon": {
             "url": "https://aerilon.graphql.base-cms.io",
             "headers": {
