@@ -46,23 +46,4 @@ module.exports = {
       return result;
     },
   },
-  /**
-   *
-   */
-  Query: {
-    /**
-     *
-     */
-    magazineLatestIssue: async (_, { input }, { basedb }) => {
-      const { publicationId, sort: { field, order } } = input;
-      const mailDate = new Date();
-      const query = {
-        status: 1,
-        mailDate: { $lte: mailDate },
-        'publication.$id': publicationId,
-      };
-      const sort = { [field]: order === 'desc' ? -1 : 1 };
-      return basedb.findOne('magazine.Issue', query, { sort });
-    },
-  },
 };
