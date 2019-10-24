@@ -32,20 +32,20 @@ extend type Query {
     )
 
   rootWebsiteSections(input: RootWebsiteSectionsQueryInput = {}): WebsiteSectionConnection!
+    @deprecated(reason: "Use \`Query.websiteSections\` with \`input.rootOnly = true\` instead.")
     @findMany(
       model: "website.Section",
       withSite: true,
       criteria: "rootWebsiteSection"
     )
-    @deprecated(reason: "Use \`Query.websiteSections\` with \`input.rootOnly = true\` instead.")
 
   websiteSectionsFromIds(input: WebsiteSectionsFromIdsQueryInput!): WebsiteSectionConnection!
+    @deprecated(reason: "Use \`Query.websiteSections\` with \`input.includeIds = []\` instead.")
     @findMany(
       model: "website.Section",
       withSite: true,
       using: { ids: "_id" }
     )
-    @deprecated(reason: "Use \`Query.websiteSections\` with \`input.includeIds = []\` instead.")
 
   websiteSectionSitemapUrls(input: WebsiteSectionSitemapUrlsQueryInput = {}): [WebsiteSectionSitemapUrl!]!
 }
