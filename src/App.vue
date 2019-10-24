@@ -1,6 +1,14 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <h1>Welcome to Your Vue.js App</h1>
+  <div class="leaders">
+    <h1>Hello World!</h1>
   </div>
 </template>
+
+
+<style lang="scss">
+@import url('https://fonts.googleapis.com/css?family=Muli:300,400,600&display=swap');
+
+.leaders {
+  font-family: 'Muli', sans-serif;
+}
+</style>
