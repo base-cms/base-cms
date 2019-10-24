@@ -10,6 +10,20 @@
             <div class="leaders__dropdown-bg-inner" />
           </div>
           <div class="leaders__dropdown-arrow" />
+          <div class="leaders__dropdown-sections">
+            <section
+              v-for="item of items"
+              :key="item.id"
+              :data-dropdown-section-id="item.id"
+              class="leaders__dropdown-section"
+            >
+              <div class="leaders__dropdown-section-content-wrap">
+                <div class="leaders__dropdown-section-content">
+                  {{ item.label }}
+                </div>
+              </div>
+            </section>
+          </div>
         </div>
       </aside>
     </row>
@@ -28,10 +42,10 @@ export default {
 
   data: () => ({
     items: [
-      { label: 'Robatech USA Inc', href: '#' },
-      { label: 'Schubert North America', href: '#' },
-      { label: 'Serpa Packaging Solutions', href: '#' },
-      { label: 'Soma America, Inc.', href: '#' },
+      { id: 1, label: 'Robatech USA Inc', href: '#' },
+      { id: 2, label: 'Schubert North America', href: '#' },
+      { id: 3, label: 'Serpa Packaging Solutions', href: '#' },
+      { id: 4, label: 'Soma America, Inc.', href: '#' },
     ],
   }),
 };
@@ -138,6 +152,34 @@ body {
     transition: none;
     transform: rotate(45deg);
     will-change: transform;
+  }
+
+  &__dropdown-sections {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 500px;
+    overflow: hidden;
+    transition: none;
+    transform: translateX(0);
+    will-change: transform, width, height;
+  }
+
+  &__dropdown-section {
+    pointer-events: none;
+    opacity: 0;
+    transition: none;
+    will-change: transform, opacity;
+  }
+
+  &__dropdown-section-content-wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  &__dropdown-section-content {
+    padding: 30px;
   }
 }
 
