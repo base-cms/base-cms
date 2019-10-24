@@ -1,6 +1,11 @@
 const { BaseDB } = require('@base-cms/db');
 const { UserInputError } = require('apollo-server-express');
 const { websiteSection: canonicalPathFor } = require('@base-cms/canonical-path');
+
+const connectionProjection = require('../../utils/connection-projection');
+const shouldCollate = require('../../utils/should-collate');
+const applyInput = require('../../utils/apply-input');
+const formatStatus = require('../../utils/format-status');
 const getProjection = require('../../utils/get-projection');
 const getGraphType = require('../../utils/get-graph-type');
 const { createTitle, createDescription } = require('../../utils/website-section');
@@ -102,6 +107,46 @@ module.exports = {
    *
    */
   Query: {
+    /**
+     *
+     */
+    websiteSections: async (_, { input }, { basedb, site }, info) => {
+      const {
+        includeIds,
+        excludeIds,
+        rootOnly,
+        taxonomyIds,
+        status,
+        sort,
+        pagination,
+      } = input;
+
+      const siteId = input.siteId || site.id();
+      const query = applyInput({
+        query: { ...formatStatus(status) },
+        input,
+        ...(siteId && { siteId }),
+      });
+
+      if (rootOnly) query['parent.$id'] = { $exists: false };
+      if (taxonomyIds.length) query['relatedTaxonomy.$id'] = { $in: taxonomyIds };
+      if (includeIds.length || excludeIds.length) {
+        query._id = {};
+        if (includeIds.length) query._id.$in = includeIds;
+        if (excludeIds.length) query._id.$nin = excludeIds;
+      }
+
+      const projection = connectionProjection(info);
+      const result = await basedb.paginate('website.Section', {
+        query,
+        sort,
+        projection,
+        collate: shouldCollate(sort.field),
+        ...pagination,
+      });
+      return result;
+    },
+
     /**
      *
      */
