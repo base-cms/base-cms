@@ -14,7 +14,11 @@ extend type Query {
     )
 
   taxonomiesOfType(input: TaxonomiesOfTypeQueryInput!): TaxonomyConnection!
-    @findMany(model: "platform.Taxonomy", using: { type: "type" })
+    @deprecated(reason: "Use \`Query.taxonomies\` with \`input.includeTypes = []\` instead.")
+    @findMany(
+      model: "platform.Taxonomy",
+      using: { type: "type" },
+    )
 
   rootTaxonomies(input: RootTaxonomiesQueryInput = {}): TaxonomyConnection!
     @findMany(model: "platform.Taxonomy", criteria: "rootTaxonomies")
