@@ -28,7 +28,12 @@ extend type Query {
     )
 
   rootTaxonomiesOfType(input: RootTaxonomiesOfTypeQueryInput!): TaxonomyConnection!
-    @findMany(model: "platform.Taxonomy", using: { type: "type" }, criteria: "rootTaxonomiesOfType")
+    @deprecated(reason: "Use \`Query.taxonomies\` with \`input.rootOnly = true\` and \`input.includeTypes = []\` instead.")
+    @findMany(
+      model: "platform.Taxonomy",
+      using: { type: "type" },
+      criteria: "rootTaxonomiesOfType",
+    )
 
   matchTaxonomies(input: MatchTaxonomiesQueryInput!): TaxonomyConnection!
     @matchMany(model: "platform.Taxonomy", criteria: "taxonomy")
