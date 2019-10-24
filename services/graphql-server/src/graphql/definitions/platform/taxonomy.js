@@ -4,7 +4,11 @@ module.exports = gql`
 
 extend type Query {
   taxonomy(input: TaxonomyQueryInput!): Taxonomy
-    @findOne(model: "platform.Taxonomy", using: { id: "_id" }, criteria: "taxonomy")
+    @findOne(
+      model: "platform.Taxonomy",
+      using: { id: "_id" },
+      criteria: "taxonomy",
+    )
 
   taxonomies(input: TaxonomiesQueryInput = {}): TaxonomyConnection!
     @findMany(
@@ -36,7 +40,10 @@ extend type Query {
     )
 
   matchTaxonomies(input: MatchTaxonomiesQueryInput!): TaxonomyConnection!
-    @matchMany(model: "platform.Taxonomy", criteria: "taxonomy")
+    @matchMany(
+      model: "platform.Taxonomy",
+      criteria: "taxonomy",
+    )
 }
 
 type Taxonomy {
