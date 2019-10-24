@@ -1,39 +1,32 @@
 <template>
   <container>
     <row>
-      <column>
-        <div class="leaders">
-          <h1>Hello World!</h1>
-          <list-group :items="items">
-            <template slot-scope="leader">
-              {{ leader.label }}
-            </template>
-          </list-group>
-        </div>
-      </column>
+      <aside class="leaders">
+        <nav class="leaders__navbar">
+          <ul class="leaders__nav" />
+        </nav>
+        <div class="leaders__dropdown" />
+      </aside>
     </row>
   </container>
 </template>
 
 <script>
-import Column from './components/generic/column.vue';
 import Container from './components/generic/container.vue';
-import ListGroup from './components/list-group.vue';
 import Row from './components/generic/row.vue';
 
 export default {
   components: {
-    Column,
     Container,
-    ListGroup,
     Row,
   },
 
   data: () => ({
     items: [
-      { label: 'Foo' },
-      { label: 'Bar' },
-      { label: 'Baz' },
+      { label: 'Robatech USA Inc', href: '#' },
+      { label: 'Schubert North America', href: '#' },
+      { label: 'Serpa Packaging Solutions', href: '#' },
+      { label: 'Soma America, Inc.', href: '#' },
     ],
   }),
 };
@@ -64,4 +57,63 @@ body {
   text-align: left;
   background-color: #fff;
 }
+
+.leaders {
+  position: relative;
+  width: 100%;
+  background-color: #f5f9fc;
+  border-bottom: 5px solid #ecf0fb;
+  perspective: 2000px;
+
+  &__navbar {
+    margin: 0 10px;
+  }
+
+  &__nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 1024px;
+    padding: 0;
+    margin: 0 auto;
+    list-style: none;
+  }
+
+  &__dropdown {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    left: 0;
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 0;
+    transition-duration: 250ms;
+    transition-property: transform, opacity;
+    transform: rotateX(-15deg);
+    transform-origin: 50% -50px;
+    will-change: transform, opacity;
+  }
+}
+
+// .list-group {
+//   display: flex;
+//   justify-content: center;
+//   width: 60vw;
+//   padding: 1rem;
+//   margin: 0 auto;
+//   font-size: 17px;
+//   &__item {
+//     display: block;
+//     width: 100%;
+//     padding: .25rem;
+//     color: #6b7c93;
+//     text-align: center;
+//     text-decoration: none;
+
+//     &:hover {
+//       color: #32325d;
+//       text-decoration: none;
+//     }
+//   }
+// }
 </style>
