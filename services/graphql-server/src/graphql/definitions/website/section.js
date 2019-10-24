@@ -19,6 +19,11 @@ extend type Query {
     using: { alias: "redirects" }
   )
   websiteSections(input: WebsiteSectionsQueryInput = {}): WebsiteSectionConnection!
+    @findMany(
+      model: "website.Section",
+      withSite: true,
+      queryBuilder: "websiteSections",
+    )
 
   rootWebsiteSections(input: RootWebsiteSectionsQueryInput = {}): WebsiteSectionConnection! @findMany(
     model: "website.Section",

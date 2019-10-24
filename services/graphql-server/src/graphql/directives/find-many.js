@@ -4,6 +4,7 @@ const criteriaFor = require('../utils/criteria-for');
 const applyInput = require('../utils/apply-input');
 const shouldCollate = require('../utils/should-collate');
 const connectionProjection = require('../utils/connection-projection');
+const buildQuery = require('../query-builders');
 
 class FindManyDirective extends SchemaDirectiveVisitor {
   /**
@@ -12,8 +13,10 @@ class FindManyDirective extends SchemaDirectiveVisitor {
    */
   visitFieldDefinition(field) {
     // eslint-disable-next-line no-param-reassign
-    field.resolve = async (_, { input = {} }, { basedb, site }, info) => {
+    field.resolve = async (_, variables, ctx, info) => {
       const start = process.hrtime();
+      const { basedb, site } = ctx;
+      const { input = {} } = variables;
 
       const {
         model,
@@ -21,6 +24,7 @@ class FindManyDirective extends SchemaDirectiveVisitor {
         criteria,
         withSite,
         siteField,
+        queryBuilder,
       } = this.args;
 
       const {
@@ -31,11 +35,18 @@ class FindManyDirective extends SchemaDirectiveVisitor {
 
       const siteId = input.siteId || site.id();
 
-      const query = applyInput({
+      const applied = applyInput({
         query: { ...criteriaFor(criteria), ...formatStatus(status) },
         using,
         input,
         ...(withSite && siteId && { siteId, siteField }),
+      });
+
+      const query = await buildQuery(queryBuilder, {
+        query: applied,
+        variables: { input },
+        ctx,
+        info,
       });
 
       const projection = connectionProjection(info);
