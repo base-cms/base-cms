@@ -21,7 +21,11 @@ extend type Query {
     )
 
   rootTaxonomies(input: RootTaxonomiesQueryInput = {}): TaxonomyConnection!
-    @findMany(model: "platform.Taxonomy", criteria: "rootTaxonomies")
+    @deprecated(reason: "Use \`Query.taxonomies\` with \`input.rootOnly = true\` instead.")
+    @findMany(
+      model: "platform.Taxonomy",
+      criteria: "rootTaxonomies",
+    )
 
   rootTaxonomiesOfType(input: RootTaxonomiesOfTypeQueryInput!): TaxonomyConnection!
     @findMany(model: "platform.Taxonomy", using: { type: "type" }, criteria: "rootTaxonomiesOfType")
