@@ -6,9 +6,9 @@
 
 
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css?family=Muli:300,400,600&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Muli:300,400,600&display=swap");
 
 .leaders {
-  font-family: 'Muli', sans-serif;
+  font-family: Muli, sans-serif;
 }
 </style>
