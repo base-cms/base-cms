@@ -51,7 +51,10 @@ class FindOneDirective extends SchemaDirectiveVisitor {
         info,
       });
 
-      const result = await basedb.findOne(model, query, { projection, sort });
+      const result = await basedb.findOne(model, query, {
+        projection,
+        ...(sort && { sort: { [sort.field]: sort.order === 'desc' ? -1 : 1 } }),
+      });
       return result;
     };
   }
