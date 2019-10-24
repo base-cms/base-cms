@@ -29,7 +29,6 @@ class FindManyDirective extends SchemaDirectiveVisitor {
 
       const {
         status,
-        sort,
         pagination,
       } = input;
 
@@ -42,8 +41,8 @@ class FindManyDirective extends SchemaDirectiveVisitor {
         ...(withSite && siteId && { siteId, siteField }),
       });
 
-      const query = await buildQuery(queryBuilder, {
-        query: applied,
+      const { query, sort } = await buildQuery(queryBuilder, {
+        currentValues: { query: applied, sort: input.sort },
         variables,
         ctx,
         info,

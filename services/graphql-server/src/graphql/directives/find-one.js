@@ -44,14 +44,14 @@ class FindOneDirective extends SchemaDirectiveVisitor {
         ...(withSite && siteId && { siteId, siteField }),
       });
 
-      const query = await buildQuery(queryBuilder, {
-        query: applied,
+      const { query, sort } = await buildQuery(queryBuilder, {
+        currentValues: { query: applied, sort: input.sort },
         variables,
         ctx,
         info,
       });
 
-      const result = await basedb.findOne(model, query, { projection });
+      const result = await basedb.findOne(model, query, { projection, sort });
       return result;
     };
   }

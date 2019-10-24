@@ -1,14 +1,14 @@
-module.exports = (currentQuery, { input }) => {
-  const query = { ...currentQuery };
+module.exports = ({ query }, { input }) => {
+  const q = { ...query };
 
   const {
     publicationId,
     excludeIssueIds,
   } = input;
 
-  query.mailDate = { $lte: new Date() };
-  query['publication.$id'] = publicationId;
-  if (excludeIssueIds.length) query._id = { $nin: excludeIssueIds };
+  q.mailDate = { $lte: new Date() };
+  q['publication.$id'] = publicationId;
+  if (excludeIssueIds.length) q._id = { $nin: excludeIssueIds };
 
-  return query;
+  return { query: q };
 };

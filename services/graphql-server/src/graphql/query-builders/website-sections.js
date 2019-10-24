@@ -1,5 +1,5 @@
-module.exports = (currentQuery, { input }) => {
-  const query = { ...currentQuery };
+module.exports = ({ query }, { input }) => {
+  const q = { ...query };
 
   const {
     includeIds,
@@ -8,13 +8,13 @@ module.exports = (currentQuery, { input }) => {
     taxonomyIds,
   } = input;
 
-  if (rootOnly) query['parent.$id'] = { $exists: false };
-  if (taxonomyIds.length) query['relatedTaxonomy.$id'] = { $in: taxonomyIds };
+  if (rootOnly) q['parent.$id'] = { $exists: false };
+  if (taxonomyIds.length) q['relatedTaxonomy.$id'] = { $in: taxonomyIds };
   if (includeIds.length || excludeIds.length) {
-    query._id = {};
-    if (includeIds.length) query._id.$in = includeIds;
-    if (excludeIds.length) query._id.$nin = excludeIds;
+    q._id = {};
+    if (includeIds.length) q._id.$in = includeIds;
+    if (excludeIds.length) q._id.$nin = excludeIds;
   }
 
-  return query;
+  return { query: q };
 };
