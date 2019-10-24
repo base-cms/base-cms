@@ -44,7 +44,7 @@ class FindManyDirective extends SchemaDirectiveVisitor {
 
       const query = await buildQuery(queryBuilder, {
         query: applied,
-        variables: { input },
+        variables,
         ctx,
         info,
       });
