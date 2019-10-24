@@ -3,10 +3,28 @@ const gql = require('graphql-tag');
 module.exports = gql`
 
 extend type Query {
-  magazineIssue(input: MagazineIssueQueryInput!): MagazineIssue @findOne(model: "magazine.Issue", using: { id: "_id" })
-  magazineIssues(input: MagazineIssuesQueryInput = {}): MagazineIssueConnection! @findMany(model: "magazine.Issue")
-  magazineActiveIssues(input: MagazineActiveIssuesQueryInput = {}): MagazineIssueConnection!
+  magazineIssue(input: MagazineIssueQueryInput!): MagazineIssue
+    @findOne(
+      model: "magazine.Issue",
+      using: { id: "_id" },
+    )
+
+  magazineIssues(input: MagazineIssuesQueryInput = {}): MagazineIssueConnection!
+    @findMany(
+      model: "magazine.Issue",
+    )
+
+  magazineActiveIssues(input: MagazineActiveIssuesQueryInput!): MagazineIssueConnection!
+    @findMany(
+      model: "magazine.Issue",
+      queryBuilder: "magazineActiveIssues",
+    )
+
   magazineLatestIssue(input: MagazineLatestIssueQueryInput!): MagazineIssue
+    @findOne(
+      model: "magazine.Issue",
+      queryBuilder: "magazineLatestIssue",
+    )
 }
 
 type MagazineIssue {

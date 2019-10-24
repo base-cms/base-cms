@@ -4,21 +4,46 @@ module.exports = gql`
 
 extend type Query {
   taxonomy(input: TaxonomyQueryInput!): Taxonomy
-    @findOne(model: "platform.Taxonomy", using: { id: "_id" }, criteria: "taxonomy")
+    @findOne(
+      model: "platform.Taxonomy",
+      using: { id: "_id" },
+      criteria: "taxonomy",
+    )
 
   taxonomies(input: TaxonomiesQueryInput = {}): TaxonomyConnection!
+    @findMany(
+      model: "platform.Taxonomy",
+      criteria: "taxonomy"
+      queryBuilder: "taxonomies",
+    )
 
   taxonomiesOfType(input: TaxonomiesOfTypeQueryInput!): TaxonomyConnection!
-    @findMany(model: "platform.Taxonomy", using: { type: "type" })
+    @deprecated(reason: "Use \`Query.taxonomies\` with \`input.includeTypes = []\` instead.")
+    @findMany(
+      model: "platform.Taxonomy",
+      using: { type: "type" },
+    )
 
   rootTaxonomies(input: RootTaxonomiesQueryInput = {}): TaxonomyConnection!
-    @findMany(model: "platform.Taxonomy", criteria: "rootTaxonomies")
+    @deprecated(reason: "Use \`Query.taxonomies\` with \`input.rootOnly = true\` instead.")
+    @findMany(
+      model: "platform.Taxonomy",
+      criteria: "rootTaxonomies",
+    )
 
   rootTaxonomiesOfType(input: RootTaxonomiesOfTypeQueryInput!): TaxonomyConnection!
-    @findMany(model: "platform.Taxonomy", using: { type: "type" }, criteria: "rootTaxonomiesOfType")
+    @deprecated(reason: "Use \`Query.taxonomies\` with \`input.rootOnly = true\` and \`input.includeTypes = []\` instead.")
+    @findMany(
+      model: "platform.Taxonomy",
+      using: { type: "type" },
+      criteria: "rootTaxonomiesOfType",
+    )
 
   matchTaxonomies(input: MatchTaxonomiesQueryInput!): TaxonomyConnection!
-    @matchMany(model: "platform.Taxonomy", criteria: "taxonomy")
+    @matchMany(
+      model: "platform.Taxonomy",
+      criteria: "taxonomy",
+    )
 }
 
 type Taxonomy {

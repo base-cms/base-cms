@@ -33,5 +33,5 @@ module.exports = (key) => {
   if (!key) return {};
   const fn = criterion[key];
   if (fn) return fn();
-  return {};
+  throw new Error(`No criteria function was found for '${key}'`);
 };

@@ -3,36 +3,50 @@ const gql = require('graphql-tag');
 module.exports = gql`
 
 extend type Query {
-  websiteSection(input: WebsiteSectionQueryInput!): WebsiteSection @findOne(
-    model: "website.Section",
-    withSite: true,
-    using: { id: "_id" }
-  )
-  websiteSectionAlias(input: WebsiteSectionAliasQueryInput!): WebsiteSection @findOne(
-    model: "website.Section",
-    withSite: true,
-    using: { alias: "alias" }
-  )
-  websiteSectionRedirect(input: WebsiteSectionRedirectQueryInput!): WebsiteSection @findOne(
-    model: "website.Section",
-    withSite: true,
-    using: { alias: "redirects" }
-  )
-  websiteSections(input: WebsiteSectionsQueryInput = {}): WebsiteSectionConnection! @findMany(
-    model: "website.Section",
-    withSite: true,
-    using: { taxonomyIds: "relatedTaxonomy.$id" },
-  )
-  rootWebsiteSections(input: RootWebsiteSectionsQueryInput = {}): WebsiteSectionConnection! @findMany(
-    model: "website.Section",
-    withSite: true,
-    criteria: "rootWebsiteSection"
-  )
-  websiteSectionsFromIds(input: WebsiteSectionsFromIdsQueryInput!): WebsiteSectionConnection! @findMany(
-    model: "website.Section",
-    withSite: true,
-    using: { ids: "_id" }
-  )
+  websiteSection(input: WebsiteSectionQueryInput!): WebsiteSection
+    @findOne(
+      model: "website.Section",
+      withSite: true,
+      using: { id: "_id" }
+    )
+
+  websiteSectionAlias(input: WebsiteSectionAliasQueryInput!): WebsiteSection
+    @findOne(
+      model: "website.Section",
+      withSite: true,
+      using: { alias: "alias" }
+    )
+
+  websiteSectionRedirect(input: WebsiteSectionRedirectQueryInput!): WebsiteSection
+    @findOne(
+      model: "website.Section",
+      withSite: true,
+      using: { alias: "redirects" }
+    )
+
+  websiteSections(input: WebsiteSectionsQueryInput = {}): WebsiteSectionConnection!
+    @findMany(
+      model: "website.Section",
+      withSite: true,
+      queryBuilder: "websiteSections",
+    )
+
+  rootWebsiteSections(input: RootWebsiteSectionsQueryInput = {}): WebsiteSectionConnection!
+    @deprecated(reason: "Use \`Query.websiteSections\` with \`input.rootOnly = true\` instead.")
+    @findMany(
+      model: "website.Section",
+      withSite: true,
+      criteria: "rootWebsiteSection"
+    )
+
+  websiteSectionsFromIds(input: WebsiteSectionsFromIdsQueryInput!): WebsiteSectionConnection!
+    @deprecated(reason: "Use \`Query.websiteSections\` with \`input.includeIds = []\` instead.")
+    @findMany(
+      model: "website.Section",
+      withSite: true,
+      using: { ids: "_id" }
+    )
+
   websiteSectionSitemapUrls(input: WebsiteSectionSitemapUrlsQueryInput = {}): [WebsiteSectionSitemapUrl!]!
 }
 
@@ -129,7 +143,10 @@ input WebsiteSectionRedirectQueryInput {
 
 input WebsiteSectionsQueryInput {
   siteId: ObjectID
-  taxonomyIds: [Int!] # filter against relatedTaxonomy.$id
+  includeIds: [Int!] = []
+  excludeIds: [Int!] = []
+  rootOnly: Boolean = false
+  taxonomyIds: [Int!] = []
   status: ModelStatus = active
   sort: WebsiteSectionSortInput = {}
   pagination: PaginationInput = {}
