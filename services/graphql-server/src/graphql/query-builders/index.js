@@ -36,5 +36,5 @@ module.exports = async (key, {
       sort: sort || currentValues.sort,
     };
   }
-  return currentValues;
+  throw new Error(`No query builder function was found for '${key}'`);
 };
