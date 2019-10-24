@@ -1,4 +1,3 @@
-
 module.exports = (currentQuery, { input }) => {
   const query = { ...currentQuery };
 
