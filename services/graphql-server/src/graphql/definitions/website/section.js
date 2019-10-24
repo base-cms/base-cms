@@ -25,16 +25,22 @@ extend type Query {
       queryBuilder: "websiteSections",
     )
 
-  rootWebsiteSections(input: RootWebsiteSectionsQueryInput = {}): WebsiteSectionConnection! @findMany(
-    model: "website.Section",
-    withSite: true,
-    criteria: "rootWebsiteSection"
-  )
-  websiteSectionsFromIds(input: WebsiteSectionsFromIdsQueryInput!): WebsiteSectionConnection! @findMany(
-    model: "website.Section",
-    withSite: true,
-    using: { ids: "_id" }
-  )
+  rootWebsiteSections(input: RootWebsiteSectionsQueryInput = {}): WebsiteSectionConnection!
+    @findMany(
+      model: "website.Section",
+      withSite: true,
+      criteria: "rootWebsiteSection"
+    )
+    @deprecated(reason: "Use \`Query.websiteSections\` with \`input.rootOnly = true\` instead.")
+
+  websiteSectionsFromIds(input: WebsiteSectionsFromIdsQueryInput!): WebsiteSectionConnection!
+    @findMany(
+      model: "website.Section",
+      withSite: true,
+      using: { ids: "_id" }
+    )
+    @deprecated(reason: "Use \`Query.websiteSections\` with \`input.includeIds = []\` instead.")
+
   websiteSectionSitemapUrls(input: WebsiteSectionSitemapUrlsQueryInput = {}): [WebsiteSectionSitemapUrl!]!
 }
 
