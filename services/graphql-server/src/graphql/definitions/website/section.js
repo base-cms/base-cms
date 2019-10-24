@@ -3,21 +3,27 @@ const gql = require('graphql-tag');
 module.exports = gql`
 
 extend type Query {
-  websiteSection(input: WebsiteSectionQueryInput!): WebsiteSection @findOne(
-    model: "website.Section",
-    withSite: true,
-    using: { id: "_id" }
-  )
-  websiteSectionAlias(input: WebsiteSectionAliasQueryInput!): WebsiteSection @findOne(
-    model: "website.Section",
-    withSite: true,
-    using: { alias: "alias" }
-  )
-  websiteSectionRedirect(input: WebsiteSectionRedirectQueryInput!): WebsiteSection @findOne(
-    model: "website.Section",
-    withSite: true,
-    using: { alias: "redirects" }
-  )
+  websiteSection(input: WebsiteSectionQueryInput!): WebsiteSection
+    @findOne(
+      model: "website.Section",
+      withSite: true,
+      using: { id: "_id" }
+    )
+
+  websiteSectionAlias(input: WebsiteSectionAliasQueryInput!): WebsiteSection
+    @findOne(
+      model: "website.Section",
+      withSite: true,
+      using: { alias: "alias" }
+    )
+
+  websiteSectionRedirect(input: WebsiteSectionRedirectQueryInput!): WebsiteSection
+    @findOne(
+      model: "website.Section",
+      withSite: true,
+      using: { alias: "redirects" }
+    )
+
   websiteSections(input: WebsiteSectionsQueryInput = {}): WebsiteSectionConnection!
     @findMany(
       model: "website.Section",
