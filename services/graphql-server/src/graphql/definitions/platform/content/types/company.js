@@ -14,6 +14,14 @@ type ContentCompany implements Content & PrimaryCategory & Contactable & Address
   statesServed: [String]! @projection @arrayValue
   companyCompetitors(input: ContentCompanyCompanyCompetitorsInput = {}): ContentCompanyConnection! @projection @refMany(model: "platform.Content", criteria: "contentCompany")
 
+  numberOfEmployees: String @projection
+  trainingInformation: String @projection
+  yearsInOperation: String @projection
+  salesRegion: String @projection
+  servicesProvided: String @projection
+  salesChannels: String @projection
+  productSummary: String @projection
+
   # fields directly on platform.model::Content\Company from mutations
   featuredCategories(input: ContentCompanyFeaturedCategoriesInput = {}): TaxonomyConnection! @projection(localField: "mutations.Website.featuredCategories") @refMany(model: "platform.Taxonomy", localField: "mutations.Website.featuredCategories", criteria: "taxonomyCategory")
 }
