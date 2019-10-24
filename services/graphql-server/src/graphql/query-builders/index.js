@@ -1,3 +1,4 @@
+const taxonomies = require('./taxonomies');
 const websiteSections = require('./website-sections');
 
 /**
@@ -9,8 +10,10 @@ const websiteSections = require('./website-sections');
  * The GraphQL info object.
  *
  * Functions can be async, as they are awaited by the directives.
+ * Each function should return the modified query object.
  */
 const builders = {
+  taxonomies,
   websiteSections,
 };
 

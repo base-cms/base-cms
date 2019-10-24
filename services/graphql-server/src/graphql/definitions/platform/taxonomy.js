@@ -7,6 +7,11 @@ extend type Query {
     @findOne(model: "platform.Taxonomy", using: { id: "_id" }, criteria: "taxonomy")
 
   taxonomies(input: TaxonomiesQueryInput = {}): TaxonomyConnection!
+    @findMany(
+      model: "platform.Taxonomy",
+      criteria: "taxonomy"
+      queryBuilder: "taxonomies",
+    )
 
   taxonomiesOfType(input: TaxonomiesOfTypeQueryInput!): TaxonomyConnection!
     @findMany(model: "platform.Taxonomy", using: { type: "type" })
