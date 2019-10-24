@@ -5,7 +5,12 @@
         <nav class="leaders__navbar">
           <ul class="leaders__nav" />
         </nav>
-        <div class="leaders__dropdown" />
+        <div class="leaders__dropdown">
+          <div class="leaders__dropdown-bg">
+            <div class="leaders__dropdown-bg-inner" />
+          </div>
+          <div class="leaders__dropdown-arrow" />
+        </div>
       </aside>
     </row>
   </container>
@@ -92,6 +97,47 @@ body {
     transform: rotateX(-15deg);
     transform-origin: 50% -50px;
     will-change: transform, opacity;
+  }
+
+  &__dropdown-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 380px;
+    height: 400px;
+    overflow: hidden;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: $dropdown-menu-box-shadow;
+    transition: none;
+    transform: translateX(0);
+    will-change: transform;
+  }
+
+  &__dropdown-bg-inner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 1000px;
+    background-color: #f6f9fc;
+    transition: none;
+    will-change: transform;
+  }
+
+  &__dropdown-arrow {
+    position: absolute;
+    top: -6px;
+    left: 0;
+    width: 12px;
+    height: 12px;
+    margin: 0 0 0 -6px;
+    background-color: #fff;
+    border-radius: 4px 0 0;
+    box-shadow: -3px -3px 5px rgba(82, 95, 127, .04);
+    transition: none;
+    transform: rotate(45deg);
+    will-change: transform;
   }
 }
 
