@@ -1,3 +1,4 @@
+const magazineActiveIssues = require('./magazine-active-issues');
 const taxonomies = require('./taxonomies');
 const websiteSections = require('./website-sections');
 
@@ -13,6 +14,7 @@ const websiteSections = require('./website-sections');
  * Each function should return the modified query object.
  */
 const builders = {
+  magazineActiveIssues,
   taxonomies,
   websiteSections,
 };

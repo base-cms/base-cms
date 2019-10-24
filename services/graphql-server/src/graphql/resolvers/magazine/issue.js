@@ -53,35 +53,6 @@ module.exports = {
     /**
      *
      */
-    magazineActiveIssues: async (_, { input }, { basedb }, info) => {
-      const {
-        publicationId,
-        excludeIssueIds,
-        sort,
-        pagination,
-      } = input;
-
-      const projection = connectionProjection(info);
-      const query = {
-        status: 1,
-        mailDate: { $lte: new Date() },
-        'publication.$id': publicationId,
-      };
-      if (excludeIssueIds.length) {
-        query._id = { $nin: excludeIssueIds };
-      }
-      return basedb.paginate('magazine.Issue', {
-        query,
-        sort,
-        projection,
-        collate: shouldCollate(sort.field),
-        ...pagination,
-      });
-    },
-
-    /**
-     *
-     */
     magazineLatestIssue: async (_, { input }, { basedb }) => {
       const { publicationId, sort: { field, order } } = input;
       const mailDate = new Date();
