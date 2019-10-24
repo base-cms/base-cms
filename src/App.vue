@@ -89,6 +89,7 @@ body {
 }
 
 .leaders {
+  $self: &;
   position: relative;
   width: 100%;
   background-color: #f5f9fc;
@@ -206,6 +207,17 @@ body {
     opacity: 0;
     transition: none;
     will-change: transform, opacity;
+    &--active {
+      pointer-events: auto;
+      opacity: 1;
+      transform: translateX(0);
+    }
+    &--left {
+      transform: translateX(-150px);
+    }
+    &--right {
+      transform: translateX(150px);
+    }
   }
 
   &__dropdown-section-content-wrap {
@@ -217,27 +229,15 @@ body {
   &__dropdown-section-content {
     padding: 30px;
   }
+
+  &--dropdown-active {
+    #{ $self } {
+      &__dropdown {
+        pointer-events: auto;
+        opacity: 1;
+        transform: none;
+      }
+    }
+  }
 }
-
-// .list-group {
-//   display: flex;
-//   justify-content: center;
-//   width: 60vw;
-//   padding: 1rem;
-//   margin: 0 auto;
-//   font-size: 17px;
-//   &__item {
-//     display: block;
-//     width: 100%;
-//     padding: .25rem;
-//     color: #6b7c93;
-//     text-align: center;
-//     text-decoration: none;
-
-//     &:hover {
-//       color: #32325d;
-//       text-decoration: none;
-//     }
-//   }
-// }
 </style>
