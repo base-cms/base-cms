@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/canonical-path",
-  "version": "1.0.0-beta.7",
+  "version": "1.0.0-beta.12",
   "description": "Canonical path library for BaseCMS projects.",
   "main": "src/index.js",
   "author": "Josh Worden <josh@limit0.io>",
@@ -11,7 +11,7 @@
     "test": "yarn run lint && ../../node_modules/.bin/mocha --reporter spec"
   },
   "dependencies": {
-    "@base-cms/db": "^1.0.0-beta.7",
+    "@base-cms/db": "^1.0.0-beta.12",
     "@base-cms/inflector": "^1.0.0-beta.1",
     "@base-cms/object-path": "^1.0.0-beta.4",
     "@base-cms/utils": "^1.0.0-beta.4"
