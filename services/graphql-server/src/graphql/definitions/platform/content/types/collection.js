@@ -9,7 +9,7 @@ extend type Query {
 type ContentCollection implements Content @applyInterfaceFields {
   # fields directly on platform.model::Content\Collection
   displayContentType: String @projection
-  collection(input: ContentCollectionCollectionInput = {}): ContentCollectionConnection! @projection @refMany(model: "platform.Content", criteria: "assetCollection")
+  collection(input: ContentCollectionCollectionInput = {}): ContentCollectionConnection! @projection @refMany(model: "platform.Content", criteria: "contentCollection")
 }
 
 type ContentCollectionConnection {
