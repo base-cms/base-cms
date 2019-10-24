@@ -3,7 +3,18 @@
     <row>
       <aside class="leaders">
         <nav class="leaders__navbar">
-          <ul class="leaders__nav" />
+          <ul class="leaders__nav">
+            <li class="leaders__nav-item">
+              <button
+                v-for="item of items"
+                :key="item.id"
+                :data-dropdown-id="item.id"
+                class="leaders__nav-button"
+              >
+                {{ item.label }}
+              </button>
+            </li>
+          </ul>
         </nav>
         <div class="leaders__dropdown">
           <div class="leaders__dropdown-bg">
@@ -96,6 +107,31 @@ body {
     padding: 0;
     margin: 0 auto;
     list-style: none;
+  }
+
+  &__nav-item {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    list-style: none;
+  }
+
+  &__nav-button {
+    padding: 10px 25px;
+    margin: 0;
+    font-family: inherit;
+    font-size: 17px;
+    color: #6b7c93;
+    cursor: pointer;
+    user-select: none;
+    background: none;
+    border: none;
+    outline: none;
+    transition: color 100ms ease;
+
+    &:hover {
+      color: #32325d;
+    }
   }
 
   &__dropdown {
