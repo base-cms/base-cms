@@ -12,15 +12,25 @@ scalar ObjectID
 
 directive @applyInterfaceFields on OBJECT
 directive @arrayValue(localField: String) on FIELD_DEFINITION
+
 directive @findMany(
-  model: String!, # The model name to query, e.g. platform.Content or website.Schedule
-  using: JSON, # A query input-to-document map. The key represents the input and the key represents to doc field to apply the input value to.
-  withSite: Boolean = false, # when true, will apply the siteId context (if present) to the query
-  siteField: String = "site.$id", # the document field to apply the siteId to
-  criteria: String # A query criteria key name to apply. If present in utils/criteria-for.js, will apply the criteria found to the query.
-  queryBuilder: String # A query builder key. If present in query-builders/index.js, will invoke the function which must return a query object.
+  model: String!, # The model name to query, e.g. platform.Content or website.Schedule.
+  using: JSON, # A query input-to-document map. The key represents the input and the value represents the doc field to apply the input value to.
+  withSite: Boolean = false, # When true, will apply the siteId context (if present) to the query.
+  siteField: String = "site.$id", # The document field to apply the siteId to.
+  criteria: String, # A query criteria key. If present in utils/criteria-for.js, will apply the criteria found to the query.
+  queryBuilder: String, # A query builder key. If present in query-builders/index.js, will invoke the function and return the modified query object.
 ) on FIELD_DEFINITION
-directive @findOne(model: String!, using: JSON, withSite: Boolean = false, siteField: String = "site.$id", criteria: String) on FIELD_DEFINITION
+
+directive @findOne(
+  model: String!,
+  using: JSON,
+  withSite: Boolean = false,
+  siteField: String = "site.$id",
+  criteria: String,
+  queryBuilder: String,
+) on FIELD_DEFINITION
+
 directive @matchMany(model: String!, using: JSON, withSite: Boolean = false, siteField: String = "site.$id", criteria: String) on FIELD_DEFINITION
 directive @momentFormat(localField: String) on FIELD_DEFINITION
 directive @mutatedValue(localField: String) on FIELD_DEFINITION
