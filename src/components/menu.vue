@@ -19,14 +19,8 @@
       </ul>
     </nav>
     <div class="leaders__dropdown">
-      <div
-        ref="background"
-        class="vsm-background"
-      >
-        <div
-          ref="backgroundAlt"
-          class="vsm-background-alt"
-        />
+      <div ref="background" class="leaders__background">
+        <div ref="backgroundAlt" class="leaders__background-alt" />
       </div>
       <div
         ref="arrow"
@@ -359,6 +353,33 @@ export default {
     will-change: transform, opacity;
   }
 
+  &__background {
+    width: 380px;
+    height: 400px;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 50px 100px -20px rgba(50, 50, 93, .25), 0 30px 60px -30px rgba(0, 0, 0, .3), 0 -18px 60px -10px rgba(0, 0, 0, .025);
+    transform: translateX(0);
+    transform-origin: 0 0;
+  }
+
+  &__background-alt {
+    right: 0;
+    height: 1000px;
+    background: #f6f9fc;
+  }
+
+  &__background,
+  &__background-alt {
+    position: absolute;
+    top: 0;
+    left: 0;
+    will-change: transform;
+    transition-duration: .25s;
+    transition-property: transform, -webkit-transform;
+  }
+
   &__dropdown-section {
     pointer-events: none;
     opacity: 0;
@@ -394,44 +415,17 @@ export default {
 
   &--no-transition {
     #{ $self } {
-      &__dropdown-section {
+      &__dropdown-section,
+      &__background,
+      &__background-alt {
         transition: none;
       }
     }
     .vsm-dropdown-container,
-    .vsm-background-alt,
-    .vsm-background,
     .vsm-arrow {
       transition: none;
     }
   }
-}
-
-.vsm-background {
-  width: 380px;
-  height: 400px;
-  overflow: hidden;
-  background: #fff;
-  border-radius: 4px;
-  box-shadow: 0 50px 100px -20px rgba(50, 50, 93, .25), 0 30px 60px -30px rgba(0, 0, 0, .3), 0 -18px 60px -10px rgba(0, 0, 0, .025);
-  transform: translateX(0);
-  transform-origin: 0 0;
-}
-
-.vsm-background,
-.vsm-background-alt {
-  position: absolute;
-  top: 0;
-  left: 0;
-  will-change: transform;
-  transition-duration: .25s;
-  transition-property: transform, -webkit-transform;
-}
-
-.vsm-background-alt {
-  right: 0;
-  height: 1000px;
-  background: #f6f9fc;
 }
 
 .vsm-arrow {
@@ -468,18 +462,4 @@ export default {
   top: 0;
   left: 0;
 }
-
-/*
- * Helper
- */
-
-// .leaders--no-transition {
-//   .vsm-dropdown-container,
-//   .vsm-background-alt,
-//   .vsm-background,
-//   .vsm-arrow,
-//     transition: none;
-//   }
-// }
-
 </style>
