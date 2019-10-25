@@ -26,4 +26,13 @@ module.exports = {
     const last = new Date((new Date()).valueOf());
     return coll.updateOne({ ping: 'pong' }, { $set: { last } }, { upsert: true });
   },
+  retrieve: async (_id) => {
+    const coll = await getCollection('responses');
+    return coll.findOne({ _id });
+  },
+  write: () => async (_id, response, ttl) => {
+    const coll = await getCollection('responses');
+    const expires = new Date((new Date()).valueOf() * ttl);
+    return coll.updateOne({ _id }, { $set: { ...response, expires } }, { upsert: true });
+  },
 };
