@@ -398,7 +398,7 @@ services:
     << : *node
     working_dir: /base-cms/services/google-data-api
     entrypoint: ["node_modules/.bin/micro-dev"]
-    command: ["--port", "10014", "--silent"]
+    command: ["--port", "10014", "--silent", "--ignore=newrelic"]
     environment:
       <<: *env
       <<: *env-mongo

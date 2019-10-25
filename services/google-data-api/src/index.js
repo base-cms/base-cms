@@ -1,4 +1,5 @@
 const { service } = require('@base-cms/micro');
+require('./newrelic');
 
 const { name, version } = require('../package.json');
 const { connect, ping } = require('./mongodb');
