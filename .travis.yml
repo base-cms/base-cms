@@ -44,3 +44,7 @@ jobs:
     - stage: deploy
       name: oEmbed
       script: scripts/deploy.js oembed
+
+    - stage: deploy
+      name: Google Data API
+      script: scripts/deploy.js google-data-api

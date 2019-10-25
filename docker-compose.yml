@@ -394,6 +394,21 @@ services:
     ports:
       - "10013:80"
 
+  google-data-api:
+    << : *node
+    working_dir: /base-cms/services/google-data-api
+    entrypoint: ["node_modules/.bin/micro-dev"]
+    command: ["--port", "10014", "--silent", "--ignore=newrelic"]
+    environment:
+      <<: *env
+      <<: *env-newrelic
+      GOOGLE_DATA_MONGO_DSN: ${GOOGLE_DATA_MONGO_DSN-mongodb://mongodb}
+      GOOGLE_API_KEY: ${GOOGLE_API_KEY}
+    depends_on:
+      - mongodb
+    ports:
+      - "10014:10014"
+
 volumes:
   esdata: {}
   mongodb: {}
