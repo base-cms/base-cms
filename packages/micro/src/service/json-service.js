@@ -1,4 +1,6 @@
 const { json, createError } = require('micro');
+const { get } = require('@base-cms/object-path');
+
 const createParamError = require('./param-error');
 const jsonErrors = require('./json-errors');
 
@@ -19,11 +21,11 @@ module.exports = async ({
     }
 
     const input = await json(req);
-    const { action, params, meta } = input;
-    if (!action) throw createError(400, 'No action provided.');
+    const { action: path, params, meta } = input;
+    if (!path) throw createError(400, 'No action provided.');
 
-    const fn = actions[action];
-    if (typeof fn !== 'function') throw createParamError('action', action, Object.keys(actions));
+    const fn = get(actions, path);
+    if (typeof fn !== 'function') throw createParamError('action', path, Object.keys(actions));
 
     const data = await fn(params || {}, {
       ...ctx,
