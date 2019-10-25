@@ -93,7 +93,20 @@ export default {
       document.body.removeEventListener(pointerEvent.end, this.onPointerEnd);
     },
 
+    toggleDropdown() {
+
+    },
+
+    openDropdown() {
+
+    },
+
+    closeDropdown() {
+
+    },
+
     onPointerEnd() {
+      if (!this.isDragging) this.closeDropdown();
     },
 
     onTouchMove() {
