@@ -5,7 +5,6 @@ module.exports = gql`
 type YoutubePlaylistItems {
   pageInfo: YoutubePageInfo
   items: [YoutubePlaylistItem!]!
-  error: String
 }
 
 type YoutubePageInfo {
