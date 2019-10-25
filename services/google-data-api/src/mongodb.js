@@ -23,8 +23,7 @@ module.exports = {
   connect,
   ping: async () => {
     const coll = await getCollection('pings');
-    const last = new Date((new Date()).valueOf());
-    return coll.updateOne({ ping: 'pong' }, { $set: { last } }, { upsert: true });
+    return coll.updateOne({ ping: 'pong' }, { $set: { last: new Date() } }, { upsert: true });
   },
   retrieve: async (url) => {
     const coll = await getCollection('responses');
@@ -32,7 +31,8 @@ module.exports = {
   },
   write: async (url, response, ttl) => {
     const coll = await getCollection('responses');
-    const expires = new Date((new Date()).valueOf() + ttl);
-    return coll.updateOne({ url }, { $set: { expires, response } }, { upsert: true });
+    const expires = new Date(Date.now() + ttl * 1000);
+    const retrieved = new Date();
+    return coll.updateOne({ url }, { $set: { expires, retrieved, response } }, { upsert: true });
   },
 };
