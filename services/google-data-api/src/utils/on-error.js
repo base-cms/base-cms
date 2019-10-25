@@ -1,3 +1,3 @@
-const { log } = console;
+const newrelic = require('../newrelic');
 
-module.exports = e => log('Caught error', e);
+module.exports = e => newrelic.noticeError(e);
