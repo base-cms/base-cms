@@ -48,17 +48,11 @@ module.exports = service.json({
         ...(forUsername && { forUsername }),
       };
       const url = `${uri}?${stringify(sortObject(payload))}`;
-      log({ url }); // DEBUG
       const record = await retrieve(url);
-      log({ record }); // DEBUG
       if (record && !force) return record.response;
 
       const response = await fetch(uri, payload);
-      log({ response }); // DEBUG
-
-      const inserted = await write(url, response, ttl);
-      log({ inserted }); // DEBUG
-
+      write(url, response, ttl);
       return response;
     },
     /**
