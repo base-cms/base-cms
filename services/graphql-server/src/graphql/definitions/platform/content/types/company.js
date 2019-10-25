@@ -22,8 +22,16 @@ type ContentCompany implements Content & PrimaryCategory & Contactable & Address
   salesChannels: String @projection
   productSummary: String @projection
 
+  youtube: YoutubeSettings @projection
+
   # fields directly on platform.model::Content\Company from mutations
   featuredCategories(input: ContentCompanyFeaturedCategoriesInput = {}): TaxonomyConnection! @projection(localField: "mutations.Website.featuredCategories") @refMany(model: "platform.Taxonomy", localField: "mutations.Website.featuredCategories", criteria: "taxonomyCategory")
+}
+
+type YoutubeSettings {
+  username: String
+  channelId: String
+  playlistId: String
 }
 
 type ContentCompanyConnection {
