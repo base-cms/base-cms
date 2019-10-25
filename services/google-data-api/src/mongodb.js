@@ -1,6 +1,6 @@
 const mongodb = require('mongodb');
 
-const { GOOGLEDATA_MONGO_DSN } = require('./env');
+const { GOOGLE_DATA_MONGO_DSN } = require('./env');
 
 const { log } = console;
 
@@ -8,8 +8,8 @@ let connection;
 
 const connect = async () => {
   if (!connection) {
-    connection = await mongodb.connect(GOOGLEDATA_MONGO_DSN, { useNewUrlParser: true });
-    log(`> MongoDB connected (${GOOGLEDATA_MONGO_DSN})`);
+    connection = await mongodb.connect(GOOGLE_DATA_MONGO_DSN, { useNewUrlParser: true });
+    log(`> MongoDB connected (${GOOGLE_DATA_MONGO_DSN})`);
   }
   return connection;
 };

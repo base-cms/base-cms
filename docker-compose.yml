@@ -402,7 +402,7 @@ services:
     environment:
       <<: *env
       <<: *env-newrelic
-      GOOGLEDATA_MONGO_DSN: ${GOOGLEDATA_MONGO_DSN-mongodb://mongodb}
+      GOOGLE_DATA_MONGO_DSN: ${GOOGLE_DATA_MONGO_DSN-mongodb://mongodb}
       GOOGLE_API_KEY: ${GOOGLE_API_KEY}
     depends_on:
       - mongodb
