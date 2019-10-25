@@ -13,7 +13,9 @@ module.exports = service.json({
   init: async () => {
     log(`> Booting ${name} ${version}...`);
     log('> Connecting to MongoDB...');
-    await connect();
+    const connection = await connect();
+    // Ensure the TTL index is present
+    await connection.db('google-data-api').createIndex('responses', { expires: 1 }, { background: true, expireAfterSeconds: 0 });
   },
   ping,
   onError,
