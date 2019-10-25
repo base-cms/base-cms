@@ -20,10 +20,10 @@
           </ul>
         </nav>
         <div class="leaders__dropdown">
-          <div class="leaders__dropdown-bg">
-            <div class="leaders__dropdown-bg-inner" />
+          <div ref="background" class="leaders__dropdown-bg">
+            <div ref="innerBackground" class="leaders__dropdown-bg-inner" />
           </div>
-          <div class="leaders__dropdown-arrow" />
+          <div ref="arrow" class="leaders__dropdown-arrow" />
           <div ref="sectionContainer" class="leaders__dropdown-sections">
             <section
               v-for="item of items"
@@ -35,7 +35,9 @@
             >
               <div class="leaders__dropdown-section-content-wrap">
                 <div class="leaders__dropdown-section-content">
-                  {{ item.label }}
+                  <div style="width: 200px; height: 300px;">
+                    {{ item.label }}
+                  </div>
                 </div>
               </div>
             </section>
@@ -80,7 +82,7 @@ export default {
     },
     screenOffset: {
       type: Number,
-      default: 200,
+      default: 10,
       validator: v => v > 0,
     },
   },
@@ -117,6 +119,15 @@ export default {
     },
     rootElement() {
       return this.$refs.root;
+    },
+    arrowElement() {
+      return this.$refs.arrow;
+    },
+    backgroundElement() {
+      return this.$refs.background;
+    },
+    innerBackgroundElement() {
+      return this.$refs.innerBackground;
     },
   },
 
@@ -239,6 +250,7 @@ export default {
       const allowedWidth = bodyOffsetWidth - (this.screenOffset * 2);
 
       if (contentOffsetW > allowedWidth) {
+        // @todo handle this!
         console.log('content wider than allowed!');
       }
 
@@ -256,6 +268,15 @@ export default {
 
       this.clearDisableTransitionsTimeout();
       this.setEnableTransitionsTimeout();
+
+      const container = this.sectionContainerElement;
+      container.style.transform = `translateX(${pos}px)`;
+      container.style.width = `${contentOffsetW}px`;
+      container.style.height = `${contentOffsetH}px`;
+
+      this.arrowElement.style.transform = `translateX(${Math.round(buttonRect.left + buttonRect.width / 2)}px) rotate(45deg)`;
+      this.backgroundElement.style.transform = `translateX(${pos}px) scaleX(${ratioWidth}) scaleY(${ratioHeight})`;
+      this.innerBackgroundElement.style.transform = `translateY(${content.children[0].offsetHeight / ratioHeight}px)`;
 
       console.log('content', {
         contentOffsetW,
