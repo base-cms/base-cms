@@ -10,11 +10,11 @@
                 ref="buttons"
                 :key="item.id"
                 :data-dropdown-id="item.id"
-                class="leaders__nav-button"
+                class="leaders__nav-link"
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                {{ item.label }}
+                <span>{{ item.label }}</span>
               </button>
             </li>
           </ul>
@@ -76,7 +76,7 @@ export default {
     ],
     isDragging: false,
     closeTimeout: null,
-    activeButtonClass: 'leaders__nav-button--active',
+    activeButtonClass: 'leaders__nav-link--active',
     activeRootClass: 'leaders--dropdown-active',
     activeSectionClass: 'leaders__dropdown-section--active',
     leftSectionClass: 'leaders__dropdown-section--left',
@@ -325,7 +325,7 @@ body {
 
 .leaders {
   $self: &;
-  position: relative;
+  // position: relative; // double-check this
   width: 100%;
   background-color: #f5f9fc;
   border-bottom: 5px solid #ecf0fb;
@@ -352,21 +352,32 @@ body {
     list-style: none;
   }
 
-  &__nav-button {
+  &__nav-link {
+    display: inline-block;
     padding: 10px 25px;
     margin: 0;
     font-family: inherit;
     font-size: 17px;
+    font-weight: 500;
+    line-height: 1.5;
     color: #6b7c93;
+    text-decoration: none;
     cursor: pointer;
     user-select: none;
     background: none;
     border: none;
     outline: none;
     transition: color 100ms ease;
+    -webkit-tap-highlight-color: transparent;
 
-    &:hover {
+    &:hover,
+    &--active {
       color: #32325d;
+    }
+
+    * > {
+      position: relative;
+      display: block;
     }
   }
 
@@ -395,8 +406,10 @@ body {
     background-color: #fff;
     border-radius: 4px;
     box-shadow: $dropdown-menu-box-shadow;
-    transition: none;
+    transition-duration: 250ms;
+    transition-property: transform;
     transform: translateX(0);
+    transform-origin: 0 0;
     will-change: transform;
   }
 
@@ -407,7 +420,8 @@ body {
     left: 0;
     height: 1000px;
     background-color: #f6f9fc;
-    transition: none;
+    transition-duration: 250ms;
+    transition-property: transform;
     will-change: transform;
   }
 
@@ -421,7 +435,8 @@ body {
     background-color: #fff;
     border-radius: 4px 0 0;
     box-shadow: -3px -3px 5px rgba(82, 95, 127, .04);
-    transition: none;
+    transition-duration: 250ms;
+    transition-property: transform;
     transform: rotate(45deg);
     will-change: transform;
   }
@@ -432,7 +447,8 @@ body {
     left: 0;
     width: 500px;
     overflow: hidden;
-    transition: none;
+    transition-duration: 250ms;
+    transition-property: transform, width, height;
     transform: translateX(0);
     will-change: transform, width, height;
   }
@@ -440,7 +456,8 @@ body {
   &__dropdown-section {
     pointer-events: none;
     opacity: 0;
-    transition: none;
+    transition-duration: 250ms;
+    transition-property: transform, opacity;
     will-change: transform, opacity;
     &--active {
       pointer-events: auto;
@@ -471,6 +488,24 @@ body {
         pointer-events: auto;
         opacity: 1;
         transform: none;
+      }
+
+      &__dropdown-section {
+        &--active {
+          pointer-events: auto;
+        }
+      }
+    }
+  }
+
+  &--no-transition {
+    #{ $self } {
+      &__dropdown-sections,
+      &__dropdown-bg-inner,
+      &__dropdown-bg,
+      &__dropdown-arrow,
+      &__dropdown-section {
+        transition: none;
       }
     }
   }
