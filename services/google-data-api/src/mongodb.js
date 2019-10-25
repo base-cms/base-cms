@@ -26,13 +26,13 @@ module.exports = {
     const last = new Date((new Date()).valueOf());
     return coll.updateOne({ ping: 'pong' }, { $set: { last } }, { upsert: true });
   },
-  retrieve: async (_id) => {
+  retrieve: async (url) => {
     const coll = await getCollection('responses');
-    return coll.findOne({ _id });
+    return coll.findOne({ url });
   },
   write: async (url, response, ttl) => {
     const coll = await getCollection('responses');
-    return coll.updateOne({ _id }, { $set: { ...response, expires } }, { upsert: true });
     const expires = new Date((new Date()).valueOf() + ttl);
+    return coll.updateOne({ url }, { $set: { expires, response } }, { upsert: true });
   },
 };
