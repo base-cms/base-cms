@@ -491,6 +491,7 @@ module.exports = {
    *
    */
   ContentCompany: {
+    youtube: ({ youtube = {} }) => youtube,
     youtubeVideos: retrieveYoutubeVideos,
   },
 

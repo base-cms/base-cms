@@ -22,7 +22,7 @@ type ContentCompany implements Content & PrimaryCategory & Contactable & Address
   salesChannels: String @projection
   productSummary: String @projection
 
-  youtube: YoutubeSettings @projection
+  youtube: YoutubeSettings! @projection
   youtubeVideos(input: YoutubeVideosInput = {}): YoutubePlaylistItemsApiResponse! @projection(needs: ["youtube"])
 
   # fields directly on platform.model::Content\Company from mutations
@@ -37,7 +37,7 @@ type YoutubeSettings {
 
 type YoutubePlaylistItemsApiResponse {
   pageInfo: YoutubePageInfo
-  items: [YoutubePlaylistItem!]
+  items: [YoutubePlaylistItem!]!
   error: String
 }
 
