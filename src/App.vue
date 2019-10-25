@@ -22,7 +22,7 @@
             <div class="leaders__dropdown-bg-inner" />
           </div>
           <div class="leaders__dropdown-arrow" />
-          <div class="leaders__dropdown-sections">
+          <div ref="sectionContainer" class="leaders__dropdown-sections">
             <section
               v-for="item of items"
               :key="item.id"
@@ -79,11 +79,15 @@ export default {
       const { buttons } = this.$refs;
       return buttons && buttons.length ? buttons : [];
     },
+    containerElement() {
+      return this.$refs.sectionContainer;
+    },
   },
 
   mounted() {
     this.addGlobalEventListeners();
     this.addButtonEventListeners();
+    this.addSectionContainerEventListeners();
   },
 
   beforeDestroy() {
@@ -99,7 +103,7 @@ export default {
 
     addButtonEventListeners() {
       this.buttonElements.forEach((button) => {
-        if (button.dataset.dropdownReady) return;
+        if (button.dataset.ready) return;
 
         button.addEventListener('focusin', () => {
           this.clearCloseTimeout();
@@ -124,8 +128,27 @@ export default {
         });
 
         // eslint-disable-next-line no-param-reassign
-        button.dataset.dropdownReady = true;
+        button.dataset.ready = true;
       });
+    },
+
+    addSectionContainerEventListeners() {
+      const container = this.containerElement;
+      if (container.dataset.ready) return;
+
+      container.addEventListener(pointerEvent.end, (event) => {
+        event.stopPropagation();
+      });
+
+      container.addEventListener(pointerEvent.enter, (event) => {
+        if (event.pointerType !== 'touch') this.clearCloseTimeout();
+      });
+
+      container.addEventListener(pointerEvent.leave, (event) => {
+        if (event.pointerType !== 'touch') this.setCloseTimeout();
+      });
+
+      container.dataset.ready = true;
     },
 
     removeGlobalEventListeners() {
