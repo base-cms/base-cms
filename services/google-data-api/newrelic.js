@@ -1,3 +1,5 @@
+const { name } = require('./package.json');
+
 /**
  * New Relic agent configuration.
  *
@@ -8,7 +10,7 @@ exports.config = {
   /**
    * Array of application names.
    */
-  app_name: ['basecms/google-data-api'],
+  app_name: [name],
   /**
    * Your New Relic license key.
    */
