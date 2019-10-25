@@ -1,0 +1,24 @@
+{
+  "name": "@base-cms/google-data-api",
+  "version": "1.0.0-beta.12",
+  "description": "The BaseCMS Google Data API service using micro.",
+  "main": "src/index.js",
+  "author": "Josh Worden <josh@limit0.io>",
+  "repository": "https://github.com/base-cms/base-cms/tree/master/services/google-data-api",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "lint": "eslint --ext .js --max-warnings 5 ./",
+    "test": "yarn lint"
+  },
+  "dependencies": {
+    "@base-cms/env": "^1.0.0-beta.1",
+    "@base-cms/micro": "^1.0.0-beta.1",
+    "micro": "^9.3.4",
+    "mongodb": "^3.1.10",
+    "node-fetch": "^2.6.0"
+  },
+  "devDependencies": {
+    "micro-dev": "^3.0.0"
+  }
+}
