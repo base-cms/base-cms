@@ -2,10 +2,10 @@
   <container>
     <row>
       <!-- <leaders /> -->
-      <test-menu :menu="menu">
+      <test-menu :items="items">
         <template #default="data">
           <div class="content">
-            This should have content for {{ data.item.title }}
+            This should have content for {{ data.item.label }}
           </div>
         </template>
       </test-menu>
@@ -15,7 +15,6 @@
 
 <script>
 import Container from './components/generic/container.vue';
-import DefaultContent from './components/content.vue';
 // import Leaders from './components/leaders.vue';
 import TestMenu from './components/menu.vue';
 import Row from './components/generic/row.vue';
@@ -29,11 +28,11 @@ export default {
   },
 
   data: () => ({
-    menu: [
-      { title: 'Robatech USA Inc', dropdown: '1', content: DefaultContent },
-      { title: 'Schubert North America', dropdown: '2', content: DefaultContent },
-      { title: 'Serpa Packaging Solutions', dropdown: '3', content: DefaultContent },
-      { title: 'Soma America, Inc.', dropdown: '4', content: DefaultContent },
+    items: [
+      { id: 1, label: 'Robatech USA Inc', href: '#' },
+      { id: 2, label: 'Schubert North America', href: '#' },
+      { id: 3, label: 'Serpa Packaging Solutions', href: '#' },
+      { id: 4, label: 'Soma America, Inc.', href: '#' },
     ],
   }),
 };

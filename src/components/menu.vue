@@ -4,22 +4,16 @@
       <ul class="leaders__nav">
         <li class="leaders__nav-item">
           <component
-            :is="item.element || (item.dropdown ? 'button' : 'a')"
-            v-for="(item, index) in menu"
+            :is="item.element || 'button'"
+            v-for="item in items"
             ref="links"
-            :key="index"
-            :data-dropdown="item.dropdown"
+            :key="item.id"
+            :data-dropdown-id="item.id"
             class="leaders__nav-link"
             aria-haspopup="true"
             aria-expanded="false"
           >
-            <slot
-              name="title"
-              :item="item"
-              :index="index"
-            >
-              <span>{{ item.title }}</span>
-            </slot>
+            <span>{{ item.label }}</span>
           </component>
         </li>
       </ul>
@@ -43,18 +37,15 @@
         class="vsm-dropdown-container"
       >
         <div
-          v-for="(item, index) in menuHasDropdown"
-          :key="index"
+          v-for="item in items"
+          :key="item.id"
           ref="sections"
           class="vsm-dropdown-section"
-          :data-dropdown="item.dropdown"
+          :data-dropdown-id="item.id"
           aria-hidden="false"
         >
           <div class="vsm-dropdown-content">
-            <slot
-              :item="item"
-              :index="index"
-            />
+            <slot :item="item" />
           </div>
         </div>
       </div>
@@ -77,7 +68,7 @@ const pointerEvent = window.PointerEvent ? {
 export default {
   name: 'VsmMenu',
   props: {
-    menu: {
+    items: {
       type: Array,
       required: true,
     },
@@ -98,9 +89,6 @@ export default {
     },
   },
   computed: {
-    menuHasDropdown() {
-      return this.menu.filter(item => item.dropdown);
-    },
     hasDropdownEls() {
       return this.$refs.links || [];
     },
@@ -109,13 +97,12 @@ export default {
 
       return sections.map(el => ({
         el,
-        name: el.getAttribute('data-dropdown'),
+        name: el.getAttribute('data-dropdown-id'),
         content: el.children[0],
       }));
     },
   },
   mounted() {
-    console.log(this.$el);
     this.registerGlobalEvents();
     this.registerDropdownElsEvents();
     this.registerDropdownContainerEvents();
@@ -209,7 +196,7 @@ export default {
       this.hasDropdownEls.forEach(dd => dd.classList.remove('vsm-active'));
       el.classList.add('vsm-active');
 
-      const activeDataDropdown = el.getAttribute('data-dropdown');
+      const activeDataDropdown = el.getAttribute('data-dropdown-id');
       let direction = 'vsm-left';
       let offsetWidth;
       let offsetHeight;
