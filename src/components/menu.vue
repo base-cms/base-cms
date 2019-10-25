@@ -54,7 +54,6 @@ const pointerEvent = window.PointerEvent ? {
 };
 
 export default {
-  name: 'VsmMenu',
   props: {
     items: {
       type: Array,
@@ -109,7 +108,7 @@ export default {
     registerDropdownElsEvents() {
       this.hasDropdownEls.forEach((el) => {
         // Events have been registered
-        if (el.$vsm_menu) return;
+        if (el.dataset.ready) return;
 
         el.addEventListener('focusin', () => {
           this.stopCloseTimeout();
@@ -135,12 +134,12 @@ export default {
           }
         });
 
-        el.$vsm_menu = true; // eslint-disable-line no-param-reassign
+        el.dataset.ready = true; // eslint-disable-line no-param-reassign
       });
     },
     registerDropdownContainerEvents() {
       // Events have been registered
-      if (this.$refs.dropdownContainer.$vsm_menu) return;
+      if (this.$refs.dropdownContainer.dataset.ready) return;
 
       this.$refs.dropdownContainer.addEventListener(pointerEvent.end, (evt) => {
         evt.stopPropagation();
@@ -158,7 +157,7 @@ export default {
         }
       });
 
-      this.$refs.dropdownContainer.$vsm_menu = true;
+      this.$refs.dropdownContainer.dataset.ready = true;
     },
     unregisterGlobalEvents() {
       document.removeEventListener('touchmove', this.touchMoveHandler);
@@ -177,7 +176,6 @@ export default {
 
       this.$emit('open-dropdown', el);
 
-      this.$el.classList.add('vsm-overlay-active');
       this.$el.classList.add('leaders--dropdown-active');
       this.activeDropdown = el;
       this.activeDropdown.setAttribute('aria-expanded', 'true');
@@ -260,7 +258,6 @@ export default {
         this.$el.classList.add('leaders--no-transition');
       }, 50);
 
-      this.$el.classList.remove('vsm-overlay-active');
       this.$el.classList.remove('leaders--dropdown-active');
 
       this.activeDropdown.setAttribute('aria-expanded', 'false');
