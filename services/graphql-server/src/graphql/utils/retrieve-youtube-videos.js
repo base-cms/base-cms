@@ -22,12 +22,8 @@ const retrievePlaylistId = async ({ youtube }) => {
 
 module.exports = async (content, { input }, { basedb }) => {
   const { limit } = input;
-  try {
-    const playlistId = await retrievePlaylistId(content, basedb);
-    if (!playlistId) throw new Error('Unable to retrieve a playlist id');
-    const response = await client.request('youtube.playlistItems', { playlistId, maxResults: limit });
-    return response;
-  } catch (error) {
-    return { items: [], error: error.message };
-  }
+  const playlistId = await retrievePlaylistId(content, basedb);
+  if (!playlistId) return { items: [] };
+  const response = await client.request('youtube.playlistItems', { playlistId, maxResults: limit });
+  return response;
 };
