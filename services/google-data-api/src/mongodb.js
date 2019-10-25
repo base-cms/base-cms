@@ -32,7 +32,7 @@ module.exports = {
   },
   write: async (url, response, ttl) => {
     const coll = await getCollection('responses');
-    const expires = new Date((new Date()).valueOf() * ttl);
     return coll.updateOne({ _id }, { $set: { ...response, expires } }, { upsert: true });
+    const expires = new Date((new Date()).valueOf() + ttl);
   },
 };
