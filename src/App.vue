@@ -67,6 +67,24 @@ export default {
     Row,
   },
 
+  props: {
+    dropdownWidth: {
+      type: Number,
+      default: 380,
+      validator: v => v > 0,
+    },
+    dropdownHeight: {
+      type: Number,
+      default: 400,
+      validator: v => v > 0,
+    },
+    screenOffset: {
+      type: Number,
+      default: 200,
+      validator: v => v > 0,
+    },
+  },
+
   data: () => ({
     items: [
       { id: 1, label: 'Robatech USA Inc', href: '#' },
@@ -76,8 +94,11 @@ export default {
     ],
     isDragging: false,
     closeTimeout: null,
+    enableTransitionsTimeout: null,
+    disableTransitionsTimeout: null,
     activeButtonClass: 'leaders__nav-link--active',
     activeRootClass: 'leaders--dropdown-active',
+    noTransitionsClass: 'leaders--no-transitions',
     activeSectionClass: 'leaders__dropdown-section--active',
     leftSectionClass: 'leaders__dropdown-section--left',
     rightSectionClass: 'leaders__dropdown-section--right',
@@ -214,7 +235,39 @@ export default {
           this.setInactiveSectionAttrs(section);
         }
       });
-      console.log('content', contentOffsetW, contentOffsetH, content);
+      const { offsetWidth: bodyOffsetWidth } = document.body;
+      const allowedWidth = bodyOffsetWidth - (this.screenOffset * 2);
+
+      if (contentOffsetW > allowedWidth) {
+        console.log('content wider than allowed!');
+      }
+
+      const ratioWidth = contentOffsetW / this.dropdownWidth;
+      const ratioHeight = contentOffsetH / this.dropdownHeight;
+      const buttonRect = button.getBoundingClientRect();
+
+      const max = Math.max(buttonRect.left + buttonRect.width / 2 - contentOffsetW / 2, 10);
+      let pos = Math.round(max);
+
+      const rightSide = buttonRect.left + buttonRect.width / 2 + contentOffsetW / 2;
+      if (rightSide > bodyOffsetWidth) {
+        pos = pos - (rightSide - bodyOffsetWidth) - this.screenOffset;
+      }
+
+      this.clearDisableTransitionsTimeout();
+      this.setEnableTransitionsTimeout();
+
+      console.log('content', {
+        contentOffsetW,
+        contentOffsetH,
+        pos,
+        bodyOffsetWidth,
+        allowedWidth,
+        buttonRect,
+        ratioWidth,
+        ratioHeight,
+        content,
+      });
     },
 
     closeDropdown() {
@@ -225,9 +278,8 @@ export default {
 
       // @todo Handle aria-hidden on container section.
 
-      // @todo Clear timeout
-
-      // @todo Set timeout
+      this.clearEnableTransitionsTimeout();
+      this.setDisableTransitionsTimeout();
 
       // Clear active classes on the root element.
       this.clearActiveRootClass();
@@ -243,6 +295,26 @@ export default {
 
     clearCloseTimeout() {
       clearTimeout(this.closeTimeout);
+    },
+
+    setEnableTransitionsTimeout() {
+      this.enableTransitionsTimeout = setTimeout(() => {
+        this.rootElement.classList.remove(this.noTransitionsClass);
+      }, 50);
+    },
+
+    clearEnableTransitionsTimeout() {
+      clearTimeout(this.enableTransitionsTimeout);
+    },
+
+    setDisableTransitionsTimeout() {
+      this.disableTransitionsTimeout = setTimeout(() => {
+        this.rootElement.classList.add(this.noTransitionsClass);
+      }, 50);
+    },
+
+    clearDisableTransitionsTimeout() {
+      clearTimeout(this.disableTransitionsTimeout);
     },
 
     onPointerEnd() {
@@ -498,7 +570,7 @@ body {
     }
   }
 
-  &--no-transition {
+  &--no-transitions {
     #{ $self } {
       &__dropdown-sections,
       &__dropdown-bg-inner,
