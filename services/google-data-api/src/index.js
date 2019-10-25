@@ -60,5 +60,28 @@ module.exports = service.json({
 
       return response;
     },
+    /**
+     * The Youtube Playlist Items API
+     * @see https://developers.google.com/youtube/v3/docs/playlistItems/list
+     */
+    'youtube.playlistItems': async (params) => {
+      const uri = 'https://www.googleapis.com/youtube/v3/playlistItems';
+      const {
+        maxResults = 10,
+        part = 'snippet',
+        playlistId,
+        ttl = 24 * 60 * 60,
+      } = params;
+      if (!playlistId) throw new Error('A playlist id is required.');
+
+      const payload = { maxResults, part, playlistId };
+      const url = `${uri}?${stringify(sortObject(payload))}`;
+      const record = await retrieve(url);
+      if (record) return record;
+
+      const response = await fetch(uri, payload);
+      write(url, response, ttl);
+      return response;
+    },
   },
 });
