@@ -18,7 +18,7 @@
         </li>
       </ul>
     </nav>
-    <div class="vsm-dropdown">
+    <div class="leaders__dropdown">
       <div
         ref="background"
         class="vsm-background"
@@ -40,7 +40,7 @@
           v-for="item in items"
           :key="item.id"
           ref="sections"
-          class="vsm-dropdown-section"
+          class="leaders__dropdown-section"
           :data-dropdown-id="item.id"
           aria-hidden="false"
         >
@@ -190,27 +190,27 @@ export default {
       this.$emit('open-dropdown', el);
 
       this.$el.classList.add('vsm-overlay-active');
-      this.$el.classList.add('vsm-dropdown-active');
+      this.$el.classList.add('leaders--dropdown-active');
       this.activeDropdown = el;
       this.activeDropdown.setAttribute('aria-expanded', 'true');
-      this.hasDropdownEls.forEach(dd => dd.classList.remove('vsm-active'));
-      el.classList.add('vsm-active');
+      this.hasDropdownEls.forEach(dd => dd.classList.remove('leaders__nav-link--active'));
+      el.classList.add('leaders__nav-link--active');
 
       const activeDataDropdown = el.getAttribute('data-dropdown-id');
-      let direction = 'vsm-left';
+      let direction = 'leaders__dropdown-section--left';
       let offsetWidth;
       let offsetHeight;
       let content;
 
       this.sectionEls.forEach((item) => {
-        item.el.classList.remove('vsm-active');
-        item.el.classList.remove('vsm-left');
-        item.el.classList.remove('vsm-right');
+        item.el.classList.remove('leaders__dropdown-section--active');
+        item.el.classList.remove('leaders__dropdown-section--left');
+        item.el.classList.remove('leaders__dropdown-section--right');
 
         if (item.name === activeDataDropdown) {
           item.el.setAttribute('aria-hidden', 'false');
-          item.el.classList.add('vsm-active');
-          direction = 'vsm-right';
+          item.el.classList.add('leaders__dropdown-section--active');
+          direction = 'leaders__dropdown-section--right';
           offsetWidth = item.content.offsetWidth; // eslint-disable-line
           offsetHeight = item.content.offsetHeight; // eslint-disable-line
           content = item.content; // eslint-disable-line
@@ -258,7 +258,7 @@ export default {
       this.$emit('close-dropdown', this.activeDropdown);
 
       this.hasDropdownEls.forEach((el) => {
-        el.classList.remove('vsm-active');
+        el.classList.remove('leaders__nav-link--active');
       });
 
       const activeDropdownSection = this.$refs.dropdownContainer.querySelector('[aria-hidden="false"]');
@@ -273,7 +273,7 @@ export default {
       }, 50);
 
       this.$el.classList.remove('vsm-overlay-active');
-      this.$el.classList.remove('vsm-dropdown-active');
+      this.$el.classList.remove('leaders--dropdown-active');
 
       this.activeDropdown.setAttribute('aria-expanded', 'false');
       this.activeDropdown = undefined;
@@ -304,6 +304,7 @@ export default {
 
 <style lang="scss">
 .leaders {
+  $self: &;
   perspective: 2000px;
 
   &__navbar {
@@ -343,7 +344,7 @@ export default {
     }
   }
 
-  .vsm-dropdown {
+  &__dropdown {
     position: absolute;
     top: 50px;
     right: 0;
@@ -357,14 +358,51 @@ export default {
     transform-origin: 50% -50px;
     will-change: transform, opacity;
   }
-  &.vsm-dropdown-active {
-    .vsm-dropdown {
-      pointer-events: auto;
+
+  &__dropdown-section {
+    pointer-events: none;
+    opacity: 0;
+    will-change: transform, opacity;
+    transition-duration: .25s;
+    transition-property: transform, opacity, -webkit-transform;
+    &--active {
       opacity: 1;
-      transform: none;
+      transform: translateX(0);
     }
-    .vsm-dropdown-section.vsm-active {
-      pointer-events: auto;
+    &--left {
+      transform: translateX(-150px);
+    }
+    &--right {
+      transform: translateX(150px);
+    }
+  }
+
+  &--dropdown-active {
+    #{ $self } {
+      &__dropdown {
+        pointer-events: auto;
+        opacity: 1;
+        transform: none;
+      }
+      &__dropdown-section {
+        &--active {
+          pointer-events: auto;
+        }
+      }
+    }
+  }
+
+  &--no-transition {
+    #{ $self } {
+      &__dropdown-section {
+        transition: none;
+      }
+    }
+    .vsm-dropdown-container,
+    .vsm-background-alt,
+    .vsm-background,
+    .vsm-arrow {
+      transition: none;
     }
   }
 }
@@ -425,24 +463,6 @@ export default {
   will-change: transform, width, height;
 }
 
-.vsm-dropdown-section {
-  pointer-events: none;
-  opacity: 0;
-  will-change: transform, opacity;
-  transition-duration: .25s;
-  transition-property: transform, opacity, -webkit-transform;
-  &.vsm-active {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  &.vsm-left {
-    transform: translateX(-150px);
-  }
-  &.vsm-right {
-    transform: translateX(150px);
-  }
-}
-
 .vsm-dropdown-content {
   position: absolute;
   top: 0;
@@ -453,13 +473,13 @@ export default {
  * Helper
  */
 
-.leaders--no-transition {
-  .vsm-dropdown-container,
-  .vsm-background-alt,
-  .vsm-background,
-  .vsm-arrow,
-  .vsm-dropdown-section {
-    transition: none;
-  }
-}
+// .leaders--no-transition {
+//   .vsm-dropdown-container,
+//   .vsm-background-alt,
+//   .vsm-background,
+//   .vsm-arrow,
+//     transition: none;
+//   }
+// }
+
 </style>
