@@ -22,14 +22,8 @@
       <div ref="background" class="leaders__background">
         <div ref="backgroundAlt" class="leaders__background-alt" />
       </div>
-      <div
-        ref="arrow"
-        class="vsm-arrow"
-      />
-      <div
-        ref="dropdownContainer"
-        class="vsm-dropdown-container"
-      >
+      <div ref="arrow" class="leaders__arrow" />
+      <div ref="dropdownContainer" class="leaders__dropdown-container">
         <div
           v-for="item in items"
           :key="item.id"
@@ -38,7 +32,7 @@
           :data-dropdown-id="item.id"
           aria-hidden="false"
         >
-          <div class="vsm-dropdown-content">
+          <div class="leaders__dropdown-content">
             <slot :item="item" />
           </div>
         </div>
@@ -380,6 +374,35 @@ export default {
     transition-property: transform, -webkit-transform;
   }
 
+  &__arrow {
+    top: -6px;
+    width: 12px;
+    height: 12px;
+    margin: 0 0 0 -6px;
+    background: #fff;
+    border-radius: 4px 0 0;
+    box-shadow: -3px -3px 5px rgba(82, 95, 127, .04);
+    transition-property: transform, -webkit-transform;
+    transform: rotate(45deg);
+    will-change: transform;
+  }
+
+  &__arrow,
+  &__dropdown-container {
+    position: absolute;
+    left: 0;
+    transition-duration: .25s;
+  }
+
+  &__dropdown-container {
+    top: 0;
+    width: 500px;
+    overflow: hidden;
+    transition-property: transform, width, height, -webkit-transform;
+    transform: translateX(0);
+    will-change: transform, width, height;
+  }
+
   &__dropdown-section {
     pointer-events: none;
     opacity: 0;
@@ -396,6 +419,12 @@ export default {
     &--right {
       transform: translateX(150px);
     }
+  }
+
+  &__dropdown-content {
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 
   &--dropdown-active {
@@ -417,49 +446,12 @@ export default {
     #{ $self } {
       &__dropdown-section,
       &__background,
-      &__background-alt {
+      &__background-alt,
+      &__arrow,
+      &__dropdown-container {
         transition: none;
       }
     }
-    .vsm-dropdown-container,
-    .vsm-arrow {
-      transition: none;
-    }
   }
-}
-
-.vsm-arrow {
-  top: -6px;
-  width: 12px;
-  height: 12px;
-  margin: 0 0 0 -6px;
-  background: #fff;
-  border-radius: 4px 0 0;
-  box-shadow: -3px -3px 5px rgba(82, 95, 127, .04);
-  transition-property: transform, -webkit-transform;
-  transform: rotate(45deg);
-  will-change: transform;
-}
-
-.vsm-arrow,
-.vsm-dropdown-container {
-  position: absolute;
-  left: 0;
-  transition-duration: .25s;
-}
-
-.vsm-dropdown-container {
-  top: 0;
-  width: 500px;
-  overflow: hidden;
-  transition-property: transform, width, height, -webkit-transform;
-  transform: translateX(0);
-  will-change: transform, width, height;
-}
-
-.vsm-dropdown-content {
-  position: absolute;
-  top: 0;
-  left: 0;
 }
 </style>
