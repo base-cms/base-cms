@@ -3,6 +3,7 @@ const { retrieve, write } = require('../../mongodb');
 const fetch = require('../../fetch');
 const sortObject = require('../../sort-object');
 const onError = require('../../on-error');
+const buildUrl = require('../../utils/build-youtube-url');
 
 /**
  * The Youtube Channel List API
@@ -16,7 +17,7 @@ module.exports = async ({
   ttl = 365 * 24 * 60 * 60,
   force = false,
 } = {}) => {
-  const uri = 'https://www.googleapis.com/youtube/v3/channels';
+  const uri = buildUrl('channels');
   if (!forUsername && !id) throw new Error('A channel id or username is required.');
 
   const payload = {
