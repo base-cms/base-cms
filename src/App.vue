@@ -1,7 +1,7 @@
 <template>
   <container>
     <row>
-      <aside class="leaders">
+      <aside ref="root" class="leaders">
         <nav class="leaders__navbar">
           <ul class="leaders__nav">
             <li class="leaders__nav-item">
@@ -11,6 +11,8 @@
                 :key="item.id"
                 :data-dropdown-id="item.id"
                 class="leaders__nav-button"
+                aria-haspopup="true"
+                aria-expanded="false"
               >
                 {{ item.label }}
               </button>
@@ -72,6 +74,8 @@ export default {
     ],
     isDragging: false,
     closeTimeout: null,
+    activeButtonClass: 'leaders__nav-button--active',
+    activeRootClass: 'leaders--dropdown-active',
   }),
 
   computed: {
@@ -81,6 +85,9 @@ export default {
     },
     containerElement() {
       return this.$refs.sectionContainer;
+    },
+    rootElement() {
+      return this.$refs.root;
     },
   },
 
@@ -158,15 +165,35 @@ export default {
     },
 
     toggleDropdownFor(button) {
-      console.log('toggleDropdownFor', button);
+      if (this.activeButton === button) {
+        this.closeDropdown();
+      } else {
+        this.openDropdownFor(button);
+      }
     },
 
     openDropdownFor(button) {
       console.log('openDropdownFor', button);
+
+      // Set active classes to root element.
+      this.setActiveRootClass();
+
+      // Set active button item
+      this.activeButton = button;
+      this.clearActiveButtonAttrs();
+      this.setActiveButtonAttrs(button);
     },
 
     closeDropdown() {
       console.log('closeDropdown');
+      if (!this.activeButton) return;
+      console.log('begin closing');
+
+      // Clear/reset active button attributes.
+      this.clearActiveButtonAttrs();
+
+      // Clear active classes on the root element.
+      this.clearActiveRootClass();
     },
 
     setCloseTimeout() {
@@ -187,6 +214,26 @@ export default {
 
     onTouchStart() {
       this.isDragging = false;
+    },
+
+    clearActiveButtonAttrs() {
+      this.buttonElements.forEach((el) => {
+        el.classList.remove(this.activeButtonClass);
+        el.setAttribute('aria-expanded', false);
+      });
+    },
+
+    setActiveButtonAttrs(button) {
+      button.classList.add(this.activeButtonClass);
+      button.setAttribute('aria-expanded', true);
+    },
+
+    setActiveRootClass() {
+      this.rootElement.classList.add(this.activeRootClass);
+    },
+
+    clearActiveRootClass() {
+      this.rootElement.classList.remove(this.activeRootClass);
     },
   },
 };
