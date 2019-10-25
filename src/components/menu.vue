@@ -1,28 +1,17 @@
 <template>
-  <component
-    :is="element"
-    class="leaders leaders--no-transition"
-  >
-    <nav>
-      <ul
-        ref="root"
-        class="vsm-root"
-      >
-        <slot name="before-nav" />
-        <li class="vsm-section vsm-section_menu">
+  <aside class="leaders leaders--no-transition">
+    <nav class="leaders__navbar">
+      <ul class="leaders__nav">
+        <li class="leaders__nav-item">
           <component
             :is="item.element || (item.dropdown ? 'button' : 'a')"
             v-for="(item, index) in menu"
             ref="links"
             :key="index"
-            :class="['vsm-link', {
-              'vsm-has-dropdown': item.dropdown
-            }]"
             :data-dropdown="item.dropdown"
-            :aria-haspopup="item.dropdown && 'true'"
-            :aria-expanded="item.dropdown && 'false'"
-            v-bind="item.attributes"
-            v-on="item.listeners"
+            class="leaders__nav-link"
+            aria-haspopup="true"
+            aria-expanded="false"
           >
             <slot
               name="title"
@@ -33,7 +22,6 @@
             </slot>
           </component>
         </li>
-        <slot name="after-nav" />
       </ul>
     </nav>
     <div class="vsm-dropdown">
@@ -71,7 +59,7 @@
         </div>
       </div>
     </div>
-  </component>
+  </aside>
 </template>
 
 <script>
@@ -92,10 +80,6 @@ export default {
     menu: {
       type: Array,
       required: true,
-    },
-    element: {
-      type: String,
-      default: 'header',
     },
     baseWidth: {
       type: [Number, String],
@@ -118,9 +102,7 @@ export default {
       return this.menu.filter(item => item.dropdown);
     },
     hasDropdownEls() {
-      const links = this.$refs.links || [];
-
-      return links.filter(el => el.classList.contains('vsm-has-dropdown'));
+      return this.$refs.links || [];
     },
     sectionEls() {
       const sections = this.$refs.sections || [];
@@ -133,6 +115,7 @@ export default {
     },
   },
   mounted() {
+    console.log(this.$el);
     this.registerGlobalEvents();
     this.registerDropdownElsEvents();
     this.registerDropdownContainerEvents();
@@ -335,22 +318,44 @@ export default {
 <style lang="scss">
 .leaders {
   perspective: 2000px;
-  ul {
+
+  &__navbar {
+    display: flex;
+  }
+
+  &__nav {
     padding: 0;
     margin: 0;
   }
-  li {
+
+  &__nav-item  {
+    display: flex;
     list-style: none;
   }
-  a {
+
+  &__nav-link {
+    display: inline-block;
+    height: 50px;
+    padding: 0 10px;
+    margin: 0;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 50px;
     text-decoration: none;
-    -webkit-tap-highlight-color: transparent;
-  }
-  button {
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
     background: none;
     border: none;
     outline: none;
+    transition: color .1s ease;
+    -webkit-tap-highlight-color: transparent;
+    > * {
+      position: relative;
+      display: block;
+    }
   }
+
   .vsm-dropdown {
     position: absolute;
     top: 50px;
@@ -374,27 +379,6 @@ export default {
     .vsm-dropdown-section.vsm-active {
       pointer-events: auto;
     }
-  }
-}
-
-.vsm-section {
-  display: flex;
-}
-
-.vsm-link {
-  display: inline-block;
-  height: 50px;
-  padding: 0 10px;
-  margin: 0;
-  font-size: 17px;
-  font-weight: 500;
-  line-height: 50px;
-  white-space: nowrap;
-  user-select: none;
-  transition: color .1s ease;
-  > * {
-    position: relative;
-    display: block;
   }
 }
 
@@ -490,9 +474,5 @@ export default {
   .vsm-dropdown-section {
     transition: none;
   }
-}
-
-.vsm-has-dropdown {
-  cursor: default;
 }
 </style>
