@@ -1,9 +1,7 @@
 const { stringify } = require('querystring');
 const { retrieve, write } = require('../../mongodb');
 const fetch = require('../../fetch');
-const sortObject = require('../../sort-object');
-const onError = require('../../on-error');
-const buildUrl = require('../../utils/build-youtube-url');
+const { sortObject, onError, buildYoutubeUrl } = require('../../utils');
 
 /**
  * The Youtube Channel List API
@@ -17,7 +15,7 @@ module.exports = async ({
   ttl = 365 * 24 * 60 * 60,
   force = false,
 } = {}) => {
-  const uri = buildUrl('channels');
+  const uri = buildYoutubeUrl('channels');
   if (!forUsername && !id) throw new Error('A channel id or username is required.');
 
   const payload = {

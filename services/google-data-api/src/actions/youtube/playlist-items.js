@@ -1,9 +1,7 @@
 const { stringify } = require('querystring');
 const { retrieve, write } = require('../../mongodb');
 const fetch = require('../../fetch');
-const sortObject = require('../../sort-object');
-const onError = require('../../on-error');
-const buildUrl = require('../../utils/build-youtube-url');
+const { sortObject, onError, buildYoutubeUrl } = require('../../utils');
 
 /**
  * The Youtube Playlist Items API
@@ -16,7 +14,7 @@ module.exports = async ({
   ttl = 24 * 60 * 60,
   force = false,
 } = {}) => {
-  const uri = buildUrl('playlistItems');
+  const uri = buildYoutubeUrl('playlistItems');
   if (!playlistId) throw new Error('A playlist id is required.');
 
   const payload = { maxResults, part, playlistId };

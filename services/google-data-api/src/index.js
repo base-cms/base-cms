@@ -3,7 +3,7 @@ const { service } = require('@base-cms/micro');
 const { name, version } = require('../package.json');
 const { connect, ping } = require('./mongodb');
 const actions = require('./actions');
-const onError = require('./on-error');
+const { onError } = require('./utils');
 
 const { log } = console;
 
