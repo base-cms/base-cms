@@ -8,8 +8,8 @@ type YoutubePlaylistItems {
 }
 
 type YoutubePageInfo {
-  totalResults: Int
-  resultsPerPage: Int
+  totalResults: Int!
+  resultsPerPage: Int!
 }
 
 type YoutubePlaylistItem {
