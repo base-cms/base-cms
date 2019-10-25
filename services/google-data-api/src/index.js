@@ -37,6 +37,7 @@ module.exports = service.json({
         forUsername,
         id,
         ttl = 365 * 24 * 60 * 60,
+        force = false,
       } = params;
       if (!forUsername && !id) throw new Error('A channel id or username is required.');
 
@@ -50,7 +51,7 @@ module.exports = service.json({
       log({ url }); // DEBUG
       const record = await retrieve(url);
       log({ record }); // DEBUG
-      if (record) return record;
+      if (record && !force) return record;
 
       const response = await fetch(uri, payload);
       log({ response }); // DEBUG
@@ -71,13 +72,14 @@ module.exports = service.json({
         part = 'snippet',
         playlistId,
         ttl = 24 * 60 * 60,
+        force = false,
       } = params;
       if (!playlistId) throw new Error('A playlist id is required.');
 
       const payload = { maxResults, part, playlistId };
       const url = `${uri}?${stringify(sortObject(payload))}`;
       const record = await retrieve(url);
-      if (record) return record;
+      if (record && !force) return record;
 
       const response = await fetch(uri, payload);
       write(url, response, ttl);
