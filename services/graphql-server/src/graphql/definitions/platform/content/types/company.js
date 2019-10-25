@@ -23,6 +23,7 @@ type ContentCompany implements Content & PrimaryCategory & Contactable & Address
   productSummary: String @projection
 
   youtube: YoutubeSettings @projection
+  youtubeVideos(input: YoutubeVideosInput = {}): YoutubePlaylistItemsApiResponse! @projection(needs: ["youtube"])
 
   # fields directly on platform.model::Content\Company from mutations
   featuredCategories(input: ContentCompanyFeaturedCategoriesInput = {}): TaxonomyConnection! @projection(localField: "mutations.Website.featuredCategories") @refMany(model: "platform.Taxonomy", localField: "mutations.Website.featuredCategories", criteria: "taxonomyCategory")
@@ -32,6 +33,50 @@ type YoutubeSettings {
   username: String
   channelId: String
   playlistId: String
+}
+
+type YoutubePlaylistItemsApiResponse {
+  pageInfo: YoutubePageInfo
+  items: [YoutubePlaylistItem!]
+  error: String
+}
+
+type YoutubePageInfo {
+  totalResults: Int
+  resultsPerPage: Int
+}
+
+type YoutubePlaylistItem {
+  id: String
+  snippet: YoutubePlaylistItemSnippet
+}
+
+type YoutubePlaylistItemSnippet {
+  publishedAt: Date
+  channelId: String
+  title: String
+  description: String
+  thumbnails: YoutubeVideoThumbnails
+  channelTitle: String
+  playlistId: String
+  position: Int
+  resourceId: YoutubePlaylistItemResourceId
+}
+
+type YoutubePlaylistItemResourceId {
+  videoId: String
+}
+
+type YoutubeVideoThumbnails {
+  default: YoutubeVideoThumbnail
+  medium: YoutubeVideoThumbnail
+  high: YoutubeVideoThumbnail
+}
+
+type YoutubeVideoThumbnail {
+  url: String
+  width: Int
+  height: Int
 }
 
 type ContentCompanyConnection {
@@ -75,6 +120,10 @@ input ContentCompanyParentCompanyInput {
 input ContentCompanySortInput {
   field: ContentSortField = id
   order: SortOrder = desc
+}
+
+input YoutubeVideosInput {
+  limit: Int = 10
 }
 
 `;

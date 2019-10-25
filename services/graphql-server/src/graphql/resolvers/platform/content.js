@@ -19,6 +19,7 @@ const relatedContent = require('../../utils/related-content');
 const inquiryEmails = require('../../utils/inquiry-emails');
 const connectionProjection = require('../../utils/connection-projection');
 const getDescendantIds = require('../../utils/website-section-child-ids');
+const retrieveYoutubeVideos = require('../../utils/retrieve-youtube-videos');
 const {
   createTitle,
   createDescription,
@@ -484,6 +485,13 @@ module.exports = {
       if (!isArray(sidebars)) return [];
       return sidebars.map(({ body } = {}) => body).filter(v => v);
     },
+  },
+
+  /**
+   *
+   */
+  ContentCompany: {
+    youtubeVideos: retrieveYoutubeVideos,
   },
 
   /**
