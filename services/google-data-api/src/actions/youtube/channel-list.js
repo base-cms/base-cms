@@ -2,6 +2,7 @@ const { stringify } = require('querystring');
 const { retrieve, write } = require('../../mongodb');
 const fetch = require('../../fetch');
 const sortObject = require('../../sort-object');
+const onError = require('../../on-error');
 
 /**
  * The Youtube Channel List API
@@ -29,6 +30,6 @@ module.exports = async ({
   if (record && !force) return record.response;
 
   const response = await fetch(uri, payload);
-  write(url, response, ttl);
+  write(url, response, ttl).catch(onError);
   return response;
 };

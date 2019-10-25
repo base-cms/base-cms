@@ -3,8 +3,11 @@ const { service } = require('@base-cms/micro');
 const { name, version } = require('../package.json');
 const { connect, ping } = require('./mongodb');
 const actions = require('./actions');
+const onError = require('./on-error');
 
 const { log } = console;
+
+process.on('unhandledRejection', (e) => { throw e; });
 
 module.exports = service.json({
   init: async () => {
@@ -13,5 +16,6 @@ module.exports = service.json({
     await connect();
   },
   ping,
+  onError,
   actions,
 });
