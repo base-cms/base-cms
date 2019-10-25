@@ -45,6 +45,17 @@
 import Container from './components/generic/container.vue';
 import Row from './components/generic/row.vue';
 
+// Use generic PointerEvent when available, else fall back.
+const pointerEvent = window.PointerEvent ? {
+  end: 'pointerup',
+  enter: 'pointerenter',
+  leave: 'pointerleave',
+} : {
+  end: 'touchend',
+  enter: 'mouseenter',
+  leave: 'mouseleave',
+};
+
 export default {
   components: {
     Container,
@@ -58,7 +69,41 @@ export default {
       { id: 3, label: 'Serpa Packaging Solutions', href: '#' },
       { id: 4, label: 'Soma America, Inc.', href: '#' },
     ],
+    isDragging: false,
   }),
+
+  mounted() {
+    this.addGlobalEventListeners();
+  },
+
+  beforeDestroy() {
+    this.removeGlobalEventListeners();
+  },
+
+  methods: {
+    addGlobalEventListeners() {
+      document.addEventListener('touchmove', this.onTouchMove);
+      document.addEventListener('touchstart', this.onTouchStart);
+      document.body.addEventListener(pointerEvent.end, this.onPointerEnd);
+    },
+
+    removeGlobalEventListeners() {
+      document.removeEventListener('touchmove', this.onTouchMove);
+      document.removeEventListener('touchstart', this.onTouchStart);
+      document.body.removeEventListener(pointerEvent.end, this.onPointerEnd);
+    },
+
+    onPointerEnd() {
+    },
+
+    onTouchMove() {
+      this.isDragging = true;
+    },
+
+    onTouchStart() {
+      this.isDragging = false;
+    },
+  },
 };
 </script>
 
