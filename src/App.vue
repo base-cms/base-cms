@@ -71,6 +71,7 @@ export default {
       { id: 4, label: 'Soma America, Inc.', href: '#' },
     ],
     isDragging: false,
+    closeTimeout: null,
   }),
 
   computed: {
@@ -100,20 +101,26 @@ export default {
       this.buttonElements.forEach((button) => {
         if (button.dataset.dropdownReady) return;
 
-        button.addEventListener('focusin', (event) => {
-          console.log('button focusin', button, event);
+        button.addEventListener('focusin', () => {
+          this.clearCloseTimeout();
+          this.openDropdownFor(button);
         });
 
         button.addEventListener(pointerEvent.enter, (event) => {
-          console.log('button pointer enter', pointerEvent.enter, button, event);
+          if (event.pointerType !== 'touch') {
+            this.clearCloseTimeout();
+            this.openDropdownFor(button);
+          }
         });
 
         button.addEventListener(pointerEvent.end, (event) => {
-          console.log('button pointer end', pointerEvent.end, button, event);
+          event.preventDefault();
+          event.stopPropagation();
+          this.toggleDropdownFor(button);
         });
 
         button.addEventListener(pointerEvent.leave, (event) => {
-          console.log('button pointer leave', pointerEvent.leave, button, event);
+          if (event.pointerType !== 'touch') this.setCloseTimeout();
         });
 
         // eslint-disable-next-line no-param-reassign
@@ -127,16 +134,24 @@ export default {
       document.body.removeEventListener(pointerEvent.end, this.onPointerEnd);
     },
 
-    toggleDropdown() {
-
+    toggleDropdownFor(button) {
+      console.log('toggleDropdownFor', button);
     },
 
-    openDropdown() {
-
+    openDropdownFor(button) {
+      console.log('openDropdownFor', button);
     },
 
     closeDropdown() {
+      console.log('closeDropdown');
+    },
 
+    setCloseTimeout() {
+      this.closeTimeout = setTimeout(() => this.closeDropdown(), 50);
+    },
+
+    clearCloseTimeout() {
+      clearTimeout(this.closeTimeout);
     },
 
     onPointerEnd() {
