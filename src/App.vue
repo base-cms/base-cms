@@ -1,22 +1,41 @@
 <template>
   <container>
     <row>
-      <leaders />
+      <!-- <leaders /> -->
+      <test-menu :menu="menu">
+        <template #default="data">
+          <div class="content">
+            This should have content for {{ data.item.title }}
+          </div>
+        </template>
+      </test-menu>
     </row>
   </container>
 </template>
 
 <script>
 import Container from './components/generic/container.vue';
-import Leaders from './components/leaders.vue';
+import DefaultContent from './components/content.vue';
+// import Leaders from './components/leaders.vue';
+import TestMenu from './components/menu.vue';
 import Row from './components/generic/row.vue';
 
 export default {
   components: {
     Container,
-    Leaders,
+    // Leaders,
+    TestMenu,
     Row,
   },
+
+  data: () => ({
+    menu: [
+      { title: 'Robatech USA Inc', dropdown: '1', content: DefaultContent },
+      { title: 'Schubert North America', dropdown: '2', content: DefaultContent },
+      { title: 'Serpa Packaging Solutions', dropdown: '3', content: DefaultContent },
+      { title: 'Soma America, Inc.', dropdown: '4', content: DefaultContent },
+    ],
+  }),
 };
 </script>
 
@@ -44,5 +63,18 @@ body {
   color: #212529;
   text-align: left;
   background-color: #fff;
+}
+
+// specific styles
+.content {
+  padding: 30px;
+}
+
+.vsm-menu {
+  width: 100%;
+  nav {
+    display: flex;
+    justify-content: center;
+  }
 }
 </style>
