@@ -8,6 +8,7 @@ module.exports = async ({
   ctx = {},
   healthPath = '/_health',
   ping,
+  onError,
 } = {}) => {
   if (typeof init === 'function') await init();
   return jsonErrors(async (req, res) => {
@@ -31,5 +32,5 @@ module.exports = async ({
       meta: meta || {},
     });
     return { data };
-  });
+  }, onError);
 };

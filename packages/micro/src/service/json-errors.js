@@ -3,7 +3,7 @@ const { send } = require('micro');
 const dev = process.env.NODE_ENV === 'development';
 const { error: log } = console;
 
-module.exports = fn => async (req, res) => {
+module.exports = (fn, onError) => async (req, res) => {
   try {
     return await fn(req, res);
   } catch (e) {
@@ -17,6 +17,7 @@ module.exports = fn => async (req, res) => {
     } else {
       log('Unknown Error instance.', e);
     }
+    if (typeof onError === 'function') await onError(e);
     return null;
   }
 };
