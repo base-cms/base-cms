@@ -7,6 +7,7 @@
             <li class="leaders__nav-item">
               <button
                 v-for="item of items"
+                ref="buttons"
                 :key="item.id"
                 :data-dropdown-id="item.id"
                 class="leaders__nav-button"
@@ -72,8 +73,16 @@ export default {
     isDragging: false,
   }),
 
+  computed: {
+    buttonElements() {
+      const { buttons } = this.$refs;
+      return buttons && buttons.length ? buttons : [];
+    },
+  },
+
   mounted() {
     this.addGlobalEventListeners();
+    this.addButtonEventListeners();
   },
 
   beforeDestroy() {
@@ -85,6 +94,31 @@ export default {
       document.addEventListener('touchmove', this.onTouchMove);
       document.addEventListener('touchstart', this.onTouchStart);
       document.body.addEventListener(pointerEvent.end, this.onPointerEnd);
+    },
+
+    addButtonEventListeners() {
+      this.buttonElements.forEach((button) => {
+        if (button.dataset.dropdownReady) return;
+
+        button.addEventListener('focusin', (event) => {
+          console.log('button focusin', button, event);
+        });
+
+        button.addEventListener(pointerEvent.enter, (event) => {
+          console.log('button pointer enter', pointerEvent.enter, button, event);
+        });
+
+        button.addEventListener(pointerEvent.end, (event) => {
+          console.log('button pointer end', pointerEvent.end, button, event);
+        });
+
+        button.addEventListener(pointerEvent.leave, (event) => {
+          console.log('button pointer leave', pointerEvent.leave, button, event);
+        });
+
+        // eslint-disable-next-line no-param-reassign
+        button.dataset.dropdownReady = true;
+      });
     },
 
     removeGlobalEventListeners() {
