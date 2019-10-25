@@ -1,7 +1,7 @@
 <template>
   <component
     :is="element"
-    class="vsm-menu vsm-no-transition"
+    class="leaders leaders--no-transition"
   >
     <nav>
       <ul
@@ -270,7 +270,7 @@ export default {
       clearTimeout(this.disableTransitionTimeout);
 
       this.enableTransitionTimeout = setTimeout(() => {
-        this.$el.classList.remove('vsm-no-transition');
+        this.$el.classList.remove('leaders--no-transition');
       }, 50);
 
       this.$refs.dropdownContainer.style.transform = `translateX(${pos}px)`;
@@ -299,7 +299,7 @@ export default {
       clearTimeout(this.enableTransitionTimeout);
 
       this.disableTransitionTimeout = setTimeout(() => {
-        this.$el.classList.add('vsm-no-transition');
+        this.$el.classList.add('leaders--no-transition');
       }, 50);
 
       this.$el.classList.remove('vsm-overlay-active');
@@ -333,7 +333,7 @@ export default {
 </script>
 
 <style lang="scss">
-.vsm-menu {
+.leaders {
   perspective: 2000px;
   ul {
     padding: 0;
@@ -482,7 +482,7 @@ export default {
  * Helper
  */
 
-.vsm-no-transition {
+.leaders--no-transition {
   .vsm-dropdown-container,
   .vsm-background-alt,
   .vsm-background,
