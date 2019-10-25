@@ -1,7 +1,7 @@
 const { get } = require('@base-cms/object-path');
 const client = require('../../google-data-api-client');
 
-const retrievePlaylistId = async ({ _id, youtube }, basedb) => {
+const retrievePlaylistId = async ({ youtube }) => {
   const playlistId = get(youtube, 'playlistId');
   if (playlistId) return playlistId;
 
@@ -14,9 +14,7 @@ const retrievePlaylistId = async ({ _id, youtube }, basedb) => {
       ...(forUsername && { forUsername }),
     };
     const response = await client.request('youtube.channelList', payload);
-    const value = get(response, 'items.0.contentDetails.relatedPlaylists.uploads');
-    if (value) basedb.updateOne('platform.Content', { _id }, { $set: { 'youtube.playlistId': value } });
-    return value;
+    return get(response, 'items.0.contentDetails.relatedPlaylists.uploads');
   }
   return undefined;
 };
