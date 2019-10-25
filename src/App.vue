@@ -27,9 +27,11 @@
           <div ref="sectionContainer" class="leaders__dropdown-sections">
             <section
               v-for="item of items"
+              ref="sections"
               :key="item.id"
-              :data-dropdown-section-id="item.id"
+              :data-dropdown-id="item.id"
               class="leaders__dropdown-section"
+              aria-hidden="true"
             >
               <div class="leaders__dropdown-section-content-wrap">
                 <div class="leaders__dropdown-section-content">
@@ -76,6 +78,9 @@ export default {
     closeTimeout: null,
     activeButtonClass: 'leaders__nav-button--active',
     activeRootClass: 'leaders--dropdown-active',
+    activeSectionClass: 'leaders__dropdown-section--active',
+    leftSectionClass: 'leaders__dropdown-section--left',
+    rightSectionClass: 'leaders__dropdown-section--right',
   }),
 
   computed: {
@@ -83,8 +88,11 @@ export default {
       const { buttons } = this.$refs;
       return buttons && buttons.length ? buttons : [];
     },
-    containerElement() {
+    sectionContainerElement() {
       return this.$refs.sectionContainer;
+    },
+    sectionElements() {
+      return this.$refs.sections;
     },
     rootElement() {
       return this.$refs.root;
@@ -140,7 +148,7 @@ export default {
     },
 
     addSectionContainerEventListeners() {
-      const container = this.containerElement;
+      const container = this.sectionContainerElement;
       if (container.dataset.ready) return;
 
       container.addEventListener(pointerEvent.end, (event) => {
@@ -173,8 +181,6 @@ export default {
     },
 
     openDropdownFor(button) {
-      console.log('openDropdownFor', button);
-
       // Set active classes to root element.
       this.setActiveRootClass();
 
@@ -182,18 +188,53 @@ export default {
       this.activeButton = button;
       this.clearActiveButtonAttrs();
       this.setActiveButtonAttrs(button);
+
+      /**
+       * @todo The `dropdownId` should be concatenated with the parent id.
+       *
+       * This will prevent collisions when the same item appears in
+       * multiple lists on the same page.
+       */
+      const { dropdownId: activeId } = button.dataset;
+
+      let content;
+      let contentOffsetW;
+      let contentOffsetH;
+
+      this.sectionElements.forEach((section) => {
+        this.resetSectionAttrs(section);
+        const { dropdownId } = section.dataset;
+
+        if (activeId === dropdownId) {
+          this.setActiveSectionAttrs(section);
+          [content] = section.children;
+          contentOffsetW = content.offsetWidth;
+          contentOffsetH = content.offsetHeight;
+        } else {
+          this.setInactiveSectionAttrs(section);
+        }
+      });
+      console.log('content', contentOffsetW, contentOffsetH, content);
     },
 
     closeDropdown() {
-      console.log('closeDropdown');
       if (!this.activeButton) return;
-      console.log('begin closing');
 
       // Clear/reset active button attributes.
       this.clearActiveButtonAttrs();
 
+      // @todo Handle aria-hidden on container section.
+
+      // @todo Clear timeout
+
+      // @todo Set timeout
+
       // Clear active classes on the root element.
       this.clearActiveRootClass();
+
+      // Unset active button.
+      // Do activebutton aria-expanded here?
+      this.activeButton = undefined;
     },
 
     setCloseTimeout() {
@@ -226,6 +267,23 @@ export default {
     setActiveButtonAttrs(button) {
       button.classList.add(this.activeButtonClass);
       button.setAttribute('aria-expanded', true);
+    },
+
+    resetSectionAttrs(section) {
+      section.classList.remove(this.activeSectionClass);
+      section.classList.remove(this.leftSectionClass);
+      section.classList.remove(this.rightSectionClass);
+    },
+
+    setInactiveSectionAttrs(section) {
+      section.classList.add(this.leftSectionClass);
+      section.setAttribute('aria-hidden', true);
+    },
+
+    setActiveSectionAttrs(section) {
+      section.classList.add(this.activeSectionClass);
+      section.classList.add(this.rightSectionClass);
+      section.setAttribute('aria-hidden', false);
     },
 
     setActiveRootClass() {
