@@ -401,8 +401,8 @@ services:
     command: ["--port", "10014", "--silent", "--ignore=newrelic"]
     environment:
       <<: *env
-      <<: *env-mongo
       <<: *env-newrelic
+      GOOGLEDATA_MONGO_DSN: ${GOOGLEDATA_MONGO_DSN-mongodb://mongodb}
       GOOGLE_API_KEY: ${GOOGLE_API_KEY}
     depends_on:
       - mongodb
