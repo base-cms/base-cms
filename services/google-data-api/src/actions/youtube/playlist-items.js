@@ -7,15 +7,14 @@ const sortObject = require('../../sort-object');
  * The Youtube Playlist Items API
  * @see https://developers.google.com/youtube/v3/docs/playlistItems/list
  */
-module.exports = async (params) => {
+module.exports = async ({
+  maxResults = 10,
+  part = 'snippet',
+  playlistId,
+  ttl = 24 * 60 * 60,
+  force = false,
+} = {}) => {
   const uri = 'https://www.googleapis.com/youtube/v3/playlistItems';
-  const {
-    maxResults = 10,
-    part = 'snippet',
-    playlistId,
-    ttl = 24 * 60 * 60,
-    force = false,
-  } = params;
   if (!playlistId) throw new Error('A playlist id is required.');
 
   const payload = { maxResults, part, playlistId };

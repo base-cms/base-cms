@@ -7,16 +7,15 @@ const sortObject = require('../../sort-object');
  * The Youtube Channel List API
  * @see https://developers.google.com/youtube/v3/docs/channels/list
  */
-module.exports = async (params) => {
+module.exports = async ({
+  maxResults = 1,
+  part = 'snippet',
+  forUsername,
+  id,
+  ttl = 365 * 24 * 60 * 60,
+  force = false,
+} = {}) => {
   const uri = 'https://www.googleapis.com/youtube/v3/channels';
-  const {
-    maxResults = 1,
-    part = 'snippet',
-    forUsername,
-    id,
-    ttl = 365 * 24 * 60 * 60,
-    force = false,
-  } = params;
   if (!forUsername && !id) throw new Error('A channel id or username is required.');
 
   const payload = {
