@@ -51,7 +51,7 @@ module.exports = service.json({
       log({ url }); // DEBUG
       const record = await retrieve(url);
       log({ record }); // DEBUG
-      if (record && !force) return record;
+      if (record && !force) return record.response;
 
       const response = await fetch(uri, payload);
       log({ response }); // DEBUG
@@ -79,7 +79,7 @@ module.exports = service.json({
       const payload = { maxResults, part, playlistId };
       const url = `${uri}?${stringify(sortObject(payload))}`;
       const record = await retrieve(url);
-      if (record && !force) return record;
+      if (record && !force) return record.response;
 
       const response = await fetch(uri, payload);
       write(url, response, ttl);
