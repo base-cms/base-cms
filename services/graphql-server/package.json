@@ -40,6 +40,7 @@
     "graphql-tools": "^4.0.5",
     "graphql-type-json": "^0.2.1",
     "helmet": "^3.21.0",
+    "micro": "^9.3.4",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.26",
     "newrelic": "^5.11.0",
