@@ -162,7 +162,13 @@ module.exports = {
   /**
    *
    */
-  Contactable: { __resolveType: resolveType },
+  Contactable: {
+    __resolveType: resolveType,
+    website: ({ website }) => {
+      if (!website) return website;
+      return /^http/.test(website) ? website : `https://${website}`;
+    },
+  },
 
   /**
    *
