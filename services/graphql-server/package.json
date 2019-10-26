@@ -20,6 +20,7 @@
     "@base-cms/html": "^1.0.0-beta.1",
     "@base-cms/image": "^1.0.0-beta.1",
     "@base-cms/inflector": "^1.0.0-beta.1",
+    "@base-cms/micro": "^1.0.0-beta.1",
     "@base-cms/object-path": "^1.0.0-beta.4",
     "@base-cms/tenant-context": "^1.0.0-beta.4",
     "@base-cms/tooling": "^1.0.0-beta.1",

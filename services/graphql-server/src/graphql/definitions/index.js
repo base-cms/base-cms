@@ -3,6 +3,7 @@ const email = require('./email');
 const magazine = require('./magazine');
 const platform = require('./platform');
 const website = require('./website');
+const googleDataApi = require('./google-data-api');
 
 module.exports = gql`
 
@@ -105,5 +106,6 @@ ${email}
 ${magazine}
 ${platform}
 ${website}
+${googleDataApi}
 
 `;
