@@ -1,5 +1,14 @@
 {
   "<default-theme-site-header>": {
-    "template": "./index.marko"
+    "template": "./index.marko",
+    "<above-nav>": {},
+    "<below-nav>": {},
+    "@attrs": "object",
+    "@block-name": "string",
+    "@class": "string",
+    "@has-user": "boolean",
+    "@modifiers": "array",
+    "@reg-enabled": "boolean",
+    "@tag": "string"
   }
 }
