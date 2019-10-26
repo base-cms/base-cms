@@ -2,6 +2,7 @@
   "<default-theme-site-header>": {
     "template": "./index.marko",
     "<above-nav>": {},
+    "<below-nav>": {},
     "@attrs": "object",
     "@block-name": "string",
     "@class": "string",
