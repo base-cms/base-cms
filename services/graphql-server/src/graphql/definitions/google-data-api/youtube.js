@@ -2,47 +2,36 @@ const gql = require('graphql-tag');
 
 module.exports = gql`
 
-type YoutubePlaylistItems {
-  pageInfo: YoutubePageInfo
-  items: [YoutubePlaylistItem!]!
+enum YoutubeThumbnailSizes {
+  default
+  medium
+  high
+  standard
+  maxres
 }
 
-type YoutubePageInfo {
-  totalResults: Int!
-  resultsPerPage: Int!
+input YoutubeThumbnailInput {
+  size: YoutubeThumbnailSizes = default
 }
 
-type YoutubePlaylistItem {
-  id: String
-  snippet: YoutubePlaylistItemSnippet
+type YoutubePlaylistConnection {
+  totalCount: Int!
+  edges: [YoutubePlaylistEdge]!
+  pageInfo: PageInfo!
 }
 
-type YoutubePlaylistItemSnippet {
-  publishedAt: Date
-  channelId: String
-  title: String
+type YoutubePlaylistEdge {
+  node: YoutubeVideo!
+  cursor: String!
+}
+
+type YoutubeVideo {
+  id: String!
+  url: String!
+  published: Date!
+  thumbnail(input: YoutubeThumbnailInput): String!
+  title: String!
   description: String
-  thumbnails: YoutubeVideoThumbnails
-  channelTitle: String
-  playlistId: String
-  position: Int
-  resourceId: YoutubePlaylistItemResourceId
-}
-
-type YoutubePlaylistItemResourceId {
-  videoId: String
-}
-
-type YoutubeVideoThumbnails {
-  default: YoutubeVideoThumbnail
-  medium: YoutubeVideoThumbnail
-  high: YoutubeVideoThumbnail
-}
-
-type YoutubeVideoThumbnail {
-  url: String
-  width: Int
-  height: Int
 }
 
 `;

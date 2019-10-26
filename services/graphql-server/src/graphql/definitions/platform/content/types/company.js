@@ -23,7 +23,7 @@ type ContentCompany implements Content & PrimaryCategory & Contactable & Address
   productSummary: String @projection
 
   youtube: ContentCompanyYoutube! @projection
-  youtubeVideos(input: ContentCompanyYoutubeVideosInput = {}): YoutubePlaylistItems! @projection(needs: ["youtube"])
+  youtubeVideos(input: ContentCompanyYoutubeVideosInput = {}): YoutubePlaylistConnection! @projection(needs: ["youtube"])
 
   # fields directly on platform.model::Content\Company from mutations
   featuredCategories(input: ContentCompanyFeaturedCategoriesInput = {}): TaxonomyConnection! @projection(localField: "mutations.Website.featuredCategories") @refMany(model: "platform.Taxonomy", localField: "mutations.Website.featuredCategories", criteria: "taxonomyCategory")
@@ -79,7 +79,7 @@ input ContentCompanySortInput {
 }
 
 input ContentCompanyYoutubeVideosInput {
-  limit: Int = 10
+  pagination: PaginationInput = {}
 }
 
 `;
