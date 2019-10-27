@@ -2,28 +2,26 @@
   <container>
     <row>
       <!-- <leaders /> -->
-      <test-menu :items="items">
+      <leaders :items="items">
         <template #default="data">
           <div class="content">
             This should have content for {{ data.item.label }}
           </div>
         </template>
-      </test-menu>
+      </leaders>
     </row>
   </container>
 </template>
 
 <script>
 import Container from './components/generic/container.vue';
-// import Leaders from './components/leaders.vue';
-import TestMenu from './components/menu.vue';
+import Leaders from './components/leaders.vue';
 import Row from './components/generic/row.vue';
 
 export default {
   components: {
     Container,
-    // Leaders,
-    TestMenu,
+    Leaders,
     Row,
   },
 
@@ -69,7 +67,7 @@ body {
   padding: 30px;
 }
 
-.vsm-menu {
+.leaders {
   width: 100%;
   nav {
     display: flex;

@@ -1,11 +1,12 @@
 <template>
-  <aside ref="root" class="leaders">
+  <aside class="leaders leaders--no-transition">
     <nav class="leaders__navbar">
       <ul class="leaders__nav">
         <li class="leaders__nav-item">
-          <button
-            v-for="item of items"
-            ref="buttons"
+          <component
+            :is="item.element || 'button'"
+            v-for="item in items"
+            ref="links"
             :key="item.id"
             :data-dropdown-id="item.id"
             class="leaders__nav-link"
@@ -13,32 +14,28 @@
             aria-expanded="false"
           >
             <span>{{ item.label }}</span>
-          </button>
+          </component>
         </li>
       </ul>
     </nav>
     <div class="leaders__dropdown">
-      <div ref="background" class="leaders__dropdown-bg">
-        <div ref="innerBackground" class="leaders__dropdown-bg-inner" />
+      <div ref="background" class="leaders__background">
+        <div ref="backgroundAlt" class="leaders__background-alt" />
       </div>
-      <div ref="arrow" class="leaders__dropdown-arrow" />
-      <div ref="sectionContainer" class="leaders__dropdown-sections">
-        <section
-          v-for="item of items"
-          ref="sections"
+      <div ref="arrow" class="leaders__arrow" />
+      <div ref="dropdownContainer" class="leaders__dropdown-container">
+        <div
+          v-for="item in items"
           :key="item.id"
-          :data-dropdown-id="item.id"
+          ref="sections"
           class="leaders__dropdown-section"
+          :data-dropdown-id="item.id"
           aria-hidden="true"
         >
-          <div class="leaders__dropdown-section-content-wrap">
-            <div class="leaders__dropdown-section-content">
-              <div style="width: 200px; height: 300px;">
-                {{ item.label }}
-              </div>
-            </div>
+          <div class="leaders__dropdown-content">
+            <slot :item="item" />
           </div>
-        </section>
+        </div>
       </div>
     </div>
   </aside>
@@ -58,6 +55,10 @@ const pointerEvent = window.PointerEvent ? {
 
 export default {
   props: {
+    items: {
+      type: Array,
+      required: true,
+    },
     dropdownWidth: {
       type: Number,
       default: 380,
@@ -76,37 +77,32 @@ export default {
   },
 
   data: () => ({
-    items: [
-      { id: 1, label: 'Robatech USA Inc', href: '#' },
-      { id: 2, label: 'Schubert North America', href: '#' },
-      { id: 3, label: 'Serpa Packaging Solutions', href: '#' },
-      { id: 4, label: 'Soma America, Inc.', href: '#' },
-    ],
+    activeDropdown: null,
+    activeDropdownSection: null,
     isDragging: false,
     closeTimeout: null,
-    enableTransitionsTimeout: null,
-    disableTransitionsTimeout: null,
-    activeButtonClass: 'leaders__nav-link--active',
+    enableTransitionTimeout: null,
+    disableTransitionTimeout: null,
+    activeLinkClass: 'leaders__nav-link--active',
     activeRootClass: 'leaders--dropdown-active',
-    noTransitionsClass: 'leaders--no-transitions',
+    noTransitionClass: 'leaders--no-transition',
     activeSectionClass: 'leaders__dropdown-section--active',
     leftSectionClass: 'leaders__dropdown-section--left',
     rightSectionClass: 'leaders__dropdown-section--right',
   }),
 
   computed: {
-    buttonElements() {
-      const { buttons } = this.$refs;
-      return buttons && buttons.length ? buttons : [];
+    rootElement() {
+      return this.$el;
     },
-    sectionContainerElement() {
-      return this.$refs.sectionContainer;
+    linkElements() {
+      return this.$refs.links || [];
+    },
+    dropdownContainerElement() {
+      return this.$refs.dropdownContainer;
     },
     sectionElements() {
-      return this.$refs.sections;
-    },
-    rootElement() {
-      return this.$refs.root;
+      return this.$refs.sections || [];
     },
     arrowElement() {
       return this.$refs.arrow;
@@ -114,15 +110,15 @@ export default {
     backgroundElement() {
       return this.$refs.background;
     },
-    innerBackgroundElement() {
-      return this.$refs.innerBackground;
+    backgroundAltElement() {
+      return this.$refs.backgroundAlt;
     },
   },
 
   mounted() {
     this.addGlobalEventListeners();
-    this.addButtonEventListeners();
-    this.addSectionContainerEventListeners();
+    this.addLinkEventListeners();
+    this.addContainerEventListeners();
   },
 
   beforeDestroy() {
@@ -136,54 +132,60 @@ export default {
       document.body.addEventListener(pointerEvent.end, this.onPointerEnd);
     },
 
-    addButtonEventListeners() {
-      this.buttonElements.forEach((button) => {
-        if (button.dataset.ready) return;
+    addLinkEventListeners() {
+      this.linkElements.forEach((el) => {
+        // Events have been registered
+        if (el.dataset.ready) return;
 
-        button.addEventListener('focusin', () => {
+        el.addEventListener('focusin', () => {
           this.clearCloseTimeout();
-          this.openDropdownFor(button);
+          this.openDropdownFor(el);
         });
 
-        button.addEventListener(pointerEvent.enter, (event) => {
-          if (event.pointerType !== 'touch') {
+        el.addEventListener(pointerEvent.enter, (evt) => {
+          if (evt.pointerType !== 'touch') {
             this.clearCloseTimeout();
-            this.openDropdownFor(button);
+            this.openDropdownFor(el);
           }
         });
 
-        button.addEventListener(pointerEvent.end, (event) => {
-          event.preventDefault();
-          event.stopPropagation();
-          this.toggleDropdownFor(button);
+        el.addEventListener(pointerEvent.end, (evt) => {
+          evt.preventDefault();
+          evt.stopPropagation();
+          this.toggleDropdownFor(el);
         });
 
-        button.addEventListener(pointerEvent.leave, (event) => {
-          if (event.pointerType !== 'touch') this.setCloseTimeout();
+        el.addEventListener(pointerEvent.leave, (evt) => {
+          if (evt.pointerType !== 'touch') {
+            this.setCloseTimeout();
+          }
         });
 
-        // eslint-disable-next-line no-param-reassign
-        button.dataset.ready = true;
+        el.dataset.ready = true; // eslint-disable-line no-param-reassign
       });
     },
 
-    addSectionContainerEventListeners() {
-      const container = this.sectionContainerElement;
-      if (container.dataset.ready) return;
+    addContainerEventListeners() {
+      // Events have been registered
+      if (this.dropdownContainerElement.dataset.ready) return;
 
-      container.addEventListener(pointerEvent.end, (event) => {
-        event.stopPropagation();
+      this.dropdownContainerElement.addEventListener(pointerEvent.end, (evt) => {
+        evt.stopPropagation();
       });
 
-      container.addEventListener(pointerEvent.enter, (event) => {
-        if (event.pointerType !== 'touch') this.clearCloseTimeout();
+      this.dropdownContainerElement.addEventListener(pointerEvent.enter, (evt) => {
+        if (evt.pointerType !== 'touch') {
+          this.clearCloseTimeout();
+        }
       });
 
-      container.addEventListener(pointerEvent.leave, (event) => {
-        if (event.pointerType !== 'touch') this.setCloseTimeout();
+      this.dropdownContainerElement.addEventListener(pointerEvent.leave, (evt) => {
+        if (evt.pointerType !== 'touch') {
+          this.setCloseTimeout();
+        }
       });
 
-      container.dataset.ready = true;
+      this.dropdownContainerElement.dataset.ready = true;
     },
 
     removeGlobalEventListeners() {
@@ -192,22 +194,25 @@ export default {
       document.body.removeEventListener(pointerEvent.end, this.onPointerEnd);
     },
 
-    toggleDropdownFor(button) {
-      if (this.activeButton === button) {
+    toggleDropdownFor(link) {
+      if (this.activeDropdown === link) {
         this.closeDropdown();
       } else {
-        this.openDropdownFor(button);
+        this.openDropdownFor(link);
       }
     },
 
-    openDropdownFor(button) {
+    openDropdownFor(link) {
+      if (this.activeDropdown === link) return;
+      this.$emit('open-dropdown', link);
+
       // Set active classes to root element.
       this.setActiveRootClass();
 
-      // Set active button item
-      this.activeButton = button;
-      this.clearActiveButtonAttrs();
-      this.setActiveButtonAttrs(button);
+      // Set active link item.
+      this.activeDropdown = link;
+      this.clearActiveLinkAttrs();
+      this.setActiveLinkAttrs(link);
 
       /**
        * @todo The `dropdownId` should be concatenated with the parent id.
@@ -215,87 +220,82 @@ export default {
        * This will prevent collisions when the same item appears in
        * multiple lists on the same page.
        */
-      const { dropdownId: activeId } = button.dataset;
+      const { dropdownId: activeId } = link.dataset;
 
       let content;
       let contentOffsetW;
       let contentOffsetH;
+      let direction = this.leftSectionClass;
 
       this.sectionElements.forEach((section) => {
         this.resetSectionAttrs(section);
         const { dropdownId } = section.dataset;
 
-        if (activeId === dropdownId) {
+        if (dropdownId === activeId) {
+          this.activeDropdownSection = section;
           this.setActiveSectionAttrs(section);
           [content] = section.children;
           contentOffsetW = content.offsetWidth;
           contentOffsetH = content.offsetHeight;
+          direction = this.rightSectionClass;
         } else {
-          this.setInactiveSectionAttrs(section);
+          section.classList.add(direction);
+          section.setAttribute('aria-hidden', true);
         }
       });
+
       const { offsetWidth: bodyOffsetWidth } = document.body;
       const allowedWidth = bodyOffsetWidth - (this.screenOffset * 2);
 
-      if (contentOffsetW > allowedWidth) {
-        // @todo handle this!
-        console.log('content wider than allowed!');
+      // Crop the width of the content if it goes beyond the width of the screen
+      if (contentOffsetW > allowedWidth - (this.screenOffset * 2)) {
+        contentOffsetW = bodyOffsetWidth - (this.screenOffset * 2);
       }
 
       const ratioWidth = contentOffsetW / this.dropdownWidth;
       const ratioHeight = contentOffsetH / this.dropdownHeight;
-      const buttonRect = button.getBoundingClientRect();
+      const linkRect = link.getBoundingClientRect();
 
-      const max = Math.max(buttonRect.left + buttonRect.width / 2 - contentOffsetW / 2, 10);
+      const max = Math.max(linkRect.left + linkRect.width / 2 - contentOffsetW / 2, 10);
       let pos = Math.round(max);
 
-      const rightSide = buttonRect.left + buttonRect.width / 2 + contentOffsetW / 2;
+      const rightSide = linkRect.left + linkRect.width / 2 + contentOffsetW / 2;
       if (rightSide > bodyOffsetWidth) {
         pos = pos - (rightSide - bodyOffsetWidth) - this.screenOffset;
       }
 
-      this.clearDisableTransitionsTimeout();
-      this.setEnableTransitionsTimeout();
+      this.clearDisableTransitionTimeout();
+      this.setEnableTransitionTimeout();
 
-      const container = this.sectionContainerElement;
+      const container = this.dropdownContainerElement;
       container.style.transform = `translateX(${pos}px)`;
       container.style.width = `${contentOffsetW}px`;
       container.style.height = `${contentOffsetH}px`;
 
-      this.arrowElement.style.transform = `translateX(${Math.round(buttonRect.left + buttonRect.width / 2)}px) rotate(45deg)`;
+      this.arrowElement.style.transform = `translateX(${Math.round(linkRect.left + linkRect.width / 2)}px) rotate(45deg)`;
       this.backgroundElement.style.transform = `translateX(${pos}px) scaleX(${ratioWidth}) scaleY(${ratioHeight})`;
-      this.innerBackgroundElement.style.transform = `translateY(${content.children[0].offsetHeight / ratioHeight}px)`;
-
-      console.log('content', {
-        contentOffsetW,
-        contentOffsetH,
-        pos,
-        bodyOffsetWidth,
-        allowedWidth,
-        buttonRect,
-        ratioWidth,
-        ratioHeight,
-        content,
-      });
+      // @todo this will throw an error if no children are defined.
+      this.backgroundAltElement.style.transform = `translateY(${content.children[0].offsetHeight / ratioHeight}px)`;
     },
 
     closeDropdown() {
-      if (!this.activeButton) return;
+      if (!this.activeDropdown) return;
+      this.$emit('close-dropdown', this.activeDropdown);
 
-      // Clear/reset active button attributes.
-      this.clearActiveButtonAttrs();
+      // Clear/reset active link attributes.
+      this.clearActiveLinkAttrs();
 
-      // @todo Handle aria-hidden on container section.
+      this.activeDropdownSection.setAttribute('aria-hidden', true);
 
-      this.clearEnableTransitionsTimeout();
-      this.setDisableTransitionsTimeout();
+      this.clearEnableTransitionTimeout();
+      this.setDisableTransitionTimeout();
 
       // Clear active classes on the root element.
       this.clearActiveRootClass();
 
-      // Unset active button.
-      // Do activebutton aria-expanded here?
-      this.activeButton = undefined;
+      // Unset active button and section.
+      this.activeDropdown = undefined;
+      this.activeDropdownSection = undefined;
     },
 
     setCloseTimeout() {
@@ -306,24 +306,24 @@ export default {
       clearTimeout(this.closeTimeout);
     },
 
-    setEnableTransitionsTimeout() {
-      this.enableTransitionsTimeout = setTimeout(() => {
-        this.rootElement.classList.remove(this.noTransitionsClass);
+    setEnableTransitionTimeout() {
+      this.enableTransitionTimeout = setTimeout(() => {
+        this.rootElement.classList.remove(this.noTransitionClass);
       }, 50);
     },
 
-    clearEnableTransitionsTimeout() {
-      clearTimeout(this.enableTransitionsTimeout);
+    clearEnableTransitionTimeout() {
+      clearTimeout(this.enableTransitionTimeout);
     },
 
-    setDisableTransitionsTimeout() {
-      this.disableTransitionsTimeout = setTimeout(() => {
-        this.rootElement.classList.add(this.noTransitionsClass);
+    setDisableTransitionTimeout() {
+      this.disableTransitionTimeout = setTimeout(() => {
+        this.rootElement.classList.add(this.noTransitionClass);
       }, 50);
     },
 
-    clearDisableTransitionsTimeout() {
-      clearTimeout(this.disableTransitionsTimeout);
+    clearDisableTransitionTimeout() {
+      clearTimeout(this.disableTransitionTimeout);
     },
 
     onPointerEnd() {
@@ -338,16 +338,16 @@ export default {
       this.isDragging = false;
     },
 
-    clearActiveButtonAttrs() {
-      this.buttonElements.forEach((el) => {
-        el.classList.remove(this.activeButtonClass);
-        el.setAttribute('aria-expanded', false);
+    clearActiveLinkAttrs() {
+      this.linkElements.forEach((link) => {
+        link.classList.remove(this.activeLinkClass);
+        link.setAttribute('aria-expanded', false);
       });
     },
 
-    setActiveButtonAttrs(button) {
-      button.classList.add(this.activeButtonClass);
-      button.setAttribute('aria-expanded', true);
+    setActiveLinkAttrs(link) {
+      link.setAttribute('aria-expanded', true);
+      link.classList.add(this.activeLinkClass);
     },
 
     resetSectionAttrs(section) {
@@ -356,14 +356,8 @@ export default {
       section.classList.remove(this.rightSectionClass);
     },
 
-    setInactiveSectionAttrs(section) {
-      section.classList.add(this.leftSectionClass);
-      section.setAttribute('aria-hidden', true);
-    },
-
     setActiveSectionAttrs(section) {
       section.classList.add(this.activeSectionClass);
-      section.classList.add(this.rightSectionClass);
       section.setAttribute('aria-hidden', false);
     },
 
@@ -376,64 +370,46 @@ export default {
     },
   },
 };
+/* eslint-disable */
 </script>
 
 <style lang="scss">
-@import "../scss/variables";
-
 .leaders {
   $self: &;
-  // position: relative; // double-check this
-  width: 100%;
-  background-color: #f5f9fc;
-  border-bottom: 5px solid #ecf0fb;
   perspective: 2000px;
 
   &__navbar {
-    margin: 0 10px;
+    display: flex;
   }
 
   &__nav {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    max-width: 1024px;
     padding: 0;
-    margin: 0 auto;
-    list-style: none;
+    margin: 0;
   }
 
-  &__nav-item {
+  &__nav-item  {
     display: flex;
-    flex: 1;
-    justify-content: center;
     list-style: none;
   }
 
   &__nav-link {
     display: inline-block;
-    padding: 10px 25px;
+    height: 50px;
+    padding: 0 10px;
     margin: 0;
-    font-family: inherit;
     font-size: 17px;
     font-weight: 500;
-    line-height: 1.5;
-    color: #6b7c93;
+    line-height: 50px;
     text-decoration: none;
+    white-space: nowrap;
     cursor: pointer;
     user-select: none;
     background: none;
     border: none;
     outline: none;
-    transition: color 100ms ease;
+    transition: color .1s ease;
     -webkit-tap-highlight-color: transparent;
-
-    &:hover,
-    &--active {
-      color: #32325d;
-    }
-
-    * > {
+    > * {
       position: relative;
       display: block;
     }
@@ -447,66 +423,65 @@ export default {
     z-index: 1000;
     pointer-events: none;
     opacity: 0;
-    transition-duration: 250ms;
-    transition-property: transform, opacity;
+    transition-duration: .25s;
+    transition-property: transform, opacity, -webkit-transform;
     transform: rotateX(-15deg);
     transform-origin: 50% -50px;
     will-change: transform, opacity;
   }
 
-  &__dropdown-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
+  &__background {
     width: 380px;
     height: 400px;
     overflow: hidden;
-    background-color: #fff;
+    background: #fff;
     border-radius: 4px;
-    box-shadow: $dropdown-menu-box-shadow;
-    transition-duration: 250ms;
-    transition-property: transform;
+    box-shadow: 0 50px 100px -20px rgba(50, 50, 93, .25), 0 30px 60px -30px rgba(0, 0, 0, .3), 0 -18px 60px -10px rgba(0, 0, 0, .025);
     transform: translateX(0);
     transform-origin: 0 0;
-    will-change: transform;
   }
 
-  &__dropdown-bg-inner {
+  &__background-alt {
+    right: 0;
+    height: 1000px;
+    background: #f6f9fc;
+  }
+
+  &__background,
+  &__background-alt {
     position: absolute;
     top: 0;
-    right: 0;
     left: 0;
-    height: 1000px;
-    background-color: #f6f9fc;
-    transition-duration: 250ms;
-    transition-property: transform;
     will-change: transform;
+    transition-duration: .25s;
+    transition-property: transform, -webkit-transform;
   }
 
-  &__dropdown-arrow {
-    position: absolute;
+  &__arrow {
     top: -6px;
-    left: 0;
     width: 12px;
     height: 12px;
     margin: 0 0 0 -6px;
-    background-color: #fff;
+    background: #fff;
     border-radius: 4px 0 0;
     box-shadow: -3px -3px 5px rgba(82, 95, 127, .04);
-    transition-duration: 250ms;
-    transition-property: transform;
+    transition-property: transform, -webkit-transform;
     transform: rotate(45deg);
     will-change: transform;
   }
 
-  &__dropdown-sections {
+  &__arrow,
+  &__dropdown-container {
     position: absolute;
-    top: 0;
     left: 0;
+    transition-duration: .25s;
+  }
+
+  &__dropdown-container {
+    top: 0;
     width: 500px;
     overflow: hidden;
-    transition-duration: 250ms;
-    transition-property: transform, width, height;
+    transition-property: transform, width, height, -webkit-transform;
     transform: translateX(0);
     will-change: transform, width, height;
   }
@@ -514,11 +489,10 @@ export default {
   &__dropdown-section {
     pointer-events: none;
     opacity: 0;
-    transition-duration: 250ms;
-    transition-property: transform, opacity;
     will-change: transform, opacity;
+    transition-duration: .25s;
+    transition-property: transform, opacity, -webkit-transform;
     &--active {
-      pointer-events: auto;
       opacity: 1;
       transform: translateX(0);
     }
@@ -530,14 +504,10 @@ export default {
     }
   }
 
-  &__dropdown-section-content-wrap {
+  &__dropdown-content {
     position: absolute;
     top: 0;
     left: 0;
-  }
-
-  &__dropdown-section-content {
-    padding: 30px;
   }
 
   &--dropdown-active {
@@ -547,7 +517,6 @@ export default {
         opacity: 1;
         transform: none;
       }
-
       &__dropdown-section {
         &--active {
           pointer-events: auto;
@@ -556,13 +525,13 @@ export default {
     }
   }
 
-  &--no-transitions {
+  &--no-transition {
     #{ $self } {
-      &__dropdown-sections,
-      &__dropdown-bg-inner,
-      &__dropdown-bg,
-      &__dropdown-arrow,
-      &__dropdown-section {
+      &__dropdown-section,
+      &__background,
+      &__background-alt,
+      &__arrow,
+      &__dropdown-container {
         transition: none;
       }
     }
