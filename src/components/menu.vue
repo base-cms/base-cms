@@ -101,12 +101,7 @@ export default {
       return this.$refs.dropdownContainer;
     },
     sectionElements() {
-      const sections = this.$refs.sections || [];
-      return sections.map(el => ({
-        el,
-        name: el.getAttribute('data-dropdown-id'),
-        content: el.children[0],
-      }));
+      return this.$refs.sections || [];
     },
     arrowElement() {
       return this.$refs.arrow;
@@ -208,66 +203,76 @@ export default {
 
     openDropdownFor(link) {
       if (this.activeDropdown === link) return;
-
       this.$emit('open-dropdown', link);
 
-      this.$el.classList.add(this.activeRootClass);
+      // Set active classes to root element.
+      this.setActiveRootClass();
+
+      // Set active link item.
       this.activeDropdown = link;
-      this.activeDropdown.setAttribute('aria-expanded', 'true');
-      this.linkElements.forEach(dd => dd.classList.remove(this.activeLinkClass));
-      link.classList.add(this.activeLinkClass);
+      this.clearActiveLinkAttrs();
+      this.setActiveLinkAttrs(link);
 
-      const activeDataDropdown = link.getAttribute('data-dropdown-id');
-      let direction = this.leftSectionClass;
-      let offsetWidth;
-      let offsetHeight;
+      /**
+       * @todo The `dropdownId` should be concatenated with the parent id.
+       *
+       * This will prevent collisions when the same item appears in
+       * multiple lists on the same page.
+       */
+      const { dropdownId: activeId } = link.dataset;
+
       let content;
+      let contentOffsetW;
+      let contentOffsetH;
+      let direction = this.leftSectionClass;
 
-      this.sectionElements.forEach((item) => {
-        item.el.classList.remove(this.activeSectionClass);
-        item.el.classList.remove(this.leftSectionClass);
-        item.el.classList.remove(this.rightSectionClass);
+      this.sectionElements.forEach((section) => {
+        this.resetSectionAttrs(section);
+        const { dropdownId } = section.dataset;
 
-        if (item.name === activeDataDropdown) {
-          item.el.setAttribute('aria-hidden', 'false');
-          item.el.classList.add(this.activeSectionClass);
+        if (dropdownId === activeId) {
+          this.setActiveSectionAttrs(section);
+          [content] = section.children;
+          contentOffsetW = content.offsetWidth;
+          contentOffsetH = content.offsetHeight;
           direction = this.rightSectionClass;
-          offsetWidth = item.content.offsetWidth; // eslint-disable-line
-          offsetHeight = item.content.offsetHeight; // eslint-disable-line
-          content = item.content; // eslint-disable-line
         } else {
-          item.el.classList.add(direction);
-          item.el.setAttribute('aria-hidden', 'true');
+          section.classList.add(direction);
+          section.setAttribute('aria-hidden', true);
         }
       });
 
-      const bodyOffset = document.body.offsetWidth;
+      const { offsetWidth: bodyOffsetWidth } = document.body;
+      const allowedWidth = bodyOffsetWidth - (this.screenOffset * 2);
 
       // Crop the width of the content if it goes beyond the width of the screen
-      if (offsetWidth > bodyOffset - (this.screenOffset * 2)) {
-        offsetWidth = bodyOffset - (this.screenOffset * 2);
+      if (contentOffsetW > allowedWidth - (this.screenOffset * 2)) {
+        contentOffsetW = bodyOffsetWidth - (this.screenOffset * 2);
       }
 
-      const ratioWidth = offsetWidth / this.baseWidth;
-      const ratioHeight = offsetHeight / this.baseHeight;
-      const rect = link.getBoundingClientRect();
-      let pos = Math.round(Math.max(rect.left + rect.width / 2 - offsetWidth / 2, 10));
+      const ratioWidth = contentOffsetW / this.baseWidth;
+      const ratioHeight = contentOffsetH / this.baseHeight;
+      const linkRect = link.getBoundingClientRect();
 
-      const rightSide = rect.left + rect.width / 2 + offsetWidth / 2;
-      if (rightSide > bodyOffset) {
-        pos = pos - (rightSide - bodyOffset) - this.screenOffset;
+      const max = Math.max(linkRect.left + linkRect.width / 2 - contentOffsetW / 2, 10);
+      let pos = Math.round(max);
+
+      const rightSide = linkRect.left + linkRect.width / 2 + contentOffsetW / 2;
+      if (rightSide > bodyOffsetWidth) {
+        pos = pos - (rightSide - bodyOffsetWidth) - this.screenOffset;
       }
 
       this.clearDisableTransitionTimeout();
       this.setEnableTransitionTimeout();
 
-      this.dropdownContainerElement.style.transform = `translateX(${pos}px)`;
-      this.dropdownContainerElement.style.width = `${offsetWidth}px`;
-      this.dropdownContainerElement.style.height = `${offsetHeight}px`;
+      const container = this.dropdownContainerElement;
+      container.style.transform = `translateX(${pos}px)`;
+      container.style.width = `${contentOffsetW}px`;
+      container.style.height = `${contentOffsetH}px`;
 
-      this.arrowElement.style.transform = `translateX(${Math.round(rect.left + rect.width / 2)}px) rotate(45deg)`;
+      this.arrowElement.style.transform = `translateX(${Math.round(linkRect.left + linkRect.width / 2)}px) rotate(45deg)`;
       this.backgroundElement.style.transform = `translateX(${pos}px) scaleX(${ratioWidth}) scaleY(${ratioHeight})`;
-      // @todo this will throw an error if  not children are defined.
+      // @todo this will throw an error if no children are defined.
       this.backgroundAltElement.style.transform = `translateY(${content.children[0].offsetHeight / ratioHeight}px)`;
     },
 
@@ -332,6 +337,33 @@ export default {
 
     onTouchStart() {
       this.isDragging = false;
+    },
+
+    clearActiveLinkAttrs() {
+      this.linkElements.forEach((link) => {
+        link.classList.remove(this.activeLinkClass);
+        link.setAttribute('aria-expanded', false);
+      });
+    },
+
+    setActiveLinkAttrs(link) {
+      link.setAttribute('aria-expanded', true);
+      link.classList.add(this.activeLinkClass);
+    },
+
+    resetSectionAttrs(section) {
+      section.classList.remove(this.activeSectionClass);
+      section.classList.remove(this.leftSectionClass);
+      section.classList.remove(this.rightSectionClass);
+    },
+
+    setActiveSectionAttrs(section) {
+      section.classList.add(this.activeSectionClass);
+      section.setAttribute('aria-hidden', false);
+    },
+
+    setActiveRootClass() {
+      this.rootElement.classList.add(this.activeRootClass);
     },
   },
 };
