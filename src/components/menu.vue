@@ -59,12 +59,12 @@ export default {
       type: Array,
       required: true,
     },
-    baseWidth: {
+    dropdownWidth: {
       type: Number,
       default: 380,
       validator: v => v > 0,
     },
-    baseHeight: {
+    dropdownHeight: {
       type: Number,
       default: 400,
       validator: v => v > 0,
@@ -252,8 +252,8 @@ export default {
         contentOffsetW = bodyOffsetWidth - (this.screenOffset * 2);
       }
 
-      const ratioWidth = contentOffsetW / this.baseWidth;
-      const ratioHeight = contentOffsetH / this.baseHeight;
+      const ratioWidth = contentOffsetW / this.dropdownWidth;
+      const ratioHeight = contentOffsetH / this.dropdownHeight;
       const linkRect = link.getBoundingClientRect();
 
       const max = Math.max(linkRect.left + linkRect.width / 2 - contentOffsetW / 2, 10);
