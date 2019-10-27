@@ -1,11 +1,10 @@
 <template>
   <aside class="leaders leaders--no-transition">
-    <nav class="leaders__navbar">
-      <ul class="leaders__nav">
-        <li
+    <navbar>
+      <nav-container>
+        <nav-item
           v-for="item in items"
           :key="item.id"
-          class="leaders__nav-item"
         >
           <nav-link
             tag="button"
@@ -18,9 +17,9 @@
           >
             <span>{{ item.label }}</span>
           </nav-link>
-        </li>
-      </ul>
-    </nav>
+        </nav-item>
+      </nav-container>
+    </navbar>
     <div class="leaders__dropdown">
       <div ref="background" class="leaders__background">
         <div ref="backgroundAlt" class="leaders__background-alt" />
@@ -42,6 +41,9 @@
 </template>
 
 <script>
+import Navbar from './leaders/navbar.vue';
+import NavContainer from './leaders/nav-container.vue';
+import NavItem from './leaders/nav-item.vue';
 import NavLink from './leaders/nav-link.vue';
 import DropdownSection from './leaders/dropdown-section.vue';
 import pointerEvents from './leaders/pointer-events';
@@ -51,6 +53,9 @@ const pointerEvent = pointerEvents();
 export default {
   components: {
     DropdownSection,
+    Navbar,
+    NavContainer,
+    NavItem,
     NavLink,
   },
 
@@ -339,20 +344,6 @@ export default {
 .leaders {
   $self: &;
   perspective: 2000px;
-
-  &__navbar {
-    display: flex;
-  }
-
-  &__nav {
-    display: flex;
-    padding: 0;
-    margin: 0;
-  }
-
-  &__nav-item  {
-    list-style: none;
-  }
 
   &__dropdown {
     position: absolute;
