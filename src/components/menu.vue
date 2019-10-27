@@ -60,19 +60,19 @@ export default {
       required: true,
     },
     baseWidth: {
-      type: [Number, String],
+      type: Number,
       default: 380,
-      validator: val => +val > 0,
+      validator: v => v > 0,
     },
     baseHeight: {
-      type: [Number, String],
+      type: Number,
       default: 400,
-      validator: val => +val > 0,
+      validator: v => v > 0,
     },
     screenOffset: {
-      type: [Number, String],
+      type: Number,
       default: 10,
-      validator: val => +val > 0,
+      validator: v => v > 0,
     },
   },
   computed: {
@@ -209,18 +209,18 @@ export default {
       const bodyOffset = document.body.offsetWidth;
 
       // Crop the width of the content if it goes beyond the width of the screen
-      if (offsetWidth > bodyOffset - (+this.screenOffset * 2)) {
-        offsetWidth = bodyOffset - (+this.screenOffset * 2);
+      if (offsetWidth > bodyOffset - (this.screenOffset * 2)) {
+        offsetWidth = bodyOffset - (this.screenOffset * 2);
       }
 
-      const ratioWidth = offsetWidth / +this.baseWidth;
-      const ratioHeight = offsetHeight / +this.baseHeight;
+      const ratioWidth = offsetWidth / this.baseWidth;
+      const ratioHeight = offsetHeight / this.baseHeight;
       const rect = el.getBoundingClientRect();
       let pos = Math.round(Math.max(rect.left + rect.width / 2 - offsetWidth / 2, 10));
 
       const rightSide = rect.left + rect.width / 2 + offsetWidth / 2;
       if (rightSide > bodyOffset) {
-        pos = pos - (rightSide - bodyOffset) - +this.screenOffset;
+        pos = pos - (rightSide - bodyOffset) - this.screenOffset;
       }
 
       clearTimeout(this.disableTransitionTimeout);
