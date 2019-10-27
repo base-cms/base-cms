@@ -121,20 +121,18 @@ export default {
   },
 
   mounted() {
-    this.addGlobalEventListeners();
+    document.addEventListener('touchmove', this.onTouchMove);
+    document.addEventListener('touchstart', this.onTouchStart);
+    document.body.addEventListener(pointerEvent.end, this.onPointerEnd);
   },
 
   beforeDestroy() {
-    this.removeGlobalEventListeners();
+    document.removeEventListener('touchmove', this.onTouchMove);
+    document.removeEventListener('touchstart', this.onTouchStart);
+    document.body.removeEventListener(pointerEvent.end, this.onPointerEnd);
   },
 
   methods: {
-    addGlobalEventListeners() {
-      document.addEventListener('touchmove', this.onTouchMove);
-      document.addEventListener('touchstart', this.onTouchStart);
-      document.body.addEventListener(pointerEvent.end, this.onPointerEnd);
-    },
-
     onLinkFocus({ dropdownId, link }) {
       this.clearCloseTimeout();
       this.openDropdownFor({ link, activeId: dropdownId });
@@ -169,12 +167,6 @@ export default {
 
     onContainerLeave({ event }) {
       if (event.pointerType !== 'touch') this.setCloseTimeout();
-    },
-
-    removeGlobalEventListeners() {
-      document.removeEventListener('touchmove', this.onTouchMove);
-      document.removeEventListener('touchstart', this.onTouchStart);
-      document.body.removeEventListener(pointerEvent.end, this.onPointerEnd);
     },
 
     toggleDropdownFor({ link, activeId }) {
