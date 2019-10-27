@@ -2,19 +2,14 @@
   <aside class="leaders leaders--no-transition">
     <nav class="leaders__navbar">
       <ul class="leaders__nav">
-        <li class="leaders__nav-item">
-          <component
-            :is="item.element || 'button'"
-            v-for="item in items"
-            ref="links"
-            :key="item.id"
-            :data-dropdown-id="item.id"
-            class="leaders__nav-link"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
+        <li
+          v-for="item in items"
+          :key="item.id"
+          class="leaders__nav-item"
+        >
+          <nav-link ref="links" tag="button" :dropdown-id="item.id">
             <span>{{ item.label }}</span>
-          </component>
+          </nav-link>
         </li>
       </ul>
     </nav>
@@ -42,6 +37,8 @@
 </template>
 
 <script>
+import NavLink from './leaders/nav-link.vue';
+
 // Use generic PointerEvent when available, else fall back.
 const pointerEvent = window.PointerEvent ? {
   end: 'pointerup',
@@ -54,6 +51,10 @@ const pointerEvent = window.PointerEvent ? {
 };
 
 export default {
+  components: {
+    NavLink,
+  },
+
   props: {
     items: {
       type: Array,
@@ -96,7 +97,8 @@ export default {
       return this.$el;
     },
     linkElements() {
-      return this.$refs.links || [];
+      if (!this.$refs.links) return [];
+      return this.$refs.links.map(link => link.$el);
     },
     dropdownContainerElement() {
       return this.$refs.dropdownContainer;
@@ -383,36 +385,13 @@ export default {
   }
 
   &__nav {
+    display: flex;
     padding: 0;
     margin: 0;
   }
 
   &__nav-item  {
-    display: flex;
     list-style: none;
-  }
-
-  &__nav-link {
-    display: inline-block;
-    height: 50px;
-    padding: 0 10px;
-    margin: 0;
-    font-size: 17px;
-    font-weight: 500;
-    line-height: 50px;
-    text-decoration: none;
-    white-space: nowrap;
-    cursor: pointer;
-    user-select: none;
-    background: none;
-    border: none;
-    outline: none;
-    transition: color .1s ease;
-    -webkit-tap-highlight-color: transparent;
-    > * {
-      position: relative;
-      display: block;
-    }
   }
 
   &__dropdown {
