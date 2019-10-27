@@ -1,7 +1,7 @@
 
 <template>
   <icon-wrapper
-    name="library-books"
+    name="filter-none"
     :tag="tag"
     :block-name="blockName"
     :class-name="className"
