@@ -27,18 +27,15 @@
       </div>
       <div ref="arrow" class="leaders__arrow" />
       <div ref="dropdownContainer" class="leaders__dropdown-container">
-        <div
+        <dropdown-section
           v-for="item in items"
-          :key="item.id"
           ref="sections"
-          class="leaders__dropdown-section"
-          :data-dropdown-id="item.id"
-          aria-hidden="true"
+          :key="item.id"
+          :dropdown-id="item.id"
+          :active-dropdown-id="activeDropdownId"
         >
-          <div class="leaders__dropdown-content">
-            <slot :item="item" />
-          </div>
-        </div>
+          <slot :item="item" />
+        </dropdown-section>
       </div>
     </div>
   </aside>
@@ -46,12 +43,14 @@
 
 <script>
 import NavLink from './leaders/nav-link.vue';
+import DropdownSection from './leaders/dropdown-section.vue';
 import pointerEvents from './leaders/pointer-events';
 
 const pointerEvent = pointerEvents();
 
 export default {
   components: {
+    DropdownSection,
     NavLink,
   },
 
@@ -85,7 +84,6 @@ export default {
     closeTimeout: null,
     enableTransitionTimeout: null,
     disableTransitionTimeout: null,
-    activeLinkClass: 'leaders__nav-link--active',
     activeRootClass: 'leaders--dropdown-active',
     noTransitionClass: 'leaders--no-transition',
     activeSectionClass: 'leaders__dropdown-section--active',
@@ -101,7 +99,8 @@ export default {
       return this.$refs.dropdownContainer;
     },
     sectionElements() {
-      return this.$refs.sections || [];
+      if (!this.$refs.sections) return [];
+      return this.$refs.sections.map(ref => ref.$el);
     },
     arrowElement() {
       return this.$refs.arrow;
