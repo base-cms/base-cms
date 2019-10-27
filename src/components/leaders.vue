@@ -7,7 +7,15 @@
           :key="item.id"
           class="leaders__nav-item"
         >
-          <nav-link ref="links" tag="button" :dropdown-id="item.id">
+          <nav-link
+            ref="links"
+            tag="button"
+            :dropdown-id="item.id"
+            @focusin="onLinkFocus"
+            @pointer-enter="onLinkEnter"
+            @pointer-end="onLinkEnd"
+            @pointer-leave="onLinkLeave"
+          >
             <span>{{ item.label }}</span>
           </nav-link>
         </li>
@@ -38,17 +46,9 @@
 
 <script>
 import NavLink from './leaders/nav-link.vue';
+import pointerEvents from './leaders/pointer-events';
 
-// Use generic PointerEvent when available, else fall back.
-const pointerEvent = window.PointerEvent ? {
-  end: 'pointerup',
-  enter: 'pointerenter',
-  leave: 'pointerleave',
-} : {
-  end: 'touchend',
-  enter: 'mouseenter',
-  leave: 'mouseleave',
-};
+const pointerEvent = pointerEvents();
 
 export default {
   components: {
@@ -119,7 +119,6 @@ export default {
 
   mounted() {
     this.addGlobalEventListeners();
-    this.addLinkEventListeners();
     this.addContainerEventListeners();
   },
 
@@ -134,37 +133,28 @@ export default {
       document.body.addEventListener(pointerEvent.end, this.onPointerEnd);
     },
 
-    addLinkEventListeners() {
-      this.linkElements.forEach((el) => {
-        // Events have been registered
-        if (el.dataset.ready) return;
+    onLinkFocus(link) {
+      this.clearCloseTimeout();
+      this.openDropdownFor(link);
+    },
 
-        el.addEventListener('focusin', () => {
-          this.clearCloseTimeout();
-          this.openDropdownFor(el);
-        });
+    onLinkEnter(link, event) {
+      if (event.pointerType !== 'touch') {
+        this.clearCloseTimeout();
+        this.openDropdownFor(link);
+      }
+    },
 
-        el.addEventListener(pointerEvent.enter, (evt) => {
-          if (evt.pointerType !== 'touch') {
-            this.clearCloseTimeout();
-            this.openDropdownFor(el);
-          }
-        });
+    onLinkEnd(link, event) {
+      event.preventDefault();
+      event.stopPropagation();
+      this.toggleDropdownFor(link);
+    },
 
-        el.addEventListener(pointerEvent.end, (evt) => {
-          evt.preventDefault();
-          evt.stopPropagation();
-          this.toggleDropdownFor(el);
-        });
-
-        el.addEventListener(pointerEvent.leave, (evt) => {
-          if (evt.pointerType !== 'touch') {
-            this.setCloseTimeout();
-          }
-        });
-
-        el.dataset.ready = true; // eslint-disable-line no-param-reassign
-      });
+    onLinkLeave(link, event) {
+      if (event.pointerType !== 'touch') {
+        this.setCloseTimeout();
+      }
     },
 
     addContainerEventListeners() {
