@@ -11,6 +11,7 @@
             ref="links"
             tag="button"
             :dropdown-id="item.id"
+            :active-dropdown-id="activeDropdownId"
             @focusin="onLinkFocus"
             @pointer-enter="onLinkEnter"
             @pointer-end="onLinkEnd"
@@ -78,7 +79,8 @@ export default {
   },
 
   data: () => ({
-    activeDropdown: null,
+    activeDropdownId: null,
+
     activeDropdownSection: null,
     isDragging: false,
     closeTimeout: null,
@@ -133,25 +135,25 @@ export default {
       document.body.addEventListener(pointerEvent.end, this.onPointerEnd);
     },
 
-    onLinkFocus(link) {
+    onLinkFocus({ dropdownId, link }) {
       this.clearCloseTimeout();
-      this.openDropdownFor(link);
+      this.openDropdownFor(link, dropdownId);
     },
 
-    onLinkEnter(link, event) {
+    onLinkEnter({ dropdownId, link, event }) {
       if (event.pointerType !== 'touch') {
         this.clearCloseTimeout();
-        this.openDropdownFor(link);
+        this.openDropdownFor(link, dropdownId);
       }
     },
 
-    onLinkEnd(link, event) {
+    onLinkEnd({ dropdownId, link, event }) {
       event.preventDefault();
       event.stopPropagation();
-      this.toggleDropdownFor(link);
+      this.toggleDropdownFor(link, dropdownId);
     },
 
-    onLinkLeave(link, event) {
+    onLinkLeave({ event }) {
       if (event.pointerType !== 'touch') {
         this.setCloseTimeout();
       }
@@ -186,33 +188,22 @@ export default {
       document.body.removeEventListener(pointerEvent.end, this.onPointerEnd);
     },
 
-    toggleDropdownFor(link) {
-      if (this.activeDropdown === link) {
+    toggleDropdownFor(link, activeId) {
+      if (this.activeDropdownId === activeId) {
         this.closeDropdown();
       } else {
-        this.openDropdownFor(link);
+        this.openDropdownFor(link, activeId);
       }
     },
 
-    openDropdownFor(link) {
-      if (this.activeDropdown === link) return;
-      this.$emit('open-dropdown', link);
+    openDropdownFor(link, activeId) {
+      if (this.activeDropdownId === activeId) return;
 
       // Set active classes to root element.
       this.setActiveRootClass();
 
-      // Set active link item.
-      this.activeDropdown = link;
-      this.clearActiveLinkAttrs();
-      this.setActiveLinkAttrs(link);
-
-      /**
-       * @todo The `dropdownId` should be concatenated with the parent id.
-       *
-       * This will prevent collisions when the same item appears in
-       * multiple lists on the same page.
-       */
-      const { dropdownId: activeId } = link.dataset;
+      // Set active dropdown id.
+      this.activeDropdownId = activeId;
 
       let content;
       let contentOffsetW;
@@ -223,7 +214,8 @@ export default {
         this.resetSectionAttrs(section);
         const { dropdownId } = section.dataset;
 
-        if (dropdownId === activeId) {
+        // @todo determine a better way to check this.
+        if (`${dropdownId}` === `${activeId}`) {
           this.activeDropdownSection = section;
           this.setActiveSectionAttrs(section);
           [content] = section.children;
@@ -271,11 +263,7 @@ export default {
     },
 
     closeDropdown() {
-      if (!this.activeDropdown) return;
-      this.$emit('close-dropdown', this.activeDropdown);
-
-      // Clear/reset active link attributes.
-      this.clearActiveLinkAttrs();
+      if (!this.activeDropdownId) return;
 
       this.activeDropdownSection.setAttribute('aria-hidden', true);
 
@@ -285,8 +273,8 @@ export default {
       // Clear active classes on the root element.
       this.clearActiveRootClass();
 
-      // Unset active button and section.
-      this.activeDropdown = undefined;
+      // Unset active dropdown.
+      this.activeDropdownId = null;
       this.activeDropdownSection = undefined;
     },
 
@@ -328,18 +316,6 @@ export default {
 
     onTouchStart() {
       this.isDragging = false;
-    },
-
-    clearActiveLinkAttrs() {
-      this.linkElements.forEach((link) => {
-        link.classList.remove(this.activeLinkClass);
-        link.setAttribute('aria-expanded', false);
-      });
-    },
-
-    setActiveLinkAttrs(link) {
-      link.setAttribute('aria-expanded', true);
-      link.classList.add(this.activeLinkClass);
     },
 
     resetSectionAttrs(section) {

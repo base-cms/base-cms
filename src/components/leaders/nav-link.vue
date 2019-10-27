@@ -2,9 +2,9 @@
   <component
     :is="tag"
     :data-dropdown-id="dropdownId"
-    class="leaders__nav-link"
+    :class="classNames"
+    :aria-expanded="isActive"
     aria-haspopup="true"
-    aria-expanded="false"
   >
     <slot />
   </component>
@@ -21,9 +21,29 @@ export default {
       type: [String, Number],
       required: true,
     },
+    activeDropdownId: {
+      type: [String, Number],
+      default: null,
+    },
     tag: {
       type: String,
       default: 'button',
+    },
+  },
+
+  data: () => ({
+    elementName: 'nav-link',
+  }),
+
+  computed: {
+    isActive() {
+      return `${this.dropdownId}` === `${this.activeDropdownId}`;
+    },
+    classNames() {
+      const elementName = `leaders__${this.elementName}`;
+      const classes = [elementName];
+      if (this.isActive) classes.push(`${elementName}--active`);
+      return classes;
     },
   },
 
@@ -53,19 +73,19 @@ export default {
     },
 
     emitFocusIn(event) {
-      this.$emit('focusin', this.$el, event);
+      this.$emit('focusin', { dropdownId: this.dropdownId, link: this.$el, event });
     },
 
     emitPointerEnter(event) {
-      this.$emit('pointer-enter', this.$el, event);
+      this.$emit('pointer-enter', { dropdownId: this.dropdownId, link: this.$el, event });
     },
 
     emitPointerEnd(event) {
-      this.$emit('pointer-end', this.$el, event);
+      this.$emit('pointer-end', { dropdownId: this.dropdownId, link: this.$el, event });
     },
 
     emitPointerLeave(event) {
-      this.$emit('pointer-leave', this.$el, event);
+      this.$emit('pointer-leave', { dropdownId: this.dropdownId, link: this.$el, event });
     },
   },
 };
