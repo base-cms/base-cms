@@ -42,7 +42,7 @@
 </template>
 
 <script>
-// The PointerEvent interface represents the state of a DOM event
+// Use generic PointerEvent when available, else fall back.
 const pointerEvent = window.PointerEvent ? {
   end: 'pointerup',
   enter: 'pointerenter',
@@ -75,128 +75,158 @@ export default {
       validator: v => v > 0,
     },
   },
+
+  data: () => ({
+    activeDropdown: null,
+    isDragging: false,
+    closeTimeout: null,
+    activeLinkClass: 'leaders__nav-link--active',
+    activeRootClass: 'leaders--dropdown-active',
+    noTransitionClass: 'leaders--no-transition',
+    activeSectionClass: 'leaders__dropdown-section--active',
+    leftSectionClass: 'leaders__dropdown-section--left',
+    rightSectionClass: 'leaders__dropdown-section--right',
+  }),
+
   computed: {
-    hasDropdownEls() {
+    linkElements() {
       return this.$refs.links || [];
     },
-    sectionEls() {
+    dropdownContainerElement() {
+      return this.$refs.dropdownContainer;
+    },
+    sectionElements() {
       const sections = this.$refs.sections || [];
-
       return sections.map(el => ({
         el,
         name: el.getAttribute('data-dropdown-id'),
         content: el.children[0],
       }));
     },
+    arrowElement() {
+      return this.$refs.arrow;
+    },
+    backgroundElement() {
+      return this.$refs.background;
+    },
+    backgroundAltElement() {
+      return this.$refs.backgroundAlt;
+    },
   },
+
   mounted() {
-    this.registerGlobalEvents();
-    this.registerDropdownElsEvents();
-    this.registerDropdownContainerEvents();
+    this.addGlobalEventListeners();
+    this.addLinkEventListeners();
+    this.addContainerEventListeners();
   },
 
   beforeDestroy() {
-    this.unregisterGlobalEvents();
+    this.removeGlobalEventListeners();
   },
 
   methods: {
-    registerGlobalEvents() {
-      document.addEventListener('touchmove', this.touchMoveHandler);
-      document.addEventListener('touchstart', this.touchStartHandler);
-      document.body.addEventListener(pointerEvent.end, this.eventEndHandler);
+    addGlobalEventListeners() {
+      document.addEventListener('touchmove', this.onTouchMove);
+      document.addEventListener('touchstart', this.onTouchStart);
+      document.body.addEventListener(pointerEvent.end, this.onPointerEnd);
     },
-    registerDropdownElsEvents() {
-      this.hasDropdownEls.forEach((el) => {
+
+    addLinkEventListeners() {
+      this.linkElements.forEach((el) => {
         // Events have been registered
         if (el.dataset.ready) return;
 
         el.addEventListener('focusin', () => {
-          this.stopCloseTimeout();
-          this.openDropdown(el);
+          this.clearCloseTimeout();
+          this.openDropdownFor(el);
         });
 
         el.addEventListener(pointerEvent.enter, (evt) => {
           if (evt.pointerType !== 'touch') {
-            this.stopCloseTimeout();
-            this.openDropdown(el);
+            this.clearCloseTimeout();
+            this.openDropdownFor(el);
           }
         });
 
         el.addEventListener(pointerEvent.end, (evt) => {
           evt.preventDefault();
           evt.stopPropagation();
-          this.toggleDropdown(el);
+          this.toggleDropdownFor(el);
         });
 
         el.addEventListener(pointerEvent.leave, (evt) => {
           if (evt.pointerType !== 'touch') {
-            this.startCloseTimeout();
+            this.setCloseTimeout();
           }
         });
 
         el.dataset.ready = true; // eslint-disable-line no-param-reassign
       });
     },
-    registerDropdownContainerEvents() {
-      // Events have been registered
-      if (this.$refs.dropdownContainer.dataset.ready) return;
 
-      this.$refs.dropdownContainer.addEventListener(pointerEvent.end, (evt) => {
+    addContainerEventListeners() {
+      // Events have been registered
+      if (this.dropdownContainerElement.dataset.ready) return;
+
+      this.dropdownContainerElement.addEventListener(pointerEvent.end, (evt) => {
         evt.stopPropagation();
       });
 
-      this.$refs.dropdownContainer.addEventListener(pointerEvent.enter, (evt) => {
+      this.dropdownContainerElement.addEventListener(pointerEvent.enter, (evt) => {
         if (evt.pointerType !== 'touch') {
-          this.stopCloseTimeout();
+          this.clearCloseTimeout();
         }
       });
 
-      this.$refs.dropdownContainer.addEventListener(pointerEvent.leave, (evt) => {
+      this.dropdownContainerElement.addEventListener(pointerEvent.leave, (evt) => {
         if (evt.pointerType !== 'touch') {
-          this.startCloseTimeout();
+          this.setCloseTimeout();
         }
       });
 
-      this.$refs.dropdownContainer.dataset.ready = true;
+      this.dropdownContainerElement.dataset.ready = true;
     },
-    unregisterGlobalEvents() {
-      document.removeEventListener('touchmove', this.touchMoveHandler);
-      document.removeEventListener('touchstart', this.touchStartHandler);
-      document.body.removeEventListener(pointerEvent.end, this.eventEndHandler);
+
+    removeGlobalEventListeners() {
+      document.removeEventListener('touchmove', this.onTouchMove);
+      document.removeEventListener('touchstart', this.onTouchStart);
+      document.body.removeEventListener(pointerEvent.end, this.onPointerEnd);
     },
-    toggleDropdown(el) {
-      if (this.activeDropdown === el) {
+
+    toggleDropdownFor(link) {
+      if (this.activeDropdown === link) {
         this.closeDropdown();
       } else {
-        this.openDropdown(el);
+        this.openDropdownFor(link);
       }
     },
-    openDropdown(el) {
-      if (this.activeDropdown === el) return;
 
-      this.$emit('open-dropdown', el);
+    openDropdownFor(link) {
+      if (this.activeDropdown === link) return;
 
-      this.$el.classList.add('leaders--dropdown-active');
-      this.activeDropdown = el;
+      this.$emit('open-dropdown', link);
+
+      this.$el.classList.add(this.activeRootClass);
+      this.activeDropdown = link;
       this.activeDropdown.setAttribute('aria-expanded', 'true');
-      this.hasDropdownEls.forEach(dd => dd.classList.remove('leaders__nav-link--active'));
-      el.classList.add('leaders__nav-link--active');
+      this.linkElements.forEach(dd => dd.classList.remove(this.activeLinkClass));
+      link.classList.add(this.activeLinkClass);
 
-      const activeDataDropdown = el.getAttribute('data-dropdown-id');
-      let direction = 'leaders__dropdown-section--left';
+      const activeDataDropdown = link.getAttribute('data-dropdown-id');
+      let direction = this.leftSectionClass;
       let offsetWidth;
       let offsetHeight;
       let content;
 
-      this.sectionEls.forEach((item) => {
-        item.el.classList.remove('leaders__dropdown-section--active');
-        item.el.classList.remove('leaders__dropdown-section--left');
-        item.el.classList.remove('leaders__dropdown-section--right');
+      this.sectionElements.forEach((item) => {
+        item.el.classList.remove(this.activeSectionClass);
+        item.el.classList.remove(this.leftSectionClass);
+        item.el.classList.remove(this.rightSectionClass);
 
         if (item.name === activeDataDropdown) {
           item.el.setAttribute('aria-hidden', 'false');
-          item.el.classList.add('leaders__dropdown-section--active');
-          direction = 'leaders__dropdown-section--right';
+          item.el.classList.add(this.activeSectionClass);
+          direction = this.rightSectionClass;
           offsetWidth = item.content.offsetWidth; // eslint-disable-line
           offsetHeight = item.content.offsetHeight; // eslint-disable-line
           content = item.content; // eslint-disable-line
@@ -215,7 +245,7 @@ export default {
 
       const ratioWidth = offsetWidth / this.baseWidth;
       const ratioHeight = offsetHeight / this.baseHeight;
-      const rect = el.getBoundingClientRect();
+      const rect = link.getBoundingClientRect();
       let pos = Math.round(Math.max(rect.left + rect.width / 2 - offsetWidth / 2, 10));
 
       const rightSide = rect.left + rect.width / 2 + offsetWidth / 2;
@@ -226,28 +256,29 @@ export default {
       clearTimeout(this.disableTransitionTimeout);
 
       this.enableTransitionTimeout = setTimeout(() => {
-        this.$el.classList.remove('leaders--no-transition');
+        this.$el.classList.remove(this.noTransitionClass);
       }, 50);
 
-      this.$refs.dropdownContainer.style.transform = `translateX(${pos}px)`;
-      this.$refs.dropdownContainer.style.width = `${offsetWidth}px`;
-      this.$refs.dropdownContainer.style.height = `${offsetHeight}px`;
+      this.dropdownContainerElement.style.transform = `translateX(${pos}px)`;
+      this.dropdownContainerElement.style.width = `${offsetWidth}px`;
+      this.dropdownContainerElement.style.height = `${offsetHeight}px`;
 
-      this.$refs.arrow.style.transform = `translateX(${Math.round(rect.left + rect.width / 2)}px) rotate(45deg)`;
-      this.$refs.background.style.transform = `translateX(${pos}px) scaleX(${ratioWidth}) scaleY(${ratioHeight})`;
+      this.arrowElement.style.transform = `translateX(${Math.round(rect.left + rect.width / 2)}px) rotate(45deg)`;
+      this.backgroundElement.style.transform = `translateX(${pos}px) scaleX(${ratioWidth}) scaleY(${ratioHeight})`;
       // @todo this will throw an error if  not children are defined.
-      this.$refs.backgroundAlt.style.transform = `translateY(${content.children[0].offsetHeight / ratioHeight}px)`;
+      this.backgroundAltElement.style.transform = `translateY(${content.children[0].offsetHeight / ratioHeight}px)`;
     },
+
     closeDropdown() {
       if (!this.activeDropdown) return;
 
       this.$emit('close-dropdown', this.activeDropdown);
 
-      this.hasDropdownEls.forEach((el) => {
-        el.classList.remove('leaders__nav-link--active');
+      this.linkElements.forEach((el) => {
+        el.classList.remove(this.activeLinkClass);
       });
 
-      const activeDropdownSection = this.$refs.dropdownContainer.querySelector('[aria-hidden="false"]');
+      const activeDropdownSection = this.dropdownContainerElement.querySelector('[aria-hidden="false"]');
       if (activeDropdownSection) {
         activeDropdownSection.setAttribute('aria-hidden', 'true');
       }
@@ -255,32 +286,33 @@ export default {
       clearTimeout(this.enableTransitionTimeout);
 
       this.disableTransitionTimeout = setTimeout(() => {
-        this.$el.classList.add('leaders--no-transition');
+        this.$el.classList.add(this.noTransitionClass);
       }, 50);
 
-      this.$el.classList.remove('leaders--dropdown-active');
+      this.$el.classList.remove(this.activeRootClass);
 
       this.activeDropdown.setAttribute('aria-expanded', 'false');
       this.activeDropdown = undefined;
     },
-    startCloseTimeout() {
-      this.closeDropdownTimeout = setTimeout(() => {
-        this.closeDropdown();
-      }, 50);
+
+    setCloseTimeout() {
+      this.closeTimeout = setTimeout(() => this.closeDropdown(), 50);
     },
-    stopCloseTimeout() {
-      clearTimeout(this.closeDropdownTimeout);
+
+    clearCloseTimeout() {
+      clearTimeout(this.closeTimeout);
     },
-    touchMoveHandler() {
+
+    onPointerEnd() {
+      if (!this.isDragging) this.closeDropdown();
+    },
+
+    onTouchMove() {
       this.isDragging = true;
     },
-    touchStartHandler() {
+
+    onTouchStart() {
       this.isDragging = false;
-    },
-    eventEndHandler() {
-      if (!this.isDragging) {
-        this.closeDropdown();
-      }
     },
   },
 };
