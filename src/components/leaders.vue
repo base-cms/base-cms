@@ -8,7 +8,6 @@
           class="leaders__nav-item"
         >
           <nav-link
-            ref="links"
             tag="button"
             :dropdown-id="item.id"
             :active-dropdown-id="activeDropdownId"
@@ -97,10 +96,6 @@ export default {
   computed: {
     rootElement() {
       return this.$el;
-    },
-    linkElements() {
-      if (!this.$refs.links) return [];
-      return this.$refs.links.map(link => link.$el);
     },
     dropdownContainerElement() {
       return this.$refs.dropdownContainer;
