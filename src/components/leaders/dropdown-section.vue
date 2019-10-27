@@ -1,8 +1,8 @@
 <template>
   <section
-    :data-dropdown-id="dropdownId"
+    :data-dropdown-index="index"
     :class="classNames"
-    :aria-hidden="!isActive"
+    :aria-hidden="hidden"
   >
     <div class="leaders__dropdown-content">
       <slot />
@@ -13,12 +13,16 @@
 <script>
 export default {
   props: {
-    dropdownId: {
-      type: [String, Number],
+    index: {
+      type: Number,
       required: true,
     },
-    activeDropdownId: {
-      type: [String, Number],
+    activeIndex: {
+      type: Number,
+      default: null,
+    },
+    lastActiveIndex: {
+      type: Number,
       default: null,
     },
   },
@@ -28,13 +32,30 @@ export default {
   }),
 
   computed: {
+    hidden() {
+      if (this.activeIndex == null) return true;
+      return this.activeIndex !== this.index;
+    },
+    hasLastActiveIndex() {
+      return this.lastActiveIndex != null;
+    },
     isActive() {
-      return `${this.dropdownId}` === `${this.activeDropdownId}`;
+      return this.index === this.lastActiveIndex;
+    },
+    isBefore() {
+      if (!this.hasLastActiveIndex) return null;
+      return this.index < this.lastActiveIndex;
+    },
+    isAfter() {
+      if (!this.hasLastActiveIndex) return null;
+      return this.index > this.lastActiveIndex;
     },
     classNames() {
       const elementName = `leaders__${this.elementName}`;
       const classes = [elementName];
       if (this.isActive) classes.push(`${elementName}--active`);
+      if (this.isBefore) classes.push(`${elementName}--left`);
+      if (this.isAfter) classes.push(`${elementName}--right`);
       return classes;
     },
   },

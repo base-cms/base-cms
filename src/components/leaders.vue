@@ -3,13 +3,13 @@
     <navbar>
       <nav-container>
         <nav-item
-          v-for="item in items"
-          :key="item.id"
+          v-for="(item, index) in items"
+          :key="index"
         >
           <nav-link
             tag="button"
-            :dropdown-id="item.id"
-            :active-dropdown-id="activeDropdownId"
+            :index="index"
+            :active-index="activeIndex"
             @focusin="onLinkFocus"
             @pointer-enter="onLinkEnter"
             @pointer-end="onLinkEnd"
@@ -25,13 +25,19 @@
         <div ref="backgroundAlt" class="leaders__background-alt" />
       </div>
       <div ref="arrow" class="leaders__arrow" />
-      <dropdown-container ref="dropdownContainer">
+      <dropdown-container
+        ref="dropdownContainer"
+        @pointer-enter="onContainerEnter"
+        @pointer-end="onContainerEnd"
+        @pointer-leave="onContainerLeave"
+      >
         <dropdown-section
-          v-for="item in items"
+          v-for="(item, index) in items"
           ref="sections"
-          :key="item.id"
-          :dropdown-id="item.id"
-          :active-dropdown-id="activeDropdownId"
+          :key="index"
+          :index="index"
+          :active-index="activeIndex"
+          :last-active-index="lastActiveIndex"
         >
           <slot :item="item" />
         </dropdown-section>
@@ -84,18 +90,15 @@ export default {
   },
 
   data: () => ({
-    activeDropdownId: null,
+    activeIndex: null,
+    lastActiveIndex: null,
 
-    activeDropdownSection: null,
     isDragging: false,
     closeTimeout: null,
     enableTransitionTimeout: null,
     disableTransitionTimeout: null,
     activeRootClass: 'leaders--dropdown-active',
     noTransitionClass: 'leaders--no-transition',
-    activeSectionClass: 'leaders__dropdown-section--active',
-    leftSectionClass: 'leaders__dropdown-section--left',
-    rightSectionClass: 'leaders__dropdown-section--right',
   }),
 
   computed: {
@@ -118,6 +121,9 @@ export default {
     backgroundAltElement() {
       return this.$refs.backgroundAlt;
     },
+    isMenuClosed() {
+      return this.activeIndex == null;
+    },
   },
 
   mounted() {
@@ -133,22 +139,22 @@ export default {
   },
 
   methods: {
-    onLinkFocus({ dropdownId, link }) {
+    onLinkFocus({ index, element }) {
       this.clearCloseTimeout();
-      this.openDropdownFor({ link, activeId: dropdownId });
+      this.openDropdownFor({ link: element, activeIndex: index });
     },
 
-    onLinkEnter({ dropdownId, link, event }) {
+    onLinkEnter({ index, element, event }) {
       if (event.pointerType !== 'touch') {
         this.clearCloseTimeout();
-        this.openDropdownFor({ link, activeId: dropdownId });
+        this.openDropdownFor({ link: element, activeIndex: index });
       }
     },
 
-    onLinkEnd({ dropdownId, link, event }) {
+    onLinkEnd({ index, element, event }) {
       event.preventDefault();
       event.stopPropagation();
-      this.toggleDropdownFor({ link, activeId: dropdownId });
+      this.toggleDropdownFor({ link: element, activeIndex: index });
     },
 
     onLinkLeave({ event }) {
@@ -169,43 +175,34 @@ export default {
       if (event.pointerType !== 'touch') this.setCloseTimeout();
     },
 
-    toggleDropdownFor({ link, activeId }) {
-      if (this.activeDropdownId === activeId) {
+    toggleDropdownFor({ link, activeIndex }) {
+      if (this.activeIndex === activeIndex) {
         this.closeDropdown();
       } else {
-        this.openDropdownFor({ link, activeId });
+        this.openDropdownFor({ link, activeIndex });
       }
     },
 
-    openDropdownFor({ link, activeId }) {
-      if (this.activeDropdownId === activeId) return;
+    openDropdownFor({ link, activeIndex }) {
+      if (this.activeIndex === activeIndex) return;
 
       // Set active classes to root element.
       this.setActiveRootClass();
 
       // Set active dropdown id.
-      this.activeDropdownId = activeId;
+      this.activeIndex = activeIndex;
+      // Set last active index
+      this.lastActiveIndex = activeIndex;
 
       let content;
       let contentOffsetW;
       let contentOffsetH;
-      let direction = this.leftSectionClass;
 
-      this.sectionElements.forEach((section) => {
-        this.resetSectionAttrs(section);
-        const { dropdownId } = section.dataset;
-
-        // @todo determine a better way to check this.
-        if (`${dropdownId}` === `${activeId}`) {
-          this.activeDropdownSection = section;
-          this.setActiveSectionAttrs(section);
+      this.sectionElements.forEach((section, index) => {
+        if (index === activeIndex) {
           [content] = section.children;
           contentOffsetW = content.offsetWidth;
           contentOffsetH = content.offsetHeight;
-          direction = this.rightSectionClass;
-        } else {
-          section.classList.add(direction);
-          section.setAttribute('aria-hidden', true);
         }
       });
 
@@ -244,9 +241,7 @@ export default {
     },
 
     closeDropdown() {
-      if (!this.activeDropdownId) return;
-
-      this.activeDropdownSection.setAttribute('aria-hidden', true);
+      if (this.activeIndex == null) return;
 
       this.clearEnableTransitionTimeout();
       this.setDisableTransitionTimeout();
@@ -254,9 +249,8 @@ export default {
       // Clear active classes on the root element.
       this.clearActiveRootClass();
 
-      // Unset active dropdown.
-      this.activeDropdownId = null;
-      this.activeDropdownSection = undefined;
+      // Unset active dropdown (but leave the last active)
+      this.activeIndex = null;
     },
 
     setCloseTimeout() {
@@ -297,17 +291,6 @@ export default {
 
     onTouchStart() {
       this.isDragging = false;
-    },
-
-    resetSectionAttrs(section) {
-      section.classList.remove(this.activeSectionClass);
-      section.classList.remove(this.leftSectionClass);
-      section.classList.remove(this.rightSectionClass);
-    },
-
-    setActiveSectionAttrs(section) {
-      section.classList.add(this.activeSectionClass);
-      section.setAttribute('aria-hidden', false);
     },
 
     setActiveRootClass() {

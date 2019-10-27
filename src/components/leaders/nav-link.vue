@@ -1,7 +1,7 @@
 <template>
   <component
     :is="tag"
-    :data-dropdown-id="dropdownId"
+    :data-dropdown-index="index"
     :class="classNames"
     :aria-expanded="isActive"
     aria-haspopup="true"
@@ -17,12 +17,12 @@ const pointerEvent = pointerEvents();
 
 export default {
   props: {
-    dropdownId: {
-      type: [String, Number],
+    index: {
+      type: Number,
       required: true,
     },
-    activeDropdownId: {
-      type: [String, Number],
+    activeIndex: {
+      type: Number,
       default: null,
     },
     tag: {
@@ -37,7 +37,7 @@ export default {
 
   computed: {
     isActive() {
-      return `${this.dropdownId}` === `${this.activeDropdownId}`;
+      return this.index === this.activeIndex;
     },
     classNames() {
       const elementName = `leaders__${this.elementName}`;
@@ -73,19 +73,27 @@ export default {
     },
 
     emitFocusIn(event) {
-      this.$emit('focusin', { dropdownId: this.dropdownId, link: this.$el, event });
+      this.emitEvent('focusin', event);
     },
 
     emitPointerEnter(event) {
-      this.$emit('pointer-enter', { dropdownId: this.dropdownId, link: this.$el, event });
+      this.emitEvent('pointer-enter', event);
     },
 
     emitPointerEnd(event) {
-      this.$emit('pointer-end', { dropdownId: this.dropdownId, link: this.$el, event });
+      this.emitEvent('pointer-end', event);
     },
 
     emitPointerLeave(event) {
-      this.$emit('pointer-leave', { dropdownId: this.dropdownId, link: this.$el, event });
+      this.emitEvent('pointer-leave', event);
+    },
+
+    emitEvent(name, event) {
+      this.$emit(name, {
+        index: this.index,
+        element: this.$el,
+        event,
+      });
     },
   },
 };
@@ -113,6 +121,10 @@ export default {
     > * {
       position: relative;
       display: block;
+    }
+
+    &--active {
+      color: #6c757d;
     }
   }
 }
