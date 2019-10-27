@@ -30,7 +30,7 @@
           ref="sections"
           class="leaders__dropdown-section"
           :data-dropdown-id="item.id"
-          aria-hidden="false"
+          aria-hidden="true"
         >
           <div class="leaders__dropdown-content">
             <slot :item="item" />
@@ -78,6 +78,7 @@ export default {
 
   data: () => ({
     activeDropdown: null,
+    activeDropdownSection: null,
     isDragging: false,
     closeTimeout: null,
     enableTransitionTimeout: null,
@@ -231,6 +232,7 @@ export default {
         const { dropdownId } = section.dataset;
 
         if (dropdownId === activeId) {
+          this.activeDropdownSection = section;
           this.setActiveSectionAttrs(section);
           [content] = section.children;
           contentOffsetW = content.offsetWidth;
@@ -278,25 +280,22 @@ export default {
 
     closeDropdown() {
       if (!this.activeDropdown) return;
-
       this.$emit('close-dropdown', this.activeDropdown);
 
-      this.linkElements.forEach((el) => {
-        el.classList.remove(this.activeLinkClass);
-      });
+      // Clear/reset active link attributes.
+      this.clearActiveLinkAttrs();
 
-      const activeDropdownSection = this.dropdownContainerElement.querySelector('[aria-hidden="false"]');
-      if (activeDropdownSection) {
-        activeDropdownSection.setAttribute('aria-hidden', 'true');
-      }
+      this.activeDropdownSection.setAttribute('aria-hidden', true);
 
       this.clearEnableTransitionTimeout();
       this.setDisableTransitionTimeout();
 
-      this.$el.classList.remove(this.activeRootClass);
+      // Clear active classes on the root element.
+      this.clearActiveRootClass();
 
-      this.activeDropdown.setAttribute('aria-expanded', 'false');
+      // Unset active button and section.
       this.activeDropdown = undefined;
+      this.activeDropdownSection = undefined;
     },
 
     setCloseTimeout() {
@@ -364,6 +363,10 @@ export default {
 
     setActiveRootClass() {
       this.rootElement.classList.add(this.activeRootClass);
+    },
+
+    clearActiveRootClass() {
+      this.rootElement.classList.remove(this.activeRootClass);
     },
   },
 };
