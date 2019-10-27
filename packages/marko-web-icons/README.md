@@ -79,3 +79,9 @@ Finally, any icon not specifically set to `light` or `dark` that also matches a 
 
 ## Development
 Anytime a new icon `svg` file is added (or the wrapping Vue component template changes), run the `build.js` file found in the project root. This will generate a new Vue file for the icon.
+
+## Icon Sources
+The icons used in this library are sourced from:
+- [Octicons](https://octicons.github.com/)
+- [Material](https://material.io/resources/icons)
+- [Simple Icons](https://simpleicons.org/)
