@@ -34,16 +34,15 @@ const retrieveYoutubePlaylistId = async ({ youtube }) => {
 
   const id = get(youtube, 'channelId');
   const forUsername = get(youtube, 'username');
-  if (id || forUsername) {
-    const payload = {
-      part: 'contentDetails',
-      ...(id && { id }),
-      ...(forUsername && { forUsername }),
-    };
-    const response = await googleDataApiClient.request('youtube.channelList', payload);
-    return get(response, 'items.0.contentDetails.relatedPlaylists.uploads');
+  if (!id && !forUsername) return null;
+  const payload = { part: 'contentDetails' };
+  if (id) {
+    payload.id = id;
+  } else {
+    payload.forUsername = forUsername;
   }
-  return undefined;
+  const response = await googleDataApiClient.request('youtube.channelList', payload);
+  return get(response, 'items.0.contentDetails.relatedPlaylists.uploads');
 };
 
 const { isArray } = Array;
