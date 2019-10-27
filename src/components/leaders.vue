@@ -25,7 +25,7 @@
         <div ref="backgroundAlt" class="leaders__background-alt" />
       </div>
       <div ref="arrow" class="leaders__arrow" />
-      <div ref="dropdownContainer" class="leaders__dropdown-container">
+      <dropdown-container ref="dropdownContainer">
         <dropdown-section
           v-for="item in items"
           ref="sections"
@@ -35,13 +35,14 @@
         >
           <slot :item="item" />
         </dropdown-section>
-      </div>
+      </dropdown-container>
     </div>
   </aside>
 </template>
 
 <script>
 import Navbar from './leaders/navbar.vue';
+import DropdownContainer from './leaders/dropdown-container.vue';
 import NavContainer from './leaders/nav-container.vue';
 import NavItem from './leaders/nav-item.vue';
 import NavLink from './leaders/nav-link.vue';
@@ -52,6 +53,7 @@ const pointerEvent = pointerEvents();
 
 export default {
   components: {
+    DropdownContainer,
     DropdownSection,
     Navbar,
     NavContainer,
@@ -101,7 +103,7 @@ export default {
       return this.$el;
     },
     dropdownContainerElement() {
-      return this.$refs.dropdownContainer;
+      return this.$refs.dropdownContainer.$el;
     },
     sectionElements() {
       if (!this.$refs.sections) return [];
@@ -120,7 +122,6 @@ export default {
 
   mounted() {
     this.addGlobalEventListeners();
-    this.addContainerEventListeners();
   },
 
   beforeDestroy() {
@@ -158,27 +159,16 @@ export default {
       }
     },
 
-    addContainerEventListeners() {
-      // Events have been registered
-      if (this.dropdownContainerElement.dataset.ready) return;
+    onContainerEnter({ event }) {
+      if (event.pointerType !== 'touch') this.clearCloseTimeout();
+    },
 
-      this.dropdownContainerElement.addEventListener(pointerEvent.end, (evt) => {
-        evt.stopPropagation();
-      });
+    onContainerEnd({ event }) {
+      event.stopPropagation();
+    },
 
-      this.dropdownContainerElement.addEventListener(pointerEvent.enter, (evt) => {
-        if (evt.pointerType !== 'touch') {
-          this.clearCloseTimeout();
-        }
-      });
-
-      this.dropdownContainerElement.addEventListener(pointerEvent.leave, (evt) => {
-        if (evt.pointerType !== 'touch') {
-          this.setCloseTimeout();
-        }
-      });
-
-      this.dropdownContainerElement.dataset.ready = true;
+    onContainerLeave({ event }) {
+      if (event.pointerType !== 'touch') this.setCloseTimeout();
     },
 
     removeGlobalEventListeners() {
