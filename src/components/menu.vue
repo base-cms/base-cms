@@ -80,6 +80,8 @@ export default {
     activeDropdown: null,
     isDragging: false,
     closeTimeout: null,
+    enableTransitionTimeout: null,
+    disableTransitionTimeout: null,
     activeLinkClass: 'leaders__nav-link--active',
     activeRootClass: 'leaders--dropdown-active',
     noTransitionClass: 'leaders--no-transition',
@@ -89,6 +91,9 @@ export default {
   }),
 
   computed: {
+    rootElement() {
+      return this.$el;
+    },
     linkElements() {
       return this.$refs.links || [];
     },
@@ -253,11 +258,8 @@ export default {
         pos = pos - (rightSide - bodyOffset) - this.screenOffset;
       }
 
-      clearTimeout(this.disableTransitionTimeout);
-
-      this.enableTransitionTimeout = setTimeout(() => {
-        this.$el.classList.remove(this.noTransitionClass);
-      }, 50);
+      this.clearDisableTransitionTimeout();
+      this.setEnableTransitionTimeout();
 
       this.dropdownContainerElement.style.transform = `translateX(${pos}px)`;
       this.dropdownContainerElement.style.width = `${offsetWidth}px`;
@@ -283,11 +285,8 @@ export default {
         activeDropdownSection.setAttribute('aria-hidden', 'true');
       }
 
-      clearTimeout(this.enableTransitionTimeout);
-
-      this.disableTransitionTimeout = setTimeout(() => {
-        this.$el.classList.add(this.noTransitionClass);
-      }, 50);
+      this.clearEnableTransitionTimeout();
+      this.setDisableTransitionTimeout();
 
       this.$el.classList.remove(this.activeRootClass);
 
@@ -301,6 +300,26 @@ export default {
 
     clearCloseTimeout() {
       clearTimeout(this.closeTimeout);
+    },
+
+    setEnableTransitionTimeout() {
+      this.enableTransitionTimeout = setTimeout(() => {
+        this.rootElement.classList.remove(this.noTransitionClass);
+      }, 50);
+    },
+
+    clearEnableTransitionTimeout() {
+      clearTimeout(this.enableTransitionTimeout);
+    },
+
+    setDisableTransitionTimeout() {
+      this.disableTransitionTimeout = setTimeout(() => {
+        this.rootElement.classList.add(this.noTransitionClass);
+      }, 50);
+    },
+
+    clearDisableTransitionTimeout() {
+      clearTimeout(this.disableTransitionTimeout);
     },
 
     onPointerEnd() {
