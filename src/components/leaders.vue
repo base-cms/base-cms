@@ -137,20 +137,20 @@ export default {
 
     onLinkFocus({ dropdownId, link }) {
       this.clearCloseTimeout();
-      this.openDropdownFor(link, dropdownId);
+      this.openDropdownFor({ link, activeId: dropdownId });
     },
 
     onLinkEnter({ dropdownId, link, event }) {
       if (event.pointerType !== 'touch') {
         this.clearCloseTimeout();
-        this.openDropdownFor(link, dropdownId);
+        this.openDropdownFor({ link, activeId: dropdownId });
       }
     },
 
     onLinkEnd({ dropdownId, link, event }) {
       event.preventDefault();
       event.stopPropagation();
-      this.toggleDropdownFor(link, dropdownId);
+      this.toggleDropdownFor({ link, activeId: dropdownId });
     },
 
     onLinkLeave({ event }) {
@@ -188,15 +188,15 @@ export default {
       document.body.removeEventListener(pointerEvent.end, this.onPointerEnd);
     },
 
-    toggleDropdownFor(link, activeId) {
+    toggleDropdownFor({ link, activeId }) {
       if (this.activeDropdownId === activeId) {
         this.closeDropdown();
       } else {
-        this.openDropdownFor(link, activeId);
+        this.openDropdownFor({ link, activeId });
       }
     },
 
-    openDropdownFor(link, activeId) {
+    openDropdownFor({ link, activeId }) {
       if (this.activeDropdownId === activeId) return;
 
       // Set active classes to root element.
