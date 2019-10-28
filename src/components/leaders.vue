@@ -119,9 +119,14 @@ export default {
   }),
 
   computed: {
-    sectionElements() {
-      if (!this.$refs.sections) return [];
-      return this.$refs.sections.map(ref => ref.$el);
+    activeSection() {
+      const { activeIndex } = this;
+      if (activeIndex == null) return null;
+      return this.sections[activeIndex];
+    },
+
+    sections() {
+      return this.$refs.sections || [];
     },
     isMenuClosed() {
       return this.activeIndex == null;
@@ -194,10 +199,9 @@ export default {
       // Set last active index
       this.lastActiveIndex = activeIndex;
 
-
-      const section = this.sectionElements[activeIndex];
-      if (!section) throw new Error(`No dropdown section was found for index ${activeIndex}`);
-      const [content] = section.children;
+      const { activeSection } = this;
+      if (!activeSection) throw new Error(`No dropdown section was found for index ${activeIndex}`);
+      const [content] = activeSection.$el.children;
       let contentOffsetW = content.offsetWidth;
       const contentOffsetH = content.offsetHeight;
 
