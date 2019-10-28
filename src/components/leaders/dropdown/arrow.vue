@@ -35,7 +35,7 @@ export default {
   // box-shadow: offset-x offset-y blur-radius spread-radius color
   &--open-below {
     #{ $self } {
-      &__background {
+      &__arrow {
         box-shadow: -3px -3px 5px rgba(82, 95, 127, .04);
       }
     }
@@ -43,8 +43,8 @@ export default {
 
   &--open-above {
     #{ $self } {
-      &__background {
-        box-shadow: -3px 3px 5px rgba(82, 95, 127, .04);
+      &__arrow {
+        box-shadow: 3px 3px 5px rgba(82, 95, 127, .04);
       }
     }
   }
