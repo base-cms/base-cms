@@ -20,7 +20,10 @@
         </nav-item>
       </nav-container>
     </navbar>
-    <dropdown :transitions-disabled="transitionsDisabled">
+    <dropdown
+      :transitions-disabled="transitionsDisabled"
+      :is-active="isDropdownActive"
+    >
       <div ref="background" class="leaders__background">
         <div ref="backgroundAlt" class="leaders__background-alt" />
       </div>
@@ -95,12 +98,12 @@ export default {
     activeIndex: null,
     lastActiveIndex: null,
     isDragging: false,
+    isDropdownActive: false,
     transitionsDisabled: true,
 
     closeTimeout: null,
     enableTransitionTimeout: null,
     disableTransitionTimeout: null,
-    activeRootClass: 'leaders--dropdown-active',
   }),
 
   computed: {
@@ -188,11 +191,9 @@ export default {
     openDropdownFor({ link, activeIndex }) {
       if (this.activeIndex === activeIndex) return;
 
-      // Set active classes to root element.
-      this.setActiveRootClass();
-
       // Set active dropdown id.
       this.activeIndex = activeIndex;
+      this.isDropdownActive = true;
       // Set last active index
       this.lastActiveIndex = activeIndex;
 
@@ -243,8 +244,7 @@ export default {
       this.clearEnableTransitionTimeout();
       this.setDisableTransitionTimeout();
 
-      // Clear active classes on the root element.
-      this.clearActiveRootClass();
+      this.isDropdownActive = false;
 
       // Unset active dropdown (but leave the last active)
       this.activeIndex = null;
@@ -288,14 +288,6 @@ export default {
 
     onTouchStart() {
       this.isDragging = false;
-    },
-
-    setActiveRootClass() {
-      this.rootElement.classList.add(this.activeRootClass);
-    },
-
-    clearActiveRootClass() {
-      this.rootElement.classList.remove(this.activeRootClass);
     },
   },
 };
@@ -385,21 +377,6 @@ export default {
     position: absolute;
     top: 0;
     left: 0;
-  }
-
-  &--dropdown-active {
-    #{ $self } {
-      &__dropdown {
-        pointer-events: auto;
-        opacity: 1;
-        transform: none;
-      }
-      &__dropdown-section {
-        &--active {
-          pointer-events: auto;
-        }
-      }
-    }
   }
 }
 </style>

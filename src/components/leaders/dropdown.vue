@@ -7,6 +7,10 @@
 <script>
 export default {
   props: {
+    isActive: {
+      type: Boolean,
+      default: false,
+    },
     transitionsDisabled: {
       type: Boolean,
       default: true,
@@ -18,6 +22,7 @@ export default {
       const elementName = 'leaders__dropdown';
       const classes = [elementName];
       if (this.transitionsDisabled) classes.push(`${elementName}--transitions-disabled`);
+      if (this.isActive) classes.push(`${elementName}--active`);
       return classes;
     },
   },
@@ -41,6 +46,19 @@ export default {
     transform: rotateX(-15deg);
     transform-origin: 50% -50px;
     will-change: transform, opacity;
+
+    &--active {
+      pointer-events: auto;
+      opacity: 1;
+      transform: none;
+      #{ $self } {
+        &__dropdown-section {
+          &--active {
+            pointer-events: auto;
+          }
+        }
+      }
+    }
 
     &--transitions-disabled {
       #{ $self } {
