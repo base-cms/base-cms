@@ -1,11 +1,22 @@
 <template>
   <container>
-    <row>
-      <!-- <leaders /> -->
+    <row style="perspective: 1500px; padding-top: 300px;">
       <leaders :items="items" nav-direction="vertical">
         <template #default="data">
           <div class="content">
-            This should have content for {{ data.item.label }}
+            <p>This should have content for {{ data.item.label }}</p>
+            <p>Let's make it</p>
+            <p><strong>Bigger!</strong></p>
+          </div>
+        </template>
+      </leaders>
+
+      <leaders :items="items" nav-direction="horizontal">
+        <template #default="data">
+          <div class="content">
+            <p>This should have content for {{ data.item.label }}</p>
+            <p>Let's make it</p>
+            <p><strong>Bigger!</strong></p>
           </div>
         </template>
       </leaders>
@@ -69,6 +80,8 @@ body {
 
 .leaders {
   width: 100%;
+  margin-top: 100px;
+  margin-bottom: 100px;
   nav {
     display: flex;
     justify-content: center;
