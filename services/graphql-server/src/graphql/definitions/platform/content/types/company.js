@@ -23,6 +23,7 @@ type ContentCompany implements Content & PrimaryCategory & Contactable & Address
   productSummary: String @projection
 
   youtube: ContentCompanyYoutube! @projection
+  youtubeUrl: String @projection(needs: ["youtube"])
   youtubeVideos(input: ContentCompanyYoutubeVideosInput = {}): YoutubePlaylistConnection! @projection(needs: ["youtube"])
 
   # fields directly on platform.model::Content\Company from mutations
