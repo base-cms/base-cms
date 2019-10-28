@@ -194,17 +194,12 @@ export default {
       // Set last active index
       this.lastActiveIndex = activeIndex;
 
-      let content;
-      let contentOffsetW;
-      let contentOffsetH;
 
-      this.sectionElements.forEach((section, index) => {
-        if (index === activeIndex) {
-          [content] = section.children;
-          contentOffsetW = content.offsetWidth;
-          contentOffsetH = content.offsetHeight;
-        }
-      });
+      const section = this.sectionElements[activeIndex];
+      if (!section) throw new Error(`No dropdown section was found for index ${activeIndex}`);
+      const [content] = section.children;
+      let contentOffsetW = content.offsetWidth;
+      const contentOffsetH = content.offsetHeight;
 
       const { offsetWidth: bodyOffsetWidth } = document.body;
       const allowedWidth = bodyOffsetWidth - (this.screenOffset * 2);
