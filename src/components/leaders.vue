@@ -24,9 +24,7 @@
       :transitions-disabled="transitionsDisabled"
       :is-active="isDropdownActive"
     >
-      <div ref="background" class="leaders__dropdown-bg">
-        <div ref="backgroundAlt" class="leaders__dropdown-inner-bg" />
-      </div>
+      <dropdown-background :styles="backgroundStyle" :inner-styles="innerBackgroundStyle" />
       <dropdown-arrow :style-object="arrowStyle" />
       <dropdown-container
         :style-object="containerStyle"
@@ -52,6 +50,7 @@
 <script>
 import Dropdown from './leaders/dropdown.vue';
 import DropdownArrow from './leaders/dropdown-arrow.vue';
+import DropdownBackground from './leaders/dropdown-bg.vue';
 import DropdownContainer from './leaders/dropdown-container.vue';
 import DropdownSection from './leaders/dropdown-section.vue';
 import Navbar from './leaders/navbar.vue';
@@ -66,6 +65,7 @@ export default {
   components: {
     Dropdown,
     DropdownArrow,
+    DropdownBackground,
     DropdownContainer,
     DropdownSection,
     Navbar,
@@ -109,27 +109,14 @@ export default {
 
     arrowStyle: {},
     containerStyle: {},
+    backgroundStyle: {},
+    innerBackgroundStyle: {},
   }),
 
   computed: {
-    rootElement() {
-      return this.$el;
-    },
-    dropdownContainerElement() {
-      return this.$refs.dropdownContainer.$el;
-    },
     sectionElements() {
       if (!this.$refs.sections) return [];
       return this.$refs.sections.map(ref => ref.$el);
-    },
-    arrowElement() {
-      return this.$refs.arrow;
-    },
-    backgroundElement() {
-      return this.$refs.background;
-    },
-    backgroundAltElement() {
-      return this.$refs.backgroundAlt;
     },
     isMenuClosed() {
       return this.activeIndex == null;
@@ -242,9 +229,14 @@ export default {
         transform: `translateX(${Math.round(linkRect.left + linkRect.width / 2)}px) rotate(45deg)`,
       };
 
-      this.backgroundElement.style.transform = `translateX(${pos}px) scaleX(${ratioWidth}) scaleY(${ratioHeight})`;
+      this.backgroundStyle = {
+        transform: `translateX(${pos}px) scaleX(${ratioWidth}) scaleY(${ratioHeight})`,
+      };
+
       // @todo this will throw an error if no children are defined.
-      this.backgroundAltElement.style.transform = `translateY(${content.children[0].offsetHeight / ratioHeight}px)`;
+      this.innerBackgroundStyle = {
+        transform: `translateY(${content.children[0].offsetHeight / ratioHeight}px)`,
+      };
     },
 
     closeDropdown() {
@@ -307,33 +299,6 @@ export default {
 .leaders {
   $self: &;
   perspective: 2000px;
-
-  &__dropdown-bg {
-    width: 380px;
-    height: 400px;
-    overflow: hidden;
-    background: #fff;
-    border-radius: 4px;
-    box-shadow: 0 50px 100px -20px rgba(50, 50, 93, .25), 0 30px 60px -30px rgba(0, 0, 0, .3), 0 -18px 60px -10px rgba(0, 0, 0, .025);
-    transform: translateX(0);
-    transform-origin: 0 0;
-  }
-
-  &__dropdown-inner-bg {
-    right: 0;
-    height: 1000px;
-    background: #f6f9fc;
-  }
-
-  &__dropdown-bg,
-  &__dropdown-inner-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    will-change: transform;
-    transition-duration: .25s;
-    transition-property: transform, -webkit-transform;
-  }
 
   &__dropdown-section {
     pointer-events: none;
