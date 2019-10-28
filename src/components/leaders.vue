@@ -116,10 +116,6 @@ export default {
       background: {},
       innerBackground: {},
     },
-    // arrowStyles: {},
-    // containerStyles: {},
-    // backgroundStyles: {},
-    // innerBackgroundStyles: {},
   }),
 
   computed: {
