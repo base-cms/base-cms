@@ -63,8 +63,8 @@ export default {
     &--transitions-disabled {
       #{ $self } {
         &__dropdown-section,
-        &__background,
-        &__background-alt,
+        &__dropdown-bg,
+        &__dropdown-inner-bg,
         &__arrow,
         &__dropdown-container {
           transition: none;

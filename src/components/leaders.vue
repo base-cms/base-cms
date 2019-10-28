@@ -24,10 +24,10 @@
       :transitions-disabled="transitionsDisabled"
       :is-active="isDropdownActive"
     >
-      <div ref="background" class="leaders__background">
-        <div ref="backgroundAlt" class="leaders__background-alt" />
+      <div ref="background" class="leaders__dropdown-bg">
+        <div ref="backgroundAlt" class="leaders__dropdown-inner-bg" />
       </div>
-      <div ref="arrow" class="leaders__arrow" />
+      <div ref="arrow" class="leaders__dropdown-arrow" />
       <dropdown-container
         ref="dropdownContainer"
         @pointer-enter="onContainerEnter"
@@ -299,7 +299,7 @@ export default {
   $self: &;
   perspective: 2000px;
 
-  &__background {
+  &__dropdown-bg {
     width: 380px;
     height: 400px;
     overflow: hidden;
@@ -310,14 +310,14 @@ export default {
     transform-origin: 0 0;
   }
 
-  &__background-alt {
+  &__dropdown-inner-bg {
     right: 0;
     height: 1000px;
     background: #f6f9fc;
   }
 
-  &__background,
-  &__background-alt {
+  &__dropdown-bg,
+  &__dropdown-inner-bg {
     position: absolute;
     top: 0;
     left: 0;
@@ -326,7 +326,7 @@ export default {
     transition-property: transform, -webkit-transform;
   }
 
-  &__arrow {
+  &__dropdown-arrow {
     top: -6px;
     width: 12px;
     height: 12px;
@@ -339,7 +339,7 @@ export default {
     will-change: transform;
   }
 
-  &__arrow,
+  &__dropdown-arrow,
   &__dropdown-container {
     position: absolute;
     left: 0;
