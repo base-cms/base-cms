@@ -31,16 +31,12 @@ export default {
     },
   },
 
-  data: () => ({
-    elementName: 'nav-link',
-  }),
-
   computed: {
     isActive() {
       return this.index === this.activeIndex;
     },
     classNames() {
-      const elementName = `leaders__${this.elementName}`;
+      const elementName = 'leaders-nav__link';
       const classes = [elementName];
       if (this.isActive) classes.push(`${elementName}--active`);
       return classes;
@@ -100,8 +96,8 @@ export default {
 </script>
 
 <style lang="scss">
-.leaders {
-  &__nav-link {
+.leaders-nav {
+  &__link {
     display: inline-block;
     height: 50px;
     padding: 0 10px;

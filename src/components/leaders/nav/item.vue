@@ -1,5 +1,5 @@
 <template>
-  <component :is="tag" class="leaders__nav-item">
+  <component :is="tag" class="leaders-nav__item">
     <slot />
   </component>
 </template>
@@ -16,8 +16,8 @@ export default {
 </script>
 
 <style lang="scss">
-.leaders {
-  &__nav-item  {
+.leaders-nav {
+  &__item  {
     list-style: none;
   }
 }

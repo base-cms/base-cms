@@ -1,5 +1,5 @@
 <template>
-  <component :is="tag" class="leaders__nav">
+  <component :is="tag" class="leaders-nav">
     <slot />
   </component>
 </template>
@@ -16,11 +16,9 @@ export default {
 </script>
 
 <style lang="scss">
-.leaders {
-  &__nav {
-    display: flex;
-    padding: 0;
-    margin: 0;
-  }
+.leaders-nav {
+  display: flex;
+  padding: 0;
+  margin: 0;
 }
 </style>
