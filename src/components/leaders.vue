@@ -21,6 +21,7 @@
       </nav-container>
     </navbar>
     <dropdown
+      :direction="navDirection"
       :transitions-disabled="transitionsDisabled"
       :is-active="isDropdownActive"
       :styles="styles.dropdown"

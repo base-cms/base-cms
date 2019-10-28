@@ -19,12 +19,17 @@ export default {
       type: Object,
       default: () => ({}),
     },
+    direction: {
+      type: String,
+      default: 'horizontal',
+      validator: v => ['horizontal', 'vertical'].includes(v),
+    },
   },
 
   computed: {
     classNames() {
       const blockName = 'leaders-dropdown';
-      const classes = [blockName];
+      const classes = [blockName, `${blockName}--${this.direction}`];
       if (this.transitionsDisabled) classes.push(`${blockName}--transitions-disabled`);
       if (this.isActive) classes.push(`${blockName}--active`);
       return classes;

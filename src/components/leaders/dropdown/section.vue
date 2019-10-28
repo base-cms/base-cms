@@ -54,8 +54,8 @@ export default {
       const elementName = 'leaders-dropdown__section';
       const classes = [elementName];
       if (this.isActive) classes.push(`${elementName}--active`);
-      if (this.isBefore) classes.push(`${elementName}--left`);
-      if (this.isAfter) classes.push(`${elementName}--right`);
+      if (this.isBefore) classes.push(`${elementName}--before`);
+      if (this.isAfter) classes.push(`${elementName}--after`);
       return classes;
     },
   },
@@ -64,6 +64,8 @@ export default {
 
 <style lang="scss">
 .leaders-dropdown {
+  $self: &;
+
   &__section {
     pointer-events: none;
     opacity: 0;
@@ -74,11 +76,31 @@ export default {
       opacity: 1;
       transform: translateX(0);
     }
-    &--left {
-      transform: translateX(-150px);
+  }
+
+  &--horizontal {
+    #{ $self } {
+      &__section {
+        &--before { // From the left
+          transform: translateX(-150px);
+        }
+        &--after { // From the right
+          transform: translateX(150px);
+        }
+      }
     }
-    &--right {
-      transform: translateX(150px);
+  }
+
+  &--vertical {
+    #{ $self } {
+      &__section {
+        &--before { // From the top
+          transform: translateY(-150px);
+        }
+        &--after { // From the bottom
+          transform: translateY(150px);
+        }
+      }
     }
   }
 }
