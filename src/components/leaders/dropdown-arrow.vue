@@ -1,5 +1,5 @@
 <template>
-  <div class="leaders__dropdown-arrow" :style="styles" />
+  <div class="leaders-dropdown__arrow" :style="styles" />
 </template>
 
 <script>
@@ -14,8 +14,8 @@ export default {
 </script>
 
 <style lang="scss">
-.leaders {
-  &__dropdown-arrow {
+.leaders-dropdown {
+  &__arrow {
     position: absolute;
     top: -6px;
     left: 0;

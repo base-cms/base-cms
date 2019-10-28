@@ -1,5 +1,5 @@
 <template>
-  <div class="leaders__dropdown-container" :style="styles">
+  <div class="leaders-dropdown__container" :style="styles">
     <slot />
   </div>
 </template>
@@ -56,8 +56,8 @@ export default {
 </script>
 
 <style lang="scss">
-.leaders {
-  &__dropdown-container {
+.leaders-dropdown {
+  &__container {
     position: absolute;
     top: 0;
     left: 0;

@@ -1,12 +1,12 @@
 <template>
-  <div class="leaders__dropdown-content">
+  <div class="leaders-dropdown__content">
     <slot />
   </div>
 </template>
 
 <style lang="scss">
-.leaders {
-  &__dropdown-content {
+.leaders-dropdown {
+  &__content {
     position: absolute;
     top: 0;
     left: 0;

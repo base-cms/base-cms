@@ -19,10 +19,10 @@ export default {
 
   computed: {
     classNames() {
-      const elementName = 'leaders__dropdown';
-      const classes = [elementName];
-      if (this.transitionsDisabled) classes.push(`${elementName}--transitions-disabled`);
-      if (this.isActive) classes.push(`${elementName}--active`);
+      const blockName = 'leaders-dropdown';
+      const classes = [blockName];
+      if (this.transitionsDisabled) classes.push(`${blockName}--transitions-disabled`);
+      if (this.isActive) classes.push(`${blockName}--active`);
       return classes;
     },
   },
@@ -30,45 +30,42 @@ export default {
 </script>
 
 <style lang="scss">
-.leaders {
+.leaders-dropdown {
   $self: &;
+  position: absolute;
+  top: 50px;
+  right: 0;
+  left: 0;
+  z-index: 1000;
+  pointer-events: none;
+  opacity: 0;
+  transition-duration: .25s;
+  transition-property: transform, opacity, -webkit-transform;
+  transform: rotateX(-15deg);
+  transform-origin: 50% -50px;
+  will-change: transform, opacity;
 
-  &__dropdown {
-    position: absolute;
-    top: 50px;
-    right: 0;
-    left: 0;
-    z-index: 1000;
-    pointer-events: none;
-    opacity: 0;
-    transition-duration: .25s;
-    transition-property: transform, opacity, -webkit-transform;
-    transform: rotateX(-15deg);
-    transform-origin: 50% -50px;
-    will-change: transform, opacity;
-
-    &--active {
-      pointer-events: auto;
-      opacity: 1;
-      transform: none;
-      #{ $self } {
-        &__dropdown-section {
-          &--active {
-            pointer-events: auto;
-          }
+  &--active {
+    pointer-events: auto;
+    opacity: 1;
+    transform: none;
+    #{ $self } {
+      &__section {
+        &--active {
+          pointer-events: auto;
         }
       }
     }
+  }
 
-    &--transitions-disabled {
-      #{ $self } {
-        &__dropdown-section,
-        &__dropdown-bg,
-        &__dropdown-inner-bg,
-        &__dropdown-arrow,
-        &__dropdown-container {
-          transition: none;
-        }
+  &--transitions-disabled {
+    #{ $self } {
+      &__section,
+      &__bg,
+      &__inner-bg,
+      &__arrow,
+      &__container {
+        transition: none;
       }
     }
   }

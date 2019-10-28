@@ -31,10 +31,6 @@ export default {
     },
   },
 
-  data: () => ({
-    elementName: 'dropdown-section',
-  }),
-
   computed: {
     hidden() {
       if (this.activeIndex == null) return true;
@@ -55,7 +51,7 @@ export default {
       return this.index > this.lastActiveIndex;
     },
     classNames() {
-      const elementName = `leaders__${this.elementName}`;
+      const elementName = 'leaders-dropdown__section';
       const classes = [elementName];
       if (this.isActive) classes.push(`${elementName}--active`);
       if (this.isBefore) classes.push(`${elementName}--left`);
@@ -67,8 +63,8 @@ export default {
 </script>
 
 <style lang="scss">
-.leaders {
-  &__dropdown-section {
+.leaders-dropdown {
+  &__section {
     pointer-events: none;
     opacity: 0;
     will-change: transform, opacity;
