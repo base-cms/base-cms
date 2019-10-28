@@ -2,7 +2,7 @@
   <container>
     <row>
       <!-- <leaders /> -->
-      <leaders :items="items">
+      <leaders :items="items" nav-direction="vertical">
         <template #default="data">
           <div class="content">
             This should have content for {{ data.item.label }}

@@ -1,5 +1,5 @@
 <template>
-  <div :class="classNames">
+  <div :class="classNames" :style="styles">
     <slot />
   </div>
 </template>
@@ -14,6 +14,10 @@ export default {
     transitionsDisabled: {
       type: Boolean,
       default: true,
+    },
+    styles: {
+      type: Object,
+      default: () => ({}),
     },
   },
 
@@ -33,7 +37,6 @@ export default {
 .leaders-dropdown {
   $self: &;
   position: absolute;
-  top: 50px;
   right: 0;
   left: 0;
   z-index: 1000;

@@ -1,7 +1,7 @@
 <template>
   <aside class="leaders">
     <navbar>
-      <nav-container>
+      <nav-container :direction="navDirection">
         <nav-item
           v-for="(item, index) in items"
           :key="index"
@@ -23,6 +23,7 @@
     <dropdown
       :transitions-disabled="transitionsDisabled"
       :is-active="isDropdownActive"
+      :styles="styles.dropdown"
     >
       <dropdown-background
         :styles="styles.background"
@@ -82,6 +83,10 @@ export default {
       type: Array,
       required: true,
     },
+    navDirection: {
+      type: String,
+      default: null,
+    },
     dropdownWidth: {
       type: Number,
       default: 380,
@@ -111,6 +116,7 @@ export default {
     disableTransitionTimeout: null,
 
     styles: {
+      dropdown: {},
       arrow: {},
       container: {},
       background: {},
@@ -227,7 +233,9 @@ export default {
 
       this.clearDisableTransitionTimeout();
       this.setEnableTransitionTimeout();
-
+      this.styles.dropdown = {
+        top: `${linkRect.top + linkRect.height}px`,
+      };
       this.styles.container = { transform: `translateX(${pos}px)`, width: `${contentOffsetW}px`, height: `${contentOffsetH}px` };
       this.styles.arrow = { transform: `translateX(${Math.round(linkRect.left + linkRect.width / 2)}px) rotate(45deg)` };
       this.styles.background = { transform: `translateX(${pos}px) scaleX(${ratioWidth}) scaleY(${ratioHeight})` };
