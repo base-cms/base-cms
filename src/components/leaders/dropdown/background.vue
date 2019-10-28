@@ -22,13 +22,14 @@ export default {
 
 <style lang="scss">
 .leaders-dropdown {
+  $self: &;
+
   &__background {
     width: 380px;
     height: 400px;
     overflow: hidden;
     background: #fff;
     border-radius: 4px;
-    box-shadow: 0 50px 100px -20px rgba(50, 50, 93, .25), 0 30px 60px -30px rgba(0, 0, 0, .3), 0 -18px 60px -10px rgba(0, 0, 0, .025);
     transform: translateX(0);
     transform-origin: 0 0;
   }
@@ -47,6 +48,23 @@ export default {
     will-change: transform;
     transition-duration: .25s;
     transition-property: transform, -webkit-transform;
+  }
+
+  // box-shadow: offset-x offset-y blur-radius spread-radius color
+  &--open-below {
+    #{ $self } {
+      &__background {
+        box-shadow: 0 50px 100px -20px rgba(50, 50, 93, .25), 0 30px 60px -30px rgba(0, 0, 0, .3), 0 -18px 60px -10px rgba(0, 0, 0, .025);
+      }
+    }
+  }
+
+  &--open-above {
+    #{ $self } {
+      &__background {
+        box-shadow: 0 -50px 100px -20px rgba(50, 50, 93, .25), 0 -30px 60px -30px rgba(0, 0, 0, .3), 0 18px 60px -10px rgba(0, 0, 0, .025);
+      }
+    }
   }
 }
 </style>
