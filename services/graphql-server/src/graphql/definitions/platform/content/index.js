@@ -291,6 +291,7 @@ input AllCompanyContentQueryInput {
   companyId: Int!
   since: Date
   includeContentTypes: [ContentType!] = []
+  excludeContentTypes: [ContentType!] = []
   requiresImage: Boolean = false
   sort: ContentSortInput = { field: published, order: desc }
   pagination: PaginationInput = {}
