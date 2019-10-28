@@ -65,7 +65,7 @@ export default {
         &__dropdown-section,
         &__dropdown-bg,
         &__dropdown-inner-bg,
-        &__arrow,
+        &__dropdown-arrow,
         &__dropdown-container {
           transition: none;
         }

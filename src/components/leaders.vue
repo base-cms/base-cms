@@ -27,9 +27,9 @@
       <div ref="background" class="leaders__dropdown-bg">
         <div ref="backgroundAlt" class="leaders__dropdown-inner-bg" />
       </div>
-      <div ref="arrow" class="leaders__dropdown-arrow" />
+      <dropdown-arrow :style-object="arrowStyle" />
       <dropdown-container
-        ref="dropdownContainer"
+        :style-object="containerStyle"
         @pointer-enter="onContainerEnter"
         @pointer-end="onContainerEnd"
         @pointer-leave="onContainerLeave"
@@ -50,13 +50,14 @@
 </template>
 
 <script>
-import Navbar from './leaders/navbar.vue';
 import Dropdown from './leaders/dropdown.vue';
+import DropdownArrow from './leaders/dropdown-arrow.vue';
 import DropdownContainer from './leaders/dropdown-container.vue';
+import DropdownSection from './leaders/dropdown-section.vue';
+import Navbar from './leaders/navbar.vue';
 import NavContainer from './leaders/nav-container.vue';
 import NavItem from './leaders/nav-item.vue';
 import NavLink from './leaders/nav-link.vue';
-import DropdownSection from './leaders/dropdown-section.vue';
 import pointerEvents from './leaders/pointer-events';
 
 const pointerEvent = pointerEvents();
@@ -64,6 +65,7 @@ const pointerEvent = pointerEvents();
 export default {
   components: {
     Dropdown,
+    DropdownArrow,
     DropdownContainer,
     DropdownSection,
     Navbar,
@@ -104,6 +106,9 @@ export default {
     closeTimeout: null,
     enableTransitionTimeout: null,
     disableTransitionTimeout: null,
+
+    arrowStyle: {},
+    containerStyle: {},
   }),
 
   computed: {
@@ -227,12 +232,16 @@ export default {
       this.clearDisableTransitionTimeout();
       this.setEnableTransitionTimeout();
 
-      const container = this.dropdownContainerElement;
-      container.style.transform = `translateX(${pos}px)`;
-      container.style.width = `${contentOffsetW}px`;
-      container.style.height = `${contentOffsetH}px`;
+      this.containerStyle = {
+        transform: `translateX(${pos}px)`,
+        width: `${contentOffsetW}px`,
+        height: `${contentOffsetH}px`,
+      };
 
-      this.arrowElement.style.transform = `translateX(${Math.round(linkRect.left + linkRect.width / 2)}px) rotate(45deg)`;
+      this.arrowStyle = {
+        transform: `translateX(${Math.round(linkRect.left + linkRect.width / 2)}px) rotate(45deg)`,
+      };
+
       this.backgroundElement.style.transform = `translateX(${pos}px) scaleX(${ratioWidth}) scaleY(${ratioHeight})`;
       // @todo this will throw an error if no children are defined.
       this.backgroundAltElement.style.transform = `translateY(${content.children[0].offsetHeight / ratioHeight}px)`;
@@ -324,35 +333,6 @@ export default {
     will-change: transform;
     transition-duration: .25s;
     transition-property: transform, -webkit-transform;
-  }
-
-  &__dropdown-arrow {
-    top: -6px;
-    width: 12px;
-    height: 12px;
-    margin: 0 0 0 -6px;
-    background: #fff;
-    border-radius: 4px 0 0;
-    box-shadow: -3px -3px 5px rgba(82, 95, 127, .04);
-    transition-property: transform, -webkit-transform;
-    transform: rotate(45deg);
-    will-change: transform;
-  }
-
-  &__dropdown-arrow,
-  &__dropdown-container {
-    position: absolute;
-    left: 0;
-    transition-duration: .25s;
-  }
-
-  &__dropdown-container {
-    top: 0;
-    width: 500px;
-    overflow: hidden;
-    transition-property: transform, width, height, -webkit-transform;
-    transform: translateX(0);
-    will-change: transform, width, height;
   }
 
   &__dropdown-section {

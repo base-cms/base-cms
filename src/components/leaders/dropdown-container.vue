@@ -1,5 +1,5 @@
 <template>
-  <div class="leaders__dropdown-container">
+  <div class="leaders__dropdown-container" :style="styleObject">
     <slot />
   </div>
 </template>
@@ -10,6 +10,13 @@ import pointerEvents from './pointer-events';
 const pointerEvent = pointerEvents();
 
 export default {
+  props: {
+    styleObject: {
+      type: Object,
+      default: () => ({}),
+    },
+  },
+
   mounted() {
     this.addEventListeners();
   },
@@ -47,3 +54,19 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+.leaders {
+  &__dropdown-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 500px;
+    overflow: hidden;
+    transition-duration: .25s;
+    transition-property: transform, width, height, -webkit-transform;
+    transform: translateX(0);
+    will-change: transform, width, height;
+  }
+}
+</style>
