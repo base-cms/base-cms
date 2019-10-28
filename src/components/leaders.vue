@@ -292,24 +292,6 @@ export default {
   $self: &;
   perspective: 2000px;
 
-  &__dropdown-section {
-    pointer-events: none;
-    opacity: 0;
-    will-change: transform, opacity;
-    transition-duration: .25s;
-    transition-property: transform, opacity, -webkit-transform;
-    &--active {
-      opacity: 1;
-      transform: translateX(0);
-    }
-    &--left {
-      transform: translateX(-150px);
-    }
-    &--right {
-      transform: translateX(150px);
-    }
-  }
-
   &__dropdown-content {
     position: absolute;
     top: 0;

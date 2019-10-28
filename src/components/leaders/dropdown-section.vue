@@ -61,3 +61,25 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+.leaders {
+  &__dropdown-section {
+    pointer-events: none;
+    opacity: 0;
+    will-change: transform, opacity;
+    transition-duration: .25s;
+    transition-property: transform, opacity, -webkit-transform;
+    &--active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    &--left {
+      transform: translateX(-150px);
+    }
+    &--right {
+      transform: translateX(150px);
+    }
+  }
+}
+</style>
