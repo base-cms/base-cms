@@ -1,5 +1,5 @@
 <template>
-  <aside class="leaders leaders--no-transition">
+  <aside class="leaders">
     <navbar>
       <nav-container>
         <nav-item
@@ -20,7 +20,7 @@
         </nav-item>
       </nav-container>
     </navbar>
-    <div class="leaders__dropdown">
+    <dropdown :transitions-disabled="transitionsDisabled">
       <div ref="background" class="leaders__background">
         <div ref="backgroundAlt" class="leaders__background-alt" />
       </div>
@@ -42,12 +42,13 @@
           <slot :item="item" />
         </dropdown-section>
       </dropdown-container>
-    </div>
+    </dropdown>
   </aside>
 </template>
 
 <script>
 import Navbar from './leaders/navbar.vue';
+import Dropdown from './leaders/dropdown.vue';
 import DropdownContainer from './leaders/dropdown-container.vue';
 import NavContainer from './leaders/nav-container.vue';
 import NavItem from './leaders/nav-item.vue';
@@ -59,6 +60,7 @@ const pointerEvent = pointerEvents();
 
 export default {
   components: {
+    Dropdown,
     DropdownContainer,
     DropdownSection,
     Navbar,
@@ -92,13 +94,13 @@ export default {
   data: () => ({
     activeIndex: null,
     lastActiveIndex: null,
-
     isDragging: false,
+    transitionsDisabled: true,
+
     closeTimeout: null,
     enableTransitionTimeout: null,
     disableTransitionTimeout: null,
     activeRootClass: 'leaders--dropdown-active',
-    noTransitionClass: 'leaders--no-transition',
   }),
 
   computed: {
@@ -258,7 +260,7 @@ export default {
 
     setEnableTransitionTimeout() {
       this.enableTransitionTimeout = setTimeout(() => {
-        this.rootElement.classList.remove(this.noTransitionClass);
+        this.transitionsDisabled = false;
       }, 50);
     },
 
@@ -268,7 +270,7 @@ export default {
 
     setDisableTransitionTimeout() {
       this.disableTransitionTimeout = setTimeout(() => {
-        this.rootElement.classList.add(this.noTransitionClass);
+        this.transitionsDisabled = true;
       }, 50);
     },
 
@@ -304,21 +306,6 @@ export default {
 .leaders {
   $self: &;
   perspective: 2000px;
-
-  &__dropdown {
-    position: absolute;
-    top: 50px;
-    right: 0;
-    left: 0;
-    z-index: 1000;
-    pointer-events: none;
-    opacity: 0;
-    transition-duration: .25s;
-    transition-property: transform, opacity, -webkit-transform;
-    transform: rotateX(-15deg);
-    transform-origin: 50% -50px;
-    will-change: transform, opacity;
-  }
 
   &__background {
     width: 380px;
@@ -411,18 +398,6 @@ export default {
         &--active {
           pointer-events: auto;
         }
-      }
-    }
-  }
-
-  &--no-transition {
-    #{ $self } {
-      &__dropdown-section,
-      &__background,
-      &__background-alt,
-      &__arrow,
-      &__dropdown-container {
-        transition: none;
       }
     }
   }
