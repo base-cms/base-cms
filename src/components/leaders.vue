@@ -229,16 +229,17 @@ export default {
       const { activeSection } = this;
       if (!activeSection) throw new Error(`No dropdown section was found for index ${activeIndex}`);
       const [content] = activeSection.$el.children;
-      let contentOffsetW = content.offsetWidth;
+      const contentOffsetW = content.offsetWidth;
       const contentOffsetH = content.offsetHeight;
 
-      const { offsetWidth: bodyOffsetWidth } = document.body;
-      const allowedWidth = bodyOffsetWidth - (this.screenOffset * 2);
+      // @todo Handle when content is near viewport edges.
+      // const { offsetWidth: bodyOffsetWidth } = document.body;
+      // const allowedWidth = bodyOffsetWidth - (this.screenOffset * 2);
 
       // Crop the width of the content if it goes beyond the width of the screen
-      if (contentOffsetW > allowedWidth - (this.screenOffset * 2)) {
-        contentOffsetW = bodyOffsetWidth - (this.screenOffset * 2);
-      }
+      // if (contentOffsetW > allowedWidth - (this.screenOffset * 2)) {
+      //   contentOffsetW = bodyOffsetWidth - (this.screenOffset * 2);
+      // }
 
       const ratioWidth = contentOffsetW / this.dropdownWidth;
       const ratioHeight = contentOffsetH / this.dropdownHeight;
