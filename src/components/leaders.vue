@@ -234,18 +234,10 @@ export default {
         height: `${contentOffsetH}px`,
       };
 
-      this.styles.arrow = {
-        transform: `translateX(${Math.round(linkRect.left + linkRect.width / 2)}px) rotate(45deg)`,
-      };
-
-      this.styles.background = {
-        transform: `translateX(${pos}px) scaleX(${ratioWidth}) scaleY(${ratioHeight})`,
-      };
-
-      // @todo this will throw an error if no children are defined.
-      this.styles.innerBackground = {
-        transform: `translateY(${content.children[0].offsetHeight / ratioHeight}px)`,
-      };
+      this.styles.arrow = { transform: `translateX(${Math.round(linkRect.left + linkRect.width / 2)}px) rotate(45deg)` };
+      this.styles.background = { transform: `translateX(${pos}px) scaleX(${ratioWidth}) scaleY(${ratioHeight})` };
+      const { children } = content;
+      if (children) this.styles.innerBackground = { transform: `translateY(${children[0].offsetHeight / ratioHeight}px)` };
     },
 
     closeDropdown() {
