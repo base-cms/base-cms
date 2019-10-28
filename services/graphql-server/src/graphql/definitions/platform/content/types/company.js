@@ -33,6 +33,7 @@ type ContentCompanyYoutube {
   username: String
   channelId: String
   playlistId: String
+  url: String
 }
 
 type ContentCompanyConnection {

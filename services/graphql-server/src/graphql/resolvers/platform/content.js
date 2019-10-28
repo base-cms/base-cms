@@ -1,6 +1,6 @@
 const { BaseDB } = require('@base-cms/db');
 const { UserInputError } = require('apollo-server-express');
-const { cleanPath } = require('@base-cms/utils');
+const { cleanPath, asObject } = require('@base-cms/utils');
 const { content: canonicalPathFor } = require('@base-cms/canonical-path');
 const { get } = require('@base-cms/object-path');
 const { underscore, dasherize, titleize } = require('@base-cms/inflector');
@@ -526,6 +526,15 @@ module.exports = {
         ...(pageToken && { pageToken }),
       };
       return googleDataApiClient.request('youtube.playlistItems', payload);
+    },
+  },
+
+  ContentCompanyYoutube: {
+    url: (youtube) => {
+      const { channelId, username } = asObject(youtube);
+      if (!channelId && !username) return null;
+      if (channelId) return `https://youtube.com/channel/${channelId}`;
+      return `https://youtube.com/user/${username}`;
     },
   },
 
