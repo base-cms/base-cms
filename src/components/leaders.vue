@@ -1,7 +1,7 @@
 <template>
   <aside class="leaders">
     <navbar>
-      <nav-container :direction="navDirection">
+      <nav-container ref="nav" :direction="navDirection">
         <nav-item
           v-for="(item, index) in items"
           :key="index"
@@ -223,6 +223,7 @@ export default {
       const ratioWidth = contentOffsetW / this.dropdownWidth;
       const ratioHeight = contentOffsetH / this.dropdownHeight;
       const linkRect = link.getBoundingClientRect();
+      const navRect = this.$refs.nav.$el.getBoundingClientRect();
 
       const max = Math.max(linkRect.left + linkRect.width / 2 - contentOffsetW / 2, 10);
       let pos = Math.round(max);
@@ -234,9 +235,8 @@ export default {
 
       this.clearDisableTransitionTimeout();
       this.setEnableTransitionTimeout();
-      this.styles.dropdown = {
-        top: `${linkRect.top + linkRect.height}px`,
-      };
+
+      this.styles.dropdown = { top: `${(linkRect.top - navRect.top) + linkRect.height}px` };
       this.styles.container = { transform: `translateX(${pos}px)`, width: `${contentOffsetW}px`, height: `${contentOffsetH}px` };
       this.styles.arrow = { transform: `translateX(${Math.round(linkRect.left + linkRect.width / 2)}px) rotate(45deg)` };
       this.styles.background = { transform: `translateX(${pos}px) scaleX(${ratioWidth}) scaleY(${ratioHeight})` };
@@ -303,6 +303,9 @@ export default {
 <style lang="scss">
 .leaders {
   $self: &;
-  perspective: 2000px;
+  position: relative;
+  // @todo perspective _must_ be placed on the overall wrapper
+  // otherwise z-index will have issues due to how browder stacks perspective
+  // perspective: 2000px;
 }
 </style>
