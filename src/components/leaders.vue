@@ -228,12 +228,7 @@ export default {
       this.clearDisableTransitionTimeout();
       this.setEnableTransitionTimeout();
 
-      this.styles.container = {
-        transform: `translateX(${pos}px)`,
-        width: `${contentOffsetW}px`,
-        height: `${contentOffsetH}px`,
-      };
-
+      this.styles.container = { transform: `translateX(${pos}px)`, width: `${contentOffsetW}px`, height: `${contentOffsetH}px` };
       this.styles.arrow = { transform: `translateX(${Math.round(linkRect.left + linkRect.width / 2)}px) rotate(45deg)` };
       this.styles.background = { transform: `translateX(${pos}px) scaleX(${ratioWidth}) scaleY(${ratioHeight})` };
       const { children } = content;
