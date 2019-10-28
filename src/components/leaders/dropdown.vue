@@ -24,12 +24,17 @@ export default {
       default: 'horizontal',
       validator: v => ['horizontal', 'vertical'].includes(v),
     },
+    open: {
+      type: String,
+      default: 'below',
+      validator: v => ['above', 'below', 'left', 'right'].includes(v),
+    },
   },
 
   computed: {
     classNames() {
       const blockName = 'leaders-dropdown';
-      const classes = [blockName, `${blockName}--${this.direction}`];
+      const classes = [blockName, `${blockName}--${this.direction}`, `${blockName}--open-${this.open}`];
       if (this.transitionsDisabled) classes.push(`${blockName}--transitions-disabled`);
       if (this.isActive) classes.push(`${blockName}--active`);
       return classes;

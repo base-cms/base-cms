@@ -22,6 +22,7 @@
     </navbar>
     <dropdown
       :direction="navDirection"
+      :open="openDirection"
       :transitions-disabled="transitionsDisabled"
       :is-active="isDropdownActive"
     >
@@ -87,7 +88,7 @@ export default {
       type: String,
       default: null,
     },
-    open: {
+    openDirection: {
       type: String,
       default: 'below',
       validator: v => ['above', 'below', 'left', 'right'].includes(v),
@@ -232,6 +233,8 @@ export default {
       const contentOffsetW = content.offsetWidth;
       const contentOffsetH = content.offsetHeight;
 
+      console.log({ contentOffsetW, contentOffsetH });
+
       // @todo Handle when content is near viewport edges.
       // const { offsetWidth: bodyOffsetWidth } = document.body;
       // const allowedWidth = bodyOffsetWidth - (this.screenOffset * 2);
@@ -250,24 +253,31 @@ export default {
       // const max = Math.max(linkRect.left + linkRect.width / 2 - contentOffsetW / 2, 10);
       // let pos = Math.round(max);
 
-      const { dropdownAlign } = this;
+      const { dropdownAlign, openDirection } = this;
       let dropdownPosX = Math.round(linkRect.left + linkRect.width / 2 - contentOffsetW / 2);
       if (dropdownAlign === 'end') {
-        dropdownPosX = Math.round(linkRect.right - contentOffsetW);
+        dropdownPosX = linkRect.right - contentOffsetW;
       } else if (dropdownAlign === 'start') {
-        dropdownPosX = Math.round(linkRect.left);
+        dropdownPosX = linkRect.left;
       }
 
-      const dropdownPosY = Math.round(linkRect.bottom - navRect.top);
+      let dropdownPosY = linkRect.bottom - navRect.top;
+      if (openDirection === 'above') {
+        dropdownPosY = (linkRect.top - navRect.top) - contentOffsetH;
+      }
 
       const { arrowAlign, arrowAlignOffset } = this;
       let arrowPosX = Math.round(linkRect.left + linkRect.width / 2);
       if (arrowAlign === 'end') {
-        arrowPosX = Math.round(linkRect.right - arrowAlignOffset);
+        arrowPosX = linkRect.right - arrowAlignOffset;
       } else if (arrowAlign === 'start') {
-        arrowPosX = Math.round(linkRect.left + arrowAlignOffset);
+        arrowPosX = linkRect.left + arrowAlignOffset;
       }
-      const arrowPosY = dropdownPosY;
+
+      let arrowPosY = dropdownPosY;
+      if (openDirection === 'above') {
+        arrowPosY = linkRect.top - navRect.top;
+      }
 
       // @todo determine what to do when content is too close to the edge of x/y viewport.
       // const rightSide = linkRect.left + linkRect.width / 2 + contentOffsetW / 2;

@@ -4,7 +4,7 @@
       <leaders
         :items="items"
         nav-direction="vertical"
-        open="below"
+        open-direction="below"
         dropdown-align="center"
         arrow-align="center"
       >
@@ -20,7 +20,7 @@
       <leaders
         :items="items"
         nav-direction="horizontal"
-        open="below"
+        open-direction="above"
         dropdown-align="center"
         arrow-align="center"
       >
