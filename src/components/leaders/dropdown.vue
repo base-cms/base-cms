@@ -61,8 +61,8 @@ export default {
   &--transitions-disabled {
     #{ $self } {
       &__section,
-      &__bg,
-      &__inner-bg,
+      &__background,
+      &__inner-background,
       &__arrow,
       &__container {
         transition: none;

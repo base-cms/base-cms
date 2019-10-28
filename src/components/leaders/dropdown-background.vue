@@ -1,6 +1,6 @@
 <template>
-  <div class="leaders-dropdown__bg" :style="styles">
-    <div class="leaders-dropdown__inner-bg" :style="innerStyles" />
+  <div class="leaders-dropdown__background" :style="styles">
+    <div class="leaders-dropdown__inner-background" :style="innerStyles" />
   </div>
 </template>
 
@@ -22,7 +22,7 @@ export default {
 
 <style lang="scss">
 .leaders-dropdown {
-  &__bg {
+  &__background {
     width: 380px;
     height: 400px;
     overflow: hidden;
@@ -33,14 +33,14 @@ export default {
     transform-origin: 0 0;
   }
 
-  &__inner-bg {
+  &__inner-background {
     right: 0;
     height: 1000px;
     background: #f6f9fc;
   }
 
-  &__bg,
-  &__inner-bg {
+  &__background,
+  &__inner-background {
     position: absolute;
     top: 0;
     left: 0;
