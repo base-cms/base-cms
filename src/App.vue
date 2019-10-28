@@ -1,7 +1,13 @@
 <template>
   <container>
-    <row style="perspective: 1500px; padding-top: 300px;">
-      <leaders :items="items" nav-direction="vertical">
+    <row style="padding-top: 300px; padding-bottom: 300px; perspective: 1500px;">
+      <leaders
+        :items="items"
+        nav-direction="vertical"
+        open="below"
+        dropdown-align="center"
+        arrow-align="center"
+      >
         <template #default="data">
           <div class="content">
             <p>This should have content for {{ data.item.label }}</p>
@@ -11,7 +17,13 @@
         </template>
       </leaders>
 
-      <leaders :items="items" nav-direction="horizontal">
+      <leaders
+        :items="items"
+        nav-direction="horizontal"
+        open="below"
+        dropdown-align="center"
+        arrow-align="center"
+      >
         <template #default="data">
           <div class="content">
             <p>This should have content for {{ data.item.label }}</p>

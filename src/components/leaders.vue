@@ -24,7 +24,6 @@
       :direction="navDirection"
       :transitions-disabled="transitionsDisabled"
       :is-active="isDropdownActive"
-      :styles="styles.dropdown"
     >
       <dropdown-background
         :styles="styles.background"
@@ -88,6 +87,28 @@ export default {
       type: String,
       default: null,
     },
+    open: {
+      type: String,
+      default: 'below',
+      validator: v => ['above', 'below', 'left', 'right'].includes(v),
+    },
+    dropdownAlign: {
+      type: String,
+      default: 'center',
+      validator: v => ['start', 'center', 'end'].includes(v),
+    },
+    arrowAlign: {
+      type: String,
+      default: 'center',
+      validator: v => ['start', 'center', 'end'].includes(v),
+    },
+    /**
+     * Does not apply when arrow is center aligned.
+     */
+    arrowAlignOffset: {
+      type: Number,
+      default: 20,
+    },
     dropdownWidth: {
       type: Number,
       default: 380,
@@ -117,7 +138,6 @@ export default {
     disableTransitionTimeout: null,
 
     styles: {
-      dropdown: {},
       arrow: {},
       container: {},
       background: {},
@@ -225,21 +245,43 @@ export default {
       const linkRect = link.getBoundingClientRect();
       const navRect = this.$refs.nav.$el.getBoundingClientRect();
 
-      const max = Math.max(linkRect.left + linkRect.width / 2 - contentOffsetW / 2, 10);
-      let pos = Math.round(max);
+      // @todo determine how to handle if x position is outside of viewport.
+      // const max = Math.max(linkRect.left + linkRect.width / 2 - contentOffsetW / 2, 10);
+      // let pos = Math.round(max);
 
-      const rightSide = linkRect.left + linkRect.width / 2 + contentOffsetW / 2;
-      if (rightSide > bodyOffsetWidth) {
-        pos = pos - (rightSide - bodyOffsetWidth) - this.screenOffset;
+      const { dropdownAlign } = this;
+      let dropdownPosX = Math.round(linkRect.left + linkRect.width / 2 - contentOffsetW / 2);
+      if (dropdownAlign === 'end') {
+        dropdownPosX = Math.round(linkRect.right - contentOffsetW);
+      } else if (dropdownAlign === 'start') {
+        dropdownPosX = Math.round(linkRect.left);
       }
+
+      const dropdownPosY = Math.round(linkRect.bottom - navRect.top);
+
+      const { arrowAlign, arrowAlignOffset } = this;
+      let arrowPosX = Math.round(linkRect.left + linkRect.width / 2);
+      if (arrowAlign === 'end') {
+        arrowPosX = Math.round(linkRect.right - arrowAlignOffset);
+      } else if (arrowAlign === 'start') {
+        arrowPosX = Math.round(linkRect.left + arrowAlignOffset);
+      }
+      const arrowPosY = dropdownPosY;
+
+      // @todo determine what to do when content is too close to the edge of x/y viewport.
+      // const rightSide = linkRect.left + linkRect.width / 2 + contentOffsetW / 2;
+      // if (rightSide > bodyOffsetWidth) {
+      //   pos = pos - (rightSide - bodyOffsetWidth) - this.screenOffset;
+      // }
 
       this.clearDisableTransitionTimeout();
       this.setEnableTransitionTimeout();
 
-      this.styles.dropdown = { top: `${(linkRect.top - navRect.top) + linkRect.height}px` };
-      this.styles.container = { transform: `translateX(${pos}px)`, width: `${contentOffsetW}px`, height: `${contentOffsetH}px` };
-      this.styles.arrow = { transform: `translateX(${Math.round(linkRect.left + linkRect.width / 2)}px) rotate(45deg)` };
-      this.styles.background = { transform: `translateX(${pos}px) scaleX(${ratioWidth}) scaleY(${ratioHeight})` };
+      // This works for horizontal and vertical downward open
+      this.styles.container = { transform: `translate(${dropdownPosX}px, ${dropdownPosY}px)`, width: `${contentOffsetW}px`, height: `${contentOffsetH}px` };
+      this.styles.arrow = { transform: `translate(${arrowPosX}px, ${arrowPosY}px) rotate(45deg)` };
+      this.styles.background = { transform: `translate(${dropdownPosX}px, ${dropdownPosY}px) scaleX(${ratioWidth}) scaleY(${ratioHeight})` };
+
       const { children } = content;
       if (children) this.styles.innerBackground = { transform: `translateY(${children[0].offsetHeight / ratioHeight}px)` };
     },
