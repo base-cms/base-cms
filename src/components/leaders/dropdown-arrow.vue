@@ -1,11 +1,11 @@
 <template>
-  <div class="leaders__dropdown-arrow" :style="styleObject" />
+  <div class="leaders__dropdown-arrow" :style="styles" />
 </template>
 
 <script>
 export default {
   props: {
-    styleObject: {
+    styles: {
       type: Object,
       default: () => ({}),
     },

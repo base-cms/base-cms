@@ -1,5 +1,5 @@
 <template>
-  <div class="leaders__dropdown-container" :style="styleObject">
+  <div class="leaders__dropdown-container" :style="styles">
     <slot />
   </div>
 </template>
@@ -11,7 +11,7 @@ const pointerEvent = pointerEvents();
 
 export default {
   props: {
-    styleObject: {
+    styles: {
       type: Object,
       default: () => ({}),
     },

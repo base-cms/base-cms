@@ -24,10 +24,13 @@
       :transitions-disabled="transitionsDisabled"
       :is-active="isDropdownActive"
     >
-      <dropdown-background :styles="backgroundStyle" :inner-styles="innerBackgroundStyle" />
-      <dropdown-arrow :style-object="arrowStyle" />
+      <dropdown-background
+        :styles="styles.background"
+        :inner-styles="styles.innerBackground"
+      />
+      <dropdown-arrow :styles="styles.arrow" />
       <dropdown-container
-        :style-object="containerStyle"
+        :styles="styles.container"
         @pointer-enter="onContainerEnter"
         @pointer-end="onContainerEnd"
         @pointer-leave="onContainerLeave"
@@ -107,10 +110,16 @@ export default {
     enableTransitionTimeout: null,
     disableTransitionTimeout: null,
 
-    arrowStyle: {},
-    containerStyle: {},
-    backgroundStyle: {},
-    innerBackgroundStyle: {},
+    styles: {
+      arrow: {},
+      container: {},
+      background: {},
+      innerBackground: {},
+    },
+    // arrowStyles: {},
+    // containerStyles: {},
+    // backgroundStyles: {},
+    // innerBackgroundStyles: {},
   }),
 
   computed: {
@@ -219,22 +228,22 @@ export default {
       this.clearDisableTransitionTimeout();
       this.setEnableTransitionTimeout();
 
-      this.containerStyle = {
+      this.styles.container = {
         transform: `translateX(${pos}px)`,
         width: `${contentOffsetW}px`,
         height: `${contentOffsetH}px`,
       };
 
-      this.arrowStyle = {
+      this.styles.arrow = {
         transform: `translateX(${Math.round(linkRect.left + linkRect.width / 2)}px) rotate(45deg)`,
       };
 
-      this.backgroundStyle = {
+      this.styles.background = {
         transform: `translateX(${pos}px) scaleX(${ratioWidth}) scaleY(${ratioHeight})`,
       };
 
       // @todo this will throw an error if no children are defined.
-      this.innerBackgroundStyle = {
+      this.styles.innerBackground = {
         transform: `translateY(${content.children[0].offsetHeight / ratioHeight}px)`,
       };
     },
