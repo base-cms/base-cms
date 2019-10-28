@@ -767,12 +767,17 @@ module.exports = {
         since,
         companyId,
         includeContentTypes,
+        excludeContentTypes,
         requiresImage,
         sort,
         pagination,
       } = input;
 
-      const query = getPublishedCriteria({ since, contentTypes: includeContentTypes });
+      const query = getPublishedCriteria({
+        since,
+        contentTypes: includeContentTypes,
+        excludeContentTypes,
+      });
       const siteId = input.siteId || site.id();
       if (siteId) query['mutations.Website.primarySite'] = siteId;
 

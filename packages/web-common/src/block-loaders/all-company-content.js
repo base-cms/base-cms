@@ -30,6 +30,7 @@ module.exports = async (apolloClient, {
   sortOrder: order,
 
   includeContentTypes,
+  excludeContentTypes,
   requiresImage,
 
   queryFragment,
@@ -39,6 +40,7 @@ module.exports = async (apolloClient, {
   const input = {
     companyId,
     includeContentTypes,
+    excludeContentTypes,
     pagination,
     requiresImage,
     since: date(since),
