@@ -52,10 +52,10 @@
 
 <script>
 import Dropdown from './leaders/dropdown.vue';
-import DropdownArrow from './leaders/dropdown-arrow.vue';
-import DropdownBackground from './leaders/dropdown-background.vue';
-import DropdownContainer from './leaders/dropdown-container.vue';
-import DropdownSection from './leaders/dropdown-section.vue';
+import DropdownArrow from './leaders/dropdown/arrow.vue';
+import DropdownBackground from './leaders/dropdown/background.vue';
+import DropdownContainer from './leaders/dropdown/container.vue';
+import DropdownSection from './leaders/dropdown/section.vue';
 import Navbar from './leaders/navbar.vue';
 import NavContainer from './leaders/nav-container.vue';
 import NavItem from './leaders/nav-item.vue';

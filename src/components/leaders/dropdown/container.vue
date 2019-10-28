@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import pointerEvents from './pointer-events';
+import pointerEvents from '../pointer-events';
 
 const pointerEvent = pointerEvents();
 
