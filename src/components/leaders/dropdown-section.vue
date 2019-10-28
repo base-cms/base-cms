@@ -4,14 +4,18 @@
     :class="classNames"
     :aria-hidden="hidden"
   >
-    <div class="leaders__dropdown-content">
+    <dropdown-content>
       <slot />
-    </div>
+    </dropdown-content>
   </section>
 </template>
 
 <script>
+import DropdownContent from './dropdown-content.vue';
+
 export default {
+  components: { DropdownContent },
+
   props: {
     index: {
       type: Number,

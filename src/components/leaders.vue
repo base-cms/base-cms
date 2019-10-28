@@ -291,11 +291,5 @@ export default {
 .leaders {
   $self: &;
   perspective: 2000px;
-
-  &__dropdown-content {
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
 }
 </style>
