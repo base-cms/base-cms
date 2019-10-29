@@ -22,7 +22,7 @@
     </navbar>
     <dropdown
       :direction="navDirection"
-      :open="openDirection"
+      :open="open"
       :transitions-disabled="transitionsDisabled"
       :is-active="isDropdownActive"
     >
@@ -88,27 +88,10 @@ export default {
       type: String,
       default: null,
     },
-    openDirection: {
+    open: {
       type: String,
       default: 'below',
       validator: v => ['above', 'below', 'left', 'right'].includes(v),
-    },
-    dropdownAlign: {
-      type: String,
-      default: 'center',
-      validator: v => ['start', 'center', 'end'].includes(v),
-    },
-    arrowAlign: {
-      type: String,
-      default: 'center',
-      validator: v => ['start', 'center', 'end'].includes(v),
-    },
-    /**
-     * Does not apply when arrow is center aligned.
-     */
-    arrowAlignOffset: {
-      type: Number,
-      default: 20,
     },
     dropdownWidth: {
       type: Number,
@@ -233,8 +216,6 @@ export default {
       const contentOffsetW = content.offsetWidth;
       const contentOffsetH = content.offsetHeight;
 
-      console.log({ contentOffsetW, contentOffsetH });
-
       // @todo Handle when content is near viewport edges.
       // const { offsetWidth: bodyOffsetWidth } = document.body;
       // const allowedWidth = bodyOffsetWidth - (this.screenOffset * 2);
@@ -253,30 +234,39 @@ export default {
       // const max = Math.max(linkRect.left + linkRect.width / 2 - contentOffsetW / 2, 10);
       // let pos = Math.round(max);
 
-      const { dropdownAlign, openDirection } = this;
-      let dropdownPosX = Math.round(linkRect.left + linkRect.width / 2 - contentOffsetW / 2);
-      if (dropdownAlign === 'end') {
-        dropdownPosX = linkRect.right - contentOffsetW;
-      } else if (dropdownAlign === 'start') {
-        dropdownPosX = linkRect.left;
+      const { open } = this;
+      const { round } = Math;
+
+      // Calculate dropdown position.
+      // Set initial (x, y) value using default open direction (i.e. below).
+      const dropdownPos = {
+        x: round(linkRect.left + linkRect.width / 2 - contentOffsetW / 2),
+        y: linkRect.bottom - navRect.top,
+      };
+      if (open === 'left') {
+        dropdownPos.x = linkRect.left - contentOffsetW;
+        dropdownPos.y = linkRect.top - navRect.top;
+      } else if (open === 'above') {
+        dropdownPos.y = (linkRect.top - navRect.top) - contentOffsetH;
+      } else if (open === 'right') {
+        dropdownPos.x = linkRect.right;
+        dropdownPos.y = linkRect.top - navRect.top;
       }
 
-      let dropdownPosY = linkRect.bottom - navRect.top;
-      if (openDirection === 'above') {
-        dropdownPosY = (linkRect.top - navRect.top) - contentOffsetH;
-      }
-
-      const { arrowAlign, arrowAlignOffset } = this;
-      let arrowPosX = Math.round(linkRect.left + linkRect.width / 2);
-      if (arrowAlign === 'end') {
-        arrowPosX = linkRect.right - arrowAlignOffset;
-      } else if (arrowAlign === 'start') {
-        arrowPosX = linkRect.left + arrowAlignOffset;
-      }
-
-      let arrowPosY = dropdownPosY;
-      if (openDirection === 'above') {
-        arrowPosY = linkRect.top - navRect.top;
+      // Calculate arrow position.
+      // Set initial (x, y) value using default open direction (i.e. below).
+      const arrowPos = {
+        x: round(linkRect.left + linkRect.width / 2),
+        y: linkRect.bottom - navRect.top,
+      };
+      if (open === 'left') {
+        arrowPos.x = linkRect.left;
+        arrowPos.y = round((linkRect.top - navRect.top) + linkRect.height / 2);
+      } else if (open === 'above') {
+        arrowPos.y = linkRect.top - navRect.top;
+      } else if (open === 'right') {
+        arrowPos.x = linkRect.right;
+        arrowPos.y = round((linkRect.top - navRect.top) + linkRect.height / 2);
       }
 
       // @todo determine what to do when content is too close to the edge of x/y viewport.
@@ -288,13 +278,24 @@ export default {
       this.clearDisableTransitionTimeout();
       this.setEnableTransitionTimeout();
 
+
       // This works for horizontal and vertical downward open
-      this.styles.container = { transform: `translate(${dropdownPosX}px, ${dropdownPosY}px)`, width: `${contentOffsetW}px`, height: `${contentOffsetH}px` };
-      this.styles.arrow = { transform: `translate(${arrowPosX}px, ${arrowPosY}px) rotate(45deg)` };
-      this.styles.background = { transform: `translate(${dropdownPosX}px, ${dropdownPosY}px) scaleX(${ratioWidth}) scaleY(${ratioHeight})` };
+      this.styles.container = { transform: `translate(${dropdownPos.x}px, ${dropdownPos.y}px)`, width: `${contentOffsetW}px`, height: `${contentOffsetH}px` };
+      this.styles.arrow = { transform: `translate(${arrowPos.x}px, ${arrowPos.y}px) rotate(45deg)` };
+
+      // @todo determine if scaling is needed....
+      // const bgTransforms = [
+      //   `translate(${dropdownPosX}px, ${dropdownPosY}px)`,
+      //   `scaleX(${ratioWidth})`,
+      //   `scaleY(${ratioHeight})`,
+      // ];
+      // this.styles.background = {
+      //   transform: bgTransforms.join(' '),
+      // };
+      this.styles.background = { transform: `translate(${dropdownPos.x}px, ${dropdownPos.y}px)`, width: `${contentOffsetW}px`, height: `${contentOffsetH}px` };
 
       const { children } = content;
-      if (children) this.styles.innerBackground = { transform: `translateY(${children[0].offsetHeight / ratioHeight}px)` };
+      if (children) this.styles.innerBackground = { transform: `translate(${children[0].offsetWidth / ratioWidth}px ,${children[0].offsetHeight / ratioHeight}px)` };
     },
 
     closeDropdown() {
