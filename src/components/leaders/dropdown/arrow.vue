@@ -24,8 +24,7 @@ export default {
     width: 12px;
     height: 12px;
     margin: 0 0 0 -6px;
-    background: #fff;
-    border-radius: 4px 0 0;
+    background: #d656b0;
     transition-duration: .25s;
     transition-property: transform, -webkit-transform;
     transform: rotate(45deg);
@@ -45,6 +44,22 @@ export default {
     #{ $self } {
       &__arrow {
         box-shadow: 3px 3px 5px rgba(82, 95, 127, .04);
+      }
+    }
+  }
+
+  &--open-left {
+    #{ $self } {
+      &__arrow {
+        box-shadow: -3px -3px 5px rgba(82, 95, 127, .04);
+      }
+    }
+  }
+
+  &--open-right {
+    #{ $self } {
+      &__arrow {
+        box-shadow: -3px -3px 5px rgba(82, 95, 127, .04);
       }
     }
   }

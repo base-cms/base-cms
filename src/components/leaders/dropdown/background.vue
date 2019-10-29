@@ -28,8 +28,7 @@ export default {
     width: 380px;
     height: 400px;
     overflow: hidden;
-    background: #fff;
-    border-radius: 4px;
+    background: #eff1f2;
     transform: translateX(0);
     transform-origin: 0 0;
   }
@@ -45,15 +44,18 @@ export default {
     position: absolute;
     top: 0;
     left: 0;
-    will-change: transform;
+    will-change: height, width, transform;
     transition-duration: .25s;
-    transition-property: transform, -webkit-transform;
+    transition-property: height, width, transform, -webkit-transform;
   }
+
+  $border: 9px solid #d656b0;
 
   // box-shadow: offset-x offset-y blur-radius spread-radius color
   &--open-below {
     #{ $self } {
       &__background {
+        border-top: $border;
         box-shadow: 0 50px 100px -20px rgba(50, 50, 93, .25), 0 30px 60px -30px rgba(0, 0, 0, .3), 0 -18px 60px -10px rgba(0, 0, 0, .025);
       }
     }
@@ -62,7 +64,26 @@ export default {
   &--open-above {
     #{ $self } {
       &__background {
+        border-bottom: $border;
         box-shadow: 0 -50px 100px -20px rgba(50, 50, 93, .25), 0 -30px 60px -30px rgba(0, 0, 0, .3), 0 18px 60px -10px rgba(0, 0, 0, .025);
+      }
+    }
+  }
+
+  &--open-left {
+    #{ $self } {
+      &__background {
+        border-right: $border;
+        box-shadow: 0 50px 100px -20px rgba(50, 50, 93, .25), 0 30px 60px -30px rgba(0, 0, 0, .3), 0 -18px 60px -10px rgba(0, 0, 0, .025);
+      }
+    }
+  }
+
+  &--open-right {
+    #{ $self } {
+      &__background {
+        border-left: $border;
+        box-shadow: 0 50px 100px -20px rgba(50, 50, 93, .25), 0 30px 60px -30px rgba(0, 0, 0, .3), 0 -18px 60px -10px rgba(0, 0, 0, .025);
       }
     }
   }
