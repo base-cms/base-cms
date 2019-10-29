@@ -99,8 +99,7 @@ export default {
 .leaders-nav {
   &__link {
     display: inline-block;
-    height: 50px;
-    padding: 0 10px;
+    padding: 0 15px;
     margin: 0;
     font-size: 17px;
     font-weight: 500;
