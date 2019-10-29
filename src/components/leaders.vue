@@ -236,8 +236,13 @@ export default {
       this.setEnableTransitionTimeout();
 
       // This works for horizontal and vertical downward open
-      this.styles.container = { transform: `translate(${menu.x}px, ${menu.y}px)`, width: `${calcs.menu('w')}px`, height: `${calcs.menu('h')}px` };
-      this.styles.arrow = { transform: `translate(${arrow.x}px, ${arrow.y}px) rotate(45deg)` };
+      const menuStyles = {
+        transform: `translate(${menu.xPx}, ${menu.yPx})`,
+        width: calcs.menu('w', { px: true }),
+        height: calcs.menu('h', { px: true }),
+      };
+      this.styles.container = menuStyles;
+      this.styles.arrow = { transform: `translate(${arrow.xPx}, ${arrow.yPx}) rotate(45deg)` };
 
       // @todo determine if scaling is needed....
       // const bgTransforms = [
@@ -248,7 +253,7 @@ export default {
       // this.styles.background = {
       //   transform: bgTransforms.join(' '),
       // };
-      this.styles.background = { transform: `translate(${menu.x}px, ${menu.y}px)`, width: `${calcs.menu('w')}px`, height: `${calcs.menu('h')}px` };
+      this.styles.background = menuStyles;
 
       const { children } = content;
       if (children) this.styles.innerBackground = { transform: `translate(${children[0].offsetWidth / ratioWidth}px ,${children[0].offsetHeight / ratioHeight}px)` };
