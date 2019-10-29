@@ -3,10 +3,12 @@ class ElementCalculus {
     this.content = content;
     this.linkRect = linkRect;
     this.navRect = navRect;
+    this.window = window;
     this.props = {
       menu: ['w', 'h', 'halfW', 'halfH', 'midH'],
-      link: ['w', 'h', 'halfW', 'halfH', 'top', 'right', 'bottom', 'left', 'topNavTop', 'bottomNavTop'],
+      link: ['w', 'h', 'halfW', 'halfH', 'top', 'right', 'bottom', 'left', 'middle', 'center', 'topNavTop', 'bottomNavTop'],
       nav: ['top'],
+      viewport: ['w', 'h'],
     };
   }
 
@@ -20,6 +22,10 @@ class ElementCalculus {
 
   nav(prop, options) {
     return this.call('nav', prop, options);
+  }
+
+  viewport(prop, options) {
+    return this.call('viewport', prop, options);
   }
 
   all() {
@@ -37,6 +43,20 @@ class ElementCalculus {
     const v = this[method]() + offset;
     const value = invert ? v * -1 : v;
     return px ? `${value}px` : value;
+  }
+
+  /**
+   * Width of the visible viewport.
+   */
+  viewportW() {
+    return this.window.innerWidth;
+  }
+
+  /**
+   * Height of the visible viewport.
+   */
+  viewportH() {
+    return this.window.innerHeight;
   }
 
   /**
@@ -105,6 +125,7 @@ class ElementCalculus {
 
   /**
    * The top position of the nav link.
+   * Will be negative when off screen.
    */
   linkTop() {
     return this.linkRect.top;
@@ -112,6 +133,7 @@ class ElementCalculus {
 
   /**
    * The right position of the nav link.
+   * Will be positive when off screen.
    */
   linkRight() {
     return this.linkRect.right;
@@ -119,6 +141,7 @@ class ElementCalculus {
 
   /**
    * The bottom position of the nav link.
+   * Will be positive when off screen.
    */
   linkBottom() {
     return this.linkRect.bottom;
@@ -126,9 +149,26 @@ class ElementCalculus {
 
   /**
    * The bottom position of the nav link.
+   * Will be negative when off screen.
    */
   linkLeft() {
     return this.linkRect.left;
+  }
+
+  /**
+   * The middle (y-axis) position of the nav link.
+   * Will be negative when off screen.
+   */
+  linkMiddle() {
+    return this.link('top') + this.link('halfH');
+  }
+
+  /**
+   * The center (x-axis) position of the nav link.
+   * Will be negative when off screen.
+   */
+  linkCenter() {
+    return this.link('left') + this.link('halfW');
   }
 
   /**
