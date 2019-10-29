@@ -216,11 +216,11 @@ export default {
       const { activeSection } = this;
       if (!activeSection) throw new Error(`No dropdown section was found for index ${activeIndex}`);
       const content = activeSection.content.$el;
-      const contentOffsetW = content.offsetWidth;
-      const contentOffsetH = content.offsetHeight;
+      // const contentOffsetW = content.offsetWidth;
+      // const contentOffsetH = content.offsetHeight;
 
-      const ratioWidth = contentOffsetW / this.dropdownWidth;
-      const ratioHeight = contentOffsetH / this.dropdownHeight;
+      // const ratioWidth = contentOffsetW / this.dropdownWidth;
+      // const ratioHeight = contentOffsetH / this.dropdownHeight;
       const linkRect = link.getBoundingClientRect();
       const navRect = this.$refs.nav.$el.getBoundingClientRect();
 
@@ -256,7 +256,11 @@ export default {
       this.styles.background = menuStyles;
 
       const { children } = content;
-      if (children) this.styles.innerBackground = { transform: `translate(${children[0].offsetWidth / ratioWidth}px ,${children[0].offsetHeight / ratioHeight}px)` };
+      if (children) this.styles.innerBackground = { transform: `translate(${children[0].offsetWidth}px, ${children[0].offsetHeight}px)` };
+      // @todo determine if children need to scale
+      // if (children) this.styles.innerBackground =
+      // { transform: `translate(${children[0].offsetWidth /
+      // ratioWidth}px ,${children[0].offsetHeight / ratioHeight}px)` };
     },
 
     closeDropdown() {
