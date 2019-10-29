@@ -1,7 +1,9 @@
 <template>
   <div class="content">
-    <h3>{{ label }}</h3>
-    <p>
+    <h3 style="margin: 0; margin-bottom: 1rem;">
+      {{ label }}
+    </h3>
+    <p style="margin: 0;">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
       Sed ligula diam, molestie non facilisis eget, mollis eget nisi.
       Nam tempus nulla et lorem commodo, quis tincidunt velit bibendum.
