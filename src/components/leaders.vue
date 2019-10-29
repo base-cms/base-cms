@@ -108,8 +108,8 @@ export default {
     },
     screenOffset: {
       type: Number,
-      default: 10,
-      validator: v => v > 0,
+      default: 0, // this is not properly handled yet. do not use.
+      validator: v => v >= 0,
     },
   },
 
@@ -216,14 +216,14 @@ export default {
       const { activeSection } = this;
       if (!activeSection) throw new Error(`No dropdown section was found for index ${activeIndex}`);
       const content = activeSection.content.$el;
-      // const contentOffsetW = content.offsetWidth;
-      // const contentOffsetH = content.offsetHeight;
-
-      // const ratioWidth = contentOffsetW / this.dropdownWidth;
-      // const ratioHeight = contentOffsetH / this.dropdownHeight;
       const linkRect = link.getBoundingClientRect();
       const navRect = this.$refs.nav.$el.getBoundingClientRect();
 
+      /**
+       * @todo The menu elements should _pre_ position themselves _before_ the
+       * element calculations are made. This will simplifiy the overall positions
+       * and required translations (relative to viewport requirements)
+       */
       const { open, screenOffset } = this;
       // Create element calculus info.
       const calcs = new ElementCalculus({ content, linkRect, navRect });
@@ -242,25 +242,11 @@ export default {
         height: calcs.menu('h', { px: true }),
       };
       this.styles.container = menuStyles;
-      this.styles.arrow = { transform: `translate(${arrow.xPx}, ${arrow.yPx}) rotate(45deg)` };
-
-      // @todo determine if scaling is needed....
-      // const bgTransforms = [
-      //   `translate(${dropdownPosX}px, ${dropdownPosY}px)`,
-      //   `scaleX(${ratioWidth})`,
-      //   `scaleY(${ratioHeight})`,
-      // ];
-      // this.styles.background = {
-      //   transform: bgTransforms.join(' '),
-      // };
       this.styles.background = menuStyles;
+      this.styles.arrow = { transform: `translate(${arrow.xPx}, ${arrow.yPx}) rotate(45deg)` };
 
       const { children } = content;
       if (children) this.styles.innerBackground = { transform: `translate(${children[0].offsetWidth}px, ${children[0].offsetHeight}px)` };
-      // @todo determine if children need to scale
-      // if (children) this.styles.innerBackground =
-      // { transform: `translate(${children[0].offsetWidth /
-      // ratioWidth}px ,${children[0].offsetHeight / ratioHeight}px)` };
     },
 
     closeDropdown() {

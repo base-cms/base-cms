@@ -16,25 +16,33 @@ class MenuPosition extends AbstractPosition {
   get y() {
     const { calculus: calcs } = this;
     if (this.opensLeft || this.opensRight) {
-      // const linkTop = calcs.link('top');
-      // const offsetMidH = calcs.menu('midH', { offset: screenOffset });
-      // @todo re-eval viewport adjustments
-      return calcs.link('topNavTop') - calcs.menu('midH');
-      // let y = calcs.link('topNavTop') - calcs.menu('midH');
+      const initial = calcs.link('topNavTop') - calcs.menu('midH');
 
-      // // Return y as-is if completely in view.
-      // if (this.isYInView) return y;
+      // The element will be completely in-view.
+      if (this.isYInView) return initial;
 
-      // // Prefer top before bottom
-      // if (!this.isTopInView && !this.isBottomInView) {
-      //   y += offsetMidH - linkTop;
-      //   // Link is in-view, return;
-      //   if (linkTop >= 0) return y;
-      //   // Link is out of view, prevent menu from "breaking away" from the arrow.
-      //   return y + linkTop;
-      // }
-      // y += window.innerHeight - (offsetMidH + calcs.link('bottom'));
-      // return y;
+      // Either top or bottom will be out-of-view.
+      // If top will be out of view, or if the menu height is taller than the viewport,
+      // force top positioning.
+      if (!this.isTopInView || calcs.menu('h') > calcs.viewport('h')) {
+        const linkTop = calcs.link('top');
+        const temp = initial - this.topOffset;
+        // Link is in-view, return;
+        if (linkTop >= 0) return temp;
+        // @todo This should do a scroll-to!
+        // Link is out of view, prevent menu from "breaking away" from the arrow.
+        return temp + linkTop;
+      }
+
+      // Allow bottom positioning.
+      if (!this.isBottomInView) {
+        let temp = initial + this.bottomOffset;
+        const linkBottomOffset = calcs.viewport('h') - calcs.link('bottom');
+        // @todo This should do a scroll-to!
+        // Adjust position if the menu is going to "break away" from the arrow.
+        temp = linkBottomOffset > 0 ? temp : temp - linkBottomOffset;
+        return temp;
+      }
     }
     if (this.opensAbove) return calcs.link('topNavTop') - calcs.menu('h');
     return calcs.link('bottomNavTop');
@@ -72,8 +80,17 @@ class MenuPosition extends AbstractPosition {
     return 0;
   }
 
+  get topOffset() {
+    return this.top - this.screenOffset;
+  }
+
   get isTopInView() {
-    return this.top - this.screenOffset > 0;
+    return this.topOffset > 0;
+  }
+
+  get bottomOffset() {
+    const { calculus: calcs } = this;
+    return calcs.viewport('h') - (this.bottom + this.screenOffset);
   }
 
   get isBottomInView() {
