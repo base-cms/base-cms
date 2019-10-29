@@ -55,6 +55,7 @@
 <script>
 import ElementCalculus from './leaders/element-calculus';
 import ArrowPosition from './leaders/positions/arrow-position';
+import MenuPosition from './leaders/positions/menu-position';
 import Dropdown from './leaders/dropdown.vue';
 import DropdownArrow from './leaders/dropdown/arrow.vue';
 import DropdownBackground from './leaders/dropdown/background.vue';
@@ -224,39 +225,18 @@ export default {
       const navRect = this.$refs.nav.$el.getBoundingClientRect();
 
       const { open, screenOffset } = this;
-
-      // Create element calculus info...
+      // Create element calculus info.
       const calcs = new ElementCalculus({ content, linkRect, navRect });
-
-      // Calculate dropdown position.
-      const dropdownPos = {};
-      if (open === 'left' || open === 'right') {
-        dropdownPos.y = calcs.link('topNavTop') - calcs.menu('midH');
-        // @todo refine this.
-        // @todo handle inViewBottom.
-        const inViewTop = calcs.menu('midH', { offset: screenOffset }) < calcs.link('top');
-        if (!inViewTop) dropdownPos.y += calcs.menu('midH', { offset: screenOffset }) - calcs.link('top');
-        // The top of the link is also out-of-view...
-        // Force the menu to expand slightly out-of-view as well.
-        // This prevents the arrow from "breaking out" of the dropdown.
-        if (calcs.link('top') < 0) dropdownPos.y += calcs.link('top');
-      }
-      if (open === 'above' || open === 'below') {
-        dropdownPos.x = calcs.link('left') + calcs.link('halfW') - calcs.menu('halfW');
-      }
-      if (open === 'below') dropdownPos.y = calcs.link('bottomNavTop');
-      if (open === 'above') dropdownPos.y = calcs.link('topNavTop') - calcs.menu('h');
-      if (open === 'left') dropdownPos.x = calcs.link('left') - calcs.menu('w');
-      if (open === 'right') dropdownPos.x = calcs.link('right');
-
+      // Calculate dropdown menu position.
+      const menu = new MenuPosition({ openDirection: open, calculus: calcs, screenOffset });
       // Calculate arrow position.
-      const arrow = new ArrowPosition({ openDirection: this.open, calculus: calcs });
+      const arrow = new ArrowPosition({ openDirection: open, calculus: calcs });
 
       this.clearDisableTransitionTimeout();
       this.setEnableTransitionTimeout();
 
       // This works for horizontal and vertical downward open
-      this.styles.container = { transform: `translate(${dropdownPos.x}px, ${dropdownPos.y}px)`, width: `${contentOffsetW}px`, height: `${contentOffsetH}px` };
+      this.styles.container = { transform: `translate(${menu.x}px, ${menu.y}px)`, width: `${calcs.menu('w')}px`, height: `${calcs.menu('h')}px` };
       this.styles.arrow = { transform: `translate(${arrow.x}px, ${arrow.y}px) rotate(45deg)` };
 
       // @todo determine if scaling is needed....
@@ -268,7 +248,7 @@ export default {
       // this.styles.background = {
       //   transform: bgTransforms.join(' '),
       // };
-      this.styles.background = { transform: `translate(${dropdownPos.x}px, ${dropdownPos.y}px)`, width: `${contentOffsetW}px`, height: `${contentOffsetH}px` };
+      this.styles.background = { transform: `translate(${menu.x}px, ${menu.y}px)`, width: `${calcs.menu('w')}px`, height: `${calcs.menu('h')}px` };
 
       const { children } = content;
       if (children) this.styles.innerBackground = { transform: `translate(${children[0].offsetWidth / ratioWidth}px ,${children[0].offsetHeight / ratioHeight}px)` };
