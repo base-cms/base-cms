@@ -235,38 +235,37 @@ export default {
       // let pos = Math.round(max);
 
       const { open } = this;
-      const { round } = Math;
 
       // Calculate dropdown position.
       // Set initial (x, y) value using default open direction (i.e. below).
       const dropdownPos = {
-        x: round(linkRect.left + linkRect.width / 2 - contentOffsetW / 2),
+        x: linkRect.left + linkRect.width / 2 - contentOffsetW / 2,
         y: linkRect.bottom - navRect.top,
       };
       if (open === 'left') {
         dropdownPos.x = linkRect.left - contentOffsetW;
-        dropdownPos.y = linkRect.top - navRect.top;
+        dropdownPos.y = (linkRect.top - navRect.top) + linkRect.height / 2 - contentOffsetH / 2;
       } else if (open === 'above') {
         dropdownPos.y = (linkRect.top - navRect.top) - contentOffsetH;
       } else if (open === 'right') {
         dropdownPos.x = linkRect.right;
-        dropdownPos.y = linkRect.top - navRect.top;
+        dropdownPos.y = (linkRect.top - navRect.top) + linkRect.height / 2 - contentOffsetH / 2;
       }
 
       // Calculate arrow position.
       // Set initial (x, y) value using default open direction (i.e. below).
       const arrowPos = {
-        x: round(linkRect.left + linkRect.width / 2),
+        x: linkRect.left + linkRect.width / 2,
         y: linkRect.bottom - navRect.top,
       };
       if (open === 'left') {
         arrowPos.x = linkRect.left;
-        arrowPos.y = round((linkRect.top - navRect.top) + linkRect.height / 2);
+        arrowPos.y = (linkRect.top - navRect.top) + linkRect.height / 2;
       } else if (open === 'above') {
         arrowPos.y = linkRect.top - navRect.top;
       } else if (open === 'right') {
         arrowPos.x = linkRect.right;
-        arrowPos.y = round((linkRect.top - navRect.top) + linkRect.height / 2);
+        arrowPos.y = (linkRect.top - navRect.top) + linkRect.height / 2;
       }
 
       // @todo determine what to do when content is too close to the edge of x/y viewport.
