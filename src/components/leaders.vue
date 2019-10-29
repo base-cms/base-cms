@@ -54,6 +54,7 @@
 
 <script>
 import ElementCalculus from './leaders/element-calculus';
+import ArrowPosition from './leaders/positions/arrow-position';
 import Dropdown from './leaders/dropdown.vue';
 import DropdownArrow from './leaders/dropdown/arrow.vue';
 import DropdownBackground from './leaders/dropdown/background.vue';
@@ -262,17 +263,7 @@ export default {
       if (open === 'right') dropdownPos.x = calcs.link('right');
 
       // Calculate arrow position.
-      const arrowPos = {};
-      if (open === 'left' || open === 'right') {
-        arrowPos.y = calcs.link('topNavTop') + calcs.link('halfH');
-      }
-      if (open === 'above' || open === 'below') {
-        arrowPos.x = calcs.link('left') + calcs.link('halfW');
-      }
-      if (open === 'below') arrowPos.y = calcs.link('bottomNavTop');
-      if (open === 'above') arrowPos.y = calcs.link('topNavTop');
-      if (open === 'left') arrowPos.x = calcs.link('left');
-      if (open === 'right') arrowPos.x = calcs.link('right');
+      const arrow = new ArrowPosition({ openDirection: this.open, calculus: calcs });
 
       // @todo determine what to do when content is too close to the edge of x/y viewport.
       // const rightSide = linkRect.left + linkRect.width / 2 + contentOffsetW / 2;
@@ -286,7 +277,7 @@ export default {
 
       // This works for horizontal and vertical downward open
       this.styles.container = { transform: `translate(${dropdownPos.x}px, ${dropdownPos.y}px)`, width: `${contentOffsetW}px`, height: `${contentOffsetH}px` };
-      this.styles.arrow = { transform: `translate(${arrowPos.x}px, ${arrowPos.y}px) rotate(45deg)` };
+      this.styles.arrow = { transform: `translate(${arrow.x}px, ${arrow.y}px) rotate(45deg)` };
 
       // @todo determine if scaling is needed....
       // const bgTransforms = [
