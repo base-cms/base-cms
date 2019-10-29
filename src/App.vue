@@ -1,35 +1,99 @@
 <template>
-  <container>
-    <row style="padding-top: 300px; padding-bottom: 300px; perspective: 1500px;">
+  <container style="padding-top: 200px; padding-bottom: 200px; perspective: 1500px;">
+    <row>
+      <h3>Vertical Left</h3>
+      <leaders
+        :items="items"
+        nav-direction="vertical"
+        open-direction="left"
+      >
+        <template #default="data">
+          <sample-content :label="data.item.label" />
+        </template>
+      </leaders>
+    </row>
+    <row>
+      <h3>Vertical Right</h3>
+      <leaders
+        :items="items"
+        nav-direction="vertical"
+        open-direction="right"
+      >
+        <template #default="data">
+          <sample-content :label="data.item.label" />
+        </template>
+      </leaders>
+    </row>
+    <row>
+      <h3>Vertical Above</h3>
+      <leaders
+        :items="items"
+        nav-direction="vertical"
+        open-direction="above"
+      >
+        <template #default="data">
+          <sample-content :label="data.item.label" />
+        </template>
+      </leaders>
+    </row>
+    <row>
+      <h3>Vertical Below</h3>
       <leaders
         :items="items"
         nav-direction="vertical"
         open-direction="below"
-        dropdown-align="center"
-        arrow-align="center"
       >
         <template #default="data">
-          <div class="content">
-            <p>This should have content for {{ data.item.label }}</p>
-            <p>Let's make it</p>
-            <p><strong>Bigger!</strong></p>
-          </div>
+          <sample-content :label="data.item.label" />
         </template>
       </leaders>
+    </row>
 
+    <row>
+      <h3>Horizontal Left</h3>
+      <leaders
+        :items="items"
+        nav-direction="horizontal"
+        open-direction="left"
+      >
+        <template #default="data">
+          <sample-content :label="data.item.label" />
+        </template>
+      </leaders>
+    </row>
+    <row>
+      <h3>Horizontal Right</h3>
+      <leaders
+        :items="items"
+        nav-direction="horizontal"
+        open-direction="right"
+      >
+        <template #default="data">
+          <sample-content :label="data.item.label" />
+        </template>
+      </leaders>
+    </row>
+    <row>
+      <h3>Horizontal Above</h3>
       <leaders
         :items="items"
         nav-direction="horizontal"
         open-direction="above"
-        dropdown-align="center"
-        arrow-align="center"
       >
         <template #default="data">
-          <div class="content">
-            <p>This should have content for {{ data.item.label }}</p>
-            <p>Let's make it</p>
-            <p><strong>Bigger!</strong></p>
-          </div>
+          <sample-content :label="data.item.label" />
+        </template>
+      </leaders>
+    </row>
+    <row>
+      <h3>Horizontal Below</h3>
+      <leaders
+        :items="items"
+        nav-direction="horizontal"
+        open-direction="below"
+      >
+        <template #default="data">
+          <sample-content :label="data.item.label" />
         </template>
       </leaders>
     </row>
@@ -37,6 +101,7 @@
 </template>
 
 <script>
+import SampleContent from './components/sample-content.vue';
 import Container from './components/generic/container.vue';
 import Leaders from './components/leaders.vue';
 import Row from './components/generic/row.vue';
@@ -46,6 +111,7 @@ export default {
     Container,
     Leaders,
     Row,
+    SampleContent,
   },
 
   data: () => ({
@@ -83,11 +149,6 @@ body {
   color: #212529;
   text-align: left;
   background-color: #fff;
-}
-
-// specific styles
-.content {
-  padding: 30px;
 }
 
 .leaders {
