@@ -234,12 +234,18 @@ export default {
       // const max = Math.max(linkRect.left + linkRect.width / 2 - contentOffsetW / 2, 10);
       // let pos = Math.round(max);
 
-      const { open } = this;
+      const { open, screenOffset } = this;
 
       // Calculate dropdown position.
       const dropdownPos = {};
       if (open === 'left' || open === 'right') {
         dropdownPos.y = (linkRect.top - navRect.top) + linkRect.height / 2 - contentOffsetH / 2;
+        // @todo refine this.
+        // @todo handle inViewBottom.
+        // @todo do not allow the viewport difference to push the arrow
+        const topPos = (contentOffsetH / 2 - linkRect.height / 2);
+        const inViewTop = (topPos + screenOffset) < linkRect.top;
+        if (!inViewTop) dropdownPos.y += (topPos + screenOffset) - linkRect.top;
       }
       if (open === 'above' || open === 'below') {
         dropdownPos.x = linkRect.left + linkRect.width / 2 - contentOffsetW / 2;
