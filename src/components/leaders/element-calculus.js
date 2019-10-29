@@ -31,12 +31,12 @@ class ElementCalculus {
     return this.props[type].reduce((o, prop) => ({ ...o, [prop]: this.call(type, prop) }), {});
   }
 
-  call(type, prop, { invert = false, offset = 0 } = {}) {
+  call(type, prop, { invert = false, offset = 0, px = false } = {}) {
     const method = `${type}${prop.charAt(0).toUpperCase()}${prop.slice(1)}`;
     if (typeof this[method] !== 'function') throw new Error(`No method found for ${method}`);
     const v = this[method]() + offset;
-    if (invert) return v * -1;
-    return v;
+    const value = invert ? v * -1 : v;
+    return px ? `${value}px` : value;
   }
 
   /**
