@@ -250,20 +250,17 @@ export default {
       if (open === 'right') dropdownPos.x = linkRect.right;
 
       // Calculate arrow position.
-      // Set initial (x, y) value using default open direction (i.e. below).
-      const arrowPos = {
-        x: linkRect.left + linkRect.width / 2,
-        y: linkRect.bottom - navRect.top,
-      };
-      if (open === 'left') {
-        arrowPos.x = linkRect.left;
-        arrowPos.y = (linkRect.top - navRect.top) + linkRect.height / 2;
-      } else if (open === 'above') {
-        arrowPos.y = linkRect.top - navRect.top;
-      } else if (open === 'right') {
-        arrowPos.x = linkRect.right;
+      const arrowPos = {};
+      if (open === 'left' || open === 'right') {
         arrowPos.y = (linkRect.top - navRect.top) + linkRect.height / 2;
       }
+      if (open === 'above' || open === 'below') {
+        arrowPos.x = linkRect.left + linkRect.width / 2;
+      }
+      if (open === 'below') arrowPos.y = linkRect.bottom - navRect.top;
+      if (open === 'above') arrowPos.y = linkRect.top - navRect.top;
+      if (open === 'left') arrowPos.x = linkRect.left;
+      if (open === 'right') arrowPos.x = linkRect.right;
 
       // @todo determine what to do when content is too close to the edge of x/y viewport.
       // const rightSide = linkRect.left + linkRect.width / 2 + contentOffsetW / 2;
