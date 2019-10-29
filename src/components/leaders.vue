@@ -218,23 +218,10 @@ export default {
       const contentOffsetW = content.offsetWidth;
       const contentOffsetH = content.offsetHeight;
 
-      // @todo Handle when content is near viewport edges.
-      // const { offsetWidth: bodyOffsetWidth } = document.body;
-      // const allowedWidth = bodyOffsetWidth - (this.screenOffset * 2);
-
-      // Crop the width of the content if it goes beyond the width of the screen
-      // if (contentOffsetW > allowedWidth - (this.screenOffset * 2)) {
-      //   contentOffsetW = bodyOffsetWidth - (this.screenOffset * 2);
-      // }
-
       const ratioWidth = contentOffsetW / this.dropdownWidth;
       const ratioHeight = contentOffsetH / this.dropdownHeight;
       const linkRect = link.getBoundingClientRect();
       const navRect = this.$refs.nav.$el.getBoundingClientRect();
-
-      // @todo determine how to handle if x position is outside of viewport.
-      // const max = Math.max(linkRect.left + linkRect.width / 2 - contentOffsetW / 2, 10);
-      // let pos = Math.round(max);
 
       const { open, screenOffset } = this;
 
@@ -265,15 +252,8 @@ export default {
       // Calculate arrow position.
       const arrow = new ArrowPosition({ openDirection: this.open, calculus: calcs });
 
-      // @todo determine what to do when content is too close to the edge of x/y viewport.
-      // const rightSide = linkRect.left + linkRect.width / 2 + contentOffsetW / 2;
-      // if (rightSide > bodyOffsetWidth) {
-      //   pos = pos - (rightSide - bodyOffsetWidth) - this.screenOffset;
-      // }
-
       this.clearDisableTransitionTimeout();
       this.setEnableTransitionTimeout();
-
 
       // This works for horizontal and vertical downward open
       this.styles.container = { transform: `translate(${dropdownPos.x}px, ${dropdownPos.y}px)`, width: `${contentOffsetW}px`, height: `${contentOffsetH}px` };
