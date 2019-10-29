@@ -20,19 +20,19 @@ class AbstractPosition {
     return `${this.y}px`;
   }
 
-  get above() {
+  get opensAbove() {
     return this.openDirection === 'above';
   }
 
-  get below() {
+  get opensBelow() {
     return this.openDirection === 'below';
   }
 
-  get left() {
+  get opensLeft() {
     return this.openDirection === 'left';
   }
 
-  get right() {
+  get opensRight() {
     return this.openDirection === 'right';
   }
 }
