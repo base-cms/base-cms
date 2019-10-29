@@ -25,8 +25,6 @@ export default {
   $self: &;
 
   &__background {
-    width: 380px;
-    height: 400px;
     overflow: hidden;
     background: #eff1f2;
     transform: translateX(0);

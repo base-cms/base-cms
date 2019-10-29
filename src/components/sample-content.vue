@@ -1,8 +1,17 @@
 <template>
   <div class="content">
-    <p>This should have content for {{ label }}</p>
-    <p>Let's make it...</p>
-    <p><strong>Bigger!</strong></p>
+    <h3>{{ label }}</h3>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      Sed ligula diam, molestie non facilisis eget, mollis eget nisi.
+      Nam tempus nulla et lorem commodo, quis tincidunt velit bibendum.
+      Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+      Donec ultricies volutpat luctus. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+      Suspendisse vel erat augue. Nullam mattis dui in nunc lobortis, eu pellentesque lacus ornare.
+      Integer ut quam eget orci varius placerat euismod eget eros.
+      Proin ac orci sit amet tortor congue interdum a quis purus.
+      Vivamus et eros suscipit lacus sodales molestie.
+    </p>
   </div>
 </template>
 
@@ -19,6 +28,7 @@ export default {
 
 <style lang="scss">
 .content {
+  max-width: 350px;
   padding: 30px;
 }
 </style>
