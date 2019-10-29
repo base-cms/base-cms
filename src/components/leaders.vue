@@ -53,6 +53,7 @@
 </template>
 
 <script>
+import ElementCalculus from './leaders/element-calculus';
 import Dropdown from './leaders/dropdown.vue';
 import DropdownArrow from './leaders/dropdown/arrow.vue';
 import DropdownBackground from './leaders/dropdown/background.vue';
@@ -236,37 +237,42 @@ export default {
 
       const { open, screenOffset } = this;
 
+      // Create element calculus info...
+      const calcs = new ElementCalculus({ content, linkRect, navRect });
+
       // Calculate dropdown position.
       const dropdownPos = {};
       if (open === 'left' || open === 'right') {
-        dropdownPos.y = (linkRect.top - navRect.top) + linkRect.height / 2 - contentOffsetH / 2;
+        dropdownPos.y = calcs.link('topNavTop') - calcs.menu('midH');
         // @todo refine this.
         // @todo handle inViewBottom.
-        // @todo do not allow the viewport difference to push the arrow
-        const topPos = (contentOffsetH / 2 - linkRect.height / 2);
-        const inViewTop = (topPos + screenOffset) < linkRect.top;
-        if (!inViewTop) dropdownPos.y += (topPos + screenOffset) - linkRect.top;
+        const inViewTop = calcs.menu('midH', { offset: screenOffset }) < calcs.link('top');
+        if (!inViewTop) dropdownPos.y += calcs.menu('midH', { offset: screenOffset }) - calcs.link('top');
+        // The top of the link is also out-of-view...
+        // Force the menu to expand slightly out-of-view as well.
+        // This prevents the arrow from "breaking out" of the dropdown.
+        if (calcs.link('top') < 0) dropdownPos.y += calcs.link('top');
       }
       if (open === 'above' || open === 'below') {
-        dropdownPos.x = linkRect.left + linkRect.width / 2 - contentOffsetW / 2;
+        dropdownPos.x = calcs.link('left') + calcs.link('halfW') - calcs.menu('halfW');
       }
-      if (open === 'below') dropdownPos.y = linkRect.bottom - navRect.top;
-      if (open === 'above') dropdownPos.y = (linkRect.top - navRect.top) - contentOffsetH;
-      if (open === 'left') dropdownPos.x = linkRect.left - contentOffsetW;
-      if (open === 'right') dropdownPos.x = linkRect.right;
+      if (open === 'below') dropdownPos.y = calcs.link('bottomNavTop');
+      if (open === 'above') dropdownPos.y = calcs.link('topNavTop') - calcs.menu('h');
+      if (open === 'left') dropdownPos.x = calcs.link('left') - calcs.menu('w');
+      if (open === 'right') dropdownPos.x = calcs.link('right');
 
       // Calculate arrow position.
       const arrowPos = {};
       if (open === 'left' || open === 'right') {
-        arrowPos.y = (linkRect.top - navRect.top) + linkRect.height / 2;
+        arrowPos.y = calcs.link('topNavTop') + calcs.link('halfH');
       }
       if (open === 'above' || open === 'below') {
-        arrowPos.x = linkRect.left + linkRect.width / 2;
+        arrowPos.x = calcs.link('left') + calcs.link('halfW');
       }
-      if (open === 'below') arrowPos.y = linkRect.bottom - navRect.top;
-      if (open === 'above') arrowPos.y = linkRect.top - navRect.top;
-      if (open === 'left') arrowPos.x = linkRect.left;
-      if (open === 'right') arrowPos.x = linkRect.right;
+      if (open === 'below') arrowPos.y = calcs.link('bottomNavTop');
+      if (open === 'above') arrowPos.y = calcs.link('topNavTop');
+      if (open === 'left') arrowPos.x = calcs.link('left');
+      if (open === 'right') arrowPos.x = calcs.link('right');
 
       // @todo determine what to do when content is too close to the edge of x/y viewport.
       // const rightSide = linkRect.left + linkRect.width / 2 + contentOffsetW / 2;
