@@ -4,6 +4,22 @@ class AbstractPosition {
     this.calculus = calculus;
   }
 
+  get x() {
+    throw new Error(`The ${typeof this} class must implement an 'x' getter.`);
+  }
+
+  get y() {
+    throw new Error(`The ${typeof this} class must implement a 'y' getter.`);
+  }
+
+  get xPx() {
+    return `${this.x}px`;
+  }
+
+  get yPx() {
+    return `${this.y}px`;
+  }
+
   get above() {
     return this.openDirection === 'above';
   }
