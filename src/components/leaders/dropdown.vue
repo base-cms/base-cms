@@ -55,7 +55,7 @@ export default {
   opacity: 0;
   transition-duration: .25s;
   transition-property: transform, opacity, -webkit-transform;
-  transform: rotateX(-15deg);
+  transform: rotateX(-5deg);
   transform-origin: 50% -50px;
   will-change: transform, opacity;
 
