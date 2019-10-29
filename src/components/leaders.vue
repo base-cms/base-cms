@@ -212,7 +212,7 @@ export default {
 
       const { activeSection } = this;
       if (!activeSection) throw new Error(`No dropdown section was found for index ${activeIndex}`);
-      const [content] = activeSection.$el.children;
+      const content = activeSection.content.$el;
       const contentOffsetW = content.offsetWidth;
       const contentOffsetH = content.offsetHeight;
 

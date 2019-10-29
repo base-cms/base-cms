@@ -4,7 +4,7 @@
     :class="classNames"
     :aria-hidden="hidden"
   >
-    <dropdown-content>
+    <dropdown-content ref="content">
       <slot />
     </dropdown-content>
   </section>
@@ -32,6 +32,9 @@ export default {
   },
 
   computed: {
+    content() {
+      return this.$refs.content;
+    },
     hidden() {
       if (this.activeIndex == null) return true;
       return this.activeIndex !== this.index;
