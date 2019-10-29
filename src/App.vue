@@ -5,7 +5,7 @@
       <leaders
         :items="items"
         nav-direction="vertical"
-        open-direction="left"
+        open="left"
       >
         <template #default="data">
           <sample-content :label="data.item.label" />
@@ -17,7 +17,7 @@
       <leaders
         :items="items"
         nav-direction="vertical"
-        open-direction="right"
+        open="right"
       >
         <template #default="data">
           <sample-content :label="data.item.label" />
@@ -29,7 +29,7 @@
       <leaders
         :items="items"
         nav-direction="vertical"
-        open-direction="above"
+        open="above"
       >
         <template #default="data">
           <sample-content :label="data.item.label" />
@@ -41,7 +41,7 @@
       <leaders
         :items="items"
         nav-direction="vertical"
-        open-direction="below"
+        open="below"
       >
         <template #default="data">
           <sample-content :label="data.item.label" />
@@ -54,7 +54,7 @@
       <leaders
         :items="items"
         nav-direction="horizontal"
-        open-direction="left"
+        open="left"
       >
         <template #default="data">
           <sample-content :label="data.item.label" />
@@ -66,7 +66,7 @@
       <leaders
         :items="items"
         nav-direction="horizontal"
-        open-direction="right"
+        open="right"
       >
         <template #default="data">
           <sample-content :label="data.item.label" />
@@ -78,7 +78,7 @@
       <leaders
         :items="items"
         nav-direction="horizontal"
-        open-direction="above"
+        open="above"
       >
         <template #default="data">
           <sample-content :label="data.item.label" />
@@ -90,7 +90,7 @@
       <leaders
         :items="items"
         nav-direction="horizontal"
-        open-direction="below"
+        open="below"
       >
         <template #default="data">
           <sample-content :label="data.item.label" />
