@@ -237,20 +237,17 @@ export default {
       const { open } = this;
 
       // Calculate dropdown position.
-      // Set initial (x, y) value using default open direction (i.e. below).
-      const dropdownPos = {
-        x: linkRect.left + linkRect.width / 2 - contentOffsetW / 2,
-        y: linkRect.bottom - navRect.top,
-      };
-      if (open === 'left') {
-        dropdownPos.x = linkRect.left - contentOffsetW;
-        dropdownPos.y = (linkRect.top - navRect.top) + linkRect.height / 2 - contentOffsetH / 2;
-      } else if (open === 'above') {
-        dropdownPos.y = (linkRect.top - navRect.top) - contentOffsetH;
-      } else if (open === 'right') {
-        dropdownPos.x = linkRect.right;
+      const dropdownPos = {};
+      if (open === 'left' || open === 'right') {
         dropdownPos.y = (linkRect.top - navRect.top) + linkRect.height / 2 - contentOffsetH / 2;
       }
+      if (open === 'above' || open === 'below') {
+        dropdownPos.x = linkRect.left + linkRect.width / 2 - contentOffsetW / 2;
+      }
+      if (open === 'below') dropdownPos.y = linkRect.bottom - navRect.top;
+      if (open === 'above') dropdownPos.y = (linkRect.top - navRect.top) - contentOffsetH;
+      if (open === 'left') dropdownPos.x = linkRect.left - contentOffsetW;
+      if (open === 'right') dropdownPos.x = linkRect.right;
 
       // Calculate arrow position.
       // Set initial (x, y) value using default open direction (i.e. below).
