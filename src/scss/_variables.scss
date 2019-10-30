@@ -23,6 +23,13 @@ $leaders-nav-link-active-color: #fff !default;
 $leaders-nav-link-active-bg-color: $leaders-accent-color !default;
 $leaders-nav-link-active-box-shadow: 0 3px 5px rgba(0, 0, 0, .15) !default;
 
+// Dropdowns
+$leaders-dropdown-background-box-shadow: 0 3px 9px rgba(0, 0, 0, .35) !default;
+$leaders-dropdown-background-box-shadow-below: $leaders-dropdown-background-box-shadow !default;
+$leaders-dropdown-background-box-shadow-above: $leaders-dropdown-background-box-shadow !default;
+$leaders-dropdown-background-box-shadow-left: $leaders-dropdown-background-box-shadow !default;
+$leaders-dropdown-background-box-shadow-right: $leaders-dropdown-background-box-shadow !default;
+
 // Icons
 $leaders-icon-color: $leaders-base-color !default;
 $leaders-icon-size: $leaders-base-font-size !default;

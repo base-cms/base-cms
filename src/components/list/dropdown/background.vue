@@ -21,6 +21,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../../../scss/variables";
+
 .leaders-dropdown {
   $self: &;
 
@@ -54,7 +56,7 @@ export default {
     #{ $self } {
       &__background {
         border-top: $border;
-        box-shadow: 0 50px 100px -20px rgba(50, 50, 93, .25), 0 30px 60px -30px rgba(0, 0, 0, .3), 0 -18px 60px -10px rgba(0, 0, 0, .025);
+        box-shadow: $leaders-dropdown-background-box-shadow-below;
       }
     }
   }
@@ -63,7 +65,7 @@ export default {
     #{ $self } {
       &__background {
         border-bottom: $border;
-        box-shadow: 0 -50px 100px -20px rgba(50, 50, 93, .25), 0 -30px 60px -30px rgba(0, 0, 0, .3), 0 18px 60px -10px rgba(0, 0, 0, .025);
+        box-shadow: $leaders-dropdown-background-box-shadow-above;
       }
     }
   }
@@ -72,7 +74,7 @@ export default {
     #{ $self } {
       &__background {
         border-right: $border;
-        box-shadow: 0 50px 100px -20px rgba(50, 50, 93, .25), 0 30px 60px -30px rgba(0, 0, 0, .3), 0 -18px 60px -10px rgba(0, 0, 0, .025);
+        box-shadow: $leaders-dropdown-background-box-shadow-left;
       }
     }
   }
@@ -81,7 +83,7 @@ export default {
     #{ $self } {
       &__background {
         border-left: $border;
-        box-shadow: 0 50px 100px -20px rgba(50, 50, 93, .25), 0 30px 60px -30px rgba(0, 0, 0, .3), 0 -18px 60px -10px rgba(0, 0, 0, .025);
+        box-shadow: $leaders-dropdown-background-box-shadow-right;
       }
     }
   }
