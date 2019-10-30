@@ -38,7 +38,6 @@ $leaders-dropdown-background-box-shadow-right: $leaders-dropdown-background-box-
 
 $leaders-dropdown-background-border-size: ($leaders-dropdown-arrow-top + $leaders-dropdown-arrow-top / 2) * -1 !default;
 $leaders-dropdown-background-border-color: $leaders-dropdown-accent-color !default;
-$leaders-dropdown-background-border: $leaders-dropdown-background-border-size solid $leaders-dropdown-accent-color !default;
 
 // Icons
 $leaders-icon-color: $leaders-base-color !default;
@@ -63,11 +62,18 @@ $leaders-section-content-title-line-height: 1.5 !default;
 $leaders-section-content-title-transform: uppercase !default;
 
 // Card Headers
-$leaders-card-header-border-color: #cecece !default;
+$leaders-card-padding: 20px !default;
+
 $leaders-card-header-color: $leaders-base-color !default;
 $leaders-card-header-bg-color: #eff1f2 !default;
+$leaders-card-header-padding: $leaders-card-padding !default;
+
+$leaders-card-header-hr-color: #cecece !default;
+
 
 // Card Bodies
-$leaders-card-body-border-color: #999 !default;
 $leaders-card-body-color: $leaders-primary-color !default;
 $leaders-card-body-bg-color: #fff !default;
+$leaders-card-body-padding: $leaders-card-padding !default;
+
+$leaders-card-body-hr-color: #999 !default;

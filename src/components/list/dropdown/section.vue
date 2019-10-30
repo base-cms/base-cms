@@ -5,7 +5,7 @@
     :aria-hidden="hidden"
   >
     <dropdown-content ref="content">
-      <slot />
+      <slot :is-active="isActive" />
     </dropdown-content>
   </section>
 </template>

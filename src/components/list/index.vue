@@ -28,10 +28,7 @@
         :transitions-disabled="transitionsDisabled"
         :is-active="isDropdownActive"
       >
-        <dropdown-background
-          :styles="styles.background"
-          :inner-styles="styles.innerBackground"
-        />
+        <dropdown-background :styles="styles.background" />
         <dropdown-arrow ref="arrow" :styles="styles.arrow" />
         <dropdown-container
           :styles="styles.container"
@@ -43,11 +40,12 @@
             v-for="(item, index) in items"
             ref="sections"
             :key="index"
+            #default="{ isActive }"
             :index="index"
             :active-index="activeIndex"
             :last-active-index="lastActiveIndex"
           >
-            <slot name="dropdown" :item="item" />
+            <slot name="dropdown" :item="item" :is-active="index === activeIndex" />
           </dropdown-section>
         </dropdown-container>
       </dropdown>
@@ -128,7 +126,6 @@ export default {
       arrow: {},
       container: {},
       background: {},
-      innerBackground: {},
     },
   }),
 
@@ -250,9 +247,6 @@ export default {
       this.styles.container = menuStyles;
       this.styles.background = menuStyles;
       this.styles.arrow = { transform: `translate(${arrow.xPx}, ${arrow.yPx}) rotate(45deg)` };
-
-      const { children } = content;
-      if (children) this.styles.innerBackground = { transform: `translate(${children[0].offsetWidth}px, ${children[0].offsetHeight}px)` };
     },
 
     closeDropdown() {

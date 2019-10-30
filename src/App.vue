@@ -37,8 +37,30 @@
                     <template #nav-link="{ item, isActive }">
                       <nav-link-contents :title="item.name" :is-active="isActive" />
                     </template>
-                    <template #dropdown="{ item }">
-                      <sample-content :label="item.name" />
+                    <template #dropdown="{ item, isActive }">
+                      <card :is-active="isActive">
+                        <template #header>
+                          <h4 style="margin: 0;">
+                            {{ item.name }}
+                          </h4>
+                        </template>
+                        <template #body>
+                          <p style="margin: 0;">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Sed ligula diam, molestie non facilisis eget, mollis eget nisi.
+                            Nam tempus nulla et lorem commodo, quis tincidunt velit bibendum.
+                            Orci varius natoque penatibus et magnis dis parturient montes,
+                            nascetur ridiculus mus.
+                            Donec ultricies volutpat luctus.
+                            Interdum et malesuada fames ac ante ipsum primis in faucibus.
+                            Suspendisse vel erat augue.
+                            Nullam mattis dui in nunc lobortis, eu pellentesque lacus ornare.
+                            Integer ut quam eget orci varius placerat euismod eget eros.
+                            Proin ac orci sit amet tortor congue interdum a quis purus.
+                            Vivamus et eros suscipit lacus sodales molestie.
+                          </p>
+                        </template>
+                      </card>
                     </template>
                   </list>
                 </section-content-loader>
@@ -54,8 +76,9 @@
 <script>
 import gql from 'graphql-tag';
 import SectionContentLoader from './components/section-content-loader.vue';
-import SampleContent from './components/sample-content.vue';
+// import SampleContent from './components/sample-content.vue';
 import List from './components/list/index.vue';
+import Card from './components/card/index.vue';
 import Leaders from './components/root.vue';
 import NavLinkContents from './components/nav-link-contents.vue';
 
@@ -66,11 +89,11 @@ const getNodes = (obj, field) => {
 
 export default {
   components: {
+    Card,
     Leaders,
     List,
     NavLinkContents,
     SectionContentLoader,
-    SampleContent,
   },
 
 

@@ -27,21 +27,22 @@ export default {
   $self: &;
 
   &__background {
+    top: 0;
+    left: 0;
     overflow: hidden;
+    background-color: #fff;
     transform: translateX(0);
     transform-origin: 0 0;
+
   }
 
   &__inner-background {
-    right: 0;
-    height: 1000px;
+    background-color: $leaders-dropdown-background-border-color;
   }
 
   &__background,
   &__inner-background {
     position: absolute;
-    top: 0;
-    left: 0;
     will-change: height, width, transform;
     transition-duration: .25s;
     transition-property: height, width, transform, -webkit-transform;
@@ -50,8 +51,13 @@ export default {
   &--open-below {
     #{ $self } {
       &__background {
-        border-top: $leaders-dropdown-background-border;
         box-shadow: $leaders-dropdown-background-box-shadow-below;
+      }
+      &__inner-background {
+        top: 0;
+        right: 0;
+        left: 0;
+        height: $leaders-dropdown-background-border-size;
       }
     }
   }
@@ -59,8 +65,13 @@ export default {
   &--open-above {
     #{ $self } {
       &__background {
-        border-bottom: $leaders-dropdown-background-border;
         box-shadow: $leaders-dropdown-background-box-shadow-above;
+      }
+      &__inner-background {
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: $leaders-dropdown-background-border-size;
       }
     }
   }
@@ -68,8 +79,13 @@ export default {
   &--open-left {
     #{ $self } {
       &__background {
-        border-right: $leaders-dropdown-background-border;
         box-shadow: $leaders-dropdown-background-box-shadow-left;
+      }
+      &__inner-background {
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: $leaders-dropdown-background-border-size;
       }
     }
   }
@@ -77,8 +93,13 @@ export default {
   &--open-right {
     #{ $self } {
       &__background {
-        border-left: $leaders-dropdown-background-border;
         box-shadow: $leaders-dropdown-background-box-shadow-right;
+      }
+      &__inner-background {
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: $leaders-dropdown-background-border-size;
       }
     }
   }
