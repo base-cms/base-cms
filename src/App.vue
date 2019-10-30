@@ -34,8 +34,8 @@
                     nav-direction="vertical"
                     open="left"
                   >
-                    <template #nav-link="{ item }">
-                      <nav-link-contents :title="item.name" />
+                    <template #nav-link="{ item, isActive }">
+                      <nav-link-contents :title="item.name" :is-active="isActive" />
                     </template>
                     <template #dropdown="{ item }">
                       <sample-content :label="item.name" />

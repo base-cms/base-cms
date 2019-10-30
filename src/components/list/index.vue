@@ -10,12 +10,13 @@
             tag="button"
             :index="index"
             :active-index="activeIndex"
+            #default="{ isActive }"
             @focusin="onLinkFocus"
             @pointer-enter="onLinkEnter"
             @pointer-end="onLinkEnd"
             @pointer-leave="onLinkLeave"
           >
-            <slot name="nav-link" :item="item" />
+            <slot name="nav-link" :item="item" :is-active="isActive" />
           </nav-link>
         </nav-item>
       </nav-container>

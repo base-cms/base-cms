@@ -6,7 +6,7 @@
     :aria-expanded="isActive"
     aria-haspopup="true"
   >
-    <slot />
+    <slot :is-active="isActive" />
   </component>
 </template>
 

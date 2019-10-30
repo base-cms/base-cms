@@ -1,9 +1,9 @@
 <template>
   <span class="leaders-nav-link-contents">
-    <filter-none-icon />
+    <filter-none-icon :modifiers="iconModifiers" />
     <span class="leaders-nav-link-contents__container">
       <span class="leaders-nav-link-contents__title">{{ title }}</span>
-      <videocam-icon />
+      <videocam-icon :modifiers="iconModifiers" />
     </span>
   </span>
 </template>
@@ -20,6 +20,18 @@ export default {
     title: {
       type: String,
       default: null,
+    },
+    isActive: {
+      type: Boolean,
+      default: false,
+    },
+  },
+
+  computed: {
+    iconModifiers() {
+      const mods = [];
+      if (this.isActive) mods.push('active');
+      return mods;
     },
   },
 };
