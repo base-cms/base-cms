@@ -530,6 +530,7 @@ module.exports = {
   },
 
   ContentCompanyYoutube: {
+    videos: ({ videos = [] } = {}) => videos.filter(v => v),
     url: (youtube) => {
       const { channelId, username } = asObject(youtube);
       if (!channelId && !username) return null;
