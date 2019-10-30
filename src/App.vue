@@ -24,18 +24,22 @@
                 v-for="section in sections"
                 v-else
                 :key="section.id"
-                v-slot="{ items }"
+                v-slot:default="{ items }"
                 :section-id="section.id"
                 :title="section.name"
               >
                 <leaders
-                  v-slot="{ item }"
                   :items="items"
                   nav-direction="vertical"
                   open="left"
                 >
+                  <template #nav-link="{ item }">
+                    {{ item.name }}
+                  </template>
+                  <template #dropdown="{ item }">
+                    <sample-content :label="item.name" />
+                  </template>
                   <!-- @todo the link should be a slot -->
-                  <sample-content :label="item.name" />
                 </leaders>
               </load-section-content>
             </aside>

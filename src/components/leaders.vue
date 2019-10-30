@@ -15,7 +15,7 @@
             @pointer-end="onLinkEnd"
             @pointer-leave="onLinkLeave"
           >
-            <span>{{ item.name }}</span>
+            <slot name="nav-link" :item="item" />
           </nav-link>
         </nav-item>
       </nav-container>
@@ -46,7 +46,7 @@
             :active-index="activeIndex"
             :last-active-index="lastActiveIndex"
           >
-            <slot :item="item" />
+            <slot name="dropdown" :item="item" />
           </dropdown-section>
         </dropdown-container>
       </dropdown>
