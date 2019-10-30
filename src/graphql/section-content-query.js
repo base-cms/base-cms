@@ -18,7 +18,7 @@ query LeadersScheduledContent($input: WebsiteScheduledContentQueryInput!) {
         }
         primaryImage{
           id
-          src(input: { options: { auto: "format", fillColor: "fff", fit: "fill", h: 100, w: 100, pad: 5, mask: "ellipse" } })
+          src(input: { options: { auto: "format", fillColor: "fff", fit: "fill", bg: "fff", pad: 20, h: 200, w: 200, borderRadius: "200,200,200,200", border: "10,fff" } })
         }
         ... on ContentCompany {
           productSummary
