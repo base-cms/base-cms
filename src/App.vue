@@ -156,4 +156,14 @@ export default {
 @import "../node_modules/bootstrap/scss/bootstrap";
 @import "./scss/document";
 // @import "./scss/variables";
+
+.leaders-nav {
+  &__link {
+    display: inline-block;
+    padding: 10px 0;
+    margin: 0;
+    font-size: 16px;
+    font-weight: 400;
+  }
+}
 </style>
