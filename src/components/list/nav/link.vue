@@ -128,9 +128,9 @@ export default {
     }
 
     &--active {
-      color: $leaders-active-nav-link-color;
-      background-color: $leaders-active-nav-link-bg-color;
-      box-shadow: $leaders-active-link-box-shadow;
+      color: $leaders-nav-link-active-color;
+      background-color: $leaders-nav-link-active-bg-color;
+      box-shadow: $leaders-nav-link-active-box-shadow;
     }
   }
 }
