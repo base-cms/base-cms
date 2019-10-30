@@ -101,14 +101,9 @@ export default {
       default: 'below',
       validator: v => ['above', 'below', 'left', 'right'].includes(v),
     },
-    dropdownWidth: {
+    closeTimeoutMS: {
       type: Number,
-      default: 380,
-      validator: v => v > 0,
-    },
-    dropdownHeight: {
-      type: Number,
-      default: 400,
+      default: 250,
       validator: v => v > 0,
     },
     screenOffset: {
@@ -273,7 +268,7 @@ export default {
     },
 
     setCloseTimeout() {
-      this.closeTimeout = setTimeout(() => this.closeDropdown(), 50);
+      this.closeTimeout = setTimeout(() => this.closeDropdown(), this.closeTimeoutMS);
     },
 
     clearCloseTimeout() {
