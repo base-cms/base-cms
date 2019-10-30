@@ -9,7 +9,14 @@
             </div>
             <aside class="page-rail col-lg-4">
               <div>Right rail here</div>
+              <div v-if="error">
+                Error! {{ error.message }}
+              </div>
+              <div v-else-if="isLoading">
+                Loading....
+              </div>
               <leaders
+                v-else
                 :items="items"
                 nav-direction="vertical"
                 open="left"
@@ -27,8 +34,14 @@
 </template>
 
 <script>
+import gql from 'graphql-tag';
 import SampleContent from './components/sample-content.vue';
 import Leaders from './components/leaders.vue';
+
+const getTaxonomyIds = (content) => {
+  if (!content || !content.taxonomy) return [];
+  return content.taxonomy.edges.map(edge => edge.node.id);
+};
 
 export default {
   components: {
@@ -36,7 +49,10 @@ export default {
     SampleContent,
   },
 
+
   data: () => ({
+    isLoading: false,
+    error: null,
     items: [
       { id: 1, label: 'Robatech USA Inc', href: '#' },
       { id: 2, label: 'Schubert North America', href: '#' },
@@ -44,6 +60,40 @@ export default {
       { id: 4, label: 'Soma America, Inc.', href: '#' },
     ],
   }),
+
+  mounted() {
+    this.load();
+  },
+
+  methods: {
+    async load() {
+      this.isLoading = true;
+      const contentQuery = gql`
+        query ContentQuery {
+          content(input: { id: 13320089 }) {
+            id
+            taxonomy {
+              edges {
+                node {
+                  id
+                  type
+                }
+              }
+            }
+          }
+        }
+      `;
+      try {
+        const { data } = await this.$apollo.query({ query: contentQuery });
+        const taxonomyIds = getTaxonomyIds(data.content);
+        console.log(taxonomyIds);
+      } catch (e) {
+        this.error = e;
+      } finally {
+        this.isLoading = false;
+      }
+    },
+  },
 };
 </script>
 
