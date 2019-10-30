@@ -40,26 +40,21 @@
                     <template #dropdown="{ item, isActive }">
                       <card :is-active="isActive">
                         <template #header>
-                          <h4 style="margin: 0;">
-                            {{ item.name }}
-                          </h4>
+                          <div class="leaders-card__company-info">
+                            <div
+                              v-if="item.productSummary"
+                              class="leaders-card__product-summary"
+                              v-html="item.productSummary"
+                            />
+                            <div
+                              v-if="item.productSummary"
+                              class="leaders-card__teaser"
+                              v-html="item.teaser"
+                            />
+                          </div>
                         </template>
-                        <template #body>
-                          <p style="margin: 0;">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Sed ligula diam, molestie non facilisis eget, mollis eget nisi.
-                            Nam tempus nulla et lorem commodo, quis tincidunt velit bibendum.
-                            Orci varius natoque penatibus et magnis dis parturient montes,
-                            nascetur ridiculus mus.
-                            Donec ultricies volutpat luctus.
-                            Interdum et malesuada fames ac ante ipsum primis in faucibus.
-                            Suspendisse vel erat augue.
-                            Nullam mattis dui in nunc lobortis, eu pellentesque lacus ornare.
-                            Integer ut quam eget orci varius placerat euismod eget eros.
-                            Proin ac orci sit amet tortor congue interdum a quis purus.
-                            Vivamus et eros suscipit lacus sodales molestie.
-                          </p>
-                        </template>
+                        <!-- <template #body>
+                        </template> -->
                       </card>
                     </template>
                   </list>
@@ -188,7 +183,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import url("https://fonts.googleapis.com/css?family=Muli:400,600,800&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Muli:300,400,600,800&display=swap");
 @import "../node_modules/bootstrap/scss/bootstrap";
 @import "./scss/document";
 </style>
