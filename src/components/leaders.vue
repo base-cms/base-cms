@@ -20,39 +20,42 @@
         </nav-item>
       </nav-container>
     </navbar>
-    <dropdown
-      :direction="navDirection"
-      :open="open"
-      :transitions-disabled="transitionsDisabled"
-      :is-active="isDropdownActive"
-    >
-      <dropdown-background
-        :styles="styles.background"
-        :inner-styles="styles.innerBackground"
-      />
-      <dropdown-arrow :styles="styles.arrow" />
-      <dropdown-container
-        :styles="styles.container"
-        @pointer-enter="onContainerEnter"
-        @pointer-end="onContainerEnd"
-        @pointer-leave="onContainerLeave"
+    <mounting-portal mount-to="#leaders-dropdown-portal" name="leaders-dropdown" append>
+      <dropdown
+        :direction="navDirection"
+        :open="open"
+        :transitions-disabled="transitionsDisabled"
+        :is-active="isDropdownActive"
       >
-        <dropdown-section
-          v-for="(item, index) in items"
-          ref="sections"
-          :key="index"
-          :index="index"
-          :active-index="activeIndex"
-          :last-active-index="lastActiveIndex"
+        <dropdown-background
+          :styles="styles.background"
+          :inner-styles="styles.innerBackground"
+        />
+        <dropdown-arrow :styles="styles.arrow" />
+        <dropdown-container
+          :styles="styles.container"
+          @pointer-enter="onContainerEnter"
+          @pointer-end="onContainerEnd"
+          @pointer-leave="onContainerLeave"
         >
-          <slot :item="item" />
-        </dropdown-section>
-      </dropdown-container>
-    </dropdown>
+          <dropdown-section
+            v-for="(item, index) in items"
+            ref="sections"
+            :key="index"
+            :index="index"
+            :active-index="activeIndex"
+            :last-active-index="lastActiveIndex"
+          >
+            <slot :item="item" />
+          </dropdown-section>
+        </dropdown-container>
+      </dropdown>
+    </mounting-portal>
   </aside>
 </template>
 
 <script>
+import { MountingPortal } from 'portal-vue';
 import ElementCalculus from './leaders/element-calculus';
 import ArrowPosition from './leaders/positions/arrow-position';
 import MenuPosition from './leaders/positions/menu-position';
@@ -76,6 +79,7 @@ export default {
     DropdownBackground,
     DropdownContainer,
     DropdownSection,
+    MountingPortal,
     Navbar,
     NavContainer,
     NavItem,
