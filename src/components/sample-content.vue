@@ -31,6 +31,6 @@ export default {
 <style lang="scss">
 .content {
   max-width: 350px;
-  padding: 30px;
+  padding: 20px;
 }
 </style>
