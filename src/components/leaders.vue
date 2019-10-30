@@ -20,7 +20,7 @@
         </nav-item>
       </nav-container>
     </navbar>
-    <mounting-portal mount-to="#leaders-dropdown-portal" name="leaders-dropdown" append>
+    <mounting-portal mount-to="#leaders-dropdown-portal-target" name="leaders-dropdown" append>
       <dropdown
         :direction="navDirection"
         :open="open"
@@ -311,10 +311,8 @@ export default {
 
 <style lang="scss">
 .leaders {
-  $self: &;
-  position: relative;
-  // @todo perspective _must_ be placed on the overall wrapper
-  // otherwise z-index will have issues due to how browder stacks perspective
-  // perspective: 2000px;
+  &__dropdown-portal {
+    perspective: 1500px;
+  }
 }
 </style>
