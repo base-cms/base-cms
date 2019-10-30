@@ -19,14 +19,13 @@ export default {
 
 .leaders-dropdown {
   $self: &;
-  $top: -$leaders-dropdown-arrow-size / 2;
   &__arrow {
     position: absolute;
-    top: $top;
+    top: $leaders-dropdown-arrow-top;
     left: 0;
     width: $leaders-dropdown-arrow-size;
     height: $leaders-dropdown-arrow-size;
-    margin: 0 0 0 $top;
+    margin: 0 0 0 $leaders-dropdown-arrow-top;
     background-color: $leaders-dropdown-arrow-color;
     transition-duration: .25s;
     transition-property: transform, -webkit-transform;
