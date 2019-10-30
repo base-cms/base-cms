@@ -31,7 +31,7 @@
           :styles="styles.background"
           :inner-styles="styles.innerBackground"
         />
-        <dropdown-arrow :styles="styles.arrow" />
+        <dropdown-arrow ref="arrow" :styles="styles.arrow" />
         <dropdown-container
           :styles="styles.container"
           @pointer-enter="onContainerEnter"
@@ -222,6 +222,7 @@ export default {
       const content = activeSection.content.$el;
       const linkRect = link.getBoundingClientRect();
       const navRect = this.$refs.nav.$el.getBoundingClientRect();
+      const arrowRect = this.$refs.arrow.$el.getBoundingClientRect();
 
       /**
        * @todo The menu elements should _pre_ position themselves _before_ the
@@ -230,7 +231,12 @@ export default {
        */
       const { open, screenOffset } = this;
       // Create element calculus info.
-      const calcs = new ElementCalculus({ content, linkRect, navRect });
+      const calcs = new ElementCalculus({
+        content,
+        linkRect,
+        navRect,
+        arrowRect,
+      });
       // Calculate dropdown menu position.
       const menu = new MenuPosition({ openDirection: open, calculus: calcs, screenOffset });
       // Calculate arrow position.
