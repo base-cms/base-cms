@@ -15,16 +15,21 @@
               <div v-else-if="isLoading">
                 Loading....
               </div>
-              <leaders
-                v-else
-                :items="items"
-                nav-direction="vertical"
-                open="left"
-              >
-                <template #default="data">
-                  <sample-content :label="data.item.label" />
-                </template>
-              </leaders>
+              <div v-else-if="noResults">
+                No results
+              </div>
+              <div v-for="section in sections" v-else :key="section.id">
+                <h5>{{ section.name }}</h5>
+                <leaders
+                  :items="items"
+                  nav-direction="vertical"
+                  open="left"
+                >
+                  <template #default="data">
+                    <sample-content :label="data.item.label" />
+                  </template>
+                </leaders>
+              </div>
             </aside>
           </div>
         </div>
@@ -38,9 +43,9 @@ import gql from 'graphql-tag';
 import SampleContent from './components/sample-content.vue';
 import Leaders from './components/leaders.vue';
 
-const getTaxonomyIds = (content) => {
-  if (!content || !content.taxonomy) return [];
-  return content.taxonomy.edges.map(edge => edge.node.id);
+const getNodes = (obj, field) => {
+  if (!obj || !obj[field]) return [];
+  return obj[field].edges.map(edge => edge.node);
 };
 
 export default {
@@ -51,7 +56,12 @@ export default {
 
 
   data: () => ({
+    contentId: 13320089,
+    sectionAlias: 'leaders',
+    sections: [],
+
     isLoading: false,
+    noResults: false,
     error: null,
     items: [
       { id: 1, label: 'Robatech USA Inc', href: '#' },
@@ -66,11 +76,13 @@ export default {
   },
 
   methods: {
-    async load() {
-      this.isLoading = true;
-      const contentQuery = gql`
-        query ContentQuery {
-          content(input: { id: 13320089 }) {
+    /**
+     *
+     */
+    async loadTaxonomyIds() {
+      const query = gql`
+        query Content($input: ContentQueryInput!) {
+          content(input: $input) {
             id
             taxonomy {
               edges {
@@ -83,10 +95,52 @@ export default {
           }
         }
       `;
+      const input = { id: this.contentId };
+      const { data } = await this.$apollo.query({ query, variables: { input } });
+      return getNodes(data.content, 'taxonomy').map(node => node.id);
+    },
+
+    /**
+     *
+     */
+    async loadLeadersSections({ taxonomyIds }) {
+      const query = gql`
+        query WebsiteSections($input: WebsiteSectionsQueryInput = {}) {
+          websiteSections(input: $input) {
+            edges {
+              node {
+                id
+                name
+                hierarchy {
+                  id
+                  alias
+                }
+              }
+            }
+          }
+        }
+      `;
+      const input = { taxonomyIds };
+      const { data } = await this.$apollo.query({ query, variables: { input } });
+      const sections = getNodes(data, 'websiteSections');
+      if (!sections.length) return sections;
+      return sections
+        .filter(section => section.hierarchy.some(({ alias }) => alias === this.sectionAlias));
+    },
+
+    async load() {
+      this.isLoading = true;
       try {
-        const { data } = await this.$apollo.query({ query: contentQuery });
-        const taxonomyIds = getTaxonomyIds(data.content);
-        console.log(taxonomyIds);
+        const taxonomyIds = await this.loadTaxonomyIds();
+        if (!taxonomyIds.length) {
+          this.noResults = true;
+          return;
+        }
+        this.sections = await this.loadLeadersSections({ taxonomyIds });
+        if (!this.sections.length) {
+          this.noResults = true;
+          return;
+        }
       } catch (e) {
         this.error = e;
       } finally {
