@@ -5,3 +5,16 @@
   line-height: $leaders-base-line-height;
   color: $leaders-base-color;
 }
+
+
+@mixin leaders-max-lines(
+  $font-size,
+  $line-height,
+  $num: 2,
+  $text-overflow: ellipsis,
+) {
+  display: block;
+  max-height: ($font-size * $line-height) * $num;
+  overflow: hidden;
+  text-overflow: $text-overflow;
+}
