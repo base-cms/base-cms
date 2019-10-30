@@ -35,6 +35,7 @@ type ContentCompanyYoutube {
   username: String
   channelId: String
   playlistId: String
+  videos: [String!]
   url: String
 }
 
