@@ -21,6 +21,7 @@ type ContentCompany implements Content & PrimaryCategory & Contactable & Address
   servicesProvided: String @projection
   salesChannels: String @projection
   productSummary: String @projection
+  serviceInformation: String @projection
   warrantyInformation: String @projection
 
   youtube: ContentCompanyYoutube! @projection
