@@ -96,23 +96,26 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../../../scss/variables";
+
 .leaders-nav {
   &__link {
-    display: inline-block;
-    padding: 0;
+    display: block;
+    padding: $leaders-nav-link-padding-x $leaders-nav-link-padding-y;
     margin: 0;
-    margin-bottom: 10px;
-    font-size: 16px;
-    font-weight: 500;
+    font-size: $leaders-nav-link-font-size;
+    font-weight: $leaders-nav-link-font-weight;
+    line-height: $leaders-nav-link-line-height;
+    color: $leaders-nav-link-color;
     text-align: left;
     text-decoration: none;
-    vertical-align: middle;
     cursor: pointer;
     user-select: none;
     background: none;
     border: none;
     outline: none;
-    transition: color .1s ease;
+    transition-duration: 150ms;
+    transition-property: color, box-shadow, background-color;
     -webkit-tap-highlight-color: transparent;
     > * {
       position: relative;
@@ -125,7 +128,9 @@ export default {
     }
 
     &--active {
-      color: #6c757d;
+      color: $leaders-active-nav-link-color;
+      background-color: $leaders-active-nav-link-bg-color;
+      box-shadow: $leaders-active-link-box-shadow;
     }
   }
 }
