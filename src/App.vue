@@ -28,18 +28,18 @@
                 :section-id="section.id"
                 :title="section.name"
               >
-                <leaders-list
+                <list
                   :items="items"
                   nav-direction="vertical"
                   open="left"
                 >
                   <template #nav-link="{ item }">
-                    {{ item.name }}
+                    <nav-link-contents :title="item.name" />
                   </template>
                   <template #dropdown="{ item }">
                     <sample-content :label="item.name" />
                   </template>
-                </leaders-list>
+                </list>
               </section-content-loader>
             </aside>
           </div>
@@ -53,7 +53,8 @@
 import gql from 'graphql-tag';
 import SectionContentLoader from './components/section-content-loader.vue';
 import SampleContent from './components/sample-content.vue';
-import LeadersList from './components/leaders-list/index.vue';
+import List from './components/leaders-list/index.vue';
+import NavLinkContents from './components/nav-link-contents.vue';
 
 const getNodes = (obj, field) => {
   if (!obj || !obj[field]) return [];
@@ -62,7 +63,8 @@ const getNodes = (obj, field) => {
 
 export default {
   components: {
-    LeadersList,
+    List,
+    NavLinkContents,
     SectionContentLoader,
     SampleContent,
   },
