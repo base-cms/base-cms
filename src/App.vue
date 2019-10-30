@@ -11,36 +11,38 @@
               <div style="height: 250px; margin-bottom: 1rem;">
                 Maybe an ad here?
               </div>
-              <div v-if="error">
-                Error! {{ error.message }}
-              </div>
-              <div v-else-if="isLoading">
-                Loading....
-              </div>
-              <div v-else-if="noResults">
-                No results
-              </div>
-              <section-content-loader
-                v-for="section in sections"
-                v-else
-                :key="section.id"
-                v-slot:default="{ items }"
-                :section-id="section.id"
-                :title="section.name"
-              >
-                <list
-                  :items="items"
-                  nav-direction="vertical"
-                  open="left"
+              <leaders>
+                <div v-if="error">
+                  Error! {{ error.message }}
+                </div>
+                <div v-else-if="isLoading">
+                  Loading....
+                </div>
+                <div v-else-if="noResults">
+                  No results
+                </div>
+                <section-content-loader
+                  v-for="section in sections"
+                  v-else
+                  :key="section.id"
+                  v-slot:default="{ items }"
+                  :section-id="section.id"
+                  :title="section.name"
                 >
-                  <template #nav-link="{ item }">
-                    <nav-link-contents :title="item.name" />
-                  </template>
-                  <template #dropdown="{ item }">
-                    <sample-content :label="item.name" />
-                  </template>
-                </list>
-              </section-content-loader>
+                  <list
+                    :items="items"
+                    nav-direction="vertical"
+                    open="left"
+                  >
+                    <template #nav-link="{ item }">
+                      <nav-link-contents :title="item.name" />
+                    </template>
+                    <template #dropdown="{ item }">
+                      <sample-content :label="item.name" />
+                    </template>
+                  </list>
+                </section-content-loader>
+              </leaders>
             </aside>
           </div>
         </div>
@@ -54,6 +56,7 @@ import gql from 'graphql-tag';
 import SectionContentLoader from './components/section-content-loader.vue';
 import SampleContent from './components/sample-content.vue';
 import List from './components/list/index.vue';
+import Leaders from './components/root.vue';
 import NavLinkContents from './components/nav-link-contents.vue';
 
 const getNodes = (obj, field) => {
@@ -63,6 +66,7 @@ const getNodes = (obj, field) => {
 
 export default {
   components: {
+    Leaders,
     List,
     NavLinkContents,
     SectionContentLoader,
@@ -164,5 +168,4 @@ export default {
 @import url("https://fonts.googleapis.com/css?family=Muli:300,400,600&display=swap");
 @import "../node_modules/bootstrap/scss/bootstrap";
 @import "./scss/document";
-// @import "./scss/variables";
 </style>

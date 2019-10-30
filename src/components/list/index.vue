@@ -1,5 +1,5 @@
 <template>
-  <aside class="leaders-list">
+  <div class="leaders-list">
     <navbar>
       <nav-container ref="nav" :direction="navDirection">
         <nav-item
@@ -51,7 +51,7 @@
         </dropdown-container>
       </dropdown>
     </mounting-portal>
-  </aside>
+  </div>
 </template>
 
 <script>
@@ -316,11 +316,16 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../../scss/variables";
+@import "../../scss/mixins";
+
+.leaders-dropdown-portal {
+  @include leaders-base();
+  z-index: 10;
+  perspective: 1500px;
+}
+
 .leaders-list {
   width: 100%;
-  &__dropdown-portal {
-    z-index: 10;
-    perspective: 1500px;
-  }
 }
 </style>

@@ -1,0 +1,7 @@
+@mixin leaders-base() {
+  font-family: $leaders-base-font-family;
+  font-size: $leaders-base-font-size;
+  font-weight: $leaders-base-font-weight;
+  line-height: $leaders-base-line-height;
+  color: $leaders-base-color;
+}
