@@ -18,18 +18,24 @@
               <div v-else-if="noResults">
                 No results
               </div>
-              <div v-for="section in sections" v-else :key="section.id">
-                <h5>{{ section.name }}</h5>
+              <load-section-content
+                v-for="section in sections"
+                v-else
+                :key="section.id"
+                v-slot="{ items }"
+                :section-id="section.id"
+                :title="section.name"
+              >
                 <leaders
+                  v-slot="{ item }"
                   :items="items"
                   nav-direction="vertical"
                   open="left"
                 >
-                  <template #default="data">
-                    <sample-content :label="data.item.label" />
-                  </template>
+                  <!-- @todo the link should be a slot -->
+                  <sample-content :label="item.name" />
                 </leaders>
-              </div>
+              </load-section-content>
             </aside>
           </div>
         </div>
@@ -40,6 +46,7 @@
 
 <script>
 import gql from 'graphql-tag';
+import LoadSectionContent from './components/leaders/load-section-content.vue';
 import SampleContent from './components/sample-content.vue';
 import Leaders from './components/leaders.vue';
 
@@ -51,6 +58,7 @@ const getNodes = (obj, field) => {
 export default {
   components: {
     Leaders,
+    LoadSectionContent,
     SampleContent,
   },
 
