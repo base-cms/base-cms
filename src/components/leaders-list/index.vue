@@ -1,5 +1,5 @@
 <template>
-  <aside class="leaders">
+  <aside class="leaders-list">
     <navbar>
       <nav-container ref="nav" :direction="navDirection">
         <nav-item
@@ -56,19 +56,19 @@
 
 <script>
 import { MountingPortal } from 'portal-vue';
-import ElementCalculus from './leaders/element-calculus';
-import ArrowPosition from './leaders/positions/arrow-position';
-import MenuPosition from './leaders/positions/menu-position';
-import Dropdown from './leaders/dropdown.vue';
-import DropdownArrow from './leaders/dropdown/arrow.vue';
-import DropdownBackground from './leaders/dropdown/background.vue';
-import DropdownContainer from './leaders/dropdown/container.vue';
-import DropdownSection from './leaders/dropdown/section.vue';
-import Navbar from './leaders/navbar.vue';
-import NavContainer from './leaders/nav/container.vue';
-import NavItem from './leaders/nav/item.vue';
-import NavLink from './leaders/nav/link.vue';
-import pointerEvents from './leaders/pointer-events';
+import ElementCalculus from './element-calculus';
+import ArrowPosition from './positions/arrow-position';
+import MenuPosition from './positions/menu-position';
+import Dropdown from './dropdown.vue';
+import DropdownArrow from './dropdown/arrow.vue';
+import DropdownBackground from './dropdown/background.vue';
+import DropdownContainer from './dropdown/container.vue';
+import DropdownSection from './dropdown/section.vue';
+import Navbar from './navbar.vue';
+import NavContainer from './nav/container.vue';
+import NavItem from './nav/item.vue';
+import NavLink from './nav/link.vue';
+import pointerEvents from './pointer-events';
 
 const pointerEvent = pointerEvents();
 
@@ -316,7 +316,7 @@ export default {
 </script>
 
 <style lang="scss">
-.leaders {
+.leaders-list {
   width: 100%;
   &__dropdown-portal {
     z-index: 10;

@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import query from '../../graphql/section-content-query';
+import query from '../graphql/section-content-query';
 
 export default {
   props: {

@@ -20,7 +20,7 @@
               <div v-else-if="noResults">
                 No results
               </div>
-              <load-section-content
+              <section-content-loader
                 v-for="section in sections"
                 v-else
                 :key="section.id"
@@ -28,7 +28,7 @@
                 :section-id="section.id"
                 :title="section.name"
               >
-                <leaders
+                <leaders-list
                   :items="items"
                   nav-direction="vertical"
                   open="left"
@@ -39,9 +39,8 @@
                   <template #dropdown="{ item }">
                     <sample-content :label="item.name" />
                   </template>
-                  <!-- @todo the link should be a slot -->
-                </leaders>
-              </load-section-content>
+                </leaders-list>
+              </section-content-loader>
             </aside>
           </div>
         </div>
@@ -52,9 +51,9 @@
 
 <script>
 import gql from 'graphql-tag';
-import LoadSectionContent from './components/leaders/load-section-content.vue';
+import SectionContentLoader from './components/section-content-loader.vue';
 import SampleContent from './components/sample-content.vue';
-import Leaders from './components/leaders.vue';
+import LeadersList from './components/leaders-list/index.vue';
 
 const getNodes = (obj, field) => {
   if (!obj || !obj[field]) return [];
@@ -63,8 +62,8 @@ const getNodes = (obj, field) => {
 
 export default {
   components: {
-    Leaders,
-    LoadSectionContent,
+    LeadersList,
+    SectionContentLoader,
     SampleContent,
   },
 
