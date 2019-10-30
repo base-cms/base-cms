@@ -99,12 +99,14 @@ export default {
 .leaders-nav {
   &__link {
     display: inline-block;
-    padding: 0 0 10px;
+    padding: 0;
     margin: 0;
+    margin-bottom: 10px;
     font-size: 16px;
     font-weight: 500;
+    text-align: left;
     text-decoration: none;
-    white-space: nowrap;
+    vertical-align: middle;
     cursor: pointer;
     user-select: none;
     background: none;

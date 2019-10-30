@@ -14,11 +14,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-.leaders-list {
-  &__navbar {
-    display: flex;
-  }
-}
-</style>
