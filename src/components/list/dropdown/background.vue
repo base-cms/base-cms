@@ -28,7 +28,6 @@ export default {
 
   &__background {
     overflow: hidden;
-    background: #eff1f2;
     transform: translateX(0);
     transform-origin: 0 0;
   }
@@ -36,7 +35,6 @@ export default {
   &__inner-background {
     right: 0;
     height: 1000px;
-    background: #f6f9fc;
   }
 
   &__background,
