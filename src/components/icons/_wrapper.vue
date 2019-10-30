@@ -42,6 +42,7 @@ export default {
 @import "../../scss/variables";
 
 .leaders-icon {
+  $block: &;
   display: inline-block;
   width: $leaders-icon-size;
   height: $leaders-icon-size;
@@ -65,6 +66,11 @@ export default {
       width: $leaders-icon-filter-size;
       height: $leaders-icon-filter-size;
     }
+    &#{ $block } {
+      &--active {
+        color: $leaders-icon-filter-active-color;
+      }
+    }
   }
 
   &--videocam {
@@ -75,6 +81,11 @@ export default {
     svg {
       width: $leaders-icon-videocam-size;
       height: $leaders-icon-videocam-size;
+    }
+    &#{ $block } {
+      &--active {
+        color: $leaders-icon-videocam-active-color;
+      }
     }
   }
 }
