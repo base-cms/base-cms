@@ -15,7 +15,7 @@
             @pointer-end="onLinkEnd"
             @pointer-leave="onLinkLeave"
           >
-            <span>{{ item.label }}</span>
+            <span>{{ item.name }}</span>
           </nav-link>
         </nav-item>
       </nav-container>
