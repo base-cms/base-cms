@@ -47,13 +47,10 @@ export default {
     transition-property: height, width, transform, -webkit-transform;
   }
 
-  $border: 9px solid #d656b0;
-
-  // box-shadow: offset-x offset-y blur-radius spread-radius color
   &--open-below {
     #{ $self } {
       &__background {
-        border-top: $border;
+        border-top: $leaders-dropdown-background-border;
         box-shadow: $leaders-dropdown-background-box-shadow-below;
       }
     }
@@ -62,7 +59,7 @@ export default {
   &--open-above {
     #{ $self } {
       &__background {
-        border-bottom: $border;
+        border-bottom: $leaders-dropdown-background-border;
         box-shadow: $leaders-dropdown-background-box-shadow-above;
       }
     }
@@ -71,7 +68,7 @@ export default {
   &--open-left {
     #{ $self } {
       &__background {
-        border-right: $border;
+        border-right: $leaders-dropdown-background-border;
         box-shadow: $leaders-dropdown-background-box-shadow-left;
       }
     }
@@ -80,7 +77,7 @@ export default {
   &--open-right {
     #{ $self } {
       &__background {
-        border-left: $border;
+        border-left: $leaders-dropdown-background-border;
         box-shadow: $leaders-dropdown-background-box-shadow-right;
       }
     }
