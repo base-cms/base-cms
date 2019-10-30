@@ -56,6 +56,12 @@ $leaders-icon-filter-size: calc(#{$leaders-icon-size} * .8125) !default;
 
 $leaders-icon-filter-active-color: $leaders-nav-link-active-color !default;
 
+// Section Content Elements
+$leaders-section-content-title-font-weight: 800 !default;
+$leaders-section-content-title-font-size: 1.125rem !default;
+$leaders-section-content-title-line-height: 1.5 !default;
+$leaders-section-content-title-transform: uppercase !default;
+
 // Card Headers
 $leaders-card-header-border-color: #cecece !default;
 $leaders-card-header-color: $leaders-base-color !default;

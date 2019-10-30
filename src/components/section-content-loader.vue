@@ -73,3 +73,22 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import "../scss/variables";
+
+.leaders-section-content {
+  margin-bottom: 1.25rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &__title {
+    margin-bottom: calc(#{$leaders-nav-link-padding-y} - #{$leaders-nav-link-padding-x});
+    font-size: $leaders-section-content-title-font-size;
+    font-weight: $leaders-section-content-title-font-weight;
+    text-transform: $leaders-section-content-title-transform;
+  }
+}
+</style>
