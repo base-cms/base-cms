@@ -35,11 +35,28 @@ export default {
 
 <style lang="scss">
 .leaders-icon {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+
   svg {
-    width: .9rem;
-    height: .9rem;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    vertical-align: middle;
     transition: fill 250ms ease;
     fill: currentColor;
+  }
+
+  &--filter-none {
+    width: .8rem;
+    height: .8rem;
+    margin-right: .125rem;
+  }
+
+  &--videocam {
+    width: 1.25rem;
+    height: 1.25rem;
   }
 }
 </style>
