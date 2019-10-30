@@ -5,7 +5,7 @@ class ArrowPosition extends AbstractPosition {
     const { calculus: calcs } = this;
     const { pageXOffset } = window;
     if (this.opensAbove || this.opensBelow) return pageXOffset + calcs.link('left') + calcs.link('halfW');
-    if (this.opensLeft) return pageXOffset + calcs.link('left');
+    if (this.opensLeft) return pageXOffset + calcs.link('left') - calcs.arrow('w');
     return pageXOffset + calcs.link('right');
   }
 

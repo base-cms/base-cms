@@ -1,12 +1,19 @@
 class ElementCalculus {
-  constructor({ content, linkRect, navRect }) {
+  constructor({
+    content,
+    linkRect,
+    navRect,
+    arrowRect,
+  }) {
     this.content = content;
     this.linkRect = linkRect;
     this.navRect = navRect;
+    this.arrowRect = arrowRect;
     this.window = window;
     this.props = {
       menu: ['w', 'h', 'halfW', 'halfH', 'midH'],
       link: ['w', 'h', 'halfW', 'halfH', 'top', 'right', 'bottom', 'left', 'middle', 'center', 'topNavTop', 'bottomNavTop'],
+      arrow: ['w', 'h'],
       nav: ['top'],
       viewport: ['w', 'h'],
     };
@@ -22,6 +29,10 @@ class ElementCalculus {
 
   nav(prop, options) {
     return this.call('nav', prop, options);
+  }
+
+  arrow(prop, options) {
+    return this.call('arrow', prop, options);
   }
 
   viewport(prop, options) {
@@ -57,6 +68,20 @@ class ElementCalculus {
    */
   viewportH() {
     return this.window.innerHeight;
+  }
+
+  /**
+   * Width of the arrow element.
+   */
+  arrowW() {
+    return this.arrowRect.width;
+  }
+
+  /**
+   * Height of the arrow element.
+   */
+  arrowH() {
+    return this.arrowRect.height;
   }
 
   /**
