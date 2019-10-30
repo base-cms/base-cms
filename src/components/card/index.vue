@@ -36,6 +36,7 @@ export default {
 
 <style lang="scss">
 @import "../../scss/variables";
+@import "../../scss/mixins";
 
 .leaders-card {
   $block: &;
@@ -62,6 +63,37 @@ export default {
     opacity: 0;
     transition-duration: .75s;
     transition-property: background-color, opacity;
+  }
+
+  &__company-info {
+    // @todo change to max-width
+    // there is a bug where when card resizes it doesn't change
+    width: 380px;
+    > *:not(:last-child) {
+      margin-bottom: 14px;
+    }
+  }
+
+  &__product-summary {
+    font-size: $leaders-card-product-summary-font-size;
+    font-weight: $leaders-card-product-summary-font-weight;
+    line-height: $leaders-card-product-summary-line-height;
+    @include leaders-max-lines(
+      $font-size: $leaders-card-product-summary-font-size,
+      $line-height: $leaders-card-product-summary-line-height,
+      $num: 2,
+    );
+  }
+
+  &__teaser {
+    font-size: $leaders-card-teaser-font-size;
+    font-weight: $leaders-card-teaser-font-weight;
+    line-height: $leaders-card-teaser-line-height;
+    @include leaders-max-lines(
+      $font-size: $leaders-card-teaser-font-size,
+      $line-height: $leaders-card-teaser-line-height,
+      $num: 5,
+    );
   }
 
   &--active {
