@@ -17,6 +17,7 @@ module.exports = {
         allowFirstLine: false,
       },
     }],
+    'vue/no-v-html': 'off'
   },
   parserOptions: {
     parser: 'babel-eslint',
