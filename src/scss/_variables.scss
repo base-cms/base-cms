@@ -1,7 +1,6 @@
-
 $leaders-base-color: rgba(0, 0, 0, .84) !default;
 $leaders-base-font-family: "Muli", sans-serif !default;
-$leaders-base-font-size: 1rem !default;
+$leaders-base-font-size: 16px !default;
 $leaders-base-font-weight: 400 !default;
 $leaders-base-line-height: 1.5 !default;
 
@@ -16,8 +15,8 @@ $leaders-nav-link-font-family: $leaders-base-font-family !default;
 $leaders-nav-link-font-size: $leaders-base-font-size !default;
 $leaders-nav-link-font-weight: 600 !default;
 $leaders-nav-link-line-height: $leaders-base-line-height !default;
-$leaders-nav-link-padding-x: .25rem !default;
-$leaders-nav-link-padding-y: .375rem !default;
+$leaders-nav-link-padding-x: 4px !default;
+$leaders-nav-link-padding-y: 6px !default;
 
 $leaders-nav-link-active-color: #fff !default;
 $leaders-nav-link-active-bg-color: $leaders-accent-color !default;
@@ -43,13 +42,13 @@ $leaders-dropdown-background-border-color: $leaders-dropdown-accent-color !defau
 $leaders-icon-color: $leaders-base-color !default;
 $leaders-icon-size: $leaders-base-font-size !default;
 
-$leaders-icon-videocam-margin: .25rem !default;
+$leaders-icon-videocam-margin: 4px !default;
 $leaders-icon-videocam-color: #eecb2f !default;
 $leaders-icon-videocam-size: calc(#{$leaders-icon-size} * 1.25) !default;
 
 $leaders-icon-videocam-active-color: $leaders-nav-link-active-color !default;
 
-$leaders-icon-filter-margin: .375rem !default;
+$leaders-icon-filter-margin: 6px !default;
 $leaders-icon-filter-color: $leaders-primary-color-light !default;
 $leaders-icon-filter-size: calc(#{$leaders-icon-size} * .8125) !default;
 
@@ -57,7 +56,7 @@ $leaders-icon-filter-active-color: $leaders-nav-link-active-color !default;
 
 // Section Content Elements
 $leaders-section-content-title-font-weight: 800 !default;
-$leaders-section-content-title-font-size: 1.125rem !default;
+$leaders-section-content-title-font-size: 18px !default;
 $leaders-section-content-title-line-height: 1.5 !default;
 $leaders-section-content-title-transform: uppercase !default;
 
@@ -69,7 +68,6 @@ $leaders-card-header-bg-color: #eff1f2 !default;
 $leaders-card-header-padding: $leaders-card-padding !default;
 
 $leaders-card-header-hr-color: #cecece !default;
-
 
 // Card Bodies
 $leaders-card-body-color: $leaders-primary-color !default;
