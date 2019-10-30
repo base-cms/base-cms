@@ -1,10 +1,10 @@
 <template>
   <span class="leaders-nav-link-contents">
     <filter-none-icon />
-    <span class="leaders-nav-link-contents__title">
-      {{ title }}
+    <span class="leaders-nav-link-contents__container">
+      <span class="leaders-nav-link-contents__title">{{ title }}</span>
+      <videocam-icon />
     </span>
-    <videocam-icon />
   </span>
 </template>
 
@@ -24,3 +24,10 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+  .leaders-nav-link-contents {
+    display: inline-flex;
+    flex-direction: row;
+  }
+</style>
