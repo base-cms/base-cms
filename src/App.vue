@@ -73,12 +73,6 @@ export default {
     isLoading: false,
     noResults: false,
     error: null,
-    items: [
-      { id: 1, label: 'Robatech USA Inc', href: '#' },
-      { id: 2, label: 'Schubert North America', href: '#' },
-      { id: 3, label: 'Serpa Packaging Solutions', href: '#' },
-      { id: 4, label: 'Soma America, Inc.', href: '#' },
-    ],
   }),
 
   mounted() {
