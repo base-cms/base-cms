@@ -52,7 +52,6 @@ export default {
     opacity: 0;
     transition-duration: .75s;
     transition-property: background-color, opacity;
-    // background-color: blue;
   }
 
   &__body {
@@ -63,7 +62,6 @@ export default {
     opacity: 0;
     transition-duration: .75s;
     transition-property: background-color, opacity;
-    // background-color: $leaders-card-body-bg-color;
   }
 
   &--active {
