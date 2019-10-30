@@ -118,6 +118,11 @@ export default {
       display: block;
     }
 
+    &:focus,
+    &:active {
+      outline: none;
+    }
+
     &--active {
       color: #6c757d;
     }
