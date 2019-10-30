@@ -116,6 +116,7 @@ export default {
     outline: none;
     transition-duration: 150ms;
     transition-property: color, box-shadow, background-color;
+    will-change: color, box-shadow, background-color;
     -webkit-tap-highlight-color: transparent;
     > * {
       position: relative;
