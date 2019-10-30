@@ -11,6 +11,7 @@ new Vue({
   apolloProvider: createProvider({
     graphqlUri: 'https://caprica.graphql-staging.base-cms.io',
     tenantKey: 'pmmi_all',
+    siteId: '5d88cecaf175132c008b4567',
   }),
   render: h => h(App),
 }).$mount('#app');
