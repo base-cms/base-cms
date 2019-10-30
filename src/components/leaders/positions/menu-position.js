@@ -8,15 +8,16 @@ class MenuPosition extends AbstractPosition {
 
   get x() {
     const { calculus: calcs } = this;
-    if (this.opensAbove || this.opensBelow) return calcs.link('left') + calcs.link('halfW') - calcs.menu('halfW');
-    if (this.opensLeft) return calcs.link('left') - calcs.menu('w');
-    return calcs.link('right');
+    const { pageXOffset } = window;
+    if (this.opensAbove || this.opensBelow) return pageXOffset + calcs.link('left') + calcs.link('halfW') - calcs.menu('halfW');
+    if (this.opensLeft) return pageXOffset + calcs.link('left') - calcs.menu('w');
+    return pageXOffset + calcs.link('right');
   }
 
   get y() {
     const { calculus: calcs } = this;
     if (this.opensLeft || this.opensRight) {
-      const initial = calcs.link('topNavTop') - calcs.menu('midH');
+      const initial = calcs.link('top') + window.pageYOffset - calcs.menu('midH');
 
       // The element will be completely in-view.
       if (this.isYInView) return initial;
@@ -50,7 +51,7 @@ class MenuPosition extends AbstractPosition {
 
   get top() {
     const { calculus: calcs } = this;
-    if (this.opensLeft || this.opensRight) return calcs.link('middle') - calcs.menu('halfH');
+    if (this.opensLeft || this.opensRight) return calcs.link('top') - calcs.menu('midH');
     if (this.opensAbove) return calcs.link('top') - calcs.menu('h');
     if (this.opensBelow) return calcs.link('bottom');
     return 0;
@@ -58,7 +59,7 @@ class MenuPosition extends AbstractPosition {
 
   get bottom() {
     const { calculus: calcs } = this;
-    if (this.opensLeft || this.opensRight) return calcs.link('middle') + calcs.menu('halfH');
+    if (this.opensLeft || this.opensRight) return calcs.link('bottom') + calcs.menu('midH');
     if (this.opensAbove) return calcs.link('top');
     if (this.opensBelow) return calcs.link('bottom') + calcs.menu('h');
     return 0;
@@ -81,7 +82,7 @@ class MenuPosition extends AbstractPosition {
   }
 
   get topOffset() {
-    return this.top - this.screenOffset;
+    return this.top;
   }
 
   get isTopInView() {
@@ -90,13 +91,11 @@ class MenuPosition extends AbstractPosition {
 
   get bottomOffset() {
     const { calculus: calcs } = this;
-    return calcs.viewport('h') - (this.bottom + this.screenOffset);
+    return calcs.viewport('h') - this.bottom + this.screenOffset;
   }
 
   get isBottomInView() {
-    const { calculus: calcs } = this;
-    if (this.bottom - this.screenOffset < 0) return false;
-    return this.bottom + this.screenOffset < calcs.viewport('h');
+    return this.bottomOffset > 0;
   }
 
   get isYInView() {
@@ -104,12 +103,12 @@ class MenuPosition extends AbstractPosition {
   }
 
   get isLeftInView() {
-    return this.left - this.screenOffset > 0;
+    return this.left > 0;
   }
 
   get isRightInView() {
     const { calculus: calcs } = this;
-    return this.right + this.screenOffset < calcs.viewport('w');
+    return this.right < calcs.viewport('w');
   }
 
   get isXInView() {
