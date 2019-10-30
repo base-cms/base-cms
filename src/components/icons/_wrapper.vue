@@ -16,9 +16,9 @@ export default {
       required: true,
       default: '',
     },
-    className: {
-      type: String,
-      default: null,
+    modifiers: {
+      type: Array,
+      default: () => [],
     },
     tag: {
       type: String,
@@ -27,7 +27,12 @@ export default {
   },
   computed: {
     classNames() {
-      return ['leaders-icon', `leaders-icon--${this.name}`, this.className];
+      const blockName = 'leaders-icon';
+      return [
+        blockName,
+        `${blockName}--${this.name}`,
+        ...this.modifiers.map(mod => `${blockName}--${mod}`),
+      ];
     },
   },
 };
