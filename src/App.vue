@@ -8,7 +8,9 @@
               Content body here!
             </div>
             <aside class="page-rail col-lg-4">
-              <div>Right rail here</div>
+              <div style="height: 250px; margin-bottom: 1rem;">
+                Maybe an ad here?
+              </div>
               <div v-if="error">
                 Error! {{ error.message }}
               </div>
