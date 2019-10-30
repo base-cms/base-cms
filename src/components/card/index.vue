@@ -1,7 +1,25 @@
 <template>
   <div :class="classNames">
     <card-header>
-      <slot name="header" />
+      <div class="leaders-card__company-details">
+        <logo
+          v-if="logo.src"
+          :src="logo.src"
+          :alt="logo.alt"
+        />
+      </div>
+      <div class="leaders-card__company-body">
+        <div
+          v-if="company.productSummary"
+          class="leaders-card__product-summary"
+          v-html="company.productSummary"
+        />
+        <div
+          v-if="company.productSummary"
+          class="leaders-card__teaser"
+          v-html="company.teaser"
+        />
+      </div>
     </card-header>
     <card-body>
       <slot name="body" />
@@ -10,13 +28,19 @@
 </template>
 
 <script>
+import { getAsObject } from '@base-cms/object-path';
 import CardBody from './body.vue';
 import CardHeader from './header.vue';
+import Logo from './logo.vue';
 
 export default {
-  components: { CardBody, CardHeader },
+  components: { CardBody, CardHeader, Logo },
 
   props: {
+    company: {
+      type: Object,
+      default: () => ({}),
+    },
     isActive: {
       type: Boolean,
       default: false,
@@ -24,6 +48,9 @@ export default {
   },
 
   computed: {
+    logo() {
+      return getAsObject(this.company, 'primaryImage');
+    },
     classNames() {
       const blockName = 'leaders-card';
       const classes = [blockName];
@@ -47,6 +74,8 @@ export default {
   background-clip: border-box;
 
   &__header {
+    display: flex;
+    flex-direction: row;
     padding: $leaders-card-header-padding;
     color: $leaders-card-header-color;
     background-color: rgba(255, 255, 255, 0);
@@ -65,13 +94,22 @@ export default {
     transition-property: background-color, opacity;
   }
 
-  &__company-info {
+  &__company-details {
+    padding-right: $leaders-card-padding;
+  }
+
+  &__company-body {
     // @todo change to max-width
     // there is a bug where when card resizes it doesn't change
     width: 380px;
+    padding-left: $leaders-card-padding;
     > *:not(:last-child) {
       margin-bottom: 14px;
     }
+  }
+
+  &__company-details + &__company-body {
+    border-left: 1px solid $leaders-card-header-hr-color;
   }
 
   &__product-summary {

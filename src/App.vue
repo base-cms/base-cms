@@ -38,24 +38,7 @@
                       <nav-link-contents :title="item.name" :is-active="isActive" />
                     </template>
                     <template #dropdown="{ item, isActive }">
-                      <card :is-active="isActive">
-                        <template #header>
-                          <div class="leaders-card__company-info">
-                            <div
-                              v-if="item.productSummary"
-                              class="leaders-card__product-summary"
-                              v-html="item.productSummary"
-                            />
-                            <div
-                              v-if="item.productSummary"
-                              class="leaders-card__teaser"
-                              v-html="item.teaser"
-                            />
-                          </div>
-                        </template>
-                        <!-- <template #body>
-                        </template> -->
-                      </card>
+                      <card :company="item" :is-active="isActive" />
                     </template>
                   </list>
                 </section-content-loader>
@@ -69,6 +52,7 @@
 </template>
 
 <script>
+import { get } from '@base-cms/object-path';
 import gql from 'graphql-tag';
 import SectionContentLoader from './components/section-content-loader.vue';
 // import SampleContent from './components/sample-content.vue';
@@ -107,6 +91,10 @@ export default {
   },
 
   methods: {
+    get(obj, path) {
+      return get(obj, path);
+    },
+
     /**
      *
      */
