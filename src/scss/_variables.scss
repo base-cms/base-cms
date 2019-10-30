@@ -24,13 +24,21 @@ $leaders-nav-link-active-bg-color: $leaders-accent-color !default;
 $leaders-nav-link-active-box-shadow: 0 3px 5px rgba(0, 0, 0, .15) !default;
 
 // Dropdowns
+$leaders-dropdown-accent-color: $leaders-accent-color !default;
+
+$leaders-dropdown-arrow-color: $leaders-dropdown-accent-color !default;
+$leaders-dropdown-arrow-size: 14px !default;
+$leaders-dropdown-arrow-top: -$leaders-dropdown-arrow-size / 2 !default;
+
 $leaders-dropdown-background-box-shadow: 0 3px 9px rgba(0, 0, 0, .35) !default;
 $leaders-dropdown-background-box-shadow-below: $leaders-dropdown-background-box-shadow !default;
 $leaders-dropdown-background-box-shadow-above: $leaders-dropdown-background-box-shadow !default;
 $leaders-dropdown-background-box-shadow-left: $leaders-dropdown-background-box-shadow !default;
 $leaders-dropdown-background-box-shadow-right: $leaders-dropdown-background-box-shadow !default;
 
-$leaders-dropdown-background-border: 10px solid $leaders-accent-color !default;
+$leaders-dropdown-background-border-size: ($leaders-dropdown-arrow-top + $leaders-dropdown-arrow-top / 2) * -1 !default;
+$leaders-dropdown-background-border-color: $leaders-dropdown-accent-color !default;
+$leaders-dropdown-background-border: $leaders-dropdown-background-border-size solid $leaders-dropdown-accent-color !default;
 
 // Icons
 $leaders-icon-color: $leaders-base-color !default;

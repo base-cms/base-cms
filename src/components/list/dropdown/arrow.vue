@@ -15,16 +15,19 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../../../scss/variables";
+
 .leaders-dropdown {
   $self: &;
+  $top: -$leaders-dropdown-arrow-size / 2;
   &__arrow {
     position: absolute;
-    top: -6px;
+    top: $top;
     left: 0;
-    width: 12px;
-    height: 12px;
-    margin: 0 0 0 -6px;
-    background: #d656b0;
+    width: $leaders-dropdown-arrow-size;
+    height: $leaders-dropdown-arrow-size;
+    margin: 0 0 0 $top;
+    background-color: $leaders-dropdown-arrow-color;
     transition-duration: .25s;
     transition-property: transform, -webkit-transform;
     transform: rotate(45deg);
