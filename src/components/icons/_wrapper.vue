@@ -40,8 +40,8 @@ export default {
   height: 1rem;
 
   svg {
-    width: 100%;
-    height: 100%;
+    width: 1rem;
+    height: 1rem;
     overflow: hidden;
     vertical-align: middle;
     transition: fill 250ms ease;
@@ -51,12 +51,21 @@ export default {
   &--filter-none {
     width: .8rem;
     height: .8rem;
-    margin-right: .125rem;
+    margin-right: .375rem;
+    svg {
+      width: .8rem;
+      height: .8rem;
+    }
   }
 
   &--videocam {
     width: 1.25rem;
     height: 1.25rem;
+    margin-left: .25rem;
+    svg {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
   }
 }
 </style>
