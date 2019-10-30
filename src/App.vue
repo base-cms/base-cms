@@ -53,7 +53,7 @@
 import gql from 'graphql-tag';
 import SectionContentLoader from './components/section-content-loader.vue';
 import SampleContent from './components/sample-content.vue';
-import List from './components/leaders-list/index.vue';
+import List from './components/list/index.vue';
 import NavLinkContents from './components/nav-link-contents.vue';
 
 const getNodes = (obj, field) => {
