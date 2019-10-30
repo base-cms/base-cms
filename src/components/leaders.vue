@@ -312,6 +312,7 @@ export default {
 <style lang="scss">
 .leaders {
   &__dropdown-portal {
+    z-index: 10;
     perspective: 1500px;
   }
 }
