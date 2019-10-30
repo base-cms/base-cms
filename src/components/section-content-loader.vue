@@ -78,7 +78,7 @@ export default {
 @import "../scss/variables";
 
 .leaders-section-content {
-  margin-bottom: 1.25rem;
+  margin-bottom: 20px;
 
   &:last-child {
     margin-bottom: 0;
