@@ -712,6 +712,19 @@
   dependencies:
     node-fetch "^2.6.0"
 
+"@base-cms/object-path@^1.0.0-beta.4":
+  version "1.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/@base-cms/object-path/-/object-path-1.0.0-beta.4.tgz#ce2acf16f02e55c34ec49155ca4fe6418f750b90"
+  integrity sha512-IiPRTrtKUDf3puTXVLxkOOf1gvgr+3rUbs5kz4Kodb8F1Bt+RUhMtuh8Ps5E3hPWb7fiSVYP5rcp6HNYSXjApA==
+  dependencies:
+    "@base-cms/utils" "^1.0.0-beta.4"
+    object-path "^0.11.4"
+
+"@base-cms/utils@^1.0.0-beta.4":
+  version "1.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/@base-cms/utils/-/utils-1.0.0-beta.4.tgz#d25eec2484b9529a69de2475fa071f277ebc37be"
+  integrity sha512-WtvpT02tDLGFl+79p2zUyIiKenuNEpbpPWcqcIoc5mzdGXvRTxkMAcX2uSXn/soJeW5LSTTQi3xOsLRjtg086g==
+
 "@hapi/address@2.x.x":
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/@hapi/address/-/address-2.1.2.tgz#1c794cd6dbf2354d1eb1ef10e0303f573e1c7222"
@@ -6252,6 +6265,11 @@ object-keys@^1.0.11, object-keys@^1.0.12, object-keys@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/object-keys/-/object-keys-1.1.1.tgz#1c47f272df277f3b1daf061677d9c82e2322c60e"
   integrity sha512-NuAESUOUMrlIXOfHKzD6bpPu3tYt3xvjNdRIQ+FeT0lNb4K8WR70CaDxhuNguS2XG+GjkyMwOzsN5ZktImfhLA==
+
+object-path@^0.11.4:
+  version "0.11.4"
+  resolved "https://registry.yarnpkg.com/object-path/-/object-path-0.11.4.tgz#370ae752fbf37de3ea70a861c23bba8915691949"
+  integrity sha1-NwrnUvvzfePqcKhhwju6iRVpGUk=
 
 object-visit@^1.0.0:
   version "1.0.1"
