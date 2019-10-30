@@ -32,3 +32,14 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+.leaders-icon {
+  svg {
+    width: .9rem;
+    height: .9rem;
+    transition: fill 250ms ease;
+    fill: currentColor;
+  }
+}
+</style>
