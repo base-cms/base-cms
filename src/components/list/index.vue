@@ -235,11 +235,6 @@ export default {
       const navRect = this.$refs.nav.$el.getBoundingClientRect();
       const arrowRect = this.$refs.arrow.$el.getBoundingClientRect();
 
-      /**
-       * @todo The menu elements should _pre_ position themselves _before_ the
-       * element calculations are made. This will simplifiy the overall positions
-       * and required translations (relative to viewport requirements)
-       */
       const { open, screenOffset } = this;
       // Create element calculus info.
       const calcs = new ElementCalculus({
