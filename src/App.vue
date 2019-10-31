@@ -35,7 +35,11 @@
                     open="left"
                   >
                     <template #nav-link="{ item, isActive }">
-                      <nav-link-contents :title="item.name" :is-active="isActive" />
+                      <nav-link-contents
+                        :title="item.name"
+                        :is-active="isActive"
+                        :youtube="item.youtube"
+                      />
                     </template>
                     <template #dropdown="{ item, isActive }">
                       <card :company="item" :is-active="isActive" />
