@@ -77,6 +77,12 @@ $leaders-card-body-padding: $leaders-card-padding !default;
 $leaders-card-body-hr-color: #999 !default;
 
 // Card Content Elements
+$leaders-card-initial-bg-color: rgba(255, 255, 255, 0) !default;
+$leaders-card-initial-opacity: 0 !default;
+$leaders-card-final-opacity: 1 !default;
+$leaders-card-transition-duration: 750ms !default;
+$leaders-card-transition-property: background-color, opacity !default;
+
 $leaders-logo-size: 100px !default;
 $leaders-logo-border-size: 4px !default;
 $leaders-logo-shadow-size: 5px !default;

@@ -78,20 +78,20 @@ export default {
     flex-direction: row;
     padding: $leaders-card-header-padding;
     color: $leaders-card-header-color;
-    background-color: rgba(255, 255, 255, 0);
-    opacity: 0;
-    transition-duration: .75s;
-    transition-property: background-color, opacity;
+    background-color: $leaders-card-initial-bg-color;
+    opacity: $leaders-card-initial-opacity;
+    transition-duration: $leaders-card-transition-duration;
+    transition-property: $leaders-card-transition-property;
   }
 
   &__body {
     flex: 1 1 auto;
     padding: $leaders-card-body-padding;
     color: $leaders-card-body-color;
-    background-color: rgba(255, 255, 255, 0);
-    opacity: 0;
-    transition-duration: .75s;
-    transition-property: background-color, opacity;
+    background-color: $leaders-card-initial-bg-color;
+    opacity: $leaders-card-initial-opacity;
+    transition-duration: $leaders-card-transition-duration;
+    transition-property: $leaders-card-transition-property;
   }
 
   &__company-details {
@@ -138,11 +138,11 @@ export default {
     #{ $block } {
       &__header {
         background-color: $leaders-card-header-bg-color;
-        opacity: 1;
+        opacity: $leaders-card-final-opacity;
       }
       &__body {
         background-color: $leaders-card-body-bg-color;
-        opacity: 1;
+        opacity: $leaders-card-final-opacity;
       }
     }
   }
