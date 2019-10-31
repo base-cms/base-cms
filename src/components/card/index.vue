@@ -1,7 +1,7 @@
 <template>
   <div :class="classNames">
     <div class="leaders-card__header">
-      <logo-links
+      <company-details
         :company-name="company.name"
         :logo-src="logo.src"
         :profile-href="profileHref"
@@ -21,13 +21,13 @@
 
 <script>
 import { get, getAsObject } from '@base-cms/object-path';
-import LogoLinks from './logo-links.vue';
-import CompanySummary from './company-summary.vue';
+import CompanyDetails from './blocks/company-details.vue';
+import CompanySummary from './blocks/company-summary.vue';
 
 export default {
   components: {
+    CompanyDetails,
     CompanySummary,
-    LogoLinks,
   },
 
   props: {
@@ -91,10 +91,6 @@ export default {
     transition-property: $leaders-card-transition-property;
   }
 
-  &__logo-links + &__company-summary {
-    border-left: 1px solid $leaders-card-header-hr-color;
-  }
-
   &--active {
     #{ $block } {
       &__header {
@@ -107,5 +103,9 @@ export default {
       }
     }
   }
+}
+
+.leaders-company-details + .leaders-company-summary {
+  border-left: 1px solid $leaders-card-header-hr-color;
 }
 </style>

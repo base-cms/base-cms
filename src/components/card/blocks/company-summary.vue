@@ -1,16 +1,16 @@
 <template>
-  <div class="leaders-card__company-summary">
-    <a v-if="headline" :href="profileHref" class="leaders-card__headline">
+  <div class="leaders-company-summary">
+    <a v-if="headline" :href="profileHref" class="leaders-company-summary__headline">
       <element-html :value="headline" />
     </a>
-    <a v-if="teaser" :href="profileHref" class="leaders-card__teaser">
+    <a v-if="teaser" :href="profileHref" class="leaders-company-summary__teaser">
       <element-html :value="teaser" />
     </a>
   </div>
 </template>
 
 <script>
-import ElementHtml from './elements/html.vue';
+import ElementHtml from '../../common/html.vue';
 
 export default {
   components: { ElementHtml },
@@ -39,18 +39,16 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../scss/variables";
-@import "../../scss/mixins";
+@import "../../../scss/variables";
+@import "../../../scss/mixins";
 
-.leaders-card {
-  &__company-summary {
-    // @todo change to max-width
-    // there is a bug where when card resizes it doesn't change
-    width: 380px;
-    padding-left: $leaders-card-padding;
-    > *:not(:last-child) {
-      margin-bottom: 14px;
-    }
+.leaders-company-summary {
+  // @todo change to max-width
+  // there is a bug where when card resizes it doesn't change
+  width: 380px;
+  padding-left: $leaders-card-padding;
+  > *:not(:last-child) {
+    margin-bottom: 14px;
   }
 
   &__headline {
