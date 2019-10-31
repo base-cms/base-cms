@@ -44,7 +44,8 @@ query LeadersScheduledContent($input: WebsiteScheduledContentQueryInput!) {
                 name
                 primaryImage{
                   id
-                  src(input: { options: { auto: "format", fit: "crop", h: 90, w: 120 } })
+                  src(input: { options: { auto: "format", fit: "crop", h: 180, w: 240 } })
+                  alt
                 }
                 ... on ContentPromotion {
                   linkUrl
@@ -63,7 +64,7 @@ query LeadersScheduledContent($input: WebsiteScheduledContentQueryInput!) {
                 id
                 url
                 title
-                thumbnail
+                thumbnail(input: { size: medium })
               }
             }
           }

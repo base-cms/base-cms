@@ -35,7 +35,12 @@
           <a :href="profileHref">View more products &raquo;</a>
         </template>
         <template #default="{ item }">
-          {{ item.id }}
+          <promotion-card
+            :title="item.linkText || item.name"
+            :href="item.linkUrl"
+            :image-src="get(item, 'primaryImage.src')"
+            :image-alt="get(item, 'primaryImage.alt')"
+          />
         </template>
       </content-deck>
       <content-deck :value="videos">
@@ -59,6 +64,7 @@ import CompanyDetails from './blocks/company-details.vue';
 import CompanySummary from './blocks/company-summary.vue';
 import ContentDeck from './blocks/content-deck.vue';
 import KeyExecutive from './blocks/key-executive.vue';
+import PromotionCard from './blocks/promotion-card.vue';
 import getEdgeNodes from '../../utils/get-edge-nodes';
 
 export default {
@@ -67,6 +73,7 @@ export default {
     CompanySummary,
     ContentDeck,
     KeyExecutive,
+    PromotionCard,
   },
 
   props: {
