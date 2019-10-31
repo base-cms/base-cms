@@ -1,9 +1,19 @@
 <template>
   <div v-if="canDisplay" class="leaders-company-summary">
-    <a v-if="headline" :href="profileHref" class="leaders-company-summary__headline">
+    <a
+      v-if="headline"
+      :href="profileHref"
+      :title="linkTitle"
+      class="leaders-company-summary__headline"
+    >
       <element-html :value="headline" />
     </a>
-    <a v-if="teaser" :href="profileHref" class="leaders-company-summary__teaser">
+    <a
+      v-if="teaser"
+      :href="profileHref"
+      :title="linkTitle"
+      class="leaders-company-summary__teaser"
+    >
       <element-html :value="teaser" />
     </a>
   </div>
@@ -29,6 +39,10 @@ export default {
       required: true,
     },
   },
+
+  data: () => ({
+    linkTitle: 'View Company Profile',
+  }),
 
   computed: {
     canDisplay() {

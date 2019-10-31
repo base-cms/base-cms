@@ -1,6 +1,11 @@
 <template>
   <div class="leaders-company-details">
-    <a v-if="logoSrc" :href="profileHref" class="leaders-company-details__logo">
+    <a
+      v-if="logoSrc"
+      :href="profileHref"
+      title="View Company Profile"
+      class="leaders-company-details__logo"
+    >
       <!-- @todo update this to properly lazyload! -->
       <img
         class="lazyload"
