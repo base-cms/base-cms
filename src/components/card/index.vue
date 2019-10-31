@@ -1,3 +1,4 @@
+
 <template>
   <div :class="classes">
     <div class="leaders-card__header">
@@ -36,14 +37,16 @@
         </template>
         <template #default="{ item }">
           <promotion-card
+            :data-content-id="item.id"
             :title="item.linkText || item.name"
             :href="item.linkUrl"
             :image-src="get(item, 'primaryImage.src')"
             :image-alt="get(item, 'primaryImage.alt')"
+            :image-is-logo="get(item, 'primaryImage.isLogo')"
           />
         </template>
       </content-deck>
-      <content-deck :value="videos">
+      <content-deck :value="videos" :item-modifiers="['video']">
         <template #header-left>
           Featured Videos
         </template>
@@ -51,7 +54,12 @@
           <a :href="profileHref">View more videos &raquo;</a>
         </template>
         <template #default="{ item }">
-          {{ item.id }}
+          <video-card
+            :data-youtube-id="item.id"
+            :title="item.title"
+            :href="item.url"
+            :image-src="item.thumbnail"
+          />
         </template>
       </content-deck>
     </div>
@@ -65,6 +73,7 @@ import CompanySummary from './blocks/company-summary.vue';
 import ContentDeck from './blocks/content-deck.vue';
 import KeyExecutive from './blocks/key-executive.vue';
 import PromotionCard from './blocks/promotion-card.vue';
+import VideoCard from './blocks/video-card.vue';
 import getEdgeNodes from '../../utils/get-edge-nodes';
 
 export default {
@@ -74,6 +83,7 @@ export default {
     ContentDeck,
     KeyExecutive,
     PromotionCard,
+    VideoCard,
   },
 
   props: {

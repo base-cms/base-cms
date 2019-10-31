@@ -46,6 +46,7 @@ query LeadersScheduledContent($input: WebsiteScheduledContentQueryInput!) {
                   id
                   src(input: { options: { auto: "format", fit: "crop", h: 180, w: 240 } })
                   alt
+                  isLogo
                 }
                 ... on ContentPromotion {
                   linkUrl
@@ -58,7 +59,7 @@ query LeadersScheduledContent($input: WebsiteScheduledContentQueryInput!) {
             username
             channelId
           }
-          videos: youtubeVideos(input: { pagination: { limit: 4 } }) {
+          videos: youtubeVideos(input: { pagination: { limit: 3 } }) {
             edges {
               node {
                 id

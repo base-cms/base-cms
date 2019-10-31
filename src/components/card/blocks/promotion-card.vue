@@ -1,11 +1,11 @@
 <template>
   <div class="leaders-promotion-card">
-    <div v-if="imageSrc" class="leaders-promotion-card__image">
+    <div v-if="src" class="leaders-promotion-card__image">
       <common-link :href="href" target="_blank">
-        <img :src="imageSrc" :alt="imageAlt">
+        <img :src="src" :alt="imageAlt">
       </common-link>
     </div>
-    <div v-if="imageSrc" class="leaders-promotion-card__title">
+    <div class="leaders-promotion-card__title">
       <common-link :href="href" target="_blank">
         {{ title }}
       </common-link>
@@ -35,6 +35,19 @@ export default {
     imageAlt: {
       type: String,
       default: null,
+    },
+    imageIsLogo: {
+      type: Boolean,
+      default: false,
+    },
+  },
+
+  computed: {
+    src() {
+      if (this.imageIsLogo) {
+        return `${this.imageSrc}&fit=fill&fill-color=fff&pad=5`;
+      }
+      return this.imageSrc;
     },
   },
 };

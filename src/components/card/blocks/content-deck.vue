@@ -12,7 +12,7 @@
       <div
         v-for="(item, index) in limitedValue"
         :key="index"
-        class="leaders-content-deck__item"
+        :class="itemClasses"
       >
         <slot :item="item" />
       </div>
@@ -31,6 +31,10 @@ export default {
       type: Number,
       default: 4,
     },
+    itemModifiers: {
+      type: Array,
+      default: () => [],
+    },
   },
 
   computed: {
@@ -39,6 +43,13 @@ export default {
     },
     limitedValue() {
       return this.value.slice(0, this.limit);
+    },
+    itemClasses() {
+      const elementName = 'leaders-content-deck__item';
+      return [
+        elementName,
+        ...this.itemModifiers.map(mod => `${elementName}--${mod}`),
+      ];
     },
   },
 };
@@ -68,6 +79,11 @@ export default {
   &__item {
     padding-right: $leaders-card-body-padding / 2;
     padding-left: $leaders-card-body-padding / 2;
+
+    &--video {
+      padding-right: $leaders-card-body-padding / 2 * 1.5;
+      padding-left: $leaders-card-body-padding / 2 * 1.5;
+    }
 
     &:first-child {
       padding-left: 0;
