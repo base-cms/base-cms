@@ -109,6 +109,11 @@ export default {
       default: 250,
       validator: v => v > 0,
     },
+    openTimeoutMS: {
+      type: Number,
+      default: 50,
+      validator: v => v > 0,
+    },
     screenOffset: {
       type: Number,
       default: 0, // this is not properly handled yet. do not use.
@@ -124,6 +129,7 @@ export default {
     transitionsDisabled: true,
 
     closeTimeout: null,
+    openTimeout: null,
     enableTransitionTimeout: null,
     disableTransitionTimeout: null,
 
@@ -167,13 +173,13 @@ export default {
   methods: {
     onLinkFocus({ index, element }) {
       this.clearCloseTimeout();
-      this.openDropdownFor({ link: element, activeIndex: index });
+      this.setOpenTimeout({ link: element, activeIndex: index });
     },
 
     onLinkEnter({ index, element, event }) {
       if (event.pointerType !== 'touch') {
         this.clearCloseTimeout();
-        this.openDropdownFor({ link: element, activeIndex: index });
+        this.setOpenTimeout({ link: element, activeIndex: index });
       }
     },
 
@@ -186,11 +192,15 @@ export default {
     onLinkLeave({ event }) {
       if (event.pointerType !== 'touch') {
         this.setCloseTimeout();
+        this.clearOpenTimeout();
       }
     },
 
     onContainerEnter({ event }) {
-      if (event.pointerType !== 'touch') this.clearCloseTimeout();
+      if (event.pointerType !== 'touch') {
+        this.clearCloseTimeout();
+        this.clearOpenTimeout();
+      }
     },
 
     onContainerEnd({ event }) {
@@ -267,6 +277,16 @@ export default {
 
       // Unset active dropdown (but leave the last active)
       this.activeIndex = null;
+    },
+
+    setOpenTimeout({ link, activeIndex }) {
+      this.openTimeout = setTimeout(() => {
+        this.openDropdownFor({ link, activeIndex });
+      }, this.openTimeoutMS);
+    },
+
+    clearOpenTimeout() {
+      clearTimeout(this.openTimeout);
     },
 
     setCloseTimeout() {
