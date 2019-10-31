@@ -1,6 +1,6 @@
 <template>
   <div :class="classNames">
-    <card-header>
+    <div class="leaders-card__header">
       <div class="leaders-card__company-details">
         <logo
           v-if="logo.src"
@@ -12,24 +12,20 @@
         :headline="company.productSummary"
         :teaser="company.teaser"
       />
-    </card-header>
-    <card-body>
+    </div>
+    <div class="leaders-card__body">
       <slot name="body" />
-    </card-body>
+    </div>
   </div>
 </template>
 
 <script>
 import { getAsObject } from '@base-cms/object-path';
-import CardBody from './body.vue';
-import CardHeader from './header.vue';
 import Logo from './logo.vue';
 import CompanySummary from './company-summary.vue';
 
 export default {
   components: {
-    CardBody,
-    CardHeader,
     CompanySummary,
     Logo,
   },
