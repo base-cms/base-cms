@@ -22,7 +22,7 @@ query LeadersScheduledContent($input: WebsiteScheduledContentQueryInput!) {
         }
         ... on ContentCompany {
           productSummary
-          publicContacts {
+          publicContacts(input: { pagination: { limit: 1 } }) {
             edges {
               node {
                 id
@@ -30,7 +30,7 @@ query LeadersScheduledContent($input: WebsiteScheduledContentQueryInput!) {
                 title
                 primaryImage {
                   id
-                  src(input: { options: { auto: "format", h: 50, w: 50, mask: "ellipse", fit: "facearea", facepad: 3 } })
+                  src(input: { options: { auto: "format", h: 100, w: 100, mask: "ellipse", fit: "facearea", facepad: 3 } })
                 }
               }
             }

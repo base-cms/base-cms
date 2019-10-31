@@ -10,11 +10,20 @@
         />
       </div>
       <div v-if="displayRightHeader" class="leaders-card__header-right">
-        <company-summary
-          :headline="company.productSummary"
-          :teaser="company.teaser"
-          :profile-href="profileHref"
-        />
+        <div v-if="displayRightTopHeader" class="leaders-card__header-right-top">
+          <company-summary
+            :headline="company.productSummary"
+            :teaser="company.teaser"
+            :profile-href="profileHref"
+          />
+        </div>
+        <div v-if="displayRightBottomHeader" class="leaders-card__header-right-bottom">
+          <key-executive
+            :name="executive.name"
+            :title="executive.title"
+            :image-src="get(executive, 'primaryImage.src')"
+          />
+        </div>
       </div>
     </div>
     <div class="leaders-card__body">
@@ -24,14 +33,16 @@
 </template>
 
 <script>
-import { get, getAsObject } from '@base-cms/object-path';
+import { get, getAsObject, getAsArray } from '@base-cms/object-path';
 import CompanyDetails from './blocks/company-details.vue';
 import CompanySummary from './blocks/company-summary.vue';
+import KeyExecutive from './blocks/key-executive.vue';
 
 export default {
   components: {
     CompanyDetails,
     CompanySummary,
+    KeyExecutive,
   },
 
   props: {
@@ -52,14 +63,29 @@ export default {
     profileHref() {
       return get(this.company, 'siteContext.path');
     },
+    executive() {
+      return getAsArray(this.company, 'publicContacts.edges').map(({ node }) => node)[0];
+    },
     displayRightHeader() {
+      return this.displayRightTopHeader || this.displayRightBottomHeader;
+    },
+    displayRightTopHeader() {
       return Boolean(this.company.productSummary || this.company.teaser);
+    },
+    displayRightBottomHeader() {
+      return Boolean(this.executive);
     },
     classes() {
       const blockName = 'leaders-card';
       const classes = [blockName];
       if (this.isActive) classes.push(`${blockName}--active`);
       return classes;
+    },
+  },
+
+  methods: {
+    get(obj, path) {
+      return get(obj, path);
     },
   },
 };
@@ -105,6 +131,15 @@ export default {
 
   &__header-left:not(:only-child) {
     padding-right: $leaders-card-padding;
+  }
+
+  &__header-right-top + &__header-right-bottom {
+    padding-top: $leaders-card-padding;
+    border-top: 1px solid $leaders-card-header-hr-color;
+  }
+
+  &__header-right-top:not(:only-child) {
+    padding-bottom: $leaders-card-padding;
   }
 
   &--active {
