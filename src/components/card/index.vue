@@ -26,17 +26,16 @@
         </div>
       </div>
     </div>
-    <div class="leaders-card__body">
-      <slot name="body" />
-    </div>
+    <div v-if="displayBody" class="leaders-card__body" />
   </div>
 </template>
 
 <script>
-import { get, getAsObject, getAsArray } from '@base-cms/object-path';
+import { get, getAsObject } from '@base-cms/object-path';
 import CompanyDetails from './blocks/company-details.vue';
 import CompanySummary from './blocks/company-summary.vue';
 import KeyExecutive from './blocks/key-executive.vue';
+import getEdgeNodes from '../../utils/get-edge-nodes';
 
 export default {
   components: {
@@ -64,7 +63,16 @@ export default {
       return get(this.company, 'siteContext.path');
     },
     executive() {
-      return getAsArray(this.company, 'publicContacts.edges').map(({ node }) => node)[0];
+      return getEdgeNodes(this.company, 'publicContacts')[0];
+    },
+    promotions() {
+      return getEdgeNodes(this.company, 'promotions');
+    },
+    videos() {
+      return getEdgeNodes(this.company, 'videos');
+    },
+    displayBody() {
+      return Boolean(this.promotions.length || this.videos.length);
     },
     displayRightHeader() {
       return this.displayRightTopHeader || this.displayRightBottomHeader;
@@ -122,6 +130,10 @@ export default {
     opacity: $leaders-card-initial-opacity;
     transition-duration: $leaders-card-transition-duration;
     transition-property: $leaders-card-transition-property;
+
+    > div:not(:last-child) {
+      margin-bottom: $leaders-card-body-padding;
+    }
   }
 
   &__header-left + &__header-right {
