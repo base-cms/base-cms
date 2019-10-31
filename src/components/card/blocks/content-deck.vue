@@ -52,6 +52,7 @@ export default {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin-bottom: $leaders-card-body-padding / 2;
     font-size: 14px;
   }
 
