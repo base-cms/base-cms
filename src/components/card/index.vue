@@ -8,18 +8,10 @@
           :alt="logo.alt"
         />
       </div>
-      <div class="leaders-card__company-body">
-        <div
-          v-if="company.productSummary"
-          class="leaders-card__product-summary"
-          v-html="company.productSummary"
-        />
-        <div
-          v-if="company.productSummary"
-          class="leaders-card__teaser"
-          v-html="company.teaser"
-        />
-      </div>
+      <company-summary
+        :headline="company.productSummary"
+        :teaser="company.teaser"
+      />
     </card-header>
     <card-body>
       <slot name="body" />
@@ -32,9 +24,15 @@ import { getAsObject } from '@base-cms/object-path';
 import CardBody from './body.vue';
 import CardHeader from './header.vue';
 import Logo from './logo.vue';
+import CompanySummary from './company-summary.vue';
 
 export default {
-  components: { CardBody, CardHeader, Logo },
+  components: {
+    CardBody,
+    CardHeader,
+    CompanySummary,
+    Logo,
+  },
 
   props: {
     company: {
@@ -98,40 +96,8 @@ export default {
     padding-right: $leaders-card-padding;
   }
 
-  &__company-body {
-    // @todo change to max-width
-    // there is a bug where when card resizes it doesn't change
-    width: 380px;
-    padding-left: $leaders-card-padding;
-    > *:not(:last-child) {
-      margin-bottom: 14px;
-    }
-  }
-
-  &__company-details + &__company-body {
+  &__company-details + &__company-summary {
     border-left: 1px solid $leaders-card-header-hr-color;
-  }
-
-  &__product-summary {
-    font-size: $leaders-card-product-summary-font-size;
-    font-weight: $leaders-card-product-summary-font-weight;
-    line-height: $leaders-card-product-summary-line-height;
-    @include leaders-max-lines(
-      $font-size: $leaders-card-product-summary-font-size,
-      $line-height: $leaders-card-product-summary-line-height,
-      $num: 2,
-    );
-  }
-
-  &__teaser {
-    font-size: $leaders-card-teaser-font-size;
-    font-weight: $leaders-card-teaser-font-weight;
-    line-height: $leaders-card-teaser-line-height;
-    @include leaders-max-lines(
-      $font-size: $leaders-card-teaser-font-size,
-      $line-height: $leaders-card-teaser-line-height,
-      $num: 5,
-    );
   }
 
   &--active {
