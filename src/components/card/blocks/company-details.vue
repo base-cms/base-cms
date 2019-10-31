@@ -57,7 +57,6 @@ export default {
     },
   },
 };
-/* eslint-disable */
 </script>
 
 <style lang="scss">
@@ -66,6 +65,7 @@ export default {
 .leaders-company-details {
   display: flex;
   flex-direction: column;
+  min-width: $leaders-logo-wrapper-size;
   height: 100%;
   &__logo {
     box-sizing: content-box;
