@@ -91,7 +91,7 @@ export default {
     }
   }
 
-  &__links {
+  &__logo + &__links {
     margin-top: auto;
   }
 }
