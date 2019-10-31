@@ -29,10 +29,10 @@
     <div v-if="displayBody" class="leaders-card__body">
       <content-deck :value="promotions">
         <template #header-left>
-          Left
+          Featured Products
         </template>
         <template #header-right>
-          Right
+          <a :href="profileHref">View more products &raquo;</a>
         </template>
         <template #default="{ item }">
           {{ item.id }}
@@ -40,10 +40,10 @@
       </content-deck>
       <content-deck :value="videos">
         <template #header-left>
-          Left
+          Featured Videos
         </template>
         <template #header-right>
-          Right
+          <a :href="profileHref">View more videos &raquo;</a>
         </template>
         <template #default="{ item }">
           {{ item.id }}
@@ -150,6 +150,8 @@ export default {
   &__body {
     flex: 1 1 auto;
     padding: $leaders-card-body-padding;
+    font-size: $leaders-card-body-font-size;
+    font-weight: $leaders-card-body-font-weight;
     color: $leaders-card-body-color;
     background-color: $leaders-card-initial-bg-color;
     opacity: $leaders-card-initial-opacity;

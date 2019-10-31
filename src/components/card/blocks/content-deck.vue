@@ -4,16 +4,18 @@
       <div class="leaders-content-deck__header-left">
         <slot name="header-left" />
       </div>
-      <div class="leaders-content-deck__header-left">
+      <div class="leaders-content-deck__header-right">
         <slot name="header-right" />
       </div>
     </div>
-    <div
-      v-for="(item, index) in limitedValue"
-      :key="index"
-      class="leaders-content-deck__item"
-    >
-      <slot :item="item" />
+    <div class="leaders-content-deck__body">
+      <div
+        v-for="(item, index) in limitedValue"
+        :key="index"
+        class="leaders-content-deck__item"
+      >
+        <slot :item="item" />
+      </div>
     </div>
   </div>
 </template>
@@ -41,3 +43,46 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import "../../../scss/variables";
+
+.leaders-content-deck {
+  &__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 14px;
+  }
+
+  &__header-left {
+    font-weight: 800;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__item {
+    padding-right: $leaders-card-body-padding / 2;
+    padding-left: $leaders-card-body-padding / 2;
+
+    &:first-child {
+      padding-left: 0;
+    }
+
+    &:last-child {
+      padding-right: 0;
+    }
+  }
+
+  a {
+    color: $leaders-card-body-color;
+    &:hover {
+      color: $leaders-card-body-color;
+    }
+  }
+
+}
+</style>
