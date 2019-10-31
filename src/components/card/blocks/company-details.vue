@@ -20,7 +20,7 @@
         Visit Site
       </button-link>
       <button-link :href="profileHref" :block="true">
-        Visit Profile
+        View Profile
       </button-link>
     </div>
   </div>
