@@ -1,13 +1,12 @@
 <template>
   <div :class="classNames">
     <div class="leaders-card__header">
-      <div class="leaders-card__company-details">
-        <logo
-          v-if="logo.src"
-          :src="logo.src"
-          :alt="logo.alt"
-        />
-      </div>
+      <logo-links
+        :company-name="company.name"
+        :logo-src="logo.src"
+        :profile-href="profileHref"
+        :company-href="company.website"
+      />
       <company-summary
         :headline="company.productSummary"
         :teaser="company.teaser"
@@ -20,14 +19,14 @@
 </template>
 
 <script>
-import { getAsObject } from '@base-cms/object-path';
-import Logo from './logo.vue';
+import { get, getAsObject } from '@base-cms/object-path';
+import LogoLinks from './logo-links.vue';
 import CompanySummary from './company-summary.vue';
 
 export default {
   components: {
     CompanySummary,
-    Logo,
+    LogoLinks,
   },
 
   props: {
@@ -44,6 +43,9 @@ export default {
   computed: {
     logo() {
       return getAsObject(this.company, 'primaryImage');
+    },
+    profileHref() {
+      return get(this.company, 'siteContext.path');
     },
     classNames() {
       const blockName = 'leaders-card';
@@ -88,11 +90,7 @@ export default {
     transition-property: $leaders-card-transition-property;
   }
 
-  &__company-details {
-    padding-right: $leaders-card-padding;
-  }
-
-  &__company-details + &__company-summary {
+  &__logo-links + &__company-summary {
     border-left: 1px solid $leaders-card-header-hr-color;
   }
 

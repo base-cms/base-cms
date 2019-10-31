@@ -16,9 +16,15 @@ export default {
       type: String,
       required: true,
     },
-    alt: {
+    companyName: {
       type: String,
-      default: null,
+      required: true,
+    },
+  },
+
+  computed: {
+    alt() {
+      return `${this.companyName} Logo`;
     },
   },
 };
