@@ -26,7 +26,30 @@
         </div>
       </div>
     </div>
-    <div v-if="displayBody" class="leaders-card__body" />
+    <div v-if="displayBody" class="leaders-card__body">
+      <content-deck :value="promotions">
+        <template #header-left>
+          Left
+        </template>
+        <template #header-right>
+          Right
+        </template>
+        <template #default="{ item }">
+          {{ item.id }}
+        </template>
+      </content-deck>
+      <content-deck :value="videos">
+        <template #header-left>
+          Left
+        </template>
+        <template #header-right>
+          Right
+        </template>
+        <template #default="{ item }">
+          {{ item.id }}
+        </template>
+      </content-deck>
+    </div>
   </div>
 </template>
 
@@ -34,6 +57,7 @@
 import { get, getAsObject } from '@base-cms/object-path';
 import CompanyDetails from './blocks/company-details.vue';
 import CompanySummary from './blocks/company-summary.vue';
+import ContentDeck from './blocks/content-deck.vue';
 import KeyExecutive from './blocks/key-executive.vue';
 import getEdgeNodes from '../../utils/get-edge-nodes';
 
@@ -41,6 +65,7 @@ export default {
   components: {
     CompanyDetails,
     CompanySummary,
+    ContentDeck,
     KeyExecutive,
   },
 
