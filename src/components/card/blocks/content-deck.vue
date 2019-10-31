@@ -59,6 +59,8 @@ export default {
 @import "../../../scss/variables";
 
 .leaders-content-deck {
+  $block: &;
+
   &__header {
     display: flex;
     flex-direction: row;
@@ -99,6 +101,11 @@ export default {
     &:hover {
       color: $leaders-card-body-color;
     }
+  }
+
+  + #{ $block } {
+    padding-top: $leaders-card-body-padding;
+    border-top: 1px solid $leaders-card-body-hr-color;
   }
 
 }
