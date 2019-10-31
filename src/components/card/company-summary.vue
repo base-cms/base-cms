@@ -54,7 +54,6 @@ export default {
   }
 
   &__headline {
-    display: block;
     font-size: $leaders-card-headline-font-size;
     font-weight: $leaders-card-headline-font-weight;
     line-height: $leaders-card-headline-line-height;
@@ -62,7 +61,7 @@ export default {
     @include leaders-max-lines(
       $font-size: $leaders-card-headline-font-size,
       $line-height: $leaders-card-headline-line-height,
-      $num: 2,
+      $num: 3,
     );
 
     &:hover {
@@ -72,7 +71,6 @@ export default {
   }
 
   &__teaser {
-    display: block;
     font-size: $leaders-card-teaser-font-size;
     font-weight: $leaders-card-teaser-font-weight;
     line-height: $leaders-card-teaser-line-height;
