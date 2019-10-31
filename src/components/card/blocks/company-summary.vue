@@ -43,7 +43,7 @@ export default {
 @import "../../../scss/mixins";
 
 .leaders-company-summary {
-  width: 380px;
+  width: 350px;
 
   &__headline {
     font-size: $leaders-card-headline-font-size;

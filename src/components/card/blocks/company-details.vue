@@ -64,6 +64,9 @@ export default {
 @import "../../../scss/variables";
 
 .leaders-company-details {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   &__logo {
     box-sizing: content-box;
     display: block;
@@ -81,6 +84,10 @@ export default {
       margin-left: $leaders-logo-shadow-size;
       vertical-align: middle;
     }
+  }
+
+  &__links {
+    margin-top: auto;
   }
 }
 </style>
