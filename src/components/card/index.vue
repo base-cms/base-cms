@@ -150,6 +150,7 @@ export default {
   display: flex;
   flex-direction: column;
   min-width: 0;
+  max-width: 555px;
   word-wrap: break-word;
   background-clip: border-box;
 
