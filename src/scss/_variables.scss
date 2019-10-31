@@ -89,6 +89,9 @@ $leaders-logo-shadow-color: rgba(0, 0, 0, .5) !default;
 $leaders-logo-shadow-size: 5px !default;
 $leaders-logo-size: 100px !default;
 
+// stylelint-disable-next-line scss/dollar-variable-default
+$leaders-logo-wrapper-size: $leaders-logo-size + $leaders-logo-shadow-size * 2;
+
 $leaders-card-headline-color: $leaders-card-header-color !default;
 $leaders-card-headline-hover-color: $leaders-card-headline-color !default;
 $leaders-card-headline-font-size: 14px !default;

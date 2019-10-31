@@ -56,6 +56,10 @@ export default {
 
 .leaders-card {
   &__logo-links {
+    min-width:
+      calc(
+        #{$leaders-logo-wrapper-size} + #{$leaders-logo-border-size * 2} + #{$leaders-card-padding}
+      );
     padding-right: $leaders-card-padding;
   }
 }
