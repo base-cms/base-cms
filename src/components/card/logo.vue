@@ -28,14 +28,15 @@ export default {
 @import "../../scss/variables";
 
 .leaders-card {
+  $wrapper-size: $leaders-logo-size + $leaders-logo-shadow-size * 2;
   &__logo {
     box-sizing: content-box;
-    width: $leaders-logo-size + $leaders-logo-shadow-size * 2;
-    height: $leaders-logo-size + $leaders-logo-shadow-size * 2;
-    background-color: #fff;
-    border: 4px solid #fff;
-    border-radius: 110px;
-    box-shadow: inset 0 0 $leaders-logo-shadow-size rgba(0, 0, 0, .5);
+    width: $wrapper-size;
+    height: $wrapper-size;
+    background-color: $leaders-logo-background-color;
+    border: $leaders-logo-border-size solid $leaders-logo-background-color;
+    border-radius: $wrapper-size;
+    box-shadow: inset 0 0 $leaders-logo-shadow-size $leaders-logo-shadow-color;
     > img {
       width: $leaders-logo-size;
       height: $leaders-logo-size;
