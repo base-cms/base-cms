@@ -1,16 +1,19 @@
 <template>
-  <a
+  <common-link
     :class="classes"
     :href="href"
     :target="target"
-    :rel="rel"
   >
     <slot />
-  </a>
+  </common-link>
 </template>
 
 <script>
+import CommonLink from './link.vue';
+
 export default {
+  components: { CommonLink },
+
   props: {
     href: {
       type: String,
@@ -32,13 +35,6 @@ export default {
   },
 
   computed: {
-    rel() {
-      const rels = [];
-      if (this.target === '_blank') rels.push('noopener');
-      if (/^http/.test(this.href)) rels.push('noreferrer');
-      return rels.join(' ');
-    },
-
     classes() {
       const blockName = 'leaders-button-link';
       const classes = [blockName, `${blockName}--${this.type}`];
