@@ -25,11 +25,23 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../../scss/variables";
+
 .leaders-card {
   &__logo {
+    box-sizing: content-box;
+    width: $leaders-logo-size + $leaders-logo-shadow-size * 2;
+    height: $leaders-logo-size + $leaders-logo-shadow-size * 2;
+    background-color: #fff;
+    border: 4px solid #fff;
+    border-radius: 110px;
+    box-shadow: inset 0 0 $leaders-logo-shadow-size rgba(0, 0, 0, .5);
     > img {
-      width: 100px;
-      height: 100px;
+      width: $leaders-logo-size;
+      height: $leaders-logo-size;
+      margin-top: $leaders-logo-shadow-size;
+      margin-left: $leaders-logo-shadow-size;
+      vertical-align: middle;
     }
   }
 }
