@@ -171,7 +171,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import url("https://fonts.googleapis.com/css?family=Muli:300,400,600,800&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Muli:300,400,600,700,800&display=swap");
 @import "../node_modules/bootstrap/scss/bootstrap";
 @import "./scss/document";
 </style>

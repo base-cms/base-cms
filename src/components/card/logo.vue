@@ -44,6 +44,7 @@ export default {
     display: block;
     width: $wrapper-size;
     height: $wrapper-size;
+    margin-bottom: $leaders-card-padding;
     background-color: $leaders-logo-background-color;
     border: $leaders-logo-border-size solid $leaders-logo-background-color;
     border-radius: $wrapper-size;

@@ -6,14 +6,29 @@
       :href="profileHref"
       :company-name="companyName"
     />
+    <div class="leaders-card__links">
+      <button-link
+        v-if="companyHref"
+        :href="companyHref"
+        :block="true"
+        target="_blank"
+        type="accent"
+      >
+        Visit Site
+      </button-link>
+      <button-link :href="profileHref" :block="true">
+        Visit Profile
+      </button-link>
+    </div>
   </div>
 </template>
 
 <script>
 import Logo from './logo.vue';
+import ButtonLink from './button-link.vue';
 
 export default {
-  components: { Logo },
+  components: { Logo, ButtonLink },
 
   props: {
     companyName: {
