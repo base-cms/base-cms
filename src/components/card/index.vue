@@ -10,6 +10,7 @@
       <company-summary
         :headline="company.productSummary"
         :teaser="company.teaser"
+        :profile-href="profileHref"
       />
     </div>
     <div class="leaders-card__body">

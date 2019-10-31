@@ -1,7 +1,11 @@
 <template>
   <div class="leaders-card__company-summary">
-    <element-html :value="headline" class="leaders-card__headline" />
-    <element-html :value="teaser" class="leaders-card__teaser" />
+    <a v-if="headline" :href="profileHref" class="leaders-card__headline">
+      <element-html :value="headline" />
+    </a>
+    <a v-if="teaser" :href="profileHref" class="leaders-card__teaser">
+      <element-html :value="teaser" />
+    </a>
   </div>
 </template>
 
@@ -19,6 +23,10 @@ export default {
     teaser: {
       type: String,
       default: null,
+    },
+    profileHref: {
+      type: String,
+      required: true,
     },
   },
 
@@ -46,25 +54,39 @@ export default {
   }
 
   &__headline {
+    display: block;
     font-size: $leaders-card-headline-font-size;
     font-weight: $leaders-card-headline-font-weight;
     line-height: $leaders-card-headline-line-height;
+    color: $leaders-card-headline-color;
     @include leaders-max-lines(
       $font-size: $leaders-card-headline-font-size,
       $line-height: $leaders-card-headline-line-height,
       $num: 2,
     );
+
+    &:hover {
+      color: $leaders-card-headline-hover-color;
+      text-decoration: none;
+    }
   }
 
   &__teaser {
+    display: block;
     font-size: $leaders-card-teaser-font-size;
     font-weight: $leaders-card-teaser-font-weight;
     line-height: $leaders-card-teaser-line-height;
+    color: $leaders-card-teaser-color;
     @include leaders-max-lines(
       $font-size: $leaders-card-teaser-font-size,
       $line-height: $leaders-card-teaser-line-height,
       $num: 5,
     );
+
+    &:hover {
+      color: $leaders-card-teaser-hover-color;
+      text-decoration: none;
+    }
   }
 }
 </style>
