@@ -31,6 +31,7 @@
                 >
                   <list
                     :items="items"
+                    :identifier="section.id"
                     nav-direction="vertical"
                     open="left"
                   >

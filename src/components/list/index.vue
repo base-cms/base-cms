@@ -21,12 +21,13 @@
         </nav-item>
       </nav-container>
     </navbar>
-    <mounting-portal mount-to="#leaders-dropdown-portal-target" name="leaders-dropdown" append>
+    <mounting-portal mount-to="#leaders-dropdown-portal-target" :name="portalName" append>
       <dropdown
         :direction="navDirection"
         :open="open"
         :transitions-disabled="transitionsDisabled"
         :is-active="isDropdownActive"
+        :data-identifier="identifier"
       >
         <dropdown-background :styles="styles.background" />
         <dropdown-arrow ref="arrow" :styles="styles.arrow" />
@@ -86,6 +87,10 @@ export default {
   },
 
   props: {
+    identifier: {
+      type: [String, Number],
+      required: true,
+    },
     items: {
       type: Array,
       required: true,
@@ -130,6 +135,9 @@ export default {
   }),
 
   computed: {
+    portalName() {
+      return `leaders-dropdown-${this.identifier}`;
+    },
     activeSection() {
       const { activeIndex } = this;
       if (activeIndex == null) return null;
