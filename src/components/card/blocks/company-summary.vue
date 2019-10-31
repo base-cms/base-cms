@@ -1,5 +1,5 @@
 <template>
-  <div class="leaders-company-summary">
+  <div v-if="canDisplay" class="leaders-company-summary">
     <a v-if="headline" :href="profileHref" class="leaders-company-summary__headline">
       <element-html :value="headline" />
     </a>
@@ -32,7 +32,7 @@ export default {
 
   computed: {
     canDisplay() {
-      return Boolean(this.headline && this.teaser);
+      return Boolean(this.headline || this.teaser);
     },
   },
 };
@@ -43,13 +43,7 @@ export default {
 @import "../../../scss/mixins";
 
 .leaders-company-summary {
-  // @todo change to max-width
-  // there is a bug where when card resizes it doesn't change
   width: 380px;
-  padding-left: $leaders-card-padding;
-  > *:not(:last-child) {
-    margin-bottom: 14px;
-  }
 
   &__headline {
     font-size: $leaders-card-headline-font-size;
@@ -83,6 +77,10 @@ export default {
       color: $leaders-card-teaser-hover-color;
       text-decoration: none;
     }
+  }
+
+  &__headline + &__teaser {
+    margin-top: 14px;
   }
 }
 </style>

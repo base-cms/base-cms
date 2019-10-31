@@ -57,6 +57,7 @@ export default {
     },
   },
 };
+/* eslint-disable */
 </script>
 
 <style lang="scss">
@@ -80,14 +81,6 @@ export default {
       margin-left: $leaders-logo-shadow-size;
       vertical-align: middle;
     }
-  }
-
-  &__links {
-    min-width:
-      calc(
-        #{$leaders-logo-wrapper-size} + #{$leaders-logo-border-size * 2} + #{$leaders-card-padding}
-      );
-    padding-right: $leaders-card-padding;
   }
 }
 </style>

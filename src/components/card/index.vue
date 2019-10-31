@@ -1,17 +1,21 @@
 <template>
-  <div :class="classNames">
+  <div :class="classes">
     <div class="leaders-card__header">
-      <company-details
-        :company-name="company.name"
-        :logo-src="logo.src"
-        :profile-href="profileHref"
-        :company-href="company.website"
-      />
-      <company-summary
-        :headline="company.productSummary"
-        :teaser="company.teaser"
-        :profile-href="profileHref"
-      />
+      <div class="leaders-card__header-left">
+        <company-details
+          :company-name="company.name"
+          :logo-src="logo.src"
+          :profile-href="profileHref"
+          :company-href="company.website"
+        />
+      </div>
+      <div v-if="displayRightHeader" class="leaders-card__header-right">
+        <company-summary
+          :headline="company.productSummary"
+          :teaser="company.teaser"
+          :profile-href="profileHref"
+        />
+      </div>
     </div>
     <div class="leaders-card__body">
       <slot name="body" />
@@ -48,7 +52,10 @@ export default {
     profileHref() {
       return get(this.company, 'siteContext.path');
     },
-    classNames() {
+    displayRightHeader() {
+      return Boolean(this.company.productSummary || this.company.teaser);
+    },
+    classes() {
       const blockName = 'leaders-card';
       const classes = [blockName];
       if (this.isActive) classes.push(`${blockName}--active`);
@@ -91,6 +98,15 @@ export default {
     transition-property: $leaders-card-transition-property;
   }
 
+  &__header-left + &__header-right {
+    padding-left: $leaders-card-padding;
+    border-left: 1px solid $leaders-card-header-hr-color;
+  }
+
+  &__header-left:not(:only-child) {
+    padding-right: $leaders-card-padding;
+  }
+
   &--active {
     #{ $block } {
       &__header {
@@ -105,7 +121,4 @@ export default {
   }
 }
 
-.leaders-company-details + .leaders-company-summary {
-  border-left: 1px solid $leaders-card-header-hr-color;
-}
 </style>
