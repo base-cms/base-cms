@@ -1,18 +1,22 @@
 <template>
-  <div class="leaders-card__logo">
+  <a :href="href" class="leaders-card__logo">
     <!-- @todo update this to properly lazyload! -->
     <img
       class="lazyload"
       :src="src"
       :alt="alt"
     >
-  </div>
+  </a>
 </template>
 
 <script>
 export default {
   props: {
     src: {
+      type: String,
+      required: true,
+    },
+    href: {
       type: String,
       required: true,
     },
@@ -37,6 +41,7 @@ export default {
   $wrapper-size: $leaders-logo-size + $leaders-logo-shadow-size * 2;
   &__logo {
     box-sizing: content-box;
+    display: block;
     width: $wrapper-size;
     height: $wrapper-size;
     background-color: $leaders-logo-background-color;

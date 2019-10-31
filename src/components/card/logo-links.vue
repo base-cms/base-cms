@@ -3,6 +3,7 @@
     <logo
       v-if="logoSrc"
       :src="logoSrc"
+      :href="profileHref"
       :company-name="companyName"
     />
   </div>
