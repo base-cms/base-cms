@@ -57,6 +57,7 @@ export default {
 
 <style lang="scss">
 @import "../../../scss/variables";
+@import "../../../scss/functions";
 
 .leaders-content-deck {
   $block: &;
@@ -65,7 +66,7 @@ export default {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-bottom: $leaders-card-body-padding / 2;
+    margin-bottom: $leaders-card-padding / 2;
     font-size: 14px;
   }
 
@@ -79,12 +80,14 @@ export default {
   }
 
   &__item {
-    padding-right: $leaders-card-body-padding / 2;
-    padding-left: $leaders-card-body-padding / 2;
+    &--promo {
+      padding-right: leaders-promo-card-padding();
+      padding-left: leaders-promo-card-padding();
+    }
 
     &--video {
-      padding-right: $leaders-card-body-padding / 2 * 1.5;
-      padding-left: $leaders-card-body-padding / 2 * 1.5;
+      padding-right: leaders-video-card-padding();
+      padding-left: leaders-video-card-padding();
     }
 
     &:first-child {
@@ -104,7 +107,7 @@ export default {
   }
 
   + #{ $block } {
-    padding-top: $leaders-card-body-padding;
+    padding-top: $leaders-card-padding;
     border-top: 1px solid $leaders-card-body-hr-color;
   }
 

@@ -1,0 +1,31 @@
+@function leaders-content-min-deck-width($width, $num) {
+  @return ($width * $num) + ($leaders-card-padding * ($num - 1));
+}
+
+@function leaders-card-deck-width() {
+  $promos-width: leaders-content-min-deck-width($leaders-promotion-card-image-width, $leaders-promotion-card-count);
+  $videos-width: leaders-content-min-deck-width($leaders-video-card-image-width, $leaders-video-card-count);
+  @if ($promos-width > $videos-width) {
+    @return $promos-width;
+  }
+  @return $videos-width;
+}
+
+@function leaders-card-width() {
+  @return leaders-card-deck-width() + $leaders-card-padding * 2;
+}
+
+@function leaders-deck-item-padding($width, $num) {
+  $card-width: leaders-card-deck-width();
+  $items-width: ($width * $num);
+  $diff: $card-width - $items-width;
+  @return ($diff / ($num - 1)) / 2;
+}
+
+@function leaders-video-card-padding() {
+  @return leaders-deck-item-padding($leaders-video-card-image-width, $leaders-video-card-count);
+}
+
+@function leaders-promo-card-padding() {
+  @return leaders-deck-item-padding($leaders-promotion-card-image-width, $leaders-promotion-card-count);
+}

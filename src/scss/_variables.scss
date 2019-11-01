@@ -67,7 +67,6 @@ $leaders-card-padding: 15px !default;
 
 $leaders-card-header-color: $leaders-base-color !default;
 $leaders-card-header-bg-color: #eff1f2 !default;
-$leaders-card-header-padding: $leaders-card-padding !default;
 
 $leaders-card-header-hr-color: #cecece !default;
 
@@ -76,7 +75,6 @@ $leaders-card-body-color: $leaders-primary-color !default;
 $leaders-card-body-font-size: 13px !default;
 $leaders-card-body-font-weight: 400 !default;
 $leaders-card-body-bg-color: #fff !default;
-$leaders-card-body-padding: $leaders-card-padding !default;
 
 $leaders-card-body-hr-color: #999 !default;
 
@@ -113,12 +111,14 @@ $leaders-key-executive-font-size: 14px !default;
 $leaders-key-executive-font-weight: 400 !default;
 
 // Promotion Cards
+$leaders-promotion-card-count: 4 !default;
 $leaders-promotion-card-font-size: 13px !default;
 $leaders-promotion-card-line-height: 1.4 !default;
 $leaders-promotion-card-image-width: 120px !default;
 $leaders-promotion-card-image-height: 90px !default;
 
 // Youtube Video Cards
+$leaders-video-card-count: 3 !default;
 $leaders-video-card-font-size: 13px !default;
 $leaders-video-card-line-height: 1.4 !default;
 $leaders-video-card-image-width: 160px !default;

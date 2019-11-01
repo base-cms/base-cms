@@ -28,7 +28,7 @@
       </div>
     </div>
     <div v-if="displayBody" class="leaders-card__body">
-      <content-deck :value="promotions">
+      <content-deck :value="promotions" :item-modifiers="['promo']">
         <template #header-left>
           Featured Products
         </template>
@@ -150,14 +150,14 @@ export default {
   display: flex;
   flex-direction: column;
   min-width: 0;
-  max-width: 555px;
+  max-width: leaders-card-width();
   word-wrap: break-word;
   background-clip: border-box;
 
   &__header {
     display: flex;
     flex-direction: row;
-    padding: $leaders-card-header-padding;
+    padding: $leaders-card-padding;
     color: $leaders-card-header-color;
     background-color: $leaders-card-initial-bg-color;
     opacity: $leaders-card-initial-opacity;
@@ -167,7 +167,7 @@ export default {
 
   &__body {
     flex: 1 1 auto;
-    padding: $leaders-card-body-padding;
+    padding: $leaders-card-padding;
     font-size: $leaders-card-body-font-size;
     font-weight: $leaders-card-body-font-weight;
     color: $leaders-card-body-color;
@@ -177,7 +177,7 @@ export default {
     transition-property: $leaders-card-transition-property;
 
     > div:not(:last-child) {
-      margin-bottom: $leaders-card-body-padding;
+      margin-bottom: $leaders-card-padding;
     }
   }
 
