@@ -42,7 +42,6 @@ export default {
 
   methods: {
     emitClick(event) {
-      event.preventDefault();
       const flags = {
         willClickUnloadPage: this.willClickUnloadPage,
         canSendBeacon: this.canSendBeacon,
