@@ -3,6 +3,7 @@
     :href="href"
     :target="target"
     :rel="rel"
+    @click="emitClick"
   >
     <slot />
   </a>
@@ -27,6 +28,12 @@ export default {
       if (this.target === '_blank') rels.push('noopener');
       if (/^http/.test(this.href)) rels.push('noreferrer');
       return rels.join(' ');
+    },
+  },
+
+  methods: {
+    emitClick(event) {
+      this.$emit('click', { href: this.href }, event);
     },
   },
 };

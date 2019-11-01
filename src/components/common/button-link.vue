@@ -3,6 +3,7 @@
     :class="classes"
     :href="href"
     :target="target"
+    @click="emitClick"
   >
     <slot />
   </common-link>
@@ -40,6 +41,12 @@ export default {
       const classes = [blockName, `${blockName}--${this.type}`];
       if (this.block) classes.push(`${blockName}--block`);
       return classes;
+    },
+  },
+
+  methods: {
+    emitClick(...args) {
+      this.$emit('click', ...args);
     },
   },
 };
