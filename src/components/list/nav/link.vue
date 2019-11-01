@@ -101,6 +101,8 @@ export default {
 .leaders-nav {
   &__link {
     display: block;
+    width: $leaders-nav-link-width;
+    max-width: $leaders-nav-link-max-width;
     padding: $leaders-nav-link-padding-x $leaders-nav-link-padding-y;
     margin: 0;
     font-size: $leaders-nav-link-font-size;
