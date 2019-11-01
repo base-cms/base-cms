@@ -13,8 +13,8 @@ class ArrowPosition extends AbstractPosition {
     const { calculus: calcs } = this;
     const { pageYOffset } = window;
     if (this.opensLeft || this.opensRight) return pageYOffset + calcs.link('top') + calcs.link('halfH');
-    if (this.opensAbove) return pageYOffset + calcs.link('top');
-    return pageYOffset + calcs.link('bottom');
+    if (this.opensAbove) return pageYOffset + calcs.link('top') - calcs.arrow('h');
+    return pageYOffset + calcs.link('bottom') + calcs.arrow('h');
   }
 }
 
