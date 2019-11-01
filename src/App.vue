@@ -60,7 +60,6 @@
 import { get } from '@base-cms/object-path';
 import gql from 'graphql-tag';
 import SectionContentLoader from './components/section-content-loader.vue';
-// import SampleContent from './components/sample-content.vue';
 import List from './components/list/index.vue';
 import Card from './components/card/index.vue';
 import Leaders from './components/root.vue';
