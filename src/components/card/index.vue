@@ -28,7 +28,7 @@
       </div>
     </div>
     <div v-if="displayBody" class="leaders-card__body">
-      <content-deck :value="promotions" :item-modifiers="['promo']">
+      <content-deck :value="promotions" :limit="4" :item-modifiers="['promo']">
         <template #header-left>
           Featured Products
         </template>
@@ -46,7 +46,7 @@
           />
         </template>
       </content-deck>
-      <content-deck :value="videos" :item-modifiers="['video']">
+      <content-deck :value="videos" :limit="3" :item-modifiers="['video']">
         <template #header-left>
           Featured Videos
         </template>
