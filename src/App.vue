@@ -43,7 +43,7 @@
                       />
                     </template>
                     <template #dropdown="{ item, isActive }">
-                      <card :company="item" :is-active="isActive" />
+                      <card :company="item" :is-active="isActive" @action="emitCardAction" />
                     </template>
                   </list>
                 </section-content-loader>
@@ -97,6 +97,10 @@ export default {
   methods: {
     get(obj, path) {
       return get(obj, path);
+    },
+
+    emitCardAction(...args) {
+      console.log('emitCardAction', ...args);
     },
 
     /**

@@ -8,6 +8,8 @@
           :logo-src="logo.src"
           :profile-href="profileHref"
           :company-href="company.website"
+          @profile-click="handleProfileClick"
+          @website-click="handleWebsiteClick"
         />
       </div>
       <div v-if="displayRightHeader" class="leaders-card__header-right">
@@ -16,6 +18,7 @@
             :headline="company.productSummary"
             :teaser="company.teaser"
             :profile-href="profileHref"
+            @profile-click="handleProfileClick"
           />
         </div>
         <div v-if="displayRightBottomHeader" class="leaders-card__header-right-bottom">
@@ -33,16 +36,17 @@
           Featured Products
         </template>
         <template #header-right>
-          <a :href="profileHref">View more products &raquo;</a>
+          <view-more label="products" :href="profileHref" @click="handleProfileClick" />
         </template>
         <template #default="{ item }">
           <promotion-card
-            :data-content-id="item.id"
+            :content-id="item.id"
             :title="item.linkText || item.name"
             :href="item.linkUrl"
             :image-src="get(item, 'primaryImage.src')"
             :image-alt="get(item, 'primaryImage.alt')"
             :image-is-logo="get(item, 'primaryImage.isLogo')"
+            @click="handlePromotionClick"
           />
         </template>
       </content-deck>
@@ -51,14 +55,15 @@
           Featured Videos
         </template>
         <template #header-right>
-          <a :href="profileHref">View more videos &raquo;</a>
+          <view-more label="videos" :href="profileHref" @click="handleProfileClick" />
         </template>
         <template #default="{ item }">
           <video-card
-            :data-youtube-id="item.id"
+            :video-id="item.id"
             :title="item.title"
             :href="item.url"
             :image-src="item.thumbnail"
+            @click="handeVideoClick"
           />
         </template>
       </content-deck>
@@ -74,6 +79,7 @@ import ContentDeck from './blocks/content-deck.vue';
 import KeyExecutive from './blocks/key-executive.vue';
 import PromotionCard from './blocks/promotion-card.vue';
 import VideoCard from './blocks/video-card.vue';
+import ViewMore from './blocks/view-more.vue';
 import getEdgeNodes from '../../utils/get-edge-nodes';
 
 export default {
@@ -84,6 +90,7 @@ export default {
     KeyExecutive,
     PromotionCard,
     VideoCard,
+    ViewMore,
   },
 
   props: {
@@ -136,6 +143,41 @@ export default {
   methods: {
     get(obj, path) {
       return get(obj, path);
+    },
+    handleProfileClick(data, event) {
+      this.emitAction({
+        type: 'click',
+        label: 'Profile Page',
+      }, data, event);
+    },
+    handleWebsiteClick(data, event) {
+      this.emitAction({
+        type: 'click',
+        label: 'Company Website',
+      }, data, event);
+    },
+    handeVideoClick(data, event) {
+      this.emitAction({
+        type: 'click',
+        label: 'YouTube Video',
+      }, data, event);
+    },
+    handlePromotionClick(data, event) {
+      this.emitAction({
+        type: 'click',
+        label: 'Promotion Item',
+      }, data, event);
+    },
+
+    emitAction(action, data, event) {
+      this.$emit('action', {
+        ...action,
+        category: 'Leaders Data Card',
+      }, {
+        ...data,
+        companyId: this.company.id,
+        companyName: this.company.name,
+      }, event);
     },
   },
 };

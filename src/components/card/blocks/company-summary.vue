@@ -1,29 +1,32 @@
 <template>
   <div v-if="canDisplay" class="leaders-company-summary">
-    <a
+    <common-link
       v-if="headline"
       :href="profileHref"
       :title="linkTitle"
       class="leaders-company-summary__headline"
+      @click="emitProfileClick('Summary Headline', ...arguments)"
     >
       <element-html :value="headline" />
-    </a>
-    <a
+    </common-link>
+    <common-link
       v-if="teaser"
       :href="profileHref"
       :title="linkTitle"
       class="leaders-company-summary__teaser"
+      @click="emitProfileClick('Summary Teaser', ...arguments)"
     >
       <element-html :value="teaser" />
-    </a>
+    </common-link>
   </div>
 </template>
 
 <script>
 import ElementHtml from '../../common/html.vue';
+import CommonLink from '../../common/link.vue';
 
 export default {
-  components: { ElementHtml },
+  components: { ElementHtml, CommonLink },
 
   props: {
     headline: {
@@ -47,6 +50,12 @@ export default {
   computed: {
     canDisplay() {
       return Boolean(this.headline || this.teaser);
+    },
+  },
+
+  methods: {
+    emitProfileClick(sourceLabel, data, event) {
+      this.$emit('profile-click', { sourceLabel, ...data }, event);
     },
   },
 };
