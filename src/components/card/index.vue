@@ -140,6 +140,13 @@ export default {
     },
   },
 
+  watch: {
+    isActive() {
+      const type = this.isActive ? 'open' : 'close';
+      this.emitAction({ type });
+    },
+  },
+
   methods: {
     get(obj, path) {
       return get(obj, path);
@@ -177,6 +184,7 @@ export default {
         ...data,
         companyId: this.company.id,
         companyName: this.company.name,
+        date: Date.now(),
       }, event);
     },
   },
