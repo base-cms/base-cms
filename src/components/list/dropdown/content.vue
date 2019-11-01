@@ -14,7 +14,6 @@
     position: absolute;
     top: 0;
     left: 0;
-    padding-right: $leaders-dropdown-background-border-size;
   }
 
   &--open-below {

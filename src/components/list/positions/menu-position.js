@@ -11,7 +11,7 @@ class MenuPosition extends AbstractPosition {
     const { pageXOffset } = window;
     if (this.opensAbove || this.opensBelow) return pageXOffset + calcs.link('left') + calcs.link('halfW') - calcs.menu('halfW');
     if (this.opensLeft) return pageXOffset + calcs.link('left') - calcs.arrow('w') - calcs.menu('w');
-    return pageXOffset + calcs.link('right');
+    return pageXOffset + calcs.link('right') + calcs.arrow('w');
   }
 
   get y() {
