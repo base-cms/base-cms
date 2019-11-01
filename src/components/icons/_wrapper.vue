@@ -53,22 +53,22 @@ export default {
     height: $leaders-icon-size;
     overflow: hidden;
     vertical-align: middle;
-    transition: fill 250ms ease;
-    fill: currentColor;
+    transition-duration: 150ms;
+    transition-property: fill;
   }
 
   &--filter-none {
     width: $leaders-icon-filter-size;
     height: $leaders-icon-filter-size;
     margin-right: $leaders-icon-filter-margin;
-    color: $leaders-icon-filter-color;
     svg {
       width: $leaders-icon-filter-size;
       height: $leaders-icon-filter-size;
+      fill: $leaders-icon-filter-color;
     }
     &#{ $block } {
-      &--active {
-        color: $leaders-icon-filter-active-color;
+      &--active svg {
+        fill: $leaders-icon-filter-active-color;
       }
     }
   }
@@ -77,14 +77,14 @@ export default {
     width: $leaders-icon-videocam-size;
     height: $leaders-icon-videocam-size;
     margin-left: $leaders-icon-videocam-margin;
-    color: $leaders-icon-videocam-color;
     svg {
       width: $leaders-icon-videocam-size;
       height: $leaders-icon-videocam-size;
+      fill: $leaders-icon-videocam-color;
     }
     &#{ $block } {
-      &--active {
-        color: $leaders-icon-videocam-active-color;
+      &--active svg {
+        fill: $leaders-icon-videocam-active-color;
       }
     }
   }

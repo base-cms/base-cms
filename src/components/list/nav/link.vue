@@ -1,13 +1,12 @@
 <template>
-  <component
-    :is="tag"
+  <button
     :data-dropdown-index="index"
     :class="classNames"
     :aria-expanded="isActive"
     aria-haspopup="true"
   >
     <slot :is-active="isActive" />
-  </component>
+  </button>
 </template>
 
 <script>
@@ -24,10 +23,6 @@ export default {
     activeIndex: {
       type: Number,
       default: null,
-    },
-    tag: {
-      type: String,
-      default: 'button',
     },
   },
 
@@ -132,8 +127,12 @@ export default {
 
     &--active {
       color: $leaders-nav-link-active-color;
+      text-decoration: none;
       background-color: $leaders-nav-link-active-bg-color;
       box-shadow: $leaders-nav-link-active-box-shadow;
+      svg {
+        fill: $leaders-nav-link-active-color;
+      }
     }
   }
 }
