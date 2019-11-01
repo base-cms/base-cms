@@ -55,6 +55,7 @@
 </template>
 
 <script>
+import { get } from '@base-cms/object-path';
 import { MountingPortal } from 'portal-vue';
 import ElementCalculus from './element-calculus';
 import ArrowPosition from './positions/arrow-position';
@@ -94,6 +95,14 @@ export default {
     items: {
       type: Array,
       required: true,
+    },
+    itemHrefPath: {
+      type: String,
+      default: 'siteContext.path',
+    },
+    preventOpen: {
+      type: Boolean,
+      default: false,
     },
     navDirection: {
       type: String,
@@ -171,6 +180,10 @@ export default {
   },
 
   methods: {
+    getItemHref(item) {
+      return get(item, this.itemHrefPath);
+    },
+
     onLinkFocus({ index, element }) {
       this.clearCloseTimeout();
       this.setOpenTimeout({ link: element, activeIndex: index });
@@ -184,9 +197,13 @@ export default {
     },
 
     onLinkEnd({ index, element, event }) {
-      event.preventDefault();
-      event.stopPropagation();
-      this.toggleDropdownFor({ link: element, activeIndex: index });
+      if (!this.preventOpen) {
+        event.preventDefault();
+        event.stopPropagation();
+        this.toggleDropdownFor({ link: element, activeIndex: index });
+      } else {
+        window.location.href = this.getItemHref(this.items[index]);
+      }
     },
 
     onLinkLeave({ event }) {
@@ -212,6 +229,7 @@ export default {
     },
 
     toggleDropdownFor({ link, activeIndex }) {
+      if (this.preventOpen) return;
       if (this.activeIndex === activeIndex) {
         this.closeDropdown();
       } else {
@@ -224,6 +242,9 @@ export default {
 
       // Set active dropdown id.
       this.activeIndex = activeIndex;
+
+      if (this.preventOpen) return;
+
       this.isDropdownActive = true;
       // Set last active index
       this.lastActiveIndex = activeIndex;
