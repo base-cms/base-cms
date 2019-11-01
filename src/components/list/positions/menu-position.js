@@ -45,8 +45,8 @@ class MenuPosition extends AbstractPosition {
         return temp;
       }
     }
-    if (this.opensAbove) return calcs.link('topNavTop') - calcs.menu('h');
-    return calcs.link('bottomNavTop');
+    if (this.opensAbove) return calcs.link('top') + window.pageYOffset - calcs.menu('h') - calcs.arrow('h');
+    return calcs.link('bottom') + window.pageYOffset + calcs.arrow('h');
   }
 
   get top() {
