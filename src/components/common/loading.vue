@@ -31,7 +31,7 @@ export default {
       default: 'Loading data...',
     },
     error: {
-      type: Object,
+      type: Error,
       default: null,
     },
     hasNoResults: {
