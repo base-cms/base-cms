@@ -1,0 +1,28 @@
+import gql from 'graphql-tag';
+
+export default gql`
+
+query AllLeadersSections($alias: String!) {
+  websiteSections(input: { sectionAlias: $alias }) {
+    id
+    name
+    children(input: { sort: { field: name, order: asc }, pagination: { limit: 0 } }) {
+      edges {
+        node {
+          id
+          name
+          children(input: { sort: { field: name, order: asc }, pagination: { limit: 0 } }) {
+            edges {
+              node {
+                id
+                name
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+`;
