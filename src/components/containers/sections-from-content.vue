@@ -8,11 +8,13 @@
       v-if="!hasLoaded"
       :is-loading="isLoading"
       :error="error"
-      :has-no-results="!sections.length"
       loading-message="Loading sections..."
       no-results-message="No sections were found."
     />
-    <!-- @todo if taxonomies or contextual sections are empty, load all sections -->
+    <all-sections
+      v-else-if="hasLoaded && !sections.length"
+      :section-alias="leadersSectionAlias"
+    />
     <content-for-section
       v-for="section in sections"
       v-else
@@ -26,13 +28,14 @@
 
 <script>
 import Loading from '../common/loading.vue';
+import AllSections from './all-sections.vue';
 import ContentForSection from './content-for-section.vue';
 import contentQuery from '../../graphql/queries/content';
 import sectionsQuery from '../../graphql/queries/sections-from-taxonomy';
 import getEdgeNodes from '../../utils/get-edge-nodes';
 
 export default {
-  components: { Loading, ContentForSection },
+  components: { Loading, ContentForSection, AllSections },
 
   props: {
     contentId: {
@@ -97,6 +100,7 @@ export default {
 
     async loadSections() {
       const { taxonomyIds } = this;
+      if (!taxonomyIds.length) return [];
       const variables = { taxonomyIds };
       const { data } = await this.$apollo.query({ query: sectionsQuery, variables });
       const sections = getEdgeNodes(data, 'websiteSections');
