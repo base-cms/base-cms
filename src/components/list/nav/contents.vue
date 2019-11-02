@@ -10,8 +10,8 @@
 
 
 <script>
-import FilterNoneIcon from './icons/filter-none.vue';
-import VideocamIcon from './icons/videocam.vue';
+import FilterNoneIcon from '../../icons/filter-none.vue';
+import VideocamIcon from '../../icons/videocam.vue';
 
 export default {
   components: { FilterNoneIcon, VideocamIcon },

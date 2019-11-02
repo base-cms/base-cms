@@ -8,7 +8,7 @@
     <div v-if="isExpanded">
       <div v-if="isLoading" :class="elementClass('loading')">
         <loading-spinner />
-        Loading content...
+        <span :class="elementClass('loading-message')">Loading content...</span>
       </div>
       <div v-else-if="error" :class="elementClass('error')">
         {{ error.message }}
@@ -16,9 +16,24 @@
       <div v-else-if="!items.length" :class="elementClass('no-results')">
         No content was found.
       </div>
-      <div v-else>
-        Loaded! Found {{ items.length }} items.
-      </div>
+      <list
+        v-else
+        :items="items"
+        :identifier="sectionId"
+        nav-direction="vertical"
+        open="left"
+      >
+        <template #nav-link="{ item, isActive }">
+          <link-contents
+            :title="item.name"
+            :is-active="isActive"
+            :youtube="item.youtube"
+          />
+        </template>
+        <template #dropdown="{ item, isActive }">
+          <card :company="item" :is-active="isActive" @action="emitCardAction" />
+        </template>
+      </list>
     </div>
   </div>
 </template>
@@ -27,6 +42,11 @@
 import PlusIcon from '../icons/add-circle-outline.vue';
 import MinusIcon from '../icons/remove-circle-outline.vue';
 import LoadingSpinner from '../common/loading-spinner.vue';
+
+import List from '../list/index.vue';
+import Card from '../card/index.vue';
+import LinkContents from '../list/nav/contents.vue';
+
 import query from '../../graphql/queries/content-for-section';
 import getEdgeNodes from '../../utils/get-edge-nodes';
 
@@ -35,6 +55,9 @@ export default {
     PlusIcon,
     MinusIcon,
     LoadingSpinner,
+    List,
+    Card,
+    LinkContents,
   },
 
   props: {
@@ -86,6 +109,10 @@ export default {
       this.isExpanded = !this.isExpanded;
     },
 
+    emitCardAction(...args) {
+      console.log('emitCardAction', ...args);
+    },
+
     async loadContent() {
       if (this.canLoad) {
         this.isLoading = true;
@@ -110,7 +137,7 @@ export default {
 @import "../../scss/variables";
 
 .leaders-content-for-section {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 
   &__title {
     margin-left: 5px;
@@ -135,6 +162,10 @@ export default {
     &:active {
       outline: none;
     }
+  }
+
+  &__loading-message {
+    margin-left: 5px;
   }
 
   &:last-child {
