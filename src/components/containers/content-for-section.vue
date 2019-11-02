@@ -1,13 +1,11 @@
 <template>
   <div :class="blockName" :data-section-id="sectionId">
-    <h5 :class="elementClass('title')">
-      <button :class="elementClass('toggle-button')" @click="toggleExpanded">
-        <plus-icon v-show="!isExpanded" />
-        <minus-icon v-show="isExpanded" />
-      </button>
-      <span>{{ title }}</span>
-    </h5>
-    <div v-show="isExpanded">
+    <button :class="elementClass('toggle-button')" @click="toggleExpanded">
+      <plus-icon v-show="!isExpanded" />
+      <minus-icon v-show="isExpanded" />
+      <span :class="elementClass('title')">{{ title }}</span>
+    </button>
+    <div v-if="isExpanded">
       <div v-if="isLoading" :class="elementClass('loading')">
         Loading...
       </div>
@@ -72,15 +70,33 @@ export default {
 .leaders-content-for-section {
   margin-bottom: 20px;
 
-  &:last-child {
-    margin-bottom: 0;
+  &__title {
+    margin-left: 5px;
   }
 
-  &__title {
-    margin-bottom: calc(#{$leaders-nav-link-padding-y} - #{$leaders-nav-link-padding-x});
+  &__toggle-button {
+    padding: 0;
+    margin: 0;
     font-size: $leaders-section-content-title-font-size;
     font-weight: $leaders-section-content-title-font-weight;
+    text-align: left;
+    text-decoration: none;
     text-transform: $leaders-section-content-title-transform;
+    cursor: pointer;
+    user-select: none;
+    background: none;
+    border: none;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+
+    &:focus,
+    &:active {
+      outline: none;
+    }
+  }
+
+  &:last-child {
+    margin-bottom: 0;
   }
 }
 </style>
