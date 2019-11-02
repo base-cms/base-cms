@@ -6,16 +6,14 @@
       <span :class="elementClass('title')">{{ title }}</span>
     </button>
     <div v-if="isExpanded">
-      <div v-if="isLoading" :class="elementClass('loading')">
-        <loading-spinner />
-        <span :class="elementClass('loading-message')">Loading content...</span>
-      </div>
-      <div v-else-if="error" :class="elementClass('error')">
-        {{ error.message }}
-      </div>
-      <div v-else-if="!items.length" :class="elementClass('no-results')">
-        No content was found.
-      </div>
+      <loading
+        v-if="!hasLoaded"
+        :is-loading="isLoading"
+        :error="error"
+        :has-no-results="!items.length"
+        loading-message="Loading content..."
+        no-results-message="No content was found."
+      />
       <list
         v-else
         :items="items"
@@ -41,7 +39,7 @@
 <script>
 import PlusIcon from '../icons/add-circle-outline.vue';
 import MinusIcon from '../icons/remove-circle-outline.vue';
-import LoadingSpinner from '../common/loading-spinner.vue';
+import Loading from '../common/loading.vue';
 
 import List from '../list/index.vue';
 import Card from '../card/index.vue';
@@ -54,7 +52,7 @@ export default {
   components: {
     PlusIcon,
     MinusIcon,
-    LoadingSpinner,
+    Loading,
     List,
     Card,
     LinkContents,
@@ -162,10 +160,6 @@ export default {
     &:active {
       outline: none;
     }
-  }
-
-  &__loading-message {
-    margin-left: 5px;
   }
 
   &:last-child {
