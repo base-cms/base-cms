@@ -100,6 +100,7 @@ export default {
     max-width: $leaders-nav-link-max-width;
     padding: $leaders-nav-link-padding-x $leaders-nav-link-padding-y;
     margin: 0;
+    margin-left: $leaders-icon-section-toggle-size;
     font-size: $leaders-nav-link-font-size;
     font-weight: $leaders-nav-link-font-weight;
     line-height: $leaders-nav-link-line-height;

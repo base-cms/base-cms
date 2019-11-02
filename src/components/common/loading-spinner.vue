@@ -45,7 +45,7 @@ export default {
   display: inline-block;
   width: 16px;
   height: 16px;
-  color: $leaders-primary-color;
+  color: $leaders-primary-color-light;
   vertical-align: text-bottom;
   background-color: currentColor;
   border-radius: 50%;
