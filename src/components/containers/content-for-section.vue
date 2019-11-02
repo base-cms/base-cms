@@ -7,6 +7,7 @@
     </button>
     <div v-if="isExpanded">
       <div v-if="isLoading" :class="elementClass('loading')">
+        <loading-spinner />
         Loading content...
       </div>
       <div v-else-if="error" :class="elementClass('error')">
@@ -25,6 +26,7 @@
 <script>
 import PlusIcon from '../icons/add-circle-outline.vue';
 import MinusIcon from '../icons/remove-circle-outline.vue';
+import LoadingSpinner from '../common/loading-spinner.vue';
 import query from '../../graphql/queries/content-for-section';
 import getEdgeNodes from '../../utils/get-edge-nodes';
 
@@ -32,6 +34,7 @@ export default {
   components: {
     PlusIcon,
     MinusIcon,
+    LoadingSpinner,
   },
 
   props: {
