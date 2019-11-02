@@ -142,6 +142,8 @@ export default {
   }
 
   &__toggle-button {
+    display: inline-flex;
+    flex-direction: row;
     padding: 0;
     margin: 0;
     font-size: $leaders-section-content-title-font-size;
