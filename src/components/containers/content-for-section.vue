@@ -42,6 +42,10 @@ export default {
       type: String,
       required: true,
     },
+    expanded: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   data: () => ({
@@ -51,6 +55,10 @@ export default {
     isExpanded: false,
     error: null,
   }),
+
+  created() {
+    this.isExpanded = this.expanded;
+  },
 
   methods: {
     elementClass(name) {
