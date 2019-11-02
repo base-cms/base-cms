@@ -29,7 +29,7 @@
           />
         </template>
         <template #dropdown="{ item, isActive }">
-          <card :company="item" :is-active="isActive" @action="$emit('action', ...arguments)" />
+          <card :company="item" :is-active="isActive" @action="emitCardAction" />
         </template>
       </list>
     </div>
@@ -74,7 +74,7 @@ export default {
   },
 
   data: () => ({
-    blockName: 'leaders-section-list-item',
+    blockName: 'leaders-section-content-list',
     items: [],
     isLoading: false,
     hasLoaded: false,
@@ -106,6 +106,10 @@ export default {
       return `${this.blockName}__${name}`;
     },
 
+    emitCardAction(...args) {
+      this.$emit('action', ...args);
+    },
+
     toggleExpanded() {
       this.isExpanded = !this.isExpanded;
     },
@@ -133,7 +137,7 @@ export default {
 <style lang="scss">
 @import "../../scss/variables";
 
-.leaders-section-list-item {
+.leaders-section-content-list {
   margin-bottom: 10px;
 
   &__title {

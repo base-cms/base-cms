@@ -8,7 +8,7 @@
       loading-message="Loading sections..."
       no-results-message="No sections were found."
     />
-    <content-for-section
+    <section-content
       v-for="section in sections"
       v-else
       :key="section.id"
@@ -22,13 +22,13 @@
 
 <script>
 import Loading from '../common/loading.vue';
-import ContentForSection from './content-for-section.vue';
+import SectionContent from './section-content.vue';
 
 import query from '../../graphql/queries/all-sections';
 import getEdgeNodes from '../../utils/get-edge-nodes';
 
 export default {
-  components: { Loading, ContentForSection },
+  components: { Loading, SectionContent },
 
   props: {
     sectionAlias: {

@@ -2,7 +2,7 @@
   <div :class="blockName" :data-section-id="sectionId">
     <div v-if="children.length">
       <div>{{ title }}</div>
-      <section-list-item
+      <section-content-list
         v-for="section in children"
         :key="section.id"
         :section-id="section.id"
@@ -11,7 +11,7 @@
         @action="emitCardAction"
       />
     </div>
-    <section-list-item
+    <section-content-list
       v-else
       :section-id="sectionId"
       :title="title"
@@ -22,11 +22,11 @@
 </template>
 
 <script>
-import SectionListItem from './section-list-item.vue';
+import SectionContentList from './section-content-list.vue';
 
 export default {
   components: {
-    SectionListItem,
+    SectionContentList,
   },
 
   props: {
@@ -49,7 +49,7 @@ export default {
   },
 
   data: () => ({
-    blockName: 'leaders-content-for-section',
+    blockName: 'leaders-section',
     items: [],
   }),
 

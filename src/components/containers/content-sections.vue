@@ -1,6 +1,6 @@
 <template>
   <div
-    class="leaders-sections-from-content"
+    class="leaders-content-sections"
     :data-content-id="contentId"
     :data-taxonomy-ids="taxonomyIds.join(',')"
   >
@@ -15,7 +15,7 @@
       v-else-if="hasLoaded && !sections.length"
       :section-alias="leadersSectionAlias"
     />
-    <content-for-section
+    <section-content
       v-for="section in sections"
       v-else
       :key="section.id"
@@ -29,13 +29,13 @@
 <script>
 import Loading from '../common/loading.vue';
 import AllSections from './all-sections.vue';
-import ContentForSection from './content-for-section.vue';
+import SectionContent from './section-content.vue';
 import contentQuery from '../../graphql/queries/content';
 import sectionsQuery from '../../graphql/queries/sections-from-taxonomy';
 import getEdgeNodes from '../../utils/get-edge-nodes';
 
 export default {
-  components: { Loading, ContentForSection, AllSections },
+  components: { Loading, SectionContent, AllSections },
 
   props: {
     contentId: {
