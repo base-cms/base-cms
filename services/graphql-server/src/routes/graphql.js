@@ -23,9 +23,10 @@ const { keys } = Object;
 const router = Router();
 
 const config = {
-  // Enable in production
-  tracing: isProduction,
-  cacheControl: isProduction,
+  // @todo Investigate why tracing and cacheControl are causing
+  // responses to be multiple megabytes in size!
+  tracing: false,
+  cacheControl: false,
   extensions: isProduction ? [() => new ApolloNewrelicExtension()] : [],
   engine: isProduction ? { apiKey: ENGINE_API_KEY } : false,
   introspection: true,
