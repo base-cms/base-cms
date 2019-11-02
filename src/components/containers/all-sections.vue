@@ -8,13 +8,13 @@
       loading-message="Loading sections..."
       no-results-message="No sections were found."
     />
-    <!-- @todo handle grandchild sections, e.g. packworld -->
     <content-for-section
       v-for="section in sections"
       v-else
       :key="section.id"
       :section-id="section.id"
       :title="section.name"
+      :children="getChildren(section)"
       :expanded="false"
     />
   </div>
@@ -55,6 +55,10 @@ export default {
   },
 
   methods: {
+    getChildren(section) {
+      return getEdgeNodes(section, 'children');
+    },
+
     async load() {
       if (this.canLoad) {
         this.isLoading = true;
@@ -73,7 +77,6 @@ export default {
     async loadAllSections() {
       const variables = { sectionAlias: this.sectionAlias };
       const { data } = await this.$apollo.query({ query, variables });
-      // @todo account for grandchild sections, e.g. packworld.
       return getEdgeNodes(data, 'websiteSectionAlias.children');
     },
   },
