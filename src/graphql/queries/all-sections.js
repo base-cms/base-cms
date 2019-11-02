@@ -2,8 +2,8 @@ import gql from 'graphql-tag';
 
 export default gql`
 
-query AllLeadersSections($alias: String!) {
-  websiteSections(input: { sectionAlias: $alias }) {
+query AllLeadersSections($sectionAlias: String!) {
+  websiteSectionAlias(input: { alias: $sectionAlias }) {
     id
     name
     children(input: { sort: { field: name, order: asc }, pagination: { limit: 0 } }) {
