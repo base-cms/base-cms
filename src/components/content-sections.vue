@@ -15,7 +15,7 @@
       v-else-if="hasLoaded && !sections.length"
       :section-alias="leadersSectionAlias"
     />
-    <section-content
+    <section-content-container
       v-for="section in sections"
       v-else
       :key="section.id"
@@ -27,15 +27,15 @@
 </template>
 
 <script>
-import Loading from '../common/loading.vue';
+import Loading from './common/loading.vue';
 import AllSections from './all-sections.vue';
-import SectionContent from './section-content.vue';
-import contentQuery from '../../graphql/queries/content';
-import sectionsQuery from '../../graphql/queries/sections-from-taxonomy';
-import getEdgeNodes from '../../utils/get-edge-nodes';
+import SectionContentContainer from './containers/section-content.vue';
+import contentQuery from '../graphql/queries/content';
+import sectionsQuery from '../graphql/queries/sections-from-taxonomy';
+import getEdgeNodes from '../utils/get-edge-nodes';
 
 export default {
-  components: { Loading, SectionContent, AllSections },
+  components: { Loading, SectionContentContainer, AllSections },
 
   props: {
     contentId: {
@@ -110,3 +110,12 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import "../scss/variables";
+@import "../scss/mixins";
+
+.leaders-content-sections {
+  @include leaders-base();
+}
+</style>

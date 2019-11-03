@@ -8,7 +8,7 @@
       loading-message="Loading sections..."
       no-results-message="No sections were found."
     />
-    <section-content
+    <section-content-container
       v-for="section in sections"
       v-else
       :key="section.id"
@@ -21,14 +21,14 @@
 </template>
 
 <script>
-import Loading from '../common/loading.vue';
-import SectionContent from './section-content.vue';
+import Loading from './common/loading.vue';
+import SectionContentContainer from './containers/section-content.vue';
 
-import query from '../../graphql/queries/all-sections';
-import getEdgeNodes from '../../utils/get-edge-nodes';
+import query from '../graphql/queries/all-sections';
+import getEdgeNodes from '../utils/get-edge-nodes';
 
 export default {
-  components: { Loading, SectionContent },
+  components: { Loading, SectionContentContainer },
 
   props: {
     sectionAlias: {
@@ -82,3 +82,12 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import "../scss/variables";
+@import "../scss/mixins";
+
+.leaders-all-sections {
+  @include leaders-base();
+}
+</style>
