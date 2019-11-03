@@ -3,6 +3,7 @@
     :is="tag"
     v-if="name"
     :class="classNames"
+    :modifers="modifiers"
   >
     <slot />
   </tag>
@@ -86,6 +87,12 @@ export default {
       &--active svg {
         fill: $leaders-icon-videocam-active-color;
       }
+    }
+  }
+
+  &--primary-color-light {
+    svg {
+      fill: $leaders-primary-color-light;
     }
   }
 }
