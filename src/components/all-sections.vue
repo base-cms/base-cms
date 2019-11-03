@@ -16,6 +16,7 @@
       :title="section.name"
       :children="getChildren(section)"
       :expanded="false"
+      @card-action="emitCardAction"
     />
   </div>
 </template>
@@ -57,6 +58,10 @@ export default {
   methods: {
     getChildren(section) {
       return getEdgeNodes(section, 'children');
+    },
+
+    emitCardAction(...args) {
+      this.$emit('card-action', ...args);
     },
 
     async load() {

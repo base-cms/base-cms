@@ -59,7 +59,7 @@ export default {
 
   methods: {
     emitCardAction(...args) {
-      console.log('emitCardAction', ...args);
+      this.$emit('card-action', ...args);
     },
   },
 };

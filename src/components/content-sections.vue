@@ -14,6 +14,7 @@
     <all-sections
       v-else-if="hasLoaded && !sections.length"
       :section-alias="leadersSectionAlias"
+      @card-action="emitCardAction"
     />
     <section-content-container
       v-for="section in sections"
@@ -22,6 +23,7 @@
       :section-id="section.id"
       :title="section.name"
       :expanded="isExpanded"
+      @card-action="emitCardAction"
     />
   </div>
 </template>
@@ -76,6 +78,10 @@ export default {
   },
 
   methods: {
+    emitCardAction(...args) {
+      this.$emit('card-action', ...args);
+    },
+
     async load() {
       if (this.canLoad) {
         this.isLoading = true;

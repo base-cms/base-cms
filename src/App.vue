@@ -14,6 +14,7 @@
               <content-sections
                 :content-id="13354061"
                 leaders-section-alias="leaders"
+                @card-action="trackCardAction"
               />
             </aside>
           </div>
@@ -29,6 +30,12 @@ import ContentSections from './components/content-sections.vue';
 export default {
   components: {
     ContentSections,
+  },
+
+  methods: {
+    trackCardAction(...args) {
+      console.log('trackCardAction', args);
+    },
   },
 };
 </script>
