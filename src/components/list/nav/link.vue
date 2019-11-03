@@ -94,6 +94,8 @@ export default {
 @import "../../../scss/variables";
 
 .leaders-nav {
+  $nav: &;
+
   &__link {
     display: block;
     width: $leaders-nav-link-width;
@@ -133,6 +135,14 @@ export default {
       box-shadow: $leaders-nav-link-active-box-shadow;
       svg {
         fill: $leaders-nav-link-active-color;
+      }
+    }
+  }
+
+  &--has-parent {
+    #{ $nav } {
+      &__link {
+        font-weight: $leaders-nav-link-font-weight - 100;
       }
     }
   }

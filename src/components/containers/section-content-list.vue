@@ -1,8 +1,8 @@
 <template>
-  <div :class="blockName" :data-section-id="sectionId">
+  <div :class="classes" :data-section-id="sectionId">
     <button :class="elementClass('toggle-button')" @click="toggleExpanded">
-      <plus-icon v-show="!isExpanded" />
-      <minus-icon v-show="isExpanded" />
+      <plus-icon v-show="!isExpanded" :modifiers="iconModifiers" />
+      <minus-icon v-show="isExpanded" :modifiers="iconModifiers" />
       <span :class="elementClass('title')">{{ title }}</span>
     </button>
     <div v-if="isExpanded">
@@ -18,6 +18,7 @@
         v-else
         :items="items"
         :identifier="sectionId"
+        :has-parent="hasParent"
         nav-direction="vertical"
         open="left"
       >
@@ -71,6 +72,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    hasParent: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   data: () => ({
@@ -83,6 +88,17 @@ export default {
   }),
 
   computed: {
+    classes() {
+      const { blockName } = this;
+      const classes = [blockName];
+      if (this.hasParent) classes.push(`${this.blockName}--has-parent`);
+      return classes;
+    },
+    iconModifiers() {
+      const mods = [];
+      if (this.hasParent) mods.push('primary-color-light');
+      return mods;
+    },
     canLoad() {
       return this.isExpanded && (!this.isLoading || !this.hasLoaded);
     },
@@ -138,6 +154,7 @@ export default {
 @import "../../scss/variables";
 
 .leaders-section-content-list {
+  $self: &;
   margin-bottom: 10px;
 
   &__title {
@@ -170,6 +187,18 @@ export default {
 
   &:last-child {
     margin-bottom: 0;
+  }
+
+  &--has-parent {
+    #{ $self } {
+      &__toggle-button {
+        font-size: $leaders-nav-link-font-size;
+        font-weight: $leaders-nav-link-font-weight;
+        line-height: $leaders-nav-link-line-height;
+        color: $leaders-nav-link-color;
+        text-transform: none;
+      }
+    }
   }
 }
 </style>

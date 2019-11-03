@@ -10,6 +10,7 @@
         :section-id="section.id"
         :title="section.name"
         :expanded="expanded"
+        :has-parent="true"
         @action="emitCardAction"
       />
     </div>

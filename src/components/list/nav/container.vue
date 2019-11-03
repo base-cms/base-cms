@@ -1,5 +1,5 @@
 <template>
-  <component :is="tag" :class="classNames">
+  <component :is="tag" :class="classes">
     <slot />
   </component>
 </template>
@@ -16,12 +16,18 @@ export default {
       default: 'horizontal',
       validator: v => ['horizontal', 'vertical'].includes(v),
     },
+    hasParent: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   computed: {
-    classNames() {
+    classes() {
       const blockName = 'leaders-nav';
-      return [blockName, `${blockName}--${this.direction}`];
+      const classes = [blockName, `${blockName}--${this.direction}`];
+      if (this.hasParent) classes.push(`${blockName}--has-parent`);
+      return classes;
     },
   },
 };
