@@ -13,7 +13,7 @@
     />
     <all-sections
       v-else-if="hasLoaded && !sections.length"
-      :section-alias="leadersSectionAlias"
+      :section-alias="sectionAlias"
       @card-action="emitCardAction"
     />
     <section-content-container
@@ -44,7 +44,7 @@ export default {
       type: Number,
       required: true,
     },
-    leadersSectionAlias: {
+    sectionAlias: {
       type: String,
       required: true,
     },
@@ -111,7 +111,7 @@ export default {
       const { data } = await this.$apollo.query({ query: sectionsQuery, variables });
       const sections = getEdgeNodes(data, 'websiteSections');
       return sections
-        .filter(s => s.hierarchy.some(({ alias }) => alias === this.leadersSectionAlias));
+        .filter(s => s.hierarchy.some(({ alias }) => alias === this.sectionAlias));
     },
   },
 };

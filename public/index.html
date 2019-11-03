@@ -30,7 +30,7 @@
     <script>
       const { gql } = window;
       const settings = {
-        rail: false,
+        rail: true,
         home: true,
       };
 
@@ -38,7 +38,7 @@
         leaders('loadComponent', {
           name: 'ContentSections',
           el: '#right-rail-all',
-          props: { contentId: 13354061, leadersSectionAlias: 'leaders' },
+          props: { contentId: 13354061, sectionAlias: 'leaders' },
           on: { 'card-action': (...args) => console.log('track', args) },
           apollo: { uri: gql.uri, tenant: gql.tenant, siteId: gql.siteIds.aw },
         });
@@ -46,7 +46,7 @@
         leaders('loadComponent', {
           name: 'ContentSections',
           el: '#right-rail-all-parents',
-          props: { contentId: 13354061, leadersSectionAlias: 'leaders' },
+          props: { contentId: 13354061, sectionAlias: 'leaders' },
           on: { 'card-action': (...args) => console.log('track', args) },
           apollo: { uri: gql.uri, tenant: gql.tenant, siteId: gql.siteIds.pw },
         });
@@ -54,7 +54,7 @@
         leaders('loadComponent', {
           name: 'ContentSections',
           el: '#right-rail-contextual',
-          props: { contentId: 15611779, leadersSectionAlias: 'leaders' },
+          props: { contentId: 15611779, sectionAlias: 'leaders' },
           on: { 'card-action': (...args) => console.log('track', args) },
           apollo: { uri: gql.uri, tenant: gql.tenant, siteId: gql.siteIds.aw },
         });
@@ -62,7 +62,7 @@
         leaders('loadComponent', {
           name: 'ContentSections',
           el: '#right-rail-contextual-parents',
-          props: { contentId: 15693554, leadersSectionAlias: 'leaders' },
+          props: { contentId: 15693554, sectionAlias: 'leaders' },
           on: { 'card-action': (...args) => console.log('track', args) },
           apollo: { uri: gql.uri, tenant: gql.tenant, siteId: gql.siteIds.pw },
         });
