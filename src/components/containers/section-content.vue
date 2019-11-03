@@ -73,11 +73,11 @@ export default {
   &__title {
     width: 100%;
     margin-bottom: 8px;
-    font-size: 17px;
-    font-weight: 600;
-    color: #919191;
-    text-transform: uppercase;
-    border-bottom: 1px solid #919191;
+    font-size: $leaders-parent-section-content-title-font-size;
+    font-weight: $leaders-parent-section-content-title-font-weight;
+    color: $leaders-parent-section-content-title-color;
+    text-transform: $leaders-parent-section-content-title-transform;
+    border-bottom: 1px solid $leaders-parent-section-content-title-border-color;
   }
 
   &:last-child {
