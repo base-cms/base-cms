@@ -89,6 +89,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import url("https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,400,500,600,700&display=swap");
 @import "../scss/variables";
 @import "../scss/mixins";
 

@@ -6,12 +6,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title>Leaders Program Demo</title>
+    <script>
+      (function(w, f) {
+        w.gql = {
+          uri: 'https://caprica.graphql-staging.base-cms.io',
+          tenant: 'pmmi_all',
+          siteIds: { pw: '5d88cedef175132c008b456b', aw: '5d88cecaf175132c008b4567' },
+        };
+        var l = f + 'Queue'; w[l] = w[l] || [];
+        w[f] = w[f] || function() { w[l].push(arguments); };
+      })(window, 'leaders');
+    </script>
   </head>
   <body>
     <aside id="leaders-dropdown-portal-target" class="leaders-dropdown-portal"></aside>
-    <noscript>
-      <strong>We're sorry but leaders-sandbox doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
+    <script>
+      const { gql } = window;
+      leaders('loadComponent', {
+        name: 'ContentSections',
+        el: '#content-sections',
+        props: { contentId: 13354061, leadersSectionAlias: 'leaders' },
+        on: { 'card-action': (...args) => console.log('track', args) },
+        apollo: { uri: gql.uri, tenant: gql.tenant, siteId: gql.siteIds.pw },
+      });
+    </script>
+    <div class="document-container">
+      <main class="page page--content">
+        <div class="page-wrapper">
+          <div class="page-wrapper__section">
+            <div class="row">
+              <div class="page-contents col-lg-8 mb-3 mb-lg-0">
+                Content body here!
+              </div>
+              <aside class="page-rail col-lg-4">
+                <div style="height: 250px; margin-bottom: 1rem;">
+                  Maybe an ad here?
+                </div>
+                <div id="content-sections"></div>
+              </aside>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
   </body>
 </html>
