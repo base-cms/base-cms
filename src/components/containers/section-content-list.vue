@@ -142,6 +142,7 @@ export default {
 
   &__title {
     margin-left: 5px;
+    word-break: break-word;
   }
 
   &__toggle-button {
