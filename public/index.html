@@ -17,15 +17,47 @@
         w[f] = w[f] || function() { w[l].push(arguments); };
       })(window, 'leaders');
     </script>
+    <style>
+      .example-heading {
+        margin-top: 20px;
+        margin-bottom: 15px;
+        font-size: 24px;
+      }
+    </style>
   </head>
   <body>
     <aside id="leaders-dropdown-portal-target" class="leaders-dropdown-portal"></aside>
     <script>
       const { gql } = window;
+
       leaders('loadComponent', {
         name: 'ContentSections',
-        el: '#content-sections',
+        el: '#right-rail-all',
         props: { contentId: 13354061, leadersSectionAlias: 'leaders' },
+        on: { 'card-action': (...args) => console.log('track', args) },
+        apollo: { uri: gql.uri, tenant: gql.tenant, siteId: gql.siteIds.aw },
+      });
+
+      leaders('loadComponent', {
+        name: 'ContentSections',
+        el: '#right-rail-all-parents',
+        props: { contentId: 13354061, leadersSectionAlias: 'leaders' },
+        on: { 'card-action': (...args) => console.log('track', args) },
+        apollo: { uri: gql.uri, tenant: gql.tenant, siteId: gql.siteIds.pw },
+      });
+
+      leaders('loadComponent', {
+        name: 'ContentSections',
+        el: '#right-rail-contextual',
+        props: { contentId: 15611779, leadersSectionAlias: 'leaders' },
+        on: { 'card-action': (...args) => console.log('track', args) },
+        apollo: { uri: gql.uri, tenant: gql.tenant, siteId: gql.siteIds.aw },
+      });
+
+      leaders('loadComponent', {
+        name: 'ContentSections',
+        el: '#right-rail-contextual-parents',
+        props: { contentId: 15693554, leadersSectionAlias: 'leaders' },
         on: { 'card-action': (...args) => console.log('track', args) },
         apollo: { uri: gql.uri, tenant: gql.tenant, siteId: gql.siteIds.pw },
       });
@@ -42,7 +74,19 @@
                 <div style="height: 250px; margin-bottom: 1rem;">
                   Maybe an ad here?
                 </div>
-                <div id="content-sections"></div>
+
+                <h1 class="example-heading">Right Rail Contextual</h1>
+                <div id="right-rail-contextual"></div>
+
+                <h1 class="example-heading">Right Rail Contextual w/Parents</h1>
+                <div id="right-rail-contextual-parents"></div>
+
+                <h1 class="example-heading">Right Rail All</h1>
+                <div id="right-rail-all"></div>
+
+                <h1 class="example-heading">Right Rail All w/Parents</h1>
+                <div id="right-rail-all-parents"></div>
+
               </aside>
             </div>
           </div>
