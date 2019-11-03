@@ -14,6 +14,7 @@
     <all-sections
       v-else-if="hasLoaded && !sections.length"
       :section-alias="sectionAlias"
+      :open="open"
       @card-action="emitCardAction"
     />
     <section-content-container
@@ -23,6 +24,7 @@
       :section-id="section.id"
       :title="section.name"
       :expanded="isExpanded"
+      :open="open"
       @card-action="emitCardAction"
     />
   </div>
@@ -51,6 +53,10 @@ export default {
     expanded: {
       type: Boolean,
       default: true,
+    },
+    open: {
+      type: String,
+      default: 'left',
     },
   },
 

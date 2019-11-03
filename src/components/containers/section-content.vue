@@ -10,6 +10,7 @@
         :section-id="section.id"
         :title="section.name"
         :expanded="expanded"
+        :open="open"
         :has-parent="true"
         @action="emitCardAction"
       />
@@ -19,6 +20,7 @@
       :section-id="sectionId"
       :title="title"
       :expanded="expanded"
+      :open="open"
       @action="emitCardAction"
     />
   </div>
@@ -38,6 +40,10 @@ export default {
       required: true,
     },
     title: {
+      type: String,
+      required: true,
+    },
+    open: {
       type: String,
       required: true,
     },

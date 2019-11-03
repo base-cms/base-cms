@@ -16,6 +16,7 @@
       :title="section.name"
       :children="getChildren(section)"
       :expanded="false"
+      :open="open"
       @card-action="emitCardAction"
     />
   </div>
@@ -35,6 +36,10 @@ export default {
     sectionAlias: {
       type: String,
       required: true,
+    },
+    open: {
+      type: String,
+      default: 'right',
     },
   },
 

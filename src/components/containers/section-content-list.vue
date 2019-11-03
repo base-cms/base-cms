@@ -19,8 +19,8 @@
         :items="items"
         :identifier="sectionId"
         :has-parent="hasParent"
+        :open="open"
         nav-direction="vertical"
-        open="left"
       >
         <template #nav-link="{ item, isActive }">
           <link-contents
@@ -65,6 +65,10 @@ export default {
       required: true,
     },
     title: {
+      type: String,
+      required: true,
+    },
+    open: {
       type: String,
       required: true,
     },
