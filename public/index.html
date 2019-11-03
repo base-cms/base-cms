@@ -29,38 +29,62 @@
     <aside id="leaders-dropdown-portal-target" class="leaders-dropdown-portal"></aside>
     <script>
       const { gql } = window;
+      const settings = {
+        rail: false,
+        home: true,
+      };
 
-      leaders('loadComponent', {
-        name: 'ContentSections',
-        el: '#right-rail-all',
-        props: { contentId: 13354061, leadersSectionAlias: 'leaders' },
-        on: { 'card-action': (...args) => console.log('track', args) },
-        apollo: { uri: gql.uri, tenant: gql.tenant, siteId: gql.siteIds.aw },
-      });
+      if (settings.rail) {
+        leaders('loadComponent', {
+          name: 'ContentSections',
+          el: '#right-rail-all',
+          props: { contentId: 13354061, leadersSectionAlias: 'leaders' },
+          on: { 'card-action': (...args) => console.log('track', args) },
+          apollo: { uri: gql.uri, tenant: gql.tenant, siteId: gql.siteIds.aw },
+        });
 
-      leaders('loadComponent', {
-        name: 'ContentSections',
-        el: '#right-rail-all-parents',
-        props: { contentId: 13354061, leadersSectionAlias: 'leaders' },
-        on: { 'card-action': (...args) => console.log('track', args) },
-        apollo: { uri: gql.uri, tenant: gql.tenant, siteId: gql.siteIds.pw },
-      });
+        leaders('loadComponent', {
+          name: 'ContentSections',
+          el: '#right-rail-all-parents',
+          props: { contentId: 13354061, leadersSectionAlias: 'leaders' },
+          on: { 'card-action': (...args) => console.log('track', args) },
+          apollo: { uri: gql.uri, tenant: gql.tenant, siteId: gql.siteIds.pw },
+        });
 
-      leaders('loadComponent', {
-        name: 'ContentSections',
-        el: '#right-rail-contextual',
-        props: { contentId: 15611779, leadersSectionAlias: 'leaders' },
-        on: { 'card-action': (...args) => console.log('track', args) },
-        apollo: { uri: gql.uri, tenant: gql.tenant, siteId: gql.siteIds.aw },
-      });
+        leaders('loadComponent', {
+          name: 'ContentSections',
+          el: '#right-rail-contextual',
+          props: { contentId: 15611779, leadersSectionAlias: 'leaders' },
+          on: { 'card-action': (...args) => console.log('track', args) },
+          apollo: { uri: gql.uri, tenant: gql.tenant, siteId: gql.siteIds.aw },
+        });
 
-      leaders('loadComponent', {
-        name: 'ContentSections',
-        el: '#right-rail-contextual-parents',
-        props: { contentId: 15693554, leadersSectionAlias: 'leaders' },
-        on: { 'card-action': (...args) => console.log('track', args) },
-        apollo: { uri: gql.uri, tenant: gql.tenant, siteId: gql.siteIds.pw },
-      });
+        leaders('loadComponent', {
+          name: 'ContentSections',
+          el: '#right-rail-contextual-parents',
+          props: { contentId: 15693554, leadersSectionAlias: 'leaders' },
+          on: { 'card-action': (...args) => console.log('track', args) },
+          apollo: { uri: gql.uri, tenant: gql.tenant, siteId: gql.siteIds.pw },
+        });
+      }
+
+      if (settings.home) {
+        leaders('loadComponent', {
+          name: 'AllSections',
+          el: '#home-page-all',
+          props: { sectionAlias: 'leaders' },
+          on: { 'card-action': (...args) => console.log('track', args) },
+          apollo: { uri: gql.uri, tenant: gql.tenant, siteId: gql.siteIds.aw },
+        });
+
+        leaders('loadComponent', {
+          name: 'AllSections',
+          el: '#home-page-all-parents',
+          props: { sectionAlias: 'leaders' },
+          on: { 'card-action': (...args) => console.log('track', args) },
+          apollo: { uri: gql.uri, tenant: gql.tenant, siteId: gql.siteIds.pw },
+        });
+      }
     </script>
     <div class="document-container">
       <main class="page page--content">
@@ -68,7 +92,15 @@
           <div class="page-wrapper__section">
             <div class="row">
               <div class="page-contents col-lg-8 mb-3 mb-lg-0">
-                Content body here!
+                <div style="margin-bottom: 1rem;">
+                  Body here!
+                </div>
+
+                <h1 class="example-heading">Home Page All</h1>
+                <div id="home-page-all"></div>
+
+                <h1 class="example-heading">Home Page All w/Parents</h1>
+                <div id="home-page-all-parents"></div>
               </div>
               <aside class="page-rail col-lg-4">
                 <div style="height: 250px; margin-bottom: 1rem;">
