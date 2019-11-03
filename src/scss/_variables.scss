@@ -1,5 +1,5 @@
 $leaders-base-color: rgba(0, 0, 0, .84) !default;
-$leaders-base-font-family: "Muli", sans-serif !default;
+$leaders-base-font-family: "IBM Plex Sans", sans-serif !default;
 $leaders-base-font-size: 16px !default;
 $leaders-base-font-weight: 400 !default;
 $leaders-base-line-height: 1.5 !default;
@@ -12,8 +12,8 @@ $leaders-accent-color: #d656b0 !default;
 // Nav Links
 $leaders-nav-link-color: $leaders-primary-color !default;
 $leaders-nav-link-font-family: $leaders-base-font-family !default;
-$leaders-nav-link-font-size: $leaders-base-font-size !default;
-$leaders-nav-link-font-weight: 600 !default;
+$leaders-nav-link-font-size: 17px !default;
+$leaders-nav-link-font-weight: 500 !default;
 $leaders-nav-link-line-height: $leaders-base-line-height !default;
 $leaders-nav-link-padding-x: 4px !default;
 $leaders-nav-link-padding-y: 6px !default;
@@ -59,7 +59,7 @@ $leaders-icon-filter-active-color: $leaders-nav-link-active-color !default;
 $leaders-icon-section-toggle-size: 16px !default;
 
 // Section Content Elements
-$leaders-section-content-title-font-weight: 800 !default;
+$leaders-section-content-title-font-weight: 700 !default;
 $leaders-section-content-title-font-size: 18px !default;
 $leaders-section-content-title-line-height: 1.5 !default;
 $leaders-section-content-title-transform: uppercase !default;
