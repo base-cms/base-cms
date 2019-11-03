@@ -1,13 +1,22 @@
-$leaders-base-color: rgba(0, 0, 0, .84) !default;
+// Colors
+$leaders-primary-color: #002f7b !default;
+$leaders-primary-color-light: #005bac !default;
+$leaders-accent-color: #d656b0 !default;
+$leaders-white: #fff !default;
+$leaders-black: rgba(0, 0, 0, .84) !default;
+$leaders-videocam-color: #eecb2f !default;
+$leaders-gray-1: #999 !default;
+$leaders-gray-2: #919191 !default;
+$leaders-gray-3: #cecece !default;
+$leaders-gray-4: #eff1f2 !default;
+
+// Base Styles
+$leaders-base-color: $leaders-black !default;
 $leaders-base-font-family: "IBM Plex Sans", sans-serif !default;
 $leaders-base-font-size: 16px !default;
 $leaders-base-font-weight: 400 !default;
 $leaders-base-line-height: 1.5 !default;
 
-// Colors
-$leaders-primary-color: #002f7b !default;
-$leaders-primary-color-light: #005bac !default;
-$leaders-accent-color: #d656b0 !default;
 
 // Nav Links
 $leaders-nav-link-color: $leaders-primary-color !default;
@@ -20,7 +29,7 @@ $leaders-nav-link-padding-y: 6px !default;
 $leaders-nav-link-width: 100% !default;
 $leaders-nav-link-max-width: 300px !default;
 
-$leaders-nav-link-active-color: #fff !default;
+$leaders-nav-link-active-color: $leaders-white !default;
 $leaders-nav-link-active-bg-color: $leaders-accent-color !default;
 $leaders-nav-link-active-box-shadow: 0 3px 5px rgba(0, 0, 0, .15) !default;
 
@@ -45,7 +54,7 @@ $leaders-icon-color: $leaders-base-color !default;
 $leaders-icon-size: $leaders-base-font-size !default;
 
 $leaders-icon-videocam-margin: 4px !default;
-$leaders-icon-videocam-color: #eecb2f !default;
+$leaders-icon-videocam-color: $leaders-videocam-color !default;
 $leaders-icon-videocam-size: calc(#{$leaders-icon-size} * 1.25) !default;
 
 $leaders-icon-videocam-active-color: $leaders-nav-link-active-color !default;
@@ -59,26 +68,33 @@ $leaders-icon-filter-active-color: $leaders-nav-link-active-color !default;
 $leaders-icon-section-toggle-size: 16px !default;
 
 // Section Content Elements
+$leaders-parent-section-content-title-color: $leaders-gray-2 !default;
+$leaders-parent-section-content-title-border-color: $leaders-gray-3 !default;
+$leaders-parent-section-content-title-font-weight: 600 !default;
+$leaders-parent-section-content-title-font-size: 17px !default;
+$leaders-parent-section-content-title-line-height: $leaders-base-line-height !default;
+$leaders-parent-section-content-title-transform: uppercase !default;
+
 $leaders-section-content-title-font-weight: 700 !default;
 $leaders-section-content-title-font-size: 18px !default;
-$leaders-section-content-title-line-height: 1.5 !default;
+$leaders-section-content-title-line-height: $leaders-base-line-height !default;
 $leaders-section-content-title-transform: uppercase !default;
 
 // Card Headers
 $leaders-card-padding: 15px !default;
 
 $leaders-card-header-color: $leaders-base-color !default;
-$leaders-card-header-bg-color: #eff1f2 !default;
+$leaders-card-header-bg-color: $leaders-gray-4 !default;
 
-$leaders-card-header-hr-color: #cecece !default;
+$leaders-card-header-hr-color: $leaders-gray-3 !default;
 
 // Card Bodies
 $leaders-card-body-color: $leaders-primary-color !default;
 $leaders-card-body-font-size: 13px !default;
 $leaders-card-body-font-weight: 400 !default;
-$leaders-card-body-bg-color: #fff !default;
+$leaders-card-body-bg-color: $leaders-white !default;
 
-$leaders-card-body-hr-color: #999 !default;
+$leaders-card-body-hr-color: $leaders-gray-1 !default;
 
 // Card Content Elements
 $leaders-card-initial-bg-color: rgba(255, 255, 255, 0) !default;
@@ -87,7 +103,7 @@ $leaders-card-final-opacity: 1 !default;
 $leaders-card-transition-duration: 750ms !default;
 $leaders-card-transition-property: background-color, opacity !default;
 
-$leaders-logo-background-color: #fff !default;
+$leaders-logo-background-color: $leaders-white !default;
 $leaders-logo-border-size: 4px !default;
 $leaders-logo-shadow-color: rgba(0, 0, 0, .5) !default;
 $leaders-logo-shadow-size: 5px !default;
@@ -136,6 +152,6 @@ $leaders-button-link-border-radius: 4px !default;
 $leaders-button-link-margin: 8px !default;
 
 $leaders-button-link-primary-color: $leaders-primary-color !default;
-$leaders-button-link-primary-bg-color: #fff !default;
-$leaders-button-link-accent-color: #fff !default;
+$leaders-button-link-primary-bg-color: $leaders-white !default;
+$leaders-button-link-accent-color: $leaders-white !default;
 $leaders-button-link-accent-bg-color: $leaders-accent-color !default;
