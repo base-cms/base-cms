@@ -8,6 +8,7 @@ const buildQuery = require('../gql/query-factories/block-website-scheduled-conte
  *                                     A `sectionId` or `sectionAlias` is required.
  * @param {number} [params.limit] The number of results to return.
  * @param {string} [params.after] The cursor to start returning results from.
+ * @param {object} [params.sort] The sort parameters (field and order) to apply to the query.
  * @param {number} [params.optionId] The option ID.
  * @param {string} [params.optionName] The option name.
  * @param {number[]} [params.excludeContentIds] An array of content IDs to exclude.
@@ -22,6 +23,7 @@ module.exports = async (apolloClient, {
   limit,
   skip,
   after,
+  sort,
 
   sectionId,
   sectionAlias,
@@ -50,6 +52,7 @@ module.exports = async (apolloClient, {
     sectionId,
     optionId,
     optionName,
+    ...(sort && { sort }),
   };
   const query = buildQuery({ queryFragment, queryName });
   const variables = { input };
