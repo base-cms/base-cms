@@ -2,8 +2,7 @@
 import Vue from 'vue';
 import VueApollo from 'vue-apollo';
 
-import AllSections from './components/all-sections.vue';
-import ContentSections from './components/content-sections.vue';
+import Leaders from './components/leaders.vue';
 import createProvider from './apollo/create-provider';
 import './styles';
 
@@ -11,8 +10,7 @@ Vue.config.productionTip = false;
 Vue.use(VueApollo);
 
 const components = {
-  AllSections,
-  ContentSections,
+  Leaders,
 };
 
 const loadComponent = ({

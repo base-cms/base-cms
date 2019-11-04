@@ -1,5 +1,5 @@
 <template>
-  <div class="leaders leaders--all">
+  <div :class="classes">
     <loading
       v-if="!hasLoaded"
       :is-loading="isLoading"
@@ -14,6 +14,7 @@
       :key="section.id"
       :section="section"
       :open="open"
+      :expanded="isExpanded"
       @card-action="emitCardAction"
     />
   </div>
@@ -23,7 +24,9 @@
 import Loading from './common/loading.vue';
 import LeadersSectionWrapper from './containers/section-wrapper.vue';
 
-import query from '../graphql/queries/all-sections';
+import allQuery from '../graphql/queries/all-sections';
+import fromTaxonomyQuery from '../graphql/queries/sections-from-taxonomy';
+import contentQuery from '../graphql/queries/content';
 import getEdgeNodes from '../utils/get-edge-nodes';
 
 export default {
@@ -37,13 +40,22 @@ export default {
       type: String,
       required: true,
     },
+    contentId: {
+      type: Number,
+      default: null,
+    },
     open: {
       type: String,
       default: 'right',
     },
+    expanded: {
+      type: Boolean,
+      default: null,
+    },
   },
 
   data: () => ({
+    loadType: null,
     sections: [],
     isLoading: false,
     hasLoaded: false,
@@ -51,6 +63,18 @@ export default {
   }),
 
   computed: {
+    isExpanded() {
+      const { expanded } = this;
+      if (expanded != null) return expanded;
+      return this.loadType === 'contextual';
+    },
+    classes() {
+      const { loadType } = this;
+      const blockName = 'leaders';
+      const classes = [blockName];
+      if (loadType) classes.push(`${blockName}--${loadType}`);
+      return classes;
+    },
     canLoad() {
       return !this.isLoading || !this.hasLoaded;
     },
@@ -70,7 +94,7 @@ export default {
         this.isLoading = true;
         this.error = null;
         try {
-          this.sections = await this.loadAllSections();
+          this.sections = await this.loadSections();
           this.hasLoaded = true;
         } catch (e) {
           this.error = e;
@@ -80,9 +104,31 @@ export default {
       }
     },
 
+    async loadSections() {
+      const fromContent = await this.loadContentSections();
+      if (fromContent.length) {
+        this.loadType = 'contextual';
+        return fromContent;
+      }
+      return this.loadAllSections();
+    },
+
+    async loadContentSections() {
+      if (!this.contentId) return [];
+      const variables = { contentId: this.contentId };
+      const r1 = await this.$apollo.query({ query: contentQuery, variables });
+      const taxonomyIds = getEdgeNodes(r1, 'data.content.taxonomy').map(t => t.id);
+      if (!taxonomyIds.length) return [];
+      const r2 = await this.$apollo.query({ query: fromTaxonomyQuery, variables: { taxonomyIds } });
+      const sections = getEdgeNodes(r2, 'data.websiteSections');
+      return sections
+        .filter(s => s.hierarchy.some(({ alias }) => alias === this.sectionAlias));
+    },
+
     async loadAllSections() {
       const variables = { sectionAlias: this.sectionAlias };
-      const { data } = await this.$apollo.query({ query, variables });
+      const { data } = await this.$apollo.query({ query: allQuery, variables });
+      this.loadType = 'all';
       return getEdgeNodes(data, 'websiteSectionAlias.children');
     },
   },

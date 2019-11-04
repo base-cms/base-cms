@@ -14,6 +14,7 @@
         :section-id="child.id"
         :title="child.name"
         :open="open"
+        :expanded="expanded"
         @card-action="emitCardAction"
       />
     </div>
@@ -23,6 +24,7 @@
     :section-id="section.id"
     :title="section.name"
     :open="open"
+    :expanded="expanded"
     @card-action="emitCardAction"
   />
 </template>
@@ -44,6 +46,10 @@ export default {
     open: {
       type: String,
       required: true,
+    },
+    expanded: {
+      type: Boolean,
+      default: false,
     },
   },
 
