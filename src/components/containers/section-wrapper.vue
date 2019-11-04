@@ -1,48 +1,69 @@
 <template>
-  <div
-    v-if="children.length"
-    class="leaders-section leaders-section--with-parent"
-    :data-section-id="section.id"
-  >
-    <div class="leaders-section__title">
-      {{ section.name }}
+  <div v-if="parents.length" class="leaders-sections-wrapper">
+    <div
+      v-for="section in parents"
+      :key="section.id"
+      class="leaders-section leaders-section--with-parent"
+    >
+      <div class="leaders-section__title">
+        {{ section.name }}
+      </div>
+      <div class="leaders-section__children">
+        <leaders-columns
+          :number="columns"
+          :sections="getChildren(section)"
+          #default="{ sections: colSections }"
+        >
+          <leaders-section
+            v-for="colSection in colSections"
+            :key="colSection.id"
+            :section-id="colSection.id"
+            :title="colSection.name"
+            :open="open"
+            :expanded="expanded"
+            :contextual="contextual"
+            @card-action="emitCardAction"
+          />
+        </leaders-columns>
+      </div>
     </div>
-    <div class="leaders-section__children">
+  </div>
+  <div v-else class="leaders-sections-wrapper">
+    <leaders-columns
+      :number="columns"
+      :sections="sections"
+      #default="{ sections: colSections }"
+    >
       <leaders-section
-        v-for="child in children"
-        :key="child.id"
-        :section-id="child.id"
-        :title="child.name"
+        v-for="colSection in colSections"
+        :key="colSection.id"
+        :section-id="colSection.id"
+        :title="colSection.name"
         :open="open"
         :expanded="expanded"
         :contextual="contextual"
         @card-action="emitCardAction"
       />
-    </div>
+    </leaders-columns>
   </div>
-  <leaders-section
-    v-else
-    :section-id="section.id"
-    :title="section.name"
-    :open="open"
-    :expanded="expanded"
-    :contextual="contextual"
-    @card-action="emitCardAction"
-  />
 </template>
 
 <script>
+import { getAsArray } from '@base-cms/object-path';
+
 import LeadersSection from './section.vue';
+import LeadersColumns from './columns.vue';
 import getEdgeNodes from '../../utils/get-edge-nodes';
 
 export default {
   components: {
     LeadersSection,
+    LeadersColumns,
   },
 
   props: {
-    section: {
-      type: Object,
+    sections: {
+      type: Array,
       required: true,
     },
     open: {
@@ -57,15 +78,26 @@ export default {
       type: Boolean,
       default: false,
     },
+    columns: {
+      type: Number,
+      default: 1,
+    },
   },
 
   computed: {
-    children() {
-      return getEdgeNodes(this.section, 'children');
+    parents() {
+      return this.sections.filter((section) => {
+        const children = getAsArray(section, 'children.edges');
+        return children.length > 0;
+      });
     },
   },
 
   methods: {
+    getChildren(section) {
+      return getEdgeNodes(section, 'children');
+    },
+
     emitCardAction(...args) {
       this.$emit('card-action', ...args);
     },

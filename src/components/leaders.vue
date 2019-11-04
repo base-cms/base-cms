@@ -8,14 +8,12 @@
       loading-message="Loading sections..."
       no-results-message="No sections were found."
     />
-    <leaders-section-wrapper
-      v-for="section in sections"
-      v-else
-      :key="section.id"
-      :section="section"
+    <leaders-sections-wrapper
+      :sections="sections"
       :open="open"
       :expanded="isExpanded"
       :contextual="isContextual"
+      :columns="columns"
       @card-action="emitCardAction"
     />
   </div>
@@ -23,7 +21,7 @@
 
 <script>
 import Loading from './common/loading.vue';
-import LeadersSectionWrapper from './containers/section-wrapper.vue';
+import LeadersSectionsWrapper from './containers/section-wrapper.vue';
 
 import allQuery from '../graphql/queries/all-sections';
 import fromTaxonomyQuery from '../graphql/queries/sections-from-taxonomy';
@@ -33,7 +31,7 @@ import getEdgeNodes from '../utils/get-edge-nodes';
 export default {
   components: {
     Loading,
-    LeadersSectionWrapper,
+    LeadersSectionsWrapper,
   },
 
   props: {
@@ -52,6 +50,10 @@ export default {
     expanded: {
       type: Boolean,
       default: null,
+    },
+    columns: {
+      type: Number,
+      default: 1,
     },
   },
 
