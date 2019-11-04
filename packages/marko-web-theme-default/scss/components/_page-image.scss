@@ -48,6 +48,12 @@
       }
     }
   }
+
+  &--primary-image-inline-left {
+    float: left;
+    margin-right: .75rem;
+    margin-left: 0;
+  }
 }
 
 [data-embed-type="image"] {
