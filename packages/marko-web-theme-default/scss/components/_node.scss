@@ -136,6 +136,17 @@
     }
   }
 
+  &__content-embed-code {
+    @include theme-embed-responsive($theme-primary-media-video-aspect-ratio-x, $theme-primary-media-video-aspect-ratio-y);
+
+    iframe,
+    embed,
+    object,
+    video {
+      @include theme-embed-responsive-item();
+    }
+  }
+
   &--card {
     @include theme-card();
   }
