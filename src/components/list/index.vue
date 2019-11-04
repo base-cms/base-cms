@@ -1,7 +1,7 @@
 <template>
   <div class="leaders-list">
     <navbar>
-      <nav-container ref="nav" :direction="navDirection" :has-parent="hasParent">
+      <nav-container ref="nav" :direction="navDirection">
         <nav-item
           v-for="(item, index) in items"
           :key="index"
@@ -99,10 +99,6 @@ export default {
     itemHrefPath: {
       type: String,
       default: 'siteContext.path',
-    },
-    hasParent: {
-      type: Boolean,
-      default: false,
     },
     preventOpen: {
       type: Boolean,
