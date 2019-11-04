@@ -160,6 +160,10 @@ export default {
   $section: &;
   margin-bottom: 6px;
 
+  &__children {
+    margin-bottom: 10px;
+  }
+
   &__toggle-button {
     display: inline-flex;
     flex-direction: row;
@@ -204,7 +208,7 @@ export default {
   &--with-parent {
     #{ $section } {
       &__title {
-        margin-bottom: 10px;
+        margin-bottom: 6px;
         font-size: $leaders-parent-section-content-title-font-size;
         font-weight: $leaders-parent-section-content-title-font-weight;
         line-height: $leaders-parent-section-content-title-line-height;
@@ -217,6 +221,11 @@ export default {
 
   &:last-child {
     margin-bottom: 0;
+    #{ $section } {
+      &__children {
+        margin-bottom: 0;
+      }
+    }
   }
 }
 </style>
