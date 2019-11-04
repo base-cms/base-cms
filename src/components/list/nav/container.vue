@@ -16,17 +16,12 @@ export default {
       default: 'horizontal',
       validator: v => ['horizontal', 'vertical'].includes(v),
     },
-    hasParent: {
-      type: Boolean,
-      default: false,
-    },
   },
 
   computed: {
     classes() {
       const blockName = 'leaders-nav';
       const classes = [blockName, `${blockName}--${this.direction}`];
-      if (this.hasParent) classes.push(`${blockName}--has-parent`);
       return classes;
     },
   },

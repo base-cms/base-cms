@@ -1,5 +1,5 @@
 <template>
-  <div :class="classes">
+  <div :class="classes" :data-taxonomy-ids="taxonomyIds.join(',') || null">
     <loading
       v-if="!hasLoaded"
       :is-loading="isLoading"
@@ -15,6 +15,7 @@
       :section="section"
       :open="open"
       :expanded="isExpanded"
+      :contextual="isContextual"
       @card-action="emitCardAction"
     />
   </div>
@@ -46,7 +47,7 @@ export default {
     },
     open: {
       type: String,
-      default: 'right',
+      default: 'left',
     },
     expanded: {
       type: Boolean,
@@ -56,6 +57,7 @@ export default {
 
   data: () => ({
     loadType: null,
+    taxonomyIds: [],
     sections: [],
     isLoading: false,
     hasLoaded: false,
@@ -66,6 +68,9 @@ export default {
     isExpanded() {
       const { expanded } = this;
       if (expanded != null) return expanded;
+      return this.isContextual;
+    },
+    isContextual() {
       return this.loadType === 'contextual';
     },
     classes() {
@@ -118,6 +123,7 @@ export default {
       const variables = { contentId: this.contentId };
       const r1 = await this.$apollo.query({ query: contentQuery, variables });
       const taxonomyIds = getEdgeNodes(r1, 'data.content.taxonomy').map(t => t.id);
+      this.taxonomyIds = taxonomyIds;
       if (!taxonomyIds.length) return [];
       const r2 = await this.$apollo.query({ query: fromTaxonomyQuery, variables: { taxonomyIds } });
       const sections = getEdgeNodes(r2, 'data.websiteSections');

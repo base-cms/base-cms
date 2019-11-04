@@ -21,13 +21,12 @@ $leaders-base-line-height: 1.5 !default;
 // Nav Links
 $leaders-nav-link-color: $leaders-primary-color !default;
 $leaders-nav-link-font-family: $leaders-base-font-family !default;
-$leaders-nav-link-font-size: 17px !default;
+$leaders-nav-link-font-size: 16px !default;
 $leaders-nav-link-font-weight: 500 !default;
 $leaders-nav-link-line-height: $leaders-base-line-height !default;
 $leaders-nav-link-padding-x: 4px !default;
 $leaders-nav-link-padding-y: 6px !default;
 $leaders-nav-link-width: 100% !default;
-$leaders-nav-link-max-width: 300px !default;
 
 $leaders-nav-link-active-color: $leaders-white !default;
 $leaders-nav-link-active-bg-color: $leaders-accent-color !default;
@@ -75,10 +74,11 @@ $leaders-parent-section-content-title-font-size: 17px !default;
 $leaders-parent-section-content-title-line-height: $leaders-base-line-height !default;
 $leaders-parent-section-content-title-transform: uppercase !default;
 
-$leaders-section-content-title-font-weight: 700 !default;
-$leaders-section-content-title-font-size: 18px !default;
-$leaders-section-content-title-line-height: $leaders-base-line-height !default;
-$leaders-section-content-title-transform: uppercase !default;
+$leaders-section-contextual-title-color: $leaders-black !default;
+$leaders-section-contextual-title-font-weight: 700 !default;
+$leaders-section-contextual-title-font-size: 18px !default;
+$leaders-section-contextual-title-line-height: $leaders-base-line-height !default;
+$leaders-section-contextual-title-transform: uppercase !default;
 
 // Card Headers
 $leaders-card-padding: 15px !default;

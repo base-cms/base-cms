@@ -1,9 +1,9 @@
 <template>
-  <div class="leaders-section" :data-section-id="sectionId">
+  <div :class="classes" :data-section-id="sectionId">
     <button class="leaders-section__toggle-button" @click="toggleExpanded">
       <plus-icon v-show="!isExpanded" :modifiers="iconModifiers" />
       <minus-icon v-show="isExpanded" :modifiers="iconModifiers" />
-      <span class="leaders-section__title">{{ title }}</span>
+      <span class="leaders-section__toggle-button-title">{{ title }}</span>
     </button>
     <div v-if="isExpanded" class="leaders-section__list">
       <loading
@@ -18,7 +18,6 @@
         v-else
         :items="items"
         :identifier="sectionId"
-        :has-parent="hasParent"
         :open="open"
         nav-direction="vertical"
       >
@@ -76,14 +75,14 @@ export default {
       type: Boolean,
       default: false,
     },
-    hasParent: {
+    contextual: {
       type: Boolean,
       default: false,
     },
   },
 
   data: () => ({
-    blockName: 'leaders-list__section',
+    blockName: 'leaders-section',
     items: [],
     isLoading: false,
     hasLoaded: false,
@@ -95,12 +94,12 @@ export default {
     classes() {
       const { blockName } = this;
       const classes = [blockName];
-      if (this.hasParent) classes.push(`${this.blockName}--has-parent`);
+      if (this.contextual) classes.push(`${blockName}--contextual`);
       return classes;
     },
     iconModifiers() {
       const mods = [];
-      if (this.hasParent) mods.push('primary-color-light');
+      if (!this.contextual) mods.push('primary-color-light');
       return mods;
     },
     canLoad() {
@@ -158,24 +157,21 @@ export default {
 @import "../../scss/variables";
 
 .leaders-section {
-  margin-bottom: 10px;
-  // $self: &;
-
-  &__title {
-    margin-left: 5px;
-    word-break: break-word;
-  }
+  $section: &;
+  margin-bottom: 6px;
 
   &__toggle-button {
     display: inline-flex;
     flex-direction: row;
     padding: 0;
     margin: 0;
-    font-size: $leaders-section-content-title-font-size;
-    font-weight: $leaders-section-content-title-font-weight;
+    font-size: $leaders-nav-link-font-size;
+    font-weight: $leaders-nav-link-font-weight;
+    line-height: $leaders-nav-link-line-height;
+    color: $leaders-nav-link-color;
     text-align: left;
     text-decoration: none;
-    text-transform: $leaders-section-content-title-transform;
+    text-transform: none;
     cursor: pointer;
     user-select: none;
     background: none;
@@ -189,20 +185,38 @@ export default {
     }
   }
 
+  &__toggle-button-title {
+    margin-left: 5px;
+    word-break: break-word;
+  }
+
+  &--contextual {
+    #{ $section } {
+      &__toggle-button {
+        font-size: $leaders-section-contextual-title-font-size;
+        font-weight: $leaders-section-contextual-title-font-weight;
+        color: $leaders-section-contextual-title-color;
+        text-transform: $leaders-section-contextual-title-transform;
+      }
+    }
+  }
+
+  &--with-parent {
+    #{ $section } {
+      &__title {
+        margin-bottom: 10px;
+        font-size: $leaders-parent-section-content-title-font-size;
+        font-weight: $leaders-parent-section-content-title-font-weight;
+        line-height: $leaders-parent-section-content-title-line-height;
+        color: $leaders-parent-section-content-title-color;
+        text-transform: $leaders-parent-section-content-title-transform;
+        border-bottom: 1px solid $leaders-parent-section-content-title-border-color;
+      }
+    }
+  }
+
   &:last-child {
     margin-bottom: 0;
   }
-
-  // &--has-parent {
-  //   #{ $self } {
-  //     &__toggle-button {
-  //       font-size: $leaders-nav-link-font-size;
-  //       font-weight: $leaders-nav-link-font-weight;
-  //       line-height: $leaders-nav-link-line-height;
-  //       color: $leaders-nav-link-color;
-  //       text-transform: none;
-  //     }
-  //   }
-  // }
 }
 </style>

@@ -30,13 +30,20 @@
     <script>
       const { gql } = window;
       const settings = {
-        rail: false,
+        rail: true,
         home: true,
       };
 
+      // All - w/parents
+      // All - no parents
+      // Sections - w/parents
+      //  when empty, All w/parents
+      // Sections - no parents
+      //  when empty, All no parents
+
       if (settings.rail) {
         leaders('loadComponent', {
-          name: 'ContentSections',
+          name: 'Leaders',
           el: '#right-rail-all',
           props: { contentId: 13354061, sectionAlias: 'leaders' },
           on: { 'card-action': (...args) => console.log('track', args) },
@@ -44,7 +51,7 @@
         });
 
         leaders('loadComponent', {
-          name: 'ContentSections',
+          name: 'Leaders',
           el: '#right-rail-all-parents',
           props: { contentId: 13354061, sectionAlias: 'leaders' },
           on: { 'card-action': (...args) => console.log('track', args) },
@@ -52,7 +59,7 @@
         });
 
         leaders('loadComponent', {
-          name: 'ContentSections',
+          name: 'Leaders',
           el: '#right-rail-contextual',
           props: { contentId: 15611779, sectionAlias: 'leaders' },
           on: { 'card-action': (...args) => console.log('track', args) },
@@ -60,7 +67,7 @@
         });
 
         leaders('loadComponent', {
-          name: 'ContentSections',
+          name: 'Leaders',
           el: '#right-rail-contextual-parents',
           props: { contentId: 15693554, sectionAlias: 'leaders' },
           on: { 'card-action': (...args) => console.log('track', args) },
@@ -70,7 +77,7 @@
 
       if (settings.home) {
         leaders('loadComponent', {
-          name: 'AllSections',
+          name: 'Leaders',
           el: '#home-page-all',
           props: { sectionAlias: 'leaders' },
           on: { 'card-action': (...args) => console.log('track', args) },
@@ -78,7 +85,7 @@
         });
 
         leaders('loadComponent', {
-          name: 'AllSections',
+          name: 'Leaders',
           el: '#home-page-all-parents',
           props: { sectionAlias: 'leaders' },
           on: { 'card-action': (...args) => console.log('track', args) },

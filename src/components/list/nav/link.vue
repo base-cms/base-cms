@@ -96,15 +96,16 @@ export default {
 .leaders-nav {
   $nav: &;
 
+  &__item {
+    padding-left: $leaders-icon-section-toggle-size;
+  }
+
   &__link {
     display: block;
     width: $leaders-nav-link-width;
-    max-width: $leaders-nav-link-max-width;
     padding: $leaders-nav-link-padding-x $leaders-nav-link-padding-y;
-    margin: 0;
-    margin-left: $leaders-icon-section-toggle-size;
     font-size: $leaders-nav-link-font-size;
-    font-weight: $leaders-nav-link-font-weight;
+    font-weight: $leaders-nav-link-font-weight - 100;
     line-height: $leaders-nav-link-line-height;
     color: $leaders-nav-link-color;
     text-align: left;
@@ -135,14 +136,6 @@ export default {
       box-shadow: $leaders-nav-link-active-box-shadow;
       svg {
         fill: $leaders-nav-link-active-color;
-      }
-    }
-  }
-
-  &--has-parent {
-    #{ $nav } {
-      &__link {
-        font-weight: $leaders-nav-link-font-weight - 100;
       }
     }
   }

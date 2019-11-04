@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="children.length"
-    class="leaders-section leaders-section--parent"
+    class="leaders-section leaders-section--with-parent"
     :data-section-id="section.id"
   >
     <div class="leaders-section__title">
@@ -15,6 +15,7 @@
         :title="child.name"
         :open="open"
         :expanded="expanded"
+        :contextual="contextual"
         @card-action="emitCardAction"
       />
     </div>
@@ -25,6 +26,7 @@
     :title="section.name"
     :open="open"
     :expanded="expanded"
+    :contextual="contextual"
     @card-action="emitCardAction"
   />
 </template>
@@ -48,6 +50,10 @@ export default {
       required: true,
     },
     expanded: {
+      type: Boolean,
+      default: false,
+    },
+    contextual: {
       type: Boolean,
       default: false,
     },
