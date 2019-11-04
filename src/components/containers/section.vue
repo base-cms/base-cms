@@ -1,11 +1,11 @@
 <template>
-  <div :class="classes" :data-section-id="sectionId">
-    <button :class="elementClass('toggle-button')" @click="toggleExpanded">
+  <div class="leaders-section" :data-section-id="sectionId">
+    <button class="leaders-section__toggle-button" @click="toggleExpanded">
       <plus-icon v-show="!isExpanded" :modifiers="iconModifiers" />
       <minus-icon v-show="isExpanded" :modifiers="iconModifiers" />
-      <span :class="elementClass('title')">{{ title }}</span>
+      <span class="leaders-section__title">{{ title }}</span>
     </button>
-    <div v-if="isExpanded">
+    <div v-if="isExpanded" class="leaders-section__list">
       <loading
         v-if="!hasLoaded"
         :is-loading="isLoading"
@@ -83,7 +83,7 @@ export default {
   },
 
   data: () => ({
-    blockName: 'leaders-section-content-list',
+    blockName: 'leaders-list__section',
     items: [],
     isLoading: false,
     hasLoaded: false,
@@ -127,7 +127,7 @@ export default {
     },
 
     emitCardAction(...args) {
-      this.$emit('action', ...args);
+      this.$emit('card-action', ...args);
     },
 
     toggleExpanded() {
@@ -157,9 +157,9 @@ export default {
 <style lang="scss">
 @import "../../scss/variables";
 
-.leaders-section-content-list {
-  $self: &;
+.leaders-section {
   margin-bottom: 10px;
+  // $self: &;
 
   &__title {
     margin-left: 5px;
@@ -193,16 +193,16 @@ export default {
     margin-bottom: 0;
   }
 
-  &--has-parent {
-    #{ $self } {
-      &__toggle-button {
-        font-size: $leaders-nav-link-font-size;
-        font-weight: $leaders-nav-link-font-weight;
-        line-height: $leaders-nav-link-line-height;
-        color: $leaders-nav-link-color;
-        text-transform: none;
-      }
-    }
-  }
+  // &--has-parent {
+  //   #{ $self } {
+  //     &__toggle-button {
+  //       font-size: $leaders-nav-link-font-size;
+  //       font-weight: $leaders-nav-link-font-weight;
+  //       line-height: $leaders-nav-link-line-height;
+  //       color: $leaders-nav-link-color;
+  //       text-transform: none;
+  //     }
+  //   }
+  // }
 }
 </style>

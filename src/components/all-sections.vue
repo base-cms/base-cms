@@ -1,5 +1,5 @@
 <template>
-  <div class="leaders-all-sections">
+  <div class="leaders leaders--all">
     <loading
       v-if="!hasLoaded"
       :is-loading="isLoading"
@@ -8,14 +8,11 @@
       loading-message="Loading sections..."
       no-results-message="No sections were found."
     />
-    <section-content-container
+    <leaders-section-wrapper
       v-for="section in sections"
       v-else
       :key="section.id"
-      :section-id="section.id"
-      :title="section.name"
-      :children="getChildren(section)"
-      :expanded="false"
+      :section="section"
       :open="open"
       @card-action="emitCardAction"
     />
@@ -24,13 +21,16 @@
 
 <script>
 import Loading from './common/loading.vue';
-import SectionContentContainer from './containers/section-content.vue';
+import LeadersSectionWrapper from './containers/section-wrapper.vue';
 
 import query from '../graphql/queries/all-sections';
 import getEdgeNodes from '../utils/get-edge-nodes';
 
 export default {
-  components: { Loading, SectionContentContainer },
+  components: {
+    Loading,
+    LeadersSectionWrapper,
+  },
 
   props: {
     sectionAlias: {
@@ -61,10 +61,6 @@ export default {
   },
 
   methods: {
-    getChildren(section) {
-      return getEdgeNodes(section, 'children');
-    },
-
     emitCardAction(...args) {
       this.$emit('card-action', ...args);
     },
@@ -98,7 +94,7 @@ export default {
 @import "../scss/variables";
 @import "../scss/mixins";
 
-.leaders-all-sections {
+.leaders {
   @include leaders-base();
 }
 </style>
