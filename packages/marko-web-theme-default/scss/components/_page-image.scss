@@ -29,10 +29,10 @@
   }
 
   &--primary-image-inline {
-    float: left;
+    float: right;
     margin-top: calc((#{$theme-page-body-line-height} - 1) * .5em);
-    margin-right: .75rem;
     margin-bottom: 0;
+    margin-left: .75rem;
 
     @include media-breakpoint-down($theme-responsive-text-breakpoint) {
       margin-top: calc((#{$theme-page-body-line-height-sm} - 1) * .5em);
@@ -47,6 +47,12 @@
         border-radius: 0;
       }
     }
+  }
+
+  &--primary-image-inline-left {
+    float: left;
+    margin-right: .75rem;
+    margin-left: 0;
   }
 }
 
