@@ -68,7 +68,7 @@ export default {
     },
     open: {
       type: String,
-      required: true,
+      default: 'left',
     },
     expanded: {
       type: Boolean,

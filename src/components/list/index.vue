@@ -21,7 +21,12 @@
         </nav-item>
       </nav-container>
     </navbar>
-    <mounting-portal mount-to="#leaders-dropdown-portal-target" :name="portalName" append>
+    <mounting-portal
+      v-if="!isOpenDisabled"
+      mount-to="#leaders-dropdown-portal-target"
+      :name="portalName"
+      append
+    >
       <dropdown
         :direction="navDirection"
         :open="open"
@@ -100,10 +105,6 @@ export default {
       type: String,
       default: 'siteContext.path',
     },
-    preventOpen: {
-      type: Boolean,
-      default: false,
-    },
     navDirection: {
       type: String,
       default: null,
@@ -111,7 +112,7 @@ export default {
     open: {
       type: String,
       default: 'below',
-      validator: v => ['above', 'below', 'left', 'right'].includes(v),
+      validator: v => ['above', 'below', 'left', 'right', null].includes(v),
     },
     closeTimeoutMS: {
       type: Number,
@@ -158,7 +159,9 @@ export default {
       if (activeIndex == null) return null;
       return this.sections[activeIndex];
     },
-
+    isOpenDisabled() {
+      return this.open == null;
+    },
     sections() {
       return this.$refs.sections || [];
     },
@@ -197,7 +200,7 @@ export default {
     },
 
     onLinkEnd({ index, element, event }) {
-      if (!this.preventOpen) {
+      if (!this.isOpenDisabled) {
         event.preventDefault();
         event.stopPropagation();
         this.toggleDropdownFor({ link: element, activeIndex: index });
@@ -229,7 +232,7 @@ export default {
     },
 
     toggleDropdownFor({ link, activeIndex }) {
-      if (this.preventOpen) return;
+      if (this.isOpenDisabled) return;
       if (this.activeIndex === activeIndex) {
         this.closeDropdown();
       } else {
@@ -243,7 +246,7 @@ export default {
       // Set active dropdown id.
       this.activeIndex = activeIndex;
 
-      if (this.preventOpen) return;
+      if (this.isOpenDisabled) return;
 
       this.isDropdownActive = true;
       // Set last active index
