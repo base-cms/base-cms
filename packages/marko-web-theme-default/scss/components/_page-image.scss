@@ -31,8 +31,8 @@
   &--primary-image-inline {
     float: left;
     margin-top: calc((#{$theme-page-body-line-height} - 1) * .5em);
-    margin-right: .75rem;
     margin-bottom: 0;
+    margin-left: .75rem;
 
     @include media-breakpoint-down($theme-responsive-text-breakpoint) {
       margin-top: calc((#{$theme-page-body-line-height-sm} - 1) * .5em);
