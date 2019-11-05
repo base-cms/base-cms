@@ -61,8 +61,7 @@ export default {
   }
 
   &__header-image {
-    margin-top: auto;
-    margin-bottom: auto;
+    margin: auto;
     > img {
       max-width: 300px;
     }

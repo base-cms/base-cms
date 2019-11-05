@@ -1,10 +1,10 @@
 <template>
   <div :class="classes" :data-taxonomy-ids="taxonomyIds.join(',') || null">
     <leaders-header
-      :display="displayHeader"
+      :display="getResponsiveValue('displayHeader')"
       :img-src="headerImgSrc"
       :img-alt="headerImgAlt"
-      :display-callout="displayCallout"
+      :display-callout="getResponsiveValue('displayCallout')"
       :callout-prefix="calloutPrefix"
       :callout-value="calloutValue"
     />
@@ -70,7 +70,8 @@ export default {
       default: () => [],
       validator: values => values.every((value) => {
         if (!value || typeof value !== 'object') return false;
-        if (!['open', 'columns', 'expanded'].includes(value.prop)) return false;
+        const props = ['open', 'columns', 'expanded', 'displayHeader', 'displayCallout'];
+        if (!props.includes(value.prop)) return false;
         if (!value.query) return false;
         return Object.prototype.hasOwnProperty.call(value, 'value');
       }),
@@ -111,6 +112,8 @@ export default {
     mqProps: {
       open: undefined,
       columns: undefined,
+      displayHeader: undefined,
+      displayCallout: undefined,
     },
   }),
 
