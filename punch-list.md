@@ -15,6 +15,7 @@
     - Load content for each leaders section
   - [x] List All Sections + Children on Home Page
 - [ ] Shorten leaders class names??
+- [ ] Determine how to build and consolidate SCSS into importable file
 - [x] Layouts
   - Right rail contextual
   - Right rail all
