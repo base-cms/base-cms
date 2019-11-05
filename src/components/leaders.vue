@@ -8,22 +8,24 @@
       :callout-prefix="calloutPrefix"
       :callout-value="calloutValue"
     />
-    <loading
-      v-if="!hasLoaded"
-      :is-loading="isLoading"
-      :error="error"
-      :has-no-results="!sections.length"
-      loading-message="Loading sections..."
-      no-results-message="No sections were found."
-    />
-    <leaders-sections-wrapper
-      :sections="sections"
-      :open="getResponsiveValue('open')"
-      :expanded="isExpanded"
-      :contextual="isContextual"
-      :columns="getResponsiveValue('columns')"
-      @action="emitAction"
-    />
+    <div class="leaders__body">
+      <loading
+        v-if="!hasLoaded"
+        :is-loading="isLoading"
+        :error="error"
+        :has-no-results="!sections.length"
+        loading-message="Loading sections..."
+        no-results-message="No sections were found."
+      />
+      <leaders-sections-wrapper
+        :sections="sections"
+        :open="getResponsiveValue('open')"
+        :expanded="isExpanded"
+        :contextual="isContextual"
+        :columns="getResponsiveValue('columns')"
+        @action="emitAction"
+      />
+    </div>
   </div>
 </template>
 
@@ -224,5 +226,9 @@ export default {
 
 .leaders {
   @include leaders-base();
+
+  &__body {
+    padding: $leaders-body-padding;
+  }
 }
 </style>
