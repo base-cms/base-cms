@@ -47,18 +47,20 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../../scss/variables";
+
 .leaders-row {
   display: flex;
   flex-wrap: wrap;
-  margin-right: -15px;
-  margin-left: -15px;
+  margin-right: -$leaders-gutter-size;
+  margin-left: -$leaders-gutter-size;
 }
 
 .leaders-col {
   position: relative;
   width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: $leaders-gutter-size;
+  padding-left: $leaders-gutter-size;
 }
 
 .leaders-col--2 {

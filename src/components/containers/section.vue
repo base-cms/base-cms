@@ -217,7 +217,9 @@ export default {
   &--with-parent {
     #{ $section } {
       &__title {
+        margin-right: -$leaders-body-padding-x;
         margin-bottom: 6px;
+        margin-left: -$leaders-body-padding-x;
         font-size: $leaders-parent-section-content-title-font-size;
         font-weight: $leaders-parent-section-content-title-font-weight;
         line-height: $leaders-parent-section-content-title-line-height;

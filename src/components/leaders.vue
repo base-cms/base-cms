@@ -26,6 +26,9 @@
         @action="emitAction"
       />
     </div>
+    <div v-if="viewAllHref" class="leaders__footer">
+      <a :href="viewAllHref">View All Companies &raquo;</a>
+    </div>
   </div>
 </template>
 
@@ -77,6 +80,10 @@ export default {
         if (!value.query) return false;
         return Object.prototype.hasOwnProperty.call(value, 'value');
       }),
+    },
+    viewAllHref: {
+      type: String,
+      default: null,
     },
     displayHeader: {
       type: Boolean,
@@ -228,7 +235,23 @@ export default {
   @include leaders-base();
 
   &__body {
-    padding: $leaders-body-padding;
+    padding: $leaders-body-padding-y $leaders-body-padding-x;
+    border-bottom: 2px solid $leaders-gray-5;
+  }
+
+  &__footer {
+    padding: $leaders-footer-padding-y $leaders-footer-padding-x;
+    text-align: center;
+    border-bottom: 2px solid $leaders-gray-5;
+    > a {
+      font-size: $leaders-nav-link-font-size;
+      font-weight: $leaders-nav-link-font-weight;
+      line-height: $leaders-nav-link-line-height;
+      color: $leaders-nav-link-color;
+      &:hover {
+        color: $leaders-nav-link-color;
+      }
+    }
   }
 }
 </style>

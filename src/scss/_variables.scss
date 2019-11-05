@@ -9,6 +9,7 @@ $leaders-gray-1: #999 !default;
 $leaders-gray-2: #919191 !default;
 $leaders-gray-3: #cecece !default;
 $leaders-gray-4: #eff1f2 !default;
+$leaders-gray-5: #f0f0f0 !default;
 
 // Base Styles
 $leaders-base-color: $leaders-black !default;
@@ -17,8 +18,9 @@ $leaders-base-font-size: 16px !default;
 $leaders-base-font-weight: 400 !default;
 $leaders-base-line-height: 1.5 !default;
 
-// Leaders Wrapper
+// Common
 $leaders-padding: 12px !default;
+$leaders-gutter-size: 15px !default;
 
 // Leaders Header
 $leaders-header-color: $leaders-white !default;
@@ -32,7 +34,12 @@ $leaders-header-callout-text-transform: uppercase !default;
 $leaders-header-callout-value-font-weight: 600 !default;
 
 // Leaders Body
-$leaders-body-padding: $leaders-padding !default;
+$leaders-body-padding-x: 0 !default;
+$leaders-body-padding-y: $leaders-padding !default;
+
+// Leaders Footer
+$leaders-footer-padding-x: $leaders-body-padding-x !default;
+$leaders-footer-padding-y: 8px !default;
 
 // Nav Links
 $leaders-nav-link-color: $leaders-primary-color !default;
