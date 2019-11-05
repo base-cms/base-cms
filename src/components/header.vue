@@ -63,7 +63,7 @@ export default {
   &__header-image {
     margin: auto;
     > img {
-      max-width: 300px;
+      max-width: $leaders-header-image-max-width - ($leaders-header-padding * 2);
     }
   }
 
