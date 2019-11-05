@@ -23,7 +23,6 @@
         @link-action="emitAction"
       >
         <template #nav-link="{ item, isActive }">
-          <!-- @todo track when nav link is clicked when card open is prevented -->
           <link-contents
             :title="item.name"
             :is-active="isActive"
