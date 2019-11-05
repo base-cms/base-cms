@@ -1,10 +1,10 @@
 // Colors
-$leaders-primary-color: #002f7b !default;
-$leaders-primary-color-light: #005bac !default;
-$leaders-accent-color: #d656b0 !default;
+$leaders-primary-color: #002f7b !default; // Header and links
+$leaders-primary-color-light: #005bac !default; // Left-hand icon (+/- icons and popup icon)
+$leaders-accent-color: #d656b0 !default; // Link hover color and card border color
 $leaders-white: #fff !default;
 $leaders-black: rgba(0, 0, 0, .84) !default;
-$leaders-videocam-color: #eecb2f !default;
+$leaders-videocam-color: #eecb2f !default; // Video camera icon color
 $leaders-gray-1: #999 !default;
 $leaders-gray-2: #919191 !default;
 $leaders-gray-3: #cecece !default;
