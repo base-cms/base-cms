@@ -26,8 +26,8 @@
         @action="emitAction"
       />
     </div>
-    <div v-if="viewAllHref" class="leaders__footer">
-      <a :href="viewAllHref">View All Companies &raquo;</a>
+    <div v-if="viewAll" class="leaders__footer">
+      <a :href="viewAll">View All Companies &gt;</a>
     </div>
   </div>
 </template>
@@ -127,6 +127,9 @@ export default {
   }),
 
   computed: {
+    viewAll() {
+      return this.viewAllHref || `/${this.sectionAlias}`;
+    },
     isExpanded() {
       const { expanded } = this;
       if (expanded != null) return expanded;
