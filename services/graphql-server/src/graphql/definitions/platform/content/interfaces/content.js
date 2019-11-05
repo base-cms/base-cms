@@ -6,6 +6,7 @@ interface Content @requiresProject(fields: ["type"]) {
   # fields directly on platform.model::Content
   id: Int! @projection(localField: "_id") @value(localField: "_id")
   type(input: ContentTypeInput = {}): String! @projection
+  contentType: String! @projection
   name(input: ContentMutationInput = {}): String @projection(localField: "name", needs: ["mutations.Website.name", "mutations.Email.name", "mutations.Magazine.name"]) @mutatedValue
   shortName: String @projection(localField: "shortName", needs: ["name", "mutations.Website.name"])
   fullName: String @projection # @todo should be calculated in resolvers
