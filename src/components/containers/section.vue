@@ -133,6 +133,14 @@ export default {
 
     toggleExpanded() {
       this.isExpanded = !this.isExpanded;
+      this.emitAction({
+        type: this.isExpanded ? 'expand' : 'collapse',
+        label: 'Section Item',
+        category: 'Leaders Sections Nav',
+      }, {
+        sectionId: this.sectionId,
+        sectionName: this.title,
+      });
     },
 
     async loadContent() {
