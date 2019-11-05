@@ -10,10 +10,10 @@
     />
     <leaders-sections-wrapper
       :sections="sections"
-      :open="open"
+      :open="getResponsiveValue('open')"
       :expanded="isExpanded"
       :contextual="isContextual"
-      :columns="columns"
+      :columns="getResponsiveValue('columns')"
       @card-action="emitCardAction"
     />
   </div>
@@ -55,6 +55,16 @@ export default {
       type: Number,
       default: 1,
     },
+    mediaQueries: {
+      type: Array,
+      default: () => [],
+      validator: values => values.every((value) => {
+        if (!value || typeof value !== 'object') return false;
+        if (!['open', 'columns', 'expanded'].includes(value.prop)) return false;
+        if (!value.query) return false;
+        return Object.prototype.hasOwnProperty.call(value, 'value');
+      }),
+    },
   },
 
   data: () => ({
@@ -64,6 +74,10 @@ export default {
     isLoading: false,
     hasLoaded: false,
     error: null,
+    mqProps: {
+      open: undefined,
+      columns: undefined,
+    },
   }),
 
   computed: {
@@ -87,6 +101,10 @@ export default {
     },
   },
 
+  created() {
+    this.createMediaQueryListeners();
+  },
+
   mounted() {
     this.load();
   },
@@ -94,6 +112,25 @@ export default {
   methods: {
     emitCardAction(...args) {
       this.$emit('card-action', ...args);
+    },
+
+    createMediaQueryListeners() {
+      this.mediaQueries.forEach((media) => {
+        const listener = (query) => {
+          const { prop, value } = media;
+          this.mqProps[prop] = query.matches ? value : undefined;
+        };
+        const query = window.matchMedia(media.query);
+        listener(query);
+        query.addListener(listener);
+      });
+    },
+
+    getResponsiveValue(prop) {
+      const value = this[prop];
+      const mqValue = this.mqProps[prop];
+      if (mqValue === undefined) return value;
+      return mqValue;
     },
 
     async load() {

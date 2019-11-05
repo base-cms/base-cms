@@ -80,7 +80,16 @@
         leaders('loadComponent', {
           name: 'Leaders',
           el: '#home-page-all-parents',
-          props: { sectionAlias: 'leaders', open: 'right', columns: 2 },
+          props: {
+            sectionAlias: 'leaders',
+            open: null,
+            expanded: false,
+            columns: 1,
+            mediaQueries: [
+              { prop: 'open', value: 'right', query: '(min-width: 1530px)' },
+              { prop: 'columns', value: 2, query: '(min-width: 700px)' },
+            ],
+          },
           on: { 'card-action': (...args) => console.log('track', args) },
           apollo: { uri: gql.uri, tenant: gql.tenant, siteId: gql.siteIds.pw },
         });
