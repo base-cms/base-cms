@@ -1,7 +1,10 @@
 {
-  "name": "leaders-sandbox",
+  "name": "@base-cms/leaders-program",
   "version": "0.1.0",
-  "private": true,
+  "description": "Leaders Program Vue  BaseCMS websites",
+  "repository": "https://github.com/base-cms/base-cms/leaders-program",
+  "author": "Jacob Bare <jacob@limit0.io>",
+  "license": "MIT",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -35,5 +38,8 @@
     "stylelint": "^10.1.0",
     "stylelint-config-twbs-bootstrap": "0.4.0",
     "vue-template-compiler": "^2.6.10"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
