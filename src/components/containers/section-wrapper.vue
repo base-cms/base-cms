@@ -22,7 +22,7 @@
             :open="open"
             :expanded="expanded"
             :contextual="contextual"
-            @card-action="emitCardAction"
+            @action="emitAction"
           />
         </leaders-columns>
       </div>
@@ -42,7 +42,7 @@
         :open="open"
         :expanded="expanded"
         :contextual="contextual"
-        @card-action="emitCardAction"
+        @action="emitAction"
       />
     </leaders-columns>
   </div>
@@ -98,8 +98,8 @@ export default {
       return getEdgeNodes(section, 'children');
     },
 
-    emitCardAction(...args) {
-      this.$emit('card-action', ...args);
+    emitAction(...args) {
+      this.$emit('action', ...args);
     },
   },
 };

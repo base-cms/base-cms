@@ -20,6 +20,7 @@
         :identifier="sectionId"
         :open="open"
         nav-direction="vertical"
+        @link-action="emitAction"
       >
         <template #nav-link="{ item, isActive }">
           <!-- @todo track when nav link is clicked when card open is prevented -->
@@ -30,7 +31,7 @@
           />
         </template>
         <template #dropdown="{ item, isActive }">
-          <card :company="item" :is-active="isActive" @action="emitCardAction" />
+          <card :company="item" :is-active="isActive" @action="emitAction" />
         </template>
       </list>
     </div>
@@ -126,8 +127,8 @@ export default {
       return `${this.blockName}__${name}`;
     },
 
-    emitCardAction(...args) {
-      this.$emit('card-action', ...args);
+    emitAction(...args) {
+      this.$emit('action', ...args);
     },
 
     toggleExpanded() {

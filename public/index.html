@@ -30,7 +30,7 @@
     <script>
       const { gql } = window;
       const settings = {
-        rail: true,
+        rail: false,
         home: true,
       };
 
@@ -39,7 +39,7 @@
           name: 'Leaders',
           el: '#right-rail-all',
           props: { contentId: 13354061, sectionAlias: 'leaders', open: 'left' },
-          on: { 'card-action': (...args) => console.log('track', args) },
+          on: { action: (...args) => console.log('track', args) },
           apollo: { uri: gql.uri, tenant: gql.tenant, siteId: gql.siteIds.aw },
         });
 
@@ -47,7 +47,7 @@
           name: 'Leaders',
           el: '#right-rail-all-parents',
           props: { contentId: 13354061, sectionAlias: 'leaders', open: 'left' },
-          on: { 'card-action': (...args) => console.log('track', args) },
+          on: { action: (...args) => console.log('track', args) },
           apollo: { uri: gql.uri, tenant: gql.tenant, siteId: gql.siteIds.pw },
         });
 
@@ -55,7 +55,7 @@
           name: 'Leaders',
           el: '#right-rail-contextual',
           props: { contentId: 15611779, sectionAlias: 'leaders', open: 'left' },
-          on: { 'card-action': (...args) => console.log('track', args) },
+          on: { action: (...args) => console.log('track', args) },
           apollo: { uri: gql.uri, tenant: gql.tenant, siteId: gql.siteIds.aw },
         });
 
@@ -63,19 +63,19 @@
           name: 'Leaders',
           el: '#right-rail-contextual-parents',
           props: { contentId: 15693554, sectionAlias: 'leaders', open: 'left' },
-          on: { 'card-action': (...args) => console.log('track', args) },
+          on: { action: (...args) => console.log('track', args) },
           apollo: { uri: gql.uri, tenant: gql.tenant, siteId: gql.siteIds.pw },
         });
       }
 
       if (settings.home) {
-        leaders('loadComponent', {
-          name: 'Leaders',
-          el: '#home-page-all',
-          props: { sectionAlias: 'leaders', open: 'right', columns: 2 },
-          on: { 'card-action': (...args) => console.log('track', args) },
-          apollo: { uri: gql.uri, tenant: gql.tenant, siteId: gql.siteIds.aw },
-        });
+        // leaders('loadComponent', {
+        //   name: 'Leaders',
+        //   el: '#home-page-all',
+        //   props: { sectionAlias: 'leaders', open: null, columns: 2 },
+        //   on: { action: (...args) => console.log('track', args) },
+        //   apollo: { uri: gql.uri, tenant: gql.tenant, siteId: gql.siteIds.aw },
+        // });
 
         leaders('loadComponent', {
           name: 'Leaders',
@@ -90,7 +90,7 @@
               { prop: 'columns', value: 2, query: '(min-width: 700px)' },
             ],
           },
-          on: { 'card-action': (...args) => console.log('track', args) },
+          on: { action: (...args) => console.log('track', args) },
           apollo: { uri: gql.uri, tenant: gql.tenant, siteId: gql.siteIds.pw },
         });
       }
@@ -99,6 +99,11 @@
       <main class="page page--content">
         <div class="page-wrapper">
           <div class="page-wrapper__section">
+            <div class="row">
+              <div class="col">
+
+              </div>
+            </div>
             <div class="row">
               <div class="page-contents col-lg-8 mb-3 mb-lg-0">
                 <div style="margin-bottom: 1rem;">

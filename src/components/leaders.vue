@@ -14,7 +14,7 @@
       :expanded="isExpanded"
       :contextual="isContextual"
       :columns="getResponsiveValue('columns')"
-      @card-action="emitCardAction"
+      @action="emitAction"
     />
   </div>
 </template>
@@ -110,8 +110,8 @@ export default {
   },
 
   methods: {
-    emitCardAction(...args) {
-      this.$emit('card-action', ...args);
+    emitAction(...args) {
+      this.$emit('action', ...args);
     },
 
     createMediaQueryListeners() {

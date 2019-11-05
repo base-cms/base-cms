@@ -62,6 +62,8 @@
 <script>
 import { get } from '@base-cms/object-path';
 import { MountingPortal } from 'portal-vue';
+
+import { buildFlags } from '../../utils/link-tracking';
 import ElementCalculus from './element-calculus';
 import ArrowPosition from './positions/arrow-position';
 import MenuPosition from './positions/menu-position';
@@ -205,7 +207,20 @@ export default {
         event.stopPropagation();
         this.toggleDropdownFor({ link: element, activeIndex: index });
       } else {
-        window.location.href = this.getItemHref(this.items[index]);
+        const company = this.items[index];
+        const href = this.getItemHref(company);
+        this.$emit('link-action', {
+          type: 'click',
+          label: 'Profile Page',
+          category: 'Leaders List Item Nav',
+        }, {
+          href,
+          companyId: company.id,
+          companyName: company.name,
+          flags: buildFlags(),
+          date: Date.now(),
+        }, event);
+        window.location.href = href;
       }
     },
 
