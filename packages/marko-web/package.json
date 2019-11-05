@@ -35,9 +35,6 @@
     "moment": "^2.24.0",
     "vue": "^2.6.10"
   },
-  "devDependencies": {
-    "babel-eslint": "^10.0.3"
-  },
   "peerDependencies": {
     "@base-cms/marko-core": "^1.0.0-beta.4"
   },
