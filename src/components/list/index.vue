@@ -212,7 +212,7 @@ export default {
         this.$emit('link-action', {
           type: 'click',
           label: 'Profile Page',
-          category: 'Leaders List Item Nav',
+          category: 'Leaders Company List Item',
         }, {
           href,
           companyId: company.id,
