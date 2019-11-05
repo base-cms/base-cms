@@ -4,7 +4,6 @@ import VueApollo from 'vue-apollo';
 
 import Leaders from './components/leaders.vue';
 import createProvider from './apollo/create-provider';
-import './styles';
 
 Vue.config.productionTip = false;
 Vue.use(VueApollo);
