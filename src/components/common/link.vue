@@ -10,6 +10,8 @@
 </template>
 
 <script>
+import { buildFlags } from '../../utils/link-tracking';
+
 export default {
   props: {
     href: {
@@ -29,24 +31,11 @@ export default {
       if (/^http/.test(this.href)) rels.push('noreferrer');
       return rels.join(' ');
     },
-    willClickUnloadPage() {
-      return Boolean(this.target !== '_blank');
-    },
-    canSendBeacon() {
-      return window.navigator && typeof window.navigator.sendBeacon === 'function';
-    },
-    shouldAwait() {
-      return this.willClickUnloadPage && !this.canSendBeacon;
-    },
   },
 
   methods: {
     emitClick(event) {
-      const flags = {
-        willClickUnloadPage: this.willClickUnloadPage,
-        canSendBeacon: this.canSendBeacon,
-        shouldAwait: this.shouldAwait,
-      };
+      const flags = buildFlags(this.target);
       this.$emit('click', { href: this.href, flags }, event);
     },
   },
