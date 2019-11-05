@@ -17,6 +17,16 @@ $leaders-base-font-size: 16px !default;
 $leaders-base-font-weight: 400 !default;
 $leaders-base-line-height: 1.5 !default;
 
+// Leaders Header
+$leaders-header-color: $leaders-white !default;
+$leaders-header-bg-color: $leaders-primary-color !default;
+$leaders-header-padding: 12px !default;
+$leaders-header-font-weight: 300 !default;
+$leaders-header-line-height: $leaders-base-line-height !default;
+
+$leaders-header-callout-font-size: 24px !default;
+$leaders-header-callout-text-transform: uppercase !default;
+$leaders-header-callout-value-font-weight: 600 !default;
 
 // Nav Links
 $leaders-nav-link-color: $leaders-primary-color !default;

@@ -1,5 +1,13 @@
 <template>
   <div :class="classes" :data-taxonomy-ids="taxonomyIds.join(',') || null">
+    <leaders-header
+      :display="displayHeader"
+      :img-src="headerImgSrc"
+      :img-alt="headerImgAlt"
+      :display-callout="displayCallout"
+      :callout-prefix="calloutPrefix"
+      :callout-value="calloutValue"
+    />
     <loading
       v-if="!hasLoaded"
       :is-loading="isLoading"
@@ -22,6 +30,7 @@
 <script>
 import Loading from './common/loading.vue';
 import LeadersSectionsWrapper from './containers/section-wrapper.vue';
+import LeadersHeader from './header.vue';
 
 import allQuery from '../graphql/queries/all-sections';
 import fromTaxonomyQuery from '../graphql/queries/sections-from-taxonomy';
@@ -31,6 +40,7 @@ import getEdgeNodes from '../utils/get-edge-nodes';
 export default {
   components: {
     Loading,
+    LeadersHeader,
     LeadersSectionsWrapper,
   },
 
@@ -64,6 +74,30 @@ export default {
         if (!value.query) return false;
         return Object.prototype.hasOwnProperty.call(value, 'value');
       }),
+    },
+    displayHeader: {
+      type: Boolean,
+      default: true,
+    },
+    headerImgSrc: {
+      type: String,
+      default: null,
+    },
+    headerImgAlt: {
+      type: String,
+      default: null,
+    },
+    displayCallout: {
+      type: Boolean,
+      default: true,
+    },
+    calloutPrefix: {
+      type: String,
+      default: 'Browse these',
+    },
+    calloutValue: {
+      type: String,
+      default: 'leading suppliers',
     },
   },
 
