@@ -61,10 +61,48 @@
     transition-property: height, width, transform, -webkit-transform;
   }
 
+  &__section {
+    pointer-events: none;
+    opacity: 0;
+    will-change: transform, opacity;
+    transition-duration: .25s;
+    transition-property: transform, opacity, -webkit-transform;
+    &--active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
   &__content {
     position: absolute;
     top: 0;
     left: 0;
+  }
+
+  &--horizontal {
+    #{ $self } {
+      &__section {
+        &--before { // From the left
+          transform: translateX(-150px);
+        }
+        &--after { // From the right
+          transform: translateX(150px);
+        }
+      }
+    }
+  }
+
+  &--vertical {
+    #{ $self } {
+      &__section {
+        &--before { // From the top
+          transform: translateY(-150px);
+        }
+        &--after { // From the bottom
+          transform: translateY(150px);
+        }
+      }
+    }
   }
 
   &--open-below {
