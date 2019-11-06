@@ -72,7 +72,7 @@
 </template>
 
 <script>
-import { get, getAsObject } from '@base-cms/object-path';
+import { get } from 'object-path';
 import CompanyDetails from './blocks/company-details.vue';
 import CompanySummary from './blocks/company-summary.vue';
 import ContentDeck from './blocks/content-deck.vue';
@@ -80,6 +80,7 @@ import KeyExecutive from './blocks/key-executive.vue';
 import PromotionCard from './blocks/promotion-card.vue';
 import VideoCard from './blocks/video-card.vue';
 import ViewMore from './blocks/view-more.vue';
+import getAsObject from '../../utils/get-as-object';
 import getEdgeNodes from '../../utils/get-edge-nodes';
 
 export default {

@@ -49,10 +49,9 @@
 </template>
 
 <script>
-import { getAsArray } from '@base-cms/object-path';
-
 import LeadersSection from './section.vue';
 import LeadersColumns from './columns.vue';
+import getAsArray from '../../utils/get-as-array';
 import getEdgeNodes from '../../utils/get-edge-nodes';
 
 export default {

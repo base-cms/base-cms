@@ -60,7 +60,7 @@
 </template>
 
 <script>
-import { get } from '@base-cms/object-path';
+import { get } from 'object-path';
 import { MountingPortal } from 'portal-vue';
 
 import { buildFlags } from '../../utils/link-tracking';
