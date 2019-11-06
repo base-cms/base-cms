@@ -1,0 +1,53 @@
+.leaders-content-deck {
+  $block: &;
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: $leaders-card-padding / 2;
+    font-size: 14px;
+  }
+
+  &__header-left {
+    font-weight: 800;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__item {
+    &--promo {
+      padding-right: leaders-promo-card-padding();
+      padding-left: leaders-promo-card-padding();
+    }
+
+    &--video {
+      padding-right: leaders-video-card-padding();
+      padding-left: leaders-video-card-padding();
+    }
+
+    &:first-child {
+      padding-left: 0;
+    }
+
+    &:last-child {
+      padding-right: 0;
+    }
+  }
+
+  a {
+    color: $leaders-card-body-color;
+    &:hover {
+      color: $leaders-card-body-color;
+    }
+  }
+
+  + #{ $block } {
+    padding-top: $leaders-card-padding;
+    border-top: 1px solid $leaders-card-body-hr-color;
+  }
+
+}
