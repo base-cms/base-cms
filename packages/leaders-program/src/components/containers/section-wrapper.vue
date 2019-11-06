@@ -22,6 +22,8 @@
             :open="open"
             :expanded="expanded"
             :contextual="contextual"
+            :offset-top="offsetTop"
+            :offset-bottom="offsetBottom"
             @action="emitAction"
           />
         </leaders-columns>
@@ -42,6 +44,8 @@
         :open="open"
         :expanded="expanded"
         :contextual="contextual"
+        :offset-top="offsetTop"
+        :offset-bottom="offsetBottom"
         @action="emitAction"
       />
     </leaders-columns>
@@ -80,6 +84,14 @@ export default {
     columns: {
       type: Number,
       default: 1,
+    },
+    offsetTop: {
+      type: Number,
+      default: 0,
+    },
+    offsetBottom: {
+      type: Number,
+      default: 0,
     },
   },
 

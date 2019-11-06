@@ -126,10 +126,13 @@ export default {
       default: 50,
       validator: v => v > 0,
     },
-    screenOffset: {
+    offsetBottom: {
       type: Number,
-      default: 0, // this is not properly handled yet. do not use.
-      validator: v => v >= 0,
+      default: 0,
+    },
+    offsetTop: {
+      type: Number,
+      default: 0,
     },
   },
 
@@ -274,7 +277,7 @@ export default {
       const navRect = this.$refs.nav.$el.getBoundingClientRect();
       const arrowRect = this.$refs.arrow.$el.getBoundingClientRect();
 
-      const { open, screenOffset } = this;
+      const { open, offsetTop, offsetBottom } = this;
       // Create element calculus info.
       const calcs = new ElementCalculus({
         content,
@@ -283,7 +286,12 @@ export default {
         arrowRect,
       });
       // Calculate dropdown menu position.
-      const menu = new MenuPosition({ openDirection: open, calculus: calcs, screenOffset });
+      const menu = new MenuPosition({
+        openDirection: open,
+        calculus: calcs,
+        offsetTop,
+        offsetBottom,
+      });
       // Calculate arrow position.
       const arrow = new ArrowPosition({ openDirection: open, calculus: calcs });
 

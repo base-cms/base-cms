@@ -1,9 +1,15 @@
 import AbstractPosition from './abstract-position';
 
 class MenuPosition extends AbstractPosition {
-  constructor({ openDirection, calculus, screenOffset } = {}) {
+  constructor({
+    openDirection,
+    calculus,
+    offsetTop,
+    offsetBottom,
+  } = {}) {
     super({ openDirection, calculus });
-    this.screenOffset = screenOffset || 0;
+    this.offsetTop = offsetTop || 0;
+    this.offsetBottom = offsetBottom || 0;
   }
 
   get x() {
@@ -82,7 +88,7 @@ class MenuPosition extends AbstractPosition {
   }
 
   get topOffset() {
-    return this.top;
+    return this.top - this.offsetTop;
   }
 
   get isTopInView() {
@@ -91,7 +97,7 @@ class MenuPosition extends AbstractPosition {
 
   get bottomOffset() {
     const { calculus: calcs } = this;
-    return calcs.viewport('h') - this.bottom + this.screenOffset;
+    return calcs.viewport('h') - this.bottom - this.offsetBottom;
   }
 
   get isBottomInView() {

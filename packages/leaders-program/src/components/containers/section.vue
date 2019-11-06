@@ -19,6 +19,8 @@
         :items="items"
         :identifier="sectionId"
         :open="open"
+        :offset-top="offsetTop"
+        :offset-bottom="offsetBottom"
         nav-direction="vertical"
         @link-action="emitAction"
       >
@@ -79,6 +81,14 @@ export default {
     contextual: {
       type: Boolean,
       default: false,
+    },
+    offsetTop: {
+      type: Number,
+      default: 0,
+    },
+    offsetBottom: {
+      type: Number,
+      default: 0,
     },
   },
 

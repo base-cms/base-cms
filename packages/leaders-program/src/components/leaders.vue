@@ -23,6 +23,8 @@
         :expanded="isExpanded"
         :contextual="isContextual"
         :columns="getResponsiveValue('columns')"
+        :offset-top="offsetTop"
+        :offset-bottom="offsetBottom"
         @action="emitAction"
       />
     </div>
@@ -108,6 +110,14 @@ export default {
     calloutValue: {
       type: String,
       default: 'leading suppliers',
+    },
+    offsetTop: {
+      type: Number,
+      default: 0,
+    },
+    offsetBottom: {
+      type: Number,
+      default: 0,
     },
   },
 
