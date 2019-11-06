@@ -1,0 +1,64 @@
+.leaders-nav {
+  display: flex;
+  padding: 0;
+  margin: 0;
+
+  &__item  {
+    padding-left: $leaders-icon-section-toggle-size;
+    list-style: none;
+  }
+
+  &__link {
+    display: block;
+    width: $leaders-nav-link-width;
+    max-width: $leaders-nav-link-max-width;
+    padding: $leaders-nav-link-padding-x $leaders-nav-link-padding-y;
+    font-size: $leaders-nav-link-font-size;
+    font-weight: $leaders-nav-link-font-weight - 100;
+    line-height: $leaders-nav-link-line-height;
+    color: $leaders-nav-link-color;
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+    user-select: none;
+    background: none;
+    border: none;
+    outline: none;
+    transition-duration: 150ms;
+    transition-property: color, box-shadow, background-color;
+    will-change: color, box-shadow, background-color;
+    -webkit-tap-highlight-color: transparent;
+    > * {
+      position: relative;
+      display: block;
+    }
+
+    &:focus,
+    &:active {
+      outline: none;
+    }
+
+    &--active {
+      color: $leaders-nav-link-active-color;
+      text-decoration: none;
+      background-color: $leaders-nav-link-active-bg-color;
+      box-shadow: $leaders-nav-link-active-box-shadow;
+      svg {
+        fill: $leaders-nav-link-active-color;
+      }
+    }
+  }
+
+  &--horizontal {
+    flex-direction: row;
+  }
+
+  &--vertical {
+    flex-direction: column;
+  }
+}
+
+.leaders-nav-link-contents {
+  display: inline-flex;
+  flex-direction: row;
+}

@@ -14,11 +14,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-.leaders-nav {
-  &__item  {
-    list-style: none;
-  }
-}
-</style>

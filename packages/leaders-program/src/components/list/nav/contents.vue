@@ -45,10 +45,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-  .leaders-nav-link-contents {
-    display: inline-flex;
-    flex-direction: row;
-  }
-</style>

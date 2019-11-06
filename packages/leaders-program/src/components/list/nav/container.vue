@@ -27,19 +27,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-.leaders-nav {
-  display: flex;
-  padding: 0;
-  margin: 0;
-
-  &--horizontal {
-    flex-direction: row;
-  }
-
-  &--vertical {
-    flex-direction: column;
-  }
-}
-</style>
