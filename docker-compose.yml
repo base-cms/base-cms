@@ -362,6 +362,16 @@ services:
       - "11163:80"
       - "25163:25163"
 
+  example-leaders-program:
+    << : *node
+    working_dir: /base-cms/packages/leaders-program
+    entrypoint: ["/base-cms/node_modules/.bin/vue-cli-service"]
+    command: ["serve", "src/dev.js", "--port", "11164"]
+    environment:
+      <<: *env
+    ports:
+      - "11164:11164"
+
   haproxy:
     image: haproxy:alpine
     ports: [ "${PORT-10010}:80" ]
