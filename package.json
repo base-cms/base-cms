@@ -17,6 +17,7 @@
   "devDependencies": {
     "@2fd/graphdoc": "^2.4.0",
     "apollo-client": "^2.6.4",
+    "babel-eslint": "^10.0.3",
     "chai": "^4.2.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.2.0",
