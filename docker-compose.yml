@@ -336,9 +336,9 @@ services:
       - "11162:80"
       - "25162:25162"
 
-  example-webstie-bzb:
+  example-website-bzb:
     <<: *node
-    working_dir: /base-cms/services/example-webstie-bzb
+    working_dir: /base-cms/services/example-website-bzb
     command: ["/base-cms/node_modules/.bin/basecms-website", "dev", "index.js"]
     environment:
       <<: *env
