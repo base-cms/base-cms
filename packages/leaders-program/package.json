@@ -4,15 +4,16 @@
   "description": "Leaders Program Vue components",
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/leaders-program",
   "author": "Jacob Bare <jacob@limit0.io>",
+  "main": "src/index.js",
   "license": "MIT",
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "vue-cli-service serve src/dev.js",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@base-cms/object-path": "^1.0.0-beta.4",
     "core-js": "^3.3.2",
+    "object-path": "^0.11.4",
     "portal-vue": "^2.1.6",
     "vue": "^2.6.10"
 
@@ -23,17 +24,25 @@
     "vue-apollo": "^3"
   },
   "devDependencies": {
+    "@base-cms/graphql-fragment-types": "^1.0.0-beta.7",
     "@vue/cli-plugin-babel": "^4.0.0",
     "@vue/cli-plugin-eslint": "^4.0.0",
     "@vue/cli-service": "^4.0.0",
     "@vue/eslint-config-airbnb": "^4.0.0",
+    "apollo-cache-inmemory": "^1.6.3",
+    "apollo-client": "^2.6.4",
+    "apollo-link": "^1.2.13",
+    "apollo-link-http": "^1.5.16",
     "babel-eslint": "^10.0.3",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
+    "graphql": "^14.5.4",
+    "graphql-tag": "^2.10.1",
     "node-sass": "^4.12.0",
     "sass-loader": "^8.0.0",
     "stylelint": "^10.1.0",
     "stylelint-config-twbs-bootstrap": "0.4.0",
+    "vue-apollo": "^3.0.0",
     "vue-template-compiler": "^2.6.10"
   },
   "publishConfig": {

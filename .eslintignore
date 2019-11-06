@@ -1,5 +1,7 @@
 # Build products
 dist/
 
+packages/leaders-program/apollo/
+
 # Generated Marko Files
 *.marko.js
