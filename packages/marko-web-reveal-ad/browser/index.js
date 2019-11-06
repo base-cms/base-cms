@@ -1,5 +1,5 @@
-import Listener from './listener.vue';
+const RevealAdListener = () => import(/* webpackChunkName: "reveal-ad-listener" */ './listener.vue');
 
 export default (Browser) => {
-  Browser.registerComponent('RevealAdListener', Listener);
+  Browser.registerComponent('RevealAdListener', RevealAdListener);
 };
