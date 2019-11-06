@@ -1,7 +1,17 @@
 const { get } = require('@base-cms/object-path');
 const AbstractConfig = require('./abstract-config');
+const AssetManifest = require('./asset-manifest');
 
 class CoreConfig extends AbstractConfig {
+  /**
+   *
+   * @param {object} config
+   */
+  constructor(config) {
+    super(config);
+    this.assets = new AssetManifest({ distDir: this.get('distDir') })
+  }
+
   setWebsiteContext(context) {
     this.websiteContext = context;
   }
@@ -44,25 +54,12 @@ class CoreConfig extends AbstractConfig {
     return this.website('name', '');
   }
 
-  loadManifest() {
-    const distDir = this.get('distDir');
-    // eslint-disable-next-line global-require, import/no-dynamic-require
-    if (!this.manifest) this.manifest = require(`${distDir}/rev-manifest.json`);
-    return this.manifest;
-  }
-
   sources() {
-    if (!this.scripts) {
-      this.scripts = Object.values(this.loadManifest()).filter(f => /\.js$/.test(f)).map(f => `/dist/${f}`);
-    }
-    return this.scripts;
+    return this.assets.js();
   }
 
   styles() {
-    if (!this.stylesheets) {
-      this.stylesheets = Object.values(this.loadManifest()).filter(f => /\.css$/.test(f)).map(f => `/dist/${f}`);
-    }
-    return this.stylesheets;
+    return this.assets.css();
   }
 }
 
