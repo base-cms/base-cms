@@ -54,19 +54,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-.leaders-dropdown {
-  &__container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 500px;
-    overflow: hidden;
-    transition-duration: .25s;
-    transition-property: transform, width, height, -webkit-transform;
-    transform: translateX(0);
-    will-change: transform, width, height;
-  }
-}
-</style>
