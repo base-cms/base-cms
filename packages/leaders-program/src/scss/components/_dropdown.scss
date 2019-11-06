@@ -13,6 +13,52 @@
   transform-origin: 50% -50px;
   will-change: transform, opacity;
 
+  &__arrow {
+    position: absolute;
+    top: $leaders-dropdown-arrow-top;
+    left: 0;
+    width: $leaders-dropdown-arrow-size;
+    height: $leaders-dropdown-arrow-size;
+    margin: 0 0 0 $leaders-dropdown-arrow-top;
+    background-color: $leaders-dropdown-arrow-color;
+    transition-duration: .25s;
+    transition-property: transform, -webkit-transform;
+    transform: rotate(45deg);
+    will-change: transform;
+  }
+
+  &--open-below {
+    #{ $self } {
+      &__arrow {
+        box-shadow: -3px -3px 5px rgba(82, 95, 127, .04);
+      }
+    }
+  }
+
+  &--open-above {
+    #{ $self } {
+      &__arrow {
+        box-shadow: 3px 3px 5px rgba(82, 95, 127, .04);
+      }
+    }
+  }
+
+  &--open-left {
+    #{ $self } {
+      &__arrow {
+        box-shadow: -3px -3px 5px rgba(82, 95, 127, .04);
+      }
+    }
+  }
+
+  &--open-right {
+    #{ $self } {
+      &__arrow {
+        box-shadow: -3px -3px 5px rgba(82, 95, 127, .04);
+      }
+    }
+  }
+
   &--active {
     pointer-events: auto;
     opacity: 1;
