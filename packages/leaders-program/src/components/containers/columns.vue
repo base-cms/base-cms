@@ -45,36 +45,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-@import "../../scss/variables";
-
-.leaders-row {
-  display: flex;
-  flex-wrap: wrap;
-  margin-right: -$leaders-gutter-size;
-  margin-left: -$leaders-gutter-size;
-}
-
-.leaders-col {
-  position: relative;
-  width: 100%;
-  padding-right: $leaders-gutter-size;
-  padding-left: $leaders-gutter-size;
-}
-
-.leaders-col--2 {
-  flex: 0 0 50%;
-  max-width: 50%;
-}
-
-.leaders-col--3 {
-  flex: 0 0 33.333%;
-  max-width: 33.333%;
-}
-
-.leaders-col--4 {
-  flex: 0 0 25%;
-  max-width: 25%;
-}
-</style>
