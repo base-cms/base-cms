@@ -364,20 +364,4 @@ export default {
     },
   },
 };
-/* eslint-disable */
 </script>
-
-<style lang="scss">
-@import "../../scss/variables";
-@import "../../scss/mixins";
-
-.leaders-dropdown-portal {
-  @include leaders-base();
-  z-index: 10;
-  perspective: 1500px;
-}
-
-.leaders-list {
-  width: 100%;
-}
-</style>
