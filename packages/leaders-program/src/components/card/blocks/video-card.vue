@@ -50,30 +50,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-@import "../../../scss/mixins";
-@import "../../../scss/variables";
-
-.leaders-video-card {
-  width: $leaders-video-card-image-width;
-  font-size: $leaders-video-card-font-size;
-  line-height: $leaders-video-card-line-height;
-
-  &__title {
-    @include leaders-max-lines(
-      $font-size: $leaders-video-card-font-size,
-      $line-height: $leaders-video-card-line-height,
-      $num: 3,
-    );
-  }
-
-  &__image {
-    img {
-      width: $leaders-video-card-image-width;
-      height: $leaders-video-card-image-height;
-      border: 1px solid $leaders-primary-color-light;
-    }
-  }
-}
-</style>
