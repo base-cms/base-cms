@@ -14,7 +14,7 @@ module.exports = ({
   const { apollo } = req;
 
   const additionalInput = {};
-  if (req.cookies['preview-mode']) additionalInput.status = 'any';
+  if (req.cookies['preview-mode'] || req.query['preview-mode']) additionalInput.status = 'any';
   const content = await loader(apollo, { id, additionalInput });
   const { redirectTo } = content;
   const path = get(content, 'siteContext.path');
@@ -22,7 +22,8 @@ module.exports = ({
     return res.redirect(301, redirectTo);
   }
   if (redirectOnPathMismatch && path !== req.path) {
-    return res.redirect(301, path);
+    const pathTo = req.query['preview-mode'] ? `${path}?preview-mode=true` : path;
+    return res.redirect(301, pathTo);
   }
   const pageNode = new PageNode(apollo, {
     queryFactory,
