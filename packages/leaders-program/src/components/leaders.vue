@@ -23,8 +23,8 @@
         :expanded="isExpanded"
         :contextual="isContextual"
         :columns="getResponsiveValue('columns')"
-        :offset-top="offsetTop"
-        :offset-bottom="offsetBottom"
+        :offset-top="getResponsiveValue('offsetTop')"
+        :offset-bottom="getResponsiveValue('offsetBottom')"
         @action="emitAction"
       />
     </div>
@@ -133,6 +133,8 @@ export default {
       columns: undefined,
       displayHeader: undefined,
       displayCallout: undefined,
+      offsetTop: undefined,
+      offsetBottom: undefined,
     },
   }),
 
