@@ -22,6 +22,7 @@
     "@base-cms/express-apollo": "^1.0.0-beta.7",
     "@base-cms/marko-web": "^1.0.0-beta.19",
     "autoprefixer": "^9.6.1",
+    "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
     "chalk": "^2.4.2",
     "core-js": "^2.6.9",
