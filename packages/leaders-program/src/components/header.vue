@@ -44,39 +44,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-@import "../scss/variables";
-
-.leaders {
-  &__header {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    padding: $leaders-header-padding;
-    font-weight: $leaders-header-font-weight;
-    line-height: $leaders-header-line-height;
-    color: $leaders-header-color;
-    background-color: $leaders-header-bg-color;
-  }
-
-  &__header-image {
-    margin: auto;
-    > img {
-      max-width: $leaders-header-image-max-width - ($leaders-header-padding * 2);
-    }
-  }
-
-  &__header-callout {
-    padding-right: $leaders-header-padding;
-    padding-left: $leaders-header-padding;
-    margin: auto;
-    font-size: $leaders-header-callout-font-size;
-    text-transform: $leaders-header-callout-text-transform;
-  }
-
-  &__callout-value {
-    font-weight: $leaders-header-callout-value-font-weight;
-  }
-}
-</style>
