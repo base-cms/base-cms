@@ -1,5 +1,8 @@
 {
   "<marko-web-leaders-dropdown-portal>": {
     "template": "./dropdown-portal.marko"
+  },
+  "<marko-web-leaders>": {
+    "template": "./index.marko"
   }
 }
