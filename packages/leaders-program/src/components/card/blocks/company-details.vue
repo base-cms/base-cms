@@ -79,36 +79,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-@import "../../../scss/variables";
-
-.leaders-company-details {
-  display: flex;
-  flex-direction: column;
-  min-width: $leaders-logo-wrapper-size;
-  height: 100%;
-  &__logo {
-    box-sizing: content-box;
-    display: block;
-    width: $leaders-logo-wrapper-size;
-    height: $leaders-logo-wrapper-size;
-    margin-bottom: $leaders-card-padding;
-    background-color: $leaders-logo-background-color;
-    border: $leaders-logo-border-size solid $leaders-logo-background-color;
-    border-radius: $leaders-logo-wrapper-size;
-    box-shadow: inset 0 0 $leaders-logo-shadow-size $leaders-logo-shadow-color;
-    > img {
-      width: $leaders-logo-size;
-      height: $leaders-logo-size;
-      margin-top: $leaders-logo-shadow-size;
-      margin-left: $leaders-logo-shadow-size;
-      vertical-align: middle;
-    }
-  }
-
-  &__logo + &__links {
-    margin-top: auto;
-  }
-}
-</style>
