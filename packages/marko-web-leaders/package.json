@@ -13,6 +13,7 @@
     "test": "yarn compile && yarn lint"
   },
   "dependencies": {
+    "@base-cms/leaders-program": "^1.0.0-beta.1",
     "graphql": "^14.5.4",
     "graphql-tag": "^2.10.1"
   },
