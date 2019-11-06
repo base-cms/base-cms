@@ -34,35 +34,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-@import "../../../scss/variables";
-
-.leaders-key-executive {
-  display: flex;
-  flex-direction: row;
-
-  &__headshot {
-    padding-right: $leaders-card-padding;
-
-    > img {
-      width: 50px;
-      height: 50px;
-      border: 1px solid #d4d4d4;
-      border-radius: 50px;
-    }
-  }
-
-  &__details {
-    font-size: $leaders-key-executive-font-size;
-    font-weight: $leaders-key-executive-font-weight;
-  }
-
-  &__title {
-    &::before {
-      content: ", ";
-    }
-  }
-}
-
-</style>
