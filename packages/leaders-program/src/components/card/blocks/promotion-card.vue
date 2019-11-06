@@ -67,30 +67,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-@import "../../../scss/mixins";
-@import "../../../scss/variables";
-
-.leaders-promotion-card {
-  width: $leaders-promotion-card-image-width;
-  font-size: $leaders-promotion-card-font-size;
-  line-height: $leaders-promotion-card-line-height;
-
-  &__title {
-    @include leaders-max-lines(
-      $font-size: $leaders-promotion-card-font-size,
-      $line-height: $leaders-promotion-card-line-height,
-      $num: 3,
-    );
-  }
-
-  &__image {
-    img {
-      width: $leaders-promotion-card-image-width;
-      height: $leaders-promotion-card-image-height;
-      border: 1px solid $leaders-primary-color-light;
-    }
-  }
-}
-</style>
