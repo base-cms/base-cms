@@ -4,7 +4,10 @@ import components from './components';
 import EventBus from './event-bus';
 import './lazysizes';
 
+const apollo = () => import(/* webpackChunkName: "apollo" */ './apollo');
+
 const providers = {};
+const requiresApollo = {};
 
 const load = async ({
   el,
@@ -15,18 +18,25 @@ const load = async ({
   if (!el || !name) throw new Error('A Vue component name and element must be provided.');
   const Component = components[name];
   if (!Component) throw new Error(`No Vue component found for '${name}'`);
+  let apolloProvider;
+  if (requiresApollo[name]) {
+    const { default: provider } = await apollo();
+    apolloProvider = provider;
+  }
   new Vue({
     provide: providers[name],
     el,
+    apolloProvider,
     render: h => h(Component, { props, on }),
   });
 };
 
-const register = async (name, Component, { provide } = {}) => {
+const register = async (name, Component, { provide, withApollo } = {}) => {
   if (!name) throw new Error('A Vue component name must be provided.');
   if (components[name]) throw new Error(`A Vue component already exists for '${name}'`);
   components[name] = Component;
   providers[name] = provide;
+  if (withApollo) requiresApollo[name] = true;
 };
 
 /**
