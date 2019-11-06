@@ -61,6 +61,12 @@
     transition-property: height, width, transform, -webkit-transform;
   }
 
+  &__content {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
   &--open-below {
     #{ $self } {
       &__arrow {
@@ -74,6 +80,9 @@
         right: 0;
         left: 0;
         height: $leaders-dropdown-background-border-size;
+      }
+      &__content {
+        padding-top: $leaders-dropdown-background-border-size;
       }
     }
   }
@@ -92,6 +101,9 @@
         left: 0;
         height: $leaders-dropdown-background-border-size;
       }
+      &__content {
+        padding-bottom: $leaders-dropdown-background-border-size;
+      }
     }
   }
 
@@ -109,6 +121,9 @@
         bottom: 0;
         width: $leaders-dropdown-background-border-size;
       }
+      &__content {
+        padding-right: $leaders-dropdown-background-border-size;
+      }
     }
   }
 
@@ -125,6 +140,9 @@
         bottom: 0;
         left: 0;
         width: $leaders-dropdown-background-border-size;
+      }
+      &__content {
+        padding-left: $leaders-dropdown-background-border-size;
       }
     }
   }
