@@ -4,7 +4,7 @@ import Browser from '@base-cms/marko-web/browser';
 /*
 import SomeComponent from './some-component.vue';
 
-Browser.registerComponent('SomeComponentName', SomeComponent);
+Browser.register('SomeComponentName', SomeComponent);
 
 This component would now be loadable within server-side templates via.
 <cms-browser-component name="SomeComponentName" props={ someProp: 'someValue' } />
