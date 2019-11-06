@@ -4,12 +4,6 @@
   font-weight: $leaders-base-font-weight;
   line-height: $leaders-base-line-height;
   color: $leaders-base-color;
-
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-  }
 }
 
 // stylelint-disable value-no-vendor-prefix, property-no-vendor-prefix
