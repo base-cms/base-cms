@@ -9,7 +9,7 @@ class CoreConfig extends AbstractConfig {
    */
   constructor(config) {
     super(config);
-    this.assets = new AssetManifest({ distDir: this.get('distDir') })
+    this.assets = new AssetManifest({ distDir: this.get('distDir') });
   }
 
   setWebsiteContext(context) {
