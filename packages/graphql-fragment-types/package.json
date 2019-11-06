@@ -12,6 +12,9 @@
   "dependencies": {
     "node-fetch": "^2.6.0"
   },
+  "peerDependencies": {
+    "apollo-cache-inmemory": "^1.6.0"
+  },
   "publishConfig": {
     "access": "public"
   }

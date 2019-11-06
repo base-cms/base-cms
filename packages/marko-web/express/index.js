@@ -5,6 +5,7 @@ const marko = require('marko/express');
 const path = require('path');
 const helmet = require('helmet');
 const apollo = require('./apollo');
+const graphqlProxy = require('./graphql-proxy');
 const embeddedMedia = require('./embedded-media');
 const loadObject = require('./load-object');
 const loadDocument = require('./load-document');
@@ -23,6 +24,7 @@ module.exports = (config = {}) => {
     tenantKey,
     siteId,
     sitePackage,
+    graphqlUri,
   } = config;
   const distDir = path.resolve(rootDir, 'dist');
   const app = express();
@@ -68,13 +70,14 @@ module.exports = (config = {}) => {
     next();
   });
 
-  // Register apollo.
+  // Register apollo client and server proxy.
   const headers = buildRequestHeaders({ tenantKey, siteId });
-  apollo(app, config.graphqlUri, {
+  apollo(app, graphqlUri, {
     name: sitePackage.name,
     version: sitePackage.version,
     link: { headers },
   });
+  graphqlProxy(app, { graphqlUri, headers });
 
   // Set website context.
   app.use(websiteContext(app.locals.config));

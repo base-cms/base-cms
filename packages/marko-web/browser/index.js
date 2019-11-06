@@ -4,25 +4,58 @@ import components from './components';
 import EventBus from './event-bus';
 import './lazysizes';
 
-const providers = {};
+const apollo = () => import(/* webpackChunkName: "apollo" */ './apollo');
 
-const loadComponent = (el, name, props) => {
+const providers = {};
+const requiresApollo = {};
+
+const load = async ({
+  el,
+  name,
+  props,
+  on,
+} = {}) => {
+  if (!el || !name) throw new Error('A Vue component name and element must be provided.');
   const Component = components[name];
   if (!Component) throw new Error(`No Vue component found for '${name}'`);
+  let apolloProvider;
+  if (requiresApollo[name]) {
+    const { default: provider } = await apollo();
+    apolloProvider = provider;
+  }
   new Vue({
     provide: providers[name],
     el,
-    render: h => h(Component, { props }),
+    apolloProvider,
+    render: h => h(Component, { props, on }),
   });
 };
 
-const registerComponent = (name, Component, provide) => {
+const register = async (name, Component, { provide, withApollo } = {}) => {
+  if (!name) throw new Error('A Vue component name must be provided.');
   if (components[name]) throw new Error(`A Vue component already exists for '${name}'`);
   components[name] = Component;
   providers[name] = provide;
+  if (withApollo) requiresApollo[name] = true;
+};
+
+/**
+ * @deprecated Use `load` instead.
+ */
+const loadComponent = (el, name, props) => {
+  load({ el, name, props });
+};
+
+/**
+ * @deprecated Use `register` instead.
+ */
+const registerComponent = (name, Component, provide) => {
+  register(name, Component, { provide });
 };
 
 export default {
+  load,
+  register,
   loadComponent,
   registerComponent,
   EventBus,
