@@ -55,11 +55,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-.leaders-loading {
-  &__message {
-    margin-left: 5px;
-  }
-}
-</style>
