@@ -1,15 +1,12 @@
 import LoadMoreTrigger from './load-more-trigger.vue';
-import OEmbed from './oembed.vue';
 import TriggerInViewEvent from './trigger-in-view-event.vue';
-import FormDotComGatedDownload from './gated-download/form-dot-com.vue';
-import WufooGatedDownload from './gated-download/wufoo.vue';
 
 const components = {
-  LoadMoreTrigger,
-  OEmbed,
-  TriggerInViewEvent,
-  FormDotComGatedDownload,
-  WufooGatedDownload,
+  LoadMoreTrigger, // usage _very_ frequent, do not dynamically import.
+  OEmbed: () => import(/* webpackChunkName: "oembed" */ './oembed.vue'),
+  TriggerInViewEvent, // usage _very_ frequent, do not dynamically import.
+  FormDotComGatedDownload: () => import(/* webpackChunkName: "form-dot-com" */ './gated-download/form-dot-com.vue'),
+  WufooGatedDownload: () => import(/* webpackChunkName: "wufoo-gated-download" */ './gated-download/wufoo.vue'),
 };
 
 export default components;
