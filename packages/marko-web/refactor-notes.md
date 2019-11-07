@@ -14,7 +14,7 @@
 - [ ] Inquiry Plugin (Bizbash only)
 - [ ] Contact Us Submissions - move to site package for now
 - [ ] Mailer Service for Contact Us and Inquiry
-- [ ] Review unused theme CSS
+- [x] Review unused theme CSS
 - [ ] Verify page model resolver speed once converted
 
 ## Core
