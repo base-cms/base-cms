@@ -1,12 +1,11 @@
 // Override variables here.
-@import url("https://fonts.googleapis.com/css?family=Raleway:500,800|Roboto+Condensed:400,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Encode+Sans+Condensed:600,700|Numans|Raleway:600,700,800&display=swap");
 
 @import "../../scss/functions.scss";
 
 // font map
-// promixa-nova -> ralewaya
-// jaf-bernin -> roboto condensed
-//  - 600 = 800
+// jaf-bernino-sans-condensed -> "Encode Sans Condensed"
+// proxima-nova => "Raleway" for headers, etc; "Numans" dates
 
 $marko-web-node-list-border-color: #f0f0f0 !default;
 
@@ -53,14 +52,18 @@ $theme-breadcrumbs-font-size: 14px !default;
 $theme-breadcrumbs-font-weight: 500 !default;
 $theme-breadcrumbs-line-height: get-line-height($theme-breadcrumbs-font-size, 20px) !default;
 
-// Item Title
-$theme-item-title-font-family: "Roboto Condensed", sans-serif !default;
-$theme-item-title-font-size: 19px !default;
+// Node Title
+$theme-item-title-font-family: "Encode Sans Condensed", sans-serif !default;
+$theme-item-title-font-size: 18px !default;
 $theme-item-title-font-size-sm: $theme-item-title-font-size !default;
-$theme-item-title-font-weight: 500 !default;
+$theme-item-title-font-weight: 600 !default;
 $theme-item-title-line-height: get-line-height($theme-item-title-font-size, 24px) !default;
 $theme-item-title-line-height-sm: $theme-item-title-line-height !default;
 $theme-item-title-color: #222 !default;
+
+// Node Title (Large)
+$theme-item-title-large-font-size: 22px !default;
+$theme-item-title-large-font-weight: 700px !default;
 
 // Item Header
 $theme-item-header-color: #767676 !default;
@@ -71,7 +74,7 @@ $theme-item-footer-color: $theme-item-header-color !default;
 // Item Card Header
 $theme-card-header-font-family: "Raleway", sans-serif !default;
 $theme-card-header-font-size: 15px !default;
-$theme-card-header-font-weight: 700 !default;
+$theme-card-header-font-weight: 800 !default;
 $theme-card-header-color: $primary !default;
 $theme-card-header-letter-spacing: 0 !default;
 $theme-card-header-background-color: transparent !default;
@@ -179,9 +182,6 @@ body {
   $self: &;
   &__title {
     margin-bottom: .125rem;
-    &--large {
-      font-weight: 700;
-    }
   }
   &__footer {
     &--body {
@@ -199,9 +199,9 @@ body {
   }
 
   &__content-published {
-    font-family: $theme-item-footer-font-family;
-    font-size: 13px;
-    font-weight: $theme-item-footer-font-weight;
+    font-family: Numans, sans-serif;
+    font-size: 12px;
+    font-weight: 400;
     line-height: $theme-item-footer-line-height;
     color: $theme-item-header-color;
     text-transform: uppercase;
