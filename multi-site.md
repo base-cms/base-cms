@@ -4,25 +4,24 @@
 - [ ] Ensure _all_ base-cms services boot as a part of testing
 - [ ] Update _all_ post import scripts to support multi-site
 - [ ] All sites/services should boot and return a 200 when testing
-- [ ] Use relative imgix component for site logos
 - [ ] Update whitepaper/webinar start/end dates on content lists and pages
 - [ ] Add support for secondary site+section contexts
-- [ ] Ensure ContentPage respects primary site
-- [ ] Handle newsletters (this requires more thought)
+- [x] Ensure ContentPage respects primary site
+- [x] Handle newsletters (this requires more thought)
 - [x] Update canonical path/url to support site context
 - [x] Add multi-site support to RSS and sitemap services
 - [x] Add site to Redirects collection
 - [ ] Update build-redirects.js to use site
 - [x] Determine if `canonicalPath` should be renamed to `websitePath`
 - [x] Add `websiteUrl` that includes origin and path (so text ads link off properly)
-- [ ] Should content path rules be stored on the Site object?
+- [x] Should content path rules be stored on the Site object?
 - [x] Add image and asset hostnames to Site object
 - [x] Write script to set all site hosts (ensure `www.`) and add image/asset hosts
 - [x] Add locales language primary and subcodes to Site object
 - [x] Update document and date components to use language/locale from site object
 - [x] Add website context to marko global and use for site title, etc.
 - [x] Need to send RSS mount point to service from marko web
-- [ ] Convert all `websitePath`, `websiteUrl`, `canonicalUrl` fields to use `Content.siteContext` fields
+- [x] Convert all `websitePath`, `websiteUrl`, `canonicalUrl` fields to use `Content.siteContext` fields
 
 ## Fix Redirects
 Set `MONGO_DSN` in the `.env` file, then run:
