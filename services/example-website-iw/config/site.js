@@ -5,15 +5,15 @@ module.exports = {
   navigation,
   logos: {
     navbar: {
-      src: 'https://base.imgix.net/files/base/ebm/amtk/static/amtk_logo.png?h=76',
+      src: 'https://base.imgix.net/files/base/ebm/iw/static/iw_logo.png?h=45',
       srcset: [
-        'https://base.imgix.net/files/base/ebm/amtk/static/amtk_logo.png?h=152 2x',
+        'https://base.imgix.net/files/base/ebm/iw/static/iw_logo.png?h=90 2x',
       ],
     },
     footer: {
-      src: 'https://base.imgix.net/files/base/ebm/amtk/static/amtk_logo.png?h=60',
+      src: 'https://base.imgix.net/files/base/ebm/iw/static/iw_logo.png?h=60',
       srcset: [
-        'https://base.imgix.net/files/base/ebm/amtk/static/amtk_logo.png?h=120 2x',
+        'https://base.imgix.net/files/base/ebm/iw/static/iw_logo.png?h=120 2x',
       ],
     },
   },
