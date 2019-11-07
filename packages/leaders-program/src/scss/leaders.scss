@@ -1,0 +1,71 @@
+@import "functions";
+@import "variables";
+@import "mixins";
+@import "components";
+
+// In order to use the default fonts, include the line below in the website CSS.
+// @import url("https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,400,500,600,700&display=swap");
+
+.leaders {
+  @include leaders-base();
+
+  &__body {
+    padding: $leaders-body-padding-y $leaders-body-padding-x;
+    border-bottom: 2px solid $leaders-gray-5;
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: $leaders-header-padding;
+    font-weight: $leaders-header-font-weight;
+    line-height: $leaders-header-line-height;
+    color: $leaders-header-color;
+    background-color: $leaders-header-bg-color;
+  }
+
+  &__header-image {
+    margin: auto;
+    > img {
+      max-width: $leaders-header-image-max-width - ($leaders-header-padding * 2);
+    }
+  }
+
+  &__header-callout {
+    padding-right: $leaders-header-padding;
+    padding-left: $leaders-header-padding;
+    margin: auto;
+    font-size: $leaders-header-callout-font-size;
+    text-transform: $leaders-header-callout-text-transform;
+  }
+
+  &__callout-value {
+    font-weight: $leaders-header-callout-value-font-weight;
+  }
+
+  &__footer {
+    padding: $leaders-footer-padding-y $leaders-footer-padding-x;
+    text-align: center;
+    border-bottom: 2px solid $leaders-gray-5;
+    > a {
+      font-size: $leaders-nav-link-font-size;
+      font-weight: $leaders-nav-link-font-weight;
+      line-height: $leaders-nav-link-line-height;
+      color: $leaders-nav-link-color;
+      &:hover {
+        color: $leaders-nav-link-color;
+      }
+    }
+  }
+}
+
+.leaders-dropdown-portal {
+  @include leaders-base();
+  z-index: 10;
+  perspective: 1500px;
+}
+
+.leaders-list {
+  width: 100%;
+}

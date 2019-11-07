@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Leaders Program Demo</title>
+    <script>
+      (function(w, f) {
+        w.gql = {
+          uri: 'https://caprica.graphql-staging.base-cms.io',
+          tenant: 'pmmi_all',
+          siteIds: { pw: '5d88cedef175132c008b456b', aw: '5d88cecaf175132c008b4567' },
+        };
+        var l = f + 'Queue'; w[l] = w[l] || [];
+        w[f] = w[f] || function() { w[l].push(arguments); };
+      })(window, 'leaders');
+    </script>
+    <style>
+      html {
+        height: 100%;
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        background-color: #f5f5f5;
+      }
+
+      .document-container {
+        position: relative;
+        flex-shrink: 0;
+        flex-grow: 1;
+        width: 100%;
+        max-width: 1200px;
+        padding-right: .75rem;
+        padding-left: .75rem;
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+      .page {
+        padding: .75rem;
+        background-color: #f5f5f5;
+      }
+
+      .page-wrapper {
+        padding: .75rem;
+        background-color: #fff;
+      }
+
+      .page-wrapper__section {
+        margin-bottom: .75rem;
+      }
+
+      .example-heading {
+        margin-top: 20px;
+        margin-bottom: 15px;
+        font-size: 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <aside id="leaders-dropdown-portal-target" class="leaders-dropdown-portal"></aside>
+    <script>
+      const { gql } = window;
+      const settings = {
+        rail: true,
+        home: true,
+      };
+
+      if (settings.rail) {
+        leaders('loadComponent', {
+          name: 'Leaders',
+          el: '#right-rail-all',
+          props: {
+            contentId: 13354061,
+            sectionAlias: 'leaders',
+            open: 'left',
+            headerImgSrc: 'https://img.packworld.com/files/base/pmmi/all/leaders/pw.png',
+            headerImgAlt: 'Leaders in Packaging 2019',
+            displayCallout: false,
+            mediaQueries: [
+              { prop: 'displayCallout', value: true, query: '(max-width: 991px)' },
+              { prop: 'columns', value: 2, query: '(max-width: 991px)' },
+              { prop: 'open', value: null, query: '(max-width: 991px)' },
+              { prop: 'columns', value: 1, query: '(max-width: 700px)' },
+              { prop: 'displayCallout', value: false, query: '(max-width: 660px)' },
+            ],
+          },
+          on: { action: (...args) => console.log('track', args) },
+          apollo: { uri: gql.uri, tenant: gql.tenant, siteId: gql.siteIds.pw },
+        });
+
+        leaders('loadComponent', {
+          name: 'Leaders',
+          el: '#right-rail-contextual',
+          props: {
+            contentId: 15693554,
+            sectionAlias: 'leaders',
+            open: 'left',
+            headerImgSrc: 'https://img.packworld.com/files/base/pmmi/all/leaders/pw.png',
+            headerImgAlt: 'Leaders in Packaging 2019',
+            displayCallout: false,
+            mediaQueries: [
+              { prop: 'displayCallout', value: true, query: '(max-width: 991px)' },
+              { prop: 'columns', value: 2, query: '(max-width: 991px)' },
+              { prop: 'open', value: null, query: '(max-width: 991px)' },
+              { prop: 'columns', value: 1, query: '(max-width: 700px)' },
+              { prop: 'displayCallout', value: false, query: '(max-width: 660px)' },
+            ],
+          },
+          on: { action: (...args) => console.log('track', args) },
+          apollo: { uri: gql.uri, tenant: gql.tenant, siteId: gql.siteIds.pw },
+        });
+      }
+
+      if (settings.home) {
+        leaders('loadComponent', {
+          name: 'Leaders',
+          el: '#home-page-all',
+          props: {
+            sectionAlias: 'leaders',
+            open: null,
+            expanded: false,
+            headerImgSrc: 'https://img.packworld.com/files/base/pmmi/all/leaders/pw.png',
+            headerImgAlt: 'Leaders in Packaging 2019',
+            columns: 1,
+            mediaQueries: [
+              { prop: 'open', value: 'right', query: '(min-width: 1490px)' },
+              { prop: 'columns', value: 2, query: '(min-width: 700px)' },
+              { prop: 'displayCallout', value: false, query: '(max-width: 660px)' },
+            ],
+          },
+          on: { action: (...args) => console.log('track', args) },
+          apollo: { uri: gql.uri, tenant: gql.tenant, siteId: gql.siteIds.pw },
+        });
+      }
+    </script>
+    <div class="document-container">
+      <main class="page page--content">
+        <div class="page-wrapper">
+          <div class="page-wrapper__section">
+            <div class="row">
+              <div class="col">
+
+              </div>
+            </div>
+            <div class="row">
+              <div class="page-contents col-lg-8 mb-3 mb-lg-0">
+                <div id="home-page-all"></div>
+              </div>
+              <aside class="page-rail col-lg-4">
+                <div id="right-rail-contextual"></div>
+                <div id="right-rail-all"></div>
+              </aside>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+@mixin leaders-base() {
+  font-family: $leaders-base-font-family;
+  font-size: $leaders-base-font-size;
+  font-weight: $leaders-base-font-weight;
+  line-height: $leaders-base-line-height;
+  color: $leaders-base-color;
+}
+
+// stylelint-disable value-no-vendor-prefix, property-no-vendor-prefix
+@mixin leaders-max-lines(
+  $font-size,
+  $line-height,
+  $num: 2,
+  $text-overflow: ellipsis,
+) {
+  display: -webkit-box;
+  max-height: ($font-size * $line-height) * $num;
+  overflow: hidden;
+  text-overflow: $text-overflow;
+  -webkit-line-clamp: $num;
+  -webkit-box-orient: vertical;
+}
+// stylelint-enable value-no-vendor-prefix, property-no-vendor-prefix

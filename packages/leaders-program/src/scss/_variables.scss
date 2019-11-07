@@ -1,0 +1,183 @@
+// Colors
+$leaders-primary-color: #002f7b !default; // Header and links
+$leaders-primary-color-light: #005bac !default; // Left-hand icon (+/- icons and popup icon)
+$leaders-accent-color: #d656b0 !default; // Link hover color and card border color
+$leaders-white: #fff !default;
+$leaders-black: rgba(0, 0, 0, .84) !default;
+$leaders-videocam-color: #eecb2f !default; // Video camera icon color
+$leaders-gray-1: #999 !default;
+$leaders-gray-2: #919191 !default;
+$leaders-gray-3: #cecece !default;
+$leaders-gray-4: #eff1f2 !default;
+$leaders-gray-5: #f0f0f0 !default;
+
+// Base Styles
+$leaders-base-color: $leaders-black !default;
+$leaders-base-font-family: "IBM Plex Sans", sans-serif !default;
+$leaders-base-font-size: 16px !default;
+$leaders-base-font-weight: 400 !default;
+$leaders-base-line-height: 1.5 !default;
+
+// Common
+$leaders-padding: 12px !default;
+$leaders-gutter-size: 15px !default;
+
+// Leaders Header
+$leaders-header-color: $leaders-white !default;
+$leaders-header-bg-color: $leaders-primary-color !default;
+$leaders-header-padding: $leaders-padding !default;
+$leaders-header-font-weight: 300 !default;
+$leaders-header-line-height: $leaders-base-line-height !default;
+
+$leaders-header-image-max-width: 280px !default;
+
+$leaders-header-callout-font-size: 24px !default;
+$leaders-header-callout-text-transform: uppercase !default;
+$leaders-header-callout-value-font-weight: 600 !default;
+
+// Leaders Body
+$leaders-body-padding-x: 0 !default;
+$leaders-body-padding-y: $leaders-padding !default;
+
+// Leaders Footer
+$leaders-footer-padding-x: $leaders-body-padding-x !default;
+$leaders-footer-padding-y: 8px !default;
+
+// Nav Links
+$leaders-nav-link-color: $leaders-primary-color !default;
+$leaders-nav-link-font-family: $leaders-base-font-family !default;
+$leaders-nav-link-font-size: 16px !default;
+$leaders-nav-link-font-weight: 500 !default;
+$leaders-nav-link-line-height: $leaders-base-line-height !default;
+$leaders-nav-link-padding-x: 4px !default;
+$leaders-nav-link-padding-y: 6px !default;
+$leaders-nav-link-width: 100% !default;
+$leaders-nav-link-max-width: 320px !default;
+
+$leaders-nav-link-active-color: $leaders-white !default;
+$leaders-nav-link-active-bg-color: $leaders-accent-color !default;
+$leaders-nav-link-active-box-shadow: 0 3px 5px rgba(0, 0, 0, .15) !default;
+
+// Dropdowns
+$leaders-dropdown-accent-color: $leaders-accent-color !default;
+
+$leaders-dropdown-arrow-color: $leaders-dropdown-accent-color !default;
+$leaders-dropdown-arrow-size: 14px !default;
+$leaders-dropdown-arrow-top: -$leaders-dropdown-arrow-size / 2 !default;
+
+$leaders-dropdown-background-box-shadow: 0 3px 9px rgba(0, 0, 0, .35) !default;
+$leaders-dropdown-background-box-shadow-below: $leaders-dropdown-background-box-shadow !default;
+$leaders-dropdown-background-box-shadow-above: $leaders-dropdown-background-box-shadow !default;
+$leaders-dropdown-background-box-shadow-left: $leaders-dropdown-background-box-shadow !default;
+$leaders-dropdown-background-box-shadow-right: $leaders-dropdown-background-box-shadow !default;
+
+$leaders-dropdown-background-border-size: ($leaders-dropdown-arrow-top + $leaders-dropdown-arrow-top / 2) * -1 !default;
+$leaders-dropdown-background-border-color: $leaders-dropdown-accent-color !default;
+
+// Icons
+$leaders-icon-color: $leaders-base-color !default;
+$leaders-icon-size: $leaders-base-font-size !default;
+
+$leaders-icon-videocam-margin: 4px !default;
+$leaders-icon-videocam-color: $leaders-videocam-color !default;
+$leaders-icon-videocam-size: calc(#{$leaders-icon-size} * 1.25) !default;
+
+$leaders-icon-videocam-active-color: $leaders-nav-link-active-color !default;
+
+$leaders-icon-filter-margin: 6px !default;
+$leaders-icon-filter-color: $leaders-primary-color-light !default;
+$leaders-icon-filter-size: calc(#{$leaders-icon-size} * .8125) !default;
+
+$leaders-icon-filter-active-color: $leaders-nav-link-active-color !default;
+
+$leaders-icon-section-toggle-size: 16px !default;
+
+// Section Content Elements
+$leaders-parent-section-content-title-color: $leaders-gray-2 !default;
+$leaders-parent-section-content-title-border-color: $leaders-gray-3 !default;
+$leaders-parent-section-content-title-font-weight: 600 !default;
+$leaders-parent-section-content-title-font-size: 17px !default;
+$leaders-parent-section-content-title-line-height: $leaders-base-line-height !default;
+$leaders-parent-section-content-title-transform: uppercase !default;
+
+$leaders-section-contextual-title-color: $leaders-black !default;
+$leaders-section-contextual-title-font-weight: 700 !default;
+$leaders-section-contextual-title-font-size: 18px !default;
+$leaders-section-contextual-title-line-height: $leaders-base-line-height !default;
+$leaders-section-contextual-title-transform: uppercase !default;
+
+// Card Headers
+$leaders-card-padding: 15px !default;
+
+$leaders-card-header-color: $leaders-base-color !default;
+$leaders-card-header-bg-color: $leaders-gray-4 !default;
+
+$leaders-card-header-hr-color: $leaders-gray-3 !default;
+
+// Card Bodies
+$leaders-card-body-color: $leaders-primary-color !default;
+$leaders-card-body-font-size: 13px !default;
+$leaders-card-body-font-weight: 400 !default;
+$leaders-card-body-bg-color: $leaders-white !default;
+
+$leaders-card-body-hr-color: $leaders-gray-1 !default;
+
+// Card Content Elements
+$leaders-card-initial-bg-color: rgba(255, 255, 255, 0) !default;
+$leaders-card-initial-opacity: 0 !default;
+$leaders-card-final-opacity: 1 !default;
+$leaders-card-transition-duration: 750ms !default;
+$leaders-card-transition-property: background-color, opacity !default;
+
+$leaders-logo-background-color: $leaders-white !default;
+$leaders-logo-border-size: 4px !default;
+$leaders-logo-shadow-color: rgba(0, 0, 0, .5) !default;
+$leaders-logo-shadow-size: 5px !default;
+$leaders-logo-size: 100px !default;
+
+// stylelint-disable-next-line scss/dollar-variable-default
+$leaders-logo-wrapper-size: $leaders-logo-size + $leaders-logo-shadow-size * 2;
+
+$leaders-card-headline-color: $leaders-card-header-color !default;
+$leaders-card-headline-hover-color: $leaders-card-headline-color !default;
+$leaders-card-headline-font-size: 14px !default;
+$leaders-card-headline-font-weight: 800 !default;
+$leaders-card-headline-line-height: 1.4 !default;
+
+$leaders-card-teaser-color: $leaders-card-header-color !default;
+$leaders-card-teaser-hover-color: $leaders-card-teaser-color !default;
+$leaders-card-teaser-font-size: 13px !default;
+$leaders-card-teaser-font-weight: 300 !default;
+$leaders-card-teaser-line-height: 1.4 !default;
+
+// Key Excutive
+$leaders-key-executive-font-size: 14px !default;
+$leaders-key-executive-font-weight: 400 !default;
+
+// Promotion Cards
+$leaders-promotion-card-count: 4 !default;
+$leaders-promotion-card-font-size: 13px !default;
+$leaders-promotion-card-line-height: 1.4 !default;
+$leaders-promotion-card-image-width: 120px !default;
+$leaders-promotion-card-image-height: 90px !default;
+
+// Youtube Video Cards
+$leaders-video-card-count: 3 !default;
+$leaders-video-card-font-size: 13px !default;
+$leaders-video-card-line-height: 1.4 !default;
+$leaders-video-card-image-width: 160px !default;
+$leaders-video-card-image-height: 90px !default;
+
+// Button Links
+$leaders-button-link-font-weight: 700 !default;
+$leaders-button-link-font-size: 14px !default;
+$leaders-button-link-line-height: 1 !default;
+$leaders-button-link-padding-x: 6px !default;
+$leaders-button-link-padding-y: 10px !default;
+$leaders-button-link-border-radius: 4px !default;
+$leaders-button-link-margin: 8px !default;
+
+$leaders-button-link-primary-color: $leaders-primary-color !default;
+$leaders-button-link-primary-bg-color: $leaders-white !default;
+$leaders-button-link-accent-color: $leaders-white !default;
+$leaders-button-link-accent-bg-color: $leaders-accent-color !default;
