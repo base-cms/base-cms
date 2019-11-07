@@ -31,6 +31,10 @@ $theme-card-header-letter-spacing: 1px !default;
 
 // Nav
 $theme-site-navbar-secondary-padding-y: 5px !default;
+$theme-site-navbar-secondary-font-family: "Raleway", sans-serif !default;
+$theme-site-navbar-secondary-font-size: 12px !default;
+$theme-site-navbar-secondary-font-weight: 700 !default;
+$theme-site-navbar-secondary-link-padding: 16px !default;
 
 // Page wrapper
 $theme-page-title-font-family: "Raleway", sans-serif !default;
@@ -106,7 +110,12 @@ body {
 .site-navbar {
   &__items {
     &--tertiary {
+      padding-left: $theme-site-navbar-padding-x;
       margin-bottom: auto;
+    }
+    svg {
+      width: .75rem;
+      height: .75rem;
     }
   }
 }

@@ -1,6 +1,8 @@
 module.exports = {
   tertiary: {
     items: [
+      { href: '/login', label: 'Log In' },
+      { href: '/register', label: 'Register' },
       { href: '/search', label: 'Search', icon: 'search' },
     ],
   },
