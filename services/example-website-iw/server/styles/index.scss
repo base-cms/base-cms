@@ -32,3 +32,9 @@ $theme-site-header-breakpoints: (
 @import "../../node_modules/@base-cms/marko-web-gam/scss/fixed-ad-bottom";
 @import "../../node_modules/@base-cms/marko-web-reveal-ad/scss/reveal-ad";
 @import "../../node_modules/@base-cms/marko-web-theme-default/skins/lazarus/skin.scss";
+
+.node {
+  &__title {
+    @include theme-line-height-crop($theme-item-title-line-height);
+  }
+}
