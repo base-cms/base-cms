@@ -7,7 +7,7 @@ fragment WebsiteContentListFragment on Content {
   type
   typeTitled: type(input: { format: titleize })
   shortName
-  teaser(input: { maxLength: 500, useFallback: false, truncatedSuffix: "" })
+  teaser(input: { useFallback: false, maxLength: null })
   canonicalPath
   published
   company {
