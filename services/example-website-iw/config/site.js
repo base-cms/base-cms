@@ -18,9 +18,10 @@ module.exports = {
     },
   },
   socialMediaLinks: [
-    { provider: 'linkedin', href: 'http://www.linkedin.com/groups/VehicleServicePros.com-4056085/about', target: '_blank' },
-    { provider: 'twitter', href: 'http://www.twitter.com/VehicleSrvcPros', target: '_blank' },
-    { provider: 'facebook', href: 'http://www.facebook.com/VehicleServicePros', target: '_blank' },
+    { provider: 'facebook', href: 'https://www.facebook.com/pages/IndustryWeek/91310488418', target: '_blank' },
+    { provider: 'twitter', href: 'https://twitter.com/IndustryWeek', target: '_blank' },
+    { provider: 'linkedin', href: 'https://www.linkedin.com/company/industry-week', target: '_blank' },
+    { provider: 'youtube', href: 'https://www.youtube.com/user/industryweek', target: '_blank' },
   ],
   gtm: {
     containerId: 'GTM-M7H8VJG',
