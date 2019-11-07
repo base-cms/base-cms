@@ -10,10 +10,12 @@
   overflow-x: auto;
   overflow-y: scroll;
 
+  font-family: $theme-site-navbar-menu-font-family;
+
   will-change: visibility;
   visibility: hidden;
 
-  background-color: $white;
+  background-color: $theme-site-navbar-menu-bg-color;
 
   opacity: .98;
   transition: transform .25s cubic-bezier(.4, 0, .2, 1), visibility 0s linear .25s;
@@ -35,6 +37,7 @@
   &__contents {
     width: 100%;
     height: 100%;
+    padding: $theme-site-navbar-menu-padding-x $theme-site-navbar-menu-padding-y;
   }
 
   &__section {
@@ -43,7 +46,7 @@
     flex-direction: column;
     min-width: 0;
     word-wrap: break-word;
-    background-color: $white;
+    background-color: $theme-site-navbar-menu-bg-color;
     background-clip: border-box;
   }
 
@@ -65,21 +68,22 @@
   }
 
   &__item {
-    font-size: 14px;
-    border-bottom: $list-group-border-width solid $list-group-border-color;
+    font-size: $theme-site-navbar-menu-item-font-size;
+    font-weight: $theme-site-navbar-menu-item-font-weight;
+    border-bottom: 1px solid $theme-site-navbar-menu-item-border-color;
   }
 
   &__link {
     display: block;
-    padding: .5rem 1rem;
-    color: $gray-700;
+    padding: $theme-site-navbar-menu-link-padding-x $theme-site-navbar-menu-link-padding-y;
+    color: $theme-site-navbar-menu-link-color;
     &:hover {
-      color: $gray-700;
+      color: $theme-site-navbar-menu-link-hover-color;
       text-decoration: none;
       background-color: $theme-site-navbar-menu-hover-background-color;
     }
     &--active {
-      font-weight: 600;
+      font-weight: $theme-site-navbar-menu-active-item-font-weight;
       background-color: $theme-site-navbar-menu-hover-background-color;
     }
   }
