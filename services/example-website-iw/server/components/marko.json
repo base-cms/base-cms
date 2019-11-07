@@ -1,0 +1,20 @@
+{
+  "taglib-imports": [
+    "./blocks/marko.json",
+    "./flows/marko.json",
+    "./nodes/marko.json"
+  ],
+  "<website-document>": {
+    "template": "./document.marko",
+    "<head>": {},
+    "<above-container>": {},
+    "<container>": {
+      "<above-page>": {},
+      "<page>": {},
+      "<below-page>": {}
+    },
+    "<below-container>": {},
+    "<foot>": {},
+    "@foo": "string"
+  }
+}

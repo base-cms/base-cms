@@ -1,0 +1,47 @@
+import GAM from "../../../config/gam";
+
+$ const { id, pageNode } = data;
+
+<marko-web-magazine-publication-page-layout id=id>
+  <@head>
+    <marko-web-gtm-magazine-publication-context|{ context }| id=id>
+      <marko-web-gtm-push data=context />
+    </marko-web-gtm-magazine-publication-context>
+  </@head>
+  <@above-container>
+    <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "wa" }) />
+    <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "reskin" }) />
+  </@above-container>
+  <@page>
+    <marko-web-gam-define-display-ad ...GAM.getAdUnit({ name: "lb1" }) modifiers=["top-of-page"] />
+    <marko-web-page-wrapper>
+      <@section>
+        <div class="row">
+          <div class="col">
+            <marko-web-resolve-page|{ data: publication }| node=pageNode>
+              <default-theme-breadcrumbs-with-home>
+                <@item><marko-web-link href="/magazine">Magazines</marko-web-link></@item>
+                <@item><marko-web-magazine-publication-name tag=null obj=publication /></@item>
+              </default-theme-breadcrumbs-with-home>
+              <h1 class="page-wrapper__title">${publication.name} Issue Archive</h1>
+              <if(publication.description)>
+                <p class="page-wrapper__deck">${publication.description}</p>
+              </if>
+            </marko-web-resolve-page>
+          </div>
+        </div>
+      </@section>
+    </marko-web-page-wrapper>
+  </@page>
+  <@below-page>
+    <marko-web-resolve-page|{ data: issue }| node=pageNode>
+      <marko-web-load-more
+        component-name="magazine-issue-archive-flow"
+        fragment-name="magazine-issue-archive"
+        query-name="magazine-active-issues"
+        query-params={ publicationId: id, limit: 12 }
+        page-input={ for: "magazine-publication", id }
+      />
+    </marko-web-resolve-page>
+  </@below-page>
+</marko-web-magazine-publication-page-layout>

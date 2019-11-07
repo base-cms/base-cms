@@ -1,0 +1,80 @@
+{
+  "<website-content-hero-flow>": {
+    "template": "./content-hero.marko",
+    "<header>": {},
+    "<native-x>": {
+      "@index": "number",
+      "@name": "string",
+      "@aliases": "array"
+    },
+    "@nodes": "array"
+  },
+  "<website-content-list-flow>": {
+    "template": "./content-list.marko",
+    "<header>": {},
+    "<native-x>": {
+      "@index": "number",
+      "@name": "string",
+      "@aliases": "array"
+    },
+    "@nodes": "array",
+    "@display-image": {
+      "type": "boolean",
+      "default-value": true
+    },
+    "@with-teaser": {
+      "type": "boolean",
+      "default-value": false
+    },
+    "@inner-justified": {
+      "type": "boolean",
+      "default-value": true
+    },
+    "@flush-x": {
+      "type": "boolean"
+    },
+    "@flush-y": {
+      "type": "boolean"
+    },
+    "@image-width": "number"
+  },
+  "<website-content-load-more-flow>": {
+    "template": "./content-load-more.marko",
+    "<native-x>": {
+      "@index": "number",
+      "@name": "string",
+      "@aliases": "array"
+    },
+    "@nodes": "array",
+    "@aliases": "array",
+    "@page-number": "number"
+  },
+  "<website-content-card-deck-flow>": {
+    "template": "./content-card-deck.marko",
+    "<native-x>": {
+      "@index": "number",
+      "@name": "string",
+      "@aliases": "array"
+    },
+    "@nodes": "array",
+    "@aliases": "array"
+  },
+  "<website-magazine-issue-archive-flow>": {
+    "template": "./magazine-issue-archive.marko",
+    "@nodes": "array",
+    "@flush": {
+      "type": "boolean",
+      "default-value": false
+    },
+    "@with-title": {
+      "type": "boolean",
+      "default-value": true
+    },
+    "@modifiers": "array"
+  },
+  "<website-magazine-latest-issue-flow>": {
+    "template": "./magazine-latest-issue.marko",
+    "<header>": {},
+    "@issue-node": "object"
+  }
+}

@@ -1,0 +1,138 @@
+import hierarchyAliases from "@base-cms/marko-web/utils/hierarchy-aliases";
+import { getAsObject } from "@base-cms/object-path";
+import queryFragment from "../../graphql/fragments/content-list";
+import GAM from "../../../config/gam";
+
+$ const { site } = out.global;
+$ const { id, type, pageNode } = data;
+
+$ const displayPrimaryImage = ["whitepaper", "media-gallery", "contact"].includes(type) ? false : true;
+$ const displayPublishedDate = ["event", "webinar", "contact"].includes(type) ? false : true;
+
+<marko-web-content-page-layout id=id type=type>
+  <@head>
+    <marko-web-gtm-content-context|{ context }| id=id>
+      <marko-web-gtm-push data=context />
+    </marko-web-gtm-content-context>
+    <marko-web-gam-targeting key-values={ cont_id: id, cont_type: type } />
+    <marko-web-resolve-page|{ data: content }| node=pageNode>
+      $ const aliases = hierarchyAliases(content.primarySection);
+      $ const adSlots = {
+        "gpt-ad-lb1":   GAM.getAdUnit({ name: "lb1", aliases }),
+        "gpt-ad-rail1": GAM.getAdUnit({ name: "rail1", aliases }),
+        "gpt-ad-rail2": GAM.getAdUnit({ name: "rail2", aliases }),
+      }
+       <marko-web-gam-slots slots=adSlots />
+    </marko-web-resolve-page>
+  </@head>
+  <@above-container>
+    <marko-web-resolve-page|{ data: content }| node=pageNode>
+      $ const aliases = hierarchyAliases(content.primarySection);
+      <!-- <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "wa", aliases }) />
+      <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "reskin", aliases }) /> -->
+    </marko-web-resolve-page>
+
+  </@above-container>
+  <@page>
+    <marko-web-gam-display-ad id="gpt-ad-lb1" modifiers=["top-of-page"] />
+    <marko-web-resolve-page|{ data: content, resolved }| node=pageNode>
+      $ const section = resolved.getAsObject("primarySection");
+      <marko-web-page-wrapper>
+        <@section>
+          <div class="row">
+            <div class="col">
+              <default-theme-website-section-breadcrumbs section=content.primarySection />
+              <marko-web-content-name tag="h1" class="page-wrapper__title" obj=content />
+              <marko-web-content-teaser tag="p" class="page-wrapper__deck" obj=content />
+              <if(content.type !== "contact")>
+                <default-theme-content-attribution obj=content />
+              </if>
+              <default-theme-page-dates|{ blockName }|>
+                <if(content.type === "event")>
+                  <marko-web-content-start-date block-name=blockName obj=content />
+                  <marko-web-content-end-date block-name=blockName obj=content />
+                </if>
+                <if(content.type === "webinar")>
+                  <marko-web-content-start-date block-name=blockName obj=content />
+                </if>
+                <if(displayPublishedDate)>
+                  <marko-web-content-published block-name=blockName obj=content />
+                </if>
+              </default-theme-page-dates>
+            </div>
+          </div>
+        </@section>
+        <@section>
+          <div class="row">
+            <default-theme-page-contents|{ blockName }| class="col-lg-8 mb-3 mb-lg-0">
+              <if(content.embedCode)>
+                <marko-web-content-embed-code block-name=blockName obj=content />
+              </if>
+              <else-if(displayPrimaryImage)>
+                <marko-web-page-image width=500 obj=content.primaryImage />
+              </else-if>
+              <else-if(type === "contact")>
+                <marko-web-page-image width=300 fluid=false obj=content.primaryImage />
+              </else-if>
+              <default-theme-content-contact-details obj=content />
+              <marko-web-content-body block-name=blockName obj=content />
+              <marko-web-content-sidebars block-name=blockName obj=content />
+              <if(type === "document")>
+                <default-theme-content-download obj=content>
+                  <@wufoo user-name=site.get("wufoo.userName") />
+                  <@link class="btn btn-lg btn-primary" />
+                </default-theme-content-download>
+              </if>
+              <if(type === "webinar")>
+                <default-theme-content-link-url
+                  obj=content
+                  label="Register/View"
+                  target="_blank"
+                />
+              </if>
+            </default-theme-page-contents>
+            <aside class="col-lg-4 page-rail">
+              <marko-web-gam-display-ad id="gpt-ad-rail1" />
+              <marko-web-gam-display-ad id="gpt-ad-rail2" />
+              <marko-web-resolve-page|{ data: content }| node=pageNode>
+                $ const aliases = hierarchyAliases(content.primarySection);
+                <website-related-content-block
+                  id=id
+                  type=type
+                  section-id=section.id
+                  section-name=section.name
+                  query-fragment=queryFragment
+                >
+                  <@native-x index=4 name="default" aliases=aliases />
+                </website-related-content-block>
+              </marko-web-resolve-page>
+            </aside>
+          </div>
+        </@section>
+      </marko-web-page-wrapper>
+    </marko-web-resolve-page>
+  </@page>
+  <@below-page>
+    <marko-web-resolve-page|{ resolved, data: content }| node=pageNode>
+      $ const section = resolved.getAsObject("primarySection");
+      $ const aliases = hierarchyAliases(section);
+      <website-content-load-more-block
+        id=id
+        type=type
+        name=content.name
+        aliases=aliases
+        section-id=section.id
+        section-name=section.name
+        section-skip=5
+      >
+        <@native-x index=0 name="default" aliases=aliases />
+      </website-content-load-more-block>
+    </marko-web-resolve-page>
+  </@below-page>
+  <@foot>
+    <marko-web-resolve-page|{ data: content }| node=pageNode>
+      $ const aliases = hierarchyAliases(content.primarySection);
+      <marko-web-gam-fixed-ad-bottom ...GAM.getAdUnit({ name: "lb2", aliases }) refresh-interval=0 />
+    </marko-web-resolve-page>
+  </@foot>
+</marko-web-content-page-layout>
