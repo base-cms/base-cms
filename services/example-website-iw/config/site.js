@@ -5,9 +5,9 @@ module.exports = {
   navigation,
   logos: {
     navbar: {
-      src: 'https://base.imgix.net/files/base/ebm/iw/static/iw_logo.png?h=45',
+      src: 'https://base.imgix.net/files/base/ebm/iw/static/iw_logo.png?h=30',
       srcset: [
-        'https://base.imgix.net/files/base/ebm/iw/static/iw_logo.png?h=90 2x',
+        'https://base.imgix.net/files/base/ebm/iw/static/iw_logo.png?h=60 2x',
       ],
     },
     footer: {
