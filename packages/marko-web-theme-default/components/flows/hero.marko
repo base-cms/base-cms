@@ -15,6 +15,11 @@ $ if (input.reverse) modifiers.push("reverse");
     modifiers=modifiers
     attrs=input.attrs
   >
+    <if(input.header)>
+      <marko-web-element name="header" block-name=blockName>
+        <${input.header} block-name=blockName />
+      </marko-web-element>
+    </if>
     <if(input.hero)>
       <marko-web-element name="hero" block-name=blockName>
         <${input.hero} node=heroNode block-name=blockName />

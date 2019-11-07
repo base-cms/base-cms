@@ -176,6 +176,11 @@ body {
     flex: initial;
     max-width: 100%;
   }
+  &__header {
+    padding-bottom: 0;
+    line-height: get-line-height($theme-card-header-font-size, 26px);
+    letter-spacing: -.1px;
+  }
 }
 
 .node-list {

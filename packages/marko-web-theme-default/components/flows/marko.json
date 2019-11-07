@@ -3,6 +3,7 @@
     "template": "./hero.marko",
     "<hero>": {},
     "<list>": {},
+    "<header>": {},
     "@nodes": "array",
     "@reverse": "boolean",
     "@tag": "string",
