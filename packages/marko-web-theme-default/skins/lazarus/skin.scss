@@ -167,6 +167,17 @@ body {
   &__section {
     border-bottom: 3px solid $theme-site-navbar-menu-item-border-color;
 
+    &--social-icons {
+      svg {
+        transition: fill 250ms ease-in-out;
+        will-change: fill;
+        fill: #cfcfcf !important; //stylelint-disable-line declaration-no-important
+        &:hover {
+          fill: #fff !important; //stylelint-disable-line declaration-no-important
+        }
+      }
+    }
+
     &--secondary {
       #{ $self } {
         &__item {

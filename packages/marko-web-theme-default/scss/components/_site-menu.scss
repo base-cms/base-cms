@@ -48,6 +48,18 @@
     word-wrap: break-word;
     background-color: $theme-site-navbar-menu-bg-color;
     background-clip: border-box;
+
+    &--social-icons {
+      flex-direction: row;
+      padding: $theme-site-navbar-menu-link-padding-x $theme-site-navbar-menu-link-padding-y;
+
+      > .social-icon-link {
+        margin-right: .75rem;
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
   }
 
   &__header {
