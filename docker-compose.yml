@@ -449,6 +449,32 @@ services:
       - "11165:80"
       - "25165:25165"
 
+  example-website-iw:
+    <<: *node
+    working_dir: /base-cms/services/example-website-iw
+    command: ["/base-cms/node_modules/.bin/basecms-website", "dev", "index.js"]
+    environment:
+      <<: *env
+      PORT: 80
+      EXPOSED_PORT: 11165
+      LIVERELOAD_PORT: 25165
+      TENANT_KEY: ebm_industryweek
+      SITE_ID: 5dc2e4b9a6e839f2008b4567
+      GRAPHQL_URI: http://graphql-server-gemenon
+      SITEMAPS_URI: http://sitemaps-gemenon
+      RSS_URI: http://rss-gemenon
+      OEMBED_URI: http://oembed
+      NEW_RELIC_ENABLED: 0
+      NEW_RELIC_LICENSE_KEY: (unset)
+    depends_on:
+      - graphql-server-gemenon
+      - sitemaps-gemenon
+      - rss-gemenon
+      - oembed
+    ports:
+      - "11165:80"
+      - "25165:25165"
+
   haproxy:
     image: haproxy:alpine
     ports: [ "${PORT-10010}:80" ]
