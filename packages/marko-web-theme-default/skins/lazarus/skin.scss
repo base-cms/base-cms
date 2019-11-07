@@ -150,11 +150,6 @@ body {
 
 .site-menu {
   $self: &;
-  // top: 60px;
-
-  // @media (max-width: map-get($theme-site-header-breakpoints, small-logo)) {
-  //   top: 55px;
-  // }
 
   &__link {
     transition: color 250ms ease-in-out;
