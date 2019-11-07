@@ -156,8 +156,14 @@ body {
     will-change: color;
   }
 
+  &__item {
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
   &__section {
-    border-bottom: 2px solid $theme-site-navbar-menu-item-border-color;
+    border-bottom: 3px solid $theme-site-navbar-menu-item-border-color;
 
     &--secondary {
       #{ $self } {
