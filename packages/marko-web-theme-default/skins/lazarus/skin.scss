@@ -1,5 +1,5 @@
 // Override variables here.
-@import url("https://fonts.googleapis.com/css?family=Encode+Sans+Condensed:600,700|Numans|Raleway:600,700,800&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Encode+Sans+Condensed:600,700|Numans|Raleway:500,600,700,800&display=swap");
 
 @import "../../scss/functions.scss";
 
@@ -63,7 +63,7 @@ $theme-item-title-color: #222 !default;
 
 // Node Title (Large)
 $theme-item-title-large-font-size: 22px !default;
-$theme-item-title-large-font-weight: 700px !default;
+$theme-item-title-large-font-weight: 700 !default;
 
 // Item Header
 $theme-item-header-color: #767676 !default;
