@@ -201,9 +201,14 @@ body {
   padding-left: 0;
 }
 
-.page-rail > * {
-  &:last-child {
-    margin-bottom: map-get($spacers, block);
+.page-rail {
+  &--website-section-right {
+    padding-top: 41px;
+  }
+  > * {
+    &:last-child {
+      margin-bottom: map-get($spacers, block);
+    }
   }
 }
 
@@ -271,7 +276,7 @@ body {
 .node {
   $self: &;
   &__title {
-    margin-bottom: .125rem;
+    margin-bottom: .25rem;
   }
   &__footer {
     &--body {
