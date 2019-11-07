@@ -156,6 +156,26 @@ services:
     ports:
       - "11002:80"
 
+  graphql-server-gemenon:
+    << : *node
+    working_dir: /base-cms/services/graphql-server
+    entrypoint: ["/base-cms/node_modules/.bin/gulp"]
+    environment:
+      <<: *env
+      <<: *env-newrelic
+      MONGO_DSN: ${MONGO_DSN_GEMENON-mongodb://mongodb:27017}
+      ENABLE_BASEDB_LOGGING: ${ENABLE_BASEDB_LOGGING-}
+      ENGINE_API_KEY: ${ENGINE_API_KEY-(unset)}
+      BASE4_REST_USERNAME: ${BASE4_REST_USERNAME-}
+      BASE4_REST_PASSWORD: ${BASE4_REST_PASSWORD-}
+      PORT: 80
+      EXPOSED_PORT: 11008
+    depends_on:
+      - mongodb
+      - google-data-api
+    ports:
+      - "11008:80"
+
   # RSS
 
   rss:
@@ -222,6 +242,22 @@ services:
     ports:
       - "11004:80"
 
+  rss-gemenon:
+    << : *node
+    working_dir: /base-cms/services/rss
+    command: ["/base-cms/node_modules/.bin/gulp"]
+    environment:
+      <<: *env
+      <<: *env-newrelic
+      GRAPHQL_URI: http://graphql-server-gemenon
+      ENABLE_BASEDB_LOGGING: ${ENABLE_BASEDB_LOGGING-}
+      PORT: 80
+      EXPOSED_PORT: 11009
+    depends_on:
+      - graphql-server-gemenon
+    ports:
+      - "11009:80"
+
   # SITEMAPS
 
   sitemaps:
@@ -287,6 +323,22 @@ services:
       - graphql-server-picon
     ports:
       - "11007:80"
+
+  sitemaps-gemenon:
+    << : *node
+    working_dir: /base-cms/services/sitemaps
+    command: ["/base-cms/node_modules/.bin/gulp"]
+    environment:
+      <<: *env
+      <<: *env-newrelic
+      GRAPHQL_URI: http://graphql-server-gemenon
+      ENABLE_BASEDB_LOGGING: ${ENABLE_BASEDB_LOGGING-}
+      PORT: 80
+      EXPOSED_PORT: 11010
+    depends_on:
+      - graphql-server-gemenon
+    ports:
+      - "11010:80"
 
   # EXAMPLES
 
