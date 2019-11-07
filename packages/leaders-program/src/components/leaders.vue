@@ -77,7 +77,7 @@ export default {
       default: () => [],
       validator: values => values.every((value) => {
         if (!value || typeof value !== 'object') return false;
-        const props = ['open', 'columns', 'expanded', 'displayHeader', 'displayCallout'];
+        const props = ['open', 'columns', 'expanded', 'displayHeader', 'displayCallout', 'offsetTop', 'offsetBottom'];
         if (!props.includes(value.prop)) return false;
         if (!value.query) return false;
         return Object.prototype.hasOwnProperty.call(value, 'value');
