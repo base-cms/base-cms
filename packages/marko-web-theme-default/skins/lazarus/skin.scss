@@ -151,6 +151,8 @@ body {
 .site-menu {
   $self: &;
 
+  opacity: 1;
+
   &__link {
     transition: color 250ms ease-in-out;
     will-change: color;
