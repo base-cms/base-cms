@@ -1,5 +1,5 @@
-const contentList = require('./api/fragments/content-list');
-const magazineIssueArchive = require('./api/fragments/magazine-issue-archive');
+const contentList = require('./graphql/fragments/content-list');
+const magazineIssueArchive = require('./graphql/fragments/magazine-issue-archive');
 
 module.exports = {
   contentList,
