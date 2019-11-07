@@ -11,9 +11,9 @@ module.exports = {
       ],
     },
     footer: {
-      src: 'https://base.imgix.net/files/base/ebm/iw/static/iw_logo.png?h=60',
+      src: 'https://base.imgix.net/files/base/ebm/iw/static/iw_logo.png?h=45',
       srcset: [
-        'https://base.imgix.net/files/base/ebm/iw/static/iw_logo.png?h=120 2x',
+        'https://base.imgix.net/files/base/ebm/iw/static/iw_logo.png?h=90 2x',
       ],
     },
   },
@@ -24,7 +24,8 @@ module.exports = {
     { provider: 'youtube', href: 'https://www.youtube.com/user/industryweek', target: '_blank' },
   ],
   gtm: {
-    containerId: 'GTM-M7H8VJG',
+    // @todo add this!
+    containerId: '',
   },
   wufoo: {
     userName: 'cygnuscorporate',
