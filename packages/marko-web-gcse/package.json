@@ -15,7 +15,7 @@
     "@base-cms/utils": "^1.0.0-beta.4"
   },
   "peerDependencies": {
-    "@base-cms/marko-web": "^1.0.0-beta.1"
+    "@base-cms/marko-web": "^1.0.0-rc.1"
   },
   "publishConfig": {
     "access": "public"
