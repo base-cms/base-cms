@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/embedded-media",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-rc.1",
   "description": "BaseCMS embedded media parsing.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
@@ -11,9 +11,9 @@
     "test": "yarn lint"
   },
   "dependencies": {
-    "@base-cms/html": "^1.0.0-beta.1",
-    "@base-cms/image": "^1.0.0-beta.1",
-    "@base-cms/inflector": "^1.0.0-beta.1",
+    "@base-cms/html": "^1.0.0-rc.1",
+    "@base-cms/image": "^1.0.0-rc.1",
+    "@base-cms/inflector": "^1.0.0-rc.1",
     "cheerio": "^1.0.0-rc.3",
     "escape-string-regexp": "^1.0.5"
   },
