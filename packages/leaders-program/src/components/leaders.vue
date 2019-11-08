@@ -68,6 +68,10 @@ export default {
       type: Boolean,
       default: null,
     },
+    contextual: {
+      type: Boolean,
+      default: null,
+    },
     columns: {
       type: Number,
       default: 1,
@@ -148,6 +152,8 @@ export default {
       return this.isContextual;
     },
     isContextual() {
+      const { contextual } = this;
+      if (contextual != null) return contextual;
       return this.loadType === 'contextual';
     },
     classes() {
