@@ -3,11 +3,7 @@ set -e
 
 IMAGE=basecms/$1:$2
 
-# @todo revert
-echo "Using v1.x cluster."
-RANCHER_CLUSTERID="$RANCHER_CLUSTERID_V1" \
-  RANCHER_TOKEN="$RANCHER_TOKEN_V1" \
-  npx @endeavorb2b/rancher2cli dl basecms-service $1 $IMAGE
+npx @endeavorb2b/rancher2cli dl basecms-service $1 $IMAGE
 
 payload="{
   \"deployment\": {

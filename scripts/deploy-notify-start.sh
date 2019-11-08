@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-[[ $TRAVIS_TAG =~ ^v1 ]] && ENVIRONMENT="staging" || ENVIRONMENT="production"
+[[ $RANCHER_CLUSTERID = "c-rc5kp" ]] && ENVIRONMENT="staging" || ENVIRONMENT="production"
 
 payload="{
   \"attachments\": [{
