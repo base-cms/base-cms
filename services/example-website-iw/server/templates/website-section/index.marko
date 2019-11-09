@@ -53,52 +53,8 @@ $ const { id, alias, name, pageNode } = data;
 
       <marko-web-page-wrapper modifiers=["website-section-contents"]>
         <@section>
-          <div class="page-layout">
-
-            <div class="page-layout__left-rail">
-              <div style="background-color: green; height: 20px; width: 100%"></div>
-            </div>
-
-            <div class="page-layout__main">
-
-              <div class="page-layout__main-top">
-                <div class="page-layout__center">
-                  <div style="background-color: blue; height: 20px; width: 100%"></div>
-                </div>
-                <div class="page-layout__right-rail">
-                  <div style="background-color: red; height: 20px; width: 100%"></div>
-                </div>
-              </div>
-
-              <div class="page-layout__main-bottom">
-                <div class="col-12">
-                  <div style="background-color: yellow; height: 20px; width: 100%"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-          <!-- <div class="row">
-            <div class="fixed-col fixed-col--3 fixed-col--rail">
-
-            </div>
-            <div class="col">
-              <div class="row">
-                <div style="flex: 0 0 63.6363%; max-width: 63.6363%; position: relative; padding-right: 10px; padding-left: 10px;">
-                  <div style="background-color: green; height: 20px; width: 100%"></div>
-                </div>
-                <div class="fixed-col fixed-col--3">
-                  <div style="background-color: red; height: 20px; width: 100%"></div>
-                </div>
-              </div>
-              <div style="background-color: blue; height: 20px; width: 100%"></div>
-            </div>
-          </div> -->
-
-          <!-- <div class="row">
-
-            <aside class="fixed-col fixed-col--3 fixed-col--rail">
+          <div class="lazarus"> <!-- row -->
+            <aside class="lazarus__left"> <!-- col -->
               <marko-web-query|{ nodes }| name="all-published-content" params={ limit: 2, excludeContentTypes: ["Contact"], queryFragment }>
                 <website-content-list-flow
                   nodes=nodes
@@ -138,11 +94,9 @@ $ const { id, alias, name, pageNode } = data;
                 </website-content-list-flow>
               </marko-web-query>
             </aside>
-
-            <div class="fixed-col fixed-col--9">
-
-              <div class="row">
-                <div class="fixed-col fixed-col--6">
+            <div class="lazarus__right"> <!-- col -->
+              <div class="lazarus__right-top"> <!-- row -->
+                <div class="lazarus__right-top-left"> <!-- col -->
                   <marko-web-query|{ nodes }|
                     name="website-optioned-content"
                     params={ sectionId: id, optionName: "Pinned", limit: 5, requiresImage: true, queryFragment }
@@ -152,14 +106,12 @@ $ const { id, alias, name, pageNode } = data;
                     </website-content-hero-flow>
                   </marko-web-query>
                 </div>
-
-                <aside class="fixed-col fixed-col--3 fixed-col--rail fixed-col--website-section-right">
-                  <marko-web-gam-display-ad modifiers=["right"] id="gpt-ad-rail2" />
-                  <marko-web-gam-display-ad modifiers=["right"] id="gpt-ad-rail3" />
-                </aside>
+                <div class="lazarus__right-top-right"> <!-- col -->
+                  <marko-web-gam-display-ad id="gpt-ad-rail2" />
+                  <marko-web-gam-display-ad id="gpt-ad-rail3" />
+                </div>
               </div>
-
-              <div class="row">
+              <div class="lazarus__right-bottom"> <!-- row -->
                 <marko-web-query|{ nodes }|
                   name="website-scheduled-content"
                   params={ sectionId: id, limit: 10, skip: 5, queryFragment }
@@ -175,12 +127,12 @@ $ const { id, alias, name, pageNode } = data;
                       </for>
                     </if>
 
-                    <div class="col">
+                    <div class="col-12">
                       <marko-web-gam-display-ad id="gpt-ad-lb2" class="mb-block" />
                     </div>
 
                     <if(listNodes.length)>
-                      <div class="col">
+                      <div class="col-12">
                         <website-content-list-flow
                           nodes=listNodes
                           flush-x=true
@@ -194,14 +146,13 @@ $ const { id, alias, name, pageNode } = data;
                   </if>
                 </marko-web-query>
               </div>
-
             </div>
-          </div> -->
+          </div>
         </@section>
       </marko-web-page-wrapper>
     </marko-web-resolve-page>
   </@page>
-  <!-- <@below-page>
+  <@below-page>
     <marko-web-resolve-page|{ data: section }| node=pageNode>
       $ const aliases = hierarchyAliases(section);
       <marko-web-load-more
@@ -213,7 +164,7 @@ $ const { id, alias, name, pageNode } = data;
         page-input={ for: "website-section", id }
       />
     </marko-web-resolve-page>
-  </@below-page> -->
+  </@below-page>
   <!-- <@foot>
     <marko-web-resolve-page|{ data: section }| node=pageNode>
       $ const aliases = hierarchyAliases(section);

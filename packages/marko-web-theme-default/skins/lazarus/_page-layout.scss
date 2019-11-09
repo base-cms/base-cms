@@ -1,24 +1,24 @@
-.page-layout {
-  $spacer: $grid-gutter-width / 2;
-  $rail-width: 300px + $grid-gutter-width;
-
+@mixin create-row() {
   display: flex;
-  margin-right: -$spacer;
-  margin-left: -$spacer;
+  margin-right: -$grid-gutter-width / 2;
+  margin-left: -$grid-gutter-width / 2;
+}
 
-  &__left-rail {
-    position: relative;
+.lazarus {
+  @include create-row();
 
-    width: $rail-width;
-    padding-right: $spacer;
-    padding-left: $spacer;
-
+  &__left {
+    @include make-col-ready();
+    flex: 0 0 320px;
+    max-width: 320px;
     opacity: 1;
     transition-duration: 375ms;
-    transition-property: width, padding, opacity;
-    will-change: width, padding, opacity;
-    @include media-breakpoint-down(md) {
+    transition-property: width, max-width, padding, opacity;
+    will-change: width, max-width, padding, opacity;
+    @media (max-width: 1068px) {
+      flex-basis: 0;
       width: 0;
+      max-width: 0;
       padding: 0;
       opacity: 0;
     }
@@ -31,58 +31,47 @@
     }
   }
 
-  &__main {
-    position: relative;
-    flex-grow: 1;
-    padding-right: $spacer;
-    padding-left: $spacer;
+  &__right {
+    @include make-col-ready();
   }
 
-  &__main-top {
-    display: flex;
-    margin-right: -$spacer;
-    margin-left: -$spacer;
+  &__right-top {
+    @include create-row();
     @include media-breakpoint-down(sm) {
       flex-wrap: wrap;
     }
   }
 
-  &__main-bottom {
-    display: flex;
-    flex-wrap: wrap;
-    margin-right: -$spacer;
-    margin-left: -$spacer;
+  &__right-top-left {
+    @include make-col-ready();
   }
 
-  &__center {
-    position: relative;
-    flex-grow: 1;
-    padding-right: $spacer;
-    padding-left: $spacer;
-    transition-duration: 375ms;
-    transition-property: width;
-    @include media-breakpoint-down(sm) {
-      flex: 0 0 100%;
-      width: 100%;
-    }
-  }
-
-  &__right-rail {
-    position: relative;
-    width: $rail-width;
-    padding-right: $spacer;
-    padding-left: $spacer;
+  &__right-top-right {
+    @include make-col-ready();
+    flex: 0 0 320px;
+    max-width: 320px;
     margin-top: 41px;
+
     transition-duration: 375ms;
-    transition-property: width;
+    transition-property: max-width, margin;
+    will-change: max-width, margin;
     @include media-breakpoint-down(sm) {
       flex: 0 0 100%;
-      width: 100%;
+      max-width: 100%;
       margin-top: 0;
     }
 
     > * {
       margin-bottom: map-get($spacers, block);
+    }
+  }
+
+  &__right-bottom {
+    @include create-row();
+    flex-wrap: wrap;
+
+    .ad-container {
+      max-width: 728px;
     }
   }
 }
