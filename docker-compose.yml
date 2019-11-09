@@ -456,8 +456,8 @@ services:
     environment:
       <<: *env
       PORT: 80
-      EXPOSED_PORT: 11165
-      LIVERELOAD_PORT: 25165
+      EXPOSED_PORT: 11166
+      LIVERELOAD_PORT: 25166
       TENANT_KEY: ebm_industryweek
       SITE_ID: 5dc2e4b9a6e839f2008b4567
       GRAPHQL_URI: http://graphql-server-gemenon
@@ -472,8 +472,8 @@ services:
       - rss-gemenon
       - oembed
     ports:
-      - "11165:80"
-      - "25165:25165"
+      - "11166:80"
+      - "25166:25166"
 
   haproxy:
     image: haproxy:alpine
