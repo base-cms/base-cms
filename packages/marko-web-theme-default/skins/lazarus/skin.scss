@@ -206,17 +206,6 @@ body {
   padding-left: 0;
 }
 
-.page-rail {
-  &--website-section-right {
-    margin-top: 41px;
-  }
-  > * {
-    &:last-child {
-      margin-bottom: map-get($spacers, block);
-    }
-  }
-}
-
 .page-wrapper {
   $self: &;
   &__title {
