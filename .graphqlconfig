@@ -10,43 +10,65 @@
               "x-tenant-key": "${env:TENANT_KEY}"
             }
           },
-          "dev-aerilon": {
-            "url": "http://0.0.0.0:11000",
-            "headers": {
-              "x-tenant-key": "${env:TENANT_KEY}"
-            }
-          },
-          "dev-caprica": {
-            "url": "http://0.0.0.0:11001",
-            "headers": {
-              "x-tenant-key": "${env:TENANT_KEY}"
-            }
-          },
-          "dev-picon": {
-            "url": "http://0.0.0.0:11002",
-            "headers": {
-              "x-tenant-key": "${env:TENANT_KEY}"
-            }
-          },
-          "prod-aerilon": {
-            "url": "https://aerilon.graphql.base-cms.io",
-            "headers": {
-              "x-tenant-key": "${env:TENANT_KEY}"
-            }
-          },
-          "staging-aerilon": {
+          "aerilon-staging": {
             "url": "https://aerilon.graphql-staging.base-cms.io",
             "headers": {
               "x-tenant-key": "${env:TENANT_KEY}"
             }
           },
-          "prod-caprica": {
+          "caprica-staging": {
+            "url": "https://caprica.graphql-staging.base-cms.io",
+            "headers": {
+              "x-tenant-key": "${env:TENANT_KEY}"
+            }
+          },
+          "gemenon-staging": {
+            "url": "https://gemenon.graphql-staging.base-cms.io",
+            "headers": {
+              "x-tenant-key": "${env:TENANT_KEY}"
+            }
+          },
+          "picon-staging": {
+            "url": "https://picon.graphql-staging.base-cms.io",
+            "headers": {
+              "x-tenant-key": "${env:TENANT_KEY}"
+            }
+          },
+          "aerilon-production": {
+            "url": "https://aerilon.graphql.base-cms.io",
+            "headers": {
+              "x-tenant-key": "${env:TENANT_KEY}"
+            }
+          },
+          "aerilon-v0x-production": {
+            "url": "https://aerilon-v0x.graphql.base-cms.io",
+            "headers": {
+              "x-tenant-key": "${env:TENANT_KEY}",
+              "x-cdn-image-hostname": "base.imgix.net",
+              "x-cdn-asset-hostname": "media.cygnus.com"
+            }
+          },
+          "caprica-production": {
             "url": "https://caprica.graphql.base-cms.io",
             "headers": {
               "x-tenant-key": "${env:TENANT_KEY}"
             }
           },
-          "prod-picon": {
+          "caprica-v0x-production": {
+            "url": "https://caprica-v0x.graphql.base-cms.io",
+            "headers": {
+              "x-tenant-key": "${env:TENANT_KEY}",
+              "x-cdn-image-hostname": "base.imgix.net",
+              "x-cdn-asset-hostname": "media.cygnus.com"
+            }
+          },
+          "gemenon-production": {
+            "url": "https://gemenon.graphql.base-cms.io",
+            "headers": {
+              "x-tenant-key": "${env:TENANT_KEY}"
+            }
+          },
+          "picon-production": {
             "url": "https://picon.graphql.base-cms.io",
             "headers": {
               "x-tenant-key": "${env:TENANT_KEY}"
