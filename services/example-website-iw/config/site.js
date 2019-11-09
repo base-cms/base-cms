@@ -24,8 +24,7 @@ module.exports = {
     { provider: 'youtube', href: 'https://www.youtube.com/user/industryweek', target: '_blank' },
   ],
   gtm: {
-    // @todo add this!
-    containerId: '',
+    containerId: 'GTM-MQVBJZ5',
   },
   wufoo: {
     userName: 'cygnuscorporate',
