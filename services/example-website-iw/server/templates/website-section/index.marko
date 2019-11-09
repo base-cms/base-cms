@@ -13,6 +13,7 @@ $ const { id, alias, name, pageNode } = data;
       $ const aliases = hierarchyAliases(section);
       $ const adSlots = {
           "gpt-ad-lb1":   GAM.getAdUnit({ name: "lb1", aliases }),
+          "gpt-ad-lb2":   GAM.getAdUnit({ name: "lb1", aliases, options: { size: [728, 90] } }),
           "gpt-ad-rail1": GAM.getAdUnit({ name: "rail1", aliases, size: [300, 250] }),
           "gpt-ad-rail2": GAM.getAdUnit({ name: "rail1", aliases, size: [300, 250] }),
           "gpt-ad-rail3": GAM.getAdUnit({ name: "rail2", aliases, size: [300, 600] }),
@@ -30,7 +31,7 @@ $ const { id, alias, name, pageNode } = data;
   <@page>
     <marko-web-gam-display-ad id="gpt-ad-lb1" modifiers=["top-of-page"] />
 
-    <marko-web-resolve-page|{ data: section }| node=pageNode>
+    <marko-web-resolve-page|{ data: section, resolved }| node=pageNode>
       <marko-web-page-wrapper modifiers=["website-section-header"]>
         <@section>
           <default-theme-website-section-breadcrumbs display-self=false section=section />
@@ -39,11 +40,22 @@ $ const { id, alias, name, pageNode } = data;
         </@section>
       </marko-web-page-wrapper>
 
+      $ const children = resolved.getEdgeNodesFor("children");
+      <if(section.isRoot && children.length)>
+        <marko-web-page-wrapper modifiers=["child-website-section-nav"]>
+          <@section>
+            <for|child| of=children>
+              <marko-web-website-section-name obj=child link=true class="child-website-section-nav-item" />
+            </for>
+          </@section>
+        </marko-web-page-wrapper>
+      </if>
+
       <marko-web-page-wrapper modifiers=["website-section-contents"]>
         <@section>
           <div class="row">
 
-            <aside class="col-6 page-rail">
+            <aside class="fixed-col fixed-col--3 fixed-col--rail">
               <marko-web-query|{ nodes }| name="all-published-content" params={ limit: 2, excludeContentTypes: ["Contact"], queryFragment }>
                 <website-content-list-flow
                   nodes=nodes
@@ -59,7 +71,13 @@ $ const { id, alias, name, pageNode } = data;
               <marko-web-gam-display-ad modifiers=["left"] id="gpt-ad-rail1" />
 
               <marko-web-query|{ nodes }| name="all-published-content" params={ limit: 3, skip: 2, excludeContentTypes: ["Contact"], queryFragment }>
-                <website-content-list-flow nodes=nodes display-image=false inner-justified=false flush-x=true flush-y=true />
+                <website-content-list-flow
+                  nodes=nodes
+                  display-image=false
+                  inner-justified=false
+                  flush-x=true
+                  flush-y=true
+                />
               </marko-web-query>
 
               <marko-web-query|{ nodes }|
@@ -78,20 +96,21 @@ $ const { id, alias, name, pageNode } = data;
               </marko-web-query>
             </aside>
 
+            <div class="fixed-col fixed-col--9">
 
-            <div class="col-14">
               <div class="row">
-                <div class="col-12">
+                <div class="fixed-col fixed-col--6">
                   <marko-web-query|{ nodes }|
                     name="website-optioned-content"
-                    params={ sectionId: id, optionName: "Pinned", limit: 5, queryFragment }
+                    params={ sectionId: id, optionName: "Pinned", limit: 5, requiresImage: true, queryFragment }
                   >
                     <website-content-hero-flow nodes=nodes>
                       <@header>Highlights</@header>
                     </website-content-hero-flow>
                   </marko-web-query>
                 </div>
-                <aside class="col-8 page-rail page-rail page-rail--website-section-right">
+
+                <aside class="fixed-col fixed-col--3 fixed-col--rail fixed-col--website-section-right">
                   <marko-web-gam-display-ad modifiers=["right"] id="gpt-ad-rail2" />
                   <marko-web-gam-display-ad modifiers=["right"] id="gpt-ad-rail3" />
                 </aside>
@@ -100,27 +119,32 @@ $ const { id, alias, name, pageNode } = data;
               <div class="row">
                 <marko-web-query|{ nodes }|
                   name="website-scheduled-content"
-                  params={ sectionId: id, limit: 8, skip: 5, queryFragment }
+                  params={ sectionId: id, limit: 10, skip: 5, queryFragment }
                 >
                   <if(nodes.length)>
                     $ const cardNodes = nodes.slice(0, 4);
                     $ const listNodes = nodes.slice(4);
                     <if(cardNodes.length)>
                       <for|node| of=cardNodes>
-                        <div class="col-10 mb-block">
+                        <div class="col-6 mb-block">
                           <website-content-card-node node=node use-placeholder=true image-width=240 />
                         </div>
                       </for>
                     </if>
+
+                    <div class="col">
+                      <marko-web-gam-display-ad id="gpt-ad-lb2" class="mb-block" />
+                    </div>
+
                     <if(listNodes.length)>
-                      <div class="col-20">
+                      <div class="col">
                         <website-content-list-flow
                           nodes=listNodes
                           flush-x=true
                           flush-y=true
                           with-teaser=true
                           inner-justified=false
-                          image-width=160
+                          image-width=180
                         />
                       </div>
                     </if>
@@ -129,38 +153,10 @@ $ const { id, alias, name, pageNode } = data;
               </div>
 
             </div>
-
           </div>
         </@section>
       </marko-web-page-wrapper>
     </marko-web-resolve-page>
-
-    <!-- <marko-web-query|{ nodes }|
-      name="website-optioned-content"
-      params={ sectionId: id, optionName: "Pinned", limit: 5, queryFragment }
-    >
-      <website-content-hero-flow nodes=nodes>
-        <@native-x index=3 name="default" aliases=[alias] />
-      </website-content-hero-flow>
-    </marko-web-query>
-
-    <div class="row">
-      <div class="col-lg-8 mb-block">
-        <marko-web-query|{ nodes }|
-          name="website-scheduled-content"
-          params={ sectionId: id, limit: 7, skip: 5, queryFragment }
-        >
-          <website-content-list-flow nodes=nodes>
-            <@header>Featured</@header>
-            <@native-x index=6 name="default" aliases=[alias] />
-          </website-content-list-flow>
-        </marko-web-query>
-      </div>
-      <div class="col-lg-4 ad-rail">
-        <marko-web-gam-display-ad id="gpt-ad-rail1" />
-        <marko-web-gam-display-ad id="gpt-ad-rail2" />
-      </div>
-    </div> -->
   </@page>
   <!-- <@below-page>
     <marko-web-resolve-page|{ data: section }| node=pageNode>

@@ -10,5 +10,16 @@ fragment WebsiteSectionPageFragment on WebsiteSection {
     alias
     name
   }
+  isRoot
+  children(input: { sort: { field: name, order: asc } }) {
+    edges {
+      node {
+        id
+        name
+        alias
+        canonicalPath
+      }
+    }
+  }
 }
 `;
