@@ -218,7 +218,6 @@ body {
 
   &--website-section-header {
     border-top: 5px solid rgba($primary, .8);
-    border-bottom: 2px solid $body-bg;
     #{ $self } {
       &__deck {
         @include media-breakpoint-up(md) {
@@ -230,6 +229,31 @@ body {
       }
     }
   }
+
+  &--child-website-section-nav {
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+    font-size: 14px;
+    font-weight: 700;
+    background-color: #f0eded;
+
+    #{ $self } {
+      &__section {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+  }
+
+  &--website-section-contents {
+    border-top: 2px solid $body-bg;
+  }
+}
+
+.child-website-section-nav-item {
+  padding: .25rem 1.25rem;
 }
 
 .ad-container {
