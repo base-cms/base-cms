@@ -20,8 +20,7 @@ $gray-600:  #3b3b3b !default;
 $enable-shadows: false !default;
 $enable-rounded: false !default;
 
-$grid-columns: 20 !default;
-$grid-gutter-width: 12px !default;
+$grid-gutter-width: 20px !default;
 
 $font-weight-bold:      800 !default;
 $font-weight-normal:    500 !default;
@@ -115,10 +114,12 @@ $theme-item-description-line-height: get-line-height($theme-item-description-fon
 $theme-item-description-line-height-sm: $theme-item-description-line-height !default;
 $theme-item-description-color: #3b3b3b !default;
 
-$marko-web-page-wrapper-padding:  1rem !default;
+$marko-web-page-wrapper-padding: $grid-gutter-width / 2 !default;
 $marko-web-page-wrapper-section-margin: 1.25rem !default;
 
 @import "../../scss/theme.scss";
+
+@import "fixed-cols";
 
 // Override classes here.
 body {
