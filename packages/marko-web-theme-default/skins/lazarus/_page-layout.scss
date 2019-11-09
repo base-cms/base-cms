@@ -1,0 +1,87 @@
+.page-layout {
+  $spacer: $grid-gutter-width / 2;
+  $rail-width: 300px + $grid-gutter-width;
+
+  display: flex;
+  margin-right: -$spacer;
+  margin-left: -$spacer;
+
+  &__left-rail {
+    position: relative;
+
+    width: $rail-width;
+    padding-right: $spacer;
+    padding-left: $spacer;
+
+    opacity: 1;
+    transition-duration: 375ms;
+    transition-property: width, padding, opacity;
+    will-change: width, padding, opacity;
+    @include media-breakpoint-down(md) {
+      width: 0;
+      padding: 0;
+      opacity: 0;
+    }
+
+    > * {
+      margin-bottom: map-get($spacers, block);
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__main {
+    position: relative;
+    flex-grow: 1;
+    padding-right: $spacer;
+    padding-left: $spacer;
+  }
+
+  &__main-top {
+    display: flex;
+    margin-right: -$spacer;
+    margin-left: -$spacer;
+    @include media-breakpoint-down(sm) {
+      flex-wrap: wrap;
+    }
+  }
+
+  &__main-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -$spacer;
+    margin-left: -$spacer;
+  }
+
+  &__center {
+    position: relative;
+    flex-grow: 1;
+    padding-right: $spacer;
+    padding-left: $spacer;
+    transition-duration: 375ms;
+    transition-property: width;
+    @include media-breakpoint-down(sm) {
+      flex: 0 0 100%;
+      width: 100%;
+    }
+  }
+
+  &__right-rail {
+    position: relative;
+    width: $rail-width;
+    padding-right: $spacer;
+    padding-left: $spacer;
+    margin-top: 41px;
+    transition-duration: 375ms;
+    transition-property: width;
+    @include media-breakpoint-down(sm) {
+      flex: 0 0 100%;
+      width: 100%;
+    }
+
+    > * {
+      margin-bottom: map-get($spacers, block);
+    }
+  }
+}

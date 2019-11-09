@@ -53,7 +53,50 @@ $ const { id, alias, name, pageNode } = data;
 
       <marko-web-page-wrapper modifiers=["website-section-contents"]>
         <@section>
-          <div class="row">
+          <div class="page-layout">
+
+            <div class="page-layout__left-rail">
+              <div style="background-color: green; height: 20px; width: 100%"></div>
+            </div>
+
+            <div class="page-layout__main">
+
+              <div class="page-layout__main-top">
+                <div class="page-layout__center">
+                  <div style="background-color: blue; height: 20px; width: 100%"></div>
+                </div>
+                <div class="page-layout__right-rail">
+                  <div style="background-color: red; height: 20px; width: 100%"></div>
+                </div>
+              </div>
+
+              <div class="page-layout__main-bottom">
+                <div class="col-12">
+                  <div style="background-color: yellow; height: 20px; width: 100%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- <div class="row">
+            <div class="fixed-col fixed-col--3 fixed-col--rail">
+
+            </div>
+            <div class="col">
+              <div class="row">
+                <div style="flex: 0 0 63.6363%; max-width: 63.6363%; position: relative; padding-right: 10px; padding-left: 10px;">
+                  <div style="background-color: green; height: 20px; width: 100%"></div>
+                </div>
+                <div class="fixed-col fixed-col--3">
+                  <div style="background-color: red; height: 20px; width: 100%"></div>
+                </div>
+              </div>
+              <div style="background-color: blue; height: 20px; width: 100%"></div>
+            </div>
+          </div> -->
+
+          <!-- <div class="row">
 
             <aside class="fixed-col fixed-col--3 fixed-col--rail">
               <marko-web-query|{ nodes }| name="all-published-content" params={ limit: 2, excludeContentTypes: ["Contact"], queryFragment }>
@@ -153,12 +196,12 @@ $ const { id, alias, name, pageNode } = data;
               </div>
 
             </div>
-          </div>
+          </div> -->
         </@section>
       </marko-web-page-wrapper>
     </marko-web-resolve-page>
   </@page>
-  <@below-page>
+  <!-- <@below-page>
     <marko-web-resolve-page|{ data: section }| node=pageNode>
       $ const aliases = hierarchyAliases(section);
       <marko-web-load-more
@@ -170,7 +213,7 @@ $ const { id, alias, name, pageNode } = data;
         page-input={ for: "website-section", id }
       />
     </marko-web-resolve-page>
-  </@below-page>
+  </@below-page> -->
   <!-- <@foot>
     <marko-web-resolve-page|{ data: section }| node=pageNode>
       $ const aliases = hierarchyAliases(section);
