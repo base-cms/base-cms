@@ -1,9 +1,9 @@
 {
-  "name": "@base-cms/example-website-vspc",
+  "name": "@base-cms/example-website-iw",
   "version": "1.0.0-beta.4",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
-  "repository": "https://github.com/base-cms/base-cms/tree/master/services/example-website-vspc",
+  "repository": "https://github.com/base-cms/base-cms/tree/master/services/example-website-iw",
   "license": "MIT",
   "private": true,
   "scripts": {
