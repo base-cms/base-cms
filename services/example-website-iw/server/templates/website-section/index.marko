@@ -158,23 +158,20 @@ $ const { id, alias, name, pageNode } = data;
       </marko-web-page-wrapper>
     </marko-web-resolve-page>
   </@page>
-  <!-- <@below-page>
+  <@below-page>
     <marko-web-resolve-page|{ data: section }| node=pageNode>
       $ const aliases = hierarchyAliases(section);
       <marko-web-load-more
         component-name="content-load-more-flow"
-        component-input={
-          aliases,
-          nativeX: { index: 0, name: 'card', aliases },
-        }
+        component-input={ aliases }
         fragment-name="content-list"
         query-name="website-scheduled-content"
-        query-params={ sectionId: id, limit: 14, skip: 12 }
+        query-params={ sectionId: id, limit: 14, skip: 15 }
         page-input={ for: "website-section", id }
       />
     </marko-web-resolve-page>
   </@below-page>
-  <@foot>
+  <!-- <@foot>
     <marko-web-resolve-page|{ data: section }| node=pageNode>
       $ const aliases = hierarchyAliases(section);
       <marko-web-gam-fixed-ad-bottom ...GAM.getAdUnit({ name: "lb2", aliases }) refresh-interval=0 />
