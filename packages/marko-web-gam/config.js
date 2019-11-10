@@ -1,4 +1,4 @@
-const { asArray } = require('@base-cms/utils');
+const { asArray, isObject } = require('@base-cms/utils');
 const { set, getAsObject, get } = require('@base-cms/object-path');
 
 const { isArray } = Array;
@@ -57,6 +57,7 @@ class GAMConfiguration {
     aliases,
     size,
     sizeMapping,
+    targeting,
   } = {}) {
     // Retrieve the default and "alias-traversed" adunits.
     const defaultAdUnit = getAsObject(this.adUnits, `${this.defaultAlias}.${name}`);
@@ -67,13 +68,14 @@ class GAMConfiguration {
     const adunit = { ...getAsObject(foundAdUnit || defaultAdUnit) };
     if (isArray(size)) adunit.size = size;
     if (isArray(sizeMapping)) adunit.sizeMapping = sizeMapping;
+    if (isObject(targeting)) adunit.targeting = { ...adunit.targeting, ...targeting };
 
     return adunit;
   }
 
-  setTemplate(name, { size, sizeMapping } = {}) {
+  setTemplate(name, { size, sizeMapping, targeting } = {}) {
     if (!name) throw new Error('Unable to create GAM template: no template name was provided');
-    this.templates[name] = { size, sizeMapping };
+    this.templates[name] = { size, sizeMapping, targeting };
     return this;
   }
 

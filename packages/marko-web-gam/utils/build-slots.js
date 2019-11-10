@@ -1,4 +1,5 @@
 const { isObject } = require('@base-cms/utils');
+const buildSlotTargeting = require('./build-slot-targeting');
 const buildSizeMapping = require('./build-size-mapping');
 
 const { isArray } = Array;
@@ -13,8 +14,14 @@ module.exports = (slots) => {
       path,
       size,
       sizeMapping,
+      targeting,
     }) => {
-      const mappings = buildSizeMapping(sizeMapping);
-      return `googletag.defineSlot('${path}', ${JSON.stringify(size)}, '${id}')${mappings}.addService(googletag.pubads());`;
+      const chain = [
+        `googletag.defineSlot('${path}', ${JSON.stringify(size)}, '${id}')`,
+        buildSlotTargeting(targeting),
+        buildSizeMapping(sizeMapping),
+        'addService(googletag.pubads());',
+      ];
+      return chain.filter(o => (o)).join('.');
     });
 };
