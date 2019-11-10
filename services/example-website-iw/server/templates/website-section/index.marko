@@ -67,6 +67,7 @@ $ const { id, alias, name, pageNode } = data;
                 </website-content-list-flow>
               </marko-web-query>
 
+              <!-- @todo this ad should refresh on scroll down, or time -->
               <marko-web-gam-display-ad modifiers=["max-width-300"] id="gpt-ad-rail1" />
 
               <marko-web-query|{ nodes }| name="all-published-content" params={ limit: 3, skip: 2, excludeContentTypes: ["Contact"], queryFragment }>
