@@ -78,9 +78,5 @@
   &__right-bottom {
     @include create-row();
     flex-wrap: wrap;
-
-    .ad-container {
-      max-width: 728px;
-    }
   }
 }
