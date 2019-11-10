@@ -54,6 +54,7 @@ $ const { id, alias, name, pageNode } = data;
       <marko-web-page-wrapper modifiers=["website-section-contents"]>
         <@section>
           <div class="lazarus"> <!-- row -->
+            <!-- @todo check out stickybits js lib for handling position: sticky -->
             <aside class="lazarus__left"> <!-- col -->
               <marko-web-query|{ nodes }| name="all-published-content" params={ limit: 2, excludeContentTypes: ["Contact"], queryFragment }>
                 <website-content-list-flow
