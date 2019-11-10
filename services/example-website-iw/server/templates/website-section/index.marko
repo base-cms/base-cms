@@ -67,7 +67,7 @@ $ const { id, alias, name, pageNode } = data;
                 </website-content-list-flow>
               </marko-web-query>
 
-              <marko-web-gam-display-ad modifiers=["left"] id="gpt-ad-rail1" />
+              <marko-web-gam-display-ad modifiers=["max-width-300"] id="gpt-ad-rail1" />
 
               <marko-web-query|{ nodes }| name="all-published-content" params={ limit: 3, skip: 2, excludeContentTypes: ["Contact"], queryFragment }>
                 <website-content-list-flow
@@ -107,8 +107,8 @@ $ const { id, alias, name, pageNode } = data;
                   </marko-web-query>
                 </div>
                 <div class="lazarus__right-top-right"> <!-- col -->
-                  <marko-web-gam-display-ad id="gpt-ad-rail2" />
-                  <marko-web-gam-display-ad id="gpt-ad-rail3" />
+                  <marko-web-gam-display-ad id="gpt-ad-rail2" modifiers=["max-width-300"] />
+                  <marko-web-gam-display-ad id="gpt-ad-rail3" modifiers=["max-width-300"] />
                 </div>
               </div>
               <div class="lazarus__right-bottom"> <!-- row -->
