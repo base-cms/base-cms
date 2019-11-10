@@ -12,13 +12,12 @@ $ const { id, alias, name, pageNode } = data;
     <marko-web-resolve-page|{ data: section }| node=pageNode>
       $ const aliases = hierarchyAliases(section);
       $ const adSlots = {
-          "gpt-ad-lb1":   GAM.getAdUnit({ name: "lb1", aliases }),
-          "gpt-ad-lb2":   GAM.getAdUnit({ name: "lb1", aliases, options: { size: [728, 90] } }),
-          "gpt-ad-rail1": GAM.getAdUnit({ name: "rail1", aliases, size: [300, 250] }),
-          "gpt-ad-rail2": GAM.getAdUnit({ name: "rail1", aliases, size: [300, 250] }),
-          "gpt-ad-rail3": GAM.getAdUnit({ name: "rail2", aliases, size: [300, 600] }),
+          "gpt-ad-lb-top": GAM.getAdUnit({ name: "lb-top", aliases }),
+          "gpt-ad-lb-flow": GAM.getAdUnit({ name: "lb-flow", aliases }),
+          "gpt-ad-mr-rail": GAM.getAdUnit({ name: "mr-rail", aliases }),
+          "gpt-ad-mr-flow": GAM.getAdUnit({ name: "mr-flow", aliases }),
         }
-       <marko-web-gam-slots slots=adSlots />
+      <marko-web-gam-slots slots=adSlots />
     </marko-web-resolve-page>
   </@head>
   <@above-container>
@@ -29,7 +28,7 @@ $ const { id, alias, name, pageNode } = data;
     </marko-web-resolve-page>
   </@above-container>
   <@page>
-    <marko-web-gam-display-ad id="gpt-ad-lb1" modifiers=["top-of-page"] />
+    <marko-web-gam-display-ad id="gpt-ad-lb-top" modifiers=["top-of-page"] />
 
     <marko-web-resolve-page|{ data: section, resolved }| node=pageNode>
       <marko-web-page-wrapper modifiers=["website-section-header"]>
@@ -167,10 +166,4 @@ $ const { id, alias, name, pageNode } = data;
       />
     </marko-web-resolve-page>
   </@below-page>
-  <!-- <@foot>
-    <marko-web-resolve-page|{ data: section }| node=pageNode>
-      $ const aliases = hierarchyAliases(section);
-      <marko-web-gam-fixed-ad-bottom ...GAM.getAdUnit({ name: "lb2", aliases }) refresh-interval=0 />
-    </marko-web-resolve-page>
-  </@foot> -->
 </marko-web-website-section-page-layout>

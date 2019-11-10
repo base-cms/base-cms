@@ -17,12 +17,13 @@ $ const displayPublishedDate = ["event", "webinar", "contact"].includes(type) ? 
     <marko-web-gam-targeting key-values={ cont_id: id, cont_type: type } />
     <marko-web-resolve-page|{ data: content }| node=pageNode>
       $ const aliases = hierarchyAliases(content.primarySection);
+      $ const targeting = { cont_id: id, ptype: type };
       $ const adSlots = {
-        "gpt-ad-lb1":   GAM.getAdUnit({ name: "lb1", aliases }),
-        "gpt-ad-rail1": GAM.getAdUnit({ name: "rail1", aliases }),
-        "gpt-ad-rail2": GAM.getAdUnit({ name: "rail2", aliases }),
+        "gpt-ad-lb-top": GAM.getAdUnit({ name: "lb-top", aliases, targeting }),
+        "gpt-ad-mr-rail": GAM.getAdUnit({ name: "mr-rail", aliases, targeting }),
+        "gpt-ad-mr-flow": GAM.getAdUnit({ name: "mr-flow", aliases, targeting }),
       }
-       <marko-web-gam-slots slots=adSlots />
+      <marko-web-gam-slots slots=adSlots />
     </marko-web-resolve-page>
   </@head>
   <@above-container>
@@ -34,7 +35,7 @@ $ const displayPublishedDate = ["event", "webinar", "contact"].includes(type) ? 
 
   </@above-container>
   <@page>
-    <marko-web-gam-display-ad id="gpt-ad-lb1" modifiers=["top-of-page"] />
+    <marko-web-gam-display-ad id="gpt-ad-lb-top" modifiers=["top-of-page"] />
     <marko-web-resolve-page|{ data: content, resolved }| node=pageNode>
       $ const section = resolved.getAsObject("primarySection");
       <marko-web-page-wrapper>
@@ -92,8 +93,8 @@ $ const displayPublishedDate = ["event", "webinar", "contact"].includes(type) ? 
               </if>
             </default-theme-page-contents>
             <aside class="col-lg-4 page-rail">
-              <marko-web-gam-display-ad id="gpt-ad-rail1" />
-              <marko-web-gam-display-ad id="gpt-ad-rail2" />
+              <marko-web-gam-display-ad id="gpt-ad-mr-rail" />
+              <marko-web-gam-display-ad id="gpt-ad-mr-flow" />
               <marko-web-resolve-page|{ data: content }| node=pageNode>
                 $ const aliases = hierarchyAliases(content.primarySection);
                 <website-related-content-block
@@ -129,10 +130,4 @@ $ const displayPublishedDate = ["event", "webinar", "contact"].includes(type) ? 
       </website-content-load-more-block>
     </marko-web-resolve-page>
   </@below-page>
-  <@foot>
-    <marko-web-resolve-page|{ data: content }| node=pageNode>
-      $ const aliases = hierarchyAliases(content.primarySection);
-      <marko-web-gam-fixed-ad-bottom ...GAM.getAdUnit({ name: "lb2", aliases }) refresh-interval=0 />
-    </marko-web-resolve-page>
-  </@foot>
 </marko-web-content-page-layout>
