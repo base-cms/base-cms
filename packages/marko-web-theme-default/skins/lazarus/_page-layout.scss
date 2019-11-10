@@ -9,8 +9,17 @@
 
   &__left {
     @include make-col-ready();
+    position: sticky;
+    @each $breakpoint, $width in sort-map-by-values($theme-site-header-breakpoints, desc) {
+      @media (max-width: $width) {
+        top: calc(#{calculate-navbar-height-for($breakpoint)} + #{$grid-gutter-width / 2});
+        height: calc(100vh - #{calculate-navbar-height-for($breakpoint)} - #{$grid-gutter-width / 2});
+      }
+    }
+
     flex: 0 0 320px;
     max-width: 320px;
+    overflow: scroll;
     opacity: 1;
     transition-duration: 375ms;
     transition-property: width, max-width, padding, opacity;
