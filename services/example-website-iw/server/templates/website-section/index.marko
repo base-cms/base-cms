@@ -24,6 +24,7 @@ $ const { id, alias, name, pageNode } = data;
     <marko-web-gam-display-ad id="gpt-ad-lb-top" modifiers=["top-of-page"] />
 
     <marko-web-resolve-page|{ data: section, resolved }| node=pageNode>
+      $ const aliases = hierarchyAliases(section);
       <marko-web-page-wrapper modifiers=["website-section-header"]>
         <@section>
           <default-theme-website-section-breadcrumbs display-self=false section=section />
@@ -134,11 +135,23 @@ $ const { id, alias, name, pageNode } = data;
                           with-teaser=true
                           inner-justified=false
                           image-width=180
+                          modifiers=["feed"]
                         />
                       </div>
                     </if>
                   </if>
                 </marko-web-query>
+
+                <marko-web-load-more
+                  append-to=".lazarus__right-bottom"
+                  expand=400
+                  component-name="content-load-more-flow"
+                  component-input={ aliases }
+                  fragment-name="content-list"
+                  query-name="website-scheduled-content"
+                  query-params={ sectionId: id, limit: 7, skip: 15 }
+                  page-input={ for: "website-section", id }
+                />
               </div>
             </div>
           </div>
@@ -146,17 +159,4 @@ $ const { id, alias, name, pageNode } = data;
       </marko-web-page-wrapper>
     </marko-web-resolve-page>
   </@page>
-  <@below-page>
-    <marko-web-resolve-page|{ data: section }| node=pageNode>
-      $ const aliases = hierarchyAliases(section);
-      <marko-web-load-more
-        component-name="content-load-more-flow"
-        component-input={ aliases }
-        fragment-name="content-list"
-        query-name="website-scheduled-content"
-        query-params={ sectionId: id, limit: 14, skip: 15 }
-        page-input={ for: "website-section", id }
-      />
-    </marko-web-resolve-page>
-  </@below-page>
 </marko-web-website-section-page-layout>
