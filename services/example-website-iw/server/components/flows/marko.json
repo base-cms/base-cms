@@ -36,6 +36,7 @@
     "@flush-y": {
       "type": "boolean"
     },
+    "@modifiers": "array",
     "@image-width": "number"
   },
   "<website-content-load-more-flow>": {

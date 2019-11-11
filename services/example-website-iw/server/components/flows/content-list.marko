@@ -9,7 +9,12 @@ $ const innerJustified = input.innerJustified != null ? input.innerJustified : t
 $ const flushX = input.flushX != null ? input.flushX : false;
 $ const flushY = input.flushY != null ? input.flushY : false;
 
-<marko-web-node-list inner-justified=innerJustified flush-x=flushX flush-y=flushY>
+<marko-web-node-list
+  inner-justified=innerJustified
+  flush-x=flushX
+  flush-y=flushY
+  modifiers=input.modifiers
+>
   <if(input.header)>
     <@header ...input.header />
   </if>
