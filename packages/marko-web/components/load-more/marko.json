@@ -2,7 +2,9 @@
   "<marko-web-load-more>": {
     "template": "./index.marko",
     "@page-number": "number",
+    "@append-to": "string",
     "@max-pages": "number",
+    "@expand": "number",
     "@component-name": "string",
     "@component-input": "object",
     "@query-name": "string",
