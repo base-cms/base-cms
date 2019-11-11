@@ -28,7 +28,7 @@ $ const { id, alias, name, pageNode } = data;
 
     <marko-web-resolve-page|{ data: section, resolved }| node=pageNode>
       $ const aliases = hierarchyAliases(section);
-      <marko-web-page-wrapper modifiers=["website-section-header"]>
+      <marko-web-page-wrapper modifiers=["website-section-header", "top-border"]>
         <@section>
           <default-theme-website-section-breadcrumbs display-self=false section=section />
           <marko-web-website-section-name class="page-wrapper__title" tag="h1" obj=section />
