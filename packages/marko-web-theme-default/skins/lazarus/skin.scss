@@ -202,8 +202,22 @@ body {
 }
 
 .page {
-  padding-right: 0;
-  padding-left: 0;
+  padding: 0;
+
+  &--load-more {
+    padding: 0;
+    margin-top: map-get($spacers, block);
+    background-color: #fff;
+  }
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+}
+
+.load-more-trigger {
+  margin-top: map-get($spacers, block);
+  margin-bottom: map-get($spacers, block);
 }
 
 .page-wrapper {
