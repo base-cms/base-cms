@@ -90,5 +90,11 @@
     "@closeable": "boolean",
     "@refresh-interval": "number",
     "@scroll-offset": "number"
+  },
+  "<marko-web-gam-refresh-ad>": {
+    "template": "./refresh-ad.marko",
+    "@on": "string",
+    "@slot-id": "string",
+    "@min-in-view-percentage": "number"
   }
 }
