@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/graphql-server",
-  "version": "1.0.0-rc.1",
+  "version": "1.0.0-rc.3",
   "description": "The BaseCMS GraphQL server using Apollo and Express.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
