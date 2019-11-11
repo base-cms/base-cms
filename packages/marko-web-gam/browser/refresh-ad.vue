@@ -1,5 +1,5 @@
 <template>
-  <div :id="elementId" />
+  <div :id="elementId" style="display: none;" />
 </template>
 
 <script>
