@@ -47,6 +47,7 @@
     "@inc": "number",
     "@size": "expression",
     "@size-mapping": "array",
+    "@targeting": "object",
     "@apply-style": {
       "type": "boolean",
       "default-value": false

@@ -10,9 +10,9 @@ module.exports = (targeting) => {
   if (!isObject(targeting)) return '';
   return Object.keys(targeting).map((key) => {
     const value = targeting[key];
-    const values = isArray(value) ? value : [value];
     // Clean the key and the values.
     // Per https://support.google.com/admanager/answer/177381
-    return `setTargeting('${clean(key)}', ${JSON.stringify(values.map(clean))})`;
+    const cleaned = isArray(value) ? JSON.stringify(value.map(clean)) : clean(value);
+    return `setTargeting('${clean(key)}', '${cleaned}')`;
   }).join('.');
 };
