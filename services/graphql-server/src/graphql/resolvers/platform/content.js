@@ -562,7 +562,7 @@ module.exports = {
     title: content => BaseDB.fillMutation(content, 'Website', 'name'),
     publication: (content, _, { site }) => {
       if (!site.exists()) throw new UserInputError('A website context must be set to generate the `ContentSitemapNewsUrl.publication` field.');
-      return site;
+      return site.obj();
     },
     images: (content, _, { basedb }) => loadSitemapImages({ content, basedb }),
   },
