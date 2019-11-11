@@ -144,8 +144,14 @@ body {
   &__content-published,
   &__content-start-date,
   &__content-end-date {
+    font-size: 14px;
     color: #767676;
+    text-transform: uppercase;
   }
+}
+
+.page-contents {
+  margin-bottom: map-get($spacers, block);
 }
 
 .content-page {
