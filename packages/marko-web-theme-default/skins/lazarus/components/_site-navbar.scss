@@ -1,0 +1,21 @@
+.site-navbar {
+  &__items {
+    &--tertiary {
+      padding-left: $theme-site-navbar-padding-x;
+      margin-bottom: auto;
+
+      @media (max-width: map-get($theme-site-header-breakpoints, small-logo)) {
+        margin-top: auto;
+      }
+
+    }
+    svg {
+      width: .75rem;
+      height: .75rem;
+    }
+  }
+
+  &__logo {
+    filter: none;
+  }
+}

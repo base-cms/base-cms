@@ -1,0 +1,12 @@
+.ad-container {
+  &--max-width-728 {
+    max-width: 728px;
+  }
+  &--max-width-300 {
+    max-width: 300px;
+  }
+  &--margin-auto-x {
+    margin-right: auto;
+    margin-left: auto;
+  }
+}

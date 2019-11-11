@@ -1,0 +1,13 @@
+.page {
+  padding: 0;
+
+  &--load-more {
+    padding: 0;
+    margin-top: map-get($spacers, block);
+    background-color: #fff;
+  }
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+}

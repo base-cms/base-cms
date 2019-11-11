@@ -1,0 +1,50 @@
+.node {
+  $self: &;
+  &__title {
+    margin-bottom: .375rem;
+  }
+  &__footer {
+    &--body {
+      justify-content: start;
+    }
+  }
+  &__footer-left {
+    margin-right: map-get($spacers, 2);
+  }
+
+  &__contents {
+    &--body {
+      margin-bottom: .25rem;
+    }
+  }
+
+  &__content-published {
+    font-family: Numans, sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: $theme-item-footer-line-height;
+    color: $theme-item-header-color;
+    text-transform: uppercase;
+  }
+
+  &--image-top {
+    #{ $self } {
+      &__image-wrapper + #{ $self }__body {
+        margin-top: -58px;
+      }
+    }
+  }
+
+  &--card {
+    #{ $self } {
+      &__body {
+        z-index: 1;
+        width: 90%;
+        padding: .25rem;
+        padding-bottom: .75rem;
+        background-color: rgba($white, .9);
+        border-bottom: 1px solid $marko-web-node-list-border-color;
+      }
+    }
+  }
+}
