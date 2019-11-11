@@ -2,6 +2,7 @@ import hierarchyAliases from "@base-cms/marko-web/utils/hierarchy-aliases";
 import { getAsObject } from "@base-cms/object-path";
 import queryFragment from "../../graphql/fragments/content-list";
 import GAM from "../../../config/gam";
+import contentTargeting from "../../utils/gam/content-targeting";
 
 $ const { site } = out.global;
 $ const { id, type, pageNode } = data;
@@ -14,14 +15,14 @@ $ const displayPublishedDate = ["event", "webinar", "contact"].includes(type) ? 
     <marko-web-gtm-content-context|{ context }| id=id>
       <marko-web-gtm-push data=context />
     </marko-web-gtm-content-context>
-    <marko-web-gam-targeting key-values={ cont_id: id, cont_type: type } />
     <marko-web-resolve-page|{ data: content }| node=pageNode>
+      $ const targeting = contentTargeting(content);
+      <marko-web-gam-targeting key-values=targeting />
       $ const aliases = hierarchyAliases(content.primarySection);
-      $ const targeting = { cont_id: id, ptype: type };
       $ const adSlots = {
-        "gpt-ad-lb-top": GAM.getAdUnit({ name: "lb-top", aliases, targeting }),
-        "gpt-ad-mr-rail": GAM.getAdUnit({ name: "mr-rail", aliases, targeting }),
-        "gpt-ad-mr-flow": GAM.getAdUnit({ name: "mr-flow", aliases, targeting }),
+        "gpt-ad-lb-top": GAM.getAdUnit({ name: "lb-top", aliases }),
+        "gpt-ad-mr-rail": GAM.getAdUnit({ name: "mr-rail", aliases }),
+        "gpt-ad-mr-flow": GAM.getAdUnit({ name: "mr-flow", aliases }),
       }
       <marko-web-gam-slots slots=adSlots />
     </marko-web-resolve-page>

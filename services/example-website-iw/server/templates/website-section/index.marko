@@ -1,6 +1,7 @@
 import hierarchyAliases from "@base-cms/marko-web/utils/hierarchy-aliases";
 import queryFragment from "../../graphql/fragments/content-list";
 import GAM from "../../../config/gam";
+import sectionTargeting from "../../utils/gam/section-targeting";
 
 $ const { id, alias, name, pageNode } = data;
 
@@ -10,6 +11,8 @@ $ const { id, alias, name, pageNode } = data;
       <marko-web-gtm-push data=context />
     </marko-web-gtm-website-section-context>
     <marko-web-resolve-page|{ data: section }| node=pageNode>
+      $ const targeting = sectionTargeting(section);
+      <marko-web-gam-targeting key-values=targeting />
       $ const aliases = hierarchyAliases(section);
       $ const adSlots = {
           "gpt-ad-lb-top": GAM.getAdUnit({ name: "lb-top", aliases }),
