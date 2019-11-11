@@ -1,0 +1,47 @@
+$ const { adSlotId, queryFragment } = input;
+
+<if(adSlotId)>
+  <marko-web-gam-refresh-ad on="load-more-in-view" slot-id=adSlotId />
+</if>
+
+<!-- @todo check out stickybits js lib for handling position: sticky -->
+<marko-web-query|{ nodes }| name="all-published-content" params={ limit: 2, excludeContentTypes: ["Contact"], queryFragment }>
+  <website-content-list-flow
+    nodes=nodes
+    display-image=false
+    inner-justified=false
+    flush-x=true
+    flush-y=true
+  >
+    <@header>Recent</@header>
+  </website-content-list-flow>
+</marko-web-query>
+
+<if(adSlotId)>
+  <marko-web-gam-display-ad modifiers=["max-width-300"] id=adSlotId />
+</if>
+
+<marko-web-query|{ nodes }| name="all-published-content" params={ limit: 3, skip: 2, excludeContentTypes: ["Contact"], queryFragment }>
+  <website-content-list-flow
+    nodes=nodes
+    display-image=false
+    inner-justified=false
+    flush-x=true
+    flush-y=true
+  />
+</marko-web-query>
+
+<marko-web-query|{ nodes }|
+  name="website-optioned-content"
+  params={ sectionAlias: "home", optionName: "Pinned", limit: 4, queryFragment }
+>
+  <website-content-list-flow
+    nodes=nodes
+    display-image=false
+    inner-justified=false
+    flush-x=true
+    flush-y=true
+  >
+    <@header>Featured</@header>
+  </website-content-list-flow>
+</marko-web-query>

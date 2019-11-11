@@ -2,6 +2,7 @@
   "taglib-imports": [
     "./blocks/marko.json",
     "./flows/marko.json",
+    "./lazarus/marko.json",
     "./nodes/marko.json"
   ],
   "<website-document>": {

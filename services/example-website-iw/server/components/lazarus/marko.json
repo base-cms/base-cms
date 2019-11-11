@@ -1,0 +1,7 @@
+{
+  "<lazarus-left-rail>": {
+    "template": "./left-rail.marko",
+    "@ad-slot-id": "string",
+    "@query-fragment": "expression"
+  }
+}

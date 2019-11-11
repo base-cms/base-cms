@@ -50,47 +50,8 @@ $ const { id, alias, name, pageNode } = data;
       <marko-web-page-wrapper modifiers=["website-section-contents"]>
         <@section>
           <div class="lazarus"> <!-- row -->
-            <!-- @todo check out stickybits js lib for handling position: sticky -->
             <aside class="lazarus__left"> <!-- col -->
-              <marko-web-query|{ nodes }| name="all-published-content" params={ limit: 2, excludeContentTypes: ["Contact"], queryFragment }>
-                <website-content-list-flow
-                  nodes=nodes
-                  display-image=false
-                  inner-justified=false
-                  flush-x=true
-                  flush-y=true
-                >
-                  <@header>Recent</@header>
-                </website-content-list-flow>
-              </marko-web-query>
-
-              <!-- @todo this ad should refresh on scroll down, or time -->
-              <marko-web-gam-display-ad modifiers=["max-width-300"] id="gpt-ad-rail1" />
-
-              <marko-web-query|{ nodes }| name="all-published-content" params={ limit: 3, skip: 2, excludeContentTypes: ["Contact"], queryFragment }>
-                <website-content-list-flow
-                  nodes=nodes
-                  display-image=false
-                  inner-justified=false
-                  flush-x=true
-                  flush-y=true
-                />
-              </marko-web-query>
-
-              <marko-web-query|{ nodes }|
-                name="website-optioned-content"
-                params={ sectionAlias: "home", optionName: "Pinned", limit: 4, queryFragment }
-              >
-                <website-content-list-flow
-                  nodes=nodes
-                  display-image=false
-                  inner-justified=false
-                  flush-x=true
-                  flush-y=true
-                >
-                  <@header>Featured</@header>
-                </website-content-list-flow>
-              </marko-web-query>
+              <lazarus-left-rail ad-slot-id="gpt-ad-mr-rail" query-fragment=queryFragment />
             </aside>
             <div class="lazarus__right"> <!-- col -->
               <div class="lazarus__right-top"> <!-- row -->
