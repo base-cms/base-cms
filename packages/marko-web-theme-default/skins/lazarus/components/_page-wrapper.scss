@@ -8,8 +8,15 @@
     margin: 10px auto 0;
   }
 
-  &--website-section-header {
+  &--top-border {
     border-top: 5px solid rgba($primary, .8);
+  }
+
+  &--content-page-header {
+    padding-top: $grid-gutter-width;
+  }
+
+  &--website-section-header {
     #{ $self } {
       &__deck {
         @include media-breakpoint-up(md) {

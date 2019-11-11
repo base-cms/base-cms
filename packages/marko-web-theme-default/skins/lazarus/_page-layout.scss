@@ -99,6 +99,13 @@
     margin-bottom: map-get($spacers, block);
   }
 
+  &__content-column {
+    @include make-col-ready();
+    @include make-col(12);
+    padding-right: 50px;
+    padding-left: 50px;
+  }
+
   &__ad-column {
     @include make-col-ready();
     @include make-col(12);

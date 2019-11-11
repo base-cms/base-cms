@@ -1,5 +1,6 @@
 import hierarchyAliases from "@base-cms/marko-web/utils/hierarchy-aliases";
 import { getAsObject } from "@base-cms/object-path";
+import { buildImgixUrl } from "@base-cms/image";
 import queryFragment from "../../graphql/fragments/content-list";
 import GAM from "../../../config/gam";
 import contentTargeting from "../../utils/gam/content-targeting";
@@ -30,10 +31,84 @@ $ const displayPublishedDate = ["event", "webinar", "contact"].includes(type) ? 
   </@head>
   <@page>
     <marko-web-gam-display-ad id="gpt-ad-lb-top" modifiers=["top-of-page"] />
+
     <marko-web-resolve-page|{ data: content, resolved }| node=pageNode>
-      $ const section = resolved.getAsObject("primarySection");
-      <marko-web-page-wrapper>
+      <marko-web-page-wrapper modifiers=["top-border", "content-page-header"]>
         <@section>
+          <div class="lazarus"> <!-- row -->
+            <aside class="lazarus__left"> <!-- col -->
+              <lazarus-left-rail ad-slot-id="gpt-ad-mr-rail" query-fragment=queryFragment />
+            </aside>
+            <div class="lazarus__right"> <!-- col -->
+              <div class="lazarus__right-bottom"> <!-- row -->
+                <div class="lazarus__content-column">
+
+                  <!-- @todo determine where to place video embeds -->
+                  <div class="content-page">
+                    <div class="content-page__header">
+                      <div class="content-page__header-image-wrapper">
+                        <div class="content-page__image-inner-wrapper">
+                          $ const primaryImage = resolved.getAsObject("primaryImage");
+                          $ const hasImage = Boolean(primaryImage.src);
+                          <if(hasImage)>
+                            $ const src = buildImgixUrl(primaryImage.src, { w: 780 });
+                            $ const srcset = [`${buildImgixUrl(src, { dpr: 2 })} 2x`];
+                            <marko-web-img
+                              src=src
+                              srcset=srcset
+                              alt=primaryImage.alt
+                              class="content-page__image"
+                              lazyload=true
+                            />
+                          </if>
+                        </div>
+                      </div>
+                      <div class="content-page__header-body">
+                        <marko-web-website-section-name block-name="content-page" obj=content.primarySection link=true />
+                        <marko-web-content-name tag="h1" block-name="content-page" obj=content />
+                        <marko-web-content-teaser tag="p" block-name="content-page" obj=content />
+                        <if(content.type !== "contact")>
+                          <default-theme-content-attribution obj=content />
+                          <default-theme-page-dates|{ blockName }|>
+                            <if(content.type === "event")>
+                              <marko-web-content-start-date block-name=blockName obj=content />
+                              <marko-web-content-end-date block-name=blockName obj=content />
+                            </if>
+                            <if(content.type === "webinar")>
+                              <marko-web-content-start-date block-name=blockName obj=content />
+                            </if>
+                            <if(displayPublishedDate)>
+                              <marko-web-content-published block-name=blockName obj=content />
+                            </if>
+                          </default-theme-page-dates>
+                        </if>
+                      </div>
+                    </div>
+                  </div>
+
+                  <default-theme-page-contents|{ blockName }|>
+                    <default-theme-content-contact-details obj=content />
+                    <marko-web-content-body block-name=blockName obj=content />
+                    <marko-web-content-sidebars block-name=blockName obj=content />
+                  </default-theme-page-contents>
+
+                </div>
+
+                <!-- <marko-web-load-more
+                  append-to=".lazarus__right-bottom"
+                  expand=500
+                  component-name="content-load-more-flow"
+                  component-input={ aliases }
+                  fragment-name="content-list"
+                  query-name="website-scheduled-content"
+                  query-params={ sectionId: id, limit: 7, skip: 15 }
+                  page-input={ for: "website-section", id }
+                /> -->
+              </div>
+            </div>
+          </div>
+        </@section>
+        <!-- <@section>
           <div class="row">
             <div class="col">
               <default-theme-website-section-breadcrumbs section=content.primarySection />
@@ -103,11 +178,11 @@ $ const displayPublishedDate = ["event", "webinar", "contact"].includes(type) ? 
               </marko-web-resolve-page>
             </aside>
           </div>
-        </@section>
+        </@section> -->
       </marko-web-page-wrapper>
     </marko-web-resolve-page>
   </@page>
-  <@below-page>
+  <!-- <@below-page>
     <marko-web-resolve-page|{ resolved, data: content }| node=pageNode>
       $ const section = resolved.getAsObject("primarySection");
       $ const aliases = hierarchyAliases(section);
@@ -123,5 +198,5 @@ $ const displayPublishedDate = ["event", "webinar", "contact"].includes(type) ? 
         <@native-x index=0 name="default" aliases=aliases />
       </website-content-load-more-block>
     </marko-web-resolve-page>
-  </@below-page>
+  </@below-page> -->
 </marko-web-content-page-layout>

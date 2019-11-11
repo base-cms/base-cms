@@ -117,6 +117,10 @@ $theme-item-description-color: #3b3b3b !default;
 $marko-web-page-wrapper-padding: $grid-gutter-width / 2 !default;
 $marko-web-page-wrapper-section-margin: 1.25rem !default;
 
+// Published Date
+$theme-content-published-date-font-family: "Numans", sans-serif !default;
+$theme-content-published-date-font-weight: 400 !default;
+
 @import "../../scss/theme.scss";
 
 @import "components";
@@ -134,4 +138,79 @@ body {
 
 .child-website-section-nav-item {
   padding: .25rem 1.25rem;
+}
+
+.page-dates {
+  &__content-published,
+  &__content-start-date,
+  &__content-end-date {
+    color: #767676;
+  }
+}
+
+.content-page {
+  margin-bottom: map-get($spacers, block);
+
+  &__header {
+    position: relative;
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  &__header-image-wrapper {
+    position: relative;
+  }
+
+  &__image-inner-wrapper {
+    @include marko-web-node-fluid-image(16, 9);
+    position: relative;
+    display: block;
+  }
+
+  &__image {
+    @include marko-web-node-fluid-image-item();
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    border: 0;
+  }
+
+  &__header-body {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    width: 80%;
+    padding: .5rem 0;
+    margin-top: -20%;
+    background-color: rgba($white, .9);
+  }
+
+  &__website-section-name {
+    font-size: 15px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -.1px;
+  }
+
+  &__content-name {
+    font-family: $theme-item-title-font-family;
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  &__content-teaser {
+    font-family: $theme-font-family-sans-serif;
+    font-size: 20px;
+    line-height: 1.6;
+    color: #222;
+  }
 }
