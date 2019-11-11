@@ -154,6 +154,43 @@ body {
   margin-bottom: map-get($spacers, block);
 }
 
+.node-list {
+  $self: &;
+  &--related-content {
+    #{ $self } {
+      &__nodes {
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding-top: 0;
+      }
+
+      &__node {
+        width: 50%;
+
+        &:first-child {
+          padding-top: $marko-web-node-list-padding;
+        }
+
+        &:last-child {
+          padding-bottom: $marko-web-node-list-padding;
+          @include marko-web-node-list-border(border-bottom);
+        }
+      }
+    }
+  }
+}
+
+.node {
+  $self: &;
+  &--related-content {
+    #{ $self } {
+      &__title {
+        font-size: 16px;
+      }
+    }
+  }
+}
+
 .content-page {
   margin-bottom: map-get($spacers, block);
 

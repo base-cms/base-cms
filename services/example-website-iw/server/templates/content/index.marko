@@ -33,6 +33,8 @@ $ const displayPublishedDate = ["event", "webinar", "contact"].includes(type) ? 
     <marko-web-gam-display-ad id="gpt-ad-lb-top" modifiers=["top-of-page"] />
 
     <marko-web-resolve-page|{ data: content, resolved }| node=pageNode>
+      $ const section = resolved.getAsObject("primarySection");
+      $ const aliases = hierarchyAliases(section);
       <marko-web-page-wrapper modifiers=["top-border", "content-page-header"]>
         <@section>
           <div class="lazarus"> <!-- row -->
@@ -96,7 +98,18 @@ $ const displayPublishedDate = ["event", "webinar", "contact"].includes(type) ? 
                     <marko-web-content-sidebars block-name=blockName obj=content />
                   </default-theme-page-contents>
 
+                  <website-related-content-block
+                    id=id
+                    type=type
+                    section-id=section.id
+                    section-name=section.name
+                    query-fragment=queryFragment
+                  />
+
                 </div>
+
+
+
 
                 <!-- <marko-web-load-more
                   append-to=".lazarus__right-bottom"

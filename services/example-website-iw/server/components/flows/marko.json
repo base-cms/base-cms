@@ -37,6 +37,7 @@
       "type": "boolean"
     },
     "@modifiers": "array",
+    "@node-modifiers": "array",
     "@image-width": "number"
   },
   "<website-content-load-more-flow>": {

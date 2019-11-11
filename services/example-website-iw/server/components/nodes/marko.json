@@ -2,6 +2,7 @@
   "<website-content-list-node>": {
     "template": "./content-list.marko",
     "@node": "object",
+    "@modifiers": "array",
     "@display-image": {
       "type": "boolean",
       "default-value": true
