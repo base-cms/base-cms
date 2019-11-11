@@ -85,4 +85,22 @@
     @include create-row();
     flex-wrap: wrap;
   }
+
+  &__card-column {
+    @include make-col-ready();
+    @include make-col(6);
+    margin-bottom: map-get($spacers, block);
+  }
+
+  &__ad-column {
+    @include make-col-ready();
+    @include make-col(12);
+    display: flex;
+    margin-bottom: map-get($spacers, block);
+  }
+
+  &__list-column {
+    @include make-col-ready();
+    @include make-col(12);
+  }
 }

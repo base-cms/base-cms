@@ -115,18 +115,18 @@ $ const { id, alias, name, pageNode } = data;
                     $ const listNodes = nodes.slice(4);
                     <if(cardNodes.length)>
                       <for|node| of=cardNodes>
-                        <div class="col-6 mb-block">
+                        <div class="lazarus__card-column">
                           <website-content-card-node node=node use-placeholder=true image-width=240 />
                         </div>
                       </for>
                     </if>
 
-                    <div class="col-12">
-                      <marko-web-gam-display-ad id="gpt-ad-lb2" class="mb-block" modifiers=["max-width-728"] />
+                    <div class="lazarus__ad-column">
+                      <marko-web-gam-display-ad id="gpt-ad-lb-flow" modifiers=["max-width-728", "margin-auto-x"] />
                     </div>
 
                     <if(listNodes.length)>
-                      <div class="col-12">
+                      <div class="lazarus__list-column">
                         <website-content-list-flow
                           nodes=listNodes
                           flush-x=true
