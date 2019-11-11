@@ -1,5 +1,5 @@
 const { service } = require('@base-cms/micro');
-require('./newrelic');
+const newrelic = require('./newrelic');
 
 const { name, version } = require('../package.json');
 const { connect, ping } = require('./mongodb');
@@ -8,7 +8,10 @@ const { onError } = require('./utils');
 
 const { log } = console;
 
-process.on('unhandledRejection', (e) => { throw e; });
+process.on('unhandledRejection', (e) => {
+  newrelic.noticeError(e);
+  throw e;
+});
 
 module.exports = service.json({
   init: async () => {

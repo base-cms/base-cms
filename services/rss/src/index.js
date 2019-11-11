@@ -1,6 +1,6 @@
 const http = require('http');
 const { createTerminus } = require('@godaddy/terminus');
-require('./newrelic');
+const newrelic = require('./newrelic');
 const { GRAPHQL_URI, PORT, EXPOSED_PORT } = require('./env');
 const app = require('./app');
 const pkg = require('../package.json');
@@ -25,8 +25,12 @@ const run = async () => {
 // Simulate future NodeJS behavior by throwing unhandled Promise rejections.
 process.on('unhandledRejection', (e) => {
   log('> Unhandled promise rejection. Throwing error...');
+  newrelic.noticeError(e);
   throw e;
 });
 
 log(`> Booting ${pkg.name} v${pkg.version}...`);
-run().catch(e => setImmediate(() => { throw e; }));
+run().catch(e => setImmediate(() => {
+  newrelic.noticeError(e);
+  throw e;
+}));
