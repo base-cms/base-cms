@@ -121,6 +121,27 @@ $marko-web-page-wrapper-section-margin: 1.25rem !default;
 $theme-content-published-date-font-family: "Numans", sans-serif !default;
 $theme-content-published-date-font-weight: 400 !default;
 
+// Headings
+$theme-heading-font-family:           $theme-font-family-sans-serif !default;
+$theme-heading-font-weight:           600 !default;
+
+$theme-heading-large-font-size:       20px !default;
+$theme-heading-large-font-size-sm:    18px !default;
+$theme-heading-large-line-height:     1.5 !default;
+$theme-heading-large-line-height-sm:  1.5 !default;
+
+$theme-heading-h4-font-size:          20px !default;
+$theme-heading-h4-font-size-sm:       18px !default;
+$theme-heading-h4-line-height:        1.5 !default;
+$theme-heading-h4-line-height-sm:     1.5 !default;
+
+// Content Headings
+$theme-content-heading-large-margin-bottom:     17px !default;
+$theme-content-heading-large-margin-bottom-sm:  12px !default;
+
+$theme-content-heading-h4-margin-bottom:        17px !default;
+$theme-content-heading-h4-margin-bottom-sm:     12px !default;
+
 @import "../../scss/theme.scss";
 
 @import "components";
