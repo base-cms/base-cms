@@ -252,8 +252,11 @@ body {
     flex-direction: column;
     width: 80%;
     padding: .5rem 0;
-    margin-top: -124px;
     background-color: rgba($white, .9);
+  }
+
+  &__header-image-wrapper + &__header-body {
+    margin-top: -124px;
   }
 
   &__website-section-name {
