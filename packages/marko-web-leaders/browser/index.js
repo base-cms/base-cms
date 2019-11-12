@@ -4,6 +4,6 @@ export default (Browser) => {
   const { EventBus } = Browser;
   Browser.register('LeadersProgram', LeadersProgram, {
     withApollo: true,
-    on: { action: EventBus.$emit },
+    on: { action: (...args) => EventBus.$emit('leaders-action', ...args) },
   });
 };
