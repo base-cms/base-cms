@@ -36,6 +36,9 @@ module.exports = async (apolloClient, {
   sortField: field,
   sortOrder: order,
 
+  includeContentTypes,
+  excludeContentTypes,
+
   sectionId,
   contentTypes,
   requiresImage,
@@ -47,7 +50,8 @@ module.exports = async (apolloClient, {
   const pagination = { limit, skip, after };
   const input = {
     pagination,
-    contentTypes,
+    includeContentTypes: includeContentTypes || contentTypes,
+    excludeContentTypes,
     requiresImage,
     sectionBubbling,
     sectionId,
