@@ -45,6 +45,7 @@ import contentQuery from '../graphql/queries/content';
 import getEdgeNodes from '../utils/get-edge-nodes';
 
 export default {
+  inject: ['EventBus'],
   components: {
     Loading,
     LeadersHeader,
@@ -179,6 +180,7 @@ export default {
   methods: {
     emitAction(...args) {
       this.$emit('action', ...args);
+      if (this.EventBus) this.EventBus.$emit('action', ...args);
     },
 
     createMediaQueryListeners() {
