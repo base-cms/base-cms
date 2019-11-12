@@ -72,6 +72,9 @@ $theme-page-deck-font-size-sm: $theme-page-deck-font-size !default;
 $theme-page-deck-line-height: get-line-height($theme-page-deck-font-size, 21px) !default;
 $theme-page-deck-line-height-sm: $theme-page-deck-line-height !default;
 
+// Page bodies
+$theme-page-body-color: #222 !default;
+
 // Breadcrumbs
 $theme-breadcrumbs-font-family: "Raleway", sans-serif !default;
 $theme-breadcrumbs-font-size: 14px !default;
