@@ -8,24 +8,10 @@ $ const {
 
 <marko-web-query|{ nodes }|
   name="related-published-content"
+  collapsible=false
   params={ contentId: id, limit: 4, queryFragment }
 >
-  <website-content-list-flow
-    nodes=nodes
-    flush-y=true
-    inner-justified=false
-    modifiers=["related-content"]
-    node-modifiers=["related-content"]
-    image-width=120
-  >
-    <@header>Related</@header>
-  </website-content-list-flow>
-</marko-web-query>
-<if(!['contact', 'company'].includes(type))>
-  <marko-web-query|{ nodes }|
-    name="website-scheduled-content"
-    params={ sectionId, excludeContentIds: [id], limit: 4, queryFragment }
-  >
+  <if(nodes.length)>
     <website-content-list-flow
       nodes=nodes
       flush-y=true
@@ -33,9 +19,26 @@ $ const {
       modifiers=["related-content"]
       node-modifiers=["related-content"]
       image-width=120
-      native-x=input.nativeX
     >
-      <@header>Latest in ${sectionName}</@header>
+      <@header>Related</@header>
     </website-content-list-flow>
-  </marko-web-query>
-</if>
+  </if>
+  <else-if(!['contact', 'company'].includes(type))>
+    <marko-web-query|{ nodes }|
+      name="website-scheduled-content"
+      params={ sectionId, excludeContentIds: [id], limit: 4, queryFragment }
+    >
+      <website-content-list-flow
+        nodes=nodes
+        flush-y=true
+        inner-justified=false
+        modifiers=["related-content"]
+        node-modifiers=["related-content"]
+        image-width=120
+        native-x=input.nativeX
+      >
+        <@header>Latest in ${sectionName}</@header>
+      </website-content-list-flow>
+    </marko-web-query>
+  </else-if>
+</marko-web-query>
