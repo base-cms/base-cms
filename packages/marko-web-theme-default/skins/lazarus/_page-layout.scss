@@ -104,6 +104,12 @@
     @include make-col(12);
     display: flex;
     margin-bottom: map-get($spacers, block);
+
+    &--body-bg {
+      padding-top: $grid-gutter-width;
+      padding-bottom: $grid-gutter-width;
+      background-color: $body-bg;
+    }
   }
 
   &__list-column {
