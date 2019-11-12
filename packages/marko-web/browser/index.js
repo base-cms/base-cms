@@ -8,6 +8,7 @@ const apollo = () => import(/* webpackChunkName: "apollo" */ './apollo');
 
 const providers = {};
 const requiresApollo = {};
+const listeners = {};
 
 const load = async ({
   el,
@@ -27,15 +28,16 @@ const load = async ({
     provide: providers[name],
     el,
     apolloProvider,
-    render: h => h(Component, { props, on }),
+    render: h => h(Component, { props, on: { ...on, ...listeners[name] } }),
   });
 };
 
-const register = async (name, Component, { provide, withApollo } = {}) => {
+const register = async (name, Component, { provide, withApollo, on } = {}) => {
   if (!name) throw new Error('A Vue component name must be provided.');
   if (components[name]) throw new Error(`A Vue component already exists for '${name}'`);
   components[name] = Component;
   providers[name] = provide;
+  listeners[name] = on;
   if (withApollo) requiresApollo[name] = true;
 };
 
