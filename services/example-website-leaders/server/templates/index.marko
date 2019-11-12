@@ -1,0 +1,97 @@
+import hierarchyAliases from "@base-cms/marko-web/utils/hierarchy-aliases";
+import queryFragment from "../api/fragments/content-list";
+import GAM from "../../config/gam";
+
+$ const { site } = out.global;
+$ const { id, alias, name, pageNode } = data;
+
+<marko-web-website-section-page-layout id=id alias=alias name=name>
+  <@head>
+    <marko-web-gtm-website-section-context|{ context }| alias=alias>
+      <marko-web-gtm-push data=context />
+    </marko-web-gtm-website-section-context>
+    <marko-web-resolve-page|{ data: section }| node=pageNode>
+      $ const aliases = hierarchyAliases(section);
+      $ const adSlots = {
+        "gpt-ad-leaderboard":     GAM.getAdUnit({ name: "lb1", aliases }),
+        "gpt-ad-home-skyscraper": GAM.getAdUnit({ name: "rail1", aliases, size: [300, 600] }),
+      };
+       <marko-web-gam-slots slots=adSlots />
+    </marko-web-resolve-page>
+  </@head>
+  <@page>
+    <marko-web-gam-display-ad id="gpt-ad-leaderboard" modifiers=["top-of-page"] />
+
+    <marko-web-query|{ nodes }|
+      name="website-optioned-content"
+      params={ sectionAlias: "home", optionName: "Pinned", limit: 5, requiresImage: true, queryFragment }
+    >
+      <website-content-hero-flow nodes=nodes />
+    </marko-web-query>
+
+    <div class="row">
+      <div class="col-lg-8 mb-block">
+        <marko-web-leaders props={
+          sectionAlias: site.get("leaders.alias"),
+          headerImgSrc: site.get("leaders.header.imgSrc"),
+          headerImgAlt: site.get("leaders.title"),
+          offsetTop: 110,
+          offsetBottom: 5,
+          columns: 2,
+          open: "right"
+        } />
+      </div>
+      <div class="col-lg-4 mb-block">
+        <marko-web-query|{ nodes }|
+          name="website-scheduled-content"
+          params={ sectionAlias: "products", limit: 7, requiresImage: true, queryFragment }
+        >
+          <website-content-list-flow nodes=nodes inner-justified=false>
+            <@header>
+              <marko-web-link href="/products">Products</marko-web-link>
+            </@header>
+          </website-content-list-flow>
+        </marko-web-query>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-4 mb-block">
+        <marko-web-query|{ nodes }|
+          name="website-scheduled-content"
+          params={ sectionAlias: "factory", limit: 7, requiresImage: true, queryFragment }
+        >
+          <website-content-list-flow nodes=nodes inner-justified=false>
+            <@header>
+              <marko-web-link href="/factory">Factory</marko-web-link>
+            </@header>
+          </website-content-list-flow>
+        </marko-web-query>
+      </div>
+      <div class="col-lg-4 mb-block">
+        <marko-web-query|{ nodes }|
+          name="website-scheduled-content"
+          params={ sectionAlias: "process", limit: 7, requiresImage: true, queryFragment }
+        >
+          <website-content-list-flow nodes=nodes inner-justified=false>
+            <@header>
+              <marko-web-link href="/process">Process</marko-web-link>
+            </@header>
+          </website-content-list-flow>
+        </marko-web-query>
+      </div>
+      <div class="col-lg-4 mb-block page-rail">
+        <marko-web-leaders props={
+          contentId: 13319995,
+          sectionAlias: site.get("leaders.alias"),
+          headerImgSrc: site.get("leaders.header.imgSrc"),
+          headerImgAlt: site.get("leaders.title"),
+          offsetTop: 110,
+          offsetBottom: 5,
+          columns: 1,
+          displayCallout: false
+        } />
+      </div>
+    </div>
+  </@page>
+</marko-web-website-section-page-layout>

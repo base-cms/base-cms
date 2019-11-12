@@ -1,0 +1,34 @@
+{
+  "<website-content-hero-flow>": {
+    "template": "./content-hero.marko",
+    "@nodes": "array"
+  },
+  "<website-content-list-flow>": {
+    "template": "./content-list.marko",
+    "<header>": {},
+    "@nodes": "array",
+    "@display-image": {
+      "type": "boolean",
+      "default-value": true
+    },
+    "@with-teaser": {
+      "type": "boolean",
+      "default-value": false
+    },
+    "@inner-justified": {
+      "type": "boolean",
+      "default-value": true
+    }
+  },
+  "<website-content-load-more-flow>": {
+    "template": "./content-load-more.marko",
+    "@nodes": "array",
+    "@aliases": "array",
+    "@page-number": "number"
+  },
+  "<website-content-card-deck-flow>": {
+    "template": "./content-card-deck.marko",
+    "@nodes": "array",
+    "@aliases": "array"
+  }
+}

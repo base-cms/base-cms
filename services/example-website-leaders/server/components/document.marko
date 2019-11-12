@@ -1,0 +1,27 @@
+
+$ const { site } = out.global;
+
+<marko-web-document ...input>
+  <@head>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <marko-web-gam-init />
+    <marko-web-gtm-init container-id=site.get("gtm.containerId") />
+    <${input.head} />
+    <marko-web-gtm-start />
+    <marko-web-gam-enable />
+  </@head>
+  <@above-container>
+    <marko-web-leaders-dropdown-portal />
+    <marko-web-gtm-track-load-more />
+    <default-theme-site-header />
+    <default-theme-site-menu />
+    <${input.aboveContainer} />
+  </@above-container>
+  <@below-container>
+    <${input.belowContainer} />
+    <default-theme-site-footer />
+  </@below-container>
+</marko-web-document>

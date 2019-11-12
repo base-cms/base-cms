@@ -1,0 +1,48 @@
+$primary: #d2232a;
+$secondary: #495057;
+$light: #e9ecef;
+$dark: #212529;
+$info: #6c757d;
+$dark-bg-color: #9b0000;
+$light-bg-color: #c60000;
+
+$theme-site-footer-primary-bg-color: $light-bg-color;
+$theme-site-footer-secondary-bg-color: $dark-bg-color;
+
+$theme-site-navbar-logo-height: 45px;
+$theme-site-navbar-logo-height-sm: 25px;
+
+$theme-site-header-breakpoints: (
+  hide-primary: 832px,
+  hide-secondary: 906px,
+  small-logo: 1015px,
+  small-text-primary: 932px,
+  small-text-secondary: 1105px
+);
+
+
+$theme-load-more-button-background-color: $dark-bg-color;
+$theme-load-more-button-border-color: $dark-bg-color;
+
+$theme-card-header-background-color: #000;
+$leaders-primary-color: #c60000;
+$leaders-primary-color-light: #9b0000;
+$leaders-accent-color: #c60000;
+
+.load-more-trigger > button:hover {
+  background-color: $light-bg-color;
+  border-color: $light-bg-color;
+}
+
+@import url("https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,400,500,600,700&display=swap");
+@import "../../node_modules/@base-cms/marko-web-leaders/scss/leaders";
+@import "../../node_modules/@base-cms/marko-web-theme-default/skins/orion/skin.scss";
+
+.leaders {
+  @include border-radius($theme-card-border-radius);
+  @include box-shadow($theme-card-box-shadow);
+  background-color: $white;
+  &__body {
+    padding: $marko-web-node-padding;
+  }
+}

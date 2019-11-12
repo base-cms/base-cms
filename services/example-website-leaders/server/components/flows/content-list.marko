@@ -1,0 +1,17 @@
+import { getAsArray, getAsObject } from "@base-cms/object-path";
+
+$ const nodes = getAsArray(input, "nodes");
+$ const displayImage = input.displayImage != null ? input.displayImage : true;
+$ const withTeaser = input.withTeaser != null ? input.withTeaser : false;
+$ const innerJustified = input.innerJustified != null ? input.innerJustified : true;
+
+<marko-web-node-list inner-justified=innerJustified>
+  <if(input.header)>
+    <@header ...input.header />
+  </if>
+  <@nodes nodes=nodes>
+    <@slot|{ node, index }|>
+      <website-content-list-node node=node display-image=displayImage with-teaser=withTeaser />
+    </@slot>
+  </@nodes>
+</marko-web-node-list>

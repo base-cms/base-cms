@@ -1,0 +1,19 @@
+import { getAsArray, getAsObject } from "@base-cms/object-path";
+import GAM from "../../../config/gam";
+
+$ const { aliases } = input;
+$ const nodes = getAsArray(input, "nodes");
+
+<if(nodes.length)>
+  <default-theme-card-deck-flow cols=3 nodes=nodes>
+    <@slot|{ node, index }|>
+      <website-content-card-node image-width=340 node=node />
+    </@slot>
+    <@slot position="after" index=1>
+      <marko-web-gam-define-display-ad ...GAM.getAdUnit({ name: "load-more", size: [300, 250], aliases }) modifiers=["in-card"] />
+    </@slot>
+    <@slot position="after" index=6>
+      <marko-web-gam-define-display-ad ...GAM.getAdUnit({ name: "load-more", size: [300, 250], aliases }) modifiers=["in-card"] />
+    </@slot>
+  </default-theme-card-deck-flow>
+</if>

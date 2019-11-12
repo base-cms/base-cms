@@ -1,0 +1,35 @@
+{
+  "<website-content-list-node>": {
+    "template": "./content-list.marko",
+    "@node": "object",
+    "@display-image": {
+      "type": "boolean",
+      "default-value": true
+    },
+    "@with-teaser": {
+      "type": "boolean",
+      "default-value": false
+    },
+    "@attrs": "object",
+    "@link-attrs": "object"
+  },
+  "<website-content-card-node>": {
+    "template": "./content-card.marko",
+    "@node": "object",
+    "@title-modifiers": "array",
+    "@image-width": {
+      "type": "number",
+      "default-value": 300
+    },
+    "@display-image": {
+      "type": "boolean",
+      "default-value": true
+    },
+    "@with-teaser": {
+      "type": "boolean",
+      "default-value": true
+    },
+    "@attrs": "object",
+    "@link-attrs": "object"
+  }
+}
