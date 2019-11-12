@@ -1,13 +1,18 @@
 import { getAsObject } from "@base-cms/object-path";
 import { buildImgixUrl } from "@base-cms/image";
+import defaultValue from "@base-cms/marko-core/utils/default-value";
+import hierarchyAliases from "@base-cms/marko-web/utils/hierarchy-aliases";
+
+import GAM from "../../../config/gam";
 import queryFragment from "../../graphql/fragments/content-list";
 <!-- @todo create own fragment for related content -->
 
 $ const { site } = out.global;
-$ const { content } = input;
+$ const { node: content } = input;
 $ const { type } = content;
 $ const primaryImage = getAsObject(content, "primaryImage");
 $ const primarySection = getAsObject(content, "primarySection");
+$ const aliases = hierarchyAliases(primarySection);
 $ const hasImage = Boolean(primaryImage.src);
 
 $ const src = buildImgixUrl(primaryImage.src, { w: 768, h: 432 });
@@ -23,9 +28,9 @@ $ const displayPublishedDate = ["event", "webinar", "contact"].includes(type) ? 
 <div class="content-page-column">
   <div class="content-page">
     <div class="content-page__header">
-      <div class="content-page__header-image-wrapper">
-        <div class="content-page__image-inner-wrapper">
-          <if(hasImage)>
+      <if(hasImage)>
+        <div class="content-page__header-image-wrapper">
+          <div class="content-page__image-inner-wrapper">
             <marko-web-img
               src=src
               srcset=srcset
@@ -33,9 +38,9 @@ $ const displayPublishedDate = ["event", "webinar", "contact"].includes(type) ? 
               class="content-page__image"
               lazyload=true
             />
-          </if>
+          </div>
         </div>
-      </div>
+      </if>
       <div class="content-page__header-body">
         <marko-web-website-section-name block-name="content-page" obj=primarySection link=true />
         <marko-web-content-name tag="h1" block-name="content-page" obj=content />
@@ -61,7 +66,7 @@ $ const displayPublishedDate = ["event", "webinar", "contact"].includes(type) ? 
 
   <default-theme-page-contents|{ blockName }|>
     <default-theme-content-contact-details obj=content />
-    <marko-web-gam-display-ad id="gpt-ad-mr-flow" modifiers=["max-width-300", "float-right"] />
+    <marko-web-gam-define-display-ad ...GAM.getAdUnit({ name: "mr-flow", aliases }) modifiers=["max-width-300", "float-right"] />
     <marko-web-content-body block-name=blockName obj=content />
     <marko-web-content-sidebars block-name=blockName obj=content />
 

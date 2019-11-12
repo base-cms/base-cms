@@ -1,0 +1,15 @@
+import { getAsArray, getAsObject } from "@base-cms/object-path";
+import hierarchyAliases from "@base-cms/marko-web/utils/hierarchy-aliases";
+import GAM from "../../../config/gam";
+
+$ const nodes = getAsArray(input, "nodes");
+
+<if(nodes.length)>
+  $ const content = nodes[0];
+  $ const section = getAsObject(content, "primarySection");
+  $ const aliases = hierarchyAliases(section);
+  <div class="lazarus__ad-column">
+    <marko-web-gam-define-display-ad ...GAM.getAdUnit({ name: "lb-flow", aliases }) modifiers=["max-width-728", "margin-auto-x"] />
+  </div>
+  <website-content-page-node node=nodes[0] />
+</if>

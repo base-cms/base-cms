@@ -40,6 +40,10 @@
     "@node-modifiers": "array",
     "@image-width": "number"
   },
+  "<website-content-page-load-more-flow>": {
+    "template": "./content-page-load-more.marko",
+    "@nodes": "array"
+  },
   "<website-content-load-more-flow>": {
     "template": "./content-load-more.marko",
     "<native-x>": {
