@@ -362,6 +362,32 @@ services:
       - "11163:80"
       - "25163:25163"
 
+  example-website-leaders:
+    <<: *node
+    working_dir: /base-cms/services/example-website-leaders
+    command: ["/base-cms/node_modules/.bin/basecms-website", "dev", "index.js"]
+    environment:
+      <<: *env
+      PORT: 80
+      EXPOSED_PORT: 11164
+      LIVERELOAD_PORT: 25164
+      TENANT_KEY: pmmi_all
+      SITE_ID: 5d88cecaf175132c008b4567
+      GRAPHQL_URI: http://graphql-server-caprica
+      SITEMAPS_URI: http://sitemaps-caprica
+      RSS_URI: http://rss-caprica
+      OEMBED_URI: http://oembed
+      NEW_RELIC_ENABLED: 0
+      NEW_RELIC_LICENSE_KEY: (unset)
+    depends_on:
+      - graphql-server-caprica
+      - sitemaps-caprica
+      - rss-caprica
+      - oembed
+    ports:
+      - "11164:80"
+      - "25164:25164"
+
   example-leaders-program:
     << : *node
     working_dir: /base-cms/packages/leaders-program
