@@ -1,6 +1,5 @@
 import hierarchyAliases from "@base-cms/marko-web/utils/hierarchy-aliases";
 import { getAsObject } from "@base-cms/object-path";
-import { buildImgixUrl } from "@base-cms/image";
 import queryFragment from "../../graphql/fragments/content-list";
 import GAM from "../../../config/gam";
 import contentTargeting from "../../utils/gam/content-targeting";
@@ -43,73 +42,7 @@ $ const displayPublishedDate = ["event", "webinar", "contact"].includes(type) ? 
             </aside>
             <div class="lazarus__right"> <!-- col -->
               <div class="lazarus__right-bottom"> <!-- row -->
-                <div class="lazarus__content-column">
-
-                  <!-- @todo determine where to place video embeds -->
-                  <!-- @todo adjust left/right padding when left-rail breaks -->
-                  <!-- @todo add upper-right image credit -->
-                  <!-- @todo add lower-right image caption -->
-                  <div class="content-page">
-                    <div class="content-page__header">
-                      <div class="content-page__header-image-wrapper">
-                        <div class="content-page__image-inner-wrapper">
-                          $ const primaryImage = resolved.getAsObject("primaryImage");
-                          $ const hasImage = Boolean(primaryImage.src);
-                          <if(hasImage)>
-                            $ const src = buildImgixUrl(primaryImage.src, { w: 780 });
-                            $ const srcset = [`${buildImgixUrl(src, { dpr: 2 })} 2x`];
-                            <marko-web-img
-                              src=src
-                              srcset=srcset
-                              alt=primaryImage.alt
-                              class="content-page__image"
-                              lazyload=true
-                            />
-                          </if>
-                        </div>
-                      </div>
-                      <div class="content-page__header-body">
-                        <marko-web-website-section-name block-name="content-page" obj=content.primarySection link=true />
-                        <marko-web-content-name tag="h1" block-name="content-page" obj=content />
-                        <marko-web-content-teaser tag="p" block-name="content-page" obj=content />
-                        <if(content.type !== "contact")>
-                          <default-theme-content-attribution obj=content />
-                          <default-theme-page-dates|{ blockName }|>
-                            <if(content.type === "event")>
-                              <marko-web-content-start-date block-name=blockName obj=content />
-                              <marko-web-content-end-date block-name=blockName obj=content />
-                            </if>
-                            <if(content.type === "webinar")>
-                              <marko-web-content-start-date block-name=blockName obj=content />
-                            </if>
-                            <if(displayPublishedDate)>
-                              <marko-web-content-published block-name=blockName obj=content />
-                            </if>
-                          </default-theme-page-dates>
-                        </if>
-                      </div>
-                    </div>
-                  </div>
-
-                  <default-theme-page-contents|{ blockName }|>
-                    <default-theme-content-contact-details obj=content />
-                    <marko-web-gam-display-ad id="gpt-ad-mr-flow" modifiers=["max-width-300", "float-right"] />
-                    <marko-web-content-body block-name=blockName obj=content />
-                    <marko-web-content-sidebars block-name=blockName obj=content />
-                  </default-theme-page-contents>
-
-                  <website-related-content-block
-                    id=id
-                    type=type
-                    section-id=section.id
-                    section-name=section.name
-                    query-fragment=queryFragment
-                  />
-
-                </div>
-
-
-
+                <website-content-page-node content=content />
 
                 <!-- <marko-web-load-more
                   append-to=".lazarus__right-bottom"

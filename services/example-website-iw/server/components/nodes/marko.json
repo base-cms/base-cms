@@ -35,6 +35,10 @@
     "@attrs": "object",
     "@link-attrs": "object"
   },
+  "<website-content-page-node>": {
+    "template": "./content-page.marko",
+    "@content": "object"
+  },
   "<website-magazine-latest-issue-node>": {
     "template": "./magazine-latest-issue.marko",
     "@node": "object",
