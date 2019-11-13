@@ -5,10 +5,18 @@ import GAM from '@base-cms/marko-web-gam/browser';
 import GCSE from '@base-cms/marko-web-gcse/browser';
 import RevealAd from '@base-cms/marko-web-reveal-ad/browser';
 
+import IncrementAdPos from './increment-ad-pos.vue';
+
 DefaultTheme(Browser);
 GTM(Browser);
 GAM(Browser);
 GCSE(Browser);
 RevealAd(Browser);
+
+const { EventBus } = Browser;
+
+Browser.register('LazarusIncrementAdPos', IncrementAdPos, {
+  provide: { EventBus },
+});
 
 export default Browser;
