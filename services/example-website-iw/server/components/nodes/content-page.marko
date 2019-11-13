@@ -75,7 +75,7 @@ $ const displayPublishedDate = ["event", "webinar", "contact"].includes(type) ? 
 
     $ const bodyId = `content-body-${content.id}`;
     <marko-web-content-body block-name=blockName obj=content attrs={ id: bodyId } />
-    <div style="clear: both;"></div>
+    <!-- <div style="clear: both;"></div> -->
     <marko-web-gam-inject-ads selector=`#${bodyId}` />
     <marko-web-content-sidebars block-name=blockName obj=content />
 
