@@ -35,6 +35,10 @@
     "@modifiers": "array",
     "@attrs": "object"
   },
+  "<marko-web-clear>": {
+    "template": "./clear.marko",
+    "@value": "string"
+  },
   "<marko-web-array>": {
     "template": "./array.marko",
     "@value": "array",
