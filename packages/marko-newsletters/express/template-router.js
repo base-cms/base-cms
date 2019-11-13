@@ -4,6 +4,8 @@ const gql = require('graphql-tag');
 const createError = require('http-errors');
 const moment = require('moment-timezone');
 const cleanResponse = require('@base-cms/marko-core/middleware/clean-marko-response');
+const siteContextFragment = require('@base-cms/web-common/graphql/website-context-fragment');
+const websiteFactory = require('../utils/website-factory');
 
 const query = gql`
 
@@ -15,8 +17,13 @@ query WithMarkoNewsletter($input: EmailNewsletterAliasQueryInput!) {
     alias
     description
     status
+    site {
+      ...MarkoWebsiteContextFragment
+    }
   }
 }
+
+${siteContextFragment}
 
 `;
 
@@ -27,10 +34,31 @@ module.exports = ({ templates }) => {
 
   templates.forEach(({ route, template, alias }) => {
     router.get(route, asyncRoute(async (req, res) => {
-      const { config } = req.app.locals;
-      const timezone = config.website('date.timezone');
-      const ts = req.query.date ? parseInt(req.query.date, 10) : null;
+      const { apollo } = res.locals;
+      const input = { alias, status: 'any' };
 
+      const { data } = await apollo.query({ query, variables: { input } });
+      const { emailNewsletterAlias: newsletter } = data;
+
+      // Load the current newsletter and associated website.
+      if (newsletter && newsletter.status !== 1) throw createError(404, `No newsletter found for '${alias}'`);
+      const { site } = newsletter;
+      if (!site) throw createError(500, `No newsletter site object was found for '${alias}'`);
+      const website = websiteFactory(site);
+
+      // Set website context.
+      res.locals.website = website;
+      res.setHeader('x-site', `${website.get('name')} [${website.get('id')}]`);
+      // Set marko core date config.
+      res.locals.markoCoreDate = {
+        timezone: website.get('date.timezone'),
+        locale: website.get('date.locale'),
+        format: website.get('date.format'),
+      };
+
+      // Set current newsletter deployment data.
+      const timezone = website.get('date.timezone');
+      const ts = req.query.date ? parseInt(req.query.date, 10) : null;
       let date = moment().tz(timezone);
       if (ts) {
         date = moment(ts).tz(timezone);
@@ -39,13 +67,6 @@ module.exports = ({ templates }) => {
       }
       if (!date.isValid()) throw createError(400, 'The provided date parameter is invalid.');
 
-      const { apollo } = res.locals;
-      const input = { alias, status: 'any' };
-
-      const { data } = await apollo.query({ query, variables: { input } });
-      const { emailNewsletterAlias: newsletter } = data;
-
-      if (newsletter && newsletter.status !== 1) throw createError(404, 'No newsletter found for the provided alias.');
       res.marko(template, {
         date,
         dateInfo: {
