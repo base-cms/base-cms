@@ -6,7 +6,9 @@ fragment BlockNewsletterScheduledContentFragment on Content {
   id
   type
   name(input: { mutation: Email })
-  websiteUrl
+  siteContext {
+    url
+  }
 }
 
 `;

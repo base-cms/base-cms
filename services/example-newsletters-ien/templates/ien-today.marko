@@ -45,11 +45,11 @@ $ const { newsletter, date } = data;
           class="main"
           attrs={ border: 0, width: 150 }
         >
-          <@link href=node.websiteUrl target="_blank" />
+          <@link href=node.siteContext.url target="_blank" />
         </marko-newsletter-imgix>
       </marko-core-obj-value>
       <marko-core-obj-text tag="h4" obj=node field="name">
-        <@link href=node.websiteUrl target="_blank" />
+        <@link href=node.siteContext.url target="_blank" />
       </marko-core-obj-text>
       <marko-core-obj-text tag="p" obj=node field="teaser" html=true />
       <marko-core-obj-date tag="small" obj=node field="published" format="MMMM Do, YYYY" />
@@ -73,11 +73,11 @@ $ const { newsletter, date } = data;
           class="main"
           attrs={ border: 0, width: 150 }
         >
-          <@link href=node.websiteUrl target="_blank" />
+          <@link href=node.siteContext.url target="_blank" />
         </marko-newsletter-imgix>
       </marko-core-obj-value>
       <marko-core-obj-text tag="h4" obj=node field="name">
-        <@link href=node.websiteUrl target="_blank" />
+        <@link href=node.siteContext.url target="_blank" />
       </marko-core-obj-text>
       <marko-core-obj-text tag="p" obj=node field="teaser" html=true />
       <marko-core-obj-date tag="small" obj=node field="published" format="MMMM Do, YYYY" />
@@ -101,11 +101,11 @@ $ const { newsletter, date } = data;
           class="main"
           attrs={ border: 0, width: 150 }
         >
-          <@link href=node.websiteUrl target="_blank" />
+          <@link href=node.siteContext.url target="_blank" />
         </marko-newsletter-imgix>
       </marko-core-obj-value>
       <marko-core-obj-text tag="h4" obj=node field="name">
-        <@link href=node.websiteUrl target="_blank" />
+        <@link href=node.siteContext.url target="_blank" />
       </marko-core-obj-text>
       <if(node.type === "text-ad")>
         <marko-core-obj-text obj=node field="body" html=true />
@@ -115,7 +115,7 @@ $ const { newsletter, date } = data;
       </else>
       <if(node.type === "text-ad")>
         <marko-core-obj-text tag="p" obj=node field="linkText">
-          <@link href=node.websiteUrl target="_blank" />
+          <@link href=node.siteContext.url target="_blank" />
         </marko-core-obj-text>
       </if>
       <hr>
@@ -137,12 +137,12 @@ $ const { newsletter, date } = data;
           class="main"
           attrs={ border: 0, width: 150 }
         >
-          <@link href=node.websiteUrl target="_blank" />
+          <@link href=node.siteContext.url target="_blank" />
         </marko-newsletter-imgix>
       </marko-core-obj-value>
 
       <marko-core-obj-text tag="h4" obj=node field="name">
-        <@link href=node.websiteUrl target="_blank" />
+        <@link href=node.siteContext.url target="_blank" />
       </marko-core-obj-text>
       <if(node.type === "text-ad")>
         <marko-core-obj-text obj=node field="body" html=true />
@@ -152,7 +152,7 @@ $ const { newsletter, date } = data;
       </else>
       <if(node.type === "text-ad")>
         <marko-core-obj-text tag="p" obj=node field="linkText">
-          <@link href=node.websiteUrl target="_blank" />
+          <@link href=node.siteContext.url target="_blank" />
         </marko-core-obj-text>
       </if>
       <else>
