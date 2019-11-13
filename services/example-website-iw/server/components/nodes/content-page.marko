@@ -2,6 +2,7 @@ import { getAsObject } from "@base-cms/object-path";
 import { buildImgixUrl } from "@base-cms/image";
 import defaultValue from "@base-cms/marko-core/utils/default-value";
 import hierarchyAliases from "@base-cms/marko-web/utils/hierarchy-aliases";
+import DefineDisplayAd from "@base-cms/marko-web-gam/components/define-display-ad";
 
 import GAM from "../../../config/gam";
 import queryFragment from "../../graphql/fragments/content-list";
@@ -75,8 +76,23 @@ $ const displayPublishedDate = ["event", "webinar", "contact"].includes(type) ? 
 
     $ const bodyId = `content-body-${content.id}`;
     <marko-web-content-body block-name=blockName obj=content attrs={ id: bodyId } />
-    <!-- <div style="clear: both;"></div> -->
-    <marko-web-gam-inject-ads selector=`#${bodyId}` />
+    <marko-web-gam-inject-ads selector=`#${bodyId}`>
+      <@inject
+        ...GAM.getAdUnit({ name: "mr-content-page", aliases, targeting: { pos: "300_2_rht" }, size: [[300, 250], [300, 600]] })
+        at=2500
+        modifiers=["max-width-300", "float-right"]
+      />
+      <@inject
+        ...GAM.getAdUnit({ name: "mr-content-page", aliases, targeting: { pos: "300_3_rht" }, size: [[300, 250], [300, 600]] })
+        at=3500
+        modifiers=["max-width-300", "float-right"]
+      />
+      <@inject
+        ...GAM.getAdUnit({ name: "mr-content-page", aliases, targeting: { pos: "300_4_rht" }, size: [[300, 250], [300, 600]] })
+        at=6000
+        modifiers=["max-width-300", "float-right"]
+      />
+    </marko-web-gam-inject-ads>
     <marko-web-content-sidebars block-name=blockName obj=content />
 
     <if(type === "document")>
