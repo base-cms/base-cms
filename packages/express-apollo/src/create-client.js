@@ -12,6 +12,6 @@ const rootConfig = {
 module.exports = (uri, config, linkConfig) => new ApolloClient({
   ...config,
   ...rootConfig,
-  link: createHttpLink({ ...linkConfig, uri, fetch }),
+  link: createHttpLink({ fetch, ...linkConfig, uri }),
   cache: new InMemoryCache({ fragmentMatcher }),
 });
