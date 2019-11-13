@@ -7,6 +7,7 @@ $ const nodes = getAsArray(input, "nodes");
 $ const adunit = getAsObject(input, "adunit");
 $ const pos = incrementPos({ pos: adunit.pos, inc: input.pageNumber - 1 });
 
+<!-- @todo verify that the ad uses aliases from individual content or the wrapping content page -->
 <if(nodes.length)>
   $ const content = nodes[0];
   $ const section = getAsObject(content, "primarySection");
