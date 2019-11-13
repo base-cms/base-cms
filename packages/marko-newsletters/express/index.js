@@ -33,7 +33,7 @@ module.exports = (config = {}) => {
   app.locals.config = new CoreConfig({ ...config.coreConfig });
 
   // Set custom configuration.
-  app.locals.site = new CustomConfig(config.customConfig);
+  app.locals.customConfig = new CustomConfig(config.customConfig);
 
   // Apply request origin.
   app.use((req, res, next) => {
