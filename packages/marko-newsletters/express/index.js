@@ -2,7 +2,6 @@ const express = require('express');
 const path = require('path');
 const marko = require('marko/express');
 const apollo = require('./apollo');
-const websiteContext = require('./website-context');
 const CoreConfig = require('../config/core');
 const CustomConfig = require('../config/custom');
 const { version } = require('../package.json');
@@ -12,7 +11,6 @@ const templateRouter = require('./template-router');
 /**
  * graphqlUri
  * tenantKey
- * siteId
  * version
  * coreConfig
  * customConfig
@@ -35,7 +33,7 @@ module.exports = (config = {}) => {
   app.locals.config = new CoreConfig({ ...config.coreConfig });
 
   // Set custom configuration.
-  app.locals.site = new CustomConfig(config.customConfig);
+  app.locals.customConfig = new CustomConfig(config.customConfig);
 
   // Apply request origin.
   app.use((req, res, next) => {
@@ -54,11 +52,7 @@ module.exports = (config = {}) => {
     uri: config.graphqlUri,
     name: sitePackage.name,
     tenantKey: config.tenantKey,
-    siteId: config.siteId,
   }));
-
-  // Set website context (must run after apollo).
-  app.use(websiteContext(app.locals.config));
 
   // Register the Marko middleware.
   app.use(marko());

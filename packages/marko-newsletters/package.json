@@ -26,6 +26,7 @@
     "marko": "^4.18.13",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.26",
+    "node-fetch": "^2.6.0",
     "recursive-readdir": "^2.2.2"
   },
   "peerDependencies": {

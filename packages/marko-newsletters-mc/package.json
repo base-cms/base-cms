@@ -1,0 +1,18 @@
+{
+  "name": "@base-cms/marko-newsletters-mc",
+  "version": "1.0.0-rc.1",
+  "description": "Marketing Cloud Marko components for BaseCMS newsletters.",
+  "author": "Jacob Bare <jacob@limit0.io>",
+  "license": "MIT",
+  "repository": "https://github.com/base-cms/base-cms/tree/master/packages/marko-newsletters-mc",
+  "scripts": {
+    "compile": "basecms-marko-compile compile --dir ./ --silent true",
+    "test": "yarn compile"
+  },
+  "peerDependencies": {
+    "@base-cms/marko-core": "^1.0.0-rc.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

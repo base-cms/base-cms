@@ -23,7 +23,6 @@ module.exports = async ({
   exposedPort = env.EXPOSED_PORT || env.PORT || 5008,
   graphqlUri = env.GRAPHQL_URI,
   tenantKey = env.TENANT_KEY,
-  siteId = env.SITE_ID,
   publicPath, // path to load public assets. will resolve from rootDir.
   onAsyncBlockError,
 
@@ -39,7 +38,7 @@ module.exports = async ({
   if (!rootDir) throw new Error('The root project directory is required.');
   if (!templatePath) throw new Error('A newsletter template location is required.');
   if (!graphqlUri) throw new Error('The GraphQL API URL is required.');
-  if (!siteId) throw new Error('A site ID is required.');
+  if (!tenantKey) throw new Error('A tenant key is required.');
 
   // Load the newsletter package file.
   // eslint-disable-next-line import/no-dynamic-require, global-require
@@ -55,7 +54,6 @@ module.exports = async ({
     coreConfig,
     graphqlUri,
     tenantKey,
-    siteId,
     onAsyncBlockError,
     publicPath,
     sitePackage,
@@ -98,7 +96,7 @@ module.exports = async ({
           process.send({
             event: 'ready',
             name: sitePackage.name,
-            siteId,
+            tenantKey,
             graphqlUri,
             location: `http://0.0.0.0:${exposedPort}`,
           });
