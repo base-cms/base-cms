@@ -1,28 +1,15 @@
 const gql = require('graphql-tag');
+const siteFragment = require('./graphql/website-context-fragment');
 
 const query = gql`
 
 query MarkoWebsiteContext {
   websiteContext {
-    id
-    name
-    description
-    host
-    origin
-    imageHost
-    assetHost
-    date {
-      timezone
-      format
-      locale
-    }
-    language {
-      code
-      primaryCode
-      subCode
-    }
+    ...MarkoWebsiteContextFragment
   }
 }
+
+${siteFragment}
 
 `;
 
