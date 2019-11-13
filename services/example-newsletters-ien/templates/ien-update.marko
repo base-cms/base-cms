@@ -1,7 +1,6 @@
 import contentList from "../graphql/fragments/content-list";
 import emailX from "../config/email-x";
 
-$ const { config } = out.global;
 $ const { newsletter, date } = data;
 
 <common-document newsletter=newsletter date=date>
@@ -10,6 +9,34 @@ $ const { newsletter, date } = data;
     date=date
     ad-unit=emailX.getAdUnit({ name: "header", alias: newsletter.alias })
   />
+
+  <marko-web-query|{ nodes }| name="newsletter-scheduled-content" params={
+    date: date.valueOf(),
+    newsletterId: newsletter.id,
+    sectionName: "Featured Story",
+    limit: 1,
+    queryFragment: contentList,
+  }>
+    <for|node| of=nodes>
+      <marko-core-obj-value|{ value: image }| obj=node field="primaryImage" as="object">
+        <marko-newsletter-imgix
+          src=image.src
+          alt=image.alt
+          options={ w: 150 }
+          class="main"
+          attrs={ border: 0, width: 150 }
+        >
+          <@link href=node.siteContext.url target="_blank" />
+        </marko-newsletter-imgix>
+      </marko-core-obj-value>
+      <marko-core-obj-text tag="h4" obj=node field="name">
+        <@link href=node.siteContext.url target="_blank" />
+      </marko-core-obj-text>
+      <marko-core-obj-text tag="p" obj=node field="teaser" html=true />
+      <marko-core-obj-date tag="small" obj=node field="published" format="MMMM Do, YYYY" />
+      <hr>
+    </for>
+  </marko-web-query>
 
   <marko-newsletters-mc-open-counter />
 </common-document>

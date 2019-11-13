@@ -1,7 +1,7 @@
 import contentList from "../graphql/fragments/content-list";
 import emailX from "../config/email-x";
 
-$ const { config } = out.global;
+$ const { website } = out.global;
 $ const { newsletter, date } = data;
 
 <common-document newsletter=newsletter date=date>
@@ -17,7 +17,7 @@ $ const { newsletter, date } = data;
         <div style="line-height:20px; font-size:2px;">&nbsp;</div>
         <common-default-header-block
           name=newsletter.name
-          href=config.website("origin")
+          href=website.get("origin")
           image-src="/files/base/indm/ien/image/2016/03/ientoday.56f0149e9136a.png"
           bg-color="#ffffff"
         />
