@@ -79,7 +79,10 @@ export default {
     addRefreshListener() {
       if (!this.canAddListeners) return;
       this.EventBus.$on(this.on, () => {
-        if (this.canRefresh) window.googletag.pubads().refresh([this.slot]);
+        if (this.canRefresh) {
+          this.EventBus.$emit('gam-before-ad-refresh', this.slot);
+          window.googletag.pubads().refresh([this.slot]);
+        }
       });
     },
   },
