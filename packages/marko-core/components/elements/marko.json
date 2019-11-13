@@ -19,7 +19,14 @@
   },
   "<marko-core-text>": {
     "template": "./text.marko",
-    "<link>": {},
+    "<link>": {
+      "@href": "string",
+      "@target": "string",
+      "@title": "string",
+      "@rel": "string",
+      "@class": "string",
+      "@attrs": "object"
+    },
     "@value": "expression",
     "@tag": "string",
     "@html": "boolean",
@@ -28,7 +35,14 @@
   },
   "<marko-core-date>": {
     "template": "./date.marko",
-    "<link>": {},
+    "<link>": {
+      "@href": "string",
+      "@target": "string",
+      "@title": "string",
+      "@rel": "string",
+      "@class": "string",
+      "@attrs": "object"
+    },
     "@value": "expression",
     "@tag": "string",
     "@format": "string",
@@ -52,7 +66,14 @@
   },
   "<marko-core-obj-text>": {
     "template": "./obj-text.marko",
-    "<link>": {},
+    "<link>": {
+      "@href": "string",
+      "@target": "string",
+      "@title": "string",
+      "@rel": "string",
+      "@class": "string",
+      "@attrs": "object"
+    },
     "@obj": "object",
     "@field": "string",
     "@html": "boolean",
@@ -62,7 +83,14 @@
   },
   "<marko-core-obj-date>": {
     "template": "./obj-date.marko",
-    "<link>": {},
+    "<link>": {
+      "@href": "string",
+      "@target": "string",
+      "@title": "string",
+      "@rel": "string",
+      "@class": "string",
+      "@attrs": "object"
+    },
     "@obj": "object",
     "@field": "string",
     "@format": "string",
