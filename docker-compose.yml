@@ -300,7 +300,6 @@ services:
       EXPOSED_PORT: 11090
       LIVERELOAD_PORT: 21090
       TENANT_KEY: indm_ien
-      SITE_ID: 5669a4f16cdeeaf8598b4579
       GRAPHQL_URI: http://graphql-server-caprica
       NEW_RELIC_ENABLED: 0
       NEW_RELIC_LICENSE_KEY: (unset)
