@@ -4,7 +4,7 @@ import buildSlots from "../utils/build-slots";
 import slotStyle from "../utils/slot-size-style";
 
 $ const { isArray } = Array;
-$ const { path, inc, withWrapper } = input;
+$ const { path, inc, targeting, withWrapper } = input;
 $ const id = input.id || generateId({ inc });
 
 $ const size = typeof input.size === 'string' ? [input.size] : (isArray(input.size) ? input.size : []);
@@ -17,17 +17,28 @@ $ const slots = {
     path,
     size,
     sizeMapping: input.sizeMapping,
-    targeting: input.targeting,
+    targeting,
   },
 };
 $ calls.push(...buildSlots(slots));
 $ calls.push(`googletag.display('${id}');`);
 
+$ const attrs = {
+  'data-gam-path': path,
+  'data-gam-size': JSON.stringify(size),
+  'data-gam-targeting': targeting ? JSON.stringify(targeting) : undefined,
+};
+
 $ const blockName = input.blockName || "ad-container";
 $ const classNames = [blockName, ...BEM.applyModifiers(blockName, input.modifiers), input.class];
 
 <if(path)>
-  <div id=(withWrapper ? null : id) style=style class=classNames>
+  <div
+    id=(withWrapper ? null : id)
+    style=style
+    class=classNames
+    ...attrs
+  >
     <marko-web-gam-ad-wrapper id=id enabled=withWrapper block-name=blockName>
       <script>googletag.cmd.push(function() { ${calls.join(" ")} });</script>
     </marko-web-gam-ad-wrapper>
