@@ -11,6 +11,10 @@ query MarkoNewslettersList {
         name
         description
         alias
+        site {
+          id
+          name
+        }
       }
     }
   }
