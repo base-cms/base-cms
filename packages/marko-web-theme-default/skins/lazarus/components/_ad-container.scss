@@ -14,5 +14,10 @@
     margin-top: 1rem;
     margin-bottom: 1rem;
     margin-left: 1.5rem;
+    @include media-breakpoint-down(sm) {
+      float: none;
+      margin-right: auto;
+      margin-left: auto;
+    }
   }
 }

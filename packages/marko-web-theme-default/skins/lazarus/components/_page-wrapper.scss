@@ -1,5 +1,10 @@
 .page-wrapper {
   $self: &;
+  @include media-breakpoint-down($theme-responsive-text-breakpoint) {
+    padding-right: $marko-web-page-wrapper-padding;
+    padding-left: $marko-web-page-wrapper-padding;
+  }
+
   &__title {
     text-transform: uppercase;
   }
@@ -14,6 +19,9 @@
 
   &--content-page-header {
     padding-top: $grid-gutter-width;
+    @include media-breakpoint-down($theme-responsive-text-breakpoint) {
+      padding-top: 0;
+    }
   }
 
   &--website-section-header {
