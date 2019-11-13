@@ -97,5 +97,29 @@
     "@on": "string",
     "@slot-id": "string",
     "@min-in-view-percentage": "number"
+  },
+  "<marko-web-gam-inject-ads>": {
+    "template": "./inject-ads.marko",
+    "@inject <inject>[]": {
+      "@at": "number",
+      "@id": "string",
+      "@path": "string",
+      "@inc": "number",
+      "@size": "expression",
+      "@size-mapping": "array",
+      "@targeting": "object",
+      "@apply-style": {
+        "type": "boolean",
+        "default-value": false
+      },
+      "@class": "string",
+      "@modifiers": "array",
+      "@block-name": {
+        "type": "string",
+        "default-value": "ad-container"
+      }
+    },
+    "@selector": "string",
+    "@child-selector": "string"
   }
 }
