@@ -42,22 +42,29 @@ module.exports = ({ templates }) => {
 
       // Load the current newsletter and associated website.
       if (newsletter && newsletter.status !== 1) throw createError(404, `No newsletter found for '${alias}'`);
-      const { site } = newsletter;
-      if (!site) throw createError(500, `No newsletter site object was found for '${alias}'`);
-      const website = websiteFactory(site);
 
-      // Set website context.
-      res.locals.website = website;
-      res.setHeader('x-site', `${website.get('name')} [${website.get('id')}]`);
-      // Set marko core date config.
-      res.locals.markoCoreDate = {
-        timezone: website.get('date.timezone'),
-        locale: website.get('date.locale'),
-        format: website.get('date.format'),
-      };
+      let timezone = 'America/Chicago';
+      if (newsletter) {
+        // Only handle site context when a newsletter is present.
+        // This ensures that static templates can still route.
+        const { site } = newsletter;
+        if (!site) throw createError(500, `No newsletter site object was found for '${alias}'`);
+        const website = websiteFactory(site);
 
-      // Set current newsletter deployment data.
-      const timezone = website.get('date.timezone');
+        // Set website context.
+        res.locals.website = website;
+        res.setHeader('x-site', `${website.get('name')} [${website.get('id')}]`);
+        // Set marko core date config.
+        res.locals.markoCoreDate = {
+          timezone: website.get('date.timezone'),
+          locale: website.get('date.locale'),
+          format: website.get('date.format'),
+        };
+
+        // Set timezone from site context.
+        timezone = website.get('date.timezone');
+      }
+
       const ts = req.query.date ? parseInt(req.query.date, 10) : null;
       let date = moment().tz(timezone);
       if (ts) {
