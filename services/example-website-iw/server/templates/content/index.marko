@@ -46,6 +46,9 @@ $ const { id, type, pageNode } = data;
                   append-to=".lazarus__right-bottom"
                   expand=500
                   component-name="content-page-load-more-flow"
+                  component-input={
+                    adunit: { name: "lb-content-page-list", pos: "728_2_a" }
+                  }
                   fragment-name="content-page"
                   query-name="website-scheduled-content"
                   query-params={ sectionId: section.id, limit: 1, skip: 0, excludeContentIds: [id] }

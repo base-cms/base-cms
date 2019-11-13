@@ -1,15 +1,21 @@
 import { getAsArray, getAsObject } from "@base-cms/object-path";
 import hierarchyAliases from "@base-cms/marko-web/utils/hierarchy-aliases";
+import incrementPos from "../../utils/gam/increment-pos";
 import GAM from "../../../config/gam";
 
 $ const nodes = getAsArray(input, "nodes");
+$ const adunit = getAsObject(input, "adunit");
+$ const pos = incrementPos({ pos: adunit.pos, inc: input.pageNumber - 1 });
 
 <if(nodes.length)>
   $ const content = nodes[0];
   $ const section = getAsObject(content, "primarySection");
   $ const aliases = hierarchyAliases(section);
   <div class="lazarus__ad-column lazarus__ad-column--body-bg">
-    <marko-web-gam-define-display-ad ...GAM.getAdUnit({ name: "lb-flow", aliases }) modifiers=["max-width-728", "margin-auto-x"] />
+    <marko-web-gam-define-display-ad
+      ...GAM.getAdUnit({ name: adunit.name, aliases, targeting: { pos } })
+      modifiers=["max-width-728", "margin-auto-x"]
+    />
   </div>
   <website-content-page-node node=nodes[0] />
 </if>

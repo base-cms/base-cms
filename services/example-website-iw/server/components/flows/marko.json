@@ -42,7 +42,12 @@
   },
   "<website-content-page-load-more-flow>": {
     "template": "./content-page-load-more.marko",
-    "@nodes": "array"
+    "<adunit>": {
+      "@name": "string",
+      "@pos": "string"
+    },
+    "@nodes": "array",
+    "@page-number": "number"
   },
   "<website-content-load-more-flow>": {
     "template": "./content-load-more.marko",
