@@ -7,9 +7,6 @@ import contentTargeting from "../../utils/gam/content-targeting";
 $ const { site } = out.global;
 $ const { id, type, pageNode } = data;
 
-$ const displayPrimaryImage = ["whitepaper", "media-gallery", "contact"].includes(type) ? false : true;
-$ const displayPublishedDate = ["event", "webinar", "contact"].includes(type) ? false : true;
-
 <marko-web-content-page-layout id=id type=type>
   <@head>
     <marko-web-gtm-content-context|{ context }| id=id>
@@ -17,26 +14,30 @@ $ const displayPublishedDate = ["event", "webinar", "contact"].includes(type) ? 
     </marko-web-gtm-content-context>
     <marko-web-resolve-page|{ data: content }| node=pageNode>
       $ const targeting = contentTargeting(content);
-      $ const aliases = hierarchyAliases(content.primarySection);
-      $ const adSlots = {
-        "gpt-ad-lb-top": GAM.getAdUnit({ name: "lb-top", aliases }),
-        "gpt-ad-lb-flow": GAM.getAdUnit({ name: "lb-flow", aliases }),
-        "gpt-ad-mr-rail": GAM.getAdUnit({ name: "mr-rail", aliases }),
-      }
+
       <marko-web-gam-targeting key-values=targeting />
-      <marko-web-gam-slots slots=adSlots />
     </marko-web-resolve-page>
   </@head>
   <@page>
-    <marko-web-gam-display-ad id="gpt-ad-lb-top" modifiers=["top-of-page"] />
 
     <marko-web-resolve-page|{ data: content, resolved }| node=pageNode>
       $ const section = resolved.getAsObject("primarySection");
+      $ const aliases = hierarchyAliases(section);
+
+      <marko-web-gam-define-display-ad
+        ...GAM.getAdUnit({ name: "lb-content-page-main", aliases, targeting: { pos: "728_1_a" } })
+        modifiers=["top-of-page"]
+      />
+
       <marko-web-page-wrapper modifiers=["top-border", "content-page-header"]>
         <@section>
           <div class="lazarus"> <!-- row -->
             <aside class="lazarus__left"> <!-- col -->
-              <lazarus-left-rail ad-slot-id="gpt-ad-mr-rail" query-fragment=queryFragment />
+              <lazarus-left-rail
+                aliases=aliases
+                adunit={ name: "mr-content-page", pos: "300_1_lft" }
+                query-fragment=queryFragment
+              />
             </aside>
             <div class="lazarus__right"> <!-- col -->
               <div class="lazarus__right-bottom"> <!-- row -->
