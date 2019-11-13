@@ -1,7 +1,11 @@
 {
   "<lazarus-left-rail>": {
     "template": "./left-rail.marko",
-    "@ad-slot-id": "string",
+    "<adunit>": {
+      "@name": "string",
+      "@pos": "string"
+    },
+    "@aliases": "array",
     "@query-fragment": "expression"
   }
 }
