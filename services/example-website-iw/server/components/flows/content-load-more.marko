@@ -1,13 +1,18 @@
 import { getAsArray, getAsObject } from "@base-cms/object-path";
 import GAM from "../../../config/gam";
+import incrementPos from "../../utils/gam/increment-pos";
 
 $ const { aliases } = input;
 $ const nodes = getAsArray(input, "nodes");
+$ const adunit = getAsObject(input, "adunit");
+$ const pos = incrementPos({ pos: adunit.pos, inc: input.pageNumber - 1 });
 
 <if(nodes.length)>
-  <div class="lazarus__ad-column">
-    <marko-web-gam-define-display-ad ...GAM.getAdUnit({ name: "lb-flow", aliases }) modifiers=["max-width-728", "margin-auto-x"] />
-  </div>
+  <if(adunit.name)>
+    <div class="lazarus__ad-column">
+      <marko-web-gam-define-display-ad ...GAM.getAdUnit({ name: adunit.name, aliases, targeting: { pos } }) modifiers=["max-width-728", "margin-auto-x"] />
+    </div>
+  </if>
   <div class="lazarus__list-column">
     <website-content-list-flow
       nodes=nodes

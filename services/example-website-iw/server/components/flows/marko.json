@@ -51,6 +51,10 @@
       "@name": "string",
       "@aliases": "array"
     },
+    "<adunit>": {
+      "@name": "string",
+      "@pos": "string"
+    },
     "@nodes": "array",
     "@aliases": "array",
     "@page-number": "number"
