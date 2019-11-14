@@ -248,6 +248,38 @@ body {
   }
 }
 
+.page-attribution {
+  $self: &;
+
+  &__content-authors,
+  &__content-byline,
+  &__content-company-name,
+  &__content-contributors,
+  &__content-photographers,
+  &__content-source,
+  &__content-sponsors {
+    &::before {
+      content: none;
+    }
+
+    #{ $self } {
+      &__content-name {
+        &:first-child {
+          &::before {
+            content: none;
+          }
+        }
+      }
+    }
+  }
+
+
+
+  div:last-child {
+    margin-bottom: 0;
+  }
+}
+
 .content-page {
   margin-bottom: map-get($spacers, block);
 
