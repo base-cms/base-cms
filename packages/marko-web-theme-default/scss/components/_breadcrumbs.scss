@@ -25,18 +25,4 @@
       text-decoration: $theme-breadcrumbs-link-hover-decoration;
     }
   }
-
-  &--content-page {
-    font-size: 15px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: -.1px;
-
-    > .breadcrumb {
-      justify-content: left;
-      padding-bottom: 0;
-      margin-bottom: 0;
-      background-color: transparent;
-    }
-  }
 }
