@@ -20,4 +20,22 @@
       margin-left: auto;
     }
   }
+  &--sponsored-logo {
+    > *:first-child {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: .75rem;
+
+      &::before {
+        font-size: .75rem;
+        color: #222;
+        text-transform: uppercase;
+        content: "Brought to you by";
+      }
+    }
+    iframe {
+      box-shadow: none;
+    }
+  }
 }

@@ -42,6 +42,7 @@ config
 
   .setTemplate('mr', { size: [300, 250] })
 
+  .setTemplate('sponsored-logo', { size: [[160, 65], [125, 125], [90, 90]], targeting: { pos: 'sponsoredlogo' } })
 
   .setTemplate('mr-rail', {
     size: [300, 250],
@@ -70,6 +71,7 @@ config
     { name: 'lb-content-page-list', templateName: 'lb-list', path: 'article/talent' },
     { name: 'mr-section-page', templateName: 'mr', path: 'categories/talent' },
     { name: 'mr-content-page', templateName: 'mr', path: 'article/talent' },
+    { name: 'sponsored-logo-section-page', templateName: 'sponsored-logo', path: 'categories/talent' },
   ])
   .setAliasAdUnits('technology-and-iiot', [
     { name: 'lb-top', templateName: 'lb-top', path: 'categories/technology_and_iiot' },
@@ -82,6 +84,7 @@ config
     { name: 'lb-content-page-list', templateName: 'lb-list', path: 'article/technology_and_iiot' },
     { name: 'mr-section-page', templateName: 'mr', path: 'categories/technology_and_iiot' },
     { name: 'mr-content-page', templateName: 'mr', path: 'article/technology_and_iiot' },
+    { name: 'sponsored-logo-section-page', templateName: 'sponsored-logo', path: 'categories/technology_and_iiot' },
   ])
   .setAliasAdUnits('operations', [
     { name: 'lb-top', templateName: 'lb-top', path: 'categories/operations' },
@@ -94,6 +97,7 @@ config
     { name: 'lb-content-page-list', templateName: 'lb-list', path: 'article/operations' },
     { name: 'mr-section-page', templateName: 'mr', path: 'categories/operations' },
     { name: 'mr-content-page', templateName: 'mr', path: 'article/operations' },
+    { name: 'sponsored-logo-section-page', templateName: 'sponsored-logo', path: 'categories/operations' },
   ])
   .setAliasAdUnits('leadership', [
     { name: 'lb-top', templateName: 'lb-top', path: 'categories/leadership' },
@@ -106,6 +110,7 @@ config
     { name: 'lb-content-page-list', templateName: 'lb-list', path: 'article/leadership' },
     { name: 'mr-section-page', templateName: 'mr', path: 'categories/leadership' },
     { name: 'mr-content-page', templateName: 'mr', path: 'article/leadership' },
+    { name: 'sponsored-logo-section-page', templateName: 'sponsored-logo', path: 'categories/leadership' },
   ])
   .setAliasAdUnits('supply-chain', [
     { name: 'lb-top', templateName: 'lb-top', path: 'categories/supply_chain' },
@@ -118,6 +123,7 @@ config
     { name: 'lb-content-page-list', templateName: 'lb-list', path: 'article/supply_chain' },
     { name: 'mr-section-page', templateName: 'mr', path: 'categories/supply_chain' },
     { name: 'mr-content-page', templateName: 'mr', path: 'article/supply_chain' },
+    { name: 'sponsored-logo-section-page', templateName: 'sponsored-logo', path: 'categories/supply_chain' },
   ])
   .setAliasAdUnits('the-economy', [
     { name: 'lb-top', templateName: 'lb-top', path: 'categories/the_economy' },
@@ -130,6 +136,7 @@ config
     { name: 'lb-content-page-list', templateName: 'lb-list', path: 'article/the_economy' },
     { name: 'mr-section-page', templateName: 'mr', path: 'categories/the_economy' },
     { name: 'mr-content-page', templateName: 'mr', path: 'article/the_economy' },
+    { name: 'sponsored-logo-section-page', templateName: 'sponsored-logo', path: 'categories/the_economy' },
   ]);
 
 module.exports = config;
