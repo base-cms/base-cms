@@ -13,6 +13,7 @@
     "@section": "object",
     "@home-title": "string",
     "@home-alias": "string",
-    "@display-self": "boolean"
+    "@display-self": "boolean",
+    "@display-home": "boolean"
   }
 }
