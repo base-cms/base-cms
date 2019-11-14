@@ -42,8 +42,7 @@ $ const displayPublishedDate = ["event", "webinar", "contact"].includes(type) ? 
         </div>
       </if>
       <div class="content-page__header-body">
-        <!-- @todo use breadcrumbs (without home) for this -->
-        <marko-web-website-section-name block-name="content-page" obj=primarySection link=true />
+        <default-theme-website-section-breadcrumbs section=primarySection display-home=false modifiers=["content-page"] />
         <marko-web-content-name tag="h1" block-name="content-page" obj=content />
         <marko-web-content-teaser tag="p" block-name="content-page" obj=content />
         <if(type !== "contact")>
