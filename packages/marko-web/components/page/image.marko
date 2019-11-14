@@ -14,9 +14,10 @@ $ const fluid = input.fluid != null ? input.fluid : true;
 $ if (fluid) modifiers.push("fluid");
 
 $ const hasImage = Boolean(image.src);
+$ const imageOptions = { w: width, ...input.options };
 
 <if(hasImage)>
-  $ const src = buildImgixUrl(image.src, { w: width });
+  $ const src = buildImgixUrl(image.src, imageOptions);
   $ const srcset = [`${buildImgixUrl(src, { dpr: 2 })} 2x`];
 
   <marko-web-block

@@ -87,6 +87,7 @@
       "type": "boolean",
       "default-value": false
     },
+    "@options": "object",
     "@modifiers": "array"
   }
 }
