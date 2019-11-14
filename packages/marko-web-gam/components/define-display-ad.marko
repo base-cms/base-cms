@@ -4,7 +4,7 @@ import buildSizeMapping from "../utils/build-size-mapping";
 import slotStyle from "../utils/slot-size-style";
 
 $ const { isArray } = Array;
-$ const { path, inc } = input;
+$ const { path, inc, withWrapper } = input;
 $ const id = input.id || generateId({ inc });
 
 $ const size = typeof input.size === 'string' ? [input.size] : (isArray(input.size) ? input.size : []);
@@ -20,8 +20,10 @@ $ const blockName = input.blockName || "ad-container";
 $ const classNames = [blockName, ...BEM.applyModifiers(blockName, input.modifiers), input.class];
 
 <if(path)>
-  <div id=id style=style class=classNames>
-    <script>googletag.cmd.push(function() { ${calls.join(" ")} });</script>
+  <div id=(withWrapper ? null : id) style=style class=classNames>
+    <marko-web-gam-ad-wrapper id=id enabled=withWrapper block-name=blockName>
+      <script>googletag.cmd.push(function() { ${calls.join(" ")} });</script>
+    </marko-web-gam-ad-wrapper>
   </div>
 </if>
 <else>
