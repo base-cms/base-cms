@@ -28,6 +28,35 @@
     border-bottom: 1px solid #ccc;
   }
 
+  @each $ar in $marko-web-node-image-aspect-ratios {
+    $x: nth($ar, 1);
+    $y: nth($ar, 2);
+
+    &--fluid-#{$x}by#{$y} {
+      #{ $self } {
+        &__wrapper {
+          @include marko-web-node-fluid-image($x, $y);
+        }
+        &__image {
+          @include marko-web-node-fluid-image-item();
+        }
+      }
+    }
+    // Add the inverse ratios (16by9 becomes 9by16, 4by3 becomes 3by4, etc)
+    @if $x != $y {
+      &--fluid-#{$y}by#{$x} {
+        #{ $self } {
+          &__wrapper {
+            @include marko-web-node-fluid-image($x, $y);
+          }
+          &__image {
+            @include marko-web-node-fluid-image-item();
+          }
+        }
+      }
+    }
+  }
+
   &--primary-image-inline {
     float: right;
     margin-top: calc((#{$theme-page-body-line-height} - 1) * .5em);
