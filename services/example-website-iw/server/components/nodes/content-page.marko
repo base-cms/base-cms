@@ -73,6 +73,8 @@ $ const displayPublishedDate = ["event", "webinar", "contact"].includes(type) ? 
 
     $ const bodyId = `content-body-${content.id}`;
     <marko-web-content-body block-name=blockName obj=content attrs={ id: bodyId } />
+    <!-- @todo some injected ads are not rendering a path: see IW: 16821666 -->
+    <!-- it's related to the homepage/default homepage positions -->
     <marko-web-gam-inject-ads selector=`#${bodyId}`>
       <@inject
         ...GAM.getAdUnit({ name: "mr-content-page", aliases, targeting: { pos: "300_2_rht" }, size: [300, 250] })
