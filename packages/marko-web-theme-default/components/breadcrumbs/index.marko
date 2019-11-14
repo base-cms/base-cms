@@ -1,9 +1,12 @@
 import { getAsArray } from "@base-cms/object-path";
 
 $ const items = getAsArray(input, "items");
+$ const modifiers = getAsArray(input, "modifiers");
+$ const blockName = "breadcrumbs";
+$ const classes = [blockName, ...modifiers.map(mod => `${blockName}--${mod}`)];
 
 <if(items.length)>
-  <nav class="breadcrumbs" aria-label="breadcrumb">
+  <nav class=classes aria-label="breadcrumb">
     <ol class="breadcrumb">
       <for|item| of=items>
         <if(item.renderBody)>

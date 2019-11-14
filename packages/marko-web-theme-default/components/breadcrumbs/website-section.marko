@@ -8,7 +8,7 @@ $ const homeAlias = input.homeAlias || "home";
 $ const displaySelf = defaultValue(input.displaySelf, true);
 $ const displayHome = defaultValue(input.displayHome, true);
 
-<default-theme-breadcrumbs>
+<default-theme-breadcrumbs modifiers=input.modifiers>
   <if(displayHome)>
     <@item>
       <marko-web-link href="/" title=homeTitle>${homeTitle}</marko-web-link>
