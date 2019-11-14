@@ -1,0 +1,9 @@
+{
+  "name": "@base-cms/identity-x",
+  "version": "1.0.0-rc.4",
+  "description": "IdentityX Plugin for marko-web",
+  "repository": "https://github.com/base-cms/base-cms/tree/master/packages/identity-x",
+  "author": "Josh Worden <josh@limit0.io>",
+  "main": "src/index.js",
+  "license": "MIT"
+}
