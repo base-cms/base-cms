@@ -1,0 +1,20 @@
+{
+  "tags": {
+    "<marko-web-identity-x-access>": {
+      "template": "./access.marko",
+      "@enabled": {
+        "type": "boolean",
+        "default-value": true
+      },
+      "@required-access-level-ids": {
+        "type": "array"
+      }
+    },
+    "<marko-web-identity-x-context>": {
+      "template": "./context.marko"
+    },
+    "<marko-web-identity-x-form>": {
+      "template": "./form.marko"
+    }
+  }
+}
