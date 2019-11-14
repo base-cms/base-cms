@@ -360,6 +360,9 @@ body {
     @include media-breakpoint-down($theme-responsive-text-breakpoint) {
       margin-top: -100px;
     }
+    @include media-breakpoint-down(xs) {
+      margin-top: 0;
+    }
   }
 
   &__website-section-name {
@@ -379,6 +382,10 @@ body {
       $line-height: 1.5,
     );
     color: $theme-page-title-color;
+
+    @include media-breakpoint-down(xs) {
+      font-size: 24px;
+    }
   }
 
   &__content-teaser {
@@ -391,6 +398,10 @@ body {
       $line-height: 1.6,
     );
     color: #222;
+
+    @include media-breakpoint-down(xs) {
+      font-size: 17px;
+    }
   }
 
   &__image-credit {
