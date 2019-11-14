@@ -232,6 +232,7 @@
   }
 }
 
+// stylelint-disable value-no-vendor-prefix, property-no-vendor-prefix
 @mixin theme-max-lines(
   $font-size,
   $font-size-sm,
@@ -241,14 +242,17 @@
   $text-overflow: ellipsis,
   $breakpoint: $theme-responsive-text-max-lines-breakpoint,
 ) {
-  display: block;
+  display: -webkit-box;
   max-height: ($font-size * $line-height) * $num;
   overflow: hidden;
   text-overflow: $text-overflow;
+  -webkit-line-clamp: $num;
+  -webkit-box-orient: vertical;
   @include media-breakpoint-down($breakpoint) {
     max-height: ($font-size-sm * $line-height-sm) * $num;
   }
 }
+// stylelint-enable value-no-vendor-prefix, property-no-vendor-prefix
 
 @mixin theme-media-caption() {
   @include theme-media-common-footer();
