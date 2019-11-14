@@ -5,10 +5,18 @@
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/marko-web-identity-x",
   "author": "Josh Worden <josh@limit0.io>",
   "license": "MIT",
+  "scripts": {
+    "lint": "eslint --ext .js --ext .vue --max-warnings 5 ./",
+    "compile": "basecms-marko-compile compile --dir ./ --silent true",
+    "test": "yarn compile && yarn lint"
+  },
   "dependencies": {
     "@base-cms/identity-x": "^1.0.0-rc.4"
   },
   "peerDependencies": {
     "@base-cms/marko-web": "^1.0.0-rc.4"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
