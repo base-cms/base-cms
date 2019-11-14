@@ -5,5 +5,12 @@
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/identity-x",
   "author": "Josh Worden <josh@limit0.io>",
   "main": "src/index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint --ext .js --ext .vue --max-warnings 5 --ignore-path ../../.eslintignore ./",
+    "test": "yarn lint"
+  },
+  "dependencies": {
+    "graphql-tag": "^2.10.1"
+  }
 }
