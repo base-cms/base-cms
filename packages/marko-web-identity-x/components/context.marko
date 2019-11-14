@@ -1,0 +1,35 @@
+import { getAsArray } from '@base-cms/object-path';
+
+$ const { req, onAsyncBlockError } = out.global;
+$ const isDevelopment = process.env.NODE_ENV === 'development';
+$ const { identityX } = req;
+$ const isEnabled = Boolean(req.identityX) && input.enabled;
+$ const loadContext = async () => (isEnabled ? identityX.loadActiveContext() : {
+  user: null,
+  mergedAccessLevels: [],
+  mergedTeams: [],
+  hasTeams: false,
+  hasUser: false,
+});
+
+<await(loadContext())>
+  <@then|context|>
+    $ const output = {
+      ...context,
+      isEnabled,
+    };
+    <${input.renderBody} ...output />
+  </@then>
+  <@catch|err|>
+    $ if (typeof onAsyncBlockError === 'function') onAsyncBlockError(err);
+    <if(input.onError)>
+      <${input.onError} err=err />
+    </if>
+    <else>
+      <pre>An unexpected error occurred: ${err.message}</pre>
+      <if(isDevelopment)>
+        <pre>${err.stack}</pre>
+      </if>
+    </else>
+  </@catch>
+</await>
