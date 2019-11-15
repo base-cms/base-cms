@@ -13,7 +13,27 @@ const config = new IdentityX('<MY-APPLICATION-ID>');
 module.exports = config;
 ```
 
-3. Include the IdentityX router, create `login`, `logout`, `authenticate`, and `register` routes & templates. These templates must include the relevant `<marko-web-identity-x-form-...>` component.
+3. Include the IdentityX router **before all other routes!**
+```js
+// your-site/server/routes/index.js
+const IdentityX = require('./identity-x');
+
+module.exports = (app) => {
+  IdentityX(app);
+  // ...
+};
+```
+```js
+// your-site/server/routes/identity-x.js
+const IdentityX = require('@base-cms/marko-web-identity-x/router');
+const IdentityXConfig = require('../../config/identity-x');
+
+module.exports = (app) => {
+  IdentityX(app, IdentityXConfig);
+};
+```
+
+4. Create `login`, `logout`, `authenticate`, and `register` routes & templates. These templates must include the relevant `<marko-web-identity-x-form-...>` component.
 ```js
 // your-site/server/routes/identity-x.js
 const IdentityX = require('@base-cms/marko-web-identity-x/router');
@@ -52,7 +72,7 @@ module.exports = (app) => {
 </marko-web-default-page-layout>
 ```
 
-4. Include the Browser plugin.
+5. Include the Browser plugin.
 ```js
 // your-site/browser/index.js
 import IdentityX from '@base-cms/marko-web-identity-x/browser';
@@ -84,7 +104,7 @@ Include the `<marko-web-identity-x-context>` component where you'd like access t
 <!-- your-site/server/templates/some-page.marko -->
 <marko-web-identity-x-context|{ user, hasUser }|>
   <if(hasUser)>
-    <h1>Hello ${user.name}!</h1>
+    <h1>Hello ${user.givenName}!</h1>
   </if>
 </identity-x>
 ```
