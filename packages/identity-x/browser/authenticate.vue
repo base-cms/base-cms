@@ -15,6 +15,7 @@
 import * as Sentry from '@sentry/browser';
 import redirect from './utils/redirect';
 import cookiesEnabled from './utils/cookies-enabled';
+import post from './utils/post';
 import AuthenticationError from './errors/authentication';
 import FeatureError from './errors/feature';
 
@@ -55,7 +56,7 @@ export default {
         if (!token) throw new Error('No login token was provided.');
 
         Sentry.addBreadcrumb({ category: 'auth', message: 'Checking token', data: { token } });
-        const res = await this.$client('/authenticate', { token });
+        const res = await post('/authenticate', { token });
         const data = await res.json();
 
         Sentry.addBreadcrumb({ category: 'auth', message: 'Token checked', data });

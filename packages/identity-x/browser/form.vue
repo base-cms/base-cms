@@ -63,6 +63,7 @@ import Email from './form/fields/email.vue';
 import GivenName from './form/fields/given-name.vue';
 import FamilyName from './form/fields/family-name.vue';
 import cleanPath from './utils/clean-path';
+import post from './utils/post';
 import cookiesEnabled from './utils/cookies-enabled';
 import FormError from './errors/form';
 import FeatureError from './errors/feature';
@@ -172,7 +173,7 @@ export default {
       try {
         Sentry.setUser(user);
         Sentry.addBreadcrumb({ category: 'auth', message: 'User submitted form', data: { user } });
-        const res = await this.$client('/login', {
+        const res = await post('/login', {
           user,
           requiredFields,
           redirectTo,
