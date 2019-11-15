@@ -1,20 +1,27 @@
 {
-  "tags": {
-    "<marko-web-identity-x-access>": {
-      "template": "./access.marko",
-      "@enabled": {
-        "type": "boolean",
-        "default-value": true
-      },
-      "@required-access-level-ids": {
-        "type": "array"
-      }
+  "<marko-web-identity-x-access>": {
+    "template": "./access.marko",
+    "@enabled": {
+      "type": "boolean",
+      "default-value": true
     },
-    "<marko-web-identity-x-context>": {
-      "template": "./context.marko"
-    },
-    "<marko-web-identity-x-form>": {
-      "template": "./form.marko"
+    "@required-access-level-ids": {
+      "type": "array"
     }
+  },
+  "<marko-web-identity-x-context>": {
+    "template": "./context.marko"
+  },
+  "<marko-web-identity-x-form-authenticate>": {
+    "template": "./form-authenticate.marko"
+  },
+  "<marko-web-identity-x-form-login>": {
+    "template": "./form-login.marko"
+  },
+  "<marko-web-identity-x-form-logout>": {
+    "template": "./form-logout.marko"
+  },
+  "<marko-web-identity-x-form-register>": {
+    "template": "./form-register.marko"
   }
 }
