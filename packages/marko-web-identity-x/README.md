@@ -13,27 +13,7 @@ const config = new IdentityX('<MY-APPLICATION-ID>');
 module.exports = config;
 ```
 
-3. Include the IdentityX router **before all other routes!**
-```js
-// your-site/server/routes/index.js
-const IdentityX = require('./identity-x');
-
-module.exports = (app) => {
-  IdentityX(app);
-  // ...
-};
-```
-```js
-// your-site/server/routes/identity-x.js
-const IdentityX = require('@base-cms/marko-web-identity-x/router');
-const IdentityXConfig = require('../../config/identity-x');
-
-module.exports = (app) => {
-  IdentityX(app, IdentityXConfig);
-};
-```
-
-4. Create `login`, `logout`, `authenticate`, and `register` routes & templates. These templates must include the relevant `<marko-web-identity-x-form-...>` component.
+3. Create an IdentityX router to load the IdentityX middleware.
 ```js
 // your-site/server/routes/identity-x.js
 const IdentityX = require('@base-cms/marko-web-identity-x/router');
@@ -62,8 +42,20 @@ module.exports = (app) => {
     res.marko(register);
   });
 };
-
 ```
+
+4. Include the IdentityX router **before all other routes!**
+```js
+// your-site/server/routes/index.js
+const IdentityX = require('./identity-x');
+
+module.exports = (app) => {
+  IdentityX(app);
+  // ...
+};
+```
+
+5. Create `login`, `logout`, `authenticate`, and `register` templates. These templates must include the relevant `<marko-web-identity-x-form-...>` component.
 ```marko
 <marko-web-default-page-layout>
   <@page>
@@ -140,4 +132,15 @@ $ const { isRequired, accessLevels } = getAsObject(content, 'userRegistration');
     <p>This is secret content only some can see!</p>
   </else>
 </marko-web-identity-x-access>
+```
+
+## Customization
+
+The IdentityX form handles both login and registration based on a supplied `context` parameter. You can change the form by altering the component loader in your site's browser config to use your own Vue component:
+```diff
+import IdentityX from '@base-cms/marko-web-identity-x/browser';
++ import MyFormComponent from './my-form-component.vue';
+
+-IdentityX(Browser);
++IdentityX(Browser, MyFormComponent);
 ```
