@@ -30,7 +30,7 @@ module.exports = ({
     ...rootConfig,
     link: createHttpLink({
       ...linkConfig,
-      uri: 'https://identity-x.base-cms.io',
+      uri: 'https://identity-x.base-cms.io/graphql',
       fetch,
       headers,
     }),
