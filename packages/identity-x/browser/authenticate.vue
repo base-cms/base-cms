@@ -12,7 +12,6 @@
 </template>
 
 <script>
-import * as Sentry from '@sentry/browser';
 import redirect from './utils/redirect';
 import cookiesEnabled from './utils/cookies-enabled';
 import post from './utils/post';
@@ -42,7 +41,6 @@ export default {
     } else {
       const error = new FeatureError('Your browser does not support cookies. Please enable cookies to use this feature.');
       this.error = error.message;
-      Sentry.captureException(error);
     }
   },
   methods: {
@@ -55,16 +53,12 @@ export default {
         const { token } = this;
         if (!token) throw new Error('No login token was provided.');
 
-        Sentry.addBreadcrumb({ category: 'auth', message: 'Checking token', data: { token } });
         const res = await post('/authenticate', { token });
         const data = await res.json();
 
-        Sentry.addBreadcrumb({ category: 'auth', message: 'Token checked', data });
         if (!res.ok) throw new AuthenticationError(data.message, res.status);
-        Sentry.captureMessage('AuthenticationSuccess');
         this.redirect();
       } catch (e) {
-        Sentry.captureException(e);
         this.error = `Unable to login: ${e.message}`;
       } finally {
         this.loading = false;
