@@ -4,7 +4,7 @@
   "useWorkspaces": true,
   "command": {
     "version": {
-      "allowBranch": "master"
+      "allowBranch": "v0.x"
     }
   }
 }
