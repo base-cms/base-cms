@@ -12,6 +12,7 @@ import * as Sentry from '@sentry/browser';
 import redirect from './utils/redirect';
 import getReferringPage from './utils/get-referring-page';
 import cookiesEnabled from './utils/cookies-enabled';
+import post from './utils/post';
 import LogoutError from './errors/logout';
 import FeatureError from './errors/feature';
 
@@ -42,7 +43,7 @@ export default {
       this.error = null;
       try {
         Sentry.addBreadcrumb({ category: 'auth', message: 'Logging out user' });
-        const res = await this.$client('/logout');
+        const res = await post('/logout');
         const data = await res.json();
         Sentry.addBreadcrumb({ category: 'auth', message: 'Logging out complete', data });
         if (!res.ok) throw new LogoutError(data.message, res.status);
