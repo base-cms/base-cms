@@ -3,7 +3,7 @@ import { getAsArray } from '@base-cms/object-path';
 $ const { req, onAsyncBlockError } = out.global;
 $ const isDevelopment = process.env.NODE_ENV === 'development';
 $ const { identityX } = req;
-$ const isEnabled = Boolean(req.identityX) && input.enabled;
+$ const isEnabled = Boolean(req.identityX);
 $ const loadContext = async () => (isEnabled ? identityX.loadActiveContext() : {
   user: null,
   mergedAccessLevels: [],
