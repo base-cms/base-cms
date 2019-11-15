@@ -2,7 +2,6 @@ class IdentityXConfiguration {
   /**
    *
    * @param {string} appId
-   * @param {string} sentryDsn
    */
   constructor(appId) {
     if (!appId) throw new Error('Unable to configure IdentityX: no Application ID was provided.');
