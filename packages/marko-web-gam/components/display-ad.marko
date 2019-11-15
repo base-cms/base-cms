@@ -1,12 +1,14 @@
 import { BEM, warn } from "@base-cms/utils";
 
-$ const { id } = input;
+$ const { id, withWrapper } = input;
 $ const blockName = input.blockName || "ad-container";
 $ const classNames = [blockName, ...BEM.applyModifiers(blockName, input.modifiers), input.class];
 
 <if(id)>
-  <div id=id class=classNames style=input.style>
-    <script>googletag.cmd.push(function() { googletag.display('${id}'); });</script>
+  <div id=(withWrapper ? null : id) class=classNames style=input.style>
+    <marko-web-gam-ad-wrapper id=id enabled=withWrapper block-name=blockName>
+      <script>googletag.cmd.push(function() { googletag.display('${id}'); });</script>
+    </marko-web-gam-ad-wrapper>
   </div>
 </if>
 <else>

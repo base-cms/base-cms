@@ -1,0 +1,10 @@
+$ const blockName = input.blockName || "ad-container";
+
+<if(input.enabled)>
+  <div id=input.id class=`${blockName}__wrapper`>
+    <${input.renderBody} />
+  </div>
+</if>
+<else>
+  <${input.renderBody} />
+</else>
