@@ -9,6 +9,14 @@
     margin-right: auto;
     margin-left: auto;
   }
+  &--sticky-top {
+    position: sticky;
+    @each $breakpoint, $width in sort-map-by-values($theme-site-header-breakpoints, desc) {
+      @media (max-width: $width) {
+        top: calc(#{calculate-navbar-height-for($breakpoint)} + #{$grid-gutter-width / 2});
+      }
+    }
+  }
   &--float-right {
     float: right;
     margin-top: 1rem;
