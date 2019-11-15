@@ -40,10 +40,13 @@ $ const getAdSlots = ({ aliases }) => ({
         <@section>
           <default-theme-website-section-breadcrumbs display-self=false section=section />
           <marko-web-website-section-name class="page-wrapper__title" tag="h1" obj=section />
+
           <marko-web-gam-define-display-ad
             ...GAM.getAdUnit({ name: "sponsored-logo-section-page", aliases })
             modifiers=["sponsored-logo"]
+            with-wrapper=true
           />
+
           <marko-web-website-section-description class="page-wrapper__deck" obj=section />
         </@section>
       </marko-web-page-wrapper>
