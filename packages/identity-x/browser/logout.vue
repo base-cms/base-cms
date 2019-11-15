@@ -43,6 +43,7 @@ export default {
         const res = await post('/logout');
         const data = await res.json();
         if (!res.ok) throw new LogoutError(data.message, res.status);
+        this.$emit('logout');
         this.redirect();
       } catch (e) {
         this.error = `Unable to logout: ${e.message}`;

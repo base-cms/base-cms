@@ -182,6 +182,7 @@ export default {
         } else if (data.needsInput) {
           this.needsInput = true;
         }
+        this.$emit('submit');
       } catch (e) {
         this.error = e.message;
       } finally {

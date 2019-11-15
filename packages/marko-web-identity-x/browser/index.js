@@ -4,7 +4,13 @@ const IdentityXForm = () => import(/* webpackChunkName: "identity-x-form" */ '@b
 
 export default (Browser) => {
   const { EventBus } = Browser;
-  Browser.register('IdentityXAuthenticate', IdentityXAuthenticate, { on: { action: EventBus } });
-  Browser.register('IdentityXLogout', IdentityXLogout, { on: { action: EventBus } });
-  Browser.register('IdentityXForm', IdentityXForm, { on: { action: EventBus } });
+  Browser.register('IdentityXAuthenticate', IdentityXAuthenticate, {
+    on: { action: (...args) => EventBus.$emit('identity-x-authenticate', ...args) },
+  });
+  Browser.register('IdentityXLogout', IdentityXLogout, {
+    on: { action: (...args) => EventBus.$emit('identity-x-logout', ...args) },
+  });
+  Browser.register('IdentityXForm', IdentityXForm, {
+    on: { action: (...args) => EventBus.$emit('identity-x-submit', ...args) },
+  });
 };

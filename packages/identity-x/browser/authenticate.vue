@@ -57,6 +57,7 @@ export default {
         const data = await res.json();
 
         if (!res.ok) throw new AuthenticationError(data.message, res.status);
+        this.$emit('authenticate');
         this.redirect();
       } catch (e) {
         this.error = `Unable to login: ${e.message}`;
