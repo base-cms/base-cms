@@ -8,7 +8,6 @@
 </template>
 
 <script>
-import * as Sentry from '@sentry/browser';
 import redirect from './utils/redirect';
 import getReferringPage from './utils/get-referring-page';
 import cookiesEnabled from './utils/cookies-enabled';
@@ -32,7 +31,6 @@ export default {
     } else {
       const error = new FeatureError('Your browser does not support cookies. Please enable cookies to use this feature.');
       this.error = error.message;
-      Sentry.captureException(error);
     }
   },
   methods: {
@@ -42,15 +40,11 @@ export default {
     async logout() {
       this.error = null;
       try {
-        Sentry.addBreadcrumb({ category: 'auth', message: 'Logging out user' });
         const res = await post('/logout');
         const data = await res.json();
-        Sentry.addBreadcrumb({ category: 'auth', message: 'Logging out complete', data });
         if (!res.ok) throw new LogoutError(data.message, res.status);
-        Sentry.captureMessage('LogoutSuccess');
         this.redirect();
       } catch (e) {
-        Sentry.captureException(e);
         this.error = `Unable to logout: ${e.message}`;
       }
     },

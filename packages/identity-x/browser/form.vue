@@ -58,7 +58,6 @@
 </template>
 
 <script>
-import * as Sentry from '@sentry/browser';
 import Email from './form/fields/email.vue';
 import GivenName from './form/fields/given-name.vue';
 import FamilyName from './form/fields/family-name.vue';
@@ -153,11 +152,9 @@ export default {
     },
   },
   mounted() {
-    Sentry.setUser(this.activeUser);
     if (!cookiesEnabled()) {
       const error = new FeatureError('Your browser does not support cookies. Please enable cookies to use this feature.');
       this.error = error.message;
-      Sentry.captureException(error);
     }
   },
   methods: {
@@ -171,8 +168,6 @@ export default {
         authUrl,
       } = this;
       try {
-        Sentry.setUser(user);
-        Sentry.addBreadcrumb({ category: 'auth', message: 'User submitted form', data: { user } });
         const res = await post('/login', {
           user,
           requiredFields,
@@ -183,15 +178,11 @@ export default {
         if (!res.ok) throw new FormError(data.message, res.status);
 
         if (data.ok) {
-          Sentry.addBreadcrumb({ category: 'auth', message: 'Form submission complete.', data });
           this.complete = true;
         } else if (data.needsInput) {
-          Sentry.addBreadcrumb({ category: 'auth', message: 'Form submission incomplete.', data });
           this.needsInput = true;
         }
-        Sentry.captureMessage('FormSuccess');
       } catch (e) {
-        Sentry.captureException(e);
         this.error = e.message;
       } finally {
         this.loading = false;
