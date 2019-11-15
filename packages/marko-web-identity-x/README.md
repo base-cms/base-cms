@@ -13,16 +13,43 @@ const config = new IdentityX('<MY-APPLICATION-ID>');
 module.exports = config;
 ```
 
-3. Include the IdentityX router
+3. Include the IdentityX router, create `login`, `logout`, `authenticate`, and `register` routes & templates. These templates must include the relevant `<marko-web-identity-x-form-...>` component.
 ```js
-// your-site/server/routes/index.js
+// your-site/server/routes/identity-x.js
 const IdentityX = require('@base-cms/marko-web-identity-x/router');
+const IdentityXConfig = require('../../config/identity-x');
+const authenticate = require('../templates/user/authenticate');
+const login = require('../templates/user/login');
+const logout = require('../templates/user/logout');
+const register = require('../templates/user/register');
 
 module.exports = (app) => {
-  IdentityX(app);
+  IdentityX(app, IdentityXConfig);
 
-  // ...
-}
+  app.get('/user/authenticate', (req, res) => {
+    res.marko(authenticate);
+  });
+
+  app.get('/user/login', (req, res) => {
+    res.marko(login);
+  });
+
+  app.get('/user/logout', (req, res) => {
+    res.marko(logout);
+  });
+
+  app.get('/user/register', (req, res) => {
+    res.marko(register);
+  });
+};
+
+```
+```marko
+<marko-web-default-page-layout>
+  <@page>
+    <marko-web-identity-x-form-authenticate />
+  </@page>
+</marko-web-default-page-layout>
 ```
 
 4. Include the Browser plugin.
@@ -35,20 +62,22 @@ IdentityX(Browser);
 
 export default Browser;
 ```
-
+<!--
 5. Include the styles.
 ```scss
 // your-site/server/styles/index.scss
 @import "../../node_modules/@base-cms/marko-web-identity-x/scss/form";
-```
+``` -->
 
 ## Usage
 
-Include the `<marko-web-identity-x-form>` component where you'd like give the user the ability to sign in.
-```marko
-<!-- your-site/server/templates/sign-in.marko -->
-<marko-web-identity-x-form />
-```
+Include the `<marko-web-identity-x-form-authenticate>` component in the template where users land after authenticating (/user/authenticate).
+
+Include the `<marko-web-identity-x-form-login>` component to display the login form.
+
+Include the `<marko-web-identity-x-form-register>` component to display the register form.
+
+Include the `<marko-web-identity-x-form-logout>` component to display the logout form.
 
 Include the `<marko-web-identity-x-context>` component where you'd like access to IdentityX context.
 ```marko
