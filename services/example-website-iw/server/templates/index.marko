@@ -35,18 +35,17 @@ $ const getAdSlots = ({ aliases }) => ({
 
       <marko-web-page-wrapper modifiers=["top-border"]>
         <@section>
-          <div class="lazarus"> <!-- row -->
-            <aside class="lazarus__left"> <!-- col -->
+          <lazarus-theme-page-grid>
+            <@left-col>
               <lazarus-left-rail
                 aliases=aliases
                 adunit={ name: "mr-section-page", pos: "300_1_lft" }
                 query-fragment=queryFragment
               />
-            </aside>
-            <div class="lazarus__right"> <!-- col -->
-              <div class="lazarus__right-top"> <!-- row -->
+            </@left-col>
+            <@right-col>
+              <@top-row>
                 <div class="col">
-
                   <marko-web-query|{ nodes }|
                     name="website-optioned-content"
                     params={ sectionId: id, optionName: "Pinned", limit: 4, requiresImage: true, queryFragment }
@@ -68,11 +67,9 @@ $ const getAdSlots = ({ aliases }) => ({
                       </@list>
                     </default-theme-hero-flow>
                   </marko-web-query>
-
                 </div>
-              </div>
-              <div class="lazarus__right-bottom"> <!-- row -->
-
+              </@top-row>
+              <@bottom-row>
                 <div class="col-md-6 mb-block">
 
                   <marko-web-query|{ nodes }|
@@ -225,10 +222,9 @@ $ const getAdSlots = ({ aliases }) => ({
                     </website-content-hero-flow>
                   </marko-web-query>
                 </div>
-
-              </div>
-            </div>
-          </div>
+              </@bottom-row>
+            </@right-col>
+          </lazarus-theme-page-grid>
         </@section>
       </marko-web-page-wrapper>
 
