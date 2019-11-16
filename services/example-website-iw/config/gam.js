@@ -59,6 +59,14 @@ config
     { name: 'lb-flow', templateName: 'lb-flow', path: 'homepage' },
     { name: 'mr-rail', templateName: 'mr-rail', path: 'homepage' },
     { name: 'mr-flow', templateName: 'mr-flow', path: 'homepage' },
+
+    { name: 'lb-section-page-main', templateName: 'lb-main', path: 'homepage' },
+    { name: 'lb-content-page-main', templateName: 'lb-main', path: 'homepage' },
+    { name: 'lb-section-page-list', templateName: 'lb-list', path: 'homepage' },
+    { name: 'lb-content-page-list', templateName: 'lb-list', path: 'homepage' },
+    { name: 'mr-section-page', templateName: 'mr', path: 'homepage' },
+    { name: 'mr-content-page', templateName: 'mr', path: 'homepage' },
+    { name: 'sponsored-logo-section-page', templateName: 'sponsored-logo', path: 'homepage' },
   ])
   .setAliasAdUnits('talent', [
     { name: 'lb-top', templateName: 'lb-top', path: 'categories/talent' },
