@@ -1,15 +1,19 @@
+import { getAsObject } from "@base-cms/object-path";
+
 <default-theme-hero-flow header=input.header nodes=input.nodes>
   <@hero|{ node }|>
-    <website-content-card-node node=node image-width=630 title-modifiers=["large"] />
+    <website-content-card-node node=node ...input.card>
+      <@image width=630 ...getAsObject(input, "card.image") />
+      <@title modifiers=["large"] ...getAsObject(input, "card.title") />
+    </website-content-card-node>
   </@hero>
   <@list|{ nodes }|>
     <website-content-list-flow
       nodes=nodes
       flush-x=true
       flush-y=true
-      with-teaser=true
-      native-x=input.nativeX
       inner-justified=false
+      ...input.list
     />
   </@list>
 </default-theme-hero-flow>

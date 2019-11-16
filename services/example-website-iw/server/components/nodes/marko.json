@@ -1,37 +1,35 @@
 {
   "<website-content-list-node>": {
     "template": "./content-list.marko",
+    "<image>": {},
+    "<title>": {},
     "@node": "object",
+    "@display-image": "boolean",
+    "@image-position": "string",
+
+    "@with-teaser": "boolean",
+    "@with-section": "boolean",
+    "@with-attribution": "boolean",
+    "@with-dates": "boolean",
+
     "@modifiers": "array",
-    "@display-image": {
-      "type": "boolean",
-      "default-value": true
-    },
-    "@with-teaser": {
-      "type": "boolean",
-      "default-value": false
-    },
     "@attrs": "object",
-    "@link-attrs": "object",
-    "@image-width": "number"
+    "@link-attrs": "object"
   },
   "<website-content-card-node>": {
     "template": "./content-card.marko",
+    "<image>": {},
+    "<title>": {},
     "@node": "object",
-    "@title-modifiers": "array",
-    "@image-width": {
-      "type": "number",
-      "default-value": 300
-    },
-    "@display-image": {
-      "type": "boolean",
-      "default-value": true
-    },
-    "@with-teaser": {
-      "type": "boolean",
-      "default-value": true
-    },
-    "@use-placeholder": "boolean",
+    "@display-image": "boolean",
+    "@image-position": "string",
+
+    "@with-teaser": "boolean",
+    "@with-section": "boolean",
+    "@with-attribution": "boolean",
+    "@with-dates": "boolean",
+
+    "@modifiers": "array",
     "@attrs": "object",
     "@link-attrs": "object"
   },

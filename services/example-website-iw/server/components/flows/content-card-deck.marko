@@ -1,33 +1,25 @@
 import { getAsArray, getAsObject } from "@base-cms/object-path";
 import GAM from "../../../config/gam";
-import nxConfig from "../../../config/native-x";
 
 $ const { aliases } = input;
 $ const nodes = getAsArray(input, "nodes");
-$ const nativeX = getAsObject(input, "nativeX");
 
 <if(nodes.length)>
   <default-theme-card-deck-flow cols=3 nodes=nodes>
-    <@slot|{ node, index }|>
-      <marko-web-native-x-render|{ node: nxNode, linkAttrs, containerAttrs }|
-        ...nativeX
-        when=(index === nativeX.index)
-        node=node
-        config=nxConfig
-      >
-        <website-content-card-node
-          image-width=340
-          node=nxNode
-          attrs=containerAttrs
-          link-attrs=linkAttrs
-        />
-      </marko-web-native-x-render>
+    <@slot|{ node }|>
+      <website-content-card-node node=node>
+        <@image width=340 />
+      </website-content-card-node>
     </@slot>
     <@slot position="after" index=1>
-      <marko-web-gam-define-display-ad ...GAM.getAdUnit({ name: "load-more", size: [300, 250], aliases }) modifiers=["in-card"] />
+      <marko-web-gam-define-display-ad
+        ...GAM.getAdUnit({ name: "load-more", size: [300, 250], aliases }) modifiers=["in-card"]
+      />
     </@slot>
     <@slot position="after" index=6>
-      <marko-web-gam-define-display-ad ...GAM.getAdUnit({ name: "load-more", size: [300, 250], aliases }) modifiers=["in-card"] />
+      <marko-web-gam-define-display-ad
+        ...GAM.getAdUnit({ name: "load-more", size: [300, 250], aliases }) modifiers=["in-card"]
+      />
     </@slot>
   </default-theme-card-deck-flow>
 </if>

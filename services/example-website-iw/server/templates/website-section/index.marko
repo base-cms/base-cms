@@ -18,11 +18,8 @@ $ const getAdSlots = ({ aliases }) => ({
       <marko-web-gtm-push data=context />
     </marko-web-gtm-website-section-context>
     <marko-web-resolve-page|{ data: section }| node=pageNode>
-      $ const targeting = sectionTargeting(section);
-      $ const aliases = hierarchyAliases(section);
-
-      <marko-web-gam-targeting key-values=targeting />
-      <marko-web-gam-slots slots=getAdSlots({ aliases }) />
+      <marko-web-gam-targeting key-values=sectionTargeting(section) />
+      <marko-web-gam-slots slots=getAdSlots({ aliases: hierarchyAliases(section) }) />
     </marko-web-resolve-page>
   </@head>
   <@page>
@@ -103,7 +100,9 @@ $ const getAdSlots = ({ aliases }) => ({
                     <if(cardNodes.length)>
                       <for|node| of=cardNodes>
                         <div class="lazarus__card-column">
-                          <website-content-card-node node=node use-placeholder=true image-width=240 />
+                          <website-content-card-node node=node>
+                            <@image width=240 use-placeholder=true />
+                          </website-content-card-node>
                         </div>
                       </for>
                     </if>
@@ -122,11 +121,13 @@ $ const getAdSlots = ({ aliases }) => ({
                           nodes=listNodes
                           flush-x=true
                           flush-y=true
-                          with-teaser=true
                           inner-justified=false
-                          image-width=180
                           modifiers=["feed"]
-                        />
+                        >
+                          <@node>
+                            <@image width=180 />
+                          </@node>
+                        </website-content-list-flow>
                       </div>
                     </if>
                   </if>

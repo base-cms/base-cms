@@ -17,10 +17,11 @@ $ const {
       flush-y=true
       inner-justified=false
       modifiers=["related-content"]
-      node-modifiers=["related-content"]
-      image-width=120
     >
       <@header>Related</@header>
+      <@node modifiers=["related-content"]>
+        <@image width=120 />
+      </@node>
     </website-content-list-flow>
   </if>
   <else-if(!['contact', 'company'].includes(type))>
@@ -33,11 +34,11 @@ $ const {
         flush-y=true
         inner-justified=false
         modifiers=["related-content"]
-        node-modifiers=["related-content"]
-        image-width=120
-        native-x=input.nativeX
       >
         <@header>Latest in ${sectionName}</@header>
+        <@node modifiers=["related-content"]>
+          <@image width=120 />
+        </@node>
       </website-content-list-flow>
     </marko-web-query>
   </else-if>

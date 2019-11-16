@@ -10,7 +10,10 @@ $ const pos = incrementPos({ pos: adunit.pos, inc: input.pageNumber - 1 });
 <if(nodes.length)>
   <if(adunit.name)>
     <div class="lazarus__ad-column">
-      <marko-web-gam-define-display-ad ...GAM.getAdUnit({ name: adunit.name, aliases, targeting: { pos } }) modifiers=["max-width-728", "margin-auto-x"] />
+      <marko-web-gam-define-display-ad
+        ...GAM.getAdUnit({ name: adunit.name, aliases, targeting: { pos } })
+        modifiers=["max-width-728", "margin-auto-x"]
+      />
     </div>
   </if>
   <div class="lazarus__list-column">
@@ -18,10 +21,12 @@ $ const pos = incrementPos({ pos: adunit.pos, inc: input.pageNumber - 1 });
       nodes=nodes
       flush-x=true
       flush-y=true
-      with-teaser=true
       inner-justified=false
-      image-width=180
       modifiers=["feed"]
-    />
+    >
+      <@node>
+        <@image width=180 />
+      </@node>
+    </website-content-list-flow>
   </div>
 </if>

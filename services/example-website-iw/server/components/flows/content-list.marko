@@ -1,41 +1,21 @@
 import { getAsArray, getAsObject } from "@base-cms/object-path";
-import nxConfig from "../../../config/native-x";
+import defaultValue from "@base-cms/marko-core/utils/default-value";
 
 $ const nodes = getAsArray(input, "nodes");
-$ const nativeX = getAsObject(input, "nativeX");
-$ const displayImage = input.displayImage != null ? input.displayImage : true;
-$ const withTeaser = input.withTeaser != null ? input.withTeaser : false;
-$ const innerJustified = input.innerJustified != null ? input.innerJustified : true;
-$ const flushX = input.flushX != null ? input.flushX : false;
-$ const flushY = input.flushY != null ? input.flushY : false;
 
 <marko-web-node-list
-  inner-justified=innerJustified
-  flush-x=flushX
-  flush-y=flushY
+  inner-justified=defaultValue(input.innerJustified, true)
+  flush-x=defaultValue(input.flushX, false)
+  flush-y=defaultValue(input.flushY, false)
   modifiers=input.modifiers
+  header=input.header
 >
-  <if(input.header)>
-    <@header ...input.header />
-  </if>
   <@nodes nodes=nodes>
-    <@slot|{ node, index }|>
-      <marko-web-native-x-render|{ node: nxNode, linkAttrs, containerAttrs }|
-        ...nativeX
-        when=(index === nativeX.index)
+    <@slot|{ node }|>
+      <website-content-list-node
         node=node
-        config=nxConfig
-      >
-        <website-content-list-node
-          node=nxNode
-          display-image=displayImage
-          with-teaser=withTeaser
-          attrs=containerAttrs
-          link-attrs=linkAttrs
-          image-width=input.imageWidth
-          modifiers=input.nodeModifiers
-        />
-      </marko-web-native-x-render>
+        ...input.node
+      />
     </@slot>
   </@nodes>
 </marko-web-node-list>
