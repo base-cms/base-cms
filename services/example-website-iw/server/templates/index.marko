@@ -116,10 +116,6 @@ $ const getAdSlots = ({ aliases }) => ({
 
                 </div>
 
-              </div>
-
-              <div class="lazarus__right-bottom"> <!-- row -->
-
                 <div class="col-12 mb-block">
                   <marko-web-query|{ nodes }|
                     name="website-scheduled-content"
@@ -132,8 +128,8 @@ $ const getAdSlots = ({ aliases }) => ({
                         </marko-web-link>
                       </@header>
 
-                      <@hero|{ node }|>
-                        <div style="display: flex; flex-direction: row;">
+                      <@hero|{ node, blockName }|>
+                        <marko-web-element block-name=blockName name="ad-wrapper">
                           <website-content-card-node
                             node=node
                             with-teaser=false
@@ -143,15 +139,13 @@ $ const getAdSlots = ({ aliases }) => ({
                             <@image width=500 />
                             <@title modifiers=["large"] />
                           </website-content-card-node>
-
-                          <div style="max-width: 300px; margin-left: 1rem;">
+                          <marko-web-element block-name=blockName name="ad" modifiers=["max-width-300"]>
                             <marko-web-gam-display-ad
                               id="gpt-mr-section-page-right"
                               slots=adSlots
-                              modifiers=["right"]
                             />
-                          </div>
-                        </div>
+                          </marko-web-element>
+                        </marko-web-element>
                       </@hero>
                       <@list|{ nodes: listNodes }|>
                         <website-content-list-flow nodes=listNodes
