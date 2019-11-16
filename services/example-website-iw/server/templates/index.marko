@@ -73,7 +73,8 @@ $ const getAdSlots = ({ aliases }) => ({
                 </div>
               </div>
               <div class="lazarus__right-bottom"> <!-- row -->
-                <div class="col-md-6">
+
+                <div class="col-md-6 mb-block">
 
                   <marko-web-query|{ nodes }|
                     name="website-scheduled-content"
@@ -94,7 +95,7 @@ $ const getAdSlots = ({ aliases }) => ({
 
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-6 mb-block">
 
                   <marko-web-query|{ nodes }|
                     name="website-scheduled-content"
@@ -115,58 +116,56 @@ $ const getAdSlots = ({ aliases }) => ({
 
                 </div>
 
-                <!-- <marko-web-query|{ nodes }|
-                  name="website-scheduled-content"
-                  params={ sectionId: id, limit: 10, skip: 5, queryFragment }
-                >
-                  <if(nodes.length)>
-                    $ const cardNodes = nodes.slice(0, 4);
-                    $ const listNodes = nodes.slice(4);
-                    <if(cardNodes.length)>
-                      <for|node| of=cardNodes>
-                        <div class="lazarus__card-column">
-                          <website-content-card-node node=node use-placeholder=true image-width=240 />
+              </div>
+
+              <div class="lazarus__right-bottom"> <!-- row -->
+
+                <div class="col-12 mb-block">
+                  <marko-web-query|{ nodes }|
+                    name="website-scheduled-content"
+                    params={ sectionAlias: "technology-and-iiot", limit: 5, requiresImage: true, queryFragment }
+                  >
+                    <default-theme-hero-flow nodes=nodes>
+                      <@header>
+                        <marko-web-link href="/technology-and-iiot">
+                          Technology and IIoT
+                        </marko-web-link>
+                      </@header>
+
+                      <@hero|{ node }|>
+                        <div style="display: flex; flex-direction: row;">
+                          <website-content-card-node
+                            node=node
+                            with-teaser=false
+                            with-section=false
+                            modifiers=["dark", "increased-padding"]
+                          >
+                            <@image width=500 />
+                            <@title modifiers=["large"] />
+                          </website-content-card-node>
+
+                          <div style="max-width: 300px; margin-left: 1rem;">
+                            <marko-web-gam-display-ad
+                              id="gpt-mr-section-page-right"
+                              slots=adSlots
+                              modifiers=["right"]
+                            />
+                          </div>
                         </div>
-                      </for>
-                    </if>
-
-                    <div class="lazarus__ad-column">
-                      <marko-web-gam-display-ad
-                        id="gpt-lb-section-page-list"
-                        slots=adSlots
-                        modifiers=["max-width-728", "margin-auto-x"]
-                      />
-                    </div>
-
-                    <if(listNodes.length)>
-                      <div class="lazarus__list-column">
-                        <website-content-list-flow
-                          nodes=listNodes
+                      </@hero>
+                      <@list|{ nodes: listNodes }|>
+                        <website-content-list-flow nodes=listNodes
                           flush-x=true
                           flush-y=true
-                          with-teaser=true
-                          inner-justified=false
-                          image-width=180
-                          modifiers=["feed"]
-                        />
-                      </div>
-                    </if>
-                  </if>
-                </marko-web-query>
+                          modifiers=["rows"]
+                        >
+                          <@node with-teaser=false with-section=false />
+                        </website-content-list-flow>
+                      </@list>
+                    </default-theme-hero-flow>
+                  </marko-web-query>
+                </div>
 
-                <marko-web-load-more
-                  append-to=".lazarus__right-bottom"
-                  expand=500
-                  component-name="content-load-more-flow"
-                  component-input={
-                    aliases,
-                    adunit: { name: "lb-section-page-list", pos: "728_3_a" }
-                  }
-                  fragment-name="content-list"
-                  query-name="website-scheduled-content"
-                  query-params={ sectionId: id, limit: 7, skip: 15 }
-                  page-input={ for: "website-section", id }
-                /> -->
               </div>
             </div>
           </div>
