@@ -9,10 +9,15 @@ $ const blockName = "page-grid";
   modifiers=input.modifiers
   attrs=input.attrs
 >
-  <if(input.leftCol)>
-    <marko-web-node-element ...input.leftCol name="top-left-col" block-name=blockName />
+  <if(input.renderBody)>
+    <${input.renderBody} block-name=blockName />
   </if>
-  <if(input.rightCol)>
-    <marko-web-node-element ...input.rightCol name="top-right-col" block-name=blockName />
-  </if>
+  <else>
+    <if(input.leftCol)>
+      <marko-web-node-element ...input.leftCol name="top-left-col" block-name=blockName />
+    </if>
+    <if(input.rightCol)>
+      <marko-web-node-element ...input.rightCol name="top-right-col" block-name=blockName />
+    </if>
+  </else>
 </marko-web-node-element>
