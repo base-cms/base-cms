@@ -1,0 +1,56 @@
+{
+  "<lazarus-theme-page-grid>": {
+    "template": "./index.marko",
+    "<left-col>": {},
+    "<right-col>": {
+      "<top-row>": {
+        "<left-col>": {},
+        "<right-col>": {}
+      },
+      "<bottom-row>": {},
+      "@tag": "string",
+      "@modifiers": "array",
+      "@attrs": "object"
+    }
+  },
+  "<lazarus-theme-page-grid-right-col>": {
+    "template": "./right-col.marko",
+    "<top-row>": {
+      "<left-col>": {},
+      "<right-col>": {},
+      "@tag": "string",
+      "@modifiers": "array",
+      "@attrs": "object"
+    },
+    "<bottom-row>": {
+      "@tag": "string",
+      "@modifiers": "array",
+      "@attrs": "object"
+    },
+    "@tag": "string",
+    "@modifiers": "array",
+    "@attrs": "object"
+  },
+  "<lazarus-theme-page-grid-top-row>": {
+    "template": "./top-row.marko",
+    "<left-col>": {
+      "@tag": "string",
+      "@modifiers": "array",
+      "@attrs": "object"
+    },
+    "<right-col>": {
+      "@tag": "string",
+      "@modifiers": "array",
+      "@attrs": "object"
+    },
+    "@tag": "string",
+    "@modifiers": "array",
+    "@attrs": "object"
+  },
+  "<lazarus-theme-page-grid-col>": {
+    "template": "col.marko",
+    "@tag": "string",
+    "@modifiers": "array",
+    "@attrs": "object"
+  }
+}

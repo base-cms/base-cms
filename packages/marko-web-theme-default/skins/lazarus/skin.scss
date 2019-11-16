@@ -154,6 +154,7 @@ $theme-lazarus-card-color-dark: $white !default;
 @import "../../scss/theme.scss";
 
 @import "components";
+@import "page-grid";
 @import "page-layout";
 
 // Override classes here.

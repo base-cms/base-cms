@@ -60,17 +60,17 @@ $ const getAdSlots = ({ aliases }) => ({
 
       <marko-web-page-wrapper modifiers=["website-section-contents"]>
         <@section>
-          <div class="lazarus"> <!-- row -->
-            <aside class="lazarus__left"> <!-- col -->
+          <lazarus-theme-page-grid>
+            <@left-col>
               <lazarus-left-rail
                 aliases=aliases
                 adunit={ name: "mr-section-page", pos: "300_1_lft" }
                 query-fragment=queryFragment
               />
-            </aside>
-            <div class="lazarus__right"> <!-- col -->
-              <div class="lazarus__right-top"> <!-- row -->
-                <div class="lazarus__right-top-left"> <!-- col -->
+            </@left-col>
+            <@right-col>
+              <@top-row>
+                <@left-col>
                   <marko-web-query|{ nodes }|
                     name="website-optioned-content"
                     params={ sectionId: id, optionName: "Pinned", limit: 5, requiresImage: true, queryFragment }
@@ -79,16 +79,16 @@ $ const getAdSlots = ({ aliases }) => ({
                       <@header>Highlights</@header>
                     </website-content-hero-flow>
                   </marko-web-query>
-                </div>
-                <div class="lazarus__right-top-right"> <!-- col -->
+                </@left-col>
+                <@right-col>
                   <marko-web-gam-display-ad
                     id="gpt-mr-section-page-right"
                     slots=adSlots
                     modifiers=["max-width-300", "sticky-top"]
                   />
-                </div>
-              </div>
-              <div class="lazarus__right-bottom"> <!-- row -->
+                </@right-col>
+              </@top-row>
+              <@bottom-row>
                 <marko-web-query|{ nodes }|
                   name="website-scheduled-content"
                   params={ sectionId: id, limit: 10, skip: 5, queryFragment }
@@ -98,24 +98,24 @@ $ const getAdSlots = ({ aliases }) => ({
                     $ const listNodes = nodes.slice(4);
                     <if(cardNodes.length)>
                       <for|node| of=cardNodes>
-                        <div class="lazarus__card-column">
+                        <lazarus-theme-page-grid-col modifiers=["half", "bottom-spacer"]>
                           <website-content-card-node node=node>
                             <@image width=240 use-placeholder=true />
                           </website-content-card-node>
-                        </div>
+                        </lazarus-theme-page-grid-col>
                       </for>
                     </if>
 
-                    <div class="lazarus__ad-column">
+                    <lazarus-theme-page-grid-col modifiers=["full", "flex", "bottom-spacer", "body-bg"]>
                       <marko-web-gam-display-ad
                         id="gpt-lb-section-page-list"
                         slots=adSlots
                         modifiers=["max-width-728", "margin-auto-x"]
                       />
-                    </div>
+                    </lazarus-theme-page-grid-col>
 
                     <if(listNodes.length)>
-                      <div class="lazarus__list-column">
+                      <lazarus-theme-page-grid-col modifiers=["full"]>
                         <website-content-list-flow
                           nodes=listNodes
                           flush-x=true
@@ -127,13 +127,13 @@ $ const getAdSlots = ({ aliases }) => ({
                             <@image width=180 />
                           </@node>
                         </website-content-list-flow>
-                      </div>
+                      </lazarus-theme-page-grid-col>
                     </if>
                   </if>
                 </marko-web-query>
 
                 <marko-web-load-more
-                  append-to=".lazarus__right-bottom"
+                  append-to=".page-grid__bottom-row"
                   expand=500
                   component-name="content-load-more-flow"
                   component-input={
@@ -145,9 +145,9 @@ $ const getAdSlots = ({ aliases }) => ({
                   query-params={ sectionId: id, limit: 7, skip: 15 }
                   page-input={ for: "website-section", id }
                 />
-              </div>
-            </div>
-          </div>
+              </@bottom-row>
+            </@right-col>
+          </lazarus-theme-page-grid>
         </@section>
       </marko-web-page-wrapper>
     </marko-web-resolve-page>

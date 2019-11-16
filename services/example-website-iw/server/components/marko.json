@@ -3,7 +3,8 @@
     "./blocks/marko.json",
     "./flows/marko.json",
     "./lazarus/marko.json",
-    "./nodes/marko.json"
+    "./nodes/marko.json",
+    "./page-grid/marko.json"
   ],
   "<website-document>": {
     "template": "./document.marko",
