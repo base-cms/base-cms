@@ -29,7 +29,6 @@ $ const displayPublishedDate = ["event", "webinar", "contact"].includes(type) ? 
     <div class="content-page__header">
       <if(hasImage)>
         <div class="content-page__header-image-wrapper">
-          <marko-web-image-credit block-name="content-page" obj=primaryImage />
           <div class="content-page__image-inner-wrapper">
             <marko-web-img
               src=src
@@ -38,6 +37,7 @@ $ const displayPublishedDate = ["event", "webinar", "contact"].includes(type) ? 
               class="content-page__image"
               lazyload=true
             />
+            <marko-web-image-credit block-name="content-page" obj=primaryImage />
           </div>
         </div>
       </if>
