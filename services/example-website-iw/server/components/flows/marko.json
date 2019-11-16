@@ -39,22 +39,5 @@
     "@nodes": "array",
     "@aliases": "array",
     "@page-number": "number"
-  },
-  "<website-content-card-deck-flow>": {
-    "template": "./content-card-deck.marko",
-    "@nodes": "array",
-    "@aliases": "array"
-  },
-  "<website-magazine-issue-archive-flow>": {
-    "template": "./magazine-issue-archive.marko",
-    "@nodes": "array",
-    "@flush": "boolean",
-    "@with-title": "boolean",
-    "@modifiers": "array"
-  },
-  "<website-magazine-latest-issue-flow>": {
-    "template": "./magazine-latest-issue.marko",
-    "<header>": {},
-    "@issue-node": "object"
   }
 }
