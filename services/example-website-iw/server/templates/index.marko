@@ -5,6 +5,13 @@ import GAM from "../../config/gam";
 
 $ const { id, alias, name, pageNode } = data;
 
+$ const getAdSlots = ({ aliases }) => ({
+  "gpt-lb-section-page-main": GAM.getAdUnit({ name: "lb-section-page-main", aliases, targeting: { pos: "728_1_a" } }),
+  "gpt-lb-section-page-list": GAM.getAdUnit({ name: "lb-section-page-list", aliases, targeting: { pos: "728_2_a" } }),
+  "gpt-mr-section-page-left": GAM.getAdUnit({ name: "mr-section-page", aliases, targeting: { pos: "300_1_lft" } }),
+  "gpt-mr-section-page-right": GAM.getAdUnit({ name: "mr-section-page", aliases, targeting: { pos: "300_1_rht" } }),
+});
+
 <marko-web-website-section-page-layout id=id alias=alias name=name>
   <@head>
     <marko-web-gtm-website-section-context|{ context }| alias=alias>
@@ -12,49 +19,152 @@ $ const { id, alias, name, pageNode } = data;
     </marko-web-gtm-website-section-context>
     <marko-web-resolve-page|{ data: section }| node=pageNode>
       $ const aliases = hierarchyAliases(section);
-      $ const adSlots = {
-          "gpt-ad-lb1":   GAM.getAdUnit({ name: "lb1", aliases }),
-          "gpt-ad-rail1": GAM.getAdUnit({ name: "rail1", aliases, size: [300, 250] }),
-          "gpt-ad-rail2": GAM.getAdUnit({ name: "rail2", aliases, size: [300, 600] }),
-        }
-       <marko-web-gam-slots slots=adSlots />
+      <marko-web-gam-targeting key-values={ ptype: "homepage" } />
+      <marko-web-gam-slots slots=getAdSlots({ aliases }) />
     </marko-web-resolve-page>
   </@head>
-  <@above-container>
-    <marko-web-resolve-page|{ data: section }| node=pageNode>
-      $ const aliases = hierarchyAliases(section);
-      <!-- <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "wa", aliases }) />
-      <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "reskin", aliases }) /> -->
-    </marko-web-resolve-page>
-  </@above-container>
   <@page>
-    <marko-web-gam-display-ad id="gpt-ad-lb1" modifiers=["top-of-page"] />
+    <marko-web-resolve-page|{ data: section, resolved }| node=pageNode>
+      $ const aliases = hierarchyAliases(section);
+      $ const adSlots = getAdSlots({ aliases });
 
-    <marko-web-query|{ nodes }|
-      name="website-optioned-content"
-      params={ sectionId: id, optionName: "Pinned", limit: 5, queryFragment }
-    >
-      <website-content-hero-flow nodes=nodes />
-    </marko-web-query>
-  </@page>
-  <@below-page>
-    <marko-web-resolve-page|{ data: section }| node=pageNode>
-      $ const aliases = hierarchyAliases(section);
-      <marko-web-load-more
-        component-name="content-load-more-flow"
-        component-input={ aliases }
-        fragment-name="content-list"
-        query-name="website-scheduled-content"
-        query-params={ sectionId: id, limit: 14, skip: 5 }
-        max-pages=0
-        page-input={ for: "website-section", id }
+      <marko-web-gam-display-ad
+        id="gpt-lb-section-page-main"
+        slots=adSlots
+        modifiers=["top-of-page"]
       />
+
+      <marko-web-page-wrapper modifiers=["top-border"]>
+        <@section>
+          <div class="lazarus"> <!-- row -->
+            <aside class="lazarus__left"> <!-- col -->
+              <lazarus-left-rail
+                aliases=aliases
+                adunit={ name: "mr-section-page", pos: "300_1_lft" }
+                query-fragment=queryFragment
+              />
+            </aside>
+            <div class="lazarus__right"> <!-- col -->
+              <div class="lazarus__right-top"> <!-- row -->
+                <div class="col">
+
+                  <marko-web-query|{ nodes }|
+                    name="website-optioned-content"
+                    params={ sectionId: id, optionName: "Pinned", limit: 4, requiresImage: true, queryFragment }
+                  >
+                    <default-theme-hero-flow nodes=nodes>
+                      <@header>Top Stories</@header>
+                      <@hero|{ node }|>
+                        <website-content-card-node node=node>
+                          <@image width=630 />
+                          <@title modifiers=["large"] />
+                        </website-content-card-node>
+                      </@hero>
+                      <@list|{ nodes: listNodes }|>
+                        <default-theme-card-deck-flow cols=3 nodes=listNodes>
+                          <@slot|{ node }|>
+                            <website-content-card-node node=node />
+                          </@slot>
+                        </default-theme-card-deck-flow>
+                      </@list>
+                    </default-theme-hero-flow>
+                  </marko-web-query>
+
+                </div>
+              </div>
+              <div class="lazarus__right-bottom"> <!-- row -->
+                <div class="col-lg-6">
+
+                  <marko-web-query|{ nodes }|
+                    name="website-scheduled-content"
+                    params={ sectionAlias: "operations", limit: 3, requiresImage: true, queryFragment }
+                  >
+                    <website-content-hero-flow nodes=nodes>
+                      <@header>Operations</@header>
+                      <@card with-teaser=false />
+                      <@list>
+                        <@node with-teaser=false />
+                      </@list>
+                    </website-content-hero-flow>
+                  </marko-web-query>
+
+                </div>
+
+                <div class="col-lg-6">
+
+                  <marko-web-query|{ nodes }|
+                    name="website-scheduled-content"
+                    params={ sectionAlias: "leadership", limit: 3, requiresImage: true, queryFragment }
+                  >
+                    <website-content-hero-flow nodes=nodes>
+                      <@header>Leadership</@header>
+                      <@card with-teaser=false />
+                      <@list>
+                        <@node with-teaser=false />
+                      </@list>
+                    </website-content-hero-flow>
+                  </marko-web-query>
+
+                </div>
+
+                <!-- <marko-web-query|{ nodes }|
+                  name="website-scheduled-content"
+                  params={ sectionId: id, limit: 10, skip: 5, queryFragment }
+                >
+                  <if(nodes.length)>
+                    $ const cardNodes = nodes.slice(0, 4);
+                    $ const listNodes = nodes.slice(4);
+                    <if(cardNodes.length)>
+                      <for|node| of=cardNodes>
+                        <div class="lazarus__card-column">
+                          <website-content-card-node node=node use-placeholder=true image-width=240 />
+                        </div>
+                      </for>
+                    </if>
+
+                    <div class="lazarus__ad-column">
+                      <marko-web-gam-display-ad
+                        id="gpt-lb-section-page-list"
+                        slots=adSlots
+                        modifiers=["max-width-728", "margin-auto-x"]
+                      />
+                    </div>
+
+                    <if(listNodes.length)>
+                      <div class="lazarus__list-column">
+                        <website-content-list-flow
+                          nodes=listNodes
+                          flush-x=true
+                          flush-y=true
+                          with-teaser=true
+                          inner-justified=false
+                          image-width=180
+                          modifiers=["feed"]
+                        />
+                      </div>
+                    </if>
+                  </if>
+                </marko-web-query>
+
+                <marko-web-load-more
+                  append-to=".lazarus__right-bottom"
+                  expand=500
+                  component-name="content-load-more-flow"
+                  component-input={
+                    aliases,
+                    adunit: { name: "lb-section-page-list", pos: "728_3_a" }
+                  }
+                  fragment-name="content-list"
+                  query-name="website-scheduled-content"
+                  query-params={ sectionId: id, limit: 7, skip: 15 }
+                  page-input={ for: "website-section", id }
+                /> -->
+              </div>
+            </div>
+          </div>
+        </@section>
+      </marko-web-page-wrapper>
+
     </marko-web-resolve-page>
-  </@below-page>
-  <@foot>
-    <marko-web-resolve-page|{ data: section }| node=pageNode>
-      $ const aliases = hierarchyAliases(section);
-      <marko-web-gam-fixed-ad-bottom ...GAM.getAdUnit({ name: "lb2", aliases }) refresh-interval=0 />
-    </marko-web-resolve-page>
-  </@foot>
+  </@page>
 </marko-web-website-section-page-layout>

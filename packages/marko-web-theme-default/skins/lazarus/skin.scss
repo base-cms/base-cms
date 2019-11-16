@@ -415,3 +415,19 @@ body {
     background-color: rgba(64, 71, 93, .5);
   }
 }
+
+.card-deck-flow {
+  $self: &;
+  &--3-cols {
+    #{ $self } {
+      &__node {
+        @include media-breakpoint-up(md) {
+          @include make-col(4);
+        }
+        @include media-breakpoint-up(lg) {
+          @include make-col(4);
+        }
+      }
+    }
+  }
+}
