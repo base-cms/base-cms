@@ -81,7 +81,11 @@ $ const getAdSlots = ({ aliases }) => ({
                     params={ sectionAlias: "operations", limit: 3, requiresImage: true, queryFragment }
                   >
                     <website-content-hero-flow nodes=nodes>
-                      <@header>Operations</@header>
+                      <@header>
+                        <marko-web-link href="/operations">
+                          Operations
+                        </marko-web-link>
+                      </@header>
                       <@card
                         with-teaser=false
                         with-section=false
@@ -102,7 +106,11 @@ $ const getAdSlots = ({ aliases }) => ({
                     params={ sectionAlias: "leadership", limit: 3, requiresImage: true, queryFragment }
                   >
                     <website-content-hero-flow nodes=nodes>
-                      <@header>Leadership</@header>
+                      <@header>
+                        <marko-web-link href="/leadership">
+                          Leadership
+                        </marko-web-link>
+                      </@header>
                       <@card
                         with-teaser=false
                         with-section=false
@@ -157,6 +165,65 @@ $ const getAdSlots = ({ aliases }) => ({
                         </website-content-list-flow>
                       </@list>
                     </default-theme-hero-flow>
+                  </marko-web-query>
+                </div>
+
+                <div class="col-md-6 mb-block">
+
+                  <marko-web-query|{ nodes }|
+                    name="website-scheduled-content"
+                    params={ sectionAlias: "talent", limit: 1, requiresImage: true, queryFragment }
+                  >
+                    <website-content-hero-flow nodes=nodes>
+                      <@header>
+                        <marko-web-link href="/talent">
+                          Talent
+                        </marko-web-link>
+                      </@header>
+                      <@card
+                        with-teaser=false
+                        with-section=false
+                        modifiers=["increased-padding"]
+                      />
+                    </website-content-hero-flow>
+                  </marko-web-query>
+
+                </div>
+
+                <div class="col-md-6 mb-block">
+
+                  <marko-web-query|{ nodes }|
+                    name="website-scheduled-content"
+                    params={ sectionAlias: "the-economy", limit: 1, requiresImage: true, queryFragment }
+                  >
+                    <website-content-hero-flow nodes=nodes>
+                      <@header>
+                        <marko-web-link href="/the-economy">
+                          The Economy
+                        </marko-web-link>
+                      </@header>
+                      <@card
+                        with-teaser=false
+                        with-section=false
+                        modifiers=["increased-padding"]
+                      />
+                    </website-content-hero-flow>
+                  </marko-web-query>
+
+                </div>
+
+                <div class="col-12">
+                  <marko-web-query|{ nodes }|
+                    name="all-published-content"
+                    params={ limit: 1, includeContentTypes: ["MediaGallery"], requiresImage: true, queryFragment }
+                  >
+                    <website-content-hero-flow nodes=nodes>
+                      <@header>Featured Media</@header>
+                      <@card
+                        with-section=false
+                        modifiers=["dark", "increased-padding"]
+                      />
+                    </website-content-hero-flow>
                   </marko-web-query>
                 </div>
 

@@ -63,7 +63,8 @@
       }
 
       &__title,
-      &__description {
+      &__text {
+        color: $theme-lazarus-card-color-dark;
         a { // stylelint-disable-line
           color: $theme-lazarus-card-color-dark;
         }
