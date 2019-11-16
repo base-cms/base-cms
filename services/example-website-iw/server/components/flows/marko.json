@@ -3,11 +3,8 @@
     "template": "./content-hero.marko",
     "<header>": {},
     "<card>": {},
-    "<list>": {},
-    "<native-x>": {
-      "@index": "number",
-      "@name": "string",
-      "@aliases": "array"
+    "<list>": {
+      "<node>": {}
     },
     "@nodes": "array"
   },
