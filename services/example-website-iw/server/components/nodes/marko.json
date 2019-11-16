@@ -9,7 +9,6 @@
 
     "@with-teaser": "boolean",
     "@with-section": "boolean",
-    "@with-attribution": "boolean",
     "@with-dates": "boolean",
 
     "@modifiers": "array",
@@ -26,7 +25,6 @@
 
     "@with-teaser": "boolean",
     "@with-section": "boolean",
-    "@with-attribution": "boolean",
     "@with-dates": "boolean",
 
     "@modifiers": "array",
