@@ -8,7 +8,7 @@ $ const primarySection = getAsObject(content, "primarySection");
 $ const withTeaser = defaultValue(input.withTeaser, true);
 $ const withSection = defaultValue(input.withSection, true);
 $ const withAttribution = defaultValue(input.withAttribution, false);
-$ const withDates = defaultValue(input.withDates, false);
+$ const withDates = defaultValue(input.withDates, true);
 
 $ const { linkAttrs } = input;
 
@@ -38,22 +38,17 @@ $ const { linkAttrs } = input;
     <@title tag="h5" ...input.title>
       <marko-web-content-short-name tag=null obj=content link={ attrs: linkAttrs } />
     </@title>
-    <@text|{ blockName }|>
+    <@text|{ blockName }| show=withDates>
       <dates block-name=blockName content=content />
     </@text>
     <@text modifiers=["teaser"] show=(withTeaser && content.teaser)>
       <marko-web-content-teaser tag=null obj=content link={ attrs: linkAttrs } />
     </@text>
-    <if(withSection || withAttribution || withDates)>
+    <if(withSection || withAttribution)>
       <@footer>
-        <if(withAttribution || withDates)>
-          <@left>
-            <if(withAttribution)>
-              <attribution content=content />
-            </if>
-            <if(withDates)>
-              <dates content=content />
-            </if>
+        <if(withAttribution)>
+          <@left|{ blockName }|>
+            <attribution content=content />
           </@left>
         </if>
         <if(withSection)>
