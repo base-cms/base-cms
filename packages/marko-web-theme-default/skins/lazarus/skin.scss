@@ -186,7 +186,8 @@ body {
 
 .node-list {
   $self: &;
-  &--related-content {
+
+  &--rows {
     #{ $self } {
       &__header {
         padding: 0;
@@ -206,8 +207,6 @@ body {
         margin-right: .25rem;
         margin-bottom: .5rem;
         margin-left: .25rem;
-        background-color: #f6f6f6;
-        border-color: #bebebe;
 
         &:first-child {
           padding-top: $marko-web-node-list-padding;
@@ -215,7 +214,7 @@ body {
 
         &:last-child {
           padding-bottom: $marko-web-node-list-padding;
-          @include marko-web-node-list-border($property: border-bottom, $color: #bebebe);
+          @include marko-web-node-list-border($property: border-bottom);
         }
       }
 
@@ -225,6 +224,18 @@ body {
         }
         &__node {
           width: 100%;
+        }
+      }
+    }
+  }
+
+  &--related-content {
+    #{ $self } {
+      &__node {
+        background-color: #f6f6f6;
+        border-color: #bebebe;
+        &:last-child {
+          @include marko-web-node-list-border($property: border-bottom, $color: #bebebe);
         }
       }
     }
