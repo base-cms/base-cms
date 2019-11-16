@@ -16,16 +16,9 @@
       "<title>": {}
     },
     "@nodes": "array",
-    "@inner-justified": {
-      "type": "boolean",
-      "default-value": true
-    },
-    "@flush-x": {
-      "type": "boolean"
-    },
-    "@flush-y": {
-      "type": "boolean"
-    },
+    "@inner-justified": "boolean",
+    "@flush-x": "boolean",
+    "@flush-y": "boolean",
     "@modifiers": "array"
   },
   "<website-content-page-load-more-flow>": {
@@ -55,14 +48,8 @@
   "<website-magazine-issue-archive-flow>": {
     "template": "./magazine-issue-archive.marko",
     "@nodes": "array",
-    "@flush": {
-      "type": "boolean",
-      "default-value": false
-    },
-    "@with-title": {
-      "type": "boolean",
-      "default-value": true
-    },
+    "@flush": "boolean",
+    "@with-title": "boolean",
     "@modifiers": "array"
   },
   "<website-magazine-latest-issue-flow>": {
