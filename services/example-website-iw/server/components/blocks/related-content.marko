@@ -19,7 +19,7 @@ $ const {
       modifiers=["rows", "related-content"]
     >
       <@header>Related</@header>
-      <@node modifiers=["related-content"]>
+      <@node modifiers=["related-content"] with-teaser=false>
         <@image width=120 />
       </@node>
     </website-content-list-flow>
@@ -36,7 +36,7 @@ $ const {
         modifiers=["rows", "related-content"]
       >
         <@header>Latest in ${sectionName}</@header>
-        <@node modifiers=["related-content"]>
+        <@node modifiers=["related-content"] with-teaser=false>
           <@image width=120 />
         </@node>
       </website-content-list-flow>
