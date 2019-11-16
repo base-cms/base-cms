@@ -1,13 +1,16 @@
 .node {
   $self: &;
+
   &__title {
     margin-bottom: .375rem;
   }
+
   &__footer {
     &--body {
       justify-content: start;
     }
   }
+
   &__footer-left {
     margin-right: map-get($spacers, 2);
   }
@@ -44,6 +47,15 @@
         padding-bottom: .75rem;
         background-color: $theme-lazarus-card-bg-color-light;
         border-bottom: 1px solid $marko-web-node-list-border-color;
+      }
+    }
+  }
+
+  &--related-content {
+    background-color: #f6f6f6;
+    #{ $self } {
+      &__title {
+        font-size: 16px;
       }
     }
   }

@@ -170,90 +170,6 @@ body {
   padding: .25rem 1.25rem;
 }
 
-.page-dates {
-  &__content-published,
-  &__content-start-date,
-  &__content-end-date {
-    font-size: 14px;
-    color: #767676;
-    text-transform: uppercase;
-  }
-}
-
-.page-contents {
-  margin-bottom: map-get($spacers, block);
-}
-
-.node-list {
-  $self: &;
-
-  &--rows {
-    #{ $self } {
-      &__header {
-        padding: 0;
-        margin-bottom: .75rem;
-      }
-
-      &__nodes {
-        flex-direction: row;
-        flex-wrap: wrap;
-        padding-top: 0;
-        margin-right: -.25rem;
-        margin-left: -.25rem;
-      }
-
-      &__node {
-        width: calc(50% - .5rem);
-        margin-right: .25rem;
-        margin-bottom: .5rem;
-        margin-left: .25rem;
-
-        &:first-child {
-          padding-top: $marko-web-node-list-padding;
-        }
-
-        &:last-child {
-          padding-bottom: $marko-web-node-list-padding;
-          @include marko-web-node-list-border($property: border-bottom);
-        }
-      }
-
-      @include media-breakpoint-down(sm) {
-        &__nodes {
-          flex-direction: column;
-        }
-        &__node {
-          width: 100%;
-        }
-      }
-    }
-  }
-
-  &--related-content {
-    #{ $self } {
-      &__node {
-        background-color: #f6f6f6;
-        border-color: #bebebe;
-        &:last-child {
-          @include marko-web-node-list-border($property: border-bottom, $color: #bebebe);
-        }
-      }
-    }
-  }
-}
-
-.node {
-  $self: &;
-  &--related-content {
-    background-color: #f6f6f6;
-    #{ $self } {
-      &__title {
-        font-size: 16px;
-      }
-    }
-  }
-}
-
 .content-page-column {
   @include make-col-ready();
   @include make-col(12);
@@ -262,59 +178,6 @@ body {
   @include media-breakpoint-down($theme-responsive-text-breakpoint) {
     padding-right: $marko-web-page-wrapper-padding * 2;
     padding-left: $marko-web-page-wrapper-padding * 2;
-  }
-}
-
-.page-attribution {
-  $self: &;
-
-  &__content-authors,
-  &__content-byline,
-  &__content-company-name,
-  &__content-contributors,
-  &__content-photographers,
-  &__content-source,
-  &__content-sponsors {
-    &::before {
-      content: none;
-    }
-
-    #{ $self } {
-      &__content-name {
-        &:first-child {
-          &::before {
-            content: none;
-          }
-        }
-      }
-    }
-  }
-
-
-
-  div:last-child {
-    margin-bottom: 0;
-  }
-}
-
-.breadcrumbs {
-  &--content-page {
-    margin-bottom: .5rem;
-    font-size: 15px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: -.1px;
-
-    @include media-breakpoint-down(xs) {
-      font-size: 13px;
-    }
-
-    > .breadcrumb {
-      justify-content: left;
-      padding-bottom: 0;
-      margin-bottom: 0;
-      background-color: transparent;
-    }
   }
 }
 
@@ -430,21 +293,5 @@ body {
     font-weight: 600;
     color: #fff;
     background-color: rgba(64, 71, 93, .5);
-  }
-}
-
-.card-deck-flow {
-  $self: &;
-  &--3-cols {
-    #{ $self } {
-      &__node {
-        @include media-breakpoint-up(md) {
-          @include make-col(4);
-        }
-        @include media-breakpoint-up(lg) {
-          @include make-col(4);
-        }
-      }
-    }
   }
 }
