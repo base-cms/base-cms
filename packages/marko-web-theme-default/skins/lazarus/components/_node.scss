@@ -42,8 +42,35 @@
         width: 90%;
         padding: .25rem;
         padding-bottom: .75rem;
-        background-color: rgba($white, .9);
+        background-color: $theme-lazarus-card-bg-color-light;
         border-bottom: 1px solid $marko-web-node-list-border-color;
+      }
+    }
+  }
+
+  &--increased-padding {
+    #{ $self } {
+      &__body {
+        padding: 1rem;
+      }
+    }
+  }
+
+  &--dark {
+    #{ $self } {
+      &__body {
+        background-color: $theme-lazarus-card-bg-color-dark;
+      }
+
+      &__title,
+      &__description {
+        a { // stylelint-disable-line
+          color: $theme-lazarus-card-color-dark;
+        }
+      }
+
+      &__content-published {
+        color: $theme-lazarus-card-color-dark;
       }
     }
   }

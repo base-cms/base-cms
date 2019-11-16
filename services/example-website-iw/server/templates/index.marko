@@ -73,7 +73,7 @@ $ const getAdSlots = ({ aliases }) => ({
                 </div>
               </div>
               <div class="lazarus__right-bottom"> <!-- row -->
-                <div class="col-lg-6">
+                <div class="col-md-6">
 
                   <marko-web-query|{ nodes }|
                     name="website-scheduled-content"
@@ -81,16 +81,20 @@ $ const getAdSlots = ({ aliases }) => ({
                   >
                     <website-content-hero-flow nodes=nodes>
                       <@header>Operations</@header>
-                      <@card with-teaser=false />
+                      <@card
+                        with-teaser=false
+                        with-section=false
+                        modifiers=["dark", "increased-padding"]
+                      />
                       <@list>
-                        <@node with-teaser=false />
+                        <@node with-teaser=false with-section=false />
                       </@list>
                     </website-content-hero-flow>
                   </marko-web-query>
 
                 </div>
 
-                <div class="col-lg-6">
+                <div class="col-md-6">
 
                   <marko-web-query|{ nodes }|
                     name="website-scheduled-content"
@@ -98,9 +102,13 @@ $ const getAdSlots = ({ aliases }) => ({
                   >
                     <website-content-hero-flow nodes=nodes>
                       <@header>Leadership</@header>
-                      <@card with-teaser=false />
+                      <@card
+                        with-teaser=false
+                        with-section=false
+                        modifiers=["dark", "increased-padding"]
+                      />
                       <@list>
-                        <@node with-teaser=false />
+                        <@node with-teaser=false with-section=false />
                       </@list>
                     </website-content-hero-flow>
                   </marko-web-query>

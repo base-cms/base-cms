@@ -15,6 +15,7 @@ $marko-web-node-list-border-color: #f0f0f0 !default;
 
 $body-bg:   #f6f6f6 !default;
 $black:     #000 !default;
+$white:     #fff !default;
 $gray-600:  #3b3b3b !default;
 
 $enable-shadows: false !default;
@@ -91,7 +92,7 @@ $theme-item-title-line-height-sm: $theme-item-title-line-height !default;
 $theme-item-title-color: #222 !default;
 
 // Node Title (Large)
-$theme-item-title-large-font-size: 22px !default;
+$theme-item-title-large-font-size: 23px !default;
 $theme-item-title-large-font-weight: 700 !default;
 
 // Item Header
@@ -144,6 +145,11 @@ $theme-content-heading-large-margin-bottom-sm:  12px !default;
 
 $theme-content-heading-h4-margin-bottom:        17px !default;
 $theme-content-heading-h4-margin-bottom-sm:     12px !default;
+
+// Theme specfic vars
+$theme-lazarus-card-bg-color-light:  rgba($white, .9) !default;
+$theme-lazarus-card-bg-color-dark: rgba(125, 134, 140, .9) !default;
+$theme-lazarus-card-color-dark: $white !default;
 
 @import "../../scss/theme.scss";
 
