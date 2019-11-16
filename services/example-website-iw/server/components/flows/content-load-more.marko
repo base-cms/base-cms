@@ -9,7 +9,7 @@ $ const pos = incrementPos({ pos: adunit.pos, inc: input.pageNumber - 1 });
 
 <if(nodes.length)>
   <if(adunit.name)>
-    <lazarus-theme-page-grid-col modifiers=["full", "flex", "bottom-spacer", "body-bg"]>
+    <lazarus-theme-page-grid-col modifiers=["full", "flex", "bottom-spacer"]>
       <marko-web-gam-define-display-ad
         ...GAM.getAdUnit({ name: adunit.name, aliases, targeting: { pos } })
         modifiers=["max-width-728", "margin-auto-x"]

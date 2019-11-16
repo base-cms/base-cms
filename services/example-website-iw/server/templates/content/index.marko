@@ -31,19 +31,19 @@ $ const { id, type, pageNode } = data;
 
       <marko-web-page-wrapper modifiers=["top-border", "content-page-header"]>
         <@section>
-          <div class="lazarus"> <!-- row -->
-            <aside class="lazarus__left"> <!-- col -->
+          <lazarus-theme-page-grid>
+            <@left-col>
               <lazarus-left-rail
                 aliases=aliases
-                adunit={ name: "mr-content-page", pos: "300_1_lft" }
+                adunit={ name: "mr-section-page", pos: "300_1_lft" }
                 query-fragment=queryFragment
               />
-            </aside>
-            <div class="lazarus__right"> <!-- col -->
-              <div class="lazarus__right-bottom"> <!-- row -->
+            </@left-col>
+            <@right-col>
+              <@bottom-row>
                 <website-content-page-node node=content />
                 <marko-web-load-more
-                  append-to=".lazarus__right-bottom"
+                  append-to=".page-grid__bottom-row"
                   expand=500
                   component-name="content-page-load-more-flow"
                   component-input={
@@ -54,9 +54,9 @@ $ const { id, type, pageNode } = data;
                   query-params={ sectionId: section.id, limit: 1, skip: 0, excludeContentIds: [id] }
                   page-input={ for: "content", id, type }
                 />
-              </div>
-            </div>
-          </div>
+              </@bottom-row>
+            </@right-col>
+          </lazarus-theme-page-grid>
         </@section>
       </marko-web-page-wrapper>
     </marko-web-resolve-page>
