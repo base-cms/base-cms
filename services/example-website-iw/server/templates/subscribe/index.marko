@@ -1,49 +1,31 @@
-import GAM from "../../../config/gam";
-
 $ const { config, site } = out.global;
 
-$ const type = "subscribe";
-$ const title = "Subscribe";
 $ const description = `${config.website("name")} has products that deliver powerful content to you in a variety of forms including print, online, email and social media. To subscribe to a product or manage your current subscription, click below and put the power of ${config.website("name")} at your fingertips.`;
 
-<marko-web-default-page-layout type=type title=title description=description>
+<marko-web-default-page-layout type="" title="Subscribe" description=description>
   <@head>
     <marko-web-gtm-default-context|{ context }| type=type>
       <marko-web-gtm-push data=context />
     </marko-web-gtm-default-context>
   </@head>
-  <@above-container>
-    <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "wa" }) />
-    <marko-web-gam-out-of-page-ad ...GAM.getAdUnit({ name: "reskin" }) />
-  </@above-container>
   <@page>
-    <marko-web-gam-define-display-ad ...GAM.getAdUnit({ name: "lb1" }) modifiers=["top-of-page"] />
-    <marko-web-page-wrapper class="mb-block">
+    <marko-web-page-wrapper modifiers=["website-section-header", "top-border"]>
       <@section>
-        <div class="row">
-          <div class="col">
-            <default-theme-breadcrumbs-with-home>
-              <@item>${title}</@item>
-            </default-theme-breadcrumbs-with-home>
-            <h1 class="page-wrapper__title">Information at Your Fingertips</h1>
-            <p class="page-wrapper__description">${description}</p>
-            <default-theme-social-icons
-              items=site.getAsArray('socialMediaLinks')
-              icon-modifiers=["xl"]
-            />
-            <hr>
-          </div>
-        </div>
+        <h1 class="page-wrapper__title">Information at Your Fingertips</h1>
+        <div class="page-wrapper__deck">${description}</div>
+      </@section>
+    </marko-web-page-wrapper>
+    <marko-web-page-wrapper>
+      <@section>
+        <default-theme-social-icons
+          items=site.getAsArray('socialMediaLinks')
+          icon-modifiers=["xl"]
+        />
       </@section>
       <@section>
-        <div class="row">
-          <div class="col">
-            <h4>Newsletters</h4>
-            <p>Stay up-to-date on industry news and events, new product launches and more. Select from our list of targeted newsletter offerings to stay informed on the topics that matter to you and your business.</p>
-            <p><strong><marko-web-link href="https://endeavor.dragonforms.com/loading.do?omedasite=LFWPrefPage" target="_blank">Subscribe / Manage Preferences</marko-web-link></strong></p>
-            <hr>
-          </div>
-        </div>
+        <h4>Newsletters</h4>
+        <p>Stay up-to-date on industry news and events, new product launches and more. Select from our list of targeted newsletter offerings to stay informed on the topics that matter to you and your business.</p>
+        <p><strong><marko-web-link href="https://endeavor.dragonforms.com/loading.do?omedasite=LFWPrefPage" target="_blank">Subscribe / Manage Preferences</marko-web-link></strong></p>
       </@section>
     </marko-web-page-wrapper>
   </@page>
