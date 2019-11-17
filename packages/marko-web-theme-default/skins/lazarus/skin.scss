@@ -3,10 +3,6 @@
 
 @import "../../scss/functions.scss";
 
-// font map
-// jaf-bernino-sans-condensed -> "Encode Sans Condensed"
-// proxima-nova => "Raleway" for headers, etc; "Numans" dates
-
 // This skin only uses tiertiary nav.
 // Setting this to 0 to ensure proper menu/nav height calcs.
 $theme-site-navbar-primary-height-sm: 0 !default;
