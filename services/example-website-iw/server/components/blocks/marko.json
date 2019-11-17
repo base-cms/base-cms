@@ -10,5 +10,14 @@
     "@type": "string",
     "@section-id": "number",
     "@section-name": "string"
+  },
+  "<website-global-left-rail-block>": {
+    "template": "./global-left-rail.marko",
+    "<adunit>": {
+      "@name": "string",
+      "@pos": "string"
+    },
+    "@aliases": "array",
+    "@query-fragment": "expression"
   }
 }
