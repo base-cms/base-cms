@@ -11,16 +11,10 @@ $ const description = `Search ${config.website("name")}`;
     </marko-web-gtm-default-context>
   </@head>
   <@page>
-    <marko-web-page-wrapper class="mb-block">
+    <marko-web-page-wrapper modifiers=["website-section-header", "top-border"]>
       <@section>
-        <div class="row">
-          <div class="col">
-            <default-theme-breadcrumbs-with-home>
-              <@item>${title}</@item>
-            </default-theme-breadcrumbs-with-home>
-            <h1 class="page-wrapper__title">${description}</h1>
-          </div>
-        </div>
+        <h1 class="page-wrapper__title">${title}</h1>
+        <div class="page-wrapper__deck">${description}</div>
       </@section>
     </marko-web-page-wrapper>
   </@page>
