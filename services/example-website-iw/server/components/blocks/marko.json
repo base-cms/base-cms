@@ -9,7 +9,6 @@
     "@id": "number",
     "@type": "string",
     "@section-id": "number",
-    "@section-name": "string",
-    "@query-fragment": "object"
+    "@section-name": "string"
   }
 }

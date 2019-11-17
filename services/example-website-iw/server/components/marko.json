@@ -18,5 +18,13 @@
     "<below-container>": {},
     "<foot>": {},
     "@foo": "string"
+  },
+  "<lazarus-theme-content-page-card>": {
+    "template": "./content-page-card.marko",
+    "@content": "object",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "array",
+    "@attrs": "object"
   }
 }

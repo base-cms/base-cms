@@ -91,6 +91,7 @@
   }
 
   // Generic col
+  // @todo add infix ops to these!
   &__col {
     @include make-col-ready();
 
@@ -109,6 +110,10 @@
       margin-bottom: map-get($spacers, block);
     }
 
+    &--top-spacer {
+      margin-top: map-get($spacers, block);
+    }
+
     &--body-bg {
       padding-top: $grid-gutter-width;
       padding-bottom: $grid-gutter-width;
@@ -117,6 +122,16 @@
 
     &--flex {
       display: flex;
+    }
+
+    &--content-page {
+      @include make-col(12);
+      padding-right: 50px;
+      padding-left: 50px;
+      @include media-breakpoint-down($theme-responsive-text-breakpoint) {
+        padding-right: $marko-web-page-wrapper-padding * 2;
+        padding-left: $marko-web-page-wrapper-padding * 2;
+      }
     }
   }
 }
