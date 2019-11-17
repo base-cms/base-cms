@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/marko-core",
-  "version": "1.0.0-rc.5",
+  "version": "1.0.0-rc.8",
   "description": "Core BaseCMS Marko components.",
   "author": "Jacob Bare <jacob@limit0.io>",
   "main": "index.js",
@@ -14,7 +14,7 @@
   "dependencies": {
     "@base-cms/object-path": "^1.0.0-rc.1",
     "@base-cms/utils": "^1.0.0-rc.1",
-    "@base-cms/web-common": "^1.0.0-rc.5",
+    "@base-cms/web-common": "^1.0.0-rc.8",
     "marko": "^4.18.13",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.26"

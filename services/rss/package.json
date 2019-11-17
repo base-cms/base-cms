@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/rss",
-  "version": "1.0.0-rc.5",
+  "version": "1.0.0-rc.8",
   "description": "The BaseCMS RSS service",
   "main": "src/index.js",
   "author": "Josh Worden <josh@limit0.io>",
@@ -18,7 +18,7 @@
     "@base-cms/object-path": "^1.0.0-rc.1",
     "@base-cms/tenant-context": "^1.0.0-rc.1",
     "@base-cms/utils": "^1.0.0-rc.1",
-    "@base-cms/web-common": "^1.0.0-rc.5",
+    "@base-cms/web-common": "^1.0.0-rc.8",
     "@godaddy/terminus": "^4.2.0",
     "@newrelic/native-metrics": "^4.1.0",
     "express": "^4.17.1",
