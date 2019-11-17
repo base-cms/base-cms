@@ -3,6 +3,7 @@
 
   &__title {
     margin-bottom: .375rem;
+    @include theme-line-height-crop($theme-item-title-line-height);
   }
 
   &__footer {
