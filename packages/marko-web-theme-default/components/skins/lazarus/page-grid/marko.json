@@ -1,5 +1,5 @@
 {
-  "<lazarus-theme-page-grid>": {
+  "<lazarus-skin-page-grid>": {
     "template": "./index.marko",
     "<left-col>": {},
     "<right-col>": {
@@ -13,7 +13,7 @@
       "@attrs": "object"
     }
   },
-  "<lazarus-theme-page-grid-right-col>": {
+  "<lazarus-skin-page-grid-right-col>": {
     "template": "./right-col.marko",
     "<top-row>": {
       "<left-col>": {},
@@ -31,7 +31,7 @@
     "@modifiers": "array",
     "@attrs": "object"
   },
-  "<lazarus-theme-page-grid-top-row>": {
+  "<lazarus-skin-page-grid-top-row>": {
     "template": "./top-row.marko",
     "<left-col>": {
       "@tag": "string",
@@ -47,7 +47,7 @@
     "@modifiers": "array",
     "@attrs": "object"
   },
-  "<lazarus-theme-page-grid-col>": {
+  "<lazarus-skin-page-grid-col>": {
     "template": "col.marko",
     "@tag": "string",
     "@modifiers": "array",

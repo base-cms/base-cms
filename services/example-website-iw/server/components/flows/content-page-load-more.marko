@@ -11,11 +11,11 @@ $ const pos = incrementPos({ pos: adunit.pos, inc: input.pageNumber - 1 });
   $ const content = nodes[0];
   $ const section = getAsObject(content, "primarySection");
   $ const aliases = hierarchyAliases(section);
-  <lazarus-theme-page-grid-col modifiers=["full", "flex", "bottom-spacer", "body-bg"]>
+  <lazarus-skin-page-grid-col modifiers=["full", "flex", "bottom-spacer", "body-bg"]>
     <marko-web-gam-define-display-ad
       ...GAM.getAdUnit({ name: adunit.name, aliases, targeting: { pos } })
       modifiers=["max-width-728", "margin-auto-x"]
     />
-  </lazarus-theme-page-grid-col>
+  </lazarus-skin-page-grid-col>
   <website-content-page-node node=nodes[0] />
 </if>

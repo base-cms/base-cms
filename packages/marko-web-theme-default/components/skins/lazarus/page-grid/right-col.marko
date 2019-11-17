@@ -11,7 +11,7 @@ $ const bottomRow = getAsObject(input, "bottomRow");
   attrs=input.attrs
 >
   <if(input.topRow)>
-    <lazarus-theme-page-grid-top-row ...input.topRow />
+    <lazarus-skin-page-grid-top-row ...input.topRow />
   </if>
   <if(bottomRow.renderBody)>
     <marko-web-node-element ...bottomRow name="bottom-row" block-name=blockName />

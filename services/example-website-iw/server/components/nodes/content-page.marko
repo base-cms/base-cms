@@ -9,8 +9,8 @@ $ const { type } = content;
 $ const primarySection = getAsObject(content, "primarySection");
 $ const aliases = hierarchyAliases(primarySection);
 
-<lazarus-theme-page-grid-col modifiers=["content-page"]>
-  <lazarus-theme-content-page-card content=content />
+<lazarus-skin-page-grid-col modifiers=["content-page"]>
+  <lazarus-skin-content-page-card content=content />
 
   <default-theme-page-contents|{ blockName }|>
     <default-theme-content-contact-details obj=content />
@@ -62,4 +62,4 @@ $ const aliases = hierarchyAliases(primarySection);
     section-id=primarySection.id
     section-name=primarySection.name
   />
-</lazarus-theme-page-grid-col>
+</lazarus-skin-page-grid-col>

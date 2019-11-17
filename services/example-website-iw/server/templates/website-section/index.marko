@@ -60,7 +60,7 @@ $ const getAdSlots = ({ aliases }) => ({
 
       <marko-web-page-wrapper modifiers=["website-section-contents"]>
         <@section>
-          <lazarus-theme-page-grid>
+          <lazarus-skin-page-grid>
             <@left-col>
               <website-global-left-rail-block
                 aliases=aliases
@@ -98,24 +98,24 @@ $ const getAdSlots = ({ aliases }) => ({
                     $ const listNodes = nodes.slice(4);
                     <if(cardNodes.length)>
                       <for|node| of=cardNodes>
-                        <lazarus-theme-page-grid-col modifiers=["half", "bottom-spacer"]>
+                        <lazarus-skin-page-grid-col modifiers=["half", "bottom-spacer"]>
                           <website-content-card-node node=node>
                             <@image width=240 use-placeholder=true />
                           </website-content-card-node>
-                        </lazarus-theme-page-grid-col>
+                        </lazarus-skin-page-grid-col>
                       </for>
                     </if>
 
-                    <lazarus-theme-page-grid-col modifiers=["full", "flex", "bottom-spacer"]>
+                    <lazarus-skin-page-grid-col modifiers=["full", "flex", "bottom-spacer"]>
                       <marko-web-gam-display-ad
                         id="gpt-lb-section-page-list"
                         slots=adSlots
                         modifiers=["max-width-728", "margin-auto-x"]
                       />
-                    </lazarus-theme-page-grid-col>
+                    </lazarus-skin-page-grid-col>
 
                     <if(listNodes.length)>
-                      <lazarus-theme-page-grid-col modifiers=["full"]>
+                      <lazarus-skin-page-grid-col modifiers=["full"]>
                         <website-content-list-flow
                           nodes=listNodes
                           flush-x=true
@@ -127,7 +127,7 @@ $ const getAdSlots = ({ aliases }) => ({
                             <@image width=180 />
                           </@node>
                         </website-content-list-flow>
-                      </lazarus-theme-page-grid-col>
+                      </lazarus-skin-page-grid-col>
                     </if>
                   </if>
                 </marko-web-query>
@@ -147,7 +147,7 @@ $ const getAdSlots = ({ aliases }) => ({
                 />
               </@bottom-row>
             </@right-col>
-          </lazarus-theme-page-grid>
+          </lazarus-skin-page-grid>
         </@section>
       </marko-web-page-wrapper>
     </marko-web-resolve-page>

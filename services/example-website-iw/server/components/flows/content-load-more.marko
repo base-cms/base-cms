@@ -9,14 +9,14 @@ $ const pos = incrementPos({ pos: adunit.pos, inc: input.pageNumber - 1 });
 
 <if(nodes.length)>
   <if(adunit.name)>
-    <lazarus-theme-page-grid-col modifiers=["full", "flex", "bottom-spacer"]>
+    <lazarus-skin-page-grid-col modifiers=["full", "flex", "bottom-spacer"]>
       <marko-web-gam-define-display-ad
         ...GAM.getAdUnit({ name: adunit.name, aliases, targeting: { pos } })
         modifiers=["max-width-728", "margin-auto-x"]
       />
-    </lazarus-theme-page-grid-col>
+    </lazarus-skin-page-grid-col>
   </if>
-  <lazarus-theme-page-grid-col modifiers=["full"]>
+  <lazarus-skin-page-grid-col modifiers=["full"]>
     <website-content-list-flow
       nodes=nodes
       flush-x=true
@@ -28,5 +28,5 @@ $ const pos = incrementPos({ pos: adunit.pos, inc: input.pageNumber - 1 });
         <@image width=180 />
       </@node>
     </website-content-list-flow>
-  </lazarus-theme-page-grid-col>
+  </lazarus-skin-page-grid-col>
 </if>

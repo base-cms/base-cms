@@ -1,0 +1,13 @@
+{
+  "taglib-imports": [
+    "./page-grid/marko.json"
+  ],
+  "<lazarus-skin-content-page-card>": {
+    "template": "./content-page-card.marko",
+    "@content": "object",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "array",
+    "@attrs": "object"
+  }
+}
