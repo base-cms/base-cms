@@ -1,0 +1,33 @@
+$ const { config, site } = out.global;
+
+$ const type = "subscribe";
+$ const description = `${config.website("name")} has products that deliver powerful content to you in a variety of forms including print, online, email and social media. To subscribe to a product or manage your current subscription, click below and put the power of ${config.website("name")} at your fingertips.`;
+
+<marko-web-default-page-layout type=type title="Subscribe" description=description>
+  <@head>
+    <marko-web-gtm-default-context|{ context }| type=type>
+      <marko-web-gtm-push data=context />
+    </marko-web-gtm-default-context>
+  </@head>
+  <@page>
+    <marko-web-page-wrapper modifiers=["website-section-header", "top-border"]>
+      <@section>
+        <h1 class="page-wrapper__title">Information at Your Fingertips</h1>
+        <div class="page-wrapper__deck">${description}</div>
+      </@section>
+    </marko-web-page-wrapper>
+    <marko-web-page-wrapper>
+      <@section>
+        <default-theme-social-icons
+          items=site.getAsArray('socialMediaLinks')
+          icon-modifiers=["xl"]
+        />
+      </@section>
+      <@section>
+        <h4>Newsletters</h4>
+        <p>Stay up-to-date on industry news and events, new product launches and more. Select from our list of targeted newsletter offerings to stay informed on the topics that matter to you and your business.</p>
+        <p><strong><marko-web-link href="https://endeavor.dragonforms.com/loading.do?omedasite=LFWPrefPage" target="_blank">Subscribe / Manage Preferences</marko-web-link></strong></p>
+      </@section>
+    </marko-web-page-wrapper>
+  </@page>
+</marko-web-default-page-layout>

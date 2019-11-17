@@ -1,0 +1,21 @@
+$ const { config } = out.global;
+
+$ const type = "search";
+$ const title = "Search";
+$ const description = `Search ${config.website("name")}`;
+
+<marko-web-default-page-layout type=type title=title description=description>
+  <@head>
+    <marko-web-gtm-default-context|{ context }| type=type>
+      <marko-web-gtm-push data=context />
+    </marko-web-gtm-default-context>
+  </@head>
+  <@page>
+    <marko-web-page-wrapper modifiers=["website-section-header", "top-border"]>
+      <@section>
+        <h1 class="page-wrapper__title">${title}</h1>
+        <div class="page-wrapper__deck">${description}</div>
+      </@section>
+    </marko-web-page-wrapper>
+  </@page>
+</marko-web-default-page-layout>

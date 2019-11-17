@@ -47,6 +47,7 @@
     "@inc": "number",
     "@size": "expression",
     "@size-mapping": "array",
+    "@targeting": "object",
     "@apply-style": {
       "type": "boolean",
       "default-value": false
@@ -69,6 +70,7 @@
       "type": "string",
       "default-value": "ad-container"
     },
+    "@slots": "object",
     "@with-wrapper": "boolean"
   },
   "<marko-web-gam-out-of-page-ad>": {
@@ -89,5 +91,35 @@
     "@closeable": "boolean",
     "@refresh-interval": "number",
     "@scroll-offset": "number"
+  },
+  "<marko-web-gam-refresh-ad>": {
+    "template": "./refresh-ad.marko",
+    "@on": "string",
+    "@slot-id": "string",
+    "@min-in-view-percentage": "number"
+  },
+  "<marko-web-gam-inject-ads>": {
+    "template": "./inject-ads.marko",
+    "@inject <inject>[]": {
+      "@at": "number",
+      "@id": "string",
+      "@path": "string",
+      "@inc": "number",
+      "@size": "expression",
+      "@size-mapping": "array",
+      "@targeting": "object",
+      "@apply-style": {
+        "type": "boolean",
+        "default-value": false
+      },
+      "@class": "string",
+      "@modifiers": "array",
+      "@block-name": {
+        "type": "string",
+        "default-value": "ad-container"
+      }
+    },
+    "@selector": "string",
+    "@child-selector": "string"
   }
 }

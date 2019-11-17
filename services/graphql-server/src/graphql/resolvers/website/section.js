@@ -56,6 +56,8 @@ module.exports = {
       const sections = await loadHierarchy(section, load, projection, [thisSection]);
       return sections.reverse();
     },
+
+    isRoot: section => !section.parent,
   },
 
   /**

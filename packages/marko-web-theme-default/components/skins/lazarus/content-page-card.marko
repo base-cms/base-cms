@@ -1,0 +1,76 @@
+import { getAsObject } from "@base-cms/object-path";
+import { buildImgixUrl } from "@base-cms/image";
+
+$ const blockName = "content-page-card";
+
+$ const content = getAsObject(input, "content");
+$ const primaryImage = getAsObject(content, "primaryImage");
+$ const primarySection = getAsObject(content, "primarySection");
+
+$ const { type } = content;
+
+$ const hasImage = Boolean(primaryImage.src);
+$ const src = buildImgixUrl(primaryImage.src, { w: 768, h: 432 });
+$ const srcset = [`${buildImgixUrl(src, { dpr: 2 })} 2x`];
+
+$ const displayPublishedDate = ["event", "webinar", "contact"].includes(type) ? false : true;
+
+<!-- @todo determine where to place video embeds -->
+<!-- @todo add lower-right image caption -->
+<marko-web-block
+  name=blockName
+  tag=input.tag
+  class=input.class
+  modifiers=input.modifiers
+  attrs=input.attrs
+>
+  <marko-web-node-element name="header" block-name=blockName>
+    <if(hasImage)>
+      <marko-web-node-element name="header-image-wrapper" block-name=blockName>
+        <marko-web-node-element name="image-inner-wrapper" block-name=blockName>
+          <marko-web-img
+            src=src
+            srcset=srcset
+            alt=primaryImage.alt
+            class=`${blockName}__image`
+            lazyload=true
+          />
+          <marko-web-image-credit block-name=blockName obj=primaryImage />
+        </marko-web-node-element>
+      </marko-web-node-element>
+    </if>
+    <marko-web-node-element name="header-body" block-name=blockName>
+      <default-theme-website-section-breadcrumbs
+        section=primarySection
+        display-home=false
+        modifiers=[blockName]
+      />
+      <marko-web-content-name
+        tag="h1"
+        block-name=blockName
+        obj=content
+      />
+      <marko-web-content-teaser
+        tag="p"
+        block-name=blockName
+        obj=content
+      />
+
+      <if(type !== "contact")>
+        <default-theme-content-attribution obj=content />
+        <default-theme-page-dates|{ blockName }|>
+          <if(type === "event")>
+            <marko-web-content-start-date block-name=blockName obj=content />
+            <marko-web-content-end-date block-name=blockName obj=content />
+          </if>
+          <if(type === "webinar")>
+            <marko-web-content-start-date block-name=blockName obj=content />
+          </if>
+          <if(displayPublishedDate)>
+            <marko-web-content-published block-name=blockName obj=content />
+          </if>
+        </default-theme-page-dates>
+      </if>
+    </marko-web-node-element>
+  </marko-web-node-element>
+</marko-web-block>

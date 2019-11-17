@@ -9,6 +9,16 @@
     "@attrs": "object",
     "@link": "expression"
   },
+  "<marko-web-website-section-description>": {
+    "template": "./description.marko",
+    "@block-name": "string",
+    "@obj": "object",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object",
+    "@link": "expression"
+  },
   "<marko-web-website-section-hierarchy>": {
     "template": "./hierarchy.marko",
     "@block-name": "string",

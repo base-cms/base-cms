@@ -1,0 +1,46 @@
+import queryFragment from "../../graphql/fragments/content-list";
+
+$ const {
+  id,
+  type,
+  sectionId,
+  sectionName,
+} = input;
+
+<marko-web-query|{ nodes }|
+  name="related-published-content"
+  collapsible=false
+  params={ contentId: id, limit: 4, queryFragment }
+>
+  <if(nodes.length)>
+    <website-content-list-flow
+      nodes=nodes
+      flush-y=true
+      inner-justified=false
+      modifiers=["rows", "related-content"]
+    >
+      <@header>Related</@header>
+      <@node modifiers=["related-content"] with-teaser=false>
+        <@image width=120 />
+      </@node>
+    </website-content-list-flow>
+  </if>
+  <else-if(!['contact', 'company'].includes(type))>
+    <marko-web-query|{ nodes }|
+      name="website-scheduled-content"
+      params={ sectionId, excludeContentIds: [id], limit: 4, queryFragment }
+    >
+      <website-content-list-flow
+        nodes=nodes
+        flush-y=true
+        inner-justified=false
+        modifiers=["rows", "related-content"]
+      >
+        <@header>Latest in ${sectionName}</@header>
+        <@node modifiers=["related-content"] with-teaser=false>
+          <@image width=120 />
+        </@node>
+      </website-content-list-flow>
+    </marko-web-query>
+  </else-if>
+</marko-web-query>

@@ -83,6 +83,8 @@ type WebsiteSection {
   redirectTo: String
   # Retrieves the flattened (parent) hierarchy for this section.
   hierarchy: [WebsiteSection!]! @projection(localField: "parent")
+  # Whether this is a root website section
+  isRoot: Boolean! @projection(localField: "parent")
 }
 
 type WebsiteSectionConnection @projectUsing(type: "WebsiteSection") {

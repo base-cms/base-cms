@@ -1,0 +1,20 @@
+import { getAsArray } from "@base-cms/object-path";
+import DefineDisplayAd from "./define-display-ad";
+
+$ const props = {
+  selector: input.selector,
+  childSelector: input.childSelector,
+};
+
+$ const inject = getAsArray(input, "inject").filter(o => o && o.at);
+$ props.toInject = inject.reduce((o, i) => {
+  const { at } = i;
+  delete i.at;
+  // Ensure closing HMTL tags are escaped.
+  const html = DefineDisplayAd.renderToString(i).replace(/<\/(.+?)>/g, '<\\/$1>');
+  return { ...o, [at]: html };
+}, {});
+
+<if(Object.keys(props.toInject).length)>
+  <marko-web-browser-component name="GAMInjectAds" props=props />
+</if>

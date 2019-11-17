@@ -1,11 +1,12 @@
 /* eslint-disable no-new */
 import Vue from './vue';
-import components from './components';
+import Components from './components';
 import EventBus from './event-bus';
 import './lazysizes';
 
 const apollo = () => import(/* webpackChunkName: "apollo" */ './apollo');
 
+const components = {};
 const providers = {};
 const requiresApollo = {};
 const listeners = {};
@@ -40,6 +41,11 @@ const register = async (name, Component, { provide, withApollo, on } = {}) => {
   listeners[name] = on;
   if (withApollo) requiresApollo[name] = true;
 };
+
+/**
+ * Register built-in components.
+ */
+Components({ register, EventBus });
 
 /**
  * @deprecated Use `load` instead.

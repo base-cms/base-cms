@@ -1,0 +1,59 @@
+import generateId from "@base-cms/marko-web-gam/utils/generate-id";
+import { getAsObject } from "@base-cms/object-path";
+import GAM from "../../../config/gam";
+
+$ const { aliases, queryFragment } = input;
+$ const adunit = getAsObject(input, "adunit");
+$ const slotId = generateId();
+
+<if(adunit.name)>
+  <marko-web-browser-component name="LazarusIncrementAdPos" props={ slotId } />
+  <marko-web-gam-refresh-ad on="load-more-in-view" slot-id=slotId />
+</if>
+
+<!-- @todo check out stickybits js lib for handling position: sticky -->
+<marko-web-query|{ nodes }| name="all-published-content" params={ limit: 2, excludeContentTypes: ["Contact"], queryFragment }>
+  <website-content-list-flow
+    nodes=nodes
+    inner-justified=false
+    flush-x=true
+    flush-y=true
+  >
+    <@header>Recent</@header>
+    <@node display-image=false />
+  </website-content-list-flow>
+</marko-web-query>
+
+<if(adunit.name)>
+  <marko-web-gam-define-display-ad
+    ...GAM.getAdUnit({ name: adunit.name, aliases, targeting: { pos: adunit.pos } })
+    id=slotId
+    modifiers=["max-width-300"]
+  />
+</if>
+
+<marko-web-query|{ nodes }| name="all-published-content" params={ limit: 3, skip: 2, excludeContentTypes: ["Contact"], queryFragment }>
+  <website-content-list-flow
+    nodes=nodes
+    inner-justified=false
+    flush-x=true
+    flush-y=true
+  >
+    <@node display-image=false />
+  </website-content-list-flow>
+</marko-web-query>
+
+<marko-web-query|{ nodes }|
+  name="website-optioned-content"
+  params={ sectionAlias: "home", optionName: "Pinned", limit: 4, queryFragment }
+>
+  <website-content-list-flow
+    nodes=nodes
+    inner-justified=false
+    flush-x=true
+    flush-y=true
+  >
+    <@header>Featured</@header>
+    <@node display-image=false />
+  </website-content-list-flow>
+</marko-web-query>

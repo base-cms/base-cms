@@ -1,11 +1,28 @@
 import { BEM, warn } from "@base-cms/utils";
+import { getAsObject } from "@base-cms/object-path";
 
 $ const { id, withWrapper } = input;
 $ const blockName = input.blockName || "ad-container";
 $ const classNames = [blockName, ...BEM.applyModifiers(blockName, input.modifiers), input.class];
 
+$ const slots = getAsObject(input.slots);
+$ const slot = slots[id];
+$ let attrs = {};
+$ if (slot) {
+  attrs = {
+    'data-gam-path': slot.path,
+    'data-gam-size': JSON.stringify(slot.size),
+    'data-gam-targeting': slot.targeting ? JSON.stringify(slot.targeting) : undefined,
+  };
+}
+
 <if(id)>
-  <div id=(withWrapper ? null : id) class=classNames style=input.style>
+  <div
+    id=(withWrapper ? null : id)
+    class=classNames
+    style=input.style
+    ...attrs
+  >
     <marko-web-gam-ad-wrapper id=id enabled=withWrapper block-name=blockName>
       <script>googletag.cmd.push(function() { googletag.display('${id}'); });</script>
     </marko-web-gam-ad-wrapper>

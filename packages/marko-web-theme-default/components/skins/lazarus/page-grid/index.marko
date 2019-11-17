@@ -1,0 +1,20 @@
+import { getAsArray } from "@base-cms/object-path";
+
+$ const blockName = "page-grid";
+
+<marko-web-block
+  name=blockName
+  tag=input.tag
+  class=input.class
+  modifiers=input.modifiers
+  attrs=input.attrs
+>
+  <if(input.leftCol)>
+    <marko-web-element ...input.leftCol name="left-col" block-name=blockName>
+      <${input.leftCol} block-name=blockName />
+    </marko-web-element>
+  </if>
+  <if(input.rightCol)>
+    <lazarus-skin-page-grid-right-col ...input.rightCol />
+  </if>
+</marko-web-block>

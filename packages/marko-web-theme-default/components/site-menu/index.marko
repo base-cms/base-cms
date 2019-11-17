@@ -4,6 +4,7 @@ $ const blockName = input.blockName || "site-menu";
 
 $ const { site } = out.global;
 $ const menu = site.getAsArray("navigation.menu");
+$ const socialLinks = site.getAsArray("socialMediaLinks").map(link => asObject(link));
 
 $ const regEnabled = input.regEnabled != null ? input.regEnabled : false;
 $ const hasUser = input.hasUser != null ? input.hasUser : false;
@@ -22,11 +23,24 @@ $ const hasUser = input.hasUser != null ? input.hasUser : false;
         <default-theme-site-menu-section
           block-name=blockName
           label=s.label
+          modifiers=s.modifiers
           items=s.items
           reg-enabled=regEnabled
           has-user=hasUser
         />
       </for>
+      <if(socialLinks.length)>
+        <marko-web-element block-name=blockName name="section" modifiers=["social-icons"]>
+          <for|link| of=socialLinks>
+            <default-theme-social-icon-link
+              provider=link.provider
+              href=link.href
+              target=link.target
+              modifiers=["md"]
+            />
+          </for>
+        </marko-web-element>
+      </if>
     </marko-web-element>
   </marko-web-block>
 </if>

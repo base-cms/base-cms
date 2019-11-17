@@ -1,0 +1,65 @@
+import { getAsObject } from "@base-cms/object-path";
+import hierarchyAliases from "@base-cms/marko-web/utils/hierarchy-aliases";
+
+import GAM from "../../../config/gam";
+
+$ const { site } = out.global;
+$ const { node: content } = input;
+$ const { type } = content;
+$ const primarySection = getAsObject(content, "primarySection");
+$ const aliases = hierarchyAliases(primarySection);
+
+<lazarus-skin-page-grid-col modifiers=["content-page"]>
+  <lazarus-skin-content-page-card content=content />
+
+  <default-theme-page-contents|{ blockName }|>
+    <default-theme-content-contact-details obj=content />
+    <marko-web-gam-define-display-ad
+      ...GAM.getAdUnit({ name: "mr-content-page", aliases, targeting: { pos: "300_1_rht" }, size: [[300, 250], [300, 600]] })
+      modifiers=["max-width-300", "float-right"]
+    />
+
+    $ const bodyId = `content-body-${content.id}`;
+    <marko-web-content-body block-name=blockName obj=content attrs={ id: bodyId } />
+    <!-- @todo inject teads and native ad blocks -->
+    <marko-web-gam-inject-ads selector=`#${bodyId}`>
+      <@inject
+        ...GAM.getAdUnit({ name: "mr-content-page", aliases, targeting: { pos: "300_2_rht" }, size: [300, 250] })
+        at=2500
+        modifiers=["max-width-300", "float-right"]
+      />
+      <@inject
+        ...GAM.getAdUnit({ name: "mr-content-page", aliases, targeting: { pos: "300_3_rht" }, size: [[300, 250], [300, 600]] })
+        at=3500
+        modifiers=["max-width-300", "float-right"]
+      />
+      <@inject
+        ...GAM.getAdUnit({ name: "mr-content-page", aliases, targeting: { pos: "300_4_rht" }, size: [[300, 250], [300, 600]] })
+        at=6000
+        modifiers=["max-width-300", "float-right"]
+      />
+    </marko-web-gam-inject-ads>
+    <marko-web-content-sidebars block-name=blockName obj=content />
+
+    <if(type === "document")>
+      <default-theme-content-download obj=content>
+        <@wufoo user-name=site.get("wufoo.userName") />
+        <@link class="btn btn-lg btn-primary" />
+      </default-theme-content-download>
+    </if>
+    <if(type === "webinar")>
+      <default-theme-content-link-url
+        obj=content
+        label="Register/View"
+        target="_blank"
+      />
+    </if>
+  </default-theme-page-contents>
+
+  <website-related-content-block
+    id=content.id
+    type=content.type
+    section-id=primarySection.id
+    section-name=primarySection.name
+  />
+</lazarus-skin-page-grid-col>

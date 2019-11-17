@@ -1,0 +1,43 @@
+{
+  "<website-content-hero-flow>": {
+    "template": "./content-hero.marko",
+    "<header>": {},
+    "<card>": {},
+    "<list>": {
+      "<node>": {}
+    },
+    "@nodes": "array"
+  },
+  "<website-content-list-flow>": {
+    "template": "./content-list.marko",
+    "<header>": {},
+    "<node>": {
+      "<image>": {},
+      "<title>": {}
+    },
+    "@nodes": "array",
+    "@inner-justified": "boolean",
+    "@flush-x": "boolean",
+    "@flush-y": "boolean",
+    "@modifiers": "array"
+  },
+  "<website-content-page-load-more-flow>": {
+    "template": "./content-page-load-more.marko",
+    "<adunit>": {
+      "@name": "string",
+      "@pos": "string"
+    },
+    "@nodes": "array",
+    "@page-number": "number"
+  },
+  "<website-content-load-more-flow>": {
+    "template": "./content-load-more.marko",
+    "<adunit>": {
+      "@name": "string",
+      "@pos": "string"
+    },
+    "@nodes": "array",
+    "@aliases": "array",
+    "@page-number": "number"
+  }
+}

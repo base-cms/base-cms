@@ -1,0 +1,19 @@
+import { getAsObject } from "@base-cms/object-path";
+
+$ const blockName = "page-grid";
+$ const bottomRow = getAsObject(input, "bottomRow");
+
+<marko-web-node-element
+  block-name=blockName
+  name="right-col"
+  tag=input.tag
+  modifiers=input.modifiers
+  attrs=input.attrs
+>
+  <if(input.topRow)>
+    <lazarus-skin-page-grid-top-row ...input.topRow />
+  </if>
+  <if(bottomRow.renderBody)>
+    <marko-web-node-element ...bottomRow name="bottom-row" block-name=blockName />
+  </if>
+</marko-web-node-element>

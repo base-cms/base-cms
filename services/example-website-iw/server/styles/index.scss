@@ -1,0 +1,40 @@
+$primary: #ba2031;
+$secondary: #79868b;
+$light: #e9ecef;
+$dark: #212529;
+$info: #6c757d;
+
+$theme-site-navbar-secondary-bg-color: #fff;
+$theme-site-navbar-primary-bg-color: $primary;
+
+$theme-site-navbar-secondary-link-color: #473729;
+$theme-site-navbar-secondary-link-hover-color: #473729;
+$theme-site-navbar-secondary-link-active-color: #473729;
+
+$theme-site-navbar-tertiary-link-color: #473729;
+$theme-site-navbar-tertiary-link-hover-color: #473729;
+$theme-site-navbar-tertiary-link-active-color: #473729;
+
+$theme-site-navbar-secondary-padding-y: 15px;
+$theme-site-navbar-logo-height: 30px;
+$theme-site-navbar-logo-height-sm: 25px;
+
+$theme-site-footer-logo-height: 45px;
+
+$theme-site-header-breakpoints: (
+  hide-primary: 10000px,
+  hide-secondary: 906px,
+  small-logo: 1015px,
+  small-text-primary: 932px,
+  small-text-secondary: 1105px
+);
+
+@import "../../node_modules/@base-cms/marko-web-gam/scss/fixed-ad-bottom";
+@import "../../node_modules/@base-cms/marko-web-reveal-ad/scss/reveal-ad";
+@import "../../node_modules/@base-cms/marko-web-theme-default/skins/lazarus/skin.scss";
+
+.node {
+  &__title {
+    @include theme-line-height-crop($theme-item-title-line-height);
+  }
+}

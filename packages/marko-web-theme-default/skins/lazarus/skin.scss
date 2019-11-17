@@ -1,0 +1,168 @@
+// Override variables here.
+@import url("https://fonts.googleapis.com/css?family=Encode+Sans+Condensed:600,700|Numans|Raleway:500,600,700,800&display=swap");
+
+@import "../../scss/functions.scss";
+
+// This skin only uses tiertiary nav.
+// Setting this to 0 to ensure proper menu/nav height calcs.
+$theme-site-navbar-primary-height-sm: 0 !default;
+
+$marko-web-node-list-border-color: #f0f0f0 !default;
+
+$body-bg:   #f6f6f6 !default;
+$black:     #000 !default;
+$white:     #fff !default;
+$gray-600:  #3b3b3b !default;
+
+$enable-shadows: false !default;
+$enable-rounded: false !default;
+
+$grid-gutter-width: 20px !default;
+
+$font-weight-bold:      800 !default;
+$font-weight-normal:    500 !default;
+$breadcrumb-divider:    ">" !default;
+
+$theme-font-family-sans-serif: "Raleway", sans-serif !default;
+$theme-font-family-serif: "Georgia", serif !default;
+$theme-font-family-page-title: "Raleway", sans-serif !default;
+
+$theme-card-header-letter-spacing: 1px !default;
+
+// Nav
+$theme-site-navbar-secondary-padding-y: 5px !default;
+$theme-site-navbar-secondary-font-family: "Raleway", sans-serif !default;
+$theme-site-navbar-secondary-font-size: 12px !default;
+$theme-site-navbar-secondary-font-weight: 700 !default;
+$theme-site-navbar-secondary-link-padding: 16px !default;
+
+// Menu
+$theme-site-navbar-menu-bg-color: #7d868c !default;
+$theme-site-navbar-menu-font-family: "Encode Sans Condensed", sans-serif !default;
+$theme-site-navbar-menu-padding-x: 30px !default;
+$theme-site-navbar-menu-padding-y: 40px !default;
+$theme-site-navbar-menu-width: 320px !default;
+
+$theme-site-navbar-menu-item-border-color: #8a8a8a !default;
+$theme-site-navbar-menu-item-font-size: 18px !default;
+$theme-site-navbar-menu-item-font-weight: 700 !default;
+
+$theme-site-navbar-menu-link-color: #fff !default;
+$theme-site-navbar-menu-link-hover-color: #d9d9d9 !default;
+$theme-site-navbar-menu-link-padding-x: 10px !default;
+$theme-site-navbar-menu-link-padding-y: 0 !default;
+
+$theme-site-navbar-menu-active-item-font-weight: $theme-site-navbar-menu-item-font-weight !default;
+$theme-site-navbar-menu-hover-background-color: inherit !default;
+
+// Page wrapper
+$theme-page-title-font-family: "Raleway", sans-serif !default;
+$theme-page-title-font-size: 25px !default;
+$theme-page-title-font-size-sm: $theme-page-title-font-size !default;
+$theme-page-title-font-weight: 800 !default;
+$theme-page-title-line-height: get-line-height($theme-page-title-font-size, 32px) !default;
+$theme-page-title-line-height-sm: $theme-page-title-line-height !default;
+$theme-page-deck-color: $gray-600 !default;
+$theme-page-deck-font-family: "Georgia", sans-serif !default;
+$theme-page-deck-font-size: 16px !default;
+$theme-page-deck-font-size-sm: $theme-page-deck-font-size !default;
+$theme-page-deck-line-height: get-line-height($theme-page-deck-font-size, 21px) !default;
+$theme-page-deck-line-height-sm: $theme-page-deck-line-height !default;
+
+// Page bodies
+$theme-page-body-color: #222 !default;
+
+// Breadcrumbs
+$theme-breadcrumbs-font-family: "Raleway", sans-serif !default;
+$theme-breadcrumbs-font-size: 14px !default;
+$theme-breadcrumbs-font-weight: 500 !default;
+$theme-breadcrumbs-line-height: get-line-height($theme-breadcrumbs-font-size, 20px) !default;
+
+// Node Title
+$theme-item-title-font-family: "Encode Sans Condensed", sans-serif !default;
+$theme-item-title-font-size: 18px !default;
+$theme-item-title-font-size-sm: $theme-item-title-font-size !default;
+$theme-item-title-font-weight: 600 !default;
+$theme-item-title-line-height: get-line-height($theme-item-title-font-size, 24px) !default;
+$theme-item-title-line-height-sm: $theme-item-title-line-height !default;
+$theme-item-title-color: #222 !default;
+
+// Node Title (Large)
+$theme-item-title-large-font-size: 23px !default;
+$theme-item-title-large-font-weight: 700 !default;
+
+// Item Header
+$theme-item-header-color: #767676 !default;
+
+// Item Footer
+$theme-item-footer-color: $theme-item-header-color !default;
+
+// Item Card Header
+$theme-card-header-font-family: "Raleway", sans-serif !default;
+$theme-card-header-font-size: 15px !default;
+$theme-card-header-font-weight: 800 !default;
+$theme-card-header-color: $primary !default;
+$theme-card-header-letter-spacing: 0 !default;
+$theme-card-header-background-color: transparent !default;
+$theme-card-header-border: 4px solid rgba($primary, .8) !default;
+
+// Item descriptions
+$theme-item-description-font-size: 15px !default;
+$theme-item-description-font-size-sm: $theme-item-description-font-size !default;
+$theme-item-description-max-lines: 3 !default;
+$theme-item-description-line-height: get-line-height($theme-item-description-font-size, 21px) !default;
+$theme-item-description-line-height-sm: $theme-item-description-line-height !default;
+$theme-item-description-color: #3b3b3b !default;
+
+$marko-web-page-wrapper-padding: $grid-gutter-width / 2 !default;
+$marko-web-page-wrapper-section-margin: 1.25rem !default;
+
+// Published Date
+$theme-content-published-date-font-family: "Numans", sans-serif !default;
+$theme-content-published-date-font-weight: 400 !default;
+
+// Headings
+$theme-heading-font-family:           $theme-font-family-sans-serif !default;
+$theme-heading-font-weight:           700 !default;
+
+$theme-heading-large-font-size:       20px !default;
+$theme-heading-large-font-size-sm:    18px !default;
+$theme-heading-large-line-height:     1.5 !default;
+$theme-heading-large-line-height-sm:  1.5 !default;
+
+$theme-heading-h4-font-size:          20px !default;
+$theme-heading-h4-font-size-sm:       18px !default;
+$theme-heading-h4-line-height:        1.5 !default;
+$theme-heading-h4-line-height-sm:     1.5 !default;
+
+// Content Headings
+$theme-content-heading-large-margin-bottom:     17px !default;
+$theme-content-heading-large-margin-bottom-sm:  12px !default;
+
+$theme-content-heading-h4-margin-bottom:        17px !default;
+$theme-content-heading-h4-margin-bottom-sm:     12px !default;
+
+// Theme specfic vars
+$theme-lazarus-card-bg-color-light:  rgba($white, .9) !default;
+$theme-lazarus-card-bg-color-dark: rgba(125, 134, 140, .9) !default;
+$theme-lazarus-card-color-dark: $white !default;
+
+@import "../../scss/theme.scss";
+
+@import "components";
+@import "content-page-card";
+@import "page-grid";
+
+// Override classes here.
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+.document-container {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.child-website-section-nav-item {
+  padding: .25rem 1.25rem;
+}

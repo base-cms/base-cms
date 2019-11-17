@@ -10,6 +10,7 @@
     "./site-footer/marko.json",
     "./site-menu/marko.json",
     "./site-navbar/marko.json",
+    "./skins/marko.json",
     "./social/marko.json"
   ],
   "<default-theme-menu-toggle-button>": {

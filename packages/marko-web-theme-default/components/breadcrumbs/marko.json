@@ -1,7 +1,8 @@
 {
   "<default-theme-breadcrumbs>": {
     "template": "./index.marko",
-    "@items <item>[]": {}
+    "@items <item>[]": {},
+    "@modifiers": "array"
   },
   "<default-theme-breadcrumbs-with-home>": {
     "template": "./with-home.marko",
@@ -13,6 +14,8 @@
     "@section": "object",
     "@home-title": "string",
     "@home-alias": "string",
-    "@display-self": "boolean"
+    "@display-self": "boolean",
+    "@display-home": "boolean",
+    "@modifiers": "array"
   }
 }

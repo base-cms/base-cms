@@ -1,0 +1,21 @@
+import { getAsArray, getAsObject } from "@base-cms/object-path";
+import defaultValue from "@base-cms/marko-core/utils/default-value";
+
+$ const nodes = getAsArray(input, "nodes");
+
+<marko-web-node-list
+  inner-justified=defaultValue(input.innerJustified, true)
+  flush-x=defaultValue(input.flushX, false)
+  flush-y=defaultValue(input.flushY, false)
+  modifiers=input.modifiers
+  header=input.header
+>
+  <@nodes nodes=nodes>
+    <@slot|{ node }|>
+      <website-content-list-node
+        node=node
+        ...input.node
+      />
+    </@slot>
+  </@nodes>
+</marko-web-node-list>

@@ -1,0 +1,32 @@
+import { getAsArray, getAsObject } from "@base-cms/object-path";
+import GAM from "../../../config/gam";
+import incrementPos from "../../utils/gam/increment-pos";
+
+$ const { aliases } = input;
+$ const nodes = getAsArray(input, "nodes");
+$ const adunit = getAsObject(input, "adunit");
+$ const pos = incrementPos({ pos: adunit.pos, inc: input.pageNumber - 1 });
+
+<if(nodes.length)>
+  <if(adunit.name)>
+    <lazarus-skin-page-grid-col modifiers=["full", "flex", "bottom-spacer"]>
+      <marko-web-gam-define-display-ad
+        ...GAM.getAdUnit({ name: adunit.name, aliases, targeting: { pos } })
+        modifiers=["max-width-728", "margin-auto-x"]
+      />
+    </lazarus-skin-page-grid-col>
+  </if>
+  <lazarus-skin-page-grid-col modifiers=["full"]>
+    <website-content-list-flow
+      nodes=nodes
+      flush-x=true
+      flush-y=true
+      inner-justified=false
+      modifiers=["feed"]
+    >
+      <@node>
+        <@image width=180 />
+      </@node>
+    </website-content-list-flow>
+  </lazarus-skin-page-grid-col>
+</if>
