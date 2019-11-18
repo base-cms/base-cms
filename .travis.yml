@@ -5,11 +5,9 @@ cache: yarn
 stages:
   - name: test
   - name: notify_start
-    if: tag is present
   - name: deploy
     if: tag is present
   - name: notify
-    if: tag is present
 
 jobs:
   include:

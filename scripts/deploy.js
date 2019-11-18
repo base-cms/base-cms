@@ -20,8 +20,9 @@ const https = require('https');
 const lerna = require('../lerna.json');
 
 const { log } = console;
-const { TRAVIS_TAG } = process.env;
+const { TRAVIS_TAG, RANCHER_CLUSTERID } = process.env;
 
+const environment = RANCHER_CLUSTERID === 'c-rc5kp' ? 'staging' : 'production';
 const version = `v${lerna.version}`;
 const service = process.argv[2];
 const servicePath = join('services', service);
@@ -38,7 +39,7 @@ const nrIds = {
 
 const error = (message) => {
   log(`ERROR: ${message}`);
-  const text = `Deployment of \`${image}\` @ \`${version}\` FAILED!\n${message}`;
+  const text = `Deployment of \`${image}\` @ \`${version}\` to \`${environment}\` FAILED!\n${message}`;
   const payload = JSON.stringify({ attachments: [{ color: 'danger', text }] });
   const { SLACK_WEBHOOK_URL } = process.env;
   const req = https.request(SLACK_WEBHOOK_URL, {
