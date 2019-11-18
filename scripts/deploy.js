@@ -6,7 +6,6 @@
  * - ENV
  *   - DOCKERHUB_USERNAME
  *   - DOCKERHUB_PASSWORD
- *   - TRAVIS_TAG
  *   - RANCHER_URL
  *   - RANCHER_TOKEN
  *   - RANCHER_CLUSTERID
@@ -23,7 +22,14 @@ const { log } = console;
 const { TRAVIS_TAG, RANCHER_CLUSTERID } = process.env;
 
 const environment = RANCHER_CLUSTERID === 'c-rc5kp' ? 'staging' : 'production';
-const version = `v${lerna.version}`;
+const isProd = environment === 'production';
+
+const getVersion = () => {
+  if (isProd) return `v${lerna.version}`;
+  const { stdout } = spawnSync('git', ['describe', '--tags']);
+  return `${stdout}`.trim();
+};
+const version = getVersion();
 const service = process.argv[2];
 const servicePath = join('services', service);
 const image = `basecms/${service}`;
@@ -43,13 +49,13 @@ const error = async (message) => {
   process.exit(1);
 };
 
-if (TRAVIS_TAG !== version) error(`Tagged version ${TRAVIS_TAG} differs from lerna version ${version}, aborting!`);
+if (isProd && TRAVIS_TAG !== version) error(`Tagged version ${TRAVIS_TAG} differs from lerna version ${version}, aborting!`);
 if (!service) error('You must specify the service folder to deploy.');
 if (!existsSync(servicePath)) error(`Could not read ${servicePath}!`);
 
 const pkg = require(`../${servicePath}/package.json`); // eslint-disable-line import/no-dynamic-require
 
-if (version !== `v${pkg.version}`) {
+if (isProd && version !== `v${pkg.version}`) {
   log(`Service ${service} is at version ${pkg.version}. Skipping deployment.`);
   process.exit(0);
 }
@@ -97,7 +103,6 @@ const deploy = async () => {
 };
 
 const main = async () => {
-  if (environment === 'staging') throw new Error('This file cannot be used to deploy to the staging environment!');
   if (await shouldBuild()) {
     log('  Image was not found, building.');
     await build();

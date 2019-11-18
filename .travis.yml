@@ -33,7 +33,8 @@ jobs:
 
     - stage: staging
       name: GraphQL Server
-      script: scripts/deploy-staging.js graphql-server
+      script: scripts/deploy.js graphql-server
+      env: RANCHER_CLUSTERID=c-rc5kp
 
     - stage: deploy
       name: Sitemaps
@@ -41,7 +42,8 @@ jobs:
 
     - stage: staging
       name: Sitemaps
-      script: scripts/deploy-staging.js sitemaps
+      script: scripts/deploy.js sitemaps
+      env: RANCHER_CLUSTERID=c-rc5kp
 
     - stage: deploy
       name: RSS
@@ -49,7 +51,8 @@ jobs:
 
     - stage: staging
       name: RSS
-      script: scripts/deploy-staging.js rss
+      script: scripts/deploy.js rss
+      env: RANCHER_CLUSTERID=c-rc5kp
 
     - stage: deploy
       name: Hooks
@@ -57,7 +60,8 @@ jobs:
 
     - stage: staging
       name: Hooks
-      script: scripts/deploy-staging.js hooks
+      script: scripts/deploy.js hooks
+      env: RANCHER_CLUSTERID=c-rc5kp
 
     - stage: deploy
       name: oEmbed
@@ -65,7 +69,8 @@ jobs:
 
     - stage: staging
       name: oEmbed
-      script: scripts/deploy-staging.js oembed
+      script: scripts/deploy.js oembed
+      env: RANCHER_CLUSTERID=c-rc5kp
 
     - stage: deploy
       name: Google Data API
@@ -73,4 +78,5 @@ jobs:
 
     - stage: staging
       name: Google Data API
-      script: scripts/deploy-staging.js google-data-api
+      script: scripts/deploy.js google-data-api
+      env: RANCHER_CLUSTERID=c-rc5kp
