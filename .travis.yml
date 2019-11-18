@@ -3,40 +3,58 @@ node_js: "10.15"
 cache: yarn
 
 env:
-  - SERVICE=graphql-server
-  - SERVICE=rss
-  - SERVICE=oembed
-  - SERVICE=sitemaps
-  - SERVICE=hooks
-  - SERVICE=google-data-api
+  - TARGET=production RANCHER_CLUSTERID=c-gxsr7
+  - TARGET=staging RANCHER_CLUSTERID=c-rc5kp
 
 stages:
   - name: test
 
-  - name: production
-    if: tag is present
-
-  - name: staging
-    # if: branch = "master" AND type != "pull_request"
-    if: branch = "staging" AND type != "pull_request"
+  - name: deploy
+    if: (env(TARGET) = staging AND tag is present) OR (env(TARGET) = production AND tag =~ /^v\d+\.\d+\.\d+$/)
 
 jobs:
   include:
     - stage: test
-      script: scripts/workspace.sh ${SERVICE} test
-      env:
-        - NODE_ENV=test
+      if: env(TARGET) = staging
 
-    - stage: production
-      name: ${SERVICE}
-      script: scripts/deploy.js ${SERVICE}
-      env:
-        - RANCHER_CLUSTERID=c-gxsr7
-        - TARGET=production
+    - stage: deploy
+      name: Deployment Started
+      script: scripts/deploy-notify-start.sh
+      install: skip
 
-    - stage: staging
-      name: ${SERVICE}
-      script: scripts/deploy.js ${SERVICE}
-      env:
-        - RANCHER_CLUSTERID=c-rc5kp
-        - TARGET=staging
+    #############################
+    # vvv ADD SERVICES HERE vvv #
+    #############################
+
+    - stage: deploy`
+      name: GraphQL Server
+      script: scripts/deploy.js graphql-server
+
+    - stage: deploy
+      name: Sitemaps
+      script: scripts/deploy.js sitemaps
+
+    - stage: deploy
+      name: RSS
+      script: scripts/deploy.js rss
+
+    - stage: deploy
+      name: Hooks
+      script: scripts/deploy.js hooks
+
+    - stage: deploy
+      name: oEmbed
+      script: scripts/deploy.js oembed
+
+    - stage: deploy
+      name: Google Data API
+      script: scripts/deploy.js google-data-api
+
+    #############################
+    # ^^^ ADD SERVICES HERE ^^^ #
+    #############################
+
+    - stage: deploy
+      name: Deployment Ended
+      script: scripts/deploy-notify.sh
+      install: skip
