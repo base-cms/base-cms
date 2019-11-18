@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 [[ $RANCHER_CLUSTERID = "c-rc5kp" ]] && ENVIRONMENT="staging" || ENVIRONMENT="production"
-[[ -n "$TRAVIS_TAG" ]] && REVISION="$TRAVIS_TAG" || REVISION="$TRAVIS_COMMIT"
+[[ -n "$TRAVIS_TAG" ]] && REVISION="$TRAVIS_TAG" || REVISION=`git describe --tags`
 
 payload="{
   \"attachments\": [{
