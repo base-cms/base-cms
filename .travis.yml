@@ -5,11 +5,13 @@ cache: yarn
 stages:
   - name: test
   - name: notify_start
+    if: tag is present OR (branch = "master" AND type != "pull_request")
   - name: deploy
     if: tag is present
   - name: staging
     if: branch = "master" AND type != "pull_request"
   - name: notify
+    if: tag is present OR (branch = "master" AND type != "pull_request")
 
 jobs:
   include:
