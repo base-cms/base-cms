@@ -19,10 +19,8 @@ const https = require('https');
 const lerna = require('../lerna.json');
 
 const { log } = console;
-const { TRAVIS_TAG, RANCHER_CLUSTERID } = process.env;
-
-const environment = RANCHER_CLUSTERID === 'c-rc5kp' ? 'staging' : 'production';
-const isProd = environment === 'production';
+const { TRAVIS_TAG, TARGET } = process.env;
+const isProd = TARGET === 'production';
 
 const getVersion = () => {
   if (isProd) return `v${lerna.version}`;
