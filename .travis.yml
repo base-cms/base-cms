@@ -8,6 +8,7 @@ env:
 
 stages:
   - name: test
+    if: env(TARGET) = production
 
   - name: deploy
     if: (env(TARGET) = staging AND tag is present) OR (env(TARGET) = production AND tag =~ /^v\d+\.\d+\.\d+$/)
@@ -15,7 +16,6 @@ stages:
 jobs:
   include:
     - stage: test
-      if: env(TARGET) = staging
 
     - stage: deploy
       name: Deployment Started
@@ -26,7 +26,7 @@ jobs:
     # vvv ADD SERVICES HERE vvv #
     #############################
 
-    - stage: deploy`
+    - stage: deploy
       name: GraphQL Server
       script: scripts/deploy.js graphql-server
 
