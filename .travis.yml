@@ -7,6 +7,8 @@ stages:
   - name: notify_start
   - name: deploy
     if: tag is present
+  - name: staging
+    if: branch = "master" AND type != "pull_request"
   - name: notify
 
 jobs:
@@ -27,22 +29,46 @@ jobs:
       name: GraphQL Server
       script: scripts/deploy.js graphql-server
 
+    - stage: staging
+      name: GraphQL Server
+      script: scripts/deploy-staging.js graphql-server
+
     - stage: deploy
       name: Sitemaps
       script: scripts/deploy.js sitemaps
+
+    - stage: staging
+      name: Sitemaps
+      script: scripts/deploy-staging.js sitemaps
 
     - stage: deploy
       name: RSS
       script: scripts/deploy.js rss
 
+    - stage: staging
+      name: RSS
+      script: scripts/deploy-staging.js rss
+
     - stage: deploy
       name: Hooks
       script: scripts/deploy.js hooks
+
+    - stage: staging
+      name: Hooks
+      script: scripts/deploy-staging.js hooks
 
     - stage: deploy
       name: oEmbed
       script: scripts/deploy.js oembed
 
+    - stage: staging
+      name: oEmbed
+      script: scripts/deploy-staging.js oembed
+
     - stage: deploy
       name: Google Data API
       script: scripts/deploy.js google-data-api
+
+    - stage: staging
+      name: Google Data API
+      script: scripts/deploy-staging.js google-data-api
