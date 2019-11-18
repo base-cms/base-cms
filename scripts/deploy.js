@@ -27,7 +27,7 @@ const isProd = environment === 'production';
 const getVersion = () => {
   if (isProd) return `v${lerna.version}`;
   const { stdout } = spawnSync('git', ['describe', '--tags']);
-  return `${stdout}`.trim();
+  return `v${stdout}`.trim();
 };
 const version = getVersion();
 const service = process.argv[2];
