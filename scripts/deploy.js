@@ -117,6 +117,7 @@ const deploy = async () => {
 };
 
 const main = async () => {
+  if (environment === 'staging') throw new Error('This file cannot be used to deploy to the staging environment!');
   if (await shouldBuild()) {
     log('  Image was not found, building.');
     await build();

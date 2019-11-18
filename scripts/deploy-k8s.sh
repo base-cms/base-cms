@@ -7,7 +7,7 @@ npx @endeavorb2b/rancher2cli dl basecms-service $1 $IMAGE
 
 payload="{
   \"deployment\": {
-    \"revision\": \"\`$2\`\",
+    \"revision\": \"$2\",
     \"user\": \"TravisCD\"
   }
 }"
