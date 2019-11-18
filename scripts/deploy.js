@@ -37,30 +37,10 @@ const nrIds = {
   'google-data-api': 305296335,
 };
 
-const error = (message) => {
+const error = async (message) => {
   log(`ERROR: ${message}`);
-  const text = `Deployment of \`${image}\` @ \`${version}\` to \`${environment}\` FAILED!\n${message}`;
-  const payload = JSON.stringify({ attachments: [{ color: 'danger', text }] });
-  const { SLACK_WEBHOOK_URL } = process.env;
-  const req = https.request(SLACK_WEBHOOK_URL, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Content-Length': payload.length,
-    },
-  }, (res) => {
-    res.on('data', () => {
-      log('Slack notified.');
-      process.exit(1);
-    });
-  });
-
-  req.on('error', (e) => {
-    log(e);
-    process.exit(1);
-  });
-  req.write(payload);
-  req.end();
+  await spawnSync('bash', ['deploy/notify-fail.sh', message], { stdio: 'inherit' });
+  process.exit(1);
 };
 
 if (TRAVIS_TAG !== version) error(`Tagged version ${TRAVIS_TAG} differs from lerna version ${version}, aborting!`);
