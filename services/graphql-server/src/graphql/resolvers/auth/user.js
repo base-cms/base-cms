@@ -1,15 +1,16 @@
+const service = require('../../../user-context/service');
+
 module.exports = {
   Query: {
     activeUser: (_, __, { user }) => user.getUser(),
   },
   Mutation: {
-    userLogin: async (_, { input }, { user }) => {
+    userLogin: async (_, { input }) => {
       const { username, password } = input;
-      const token = await user.login(username, password);
-      return { user: user.getUser(), token };
+      return service.login(username, password);
     },
-    userLogout: async (_, __, { user }) => {
-      await user.logout();
+    userLogout: async () => {
+      await service.logout();
       return 'ok';
     },
   },

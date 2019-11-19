@@ -17,7 +17,7 @@ const testToken = {
 module.exports = {
   login: (username, password) => {
     log({ username, password });
-    return { user: testUser, token: testToken };
+    return testToken;
   },
   logout: () => log('logout'),
   retrieve: token => (token === testToken.value ? testUser : null),

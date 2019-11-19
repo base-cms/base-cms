@@ -1,8 +1,7 @@
 const { getAsArray } = require('@base-cms/object-path');
 
 module.exports = class UserContext {
-  constructor(service, user) {
-    this.service = service;
+  constructor(user) {
     this.user = user;
   }
 
@@ -17,20 +16,5 @@ module.exports = class UserContext {
   hasRole(role) {
     const roles = getAsArray(this, 'user.roles');
     return roles.includes(role);
-  }
-
-  /**
-   * @return UserAuthToken
-   * @param {*} username The username
-   * @param {*} password The password
-   */
-  async login(username, password) {
-    const { user, token } = await this.service.login(username, password);
-    this.user = user;
-    return token;
-  }
-
-  logout() {
-    return this.service.logout();
   }
 };

@@ -7,7 +7,7 @@ extend type Query {
 }
 
 extend type Mutation {
-  userLogin(input: UserLoginMutationInput!): UserAuthentication!
+  userLogin(input: UserLoginMutationInput!): UserAuthToken!
   userLogout: String! @requiresAuth
 }
 
@@ -15,11 +15,6 @@ enum AuthRole {
   admin
   member
   restricted
-}
-
-type UserAuthentication {
-  user: User!
-  token: UserAuthToken!
 }
 
 type UserAuthToken {
