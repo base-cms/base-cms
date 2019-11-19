@@ -32,5 +32,10 @@ module.exports = async (apollo, { templates }) => {
 
   const aliases = newsletters.map(n => n.alias);
   const staticTemplates = templates.filter(t => !aliases.includes(t.alias)).map(t => t.key);
+
+  newsletters.forEach((newsletter) => {
+    if (!newsletter.site) throw new Error(`No site ID is assigned to ${newsletter.name} (${newsletter.id})`);
+  });
+
   return { newsletters, staticTemplates };
 };
