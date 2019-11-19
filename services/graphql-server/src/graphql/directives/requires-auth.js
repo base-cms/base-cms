@@ -10,11 +10,12 @@ class RequiresAuthDirective extends SchemaDirectiveVisitor {
   visitFieldDefinition(field) {
     const { resolve } = field;
     const { role } = this.args;
-    field.resolve = async (_, input, context, ...args) => {
-      const { user } = context;
+    field.resolve = async (...args) => {
+      const [, , { user }] = args;
       if (!user.isAuthenticated()) throw new AuthenticationError('Authentication is required');
       if (role && !user.hasRole(role)) throw new ForbiddenError(`Role ${role} is required`);
-      return resolve(_, input, context, ...args);
+      if (typeof resolve === 'function') return resolve(...args);
+      return null;
     };
   }
 }
