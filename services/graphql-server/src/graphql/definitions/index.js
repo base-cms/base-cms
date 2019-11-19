@@ -13,6 +13,7 @@ scalar ObjectID
 
 directive @applyInterfaceFields on OBJECT
 directive @arrayValue(localField: String) on FIELD_DEFINITION
+directive @requiresAuth(role: AuthRole) on FIELD_DEFINITION
 
 directive @findMany(
   model: String!, # The model name to query, e.g. platform.Content or website.Schedule.
@@ -54,6 +55,12 @@ type Mutation {
 type PageInfo {
   hasNextPage: Boolean!
   endCursor: String
+}
+
+enum AuthRole {
+  admin
+  member
+  restricted
 }
 
 enum SortOrder {

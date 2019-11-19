@@ -10,6 +10,7 @@ const ProjectUsingDirective = require('./project-using');
 const ProjectionDirective = require('./projection');
 const RefManyDirective = require('./ref-many');
 const RefOneDirective = require('./ref-one');
+const RequiresAuthDirective = require('./requires-auth');
 const RequiresProjectDirective = require('./requires-project');
 const ValueDirective = require('./value');
 
@@ -26,6 +27,7 @@ module.exports = {
   projection: ProjectionDirective,
   refMany: RefManyDirective,
   refOne: RefOneDirective,
+  requiresAuth: RequiresAuthDirective,
   requiresProject: RequiresProjectDirective,
   value: ValueDirective,
 };
