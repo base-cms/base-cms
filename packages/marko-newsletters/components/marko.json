@@ -10,5 +10,17 @@
     "@alt": "string",
     "@class": "string",
     "@attrs": "object"
+  },
+  "<marko-newsletter-root>": {
+    "template": "./root.marko",
+    "<head>": {},
+    "<body>": {
+      "@class": "string",
+      "@style": "string",
+      "@attrs": "object"
+    },
+    "@title": "string",
+    "@description": "string",
+    "@date": "object"
   }
 }
