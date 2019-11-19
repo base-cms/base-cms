@@ -1,4 +1,6 @@
 const gql = require('graphql-tag');
+
+const auth = require('./auth');
 const email = require('./email');
 const magazine = require('./magazine');
 const platform = require('./platform');
@@ -57,12 +59,6 @@ type PageInfo {
   endCursor: String
 }
 
-enum AuthRole {
-  admin
-  member
-  restricted
-}
-
 enum SortOrder {
   asc
   desc
@@ -114,5 +110,6 @@ ${magazine}
 ${platform}
 ${website}
 ${googleDataApi}
+${auth}
 
 `;
