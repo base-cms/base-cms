@@ -129,8 +129,8 @@ module.exports = {
     },
     AuthToken: {
       query: [
-        { token: 1 },
-        [{ exp: 1 }, { expireAfterSeconds: 0 }],
+        [{ 'payload.jti': 1 }, { unique: true }],
+        [{ expires: 1 }, { expireAfterSeconds: 0 }],
       ],
     },
   },
