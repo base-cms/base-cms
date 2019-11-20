@@ -21,7 +21,7 @@ const UserService = class UserService {
     const hash = user.password.replace(/^\$2y\$/, '$2a$');
     const valid = await bcrypt.compare(plaintext, hash);
     if (!valid) throw new AuthenticationError('Invalid credentials');
-    return this.tokenService.create(user);
+    return this.tokenService.create(user._id);
   }
 
   // eslint-disable-next-line class-methods-use-this
