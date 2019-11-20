@@ -7,6 +7,6 @@ module.exports = {
       const { username, password } = input;
       return userService.login(username, password);
     },
-    userLogout: (_, __, { userService }) => userService.logout(),
+    userLogout: (_, __, { userService, auth }) => userService.logout(auth.getToken()),
   },
 };
