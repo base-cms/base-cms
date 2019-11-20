@@ -32,8 +32,12 @@ class TokenService {
       sid,
       secret,
     };
-    await this.basedb.insertOne('platform.AuthToken', payload);
-    return payload;
+    const { insertedId } = await this.basedb.insertOne('platform.AuthToken', payload);
+    return {
+      id: insertedId,
+      expires: new Date(exp),
+      value: token,
+    };
   }
 
   destroy(token) {

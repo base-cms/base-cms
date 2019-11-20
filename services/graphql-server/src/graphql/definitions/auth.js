@@ -19,6 +19,7 @@ enum AuthRole {
 
 type UserAuthToken {
   id: String!
+  expires: Date!
   value: String!
 }
 
