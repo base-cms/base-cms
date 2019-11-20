@@ -44,10 +44,16 @@ class TokenService {
     return this.basedb.deleteOne('platform.AuthToken', { token });
   }
 
-  // eslint-disable-next-line class-methods-use-this
   async validate(token) {
-    log('validate', { token });
-    throw new AuthenticationError('Invalid token');
+    if (!token) throw new AuthenticationError('No token presented');
+    const parsed = await jwt.decode(token, { complete: true, force: true });
+    if (!parsed) throw new AuthenticationError('Invalid token');
+    const authToken = await this.basedb.findOne('platform.AuthToken', { token }, { projection: { sid: 1, secret: 1, uid: 1 } });
+    if (!authToken) throw new AuthenticationError('Token does not exist');
+    const { uid, sid, secret } = authToken;
+    const verified = jwt.verify(token, secret, { jwtid: sid, algorithms: ['HS256'] });
+    if (!verified) throw new AuthenticationError('Invalid token');
+    return { token, uid };
   }
 }
 
