@@ -5,7 +5,8 @@ const { Router } = require('express');
 const { isObject } = require('@base-cms/utils');
 const { requestParser: canonicalRules } = require('@base-cms/canonical-path');
 const ApolloNewrelicExtension = require('apollo-newrelic-extension');
-const authContext = require('../auth-context');
+const createAuthContext = require('../auth-context/create');
+const createUserService = require('../user/create');
 const createBaseRestClient = require('../create-rest-client');
 const newrelic = require('../newrelic');
 const basedbFactory = require('../basedb');
@@ -60,8 +61,8 @@ const server = new ApolloServer({
     const base4rest = createBaseRestClient({ uri: req.get('x-base4-api-uri') });
 
     // Create the auth context for use with the requires-auth directive.
-    const { create: createAuthContext } = authContext(basedb);
-    const auth = await createAuthContext({ req });
+    const userService = createUserService({ basedb });
+    const auth = await createAuthContext({ req, userService });
 
     return {
       tenant,
@@ -69,6 +70,7 @@ const server = new ApolloServer({
       base4rest,
       site,
       auth,
+      userService,
       load: async (loader, id, projection, criteria = {}) => {
         if (!loaders[loader]) throw new Error(`No dataloader found for '${loader}'`);
 

@@ -1,8 +1,7 @@
 const { AuthenticationError } = require('apollo-server-express');
-const userService = require('./user-service');
 const UserContext = require('./context');
 
-module.exports = async ({ req }) => {
+module.exports = async ({ req, userService }) => {
   const authorization = req.get('authorization');
   if (!authorization) return new UserContext();
 
