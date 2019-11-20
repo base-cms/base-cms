@@ -20,4 +20,6 @@ module.exports = cleanEnv(process.env, {
   BASE4_REST_USERNAME: str({ desc: 'The Base4 REST API username.', default: '' }),
   BASE4_REST_PASSWORD: str({ desc: 'The Base4 REST API password.', default: '' }),
   GOOGLE_DATA_API_URI: nonemptystr({ desc: 'The Google Data API URI', default: 'http://google-data-api' }),
+  TOKEN_SECRET: nonemptystr({ desc: 'The token signing secret.' }),
+  TOKEN_NAMESPACE: nonemptystr({ desc: 'The UUIDv4 namespace' }),
 });
