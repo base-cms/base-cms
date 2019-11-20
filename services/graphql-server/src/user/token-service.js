@@ -39,26 +39,26 @@ class TokenService {
   }
 
   static async parse(token) {
-    if (!token) throw new AuthenticationError('No token presented');
+    if (!token) throw new AuthenticationError('The provided token is invalid.');
     const parsed = await jwt.decode(token, { complete: true, force: true });
-    if (!parsed) throw new AuthenticationError('Invalid token');
+    if (!parsed) throw new AuthenticationError('The provided token is invalid.');
     return parsed;
   }
 
   static async getJTI(token) {
     const parsed = await TokenService.parse(token);
     const { jti } = parsed.payload;
-    if (!jti) throw new AuthenticationError('Invalid credentials');
+    if (!jti) throw new AuthenticationError('The provided token is invalid.');
     return jti;
   }
 
   async validate(token) {
     const jti = await TokenService.getJTI(token);
     const authToken = await this.basedb.findOne('platform.AuthToken', { 'payload.jti': jti }, { projection: { secret: 1, payload: 1 } });
-    if (!authToken) throw new AuthenticationError('Token does not exist');
+    if (!authToken) throw new AuthenticationError('The provided token is invalid.');
     const { payload, secret } = authToken;
     const verified = jwt.verify(token, secret, { jwtid: payload.jti, algorithms: ['HS256'] });
-    if (!verified) throw new AuthenticationError('Invalid token');
+    if (!verified) throw new AuthenticationError('The provided token is invalid.');
     return { token, uid: payload.aud };
   }
 }
