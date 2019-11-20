@@ -1,7 +1,7 @@
 const { getAsArray } = require('@base-cms/object-path');
 
 module.exports = class UserContext {
-  constructor({ user, token }) {
+  constructor({ user, token } = {}) {
     this.user = user;
     this.token = token;
   }
