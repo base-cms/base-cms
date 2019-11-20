@@ -3,10 +3,10 @@ module.exports = {
     activeUser: (_, __, { auth }) => auth.getUser(),
   },
   Mutation: {
-    userLogin: (_, { input }, { userService }) => {
+    login: (_, { input }, { userService }) => {
       const { username, password } = input;
       return userService.login(username, password);
     },
-    userLogout: (_, __, { userService, auth }) => userService.logout(auth.getToken()),
+    logout: (_, __, { userService, auth }) => userService.logout(auth.getToken()),
   },
 };

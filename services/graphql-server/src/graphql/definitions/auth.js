@@ -7,8 +7,8 @@ extend type Query {
 }
 
 extend type Mutation {
-  userLogin(input: UserLoginMutationInput!): UserAuthToken!
-  userLogout: String! @requiresAuth
+  login(input: UserLoginMutationInput!): UserAuthToken!
+  logout: String! @requiresAuth
 }
 
 enum AuthRole {
