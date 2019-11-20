@@ -1,6 +1,6 @@
 module.exports = {
   Query: {
-    activeUser: (_, __, { user }) => user.getUser(),
+    activeUser: (_, __, { auth }) => auth.getUser(),
   },
   Mutation: {
     userLogin: (_, { input }, { userService }) => {
