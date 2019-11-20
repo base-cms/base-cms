@@ -25,14 +25,14 @@ const UserService = class UserService {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  logout(token) {
-    this.tokenService.destroy(token);
+  async logout(token) {
+    await this.tokenService.destroy(token);
     return 'ok';
   }
 
-  async retrieve(token) {
-    const { uid: _id } = await this.tokenService.validate(token);
-    return this.basedb.findOne('platform.User', { _id });
+  async checkAuth(token) {
+    const { uid } = await this.tokenService.validate(token);
+    return this.basedb.findOne('platform.User', { _id: uid });
   }
 };
 

@@ -33,16 +33,27 @@ class TokenService {
     return { expires, value: token };
   }
 
-  destroy(token) {
-    return this.basedb.deleteOne('platform.AuthToken', { token });
+  async destroy(token) {
+    const jti = await TokenService.getJTI(token);
+    return this.basedb.deleteOne('platform.AuthToken', { 'payload.jti': jti });
   }
 
-  async validate(token) {
+  static async parse(token) {
     if (!token) throw new AuthenticationError('No token presented');
     const parsed = await jwt.decode(token, { complete: true, force: true });
     if (!parsed) throw new AuthenticationError('Invalid token');
+    return parsed;
+  }
+
+  static async getJTI(token) {
+    const parsed = await TokenService.parse(token);
     const { jti } = parsed.payload;
     if (!jti) throw new AuthenticationError('Invalid credentials');
+    return jti;
+  }
+
+  async validate(token) {
+    const jti = await TokenService.getJTI(token);
     const authToken = await this.basedb.findOne('platform.AuthToken', { 'payload.jti': jti }, { projection: { secret: 1, payload: 1 } });
     if (!authToken) throw new AuthenticationError('Token does not exist');
     const { payload, secret } = authToken;
