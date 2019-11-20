@@ -7,6 +7,6 @@ module.exports = async ({ req, userService }) => {
 
   if (!/^Bearer /.test(authorization)) throw new AuthenticationError('Invalid authorization header');
   const { token } = authorization.match(/^Bearer (?<token>.+)/).groups;
-  const user = await userService.retrieve(token);
-  return new UserContext(user);
+  const user = await userService.checkAuth(token);
+  return new UserContext({ user, token });
 };
