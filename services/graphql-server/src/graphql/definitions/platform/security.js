@@ -13,7 +13,7 @@ type User {
   firstName: String @projection
   lastName: String @projection
   username: String @projection
-  roles: [String!]
+  roles: [String!]! @projection @arrayValue
 }
 
 input UserQueryInput {
