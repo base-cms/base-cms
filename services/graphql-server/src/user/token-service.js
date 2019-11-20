@@ -4,10 +4,11 @@ const { log } = console;
 const testToken = { id: '1234567890', value: 'ac4bd32343fgh123' };
 
 class TokenService {
-  setDb(basedb) {
+  constructor({ basedb }) {
     this.basedb = basedb;
   }
 
+  // eslint-disable-next-line class-methods-use-this
   create(user) {
     // create token for user
     log({ user });
@@ -31,4 +32,4 @@ class TokenService {
   }
 }
 
-module.exports = new TokenService();
+module.exports = TokenService;
