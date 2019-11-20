@@ -127,6 +127,12 @@ module.exports = {
         { sequence: 1, _id: 1 },
       ],
     },
+    AuthToken: {
+      query: [
+        { token: 1 },
+        [{ exp: 1 }, { expireAfterSeconds: 0 }],
+      ],
+    },
   },
   website: {
     Redirects: {
