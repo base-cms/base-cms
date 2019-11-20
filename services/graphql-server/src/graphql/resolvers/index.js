@@ -7,8 +7,10 @@ const website = require('./website');
 const magazine = require('./magazine');
 const email = require('./email');
 const googleDataApi = require('./google-data-api');
+const auth = require('./auth');
 
 module.exports = deepAssign(
+  auth,
   googleDataApi,
   platform,
   website,

@@ -1,4 +1,6 @@
 const gql = require('graphql-tag');
+
+const auth = require('./auth');
 const email = require('./email');
 const magazine = require('./magazine');
 const platform = require('./platform');
@@ -13,6 +15,7 @@ scalar ObjectID
 
 directive @applyInterfaceFields on OBJECT
 directive @arrayValue(localField: String) on FIELD_DEFINITION
+directive @requiresAuth(role: AuthRole) on FIELD_DEFINITION
 
 directive @findMany(
   model: String!, # The model name to query, e.g. platform.Content or website.Schedule.
@@ -107,5 +110,6 @@ ${magazine}
 ${platform}
 ${website}
 ${googleDataApi}
+${auth}
 
 `;

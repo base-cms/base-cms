@@ -127,6 +127,12 @@ module.exports = {
         { sequence: 1, _id: 1 },
       ],
     },
+    AuthToken: {
+      query: [
+        [{ 'payload.jti': 1 }, { unique: true }],
+        [{ expires: 1 }, { expireAfterSeconds: 0 }],
+      ],
+    },
   },
   website: {
     Redirects: {
