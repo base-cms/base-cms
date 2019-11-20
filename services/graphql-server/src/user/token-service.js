@@ -5,8 +5,6 @@ const uuidv5 = require('uuid/v5');
 const bcrypt = require('bcrypt');
 const { TOKEN_SECRET, TOKEN_NAMESPACE } = require('../env');
 
-const { log } = console;
-
 class TokenService {
   constructor({ basedb }) {
     this.basedb = basedb;
