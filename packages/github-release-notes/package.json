@@ -1,0 +1,23 @@
+{
+  "name": "@base-cms/github-release-notes",
+  "version": "1.0.0-rc.8",
+  "author": "Jacob Bare <jacob@limit0.io>",
+  "repository": "https://github.com/base-cms/base-cms/tree/master/packages/github-release-notes",
+  "license": "MIT",
+  "bin": {
+    "website-release-notes-between": "bin/between.js",
+    "website-release-notes": "bin/release.js"
+  },
+  "scripts": {
+    "lint": "eslint --ext .js --max-warnings 5 --ignore-path ../../.eslintignore ./",
+    "test": "yarn lint"
+  },
+  "dependencies": {
+    "@base-cms/env": "^1.0.0-rc.1",
+    "@octokit/rest": "^16.28.2",
+    "numeral": "^2.0.6"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
