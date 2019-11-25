@@ -701,9 +701,18 @@ module.exports = {
     },
 
     contentSitemapNewsUrls: async (_, { input }, { basedb, site }) => {
-      const contentTypes = ['News', 'PressRelease', 'Blog'];
-      const query = getPublishedCriteria({ contentTypes });
+      const {
+        includeContentTypes,
+        excludeContentTypes,
+        taxonomyIds,
+      } = input;
+      const query = getPublishedCriteria({
+        contentTypes: includeContentTypes,
+        excludeContentTypes,
+      });
+
       query.$and.push({ published: { $gte: moment().subtract(2, 'days').toDate() } });
+      if (taxonomyIds.length) query['taxonomy.$id'] = { $in: taxonomyIds };
 
       const siteId = input.siteId || site.id();
       if (siteId) query['mutations.Website.primarySite'] = siteId;

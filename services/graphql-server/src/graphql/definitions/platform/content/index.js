@@ -250,6 +250,9 @@ input ContentSitemapUrlsQueryInput {
 
 input ContentSitemapNewsUrlsQueryInput {
   siteId: ObjectID
+  includeContentTypes: [ContentType!] = [News, PressRelease, Blog]
+  excludeContentTypes: [ContentType!] = []
+  taxonomyIds: [Int!] = []
 }
 
 input AllPublishedContentQueryInput {
