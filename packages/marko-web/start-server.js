@@ -31,6 +31,7 @@ module.exports = async ({
   embeddedMediaHandlers,
   onAsyncBlockError,
   redirectHandler,
+  sitemapsHeaders,
 
   // Terminus settings.
   timeout = 1000,
@@ -63,6 +64,7 @@ module.exports = async ({
     fragments,
     sitePackage,
     embeddedMediaHandlers,
+    sitemapsHeaders,
   });
 
   // Await required services here...
