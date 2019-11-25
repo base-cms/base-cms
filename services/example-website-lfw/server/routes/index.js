@@ -6,8 +6,11 @@ const publishedContent = require('./published-content');
 const search = require('./search');
 const subscribe = require('./subscribe');
 const websiteSections = require('./website-section');
+const IdentityX = require('./identity-x');
 
 module.exports = (app) => {
+  IdentityX(app);
+
   // Homepage
   home(app);
 

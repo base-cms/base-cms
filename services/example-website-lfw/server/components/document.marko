@@ -19,7 +19,9 @@ $ const { site } = out.global;
     <marko-web-reveal-ad-listener />
     <marko-web-gtm-track-load-more />
     <default-theme-site-header />
-    <default-theme-site-menu />
+    <marko-web-identity-x-context|{ hasUser }|>
+      <default-theme-site-menu hasUser=hasUser regEnabled=true />
+    </marko-web-identity-x-context>
     <${input.aboveContainer} />
   </@above-container>
   <@below-container>

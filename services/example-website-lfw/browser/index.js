@@ -4,7 +4,9 @@ import GTM from '@base-cms/marko-web-gtm/browser';
 import GAM from '@base-cms/marko-web-gam/browser';
 import GCSE from '@base-cms/marko-web-gcse/browser';
 import RevealAd from '@base-cms/marko-web-reveal-ad/browser';
+import IdentityX from '@base-cms/marko-web-identity-x/browser';
 
+IdentityX(Browser);
 DefaultTheme(Browser);
 GTM(Browser);
 GAM(Browser);

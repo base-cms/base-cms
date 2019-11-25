@@ -22,6 +22,7 @@
     "@base-cms/marko-web-gcse": "^1.0.0-rc.1",
     "@base-cms/marko-web-gtm": "^1.0.0-rc.1",
     "@base-cms/marko-web-icons": "^1.0.0-rc.1",
+    "@base-cms/marko-web-identity-x": "^1.0.0-rc.8",
     "@base-cms/marko-web-native-x": "^1.0.0-rc.1",
     "@base-cms/marko-web-reveal-ad": "^1.0.0-rc.1",
     "@base-cms/marko-web-theme-default": "^1.0.0-rc.9",

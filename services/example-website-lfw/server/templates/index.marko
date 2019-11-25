@@ -30,6 +30,24 @@ $ const { id, alias, name, pageNode } = data;
   <@page>
     <marko-web-gam-display-ad id="gpt-ad-lb1" modifiers=["top-of-page"] />
 
+    <marko-web-resolve-page|{ data: section }| node=pageNode>
+      <marko-web-page-wrapper class="mb-block">
+        <@section>
+          <div class="row">
+            <div class="col">
+              <default-theme-website-section-breadcrumbs section=section />
+              <marko-web-identity-x-context|{ user, hasUser }|>
+                <p class="text-muted lead">
+                  <if(hasUser)>Hello ${user.givenName}!</if>
+                  <else>Hello! <a href="/user/login">Log in</a> or <a href="/user/register">register</a>.</else>
+                </p>
+              </marko-web-identity-x-context>
+            </div>
+          </div>
+        </@section>
+      </marko-web-page-wrapper>
+    </marko-web-resolve-page>
+
     <marko-web-query|{ nodes }|
       name="website-optioned-content"
       params={ sectionId: id, optionName: "Pinned", limit: 5, queryFragment }
