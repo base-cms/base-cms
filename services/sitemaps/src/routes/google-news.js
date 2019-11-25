@@ -4,10 +4,18 @@ const moment = require('moment');
 const createImage = require('../utils/create-image');
 const URLSet = require('../utils/urlset');
 
+const parseJson = (value) => {
+  try {
+    return JSON.parse(value);
+  } catch (e) {
+    return null;
+  }
+};
+
 const query = gql`
 
-query ContentSitemapNewsUrls {
-  contentSitemapNewsUrls {
+query ContentSitemapNewsUrls($input: ContentSitemapNewsUrlsQueryInput = {}) {
+  contentSitemapNewsUrls(input: $input) {
     id
     loc
     title
@@ -54,8 +62,11 @@ const createUrl = (website, {
 };
 
 module.exports = asyncRoute(async (req, res) => {
+  const input = parseJson(req.get('x-google-news-input') || '{}');
+  const variables = input ? { input } : undefined;
+
   const { apollo, websiteContext: website } = res.locals;
-  const { data } = await apollo.query({ query });
+  const { data } = await apollo.query({ query, variables });
   const { contentSitemapNewsUrls } = data;
 
   const urlset = new URLSet();
