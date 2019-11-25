@@ -1,7 +1,6 @@
-import { getAsArray } from '@base-cms/object-path';
+import { getAsArray } from "@base-cms/object-path";
 
-$ const { req, onAsyncBlockError } = out.global;
-$ const isDevelopment = process.env.NODE_ENV === 'development';
+$ const { req } = out.global;
 $ const { identityX } = req;
 
 $ const requiredAccessLevelIds = getAsArray(input.requiredAccessLevelIds);
@@ -16,20 +15,6 @@ $ const checkContentAccess = async () => (Boolean(req.identityX) ? identityX.che
   messages: {},
 });
 
-<await(checkContentAccess())>
-  <@then|access|>
-    <${input.renderBody} ...access />
-  </@then>
-  <@catch|err|>
-    $ if (typeof onAsyncBlockError === 'function') onAsyncBlockError(err);
-    <if(input.onError)>
-      <${input.onError} err=err />
-    </if>
-    <else>
-      <pre>An unexpected error occurred: ${err.message}</pre>
-      <if(isDevelopment)>
-        <pre>${err.stack}</pre>
-      </if>
-    </else>
-  </@catch>
-</await>
+<marko-web-resolve|{ resolved }| promise=loadContext>
+  <${input.renderBody} ...resolved />
+</marko-web-resolve>

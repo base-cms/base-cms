@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/marko-web-identity-x",
-  "version": "1.0.0-rc.4",
+  "version": "1.0.0-rc.8",
   "description": "Marko Wrapper for IdentityX",
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/marko-web-identity-x",
   "author": "Josh Worden <josh@limit0.io>",
@@ -22,7 +22,8 @@
     "node-fetch": "^2.6.0"
   },
   "peerDependencies": {
-    "@base-cms/marko-web": "^1.0.0-rc.4"
+    "@base-cms/marko-core": "^1.0.0-rc.8",
+    "@base-cms/marko-web": "^1.0.0-rc.8"
   },
   "publishConfig": {
     "access": "public"
