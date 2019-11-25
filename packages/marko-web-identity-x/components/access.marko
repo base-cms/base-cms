@@ -15,6 +15,6 @@ $ const checkContentAccess = async () => (Boolean(req.identityX) ? identityX.che
   messages: {},
 });
 
-<marko-web-resolve|{ resolved }| promise=loadContext>
+<marko-web-resolve|{ resolved }| promise=checkContentAccess()>
   <${input.renderBody} ...resolved />
 </marko-web-resolve>

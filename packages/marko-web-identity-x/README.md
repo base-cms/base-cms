@@ -16,7 +16,7 @@ module.exports = config;
 3. Create an IdentityX router to load the IdentityX middleware.
 ```js
 // your-site/server/routes/identity-x.js
-const IdentityX = require('@base-cms/marko-web-identity-x/router');
+const IdentityX = require('@base-cms/marko-web-identity-x');
 const IdentityXConfig = require('../../config/identity-x');
 const authenticate = require('../templates/user/authenticate');
 const login = require('../templates/user/login');
@@ -92,7 +92,7 @@ Include the `<marko-web-identity-x-context>` component where you'd like access t
   <if(hasUser)>
     <h1>Hello ${user.givenName}!</h1>
   </if>
-</identity-x>
+</marko-web-identity-x-context>
 ```
 
 Include the `<marko-web-identity-x-access>` component where you'd like to ensure access levels are met:

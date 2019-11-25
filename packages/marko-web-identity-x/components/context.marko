@@ -9,7 +9,7 @@ $ const loadContext = async () => (isEnabled ? identityX.loadActiveContext() : {
   hasUser: false,
 });
 
-<marko-web-resolve|{ resolved }| promise=loadContext>
+<marko-web-resolve|{ resolved }| promise=loadContext()>
   $ const output = { ...resolved, isEnabled };
   <${input.renderBody} ...output />
 </marko-web-resolve>
