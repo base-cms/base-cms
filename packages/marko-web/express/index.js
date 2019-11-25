@@ -97,7 +97,7 @@ module.exports = (config = {}) => {
   loadMore(app);
 
   // Register sitemaps.
-  sitemaps(app, headers);
+  sitemaps(app, { ...config.sitemapsHeaders, ...headers });
 
   // Register RSS Feeds.
   rss(app, headers);
