@@ -74,12 +74,6 @@ IdentityX(Browser);
 
 export default Browser;
 ```
-<!--
-5. Include the styles.
-```scss
-// your-site/server/styles/index.scss
-@import "../../node_modules/@base-cms/marko-web-identity-x/scss/form";
-``` -->
 
 ## Usage
 
