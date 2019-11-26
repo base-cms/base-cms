@@ -1,6 +1,6 @@
 {
   "name": "@base-cms-newsletters/deployment-tool",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Thee deployment tool for use with @base-cms-newsletters repositories",
   "main": "src/index.js",
   "repository": "https://github.com/base-cms-newsletters/deployment-tool",
