@@ -1,0 +1,61 @@
+language: node_js
+node_js: "10.15"
+cache: yarn
+
+stages:
+  - name: test
+
+  - name: production
+    if: tag =~ /^v\d+\.\d+\.\d+$/
+
+  - name: staging
+    if: tag is present
+
+jobs:
+  include:
+    - stage: test
+      env: [NODE_ENV=test]
+
+    - stage: production
+      name: Deployment Started
+      script: npx @base-cms-newsletters/deployment-tool notify-started
+      install: skip
+      env: [ENVIRONMENT=production RANCHER_CLUSTERID=c-gxsr7]
+
+    - stage: staging
+      name: Deployment Started
+      script: npx @base-cms-newsletters/deployment-tool notify-started
+      install: skip
+      env: [ENVIRONMENT=staging RANCHER_CLUSTERID=c-rc5kp]
+
+    #############################
+    # vvv ADD SERVICES HERE vvv #
+    #############################
+
+    - stage: production
+      name: TENANT_LABEL
+      script: npx @base-cms-newsletters/deployment-tool deploy TENANT_NAME TENANT_STACK
+      install: skip
+      env: [ENVIRONMENT=production RANCHER_CLUSTERID=c-gxsr7]
+
+    - stage: staging
+      name: TENANT_LABEL
+      script: npx @base-cms-newsletters/deployment-tool deploy TENANT_NAME TENANT_STACK
+      install: skip
+      env: [ENVIRONMENT=staging RANCHER_CLUSTERID=c-rc5kp]
+
+    #############################
+    # ^^^ ADD SERVICES HERE ^^^ #
+    #############################
+
+    - stage: production
+      name: Deployment Finished
+      script: npx @base-cms-newsletters/deployment-tool notify-finished
+      install: skip
+      env: [ENVIRONMENT=production RANCHER_CLUSTERID=c-gxsr7]
+
+    - stage: staging
+      name: Deployment Finished
+      script: npx @base-cms-newsletters/deployment-tool notify-finished
+      install: skip
+      env: [ENVIRONMENT=staging RANCHER_CLUSTERID=c-rc5kp]
