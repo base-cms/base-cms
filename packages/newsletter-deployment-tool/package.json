@@ -1,0 +1,26 @@
+{
+  "name": "@base-cms/newsletter-deployment-tool",
+  "version": "v1.0.0-rc.10",
+  "description": "The deployment tool for use with @base-cms/marko-newsletters",
+  "main": "src/index.js",
+  "repository": "https://github.com/base-cms/base-cms/tree/master/packages/newsletter-deployment-tool",
+  "author": "Josh Worden <josh@limit0.io>",
+  "license": "MIT",
+  "dependencies": {
+    "@endeavorb2b/rancher2cli": "^1.0.4",
+    "envalid": "^6.0.0",
+    "node-fetch": "^2.6.0",
+    "yargs": "^15.0.2"
+  },
+  "bin": {
+    "deploy": "./src/index.js"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-plugin-import": "^2.18.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
