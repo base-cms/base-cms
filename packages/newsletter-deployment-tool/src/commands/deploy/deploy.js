@@ -74,7 +74,7 @@ module.exports = async (argv) => {
     const imageTag = `${tenant}:${version}`;
     log(`Building  ${image}:${version}...\n`);
     await docker(['login', '-u', DOCKER_USERNAME, '-p', DOCKER_PASSWORD]);
-    await docker(['build', '-t', imageTag, '--build-arg', `SITE=${tenant}`, process.cwd()]);
+    await docker(['build', '-t', imageTag, '--build-arg', `TENANT=${tenant}`, process.cwd()]);
     await docker(['tag', imageTag, `${image}:${version}`]);
     await docker(['push', `${image}:${version}`]);
     await docker(['image', 'rm', imageTag]);
