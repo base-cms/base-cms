@@ -1,4 +1,4 @@
-
+const deploy = require('@endeavorb2b/rancher2cli/src/commands/deploy/labels');
 const { existsSync } = require('fs');
 const { join } = require('path');
 const { spawnSync } = require('child_process');
@@ -80,12 +80,6 @@ module.exports = async (argv) => {
     await docker(['image', 'rm', imageTag]);
   };
 
-  const deploy = async () => {
-    log(`Deploying ${image}:${version} on Kubernertes`);
-    const { status } = await spawnSync('bash', ['deploy/k8s.sh', tenant, version, namespace], { stdio: 'inherit' });
-    if (status !== 0) error('Image deploy failed!');
-  };
-
   try {
     if (await shouldBuild(image)) {
       log('Image was not found, building.');
@@ -94,9 +88,21 @@ module.exports = async (argv) => {
     } else {
       log('Image found, skipping build.');
     }
-    // await deploy();
+
+    const { RANCHER_CLUSTERID, RANCHER_TOKEN, RANCHER_URL } = process.env;
+    if (!RANCHER_CLUSTERID) return error('Deployment aborted: Environment variable RANCHER_CLUSTERID is missing!');
+    if (!RANCHER_TOKEN) return error('Deployment aborted: Environment variable RANCHER_TOKEN is missing!');
+    if (!RANCHER_URL) return error('Deployment aborted: Environment variable RANCHER_URL is missing!');
+
+    await deploy({
+      key: 'basecms-newsletter',
+      value: name,
+      image: `${image}:${version}`,
+      namespace,
+    });
     log('Deploy complete.\n');
   } catch (e) {
     error(e);
   }
+  return true;
 };

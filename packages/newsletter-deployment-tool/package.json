@@ -7,6 +7,7 @@
   "author": "Josh Worden <josh@limit0.io>",
   "license": "MIT",
   "dependencies": {
+    "@endeavorb2b/rancher2cli": "^1.0.4",
     "envalid": "^6.0.0",
     "node-fetch": "^2.6.0",
     "yargs": "^15.0.2"
