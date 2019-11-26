@@ -5,10 +5,18 @@ cache: yarn
 stages:
   - name: test
 
+  - name: production-started
+    if: tag =~ /^v\d+\.\d+\.\d+$/
   - name: production
     if: tag =~ /^v\d+\.\d+\.\d+$/
+  - name: production-finished
+    if: tag =~ /^v\d+\.\d+\.\d+$/
 
+  - name: staging-started
+    if: tag is present
   - name: staging
+    if: tag is present
+  - name: staging-finished
     if: tag is present
 
 jobs:
@@ -16,13 +24,13 @@ jobs:
     - stage: test
       env: [NODE_ENV=test]
 
-    - stage: production
+    - stage: production-started
       name: Deployment Started
       script: npx @base-cms-newsletters/deployment-tool notify-started
       install: skip
       env: [ENVIRONMENT=production RANCHER_CLUSTERID=c-gxsr7]
 
-    - stage: staging
+    - stage: staging-started
       name: Deployment Started
       script: npx @base-cms-newsletters/deployment-tool notify-started
       install: skip
@@ -48,13 +56,13 @@ jobs:
     # ^^^ ADD SERVICES HERE ^^^ #
     #############################
 
-    - stage: production
+    - stage: production-finished
       name: Deployment Finished
       script: npx @base-cms-newsletters/deployment-tool notify-finished
       install: skip
       env: [ENVIRONMENT=production RANCHER_CLUSTERID=c-gxsr7]
 
-    - stage: staging
+    - stage: staging-finished
       name: Deployment Finished
       script: npx @base-cms-newsletters/deployment-tool notify-finished
       install: skip
