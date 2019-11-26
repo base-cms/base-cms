@@ -1,9 +1,9 @@
 {
-  "name": "@base-cms-newsletters/deployment-tool",
-  "version": "1.0.0",
-  "description": "Thee deployment tool for use with @base-cms-newsletters repositories",
+  "name": "@base-cms/newsletter-deployment-tool",
+  "version": "v1.0.0-rc.10",
+  "description": "The deployment tool for use with @base-cms/marko-newsletters",
   "main": "src/index.js",
-  "repository": "https://github.com/base-cms-newsletters/deployment-tool",
+  "repository": "https://github.com/base-cms/base-cms/tree/master/packages/newsletter-deployment-tool",
   "author": "Josh Worden <josh@limit0.io>",
   "license": "MIT",
   "dependencies": {

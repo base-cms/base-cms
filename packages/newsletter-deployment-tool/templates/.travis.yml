@@ -34,13 +34,13 @@ jobs:
 
     - stage: production
       name: TENANT_LABEL
-      script: npx @base-cms-newsletters/deployment-tool deploy TENANT_NAME TENANT_STACK
+      script: npx @base-cms/newsletter-deployment-tool deploy TENANT_NAME TENANT_STACK
       install: skip
       env: [ENVIRONMENT=production RANCHER_CLUSTERID=c-gxsr7]
 
     - stage: staging
       name: TENANT_LABEL
-      script: npx @base-cms-newsletters/deployment-tool deploy TENANT_NAME TENANT_STACK
+      script: npx @base-cms/newsletter-deployment-tool deploy TENANT_NAME TENANT_STACK
       install: skip
       env: [ENVIRONMENT=staging RANCHER_CLUSTERID=c-rc5kp]
 
