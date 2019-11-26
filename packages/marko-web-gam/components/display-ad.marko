@@ -7,13 +7,11 @@ $ const classNames = [blockName, ...BEM.applyModifiers(blockName, input.modifier
 
 $ const slots = getAsObject(input.slots);
 $ const slot = slots[id];
-$ let attrs = {};
+$ const attrs = getAsObject(input.attrs);
 $ if (slot) {
-  attrs = {
-    'data-gam-path': slot.path,
-    'data-gam-size': JSON.stringify(slot.size),
-    'data-gam-targeting': slot.targeting ? JSON.stringify(slot.targeting) : undefined,
-  };
+  attrs["data-gam-path"] = slot.path;
+  attrs["data-gam-size"] = JSON.stringify(slot.size);
+  attrs["data-gam-targeting"] = slot.targeting ? JSON.stringify(slot.targeting) : undefined;
 }
 
 <if(id)>

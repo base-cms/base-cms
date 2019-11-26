@@ -1,4 +1,5 @@
 import { BEM, warn } from "@base-cms/utils";
+import { getAsObject } from "@base-cms/object-path";
 import generateId from "../utils/generate-id";
 import buildSlots from "../utils/build-slots";
 import slotStyle from "../utils/slot-size-style";
@@ -7,7 +8,7 @@ $ const { isArray } = Array;
 $ const { path, inc, targeting, withWrapper } = input;
 $ const id = input.id || generateId({ inc });
 
-$ const size = typeof input.size === 'string' ? [input.size] : (isArray(input.size) ? input.size : []);
+$ const size = typeof input.size === "string" ? [input.size] : (isArray(input.size) ? input.size : []);
 $ const applyStyle = input.applyStyle == null ? false : input.applyStyle;
 $ const style = applyStyle ? slotStyle(size) : null;
 
@@ -24,9 +25,10 @@ $ calls.push(...buildSlots(slots));
 $ calls.push(`googletag.display('${id}');`);
 
 $ const attrs = {
-  'data-gam-path': path,
-  'data-gam-size': JSON.stringify(size),
-  'data-gam-targeting': targeting ? JSON.stringify(targeting) : undefined,
+  ...getAsObject(input.attrs),
+  "data-gam-path": path,
+  "data-gam-size": JSON.stringify(size),
+  "data-gam-targeting": targeting ? JSON.stringify(targeting) : undefined,
 };
 
 $ const blockName = input.blockName || "ad-container";
