@@ -1,0 +1,22 @@
+{
+  "name": "@base-cms-newsletters/deployment-tool",
+  "version": "0.0.0",
+  "description": "Thee deployment tool for use with @base-cms-newsletters repositories",
+  "main": "src/index.js",
+  "repository": "https://github.com/base-cms-newsletters/deployment-tool",
+  "author": "Josh Worden <josh@limit0.io>",
+  "license": "MIT",
+  "dependencies": {
+    "envalid": "^6.0.0",
+    "node-fetch": "^2.6.0",
+    "yargs": "^15.0.2"
+  },
+  "bin": {
+    "deploy": "./src/index.js"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-plugin-import": "^2.18.2"
+  }
+}
