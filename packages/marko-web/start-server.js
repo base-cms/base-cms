@@ -5,6 +5,7 @@ const { createTerminus } = require('@godaddy/terminus');
 const { isFunction: isFn } = require('@base-cms/utils');
 const errorHandlers = require('./express/error-handlers');
 const express = require('./express');
+const loadMore = require('./express/load-more');
 
 if (!process.env.LIVERELOAD_PORT) {
   process.env.LIVERELOAD_PORT = 4010;
@@ -69,6 +70,9 @@ module.exports = async ({
 
   // Await required services here...
   if (isFn(onStart)) await onStart(app);
+
+  // Register load more after onStart to ensure userland middleware is available.
+  loadMore(app);
 
   // Load website routes.
   if (!isFn(routes)) throw new Error('A routes function is required.');
