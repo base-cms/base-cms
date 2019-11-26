@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/newsletter-deployment-tool",
-  "version": "v1.0.0-rc.10",
+  "version": "1.0.0-rc.11",
   "description": "The deployment tool for use with @base-cms/marko-newsletters",
   "main": "src/index.js",
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/newsletter-deployment-tool",
