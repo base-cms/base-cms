@@ -3,11 +3,7 @@ const { existsSync } = require('fs');
 const { join } = require('path');
 const { spawnSync } = require('child_process');
 const https = require('https');
-const {
-  DOCKER_PASSWORD,
-  DOCKER_USERNAME,
-  TRAVIS_TAG,
-} = require('./env');
+const { DOCKER_PASSWORD, DOCKER_USERNAME, TRAVIS_TAG } = require('./env');
 const failed = require('../notify/failed');
 
 const useLerna = existsSync(join(process.cwd(), 'lerna.json'));
@@ -79,8 +75,8 @@ module.exports = async (argv) => {
     log(`Building  ${image}:${version}...\n`);
     await docker(['login', '-u', DOCKER_USERNAME, '-p', DOCKER_PASSWORD]);
     await docker(['build', '-t', imageTag, '--build-arg', `SITE=${tenant}`, process.cwd()]);
-    await docker(['tag', imageTag, image]);
-    await docker(['push', image]);
+    await docker(['tag', imageTag, `${image}:${version}`]);
+    await docker(['push', `${image}:${version}`]);
     await docker(['image', 'rm', imageTag]);
   };
 
