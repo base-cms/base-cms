@@ -11,7 +11,6 @@ const loadObject = require('./load-object');
 const loadDocument = require('./load-document');
 const oembed = require('./oembed');
 const rss = require('./rss');
-const loadMore = require('./load-more');
 const sitemaps = require('./sitemaps');
 const { version } = require('../package.json');
 const websiteContext = require('./website-context');
@@ -92,9 +91,6 @@ module.exports = (config = {}) => {
 
   // Register public files.
   app.use(express.static(path.join(serverDir, 'public')));
-
-  // Register load more.
-  loadMore(app);
 
   // Register sitemaps.
   sitemaps(app, { ...config.sitemapsHeaders, ...headers });
