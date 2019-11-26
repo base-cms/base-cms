@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const marko = require('marko/express');
+const helmet = require('helmet');
 const apollo = require('./apollo');
 const CoreConfig = require('../config/core');
 const CustomConfig = require('../config/custom');
@@ -34,6 +35,9 @@ module.exports = (config = {}) => {
 
   // Set custom configuration.
   app.locals.customConfig = new CustomConfig(config.customConfig);
+
+  // Use helmet.
+  app.use(helmet());
 
   // Apply request origin.
   app.use((req, res, next) => {
