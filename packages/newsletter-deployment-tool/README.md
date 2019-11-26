@@ -1,6 +1,6 @@
 # Newsletter Deployment Tool
 
-To use the deployment tool with your `base-cms-newsletters` project, include and modify (as appropriate) the files in the `templates` directory at the root of your project.
+To use the deployment tool with your `@base-cms/marko-newsletters` project, include and modify (as appropriate) the files in the `templates` directory at the root of your project.
 
 ## Dockerfile
 
