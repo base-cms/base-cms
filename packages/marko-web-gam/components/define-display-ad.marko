@@ -8,7 +8,7 @@ $ const { isArray } = Array;
 $ const { path, inc, targeting, withWrapper } = input;
 $ const id = input.id || generateId({ inc });
 
-$ const size = typeof input.size === 'string' ? [input.size] : (isArray(input.size) ? input.size : []);
+$ const size = typeof input.size === "string" ? [input.size] : (isArray(input.size) ? input.size : []);
 $ const applyStyle = input.applyStyle == null ? false : input.applyStyle;
 $ const style = applyStyle ? slotStyle(size) : null;
 
@@ -26,9 +26,9 @@ $ calls.push(`googletag.display('${id}');`);
 
 $ const attrs = {
   ...getAsObject(input.attrs),
-  'data-gam-path': path,
-  'data-gam-size': JSON.stringify(size),
-  'data-gam-targeting': targeting ? JSON.stringify(targeting) : undefined,
+  "data-gam-path": path,
+  "data-gam-size": JSON.stringify(size),
+  "data-gam-targeting": targeting ? JSON.stringify(targeting) : undefined,
 };
 
 $ const blockName = input.blockName || "ad-container";

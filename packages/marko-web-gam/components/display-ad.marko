@@ -9,9 +9,9 @@ $ const slots = getAsObject(input.slots);
 $ const slot = slots[id];
 $ const attrs = getAsObject(input.attrs);
 $ if (slot) {
-  attrs['data-gam-path'] = slot.path;
-  attrs['data-gam-size'] = JSON.stringify(slot.size);
-  attrs['data-gam-targeting'] = slot.targeting ? JSON.stringify(slot.targeting) : undefined;
+  attrs["data-gam-path"] = slot.path;
+  attrs["data-gam-size"] = JSON.stringify(slot.size);
+  attrs["data-gam-targeting"] = slot.targeting ? JSON.stringify(slot.targeting) : undefined;
 }
 
 <if(id)>
