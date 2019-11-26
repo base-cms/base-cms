@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/website-deployment-tool",
-  "version": "1.0.0-rc.11",
+  "version": "1.0.0-rc.12",
   "description": "The deployment tool for use with @base-cms/marko-web",
   "main": "src/index.js",
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/website-deployment-tool",
