@@ -1,13 +1,21 @@
 import { BEM, warn } from "@base-cms/utils";
 import { getAsObject } from "@base-cms/object-path";
+import defaultValue from "@base-cms/marko-core/utils/default-value";
 import generateId from "../utils/generate-id";
 import buildSlots from "../utils/build-slots";
 import slotStyle from "../utils/slot-size-style";
 
 $ const { isArray } = Array;
-$ const { path, inc, targeting, withWrapper } = input;
+$ const {
+  path,
+  inc,
+  targeting,
+  withWrapper,
+  collapseBeforeAdFetch,
+} = input;
 $ const id = input.id || generateId({ inc });
 
+$ const collapse = defaultValue(input.collapse, true);
 $ const size = typeof input.size === "string" ? [input.size] : (isArray(input.size) ? input.size : []);
 $ const applyStyle = input.applyStyle == null ? false : input.applyStyle;
 $ const style = applyStyle ? slotStyle(size) : null;
@@ -19,6 +27,8 @@ $ const slots = {
     size,
     sizeMapping: input.sizeMapping,
     targeting,
+    collapse,
+    collapseBeforeAdFetch: input.collapseBeforeAdFetch,
   },
 };
 $ calls.push(...buildSlots(slots));
@@ -29,6 +39,8 @@ $ const attrs = {
   "data-gam-path": path,
   "data-gam-size": JSON.stringify(size),
   "data-gam-targeting": targeting ? JSON.stringify(targeting) : undefined,
+  "data-gam-collapse": collapse,
+  ...(collapseBeforeAdFetch && { "data-gam-collapse-before-ad-fetch": true }),
 };
 
 $ const blockName = input.blockName || "ad-container";
@@ -42,6 +54,9 @@ $ const classNames = [blockName, ...BEM.applyModifiers(blockName, input.modifier
     ...attrs
   >
     <marko-web-gam-ad-wrapper id=id enabled=withWrapper block-name=blockName>
+      <if(input.renderBody)>
+        <${input.renderBody} block-name=blockName />
+      </if>
       <script>googletag.cmd.push(function() { ${calls.join(" ")} });</script>
     </marko-web-gam-ad-wrapper>
   </div>

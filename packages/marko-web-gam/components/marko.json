@@ -48,6 +48,8 @@
     "@size": "expression",
     "@size-mapping": "array",
     "@targeting": "object",
+    "@collapse": "boolean",
+    "@collapse-before-ad-fetch": "boolean",
     "@apply-style": {
       "type": "boolean",
       "default-value": false
