@@ -42,6 +42,9 @@ $ const classNames = [blockName, ...BEM.applyModifiers(blockName, input.modifier
     ...attrs
   >
     <marko-web-gam-ad-wrapper id=id enabled=withWrapper block-name=blockName>
+      <if(input.renderBody)>
+        <${input.renderBody} block-name=blockName />
+      </if>
       <script>googletag.cmd.push(function() { ${calls.join(" ")} });</script>
     </marko-web-gam-ad-wrapper>
   </div>

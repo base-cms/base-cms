@@ -22,6 +22,9 @@ $ if (slot) {
     ...attrs
   >
     <marko-web-gam-ad-wrapper id=id enabled=withWrapper block-name=blockName>
+      <if(input.renderBody)>
+        <${input.renderBody} block-name=blockName />
+      </if>
       <script>googletag.cmd.push(function() { googletag.display('${id}'); });</script>
     </marko-web-gam-ad-wrapper>
   </div>
