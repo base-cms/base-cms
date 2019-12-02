@@ -8,12 +8,14 @@ const BASE_URL = 'https://pubads.g.doubleclick.net/gampad';
  * @param {string} params.action The ad unit action: either `jump` or `ad`.
  * @param {string} params.path The ad unit path.
  * @param {string} params.size The ad unit size, e.g `600x100` or `300x250`.
+ * @param {number} params.correlator The ad unit image to click correlator.
  * @param {object} [params.targeting] The ad unit targeting key/value object.
  */
 module.exports = ({
   action,
   path,
   size,
+  correlator,
   targeting,
 } = {}) => {
   const t = buildTargeting(targeting);
@@ -21,7 +23,7 @@ module.exports = ({
     iu: path,
     sz: size,
     co: 1,
-    c: Math.floor(Math.random() * 100000000),
+    c: correlator,
     ...(t && { t }),
   });
   return `${BASE_URL}/${action}?${params}`;

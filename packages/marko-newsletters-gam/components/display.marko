@@ -16,8 +16,9 @@ $ const {
 $ const canDisplay = Boolean(path && width && height);
 $ const size = `${width}x${height}`;
 
-$ const href = buildUrl({ action: "jump", path, size, targeting });
-$ const src = buildUrl({ action: "ad", path, size, targeting });
+$ const correlator = Math.floor(Math.random() * 100000000);
+$ const href = buildUrl({ action: "jump", path, size, correlator, targeting });
+$ const src = buildUrl({ action: "ad", path, size, correlator, targeting });
 
 $ const imageAttrs = {
   ...getAsObject(input.image, "attrs"),
