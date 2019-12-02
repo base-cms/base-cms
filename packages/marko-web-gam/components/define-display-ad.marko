@@ -10,6 +10,7 @@ $ const {
   path,
   inc,
   targeting,
+  sizeMapping,
   withWrapper,
   collapseBeforeAdFetch,
 } = input;
@@ -25,7 +26,7 @@ $ const slots = {
   [id]: {
     path,
     size,
-    sizeMapping: input.sizeMapping,
+    sizeMapping,
     targeting,
     collapse,
     collapseBeforeAdFetch: input.collapseBeforeAdFetch,
@@ -38,6 +39,7 @@ $ const attrs = {
   ...getAsObject(input.attrs),
   "data-gam-path": path,
   "data-gam-size": JSON.stringify(size),
+  "data-gam-size-mapping": sizeMapping ? JSON.stringify(sizeMapping) : undefined,
   "data-gam-targeting": targeting ? JSON.stringify(targeting) : undefined,
   "data-gam-collapse": collapse,
   ...(collapseBeforeAdFetch && { "data-gam-collapse-before-ad-fetch": true }),
