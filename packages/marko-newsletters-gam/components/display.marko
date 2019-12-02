@@ -1,30 +1,30 @@
 import { warn } from "@base-cms/utils";
 import { getAsObject, getAsArray } from "@base-cms/object-path";
-import moment from "moment";
 import buildUrl from "../utils/build-url";
 
 $ const adUnit = getAsObject(input, "adUnit");
-$ const params = getAsObject(input, "params");
-$ const decodedParams = getAsArray(input, "decodedParams");
 
-$ const { uri, id, width, height, name, alias } = adUnit;
-$ const { email, date, send } = params;
+$ const {
+  path,
+  width,
+  height,
+  name,
+  alias,
+  targeting,
+} = adUnit;
 
-$ const momentDate = moment(date);
-$ if (!momentDate.isValid()) warn("The EmailX date parameter is invalid.");
+$ const canDisplay = Boolean(path && width && height);
+$ const size = `${width}x${height}`;
 
-$ const canDisplay = Boolean(uri && id && email && momentDate.isValid());
+$ const href = buildUrl({ action: "jump", path, size, targeting });
+$ const src = buildUrl({ action: "ad", path, size, targeting });
 
-$ const rand = Math.floor(Math.random() * 100000000);
-$ const query = { date: momentDate.format("YYYY-MM-DDTHH:mm:ssZ"), rand, email, send };
-$ const href = buildUrl({ action: "click", uri, id, query, decodedParams });
-$ const src = buildUrl({ action: "image", uri, id, query, decodedParams });
 $ const imageAttrs = {
   ...getAsObject(input.image, "attrs"),
   width,
   height,
 };
-$ const classNames = [`email-x-${alias}-${name}`, input.class];
+$ const classNames = [`gam-${alias}-${name}`, input.class];
 
 <if(canDisplay)>
   <div ...input.attrs class=classNames>
@@ -34,5 +34,5 @@ $ const classNames = [`email-x-${alias}-${name}`, input.class];
   </div>
 </if>
 <else>
-  $ warn("Unable to render EmailX ad unit: a required input property is missing.");
+  $ warn("Unable to render GAM ad unit: a required input property is missing.");
 </else>

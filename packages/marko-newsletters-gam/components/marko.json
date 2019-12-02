@@ -1,5 +1,5 @@
 {
-  "<marko-newsletters-email-x-display>": {
+  "<marko-newsletters-gam-display>": {
     "template": "./display.marko",
     "<ad-unit>": {
       "@path": "string",
@@ -9,14 +9,8 @@
       "@alias": "string",
       "@targeting": "object"
     },
-    "<params>": {
-      "@email": "string",
-      "@date": "date",
-      "@send": "string"
-    },
     "<link>": {},
     "<image>": {},
-    "@decoded-params":  "array",
     "@class": "string",
     "@attrs": "object"
   }
