@@ -1,0 +1,23 @@
+{
+  "<marko-newsletters-email-x-display>": {
+    "template": "./display.marko",
+    "<ad-unit>": {
+      "@path": "string",
+      "@width": "number",
+      "@height": "number",
+      "@name": "string",
+      "@alias": "string",
+      "@targeting": "object"
+    },
+    "<params>": {
+      "@email": "string",
+      "@date": "date",
+      "@send": "string"
+    },
+    "<link>": {},
+    "<image>": {},
+    "@decoded-params":  "array",
+    "@class": "string",
+    "@attrs": "object"
+  }
+}
