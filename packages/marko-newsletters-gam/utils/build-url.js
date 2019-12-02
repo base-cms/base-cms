@@ -1,7 +1,7 @@
 const { URLSearchParams } = require('url');
 const buildTargeting = require('./build-targeting');
 
-const BASE_URL = 'https://pubads.g.doubleclick.net/gampad';
+const BASE_URL = 'https://securepubads.g.doubleclick.net/gampad';
 
 /**
  * @param {object} params
@@ -24,6 +24,7 @@ module.exports = ({
     sz: size,
     co: 1,
     c: correlator,
+    pre: 1,
     ...(t && { t }),
   });
   return `${BASE_URL}/${action}?${params}`;
