@@ -5,6 +5,7 @@ const {
   getDefaultContentTypes,
 } = require('@base-cms/utils');
 const { stripTags } = require('@base-cms/html');
+const criteriaFor = require('./criteria-for');
 
 const createSeoTitle = (doc) => {
   let title = BaseDB.extractMutationValue(doc, 'Website', 'seoTitle');
@@ -13,17 +14,19 @@ const createSeoTitle = (doc) => {
 };
 
 
-// const createTitleCompany = async (doc, load) => {
-//   const id = BaseDB.extractRefId(doc.company);
-//   if (!id) return null;
-//   const company = await load('platformContent', id, {
-//     name: 1,
-//     'mutations.Website.seoTitle': 1,
-//     'mutations.Website.name': 1,
-//   }, { status: 1, ...criteriaFor('contentCompany') });
-//   if (!company) return null;
-//   return createSeoTitle(company);
-// };
+const createTitleCompany = async (doc, { load }) => {
+  const id = BaseDB.extractRefId(doc.company);
+  if (!id) return null;
+  const company = await load('platformContent', id, {
+    name: 1,
+    'mutations.Website.seoTitle': 1,
+    'mutations.Website.name': 1,
+  }, { status: 1, ...criteriaFor('contentCompany') });
+  if (!company) return null;
+  const title = createSeoTitle(company);
+  if (title) return `From: ${title}`;
+  return null;
+};
 
 // const createTitlePrimarySection = async (doc, load) => {
 //   const ref = BaseDB.extractMutationValue(doc, 'Website', 'primarySection');
@@ -37,9 +40,13 @@ const createSeoTitle = (doc) => {
 //   return section.name;
 // };
 
-const createTitle = async (doc) => {
+const createTitle = async (doc, ctx) => {
   if (!isObject(doc)) return null;
-  return createSeoTitle(doc);
+  const title = createSeoTitle(doc);
+  if (doc.type !== 'Product') return title;
+  const companyTitle = await createTitleCompany(doc, ctx);
+  if (companyTitle) return `${title} ${companyTitle}`;
+  return title;
   // The below has been removed.
   // This should NOT be handled on read and, instead, should be done at write time.
   // @todo Add support for this on write in platform.

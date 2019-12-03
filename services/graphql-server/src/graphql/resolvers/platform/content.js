@@ -208,7 +208,7 @@ module.exports = {
    *
    */
   ContentMetadata: {
-    title: content => createTitle(content),
+    title: (content, _, ctx) => createTitle(content, ctx),
     description: content => createDescription(content),
   },
 
