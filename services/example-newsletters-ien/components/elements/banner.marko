@@ -9,14 +9,13 @@ $ const adUnit = getAsObject(input, "adUnit");
         <tr>
           <common-view-online-element name=input.name />
         </tr>
-        <if(adUnit.id)>
+        <if(adUnit.path)>
           <tr>
             <td align="center">
               <div class="advertisement inline ad-600x100">
-                <marko-newsletters-email-x-display decoded-params=["email", "send"]>
+                <marko-newsletters-gam-display>
                   <@ad-unit ...adUnit />
-                  <@params date=input.date email="%%emailaddr%%" send="%%jobid%%" />
-                </marko-newsletters-email-x-display>
+                </marko-newsletters-gam-display>
               </div>
             </td>
           </tr>

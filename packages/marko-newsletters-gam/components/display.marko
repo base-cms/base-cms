@@ -1,0 +1,39 @@
+import { warn } from "@base-cms/utils";
+import { getAsObject } from "@base-cms/object-path";
+import buildUrl from "../utils/build-url";
+
+$ const adUnit = getAsObject(input, "adUnit");
+
+$ const {
+  path,
+  width,
+  height,
+  name,
+  alias,
+  targeting,
+} = adUnit;
+
+$ const canDisplay = Boolean(path && width && height);
+$ const size = `${width}x${height}`;
+
+$ const correlator = Math.floor(Math.random() * 100000000);
+$ const href = buildUrl({ action: "jump", path, size, correlator, targeting });
+$ const src = buildUrl({ action: "ad", path, size, correlator, targeting });
+
+$ const imageAttrs = {
+  ...getAsObject(input.image, "attrs"),
+  width,
+  height,
+};
+$ const classNames = [`gam-${alias}-${name}`, input.class];
+
+<if(canDisplay)>
+  <div ...input.attrs class=classNames>
+    <marko-core-img ...input.image src=src attrs=imageAttrs>
+      <@link target="_blank" ...input.link href=href />
+    </marko-core-img>
+  </div>
+</if>
+<else>
+  $ warn("Unable to render GAM ad unit: a required input property is missing.");
+</else>

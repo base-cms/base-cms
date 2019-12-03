@@ -1,14 +1,24 @@
 import contentList from "../graphql/fragments/content-list";
-import emailX from "../config/email-x";
+import GAM from "../config/gam";
 
 $ const { website } = out.global;
-$ const { newsletter, date } = data;
+$ const { newsletter, date, dateInfo } = data;
+$ const targeting = {
+  dayofweek: date.format("ddd"),
+  nl_date: date.format("YYYY-MM-DD"),
+  weeknum: dateInfo.weeknum,
+  month: dateInfo.month,
+  day: dateInfo.day,
+  year: dateInfo.year,
+  nl_name: newsletter.name,
+  nl_id: newsletter.id,
+};
 
 <common-document newsletter=newsletter date=date>
   <common-banner-element
     name=newsletter.name
     date=date
-    ad-unit=emailX.getAdUnit({ name: "header", alias: newsletter.alias })
+    ad-unit=GAM.getAdUnit({ name: "header", alias: newsletter.alias, targeting })
   />
 
   <common-table width="630" align="center" class="main" padding=null spacing=null>

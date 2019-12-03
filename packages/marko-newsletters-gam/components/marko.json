@@ -1,0 +1,17 @@
+{
+  "<marko-newsletters-gam-display>": {
+    "template": "./display.marko",
+    "<ad-unit>": {
+      "@path": "string",
+      "@width": "number",
+      "@height": "number",
+      "@name": "string",
+      "@alias": "string",
+      "@targeting": "object"
+    },
+    "<link>": {},
+    "<image>": {},
+    "@class": "string",
+    "@attrs": "object"
+  }
+}
