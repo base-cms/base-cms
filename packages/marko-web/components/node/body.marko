@@ -17,7 +17,7 @@ $ const showBody = showHeader || showTitle || showText || showFooter;
     attrs=input.attrs
   >
     <if(showHeader)>
-      <marko-web-node-header ...input.header modifiers=["body", getAsArray(input, "header.modifiers")] />
+      <marko-web-node-header ...input.header modifiers=["body", ...getAsArray(input, "header.modifiers")] />
     </if>
     <if(showTitle || showText)>
       <marko-web-node-element name="contents" modifiers=["body"]>
@@ -34,7 +34,7 @@ $ const showBody = showHeader || showTitle || showText || showFooter;
       </marko-web-node-element>
     </if>
     <if(showFooter)>
-      <marko-web-node-footer ...input.footer modifiers=["body", getAsArray(input, "footer.modifiers")] />
+      <marko-web-node-footer ...input.footer modifiers=["body", ...getAsArray(input, "footer.modifiers")] />
     </if>
   </marko-web-node-element>
 </if>
