@@ -21,10 +21,10 @@ $ if (align) modifiers.push(`align-${align}`);
   <marko-web-node-element name="image-wrapper" block-name=input.blockName attrs={ style } modifiers=modifiers>
     <marko-web-node-image-inner-wrapper ...input />
     <if(header)>
-      <marko-web-node-header ...header modifiers=["overlay", getAsArray(header, "modifiers")] />
+      <marko-web-node-header ...header modifiers=["overlay", ...getAsArray(header, "modifiers")] />
     </if>
     <if(body)>
-      <marko-web-node-body ...body modifiers=["overlay", getAsArray(header, "modifiers")] />
+      <marko-web-node-body ...body modifiers=["overlay", ...getAsArray(header, "modifiers")] />
     </if>
   </marko-web-node-element>
 </if>
