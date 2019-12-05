@@ -12,6 +12,16 @@ const buildCollapse = (collapse, collapseBeforeAdFetch) => {
   return `setCollapseEmptyDiv(${args.join(', ')})`;
 };
 
+const buildDefineSlot = ({
+  id,
+  path,
+  size,
+  oop,
+} = {}) => {
+  if (oop) return `googletag.defineOutOfPageSlot('${path}', '${id}')`;
+  return `googletag.defineSlot('${path}', ${JSON.stringify(size)}, '${id}')`;
+};
+
 module.exports = (slots) => {
   if (!isObject(slots)) return [];
   return Object.keys(slots)
@@ -23,10 +33,16 @@ module.exports = (slots) => {
       size,
       sizeMapping,
       targeting,
+      oop,
       collapse,
       collapseBeforeAdFetch,
     }) => [
-      `googletag.defineSlot('${path}', ${JSON.stringify(size)}, '${id}')`,
+      buildDefineSlot({
+        id,
+        path,
+        size,
+        oop,
+      }),
       buildTargeting(targeting),
       buildSizeMapping(sizeMapping),
       buildCollapse(collapse, collapseBeforeAdFetch),

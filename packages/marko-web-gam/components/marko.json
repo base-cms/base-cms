@@ -50,6 +50,7 @@
     "@targeting": "object",
     "@collapse": "boolean",
     "@collapse-before-ad-fetch": "boolean",
+    "@oop": "boolean",
     "@apply-style": {
       "type": "boolean",
       "default-value": false
