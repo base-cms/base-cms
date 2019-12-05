@@ -1,3 +1,4 @@
+import { getAsObject } from "@base-cms/object-path";
 import buildTargeting from "../utils/build-targeting";
 
 $ const { req } = out.global;
@@ -15,10 +16,7 @@ $ if (options.enableSingleRequest) calls.push("googletag.pubads().enableSingleRe
 $ if (options.collapseEmptyDivs) calls.push("googletag.pubads().collapseEmptyDivs();");
 
 <!-- Build global targeting calls -->
-$ const keyValues = {
-  ...input.keyValues,
-  env: process.env.NODE_ENV,
-};
+$ const keyValues = getAsObject(input, "keyValues");
 $ const includePath = input.includePath =! null ? input.includePath : true;
 $ const includeHost = input.includeHost =! null ? input.includeHost : true;
 $ const includeEnv = input.includeEnv =! null ? input.includeEnv : true;
