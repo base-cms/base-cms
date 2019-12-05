@@ -17,6 +17,7 @@ $ const {
 $ const id = input.id || generateId({ inc });
 
 $ const collapse = defaultValue(input.collapse, true);
+$ const oop = defaultValue(input.oop, false);
 $ const size = typeof input.size === "string" ? [input.size] : (isArray(input.size) ? input.size : []);
 $ const applyStyle = input.applyStyle == null ? false : input.applyStyle;
 $ const style = applyStyle ? slotStyle(size) : null;
@@ -28,6 +29,7 @@ $ const slots = {
     size,
     sizeMapping,
     targeting,
+    oop,
     collapse,
     collapseBeforeAdFetch: input.collapseBeforeAdFetch,
   },
@@ -41,8 +43,9 @@ $ const attrs = {
   "data-gam-size": JSON.stringify(size),
   "data-gam-size-mapping": sizeMapping ? JSON.stringify(sizeMapping) : undefined,
   "data-gam-targeting": targeting ? JSON.stringify(targeting) : undefined,
-  "data-gam-collapse": collapse,
-  ...(collapseBeforeAdFetch && { "data-gam-collapse-before-ad-fetch": true }),
+  "data-gam-collapse": `${collapse}`,
+  ...(collapseBeforeAdFetch && { "data-gam-collapse-before-ad-fetch": "true" }),
+  ...(oop && { "data-gam-oop": "true" }),
 };
 
 $ const blockName = input.blockName || "ad-container";
