@@ -73,6 +73,8 @@ module.exports = async (argv) => {
   const build = async () => {
     const imageTag = `${service}:${version}`;
     log(`Building  ${image}:${version}...\n`);
+    const Dockerfile = join(process.cwd(), 'services', service, 'Dockerfile');
+    await spawnSync('cp', [Dockerfile, process.cwd()]);
     await docker(['login', '-u', DOCKER_USERNAME, '-p', DOCKER_PASSWORD]);
     await docker(['build', '-t', imageTag, '--build-arg', `SERVICE=${service}`, process.cwd()]);
     await docker(['tag', imageTag, `${image}:${version}`]);
