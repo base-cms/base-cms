@@ -11,7 +11,7 @@ module.exports = ({
 } = {}) => asyncRoute(async (req, res) => {
   const alias = isFn(aliasResolver) ? await aliasResolver(req, res) : req.params.alias;
   const { apollo } = req;
-  const cleanedAlias = alias.replace(/\/+$/, '').replace(/$\/+/, '');
+  const cleanedAlias = alias.replace(/\/+$/, '').replace(/^\/+/, '');
 
   const section = await loader(apollo, { alias: cleanedAlias });
   const { redirectTo, canonicalPath } = section;
