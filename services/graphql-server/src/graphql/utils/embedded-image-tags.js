@@ -18,7 +18,8 @@ module.exports = async (body, { imageHost, basedb }) => {
       tag.setValid(false);
       return tag;
     }
-    const size = tag.get('size', '640').replace('w', '');
+    const defaultSize = ['left', 'right'].includes(tag.get('align')) ? '320' : '640';
+    const size = tag.get('size', defaultSize).replace('w', '');
 
     tag.set('alt', createAltFor(image));
     tag.set('src', createSrcFor(imageHost, image, {
