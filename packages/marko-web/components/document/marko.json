@@ -2,6 +2,11 @@
   "<marko-web-document>": {
     "template": "./index.marko",
     "<head>": {},
+    "<body-wrapper>": {
+      "@enabled": "boolean",
+      "@attrs": "object"
+    },
+    "<above-wrapper>": {},
     "<above-container>": {},
     "<container>": {
       "<above-page>": {},
@@ -9,6 +14,7 @@
       "<below-page>": {}
     },
     "<below-container>": {},
+    "<below-wrapper>": {},
     "<foot>": {},
     "@dir": {
       "type": "string",
