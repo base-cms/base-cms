@@ -15,6 +15,7 @@ const criteriaFor = require('../../utils/criteria-for');
 const getProjection = require('../../utils/get-projection');
 const formatStatus = require('../../utils/format-status');
 const getEmbeddedImageTags = require('../../utils/embedded-image-tags');
+const getEmbeddedDocumentTags = require('../../utils/embedded-document-tags');
 const relatedContent = require('../../utils/related-content');
 const inquiryEmails = require('../../utils/inquiry-emails');
 const connectionProjection = require('../../utils/connection-projection');
@@ -357,8 +358,18 @@ module.exports = {
       // Use site image host otherwise fallback to global default.
       const imageHost = site.get('imageHost', defaults.imageHost);
       // Convert image tags to include image attributes (src, alt, caption, credit).
-      const imageTags = await getEmbeddedImageTags(value, { imageHost, basedb });
+      // Convert document tags to include href and file extension.
+      const [imageTags, documentTags] = await Promise.all([
+        getEmbeddedImageTags(value, { imageHost, basedb }),
+        getEmbeddedDocumentTags(value, { imageHost, basedb }),
+      ]);
+
       imageTags.forEach((tag) => {
+        const replacement = tag.isValid() ? tag.build() : '';
+        value = value.replace(tag.getRegExp(), replacement);
+      });
+
+      documentTags.forEach((tag) => {
         const replacement = tag.isValid() ? tag.build() : '';
         value = value.replace(tag.getRegExp(), replacement);
       });
