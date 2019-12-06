@@ -19,15 +19,9 @@ const https = require('https');
 const lerna = require('../lerna.json');
 
 const { log } = console;
-const { TRAVIS_TAG, TARGET } = process.env;
-const isProd = TARGET === 'production';
+const { TRAVIS_TAG } = process.env;
 
-const getVersion = () => {
-  if (isProd) return `v${lerna.version}`;
-  const { stdout } = spawnSync('git', ['describe', '--tags']);
-  return `v${stdout}`.trim();
-};
-const version = getVersion();
+const version = `v${lerna.version}`;
 const service = process.argv[2];
 const servicePath = join('services', service);
 const image = `basecms/${service}`;
@@ -47,13 +41,13 @@ const error = async (message) => {
   process.exit(1);
 };
 
-if (isProd && TRAVIS_TAG !== version) error(`Tagged version ${TRAVIS_TAG} differs from lerna version ${version}, aborting!`);
+if (TRAVIS_TAG !== version) error(`Tagged version ${TRAVIS_TAG} differs from lerna version ${version}, aborting!`);
 if (!service) error('You must specify the service folder to deploy.');
 if (!existsSync(servicePath)) error(`Could not read ${servicePath}!`);
 
 const pkg = require(`../${servicePath}/package.json`); // eslint-disable-line import/no-dynamic-require
 
-if (isProd && version !== `v${pkg.version}`) {
+if (version !== `v${pkg.version}`) {
   log(`Service ${service} is at version ${pkg.version}. Skipping deployment.`);
   process.exit(0);
 }
