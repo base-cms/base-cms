@@ -1,8 +1,11 @@
+import { getAsObject } from "@base-cms/object-path";
+
 $ const { config } = out.global;
 
 $ const dir = input.dir || "ltr";
 $ const lang = input.lang || config.website("language.code", "en-us");
 $ const viewport = input.viewport || "width=device-width, initial-scale=1, shrink-to-fit=no";
+$ const wrapper = getAsObject(input, "bodyWrapper");
 
 <!doctype html>
 <html lang=lang dir=dir>
@@ -17,12 +20,16 @@ $ const viewport = input.viewport || "width=device-width, initial-scale=1, shrin
     <${input.head} />
   </head>
   <body>
-    <${input.aboveContainer} />
-    <if(input.container)>
-      <marko-web-document-container ...input.container />
-    </if>
-    <${input.belowContainer} />
-    <live-reload />
-    <${input.foot} />
+    <${input.aboveWrapper} />
+    <body-wrapper enabled=wrapper.enabled attrs=wrapper.attrs>
+      <${input.aboveContainer} />
+      <if(input.container)>
+        <marko-web-document-container ...input.container />
+      </if>
+      <${input.belowContainer} />
+      <live-reload />
+      <${input.foot} />
+    </body-wrapper>
+    <${input.belowWrapper} />
   </body>
 </html>
