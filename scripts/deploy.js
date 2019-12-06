@@ -43,7 +43,7 @@ const nrIds = {
 
 const error = async (message) => {
   log(`ERROR: ${message}`);
-  await spawnSync('bash', ['deploy/notify-fail.sh', message], { stdio: 'inherit' });
+  await spawnSync('npx', ['@base-cms/website-deployment-tool', 'notify-failed', message], { stdio: 'inherit' });
   process.exit(1);
 };
 
