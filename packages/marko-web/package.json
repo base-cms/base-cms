@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/marko-web",
-  "version": "1.0.0-rc.16",
+  "version": "1.0.0-rc.19",
   "description": "Core Marko+Express components for BaseCMS websites",
   "author": "Jacob Bare <jacob@limit0.io>",
   "main": "index.js",
