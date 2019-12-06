@@ -11,8 +11,9 @@ module.exports = ({
 } = {}) => asyncRoute(async (req, res) => {
   const alias = isFn(aliasResolver) ? await aliasResolver(req, res) : req.params.alias;
   const { apollo } = req;
+  const cleanedAlias = alias.replace(/\/+$/, '').replace(/^\/+/, '');
 
-  const section = await loader(apollo, { alias });
+  const section = await loader(apollo, { alias: cleanedAlias });
   const { redirectTo, canonicalPath } = section;
   if (redirectTo) {
     return res.redirect(301, redirectTo);
@@ -23,7 +24,7 @@ module.exports = ({
   const pageNode = new PageNode(apollo, {
     queryFactory,
     queryFragment,
-    variables: { input: { alias } },
+    variables: { input: { alias: cleanedAlias } },
     resultField: 'websiteSectionAlias',
   });
   return res.marko(template, { ...section, pageNode });
