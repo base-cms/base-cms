@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/leaders-program",
-  "version": "1.0.0-rc.2",
+  "version": "1.0.0",
   "description": "Leaders Program Vue components",
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/leaders-program",
   "author": "Jacob Bare <jacob@limit0.io>",
@@ -20,7 +20,7 @@
     "vue": "^2.6.10"
   },
   "devDependencies": {
-    "@base-cms/graphql-fragment-types": "^1.0.0-rc.1",
+    "@base-cms/graphql-fragment-types": "^1.0.0",
     "@vue/cli-plugin-babel": "^4.0.0",
     "@vue/cli-plugin-eslint": "^4.0.0",
     "@vue/cli-service": "^4.0.0",

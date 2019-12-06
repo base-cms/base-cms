@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/oembed",
-  "version": "1.0.0-rc.3",
+  "version": "1.0.0",
   "description": "The BaseCMS oEmbed service",
   "main": "src/index.js",
   "author": "Josh Worden <josh@limit0.io>",
@@ -12,9 +12,9 @@
     "test": "yarn lint"
   },
   "dependencies": {
-    "@base-cms/embedly": "^1.0.0-rc.1",
-    "@base-cms/tooling": "^1.0.0-rc.1",
-    "@base-cms/utils": "^1.0.0-rc.1",
+    "@base-cms/embedly": "^1.0.0",
+    "@base-cms/tooling": "^1.0.0",
+    "@base-cms/utils": "^1.0.0",
     "@godaddy/terminus": "^4.2.0",
     "@newrelic/native-metrics": "^4.1.0",
     "body-parser": "^1.19.0",

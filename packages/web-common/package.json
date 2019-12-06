@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/web-common",
-  "version": "1.0.0-rc.8",
+  "version": "1.0.0",
   "description": "Common utilities, queries and functions for BaseCMS website projects.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
@@ -11,9 +11,9 @@
     "test": "yarn lint"
   },
   "dependencies": {
-    "@base-cms/inflector": "^1.0.0-rc.1",
-    "@base-cms/object-path": "^1.0.0-rc.1",
-    "@base-cms/utils": "^1.0.0-rc.1",
+    "@base-cms/inflector": "^1.0.0",
+    "@base-cms/object-path": "^1.0.0",
+    "@base-cms/utils": "^1.0.0",
     "graphql": "^14.5.4",
     "graphql-tag": "^2.10.1",
     "http-errors": "^1.7.3"

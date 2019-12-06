@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/db",
-  "version": "1.0.0-rc.1",
+  "version": "1.0.0",
   "description": "The BaseCMS database driver. Requires direct MongoDB access.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
@@ -11,8 +11,8 @@
     "test": "yarn lint"
   },
   "dependencies": {
-    "@base-cms/async": "^1.0.0-rc.1",
-    "@base-cms/utils": "^1.0.0-rc.1",
+    "@base-cms/async": "^1.0.0",
+    "@base-cms/utils": "^1.0.0",
     "base64-url": "^2.3.2",
     "deepmerge": "^3.3.0",
     "mongodb": "^3.1.10",

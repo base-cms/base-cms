@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/marko-newsletters-mc",
-  "version": "1.0.0-rc.5",
+  "version": "1.0.0",
   "description": "Marketing Cloud Marko components for BaseCMS newsletters.",
   "author": "Jacob Bare <jacob@limit0.io>",
   "license": "MIT",
