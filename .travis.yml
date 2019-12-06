@@ -2,59 +2,122 @@ language: node_js
 node_js: "10.15"
 cache: yarn
 
-env:
-  - TARGET=production RANCHER_CLUSTERID=c-gxsr7
-  - TARGET=staging RANCHER_CLUSTERID=c-rc5kp
-
 stages:
   - name: test
-    if: env(TARGET) = production
 
-  - name: deploy
-    if: (env(TARGET) = staging AND tag is present) OR (env(TARGET) = production AND tag =~ /^v\d+\.\d+\.\d+$/)
+  - name: production-started
+    if: tag =~ /^v\d+\.\d+\.\d+$/
+  - name: production
+    if: tag =~ /^v\d+\.\d+\.\d+$/
+  - name: production-finished
+    if: tag =~ /^v\d+\.\d+\.\d+$/
+
+  - name: staging-started
+    if: tag is present
+  - name: staging
+    if: tag is present
+  - name: staging-finished
+    if: tag is present
 
 jobs:
   include:
     - stage: test
+      env: [NODE_ENV=test]
 
-    - stage: deploy
+    - stage: production-started
       name: Deployment Started
-      script: scripts/deploy-notify-start.sh
+      script: npx @base-cms/website-deployment-tool notify-started
       install: skip
+      env: [ENVIRONMENT=production RANCHER_CLUSTERID=c-gxsr7]
+
+    - stage: staging-started
+      name: Deployment Started
+      script: npx @base-cms/website-deployment-tool notify-started
+      install: skip
+      env: [ENVIRONMENT=staging RANCHER_CLUSTERID=c-rc5kp]
 
     #############################
     # vvv ADD SERVICES HERE vvv #
     #############################
 
-    - stage: deploy
+    - stage: production
       name: GraphQL Server
       script: scripts/deploy.js graphql-server
+      install: skip
+      env: [ENVIRONMENT=production RANCHER_CLUSTERID=c-gxsr7]
+    - stage: staging
+      name: GraphQL Server
+      script: scripts/deploy.js graphql-server
+      install: skip
+      env: [ENVIRONMENT=staging RANCHER_CLUSTERID=c-rc5kp]
 
-    - stage: deploy
+    - stage: production
       name: Sitemaps
       script: scripts/deploy.js sitemaps
+      install: skip
+      env: [ENVIRONMENT=production RANCHER_CLUSTERID=c-gxsr7]
+    - stage: staging
+      name: Sitemaps
+      script: scripts/deploy.js sitemaps
+      install: skip
+      env: [ENVIRONMENT=staging RANCHER_CLUSTERID=c-rc5kp]
 
-    - stage: deploy
+    - stage: production
       name: RSS
       script: scripts/deploy.js rss
+      install: skip
+      env: [ENVIRONMENT=production RANCHER_CLUSTERID=c-gxsr7]
+    - stage: staging
+      name: RSS
+      script: scripts/deploy.js rss
+      install: skip
+      env: [ENVIRONMENT=staging RANCHER_CLUSTERID=c-rc5kp]
 
-    - stage: deploy
+    - stage: production
       name: Hooks
       script: scripts/deploy.js hooks
+      install: skip
+      env: [ENVIRONMENT=production RANCHER_CLUSTERID=c-gxsr7]
+    - stage: staging
+      name: Hooks
+      script: scripts/deploy.js hooks
+      install: skip
+      env: [ENVIRONMENT=staging RANCHER_CLUSTERID=c-rc5kp]
 
-    - stage: deploy
+    - stage: production
       name: oEmbed
       script: scripts/deploy.js oembed
+      install: skip
+      env: [ENVIRONMENT=production RANCHER_CLUSTERID=c-gxsr7]
+    - stage: staging
+      name: oEmbed
+      script: scripts/deploy.js oembed
+      install: skip
+      env: [ENVIRONMENT=staging RANCHER_CLUSTERID=c-rc5kp]
 
-    - stage: deploy
+    - stage: production
       name: Google Data API
       script: scripts/deploy.js google-data-api
+      install: skip
+      env: [ENVIRONMENT=production RANCHER_CLUSTERID=c-gxsr7]
+    - stage: staging
+      name: Google Data API
+      script: scripts/deploy.js google-data-api
+      install: skip
+      env: [ENVIRONMENT=staging RANCHER_CLUSTERID=c-rc5kp]
 
     #############################
     # ^^^ ADD SERVICES HERE ^^^ #
     #############################
 
-    - stage: deploy
-      name: Deployment Ended
-      script: scripts/deploy-notify.sh
+    - stage: production-finished
+      name: Deployment Finished
+      script: npx @base-cms/website-deployment-tool notify-finished
       install: skip
+      env: [ENVIRONMENT=production RANCHER_CLUSTERID=c-gxsr7]
+
+    - stage: staging-finished
+      name: Deployment Finished
+      script: npx @base-cms/website-deployment-tool notify-finished
+      install: skip
+      env: [ENVIRONMENT=staging RANCHER_CLUSTERID=c-rc5kp]
