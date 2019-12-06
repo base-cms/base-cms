@@ -65,7 +65,7 @@ module.exports = (config = {}) => {
 
   // Apply versions.
   app.use((req, res, next) => {
-    res.set('x-version', `${sitePackage.version}|${version}`);
+    res.set('x-version', `Site:${sitePackage.version}|Core:${version}`);
     next();
   });
 
