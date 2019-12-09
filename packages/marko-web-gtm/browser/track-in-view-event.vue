@@ -24,7 +24,7 @@ export default {
   },
   computed: {
     elementId() {
-      return `gtm-track-event-${Date.now()}`;
+      return `gtm-track-in-view-event-${Date.now()}`;
     },
   },
   created() {
