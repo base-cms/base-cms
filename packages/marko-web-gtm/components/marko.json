@@ -42,5 +42,11 @@
   },
   "<marko-web-gtm-track-load-more>": {
     "template": "./track-load-more.marko"
+  },
+  "<marko-web-gtm-track-bus-event>": {
+    "template": "./track-bus-event.marko",
+    "@on": "string",
+    "@event-name": "string",
+    "@layer-name": "string"
   }
 }
