@@ -4,6 +4,7 @@
     :data-on="on"
     :data-event-name="eventName"
     :data-layer-name="layerName"
+    style="display: none;"
   />
 </template>
 
