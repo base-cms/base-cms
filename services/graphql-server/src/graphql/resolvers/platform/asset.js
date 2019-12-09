@@ -1,6 +1,5 @@
 const { createAltFor, createSrcFor, createCaptionFor } = require('@base-cms/image');
 const { Base4RestPayload } = require('@base-cms/base4-rest-api');
-const { UserInputError } = require('apollo-server-express');
 const validateRest = require('../../utils/validate-rest');
 const getProjection = require('../../utils/get-projection');
 const defaults = require('../../defaults');
@@ -28,7 +27,6 @@ module.exports = {
       const type = 'platform/asset/image';
       const { id, ...payload } = input;
       const keys = Object.keys(payload);
-      if (!keys.length) throw new UserInputError('You must specify a field to update!');
       const body = new Base4RestPayload({ type });
       keys.forEach(k => body.set(k, payload[k]));
       body.set('id', id);
