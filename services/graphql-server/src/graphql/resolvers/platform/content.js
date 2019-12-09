@@ -1131,7 +1131,6 @@ module.exports = {
       const type = 'platform/content/company';
       const { id, ...payload } = input;
       const keys = Object.keys(payload);
-      if (!keys.length) throw new UserInputError('You must specify a field to update!');
       const body = new Base4RestPayload({ type });
       keys.forEach(k => body.set(k, payload[k]));
       body.set('id', id);
