@@ -1126,7 +1126,7 @@ module.exports = {
    *
    */
   Mutation: {
-    contentCompanyUpdate: async (_, { input }, { base4rest, basedb }, info) => {
+    updateContentCompany: async (_, { input }, { base4rest, basedb }, info) => {
       validateRest(base4rest);
       const type = 'platform/content/company';
       const { id, ...payload } = input;

@@ -7,7 +7,7 @@ extend type Query {
 }
 
 extend type Mutation {
-  contentCompanyUpdate(input: ContentCompanyMutationInput!): ContentCompany @requiresAuth
+  updateContentCompany(input: ContentCompanyMutationInput!): ContentCompany @requiresAuth
 }
 
 type ContentCompany implements Content & PrimaryCategory & Contactable & Addressable & SocialLinkable & Inquirable & OrganizationContactable @applyInterfaceFields {
