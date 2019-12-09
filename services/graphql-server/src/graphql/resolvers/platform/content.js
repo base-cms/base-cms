@@ -1,5 +1,6 @@
 const { BaseDB } = require('@base-cms/db');
 const { UserInputError } = require('apollo-server-express');
+const { Base4RestPayload } = require('@base-cms/base4-rest-api');
 const { cleanPath, asObject } = require('@base-cms/utils');
 const { content: canonicalPathFor } = require('@base-cms/canonical-path');
 const { get } = require('@base-cms/object-path');
@@ -9,6 +10,7 @@ const moment = require('moment');
 const momentTZ = require('moment-timezone');
 
 const defaults = require('../../defaults');
+const validateRest = require('../../utils/validate-rest');
 const mapArray = require('../../utils/map-array');
 const sitemap = require('../../utils/sitemap');
 const criteriaFor = require('../../utils/criteria-for');
@@ -1117,6 +1119,26 @@ module.exports = {
         basedb,
         info,
       });
+    },
+  },
+
+  /**
+   *
+   */
+  Mutation: {
+    contentCompanyUpdate: async (_, { input }, { base4rest, basedb }, info) => {
+      validateRest(base4rest);
+      const type = 'platform/content/company';
+      const { id, ...payload } = input;
+      const keys = Object.keys(payload);
+      if (!keys.length) throw new UserInputError('You must specify a field to update!');
+      const body = new Base4RestPayload({ type });
+      keys.forEach(k => body.set(k, payload[k]));
+      body.set('id', id);
+      await base4rest.updateOne({ model: type, id, body });
+      const { fieldNodes, schema, fragments } = info;
+      const projection = getProjection(schema, schema.getType('ContentCompany'), fieldNodes[0].selectionSet, fragments);
+      return basedb.findOne('platform.Content', { _id: id }, { projection });
     },
   },
 };

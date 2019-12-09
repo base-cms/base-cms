@@ -6,6 +6,10 @@ extend type Query {
   contentCompany(input: ContentCompanyQueryInput!): ContentCompany @findOne(model: "platform.Content", using: { id: "_id" }, criteria: "contentCompany")
 }
 
+extend type Mutation {
+  contentCompanyUpdate(input: ContentCompanyMutationInput!): ContentCompany @requiresAuth
+}
+
 type ContentCompany implements Content & PrimaryCategory & Contactable & Addressable & SocialLinkable & Inquirable & OrganizationContactable @applyInterfaceFields {
   # fields directly on platform.model::Content\Company
   companyType: String @projection
@@ -53,6 +57,40 @@ type ContentCompanyEdge {
 input ContentCompanyQueryInput {
   id: Int!
   status: ModelStatus = active
+}
+
+input ContentCompanyMutationInput {
+  id: Int!
+  name: String
+  address1: String
+  address2: String
+  city: String
+  state: String
+  zip: String
+  country: String
+  phone: String
+  tollfree: String
+  fax: String
+  website: String
+  type: String
+  email: String
+  body: String
+  socialLinks: [ContentCompanySocialLinkInput!]
+  teaser: String
+  numberOfEmployees: String
+  trainingInformation: String
+  yearsInOperation: String
+  salesRegion: String
+  servicesProvided: String
+  salesChannels: String
+  productSummary: String
+  serviceInformation: String
+  warrantyInformation: String
+}
+
+input ContentCompanySocialLinkInput {
+  provider: String!
+  url: String!
 }
 
 input ContentCompanyCompanyCompetitorsInput {
