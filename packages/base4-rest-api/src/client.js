@@ -124,9 +124,9 @@ class Base4RestApiClient {
     if (!url) throw new Error('An image URL must be passed to upload.');
     return this.fetch({
       method: 'post',
-      type: 'upload',
+      type: 'custom',
       body: { uri: url },
-      endpoint: '-embedded',
+      endpoint: 'upload-embedded',
     });
   }
 
@@ -171,9 +171,9 @@ class Base4RestApiClient {
   }
 
   buildUrl({ type, endpoint } = {}) {
-    if (type === 'upload') return `${this.uri}/upload${cleanPath(endpoint)}`;
-    if (!['persistence', 'search'].includes(type)) throw new Error(`The API resource type '${type}' is not supported.`);
+    if (!['persistence', 'search', 'custom'].includes(type)) throw new Error(`The API resource type '${type}' is not supported.`);
     if (!endpoint) throw new Error('An API endpoint is required.');
+    if (type === 'custom') return `${this.uri}/${cleanPath(endpoint)}`;
     return `${this.uri}/${cleanPath(this.baseEndpoint)}/${type}/${cleanPath(endpoint)}`;
   }
 
