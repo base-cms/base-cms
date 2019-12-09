@@ -7,7 +7,7 @@ extend type Query {
 }
 
 extend type Mutation {
-  assetImageUpdate(input: AssetImageMutationInput!): AssetImage!
+  updateAssetImage(input: AssetImageMutationInput!): AssetImage!
 }
 
 type AssetImage {

@@ -23,7 +23,7 @@ module.exports = {
    *
    */
   Mutation: {
-    assetImageUpdate: async (_, { input }, { base4rest, basedb }, info) => {
+    updateAssetImage: async (_, { input }, { base4rest, basedb }, info) => {
       validateRest(base4rest);
       const type = 'platform/asset/image';
       const { id, ...payload } = input;
