@@ -7,7 +7,7 @@ extend type Query {
 }
 
 extend type Mutation {
-  updateAssetImage(input: AssetImageMutationInput!): AssetImage!
+  updateAssetImage(input: AssetImageMutationInput!): AssetImage! @requiresAuth
 }
 
 type AssetImage {
