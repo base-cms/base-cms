@@ -6,6 +6,10 @@ extend type Query {
   assetImage(input: AssetImageQueryInput!): AssetImage @findOne(model: "platform.Asset", using: { id: "_id" }, criteria: "assetImage")
 }
 
+extend type Mutation {
+  assetImageUpdate(input: AssetImageMutationInput!): AssetImage!
+}
+
 type AssetImage {
   # from platform.model::Asset
   id: ObjectID! @projection(localField: "_id") @value(localField: "_id")
@@ -69,6 +73,14 @@ enum AssetImageSortField {
 
 input AssetImageQueryInput {
   id: ObjectID!
+}
+
+input AssetImageMutationInput {
+  id: ObjectID!
+  name: String
+  filePath: String
+  fileName: String
+  isLogo: Boolean
 }
 
 input AssetImageSortInput {
