@@ -1,5 +1,6 @@
 const { BaseDB } = require('@base-cms/db');
 const { UserInputError } = require('apollo-server-express');
+const { Base4RestPayload } = require('@base-cms/base4-rest-api');
 const { cleanPath, asObject } = require('@base-cms/utils');
 const { content: canonicalPathFor } = require('@base-cms/canonical-path');
 const { get } = require('@base-cms/object-path');
@@ -9,9 +10,11 @@ const moment = require('moment');
 const momentTZ = require('moment-timezone');
 
 const defaults = require('../../defaults');
+const validateRest = require('../../utils/validate-rest');
 const mapArray = require('../../utils/map-array');
 const sitemap = require('../../utils/sitemap');
 const criteriaFor = require('../../utils/criteria-for');
+const buildProjection = require('../../utils/build-projection');
 const getProjection = require('../../utils/get-projection');
 const formatStatus = require('../../utils/format-status');
 const getEmbeddedImageTags = require('../../utils/embedded-image-tags');
@@ -1117,6 +1120,62 @@ module.exports = {
         basedb,
         info,
       });
+    },
+  },
+
+  /**
+   *
+   */
+  Mutation: {
+
+    /**
+     *
+     */
+    updateContentCompany: async (_, { input }, { base4rest, basedb }, info) => {
+      validateRest(base4rest);
+      const type = 'platform/content/company';
+      const { id, payload } = input;
+      const keys = Object.keys(payload);
+      const body = new Base4RestPayload({ type });
+      keys.forEach(k => body.set(k, payload[k]));
+      body.set('id', id);
+      await base4rest.updateOne({ model: type, id, body });
+      const projection = buildProjection({ info, type: 'ContentCompany' });
+      return basedb.findOne('platform.Content', { _id: id }, { projection });
+    },
+
+    /**
+     *
+     */
+    updateContentCompanyImages: async (_, { input }, { base4rest, basedb }, info) => {
+      validateRest(base4rest);
+      const company = 'platform/content/company';
+      const image = 'platform/asset/image';
+      const { id, payload } = input;
+      const { images, primaryImage } = payload;
+      const body = new Base4RestPayload({ type: company });
+      if (primaryImage) body.setLink('primaryImage', { id: primaryImage, type: image });
+      if (images) body.setLinks('images', images.map(imgId => ({ id: imgId, type: image })));
+      body.set('id', id);
+      await base4rest.updateOne({ model: company, id, body });
+      const projection = buildProjection({ info, type: 'ContentCompany' });
+      return basedb.findOne('platform.Content', { _id: id }, { projection });
+    },
+
+    /**
+     *
+     */
+    updateContentCompanySocialLinks: async (_, { input }, { base4rest, basedb }, info) => {
+      validateRest(base4rest);
+      const type = 'platform/content/company';
+      const { id, payload } = input;
+      const { socialLinks } = payload;
+      const body = new Base4RestPayload({ type });
+      body.set('socialLinks', socialLinks);
+      body.set('id', id);
+      await base4rest.updateOne({ model: type, id, body });
+      const projection = buildProjection({ info, type: 'ContentCompany' });
+      return basedb.findOne('platform.Content', { _id: id }, { projection });
     },
   },
 };

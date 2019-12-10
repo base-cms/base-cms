@@ -6,6 +6,12 @@ extend type Query {
   contentCompany(input: ContentCompanyQueryInput!): ContentCompany @findOne(model: "platform.Content", using: { id: "_id" }, criteria: "contentCompany")
 }
 
+extend type Mutation {
+  updateContentCompany(input: UpdateContentCompanyMutationInput!): ContentCompany @requiresAuth
+  updateContentCompanyImages(input: UpdateContentCompanyImagesMutationInput!): ContentCompany @requiresAuth
+  updateContentCompanySocialLinks(input: UpdateContentCompanySocialLinksMutationInput!): ContentCompany @requiresAuth
+}
+
 type ContentCompany implements Content & PrimaryCategory & Contactable & Addressable & SocialLinkable & Inquirable & OrganizationContactable @applyInterfaceFields {
   # fields directly on platform.model::Content\Company
   companyType: String @projection
@@ -53,6 +59,62 @@ type ContentCompanyEdge {
 input ContentCompanyQueryInput {
   id: Int!
   status: ModelStatus = active
+}
+
+input UpdateContentCompanyMutationInput {
+  id: Int!
+  payload: UpdateContentCompanyPayloadMutationInput = {}
+}
+
+input UpdateContentCompanyPayloadMutationInput {
+  name: String
+  address1: String
+  address2: String
+  city: String
+  state: String
+  zip: String
+  country: String
+  phone: String
+  tollfree: String
+  fax: String
+  website: String
+  type: String
+  email: String
+  body: String
+  teaser: String
+  numberOfEmployees: String
+  trainingInformation: String
+  yearsInOperation: String
+  salesRegion: String
+  servicesProvided: String
+  salesChannels: String
+  productSummary: String
+  serviceInformation: String
+  warrantyInformation: String
+}
+
+input UpdateContentCompanyImagesMutationInput {
+  id: Int!
+  payload: UpdateContentCompanyImagesPayloadMutationInput = {}
+}
+
+input UpdateContentCompanyImagesPayloadMutationInput {
+  primaryImage: ObjectID
+  images: [ObjectID!]
+}
+
+input UpdateContentCompanySocialLinksMutationInput {
+  id: Int!
+  payload: UpdateContentCompanySocialLinksPayloadMutationInput = {}
+}
+
+input UpdateContentCompanySocialLinksPayloadMutationInput {
+  socialLinks: [ContentCompanySocialLinkInput!]!
+}
+
+input ContentCompanySocialLinkInput {
+  provider: String!
+  url: String!
 }
 
 input ContentCompanyCompanyCompetitorsInput {
