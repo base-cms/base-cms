@@ -1,0 +1,6 @@
+{
+  "taglib-id": "@base-cms/marko-web-identity-x",
+  "taglib-imports": [
+    "./components/marko.json"
+  ]
+}

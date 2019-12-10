@@ -1,0 +1,31 @@
+{
+  "name": "@base-cms/marko-web-identity-x",
+  "version": "1.0.0-rc.8",
+  "description": "Marko Wrapper for IdentityX",
+  "repository": "https://github.com/base-cms/base-cms/tree/master/packages/marko-web-identity-x",
+  "author": "Josh Worden <josh@limit0.io>",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint --ext .js --ext .vue --max-warnings 5 ./",
+    "compile": "basecms-marko-compile compile --dir ./ --silent true",
+    "test": "yarn compile && yarn lint"
+  },
+  "dependencies": {
+    "@base-cms/utils": "^1.0.0-rc.1",
+    "apollo-cache-inmemory": "^1.6.3",
+    "apollo-client": "^2.6.4",
+    "apollo-link-http": "^1.5.16",
+    "body-parser": "^1.19.0",
+    "cookie": "0.3.1",
+    "express": "^4.17.1",
+    "graphql-tag": "^2.10.1",
+    "node-fetch": "^2.6.0"
+  },
+  "peerDependencies": {
+    "@base-cms/marko-core": "^1.0.0-rc.8",
+    "@base-cms/marko-web": "^1.0.0-rc.8"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

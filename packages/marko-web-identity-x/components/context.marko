@@ -1,0 +1,15 @@
+$ const { req } = out.global;
+$ const { identityX } = req;
+$ const isEnabled = Boolean(req.identityX);
+$ const loadContext = async () => (isEnabled ? identityX.loadActiveContext() : {
+  user: null,
+  mergedAccessLevels: [],
+  mergedTeams: [],
+  hasTeams: false,
+  hasUser: false,
+});
+
+<marko-web-resolve|{ resolved }| promise=loadContext()>
+  $ const output = { ...resolved, isEnabled };
+  <${input.renderBody} ...output />
+</marko-web-resolve>
