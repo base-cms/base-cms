@@ -1127,6 +1127,10 @@ module.exports = {
    *
    */
   Mutation: {
+
+    /**
+     *
+     */
     updateContentCompany: async (_, { input }, { base4rest, basedb }, info) => {
       validateRest(base4rest);
       const type = 'platform/content/company';
@@ -1139,6 +1143,10 @@ module.exports = {
       const projection = buildProjection({ info, type: 'ContentCompany' });
       return basedb.findOne('platform.Content', { _id: id }, { projection });
     },
+
+    /**
+     *
+     */
     updateContentCompanyImages: async (_, { input }, { base4rest, basedb }, info) => {
       validateRest(base4rest);
       const company = 'platform/content/company';
@@ -1153,6 +1161,10 @@ module.exports = {
       const projection = buildProjection({ info, type: 'ContentCompany' });
       return basedb.findOne('platform.Content', { _id: id }, { projection });
     },
+
+    /**
+     *
+     */
     updateContentCompanySocialLinks: async (_, { input }, { base4rest, basedb }, info) => {
       validateRest(base4rest);
       const type = 'platform/content/company';
