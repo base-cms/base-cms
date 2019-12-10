@@ -7,6 +7,7 @@ extend type Query {
 }
 
 extend type Mutation {
+  updateAssetImage(input: UpdateAssetImageMutationInput!): AssetImage! @requiresAuth
   createAssetImageFromUrl(input: CreateAssetImageFromUrlMutationInput!): AssetImage! @requiresAuth
 }
 
@@ -73,6 +74,18 @@ enum AssetImageSortField {
 
 input AssetImageQueryInput {
   id: ObjectID!
+}
+
+input UpdateAssetImageMutationInput {
+  id: ObjectID!
+  payload: UpdateAssetImageMutationPayloadInput = {}
+}
+
+input UpdateAssetImageMutationPayloadInput {
+  name: String
+  filePath: String
+  fileName: String
+  isLogo: Boolean
 }
 
 input CreateAssetImageFromUrlMutationInput {

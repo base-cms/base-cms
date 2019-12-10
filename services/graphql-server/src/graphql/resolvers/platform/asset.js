@@ -2,7 +2,7 @@ const { createAltFor, createSrcFor, createCaptionFor } = require('@base-cms/imag
 const { Base4RestPayload } = require('@base-cms/base4-rest-api');
 const { ObjectID } = require('@base-cms/db').MongoDB;
 const validateRest = require('../../utils/validate-rest');
-const getProjection = require('../../utils/get-projection');
+const buildProjection = require('../../utils/build-projection');
 const defaults = require('../../defaults');
 
 module.exports = {
@@ -23,6 +23,25 @@ module.exports = {
    *
    */
   Mutation: {
+    /**
+     *
+     */
+    updateAssetImage: async (_, { input }, { base4rest, basedb }, info) => {
+      validateRest(base4rest);
+      const type = 'platform/asset/image';
+      const { id, payload } = input;
+      const keys = Object.keys(payload);
+      const body = new Base4RestPayload({ type });
+      keys.forEach(k => body.set(k, payload[k]));
+      body.set('id', id);
+      await base4rest.updateOne({ model: type, id, body });
+      const projection = buildProjection({ info, type: 'AssetImage' });
+      return basedb.findOne('platform.Asset', { _id: id }, { projection });
+    },
+
+    /**
+     *
+     */
     createAssetImageFromUrl: async (_, { input }, { base4rest, basedb }, info) => {
       validateRest(base4rest);
       const { url } = input;
@@ -41,8 +60,7 @@ module.exports = {
         .set('source.height', height)
         .set('source.width', width);
       const { data } = await base4rest.insertOne({ model: type, body });
-      const { fieldNodes, schema, fragments } = info;
-      const projection = getProjection(schema, schema.getType('AssetImage'), fieldNodes[0].selectionSet, fragments);
+      const projection = buildProjection({ info, type: 'AssetImage' });
       return basedb.findOne('platform.Asset', { _id: ObjectID(data.id) }, { projection });
     },
   },
