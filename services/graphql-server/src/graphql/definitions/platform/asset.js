@@ -7,7 +7,7 @@ extend type Query {
 }
 
 extend type Mutation {
-  updateAssetImage(input: AssetImageMutationInput!): AssetImage! @requiresAuth
+  updateAssetImage(input: UpdateAssetImageMutationInput!): AssetImage! @requiresAuth
   createAssetImageFromUrl(input: CreateAssetImageFromUrlMutationInput!): AssetImage! @requiresAuth
 }
 
@@ -76,8 +76,12 @@ input AssetImageQueryInput {
   id: ObjectID!
 }
 
-input AssetImageMutationInput {
+input UpdateAssetImageMutationInput {
   id: ObjectID!
+  payload: UpdateAssetImageMutationPayloadInput!
+}
+
+input UpdateAssetImageMutationPayloadInput {
   name: String
   filePath: String
   fileName: String

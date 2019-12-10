@@ -26,7 +26,7 @@ module.exports = {
     updateAssetImage: async (_, { input }, { base4rest, basedb }, info) => {
       validateRest(base4rest);
       const type = 'platform/asset/image';
-      const { id, ...payload } = input;
+      const { id, payload } = input;
       const keys = Object.keys(payload);
       const body = new Base4RestPayload({ type });
       keys.forEach(k => body.set(k, payload[k]));
