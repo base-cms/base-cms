@@ -5,7 +5,8 @@ module.exports = ({
   hasUser,
   items,
 }) => asArray(items.filter((item) => {
-  const { when } = item;
+  const { when, href } = item;
+  if (!href) return false;
   if (!when) return true;
   if (!regEnabled) return false;
   if (hasUser) {
