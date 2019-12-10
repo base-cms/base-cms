@@ -8,6 +8,7 @@ extend type Query {
 
 extend type Mutation {
   updateContentCompany(input: ContentCompanyMutationInput!): ContentCompany @requiresAuth
+  updateContentCompanyImages(input: ContentCompanyImagesMutationInput!): ContentCompany @requiresAuth
   updateContentCompanySocialLinks(input: ContentCompanySocialLinksMutationInput!): ContentCompany @requiresAuth
 }
 
@@ -86,6 +87,12 @@ input ContentCompanyMutationInput {
   productSummary: String
   serviceInformation: String
   warrantyInformation: String
+}
+
+input ContentCompanyImagesMutationInput {
+  id: Int!
+  primaryImage: ObjectID
+  images: [ObjectID!]
 }
 
 input ContentCompanySocialLinksMutationInput {

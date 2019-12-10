@@ -1139,6 +1139,20 @@ module.exports = {
       const projection = getProjection(schema, schema.getType('ContentCompany'), fieldNodes[0].selectionSet, fragments);
       return basedb.findOne('platform.Content', { _id: id }, { projection });
     },
+    updateContentCompanyImages: async (_, { input }, { base4rest, basedb }, info) => {
+      validateRest(base4rest);
+      const company = 'platform/content/company';
+      const image = 'platform/asset/image';
+      const { id, images, primaryImage } = input;
+      const body = new Base4RestPayload({ type: company });
+      if (primaryImage) body.setLink('primaryImage', { id: primaryImage, type: image });
+      if (images) body.setLinks('images', images.map(imgId => ({ id: imgId, type: image })));
+      body.set('id', id);
+      await base4rest.updateOne({ model: company, id, body });
+      const { fieldNodes, schema, fragments } = info;
+      const projection = getProjection(schema, schema.getType('ContentCompany'), fieldNodes[0].selectionSet, fragments);
+      return basedb.findOne('platform.Content', { _id: id }, { projection });
+    },
     updateContentCompanySocialLinks: async (_, { input }, { base4rest, basedb }, info) => {
       validateRest(base4rest);
       const type = 'platform/content/company';
