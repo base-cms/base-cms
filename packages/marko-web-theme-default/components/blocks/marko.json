@@ -1,5 +1,7 @@
 {
   "<default-theme-magazine-publication-card-block>": {
-    "template": "./magazine-publication-card/index.marko"
+    "template": "./magazine-publication-card/index.marko",
+    "<latest-issue>": {},
+    "<archived-issue>": {}
   }
 }

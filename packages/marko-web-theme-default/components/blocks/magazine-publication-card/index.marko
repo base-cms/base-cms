@@ -15,7 +15,7 @@ $ const blockName = "magazine-publication-card-block";
     <div class="row">
       <marko-web-query|{ node: issue }| name="magazine-issue" params={ id: input.issueId, queryFragment: latestIssueFragment }>
         <div class="col-md-5 mb-block">
-          <latest-issue node=issue />
+          <latest-issue ...getAsObject(input, "latestIssue") node=issue />
         </div>
       </marko-web-query>
       <marko-web-query|{ nodes: issues }| name="magazine-active-issues" params={ publicationId: input.publicationId, excludeIssueIds: [input.issueId], queryFragment: issueArchiveListFragment, limit: 12 }>
@@ -23,7 +23,7 @@ $ const blockName = "magazine-publication-card-block";
             <div class="row">
               <for|issue| of=issues>
                 <div class="col-3 mb-block">
-                  <archived-issue node=issue />
+                  <archived-issue ...getAsObject(input, "archivedIssue") node=issue />
                 </div>
               </for>
             </div>
