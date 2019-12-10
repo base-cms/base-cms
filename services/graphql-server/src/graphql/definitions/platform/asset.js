@@ -8,6 +8,7 @@ extend type Query {
 
 extend type Mutation {
   updateAssetImage(input: AssetImageMutationInput!): AssetImage! @requiresAuth
+  createAssetImageFromUrl(input: CreateAssetImageFromUrlMutationInput!): AssetImage! @requiresAuth
 }
 
 type AssetImage {
@@ -81,6 +82,10 @@ input AssetImageMutationInput {
   filePath: String
   fileName: String
   isLogo: Boolean
+}
+
+input CreateAssetImageFromUrlMutationInput {
+  url: String!
 }
 
 input AssetImageSortInput {
