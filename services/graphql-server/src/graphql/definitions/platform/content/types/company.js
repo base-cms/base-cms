@@ -7,9 +7,9 @@ extend type Query {
 }
 
 extend type Mutation {
-  updateContentCompany(input: ContentCompanyMutationInput!): ContentCompany @requiresAuth
-  updateContentCompanyImages(input: ContentCompanyImagesMutationInput!): ContentCompany @requiresAuth
-  updateContentCompanySocialLinks(input: ContentCompanySocialLinksMutationInput!): ContentCompany @requiresAuth
+  updateContentCompany(input: UpdateContentCompanyMutationInput!): ContentCompany @requiresAuth
+  updateContentCompanyImages(input: UpdateContentCompanyImagesMutationInput!): ContentCompany @requiresAuth
+  updateContentCompanySocialLinks(input: UpdateContentCompanySocialLinksMutationInput!): ContentCompany @requiresAuth
 }
 
 type ContentCompany implements Content & PrimaryCategory & Contactable & Addressable & SocialLinkable & Inquirable & OrganizationContactable @applyInterfaceFields {
@@ -61,8 +61,12 @@ input ContentCompanyQueryInput {
   status: ModelStatus = active
 }
 
-input ContentCompanyMutationInput {
+input UpdateContentCompanyMutationInput {
   id: Int!
+  payload: UpdateContentCompanyPayloadMutationInput = {}
+}
+
+input UpdateContentCompanyPayloadMutationInput {
   name: String
   address1: String
   address2: String
@@ -89,14 +93,22 @@ input ContentCompanyMutationInput {
   warrantyInformation: String
 }
 
-input ContentCompanyImagesMutationInput {
+input UpdateContentCompanyImagesMutationInput {
   id: Int!
+  payload: UpdateContentCompanyImagesPayloadMutationInput = {}
+}
+
+input UpdateContentCompanyImagesPayloadMutationInput {
   primaryImage: ObjectID
   images: [ObjectID!]
 }
 
-input ContentCompanySocialLinksMutationInput {
+input UpdateContentCompanySocialLinksMutationInput {
   id: Int!
+  payload: UpdateContentCompanySocialLinksPayloadMutationInput = {}
+}
+
+input UpdateContentCompanySocialLinksPayloadMutationInput {
   socialLinks: [ContentCompanySocialLinkInput!]!
 }
 

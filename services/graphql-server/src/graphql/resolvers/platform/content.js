@@ -1129,7 +1129,7 @@ module.exports = {
     updateContentCompany: async (_, { input }, { base4rest, basedb }, info) => {
       validateRest(base4rest);
       const type = 'platform/content/company';
-      const { id, ...payload } = input;
+      const { id, payload } = input;
       const keys = Object.keys(payload);
       const body = new Base4RestPayload({ type });
       keys.forEach(k => body.set(k, payload[k]));
@@ -1143,7 +1143,8 @@ module.exports = {
       validateRest(base4rest);
       const company = 'platform/content/company';
       const image = 'platform/asset/image';
-      const { id, images, primaryImage } = input;
+      const { id, payload } = input;
+      const { images, primaryImage } = payload;
       const body = new Base4RestPayload({ type: company });
       if (primaryImage) body.setLink('primaryImage', { id: primaryImage, type: image });
       if (images) body.setLinks('images', images.map(imgId => ({ id: imgId, type: image })));
@@ -1156,7 +1157,8 @@ module.exports = {
     updateContentCompanySocialLinks: async (_, { input }, { base4rest, basedb }, info) => {
       validateRest(base4rest);
       const type = 'platform/content/company';
-      const { id, socialLinks } = input;
+      const { id, payload } = input;
+      const { socialLinks } = payload;
       const body = new Base4RestPayload({ type });
       body.set('socialLinks', socialLinks);
       body.set('id', id);
