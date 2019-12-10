@@ -78,7 +78,7 @@ input AssetImageQueryInput {
 
 input UpdateAssetImageMutationInput {
   id: ObjectID!
-  payload: UpdateAssetImageMutationPayloadInput!
+  payload: UpdateAssetImageMutationPayloadInput = {}
 }
 
 input UpdateAssetImageMutationPayloadInput {
