@@ -82,6 +82,7 @@
     $line-height: $theme-page-body-line-height,
   );
   color: $theme-page-body-color;
+  word-break: break-word;
   h1 {
     @include theme-apply-fonts(
       $font-family: $theme-content-heading-h1-font-family,

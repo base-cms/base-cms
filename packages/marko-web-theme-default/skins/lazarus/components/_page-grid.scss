@@ -42,6 +42,7 @@
 
   &__right-col {
     @include make-col-ready();
+    max-width: 880px;
   }
 
   &__top-row {
@@ -118,8 +119,14 @@
       display: flex;
     }
 
+    &--no-gutters {
+      padding-right: 0;
+      padding-left: 0;
+    }
+
     &--content-page {
       @include make-col(12);
+      padding-top: $grid-gutter-width;
       padding-right: 50px;
       padding-left: 50px;
       @include media-breakpoint-down($theme-responsive-text-breakpoint) {
