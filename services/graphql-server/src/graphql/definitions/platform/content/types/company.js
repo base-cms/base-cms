@@ -8,6 +8,7 @@ extend type Query {
 
 extend type Mutation {
   updateContentCompany(input: ContentCompanyMutationInput!): ContentCompany @requiresAuth
+  updateContentCompanySocialLinks(input: ContentCompanySocialLinksMutationInput!): ContentCompany @requiresAuth
 }
 
 type ContentCompany implements Content & PrimaryCategory & Contactable & Addressable & SocialLinkable & Inquirable & OrganizationContactable @applyInterfaceFields {
@@ -75,7 +76,6 @@ input ContentCompanyMutationInput {
   type: String
   email: String
   body: String
-  socialLinks: [ContentCompanySocialLinkInput!]
   teaser: String
   numberOfEmployees: String
   trainingInformation: String
@@ -86,6 +86,11 @@ input ContentCompanyMutationInput {
   productSummary: String
   serviceInformation: String
   warrantyInformation: String
+}
+
+input ContentCompanySocialLinksMutationInput {
+  id: Int!
+  socialLinks: [ContentCompanySocialLinkInput!]!
 }
 
 input ContentCompanySocialLinkInput {

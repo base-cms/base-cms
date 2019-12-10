@@ -1139,5 +1139,17 @@ module.exports = {
       const projection = getProjection(schema, schema.getType('ContentCompany'), fieldNodes[0].selectionSet, fragments);
       return basedb.findOne('platform.Content', { _id: id }, { projection });
     },
+    updateContentCompanySocialLinks: async (_, { input }, { base4rest, basedb }, info) => {
+      validateRest(base4rest);
+      const type = 'platform/content/company';
+      const { id, socialLinks } = input;
+      const body = new Base4RestPayload({ type });
+      body.set('socialLinks', socialLinks);
+      body.set('id', id);
+      await base4rest.updateOne({ model: type, id, body });
+      const { fieldNodes, schema, fragments } = info;
+      const projection = getProjection(schema, schema.getType('ContentCompany'), fieldNodes[0].selectionSet, fragments);
+      return basedb.findOne('platform.Content', { _id: id }, { projection });
+    },
   },
 };
