@@ -14,6 +14,7 @@ const validateRest = require('../../utils/validate-rest');
 const mapArray = require('../../utils/map-array');
 const sitemap = require('../../utils/sitemap');
 const criteriaFor = require('../../utils/criteria-for');
+const buildProjection = require('../../utils/build-projection');
 const getProjection = require('../../utils/get-projection');
 const formatStatus = require('../../utils/format-status');
 const getEmbeddedImageTags = require('../../utils/embedded-image-tags');
@@ -1135,8 +1136,7 @@ module.exports = {
       keys.forEach(k => body.set(k, payload[k]));
       body.set('id', id);
       await base4rest.updateOne({ model: type, id, body });
-      const { fieldNodes, schema, fragments } = info;
-      const projection = getProjection(schema, schema.getType('ContentCompany'), fieldNodes[0].selectionSet, fragments);
+      const projection = buildProjection({ info, type: 'ContentCompany' });
       return basedb.findOne('platform.Content', { _id: id }, { projection });
     },
     updateContentCompanyImages: async (_, { input }, { base4rest, basedb }, info) => {
@@ -1150,8 +1150,7 @@ module.exports = {
       if (images) body.setLinks('images', images.map(imgId => ({ id: imgId, type: image })));
       body.set('id', id);
       await base4rest.updateOne({ model: company, id, body });
-      const { fieldNodes, schema, fragments } = info;
-      const projection = getProjection(schema, schema.getType('ContentCompany'), fieldNodes[0].selectionSet, fragments);
+      const projection = buildProjection({ info, type: 'ContentCompany' });
       return basedb.findOne('platform.Content', { _id: id }, { projection });
     },
     updateContentCompanySocialLinks: async (_, { input }, { base4rest, basedb }, info) => {
@@ -1163,8 +1162,7 @@ module.exports = {
       body.set('socialLinks', socialLinks);
       body.set('id', id);
       await base4rest.updateOne({ model: type, id, body });
-      const { fieldNodes, schema, fragments } = info;
-      const projection = getProjection(schema, schema.getType('ContentCompany'), fieldNodes[0].selectionSet, fragments);
+      const projection = buildProjection({ info, type: 'ContentCompany' });
       return basedb.findOne('platform.Content', { _id: id }, { projection });
     },
   },
