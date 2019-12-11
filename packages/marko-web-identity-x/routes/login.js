@@ -8,6 +8,9 @@ const query = gql`
       email
       givenName
       familyName
+      organization
+      organizationTitle
+      countryCode
     }
   }
 `;
@@ -19,6 +22,9 @@ const createUser = gql`
       email
       givenName
       familyName
+      organization
+      organizationTitle
+      countryCode
     }
   }
 `;
