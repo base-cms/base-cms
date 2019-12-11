@@ -25,8 +25,30 @@
     <p>To complete this sign-on process, please fill out these remaining fields.</p>
     <form @submit.prevent="handle">
       <fieldset :disabled="loading">
-        <given-name v-model="user.givenName" />
-        <family-name v-model="user.familyName" />
+        <div class="row">
+          <div class="col-md-6">
+            <given-name v-model="user.givenName" />
+          </div>
+          <div class="col-md-6">
+            <family-name v-model="user.familyName" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <organization v-model="user.organization" />
+          </div>
+          <div class="col-md-6">
+            <organization-title v-model="user.organizationTitle" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <country v-model="user.countryCode" />
+          </div>
+        </div>
+
         <button
           type="submit"
           class="btn btn-primary"
@@ -61,6 +83,9 @@
 import Email from './form/fields/email.vue';
 import GivenName from './form/fields/given-name.vue';
 import FamilyName from './form/fields/family-name.vue';
+import Organization from './form/fields/organization.vue';
+import OrganizationTitle from './form/fields/organization-title.vue';
+import Country from './form/fields/country.vue';
 import cleanPath from './utils/clean-path';
 import post from './utils/post';
 import cookiesEnabled from './utils/cookies-enabled';
@@ -72,6 +97,9 @@ export default {
     Email,
     GivenName,
     FamilyName,
+    Organization,
+    OrganizationTitle,
+    Country,
   },
   props: {
     activeUser: {
@@ -113,7 +141,7 @@ export default {
     },
     requiredFields: {
       type: Array,
-      default: () => ['givenName', 'familyName'],
+      default: () => ['givenName', 'familyName', 'countryCode'],
     },
   },
   data: () => ({
