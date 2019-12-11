@@ -6,6 +6,7 @@ module.exports = ({ query }, { input }) => {
     excludeIds,
     rootOnly,
     taxonomyIds,
+    alias,
   } = input;
 
   if (rootOnly) q['parent.$id'] = { $exists: false };
@@ -15,6 +16,7 @@ module.exports = ({ query }, { input }) => {
     if (includeIds.length) q._id.$in = includeIds;
     if (excludeIds.length) q._id.$nin = excludeIds;
   }
+  if (alias) q.alias = alias;
 
   return { query: q };
 };

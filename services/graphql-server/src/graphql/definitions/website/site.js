@@ -126,6 +126,7 @@ input WebsiteSiteSortInput {
 }
 
 input WebsiteSiteSectionsInput {
+  alias: String
   includeIds: [Int!] = []
   excludeIds: [Int!] = []
   rootOnly: Boolean = false
