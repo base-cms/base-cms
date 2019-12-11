@@ -2,6 +2,7 @@ const magazineActiveIssues = require('./magazine-active-issues');
 const magazineLatestIssue = require('./magazine-latest-issue');
 const taxonomies = require('./taxonomies');
 const websiteSections = require('./website-sections');
+const websiteSiteSections = require('./website-site-sections');
 
 /**
  * Each function will receive the following args:
@@ -19,6 +20,7 @@ const builders = {
   magazineLatestIssue,
   taxonomies,
   websiteSections,
+  websiteSiteSections,
 };
 
 module.exports = async (key, {
