@@ -6,17 +6,24 @@ module.exports = ({ query }, { input }) => {
     excludeIds,
     rootOnly,
     taxonomyIds,
-    alias,
+    excludeAliases,
+    includeAliases,
   } = input;
 
   if (rootOnly) q['parent.$id'] = { $exists: false };
   if (taxonomyIds.length) q['relatedTaxonomy.$id'] = { $in: taxonomyIds };
   if (includeIds.length || excludeIds.length) {
-    q._id = {};
-    if (includeIds.length) q._id.$in = includeIds;
-    if (excludeIds.length) q._id.$nin = excludeIds;
+    q._id = {
+      ...(includeIds.length && { $in: includeIds }),
+      ...(excludeIds.length && { $nin: excludeIds }),
+    };
   }
-  if (alias) q.alias = alias;
+  if (includeAliases.length || excludeAliases.length) {
+    q.alias = {
+      ...(includeAliases.length && { $in: includeAliases }),
+      ...(excludeAliases.length && { $nin: excludeAliases }),
+    };
+  }
 
   return { query: q };
 };
