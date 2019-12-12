@@ -23,7 +23,15 @@ type WebsiteSite {
   status: Int @projection
 
   # fields directly on website.model::Product\Site
-  sections(input: WebsiteSiteSectionsInput = {}): WebsiteSectionConnection! @projection(localField: "_id") @refMany(model: "website.Section", localField: "_id", foreignField: "site.$id")
+  sections(input: WebsiteSiteSectionsInput = {}): WebsiteSectionConnection!
+    @projection(localField: "_id")
+    @refMany(
+      model: "website.Section",
+      refQueryBuilder: "websiteSiteSections",
+      localField: "_id",
+      foreignField: "site.$id"
+    )
+
   # pages: [WebsitePage] # add args? @todo Add this model
   options(input: WebsiteSiteOptionsInput = {}): WebsiteOptionConnection! @projection(localField: "_id") @refMany(model: "website.Option", localField: "_id", foreignField: "site.$id")
   url: String @projection
@@ -121,6 +129,12 @@ input WebsiteSiteSortInput {
 }
 
 input WebsiteSiteSectionsInput {
+  includeAliases: [String!] = []
+  excludeAliases: [String!] = []
+  includeIds: [Int!] = []
+  excludeIds: [Int!] = []
+  rootOnly: Boolean = false
+  taxonomyIds: [Int!] = []
   status: ModelStatus = active
   sort: WebsiteSectionSortInput = {}
   pagination: PaginationInput = {}

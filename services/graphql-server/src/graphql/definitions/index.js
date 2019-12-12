@@ -40,7 +40,16 @@ directive @momentFormat(localField: String) on FIELD_DEFINITION
 directive @mutatedValue(localField: String) on FIELD_DEFINITION
 directive @projection(localField: String, needs: [String] = []) on FIELD_DEFINITION
 directive @projectUsing(type: String!) on OBJECT
-directive @refMany(model: String!, localField: String, foreignField: String = "_id", criteria: String, withSite: Boolean = false, siteField: String = "site.$id", using: JSON) on FIELD_DEFINITION
+directive @refMany(
+  model: String!, # The model name to query, e.g. platform.Content or website.Schedule.
+  using: JSON, # A query input-to-document map. The key represents the input and the value represents the doc field to apply the input value to.
+  withSite: Boolean = false, # When true, will apply the siteId context (if present) to the query.
+  siteField: String = "site.$id", # The document field to apply the siteId to.
+  criteria: String, # A query criteria key. If present in utils/criteria-for.js, will apply the criteria found to the query.
+  refQueryBuilder: String, # A query builder key. If present in ref-query-builders/index.js, will invoke the function and return the modified query object.
+  localField: String,
+  foreignField: String = "_id",
+) on FIELD_DEFINITION
 directive @refOne(loader: String!, localField: String, withSite: Boolean = false, siteField: String = "site.$id", criteria: String) on FIELD_DEFINITION
 directive @requiresProject(fields: [String] = []) on OBJECT | INTERFACE
 directive @value(localField: String, fallbackField: String) on FIELD_DEFINITION

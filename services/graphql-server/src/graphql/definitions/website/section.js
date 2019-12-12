@@ -146,6 +146,8 @@ input WebsiteSectionRedirectQueryInput {
 
 input WebsiteSectionsQueryInput {
   siteId: ObjectID
+  includeAliases: [String!] = []
+  excludeAliases: [String!] = []
   includeIds: [Int!] = []
   excludeIds: [Int!] = []
   rootOnly: Boolean = false
