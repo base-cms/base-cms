@@ -12,9 +12,7 @@
     "compile": "basecms-marko-compile compile --dir ./ --silent true",
     "test": "yarn compile && yarn lint"
   },
-  "dependencies": {
-    "vue-social-sharing": "^2.4.7"
-  },
+  "dependencies": {},
   "peerDependencies": {
     "@base-cms/marko-core": "^1.0.0",
     "@base-cms/marko-web": "^1.0.0"
