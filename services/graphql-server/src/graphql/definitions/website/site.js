@@ -25,9 +25,11 @@ type WebsiteSite {
   # fields directly on website.model::Product\Site
   sections(input: WebsiteSiteSectionsInput = {}): WebsiteSectionConnection!
     @projection(localField: "_id")
-    @findMany(
+    @refMany(
       model: "website.Section",
-      queryBuilder: "websiteSiteSections",
+      refQueryBuilder: "websiteSiteSections",
+      localField: "_id",
+      foreignField: "site.$id"
     )
 
   # pages: [WebsitePage] # add args? @todo Add this model

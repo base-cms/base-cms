@@ -1,3 +1,4 @@
+const websiteSiteSections = require('./website-site-sections');
 
 /**
  * Each function will receive the following args:
@@ -12,6 +13,7 @@
  * Each function must return an object containing the new query and sort.
  */
 const builders = {
+  websiteSiteSections,
 };
 
 module.exports = async (key, {
