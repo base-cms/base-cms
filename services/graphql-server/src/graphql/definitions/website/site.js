@@ -24,6 +24,7 @@ type WebsiteSite {
 
   # fields directly on website.model::Product\Site
   sections(input: WebsiteSiteSectionsInput = {}): WebsiteSectionConnection!
+    @projection(localField: "_id")
     @findMany(
       model: "website.Section",
       queryBuilder: "websiteSiteSections",
