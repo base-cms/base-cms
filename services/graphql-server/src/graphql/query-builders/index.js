@@ -28,12 +28,11 @@ module.exports = async (key, {
   variables = {},
   ctx,
   info,
-  obj,
 } = {}) => {
   if (!key) return currentValues;
   const fn = builders[key];
   if (fn) {
-    const { query, sort } = await fn(currentValues, variables, ctx, info, obj);
+    const { query, sort } = await fn(currentValues, variables, ctx, info);
     return {
       query: query || currentValues.query,
       sort: sort || currentValues.sort,

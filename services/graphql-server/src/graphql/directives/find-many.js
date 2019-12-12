@@ -13,7 +13,7 @@ class FindManyDirective extends SchemaDirectiveVisitor {
    */
   visitFieldDefinition(field) {
     // eslint-disable-next-line no-param-reassign
-    field.resolve = async (obj, variables, ctx, info) => {
+    field.resolve = async (_, variables, ctx, info) => {
       const start = process.hrtime();
       const { basedb, site } = ctx;
       const { input = {} } = variables;
@@ -46,7 +46,6 @@ class FindManyDirective extends SchemaDirectiveVisitor {
         variables,
         ctx,
         info,
-        obj,
       });
 
       const projection = connectionProjection(info);
