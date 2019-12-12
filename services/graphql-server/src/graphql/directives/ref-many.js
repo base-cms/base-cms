@@ -6,6 +6,7 @@ const criteriaFor = require('../utils/criteria-for');
 const applyInput = require('../utils/apply-input');
 const shouldCollate = require('../utils/should-collate');
 const connectionProjection = require('../utils/connection-projection');
+const buildQuery = require('../ref-query-builders');
 
 const { isArray } = Array;
 
@@ -16,15 +17,20 @@ class RefManyDirective extends SchemaDirectiveVisitor {
    */
   visitFieldDefinition(field) {
     // eslint-disable-next-line no-param-reassign
-    field.resolve = async (doc, { input = {} }, { basedb, site }, info) => {
+    field.resolve = async (doc, variables, ctx, info) => {
+      const start = process.hrtime();
+      const { input = {} } = variables;
+      const { basedb, site } = ctx;
+
       const {
         model,
-        localField,
-        foreignField,
-        criteria,
         using,
+        criteria,
         withSite,
         siteField,
+        refQueryBuilder,
+        localField,
+        foreignField,
       } = this.args;
 
       const fieldName = localField || field.name;
@@ -34,18 +40,17 @@ class RefManyDirective extends SchemaDirectiveVisitor {
       const ids = BaseDB.extractRefIds(isArray(refs) ? refs : [refs]);
       if (!ids.length) return BaseDB.paginateEmpty();
 
-      const start = process.hrtime();
       const {
         status,
-        sort,
         pagination,
       } = input;
 
       const siteId = input.siteId || site.id();
 
       const isInverse = foreignField !== '_id';
-      if (sort.order === 'values' && isInverse) throw new UserInputError('Cannot use `values` sort on an inverse reference.');
-      const query = applyInput({
+      if (input.sort.order === 'values' && isInverse) throw new UserInputError('Cannot use `values` sort on an inverse reference.');
+
+      const applied = applyInput({
         query: {
           ...criteriaFor(criteria),
           ...formatStatus(status),
@@ -54,6 +59,14 @@ class RefManyDirective extends SchemaDirectiveVisitor {
         using,
         input,
         ...(withSite && siteId && { siteId, siteField }),
+      });
+
+      const { query, sort } = await buildQuery(refQueryBuilder, {
+        doc,
+        currentValues: { query: applied, sort: input.sort },
+        variables,
+        ctx,
+        info,
       });
 
       const projection = connectionProjection(info);
