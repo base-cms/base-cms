@@ -2,6 +2,7 @@ export default {
   facebook: {
     name: 'Facebook',
     href: 'https://www.facebook.com/sharer/sharer.php',
+    action: 'Share',
     params: {
       u: '@url',
       title: '@title',
@@ -12,6 +13,7 @@ export default {
   linkedin: {
     name: 'LinkedIn',
     href: 'https://www.linkedin.com/shareArticle',
+    action: 'Share',
     params: {
       mini: true,
       url: '@url',
@@ -23,6 +25,7 @@ export default {
   twitter: {
     name: 'Twitter',
     href: 'https://twitter.com/intent/tweet',
+    action: 'Tweet',
     params: {
       url: '@url',
       text: '@title',
@@ -32,6 +35,7 @@ export default {
   pinterest: {
     name: 'Pinterest',
     href: 'https://pinterest.com/pin/create/button/',
+    action: 'Pin',
     params: {
       url: '@url',
       media: '@media',
