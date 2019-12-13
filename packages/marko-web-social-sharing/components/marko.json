@@ -1,1 +1,7 @@
-{}
+{
+  "<marko-web-social-sharing>": {
+    "template": "./social-sharing.marko",
+    "@url": "string",
+    "@providers": "array"
+  }
+}
