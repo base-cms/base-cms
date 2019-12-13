@@ -1,6 +1,12 @@
 <template>
   <button :class="classNames" @click="share">
-    {{ name }}
+    <span v-if="showIcon" :class="elementName('provider-icon')" />
+    <span v-if="showAction" :class="elementName('provider-action')">
+      {{ action }}
+    </span>
+    <span v-if="showName" :class="elementName('provider-name')">
+      {{ name }}
+    </span>
   </button>
 </template>
 
@@ -29,9 +35,26 @@ export default {
       type: String,
       default: null,
     },
+    showAction: {
+      type: Boolean,
+      default: true,
+    },
+    showName: {
+      type: Boolean,
+      default: true,
+    },
+    showIcon: {
+      type: Boolean,
+      default: true,
+    },
+    outline: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   data: () => ({
+    blockName: 'social-sharing',
     name: null,
     href: null,
     params: {},
@@ -56,8 +79,9 @@ export default {
 
   computed: {
     classNames() {
-      const elementName = 'social-sharing__button';
-      return [elementName, `${elementName}--${this.provider}`];
+      const classNames = [this.elementName('button'), this.elementName('button', this.provider)];
+      if (this.outline) classNames.push(this.elementName('button', 'outline'));
+      return classNames;
     },
   },
 
@@ -66,6 +90,7 @@ export default {
     this.name = provider.name;
     this.href = provider.href;
     this.params = provider.params;
+    this.action = provider.action;
     this.type = provider.type;
   },
 
@@ -88,6 +113,15 @@ export default {
      */
     encode(v) {
       return encodeURIComponent(v);
+    },
+
+    /**
+     *
+     */
+    elementName(name, mod) {
+      const elementName = `${this.blockName}__${name}`;
+      if (!mod) return elementName;
+      return `${elementName}--${mod}`;
     },
 
     /**
