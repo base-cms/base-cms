@@ -8,6 +8,9 @@
       :title="title"
       :description="description"
       :media="media"
+      @open="emitEvent('open', ...arguments)"
+      @change="emitEvent('change', ...arguments)"
+      @close="emitEvent('close', ...arguments)"
     />
   </div>
 </template>
@@ -17,6 +20,8 @@ import providerList from './providers';
 import ShareButton from './share-button.vue';
 
 export default {
+  inject: ['EventBus'],
+
   components: { ShareButton },
 
   props: {
@@ -45,6 +50,14 @@ export default {
   computed: {
     filteredProviders() {
       return this.providers.filter(key => providerList[key]);
+    },
+  },
+
+  methods: {
+    emitEvent(name, provider) {
+      const { url, title } = this;
+      console.log(`social-share-${name}`, { url, title, provider });
+      this.EventBus.$emit(`social-share-${name}`, { url, title, provider });
     },
   },
 };
