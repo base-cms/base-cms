@@ -1,6 +1,8 @@
 <template>
   <button :class="classNames" @click="share">
-    <span v-if="showIcon" :class="elementName('provider-icon')" />
+    <span v-if="showIcon" :class="elementName('provider-icon')">
+      <component :is="iconComponent" />
+    </span>
     <span v-if="showAction" :class="elementName('provider-action')">
       {{ action }}
     </span>
@@ -12,8 +14,19 @@
 
 <script>
 import providerList from './providers';
+import FacebookIcon from './icons/facebook.vue';
+import LinkedinIcon from './icons/linkedin.vue';
+import PinterestIcon from './icons/pinterest.vue';
+import TwitterIcon from './icons/twitter.vue';
 
 export default {
+  components: {
+    FacebookIcon,
+    LinkedinIcon,
+    PinterestIcon,
+    TwitterIcon,
+  },
+
   props: {
     url: {
       type: String,
@@ -82,6 +95,10 @@ export default {
       const classNames = [this.elementName('button'), this.elementName('button', this.provider)];
       if (this.outline) classNames.push(this.elementName('button', 'outline'));
       return classNames;
+    },
+
+    iconComponent() {
+      return `${this.provider}-icon`;
     },
   },
 
