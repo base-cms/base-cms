@@ -6,6 +6,10 @@ extend type Query {
   contentContact(input: ContentContactQueryInput!): ContentContact @findOne(model: "platform.Content", using: { id: "_id" }, criteria: "contentContact")
 }
 
+extend type Mutation {
+  createContentContact(input: CreateContentContactMutationInput!): ContentContact! @requiresAuth
+}
+
 type ContentContact implements Content & Contactable & Addressable & SocialLinkable @applyInterfaceFields {
   # GraphQL-only fields
   # @todo Implement
@@ -58,6 +62,17 @@ input ContentContactOwnedContentInput {
 input ContentContactSortInput {
   field: ContentContactSortField = id
   order: SortOrder = desc
+}
+
+input CreateContentContactMutationInput {
+  payload: CreateContentContactPayloadMutationInput = {}
+}
+
+input CreateContentContactPayloadMutationInput {
+  firstName: String
+  lastName: String
+  title: String
+  status: Int = 2
 }
 
 `;
