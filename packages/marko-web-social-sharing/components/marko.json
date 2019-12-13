@@ -2,6 +2,10 @@
   "<marko-web-social-sharing>": {
     "template": "./social-sharing.marko",
     "@url": "string",
-    "@providers": "array"
+    "@path": "string",
+    "@providers": "array",
+    "@title": "string",
+    "@description": "string",
+    "@media": "string"
   }
 }

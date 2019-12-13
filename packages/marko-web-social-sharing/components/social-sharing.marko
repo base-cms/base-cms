@@ -1,1 +1,16 @@
-<marko-web-browser-component name="SocialSharing" props=input />
+import { cleanPath } from "@base-cms/utils";
+
+$ const { req, requestOrigin } = out.global;
+
+$ const path = input.path || req.path;
+$ const url = input.url || `${out.global.requestOrigin}/${cleanPath(path)}`;
+
+$ const props = {
+  url,
+  providers: input.providers,
+  title: input.title,
+  description: input.description,
+  media: input.media,
+}
+
+<marko-web-browser-component name="SocialSharing" props=props />
