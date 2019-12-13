@@ -6,6 +6,7 @@
     "@providers": "array",
     "@title": "string",
     "@description": "string",
-    "@media": "string"
+    "@media": "string",
+    "@show-action": "boolean"
   }
 }

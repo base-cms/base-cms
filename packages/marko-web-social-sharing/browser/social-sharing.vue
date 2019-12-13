@@ -8,6 +8,7 @@
       :title="title"
       :description="description"
       :media="media"
+      :show-action="showAction"
       @open="emitEvent('open', ...arguments)"
       @change="emitEvent('change', ...arguments)"
       @close="emitEvent('close', ...arguments)"
@@ -40,6 +41,10 @@ export default {
     media: {
       type: String,
       default: null,
+    },
+    showAction: {
+      type: Boolean,
+      default: false,
     },
     providers: {
       type: Array,
