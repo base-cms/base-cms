@@ -1225,5 +1225,20 @@ module.exports = {
       const projection = buildProjection({ info, type: 'ContentContact' });
       return basedb.findOne('platform.Content', { _id: id }, { projection });
     },
+
+    /**
+     *
+     */
+    updateContentCompanyPublicContacts: async (_, { input }, { base4rest, basedb }, info) => {
+      validateRest(base4rest);
+      const type = 'platform/content/contact';
+      const { id, payload: { ids } } = input;
+      const body = new Base4RestPayload({ type: 'platform/content/company' });
+      body.set('id', id);
+      body.setLinks('publicContacts', ids.map(i => ({ id: i, type })));
+      await base4rest.updateOne({ model: 'platform/content/company', id, body });
+      const projection = buildProjection({ info, type: 'ContentCompany' });
+      return basedb.findOne('platform.Content', { _id: id }, { projection });
+    },
   },
 };
