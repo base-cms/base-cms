@@ -61,7 +61,6 @@ export default {
   methods: {
     emitEvent(name, provider) {
       const { url, title } = this;
-      console.log(`social-share-${name}`, { url, title, provider });
       this.EventBus.$emit(`social-share-${name}`, { url, title, provider });
     },
   },
