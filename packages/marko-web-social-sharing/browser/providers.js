@@ -10,6 +10,13 @@ export default {
     },
     type: 'direct',
   },
+  print: {
+    name: 'Print',
+    href: '',
+    action: 'Print',
+    params: {},
+    type: 'print',
+  },
   facebook: {
     name: 'Facebook',
     href: 'https://www.facebook.com/sharer/sharer.php',

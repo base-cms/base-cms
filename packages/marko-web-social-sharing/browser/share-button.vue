@@ -15,6 +15,7 @@ import EmailIcon from './icons/email.vue';
 import FacebookIcon from './icons/facebook.vue';
 import LinkedinIcon from './icons/linkedin.vue';
 import PinterestIcon from './icons/pinterest.vue';
+import PrintIcon from './icons/print.vue';
 import TwitterIcon from './icons/twitter.vue';
 
 export default {
@@ -23,6 +24,7 @@ export default {
     FacebookIcon,
     LinkedinIcon,
     PinterestIcon,
+    PrintIcon,
     TwitterIcon,
   },
 
@@ -111,6 +113,8 @@ export default {
       this.emitOpenEvent();
       if (this.type === 'direct') {
         window.open(url, '_self');
+      } else if (this.type === 'print') {
+        window.print();
       } else {
         this.openPopup(url);
       }

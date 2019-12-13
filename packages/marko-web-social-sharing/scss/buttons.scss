@@ -4,6 +4,7 @@ $marko-web-social-sharing-linkedin:     #0077b5 !default;
 $marko-web-social-sharing-pinterest:    #bd081c !default;
 $marko-web-social-sharing-twitter:      #1da1f2 !default;
 $marko-web-social-sharing-email:        #7d7d7d !default;
+$marko-web-social-sharing-print:        #222 !default;
 
 $marko-web-social-sharing-brand-colors: () !default;
 // stylelint-disable-next-line scss/dollar-variable-default
@@ -14,6 +15,7 @@ $marko-web-social-sharing-brand-colors: map-merge(
     "pinterest":    $marko-web-social-sharing-pinterest,
     "twitter":      $marko-web-social-sharing-twitter,
     "email":        $marko-web-social-sharing-email,
+    "print":        $marko-web-social-sharing-print,
   ),
   $marko-web-social-sharing-brand-colors
 );
@@ -57,6 +59,10 @@ $marko-web-social-sharing-brand-colors: map-merge(
     &:hover {
       top: -4px;
       opacity: .8;
+    }
+
+    &:last-child {
+      margin-right: 0;
     }
 
     &--with-action {
