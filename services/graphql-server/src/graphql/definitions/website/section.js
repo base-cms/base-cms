@@ -50,6 +50,11 @@ extend type Query {
   websiteSectionSitemapUrls(input: WebsiteSectionSitemapUrlsQueryInput = {}): [WebsiteSectionSitemapUrl!]!
 }
 
+extend type Mutation {
+  createWebsiteSection(input: CreateWebsiteSectionMutationInput!): WebsiteSection! @requiresAuth
+  updateWebsiteSection(input: UpdateWebsiteSectionMutationInput!): WebsiteSection! @requiresAuth
+}
+
 type WebsiteSection {
   # fields from platform.model::Section
   id: Int! @projection(localField: "_id") @value(localField: "_id")
@@ -188,6 +193,41 @@ input WebsiteSectionChildrenInput {
   status: ModelStatus = active
   sort: WebsiteSectionSortInput = {}
   pagination: PaginationInput = {}
+}
+
+input CreateWebsiteSectionMutationInput {
+  name: String!
+  alias: String!
+  description: String
+  labels: [String]
+  status: Int
+  sequence: Int
+  redirects: [String]
+  slug: String
+  # Refs
+  site: ObjectID!
+  parent: Int
+  logo: ObjectID
+}
+
+input UpdateWebsiteSectionMutationInput {
+  id: Int!
+  payload: UpdateWebsiteSectionMutationPayloadInput = {}
+}
+
+input UpdateWebsiteSectionMutationPayloadInput {
+  name: String
+  alias: String
+  description: String
+  labels: [String]
+  status: Int
+  sequence: Int
+  redirects: [String]
+  slug: String
+  # Refs
+  site: ObjectID
+  parent: Int
+  logo: ObjectID
 }
 
 `;
