@@ -1,13 +1,10 @@
 <template>
   <button :class="classNames" @click="share">
-    <span v-if="showIcon" :class="elementName('provider-icon')">
+    <span :class="elementName('provider-icon')">
       <component :is="iconComponent" />
     </span>
     <span v-if="showAction" :class="elementName('provider-action')">
       {{ action }}
-    </span>
-    <span v-if="showName" :class="elementName('provider-name')">
-      {{ name }}
     </span>
   </button>
 </template>
@@ -50,18 +47,6 @@ export default {
     },
     showAction: {
       type: Boolean,
-      default: true,
-    },
-    showName: {
-      type: Boolean,
-      default: true,
-    },
-    showIcon: {
-      type: Boolean,
-      default: true,
-    },
-    outline: {
-      type: Boolean,
       default: false,
     },
   },
@@ -93,7 +78,7 @@ export default {
   computed: {
     classNames() {
       const classNames = [this.elementName('button'), this.elementName('button', this.provider)];
-      if (this.outline) classNames.push(this.elementName('button', 'outline'));
+      if (this.showAction) classNames.push(this.elementName('button', 'with-action'));
       return classNames;
     },
 
