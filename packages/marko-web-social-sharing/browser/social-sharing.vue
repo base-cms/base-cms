@@ -5,6 +5,9 @@
       :key="provider"
       :provider="provider"
       :url="url"
+      :title="title"
+      :description="description"
+      :media="media"
     />
   </div>
 </template>
@@ -20,6 +23,18 @@ export default {
     url: {
       type: String,
       required: true,
+    },
+    title: {
+      type: String,
+      default: null,
+    },
+    description: {
+      type: String,
+      default: null,
+    },
+    media: {
+      type: String,
+      default: null,
     },
     providers: {
       type: Array,

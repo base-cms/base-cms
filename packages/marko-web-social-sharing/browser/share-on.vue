@@ -17,6 +17,18 @@ export default {
       type: String,
       required: true,
     },
+    title: {
+      type: String,
+      default: null,
+    },
+    description: {
+      type: String,
+      default: null,
+    },
+    media: {
+      type: String,
+      default: null,
+    },
   },
   data: () => ({
     name: null,
