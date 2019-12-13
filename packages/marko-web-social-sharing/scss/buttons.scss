@@ -1,0 +1,99 @@
+// Brand Colors
+$marko-web-social-sharing-facebook:     #1877f2 !default;
+$marko-web-social-sharing-linkedin:     #0077b5 !default;
+$marko-web-social-sharing-pinterest:    #bd081c !default;
+$marko-web-social-sharing-twitter:      #1da1f2 !default;
+$marko-web-social-sharing-email:        #7d7d7d !default;
+$marko-web-social-sharing-print:        #222 !default;
+
+$marko-web-social-sharing-brand-colors: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$marko-web-social-sharing-brand-colors: map-merge(
+  (
+    "facebook":     $marko-web-social-sharing-facebook,
+    "linkedin":     $marko-web-social-sharing-linkedin,
+    "pinterest":    $marko-web-social-sharing-pinterest,
+    "twitter":      $marko-web-social-sharing-twitter,
+    "email":        $marko-web-social-sharing-email,
+    "print":        $marko-web-social-sharing-print,
+  ),
+  $marko-web-social-sharing-brand-colors
+);
+
+.social-sharing {
+  $self: &;
+  box-sizing: border-box;
+
+  &__button {
+    position: relative;
+    top: 0;
+    display: inline-block;
+    height: 40px;
+    padding: 0 10px;
+    margin: 0;
+    margin-right: 8px;
+    font-family: "Helvetica Neue", verdana, helvetica, arial, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 40px;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: top;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    opacity: 1;
+    transition: opacity .2s ease-in, top .2s ease-in;
+    @each $provider, $color in $marko-web-social-sharing-brand-colors {
+      &--#{$provider} {
+        background-color: $color;
+      }
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &:hover {
+      top: -4px;
+      opacity: .8;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &--with-action {
+      min-width: 100px;
+    }
+  }
+
+  &__provider-icon {
+    position: relative;
+    top: 10px;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    vertical-align: top;
+    svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 20px;
+      height: 20px;
+      overflow: hidden;
+      vertical-align: middle;
+      transition: fill .25s ease;
+      fill: currentColor;
+    }
+  }
+
+  &__provider-action {
+    min-width: 50px;
+    padding: 0 6px;
+    letter-spacing: .5px;
+    vertical-align: top;
+  }
+}

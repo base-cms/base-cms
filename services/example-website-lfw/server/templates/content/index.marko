@@ -3,7 +3,7 @@ import { getAsObject } from "@base-cms/object-path";
 import queryFragment from "../../api/fragments/content-list";
 import GAM from "../../../config/gam";
 
-$ const { site } = out.global;
+$ const { site, req } = out.global;
 $ const { id, type, pageNode } = data;
 
 $ const displayPrimaryImage = ["whitepaper", "media-gallery", "contact"].includes(type) ? false : true;
@@ -74,6 +74,12 @@ $ const displayPublishedDate = ["event", "webinar", "contact"].includes(type) ? 
               <else-if(type === "contact")>
                 <marko-web-page-image width=300 fluid=false obj=content.primaryImage />
               </else-if>
+
+              <marko-web-social-sharing
+                path=content.siteContext.path
+                providers=["email", "facebook", "linkedin", "twitter", "pinterest", "print"]
+              />
+
               <default-theme-content-contact-details obj=content />
               <marko-web-content-body block-name=blockName obj=content />
               <marko-web-content-sidebars block-name=blockName obj=content />

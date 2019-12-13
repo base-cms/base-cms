@@ -14,6 +14,9 @@ fragment ContentPageFragment on Content {
       path
     }
   }
+  siteContext {
+    path
+  }
   primarySection {
     id
     name
