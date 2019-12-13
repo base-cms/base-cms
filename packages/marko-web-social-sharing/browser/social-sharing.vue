@@ -1,6 +1,6 @@
 <template>
   <div class="social-sharing">
-    <share-on
+    <share-button
       v-for="provider in filteredProviders"
       :key="provider"
       :provider="provider"
@@ -14,10 +14,10 @@
 
 <script>
 import providerList from './providers';
-import ShareOn from './share-on.vue';
+import ShareButton from './share-button.vue';
 
 export default {
-  components: { ShareOn },
+  components: { ShareButton },
 
   props: {
     url: {
