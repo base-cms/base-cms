@@ -11,6 +11,7 @@
 
 <script>
 import providerList from './providers';
+import EmailIcon from './icons/email.vue';
 import FacebookIcon from './icons/facebook.vue';
 import LinkedinIcon from './icons/linkedin.vue';
 import PinterestIcon from './icons/pinterest.vue';
@@ -18,6 +19,7 @@ import TwitterIcon from './icons/twitter.vue';
 
 export default {
   components: {
+    EmailIcon,
     FacebookIcon,
     LinkedinIcon,
     PinterestIcon,
@@ -106,8 +108,12 @@ export default {
      */
     share() {
       const url = this.buildSharerUrl();
-      this.openPopup(url);
-      // @todo add support for non-popup types.
+      this.emitOpenEvent();
+      if (this.type === 'direct') {
+        window.open(url, '_self');
+      } else {
+        this.openPopup(url);
+      }
     },
 
     /**
@@ -144,12 +150,16 @@ export default {
       return `${this.href}?${kvs.join('&')}`;
     },
 
+    emitOpenEvent() {
+      const provider = providerList[this.provider];
+      this.$emit('open', provider);
+    },
+
     /**
      *
      */
     openPopup(url) {
       const provider = providerList[this.provider];
-      this.$emit('open', provider);
 
       let popup = window.open(url, 'social-share', this.buildPopupFeatures());
       if (popup) popup.focus();

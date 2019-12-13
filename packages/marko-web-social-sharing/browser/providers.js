@@ -1,4 +1,15 @@
 export default {
+  email: {
+    name: 'Email',
+    href: 'mailto:?subject=@title&body=@url%0D%0A%0D%0A@description',
+    action: 'Email',
+    params: {
+      url: '@url',
+      title: '@title',
+      description: '@description',
+    },
+    type: 'direct',
+  },
   facebook: {
     name: 'Facebook',
     href: 'https://www.facebook.com/sharer/sharer.php',
