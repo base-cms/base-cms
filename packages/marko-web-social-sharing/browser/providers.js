@@ -31,7 +31,7 @@ export default {
   },
   pinterest: {
     name: 'Pinterest',
-    href: 'https://pinterest.com/pin/create/button',
+    href: 'https://pinterest.com/pin/create/button/',
     params: {
       url: '@url',
       media: '@media',
