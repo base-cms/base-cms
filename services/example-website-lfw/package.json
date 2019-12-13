@@ -24,6 +24,7 @@
     "@base-cms/marko-web-icons": "^1.0.0",
     "@base-cms/marko-web-native-x": "^1.0.1",
     "@base-cms/marko-web-reveal-ad": "^1.0.1",
+    "@base-cms/marko-web-social-sharing": "^1.0.0",
     "@base-cms/marko-web-theme-default": "^1.2.1",
     "@base-cms/object-path": "^1.0.0",
     "@base-cms/utils": "^1.0.0",
