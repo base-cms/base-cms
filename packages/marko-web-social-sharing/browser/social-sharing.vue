@@ -1,7 +1,7 @@
 <template>
   <div class="social-sharing">
     <share-on
-      v-for="provider in networks"
+      v-for="provider in filteredProviders"
       :key="provider"
       :provider="provider"
     />
@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import networks from './networks';
+import providerList from './providers';
 import ShareOn from './share-on.vue';
 
 export default {
@@ -27,8 +27,8 @@ export default {
   },
 
   computed: {
-    networks() {
-      return this.providers.filter(key => networks[key]);
+    filteredProviders() {
+      return this.providers.filter(key => providerList[key]);
     },
   },
 };

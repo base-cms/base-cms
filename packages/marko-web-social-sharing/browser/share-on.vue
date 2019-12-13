@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import networks from './networks';
+import providerList from './providers';
 
 export default {
   props: {
@@ -20,10 +20,10 @@ export default {
     type: null,
   }),
   created() {
-    const network = networks[this.provider];
-    this.name = network.name;
-    this.sharer = network.sharer;
-    this.type = network.type;
+    const provider = providerList[this.provider];
+    this.name = provider.name;
+    this.sharer = provider.sharer;
+    this.type = provider.type;
   },
 };
 </script>
