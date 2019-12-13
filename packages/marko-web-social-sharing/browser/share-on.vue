@@ -20,7 +20,8 @@ export default {
   },
   data: () => ({
     name: null,
-    sharer: null,
+    href: null,
+    params: {},
     type: null,
   }),
   computed: {
@@ -32,12 +33,13 @@ export default {
   created() {
     const provider = providerList[this.provider];
     this.name = provider.name;
-    this.sharer = provider.sharer;
+    this.href = provider.href;
+    this.params = provider.params;
     this.type = provider.type;
   },
   methods: {
     share() {
-      console.log('share!', this.url);
+      console.log('share!', this.name, this.url);
     },
   },
 };
