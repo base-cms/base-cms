@@ -4,6 +4,7 @@
       v-for="provider in filteredProviders"
       :key="provider"
       :provider="provider"
+      :url="url"
     />
   </div>
 </template>
