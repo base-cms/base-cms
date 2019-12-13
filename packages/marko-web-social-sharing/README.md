@@ -15,6 +15,11 @@ SocialSharing(Browser);
 export default Browser;
 ```
 
+3. Include the default styles:
+```scss
+@import "../../node_modules/@base-cms/marko-web-social-sharing/scss/buttons";
+```
+
 ## Usage
 
 Include the sharing component where you'd like the icons to appear:
