@@ -1192,5 +1192,20 @@ module.exports = {
       const projection = buildProjection({ info, type: 'ContentContact' });
       return basedb.findOne('platform.Content', { _id: data.id }, { projection });
     },
+
+    /**
+     *
+     */
+    updateContentContact: async (_, { input }, { base4rest, basedb }, info) => {
+      validateRest(base4rest);
+      const type = 'platform/content/contact';
+      const { id, payload } = input;
+      const body = new Base4RestPayload({ type });
+      Object.keys(payload).forEach(k => body.set(k, payload[k]));
+      body.set('id', id);
+      await base4rest.updateOne({ model: type, id, body });
+      const projection = buildProjection({ info, type: 'ContentContact' });
+      return basedb.findOne('platform.Content', { _id: id }, { projection });
+    },
   },
 };

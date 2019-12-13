@@ -8,6 +8,7 @@ extend type Query {
 
 extend type Mutation {
   createContentContact(input: CreateContentContactMutationInput!): ContentContact! @requiresAuth
+  updateContentContact(input: UpdateContentContactMutationInput!): ContentContact! @requiresAuth
 }
 
 type ContentContact implements Content & Contactable & Addressable & SocialLinkable @applyInterfaceFields {
@@ -73,6 +74,18 @@ input CreateContentContactPayloadMutationInput {
   lastName: String
   title: String
   status: Int = 2
+}
+
+input UpdateContentContactMutationInput {
+  id: Int!
+  payload: UpdateContentContactPayloadMutationInput = {}
+}
+
+input UpdateContentContactPayloadMutationInput {
+  firstName: String
+  lastName: String
+  title: String
+  status: Int
 }
 
 `;
