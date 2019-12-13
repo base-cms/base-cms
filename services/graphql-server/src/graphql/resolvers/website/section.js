@@ -166,5 +166,29 @@ module.exports = {
       const projection = buildProjection({ info, type: 'WebsiteSection' });
       return basedb.findOne('website.Section', { _id: id }, { projection });
     },
+
+    /**
+     *
+     */
+    updateWebsiteSection: async (_, { input }, { base4rest, basedb }, info) => {
+      validateRest(base4rest);
+      const type = 'website/section';
+      const { id, payload } = input;
+      const {
+        site,
+        parent,
+        logo,
+        ...fields
+      } = payload;
+      const body = new Base4RestPayload({ type });
+      Object.keys(fields).forEach(k => body.set(k, fields[k]));
+      if (site) body.setLink('site', { site, type: 'website/product/site' });
+      if (parent) body.setLink('parent', { parent, type });
+      if (logo) body.setLink('logo', { logo, type: 'platform/asset/image' });
+      body.set('id', id);
+      await base4rest.updateOne({ model: type, id, body });
+      const projection = buildProjection({ info, type: 'WebsiteSection' });
+      return basedb.findOne('website.Section', { _id: id }, { projection });
+    },
   },
 };

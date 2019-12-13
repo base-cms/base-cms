@@ -52,6 +52,7 @@ extend type Query {
 
 extend type Mutation {
   createWebsiteSection(input: CreateWebsiteSectionMutationInput!): WebsiteSection! @requiresAuth
+  updateWebsiteSection(input: UpdateWebsiteSectionMutationInput!): WebsiteSection! @requiresAuth
 }
 
 type WebsiteSection {
@@ -205,6 +206,26 @@ input CreateWebsiteSectionMutationInput {
   slug: String
   # Refs
   site: ObjectID!
+  parent: Int
+  logo: ObjectID
+}
+
+input UpdateWebsiteSectionMutationInput {
+  id: Int!
+  payload: UpdateWebsiteSectionMutationPayloadInput = {}
+}
+
+input UpdateWebsiteSectionMutationPayloadInput {
+  name: String
+  alias: String
+  description: String
+  labels: [String]
+  status: Int
+  sequence: Int
+  redirects: [String]
+  slug: String
+  # Refs
+  site: ObjectID
   parent: Int
   logo: ObjectID
 }
