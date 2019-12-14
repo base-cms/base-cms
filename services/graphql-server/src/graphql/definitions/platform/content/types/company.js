@@ -155,7 +155,7 @@ input UpdateContentCompanyPublicContactsMutationInput {
 }
 
 input UpdateContentCompanyPublicContactsPayloadMutationInput {
-  ids: [Int!]!
+  contactIds: [Int!]!
 }
 
 `;
