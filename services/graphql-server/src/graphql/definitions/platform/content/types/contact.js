@@ -95,8 +95,8 @@ input UpdateContentContactImagesMutationInput {
 }
 
 input UpdateContentContactImagesPayloadMutationInput {
-  primaryImage: ObjectID
-  images: [ObjectID!]
+  primaryImageId: ObjectID
+  imageIds: [ObjectID!]
 }
 
 `;

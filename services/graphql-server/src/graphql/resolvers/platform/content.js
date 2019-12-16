@@ -1216,10 +1216,10 @@ module.exports = {
       const contact = 'platform/content/contact';
       const image = 'platform/asset/image';
       const { id, payload } = input;
-      const { images, primaryImage } = payload;
+      const { imageIds, primaryImageId } = payload;
       const body = new Base4RestPayload({ type: contact });
-      if (primaryImage) body.setLink('primaryImage', { id: primaryImage, type: image });
-      if (images) body.setLinks('images', images.map(imgId => ({ id: imgId, type: image })));
+      if (primaryImageId) body.setLink('primaryImage', { id: primaryImageId, type: image });
+      if (imageIds) body.setLinks('images', imageIds.map(imgId => ({ id: imgId, type: image })));
       body.set('id', id);
       await base4rest.updateOne({ model: contact, id, body });
       const projection = buildProjection({ info, type: 'ContentContact' });
