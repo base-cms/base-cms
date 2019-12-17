@@ -1177,5 +1177,68 @@ module.exports = {
       const projection = buildProjection({ info, type: 'ContentCompany' });
       return basedb.findOne('platform.Content', { _id: id }, { projection });
     },
+
+    /**
+     *
+     */
+    createContentContact: async (_, { input }, { base4rest, basedb }, info) => {
+      validateRest(base4rest);
+      const type = 'platform/content/contact';
+      const { payload } = input;
+      const keys = Object.keys(payload);
+      const body = new Base4RestPayload({ type });
+      keys.forEach(k => body.set(k, payload[k]));
+      const { data } = await base4rest.insertOne({ model: type, body });
+      const projection = buildProjection({ info, type: 'ContentContact' });
+      return basedb.findOne('platform.Content', { _id: data.id }, { projection });
+    },
+
+    /**
+     *
+     */
+    updateContentContact: async (_, { input }, { base4rest, basedb }, info) => {
+      validateRest(base4rest);
+      const type = 'platform/content/contact';
+      const { id, payload } = input;
+      const body = new Base4RestPayload({ type });
+      Object.keys(payload).forEach(k => body.set(k, payload[k]));
+      body.set('id', id);
+      await base4rest.updateOne({ model: type, id, body });
+      const projection = buildProjection({ info, type: 'ContentContact' });
+      return basedb.findOne('platform.Content', { _id: id }, { projection });
+    },
+
+    /**
+     *
+     */
+    updateContentContactImages: async (_, { input }, { base4rest, basedb }, info) => {
+      validateRest(base4rest);
+      const contact = 'platform/content/contact';
+      const image = 'platform/asset/image';
+      const { id, payload } = input;
+      const { imageIds, primaryImageId } = payload;
+      const body = new Base4RestPayload({ type: contact });
+      if (primaryImageId) body.setLink('primaryImage', { id: primaryImageId, type: image });
+      if (imageIds) body.setLinks('images', imageIds.map(imgId => ({ id: imgId, type: image })));
+      body.set('id', id);
+      await base4rest.updateOne({ model: contact, id, body });
+      const projection = buildProjection({ info, type: 'ContentContact' });
+      return basedb.findOne('platform.Content', { _id: id }, { projection });
+    },
+
+    /**
+     *
+     */
+    updateContentCompanyPublicContacts: async (_, { input }, { base4rest, basedb }, info) => {
+      validateRest(base4rest);
+      const type = 'platform/content/contact';
+      const { id, payload: { contactIds } } = input;
+      const body = new Base4RestPayload({ type: 'platform/content/company' });
+      body.set('id', id);
+      body.setLinks('publicContacts', contactIds.map(i => ({ id: i, type })));
+      await base4rest.updateOne({ model: 'platform/content/company', id, body });
+      const projection = buildProjection({ info, type: 'ContentCompany' });
+      return basedb.findOne('platform.Content', { _id: id }, { projection });
+    },
   },
 };

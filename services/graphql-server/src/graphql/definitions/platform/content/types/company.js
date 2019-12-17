@@ -10,6 +10,7 @@ extend type Mutation {
   updateContentCompany(input: UpdateContentCompanyMutationInput!): ContentCompany @requiresAuth
   updateContentCompanyImages(input: UpdateContentCompanyImagesMutationInput!): ContentCompany @requiresAuth
   updateContentCompanySocialLinks(input: UpdateContentCompanySocialLinksMutationInput!): ContentCompany @requiresAuth
+  updateContentCompanyPublicContacts(input: UpdateContentCompanyPublicContactsMutationInput!): ContentCompany @requiresAuth
 }
 
 type ContentCompany implements Content & PrimaryCategory & Contactable & Addressable & SocialLinkable & Inquirable & OrganizationContactable @applyInterfaceFields {
@@ -146,6 +147,15 @@ input ContentCompanySortInput {
 
 input ContentCompanyYoutubeVideosInput {
   pagination: PaginationInput = {}
+}
+
+input UpdateContentCompanyPublicContactsMutationInput {
+  id: Int!
+  payload: UpdateContentCompanyPublicContactsPayloadMutationInput = {}
+}
+
+input UpdateContentCompanyPublicContactsPayloadMutationInput {
+  contactIds: [Int!]!
 }
 
 `;
