@@ -479,6 +479,8 @@ services:
       CAPRICA_DSN: ${CAPRICA_DSN-mongodb://mongodb:27017}
       AERILON_DSN: ${AERILON_DSN-mongodb://mongodb:27017}
       PICON_DSN: ${PICON_DSN-mongodb://mongodb:27017}
+      GEMENON_DSN: ${GEMENON_DSN-mongodb://mongodb:27017}
+      ENABLE_BASEDB_LOGGING: ${ENABLE_BASEDB_LOGGING-false}
     depends_on:
       - mongodb
     ports:
