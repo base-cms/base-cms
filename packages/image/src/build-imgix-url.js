@@ -160,6 +160,7 @@ module.exports = (src, selected, defaults, isLogo) => {
   if (isLogo) {
     options.fit = 'fill';
     options.fillColor = options.fillColor || 'fff';
+    options.bg = options.bg || 'fff';
     options.pad = options.pad || '5';
   }
   try {
