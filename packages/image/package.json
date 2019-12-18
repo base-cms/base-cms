@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/image",
-  "version": "1.0.0",
+  "version": "1.6.3",
   "description": "Common image utilities for BaseCMS projects.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
