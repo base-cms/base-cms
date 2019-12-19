@@ -163,6 +163,10 @@
     }
   }
 
+  &__icon + &__label {
+    margin-left: .25rem;
+  }
+
   &__link {
     display: block;
     white-space: nowrap;
