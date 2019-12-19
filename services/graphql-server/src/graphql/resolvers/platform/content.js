@@ -1185,9 +1185,9 @@ module.exports = {
       validateRest(base4rest);
       const type = 'platform/content/contact';
       const { primarySectionId, ...payload } = input.payload;
-      const section = await basedb.strictFindById('website.Section', primarySectionId, { projection: ['site.$id'] });
+      const section = await basedb.strictFindById('website.Section', primarySectionId, { projection: { site: 1 } });
       const primarySiteId = BaseDB.extractRefId(section.site);
-      await basedb.strictFindById('platform.Product', primarySiteId, { projection: ['_id'] });
+      await basedb.strictFindById('platform.Product', primarySiteId, { projection: { _id: 1 } });
       const keys = Object.keys(payload);
       const body = new Base4RestPayload({ type });
       body.setLink('primarySiteWebsite', { id: primarySiteId, type: 'website/product/site' });
