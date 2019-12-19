@@ -77,9 +77,12 @@ module.exports = {
         // If so, merge with the incoming params.
         // If the same param is present in both, the `to` value wins.
         // Must put a "fake" host in front of the path to properly parse.
-        const toUrl = new URL(`http://localhost${cleaned.to}`);
+        const isExternal = /^http/.test(cleaned.to);
+        const to = isExternal ? cleaned.to : `http://localhost${cleaned.to}`;
+        const toUrl = new URL(to);
         toUrl.searchParams.forEach((value, key) => queryParams.set(key, value));
-        cleaned.to = `${toUrl.pathname}?${queryParams}`;
+        const origin = isExternal ? toUrl.origin : '';
+        cleaned.to = `${origin}${toUrl.pathname}?${queryParams}`;
       }
       return cleaned;
     },
