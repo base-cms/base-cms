@@ -76,7 +76,6 @@ input CreateContentContactPayloadMutationInput {
   title: String
   status: Int = 2
   primarySectionId: Int!
-  primarySiteId: ObjectID!
 }
 
 input UpdateContentContactMutationInput {
