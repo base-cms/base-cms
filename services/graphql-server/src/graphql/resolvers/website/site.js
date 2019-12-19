@@ -1,5 +1,6 @@
-const querystring = require('querystring');
+const { URL, URLSearchParams } = require('url');
 const { UserInputError } = require('apollo-server-express');
+const { asObject } = require('@base-cms/utils');
 const defaults = require('../../defaults');
 
 const cleanRedirect = async (redirect, from, basedb) => {
@@ -66,11 +67,23 @@ module.exports = {
       const siteId = input.siteId || site.id();
       if (!siteId) throw new UserInputError('A siteId must be provided via input or context.');
 
-      const query = querystring.stringify(params);
+      const queryParams = new URLSearchParams(asObject(params));
       const redirect = await basedb.findOne('website.Redirects', { siteId, from });
       const cleaned = await cleanRedirect(redirect, from, basedb);
+
       // Preserve query string params (if applicable);
-      if (cleaned && cleaned.to && query) cleaned.to = `${cleaned.to}?${query}`;
+      if (cleaned && cleaned.to && `${queryParams}`) {
+        // Determine if the `to` value has query params.
+        // If so, merge with the incoming params.
+        // If the same param is present in both, the `to` value wins.
+        // Must put a "fake" host in front of the path to properly parse.
+        const isExternal = /^http/.test(cleaned.to);
+        const to = isExternal ? cleaned.to : `http://localhost${cleaned.to}`;
+        const toUrl = new URL(to);
+        toUrl.searchParams.forEach((value, key) => queryParams.set(key, value));
+        const origin = isExternal ? toUrl.origin : '';
+        cleaned.to = `${origin}${toUrl.pathname}?${queryParams}`;
+      }
       return cleaned;
     },
   },
