@@ -1184,9 +1184,14 @@ module.exports = {
     createContentContact: async (_, { input }, { base4rest, basedb }, info) => {
       validateRest(base4rest);
       const type = 'platform/content/contact';
-      const { payload } = input;
+      const { primarySectionId, ...payload } = input.payload;
+      const section = await basedb.strictFindById('website.Section', primarySectionId, { projection: { site: 1 } });
+      const primarySiteId = BaseDB.extractRefId(section.site);
+      await basedb.strictFindById('platform.Product', primarySiteId, { projection: { _id: 1 } });
       const keys = Object.keys(payload);
       const body = new Base4RestPayload({ type });
+      body.setLink('primarySiteWebsite', { id: primarySiteId, type: 'website/product/site' });
+      body.setLink('primarySectionWebsite', { id: primarySectionId, type: 'website/section' });
       keys.forEach(k => body.set(k, payload[k]));
       const { data } = await base4rest.insertOne({ model: type, body });
       const projection = buildProjection({ info, type: 'ContentContact' });
