@@ -23,6 +23,7 @@ const contactsFor = async (content, basedb) => {
       parentCompany: 1,
       parentSupplier: 1,
       parentVenue: 1,
+      'mutations.Website.enableRmi': 1,
     };
     const item = await basedb.findOne('platform.Content', { _id: relatedId, 'mutations.Website.enableRmi': true }, { projection });
     return contactsFor(item, basedb);
