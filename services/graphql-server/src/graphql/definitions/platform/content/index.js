@@ -9,6 +9,7 @@ extend type Query {
     model: "platform.Content",
     using: { id: "_id" },
     criteria: "content",
+    queryBuilder: "publishedContent",
     withSite: false, # allow content to always load, regardless of site context.
   )
   contentHash(input: ContentHashQueryInput = {}): Content @findOne(
@@ -231,6 +232,7 @@ input ContentQueryInput {
   siteId: ObjectID
   status: ModelStatus = active
   id: Int!
+  since: Date
 }
 
 input ContentHashQueryInput {
