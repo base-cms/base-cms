@@ -14,7 +14,11 @@ module.exports = ({
   const { apollo } = req;
 
   const additionalInput = {};
-  if (req.cookies['preview-mode'] || req.query['preview-mode']) additionalInput.status = 'any';
+  if (req.cookies['preview-mode'] || req.query['preview-mode']) {
+    additionalInput.status = 'any';
+  } else {
+    additionalInput.since = new Date();
+  }
   const content = await loader(apollo, { id, additionalInput });
   const { redirectTo } = content;
   const path = get(content, 'siteContext.path');
