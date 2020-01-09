@@ -17,7 +17,7 @@ module.exports = ({
   if (req.cookies['preview-mode'] || req.query['preview-mode']) {
     additionalInput.status = 'any';
   } else {
-    additionalInput.since = new Date();
+    additionalInput.since = Date.now();
   }
   const content = await loader(apollo, { id, additionalInput });
   const { redirectTo } = content;
