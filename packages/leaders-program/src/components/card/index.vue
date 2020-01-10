@@ -55,7 +55,12 @@
           Featured Videos
         </template>
         <template #header-right>
-          <view-more label="videos" :href="profileHref" @click="handleProfileClick" />
+          <view-more
+            label="videos"
+            :href="youtubeHref"
+            target="_blank"
+            @click="handleVideoClick"
+          />
         </template>
         <template #default="{ item }">
           <video-card
@@ -63,7 +68,7 @@
             :title="item.title"
             :href="item.url"
             :image-src="item.thumbnail"
-            @click="handeVideoClick"
+            @click="handleVideoClick"
           />
         </template>
       </content-deck>
@@ -111,6 +116,9 @@ export default {
     },
     profileHref() {
       return get(this.company, 'siteContext.path');
+    },
+    youtubeHref() {
+      return get(this.company, 'youtube.url');
     },
     executive() {
       return getEdgeNodes(this.company, 'publicContacts')[0];
@@ -164,7 +172,7 @@ export default {
         label: 'Company Website',
       }, data, event);
     },
-    handeVideoClick(data, event) {
+    handleVideoClick(data, event) {
       this.emitAction({
         type: 'click',
         label: 'YouTube Video',

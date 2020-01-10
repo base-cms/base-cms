@@ -93,6 +93,7 @@ query ContentForLeadersSection($sectionId: Int!) {
           youtube {
             username
             channelId
+            url
           }
           videos: youtubeVideos(input: { pagination: { limit: 3 } }) {
             edges {
