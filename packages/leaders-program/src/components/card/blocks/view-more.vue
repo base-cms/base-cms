@@ -1,5 +1,5 @@
 <template>
-  <common-link :href="href" @click="emitClick">
+  <common-link :href="href" :target="target" @click="emitClick">
     {{ value }} &raquo;
   </common-link>
 </template>
@@ -14,6 +14,10 @@ export default {
     href: {
       type: String,
       required: true,
+    },
+    target: {
+      type: String,
+      default: '_self',
     },
     label: {
       type: String,
