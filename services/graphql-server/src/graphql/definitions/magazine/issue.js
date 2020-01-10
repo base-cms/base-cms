@@ -85,6 +85,7 @@ input MagazineLatestIssueQueryInput {
 }
 
 input MagazineActiveIssuesQueryInput {
+  status: ModelStatus = active
   publicationId: ObjectID!
   excludeIssueIds: [Int!] = []
   sort: MagazineIssueSortInput = { field: mailDate, order: desc }
