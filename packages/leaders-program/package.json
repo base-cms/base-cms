@@ -17,7 +17,7 @@
     "graphql-tag": "^2.10.1",
     "object-path": "^0.11.4",
     "portal-vue": "^2.1.6",
-    "vue": "^2.6.10"
+    "vue": "^2.6.11"
   },
   "devDependencies": {
     "@base-cms/graphql-fragment-types": "^1.0.0",
@@ -37,7 +37,7 @@
     "stylelint": "^10.1.0",
     "stylelint-config-twbs-bootstrap": "0.4.0",
     "vue-apollo": "^3.0.0",
-    "vue-template-compiler": "^2.6.10"
+    "vue-template-compiler": "^2.6.11"
   },
   "publishConfig": {
     "access": "public"
