@@ -7,7 +7,7 @@ extend type Query {
 }
 
 extend type Mutation {
-  updateContentTop100SocialLinks(input: UpdateContentTop100SocialLinksMutationInput!): ContentCompany @requiresAuth
+  updateContentTop100SocialLinks(input: UpdateContentTop100SocialLinksMutationInput!): ContentTop100 @requiresAuth
 }
 
 type ContentTop100 implements Content & Addressable & SocialLinkable @applyInterfaceFields {
@@ -17,6 +17,8 @@ type ContentTop100 implements Content & Addressable & SocialLinkable @applyInter
   previousRank: Int @projection
   founded: String @projection
   companyType: String @projection
+  phone: String @projection
+  website: String @projection
   employees: String @projection
   revenueCurrent: String @projection
   revenuePrior1: String @projection
@@ -30,9 +32,25 @@ type ContentTop100 implements Content & Addressable & SocialLinkable @applyInter
 
 }
 
+type ContentTop100Connection {
+  totalCount: Int!
+  edges: [ContentTop100Edge]!
+  pageInfo: PageInfo!
+}
+
+type ContentTop100Edge {
+  node: ContentTop100!
+  cursor: String!
+}
+
 input ContentTop100QueryInput {
   id: Int!
   status: ModelStatus = active
+}
+
+input ContentTop100SortInput {
+  field: ContentSortField = rank
+  order: SortOrder = asc
 }
 
 input UpdateContentTop100SocialLinksMutationInput {
