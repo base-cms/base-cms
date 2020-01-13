@@ -80,6 +80,7 @@ enum ContentType {
   Sponsored
   Supplier
   TextAd
+  Top100
   TopList
   Video
   Venue

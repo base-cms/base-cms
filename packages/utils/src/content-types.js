@@ -25,6 +25,7 @@ module.exports = [
   'Sponsored',
   'Supplier',
   'TextAd',
+  'Top100',
   'TopList',
   'Venue',
   'Video',

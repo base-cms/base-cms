@@ -25,6 +25,7 @@ const space = require('./space');
 const sponsored = require('./sponsored');
 const supplier = require('./supplier');
 const textAd = require('./text-ad');
+const top100 = require('./top-100');
 const topList = require('./top-list');
 const venue = require('./venue');
 const video = require('./video');
@@ -59,6 +60,7 @@ ${space}
 ${sponsored}
 ${supplier}
 ${textAd}
+${top100}
 ${topList}
 ${venue}
 ${video}
