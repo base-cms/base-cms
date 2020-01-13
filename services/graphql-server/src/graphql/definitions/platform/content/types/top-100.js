@@ -6,10 +6,6 @@ extend type Query {
   contentTop100(input: ContentTop100QueryInput!): ContentTop100 @findOne(model: "platform.Content", using: { id: "_id" }, criteria: "contentTop100")
 }
 
-extend type Mutation {
-  updateContentTop100SocialLinks(input: UpdateContentTop100SocialLinksMutationInput!): ContentTop100 @requiresAuth
-}
-
 type ContentTop100 implements Content & Addressable & SocialLinkable @applyInterfaceFields {
   # fields directly on platform.model::Content\Top100
   totalCapacity: String @projection
@@ -51,20 +47,6 @@ input ContentTop100QueryInput {
 input ContentTop100SortInput {
   field: ContentSortField = rank
   order: SortOrder = asc
-}
-
-input UpdateContentTop100SocialLinksMutationInput {
-  id: Int!
-  payload: UpdateContentTop100SocialLinksPayloadMutationInput = {}
-}
-
-input UpdateContentTop100SocialLinksPayloadMutationInput {
-  socialLinks: [ContentTop100SocialLinkInput!]!
-}
-
-input ContentTop100SocialLinkInput {
-  provider: String!
-  url: String!
 }
 
 `;
