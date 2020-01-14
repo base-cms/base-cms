@@ -1181,6 +1181,24 @@ module.exports = {
     /**
      *
      */
+    updateContentCompanyYoutube: async (_, { input }, { base4rest, basedb }, info) => {
+      validateRest(base4rest);
+      const type = 'platform/content/company';
+      const { id, payload } = input;
+      const { channelId, playlistId, username } = payload;
+      const body = new Base4RestPayload({ type });
+      body.set('youtube.channelId', channelId);
+      body.set('youtube.playlistId', playlistId);
+      body.set('youtube.username', username);
+      body.set('id', id);
+      await base4rest.updateOne({ model: type, id, body });
+      const projection = buildProjection({ info, type: 'ContentCompany' });
+      return basedb.findOne('platform.Content', { _id: id }, { projection });
+    },
+
+    /**
+     *
+     */
     createContentContact: async (_, { input }, { base4rest, basedb }, info) => {
       validateRest(base4rest);
       const type = 'platform/content/contact';

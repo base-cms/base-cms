@@ -10,6 +10,7 @@ extend type Mutation {
   updateContentCompany(input: UpdateContentCompanyMutationInput!): ContentCompany @requiresAuth
   updateContentCompanyImages(input: UpdateContentCompanyImagesMutationInput!): ContentCompany @requiresAuth
   updateContentCompanySocialLinks(input: UpdateContentCompanySocialLinksMutationInput!): ContentCompany @requiresAuth
+  updateContentCompanyYoutube(input: UpdateContentCompanyYoutubeMutationInput!): ContentCompany @requiresAuth
   updateContentCompanyPublicContacts(input: UpdateContentCompanyPublicContactsMutationInput!): ContentCompany @requiresAuth
 }
 
@@ -111,6 +112,17 @@ input UpdateContentCompanySocialLinksMutationInput {
 
 input UpdateContentCompanySocialLinksPayloadMutationInput {
   socialLinks: [ContentCompanySocialLinkInput!]!
+}
+
+input UpdateContentCompanyYoutubeMutationInput {
+  id: Int!
+  payload: UpdateContentCompanyYoutubePayloadMutationInput = {}
+}
+
+input UpdateContentCompanyYoutubePayloadMutationInput {
+  channelId: String
+  playlistId: String
+  username: String
 }
 
 input ContentCompanySocialLinkInput {
