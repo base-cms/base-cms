@@ -5,7 +5,7 @@ module.exports = {
    *
    */
   AssetImage: {
-    src: (image, _, { imageHost }) => createSrcFor(imageHost, image, undefined, { w: 320, auto: 'format' }),
+    src: (image, _, { imageHost }) => createSrcFor(imageHost, image, undefined, { w: 1200, auto: 'format' }),
     alt: image => createAltFor(image),
     caption: image => createCaptionFor(image.caption),
   },
