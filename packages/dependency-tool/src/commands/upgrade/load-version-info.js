@@ -8,7 +8,9 @@ module.exports = name => new Promise((resolve, reject) => {
     } else if (stderr) {
       reject(stderr);
     } else {
-      resolve(JSON.parse(stdout).data.pop());
+      const { data } = JSON.parse(stdout);
+      const latest = data.slice().pop();
+      resolve({ versions: data, latest });
     }
   });
 });
