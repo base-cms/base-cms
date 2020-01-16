@@ -8,6 +8,7 @@ const exractDeps = require('./extract-deps');
 const loadLatestVersions = require('./load-latest-versions');
 const updatePackage = require('./update-package');
 const savePackage = require('./save-package');
+const loadWorkspaceDirs = require('./load-workspace-dirs');
 
 const { isArray } = Array;
 
@@ -25,6 +26,8 @@ const execute = async ({ dir }) => {
 
   if (isArray(pkg.workspaces)) {
     log(chalk`Workspaces detected. Will upgrade recursively: {gray ${JSON.stringify(pkg.workspaces)}}`);
+    const workspaceDirs = loadWorkspaceDirs(dir, pkg.workspaces);
+    await Promise.all(workspaceDirs.map(async wsDir => execute({ dir: wsDir })));
   }
 };
 
