@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/dependency-tool",
-  "version": "1.11.0",
+  "version": "1.11.1",
   "description": "Command line tool for managing @base-cms project dependencies.",
   "author": "Jacob Bare <jacob@limit0.io>",
   "main": "src/index.js",
