@@ -16,6 +16,8 @@ $ const { site } = out.global;
     <marko-web-gam-enable />
   </@head>
   <@above-container>
+    <marko-web-browser-component name="TriggerScreenChangeEvent" />
+    <marko-web-gtm-track-bus-event on="screen_change" />
     <marko-web-reveal-ad-listener />
     <marko-web-gtm-track-load-more />
     <default-theme-site-header />
