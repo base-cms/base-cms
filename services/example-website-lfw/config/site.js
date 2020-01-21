@@ -23,7 +23,7 @@ module.exports = {
     { provider: 'facebook', href: 'https://www.facebook.com/pages/Laser-Focus-World/126899915297', target: '_blank' },
   ],
   gtm: {
-    containerId: 'GTM-M7H8VJG',
+    containerId: 'GTM-MFCT2LV',
   },
   wufoo: {
     userName: 'cygnuscorporate',

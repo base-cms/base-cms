@@ -47,6 +47,7 @@
     "template": "./track-bus-event.marko",
     "@on": "string",
     "@event-name": "string",
-    "@layer-name": "string"
+    "@layer-name": "string",
+    "@clear-data": "boolean"
   }
 }
