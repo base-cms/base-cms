@@ -33,15 +33,27 @@ export default {
      */
     eventName: {
       type: String,
-      required: true,
+      default: null,
+    },
+
+    /**
+     * Whether to clear the data layer after firing the event,
+     */
+    clearData: {
+      type: Boolean,
+      default: false,
     },
   },
   created() {
-    const { on, eventName } = this;
-    if (on && eventName) {
-      this.EventBus.$on(on, (...args) => {
+    const { on } = this;
+    if (on) {
+      const eventName = this.eventName || on;
+      this.EventBus.$on(on, (data) => {
         const dataLayer = window[this.layerName];
-        if (dataLayer) dataLayer.push({ eventArgs: args, event: eventName });
+        if (dataLayer) {
+          dataLayer.push({ [eventName]: data, event: eventName });
+          if (this.clearData) dataLayer.push({ [eventName]: undefined, event: undefined });
+        }
       });
     }
   },
