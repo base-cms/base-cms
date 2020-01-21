@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/marko-web-gtm",
-  "version": "1.9.0",
+  "version": "1.12.0",
   "description": "Google Tag Manager (GAM) Marko components for BaseCMS websites",
   "author": "Jacob Bare <jacob@limit0.io>",
   "license": "MIT",
