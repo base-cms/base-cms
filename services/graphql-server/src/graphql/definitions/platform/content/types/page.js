@@ -30,6 +30,7 @@ type ContentPageEdge {
 
 input ContentPageQueryInput {
   alias: String!
+  status: ModelStatus = active
 }
 
 input ContentPageSortInput {
