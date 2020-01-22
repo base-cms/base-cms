@@ -18,13 +18,9 @@ const rel = 'noopener noreferrer';
 
 export default {
   props: {
-    containerClass: {
+    target: {
       type: String,
-      default: 'document-container',
-    },
-    targetClass: {
-      type: String,
-      default: 'page',
+      default: '.document-container > .page',
     },
     displayFrequency: {
       type: Number,
@@ -49,26 +45,32 @@ export default {
   },
   methods: {
     displayBackground() {
-      const { adClickUrl: href, backgroundColor, backgroundImagePath } = this.payload;
+      const {
+        adClickUrl,
+        backgroundColor,
+        backgroundImagePath,
+      } = this.payload;
 
       const backgroundImage = `url("${backgroundImagePath}")`;
-      const adContainer = $('<div>').addClass('reveal-ad');
-      if (this.payload.boxShadow) adContainer.addClass(`reveal-ad--${this.payload.boxShadow}-shadow`);
-
-      const revealBackground = $('<a>', { href, target, rel }).addClass('reveal-ad-background').css({ backgroundImage });
+      const revealBackground = $('<a>', { href: adClickUrl, target, rel }).addClass('reveal-ad-background').css({ backgroundImage });
       $('body').css({ backgroundColor }).prepend(revealBackground);
     },
     displayAd(element) {
-      const { adClickUrl: href, adImagePath: src, adTitle: alt } = this.payload;
+      const {
+        adClickUrl,
+        adImagePath,
+        adTitle,
+        boxShadow,
+      } = this.payload;
 
       const adContainer = $('<div>').addClass('reveal-ad');
-      if (this.payload.boxShadow) adContainer.addClass(`reveal-ad--${this.payload.boxShadow}-shadow`);
+      if (boxShadow) adContainer.addClass(`reveal-ad--${boxShadow}-shadow`);
       adContainer.html($('<a>', {
-        href,
-        title: alt,
+        href: adClickUrl,
+        title: adTitle,
         target,
         rel,
-      }).append($('<img>', { src, alt })));
+      }).append($('<img>', { src: adImagePath, alt: adTitle })));
       $(element).before(adContainer);
     },
     shouldDisplay() {
@@ -77,27 +79,28 @@ export default {
       return this.observed % displayFrequency > 0;
     },
     observeMutations() {
-      this.observer = new MutationObserver((list) => {
-        // Use traditional 'for loops' for IE 11
-        // eslint-disable-next-line no-restricted-syntax, prefer-const
-        for (let mutation of list) {
+      this.observer = new MutationObserver((mutationList) => {
+        for (let i = 0; i < mutationList.length; i += 1) {
+          const mutation = mutationList[i];
           if (mutation.type === 'childList') {
-            // eslint-disable-next-line no-restricted-syntax, prefer-const
-            for (let added of mutation.addedNodes) {
-              if (added.classList && added.classList.contains(this.targetClass)) {
+            for (let x = 0; x < mutation.addedNodes.length; x += 1) {
+              const added = mutation.addedNodes[x];
+              if (added.matches && added.matches(this.target)) {
                 if (this.shouldDisplay()) this.displayAd(added);
               }
             }
           }
         }
       });
-      const node = document.getElementsByClassName(this.containerClass)[0];
-      this.observer.observe(node, { childList: true });
+      const node = document.querySelector(this.target);
+      if (node && node.parentNode) {
+        this.observer.observe(node.parentNode, { childList: true });
+      }
     },
     listener(event) {
       const payload = parseJson(event.data);
-      const element = $(`.${this.containerClass} .${this.targetClass}`);
-      if (['adImagePath', 'adTitle', 'backgroundImagePath', 'adClickUrl'].every(k => payload[k])) {
+      const element = document.querySelector(this.target);
+      if (['adImagePath', 'adTitle', 'backgroundImagePath', 'adClickUrl'].every(k => payload[k]) && element) {
         this.payload = { ...this.defaults, ...payload };
         this.displayBackground();
         this.displayAd(element);
