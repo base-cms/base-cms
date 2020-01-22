@@ -56,6 +56,7 @@ export default {
       $('body').css({ backgroundColor }).prepend(revealBackground);
     },
     displayAd(element) {
+      if (!element) return;
       const {
         adClickUrl,
         adImagePath,
@@ -74,11 +75,12 @@ export default {
       $(element).before(adContainer);
     },
     shouldDisplay() {
-      const { displayFrequency, observed } = this;
-      this.observed = observed + 1;
+      const { displayFrequency } = this;
+      this.observed += 1;
       return this.observed % displayFrequency > 0;
     },
     observeMutations() {
+      if (!window.MutationObserver) return;
       this.observer = new MutationObserver((mutationList) => {
         for (let i = 0; i < mutationList.length; i += 1) {
           const mutation = mutationList[i];
@@ -94,7 +96,7 @@ export default {
       });
       const node = document.querySelector(this.target);
       if (node && node.parentNode) {
-        this.observer.observe(node.parentNode, { childList: true });
+        this.observer.observe(node.parentNode, { childList: true, subtree: true });
       }
     },
     listener(event) {
