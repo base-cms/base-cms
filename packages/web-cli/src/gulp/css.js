@@ -5,7 +5,7 @@ const pump = require('pump');
 const sass = require('gulp-sass');
 const sourcemaps = require('gulp-sourcemaps');
 const { dest, src } = require('gulp');
-const completeTask = require('../utils/task-callback');
+const completeTask = require('@base-cms/cli-utils/task-callback');
 
 sass.compiler = require('node-sass');
 
