@@ -9,7 +9,7 @@ const { dest, src } = require('gulp');
 const { getIfUtils } = require('webpack-config-utils');
 const { existsSync } = require('fs');
 const { join } = require('path');
-const completeTask = require('@base-cms/cli-utils/src/task-callback');
+const completeTask = require('@base-cms/cli-utils/task-callback');
 
 const absoluteRuntime = path.dirname(require.resolve('@babel/runtime/package.json'));
 

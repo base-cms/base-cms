@@ -1,7 +1,7 @@
 const chalk = require('chalk');
 const log = require('fancy-log');
 const { join, resolve } = require('path');
-const { mkdir, copy, write } = require('@base-cms/cli-utils/src/filesystem');
+const { mkdir, copy, write } = require('@base-cms/cli-utils/filesystem');
 const buildFiles = require('./build-files');
 const createPkg = require('./create-pkg');
 
