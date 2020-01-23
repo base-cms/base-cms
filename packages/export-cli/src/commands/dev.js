@@ -2,7 +2,7 @@ const log = require('fancy-log');
 const { blue, gray } = require('chalk');
 const { existsSync } = require('fs');
 const { resolve, parse } = require('path');
-const exit = require('@base-cms/cli-utils/src/print-and-exit');
+const exit = require('@base-cms/cli-utils/print-and-exit');
 const serve = require('../gulp/serve');
 
 module.exports = ({ file }) => {
