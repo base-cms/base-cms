@@ -4,9 +4,9 @@ const figlet = require('figlet');
 const inquirer = require('inquirer');
 const { existsSync } = require('fs');
 
-const clear = require('../utils/clear');
-const cwd = require('../utils/get-cwd');
-const exit = require('../utils/print-and-exit');
+const clear = require('@base-cms/cli-utils/src/clear');
+const cwd = require('@base-cms/cli-utils/src/get-cwd');
+const exit = require('@base-cms/cli-utils/src/print-and-exit');
 const generateProject = require('../generator');
 const installDeps = require('../generator/install');
 const loadQuestions = require('./create/questions');
