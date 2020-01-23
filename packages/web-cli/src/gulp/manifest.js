@@ -3,7 +3,7 @@ const revall = require('gulp-rev-all');
 const del = require('gulp-rev-delete-original');
 const { dest, src } = require('gulp');
 const { basename, extname } = require('path');
-const completeTask = require('../utils/task-callback');
+const completeTask = require('@base-cms/cli-utils/src/task-callback');
 
 module.exports = cwd => (cb) => {
   pump([

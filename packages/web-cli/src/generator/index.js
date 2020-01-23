@@ -1,8 +1,8 @@
 const chalk = require('chalk');
 const log = require('fancy-log');
 const { join, resolve } = require('path');
+const { mkdir, copy, write } = require('@base-cms/cli-utils/src/filesystem');
 const buildFiles = require('./build-files');
-const { mkdir, copy, write } = require('../utils/filesystem');
 const createPkg = require('./create-pkg');
 
 // const writeTemplates = async (dir, answers, templateDir) => {
