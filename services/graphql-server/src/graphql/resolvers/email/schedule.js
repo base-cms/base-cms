@@ -78,7 +78,13 @@ module.exports = {
      */
     quickCreateEmailSchedules: async (_, { input }, { basedb, base4rest, load }, info) => {
       validateRest(base4rest);
-      const { contentId, sectionIds, deploymentDates } = input;
+      const {
+        contentId,
+        sectionIds,
+        deploymentDates,
+        sequence,
+      } = input;
+      console.log(sequence);
 
       const [content, sections] = await Promise.all([
         load('platformContent', contentId, { type: 1 }),
@@ -94,6 +100,7 @@ module.exports = {
           body
             .set('deploymentDate', deploymentDate)
             .set('status', 1)
+            .set('sequence', sequence)
             .setLink('product', { id: deploymentId, type: 'email/product/newsletter' })
             .setLink('section', { id: section._id, type: 'email/section' })
             .setLink('content', { id: content._id, type: `platform/content/${dasherize(content.type)}` });
