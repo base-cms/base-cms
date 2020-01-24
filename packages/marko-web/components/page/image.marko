@@ -16,6 +16,9 @@ $ if (fluid) modifiers.push("fluid");
 $ const hasImage = Boolean(image.src);
 $ const imageOptions = { w: width, ...input.options };
 
+$ const imageAttrs = {};
+$ if (image.id) imageAttrs["data-image-id"] = image.id;
+
 <if(hasImage)>
   $ const src = buildImgixUrl(image.src, imageOptions);
   $ const srcset = [`${buildImgixUrl(src, { dpr: 2 })} 2x`];
@@ -34,6 +37,7 @@ $ const imageOptions = { w: width, ...input.options };
         alt=image.alt
         class=`${blockName}__image`
         lazyload=lazyload
+        attrs=imageAttrs
       />
     </div>
     <if(withCaption)>

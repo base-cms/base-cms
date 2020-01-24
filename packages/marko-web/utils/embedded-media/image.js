@@ -21,6 +21,7 @@ module.exports = (tag, { config }) => {
     class: lazyload ? 'lazyload' : null,
     src: lazyload ? 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' : src,
     'data-src': lazyload ? src : null,
+    'data-image-id': tag.id,
     alt,
   };
   const captionElement = caption ? `<span class="caption">${caption}</span>` : '';
