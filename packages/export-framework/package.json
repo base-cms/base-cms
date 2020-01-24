@@ -1,0 +1,38 @@
+{
+  "name": "@base-cms/export-framework",
+  "version": "1.12.1",
+  "description": "Core framework for BaseCMS Exports.",
+  "author": "Josh Worden <josh@limit0.io>",
+  "main": "src/index.js",
+  "license": "MIT",
+  "repository": "https://github.com/base-cms/base-cms/tree/master/packages/export-framework",
+  "scripts": {
+    "lint": "eslint --ext .js --max-warnings 5 ./",
+    "test": "yarn lint"
+  },
+  "dependencies": {
+    "@base-cms/express-apollo": "^1.9.0",
+    "@base-cms/image": "^1.6.3",
+    "@base-cms/object-path": "^1.9.0",
+    "@base-cms/tenant-context": "^1.0.0",
+    "@base-cms/utils": "^1.9.0",
+    "@base-cms/web-common": "^1.9.0",
+    "@godaddy/terminus": "^4.2.0",
+    "express": "^4.17.1",
+    "graphql": "^14.5.4",
+    "graphql-tag": "^2.10.1",
+    "helmet": "^3.21.0",
+    "http-errors": "^1.7.3",
+    "marko": "^4.18.30",
+    "moment": "^2.24.0",
+    "moment-timezone": "^0.5.26",
+    "node-fetch": "^2.6.0",
+    "recursive-readdir": "^2.2.2"
+  },
+  "peerDependencies": {
+    "@base-cms/marko-core": "^1.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

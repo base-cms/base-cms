@@ -1,0 +1,66 @@
+$ const { core, sites } = data;
+
+<document>
+  <@head>
+    <page-title value="Exports" />
+  </@head>
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="card mb-3">
+        <div class="card-header">Core Exports</div>
+        <div class="list-group list-group-flush">
+          <if(core.length)>
+            <for|obj| of=core>
+              <export obj=obj />
+            </for>
+          </if>
+          <else>
+            <div class="list-group-item text-muted">
+              No exports found
+            </div>
+          </else>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <if(sites.length)>
+        <for|site| of=sites>
+          <div class="card mb-3">
+            <div class="card-header">${site.name} Exports</div>
+            <div class="list-group list-group-flush">
+              <if(site.exports.length)>
+                <for|obj| of=site.exports>
+                  <export obj=obj />
+                </for>
+              </if>
+              <else>
+                <div class="list-group-item text-muted">
+                  No exports found
+                </div>
+              </else>
+            </div>
+          </div>
+        </for>
+      </if>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+  <script>
+    (function() {
+      var elements = document.getElementsByClassName('template-select-day');
+      Array.prototype.forEach.call(elements, function(element) {
+        element.addEventListener('click', function(event) {
+          event.preventDefault();
+        });
+        new Pikaday({
+          field: element,
+          onSelect: function(date) {
+            window.location.href = element.href + '?date=' + date.valueOf();
+          },
+        });
+      });
+    })();
+  </script>
+</document>
