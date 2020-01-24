@@ -84,7 +84,6 @@ module.exports = {
         deploymentDates,
         sequence,
       } = input;
-      console.log(sequence);
 
       const [content, sections] = await Promise.all([
         load('platformContent', contentId, { type: 1 }),
