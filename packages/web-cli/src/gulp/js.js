@@ -53,6 +53,7 @@ const readRcFile = (cwd) => {
 // @todo Add default polyfills to entry point
 module.exports = cwd => (cb) => {
   const { exclude, targets, debug } = readRcFile(cwd);
+  const imagePattern = /\.(png|svg|jpg|gif|webp)$/;
   const { ifProduction, ifNotProduction } = getIfUtils(process.env.NODE_ENV || 'development');
   pump([
     src('browser/index.js', { cwd }),
@@ -112,12 +113,21 @@ module.exports = cwd => (cb) => {
               require.resolve('css-loader'),
             ],
           },
+          {
+            test: imagePattern,
+            loader: require.resolve('file-loader'),
+            options: {
+              name: '[name].[ext]',
+              outputPath: '../assets',
+            },
+          },
         ],
       },
       plugins: [
         new VueLoaderPlugin(),
         new ManifestPlugin({
           publicPath: '',
+          filter: ({ name }) => !imagePattern.test(name),
         }),
       ],
     }, wp),
