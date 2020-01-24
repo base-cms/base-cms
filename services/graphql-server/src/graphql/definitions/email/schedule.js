@@ -92,6 +92,7 @@ input QuickCreateEmailSchedulesMutationInput {
   contentId: Int!
   sectionIds: [Int!]!
   deploymentDates: [Date!]!
+  sequence: Int = 0
 }
 
 input UpdateEmailScheduleMutationInput {
