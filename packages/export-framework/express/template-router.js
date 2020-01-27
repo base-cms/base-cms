@@ -6,8 +6,8 @@ const cleanResponse = require('@base-cms/marko-core/middleware/clean-marko-respo
 const { getAsArray } = require('@base-cms/object-path');
 const websiteFactory = require('../utils/website-factory');
 const outputHeaders = require('./output-headers');
-const outputFormat = require('./output-format');
 
+const { error } = console;
 const query = gql`
 
 query AllSites($input: WebsiteSitesQueryInput!) {
@@ -46,6 +46,7 @@ module.exports = ({ exports, coreConfig, customConfig }) => {
         req,
         coreConfig,
         customConfig,
+        router,
       };
 
       if (site) {
@@ -63,8 +64,9 @@ module.exports = ({ exports, coreConfig, customConfig }) => {
 
       try {
         const body = await fn(context);
-        res.send(outputFormat(body, { format, coreConfig }));
+        res.send(body);
       } catch (e) {
+        if (e.networkError) error(e.networkError.result);
         throw createError(500, e.message);
       }
     }));
