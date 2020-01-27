@@ -14,7 +14,7 @@ const load = async ({ rootDir, exportPath, coreConfig }) => {
   const files = await readdir(exportDir, [f => fileRegex.test(f)]);
   return files.map((filename) => {
     const { groups: { filepath, format } } = /(?<filepath>.*)\.(?<format>.*)\.js/.exec(filename);
-    const route = filepath.replace(exportDir, '').replace(`.${format}.js`, '');
+    const route = `${filepath.replace(exportDir, '')}.${format}`;
     const siteMatch = /site\/(?<site>.*)\//.exec(route);
     const key = route.replace(/^\//, '');
     // eslint-disable-next-line global-require, import/no-dynamic-require
@@ -25,10 +25,10 @@ const load = async ({ rootDir, exportPath, coreConfig }) => {
       format,
       filename,
       fn,
-      name: `${key.replace('core/', '')}.${format}`,
+      name: key.replace('core/', ''),
       ...(siteMatch && {
         site: siteMatch.groups.site,
-        name: `${key.replace(`site/${siteMatch.groups.site}/`, '')}.${format}`,
+        name: key.replace(`site/${siteMatch.groups.site}/`, ''),
       }),
     };
   });
