@@ -1,22 +1,12 @@
 const { asyncRoute } = require('@base-cms/utils');
+const { get } = require('@base-cms/object-path');
 
-module.exports = ({ format, name }) => asyncRoute(async (req, res, next) => {
-  switch (format) {
-    // @todo make config map { extension: [Content-Type header value]}
-    case 'txt':
-      res.set('Content-Type', 'text/plain');
-      break;
+module.exports = ({ coreConfig, format, name }) => asyncRoute(async (req, res, next) => {
+  const headers = coreConfig.getAsObject(`types.${format}.headers`);
+  Object.keys(headers).forEach(k => res.set(k, headers[k]));
 
-    case 'json':
-      res.set('Content-Type', 'application/json');
-      break;
+  const download = get(req, 'query.download');
+  if (typeof download !== 'undefined') res.set('Content-Disposition', `attachment; filename="export-${Date.now()}-${name}"`);
 
-    default:
-      break;
-  }
-  if (Object.prototype.hasOwnProperty.call(req.query, ['download'])) {
-    const filename = `export-${Date.now()}-${name}`;
-    res.set('Content-Disposition', `attachment; filename="${filename}"`);
-  }
   next();
 });

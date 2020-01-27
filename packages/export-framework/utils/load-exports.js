@@ -4,11 +4,14 @@ const path = require('path');
 
 let promise;
 
-const load = async ({ rootDir, exportPath }) => {
+const load = async ({ rootDir, exportPath, coreConfig }) => {
   const exportDir = path.resolve(rootDir, exportPath);
   if (!fs.existsSync(exportDir)) throw new Error(`The directory ${exportDir} does not exist.`);
 
-  const files = await readdir(exportDir, [f => /\/((?!.*\.(txt|json|csv|xml)\.js).)$/g.test(f)]);
+  const extensions = Object.keys(coreConfig.getAsObject('types'));
+  const fileRegex = new RegExp(`/((?!.*.(${extensions.join('|')}).js).)$`, 'g');
+
+  const files = await readdir(exportDir, [f => fileRegex.test(f)]);
   return files.map((filename) => {
     const { groups: { filepath, format } } = /(?<filepath>.*)\.(?<format>.*)\.js/.exec(filename);
     const route = filepath.replace(exportDir, '').replace(`.${format}.js`, '');
@@ -31,7 +34,7 @@ const load = async ({ rootDir, exportPath }) => {
   });
 };
 
-module.exports = ({ rootDir, exportPath }) => {
-  if (!promise) promise = load({ rootDir, exportPath });
+module.exports = ({ rootDir, exportPath, coreConfig }) => {
+  if (!promise) promise = load({ rootDir, exportPath, coreConfig });
   return promise;
 };

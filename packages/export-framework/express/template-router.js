@@ -24,7 +24,7 @@ query AllSites($input: WebsiteSitesQueryInput!) {
 }
 `;
 
-module.exports = ({ exports }) => {
+module.exports = ({ exports, coreConfig, customConfig }) => {
   const router = Router();
 
   router.use(cleanResponse());
@@ -36,10 +36,18 @@ module.exports = ({ exports }) => {
     site,
     name,
   }) => {
-    router.get(route, outputHeaders({ format, name }), asyncRoute(async (req, res) => {
+    router.get(route, outputHeaders({ coreConfig, format, name }), asyncRoute(async (req, res) => {
       const { apollo } = res.locals;
       const { data } = await apollo.query({ query, variables: { input: { status: 'active' } } });
       const sites = getAsArray(data, 'websiteSites.edges').map(({ node }) => node);
+
+      const context = {
+        apollo,
+        req,
+        coreConfig,
+        customConfig,
+      };
+
       if (site) {
         const found = sites.find(({ host }) => host === site);
         if (!found || (found && found.status !== 1)) {
@@ -50,12 +58,12 @@ module.exports = ({ exports }) => {
         // Set website context.
         res.locals.website = website;
         res.setHeader('x-site', `${website.get('name')} [${website.get('id')}]`);
+        context.site = website;
       }
 
-      const context = { apollo, req };
       try {
         const body = await fn(context);
-        res.send(outputFormat(body, format));
+        res.send(outputFormat(body, { format, coreConfig }));
       } catch (e) {
         throw createError(500, e.message);
       }

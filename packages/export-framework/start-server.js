@@ -5,6 +5,8 @@ const { createTerminus } = require('@godaddy/terminus');
 const { isFunction: isFn } = require('@base-cms/utils');
 const express = require('./express');
 const loadExports = require('./utils/load-exports');
+const CoreConfig = require('./config/core');
+const CustomConfig = require('./config/custom');
 
 if (!process.env.LIVERELOAD_PORT) process.env.LIVERELOAD_PORT = 5010;
 const { env } = process;
@@ -13,8 +15,8 @@ process.on('unhandledRejection', (e) => { throw e; });
 module.exports = async ({
   rootDir,
   exportPath = 'exports', // Where exports will be resolved from.
-  customConfig,
-  coreConfig,
+  customConfig: incomingCustomConfig,
+  coreConfig: incomingCoreConfig,
   port = env.PORT || 6008,
   exposedPort = env.EXPOSED_PORT || env.PORT || 6008,
   graphqlUri = env.GRAPHQL_URI,
@@ -36,12 +38,21 @@ module.exports = async ({
   if (!graphqlUri) throw new Error('The GraphQL API URL is required.');
   if (!tenantKey) throw new Error('A tenant key is required.');
 
+  // Set the core config.
+  const coreConfig = new CoreConfig(incomingCoreConfig);
+  const customConfig = new CustomConfig(incomingCustomConfig);
+
   // Load the newsletter package file.
   // eslint-disable-next-line import/no-dynamic-require, global-require
   const sitePackage = require(path.resolve(rootDir, 'package.json'));
 
   // Load newsletter marko exports.
-  const exports = await loadExports({ rootDir, exportPath });
+  const exports = await loadExports({
+    rootDir,
+    exportPath,
+    coreConfig,
+    customConfig,
+  });
 
   const app = express({
     rootDir,

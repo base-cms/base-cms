@@ -3,8 +3,6 @@ const path = require('path');
 const marko = require('marko/express');
 const helmet = require('helmet');
 const apollo = require('./apollo');
-const CoreConfig = require('../config/core');
-const CustomConfig = require('../config/custom');
 const { version } = require('../package.json');
 const admin = require('../admin');
 const templateRouter = require('./template-router');
@@ -24,6 +22,8 @@ module.exports = (config = {}) => {
     publicPath,
     sitePackage,
     exports,
+    coreConfig,
+    customConfig,
   } = config;
   const app = express();
 
@@ -31,10 +31,10 @@ module.exports = (config = {}) => {
   app.locals.onAsyncBlockError = config.onAsyncBlockError;
 
   // Set the core config.
-  app.locals.config = new CoreConfig({ ...config.coreConfig });
+  app.locals.config = coreConfig;
 
   // Set custom configuration.
-  app.locals.customConfig = new CustomConfig(config.customConfig);
+  app.locals.customConfig = customConfig;
 
   // Use helmet.
   app.use(helmet());
@@ -70,7 +70,7 @@ module.exports = (config = {}) => {
   app.use('/', admin({ exports }));
 
   // Register exports
-  app.use('/exports', templateRouter({ exports }));
+  app.use('/exports', templateRouter({ exports, coreConfig, customConfig }));
 
   return app;
 };
