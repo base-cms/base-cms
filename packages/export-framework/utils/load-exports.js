@@ -9,10 +9,13 @@ const load = async ({ rootDir, exportPath, coreConfig }) => {
   if (!fs.existsSync(exportDir)) throw new Error(`The directory ${exportDir} does not exist.`);
 
   const extensions = Object.keys(coreConfig.getAsObject('types'));
-  const fileRegex = new RegExp(`/((?!.*.(${extensions.join('|')}).js).)$`, 'g');
+  const fileIgnore = new RegExp(`/((?!.*.(${extensions.join('|')}).js).)$`, 'g');
+  const fileMatch = new RegExp(`/.*\.(${extensions.join('|')}).js$`);
 
-  const files = await readdir(exportDir, [f => fileRegex.test(f)]);
-  return files.map((filename) => {
+  const files = await readdir(exportDir, [f => fileIgnore.test(f)]);
+  const filtered = files.filter(filename => fileMatch.test(filename));
+
+  return filtered.map((filename) => {
     const { groups: { filepath, format } } = /(?<filepath>.*)\.(?<format>.*)\.js/.exec(filename);
     const route = `${filepath.replace(exportDir, '')}.${format}`;
     const siteMatch = /site\/(?<site>.*)\//.exec(route);
