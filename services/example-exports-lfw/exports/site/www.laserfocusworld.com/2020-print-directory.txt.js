@@ -1,9 +1,9 @@
 const gql = require('graphql-tag');
 const { getAsArray, getAsObject } = require('@base-cms/object-path');
 
-const query = gql`
+const query = issueId => gql`
 query Issue5513Content{
-  magazineScheduledContent(input: {issueId: 61165}) {
+  magazineScheduledContent(input: { issueId: ${issueId} }) {
     edges {
       node {
         id
@@ -21,8 +21,9 @@ query Issue5513Content{
 }
 `;
 
-module.exports = async ({ apollo }) => {
-  const { data } = await apollo.query({ query });
+module.exports = async ({ apollo, req }) => {
+  const issueId = req.query.issueId || 61165;
+  const { data } = await apollo.query({ query: query(issueId) });
   const companies = getAsArray(data, 'magazineScheduledContent.edges').map(({ node }) => node);
 
   const segments = companies.reduce((obj, company) => {
