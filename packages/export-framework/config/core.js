@@ -1,42 +1,27 @@
 const { getAsObject } = require('@base-cms/object-path');
 const AbstractConfig = require('./abstract-config');
 
-const defaultTypes = {
-  csv: {
-    headers: {
-      'Content-Type': 'text/plain',
-    },
-    formatter: v => v.map(l => `"${l.replace('"', '\\"').join('", "')}"`).join('\n'),
-  },
-  json: {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  },
-  txt: {
-    formatter: v => v.join('\n'),
-  },
+const defaults = {
+  csv: {},
+  json: { 'Content-Type': 'application/json' },
+  txt: {},
 };
 
-const fn = v => v;
-
 const formatTypes = (types = {}) => Object.keys(types).reduce((obj, k) => {
-  const type = getAsObject(types, k);
-  const headers = getAsObject(type, 'headers');
+  const headers = getAsObject(types, k);
   headers['Content-Type'] = headers['Content-Type'] || 'text/plain';
-  const formatter = type.formatter || fn;
-  return { ...obj, [k]: { headers, formatter } };
+  return { ...obj, [k]: headers };
 }, {});
 
 class CoreConfig extends AbstractConfig {
   constructor(config = {}) {
-    const { types } = config;
+    const { typeHeaders } = config;
     super(config);
     this.config = {
       ...config,
-      types: {
-        ...formatTypes(defaultTypes),
-        ...(types && formatTypes(types)),
+      typeHeaders: {
+        ...formatTypes(defaults),
+        ...(typeHeaders && formatTypes(typeHeaders)),
       },
     };
   }

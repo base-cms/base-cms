@@ -1,10 +1,7 @@
 module.exports = {
-  types: {
+  typeHeaders: {
     xml: {
-      headers: {
-        'Content-Type': 'application/xml',
-      },
-      formatter: v => v.join('\n'),
+      'Content-Type': 'application/xml',
     },
   },
 };
