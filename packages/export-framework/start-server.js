@@ -13,6 +13,8 @@ process.on('unhandledRejection', (e) => { throw e; });
 module.exports = async ({
   rootDir,
   exportPath = 'exports', // Where exports will be resolved from.
+  customConfig,
+  coreConfig,
   port = env.PORT || 6008,
   exposedPort = env.EXPOSED_PORT || env.PORT || 6008,
   graphqlUri = env.GRAPHQL_URI,
@@ -44,6 +46,8 @@ module.exports = async ({
   const app = express({
     rootDir,
     exports,
+    customConfig,
+    coreConfig,
     graphqlUri,
     tenantKey,
     onAsyncBlockError,
