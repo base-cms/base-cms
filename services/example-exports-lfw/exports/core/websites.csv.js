@@ -16,11 +16,12 @@ query AllSites {
 }
 `;
 
+const escapeRow = arr => `"${arr.map(v => `${v}`.replace('"', '\\"')).join('", "')}"`;
+
 module.exports = async ({ apollo }) => {
   const { data } = await apollo.query({ query });
   const nodes = getAsArray(data, 'websiteSites.edges').map(({ node }) => node);
-  return [
-    ['ID', 'Name', 'Host', 'Status'],
-    ...nodes.map(c => ([c.id, c.name, c.host, c.status])),
-  ];
+  const headers = ['ID', 'Name', 'Host', 'Status'];
+  const rows = nodes.map(site => ([site.id, site.name, site.host, site.status]));
+  return `${escapeRow(headers)}${rows.reduce((str, row) => `${str}\n${escapeRow(row)}`, '')}`;
 };

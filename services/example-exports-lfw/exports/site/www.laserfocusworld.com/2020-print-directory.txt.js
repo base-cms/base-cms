@@ -43,8 +43,7 @@ module.exports = async ({ apollo, req }) => {
   }, {});
   const sections = Object.keys(segments).map(k => segments[k]);
 
-  // @todo should there be a formatter?
-  return [
+  const lines = [
     '<ASCII-MAC>',
     // Paragraph styles,
     ...sections.map(({ name, content }) => ([
@@ -52,4 +51,5 @@ module.exports = async ({ apollo, req }) => {
       ...content.map(c => `<ParaStyle:Company>${c.name}`),
     ].join('\n'))),
   ];
+  return lines.join('\n');
 };
