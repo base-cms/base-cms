@@ -8,7 +8,7 @@ const load = async ({ rootDir, exportPath }) => {
   const exportDir = path.resolve(rootDir, exportPath);
   if (!fs.existsSync(exportDir)) throw new Error(`The directory ${exportDir} does not exist.`);
 
-  const files = await readdir(exportDir, [f => /\/((?!.*\.(indtt|json|csv|xml)\.js).)$/g.test(f)]);
+  const files = await readdir(exportDir, [f => /\/((?!.*\.(txt|json|csv|xml)\.js).)$/g.test(f)]);
   return files.map((filename) => {
     const { groups: { filepath, format } } = /(?<filepath>.*)\.(?<format>.*)\.js/.exec(filename);
     const route = filepath.replace(exportDir, '').replace(`.${format}.js`, '');
