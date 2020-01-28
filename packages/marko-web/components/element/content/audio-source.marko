@@ -1,0 +1,13 @@
+import extractRender from "../extract-render";
+
+<marko-web-obj-audio-source
+  type="content"
+  block-name=input.blockName
+  obj=input.obj
+  field="fileSrc"
+  tag=input.tag
+  class=input.class
+  modifiers=input.modifiers
+  attrs=input.attrs
+  ...extractRender(input)
+/>
