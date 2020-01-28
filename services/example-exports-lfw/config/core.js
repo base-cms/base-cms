@@ -1,5 +1,5 @@
 module.exports = {
-  typeHeaders: {
+  fileExtensions: {
     xml: {
       'Content-Type': 'application/xml',
     },

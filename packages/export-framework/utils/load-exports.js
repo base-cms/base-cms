@@ -8,7 +8,7 @@ const load = async ({ rootDir, exportPath, coreConfig }) => {
   const exportDir = path.resolve(rootDir, exportPath);
   if (!fs.existsSync(exportDir)) throw new Error(`The directory ${exportDir} does not exist.`);
 
-  const extensions = Object.keys(coreConfig.getAsObject('types'));
+  const extensions = Object.keys(coreConfig.getAsObject('fileExtensions'));
   const fileIgnore = new RegExp(`/((?!.*.(${extensions.join('|')}).js).)$`, 'g');
   const fileMatch = new RegExp(`/.*.(${extensions.join('|')}).js$`);
 

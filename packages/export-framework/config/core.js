@@ -15,13 +15,13 @@ const formatTypes = (types = {}) => Object.keys(types).reduce((obj, k) => {
 
 class CoreConfig extends AbstractConfig {
   constructor(config = {}) {
-    const { typeHeaders } = config;
+    const { fileExtensions } = config;
     super(config);
     this.config = {
       ...config,
-      typeHeaders: {
+      fileExtensions: {
         ...formatTypes(defaults),
-        ...(typeHeaders && formatTypes(typeHeaders)),
+        ...(fileExtensions && formatTypes(fileExtensions)),
       },
     };
   }
