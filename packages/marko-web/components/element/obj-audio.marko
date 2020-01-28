@@ -11,9 +11,10 @@ import extractRender from "./extract-render";
   class=input.class
   modifiers=input.modifiers
 >
-  <marko-web-audio-source
-    value=value
+  <marko-web-audio
+    src=value
     class=classNames
+    attrs=input.attrs
     ...extractRender(input)
   />
 </marko-web-obj>
