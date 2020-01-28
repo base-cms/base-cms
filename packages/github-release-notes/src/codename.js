@@ -17,5 +17,5 @@ module.exports = ({ num = 3 } = {}) => {
     const { values } = sources[keys[i]];
     names.push(shuffle(values)[0]);
   }
-  return names.join(' ');
+  return names.map(n => `${n.charAt(0).toUpperCase()}${n.slice(1)}`).join(' ');
 };

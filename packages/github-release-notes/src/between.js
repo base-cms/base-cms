@@ -12,6 +12,7 @@ module.exports = async ({
   head,
 }) => {
   if (!base || !head) throw new Error('You must provide a base and a head commit.');
+  const repoUrl = `https://github.com/${owner}/${repo}`;
 
   const { data } = await octokit.repos.compareCommits({
     owner,
@@ -19,7 +20,6 @@ module.exports = async ({
     base,
     head,
   });
-
   if (data.total_commits > data.commits.length) {
     throw new Error('Commit range is too long (implement the Commit List API).');
   }
@@ -50,13 +50,22 @@ module.exports = async ({
     changed_files: 0,
   });
 
+  const createLabel = ({ name }) => {
+    const url = `${repoUrl}/labels/${encodeURI(name)}`;
+    return `<kbd>[${name}](${url})</kbd>`;
+  };
+
   const notes = pulls.map((pull) => {
     const {
       number,
       title,
       user,
     } = pull;
-    return `- #${number} ${title} @${user.login}`;
+    const labels = Array.isArray(pull.labels)
+      ? pull.labels.map(l => createLabel({ name: l.name })) : [];
+
+    const labelText = labels.length ? `\n  ${labels.join('\n  ')}` : '';
+    return `- #${number} ${title} @${user.login}${labelText}`;
   });
 
   process.stdout.write('\n\n');
