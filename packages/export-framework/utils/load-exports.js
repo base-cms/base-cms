@@ -10,7 +10,7 @@ const load = async ({ rootDir, exportPath, coreConfig }) => {
 
   const extensions = Object.keys(coreConfig.getAsObject('types'));
   const fileIgnore = new RegExp(`/((?!.*.(${extensions.join('|')}).js).)$`, 'g');
-  const fileMatch = new RegExp(`/.*\.(${extensions.join('|')}).js$`);
+  const fileMatch = new RegExp(`/.*.(${extensions.join('|')}).js$`);
 
   const files = await readdir(exportDir, [f => fileIgnore.test(f)]);
   const filtered = files.filter(filename => fileMatch.test(filename));
