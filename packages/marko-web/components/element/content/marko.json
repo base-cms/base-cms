@@ -288,5 +288,14 @@
     "@class": "string",
     "@modifiers": "string",
     "@attrs": "object"
+  },
+  "<marko-web-content-audio>": {
+    "template": "./audio.marko",
+    "@block-name": "string",
+    "@obj": "object",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object"
   }
 }

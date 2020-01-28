@@ -46,6 +46,12 @@
     "@class": "string",
     "@attrs": "object"
   },
+  "<marko-web-audio>": {
+    "template": "./audio.marko",
+    "@src": "string",
+    "@class": "string",
+    "@attrs": "object"
+  },
   "<marko-web-img>": {
     "template": "./img.marko",
     "@src": "string",
@@ -137,6 +143,17 @@
   },
   "<marko-web-obj-nodes>": {
     "template": "./obj-nodes.marko",
+    "@type": "string",
+    "@block-name": "string",
+    "@obj": "object",
+    "@field": "string",
+    "@tag": "string",
+    "@class": "string",
+    "@attrs": "object",
+    "@modifiers": "array"
+  },
+  "<marko-web-obj-audio>": {
+    "template": "./obj-audio.marko",
     "@type": "string",
     "@block-name": "string",
     "@obj": "object",
