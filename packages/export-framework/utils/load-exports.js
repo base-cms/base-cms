@@ -18,7 +18,7 @@ const load = async ({ rootDir, exportPath, coreConfig }) => {
   return filtered.map((filename) => {
     const { groups: { filepath, format } } = /(?<filepath>.*)\.(?<format>.*)\.js/.exec(filename);
     const route = `${filepath.replace(exportDir, '')}.${format}`;
-    const siteMatch = /site\/(?<site>.*)\//.exec(route);
+    const siteMatch = /site\/(?<site>.*?)\//.exec(route);
     const key = route.replace(/^\//, '');
     // eslint-disable-next-line global-require, import/no-dynamic-require
     const fn = require(filename);
