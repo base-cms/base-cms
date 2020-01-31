@@ -37,6 +37,7 @@ export default {
     embed: null,
     oembedType: null,
     provider: null,
+    observer: null,
   }),
   computed: {
     id() {
@@ -51,6 +52,35 @@ export default {
   },
   mounted() {
     document.addEventListener('lazybeforeunveil', this.lazyload.bind(this));
+    if (window.MutationObserver) {
+      // inline script tags aren't added to the DOM, so the twitter widget never loads
+      // This would be widespread -- if the payload returns a script tag, ensure that it is
+      // appended to the head rather than written as part of the `embed` code here.
+      this.observer = new MutationObserver((mutationList) => {
+        for (let i = 0; i < mutationList.length; i += 1) {
+          const mutation = mutationList[i];
+          if (mutation.type === 'childList') {
+            for (let x = 0; x < mutation.addedNodes.length; x += 1) {
+              const added = mutation.addedNodes[x];
+              if (added.tagName && added.tagName === 'SCRIPT') {
+                const script = document.createElement('script');
+                for (let n = 0; n < added.attributes.length; n += 1) {
+                  const { name, value } = added.attributes[n];
+                  script.setAttribute(name, value);
+                }
+                document.querySelector('head').appendChild(script);
+              }
+            }
+          }
+        }
+      });
+      const node = document.getElementById(this.id);
+      this.observer.observe(node, { childList: true, subtree: true });
+    }
+  },
+  beforeDestroy() {
+    document.removeEventListener('lazybeforeunveil', this.lazyload);
+    if (this.observer) this.observer.disconnect();
   },
   methods: {
     lazyload({ target }) {
