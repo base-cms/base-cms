@@ -6,6 +6,7 @@ const { content: canonicalPathFor } = require('@base-cms/canonical-path');
 const { get } = require('@base-cms/object-path');
 const { underscore, dasherize, titleize } = require('@base-cms/inflector');
 const { createSrcFor, createCaptionFor } = require('@base-cms/image');
+const { getAsArray } = require('@base-cms/object-path');
 const moment = require('moment');
 const momentTZ = require('moment-timezone');
 
@@ -528,6 +529,12 @@ module.exports = {
    *
    */
   ContentCompany: {
+    links: (content, { input }) => {
+      const keys = getAsArray(input, 'keys');
+      const links = getAsArray(content, 'links');
+      if (keys.length) return links.filter(({ key }) => keys.includes(key));
+      return links;
+    },
     youtube: ({ youtube = {} }) => youtube,
     youtubeVideos: async (content, { input }, { basedb }) => {
       const maxResults = get(input, 'pagination.limit', 10);

@@ -93,4 +93,11 @@ type EntityStubSocial {
   label: String
 }
 
+type EntityStubLink {
+  # fields directly on platform.model::Entity\Stub\Link
+  key: String
+  url: String
+  label: String
+}
+
 `;
