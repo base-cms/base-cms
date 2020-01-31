@@ -40,7 +40,8 @@ export default {
   }),
   computed: {
     id() {
-      return `${this.attrs.id}-${Date.now()}`;
+      const clean = `${this.attrs.id}`.replace(/[\W|-]/ig, '');
+      return `${clean}-${Date.now()}`;
     },
     html() {
       if (this.embed) return this.embed;
