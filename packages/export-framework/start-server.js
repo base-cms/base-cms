@@ -21,7 +21,6 @@ module.exports = async ({
   exposedPort = env.EXPOSED_PORT || env.PORT || 6008,
   graphqlUri = env.GRAPHQL_URI,
   tenantKey = env.TENANT_KEY,
-  publicPath, // path to load public assets. will resolve from rootDir.
   onAsyncBlockError,
 
   // Terminus settings.
@@ -34,7 +33,7 @@ module.exports = async ({
   onHealthCheck,
 } = {}) => {
   if (!rootDir) throw new Error('The root project directory is required.');
-  if (!exportPath) throw new Error('A newsletter export location is required.');
+  if (!exportPath) throw new Error('An export location is required.');
   if (!graphqlUri) throw new Error('The GraphQL API URL is required.');
   if (!tenantKey) throw new Error('A tenant key is required.');
 
@@ -42,11 +41,11 @@ module.exports = async ({
   const coreConfig = new CoreConfig(incomingCoreConfig);
   const customConfig = new CustomConfig(incomingCustomConfig);
 
-  // Load the newsletter package file.
+  // Load the export package file.
   // eslint-disable-next-line import/no-dynamic-require, global-require
   const sitePackage = require(path.resolve(rootDir, 'package.json'));
 
-  // Load newsletter marko exports.
+  // Load exports.
   const exports = await loadExports({
     rootDir,
     exportPath,
@@ -62,7 +61,6 @@ module.exports = async ({
     graphqlUri,
     tenantKey,
     onAsyncBlockError,
-    publicPath,
     sitePackage,
   });
 

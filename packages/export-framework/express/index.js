@@ -1,5 +1,4 @@
 const express = require('express');
-const path = require('path');
 const marko = require('marko/express');
 const helmet = require('helmet');
 const apollo = require('./apollo');
@@ -8,18 +7,9 @@ const admin = require('../admin');
 const templateRouter = require('./template-router');
 
 /**
- * graphqlUri
- * tenantKey
- * version
- * coreConfig
- * customConfig
- * onAsyncBlockError
- * publicPath
  */
 module.exports = (config = {}) => {
   const {
-    rootDir,
-    publicPath,
     sitePackage,
     exports,
     coreConfig,
@@ -60,11 +50,6 @@ module.exports = (config = {}) => {
 
   // Register the Marko middleware.
   app.use(marko());
-
-  // Register public folder, if applicable.
-  if (publicPath) {
-    app.use(express.static(path.join(rootDir, publicPath)));
-  }
 
   // Register newsletter "admin application."
   app.use('/', admin({ exports }));
