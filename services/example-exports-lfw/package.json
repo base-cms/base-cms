@@ -1,0 +1,22 @@
+{
+  "name": "@base-cms/example-exports-lfw",
+  "version": "1.12.1",
+  "main": "src/index.js",
+  "author": "Josh Worden <josh@limit0.io>",
+  "repository": "https://github.com/base-cms/base-cms/tree/master/services/example-exports-lfw",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "basecms-exports dev index.js",
+    "lint": "eslint --ext .js --max-warnings 5 ./",
+    "test": "yarn lint"
+  },
+  "dependencies": {
+    "@base-cms/export-cli": "^1.12.1",
+    "@base-cms/export-framework": "^1.12.1",
+    "@base-cms/object-path": "^1.9.0",
+    "graphql": "^14.5.4",
+    "graphql-tag": "^2.10.1",
+    "newrelic": "^5.11.0"
+  }
+}

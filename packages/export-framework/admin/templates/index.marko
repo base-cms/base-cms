@@ -1,0 +1,49 @@
+$ const { core, sites } = data;
+
+<document>
+  <@head>
+    <title>Exports</title>
+  </@head>
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="card mb-3">
+        <div class="card-header">Core Exports</div>
+        <div class="list-group list-group-flush">
+          <if(core.length)>
+            <for|obj| of=core>
+              <export obj=obj />
+            </for>
+          </if>
+          <else>
+            <div class="list-group-item text-muted">
+              No exports found
+            </div>
+          </else>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <if(sites.length)>
+        <for|site| of=sites>
+          <div class="card mb-3">
+            <div class="card-header">${site.name} Exports</div>
+            <div class="list-group list-group-flush">
+              <if(site.exports.length)>
+                <for|obj| of=site.exports>
+                  <export obj=obj />
+                </for>
+              </if>
+              <else>
+                <div class="list-group-item text-muted">
+                  No exports found
+                </div>
+              </else>
+            </div>
+          </div>
+        </for>
+      </if>
+    </div>
+  </div>
+
+</document>

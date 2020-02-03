@@ -371,6 +371,25 @@ services:
       - "11090:80"
       - "21090:21090"
 
+  example-exports-lfw:
+    <<: *node
+    working_dir: /base-cms/services/example-exports-lfw
+    command: ["/base-cms/node_modules/.bin/basecms-exports", "dev", "index.js"]
+    environment:
+      <<: *env
+      PORT: 80
+      EXPOSED_PORT: 11091
+      LIVERELOAD_PORT: 21091
+      TENANT_KEY: ebm_lfw
+      GRAPHQL_URI: http://graphql-server-aerilon
+      NEW_RELIC_ENABLED: 0
+      NEW_RELIC_LICENSE_KEY: (unset)
+    depends_on:
+      - graphql-server-aerilon
+    ports:
+      - "11091:80"
+      - "21091:21091"
+
   example-website-lfw:
     <<: *node
     working_dir: /base-cms/services/example-website-lfw
