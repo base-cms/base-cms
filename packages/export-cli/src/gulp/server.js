@@ -1,4 +1,3 @@
-const livereload = require('gulp-livereload');
 const log = require('fancy-log');
 const {
   green,
@@ -16,7 +15,6 @@ module.exports = (file) => {
     node.on('message', (msg) => {
       if (msg.event === 'ready') {
         log(`${magenta(msg.name)} exports ${green('ready')} on ${yellow(msg.location)} (Tenant: ${gray(msg.tenantKey)}) (API: ${gray(msg.graphqlUri)})`);
-        livereload.changed('/');
       }
     });
     node.on('close', (code, signal) => {

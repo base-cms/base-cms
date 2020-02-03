@@ -6,7 +6,7 @@ const completeTask = require('@base-cms/cli-utils/task-callback');
 
 module.exports = (cwd, options) => (cb) => {
   pump([
-    src(['**/*.js', '!**/*.marko.js'], { cwd }),
+    src(['**/*.js'], { cwd }),
     cache('basecms-exports-lint-js'),
     eslint(options),
     eslint.results((results, lintCb) => {
