@@ -46,7 +46,6 @@ module.exports = ({ exports, coreConfig, customConfig }) => {
         req,
         coreConfig,
         customConfig,
-        router,
       };
 
       if (site) {
@@ -57,7 +56,6 @@ module.exports = ({ exports, coreConfig, customConfig }) => {
         const website = websiteFactory(found);
 
         // Set website context.
-        res.locals.website = website;
         res.setHeader('x-site', `${website.get('name')} [${website.get('id')}]`);
         context.site = website;
       }
