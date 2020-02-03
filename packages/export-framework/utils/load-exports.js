@@ -9,10 +9,9 @@ const load = async ({ rootDir, exportPath, coreConfig }) => {
   if (!fs.existsSync(exportDir)) throw new Error(`The directory ${exportDir} does not exist.`);
 
   const extensions = Object.keys(coreConfig.getAsObject('fileExtensions'));
-  const fileIgnore = new RegExp(`/((?!.*.(${extensions.join('|')}).js).)$`, 'g');
   const fileMatch = new RegExp(`/.*.(${extensions.join('|')}).js$`);
 
-  const files = await readdir(exportDir, [f => fileIgnore.test(f)]);
+  const files = await readdir(exportDir);
   const filtered = files.filter(filename => fileMatch.test(filename));
 
   return filtered.map((filename) => {
@@ -22,6 +21,7 @@ const load = async ({ rootDir, exportPath, coreConfig }) => {
     const key = route.replace(/^\//, '');
     // eslint-disable-next-line global-require, import/no-dynamic-require
     const fn = require(filename);
+    if (typeof fn !== 'function') throw new Error(`${filename} must export a function!`);
     return {
       key,
       route,
