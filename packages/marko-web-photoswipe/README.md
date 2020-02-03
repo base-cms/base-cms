@@ -20,6 +20,12 @@ export default Browser;
 @import "../../node_modules/@base-cms/marko-web-photoswipe/scss/main";
 ```
 
+4. If you're using the default theme (or something similar) you'll need to adjust the photoswipe z-index:
+```scss
+$pswp__root-z-index: $theme-site-header-z-index + 1 !default;
+@import "../../node_modules/@base-cms/marko-web-photoswipe/scss/main";
+```
+
 ## Usage
 
 ### Create a Content Image Gallery
