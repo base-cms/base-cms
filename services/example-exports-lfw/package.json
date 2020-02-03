@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "basecms-exports dev index.js",
     "lint": "eslint --ext .js --max-warnings 5 ./",
-    "test": "yarn lint && yarn compile"
+    "test": "yarn lint"
   },
   "dependencies": {
     "@base-cms/export-cli": "^1.12.1",
