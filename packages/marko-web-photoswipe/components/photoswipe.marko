@@ -1,0 +1,7 @@
+import { getAsArray } from "@base-cms/object-path";
+
+$ const items = getAsArray(input, "items");
+
+<if(items.length)>
+  <marko-web-browser-component name="PhotoSwipe" props=input />
+</if>

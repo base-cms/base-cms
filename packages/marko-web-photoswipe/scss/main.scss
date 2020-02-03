@@ -1,0 +1,17 @@
+$pswp__assets-path: "/dist/assets/";
+$pswp__background-color: rgba(0, 0, 0, .9);
+
+@import "../../node_modules/photoswipe/src/css/main";
+@import "../../node_modules/photoswipe/src/css/default-skin/default-skin";
+
+.pswp {
+  &__counter {
+    font-size: 18px;
+  }
+}
+
+.pswp-thumbnail {
+  &:hover {
+    cursor: zoom-in;
+  }
+}
