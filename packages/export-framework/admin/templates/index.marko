@@ -2,7 +2,7 @@ $ const { core, sites } = data;
 
 <document>
   <@head>
-    <page-title value="Exports" />
+    <title>Exports</title>
   </@head>
   <div class="row">
     <div class="col-lg-6">
@@ -46,21 +46,4 @@ $ const { core, sites } = data;
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
-  <script>
-    (function() {
-      var elements = document.getElementsByClassName('template-select-day');
-      Array.prototype.forEach.call(elements, function(element) {
-        element.addEventListener('click', function(event) {
-          event.preventDefault();
-        });
-        new Pikaday({
-          field: element,
-          onSelect: function(date) {
-            window.location.href = element.href + '?date=' + date.valueOf();
-          },
-        });
-      });
-    })();
-  </script>
 </document>
