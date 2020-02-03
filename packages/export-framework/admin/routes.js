@@ -1,5 +1,5 @@
 const { asyncRoute } = require('@base-cms/utils');
-const template = require('../templates/index');
+const template = require('./templates/index');
 
 const getSite = (arr, site) => {
   if (arr.find(({ name }) => name === site)) {
