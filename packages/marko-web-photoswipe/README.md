@@ -33,7 +33,7 @@ You must specify a body gallery ID as well as an image selector.
 
 1. On the page contents, append a unique gallery ID and display some images, e.g.:
 ```marko
-<default-theme-page-contents attrs={ "data-gallery-id": id }>
+<default-theme-page-contents attrs={ "data-gallery-id": content.id }>
   <marko-web-page-image width=720 obj=content.primaryImage />
   <marko-web-content-body obj=content />
 </default-theme-page-contents>
@@ -43,9 +43,34 @@ You must specify a body gallery ID as well as an image selector.
 ```marko
 import { getAsArray } from "@base-cms/object-path";
 
-$ const images = getAsArray(content, "images.edges").map(edge => edge.node);
+$ const images = resolved.getEdgeNodesFor("images");
 
 <marko-web-photoswipe-images images=images>
   <@props thumbnail-click-selectors=`[data-gallery-id="${id}"] [data-image-id]` />
-</marko-web-photoswipe-content-images>
+</marko-web-photoswipe-images>
+```
+
+3. Make sure you're returning the images from GraphQL
+```js
+const gql = require('graphql-tag');
+
+module.exports = gql`
+fragment ContentPageFragment on Content {
+  id
+  name
+  images(input:{ pagination: { limit: 100 }, sort: { order: values } }) {
+    edges {
+      node {
+        id
+        src
+        alt
+        displayName
+        caption
+        credit
+      }
+    }
+  }
+}
+`;
+
 ```
