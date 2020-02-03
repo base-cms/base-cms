@@ -1,5 +1,5 @@
-$pswp__assets-path: "/dist/assets/";
-$pswp__background-color: rgba(0, 0, 0, .9);
+$pswp__assets-path: "/dist/assets/" !default;
+$pswp__background-color: rgba(0, 0, 0, .9) !default;
 
 @import "../../node_modules/photoswipe/src/css/main";
 @import "../../node_modules/photoswipe/src/css/default-skin/default-skin";
