@@ -1,3 +1,4 @@
+import { warn } from "@base-cms/utils";
 import AllAuthorContent from "./all-author-content";
 import AllCompanyContent from "./all-company-content";
 import AllPublishedContent from "./all-published-content";
@@ -36,7 +37,6 @@ $ const map = {
   "website-section": WebsiteSection,
   "website-sections": WebsiteSections,
 };
-$ const name = input.name;
 $ const collapsible = shouldCollapse(input.collapsible);
 
 $ const Component = map[input.name];
@@ -60,3 +60,6 @@ $ const Component = map[input.name];
     </else>
   </>
 </if>
+<else>
+  $ warn(`Unable to execute query: no component was found for '${input.name}'`);
+</else>
