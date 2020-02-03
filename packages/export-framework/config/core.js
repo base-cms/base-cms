@@ -2,9 +2,9 @@ const { getAsObject } = require('@base-cms/object-path');
 const AbstractConfig = require('./abstract-config');
 
 const defaults = {
-  csv: {},
+  csv: { 'Content-Type': 'text/plain' },
   json: { 'Content-Type': 'application/json' },
-  txt: {},
+  txt: { 'Content-Type': 'text/plain' },
 };
 
 const formatTypes = (types = {}) => Object.keys(types).reduce((obj, k) => {
@@ -17,12 +17,9 @@ class CoreConfig extends AbstractConfig {
   constructor(config = {}) {
     const { fileExtensions } = config;
     super(config);
-    this.config = {
-      ...config,
-      fileExtensions: {
-        ...formatTypes(defaults),
-        ...(fileExtensions && formatTypes(fileExtensions)),
-      },
+    this.config.fileExtensions = {
+      ...formatTypes(defaults),
+      ...(fileExtensions && formatTypes(fileExtensions)),
     };
   }
 }
