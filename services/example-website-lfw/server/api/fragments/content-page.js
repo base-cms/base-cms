@@ -136,17 +136,15 @@ fragment ContentPageFragment on Content {
       }
     }
   }
-  ... on ContentMediaGallery {
-    images(input:{ pagination: { limit: 100 }, sort: { order: values } }) {
-      edges {
-        node {
-          id
-          src
-          alt
-          displayName
-          caption
-          credit
-        }
+  images(input:{ pagination: { limit: 100 }, sort: { order: values } }) {
+    edges {
+      node {
+        id
+        src
+        alt
+        displayName
+        caption
+        credit
       }
     }
   }

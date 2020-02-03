@@ -64,7 +64,7 @@ $ const displayPublishedDate = ["event", "webinar", "contact"].includes(type) ? 
         </@section>
         <@section>
           <div class="row">
-            <default-theme-page-contents|{ blockName }| class="col-lg-8 mb-3 mb-lg-0">
+            <default-theme-page-contents|{ blockName }| class="col-lg-8 mb-3 mb-lg-0" attrs={ "data-gallery-id": id }>
               <if(content.embedCode)>
                 <marko-web-content-embed-code block-name=blockName obj=content />
               </if>
@@ -113,6 +113,9 @@ $ const displayPublishedDate = ["event", "webinar", "contact"].includes(type) ? 
                 </website-related-content-block>
               </marko-web-resolve-page>
             </aside>
+            <marko-web-photoswipe-images images=resolved.getEdgeNodesFor("images")>
+              <@props thumbnail-click-selectors=`[data-gallery-id="${id}"] [data-image-id]` />
+            </marko-web-photoswipe-images>
           </div>
         </@section>
       </marko-web-page-wrapper>
