@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/marko-core",
-  "version": "1.9.0",
+  "version": "1.15.0",
   "description": "Core BaseCMS Marko components.",
   "author": "Jacob Bare <jacob@limit0.io>",
   "main": "index.js",
