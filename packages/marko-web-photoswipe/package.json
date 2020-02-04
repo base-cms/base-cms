@@ -4,7 +4,6 @@
   "author": "Jacob Bare <jacob@limit0.io>",
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/marko-web-photoswipe",
   "license": "MIT",
-  "private": true,
   "scripts": {
     "lint": "yarn lint:js && yarn lint:css",
     "lint:js": "eslint --ext .js --ext .vue --max-warnings 5 ./",
@@ -20,5 +19,8 @@
   "peerDependencies": {
     "@base-cms/marko-core": "^1.9.0",
     "@base-cms/marko-web": "^1.13.3"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
