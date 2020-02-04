@@ -12,6 +12,14 @@ extend type Query {
     queryBuilder: "publishedContent",
     withSite: false, # allow content to always load, regardless of site context.
   )
+  # load content from custom alias
+  contentAlias(input: ContentAliasQueryInput = {}): Content @findOne(
+    model: "platform.Content",
+    using: { alias: "mutations.Website.alias" },
+    criteria: "content",
+    queryBuilder: "publishedContent",
+    withSite: false, # allow content to always load, regardless of site context.
+  )
   contentHash(input: ContentHashQueryInput = {}): Content @findOne(
     model: "platform.Content",
     using: { hash: "hash" },
@@ -233,6 +241,13 @@ input ContentQueryInput {
   siteId: ObjectID
   status: ModelStatus = active
   id: Int!
+  since: Date
+}
+
+input ContentAliasQueryInput {
+  siteId: ObjectID
+  status: ModelStatus = active
+  alias: String!
   since: Date
 }
 
