@@ -13,6 +13,7 @@ module.exports = async ({
 }) => {
   if (!base || !head) throw new Error('You must provide a base and a head commit.');
   const repoUrl = `https://github.com/${owner}/${repo}`;
+  process.stdout.write(`\n${repoUrl}/releases/new?tag=${head}`);
 
   const { data } = await octokit.repos.compareCommits({
     owner,
