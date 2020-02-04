@@ -1,0 +1,55 @@
+import { getAsArray, getAsObject } from "@base-cms/object-path";
+import defaultValue from "@base-cms/marko-core/utils/default-value";
+import { buildImgixUrl } from "@base-cms/image";
+
+$ const images = getAsArray(input, "images");
+$ const maxSize = defaultValue(input.maxSize, 1280);
+$ const { round } = Math;
+
+$ const calcDimensions = ({ width, height }) => {
+  let reducePercent = 1;
+  if (width > maxSize) {
+    reducePercent = maxSize / width;
+  } else if (height > maxSize) {
+    reducePercent = maxSize / height;
+  }
+  return {
+    w: round(width * reducePercent),
+    h: round(height * reducePercent),
+  };
+};
+
+$ const buildTitleHtml = ({ caption, credit }) => {
+  const creditHtml = credit ? `<small>${credit}</small>` : '';
+  if (!caption) return creditHtml;
+  if (creditHtml) return `${caption}<br>${creditHtml}`;
+  return caption;
+};
+
+$ const items = images.map((image) => {
+  const item = {
+    id: image.id,
+    title: buildTitleHtml(image),
+  };
+
+  const { width, height } = getAsObject(image, "source");
+  const defaultOptions = {
+    w: maxSize,
+    h: round(maxSize / (16 / 9)), // default 16:9 height
+    fit: "crop",
+  };
+
+  const imageOptions = {
+    auto: "format",
+    // Force set width and height when set on the image
+    ...(width && height && calcDimensions({ width, height })),
+    // Otherwise, assume a 16x9 image with a crop
+    ...(!width && !height && defaultOptions)
+  };
+  item.w = imageOptions.w;
+  item.h = imageOptions.h;
+  item.src = buildImgixUrl(image.src, imageOptions);
+  return item;
+});
+
+<marko-web-photoswipe ...input.props items=items />

@@ -1,0 +1,24 @@
+{
+  "name": "@base-cms/marko-web-photoswipe",
+  "version": "1.15.0",
+  "author": "Jacob Bare <jacob@limit0.io>",
+  "repository": "https://github.com/base-cms/base-cms/tree/master/packages/marko-web-photoswipe",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "lint": "yarn lint:js && yarn lint:css",
+    "lint:js": "eslint --ext .js --ext .vue --max-warnings 5 ./",
+    "lint:css": "stylelint ./**/*.scss --max-warnings 5",
+    "compile": "basecms-marko-compile compile --dir ./ --silent true",
+    "test": "yarn compile && yarn lint"
+  },
+  "dependencies": {
+    "@base-cms/image": "^1.6.3",
+    "@base-cms/object-path": "^1.9.0",
+    "photoswipe": "^4.1.3"
+  },
+  "peerDependencies": {
+    "@base-cms/marko-core": "^1.9.0",
+    "@base-cms/marko-web": "^1.13.3"
+  }
+}
