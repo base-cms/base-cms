@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/marko-web-photoswipe",
-  "version": "1.15.0",
+  "version": "1.16.0",
   "author": "Jacob Bare <jacob@limit0.io>",
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/marko-web-photoswipe",
   "license": "MIT",
