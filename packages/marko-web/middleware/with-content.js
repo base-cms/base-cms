@@ -3,6 +3,7 @@ const { asyncRoute, isFunction: isFn } = require('@base-cms/utils');
 const { content: loader } = require('@base-cms/web-common/page-loaders');
 const { blockContent: queryFactory } = require('@base-cms/web-common/query-factories');
 const PageNode = require('./page-node');
+const buildContentInput = require('../utils/build-content-input');
 
 module.exports = ({
   template,
@@ -13,12 +14,7 @@ module.exports = ({
   const id = isFn(idResolver) ? await idResolver(req, res) : req.params.id;
   const { apollo } = req;
 
-  const additionalInput = {};
-  if (req.cookies['preview-mode'] || req.query['preview-mode']) {
-    additionalInput.status = 'any';
-  } else {
-    additionalInput.since = Date.now();
-  }
+  const additionalInput = buildContentInput({ req });
   const content = await loader(apollo, { id, additionalInput });
   const { redirectTo } = content;
   const path = get(content, 'siteContext.path');
