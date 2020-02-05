@@ -529,9 +529,9 @@ module.exports = {
    *
    */
   ContentCompany: {
-    links: (content, { input }) => {
+    externalLinks: (content, { input }) => {
       const keys = getAsArray(input, 'keys');
-      const links = getAsArray(content, 'links');
+      const links = getAsArray(content, 'externalLinks');
       if (keys.length) return links.filter(({ key }) => keys.includes(key));
       return links;
     },
