@@ -1172,6 +1172,22 @@ module.exports = {
     /**
      *
      */
+    updateContentCompanyExternalLinks: async (_, { input }, { base4rest, basedb }, info) => {
+      validateRest(base4rest);
+      const type = 'platform/content/company';
+      const { id, payload } = input;
+      const { externalLinks } = payload;
+      const body = new Base4RestPayload({ type });
+      body.set('externalLinks', externalLinks);
+      body.set('id', id);
+      await base4rest.updateOne({ model: type, id, body });
+      const projection = buildProjection({ info, type: 'ContentCompany' });
+      return basedb.findOne('platform.Content', { _id: id }, { projection });
+    },
+
+    /**
+     *
+     */
     updateContentCompanySocialLinks: async (_, { input }, { base4rest, basedb }, info) => {
       validateRest(base4rest);
       const type = 'platform/content/company';

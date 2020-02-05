@@ -9,6 +9,7 @@ extend type Query {
 extend type Mutation {
   updateContentCompany(input: UpdateContentCompanyMutationInput!): ContentCompany @requiresAuth
   updateContentCompanyImages(input: UpdateContentCompanyImagesMutationInput!): ContentCompany @requiresAuth
+  updateContentCompanyExternalLinks(input: UpdateContentCompanyExternalLinksMutationInput!): ContentCompany @requiresAuth
   updateContentCompanySocialLinks(input: UpdateContentCompanySocialLinksMutationInput!): ContentCompany @requiresAuth
   updateContentCompanyYoutube(input: UpdateContentCompanyYoutubeMutationInput!): ContentCompany @requiresAuth
   updateContentCompanyPublicContacts(input: UpdateContentCompanyPublicContactsMutationInput!): ContentCompany @requiresAuth
@@ -106,6 +107,15 @@ input UpdateContentCompanyImagesPayloadMutationInput {
   images: [ObjectID!]
 }
 
+input UpdateContentCompanyExternalLinksMutationInput {
+  id: Int!
+  payload: UpdateContentCompanyExternalLinksPayloadMutationInput = {}
+}
+
+input UpdateContentCompanyExternalLinksPayloadMutationInput {
+  externalLinks: [ContentCompanyExternalLinkInput!]!
+}
+
 input UpdateContentCompanySocialLinksMutationInput {
   id: Int!
   payload: UpdateContentCompanySocialLinksPayloadMutationInput = {}
@@ -124,6 +134,12 @@ input UpdateContentCompanyYoutubePayloadMutationInput {
   channelId: String
   playlistId: String
   username: String
+}
+
+input ContentCompanyExternalLinkInput {
+  key: String!
+  url: String!
+  label: String
 }
 
 input ContentCompanySocialLinkInput {
