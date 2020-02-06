@@ -93,8 +93,8 @@ type EntityStubSocial {
   label: String
 }
 
-type EntityStubLink {
-  # fields directly on platform.model::Entity\Stub\Link
+type EntityStubExternalLink {
+  # fields directly on platform.model::Entity\Stub\ExternalLink
   key: String
   url: String
   label: String

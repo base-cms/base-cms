@@ -529,9 +529,9 @@ module.exports = {
    *
    */
   ContentCompany: {
-    links: (content, { input }) => {
+    externalLinks: (content, { input }) => {
       const keys = getAsArray(input, 'keys');
-      const links = getAsArray(content, 'links');
+      const links = getAsArray(content, 'externalLinks');
       if (keys.length) return links.filter(({ key }) => keys.includes(key));
       return links;
     },
@@ -1165,6 +1165,22 @@ module.exports = {
       if (images) body.setLinks('images', images.map(imgId => ({ id: imgId, type: image })));
       body.set('id', id);
       await base4rest.updateOne({ model: company, id, body });
+      const projection = buildProjection({ info, type: 'ContentCompany' });
+      return basedb.findOne('platform.Content', { _id: id }, { projection });
+    },
+
+    /**
+     *
+     */
+    updateContentCompanyExternalLinks: async (_, { input }, { base4rest, basedb }, info) => {
+      validateRest(base4rest);
+      const type = 'platform/content/company';
+      const { id, payload } = input;
+      const { externalLinks } = payload;
+      const body = new Base4RestPayload({ type });
+      body.set('externalLinks', externalLinks);
+      body.set('id', id);
+      await base4rest.updateOne({ model: type, id, body });
       const projection = buildProjection({ info, type: 'ContentCompany' });
       return basedb.findOne('platform.Content', { _id: id }, { projection });
     },

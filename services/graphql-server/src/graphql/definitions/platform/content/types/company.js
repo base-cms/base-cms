@@ -9,6 +9,7 @@ extend type Query {
 extend type Mutation {
   updateContentCompany(input: UpdateContentCompanyMutationInput!): ContentCompany @requiresAuth
   updateContentCompanyImages(input: UpdateContentCompanyImagesMutationInput!): ContentCompany @requiresAuth
+  updateContentCompanyExternalLinks(input: UpdateContentCompanyExternalLinksMutationInput!): ContentCompany @requiresAuth
   updateContentCompanySocialLinks(input: UpdateContentCompanySocialLinksMutationInput!): ContentCompany @requiresAuth
   updateContentCompanyYoutube(input: UpdateContentCompanyYoutubeMutationInput!): ContentCompany @requiresAuth
   updateContentCompanyPublicContacts(input: UpdateContentCompanyPublicContactsMutationInput!): ContentCompany @requiresAuth
@@ -34,7 +35,7 @@ type ContentCompany implements Content & PrimaryCategory & Contactable & Address
 
   youtube: ContentCompanyYoutube! @projection
   youtubeVideos(input: ContentCompanyYoutubeVideosInput = {}): YoutubePlaylistConnection! @projection(needs: ["youtube"])
-  links(input: ContentCompanyLinksInput = {}): [EntityStubLink]! @projection
+  externalLinks(input: ContentCompanyExternalLinksInput = {}): [EntityStubExternalLink]! @projection
 
   # fields directly on platform.model::Content\Company from mutations
   featuredCategories(input: ContentCompanyFeaturedCategoriesInput = {}): TaxonomyConnection! @projection(localField: "mutations.Website.featuredCategories") @refMany(model: "platform.Taxonomy", localField: "mutations.Website.featuredCategories", criteria: "taxonomyCategory")
@@ -106,6 +107,15 @@ input UpdateContentCompanyImagesPayloadMutationInput {
   images: [ObjectID!]
 }
 
+input UpdateContentCompanyExternalLinksMutationInput {
+  id: Int!
+  payload: UpdateContentCompanyExternalLinksPayloadMutationInput = {}
+}
+
+input UpdateContentCompanyExternalLinksPayloadMutationInput {
+  externalLinks: [ContentCompanyExternalLinkInput!]!
+}
+
 input UpdateContentCompanySocialLinksMutationInput {
   id: Int!
   payload: UpdateContentCompanySocialLinksPayloadMutationInput = {}
@@ -124,6 +134,12 @@ input UpdateContentCompanyYoutubePayloadMutationInput {
   channelId: String
   playlistId: String
   username: String
+}
+
+input ContentCompanyExternalLinkInput {
+  key: String!
+  url: String!
+  label: String
 }
 
 input ContentCompanySocialLinkInput {
@@ -162,7 +178,7 @@ input ContentCompanyYoutubeVideosInput {
   pagination: PaginationInput = {}
 }
 
-input ContentCompanyLinksInput {
+input ContentCompanyExternalLinksInput {
   keys: [String]
 }
 
