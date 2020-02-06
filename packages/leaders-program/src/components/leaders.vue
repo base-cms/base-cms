@@ -41,6 +41,7 @@ import LeadersHeader from './header.vue';
 
 import allQuery from '../graphql/queries/all-sections';
 import fromTaxonomyQuery from '../graphql/queries/sections-from-taxonomy';
+import fromIdsQuery from '../graphql/queries/sections-from-ids';
 import contentQuery from '../graphql/queries/content';
 import getEdgeNodes from '../utils/get-edge-nodes';
 
@@ -59,6 +60,10 @@ export default {
     contentId: {
       type: Number,
       default: null,
+    },
+    sectionIds: {
+      type: Array,
+      default: () => ([]),
     },
     open: {
       type: String,
@@ -216,6 +221,14 @@ export default {
     },
 
     async loadSections() {
+      const { sectionIds } = this;
+      if (sectionIds && sectionIds.length) {
+        const variables = { sectionIds };
+        const r = await this.$apollo.query({ query: fromIdsQuery, variables });
+        const sections = getEdgeNodes(r, 'data.websiteSections')
+          .filter(s => s.hierarchy.some(({ alias }) => alias === this.sectionAlias));
+        if (sections.length) return sections;
+      }
       const fromContent = await this.loadContentSections();
       if (fromContent.length) {
         this.loadType = 'contextual';
