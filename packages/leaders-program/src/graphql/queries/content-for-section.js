@@ -37,6 +37,9 @@ query ContentForLeadersSection($sectionId: Int!) {
           })
         }
         ... on ContentCompany {
+          productUrls: externalLinks(input: { keys: ["company-products"] }) {
+            url
+          }
           productSummary
           publicContacts(input: { pagination: { limit: 1 } }) {
             edges {

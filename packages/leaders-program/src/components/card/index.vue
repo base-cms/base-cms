@@ -36,7 +36,12 @@
           Featured Products
         </template>
         <template #header-right>
-          <view-more label="products" :href="profileHref" @click="handleProfileClick" />
+          <view-more
+            label="products"
+            :href="productsHref"
+            target="_blank"
+            @click="handleAllProductsClick"
+          />
         </template>
         <template #default="{ item }">
           <promotion-card
@@ -120,6 +125,9 @@ export default {
     youtubeHref() {
       return get(this.company, 'youtube.url');
     },
+    productsHref() {
+      return get(this.company, 'productUrls.0.url', get(this.company, 'website', this.profileHref));
+    },
     executive() {
       return getEdgeNodes(this.company, 'publicContacts')[0];
     },
@@ -176,6 +184,12 @@ export default {
       this.emitAction({
         type: 'click',
         label: 'YouTube Video',
+      }, data, event);
+    },
+    handleAllProductsClick(data, event) {
+      this.emitAction({
+        type: 'click',
+        label: 'View more products',
       }, data, event);
     },
     handlePromotionClick(data, event) {
