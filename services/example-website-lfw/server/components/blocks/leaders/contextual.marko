@@ -1,0 +1,22 @@
+$ const { site } = out.global;
+$ const { contentId } = input;
+
+<if(contentId)>
+  <marko-web-leaders props={
+    contentId,
+    sectionAlias: site.get("leaders.alias"),
+    open: "left",
+    headerImgSrc: site.get("leaders.header.imgSrc"),
+    headerImgAlt: site.get("leaders.title"),
+    displayCallout: false,
+    offsetTop: 50,
+    viewAllHref: '/leaders',
+    mediaQueries: [
+      { prop: "displayCallout", value: true, query: "(min-width: 701px)" },
+      { prop: "displayCallout", value: false, query: "(min-width: 992px)" },
+      { prop: "columns", value: 2, query: "(max-width: 991px)" },
+      { prop: "open", value: null, query: "(max-width: 991px)" },
+      { prop: "columns", value: 1, query: "(max-width: 700px)" },
+    ],
+  }/>
+</if>

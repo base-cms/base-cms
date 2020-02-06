@@ -99,6 +99,7 @@ $ const displayPublishedDate = ["event", "webinar", "contact"].includes(type) ? 
             </default-theme-page-contents>
             <aside class="col-lg-4 page-rail">
               <marko-web-gam-display-ad id="gpt-ad-rail1" />
+              <leaders-contextual content-id=content.id />
               <marko-web-gam-display-ad id="gpt-ad-rail2" />
               <marko-web-resolve-page|{ data: content }| node=pageNode>
                 $ const aliases = hierarchyAliases(content.primarySection);
