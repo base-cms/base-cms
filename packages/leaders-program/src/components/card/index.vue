@@ -64,7 +64,7 @@
             label="videos"
             :href="youtubeHref"
             target="_blank"
-            @click="handleVideoClick"
+            @click="handleAllVideosClick"
           />
         </template>
         <template #default="{ item }">
@@ -184,6 +184,12 @@ export default {
       this.emitAction({
         type: 'click',
         label: 'YouTube Video',
+      }, data, event);
+    },
+    handleAllVideosClick(data, event) {
+      this.emitAction({
+        type: 'click',
+        label: 'View more videos',
       }, data, event);
     },
     handleAllProductsClick(data, event) {
