@@ -4,6 +4,7 @@ import latestIssueFragment from "../api/fragments/magazine-latest-issue";
 import GAM from "../../config/gam";
 
 $ const { id, alias, name, pageNode } = data;
+$ const { site } = out.global;
 
 <marko-web-website-section-page-layout id=id alias=alias name=name>
   <@head>
@@ -39,6 +40,13 @@ $ const { id, alias, name, pageNode } = data;
 
     <div class="row">
       <div class="col-lg-8">
+        <div class="row">
+          <div class="col mb-block">
+            <div class="card">
+              <leaders-home-page />
+            </div>
+          </div>
+        </div>
         <div class="row">
           <div class="col-lg-6 mb-block">
             <marko-web-query|{ nodes }|

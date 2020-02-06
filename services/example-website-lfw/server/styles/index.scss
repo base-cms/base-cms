@@ -22,9 +22,64 @@ $theme-site-header-breakpoints: (
 @import "../../node_modules/@base-cms/marko-web-reveal-ad/scss/reveal-ad";
 @import "../../node_modules/@base-cms/marko-web-social-sharing/scss/buttons";
 @import "../../node_modules/@base-cms/marko-web-theme-default/skins/orion/skin.scss";
+
 $pswp__root-z-index: $theme-site-header-z-index + 1 !default;
 @import "../../node_modules/@base-cms/marko-web-photoswipe/scss/main";
 
+@import url("https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,400,500,600,700&display=swap");
+
+$leaders-primary-color: $primary;
+@import "../../node_modules/@base-cms/marko-web-leaders/scss/leaders";
+
 .social-sharing {
   margin-bottom: 1rem;
+}
+
+.leaders {
+  @include border-radius($theme-card-border-radius);
+  @include box-shadow($theme-card-box-shadow);
+  background-color: $white;
+  &__body {
+    padding: $marko-web-node-padding;
+  }
+  &__header {
+    border-top-left-radius: $theme-card-border-radius;
+    border-top-right-radius: $theme-card-border-radius;
+  }
+}
+
+.leaders-index-page {
+  &__header-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  &__title {
+    margin-bottom: .75rem;
+    font-size: 34px;
+  }
+
+  &__header {
+    margin-bottom: .75rem;
+  }
+
+  &__logo {
+    display: flex;
+    padding: .75rem;
+    margin-right: .75rem;
+    margin-bottom: .75rem;
+    background-color: $leaders-primary-color;
+  }
+
+  &__body,
+  &__description {
+    > p {
+      margin-bottom: .25rem;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
 }

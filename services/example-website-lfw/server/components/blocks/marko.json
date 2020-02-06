@@ -29,5 +29,20 @@
   },
   "<website-magazine-publications-block>": {
     "template": "./magazine-publications.marko"
+  },
+  "<leaders-home-page>": {
+    "template": "./leaders/home-page.marko"
+  },
+  "<leaders-contextual>": {
+    "template": "./leaders/contextual.marko"
+  },
+  "<leaders-all>": {
+    "template": "./leaders/all.marko"
+  },
+  "<leaders-gtm-tracker>": {
+    "template": "./leaders/gtm-tracker.marko"
+  },
+  "<leaders-dropdown-portal>": {
+    "template": "./leaders/dropdown-portal.marko"
   }
 }
