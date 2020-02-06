@@ -23,8 +23,8 @@ class EmailXConfiguration {
     const foundAdUnit = getAsObject(this.adUnits, `${alias}.${name}`);
     // Ensure ad unit is duplicated so property re-assignment doesn't "stick."
     return {
-      ...foundAdUnit,
       uri: this.uri,
+      ...foundAdUnit,
     };
   }
 
@@ -36,6 +36,7 @@ class EmailXConfiguration {
    * @param {string} params.id The ad unit id, e.g. `5d4b04769f69b200013ab109`.
    * @param {number} params.width The ad unit width.
    * @param {number} params.height The ad unit height.
+   * @param {string} [params.uri] A custom delivery URI for this adunit
    */
   setAdUnit({
     alias,
@@ -43,6 +44,7 @@ class EmailXConfiguration {
     id,
     width,
     height,
+    uri,
   } = {}) {
     if (!name || !alias || !id) throw new Error('Unable to create EmailX ad unit: the name, alias, and ID are required');
     if (!width || !height) throw new Error('Unable to create EmailX ad unit: the height and width are required');
@@ -53,6 +55,7 @@ class EmailXConfiguration {
       name,
       alias,
     };
+    if (uri) adUnit.uri = uri;
     set(this.adUnits, `${alias}.${name}`, adUnit);
     return this;
   }
