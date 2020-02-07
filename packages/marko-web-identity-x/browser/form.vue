@@ -268,14 +268,14 @@ export default {
      *
      */
     countryCode() {
-      return this.user.countryCode || '';
+      return this.user.countryCode;
     },
 
     /**
      *
      */
     regionCode() {
-      return this.user.regionCode || '';
+      return this.user.regionCode;
     },
 
     /**
@@ -305,13 +305,13 @@ export default {
      * Clear region code on country code change.
      */
     countryCode() {
-      this.user.regionCode = null;
+      this.user.regionCode = '';
     },
     /**
      * Clear postal code on region code change.
      */
     regionCode() {
-      this.user.postalCode = null;
+      this.user.postalCode = '';
     },
   },
 
