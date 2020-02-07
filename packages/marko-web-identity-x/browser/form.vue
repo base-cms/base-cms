@@ -268,14 +268,14 @@ export default {
      *
      */
     countryCode() {
-      return this.user.countryCode;
+      return this.user.countryCode || '';
     },
 
     /**
      *
      */
     regionCode() {
-      return this.user.regionCode;
+      return this.user.regionCode || '';
     },
 
     /**
