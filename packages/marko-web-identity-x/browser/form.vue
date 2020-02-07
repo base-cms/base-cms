@@ -60,7 +60,7 @@
               :required="isFieldRequired('regionCode')"
             />
           </div>
-          <div v-if="displayRegionField" class="col-md-6">
+          <div v-if="displayPostalCodeField" class="col-md-6">
             <postal-code v-model="user.postalCode" :required="isFieldRequired('postalCode')" />
           </div>
         </div>
@@ -199,7 +199,11 @@ export default {
     error: null,
     loading: false,
     needsInput: false,
-    user: {},
+    user: {
+      countryCode: '',
+      regionCode: '',
+      postalCode: '',
+    },
   }),
 
   /**
