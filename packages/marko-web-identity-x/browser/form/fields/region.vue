@@ -1,12 +1,14 @@
 <template>
   <form-group>
-    <label :for="id">{{ label }}</label>
+    <form-label :for="id" :required="required">
+      {{ label }}
+    </form-label>
     <select
       :id="id"
       v-model="regionCode"
       :readonly="isLoading"
       :disabled="disabled"
-      :required="true"
+      :required="required"
       class="custom-select"
       autocomplete="address-level1"
     >
@@ -25,15 +27,21 @@
 
 <script>
 import FormGroup from '../common/form-group.vue';
+import FormLabel from '../common/form-label.vue';
 import get from '../../utils/get';
 import regionCountryCodes from '../../utils/region-country-codes';
 
 export default {
   components: {
     FormGroup,
+    FormLabel,
   },
   props: {
     disabled: {
+      type: Boolean,
+      default: false,
+    },
+    required: {
       type: Boolean,
       default: false,
     },

@@ -1,6 +1,6 @@
 <template>
   <form-group>
-    <form-label :for="id" :required="true">
+    <form-label :for="id" :required="required">
       {{ label }}
     </form-label>
     <input
@@ -8,7 +8,7 @@
       v-model="familyName"
       class="form-control"
       type="text"
-      :required="true"
+      :required="required"
       :disabled="disabled"
       :placeholder="placeholder"
       autocomplete="family-name"
@@ -27,6 +27,10 @@ export default {
   },
   props: {
     disabled: {
+      type: Boolean,
+      default: false,
+    },
+    required: {
       type: Boolean,
       default: false,
     },
