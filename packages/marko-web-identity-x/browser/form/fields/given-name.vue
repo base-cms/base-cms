@@ -1,6 +1,8 @@
 <template>
   <form-group>
-    <label :for="id">{{ label }}</label>
+    <form-label :for="id" :required="true">
+      {{ label }}
+    </form-label>
     <input
       :id="id"
       v-model="givenName"
@@ -16,10 +18,12 @@
 
 <script>
 import FormGroup from '../common/form-group.vue';
+import FormLabel from '../common/form-label.vue';
 
 export default {
   components: {
     FormGroup,
+    FormLabel,
   },
   props: {
     disabled: {
