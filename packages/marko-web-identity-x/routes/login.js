@@ -11,6 +11,8 @@ const query = gql`
       organization
       organizationTitle
       countryCode
+      regionCode
+      postalCode
     }
   }
 `;
@@ -25,6 +27,8 @@ const createUser = gql`
       organization
       organizationTitle
       countryCode
+      regionCode
+      postalCode
     }
   }
 `;
@@ -35,7 +39,7 @@ const sendLoginLink = gql`
   }
 `;
 
-const isMissingFields = (user, requiredFields) => requiredFields.some(field => !user[field]);
+const getMissingFields = (user, requiredFields) => requiredFields.filter(field => !user[field]);
 
 module.exports = asyncRoute(async (req, res) => {
   const { identityX, body } = req;
@@ -56,9 +60,11 @@ module.exports = asyncRoute(async (req, res) => {
     appUser = await identityX.client.mutate({ mutation: createUser, variables: { input: user } });
   }
 
-  if (isMissingFields({ ...appUser, ...user }, requiredFields)) {
+  const missingFields = getMissingFields({ ...appUser, ...user }, requiredFields);
+
+  if (missingFields.length) {
     // Prompt for additional fields.
-    res.json({ needsInput: true });
+    res.json({ needsInput: true, missingFields });
   } else {
     // Send login link.
     await identityX.client.mutate({
