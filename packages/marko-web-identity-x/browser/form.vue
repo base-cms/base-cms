@@ -49,6 +49,15 @@
           </div>
         </div>
 
+        <div v-if="displayRegionField || displayPostalCodeField" class="row">
+          <div v-if="displayRegionField" class="col-md-6">
+            <region v-model="user.regionCode" :country-code="user.countryCode" />
+          </div>
+          <div v-if="displayRegionField" class="col-md-6">
+            <postal-code v-model="user.postalCode" />
+          </div>
+        </div>
+
         <button
           type="submit"
           class="btn btn-primary"
@@ -86,9 +95,12 @@ import FamilyName from './form/fields/family-name.vue';
 import Organization from './form/fields/organization.vue';
 import OrganizationTitle from './form/fields/organization-title.vue';
 import Country from './form/fields/country.vue';
+import Region from './form/fields/region.vue';
+import PostalCode from './form/fields/postal-code.vue';
 import cleanPath from './utils/clean-path';
 import post from './utils/post';
 import cookiesEnabled from './utils/cookies-enabled';
+import regionCountryCodes from './utils/region-country-codes';
 import FormError from './errors/form';
 import FeatureError from './errors/feature';
 
@@ -100,6 +112,8 @@ export default {
     Organization,
     OrganizationTitle,
     Country,
+    Region,
+    PostalCode,
   },
   props: {
     activeUser: {
@@ -177,6 +191,32 @@ export default {
       const { pathname } = window.location;
       const endpoints = [this.loginEndpoint, this.registerEndpoint];
       return endpoints.includes(pathname) ? undefined : pathname;
+    },
+    countryCode() {
+      return this.user.countryCode;
+    },
+    regionCode() {
+      return this.user.regionCode;
+    },
+    displayRegionField() {
+      return regionCountryCodes.includes(this.countryCode);
+    },
+    displayPostalCodeField() {
+      return this.displayRegionField;
+    },
+  },
+  watch: {
+    /**
+     * Clear region code on country code change.
+     */
+    countryCode() {
+      this.user.regionCode = null;
+    },
+    /**
+     * Clear postal code on region code change.
+     */
+    regionCode() {
+      this.user.postalCode = null;
     },
   },
   mounted() {
