@@ -12,7 +12,7 @@
       class="custom-select"
       autocomplete="address-level1"
     >
-      <option dsiabled value="">
+      <option disabled value="">
         Select state/region...
       </option>
       <option v-for="region in countryRegions" :key="region.id" :value="region.code">
@@ -67,7 +67,7 @@ export default {
   computed: {
     regionCode: {
       get() {
-        return this.value;
+        return this.value || '';
       },
       set(regionCode) {
         this.$emit('input', regionCode);

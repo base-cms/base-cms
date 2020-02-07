@@ -12,7 +12,7 @@
       class="custom-select"
       autocomplete="country"
     >
-      <option dsiabled value="">
+      <option disabled value="">
         Select country...
       </option>
       <option v-for="country in countries" :key="country.id" :value="country.id">
@@ -62,7 +62,7 @@ export default {
   computed: {
     countryCode: {
       get() {
-        return this.value;
+        return this.value || '';
       },
       set(countryCode) {
         this.$emit('input', countryCode);
