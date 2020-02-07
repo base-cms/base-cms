@@ -63,10 +63,16 @@ module.exports = asyncRoute(async (req, res) => {
     appUser = newUserData.createAppUser;
   }
 
-  const missingFields = getMissingFields({ ...appUser, ...user }, requiredFields);
+  const mergedUser = { ...appUser };
+  Object.keys(user).forEach((key) => {
+    // Only overwrite if not already set.
+    if (!mergedUser[key]) mergedUser[key] = user[key];
+  });
+
+  const missingFields = getMissingFields(mergedUser, requiredFields);
   if (missingFields.length) {
     // Prompt for additional fields.
-    res.json({ needsInput: true, appUser });
+    res.json({ needsInput: true, appUser: mergedUser });
   } else {
     // Send login link.
     await identityX.client.mutate({
