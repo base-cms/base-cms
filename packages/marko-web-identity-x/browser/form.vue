@@ -72,7 +72,7 @@
           {{ buttonLabel }}
         </button>
       </fieldset>
-      <p v-show="error">
+      <p v-show="error" class="mt-3 text-danger">
         An error occurred: {{ error }}
       </p>
     </form>
@@ -88,7 +88,7 @@
           {{ buttonLabel }}
         </button>
       </fieldset>
-      <p v-show="error">
+      <p v-show="error" class="mt-3 text-danger">
         An error occurred: {{ error }}
       </p>
     </form>
