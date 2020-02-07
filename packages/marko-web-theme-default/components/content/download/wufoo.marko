@@ -10,7 +10,7 @@ $ const props = {
   height: input.height,
 };
 
-<if(userName && surveyId && target)>
+<if(userName && surveyId)>
   <marko-web-element block-name=blockName name="wufoo-form">
     <marko-web-browser-component
       name="WufooGatedDownload"
@@ -19,5 +19,5 @@ $ const props = {
   </marko-web-element>
 </if>
 <else>
-  $ warn('Unable to create Wufoo download form: a username, survey ID, and file target are required.');
+  $ warn('Unable to create Wufoo download form: a username and survey ID are required.');
 </else>

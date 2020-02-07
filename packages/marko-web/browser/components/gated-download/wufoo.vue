@@ -41,7 +41,7 @@ export default {
     },
     target: {
       type: String,
-      required: true,
+      default: null,
     },
     height: {
       type: String,
@@ -82,7 +82,7 @@ export default {
         async: true,
         ssl: true,
         addSubmitListener: (e) => {
-          if (e.data === 'wufoo-submit-done') {
+          if (e.data === 'wufoo-submit-done' && this.target) {
             this.canDownload = true;
             window.open(this.target);
           }
