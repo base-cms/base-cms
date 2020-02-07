@@ -27,25 +27,41 @@
       <fieldset :disabled="loading">
         <div class="row">
           <div class="col-md-6">
-            <given-name v-model="user.givenName" />
+            <given-name v-model="user.givenName" :required="isFieldRequired('givenName')" />
           </div>
           <div class="col-md-6">
-            <family-name v-model="user.familyName" />
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-6">
-            <organization v-model="user.organization" />
-          </div>
-          <div class="col-md-6">
-            <organization-title v-model="user.organizationTitle" />
+            <family-name v-model="user.familyName" :required="isFieldRequired('familyName')" />
           </div>
         </div>
 
         <div class="row">
           <div class="col-md-6">
-            <country v-model="user.countryCode" />
+            <organization v-model="user.organization" :required="isFieldRequired('organization')" />
+          </div>
+          <div class="col-md-6">
+            <organization-title
+              v-model="user.organizationTitle"
+              :required="isFieldRequired('organizationTitle')"
+            />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <country v-model="user.countryCode" :required="isFieldRequired('countryCode')" />
+          </div>
+        </div>
+
+        <div v-if="displayRegionField || displayPostalCodeField" class="row">
+          <div v-if="displayRegionField" class="col-md-6">
+            <region
+              v-model="user.regionCode"
+              :country-code="user.countryCode"
+              :required="isFieldRequired('regionCode')"
+            />
+          </div>
+          <div v-if="displayPostalCodeField" class="col-md-6">
+            <postal-code v-model="user.postalCode" :required="isFieldRequired('postalCode')" />
           </div>
         </div>
 
@@ -56,7 +72,7 @@
           {{ buttonLabel }}
         </button>
       </fieldset>
-      <p v-show="error">
+      <p v-show="error" class="mt-3 text-danger">
         An error occurred: {{ error }}
       </p>
     </form>
@@ -72,7 +88,7 @@
           {{ buttonLabel }}
         </button>
       </fieldset>
-      <p v-show="error">
+      <p v-show="error" class="mt-3 text-danger">
         An error occurred: {{ error }}
       </p>
     </form>
@@ -86,13 +102,19 @@ import FamilyName from './form/fields/family-name.vue';
 import Organization from './form/fields/organization.vue';
 import OrganizationTitle from './form/fields/organization-title.vue';
 import Country from './form/fields/country.vue';
+import Region from './form/fields/region.vue';
+import PostalCode from './form/fields/postal-code.vue';
 import cleanPath from './utils/clean-path';
 import post from './utils/post';
 import cookiesEnabled from './utils/cookies-enabled';
+import regionCountryCodes from './utils/region-country-codes';
 import FormError from './errors/form';
 import FeatureError from './errors/feature';
 
 export default {
+  /**
+   *
+   */
   components: {
     Email,
     GivenName,
@@ -100,7 +122,13 @@ export default {
     Organization,
     OrganizationTitle,
     Country,
+    Region,
+    PostalCode,
   },
+
+  /**
+   *
+   */
   props: {
     activeUser: {
       type: Object,
@@ -139,22 +167,63 @@ export default {
       type: String,
       default: '/user/register',
     },
-    requiredFields: {
+    /**
+     * Determines which user fields/data are required by the backend.
+     * Will re-prompt users on login if these are missing.
+     */
+    requiredData: {
       type: Array,
       default: () => ['givenName', 'familyName', 'countryCode'],
     },
+
+    /**
+     * Determines which fields are required on the form (client-side).
+     * The `email` field is always required.
+     *
+     * When generating the form, this field will also be merged with `this.requiredData`.
+     *
+     * The `regionCode` and `postalCode` fields will only display (and thereby be required)
+     * if/when a valid `countryCode` is selected.
+     */
+    requiredFields: {
+      type: Array,
+      default: () => ['regionCode', 'postalCode'],
+    },
   },
+
+  /**
+   *
+   */
   data: () => ({
     complete: false,
     error: null,
     loading: false,
     needsInput: false,
-    user: {},
+    user: {
+      givenName: '',
+      familyName: '',
+      organization: '',
+      organizationTitle: '',
+      countryCode: '',
+      regionCode: '',
+      postalCode: '',
+    },
   }),
+
+  /**
+   *
+   */
   computed: {
+    /**
+     *
+     */
     authUrl() {
       return `${window.location.origin}/${cleanPath(this.authEndpoint)}`;
     },
+
+    /**
+     *
+     */
     buttonLabel() {
       if (this.loading) return 'Loading...';
       if (this.needsInput) {
@@ -164,41 +233,125 @@ export default {
       }
       return 'Continue';
     },
+
+    /**
+     *
+     */
     hasActiveUser() {
       return this.activeUser && this.activeUser.email;
     },
+
+    /**
+     *
+     */
     isLoginContext() {
       return this.context === 'login';
     },
+
+    /**
+     *
+     */
     isRegisterContext() {
       return this.context === 'register';
     },
+
+    /**
+     *
+     */
     redirectTo() {
       const { pathname } = window.location;
       const endpoints = [this.loginEndpoint, this.registerEndpoint];
       return endpoints.includes(pathname) ? undefined : pathname;
     },
+
+    /**
+     *
+     */
+    countryCode() {
+      return this.user.countryCode;
+    },
+
+    /**
+     *
+     */
+    regionCode() {
+      return this.user.regionCode;
+    },
+
+    /**
+     *
+     */
+    displayRegionField() {
+      return regionCountryCodes.includes(this.countryCode);
+    },
+
+    /**
+     *
+     */
+    displayPostalCodeField() {
+      return this.displayRegionField;
+    },
+
+    requiredClientSideFields() {
+      return [...this.requiredData, ...this.requiredFields];
+    },
   },
+
+  /**
+   *
+   */
+  watch: {
+    /**
+     * Clear region code on country code change.
+     */
+    countryCode() {
+      this.user.regionCode = '';
+    },
+    /**
+     * Clear postal code on region code change.
+     */
+    regionCode() {
+      this.user.postalCode = '';
+    },
+  },
+
+  /**
+   *
+   */
   mounted() {
     if (!cookiesEnabled()) {
       const error = new FeatureError('Your browser does not support cookies. Please enable cookies to use this feature.');
       this.error = error.message;
     }
   },
+
+  /**
+   *
+   */
   methods: {
+    /**
+     *
+     */
+    isFieldRequired(name) {
+      return this.requiredClientSideFields.includes(name);
+    },
+
+    /**
+     *
+     */
     async handle() {
       this.error = null;
       this.loading = true;
       const {
         user,
-        requiredFields,
+        requiredData,
         redirectTo,
         authUrl,
       } = this;
       try {
         const res = await post('/login', {
           user,
-          requiredFields,
+          requiredFields: requiredData,
           redirectTo,
           authUrl,
         });
@@ -208,6 +361,7 @@ export default {
         if (data.ok) {
           this.complete = true;
         } else if (data.needsInput) {
+          this.user = data.appUser;
           this.needsInput = true;
         }
         this.$emit('submit');

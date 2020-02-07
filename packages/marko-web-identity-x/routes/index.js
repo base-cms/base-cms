@@ -5,6 +5,7 @@ const authenticate = require('./authenticate');
 const login = require('./login');
 const logout = require('./logout');
 const countries = require('./countries');
+const regions = require('./regions');
 
 const router = Router();
 
@@ -13,6 +14,7 @@ router.post('/authenticate', authenticate);
 router.post('/login', login);
 router.post('/logout', logout);
 router.get('/countries', countries);
+router.get('/regions', regions);
 router.use(jsonErrorHandler());
 
 module.exports = router;

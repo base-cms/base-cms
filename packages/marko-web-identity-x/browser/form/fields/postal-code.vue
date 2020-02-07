@@ -5,13 +5,13 @@
     </form-label>
     <input
       :id="id"
-      v-model="organizationTitle"
+      v-model="postalCode"
       class="form-control"
       type="text"
       :required="required"
       :disabled="disabled"
       :placeholder="placeholder"
-      autocomplete="organization-title"
+      autocomplete="postal-code"
     >
   </form-group>
 </template>
@@ -36,7 +36,7 @@ export default {
     },
     label: {
       type: String,
-      default: 'Job Title',
+      default: 'Postal/ZIP Code',
     },
     placeholder: {
       type: String,
@@ -48,15 +48,15 @@ export default {
     },
   },
   data: () => ({
-    id: 'sign-on-organization-title',
+    id: 'sign-on-postal-code',
   }),
   computed: {
-    organizationTitle: {
+    postalCode: {
       get() {
         return this.value;
       },
-      set(organizationTitle) {
-        this.$emit('input', organizationTitle);
+      set(postalCode) {
+        this.$emit('input', postalCode);
       },
     },
   },
