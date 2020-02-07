@@ -361,7 +361,10 @@ export default {
         if (data.ok) {
           this.complete = true;
         } else if (data.needsInput) {
-          this.user = data.appUser;
+          Object.keys(data.appUser).forEach((key) => {
+            // Only overwrite if not already set.
+            if (!this.user[key]) this.user[key] = data.appUser[key];
+          });
           this.needsInput = true;
         }
         this.$emit('submit');
