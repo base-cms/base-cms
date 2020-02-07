@@ -57,7 +57,10 @@ module.exports = asyncRoute(async (req, res) => {
 
   if (!appUser) {
     // Create the user.
-    appUser = await identityX.client.mutate({ mutation: createUser, variables: { input: user } });
+    const { data: newUserData } = await identityX.client.mutate({
+      mutation: createUser, variables: { input: user },
+    });
+    appUser = newUserData.createAppUser;
   }
 
   const missingFields = getMissingFields({ ...appUser, ...user }, requiredFields);
