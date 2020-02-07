@@ -200,6 +200,10 @@ export default {
     loading: false,
     needsInput: false,
     user: {
+      givenName: '',
+      familyName: '',
+      organization: '',
+      organizationTitle: '',
       countryCode: '',
       regionCode: '',
       postalCode: '',
@@ -357,6 +361,7 @@ export default {
         if (data.ok) {
           this.complete = true;
         } else if (data.needsInput) {
+          this.user = data.mergedUser;
           this.needsInput = true;
         }
         this.$emit('submit');
