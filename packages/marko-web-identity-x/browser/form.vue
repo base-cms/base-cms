@@ -27,34 +27,41 @@
       <fieldset :disabled="loading">
         <div class="row">
           <div class="col-md-6">
-            <given-name v-model="user.givenName" />
+            <given-name v-model="user.givenName" :required="isFieldRequired('givenName')" />
           </div>
           <div class="col-md-6">
-            <family-name v-model="user.familyName" />
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-6">
-            <organization v-model="user.organization" />
-          </div>
-          <div class="col-md-6">
-            <organization-title v-model="user.organizationTitle" />
+            <family-name v-model="user.familyName" :required="isFieldRequired('familyName')" />
           </div>
         </div>
 
         <div class="row">
           <div class="col-md-6">
-            <country v-model="user.countryCode" />
+            <organization v-model="user.organization" :required="isFieldRequired('organization')" />
+          </div>
+          <div class="col-md-6">
+            <organization-title
+              v-model="user.organizationTitle"
+              :required="isFieldRequired('organizationTitle')"
+            />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <country v-model="user.countryCode" :required="isFieldRequired('countryCode')" />
           </div>
         </div>
 
         <div v-if="displayRegionField || displayPostalCodeField" class="row">
           <div v-if="displayRegionField" class="col-md-6">
-            <region v-model="user.regionCode" :country-code="user.countryCode" />
+            <region
+              v-model="user.regionCode"
+              :country-code="user.countryCode"
+              :required="isFieldRequired('regionCode')"
+            />
           </div>
           <div v-if="displayRegionField" class="col-md-6">
-            <postal-code v-model="user.postalCode" />
+            <postal-code v-model="user.postalCode" :required="isFieldRequired('postalCode')" />
           </div>
         </div>
 
@@ -160,9 +167,27 @@ export default {
       type: String,
       default: '/user/register',
     },
-    requiredFields: {
+    /**
+     * Determines which user fields/data are required by the backend.
+     * Will re-prompt users on login if these are missing.
+     */
+    requiredData: {
       type: Array,
       default: () => ['givenName', 'familyName', 'countryCode'],
+    },
+
+    /**
+     * Determines which fields are required on the form (client-side).
+     * The `email` field is always required.
+     *
+     * When generating the form, this field will also be merged with `this.requiredData`.
+     *
+     * The `regionCode` and `postalCode` fields will only display (and thereby be required)
+     * if/when a valid `countryCode` is selected.
+     */
+    requiredFields: {
+      type: Array,
+      default: () => ['regionCode', 'postalCode'],
     },
   },
 
@@ -258,6 +283,10 @@ export default {
     displayPostalCodeField() {
       return this.displayRegionField;
     },
+
+    requiredClientSideFields() {
+      return [...this.requiredData, ...this.requiredFields];
+    },
   },
 
   /**
@@ -295,19 +324,26 @@ export default {
     /**
      *
      */
+    isFieldRequired(name) {
+      return this.requiredClientSideFields.includes(name);
+    },
+
+    /**
+     *
+     */
     async handle() {
       this.error = null;
       this.loading = true;
       const {
         user,
-        requiredFields,
+        requiredData,
         redirectTo,
         authUrl,
       } = this;
       try {
         const res = await post('/login', {
           user,
-          requiredFields,
+          requiredFields: requiredData,
           redirectTo,
           authUrl,
         });
