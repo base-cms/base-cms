@@ -1,7 +1,7 @@
 <template>
   <label>
     <slot />
-    <span v-if="required" class="ml-1 text-danger">*</span>
+    <strong v-if="required" class="text-danger">*</strong>
   </label>
 </template>
 
