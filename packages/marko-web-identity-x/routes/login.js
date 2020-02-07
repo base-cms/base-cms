@@ -60,12 +60,10 @@ module.exports = asyncRoute(async (req, res) => {
     appUser = await identityX.client.mutate({ mutation: createUser, variables: { input: user } });
   }
 
-  const mergedUser = { ...appUser, ...user };
-  const missingFields = getMissingFields(mergedUser, requiredFields);
-
+  const missingFields = getMissingFields({ ...appUser, ...user }, requiredFields);
   if (missingFields.length) {
     // Prompt for additional fields.
-    res.json({ needsInput: true, mergedUser });
+    res.json({ needsInput: true, appUser });
   } else {
     // Send login link.
     await identityX.client.mutate({

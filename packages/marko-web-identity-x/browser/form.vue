@@ -361,7 +361,7 @@ export default {
         if (data.ok) {
           this.complete = true;
         } else if (data.needsInput) {
-          this.user = data.mergedUser;
+          this.user = data.appUser;
           this.needsInput = true;
         }
         this.$emit('submit');
