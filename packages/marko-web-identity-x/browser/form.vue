@@ -105,6 +105,9 @@ import FormError from './errors/form';
 import FeatureError from './errors/feature';
 
 export default {
+  /**
+   *
+   */
   components: {
     Email,
     GivenName,
@@ -115,6 +118,10 @@ export default {
     Region,
     PostalCode,
   },
+
+  /**
+   *
+   */
   props: {
     activeUser: {
       type: Object,
@@ -158,6 +165,10 @@ export default {
       default: () => ['givenName', 'familyName', 'countryCode'],
     },
   },
+
+  /**
+   *
+   */
   data: () => ({
     complete: false,
     error: null,
@@ -165,10 +176,21 @@ export default {
     needsInput: false,
     user: {},
   }),
+
+  /**
+   *
+   */
   computed: {
+    /**
+     *
+     */
     authUrl() {
       return `${window.location.origin}/${cleanPath(this.authEndpoint)}`;
     },
+
+    /**
+     *
+     */
     buttonLabel() {
       if (this.loading) return 'Loading...';
       if (this.needsInput) {
@@ -178,33 +200,69 @@ export default {
       }
       return 'Continue';
     },
+
+    /**
+     *
+     */
     hasActiveUser() {
       return this.activeUser && this.activeUser.email;
     },
+
+    /**
+     *
+     */
     isLoginContext() {
       return this.context === 'login';
     },
+
+    /**
+     *
+     */
     isRegisterContext() {
       return this.context === 'register';
     },
+
+    /**
+     *
+     */
     redirectTo() {
       const { pathname } = window.location;
       const endpoints = [this.loginEndpoint, this.registerEndpoint];
       return endpoints.includes(pathname) ? undefined : pathname;
     },
+
+    /**
+     *
+     */
     countryCode() {
       return this.user.countryCode;
     },
+
+    /**
+     *
+     */
     regionCode() {
       return this.user.regionCode;
     },
+
+    /**
+     *
+     */
     displayRegionField() {
       return regionCountryCodes.includes(this.countryCode);
     },
+
+    /**
+     *
+     */
     displayPostalCodeField() {
       return this.displayRegionField;
     },
   },
+
+  /**
+   *
+   */
   watch: {
     /**
      * Clear region code on country code change.
@@ -219,13 +277,24 @@ export default {
       this.user.postalCode = null;
     },
   },
+
+  /**
+   *
+   */
   mounted() {
     if (!cookiesEnabled()) {
       const error = new FeatureError('Your browser does not support cookies. Please enable cookies to use this feature.');
       this.error = error.message;
     }
   },
+
+  /**
+   *
+   */
   methods: {
+    /**
+     *
+     */
     async handle() {
       this.error = null;
       this.loading = true;
