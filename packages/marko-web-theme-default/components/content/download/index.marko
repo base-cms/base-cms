@@ -20,3 +20,6 @@ $ const { surveyId, surveyType } = getAsObject(content, "gating");
     </else>
   </marko-web-block>
 </if>
+<else-if(surveyId && surveyType === "wufoo")>
+  <default-theme-content-download-wufoo ...input.wufoo survey-id=surveyId />
+</else-if>
