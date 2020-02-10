@@ -8,6 +8,7 @@ module.exports = ({
   queryFragment,
   aliasResolver,
   redirectOnPathMismatch = true,
+  context: contextFn,
 } = {}) => asyncRoute(async (req, res) => {
   const alias = isFn(aliasResolver) ? await aliasResolver(req, res) : req.params.alias;
   const { apollo } = req;
@@ -27,5 +28,15 @@ module.exports = ({
     variables: { input: { alias: cleanedAlias } },
     resultField: 'websiteSectionAlias',
   });
-  return res.marko(template, { ...section, pageNode });
+
+  let context = {};
+  if (typeof contextFn === 'function') {
+    context = await contextFn({
+      req,
+      res,
+      section,
+      pageNode,
+    });
+  }
+  return res.marko(template, { ...section, pageNode, context });
 });
