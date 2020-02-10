@@ -8,6 +8,7 @@
       :title="title"
       :description="description"
       :media="media"
+      :print-url="printUrl"
       :show-action="showAction"
       @open="emitEvent('open', ...arguments)"
       @change="emitEvent('change', ...arguments)"
@@ -49,6 +50,15 @@ export default {
     providers: {
       type: Array,
       default: () => [],
+    },
+    /**
+     * A custom print landing page URL.
+     * If set, the print action will redirect the user as opposed
+     * to prompting the print dialog.
+     */
+    printUrl: {
+      type: String,
+      default: null,
     },
   },
 
