@@ -54,6 +54,7 @@ export default {
       const backgroundImage = `url("${backgroundImagePath}")`;
       const revealBackground = $('<a>', { href: adClickUrl, target, rel }).addClass('reveal-ad-background').css({ backgroundImage });
       $('body').css({ backgroundColor }).prepend(revealBackground);
+      $('body').addClass('with-reveal-ad');
     },
     displayAd(element) {
       if (!element) return;
