@@ -53,6 +53,15 @@ export default {
       type: Boolean,
       default: false,
     },
+    /**
+     * A custom print landing page URL.
+     * If set, the print action will redirect the user as opposed
+     * to prompting the print dialog.
+     */
+    printUrl: {
+      type: String,
+      default: null,
+    },
   },
 
   data: () => ({
@@ -114,7 +123,12 @@ export default {
       if (this.type === 'direct') {
         window.open(url, '_self');
       } else if (this.type === 'print') {
-        window.print();
+        const { printUrl } = this;
+        if (printUrl) {
+          window.open(printUrl, '_self');
+        } else {
+          window.print();
+        }
       } else {
         this.openPopup(url);
       }

@@ -5,8 +5,16 @@ $ const { req, requestOrigin } = out.global;
 $ const path = input.path || req.path;
 $ const url = input.url || `${out.global.requestOrigin}/${cleanPath(path)}`;
 
+$ let printUrl;
+$ if (input.printUrl) {
+  printUrl = input.printUrl;
+} else if (input.printPath) {
+  printUrl = `${out.global.requestOrigin}/${cleanPath(input.printPath)}`;
+}
+
 $ const props = {
   url,
+  printUrl,
   providers: input.providers,
   title: input.title,
   description: input.description,
