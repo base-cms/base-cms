@@ -3,11 +3,11 @@
     <!-- @todo determine when new fields should display -->
     <p>You are currently logged in as {{ activeUser.email }}.</p>
     <a
-      :href="activeEndpoints.logout"
+      :href="endpoints.logout"
       class="btn btn-primary"
       role="button"
     >
-      {{ activeButtonLabels.logout }}
+      {{ buttonLabels.logout }}
     </a>
   </div>
   <div v-else-if="complete">
@@ -30,7 +30,7 @@
           type="submit"
           class="btn btn-primary"
         >
-          {{ buttonLabel }}
+          {{ buttonLabels.submit }}
         </button>
       </fieldset>
       <p v-if="error" class="mt-3 text-danger">
@@ -48,20 +48,6 @@ import cookiesEnabled from './utils/cookies-enabled';
 import FormError from './errors/form';
 import FeatureError from './errors/feature';
 
-const defaults = {
-  endpoints: {
-    login: '/user/login',
-    logout: '/user/logout',
-    auth: '/user/authenticate',
-    register: '/user/register',
-  },
-  buttonLabels: {
-    login: 'Login',
-    logout: 'Logout',
-    register: 'Register',
-  },
-};
-
 export default {
   /**
    *
@@ -78,18 +64,16 @@ export default {
       type: Object,
       default: () => {},
     },
-    context: {
-      type: String,
-      validator: v => ['login', 'register'].includes(v),
-      required: true,
-    },
     endpoints: {
       type: Object,
-      default: () => defaults.endpoints,
+      required: true,
     },
     buttonLabels: {
       type: Object,
-      default: () => defaults.buttonLabels,
+      default: () => ({
+        submit: 'Login / Register',
+        logout: 'Logout',
+      }),
     },
   },
 
@@ -110,35 +94,13 @@ export default {
     /**
      *
      */
-    activeEndpoints() {
-      return { ...defaults.endpoints, ...this.endpoints };
-    },
-
-    /**
-     *
-     */
-    activeButtonLabels() {
-      return { ...defaults.buttonLabels, ...this.buttonLabels };
-    },
-
-    /**
-     *
-     */
     authUrl() {
-      return `${window.location.origin}/${cleanPath(this.activeEndpoints.auth)}`;
+      return `${window.location.origin}/${cleanPath(this.endpoints.authenticate)}`;
     },
 
     /**
      *
      */
-    buttonLabel() {
-      const { activeButtonLabels } = this;
-      if (this.loading) return 'Loading...';
-      if (this.isLoginContext) return activeButtonLabels.login;
-      if (this.registerContext) return activeButtonLabels.register;
-      return 'Submit';
-    },
-
     hasActiveUser() {
       return this.activeUser && this.activeUser.email;
     },
@@ -146,25 +108,9 @@ export default {
     /**
      *
      */
-    isLoginContext() {
-      return this.context === 'login';
-    },
-
-    /**
-     *
-     */
-    isRegisterContext() {
-      return this.context === 'register';
-    },
-
-    /**
-     *
-     */
     redirectTo() {
-      const { pathname } = window.location;
-      const { activeEndpoints } = this;
-      const endpoints = [activeEndpoints.login, activeEndpoints.register];
-      return endpoints.includes(pathname) ? undefined : pathname;
+      const { pathname, search, hash } = window.location;
+      return `${pathname}${search}${hash}`;
     },
   },
 

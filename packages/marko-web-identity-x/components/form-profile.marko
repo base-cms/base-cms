@@ -8,6 +8,7 @@ $ const { identityX } = req;
     requiredClientFields: identityX.config.getRequiredClientFields(),
     callToAction: input.callToAction,
     reloadPageOnSubmit: input.reloadPageOnSubmit,
+    endpoints: identityX.config.getEndpoints(),
   };
   <if(isEnabled)>
     <marko-web-browser-component name="IdentityXProfile" props=props />

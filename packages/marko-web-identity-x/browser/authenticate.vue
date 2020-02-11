@@ -7,6 +7,7 @@
   </div>
   <div v-else-if="!isProfileComplete">
     <profile-form
+      :endpoints="endpoints"
       :active-user="activeUser"
       :required-server-fields="requiredServerFields"
       :required-client-fields="requiredClientFields"
@@ -20,7 +21,7 @@
     <p>{{ error.message }}</p>
     <hr>
     <p class="mb-0">
-      Please try <a :href="loginEndpoint" class="alert-link">logging in</a> again.
+      Please try <a :href="endpoints.login" class="alert-link">logging in</a> again.
     </p>
   </div>
 </template>
@@ -49,9 +50,9 @@ export default {
       type: String,
       required: true,
     },
-    loginEndpoint: {
-      type: String,
-      default: '/user/login',
+    endpoints: {
+      type: Object,
+      required: true,
     },
     redirectTo: {
       type: String,

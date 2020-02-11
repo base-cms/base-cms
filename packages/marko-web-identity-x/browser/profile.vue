@@ -74,7 +74,7 @@
   </div>
   <div v-else>
     <p>You must be logged-in to modify your user profile.</p>
-    <login context="login" />
+    <login :endpoints="endpoints" />
   </div>
 </template>
 
@@ -111,6 +111,10 @@ export default {
    *
    */
   props: {
+    endpoints: {
+      type: Object,
+      required: true,
+    },
     activeUser: {
       type: Object,
       default: () => ({}),

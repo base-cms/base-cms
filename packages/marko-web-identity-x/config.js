@@ -13,10 +13,23 @@ class IdentityXConfiguration {
     if (!appId) throw new Error('Unable to configure IdentityX: no Application ID was provided.');
     this.appId = appId;
     this.options = options && typeof options === 'object' ? options : {};
+
+    this.endpointTypes = ['authenticate', 'login', 'logout', 'register', 'profile'];
   }
 
   getAppId() {
     return this.appId;
+  }
+
+  getEndpointFor(type) {
+    return this.get(`endpoints.${type}`, `/user/${type}`);
+  }
+
+  getEndpoints() {
+    return this.endpointTypes.reduce((o, type) => {
+      const endpoint = this.getEndpointFor(type);
+      return { ...o, [type]: endpoint };
+    }, {});
   }
 
   getRequiredServerFields() {
