@@ -9,6 +9,11 @@ query GetActiveAppContext {
       email
       givenName
       familyName
+      organization
+      organizationTitle
+      countryCode
+      regionCode
+      postalCode
     }
     mergedTeams {
       id
