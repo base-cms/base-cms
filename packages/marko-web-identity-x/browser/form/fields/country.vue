@@ -65,7 +65,7 @@ export default {
         return this.value || '';
       },
       set(countryCode) {
-        this.$emit('input', countryCode);
+        this.$emit('input', countryCode || null);
       },
     },
   },

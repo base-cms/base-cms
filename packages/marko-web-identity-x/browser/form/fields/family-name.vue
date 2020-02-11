@@ -53,10 +53,10 @@ export default {
   computed: {
     familyName: {
       get() {
-        return this.value;
+        return this.value || '';
       },
       set(familyName) {
-        this.$emit('input', familyName);
+        this.$emit('input', familyName || null);
       },
     },
   },

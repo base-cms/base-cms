@@ -49,10 +49,10 @@ export default {
   computed: {
     email: {
       get() {
-        return this.value;
+        return this.value || '';
       },
       set(email) {
-        this.$emit('input', email);
+        this.$emit('input', email || null);
       },
     },
   },

@@ -53,10 +53,10 @@ export default {
   computed: {
     postalCode: {
       get() {
-        return this.value;
+        return this.value || '';
       },
       set(postalCode) {
-        this.$emit('input', postalCode);
+        this.$emit('input', postalCode || null);
       },
     },
   },

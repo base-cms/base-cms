@@ -53,10 +53,10 @@ export default {
   computed: {
     organization: {
       get() {
-        return this.value;
+        return this.value || '';
       },
       set(organization) {
-        this.$emit('input', organization);
+        this.$emit('input', organization || null);
       },
     },
   },

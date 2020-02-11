@@ -70,7 +70,7 @@ export default {
         return this.value || '';
       },
       set(regionCode) {
-        this.$emit('input', regionCode);
+        this.$emit('input', regionCode || null);
       },
     },
     hasValidCountryCode() {
