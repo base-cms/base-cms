@@ -1,14 +1,23 @@
-const IdentityXAuthenticate = () => import(/* webpackChunkName: "identity-x-authenticate" */ './authenticate.vue');
-const IdentityXLogout = () => import(/* webpackChunkName: "identity-x-logout" */ './logout.vue');
-const IdentityXForm = () => import(/* webpackChunkName: "identity-x-form" */ './form.vue');
+const Authenticate = () => import(/* webpackChunkName: "identity-x-authenticate" */ './authenticate.vue');
+const Logout = () => import(/* webpackChunkName: "identity-x-logout" */ './logout.vue');
+const Login = () => import(/* webpackChunkName: "identity-x-login" */ './login.vue');
+const Form = () => import(/* webpackChunkName: "identity-x-form" */ './form.vue');
 
-export default (Browser, CustomFormComponent) => {
-  const FormComponent = CustomFormComponent || IdentityXForm;
+export default (Browser, {
+  CustomLoginComponent,
+  CustomFormComponent,
+} = {}) => {
+  const LoginComponent = CustomLoginComponent || Login;
+  const FormComponent = CustomFormComponent || Form;
+
   const { EventBus } = Browser;
-  Browser.register('IdentityXAuthenticate', IdentityXAuthenticate, {
+  Browser.register('IdentityXAuthenticate', Authenticate, {
     on: { action: (...args) => EventBus.$emit('identity-x-authenticate', ...args) },
   });
-  Browser.register('IdentityXLogout', IdentityXLogout, {
+  Browser.register('IdentityXLogin', LoginComponent, {
+    on: { action: (...args) => EventBus.$emit('identity-x-logout', ...args) },
+  });
+  Browser.register('IdentityXLogout', Logout, {
     on: { action: (...args) => EventBus.$emit('identity-x-logout', ...args) },
   });
   Browser.register('IdentityXForm', FormComponent, {
