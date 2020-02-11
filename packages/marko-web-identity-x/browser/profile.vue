@@ -6,13 +6,13 @@
         <div class="row">
           <div class="col-md-6">
             <given-name
-              v-model="activeUser.givenName"
+              v-model="user.givenName"
               :required="isFieldRequired('givenName')"
             />
           </div>
           <div class="col-md-6">
             <family-name
-              v-model="activeUser.familyName"
+              v-model="user.familyName"
               :required="isFieldRequired('familyName')"
             />
           </div>
@@ -21,13 +21,13 @@
         <div class="row">
           <div class="col-md-6">
             <organization
-              v-model="activeUser.organization"
+              v-model="user.organization"
               :required="isFieldRequired('organization')"
             />
           </div>
           <div class="col-md-6">
             <organization-title
-              v-model="activeUser.organizationTitle"
+              v-model="user.organizationTitle"
               :required="isFieldRequired('organizationTitle')"
             />
           </div>
@@ -36,7 +36,7 @@
         <div class="row">
           <div class="col-md-6">
             <country
-              v-model="activeUser.countryCode"
+              v-model="user.countryCode"
               :required="isFieldRequired('countryCode')"
             />
           </div>
@@ -45,22 +45,27 @@
         <div v-if="displayRegionField || displayPostalCodeField" class="row">
           <div v-if="displayRegionField" class="col-md-6">
             <region
-              v-model="activeUser.regionCode"
-              :country-code="activeUser.countryCode"
+              v-model="user.regionCode"
+              :country-code="user.countryCode"
               :required="isFieldRequired('regionCode')"
             />
           </div>
           <div v-if="displayPostalCodeField" class="col-md-6">
             <postal-code
-              v-model="activeUser.postalCode"
+              v-model="user.postalCode"
               :required="isFieldRequired('postalCode')"
             />
           </div>
         </div>
 
-        <button type="submit" class="btn btn-primary">
-          Submit
-        </button>
+        <div class="d-flex align-items-center">
+          <button type="submit" class="btn btn-primary">
+            Submit
+          </button>
+          <span v-if="didSubmit" class="ml-2">
+            Profile updated!
+          </span>
+        </div>
       </fieldset>
       <p v-if="error" class="mt-3 text-danger">
         An error occurred: {{ error }}
@@ -74,9 +79,10 @@
 </template>
 
 <script>
+import post from './utils/post';
 import cookiesEnabled from './utils/cookies-enabled';
 import regionCountryCodes from './utils/region-country-codes';
-import FeatureError from './errors/feature';
+
 import GivenName from './form/fields/given-name.vue';
 import FamilyName from './form/fields/family-name.vue';
 import Organization from './form/fields/organization.vue';
@@ -85,6 +91,9 @@ import Country from './form/fields/country.vue';
 import Region from './form/fields/region.vue';
 import PostalCode from './form/fields/postal-code.vue';
 import Login from './login.vue';
+
+import FeatureError from './errors/feature';
+import FormError from './errors/form';
 
 export default {
   components: {
@@ -104,7 +113,7 @@ export default {
   props: {
     activeUser: {
       type: Object,
-      default: () => {},
+      default: () => ({}),
     },
     callToAction: {
       type: String,
@@ -123,10 +132,14 @@ export default {
   /**
    *
    */
-  data: () => ({
-    error: null,
-    isLoading: false,
-  }),
+  data() {
+    return {
+      error: null,
+      isLoading: false,
+      didSubmit: false,
+      user: { ...this.activeUser },
+    };
+  },
 
   /**
    *
@@ -136,7 +149,7 @@ export default {
      *
      */
     hasActiveUser() {
-      return this.activeUser && this.activeUser.email;
+      return this.user && this.user.email;
     },
 
     /**
@@ -150,7 +163,9 @@ export default {
      *
      */
     countryCode() {
-      return this.activeUser.countryCode;
+      const { user } = this;
+      if (!user) return null;
+      return user.countryCode;
     },
 
     /**
@@ -180,7 +195,6 @@ export default {
     },
   },
 
-
   /**
    *
    */
@@ -208,12 +222,20 @@ export default {
     async handleSubmit() {
       this.error = null;
       this.isLoading = true;
+      this.didSubmit = false;
+      try {
+        const res = await post('/profile', this.user);
+        const data = await res.json();
+        if (!res.ok) throw new FormError(data.message, res.status);
 
-      alert('Do submit!');
-
-      this.$emit('submit');
-
-      this.isLoading = false;
+        this.user = data.user;
+        this.didSubmit = true;
+        this.$emit('submit');
+      } catch (e) {
+        this.error = e;
+      } finally {
+        this.isLoading = false;
+      }
     },
   },
 };
