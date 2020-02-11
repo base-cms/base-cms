@@ -7,19 +7,17 @@ class IdentityX {
   constructor({
     req,
     res,
-    appId,
     config,
-    linkConfig,
   } = {}) {
     this.req = req;
     this.res = res;
     this.token = tokenCookie.getFrom(req);
+    this.config = config;
     this.client = createClient({
       req,
       token: this.token,
-      appId,
+      appId: config.getAppId(),
       config,
-      linkConfig,
     });
   }
 
