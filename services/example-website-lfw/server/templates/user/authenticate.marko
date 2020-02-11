@@ -1,6 +1,7 @@
 import GAM from "../../../config/gam";
 
 $ const { config } = out.global;
+$ const description = `Login to ${config.website("name")}`;
 
 $ const type = "authenticate";
 <marko-web-default-page-layout type=type title="Authenticate">
@@ -15,6 +16,9 @@ $ const type = "authenticate";
       <@section>
         <div class="row">
           <div class="col">
+            <h1 class="page-wrapper__title">
+              ${description}
+            </h1>
             <marko-web-identity-x-form-authenticate />
           </div>
         </div>
