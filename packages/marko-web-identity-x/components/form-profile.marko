@@ -1,0 +1,14 @@
+$ const { req } = out.global;
+$ const { identityX } = req;
+
+<marko-web-identity-x-context|{ user, isEnabled }|>
+  $ const props = {
+    activeUser: user,
+    requiredServerFields: identityX.config.getRequiredServerFields(),
+    requiredClientFields: identityX.config.getRequiredClientFields(),
+    callToAction: input.callToAction,
+  };
+  <if(isEnabled)>
+    <marko-web-browser-component name="IdentityXProfile" props=props />
+  </if>
+</marko-web-identity-x-context>
