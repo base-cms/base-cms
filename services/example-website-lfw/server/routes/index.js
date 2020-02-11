@@ -5,9 +5,13 @@ const magazine = require('./magazine');
 const publishedContent = require('./published-content');
 const search = require('./search');
 const subscribe = require('./subscribe');
+const user = require('./user');
 const websiteSections = require('./website-section');
 
 module.exports = (app) => {
+  // User (IdentityX)
+  user(app);
+
   // Homepage
   home(app);
 
