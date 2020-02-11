@@ -3,11 +3,12 @@ import { getAsObject } from "@base-cms/object-path";
 import queryFragment from "../../api/fragments/content-list";
 import GAM from "../../../config/gam";
 
-$ const { site, req } = out.global;
+$ const { site, req, config } = out.global;
 $ const { id, type, pageNode } = data;
 
 $ const displayPrimaryImage = ["whitepaper", "media-gallery", "contact"].includes(type) ? false : true;
 $ const displayPublishedDate = ["event", "webinar", "contact"].includes(type) ? false : true;
+$ const requiresRegistration = req.query["enable-gate"] === "true";
 
 <marko-web-content-page-layout id=id type=type>
   <@head>
@@ -80,22 +81,63 @@ $ const displayPublishedDate = ["event", "webinar", "contact"].includes(type) ? 
                 providers=["email", "facebook", "linkedin", "twitter", "pinterest", "print"]
               />
 
-              <default-theme-content-contact-details obj=content />
-              <marko-web-content-body block-name=blockName obj=content />
-              <marko-web-content-sidebars block-name=blockName obj=content />
-              <if(type === "document")>
-                <default-theme-content-download obj=content>
-                  <@wufoo user-name=site.get("wufoo.userName") />
-                  <@link class="btn btn-lg btn-primary" />
-                </default-theme-content-download>
-              </if>
-              <if(type === "webinar")>
-                <default-theme-content-link-url
-                  obj=content
-                  label="Register/View"
-                  target="_blank"
-                />
-              </if>
+              <marko-web-identity-x-access|context| enabled=requiresRegistration>
+                $ const {
+                  canAccess,
+                  isLoggedIn,
+                  hasRequiredAccessLevel,
+                  requiresAccessLevel,
+                  requiresUserInput,
+                } = context;
+                <if(!canAccess)>
+                  <if(isLoggedIn && !hasRequiredAccessLevel)>
+                    $!{messages.loggedInNoAccess}
+                  </if>
+                  <else-if(!isLoggedIn && requiresAccessLevel)>
+                    $!{messages.loggedOutNoAccess}
+                  </else-if>
+                  <else-if(!isLoggedIn)>
+                    <marko-web-element tag="h5" name="title" block-name=blockName>
+                      Log in to view the full article
+                    </marko-web-element>
+
+                    <marko-web-element name="body" block-name=blockName>
+                      <p>Register on ${config.website("name")} and gain access to premium content, including this article and much more.</p>
+                      <p>To log in or register, begin by entering your email address below.</p>
+                    </marko-web-element>
+
+                    <marko-web-element name="form-wrapper" block-name=blockName>
+                      <marko-web-identity-x-form-register />
+                    </marko-web-element>
+                  </else-if>
+                </if>
+                <else-if(isLoggedIn && requiresUserInput)>
+                  <marko-web-element tag="h5" name="title" block-name=blockName>
+                    Complete profile to view full article
+                  </marko-web-element>
+                  <marko-web-element name="form-wrapper" block-name=blockName>
+                    <marko-web-identity-x-form-profile reload-page-on-submit=true />
+                  </marko-web-element>
+                </else-if>
+                <else>
+                  <default-theme-content-contact-details obj=content />
+                  <marko-web-content-body block-name=blockName obj=content />
+                  <marko-web-content-sidebars block-name=blockName obj=content />
+                  <if(type === "document")>
+                    <default-theme-content-download obj=content>
+                      <@wufoo user-name=site.get("wufoo.userName") />
+                      <@link class="btn btn-lg btn-primary" />
+                    </default-theme-content-download>
+                  </if>
+                  <if(type === "webinar")>
+                    <default-theme-content-link-url
+                      obj=content
+                      label="Register/View"
+                      target="_blank"
+                    />
+                  </if>
+                </else>
+              </marko-web-identity-x-access>
             </default-theme-page-contents>
             <aside class="col-lg-4 page-rail">
               <marko-web-gam-display-ad id="gpt-ad-rail1" />
