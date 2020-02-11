@@ -149,25 +149,3 @@ import IdentityX from '@base-cms/marko-web-identity-x/browser';
 +  CustomLoginComponent: MyLoginComponent,
 +});
 ```
-
-## Login Flow
-
-- User hits the login/form component.
-- If not logged in
-  - Prompt for email address
-  - On submit, display info about login link and send
-- If logged in
-  - If missing fields, prompt to complete
-  - Otherwise, display the "you are already logged in" message
-
-- When user hits auth route
-  - Load user
-  - If missing required fields, prompt the form
-    - On submit, finish the redirect
-    - The user can, optionally, ignore this form and navigate the site
-  - If not missing fields, continue the redirect.
-
-- When user hits a gate
-  - If not logged in, display the reg process
-  - If logged in but is missing fields, prompt the form to continue
-  - Else display the content
