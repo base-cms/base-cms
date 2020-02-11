@@ -27,7 +27,7 @@ module.exports = asyncRoute(async (req, res) => {
   const input = { token };
   const variables = { input };
   const { data = {} } = await identityX.client.mutate({ mutation: loginAppUser, variables });
-  const { token: authToken } = data.loginAppUser;
+  const { token: authToken, user } = data.loginAppUser;
   tokenCookie.setTo(res, authToken.value);
-  res.json({ ok: true });
+  res.json({ ok: true, user });
 });
