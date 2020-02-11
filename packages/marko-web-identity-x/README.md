@@ -9,7 +9,9 @@
 // your-site/config/identity-x.js
 const IdentityX = require('@base-cms/marko-web-identity-x/config');
 
-const config = new IdentityX('<MY-APPLICATION-ID>');
+const config = new IdentityX({
+  appId: '<MY-APPLICATION-ID>',
+});
 module.exports = config;
 ```
 
