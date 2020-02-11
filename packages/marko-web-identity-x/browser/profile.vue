@@ -63,7 +63,7 @@
             Submit
           </button>
           <span v-if="didSubmit" class="ml-2">
-            Profile updated!
+            {{ submitMessage }}
           </span>
         </div>
       </fieldset>
@@ -127,6 +127,10 @@ export default {
       type: Array,
       default: () => [],
     },
+    reloadPageOnSubmit: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   /**
@@ -136,6 +140,7 @@ export default {
     return {
       error: null,
       isLoading: false,
+      isReloadingPage: false,
       didSubmit: false,
       user: { ...this.activeUser },
     };
@@ -180,6 +185,12 @@ export default {
      */
     displayPostalCodeField() {
       return this.displayRegionField;
+    },
+
+    submitMessage() {
+      const message = 'Profile updated.';
+      if (this.isReloadingPage) return `${message} Reloading page...`;
+      return message;
     },
   },
 
@@ -231,6 +242,11 @@ export default {
         this.user = data.user;
         this.didSubmit = true;
         this.$emit('submit');
+
+        if (this.reloadPageOnSubmit) {
+          this.isReloadingPage = true;
+          window.location.reload(true);
+        }
       } catch (e) {
         this.error = e;
       } finally {

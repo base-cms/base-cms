@@ -26,6 +26,7 @@
   },
   "<marko-web-identity-x-form-profile>": {
     "template": "./form-profile.marko",
-    "@call-to-action": "string"
+    "@call-to-action": "string",
+    "@reload-page-on-submit": "boolean"
   }
 }
