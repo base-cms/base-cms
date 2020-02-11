@@ -1,19 +1,12 @@
 const gql = require('graphql-tag');
+const userFragment = require('../fragments/active-user');
 
 module.exports = gql`
 
 query GetActiveAppContext {
   activeAppContext {
     user {
-      id
-      email
-      givenName
-      familyName
-      organization
-      organizationTitle
-      countryCode
-      regionCode
-      postalCode
+      ...ActiveUserFragment
     }
     mergedTeams {
       id
@@ -28,5 +21,7 @@ query GetActiveAppContext {
     hasUser
   }
 }
+
+${userFragment}
 
 `;

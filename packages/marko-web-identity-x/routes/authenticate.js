@@ -1,6 +1,7 @@
 const gql = require('graphql-tag');
 const { asyncRoute } = require('@base-cms/utils');
 const tokenCookie = require('../utils/token-cookie');
+const userFragment = require('../api/fragments/active-user');
 
 const loginAppUser = gql`
   mutation LoginAppUser($input: LoginAppUserMutationInput!) {
@@ -9,8 +10,13 @@ const loginAppUser = gql`
         id
         value
       }
+      user {
+        ...ActiveUserFragment
+      }
     }
   }
+
+  ${userFragment}
 `;
 
 module.exports = asyncRoute(async (req, res) => {
