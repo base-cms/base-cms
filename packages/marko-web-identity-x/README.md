@@ -132,11 +132,13 @@ $ const { isRequired, accessLevels } = getAsObject(content, 'userRegistration');
 
 ## Customization
 
-The IdentityX form handles both login and registration based on a supplied `context` parameter. You can change the form by altering the component loader in your site's browser config to use your own Vue component:
+You can change the default IdentityX Vue components by passing them to the component loader in your site's browser config:
 ```diff
 import IdentityX from '@base-cms/marko-web-identity-x/browser';
-+ import MyFormComponent from './my-form-component.vue';
++ import MyLoginComponent from './my-login-component.vue';
 
 -IdentityX(Browser);
-+IdentityX(Browser, MyFormComponent);
++IdentityX(Browser, {
++  CustomLoginComponent: MyLoginComponent,
++});
 ```
