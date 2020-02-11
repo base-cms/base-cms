@@ -3,6 +3,8 @@ const getActiveContext = require('./api/queries/get-active-context');
 const checkContentAccess = require('./api/queries/check-content-access');
 const tokenCookie = require('./utils/token-cookie');
 
+const isEmpty = v => v == null || v === '';
+
 class IdentityX {
   constructor({
     req,
@@ -32,7 +34,17 @@ class IdentityX {
   async checkContentAccess(input) {
     const variables = { input };
     const { data = {} } = await this.client.query({ query: checkContentAccess, variables });
-    return data.checkContentAccess || {};
+    const access = data.checkContentAccess || {};
+    access.requiresUserInput = false;
+
+    const requiredFields = this.config.getRequiredServerFields();
+    if (access.isLoggedIn && requiredFields.length) {
+      // Check if the user requires additonal input.
+      const { user } = await this.loadActiveContext();
+      access.requiresUserInput = user ? requiredFields.some(key => isEmpty(user[key])) : false;
+    }
+    console.log(access);
+    return access;
   }
 }
 
