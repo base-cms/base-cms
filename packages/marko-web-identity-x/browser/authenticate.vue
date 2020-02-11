@@ -5,7 +5,7 @@
   <div v-else-if="isLoading">
     <p>Logging in...</p>
   </div>
-  <div v-else-if="!isProfileComplete">
+  <div v-else-if="showProfileForm">
     <profile-form
       :endpoints="endpoints"
       :active-user="activeUser"
@@ -97,11 +97,19 @@ export default {
       return Boolean(this.requiredFields.length);
     },
 
+    isUserRedirect() {
+      const { redirectTo } = this;
+      const { login, register } = this.endpoints;
+      if (redirectTo.indexOf(login) === 0) return true;
+      if (redirectTo.indexOf(register) === 0) return true;
+      return false;
+    },
+
     /**
      *
      */
-    canRedirect() {
-      return !this.requiredFields || this.isProfileComplete;
+    showProfileForm() {
+      return !this.hasRequiredFields || (this.isUserRedirect && !this.isProfileComplete);
     },
   },
 
@@ -140,9 +148,7 @@ export default {
           : true;
 
         this.$emit('authenticate');
-        if (this.canRedirect) {
-          this.redirect();
-        }
+        if (!this.showProfileForm) this.redirect();
       } catch (e) {
         if (/no token was found/i.test(e.message)) {
           e.message = 'This login link has either expired or was already used.';
@@ -158,7 +164,8 @@ export default {
      */
     redirect() {
       this.isRedirecting = true;
-      redirect(this.redirectTo);
+      const redirectTo = this.isUserRedirect ? '/' : this.redirectTo;
+      redirect(redirectTo);
     },
   },
 };
