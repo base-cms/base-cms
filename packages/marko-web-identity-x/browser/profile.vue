@@ -21,14 +21,39 @@
         <div class="row">
           <div class="col-md-6">
             <organization
-              v-model="user.organization"
+              v-model="activeUser.organization"
               :required="isFieldRequired('organization')"
             />
           </div>
           <div class="col-md-6">
             <organization-title
-              v-model="user.organizationTitle"
+              v-model="activeUser.organizationTitle"
               :required="isFieldRequired('organizationTitle')"
+            />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <country
+              v-model="activeUser.countryCode"
+              :required="isFieldRequired('countryCode')"
+            />
+          </div>
+        </div>
+
+        <div v-if="displayRegionField || displayPostalCodeField" class="row">
+          <div v-if="displayRegionField" class="col-md-6">
+            <region
+              v-model="activeUser.regionCode"
+              :country-code="activeUser.countryCode"
+              :required="isFieldRequired('regionCode')"
+            />
+          </div>
+          <div v-if="displayPostalCodeField" class="col-md-6">
+            <postal-code
+              v-model="activeUser.postalCode"
+              :required="isFieldRequired('postalCode')"
             />
           </div>
         </div>
@@ -49,9 +74,27 @@
 
 <script>
 import cookiesEnabled from './utils/cookies-enabled';
+import regionCountryCodes from './utils/region-country-codes';
 import FeatureError from './errors/feature';
+import GivenName from './form/fields/given-name.vue';
+import FamilyName from './form/fields/family-name.vue';
+import Organization from './form/fields/organization.vue';
+import OrganizationTitle from './form/fields/organization-title.vue';
+import Country from './form/fields/country.vue';
+import Region from './form/fields/region.vue';
+import PostalCode from './form/fields/postal-code.vue';
 
 export default {
+  components: {
+    GivenName,
+    FamilyName,
+    Organization,
+    OrganizationTitle,
+    Country,
+    Region,
+    PostalCode,
+  },
+
   /**
    *
    */
@@ -99,7 +142,41 @@ export default {
     requiredFields() {
       return [...this.requiredServerFields, ...this.requiredClientFields];
     },
+
+    /**
+     *
+     */
+    countryCode() {
+      return this.activeUser.countryCode;
+    },
+
+    /**
+     *
+     */
+    displayRegionField() {
+      return regionCountryCodes.includes(this.countryCode);
+    },
+
+    /**
+     *
+     */
+    displayPostalCodeField() {
+      return this.displayRegionField;
+    },
   },
+
+  /**
+   *
+   */
+  watch: {
+    /**
+     * Clear region code on country code change.
+     */
+    countryCode() {
+      this.user.regionCode = null;
+    },
+  },
+
 
   /**
    *
@@ -130,6 +207,8 @@ export default {
       this.isLoading = true;
 
       alert('Do submit!');
+
+      this.$emit('submit');
 
       this.isLoading = false;
     },
