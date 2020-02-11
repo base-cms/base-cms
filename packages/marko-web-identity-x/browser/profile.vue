@@ -68,7 +68,8 @@
     </form>
   </div>
   <div v-else>
-    <p>You must be logged-in.</p>
+    <p>You must be logged-in to modify your user profile.</p>
+    <login context="login" />
   </div>
 </template>
 
@@ -83,6 +84,7 @@ import OrganizationTitle from './form/fields/organization-title.vue';
 import Country from './form/fields/country.vue';
 import Region from './form/fields/region.vue';
 import PostalCode from './form/fields/postal-code.vue';
+import Login from './login.vue';
 
 export default {
   components: {
@@ -93,6 +95,7 @@ export default {
     Country,
     Region,
     PostalCode,
+    Login,
   },
 
   /**
