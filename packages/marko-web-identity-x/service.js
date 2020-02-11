@@ -43,7 +43,6 @@ class IdentityX {
       const { user } = await this.loadActiveContext();
       access.requiresUserInput = user ? requiredFields.some(key => isEmpty(user[key])) : false;
     }
-    console.log(access);
     return access;
   }
 }
