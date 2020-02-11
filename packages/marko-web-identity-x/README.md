@@ -24,6 +24,7 @@ const authenticate = require('../templates/user/authenticate');
 const login = require('../templates/user/login');
 const logout = require('../templates/user/logout');
 const register = require('../templates/user/register');
+const profile = require('../templates/user/profile');
 
 module.exports = (app) => {
   IdentityX(app, IdentityXConfig);
@@ -43,6 +44,10 @@ module.exports = (app) => {
   app.get('/user/register', (req, res) => {
     res.marko(register);
   });
+
+  app.get('/user/profile', (req, res) => {
+    res.marko(profile);
+  });
 };
 ```
 
@@ -57,7 +62,7 @@ module.exports = (app) => {
 };
 ```
 
-5. Create `login`, `logout`, `authenticate`, and `register` templates. These templates must include the relevant `<marko-web-identity-x-form-...>` component.
+5. Create `login`, `logout`, `authenticate`, `register` and `profile` templates. These templates must include the relevant `<marko-web-identity-x-form-...>` component.
 ```marko
 <marko-web-default-page-layout>
   <@page>
@@ -86,6 +91,8 @@ Include the `<marko-web-identity-x-form-login>` component to display the login f
 Include the `<marko-web-identity-x-form-register>` component to display the register form.
 
 Include the `<marko-web-identity-x-form-logout>` component to display the logout form.
+
+Include the `<marko-web-identity-x-form-profile>` component to display the user profile form.
 
 Include the `<marko-web-identity-x-context>` component where you'd like access to IdentityX context.
 ```marko
@@ -142,3 +149,25 @@ import IdentityX from '@base-cms/marko-web-identity-x/browser';
 +  CustomLoginComponent: MyLoginComponent,
 +});
 ```
+
+## Login Flow
+
+- User hits the login/form component.
+- If not logged in
+  - Prompt for email address
+  - On submit, display info about login link and send
+- If logged in
+  - If missing fields, prompt to complete
+  - Otherwise, display the "you are already logged in" message
+
+- When user hits auth route
+  - Load user
+  - If missing required fields, prompt the form
+    - On submit, finish the redirect
+    - The user can, optionally, ignore this form and navigate the site
+  - If not missing fields, continue the redirect.
+
+- When user hits a gate
+  - If not logged in, display the reg process
+  - If logged in but is missing fields, prompt the form to continue
+  - Else display the content
