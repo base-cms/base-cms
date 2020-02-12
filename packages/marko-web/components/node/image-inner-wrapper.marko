@@ -1,4 +1,4 @@
-import { get } from "@base-cms/object-path";
+import { get, getAsObject } from "@base-cms/object-path";
 import imageValues from "./utils/image-values";
 import imageHeight from "./utils/image-height";
 
@@ -11,7 +11,7 @@ $ const {
   isLogo,
   lazyload,
   imageAttrs,
-} =  input;
+} = input;
 
 $ const usePlaceholder = input.usePlaceholder == null ? true : input.usePlaceholder;
 $ const hasImage = Boolean(src);
@@ -48,7 +48,8 @@ $ const imageInput = {
 
 <if(hasImage || usePlaceholder)>
   <if(hasLink)>
-    <marko-web-link ...input.link attrs=input.attrs class=classNames>
+    $ const linkAttrs = { ...input.attrs, ...getAsObject(input, "link.attrs") };
+    <marko-web-link ...input.link attrs=linkAttrs class=classNames>
       <marko-web-node-image ...imageInput />
     </marko-web-link>
   </if>
