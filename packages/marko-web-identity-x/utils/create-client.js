@@ -30,7 +30,7 @@ module.exports = ({
     ...rootConfig,
     link: createHttpLink({
       ...linkConfig,
-      uri: 'http://host.docker.internal:12001',
+      uri: process.env.IDENTITYX_GRAPHQL_URI || 'https://identity-x.io/graphql',
       fetch,
       headers,
     }),
