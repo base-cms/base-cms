@@ -88,6 +88,7 @@ $ const requiresRegistration = req.query["enable-gate"] === "true";
                   hasRequiredAccessLevel,
                   requiresAccessLevel,
                   requiresUserInput,
+                  messages,
                 } = context;
                 <if(!canAccess)>
                   <if(isLoggedIn && !hasRequiredAccessLevel)>

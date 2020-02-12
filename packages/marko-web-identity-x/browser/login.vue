@@ -19,7 +19,7 @@
     <p>
       Note: please check your spam/junk folders.
       If you do not receive this email, your firewall or ISP has likely blocked it.
-      Please add noreply@identity-x.base-cms.io to your whitelist and try registering again.
+      Please add noreply@identity-x.io to your whitelist and try registering again.
     </p>
   </div>
   <div v-else>
