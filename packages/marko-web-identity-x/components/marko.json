@@ -23,5 +23,10 @@
   },
   "<marko-web-identity-x-form-register>": {
     "template": "./form-register.marko"
+  },
+  "<marko-web-identity-x-form-profile>": {
+    "template": "./form-profile.marko",
+    "@call-to-action": "string",
+    "@reload-page-on-submit": "boolean"
   }
 }

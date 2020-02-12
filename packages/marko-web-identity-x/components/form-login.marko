@@ -1,3 +1,12 @@
-<marko-web-identity-x-context|{ user }|>
-  <marko-web-browser-component name="IdentityXForm" props={ activeUser: user, context: "login" } />
+$ const { req } = out.global;
+$ const { identityX } = req;
+
+<marko-web-identity-x-context|{ user, isEnabled }|>
+  $ const props = {
+    activeUser: user,
+    endpoints: identityX.config.getEndpoints(),
+  };
+  <if(isEnabled)>
+    <marko-web-browser-component name="IdentityXLogin" props=props />
+  </if>
 </marko-web-identity-x-context>

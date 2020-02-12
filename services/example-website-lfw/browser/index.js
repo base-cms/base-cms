@@ -7,6 +7,7 @@ import RevealAd from '@base-cms/marko-web-reveal-ad/browser';
 import SocialSharing from '@base-cms/marko-web-social-sharing/browser';
 import PhotoSwipe from '@base-cms/marko-web-photoswipe/browser';
 import Leaders from '@base-cms/marko-web-leaders/browser';
+import IdentityX from '@base-cms/marko-web-identity-x/browser';
 
 DefaultTheme(Browser);
 GTM(Browser);
@@ -16,5 +17,6 @@ RevealAd(Browser);
 SocialSharing(Browser);
 PhotoSwipe(Browser);
 Leaders(Browser);
+IdentityX(Browser);
 
 export default Browser;

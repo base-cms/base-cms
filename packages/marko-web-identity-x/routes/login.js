@@ -2,90 +2,56 @@ const gql = require('graphql-tag');
 const { asyncRoute } = require('@base-cms/utils');
 
 const query = gql`
-  query AppUser($input: AppUserQueryInput!) {
-    appUser(input: $input) {
+  query LoginCheckAppUser($email: String!) {
+    appUser(input: { email: $email }) {
       id
       email
-      givenName
-      familyName
-      organization
-      organizationTitle
-      countryCode
-      regionCode
-      postalCode
     }
   }
 `;
 
 const createUser = gql`
-  mutation CreateAppUser($input: CreateAppUserMutationInput!) {
-    createAppUser(input: $input) {
+  mutation LoginCreateAppUser($email: String!) {
+    createAppUser(input: { email: $email }) {
       id
       email
-      givenName
-      familyName
-      organization
-      organizationTitle
-      countryCode
-      regionCode
-      postalCode
     }
   }
 `;
 
 const sendLoginLink = gql`
-  mutation SendLoginLink($input: SendAppUserLoginLinkMutationInput!) {
+  mutation LoginSendLoginLink($input: SendAppUserLoginLinkMutationInput!) {
     sendAppUserLoginLink(input: $input)
   }
 `;
 
-const getMissingFields = (user, requiredFields) => requiredFields.filter(field => !user[field]);
-
 module.exports = asyncRoute(async (req, res) => {
   const { identityX, body } = req;
-  // @todo this could come from the MW config??
   const {
-    user,
+    email,
     authUrl,
-    requiredFields = [],
     redirectTo,
   } = body;
-  const input = { email: user.email };
-  const variables = { input };
+  const variables = { email };
   const { data } = await identityX.client.query({ query, variables });
   let { appUser } = data;
 
   if (!appUser) {
     // Create the user.
-    const { data: newUserData } = await identityX.client.mutate({
-      mutation: createUser, variables: { input: user },
-    });
-    appUser = newUserData.createAppUser;
+    const { data: newUser } = await identityX.client.mutate({ mutation: createUser, variables });
+    appUser = newUser.createAppUser;
   }
 
-  const mergedUser = { ...appUser };
-  Object.keys(user).forEach((key) => {
-    // Only overwrite if not already set.
-    if (!mergedUser[key]) mergedUser[key] = user[key];
-  });
-
-  const missingFields = getMissingFields(mergedUser, requiredFields);
-  if (missingFields.length) {
-    // Prompt for additional fields.
-    res.json({ needsInput: true, appUser: mergedUser });
-  } else {
-    // Send login link.
-    await identityX.client.mutate({
-      mutation: sendLoginLink,
-      variables: {
-        input: {
-          email: user.email,
-          authUrl,
-          redirectTo,
-          fields: user,
-        },
+  // Send login link.
+  await identityX.client.mutate({
+    mutation: sendLoginLink,
+    variables: {
+      input: {
+        email: appUser.email,
+        authUrl,
+        redirectTo,
       },
-    });
-    res.json({ ok: true });
-  }
+    },
+  });
+  res.json({ ok: true });
 });

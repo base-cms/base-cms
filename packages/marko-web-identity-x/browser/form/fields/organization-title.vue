@@ -53,10 +53,10 @@ export default {
   computed: {
     organizationTitle: {
       get() {
-        return this.value;
+        return this.value || '';
       },
       set(organizationTitle) {
-        this.$emit('input', organizationTitle);
+        this.$emit('input', organizationTitle || null);
       },
     },
   },

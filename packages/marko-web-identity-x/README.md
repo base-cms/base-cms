@@ -9,7 +9,9 @@
 // your-site/config/identity-x.js
 const IdentityX = require('@base-cms/marko-web-identity-x/config');
 
-const config = new IdentityX('<MY-APPLICATION-ID>');
+const config = new IdentityX({
+  appId: '<MY-APPLICATION-ID>',
+});
 module.exports = config;
 ```
 
@@ -17,29 +19,34 @@ module.exports = config;
 ```js
 // your-site/server/routes/identity-x.js
 const IdentityX = require('@base-cms/marko-web-identity-x');
-const IdentityXConfig = require('../../config/identity-x');
+const config = require('../../config/identity-x');
 const authenticate = require('../templates/user/authenticate');
 const login = require('../templates/user/login');
 const logout = require('../templates/user/logout');
 const register = require('../templates/user/register');
+const profile = require('../templates/user/profile');
 
 module.exports = (app) => {
-  IdentityX(app, IdentityXConfig);
+  IdentityX(app, config);
 
-  app.get('/user/authenticate', (req, res) => {
+  app.get(config.getEndpointFor('authenticate'), (req, res) => {
     res.marko(authenticate);
   });
 
-  app.get('/user/login', (req, res) => {
+  app.get(config.getEndpointFor('login'), (req, res) => {
     res.marko(login);
   });
 
-  app.get('/user/logout', (req, res) => {
+  app.get(config.getEndpointFor('logout'), (req, res) => {
     res.marko(logout);
   });
 
-  app.get('/user/register', (req, res) => {
+  app.get(config.getEndpointFor('register'), (req, res) => {
     res.marko(register);
+  });
+
+  app.get(config.getEndpointFor('profile'), (req, res) => {
+    res.marko(profile);
   });
 };
 ```
@@ -55,7 +62,7 @@ module.exports = (app) => {
 };
 ```
 
-5. Create `login`, `logout`, `authenticate`, and `register` templates. These templates must include the relevant `<marko-web-identity-x-form-...>` component.
+5. Create `login`, `logout`, `authenticate`, `register` and `profile` templates. These templates must include the relevant `<marko-web-identity-x-form-...>` component.
 ```marko
 <marko-web-default-page-layout>
   <@page>
@@ -84,6 +91,8 @@ Include the `<marko-web-identity-x-form-login>` component to display the login f
 Include the `<marko-web-identity-x-form-register>` component to display the register form.
 
 Include the `<marko-web-identity-x-form-logout>` component to display the logout form.
+
+Include the `<marko-web-identity-x-form-profile>` component to display the user profile form.
 
 Include the `<marko-web-identity-x-context>` component where you'd like access to IdentityX context.
 ```marko
@@ -130,11 +139,13 @@ $ const { isRequired, accessLevels } = getAsObject(content, 'userRegistration');
 
 ## Customization
 
-The IdentityX form handles both login and registration based on a supplied `context` parameter. You can change the form by altering the component loader in your site's browser config to use your own Vue component:
+You can change the default IdentityX Vue components by passing them to the component loader in your site's browser config:
 ```diff
 import IdentityX from '@base-cms/marko-web-identity-x/browser';
-+ import MyFormComponent from './my-form-component.vue';
++ import MyLoginComponent from './my-login-component.vue';
 
 -IdentityX(Browser);
-+IdentityX(Browser, MyFormComponent);
++IdentityX(Browser, {
++  CustomLoginComponent: MyLoginComponent,
++});
 ```

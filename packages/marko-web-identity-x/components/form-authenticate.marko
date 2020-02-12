@@ -1,3 +1,15 @@
 $ const { req } = out.global;
+$ const { identityX, query } = req;
+$ const isEnabled = Boolean(req.identityX);
 
-<marko-web-browser-component name="IdentityXAuthenticate" props=req.query />
+$ const props = {
+  token: query.token,
+  redirectTo: query.redirectTo,
+  requiredServerFields: identityX.config.getRequiredServerFields(),
+  requiredClientFields: identityX.config.getRequiredClientFields(),
+  endpoints: identityX.config.getEndpoints(),
+};
+
+<if(isEnabled)>
+  <marko-web-browser-component name="IdentityXAuthenticate" props=props />
+</if>

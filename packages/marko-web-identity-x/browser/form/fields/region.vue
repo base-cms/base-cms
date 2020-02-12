@@ -10,7 +10,7 @@
       :disabled="disabled"
       :required="required"
       class="custom-select"
-      autocomplete="address-level1"
+      autocomplete="region"
     >
       <option disabled value="">
         Select state/region...
@@ -70,7 +70,7 @@ export default {
         return this.value || '';
       },
       set(regionCode) {
-        this.$emit('input', regionCode);
+        this.$emit('input', regionCode || null);
       },
     },
     hasValidCountryCode() {

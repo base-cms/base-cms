@@ -53,10 +53,10 @@ export default {
   computed: {
     givenName: {
       get() {
-        return this.value;
+        return this.value || '';
       },
       set(givenName) {
-        this.$emit('input', givenName);
+        this.$emit('input', givenName || null);
       },
     },
   },

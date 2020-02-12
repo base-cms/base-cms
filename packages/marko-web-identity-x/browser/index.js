@@ -1,17 +1,30 @@
-const IdentityXAuthenticate = () => import(/* webpackChunkName: "identity-x-authenticate" */ './authenticate.vue');
-const IdentityXLogout = () => import(/* webpackChunkName: "identity-x-logout" */ './logout.vue');
-const IdentityXForm = () => import(/* webpackChunkName: "identity-x-form" */ './form.vue');
+const Authenticate = () => import(/* webpackChunkName: "identity-x-authenticate" */ './authenticate.vue');
+const Logout = () => import(/* webpackChunkName: "identity-x-logout" */ './logout.vue');
+const Login = () => import(/* webpackChunkName: "identity-x-login" */ './login.vue');
+const Profile = () => import(/* webpackChunkName: "identity-x-profile" */ './profile.vue');
 
-export default (Browser, CustomFormComponent) => {
-  const FormComponent = CustomFormComponent || IdentityXForm;
+export default (Browser, {
+  CustomLoginComponent,
+  CustomAuthenticateComponent,
+  CustomLogoutComponent,
+  CustomProfileComponent,
+} = {}) => {
+  const LoginComponent = CustomLoginComponent || Login;
+  const AuthenticateComponent = CustomAuthenticateComponent || Authenticate;
+  const LogoutComponent = CustomLogoutComponent || Logout;
+  const ProfileComponent = CustomProfileComponent || Profile;
+
   const { EventBus } = Browser;
-  Browser.register('IdentityXAuthenticate', IdentityXAuthenticate, {
+  Browser.register('IdentityXAuthenticate', AuthenticateComponent, {
     on: { action: (...args) => EventBus.$emit('identity-x-authenticate', ...args) },
   });
-  Browser.register('IdentityXLogout', IdentityXLogout, {
+  Browser.register('IdentityXLogin', LoginComponent, {
     on: { action: (...args) => EventBus.$emit('identity-x-logout', ...args) },
   });
-  Browser.register('IdentityXForm', FormComponent, {
-    on: { action: (...args) => EventBus.$emit('identity-x-submit', ...args) },
+  Browser.register('IdentityXLogout', LogoutComponent, {
+    on: { action: (...args) => EventBus.$emit('identity-x-logout', ...args) },
+  });
+  Browser.register('IdentityXProfile', ProfileComponent, {
+    on: { action: (...args) => EventBus.$emit('identity-x-profile', ...args) },
   });
 };
