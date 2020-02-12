@@ -5,20 +5,26 @@ const Profile = () => import(/* webpackChunkName: "identity-x-profile" */ './pro
 
 export default (Browser, {
   CustomLoginComponent,
+  CustomAuthenticateComponent,
+  CustomLogoutComponent,
+  CustomProfileComponent,
 } = {}) => {
   const LoginComponent = CustomLoginComponent || Login;
+  const AuthenticateComponent = CustomAuthenticateComponent || Authenticate;
+  const LogoutComponent = CustomLogoutComponent || Logout;
+  const ProfileComponent = CustomProfileComponent || Profile;
 
   const { EventBus } = Browser;
-  Browser.register('IdentityXAuthenticate', Authenticate, {
+  Browser.register('IdentityXAuthenticate', AuthenticateComponent, {
     on: { action: (...args) => EventBus.$emit('identity-x-authenticate', ...args) },
   });
   Browser.register('IdentityXLogin', LoginComponent, {
     on: { action: (...args) => EventBus.$emit('identity-x-logout', ...args) },
   });
-  Browser.register('IdentityXLogout', Logout, {
+  Browser.register('IdentityXLogout', LogoutComponent, {
     on: { action: (...args) => EventBus.$emit('identity-x-logout', ...args) },
   });
-  Browser.register('IdentityXProfile', Profile, {
+  Browser.register('IdentityXProfile', ProfileComponent, {
     on: { action: (...args) => EventBus.$emit('identity-x-profile', ...args) },
   });
 };
