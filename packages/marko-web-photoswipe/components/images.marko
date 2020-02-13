@@ -48,7 +48,7 @@ $ const items = images.map((image) => {
   };
   item.w = imageOptions.w;
   item.h = imageOptions.h;
-  item.src = buildImgixUrl(image.src, imageOptions);
+  item.src = buildImgixUrl(image.src, imageOptions, undefined, image.isLogo);
   return item;
 });
 
