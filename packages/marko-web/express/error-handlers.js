@@ -3,6 +3,7 @@ const createError = require('http-errors');
 const errorTemplate = require('../components/document/components/error');
 const getRedirect = require('./get-redirect');
 const findContentAlias = require('./find-content-alias');
+const applyQueryParams = require('../utils/apply-query-params');
 
 const { isArray } = Array;
 
@@ -72,8 +73,8 @@ module.exports = (app, { template, redirectHandler }) => {
     if (statusCode === 404) {
       findContentAlias({ req }).then((redirectTo) => {
         if (redirectTo) {
-          res.set('x-redirected-from', req.path);
-          res.redirect(301, redirectTo);
+          const { query } = req;
+          res.redirect(301, applyQueryParams({ path: redirectTo, query }));
         } else {
           redirectOrError(opts);
         }
