@@ -1,5 +1,8 @@
 const basedb = require('./basedb')('test');
 const { log } = require('./output');
+const pkg = require('../package.json');
+
+const pingWriteArgs = [{ _id: pkg.name }, { $set: { last: new Date() } }, { upsert: true }];
 
 const start = (name, promise, url) => {
   log(`> Connecting to ${name}...`);
@@ -27,7 +30,11 @@ module.exports = {
   stop: () => Promise.all([
     stop('BaseDB', basedb.client.close()),
   ]),
-  ping: () => Promise.all([
-    ping('BaseDB', basedb.client.command({ ping: 1 })),
-  ]),
+  ping: async () => {
+    const collection = await basedb.client.collection('platform', 'pings');
+    return Promise.all([
+      ping('BaseDB', basedb.client.command({ ping: 1 })),
+      ping('BaseDB write', collection.updateOne(...pingWriteArgs)),
+    ]);
+  },
 };
