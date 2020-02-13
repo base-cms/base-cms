@@ -1,3 +1,4 @@
+require('./newrelic');
 const http = require('http');
 const { createTerminus } = require('@godaddy/terminus');
 const newrelic = require('./newrelic');
