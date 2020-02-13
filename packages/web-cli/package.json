@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/web-cli",
-  "version": "1.20.1",
+  "version": "1.20.3",
   "description": "Command line interface for BaseCMS+Marko websites",
   "author": "Jacob Bare <jacob@limit0.io>",
   "main": "src/index.js",
@@ -21,7 +21,7 @@
     "@babel/runtime-corejs2": "^7.6.0",
     "@base-cms/cli-utils": "^1.13.0",
     "@base-cms/express-apollo": "^1.9.0",
-    "@base-cms/marko-web": "^1.20.1",
+    "@base-cms/marko-web": "^1.20.3",
     "autoprefixer": "^9.6.1",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
