@@ -19,7 +19,10 @@ const run = async () => {
     healthChecks: { '/_health': () => services.ping() },
     onSignal: () => {
       log('> Cleaning up...');
-      return services.stop().catch(e => log('> CLEANUP ERRORS:', e));
+      return services.stop().catch((e) => {
+        newrelic.noticeError(e);
+        log('> CLEANUP ERRORS:', e);
+      });
     },
     onShutdown: () => log('> Cleanup finished. Shutting down.'),
   });
