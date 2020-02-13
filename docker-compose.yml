@@ -4,7 +4,7 @@ x-env-defaults: &env
   YARN_CACHE_FOLDER: /.yarn-cache
   NODE_ENV: development
   TERMINUS_TIMEOUT: 1000
-  TERMINUS_BEFORE_SHUTDOWN_TIMEOUT: 0
+  TERMINUS_SHUTDOWN_DELAY: 0
 
 x-env-newrelic: &env-newrelic
   NEW_RELIC_ENABLED: ${NEW_RELIC_ENABLED-0}

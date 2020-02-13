@@ -24,5 +24,5 @@ module.exports = cleanEnv(process.env, {
   TOKEN_SECRET: nonemptystr({ desc: 'The token signing secret.' }),
   TOKEN_NAMESPACE: nonemptystr({ desc: 'The UUIDv4 namespace' }),
   TERMINUS_TIMEOUT: num({ desc: 'Number of milliseconds before forceful exiting', default: 30000 }),
-  TERMINUS_BEFORE_SHUTDOWN_TIMEOUT: num({ desc: 'Number of milliseconds before the HTTP server starts its shutdown', default: 5000 }),
+  TERMINUS_SHUTDOWN_DELAY: num({ desc: 'Number of milliseconds before the HTTP server starts its shutdown', default: 5000 }),
 });

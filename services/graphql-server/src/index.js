@@ -6,7 +6,7 @@ const {
   PORT,
   EXPOSED_PORT,
   TERMINUS_TIMEOUT: timeout,
-  TERMINUS_BEFORE_SHUTDOWN_TIMEOUT: beforeShutdownTimeout,
+  TERMINUS_SHUTDOWN_DELAY: beforeShutdownTimeout,
 } = require('./env');
 const app = require('./app');
 const pkg = require('../package.json');
