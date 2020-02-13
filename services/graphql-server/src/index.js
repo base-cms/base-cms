@@ -2,7 +2,12 @@ require('./newrelic');
 const http = require('http');
 const { createTerminus } = require('@godaddy/terminus');
 const newrelic = require('./newrelic');
-const { PORT, EXPOSED_PORT } = require('./env');
+const {
+  PORT,
+  EXPOSED_PORT,
+  TERMINUS_TIMEOUT: timeout,
+  TERMINUS_BEFORE_SHUTDOWN_TIMEOUT: beforeShutdownTimeout,
+} = require('./env');
 const app = require('./app');
 const pkg = require('../package.json');
 const services = require('./services');
@@ -14,7 +19,7 @@ const run = async () => {
   await services.start();
 
   createTerminus(server, {
-    timeout: 1000,
+    timeout,
     signals: ['SIGTERM', 'SIGINT', 'SIGHUP', 'SIGQUIT'],
     healthChecks: { '/_health': () => services.ping() },
     onSignal: () => {
@@ -23,6 +28,11 @@ const run = async () => {
         newrelic.noticeError(e);
         log('> CLEANUP ERRORS:', e);
       });
+    },
+    beforeShutdown: () => {
+      log(`> Delaying shutdown by ${beforeShutdownTimeout}ms...`);
+      return new Promise(resolve => setTimeout(resolve, beforeShutdownTimeout))
+        .then(() => log('> Shutdown delay complete.'));
     },
     onShutdown: () => log('> Cleanup finished. Shutting down.'),
   });
