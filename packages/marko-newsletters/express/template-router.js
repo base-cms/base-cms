@@ -1,8 +1,11 @@
 const { Router } = require('express');
 const { asyncRoute } = require('@base-cms/utils');
+const buildMarkoGlobal = require('@base-cms/marko-core/utils/build-marko-global');
+const cleanChunk = require('@base-cms/marko-core/utils/clean-marko-chunk');
 const gql = require('graphql-tag');
 const createError = require('http-errors');
 const moment = require('moment-timezone');
+const pretty = require('pretty');
 const cleanResponse = require('@base-cms/marko-core/middleware/clean-marko-response');
 const siteContextFragment = require('@base-cms/web-common/graphql/website-context-fragment');
 const websiteFactory = require('../utils/website-factory');
@@ -74,7 +77,7 @@ module.exports = ({ templates }) => {
       }
       if (!date.isValid()) throw createError(400, 'The provided date parameter is invalid.');
 
-      res.marko(template, {
+      const templateData = {
         date,
         dateInfo: {
           dayofweek: date.isoWeekday(),
@@ -85,7 +88,21 @@ module.exports = ({ templates }) => {
         },
         newsletter: newsletter || {},
         isStatic: !newsletter,
-      });
+      };
+
+      const prettyOutput = process.env.MARKO_NEWSLETTERS_PRETTY || Object.hasOwnProperty.call(req.query, 'pretty');
+      if (prettyOutput) {
+        const $global = buildMarkoGlobal(res);
+        const out = template.createOut();
+        template.render({ $global, ...templateData }, out);
+        out.on('finish', () => {
+          const html = cleanChunk(out.getOutput());
+          res.send(pretty(html));
+        });
+        out.end();
+      } else {
+        res.marko(template, templateData);
+      }
     }));
   });
   return router;

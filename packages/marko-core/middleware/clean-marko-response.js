@@ -1,6 +1,4 @@
-const stripComponentJS = chunk => chunk.replace(/<script>\(function\(\){var w=window;w\.\$components=.*w\.\$components}\)\(\)<\/script>/, '');
-const stripAppendedJS = chunk => chunk.replace(/<script>\$components=.*\$components<\/script>/, '');
-const stripComments = chunk => chunk.replace(/<!--[A-Z][#/].*?-->/g, '');
+const cleanChunk = require('../utils/clean-marko-chunk');
 
 module.exports = ({ enabled = true } = {}) => (req, res, next) => {
   const { write } = res;
@@ -10,7 +8,7 @@ module.exports = ({ enabled = true } = {}) => (req, res, next) => {
       write.apply(this, args);
     } else {
       const cleanedArgs = [...args];
-      cleanedArgs[0] = stripAppendedJS(stripComponentJS(stripComments(chunk)));
+      cleanedArgs[0] = cleanChunk(chunk);
       write.apply(this, cleanedArgs);
     }
   };

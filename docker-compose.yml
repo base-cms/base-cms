@@ -367,6 +367,7 @@ services:
       GRAPHQL_URI: http://graphql-server-caprica
       NEW_RELIC_ENABLED: 0
       NEW_RELIC_LICENSE_KEY: (unset)
+      MARKO_NEWSLETTERS_PRETTY: 1
     depends_on:
       - graphql-server-caprica
     ports:
