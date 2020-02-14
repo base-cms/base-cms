@@ -14,6 +14,8 @@ const { env } = process;
 
 process.on('unhandledRejection', (e) => { throw e; });
 
+const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+
 module.exports = async ({
   rootDir,
   templatePath = 'templates', // Where templates will be resolved from.
@@ -33,6 +35,7 @@ module.exports = async ({
   onSignal,
   onShutdown,
   onStart,
+  beforeShutdown,
   onHealthCheck,
 } = {}) => {
   if (!rootDir) throw new Error('The root project directory is required.');
@@ -68,7 +71,7 @@ module.exports = async ({
   const server = http.createServer(app);
 
   createTerminus(server, {
-    timeout,
+    timeout: env.TERMINUS_TIMEOUT || timeout,
     signals,
     // Add health checks of services here...
     healthChecks: {
@@ -83,6 +86,11 @@ module.exports = async ({
     },
     onShutdown: async () => {
       if (isFn(onShutdown)) await onShutdown();
+    },
+    beforeShutdown: async () => {
+      if (isFn(beforeShutdown)) await beforeShutdown();
+      const { TERMINUS_SHUTDOWN_DELAY } = env;
+      if (TERMINUS_SHUTDOWN_DELAY) await wait(TERMINUS_SHUTDOWN_DELAY);
     },
   });
 
