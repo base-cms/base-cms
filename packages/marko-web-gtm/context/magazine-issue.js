@@ -1,12 +1,14 @@
 const { getAsObject } = require('@base-cms/object-path');
 const { asObject } = require('@base-cms/utils');
 
-module.exports = ({ obj }) => {
+const { MARKO_WEB_GTM_USE_ORIGINAL_URL } = process.env;
+
+module.exports = ({ obj, req }) => {
   const issue = asObject(obj);
   const publication = getAsObject(issue, 'publication');
   return {
     page_type: 'magazine-issue',
-    canonical_path: issue.canonicalPath,
+    canonical_path: MARKO_WEB_GTM_USE_ORIGINAL_URL ? req.originalUrl : issue.canonicalPath,
     issue: {
       id: issue.id,
       name: issue.name,
