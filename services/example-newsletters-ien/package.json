@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/example-newsletters-ien",
-  "version": "1.20.3",
+  "version": "1.20.4",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
   "repository": "https://github.com/base-cms/base-cms/tree/master/services/example-newsletters-ien",
@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@base-cms/marko-core": "^1.20.3",
-    "@base-cms/marko-newsletters": "^1.20.3",
+    "@base-cms/marko-newsletters": "^1.20.4",
     "@base-cms/marko-newsletters-email-x": "^1.18.0",
     "@base-cms/marko-newsletters-gam": "^1.9.0",
     "@base-cms/marko-newsletters-mc": "^1.0.1",
