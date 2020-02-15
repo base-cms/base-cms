@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "@base-cms/object-path": "^1.9.0",
+    "@godaddy/terminus": "^4.2.0",
     "node-fetch": "^2.6.0"
   },
   "publishConfig": {
