@@ -1,7 +1,6 @@
 const { getAsObject, getAsArray, get } = require('@base-cms/object-path');
 const { asObject } = require('@base-cms/utils');
-
-const { MARKO_WEB_GTM_USE_ORIGINAL_URL } = process.env;
+const buildQueryString = require('../utils/build-query-string');
 
 module.exports = ({ obj, req }) => {
   const content = asObject(obj);
@@ -25,7 +24,8 @@ module.exports = ({ obj, req }) => {
   }));
   return {
     page_type: 'content',
-    canonical_path: MARKO_WEB_GTM_USE_ORIGINAL_URL ? req.originalUrl : get(content, 'siteContext.path'),
+    canonical_path: get(content, 'siteContext.path'),
+    query_string: buildQueryString({ req }),
     content: {
       id: content.id,
       type: content.type,
