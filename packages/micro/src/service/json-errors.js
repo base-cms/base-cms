@@ -17,7 +17,13 @@ module.exports = (fn, onError) => async (req, res) => {
     } else {
       log('Unknown Error instance.', e);
     }
-    if (typeof onError === 'function') await onError(e);
+    if (typeof onError === 'function') {
+      try {
+        await onError(e);
+      } catch (ex) {
+        log('ON ERROR CALLBACK FAILED!', ex);
+      }
+    }
     return null;
   }
 };
