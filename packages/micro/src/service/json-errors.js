@@ -24,6 +24,8 @@ module.exports = (fn, onError) => async (req, res) => {
         log('ON ERROR CALLBACK FAILED!', ex);
       }
     }
-    return null;
   }
+  // return `undefined` instead of `null` to prevent micro.run from sending
+  // an additional 204 response.
+  return undefined;
 };
