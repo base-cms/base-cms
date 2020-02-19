@@ -33,7 +33,7 @@ const nrIds = {
   sitemaps: 222844922,
   hooks: 231283772,
   oembed: 260472160,
-  'google-data-api': 305296335,
+  'google-data-api': 305497149,
 };
 
 const error = async (message) => {
