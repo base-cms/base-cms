@@ -28,6 +28,7 @@ const wait = ms => new Promise(resolve => setTimeout(resolve, parseInt(ms, 10)))
  * @param {function} [args.beforeShutdown]
  * @param {function} [args.onShutdown]
  * @param {function} [args.onHealthCheck]
+ * @param {function} [args.createErrorResponse]
  */
 module.exports = async ({
   actions = {},
@@ -43,6 +44,7 @@ module.exports = async ({
   beforeShutdown,
   onShutdown,
   onHealthCheck,
+  createErrorResponse,
 }) => {
   // Create logger.
   const log = (message) => {
@@ -73,7 +75,7 @@ module.exports = async ({
       context: contextData || {},
     });
     return { data };
-  }, errorHandler));
+  }, errorHandler, createErrorResponse));
 
   createTerminus(server, {
     timeout: parseInt(env.TERMINUS_TIMEOUT || 1000, 10),
