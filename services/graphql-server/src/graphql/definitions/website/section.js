@@ -74,6 +74,7 @@ type WebsiteSection {
   parent(input: WebsiteSectionParentInput = {}): WebsiteSection @projection @refOne(loader: "websiteSection")
   children(input: WebsiteSectionChildrenInput = {}): WebsiteSectionConnection! @projection(localField: "_id") @refMany(model: "website.Section", localField: "_id", foreignField: "parent.$id")
   logo: AssetImage @projection @refOne(loader: "platformAsset", criteria: "assetImage")
+  coverImage: AssetImage @projection @refOne(loader: "platformAsset", criteria: "assetImage")
 
   # fields from trait.platform::Content\SeoFields
 
