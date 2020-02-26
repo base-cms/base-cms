@@ -32,6 +32,8 @@ module.exports = {
   Query: {
     websiteRedirect: async (_, { input }, { basedb, site }) => {
       const { from, params } = input;
+      if (input.id) return basedb.findOne('website.Redirects', { _id: input.id });
+      if (!from) throw new UserInputError('An id or from must be provided via input.');
       const siteId = input.siteId || site.id();
       if (!siteId) throw new UserInputError('A siteId must be provided via input or context.');
 

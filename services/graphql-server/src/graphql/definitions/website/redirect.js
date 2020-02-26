@@ -15,8 +15,9 @@ type WebsiteRedirect {
 }
 
 input WebsiteRedirectQueryInput {
+  id: ObjectID
   siteId: ObjectID
-  from: String!
+  from: String
   params: JSON
 }
 
