@@ -51,5 +51,10 @@ module.exports = async (apolloClient, params) => {
   // Merge the content up to the limit and return the scheduled page info.
   const diff = limit - length;
   const nodes = [...optioned.nodes, ...scheduled.nodes.slice(0, diff)];
-  return { nodes, pageInfo: scheduled.pageInfo, optionDepleted: true };
+  return {
+    nodes,
+    pageInfo: scheduled.pageInfo,
+    section: scheduled.section,
+    optionDepleted: true,
+  };
 };

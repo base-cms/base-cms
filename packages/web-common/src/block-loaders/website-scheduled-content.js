@@ -18,6 +18,8 @@ const buildQuery = require('../gql/query-factories/block-website-scheduled-conte
  * @param {boolean} [params.sectionBubbling] Whether automatic section bubbling is applied.
  * @param {string} [params.queryFragment] The `graphql-tag` fragment
  *                                        to apply to the `websiteScheduledContent` query.
+ * @param {string} [params.sectionFragment] The `graphql-tag` fragment
+ *                                          to apply to the `websiteScheduledContent` section field.
  */
 module.exports = async (apolloClient, {
   limit,
@@ -39,6 +41,7 @@ module.exports = async (apolloClient, {
 
   queryFragment,
   queryName,
+  sectionFragment,
 } = {}) => {
   const pagination = { limit, skip, after };
   const input = {
@@ -54,14 +57,14 @@ module.exports = async (apolloClient, {
     optionName,
     ...(sort && { sort }),
   };
-  const query = buildQuery({ queryFragment, queryName });
+  const query = buildQuery({ queryFragment, queryName, sectionFragment });
   const variables = { input };
 
   const { data } = await apolloClient.query({ query, variables });
   if (!data || !data.websiteScheduledContent) return { nodes: [], pageInfo: {} };
-  const { pageInfo } = data.websiteScheduledContent;
+  const { pageInfo, section } = data.websiteScheduledContent;
   const nodes = data.websiteScheduledContent.edges
     .map(edge => (edge && edge.node ? edge.node : null))
     .filter(c => c);
-  return { nodes, pageInfo };
+  return { nodes, pageInfo, section };
 };
