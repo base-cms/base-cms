@@ -15,6 +15,7 @@ extend type Mutation {
   createWebsiteRedirect(input: CreateWebsiteRedirectMutationInput!): WebsiteRedirect! @requiresAuth
   deleteWebsiteRedirect(input: DeleteWebsiteRedirectMutationInput!): String @requiresAuth
   updateWebsiteRedirect(input: UpdateWebsiteRedirectMutationInput!): WebsiteRedirect! @requiresAuth
+  updateWebsiteRedirectSite(input: UpdateWebsiteRedirectSiteMutationInput!): WebsiteRedirect! @requiresAuth
 }
 
 type WebsiteRedirect {
@@ -93,6 +94,11 @@ input UpdateWebsiteRedirectMutationPayloadInput {
   to: String
   "The HTTP status code that should be used when redirecting."
   code: Int
+}
+
+input UpdateWebsiteRedirectSiteMutationInput {
+  id: ObjectID!
+  siteId: ObjectID!
 }
 
 `;

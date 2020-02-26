@@ -104,5 +104,19 @@ module.exports = {
       const projection = buildProjection({ info, type: 'WebsiteRedirect' });
       return basedb.findOne('website.Redirects', { _id: id }, { projection });
     },
+    /**
+     *
+     */
+    updateWebsiteRedirectSite: async (_, { input }, { base4rest, basedb }, info) => {
+      validateRest(base4rest);
+      const type = 'website/redirects';
+      const { id, siteId } = input;
+      const body = new Base4RestPayload({ type });
+      body.setLink('siteId', { id: siteId, type: 'website/product/site' });
+      body.set('id', id);
+      await base4rest.updateOne({ model: type, id, body });
+      const projection = buildProjection({ info, type: 'WebsiteRedirect' });
+      return basedb.findOne('website.Redirects', { _id: id }, { projection });
+    },
   },
 };
