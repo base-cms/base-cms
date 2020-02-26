@@ -1,3 +1,4 @@
+const { MongoDB } = require('@base-cms/db');
 const { URL, URLSearchParams } = require('url');
 const { UserInputError } = require('apollo-server-express');
 const { asObject } = require('@base-cms/utils');
@@ -74,7 +75,8 @@ module.exports = {
       const body = new Base4RestPayload({ type });
       keys.forEach(k => body.set(k, payload[k]));
       body.setLink('siteId', { id: siteId, type: 'website/product/site' });
-      const { data: { id } } = await base4rest.insertOne({ model: type, body });
+      const { data } = await base4rest.insertOne({ model: type, body });
+      const id = new MongoDB.ObjectID(data.id);
       const projection = buildProjection({ info, type: 'WebsiteRedirect' });
       return basedb.findOne('website.Redirects', { _id: id }, { projection });
     },
