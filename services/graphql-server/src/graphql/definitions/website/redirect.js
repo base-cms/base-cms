@@ -14,6 +14,7 @@ extend type Query {
 extend type Mutation {
   createWebsiteRedirect(input: CreateWebsiteRedirectMutationInput!): WebsiteRedirect! @requiresAuth
   deleteWebsiteRedirect(input: DeleteWebsiteRedirectMutationInput!): String @requiresAuth
+  updateWebsiteRedirect(input: UpdateWebsiteRedirectMutationInput!): WebsiteRedirect! @requiresAuth
 }
 
 type WebsiteRedirect {
@@ -67,10 +68,6 @@ input CreateWebsiteRedirectMutationInput {
   payload: CreateWebsiteRedirectMutationPayloadInput!
 }
 
-input DeleteWebsiteRedirectMutationInput {
-  id: ObjectID!
-}
-
 input CreateWebsiteRedirectMutationPayloadInput {
   "The URL path to redirect from, such as \`/some/path\`"
   from: String!
@@ -78,6 +75,24 @@ input CreateWebsiteRedirectMutationPayloadInput {
   to: String!
   "The HTTP status code that should be used when redirecting. By default this value is 301"
   code: Int = 301
+}
+
+input DeleteWebsiteRedirectMutationInput {
+  id: ObjectID!
+}
+
+input UpdateWebsiteRedirectMutationInput {
+  id: ObjectID!
+  payload: UpdateWebsiteRedirectMutationPayloadInput!
+}
+
+input UpdateWebsiteRedirectMutationPayloadInput {
+  "The URL path to redirect from, such as \`/some/path\`"
+  from: String
+  "The URI that should be redirected to, such as \`https://google.com/search\` or \`/new/path\`"
+  to: String
+  "The HTTP status code that should be used when redirecting."
+  code: Int
 }
 
 `;

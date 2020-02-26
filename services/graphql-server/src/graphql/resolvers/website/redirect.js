@@ -89,5 +89,20 @@ module.exports = {
       const { id } = input;
       return base4rest.removeOne({ model: type, id });
     },
+    /**
+     *
+     */
+    updateWebsiteRedirect: async (_, { input }, { base4rest, basedb }, info) => {
+      validateRest(base4rest);
+      const type = 'website/redirects';
+      const { id, payload } = input;
+      const keys = Object.keys(payload);
+      const body = new Base4RestPayload({ type });
+      keys.forEach(k => body.set(k, payload[k]));
+      body.set('id', id);
+      await base4rest.updateOne({ model: type, id, body });
+      const projection = buildProjection({ info, type: 'WebsiteRedirect' });
+      return basedb.findOne('website.Redirects', { _id: id }, { projection });
+    },
   },
 };
