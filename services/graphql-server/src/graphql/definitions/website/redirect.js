@@ -13,6 +13,7 @@ extend type Query {
 
 extend type Mutation {
   createWebsiteRedirect(input: CreateWebsiteRedirectMutationInput!): WebsiteRedirect! @requiresAuth
+  deleteWebsiteRedirect(input: DeleteWebsiteRedirectMutationInput!): String @requiresAuth
 }
 
 type WebsiteRedirect {
@@ -64,6 +65,10 @@ input CreateWebsiteRedirectMutationInput {
   "The site that this redirect will be valid for"
   siteId: ObjectID!
   payload: CreateWebsiteRedirectMutationPayloadInput!
+}
+
+input DeleteWebsiteRedirectMutationInput {
+  id: ObjectID!
 }
 
 input CreateWebsiteRedirectMutationPayloadInput {
