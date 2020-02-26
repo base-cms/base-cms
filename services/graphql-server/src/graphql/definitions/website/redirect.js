@@ -4,6 +4,11 @@ module.exports = gql`
 
 extend type Query {
   websiteRedirect(input: WebsiteRedirectQueryInput!): WebsiteRedirect
+  websiteRedirects(input: WebsiteRedirectsQueryInput = {}): WebsiteRedirectConnection! @findMany(
+    model: "website.Redirects"
+    withSite: true
+    siteField: "siteId"
+  )
 }
 
 type WebsiteRedirect {
@@ -19,6 +24,33 @@ input WebsiteRedirectQueryInput {
   siteId: ObjectID
   from: String
   params: JSON
+}
+
+type WebsiteRedirectConnection @projectUsing(type: "WebsiteRedirect") {
+  totalCount: Int!
+  edges: [WebsiteRedirectEdge]!
+  pageInfo: PageInfo!
+}
+
+type WebsiteRedirectEdge {
+  node: WebsiteRedirect!
+  cursor: String!
+}
+
+enum WebsiteRedirectSortField {
+  id
+  from
+}
+
+input WebsiteRedirectsQueryInput {
+  siteId: ObjectID
+  sort: WebsiteRedirectSortInput = {}
+  pagination: PaginationInput = {}
+}
+
+input WebsiteRedirectSortInput {
+  field: WebsiteRedirectSortField = id
+  order: SortOrder = desc
 }
 
 `;
