@@ -1,6 +1,9 @@
 const { URL, URLSearchParams } = require('url');
 const { UserInputError } = require('apollo-server-express');
 const { asObject } = require('@base-cms/utils');
+const { Base4RestPayload } = require('@base-cms/base4-rest-api');
+const validateRest = require('../../utils/validate-rest');
+const buildProjection = require('../../utils/build-projection');
 
 const cleanRedirect = async (redirect, from, basedb) => {
   // Redirect already found. Do nothing.
@@ -18,18 +21,17 @@ module.exports = {
   /**
    *
    */
-
-  /**
-   *
-   */
-  /**
-   *
-   */
   WebsiteRedirect: {
     code: ({ code }) => code || 301,
   },
 
+  /**
+   *
+   */
   Query: {
+    /**
+     *
+     */
     websiteRedirect: async (_, { input }, { basedb, site }) => {
       const { from, params } = input;
       if (input.id) return basedb.findOne('website.Redirects', { _id: input.id });
@@ -55,6 +57,26 @@ module.exports = {
         cleaned.to = `${origin}${toUrl.pathname}?${queryParams}`;
       }
       return cleaned;
+    },
+  },
+  /**
+   *
+   */
+  Mutation: {
+    /**
+     *
+     */
+    createWebsiteRedirect: async (_, { input }, { base4rest, basedb }, info) => {
+      validateRest(base4rest);
+      const type = 'website/redirects';
+      const { siteId, payload } = input;
+      const keys = Object.keys(payload);
+      const body = new Base4RestPayload({ type });
+      keys.forEach(k => body.set(k, payload[k]));
+      body.setLink('siteId', { id: siteId, type: 'website/product/site' });
+      const { data: { id } } = await base4rest.insertOne({ model: type, body });
+      const projection = buildProjection({ info, type: 'WebsiteRedirect' });
+      return basedb.findOne('website.Redirects', { _id: id }, { projection });
     },
   },
 };
