@@ -9,12 +9,22 @@ const { extractFragmentData } = require('../../utils');
  * @param {string} [params.queryFragment] The `graphql-tag` fragment
  *                                        to apply to `edges.node` on
  *                                        the `websiteScheduledContent` query.
+ * @param {string} [params.sectionFragment] The `graphql-tag` fragment
+ *                                          to apply to the `section`
  */
-module.exports = ({ queryFragment, queryName = '' } = {}) => {
+module.exports = ({ queryFragment, queryName = '', sectionFragment } = {}) => {
   const { spreadFragmentName, processedFragment } = extractFragmentData(queryFragment);
+  const {
+    spreadFragmentName: spreadSectionFragment,
+    processedFragment: processedSectionFragment,
+  } = extractFragmentData(sectionFragment);
   return gql`
     query BlockWebsiteScheduledContent${queryName}($input: WebsiteScheduledContentQueryInput!) {
       websiteScheduledContent(input: $input) {
+        section {
+          id
+          ${spreadSectionFragment}
+        }
         edges {
           node {
             ...BlockWebsiteScheduledContentFragment
@@ -29,5 +39,6 @@ module.exports = ({ queryFragment, queryName = '' } = {}) => {
     }
     ${defaultFragment}
     ${processedFragment}
+    ${processedSectionFragment}
   `;
 };
