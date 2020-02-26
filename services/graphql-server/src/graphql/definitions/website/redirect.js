@@ -7,6 +7,8 @@ extend type Query {
 }
 
 type WebsiteRedirect {
+  id: ObjectID! @projection(localField: "_id") @value(localField: "_id")
+  site: WebsiteSite! @projection(localField: "siteId") @refOne(loader: "platformProduct", criteria: "websiteSite", localField: "siteId")
   from: String!
   to: String!
   code: Int!
