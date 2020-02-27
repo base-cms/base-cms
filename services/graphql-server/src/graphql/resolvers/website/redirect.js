@@ -1,9 +1,6 @@
-const { MongoDB } = require('@base-cms/db');
 const { URL, URLSearchParams } = require('url');
 const { UserInputError } = require('apollo-server-express');
 const { asObject } = require('@base-cms/utils');
-const { Base4RestPayload } = require('@base-cms/base4-rest-api');
-const validateRest = require('../../utils/validate-rest');
 const buildProjection = require('../../utils/build-projection');
 
 const cleanRedirect = async (redirect, from, basedb) => {
@@ -67,54 +64,40 @@ module.exports = {
     /**
      *
      */
-    createWebsiteRedirect: async (_, { input }, { base4rest, basedb }, info) => {
-      validateRest(base4rest);
-      const type = 'website/redirects';
+    createWebsiteRedirect: async (_, { input }, { basedb }, info) => {
       const { siteId, payload } = input;
-      const keys = Object.keys(payload);
-      const body = new Base4RestPayload({ type });
-      keys.forEach(k => body.set(k, payload[k]));
-      body.setLink('siteId', { id: siteId, type: 'website/product/site' });
-      const { data } = await base4rest.insertOne({ model: type, body });
-      const id = new MongoDB.ObjectID(data.id);
+      const doc = { siteId, ...payload };
+      await basedb.strictFindById('platform.Product', siteId);
+      await basedb.insertOne('website.Redirects', doc);
       const projection = buildProjection({ info, type: 'WebsiteRedirect' });
-      return basedb.findOne('website.Redirects', { _id: id }, { projection });
+      return basedb.findOne('website.Redirects', { _id: doc._id }, { projection });
     },
     /**
      *
      */
-    deleteWebsiteRedirect: async (_, { input }, { base4rest }) => {
-      validateRest(base4rest);
-      const type = 'website/redirects';
+    deleteWebsiteRedirect: async (_, { input }, { basedb }) => {
       const { id } = input;
-      return base4rest.removeOne({ model: type, id });
+      const { result } = await basedb.deleteOne('website.Redirects', { _id: id });
+      return result.ok;
     },
     /**
      *
      */
-    updateWebsiteRedirect: async (_, { input }, { base4rest, basedb }, info) => {
-      validateRest(base4rest);
-      const type = 'website/redirects';
+    updateWebsiteRedirect: async (_, { input }, { basedb }, info) => {
       const { id, payload } = input;
-      const keys = Object.keys(payload);
-      const body = new Base4RestPayload({ type });
-      keys.forEach(k => body.set(k, payload[k]));
-      body.set('id', id);
-      await base4rest.updateOne({ model: type, id, body });
+      await basedb.strictFindById('website.Redirects', id);
+      await basedb.updateOne('website.Redirects', { _id: id }, { $set: payload });
       const projection = buildProjection({ info, type: 'WebsiteRedirect' });
       return basedb.findOne('website.Redirects', { _id: id }, { projection });
     },
     /**
      *
      */
-    updateWebsiteRedirectSite: async (_, { input }, { base4rest, basedb }, info) => {
-      validateRest(base4rest);
-      const type = 'website/redirects';
+    updateWebsiteRedirectSite: async (_, { input }, { basedb }, info) => {
       const { id, siteId } = input;
-      const body = new Base4RestPayload({ type });
-      body.setLink('siteId', { id: siteId, type: 'website/product/site' });
-      body.set('id', id);
-      await base4rest.updateOne({ model: type, id, body });
+      await basedb.strictFindById('website.Redirects', id);
+      await basedb.strictFindById('platform.Product', siteId);
+      await basedb.updateOne('website.Redirects', { _id: id }, { $set: { siteId } });
       const projection = buildProjection({ info, type: 'WebsiteRedirect' });
       return basedb.findOne('website.Redirects', { _id: id }, { projection });
     },
