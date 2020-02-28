@@ -67,7 +67,7 @@ module.exports = {
     createWebsiteRedirect: async (_, { input }, { basedb }, info) => {
       const { siteId, payload } = input;
       const doc = { siteId, ...payload };
-      await basedb.strictFindById('platform.Product', siteId);
+      await basedb.strictFindById('platform.Product', siteId, { projection: { _id: 1 } });
       await basedb.insertOne('website.Redirects', doc);
       const projection = buildProjection({ info, type: 'WebsiteRedirect' });
       return basedb.findOne('website.Redirects', { _id: doc._id }, { projection });
@@ -85,7 +85,7 @@ module.exports = {
      */
     updateWebsiteRedirect: async (_, { input }, { basedb }, info) => {
       const { id, payload } = input;
-      await basedb.strictFindById('website.Redirects', id);
+      await basedb.strictFindById('website.Redirects', id, { projection: { _id: 1 } });
       await basedb.updateOne('website.Redirects', { _id: id }, { $set: payload });
       const projection = buildProjection({ info, type: 'WebsiteRedirect' });
       return basedb.findOne('website.Redirects', { _id: id }, { projection });
@@ -95,8 +95,10 @@ module.exports = {
      */
     updateWebsiteRedirectSite: async (_, { input }, { basedb }, info) => {
       const { id, siteId } = input;
-      await basedb.strictFindById('website.Redirects', id);
-      await basedb.strictFindById('platform.Product', siteId);
+      await Promise.all([
+        basedb.strictFindById('website.Redirects', id, { projection: { _id: 1 } }),
+        basedb.strictFindById('platform.Product', siteId, { projection: { _id: 1 } }),
+      ]);
       await basedb.updateOne('website.Redirects', { _id: id }, { $set: { siteId } });
       const projection = buildProjection({ info, type: 'WebsiteRedirect' });
       return basedb.findOne('website.Redirects', { _id: id }, { projection });
