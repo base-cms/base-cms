@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/example-website-iw",
-  "version": "1.21.2",
+  "version": "1.22.0",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
   "repository": "https://github.com/base-cms/base-cms/tree/master/services/example-website-iw",
@@ -16,8 +16,8 @@
     "test": "yarn lint && yarn compile && yarn build"
   },
   "dependencies": {
-    "@base-cms/marko-core": "^1.20.3",
-    "@base-cms/marko-web": "^1.20.4",
+    "@base-cms/marko-core": "^1.22.0",
+    "@base-cms/marko-web": "^1.22.0",
     "@base-cms/marko-web-gam": "^1.9.0",
     "@base-cms/marko-web-gtm": "^1.21.2",
     "@base-cms/marko-web-icons": "^1.0.0",
@@ -25,7 +25,7 @@
     "@base-cms/marko-web-theme-default": "^1.20.0",
     "@base-cms/object-path": "^1.9.0",
     "@base-cms/utils": "^1.9.0",
-    "@base-cms/web-cli": "^1.20.4",
+    "@base-cms/web-cli": "^1.22.0",
     "graphql": "^14.5.4",
     "graphql-tag": "^2.10.1",
     "newrelic": "^5.11.0"
