@@ -15,11 +15,10 @@ const UserService = class UserService {
       accountNonLocked: true,
       credentialsNonExpired: true,
       enabled: true,
-      password: { $exists: true },
     };
     const user = await this.basedb.findOne('platform.User', criteria);
-    if (!user) throw new AuthenticationError('The provided user credentials are invalid.');
-    const hash = user.password.replace(/^\$2y\$/, '$2a$');
+    if (!user || !user.password) throw new AuthenticationError('The provided user credentials are invalid.');
+    const hash = `${user.password}`.replace(/^\$2y\$/, '$2a$');
     const valid = await bcrypt.compare(plaintext, hash);
     if (!valid) throw new AuthenticationError('The provided user credentials are invalid.');
     return this.tokenService.create(user._id);
