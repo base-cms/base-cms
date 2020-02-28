@@ -15,6 +15,7 @@ const UserService = class UserService {
       accountNonLocked: true,
       credentialsNonExpired: true,
       enabled: true,
+      password: { $exists: true },
     };
     const user = await this.basedb.findOne('platform.User', criteria);
     if (!user) throw new AuthenticationError('The provided user credentials are invalid.');
