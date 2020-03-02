@@ -536,18 +536,19 @@ module.exports = {
       return links;
     },
     youtube: ({ youtube = {} }) => youtube,
-    youtubeVideos: async (content, { input }, { basedb }) => {
-      const maxResults = get(input, 'pagination.limit', 10);
-      const pageToken = get(input, 'pagination.after');
-      const playlistId = await retrieveYoutubePlaylistId(content, basedb);
-      if (!playlistId) return { pageInfo: {}, items: [] };
-      const payload = {
-        playlistId,
-        maxResults,
-        ...(pageToken && { pageToken }),
-      };
-      return googleDataApiClient.request('youtube.playlistItems', payload);
-    },
+    youtubeVideos: async () => ({ pageInfo: {}, items: [] }),
+    // youtubeVideos: async (content, { input }, { basedb }) => {
+    //   const maxResults = get(input, 'pagination.limit', 10);
+    //   const pageToken = get(input, 'pagination.after');
+    //   const playlistId = await retrieveYoutubePlaylistId(content, basedb);
+    //   if (!playlistId) return { pageInfo: {}, items: [] };
+    //   const payload = {
+    //     playlistId,
+    //     maxResults,
+    //     ...(pageToken && { pageToken }),
+    //   };
+    //   return googleDataApiClient.request('youtube.playlistItems', payload);
+    // },
   },
 
   ContentCompanyYoutube: {
