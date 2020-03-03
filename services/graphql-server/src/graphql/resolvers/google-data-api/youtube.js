@@ -37,15 +37,18 @@ module.exports = {
      *
      */
     validateYoutubePlaylistId: async (_, { input }) => {
-      const response = await googleDataApiClient.request('youtube.playlistList', { part: 'id', id: input });
+      const { playlistId } = input;
+      const response = await googleDataApiClient.request('youtube.playlistList', { part: 'id', id: playlistId });
       return getAsArray(response, 'items').length > 0;
     },
     validateYoutubeChannelId: async (_, { input }) => {
-      const response = await googleDataApiClient.request('youtube.channelList', { part: 'id', id: input });
+      const { channelId } = input;
+      const response = await googleDataApiClient.request('youtube.channelList', { part: 'id', id: channelId });
       return getAsArray(response, 'items').length > 0;
     },
     validateYoutubeUsername: async (_, { input }) => {
-      const response = await googleDataApiClient.request('youtube.channelList', { part: 'id', forUsername: input });
+      const { username } = input;
+      const response = await googleDataApiClient.request('youtube.channelList', { part: 'id', forUsername: username });
       return getAsArray(response, 'items').length > 0;
     },
   },

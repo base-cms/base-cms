@@ -3,9 +3,9 @@ const gql = require('graphql-tag');
 module.exports = gql`
 
 extend type Query {
-  validateYoutubePlaylistId(input: String!): Boolean!
-  validateYoutubeChannelId(input: String!): Boolean!
-  validateYoutubeUsername(input: String!): Boolean!
+  validateYoutubePlaylistId(input: ValidateYoutubePlaylistIdQueryInput!): Boolean!
+  validateYoutubeChannelId(input: ValidateYoutubeChannelIdQueryInput!): Boolean!
+  validateYoutubeUsername(input: ValidateYoutubeUsernameQueryInput!): Boolean!
 }
 
 enum YoutubeThumbnailSizes {
@@ -38,6 +38,18 @@ type YoutubeVideo {
   thumbnail(input: YoutubeThumbnailInput): String!
   title: String!
   description: String
+}
+
+input ValidateYoutubePlaylistIdQueryInput {
+  playlistId: String!
+}
+
+input ValidateYoutubeChannelIdQueryInput {
+  channelId: String!
+}
+
+input ValidateYoutubeUsernameQueryInput {
+  username: String!
 }
 
 `;
