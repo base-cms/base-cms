@@ -17,6 +17,8 @@ const { hrtime } = process;
  * @type {string[]}
  */
 const namespaces = [
+  'brevity',
+  'configuration',
   'email',
   'magazine',
   'platform',
