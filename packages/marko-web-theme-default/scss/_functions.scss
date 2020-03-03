@@ -86,7 +86,7 @@
   @return $elgible-breakpoints;
 }
 
-@function calculate-navbar-height-for($target-breakpoint) {
+@function calculate-navbar-height-for($target-breakpoint, $additional-padding: 0) {
   $breakpoints: get-navbar-breakpoints-for($target-breakpoint);
 
   // Variable defaults.
@@ -98,7 +98,7 @@
   $secondary-padding: $theme-site-navbar-secondary-padding-y * 2;
 
   @if length($breakpoints) == 0 {
-    @return calc(#{$logo-height} + #{$primary-font-size} + #{$brand-margin} + #{$primary-link-padding} + #{$secondary-padding});
+    @return calc(#{$logo-height} + #{$primary-font-size} + #{$brand-margin} + #{$primary-link-padding} + #{$secondary-padding} + #{$additional-padding});
   }
   @if index($breakpoints, small-logo) != null {
     $logo-height: $theme-site-navbar-logo-height-sm;
@@ -111,5 +111,5 @@
     $primary-font-size: $theme-site-navbar-primary-height-sm;
     $primary-link-padding: 0;
   }
-  @return calc(#{$logo-height} + #{$primary-font-size} + #{$brand-margin} + #{$primary-link-padding} + #{$secondary-padding});
+  @return calc(#{$logo-height} + #{$primary-font-size} + #{$brand-margin} + #{$primary-link-padding} + #{$secondary-padding} + #{$additional-padding});
 }
