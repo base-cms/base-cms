@@ -3,53 +3,43 @@ const gql = require('graphql-tag');
 module.exports = gql`
 
 extend type Query {
-  configurationTheme(input: ConfigurationThemeQueryInput!): ConfigurationTheme @findOne(
-    model: "configuration.Theme",
-    using: { id: "_id" },
+  icarusConfiguration(input: IcarusConfigurationQueryInput!): IcarusConfiguration @findOne(
+    model: "configuration.Theme"
+    using: { id: "_id" }
+    criteria: "configurationThemeIcarus"
   )
+  @requiresAuth
 }
 
 extend type Mutation {
-  updateConfigurationTheme(input: UpdateConfigurationThemeMutationInput!): ConfigurationTheme @requiresAuth
+  updateIcarusConfiguration(input: UpdateIcarusConfigurationMutationInput!): IcarusConfiguration @requiresAuth
 }
 
 enum ConfigurationThemeType {
-  Lego
   Icarus
 }
 
-interface ConfigurationTheme @requiresProject(fields: ["type"]) {
+type IcarusConfiguration @applyInterfaceFields {
   id: ObjectID! @projection(localField: "_id") @value(localField: "_id")
   type: ConfigurationThemeType! @projection
   status: Int! @projection
-}
-
-type ConfigurationThemeLego implements ConfigurationTheme @applyInterfaceFields {
-  defaultContentBrick: JSON @projection
-  styles: JSON @projection
-  bgColors: JSON @projection
-  column: JSON @projection
-  sets: JSON @projection
-}
-
-type ConfigurationThemeIcarus implements ConfigurationTheme @applyInterfaceFields {
   defaultHeader: JSON @projection
   defaultFooter: JSON @projection
   homePage: JSON @projection
   defaultPage: JSON @projection
-  pages: JSON @projection
-  socialShare: JSON @projection
+  pages: [JSON]! @projection @arrayValue
+  socialShare: [EntityStubSocial]! @projection @arrayValue
   templates: JSON @projection
   nativeAdTargetMap: JSON @projection
-  parameters: JSON @projection
   loadMore: JSON @projection
+  parameters: JSON @projection
 }
 
-input ConfigurationThemeQueryInput {
+input IcarusConfigurationQueryInput {
   id: ObjectID!
 }
 
-input UpdateConfigurationThemeMutationInput {
+input UpdateIcarusConfigurationMutationInput {
   id: ObjectID!
   payload: JSON!
 }
