@@ -4,8 +4,8 @@ const stringifyAttrs = attrs => Object.keys(attrs).reduce((arr, key) => {
   return arr;
 }, []).join(' ');
 
-module.exports = (tag, { config }) => {
-  const lazyload = config.lazyloadImages();
+module.exports = (tag, { config } = {}, { lazyloadImages } = {}) => {
+  const lazyload = lazyloadImages == null ? config.lazyloadImages() : lazyloadImages;
   const src = tag.get('src');
   const alt = tag.get('alt');
   const caption = tag.get('caption');
