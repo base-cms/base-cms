@@ -30,6 +30,7 @@ $marko-web-icon-brand-colors: () !default;
 // stylelint-disable-next-line scss/dollar-variable-default
 $marko-web-icon-brand-colors: map-merge(
   (
+    "applepodcasts": $marko-web-icon-applepodcasts,
     "dribbble":     $marko-web-icon-dribbble,
     "facebook":     $marko-web-icon-facebook,
     "github":       $marko-web-icon-github,
