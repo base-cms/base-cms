@@ -26,6 +26,11 @@
     <form @submit.prevent="handleSubmit">
       <fieldset :disabled="loading">
         <email v-model="email" />
+        <small
+          v-if="consentPolicy"
+          class="text-muted mb-3"
+          v-html="consentPolicy"
+        />
         <button
           type="submit"
           class="btn btn-primary"
@@ -74,6 +79,10 @@ export default {
         submit: 'Login / Register',
         logout: 'Logout',
       }),
+    },
+    consentPolicy: {
+      type: String,
+      default: null,
     },
   },
 
