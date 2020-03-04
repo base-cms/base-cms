@@ -12,6 +12,7 @@ $marko-web-icon-transition:   fill ease 250ms !default;
 $marko-web-dark-brand-hover:  10% !default;
 
 // Brand Colors
+$marko-web-icon-applepodcasts: #93c !default;
 $marko-web-icon-dribbble:     #ea4c89 !default;
 $marko-web-icon-facebook:     #4172b8 !default;
 $marko-web-icon-github:       #181717 !default;
@@ -29,6 +30,7 @@ $marko-web-icon-brand-colors: () !default;
 // stylelint-disable-next-line scss/dollar-variable-default
 $marko-web-icon-brand-colors: map-merge(
   (
+    "applepodcasts": $marko-web-icon-applepodcasts,
     "dribbble":     $marko-web-icon-dribbble,
     "facebook":     $marko-web-icon-facebook,
     "github":       $marko-web-icon-github,
