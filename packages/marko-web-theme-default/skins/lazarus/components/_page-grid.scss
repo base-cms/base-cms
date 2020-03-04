@@ -17,8 +17,8 @@
       }
     }
 
-    flex: 0 0 320px;
-    max-width: 320px;
+    flex: 0 0 330px;
+    max-width: 330px;
     overflow: scroll;
     opacity: 1;
     transition-duration: 375ms;
@@ -42,7 +42,7 @@
 
   &__right-col {
     @include make-col-ready();
-    max-width: 880px;
+    max-width: 870px;
   }
 
   &__top-row {
