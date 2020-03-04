@@ -11,6 +11,7 @@
       :active-user="activeUser"
       :required-server-fields="requiredServerFields"
       :required-client-fields="requiredClientFields"
+      :consent-policy="consentPolicy"
       @submit="redirect"
     />
   </div>
@@ -65,6 +66,10 @@ export default {
     requiredClientFields: {
       type: Array,
       default: () => [],
+    },
+    consentPolicy: {
+      type: String,
+      default: null,
     },
   },
 

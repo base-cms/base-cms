@@ -58,6 +58,12 @@
           </div>
         </div>
 
+        <small
+          v-if="consentPolicy"
+          class="text-muted mb-3"
+          v-html="consentPolicy"
+        />
+
         <div class="d-flex align-items-center">
           <button type="submit" class="btn btn-primary">
             Submit
@@ -134,6 +140,10 @@ export default {
     reloadPageOnSubmit: {
       type: Boolean,
       default: false,
+    },
+    consentPolicy: {
+      type: String,
+      default: null,
     },
   },
 
