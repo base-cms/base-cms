@@ -11,6 +11,7 @@
   },
   "<marko-web-content-body>": {
     "template": "./body.marko",
+    "<embed-options>": {},
     "@block-name": "string",
     "@obj": "object",
     "@tag": "string",

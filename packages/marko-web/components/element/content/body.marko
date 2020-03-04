@@ -1,11 +1,12 @@
-import { get } from "@base-cms/object-path";
+import { get, getAsObject } from "@base-cms/object-path";
 import extractRender from "../extract-render";
 
 $ const { parseEmbeddedMedia, res } = out.global;
 
 $ const body = get(input.obj, "body");
 $ const v = body == null ? "" : `${body}`.trim();
-$ const obj = { body: parseEmbeddedMedia(v, res) };
+$ const embedOptions = getAsObject(input, "embedOptions")
+$ const obj = { body: parseEmbeddedMedia(v, res, embedOptions) };
 
 <marko-web-obj-text
   type="content"
