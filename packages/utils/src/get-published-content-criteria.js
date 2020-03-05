@@ -7,6 +7,7 @@ module.exports = ({
   contentTypes = [],
   excludeContentTypes = [],
   since,
+  after,
 } = {}) => {
   const date = since || new Date();
   const types = isArray(contentTypes) && contentTypes.length
@@ -30,6 +31,7 @@ module.exports = ({
       },
     ],
   };
+  if (after) query.$and.push({ published: { $gte: after } });
   if (isArray(excludeContentIds) && excludeContentIds.length) {
     query._id = { $nin: excludeContentIds };
   }
