@@ -624,7 +624,12 @@ module.exports = {
       // @deprecated Prefer includeContentTypes over contentTypes.
       const contentTypes = includeContentTypes.length
         ? includeContentTypes : deprecatedContentTypes;
-      const query = getPublishedCriteria({ since, after, contentTypes, excludeContentTypes });
+      const query = getPublishedCriteria({ 
+        since,
+        after,
+        contentTypes,
+        excludeContentTypes,
+      });
 
       const siteId = input.siteId || site.id();
       if (siteId) query['mutations.Website.primarySite'] = siteId;
