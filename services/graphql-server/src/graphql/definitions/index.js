@@ -1,6 +1,7 @@
 const gql = require('graphql-tag');
 
 const auth = require('./auth');
+const configuration = require('./configuration');
 const email = require('./email');
 const magazine = require('./magazine');
 const platform = require('./platform');
@@ -114,6 +115,7 @@ input FormatDate {
   timezone: String
 }
 
+${configuration}
 ${email}
 ${magazine}
 ${platform}
