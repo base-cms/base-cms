@@ -608,6 +608,7 @@ module.exports = {
     allPublishedContent: async (_, { input }, { basedb, site }, info) => {
       const {
         since,
+        after,
         sectionId,
         contentTypes: deprecatedContentTypes,
         includeContentTypes,
@@ -623,7 +624,7 @@ module.exports = {
       // @deprecated Prefer includeContentTypes over contentTypes.
       const contentTypes = includeContentTypes.length
         ? includeContentTypes : deprecatedContentTypes;
-      const query = getPublishedCriteria({ since, contentTypes, excludeContentTypes });
+      const query = getPublishedCriteria({ since, after, contentTypes, excludeContentTypes });
 
       const siteId = input.siteId || site.id();
       if (siteId) query['mutations.Website.primarySite'] = siteId;
@@ -663,12 +664,14 @@ module.exports = {
     publishedContentCounts: async (_, { input }, { basedb, site }) => {
       const {
         since,
+        after,
         includeContentTypes: contentTypes,
         excludeContentTypes,
       } = input;
 
       const $match = getPublishedCriteria({
         since,
+        after,
         contentTypes,
         excludeContentTypes,
       });
