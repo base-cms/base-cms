@@ -63,7 +63,7 @@ input BrevityStoriesQueryInput {
 }
 input BrevityStorySortInput {
   field: BrevityStorySortField = id
-  order: SortOrder = desc
+  order: SortOrder = values
 }
 
 `;

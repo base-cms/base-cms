@@ -12,6 +12,10 @@ extend type Query {
   )
 }
 
+extend type Mutation {
+  updateBrevityIssueStories(input: UpdateBrevityIssueStoriesMutationInput!): BrevityIssue! @requiresAuth
+}
+
 enum BrevityIssueSortField {
   id
   name
@@ -56,6 +60,7 @@ input BrevityIssueCollectionInput {
 
 input BrevityIssueStoriesInput {
   sort: BrevityStorySortInput = {}
+  pagination: PaginationInput = {}
 }
 
 input BrevityIssuesQueryInput {
@@ -66,6 +71,15 @@ input BrevityIssuesQueryInput {
 input BrevityIssueSortInput {
   field: BrevityIssueSortField = id
   order: SortOrder = desc
+}
+
+input UpdateBrevityIssueStoriesMutationInput {
+  id: ObjectID!
+  payload: UpdateBrevityIssueStoriesMutationPayloadInput!
+}
+
+input UpdateBrevityIssueStoriesMutationPayloadInput {
+  storyIds: [ObjectID!]!
 }
 
 `;
