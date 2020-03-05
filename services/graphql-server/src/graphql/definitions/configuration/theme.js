@@ -15,13 +15,8 @@ extend type Mutation {
   updateIcarusConfiguration(input: UpdateIcarusConfigurationMutationInput!): IcarusConfiguration @requiresAuth
 }
 
-enum ConfigurationThemeType {
-  Icarus
-}
-
 type IcarusConfiguration @applyInterfaceFields {
   id: ObjectID! @projection(localField: "_id") @value(localField: "_id")
-  type: ConfigurationThemeType! @projection
   status: Int! @projection
   defaultHeader: JSON @projection
   defaultFooter: JSON @projection
