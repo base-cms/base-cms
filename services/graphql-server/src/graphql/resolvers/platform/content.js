@@ -624,7 +624,7 @@ module.exports = {
       // @deprecated Prefer includeContentTypes over contentTypes.
       const contentTypes = includeContentTypes.length
         ? includeContentTypes : deprecatedContentTypes;
-      const query = getPublishedCriteria({ 
+      const query = getPublishedCriteria({
         since,
         after,
         contentTypes,
