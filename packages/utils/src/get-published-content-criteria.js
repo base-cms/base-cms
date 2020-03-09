@@ -21,7 +21,10 @@ module.exports = ({
   const query = {
     status: 1,
     type,
-    published: { $lte: date },
+    published: {
+      $lte: date,
+      ...(after && { $gte: after }),
+    },
     $and: [
       {
         $or: [
@@ -31,7 +34,6 @@ module.exports = ({
       },
     ],
   };
-  if (after) query.$and.push({ published: { $gte: after } });
   if (isArray(excludeContentIds) && excludeContentIds.length) {
     query._id = { $nin: excludeContentIds };
   }
