@@ -27,7 +27,7 @@ type BrevityCollection {
   sequence: Int @projection
 
   # fields directly on brevity.model::Product\Collection
-  accentColor: String
+  accentColor: String @projection
   coverImage: BrevityAssetImage @projection
 
   issues(input: BrevityCollectionIssuesInput = {}): BrevityIssueConnection!
