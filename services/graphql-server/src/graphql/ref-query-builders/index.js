@@ -1,3 +1,4 @@
+const brevityCollectionIssues = require('./brevity-collection-issues');
 const websiteSiteSections = require('./website-site-sections');
 
 /**
@@ -13,6 +14,7 @@ const websiteSiteSections = require('./website-site-sections');
  * Each function must return an object containing the new query and sort.
  */
 const builders = {
+  brevityCollectionIssues,
   websiteSiteSections,
 };
 
