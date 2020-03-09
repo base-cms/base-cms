@@ -1,0 +1,14 @@
+import { get } from "@base-cms/object-path";
+
+$ const { req } = out.global;
+$ const { identityX } = req;
+
+<marko-web-identity-x-context|{ user, isEnabled }|>
+  $ const props = {
+    activeUser: user,
+    identifier: input.identifier,
+  };
+  <if(isEnabled)>
+    <marko-web-browser-component name="IdentityXCommentStream" props=props />
+  </if>
+</marko-web-identity-x-context>
