@@ -11,9 +11,16 @@
       >
         Post new comment
       </div>
-      <p v-else :class="element('requires-login')">
-        This site requires you to login or register to post a comment.
-      </p>
+      <div v-else :class="element('login-form')">
+        <p :class="element('login-message')">
+          This site requires you to login or register to post a comment.
+        </p>
+        <login
+          :active-user="activeUser"
+          :endpoints="endpoints"
+          :consent-policy="consentPolicy"
+        />
+      </div>
       <div v-if="isLoading">
         Loading comments...
       </div>
@@ -32,10 +39,16 @@
 
 <script>
 import get from '../utils/get';
+import Login from '../login.vue';
 // Posting As
 // Your Comment
 
 export default {
+  /**
+   *
+   */
+  components: { Login },
+
   /**
    *
    */
@@ -48,6 +61,10 @@ export default {
       type: String,
       required: true,
     },
+    endpoints: {
+      type: Object,
+      required: true,
+    },
     headerText: {
       type: String,
       default: 'Voice your opinion!',
@@ -55,6 +72,10 @@ export default {
     modifiers: {
       type: Array,
       default: () => [],
+    },
+    consentPolicy: {
+      type: String,
+      default: null,
     },
   },
 
