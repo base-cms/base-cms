@@ -2,6 +2,7 @@ const { Router } = require('express');
 const { json } = require('body-parser');
 const jsonErrorHandler = require('../utils/json-error-handler');
 const authenticate = require('./authenticate');
+const comments = require('./comments');
 const login = require('./login');
 const logout = require('./logout');
 const profile = require('./profile');
@@ -17,6 +18,7 @@ router.post('/logout', logout);
 router.post('/profile', profile);
 router.get('/countries', countries);
 router.get('/regions', regions);
+router.get('/comments/:identifier', comments);
 router.use(jsonErrorHandler());
 
 module.exports = router;
