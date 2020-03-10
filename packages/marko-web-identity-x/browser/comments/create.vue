@@ -14,6 +14,8 @@
 </template>
 
 <script>
+import post from '../utils/post';
+import FormError from '../errors/form';
 import DisplayName from '../form/fields/display-name.vue';
 import CommentBody from '../form/fields/comment-body.vue';
 
@@ -27,6 +29,11 @@ export default {
    *
    */
   props: {
+    stream: {
+      type: Object,
+      required: true,
+    },
+
     displayName: {
       type: String,
       required: true,
@@ -39,6 +46,7 @@ export default {
   data: () => ({
     blockName: 'idx-create-comment',
     isLoading: false,
+    error: null,
     body: '',
   }),
 
@@ -49,8 +57,24 @@ export default {
     /**
      *
      */
-    handleSubmit() {
-
+    async handleSubmit() {
+      this.error = null;
+      this.isLoading = true;
+      const { displayName, body, stream } = this;
+      try {
+        const res = await post('/comment', {
+          displayName,
+          body,
+          stream,
+        });
+        const data = await res.json();
+        if (!res.ok) throw new FormError(data.message, res.status);
+        this.$emit('complete');
+      } catch (e) {
+        this.error = e;
+      } finally {
+        this.isLoading = false;
+      }
     },
   },
 };

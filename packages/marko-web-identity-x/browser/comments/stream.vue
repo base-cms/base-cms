@@ -9,7 +9,11 @@
         v-if="hasActiveUser"
         :class="element('create-post')"
       >
-        <create :display-name="activeUser.displayName" />
+        <create
+          :display-name="activeUser.displayName"
+          :stream="{ identifier, title, description, url }"
+          @complete="load"
+        />
       </div>
       <div v-else :class="element('login-form-wrapper')">
         <p :class="element('login-message')">
@@ -31,10 +35,10 @@
         />
       </div>
     </div>
-    <div v-if="isLoading" :class="element('body')">
+    <div v-if="isLoading" :class="element('loading')">
       Loading comments...
     </div>
-    <div v-else-if="error" :class="element('body')">
+    <div v-else-if="error" :class="element('error')">
       Unable to load comments: {{ error.message }}
     </div>
     <div v-else-if="comments.length === 0" :class="element('no-posts')">
@@ -82,6 +86,18 @@ export default {
     identifier: {
       type: String,
       required: true,
+    },
+    title: {
+      type: String,
+      default: undefined,
+    },
+    description: {
+      type: String,
+      default: undefined,
+    },
+    url: {
+      type: String,
+      default: undefined,
     },
     endpoints: {
       type: Object,
@@ -132,7 +148,6 @@ export default {
      *
      */
     hasActiveUser() {
-      console.log(this.activeUser);
       return this.activeUser && this.activeUser.email;
     },
   },

@@ -34,6 +34,9 @@
     "@identifier": {
       "type": "string",
       "required": true
-    }
+    },
+    "@title": "string",
+    "@description": "string",
+    "@url": "string"
   }
 }

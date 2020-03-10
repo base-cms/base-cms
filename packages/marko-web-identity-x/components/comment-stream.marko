@@ -7,6 +7,9 @@ $ const { identityX } = req;
   $ const props = {
     activeUser: user,
     identifier: `${input.identifier}`,
+    title: input.title,
+    description: input.description,
+    url: input.url,
     endpoints: identityX.config.getEndpoints(),
     consentPolicy: get(application, "organization.consentPolicy"),
   };
