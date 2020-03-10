@@ -11,11 +11,20 @@
       >
         Post new comment
       </div>
-      <div v-else :class="element('login-form')">
+      <div v-else :class="element('login-form-wrapper')">
         <p :class="element('login-message')">
-          This site requires you to login or register to post a comment.
+          This site requires you to
+          <a href="#show-login" @click.prevent="showLoginForm">login</a>
+          or <a href="#show-login" @click.prevent="showLoginForm">register</a> to post a comment.
         </p>
+        <div v-if="isLoginFormDisplayed" :class="element('close-form-wrapper')">
+          <button :class="element('close-form')" @click.prevent="hideLoginForm">
+            &times;
+          </button>
+        </div>
         <login
+          v-if="isLoginFormDisplayed"
+          :class="element('login-form')"
           :active-user="activeUser"
           :endpoints="endpoints"
           :consent-policy="consentPolicy"
@@ -82,6 +91,7 @@ export default {
   data: () => ({
     blockName: 'idx-comment-stream',
     isLoading: false,
+    isLoginFormDisplayed: false,
     error: null,
     comments: [],
   }),
@@ -121,6 +131,20 @@ export default {
      */
     element(name) {
       return `${this.blockName}__${name}`;
+    },
+
+    /**
+     *
+     */
+    showLoginForm() {
+      this.isLoginFormDisplayed = true;
+    },
+
+    /**
+     *
+     */
+    hideLoginForm() {
+      this.isLoginFormDisplayed = false;
     },
 
     /**
