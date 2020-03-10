@@ -59,6 +59,12 @@
           :date-format="dateFormat"
         />
       </div>
+      <div v-if="hasNextPage" :class="element('post')">
+        <button class="btn btn-primary" :disabled="isLoadingMore" @click.prevent="loadMore">
+          <span v-if="isLoadingMore">Loading...</span>
+          <span v-else>Load More Comments</span>
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -128,9 +134,13 @@ export default {
   data: () => ({
     blockName: 'idx-comment-stream',
     isLoading: false,
+    isLoadingMore: false,
     isLoginFormDisplayed: false,
     error: null,
     comments: [],
+    hasNextPage: false,
+    endCursor: null,
+    totalCount: 0,
   }),
 
   computed: {
@@ -194,11 +204,36 @@ export default {
         const res = await get(`/comments/${this.identifier}`);
         const data = await res.json();
         if (!res.ok) throw new Error(data.message);
+        this.totalCount = data.totalCount;
         this.comments = data.edges.map(edge => edge.node);
+        this.hasNextPage = data.pageInfo.hasNextPage;
+        this.endCursor = data.pageInfo.endCursor;
       } catch (e) {
         this.error = e;
       } finally {
         this.isLoading = false;
+      }
+    },
+
+    /**
+     *
+     */
+    async loadMore() {
+      this.error = null;
+      this.isLoadingMore = true;
+      try {
+        const res = await get(`/comments/${this.identifier}?after=${this.endCursor}`);
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.message);
+        this.totalCount = data.totalCount;
+        const comments = data.edges.map(edge => edge.node);
+        this.comments.push(...comments);
+        this.hasNextPage = data.pageInfo.hasNextPage;
+        this.endCursor = data.pageInfo.endCursor;
+      } catch (e) {
+        this.error = e;
+      } finally {
+        this.isLoadingMore = false;
       }
     },
   },

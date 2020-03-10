@@ -27,8 +27,11 @@ const query = gql`
 
 module.exports = asyncRoute(async (req, res) => {
   const { identifier } = req.params;
+  const { after } = req.query;
   const { identityX } = req;
-  const variables = { input: { identifier } };
+  const limit = after ? 20 : 5;
+  const pagination = { limit, after };
+  const variables = { input: { identifier, pagination } };
   const { data } = await identityX.client.query({ query, variables });
   res.json(data.commentsForStream);
 });
