@@ -7,6 +7,7 @@ fragment ActiveUserFragment on AppUser {
   email
   givenName
   familyName
+  displayName
   organization
   organizationTitle
   countryCode
