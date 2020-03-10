@@ -37,6 +37,9 @@
     <div v-else-if="error" :class="element('body')">
       Unable to load comments: {{ error.message }}
     </div>
+    <div v-else-if="comments.length === 0" :class="element('no-posts')">
+      {{ noCommentsMessage }}
+    </div>
     <div v-else :class="element('posts')">
       <div
         v-for="comment in comments"
@@ -88,6 +91,10 @@ export default {
     headerText: {
       type: String,
       default: 'Voice your opinion!',
+    },
+    noCommentsMessage: {
+      type: String,
+      default: 'No comments have been added yet. Want to start the conversation?',
     },
     modifiers: {
       type: Array,
