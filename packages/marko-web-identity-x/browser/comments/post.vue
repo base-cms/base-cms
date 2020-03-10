@@ -2,7 +2,8 @@
   <div :class="blockName" :data-id="id">
     <div :class="element('header')">
       <div :class="element('display-name')">
-        Posted by {{ displayName }}
+        <span>Posted by {{ displayName }}</span>
+        <span v-if="!approved">(pending moderation)</span>
       </div>
       <div :class="element('created-at')">
         {{ postedAt }}
