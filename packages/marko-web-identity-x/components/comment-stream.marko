@@ -6,7 +6,7 @@ $ const { identityX } = req;
 <marko-web-identity-x-context|{ user, isEnabled, application }|>
   $ const props = {
     activeUser: user,
-    identifier: input.identifier,
+    identifier: `${input.identifier}`,
     endpoints: identityX.config.getEndpoints(),
     consentPolicy: get(application, "organization.consentPolicy"),
   };
