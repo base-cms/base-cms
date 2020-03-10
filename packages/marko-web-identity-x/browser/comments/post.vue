@@ -5,7 +5,7 @@
         Posted by {{ displayName }}
       </div>
       <div :class="element('created-at')">
-        {{ createdAt }}
+        {{ postedAt }}
       </div>
     </div>
     <div :class="element('body')">
@@ -15,6 +15,8 @@
 </template>
 
 <script>
+import moment from 'moment';
+
 export default {
   /**
    *
@@ -40,6 +42,10 @@ export default {
       type: Boolean,
       default: true,
     },
+    dateFormat: {
+      type: String,
+      default: 'MMM Do, YYYY h:mma',
+    },
   },
 
   /**
@@ -48,6 +54,20 @@ export default {
   data: () => ({
     blockName: 'idx-comment-post',
   }),
+
+  /**
+   *
+   */
+  computed: {
+    /**
+     *
+     */
+    postedAt() {
+      const { createdAt } = this;
+      if (!createdAt) return null;
+      return moment(createdAt).format(this.dateFormat);
+    },
+  },
 
   /**
    *

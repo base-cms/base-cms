@@ -49,6 +49,7 @@
           :display-name="comment.user.displayName"
           :created-at="comment.createdAt"
           :approved="comment.approved"
+          :date-format="dateFormat"
         />
       </div>
     </div>
@@ -95,6 +96,10 @@ export default {
     consentPolicy: {
       type: String,
       default: null,
+    },
+    dateFormat: {
+      type: String,
+      default: undefined,
     },
   },
 
