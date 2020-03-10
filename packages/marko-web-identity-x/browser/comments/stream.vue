@@ -30,17 +30,26 @@
           :consent-policy="consentPolicy"
         />
       </div>
-      <div v-if="isLoading">
-        Loading comments...
-      </div>
-      <div v-else-if="error">
-        Unable to load comments: {{ error.message }}
-      </div>
-      <div v-else>
-        <div v-for="comment in comments" :key="comment.id">
-          <div>Posted by {{ comment.user.displayName }}</div>
-          <div>{{ comment.body }}</div>
-        </div>
+    </div>
+    <div v-if="isLoading" :class="element('body')">
+      Loading comments...
+    </div>
+    <div v-else-if="error" :class="element('body')">
+      Unable to load comments: {{ error.message }}
+    </div>
+    <div v-else :class="element('posts')">
+      <div
+        v-for="comment in comments"
+        :key="comment.id"
+        :class="element('post')"
+      >
+        <post
+          :id="comment.id"
+          :body="comment.body"
+          :display-name="comment.user.displayName"
+          :created-at="comment.createdAt"
+          :approved="comment.approved"
+        />
       </div>
     </div>
   </div>
@@ -49,6 +58,7 @@
 <script>
 import get from '../utils/get';
 import Login from '../login.vue';
+import Post from './post.vue';
 // Posting As
 // Your Comment
 
@@ -56,7 +66,7 @@ export default {
   /**
    *
    */
-  components: { Login },
+  components: { Login, Post },
 
   /**
    *
