@@ -7,6 +7,7 @@
       :id="id"
       v-model="body"
       class="form-control"
+      rows="3"
       :required="required"
       :disabled="disabled"
       :placeholder="placeholder"
