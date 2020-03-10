@@ -292,6 +292,7 @@ input AllPublishedContentQueryInput {
 
 input PublishedContentCountsQueryInput {
   siteId: ObjectID
+  after: Date
   since: Date
   excludeContentTypes: [ContentType!] = []
   includeContentTypes: [ContentType!] = []
