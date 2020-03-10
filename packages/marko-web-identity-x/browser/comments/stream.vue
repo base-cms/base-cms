@@ -9,7 +9,7 @@
         v-if="hasActiveUser"
         :class="element('create-post')"
       >
-        Post new comment
+        <create :display-name="activeUser.displayName" />
       </div>
       <div v-else :class="element('login-form-wrapper')">
         <p :class="element('login-message')">
@@ -63,14 +63,13 @@
 import get from '../utils/get';
 import Login from '../login.vue';
 import Post from './post.vue';
-// Posting As
-// Your Comment
+import Create from './create.vue';
 
 export default {
   /**
    *
    */
-  components: { Login, Post },
+  components: { Login, Post, Create },
 
   /**
    *
@@ -133,6 +132,7 @@ export default {
      *
      */
     hasActiveUser() {
+      console.log(this.activeUser);
       return this.activeUser && this.activeUser.email;
     },
   },
