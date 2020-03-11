@@ -14,6 +14,7 @@ const query = gql`
           id
           body
           approved
+          flagged
           createdAt
           user {
             id

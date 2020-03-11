@@ -56,6 +56,7 @@
           :display-name="comment.user.displayName"
           :created-at="comment.createdAt"
           :approved="comment.approved"
+          :flagged="comment.flagged"
           :date-format="dateFormat"
         />
       </div>

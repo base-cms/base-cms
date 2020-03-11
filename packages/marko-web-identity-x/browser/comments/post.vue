@@ -10,6 +10,9 @@
       </div>
     </div>
     <div :class="element('body')">
+      <p v-if="flagged" :class="element('flagged')">
+        This comment has been reported.
+      </p>
       {{ body }}
     </div>
   </div>
@@ -42,6 +45,10 @@ export default {
     approved: {
       type: Boolean,
       default: true,
+    },
+    flagged: {
+      type: Boolean,
+      default: false,
     },
     dateFormat: {
       type: String,
