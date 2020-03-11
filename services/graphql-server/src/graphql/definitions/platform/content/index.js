@@ -275,6 +275,7 @@ input ContentSitemapNewsUrlsQueryInput {
 
 input AllPublishedContentQueryInput {
   siteId: ObjectID
+  after: Date
   since: Date
   sectionId: Int
   # @deprecated. Use \`AllPublishedContentQueryInput.includeContentTypes\` instead.
@@ -291,6 +292,7 @@ input AllPublishedContentQueryInput {
 
 input PublishedContentCountsQueryInput {
   siteId: ObjectID
+  after: Date
   since: Date
   excludeContentTypes: [ContentType!] = []
   includeContentTypes: [ContentType!] = []
