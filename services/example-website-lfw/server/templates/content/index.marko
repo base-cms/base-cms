@@ -137,6 +137,12 @@ $ const requiresRegistration = req.query["enable-gate"] === "true";
                       target="_blank"
                     />
                   </if>
+                  <marko-web-identity-x-comment-stream
+                    identifier=id
+                    title=content.name
+                    description=content.teaser
+                    url=`${content.siteContext.canonicalUrl}`
+                  />
                 </else>
               </marko-web-identity-x-access>
             </default-theme-page-contents>
