@@ -1,7 +1,7 @@
 <template>
   <form :class="blockName" @submit.prevent="handleSubmit">
     <fieldset :disabled="isLoading">
-      <display-name v-model="displayName" label="Posting As" />
+      <display-name v-model="currentDisplayName" label="Posting As" />
       <comment-body v-model="body" />
       <button
         type="submit"
@@ -48,7 +48,22 @@ export default {
     isLoading: false,
     error: null,
     body: '',
+    updatedDisplayName: undefined,
   }),
+
+  computed: {
+    /**
+     *
+     */
+    currentDisplayName: {
+      get() {
+        return this.updatedDisplayName || this.displayName;
+      },
+      set(displayName) {
+        this.updatedDisplayName = displayName;
+      },
+    },
+  },
 
   /**
    *
@@ -60,10 +75,10 @@ export default {
     async handleSubmit() {
       this.error = null;
       this.isLoading = true;
-      const { displayName, body, stream } = this;
+      const { currentDisplayName, body, stream } = this;
       try {
         const res = await post('/comment', {
-          displayName,
+          displayName: currentDisplayName,
           body,
           stream,
         });
