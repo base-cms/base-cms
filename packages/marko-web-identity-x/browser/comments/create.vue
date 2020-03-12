@@ -69,6 +69,7 @@ export default {
         });
         const data = await res.json();
         if (!res.ok) throw new FormError(data.message, res.status);
+        this.body = '';
         this.$emit('complete');
       } catch (e) {
         this.error = e;
