@@ -12,7 +12,7 @@
         <span v-if="hasActiveUser && !flagged">
           <a
             href="#report-post"
-            title="Report post content as inappropriate."
+            title="Report post as inappropriate."
             @click.prevent="reportComment"
           >
             Report
