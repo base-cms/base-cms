@@ -58,6 +58,8 @@
           :approved="comment.approved"
           :flagged="comment.flagged"
           :date-format="dateFormat"
+          :active-user="activeUser"
+          @reported="load"
         />
       </div>
       <div v-if="hasNextPage" :class="element('post')">

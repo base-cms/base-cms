@@ -4,6 +4,7 @@ const jsonErrorHandler = require('../utils/json-error-handler');
 const authenticate = require('./authenticate');
 const comments = require('./comments');
 const createComment = require('./create-comment');
+const flagComment = require('./flag-comment');
 const login = require('./login');
 const logout = require('./logout');
 const profile = require('./profile');
@@ -21,6 +22,7 @@ router.get('/countries', countries);
 router.get('/regions', regions);
 router.get('/comments/:identifier', comments);
 router.post('/comment', createComment);
+router.post('/comment/flag/:id', flagComment);
 router.use(jsonErrorHandler());
 
 module.exports = router;

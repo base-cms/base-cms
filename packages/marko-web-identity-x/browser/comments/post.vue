@@ -5,8 +5,19 @@
         <span>Posted by {{ displayName }}</span>
         <span v-if="!approved">(pending moderation)</span>
       </div>
-      <div :class="element('created-at')">
-        {{ postedAt }}
+      <div>
+        <span :class="element('created-at')">
+          {{ postedAt }}
+        </span>
+        <span v-if="hasActiveUser && !flagged">
+          <a
+            href="#report-post"
+            title="Report post content as inappropriate."
+            @click.prevent="reportComment"
+          >
+            Report
+          </a>
+        </span>
       </div>
     </div>
     <div :class="element('body')">
@@ -20,6 +31,8 @@
 
 <script>
 import moment from 'moment';
+import post from '../utils/post';
+import FormError from '../errors/form';
 
 export default {
   /**
@@ -54,6 +67,10 @@ export default {
       type: String,
       default: 'MMM Do, YYYY h:mma',
     },
+    activeUser: {
+      type: Object,
+      default: () => {},
+    },
   },
 
   /**
@@ -61,6 +78,8 @@ export default {
    */
   data: () => ({
     blockName: 'idx-comment-post',
+    isReporting: false,
+    error: null,
   }),
 
   /**
@@ -75,6 +94,13 @@ export default {
       if (!createdAt) return null;
       return moment(createdAt).format(this.dateFormat);
     },
+
+    /**
+     *
+     */
+    hasActiveUser() {
+      return this.activeUser && this.activeUser.email;
+    },
   },
 
   /**
@@ -86,6 +112,22 @@ export default {
      */
     element(name) {
       return `${this.blockName}__${name}`;
+    },
+
+    async reportComment() {
+      if (this.isReporting) return;
+      this.error = null;
+      this.isReporting = true;
+      try {
+        const res = await post(`/comment/flag/${this.id}`);
+        const data = await res.json();
+        if (!res.ok) throw new FormError(data.message, res.status);
+        this.$emit('reported');
+      } catch (e) {
+        this.error = e;
+      } finally {
+        this.isReporting = false;
+      }
     },
   },
 };
