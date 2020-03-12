@@ -31,6 +31,8 @@ $pswp__root-z-index: $theme-site-header-z-index + 1 !default;
 $leaders-primary-color: $primary;
 @import "../../node_modules/@base-cms/marko-web-leaders/scss/leaders";
 
+@import "identity-x";
+
 .social-sharing {
   margin-bottom: 1rem;
 }
