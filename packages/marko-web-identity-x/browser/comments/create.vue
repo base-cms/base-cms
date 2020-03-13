@@ -10,6 +10,9 @@
         Submit
       </button>
     </fieldset>
+    <p v-if="error" class="mb-0 mt-3">
+      Error: {{ error.message }}
+    </p>
   </form>
 </template>
 
