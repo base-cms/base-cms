@@ -5,6 +5,10 @@ const query = gql`
   query ListComments($input: CommentsForStreamQueryInput!) {
     commentsForStream(input: $input) {
       totalCount
+      stream {
+        id
+        archived
+      }
       pageInfo {
         endCursor
         hasNextPage

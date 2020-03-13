@@ -74,6 +74,10 @@
       border-bottom: none;
     }
   }
+
+  &__archived {
+    font-weight: $font-weight-bold;
+  }
 }
 
 .idx-comment-post {

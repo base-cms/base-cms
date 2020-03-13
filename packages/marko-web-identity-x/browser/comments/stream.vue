@@ -9,7 +9,11 @@
         v-if="hasActiveUser"
         :class="element('create-post')"
       >
+        <div v-if="archived" :class="element('archived')">
+          This thread is archived and is no longer accepting comments.
+        </div>
         <create
+          v-else
           :display-name="activeUser.displayName"
           :stream="{ identifier, title, description, url }"
           @complete="load"
@@ -141,6 +145,7 @@ export default {
     isLoginFormDisplayed: false,
     error: null,
     comments: [],
+    archived: false,
     hasNextPage: false,
     endCursor: null,
     totalCount: 0,
@@ -211,6 +216,7 @@ export default {
         this.comments = data.edges.map(edge => edge.node);
         this.hasNextPage = data.pageInfo.hasNextPage;
         this.endCursor = data.pageInfo.endCursor;
+        this.archived = data.stream ? data.stream.archived : false;
       } catch (e) {
         this.error = e;
       } finally {
