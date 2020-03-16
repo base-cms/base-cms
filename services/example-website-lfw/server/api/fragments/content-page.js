@@ -16,6 +16,7 @@ fragment ContentPageFragment on Content {
   }
   siteContext {
     path
+    canonicalUrl
   }
   primarySection {
     id

@@ -84,6 +84,10 @@ export default {
       type: String,
       default: null,
     },
+    redirect: {
+      type: String,
+      default: null,
+    },
   },
 
   /**
@@ -118,6 +122,8 @@ export default {
      *
      */
     redirectTo() {
+      const { redirect } = this;
+      if (redirect) return redirect;
       const { pathname, search, hash } = window.location;
       return `${pathname}${search}${hash}`;
     },

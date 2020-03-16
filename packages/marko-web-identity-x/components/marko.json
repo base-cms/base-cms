@@ -28,5 +28,15 @@
     "template": "./form-profile.marko",
     "@call-to-action": "string",
     "@reload-page-on-submit": "boolean"
+  },
+  "<marko-web-identity-x-comment-stream>": {
+    "template": "./comment-stream.marko",
+    "@identifier": {
+      "type": "string",
+      "required": true
+    },
+    "@title": "string",
+    "@description": "string",
+    "@url": "string"
   }
 }
