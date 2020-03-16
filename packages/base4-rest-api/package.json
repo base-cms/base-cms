@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/base4-rest-api",
-  "version": "1.9.0",
+  "version": "1.25.0",
   "description": "A Base4 REST API client.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
@@ -12,8 +12,8 @@
   },
   "dependencies": {
     "@base-cms/inflector": "^1.0.0",
-    "@base-cms/object-path": "^1.9.0",
-    "@base-cms/utils": "^1.9.0",
+    "@base-cms/object-path": "^1.25.0",
+    "@base-cms/utils": "^1.25.0",
     "http-errors": "^1.7.3",
     "node-fetch": "^2.6.0"
   },
