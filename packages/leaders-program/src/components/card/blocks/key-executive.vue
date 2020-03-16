@@ -4,8 +4,10 @@
       <img :src="imageSrc" :alt="imageAlt">
     </div>
     <div class="leaders-key-executive__details">
-      <span class="leaders-key-executive__name">{{ name }}</span>
-      <span v-if="title" class="leaders-key-executive__title">{{ title }}</span>
+      <span class="leaders-key-executive__name">
+        {{ name }}
+        <span v-if="title" class="leaders-key-executive__title">{{ title }}</span>
+      </span>
     </div>
   </div>
 </template>
