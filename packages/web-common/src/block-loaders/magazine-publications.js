@@ -6,9 +6,9 @@ const buildQuery = require('../gql/query-factories/block-magazine-publications')
  * @param {string} [params.queryFragment] The `graphql-tag` fragment
  *                                        to apply to the `magazinePublications` query.
  */
-module.exports = async (apolloClient, { queryFragment, queryName } = {}) => {
+module.exports = async (apolloClient, { publicationIds, queryFragment, queryName } = {}) => {
   const query = buildQuery({ queryFragment, queryName });
-  const variables = { input: {} };
+  const variables = { input: { publicationIds } };
 
   const { data } = await apolloClient.query({ query, variables });
   if (!data || !data.magazinePublications) return { nodes: [], pageInfo: {} };

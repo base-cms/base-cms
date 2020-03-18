@@ -4,7 +4,12 @@ module.exports = gql`
 
 extend type Query {
   magazinePublication(input: MagazinePublicationQueryInput!): MagazinePublication @findOne(model: "platform.Product", using: { id: "_id" }, criteria: "magazinePublication")
-  magazinePublications(input: MagazinePublicationsQueryInput = {}): MagazinePublicationConnection! @findMany(model: "platform.Product", criteria: "magazinePublication")
+  magazinePublications(input: MagazinePublicationsQueryInput = {}): MagazinePublicationConnection!
+    @findMany(
+      model: "platform.Product",
+      criteria: "magazinePublication",
+      queryBuilder: "magazinePublications",
+    )
   magazineSubscribeUrl(input: MagazineSubscribeUrlQueryInput!): MagazinePublication @findOne(model: "platform.Product", using: { subscribeUrl: "subscribeUrl" }, criteria: "magazinePublication")
 }
 
@@ -71,6 +76,7 @@ input MagazineSubscribeUrlQueryInput {
 
 input MagazinePublicationsQueryInput {
   status: ModelStatus = active
+  publicationIds: [ObjectID!] = []
   sort: MagazinePublicationSortInput = {}
   pagination: PaginationInput = {}
 }

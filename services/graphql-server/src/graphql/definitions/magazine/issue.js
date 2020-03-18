@@ -12,6 +12,7 @@ extend type Query {
   magazineIssues(input: MagazineIssuesQueryInput = {}): MagazineIssueConnection!
     @findMany(
       model: "magazine.Issue",
+      queryBuilder: "magazineIssues",
     )
 
   magazineActiveIssues(input: MagazineActiveIssuesQueryInput!): MagazineIssueConnection!
@@ -81,6 +82,7 @@ input MagazineIssueQueryInput {
 input MagazineLatestIssueQueryInput {
   publicationId: ObjectID!
   status: ModelStatus = active
+  requiresCoverImage: Boolean = false
   sort: MagazineIssueSortInput = { field: mailDate, order: desc }
 }
 
@@ -88,12 +90,14 @@ input MagazineActiveIssuesQueryInput {
   status: ModelStatus = active
   publicationId: ObjectID!
   excludeIssueIds: [Int!] = []
+  requiresCoverImage: Boolean = false
   sort: MagazineIssueSortInput = { field: mailDate, order: desc }
   pagination: PaginationInput = {}
 }
 
 input MagazineIssuesQueryInput {
   status: ModelStatus = active
+  requiresCoverImage: Boolean = false
   sort: MagazineIssueSortInput = {}
   pagination: PaginationInput = {}
 }
