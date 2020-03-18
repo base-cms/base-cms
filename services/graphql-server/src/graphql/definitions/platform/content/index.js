@@ -353,7 +353,7 @@ input WebsiteExpiringContentQueryInput {
   before: Date
   after: Date
   sectionId: Int
-  optionId: Int
+  optionId: [Int] = []
   excludeContentIds: [Int!] = []
   excludeSectionIds: [Int!] = []
   excludeContentTypes: [ContentType!] = []

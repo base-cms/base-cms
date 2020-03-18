@@ -73,25 +73,6 @@ const loadSection = async ({
   return basedb.strictFindOne('website.Section', sectionQuery, { projection: { _id: 1 } });
 };
 
-const loadOption = async ({
-  basedb,
-  siteId,
-  id,
-  name,
-}) => {
-  if (!id && !name) return null;
-  const optionQuery = {
-    status: 1,
-    ...(siteId && { 'site.$id': siteId }),
-  };
-  if (id) {
-    optionQuery._id = id;
-  } else {
-    optionQuery.name = name;
-  }
-  return basedb.strictFindOne('website.Option', optionQuery, { projection: { _id: 1 } });
-};
-
 const loadOptions = async ({
   basedb,
   siteId,
@@ -914,26 +895,26 @@ module.exports = {
         pagination,
       } = input;
 
-      if (!sectionId && !optionId) throw new UserInputError('Either a sectionId or optionId input must be provided.');
-      if (!before && !after) throw new UserInputError('Either a sectionId or optionId input must be provided.');
+      if (!sectionId && !optionId.length) throw new UserInputError('Either a sectionId or optionId input must be provided.');
+      if (!before && !after) throw new UserInputError('Either a before or an after input must be provided.');
 
       const siteId = input.siteId || site.id();
-      const [section, option] = await Promise.all([
+      const [section, options] = await Promise.all([
         loadSection({
           basedb,
           siteId,
           id: sectionId,
         }),
-        loadOption({
+        loadOptions({
           basedb,
           siteId,
-          id: optionId,
-          name: 'Standard',
+          ids: optionId,
+          names: ['Standard'],
         }),
       ]);
 
       const $elemMatch = {
-        optionId: option._id,
+        ...(optionId.length && { optionId: { $in: options.map(opt => opt._id) } }),
         $and: [],
       };
       if (before) $elemMatch.$and.push({ end: { $lte: before } });
