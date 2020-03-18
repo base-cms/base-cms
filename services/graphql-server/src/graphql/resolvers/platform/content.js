@@ -493,21 +493,21 @@ module.exports = {
 
       if (!sectionId && !sectionAlias) throw new UserInputError('Either a sectionId or sectionAlias input must be provided.');
       if (sectionId && sectionAlias) throw new UserInputError('You cannot provide both sectionId and sectionAlias as input.');
-      if (optionId && optionName) throw new UserInputError('You cannot provide both optionId and optionName as input.');
+      if (optionId.length && optionName.length) throw new UserInputError('You cannot provide both optionId and optionName as input.');
 
       const siteId = input.siteId || site.id();
-      const [section, option] = await Promise.all([
+      const [section, options] = await Promise.all([
         loadSection({
           basedb,
           siteId,
           id: sectionId,
           alias: sectionAlias,
         }),
-        loadOption({
+        loadOptions({
           basedb,
           siteId,
-          id: optionId,
-          name: optionName || 'Standard',
+          ids: optionId,
+          names: optionName || ['Standard'],
         }),
       ]);
 
@@ -516,7 +516,7 @@ module.exports = {
       const now = new Date();
       const $elemMatch = {
         sectionId: descendantIds.length ? { $in: descendantIds } : section._id,
-        optionId: option._id,
+        optionId: { $in: options.map(opt => opt._id) },
         start: { $lte: now },
         $and: [
           {

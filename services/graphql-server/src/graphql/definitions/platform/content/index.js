@@ -470,8 +470,8 @@ input ContentHasWebsiteScheduleInput {
   siteId: ObjectID
   sectionId: Int
   sectionAlias: String
-  optionId: Int
-  optionName: String
+  optionId: [Int] = []
+  optionName: [String] = []
   sectionBubbling: Boolean = true
 }
 
