@@ -1,6 +1,7 @@
 const magazineActiveIssues = require('./magazine-active-issues');
 const magazineLatestIssue = require('./magazine-latest-issue');
 const magazineIssues = require('./magazine-issues');
+const magazinePublications = require('./magazine-publications');
 const publishedContent = require('./published-content');
 const taxonomies = require('./taxonomies');
 const websiteSections = require('./website-sections');
@@ -20,6 +21,7 @@ const builders = {
   magazineActiveIssues,
   magazineLatestIssue,
   magazineIssues,
+  magazinePublications,
   publishedContent,
   taxonomies,
   websiteSections,
