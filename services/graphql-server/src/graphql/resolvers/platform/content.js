@@ -488,7 +488,7 @@ module.exports = {
           basedb,
           siteId,
           ids: optionId,
-          names: optionName || ['Standard'],
+          names: optionName.length ? optionName : ['Standard'],
         }),
       ]);
 
@@ -985,7 +985,7 @@ module.exports = {
           basedb,
           siteId,
           ids: optionId,
-          names: optionName || ['Standard'],
+          names: optionName.length ? optionName : ['Standard'],
         }),
       ]);
 
