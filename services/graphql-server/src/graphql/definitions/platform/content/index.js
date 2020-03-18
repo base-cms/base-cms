@@ -353,7 +353,7 @@ input WebsiteExpiringContentQueryInput {
   before: Date
   after: Date
   sectionId: Int
-  optionId: Int
+  optionId: [Int] = []
   excludeContentIds: [Int!] = []
   excludeSectionIds: [Int!] = []
   excludeContentTypes: [ContentType!] = []
@@ -378,8 +378,8 @@ input WebsiteScheduledContentQueryInput {
   siteId: ObjectID
   sectionId: Int
   sectionAlias: String
-  optionId: Int
-  optionName: String
+  optionId: [Int] = []
+  optionName: [String] = []
   excludeContentIds: [Int!] = []
   excludeSectionIds: [Int!] = []
   excludeContentTypes: [ContentType!] = []
@@ -470,8 +470,8 @@ input ContentHasWebsiteScheduleInput {
   siteId: ObjectID
   sectionId: Int
   sectionAlias: String
-  optionId: Int
-  optionName: String
+  optionId: [Int] = []
+  optionName: [String] = []
   sectionBubbling: Boolean = true
 }
 
