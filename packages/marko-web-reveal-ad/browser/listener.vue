@@ -102,11 +102,13 @@ export default {
     },
     listener(event) {
       const payload = parseJson(event.data);
-      const element = document.querySelector(this.target);
-      if (['adImagePath', 'adTitle', 'backgroundImagePath', 'adClickUrl'].every(k => payload[k]) && element) {
+      if (['adImagePath', 'adTitle', 'backgroundImagePath', 'adClickUrl'].every(k => payload[k])) {
+        const elements = document.querySelectorAll(this.target);
         this.payload = { ...this.defaults, ...payload };
         this.displayBackground();
-        this.displayAd(element);
+        for (let i = 0; i < elements.length; i += 1) {
+          this.displayAd(elements[i]);
+        }
         this.observeMutations();
         window.removeEventListener('message', this.listener);
       }
