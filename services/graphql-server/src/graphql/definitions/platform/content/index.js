@@ -161,7 +161,7 @@ type ContentConnection @projectUsing(type: "Content") {
 type WebsiteScheduledContentConnection @projectUsing(type: "Content") {
   totalCount: Int!
   edges: [ContentEdge]!
-  section: WebsiteSection! @refOne(localField: "sectionId", loader: "websiteSection")
+  section: WebsiteSection @refOne(localField: "sectionId", loader: "websiteSection")
   pageInfo: PageInfo!
 }
 
