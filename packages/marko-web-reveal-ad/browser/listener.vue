@@ -30,6 +30,10 @@ export default {
       type: Object,
       default: () => ({ backgroundColor: 'transparent' }),
     },
+    selectAllTargets: {
+      type: Boolean,
+      default: false,
+    },
   },
   data: () => ({
     observed: 0,
@@ -103,7 +107,9 @@ export default {
     listener(event) {
       const payload = parseJson(event.data);
       if (['adImagePath', 'adTitle', 'backgroundImagePath', 'adClickUrl'].every(k => payload[k])) {
-        const elements = document.querySelectorAll(this.target);
+        const elements = this.selectAllTargets
+          ? document.querySelectorAll(this.target) : [document.querySelector(this.target)];
+        document.querySelectorAll(this.target);
         this.payload = { ...this.defaults, ...payload };
         this.displayBackground();
         for (let i = 0; i < elements.length; i += 1) {
