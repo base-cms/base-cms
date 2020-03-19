@@ -971,9 +971,10 @@ module.exports = {
         pagination,
       } = input;
 
-      if (!sectionId && !sectionAlias) throw new UserInputError('Either a sectionId or sectionAlias input must be provided.');
       if (sectionId && sectionAlias) throw new UserInputError('You cannot provide both sectionId and sectionAlias as input.');
       if (optionId.length && optionName.length) throw new UserInputError('You cannot provide both optionId and optionName as input.');
+
+      const hasSectionInput = Boolean(sectionId || sectionAlias);
 
       const siteId = input.siteId || site.id();
       const [section, options] = await Promise.all([
@@ -991,11 +992,17 @@ module.exports = {
         }),
       ]);
 
-      const descendantIds = sectionBubbling ? await getDescendantIds(section._id, basedb) : [];
+      const descendantIds = sectionBubbling && section
+        ? await getDescendantIds(section._id, basedb) : [];
+
+      let sectionFilter = { $exists: true };
+      if (hasSectionInput) {
+        sectionFilter = descendantIds.length ? { $in: descendantIds } : section._id;
+      }
 
       const now = new Date();
       const $elemMatch = {
-        sectionId: descendantIds.length ? { $in: descendantIds } : section._id,
+        sectionId: sectionFilter,
         optionId: { $in: options.map(opt => opt._id) },
         start: { $lte: now },
         $and: [
@@ -1039,7 +1046,7 @@ module.exports = {
         sort,
         projection: { ...(!input.sort.field && { 'sectionQuery.$.start': 1 }), ...projection },
         excludeProjection,
-        additionalData: { sectionId: section._id },
+        additionalData: { sectionId: hasSectionInput ? section._id : null },
         ...pagination,
         collate: input.sort.field === 'name',
       });
