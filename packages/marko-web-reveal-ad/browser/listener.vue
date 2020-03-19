@@ -109,7 +109,6 @@ export default {
       if (['adImagePath', 'adTitle', 'backgroundImagePath', 'adClickUrl'].every(k => payload[k])) {
         const elements = this.selectAllTargets
           ? document.querySelectorAll(this.target) : [document.querySelector(this.target)];
-        document.querySelectorAll(this.target);
         this.payload = { ...this.defaults, ...payload };
         this.displayBackground();
         for (let i = 0; i < elements.length; i += 1) {
