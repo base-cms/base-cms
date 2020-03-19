@@ -39,6 +39,8 @@ module.exports = async (apolloClient, {
   includeContentTypes,
   excludeContentTypes,
 
+  excludeContentIds,
+
   sectionId,
   contentTypes,
   requiresImage,
@@ -52,6 +54,7 @@ module.exports = async (apolloClient, {
     pagination,
     includeContentTypes: includeContentTypes || contentTypes,
     excludeContentTypes,
+    excludeContentIds,
     requiresImage,
     sectionBubbling,
     sectionId,

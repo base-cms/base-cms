@@ -613,6 +613,7 @@ module.exports = {
         contentTypes: deprecatedContentTypes,
         includeContentTypes,
         excludeContentTypes,
+        excludeContentIds,
         requiresImage,
         sectionBubbling,
         sort,
@@ -628,6 +629,7 @@ module.exports = {
         since,
         after,
         contentTypes,
+        excludeContentIds,
         excludeContentTypes,
       });
 
