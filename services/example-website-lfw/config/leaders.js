@@ -5,4 +5,6 @@ module.exports = {
   header: {
     imgSrc: 'https://base.imgix.net/files/base/pennwell/lfw/logo.png?h=90',
   },
+  promotionLimit: 3,
+  videoLimit: 2,
 };

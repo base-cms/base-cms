@@ -18,6 +18,9 @@ $theme-site-header-breakpoints: (
   small-text-secondary: 1105px
 );
 
+$leaders-promotion-card-count: 3;
+$leaders-video-card-count: 2;
+
 @import "../../node_modules/@base-cms/marko-web-gam/scss/fixed-ad-bottom";
 @import "../../node_modules/@base-cms/marko-web-reveal-ad/scss/reveal-ad";
 @import "../../node_modules/@base-cms/marko-web-social-sharing/scss/buttons";
