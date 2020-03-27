@@ -9,7 +9,9 @@ $ const { contentId } = input;
     headerImgSrc: site.get("leaders.header.imgSrc"),
     headerImgAlt: site.get("leaders.title"),
     displayCallout: false,
-    offsetTop: 50,
+    offsetTop: site.get("leaders.offsetTop", 150),
+    promotionLimit: site.get("leaders.promotionLimit", 4),
+    videoLimit: site.get("leaders.videoLimit", 3),
     viewAllHref: '/leaders',
     mediaQueries: [
       { prop: "displayCallout", value: true, query: "(min-width: 701px)" },
