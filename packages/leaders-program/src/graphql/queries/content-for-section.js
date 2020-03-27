@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 
 export default gql`
 
-query ContentForLeadersSection($sectionId: Int!) {
+query ContentForLeadersSection($sectionId: Int!, $promotionLimit: Int = 4, $videoLimit: Int = 3) {
   websiteScheduledContent(input: {
     sectionId: $sectionId,
     pagination: { limit: 0 },
@@ -68,6 +68,7 @@ query ContentForLeadersSection($sectionId: Int!) {
           promotions: relatedContent(input: {
             queryTypes: [company],
             includeContentTypes: [Promotion],
+            pagination: { limit: $promotionLimit },
           }) {
             edges {
               node {
@@ -98,7 +99,7 @@ query ContentForLeadersSection($sectionId: Int!) {
             channelId
             url
           }
-          videos: youtubeVideos(input: { pagination: { limit: 3 } }) {
+          videos: youtubeVideos(input: { pagination: { limit: $videoLimit } }) {
             edges {
               node {
                 id

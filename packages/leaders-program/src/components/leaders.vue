@@ -25,6 +25,8 @@
         :columns="getResponsiveValue('columns')"
         :offset-top="getResponsiveValue('offsetTop')"
         :offset-bottom="getResponsiveValue('offsetBottom')"
+        :promotion-limit="promotionLimit"
+        :video-limit="videoLimit"
         @action="emitAction"
       />
     </div>
@@ -127,6 +129,14 @@ export default {
     offsetBottom: {
       type: Number,
       default: 0,
+    },
+    promotionLimit: {
+      type: Number,
+      default: 4,
+    },
+    videoLimit: {
+      type: Number,
+      default: 3,
     },
   },
 

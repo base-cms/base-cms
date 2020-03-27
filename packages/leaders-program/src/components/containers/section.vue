@@ -90,6 +90,14 @@ export default {
       type: Number,
       default: 0,
     },
+    promotionLimit: {
+      type: Number,
+      default: 4,
+    },
+    videoLimit: {
+      type: Number,
+      default: 3,
+    },
   },
 
   data: () => ({
@@ -157,7 +165,7 @@ export default {
         this.isLoading = true;
         this.error = null;
         try {
-          const variables = { sectionId: this.sectionId };
+          const variables = { sectionId: this.sectionId, promotionLimit: this.promotionLimit, videoLimit: this.videoLimit };
           const { data } = await this.$apollo.query({ query, variables });
           this.items = getEdgeNodes(data, 'websiteScheduledContent');
           this.hasLoaded = true;
