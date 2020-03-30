@@ -3,14 +3,16 @@ import { get } from "@base-cms/object-path";
 $ const { req } = out.global;
 $ const { identityX } = req;
 
-<marko-web-identity-x-context|{ user, isEnabled, application }|>
-  $ const props = {
-    activeUser: user,
-    endpoints: identityX.config.getEndpoints(),
-    consentPolicy: get(application, "organization.consentPolicy"),
-    appContextId: identityX.config.get("appContextId"),
-  };
-  <if(isEnabled)>
-    <marko-web-browser-component name="IdentityXLogin" props=props />
-  </if>
-</marko-web-identity-x-context>
+<if(Boolean(identityX))>
+  <marko-web-identity-x-context|{ user, isEnabled, application }|>
+    $ const props = {
+      activeUser: user,
+      endpoints: identityX.config.getEndpoints(),
+      consentPolicy: get(application, "organization.consentPolicy"),
+      appContextId: identityX.config.get("appContextId"),
+    };
+    <if(isEnabled)>
+      <marko-web-browser-component name="IdentityXLogin" props=props />
+    </if>
+  </marko-web-identity-x-context>
+</if>
