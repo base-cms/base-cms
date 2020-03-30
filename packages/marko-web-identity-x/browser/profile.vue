@@ -80,7 +80,7 @@
   </div>
   <div v-else>
     <p>You must be logged-in to modify your user profile.</p>
-    <login :endpoints="endpoints" />
+    <login :endpoints="endpoints" :app-context-id="appContextId" />
   </div>
 </template>
 
@@ -142,6 +142,10 @@ export default {
       default: false,
     },
     consentPolicy: {
+      type: String,
+      default: null,
+    },
+    appContextId: {
       type: String,
       default: null,
     },

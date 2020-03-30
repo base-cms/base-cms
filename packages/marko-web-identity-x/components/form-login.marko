@@ -8,6 +8,7 @@ $ const { identityX } = req;
     activeUser: user,
     endpoints: identityX.config.getEndpoints(),
     consentPolicy: get(application, "organization.consentPolicy"),
+    appContextId: identityX.config.get("appContextId"),
   };
   <if(isEnabled)>
     <marko-web-browser-component name="IdentityXLogin" props=props />

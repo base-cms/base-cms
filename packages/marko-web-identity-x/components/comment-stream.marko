@@ -12,6 +12,7 @@ $ const { identityX } = req;
     url: input.url,
     endpoints: identityX.config.getEndpoints(),
     consentPolicy: get(application, "organization.consentPolicy"),
+    appContextId: identityX.config.get("appContextId"),
   };
   <if(isEnabled)>
     <marko-web-browser-component name="IdentityXCommentStream" props=props />

@@ -12,6 +12,7 @@ $ const { identityX } = req;
     reloadPageOnSubmit: input.reloadPageOnSubmit,
     endpoints: identityX.config.getEndpoints(),
     consentPolicy: get(application, "organization.consentPolicy"),
+    appContextId: identityX.config.get("appContextId"),
   };
   <if(isEnabled)>
     <marko-web-browser-component name="IdentityXProfile" props=props />
