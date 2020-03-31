@@ -36,6 +36,7 @@
           :active-user="activeUser"
           :endpoints="endpoints"
           :consent-policy="consentPolicy"
+          :app-context-id="appContextId"
         />
       </div>
     </div>
@@ -135,6 +136,10 @@ export default {
     dateFormat: {
       type: String,
       default: undefined,
+    },
+    appContextId: {
+      type: String,
+      default: null,
     },
   },
 

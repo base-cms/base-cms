@@ -88,6 +88,10 @@ export default {
       type: String,
       default: null,
     },
+    appContextId: {
+      type: String,
+      default: null,
+    },
   },
 
   /**
@@ -152,12 +156,14 @@ export default {
         email,
         redirectTo,
         authUrl,
+        appContextId,
       } = this;
       try {
         const res = await post('/login', {
           email,
           redirectTo,
           authUrl,
+          appContextId,
         });
         const data = await res.json();
         if (!res.ok) throw new FormError(data.message, res.status);

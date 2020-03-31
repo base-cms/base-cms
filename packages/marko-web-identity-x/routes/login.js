@@ -31,6 +31,7 @@ module.exports = asyncRoute(async (req, res) => {
     email,
     authUrl,
     redirectTo,
+    appContextId,
   } = body;
   const variables = { email };
   const { data } = await identityX.client.query({ query, variables });
@@ -50,6 +51,7 @@ module.exports = asyncRoute(async (req, res) => {
         email: appUser.email,
         authUrl,
         redirectTo,
+        appContextId,
       },
     },
   });

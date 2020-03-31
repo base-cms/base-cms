@@ -3,17 +3,20 @@ import { get } from "@base-cms/object-path";
 $ const { req } = out.global;
 $ const { identityX } = req;
 
-<marko-web-identity-x-context|{ user, isEnabled, application }|>
-  $ const props = {
-    activeUser: user,
-    identifier: `${input.identifier}`,
-    title: input.title,
-    description: input.description,
-    url: input.url,
-    endpoints: identityX.config.getEndpoints(),
-    consentPolicy: get(application, "organization.consentPolicy"),
-  };
-  <if(isEnabled)>
-    <marko-web-browser-component name="IdentityXCommentStream" props=props />
-  </if>
-</marko-web-identity-x-context>
+<if(Boolean(identityX))>
+  <marko-web-identity-x-context|{ user, isEnabled, application }|>
+    $ const props = {
+      activeUser: user,
+      identifier: `${input.identifier}`,
+      title: input.title,
+      description: input.description,
+      url: input.url,
+      endpoints: identityX.config.getEndpoints(),
+      consentPolicy: get(application, "organization.consentPolicy"),
+      appContextId: identityX.config.get("appContextId"),
+    };
+    <if(isEnabled)>
+      <marko-web-browser-component name="IdentityXCommentStream" props=props />
+    </if>
+  </marko-web-identity-x-context>
+</if>
