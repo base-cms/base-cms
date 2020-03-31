@@ -276,6 +276,8 @@ input ContentSitemapNewsUrlsQueryInput {
 input AllPublishedContentQueryInput {
   siteId: ObjectID
   after: Date
+  upcoming: Boolean
+  archived: Boolean
   since: Date
   sectionId: Int
   # @deprecated. Use \`AllPublishedContentQueryInput.includeContentTypes\` instead.
@@ -324,6 +326,8 @@ input AllCompanyContentQueryInput {
 input ContentBeginningInput {
   before: Date
   after: Date
+  upcoming: Boolean
+  archived: Boolean
 }
 
 input ContentEndingInput {

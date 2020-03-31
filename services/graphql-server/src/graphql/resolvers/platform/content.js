@@ -609,6 +609,8 @@ module.exports = {
       const {
         since,
         after,
+        upcoming,
+        archived,
         sectionId,
         contentTypes: deprecatedContentTypes,
         includeContentTypes,
@@ -628,6 +630,8 @@ module.exports = {
       const query = getPublishedCriteria({
         since,
         after,
+        upcoming,
+        archived,
         contentTypes,
         excludeContentIds,
         excludeContentTypes,
@@ -640,6 +644,26 @@ module.exports = {
       if (beginning.after) query.$and.push({ startDate: { $gte: beginning.after } });
       if (ending.before) query.$and.push({ endDate: { $lte: ending.before } });
       if (ending.after) query.$and.push({ endDate: { $gte: ending.after } });
+
+      if (upcoming) {
+        const date = new Date();
+        query.$and.push({
+          $or: [
+            { startDate: { $gt: date } },
+            { endDate: { $gt: date } },
+          ],
+        });
+      }
+
+      if (archived) {
+        const date = new Date();
+        query.$and.push({
+          $or: [
+            { startDate: { $lt: date } },
+            { endDate: { $exists: true, $lt: date } },
+          ],
+        });
+      }
 
       if (requiresImage) {
         query.primaryImage = { $exists: true };
@@ -672,6 +696,8 @@ module.exports = {
       const {
         since,
         after,
+        upcoming,
+        archived,
         includeContentTypes: contentTypes,
         excludeContentTypes,
       } = input;
@@ -679,6 +705,8 @@ module.exports = {
       const $match = getPublishedCriteria({
         since,
         after,
+        upcoming,
+        archived,
         contentTypes,
         excludeContentTypes,
       });

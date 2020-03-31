@@ -6,6 +6,10 @@ const date = v => (v instanceof Date ? v.valueOf() : v);
  * @param {ApolloClient} apolloClient The Apollo GraphQL client that will perform the query.
  * @param {object} params
  * @param {date} params.since The date to consider content published by
+ * * This addes logic to only return content with starr/end date in the future
+ * @param {boolean} params.upcoming
+ * This addes logic to only return content with starr/end date in the past
+ * @param {boolean} params.archived
  * @param {date} params.beginningAfter The date to include content by
  * @param {date} params.beginningBefore The date to include content by
  * @param {date} params.endingAfter The date to include content by
@@ -28,6 +32,8 @@ module.exports = async (apolloClient, {
   after,
 
   since,
+  upcoming,
+  archived,
   beginningAfter,
   beginningBefore,
   endingAfter,
@@ -62,6 +68,8 @@ module.exports = async (apolloClient, {
     beginning: { after: date(beginningAfter), before: date(beginningBefore) },
     ending: { after: date(endingAfter), before: date(endingBefore) },
   };
+  if (archived) input.archived = archived;
+  if (upcoming) input.upcoming = upcoming;
   if (field || order) input.sort = { field, order };
   const query = buildQuery({ queryFragment, queryName });
   const variables = { input };
