@@ -1,6 +1,13 @@
-$ const { config, site } = out.global;
+import { getAsArray } from "@base-cms/object-path";
 
+$ const { config, site, req } = out.global;
 $ const blockName = input.blockName || "site-header";
+$ const getContextualItems = (req, items = []) => {
+  const path = req.path.split("/").slice(0,2).join("/");
+  const found = items.filter((item) => item.href === path);
+  if (found) return [path, getAsArray(found, "0.children")];
+  return [path, items];
+};
 
 $ const navigation = {
   primary: site.getAsArray("navigation.primary.items"),
@@ -47,10 +54,13 @@ $ const navigation = {
     />
   </default-theme-site-navbar>
 
-  <default-theme-site-navbar modifiers=["primary"]>
+  $ const contextual = Boolean(site.get("navigation.primary.contextual"));
+  $ const [path, items] = contextual ? getContextualItems(req, navigation.primary) : [req.path, navigation.primary];
+  $ const modifiers = ["primary", ...(contextual ? ["contextual"] : [])];
+  <default-theme-site-navbar modifiers=modifiers attrs={ "data-path": path }>
     <default-theme-site-navbar-items
-      items=navigation.primary
-      modifiers=["primary"]
+      items=items
+      modifiers=modifiers
       reg-enabled=input.regEnabled
       has-user=input.hasUser
     />
