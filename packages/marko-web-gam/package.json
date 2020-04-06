@@ -10,7 +10,7 @@
     "lint:js": "eslint --ext .js --ext .vue --max-warnings 5 ./",
     "lint:css": "stylelint ./**/*.scss --max-warnings 5",
     "compile": "basecms-marko-compile compile --dir ./ --silent true",
-    "test": "yarn run lint && ../../node_modules/.bin/mocha --reporter spec"
+    "test": "yarn compile && yarn lint && mocha --reporter spec"
   },
   "dependencies": {
     "@base-cms/object-path": "^1.25.0",
