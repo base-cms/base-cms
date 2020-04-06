@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/example-website-iw",
-  "version": "1.25.6",
+  "version": "1.25.10",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
   "repository": "https://github.com/base-cms/base-cms/tree/master/services/example-website-iw",
@@ -18,7 +18,7 @@
   "dependencies": {
     "@base-cms/marko-core": "^1.25.5",
     "@base-cms/marko-web": "^1.25.5",
-    "@base-cms/marko-web-gam": "^1.25.0",
+    "@base-cms/marko-web-gam": "^1.25.10",
     "@base-cms/marko-web-gtm": "^1.25.0",
     "@base-cms/marko-web-icons": "^1.24.0",
     "@base-cms/marko-web-reveal-ad": "^1.25.6",
