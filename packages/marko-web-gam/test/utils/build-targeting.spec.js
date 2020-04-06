@@ -20,11 +20,16 @@ describe('utils/build-targeting', () => {
           'aonther #*~;^() value',
         ],
       });
-      expect(out).to.equal(`setTargeting('key123', '${JSON.stringify([
+      expect(out).to.equal(`setTargeting('key123', ${JSON.stringify([
         'good value',
         'another value',
         'aonther  value',
-      ])}')`);
+      ])})`);
+    });
+    it('should return a valid array', async () => {
+      const test = ['array', 'of', 'values'];
+      const out = await builder({ key123: test });
+      expect(out).to.equal(`setTargeting('key123', ${JSON.stringify(test)})`);
     });
   });
 
