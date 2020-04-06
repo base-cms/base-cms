@@ -82,6 +82,7 @@ enum EmailNewsletterSortField {
   id
   name
   fullName
+  sequence
 }
 
 input EmailNewsletterQueryInput {
