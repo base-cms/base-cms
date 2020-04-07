@@ -13,6 +13,7 @@ fragment ActiveUserFragment on AppUser {
   countryCode
   regionCode
   postalCode
+  receiveEmail
 }
 
 `;

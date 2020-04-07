@@ -13,6 +13,7 @@ $ const { identityX } = req;
       reloadPageOnSubmit: input.reloadPageOnSubmit,
       endpoints: identityX.config.getEndpoints(),
       consentPolicy: get(application, "organization.consentPolicy"),
+      emailConsentRequest: get(application, "organization.emailConsentRequest"),
       appContextId: identityX.config.get("appContextId"),
     };
     <if(isEnabled)>
