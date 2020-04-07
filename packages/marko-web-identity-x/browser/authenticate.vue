@@ -12,6 +12,7 @@
       :required-server-fields="requiredServerFields"
       :required-client-fields="requiredClientFields"
       :consent-policy="consentPolicy"
+      :email-consent-request="emailConsentRequest"
       @submit="redirect"
     />
   </div>
@@ -68,6 +69,10 @@ export default {
       default: () => [],
     },
     consentPolicy: {
+      type: String,
+      default: null,
+    },
+    emailConsentRequest: {
       type: String,
       default: null,
     },

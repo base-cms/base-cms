@@ -22,6 +22,7 @@ module.exports = asyncRoute(async (req, res) => {
     countryCode,
     regionCode,
     postalCode,
+    receiveEmail,
   } = body;
   const input = {
     givenName,
@@ -31,6 +32,7 @@ module.exports = asyncRoute(async (req, res) => {
     countryCode,
     regionCode,
     postalCode,
+    receiveEmail,
   };
   const { data } = await identityX.client.mutate({ mutation, variables: { input } });
   res.json({ ok: true, user: data.updateOwnAppUser });

@@ -12,6 +12,7 @@ query GetActiveAppContext {
         id
         name
         consentPolicy
+        emailConsentRequest
       }
     }
     user {

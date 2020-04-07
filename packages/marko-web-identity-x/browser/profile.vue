@@ -58,6 +58,15 @@
           </div>
         </div>
 
+        <div v-if="emailConsentRequest" class="row mt-3">
+          <div class="col-md-6">
+            <receive-email
+              v-model="user.receiveEmail"
+              :email-consent-request="emailConsentRequest"
+            />
+          </div>
+        </div>
+
         <small
           v-if="consentPolicy"
           class="text-muted mb-3"
@@ -96,6 +105,7 @@ import OrganizationTitle from './form/fields/organization-title.vue';
 import Country from './form/fields/country.vue';
 import Region from './form/fields/region.vue';
 import PostalCode from './form/fields/postal-code.vue';
+import ReceiveEmail from './form/fields/receive-email.vue';
 import Login from './login.vue';
 
 import FeatureError from './errors/feature';
@@ -110,6 +120,7 @@ export default {
     Country,
     Region,
     PostalCode,
+    ReceiveEmail,
     Login,
   },
 
@@ -146,6 +157,10 @@ export default {
       default: null,
     },
     appContextId: {
+      type: String,
+      default: null,
+    },
+    emailConsentRequest: {
       type: String,
       default: null,
     },
