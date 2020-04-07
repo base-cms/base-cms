@@ -24,6 +24,7 @@ type InquirySubmissionAddresses {
 input CreateInquirySubmissionMutationInput {
   contentId: Int!
   addresses: InquirySubmissionAddressesInput!
+  ipAddress: String
   payload: JSON!
 }
 
