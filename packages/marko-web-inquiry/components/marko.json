@@ -1,0 +1,6 @@
+{
+  "<marko-web-inquiry-form>": {
+    "template": "./form.marko",
+    "@content": "object"
+  }
+}
