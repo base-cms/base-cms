@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/package-inquiry",
-  "version": "1.12.0",
+  "version": "1.25.11",
   "author": "Jacob Bare <jacob@limit0.io>",
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/inquiry",
   "license": "MIT",
