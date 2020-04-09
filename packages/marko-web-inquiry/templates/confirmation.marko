@@ -1,0 +1,57 @@
+$ const styles = 'table {width: 630px;margin: 0 auto;} .danger { color: red } body{font-family: sans-serif; color: #333; margin: 0;}h1{font-family: monospace; line-height: 58px; text-align:center; margin: 0;}.subject, .footer{text-align:center; border-top: 1px solid #EEE; padding: 1em;}.footer{font-family: monospace; color: #CCC;}';
+$ const { domain, subject, isDev, addresses } = input;
+$ const { site, config } = out.global;
+$ const inquiry = site.getAsObject('inquiry');
+$ const bgColor = site.get('inquiry.bgColor', 'transparent');
+
+<!doctype html>
+<html>
+  <head>
+    <style type="text/css">$!{styles}</style>
+    <title>${subject}</title>
+  </head>
+  <body>
+    <table>
+      <tbody>
+        <tr>
+          <td bgColor=bgColor style="text-align: center">
+            <if(inquiry.logo)>
+              <img src=inquiry.logo alt=config.website('name') />
+            </if>
+            <else>
+              <h1>${config.website('name')}</h1>
+            </else>
+          </td>
+        </tr>
+        <tr>
+          <td class="subject">
+            <p>Thanks for your inquiry!</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p style="font-family:Arial; font-size:12px;">
+              We've received your message, and will reach out shortly.
+            </p>
+            <if(isDev)>
+              <p style="color: red">This email has not been sent. In production, this would have been sent to:</p>
+              <pre>${JSON.stringify(addresses, null, 2)}</pre>
+            </if>
+          </td>
+        </tr>
+        <tr>
+          <td class="footer">
+            <small>
+              This is an automated message from ${config.website('name')}. Please do not reply directly to this email
+              <if(inquiry.supportEmail)>&mdash; direct any inquiries to
+                <a href=`mailto:${inquiry.supportEmail}`>
+                  ${inquiry.supportEmail}
+                </a>
+              </if>
+            </small>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

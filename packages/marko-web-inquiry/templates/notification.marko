@@ -1,0 +1,100 @@
+import { getAsObject } from '@base-cms/object-path';
+
+$ const styles = 'table {width: 630px;margin: 0 auto;} .danger { color: red } body{font-family: sans-serif; color: #333; margin: 0;}h1{font-family: monospace; line-height: 58px; text-align:center; margin: 0;}.subject, .footer{text-align:center; border-top: 1px solid #EEE; padding: 1em;}.footer{font-family: monospace; color: #CCC;}';
+$ const { domain, subject, isDev, addresses } = input;
+$ const { site, config, req } = out.global;
+$ const { hostname } = req;
+$ const inquiry = site.getAsObject('inquiry');
+$ const content = getAsObject(input, 'content');
+$ const company = getAsObject(content, 'company');
+$ const payload = getAsObject(input, 'payload');
+$ const url = `https://${hostname}/${content.id}`;
+$ const bgColor = site.get('inquiry.bgColor', 'transparent');
+
+<!doctype html>
+<html>
+  <head>
+    <style type="text/css">$!{styles}</style>
+    <title>${subject}</title>
+  </head>
+  <body>
+    <table>
+      <tbody>
+        <tr>
+          <td bgColor=bgColor style="text-align: center">
+            <if(inquiry.logo)>
+              <img src=inquiry.logo alt=config.website('name') />
+            </if>
+            <else>
+              <h1>${config.website('name')}</h1>
+            </else>
+          </td>
+        </tr>
+        <tr>
+          <td class="subject">
+            <p>${config.website('name')} Inquiry Notification</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p style="font-family:Arial; font-size:12px;">
+              This e-mail is being sent to you because a user submitted an inquiry on ${hostname}.
+            </p>
+            <p style="font-family:Arial; font-size:12px;">
+              To ensure that you receive future automatic notifications, please whitelist ${site.get('inquiry.fromEmail')}.
+            </p>
+            <if(isDev)>
+              <p style="color: red">This email has not been sent. In production, this would have been sent to:</p>
+              <pre>${JSON.stringify(addresses, null, 2)}</pre>
+            </if>
+            <hr>
+            <table>
+              <tbody>
+                <tr>
+                  <td nowrap><b>${content.type}</b></td>
+                  <td>${content.name}</td>
+                </tr>
+                <if(company.name)>
+                  <tr>
+                    <td nowrap><b>From</b></td>
+                    <td>${company.name}</td>
+                  </tr>
+                </if>
+                <tr>
+                  <td nowrap><b>Url</b></td>
+                  <td><a href=url>${url}</a></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <hr>
+            <table>
+              <tbody>
+                <for|key, value| in=payload>
+                  <if(key !== 'confirmationEmail')>
+                    <tr>
+                      <td nowrap><b>${key}</b></td>
+                      <td>${value}</td>
+                    </tr>
+                  </if>
+                </for>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td class="footer">
+            <small>
+              This is an automated message from ${config.website('name')}. Please do not reply directly to this email
+              <if(inquiry.supportEmail)>&mdash; direct any inquiries to
+                <a href=`mailto:${inquiry.supportEmail}`>
+                  ${inquiry.supportEmail}
+                </a>
+              </if>
+            </small>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

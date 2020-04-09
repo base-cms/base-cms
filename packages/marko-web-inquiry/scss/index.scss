@@ -1,0 +1,14 @@
+.inquiry-form {
+  margin-top: 1rem;
+  border-top: solid 1px $gray-200;
+  label {
+    margin-bottom: 0;
+  }
+  .inquiry-form-header {
+    padding-top: 1rem;
+    font-family: $theme-contact-details-font-family;
+    font-size: $theme-content-heading-h5-font-size;
+    font-weight: $theme-contact-details-label-font-weight;
+    line-height: $theme-contact-details-line-height;
+  }
+}

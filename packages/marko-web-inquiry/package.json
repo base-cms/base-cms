@@ -1,0 +1,28 @@
+{
+  "name": "@base-cms/package-inquiry",
+  "version": "1.12.0",
+  "author": "Jacob Bare <jacob@limit0.io>",
+  "repository": "https://github.com/base-cms/base-cms/tree/master/packages/inquiry",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint --ext .js --ext .vue --max-warnings 5 --ignore-path ../../.eslintignore ./",
+    "test": "yarn lint"
+  },
+  "dependencies": {
+    "@base-cms/env": "^1.0.0",
+    "@base-cms/marko-core": "^1.25.5",
+    "@base-cms/marko-web": "^1.25.5",
+    "@base-cms/object-path": "^1.25.0",
+    "@base-cms/utils": "^1.25.0",
+    "@base-cms/web-common": "^1.25.5",
+    "@sendgrid/mail": "^6.4.0",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "graphql": "^14.5.4",
+    "graphql-tag": "^2.10.1",
+    "node-fetch": "^2.6.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
