@@ -1,6 +1,6 @@
-import DefaultForm from './default-form.vue';
+const DefaultForm = () => import(/* webpackChunkName: "inquiry-default-form" */ './default-form.vue');
 
 export default (Browser, { component, mountPoint } = {}) => {
   const InquiryForm = component || DefaultForm;
-  Browser.registerComponent('InquiryForm', InquiryForm, { mountPoint });
+  Browser.register('InquiryForm', InquiryForm, { mountPoint });
 };
