@@ -2,7 +2,7 @@ import { getAsObject } from "@base-cms/object-path";
 import defaultValue from "@base-cms/marko-core/utils/default-value";
 
 $ const { site } = out.global;
-$ const inquiry = site.getAsObject('inquiry');
+$ const inquiry = site.getAsObject("inquiry");
 
 $ const content = getAsObject(input, "content");
 $ const withHeader = defaultValue(input.withHeader, true);
