@@ -1,13 +1,15 @@
 <template>
   <div class="form-group">
-    <label for="sign-on-country">Country</label>
+    <form-label id="inquiry-form.country" :required="required">
+      Country
+    </form-label>
     <select
-      id="country"
+      id="inquiry-form.country"
       :value="value"
       name="country"
       class="custom-select"
       autocomplete="country"
-      required
+      :required="required"
       @change="$emit('input', $event.target.value)"
     >
       <option disabled="disabled" value="">
@@ -768,11 +770,19 @@
 </template>
 
 <script>
+import FormLabel from '../elements/label.vue';
+
 export default {
+  components: { FormLabel },
+
   props: {
     value: {
       type: String,
       default: '',
+    },
+    required: {
+      type: Boolean,
+      default: false,
     },
   },
 };

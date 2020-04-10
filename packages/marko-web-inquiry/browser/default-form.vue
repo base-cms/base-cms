@@ -5,9 +5,11 @@
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
-          <label for="firstName">First Name</label>
+          <form-label id="inquiry-form.first-name" :required="true">
+            First Name
+          </form-label>
           <input
-            id="firstName"
+            id="inquiry-form.first-name"
             v-model="firstName"
             name="firstName"
             type="text"
@@ -18,9 +20,11 @@
       </div>
       <div class="col-md-6">
         <div class="form-group">
-          <label for="lastName">Last Name</label>
+          <form-label id="inquiry-form.last-name" :required="true">
+            Last Name
+          </form-label>
           <input
-            id="lastName"
+            id="inquiry-form.last-name"
             v-model="lastName"
             name="lastName"
             type="text"
@@ -33,9 +37,11 @@
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
-          <label for="email">Email address</label>
+          <form-label id="inquiry-form.email" :required="true">
+            Email Address
+          </form-label>
           <input
-            id="email"
+            id="inquiry-form.email"
             v-model="email"
             name="email"
             type="email"
@@ -46,9 +52,11 @@
       </div>
       <div class="col-md-6">
         <div class="form-group">
-          <label for="phone">Phone Number</label>
+          <form-label id="inquiry-form.phone">
+            Phone Number
+          </form-label>
           <input
-            id="phone"
+            id="inquiry-form.phone"
             v-model="phone"
             name="phone"
             type="text"
@@ -60,9 +68,11 @@
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
-          <label for="company">Company Name</label>
+          <form-label id="inquiry-form.company">
+            Company Name
+          </form-label>
           <input
-            id="company"
+            id="inquiry-form.company"
             v-model="company"
             name="company"
             type="text"
@@ -72,9 +82,11 @@
       </div>
       <div class="col-md-6">
         <div class="form-group">
-          <label for="jobTitle">Job Title</label>
+          <form-label id="inquiry-form.job-title" :required="true">
+            Job Title
+          </form-label>
           <input
-            id="jobTitle"
+            id="inquiry-form.job-title"
             v-model="jobTitle"
             name="jobTitle"
             type="text"
@@ -86,13 +98,15 @@
     </div>
     <div class="row">
       <div class="col-md-6">
-        <country-field v-model="country" />
+        <country-field v-model="country" :required="true" />
       </div>
       <div class="col-md-6">
         <div class="form-group">
-          <label for="postalCode">ZIP/Postal Code</label>
+          <form-label id="inquiry-form.postal-code">
+            ZIP/Postal Code
+          </form-label>
           <input
-            id="postalCode"
+            id="inquiry-form.postal-code"
             v-model="postalCode"
             name="postalCode"
             type="text"
@@ -104,9 +118,11 @@
     <div class="row">
       <div class="col-12">
         <div class="form-group">
-          <label for="comments">Comments</label>
+          <form-label id="inquiry-form.comments">
+            Comments
+          </form-label>
           <textarea
-            id="comments"
+            id="inquiry-form.comments"
             v-model="comments"
             name="comments"
             class="form-control"
@@ -127,9 +143,10 @@
 <script>
 import FormMixin from './form-mixin';
 import CountryField from './fields/country.vue';
+import FormLabel from './elements/label.vue';
 
 export default {
-  components: { CountryField },
+  components: { CountryField, FormLabel },
   inject: ['EventBus'],
   mixins: [
     FormMixin,
