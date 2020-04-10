@@ -1,6 +1,13 @@
 {
   "<marko-web-inquiry-form>": {
     "template": "./form.marko",
-    "@content": "object"
+    "<header>": {},
+    "<description>": {},
+    "@content": "object",
+
+    "@with-header": "boolean",
+    "@with-description": "boolean",
+
+    "@modifiers": "array"
   }
 }
