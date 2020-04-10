@@ -1,5 +1,5 @@
 <template>
-  <form v-if="incomplete" @submit.prevent="submit">
+  <form v-if="incomplete" :class="formClass" @submit.prevent="submit">
     <input type="hidden" name="contentId" :value="contentId">
     <input type="hidden" name="contentType" :value="contentType">
     <div class="row">
@@ -130,9 +130,16 @@ import CountryField from './fields/country.vue';
 
 export default {
   components: { CountryField },
+  inject: ['EventBus'],
   mixins: [
     FormMixin,
   ],
+  props: {
+    formClass: {
+      type: String,
+      default: null,
+    },
+  },
   data: () => ({
     firstName: '',
     lastName: '',
@@ -147,6 +154,8 @@ export default {
   methods: {
     async submit() {
       const {
+        contentId,
+        contentType,
         firstName,
         lastName,
         email,
@@ -157,7 +166,8 @@ export default {
         postalCode,
         comments,
       } = this;
-      await this.$submit({
+
+      const payload = {
         firstName,
         lastName,
         email,
@@ -168,7 +178,10 @@ export default {
         country,
         postalCode,
         comments,
-      });
+      };
+
+      await this.$submit(payload);
+      this.EventBus.$emit('inquiry-form-submit', { contentId, contentType, payload });
     },
   },
 };

@@ -2,5 +2,9 @@ const DefaultForm = () => import(/* webpackChunkName: "inquiry-default-form" */ 
 
 export default (Browser, { component, mountPoint } = {}) => {
   const InquiryForm = component || DefaultForm;
-  Browser.register('InquiryForm', InquiryForm, { mountPoint });
+  const { EventBus } = Browser;
+  Browser.register('InquiryForm', InquiryForm, {
+    provide: { EventBus },
+    mountPoint,
+  });
 };
