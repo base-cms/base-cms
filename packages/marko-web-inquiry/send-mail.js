@@ -1,5 +1,6 @@
 const sgMail = require('@sendgrid/mail');
-const { SENDGRID_API_KEY, SENDGRID_DEV_TO, isDev } = require('./env');
+const isDev = require('@base-cms/marko-core/utils/is-dev');
+const { SENDGRID_API_KEY, SENDGRID_DEV_TO } = require('./env');
 
 sgMail.setApiKey(SENDGRID_API_KEY);
 

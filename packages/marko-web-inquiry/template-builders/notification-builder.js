@@ -1,5 +1,3 @@
-const { isDev } = require('../env');
-
 /**
  * Generates an HTML email template notifying contact(s) of a user's inquiry.
  *
@@ -27,7 +25,6 @@ module.exports = ({
     subject,
     addresses,
     payload,
-    isDev,
   };
   const html = template.renderToString(input);
   return { html, subject, addresses };

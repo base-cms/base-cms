@@ -1,7 +1,8 @@
 import { getAsObject } from '@base-cms/object-path';
+import isDev from "@base-cms/marko-core/utils/is-dev";
 
 $ const styles = 'table {width: 630px;margin: 0 auto;} .danger { color: red } body{font-family: sans-serif; color: #333; margin: 0;}h1{font-family: monospace; line-height: 58px; text-align:center; margin: 0;}.subject, .footer{text-align:center; border-top: 1px solid #EEE; padding: 1em;}.footer{font-family: monospace; color: #CCC;}';
-$ const { domain, subject, isDev, addresses } = input;
+$ const { domain, subject, addresses } = input;
 $ const { site, config, req } = out.global;
 $ const { hostname } = req;
 $ const inquiry = site.getAsObject('inquiry');
