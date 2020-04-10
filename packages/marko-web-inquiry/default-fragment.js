@@ -1,7 +1,7 @@
 const gql = require('graphql-tag');
 
 module.exports = gql`
-  fragment ContentInquiryFragment on Content {
+  fragment MarkoWebInquiryFragment on Content {
     id
     name
     canonicalPath
