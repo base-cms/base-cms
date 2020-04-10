@@ -7,5 +7,12 @@
     },
     "@standard-fields": "array",
     "@submission-field-ids": "array"
+  },
+  "<marko-web-radix-identity-detector>": {
+    "template": "./identity-detector.marko",
+    "@app-id": {
+      "type": "string",
+      "required": true
+    }
   }
 }
