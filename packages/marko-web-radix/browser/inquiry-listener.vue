@@ -1,19 +1,17 @@
 <template>
-  <div class="radix-inquiry-listener" />
+  <div class="radix-inquiry-listener" :data-app-id="appId" />
 </template>
 
 <script>
 import sendRequest from './send-request';
 
 export default {
+  inject: ['EventBus'],
+
   props: {
     appId: {
       type: String,
       required: true,
-    },
-    selector: {
-      type: String,
-      default: '.inquiry-form-body form',
     },
     standardFields: {
       type: Array,
@@ -35,14 +33,6 @@ export default {
       type: Array,
       default: () => [],
     },
-    modelIdentifierField: {
-      type: String,
-      default: 'contentId',
-    },
-    modelTypeField: {
-      type: String,
-      default: 'contentType',
-    },
   },
 
   computed: {
@@ -55,21 +45,15 @@ export default {
   },
 
   created() {
-    const nodeList = document.querySelectorAll('.inquiry-form-body form');
-    for (let i = 0; i < nodeList.length; i += 1) {
-      const { elements } = nodeList[i];
-
-      const identifier = parseInt(this.getElementValue(elements, this.modelIdentifierField), 10);
-      const type = this.getElementValue(elements, this.modelTypeField);
-
+    this.EventBus.$on('inquiry-form-submit', ({ contentId, contentType, payload } = {}) => {
       const model = {
-        identifier,
-        ...(type && { type: `content-${type}` }),
+        identifier: contentId,
+        type: `content-${contentType}`,
       };
 
       const data = this.fields
-        .filter(({ name }) => elements[name] && elements[name].value)
-        .reduce((o, { name, radix }) => ({ ...o, [radix]: elements[name].value }), {
+        .filter(({ name }) => payload[name])
+        .reduce((o, { name, radix }) => ({ ...o, [radix]: payload[name] }), {
           'submission:referringHost': `${window.location.protocol}//${window.location.host}`,
           'submission:referringHref': window.location.href,
         });
@@ -88,7 +72,7 @@ export default {
           body,
         });
       }
-    }
+    });
   },
 
   methods: {
