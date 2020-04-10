@@ -27,6 +27,7 @@
     "@base-cms/marko-web-leaders": "^1.25.7",
     "@base-cms/marko-web-native-x": "^1.25.0",
     "@base-cms/marko-web-photoswipe": "^1.25.0",
+    "@base-cms/marko-web-radix": "^1.25.11",
     "@base-cms/marko-web-reveal-ad": "^1.25.6",
     "@base-cms/marko-web-social-sharing": "^1.25.0",
     "@base-cms/marko-web-theme-default": "^1.25.4",

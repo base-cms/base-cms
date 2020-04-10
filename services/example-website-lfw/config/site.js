@@ -33,6 +33,13 @@ module.exports = {
   magazines: {
     description: '',
   },
+  radix: {
+    enabled: true,
+    appId: '97b09a4b-8eb8-475f-b72f-19d0f2073256', // vspc value
+    submissionFieldIds: [
+      { name: 'comments', id: '57e55318bcf2d6f3c30e0833' }, // vspc value
+    ],
+  },
   inquiry: {
     enabled: true,
     directSend: true,

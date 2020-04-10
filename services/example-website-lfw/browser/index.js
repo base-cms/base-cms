@@ -9,6 +9,7 @@ import PhotoSwipe from '@base-cms/marko-web-photoswipe/browser';
 import Leaders from '@base-cms/marko-web-leaders/browser';
 import IdentityX from '@base-cms/marko-web-identity-x/browser';
 import Inquiry from '@base-cms/marko-web-inquiry/browser';
+import Radix from '@base-cms/marko-web-radix/browser';
 
 DefaultTheme(Browser);
 GTM(Browser);
@@ -20,5 +21,6 @@ PhotoSwipe(Browser);
 Leaders(Browser);
 IdentityX(Browser);
 Inquiry(Browser);
+Radix(Browser);
 
 export default Browser;
