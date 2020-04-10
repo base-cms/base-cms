@@ -410,6 +410,8 @@ services:
       OEMBED_URI: http://oembed
       NEW_RELIC_ENABLED: 0
       NEW_RELIC_LICENSE_KEY: (unset)
+      SENDGRID_DEV_TO: ${SENDGRID_DEV_TO}
+      SENDGRID_API_KEY: ${SENDGRID_API_KEY-(unset)}
     depends_on:
       - graphql-server-aerilon
       - sitemaps-aerilon

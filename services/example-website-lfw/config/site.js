@@ -33,4 +33,20 @@ module.exports = {
   magazines: {
     description: '',
   },
+  radix: {
+    enabled: true,
+    appId: '97b09a4b-8eb8-475f-b72f-19d0f2073256', // vspc value
+    submissionFieldIds: [
+      { name: 'comments', id: '57e55318bcf2d6f3c30e0833' }, // vspc value
+    ],
+  },
+  inquiry: {
+    enabled: true,
+    directSend: true,
+    sendTo: 'bgweb@endeavorb2b.com',
+    sendFrom: 'LaserFocusWorld.com <noreply@baseplatform.io>',
+    sendBcc: 'emailactivity@cygnus.com',
+    logo: 'https://img.laserfocusworld.com/files/base/pennwell/lfw/logo.png?h=60',
+    bgColor: '#164f77',
+  },
 };

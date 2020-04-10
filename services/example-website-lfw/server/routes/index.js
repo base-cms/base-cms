@@ -1,3 +1,5 @@
+const inquiryHandler = require('@base-cms/marko-web-inquiry');
+
 const home = require('./home');
 const content = require('./content');
 const dynamicPages = require('./dynamic-page');
@@ -9,6 +11,8 @@ const user = require('./user');
 const websiteSections = require('./website-section');
 
 module.exports = (app) => {
+  inquiryHandler(app);
+
   // User (IdentityX)
   user(app);
 
