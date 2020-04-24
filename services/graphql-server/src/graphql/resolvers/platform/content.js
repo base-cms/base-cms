@@ -774,6 +774,7 @@ module.exports = {
         requiresImage,
         sort,
         pagination,
+        withSite,
       } = input;
 
       if (!authorTypes.length) throw new UserInputError('At least one `authorType` must be provided.');
@@ -781,7 +782,7 @@ module.exports = {
       const query = getPublishedCriteria({ since, contentTypes: includeContentTypes });
 
       const siteId = input.siteId || site.id();
-      if (siteId) query['mutations.Website.primarySite'] = siteId;
+      if (withSite && siteId) query['mutations.Website.primarySite'] = siteId;
 
       query.$or = authorTypes.map((type) => {
         const field = `${type}s`;
