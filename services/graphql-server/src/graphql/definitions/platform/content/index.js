@@ -308,6 +308,7 @@ input AllAuthorContentQueryInput {
   requiresImage: Boolean = false
   sort: ContentSortInput = { field: published, order: desc }
   pagination: PaginationInput = {}
+  withSite: Boolean = true
 }
 
 input AllCompanyContentQueryInput {
