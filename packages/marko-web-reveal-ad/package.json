@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/marko-web-reveal-ad",
-  "version": "1.25.6",
+  "version": "1.26.3",
   "description": "Custom Reveal Ad Marko/Vue components for BaseCMS websites",
   "author": "Jacob Bare <jacob@limit0.io>",
   "license": "MIT",
