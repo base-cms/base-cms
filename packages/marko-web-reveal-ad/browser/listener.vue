@@ -107,16 +107,23 @@ export default {
     listener(event) {
       const payload = parseJson(event.data);
       if (['adImagePath', 'adTitle', 'backgroundImagePath', 'adClickUrl'].every(k => payload[k])) {
-        const elements = this.selectAllTargets
-          ? document.querySelectorAll(this.target) : [document.querySelector(this.target)];
-        this.payload = { ...this.defaults, ...payload };
-        this.displayBackground();
-        for (let i = 0; i < elements.length; i += 1) {
-          this.displayAd(elements[i]);
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', () => this.execute(payload));
+        } else {
+          this.execute(payload);
         }
-        this.observeMutations();
-        window.removeEventListener('message', this.listener);
       }
+    },
+    execute(payload) {
+      const elements = this.selectAllTargets
+        ? document.querySelectorAll(this.target) : [document.querySelector(this.target)];
+      this.payload = { ...this.defaults, ...payload };
+      this.displayBackground();
+      for (let i = 0; i < elements.length; i += 1) {
+        this.displayAd(elements[i]);
+      }
+      this.observeMutations();
+      window.removeEventListener('message', this.listener);
     },
   },
 };
