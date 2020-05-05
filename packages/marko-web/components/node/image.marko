@@ -5,11 +5,7 @@ $ const element = "node__image";
 $ const hasImage = Boolean(input.src);
 
 $ const style = [];
-$ if (input.width) {
-  style.push(`width: ${input.width}px;`);
-  // Add min-width for IE11
-  style.push(`min-width: ${input.width}px;`);
-}
+$ if (input.width) style.push(`width: ${input.width}px;`);
 $ if (input.height) style.push(`height: ${input.height}px;`);
 $ const attrs = { ...input.attrs, style };
 

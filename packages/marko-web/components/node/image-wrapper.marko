@@ -6,7 +6,11 @@ $ const hasImage = Boolean(input.src);
 $ const { width, height } = imageValues(input);
 
 $ const style = [];
-$ if (width) style.push(`width: ${width}px;`);
+$ if (input.width) {
+  style.push(`width: ${input.width}px;`);
+  // Add min-width for IE11
+  style.push(`min-width: ${input.width}px;`);
+}
 $ if (height) style.push(`height: ${height}px;`);
 
 $ const { header, body, align } = input;
