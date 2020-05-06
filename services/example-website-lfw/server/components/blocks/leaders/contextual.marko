@@ -13,6 +13,7 @@ $ const { contentId } = input;
     promotionLimit: site.get("leaders.promotionLimit", 4),
     videoLimit: site.get("leaders.videoLimit", 3),
     viewAllHref: '/leaders',
+    useContentPrimarySection: true,
     mediaQueries: [
       { prop: "displayCallout", value: true, query: "(min-width: 701px)" },
       { prop: "displayCallout", value: false, query: "(min-width: 992px)" },

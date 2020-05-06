@@ -139,6 +139,10 @@ export default {
       type: Number,
       default: 3,
     },
+    useContentPrimarySection: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   data: () => ({
@@ -253,11 +257,14 @@ export default {
       const variables = { contentId: this.contentId };
       const r1 = await this.$apollo.query({ query: contentQuery, variables });
       const taxonomyIds = getEdgeNodes(r1, 'data.content.taxonomy').map(t => t.id);
+      const sectionIds = [];
       this.taxonomyIds = taxonomyIds;
-      const primarySection = getAsObject(r1, 'data.content.primarySection');
-      const relatedSectionIds = primarySection.id ? [primarySection.id] : [];
-      if (!taxonomyIds.length && !relatedSectionIds.length) return [];
-      const v2 = { taxonomyIds, relatedSectionIds };
+      if (this.useContentPrimarySection) {
+        const primarySection = getAsObject(r1, 'data.content.primarySection');
+        if (primarySection.id) sectionIds.push(primarySection.id);
+      }
+      if (!taxonomyIds.length && !sectionIds.length) return [];
+      const v2 = { taxonomyIds, relatedSectionIds: sectionIds };
       const r2 = await this.$apollo.query({ query: fromContentQuery, variables: v2 });
       const sections = getEdgeNodes(r2, 'data.websiteSections');
       return sections
