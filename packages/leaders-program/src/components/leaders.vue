@@ -42,10 +42,11 @@ import LeadersSectionsWrapper from './containers/section-wrapper.vue';
 import LeadersHeader from './header.vue';
 
 import allQuery from '../graphql/queries/all-sections';
-import fromTaxonomyQuery from '../graphql/queries/sections-from-taxonomy';
+import fromContentQuery from '../graphql/queries/sections-from-content';
 import fromIdsQuery from '../graphql/queries/sections-from-ids';
 import contentQuery from '../graphql/queries/content';
 import getEdgeNodes from '../utils/get-edge-nodes';
+import getAsObject from '../utils/get-as-object';
 
 export default {
   components: {
@@ -253,8 +254,11 @@ export default {
       const r1 = await this.$apollo.query({ query: contentQuery, variables });
       const taxonomyIds = getEdgeNodes(r1, 'data.content.taxonomy').map(t => t.id);
       this.taxonomyIds = taxonomyIds;
-      if (!taxonomyIds.length) return [];
-      const r2 = await this.$apollo.query({ query: fromTaxonomyQuery, variables: { taxonomyIds } });
+      const primarySection = getAsObject(r1, 'data.content.primarySection');
+      const relatedSectionIds = primarySection.id ? [primarySection.id] : [];
+      if (!taxonomyIds.length && !relatedSectionIds.length) return [];
+      const v2 = { taxonomyIds, relatedSectionIds };
+      const r2 = await this.$apollo.query({ query: fromContentQuery, variables: v2 });
       const sections = getEdgeNodes(r2, 'data.websiteSections');
       return sections
         .filter(s => s.hierarchy.some(({ alias }) => alias === this.sectionAlias));

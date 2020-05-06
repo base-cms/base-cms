@@ -12,6 +12,9 @@ query LeadersContentTaxonomyIds($contentId: Int!) {
         }
       }
     }
+    primarySection {
+      id
+    }
   }
 }
 
