@@ -1,6 +1,7 @@
 .site-footer {
-  z-index: 1;
-  margin-top: auto;
+  position: relative;
+  z-index: 1500;
+  margin-top: 20px;
   font-family: $theme-site-footer-font-family;
   font-size: $theme-site-footer-font-size;
   font-weight: $theme-site-footer-font-weight;
