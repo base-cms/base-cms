@@ -13,6 +13,14 @@ query GetActiveAppContext {
         name
         consentPolicy
         emailConsentRequest
+        regionalConsentPolicies(input: { status: enabled }) {
+          id
+          message
+          countries {
+            id
+          }
+          required
+        }
       }
     }
     user {

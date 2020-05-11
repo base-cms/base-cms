@@ -14,6 +14,7 @@ $ const isEnabled = Boolean(req.identityX);
       endpoints: identityX.config.getEndpoints(),
       consentPolicy: get(application, "organization.consentPolicy"),
       emailConsentRequest: get(application, "organization.emailConsentRequest"),
+      regionalConsentPolicies: get(application, "organization.regionalConsentPolicies"),
     };
     <marko-web-browser-component name="IdentityXAuthenticate" props=props />
   </marko-web-identity-x-context>
