@@ -14,6 +14,11 @@ fragment ActiveUserFragment on AppUser {
   regionCode
   postalCode
   receiveEmail
+  regionalConsentAnswers {
+    id
+    given
+    date
+  }
 }
 
 `;

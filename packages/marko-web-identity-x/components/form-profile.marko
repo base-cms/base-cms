@@ -15,6 +15,7 @@ $ const { identityX } = req;
       consentPolicy: get(application, "organization.consentPolicy"),
       emailConsentRequest: get(application, "organization.emailConsentRequest"),
       appContextId: identityX.config.get("appContextId"),
+      regionalConsentPolicies: get(application, "organization.regionalConsentPolicies"),
     };
     <if(isEnabled)>
       <marko-web-browser-component name="IdentityXProfile" props=props />
