@@ -40,8 +40,22 @@ class IdentityX {
     const requiredFields = this.config.getRequiredServerFields();
     if (access.isLoggedIn && requiredFields.length) {
       // Check if the user requires additonal input.
-      const { user } = await this.loadActiveContext();
+      const { user, application } = await this.loadActiveContext();
       access.requiresUserInput = user ? requiredFields.some(key => isEmpty(user[key])) : false;
+
+      if (user && !access.requiresUserInput) {
+        const { regionalConsentPolicies } = application.organization;
+        const matchingPolicies = regionalConsentPolicies.filter((policy) => {
+          const countryCodes = policy.countries.map(country => country.id);
+          return countryCodes.includes(user.countryCode);
+        });
+        const policiesAnswered = user.regionalConsentAnswers
+          .reduce((o, answer) => ({ [answer.id]: true }), {});
+        const hasRequiredAnswers = matchingPolicies.length
+          ? matchingPolicies.every(policy => policiesAnswered[policy.id])
+          : true;
+        access.requiresUserInput = !hasRequiredAnswers;
+      }
     }
     return access;
   }
