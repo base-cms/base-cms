@@ -1,3 +1,4 @@
+const allContent = require('./all-content');
 const magazineActiveIssues = require('./magazine-active-issues');
 const magazineLatestIssue = require('./magazine-latest-issue');
 const magazineIssues = require('./magazine-issues');
@@ -18,6 +19,7 @@ const websiteSections = require('./website-sections');
  * Each function must return an object containing the new query and sort.
  */
 const builders = {
+  allContent,
   magazineActiveIssues,
   magazineLatestIssue,
   magazineIssues,

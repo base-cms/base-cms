@@ -29,6 +29,7 @@ extend type Query {
   allContent(input: AllContentQueryInput = {}): ContentConnection! @findMany(
     model: "platform.Content",
     criteria: "content",
+    queryBuilder: "allContent",
     withSite: false, # allow content to always load, regardless of site context.
   )
   allPublishedContent(input: AllPublishedContentQueryInput = {}): ContentConnection!
@@ -335,6 +336,8 @@ input ContentEndingInput {
 input AllContentQueryInput {
   siteId: ObjectID
   status: ModelStatus = active
+  "Content IDs to filter by. An empty value (default) returns all content."
+  ids: [Int!] = []
   sort: ContentSortInput = {}
   pagination: PaginationInput = {}
 }
