@@ -543,7 +543,7 @@ services:
     entrypoint: ["/base-cms/node_modules/.bin/gulp"]
     environment:
       <<: *env
-      GRAPHQL_URI: ${GRAPHQL_URI-https://graphql-server-caprica}
+      GRAPHQL_URI: ${GRAPHQL_URI-http://graphql-server-caprica}
       PORT: 80
       EXPOSED_PORT: 10015
     depends_on:
