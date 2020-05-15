@@ -543,6 +543,7 @@ services:
     entrypoint: ["/base-cms/node_modules/.bin/gulp"]
     environment:
       <<: *env
+      <<: *env-newrelic
       GRAPHQL_URI: ${GRAPHQL_URI-http://graphql-server-caprica}
       PORT: 80
       EXPOSED_PORT: 10015
