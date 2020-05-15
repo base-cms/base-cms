@@ -13,6 +13,7 @@
     "@base-cms/env": "^1.0.0",
     "@base-cms/express-apollo": "^1.9.0",
     "@base-cms/object-path": "^1.25.0",
+    "@base-cms/utils": "^1.25.0",
     "@godaddy/terminus": "^4.4.1",
     "express": "^4.17.1",
     "graphql": "^14.5.6",
