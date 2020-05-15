@@ -1,7 +1,9 @@
+require('./newrelic');
 const http = require('http');
 const { createTerminus } = require('@godaddy/terminus');
 const app = require('./app');
 const pkg = require('../package.json');
+const newrelic = require('./newrelic');
 const {
   PORT,
   EXPOSED_PORT,
@@ -12,7 +14,10 @@ const {
 const { log } = console;
 const wait = ms => new Promise(resolve => setTimeout(resolve, parseInt(ms, 10)));
 
-process.on('unhandledRejection', (e) => { throw e; });
+process.on('unhandledRejection', (e) => {
+  newrelic.noticeError(e);
+  throw e;
+});
 
 const server = http.createServer(app);
 
@@ -37,4 +42,7 @@ const run = async () => {
 
 run()
   .then(() => log(`${pkg.name} v${pkg.version} running on http://0.0.0.0:${EXPOSED_PORT}`))
-  .catch(e => setImmediate(() => { throw e; }));
+  .catch(e => setImmediate(() => {
+    newrelic.noticeError(e);
+    throw e;
+  }));
