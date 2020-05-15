@@ -537,6 +537,22 @@ services:
     ports:
       - "10014:80"
 
+  omail-link-processor-caprica:
+    <<: *node
+    working_dir: /base-cms/services/omail-link-processor
+    entrypoint: ["/base-cms/node_modules/.bin/gulp"]
+    environment:
+      <<: *env
+      <<: *env-newrelic
+      GRAPHQL_URI: ${GRAPHQL_URI-http://graphql-server-caprica}
+      PORT: 80
+      EXPOSED_PORT: 10015
+    depends_on:
+      - graphql-server-caprica
+    ports:
+      - "10015:80"
+
+
 volumes:
   esdata: {}
   mongodb: {}

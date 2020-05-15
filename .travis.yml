@@ -106,6 +106,18 @@ jobs:
       install: skip
       env: [ENVIRONMENT=staging RANCHER_CLUSTERID=c-rc5kp]
 
+    - stage: production
+      name: Omail Link Processor
+      script: scripts/deploy.js omail-link-processor
+      install: skip
+      env: [ENVIRONMENT=production RANCHER_CLUSTERID=c-gxsr7]
+    # has yet to be configured
+    # - stage: staging
+    #   name: Omail Link Processor
+    #   script: scripts/deploy.js omail-link-processor
+    #   install: skip
+    #   env: [ENVIRONMENT=staging RANCHER_CLUSTERID=c-rc5kp]
+
     #############################
     # ^^^ ADD SERVICES HERE ^^^ #
     #############################
