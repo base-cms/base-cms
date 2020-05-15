@@ -37,10 +37,6 @@ module.exports = async ({ html, tenantKey, urls = [] } = {}) => {
     return url;
   }).filter(url => url.contentId);
 
-  // only set advertiser on certain types: TextAd and Promotion
-  // check for the company
-  // don't assume linkUrl means an advertiser... other types also have that field
-
   const contentIds = [...new Set([...contentUrls.map((url => url.contentId))])];
   if (!contentIds.length) return html;
 
