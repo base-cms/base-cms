@@ -1,9 +1,9 @@
 const { withMagazineIssue, withMagazinePublication } = require('@base-cms/marko-web/middleware');
-const index = require('../templates/magazine');
-const publication = require('../templates/magazine/publication');
-const publicationFragment = require('../api/fragments/magazine-publication-page');
-const issue = require('../templates/magazine/issue');
-const issueFragment = require('../api/fragments/magazine-issue-page');
+const index = require('@endeavor-business-media/package-shared/templates/magazine');
+const publication = require('@endeavor-business-media/package-shared/templates/magazine/publication');
+const publicationFragment = require('@endeavor-business-media/package-shared/graphql/fragments/magazine-publication-page');
+const issue = require('@endeavor-business-media/package-shared/templates/magazine/issue');
+const issueFragment = require('@endeavor-business-media/package-shared/graphql/fragments/magazine-issue-page');
 
 module.exports = (app) => {
   app.get('/magazine', (req, res) => {

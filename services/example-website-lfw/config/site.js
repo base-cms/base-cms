@@ -1,29 +1,41 @@
-const leaders = require('./leaders');
 const navigation = require('./navigation');
+const gam = require('./gam');
+const gcse = require('./gcse');
+const nativeX = require('./native-x');
+const dragonForms = require('./dragon-forms');
+const leaders = require('./leaders');
 
 module.exports = {
-  company: 'Endeavor Business Media, LLC',
-  leaders,
   navigation,
+  gam,
+  gcse,
+  nativeX,
+  dragonForms,
+  leaders,
+  company: 'Endeavor Business Media, LLC',
   logos: {
     navbar: {
-      src: 'https://base.imgix.net/files/base/pennwell/lfw/logo.png?h=45',
+      src: 'https://img.laserfocusworld.com/files/base/pennwell/lfw/logo.png?h=60',
       srcset: [
-        'https://base.imgix.net/files/base/pennwell/lfw/logo.png?h=90 2x',
+        'https://img.laserfocusworld.com/files/base/pennwell/lfw/logo.png?h=120 2x',
       ],
     },
     footer: {
-      src: 'https://base.imgix.net/files/base/pennwell/lfw/logo.png?h=60',
+      src: 'https://img.laserfocusworld.com/files/base/pennwell/lfw/logo.png?h=60',
       srcset: [
-        'https://base.imgix.net/files/base/pennwell/lfw/logo.png?h=120 2x',
+        'https://img.laserfocusworld.com/files/base/pennwell/lfw/logo.png?h=120 2x',
       ],
     },
   },
   socialMediaLinks: [
-    { provider: 'linkedin', href: 'http://www.linkedin.com/groups/Laser-Focus-World-2896249', target: '_blank' },
+    { provider: 'linkedin', href: 'https://www.linkedin.com/groups/2896249/', target: '_blank' },
     { provider: 'twitter', href: 'https://twitter.com/LaserFocusWorld', target: '_blank' },
     { provider: 'facebook', href: 'https://www.facebook.com/pages/Laser-Focus-World/126899915297', target: '_blank' },
   ],
+  identityX: {
+    appId: '5e42bbab1f09853dd6c31bd8',
+    enabled: false,
+  },
   gtm: {
     containerId: 'GTM-MFCT2LV',
   },
@@ -33,12 +45,12 @@ module.exports = {
   magazines: {
     description: '',
   },
-  radix: {
-    enabled: true,
-    appId: '97b09a4b-8eb8-475f-b72f-19d0f2073256', // vspc value
-    submissionFieldIds: [
-      { name: 'comments', id: '57e55318bcf2d6f3c30e0833' }, // vspc value
-    ],
+  contactUs: {
+    branding: {
+      bgColor: '#164f77',
+      logo: 'https://img.laserfocusworld.com/files/base/pennwell/lfw/logo.png?h=60',
+    },
+    to: 'juliac@pennwell.com',
   },
   inquiry: {
     enabled: true,

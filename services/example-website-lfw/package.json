@@ -1,7 +1,6 @@
 {
   "name": "@base-cms/example-website-lfw",
-  "version": "1.28.0",
-  "main": "src/index.js",
+  "version": "1.18.5",
   "author": "Jacob Bare <jacob@limit0.io>",
   "repository": "https://github.com/base-cms/base-cms/tree/master/services/example-website-lfw",
   "license": "MIT",
@@ -11,32 +10,20 @@
     "build": "basecms-website build",
     "compile": "basecms-marko-compile compile --dir ./ --silent true",
     "lint": "yarn lint:js && yarn lint:css",
-    "lint:js": "eslint --ext .js --ext .vue --max-warnings 5 ./",
+    "lint:js": "eslint --ext .js --ext .vue --max-warnings 5 --ignore-path ../../.eslintignore ./",
     "lint:css": "stylelint ./**/*.scss --max-warnings 5",
     "test": "yarn lint && yarn compile && yarn build"
   },
   "dependencies": {
     "@base-cms/marko-core": "^1.26.2",
     "@base-cms/marko-web": "^1.27.3",
-    "@base-cms/marko-web-gam": "^1.25.10",
-    "@base-cms/marko-web-gcse": "^1.25.0",
-    "@base-cms/marko-web-gtm": "^1.25.0",
-    "@base-cms/marko-web-icons": "^1.24.0",
-    "@base-cms/marko-web-identity-x": "^1.28.0",
-    "@base-cms/marko-web-inquiry": "^1.27.3",
-    "@base-cms/marko-web-leaders": "^1.27.5",
-    "@base-cms/marko-web-native-x": "^1.25.0",
-    "@base-cms/marko-web-photoswipe": "^1.25.0",
-    "@base-cms/marko-web-radix": "^1.26.0",
-    "@base-cms/marko-web-reveal-ad": "^1.26.3",
-    "@base-cms/marko-web-social-sharing": "^1.25.0",
-    "@base-cms/marko-web-theme-default": "^1.27.6",
     "@base-cms/object-path": "^1.25.0",
     "@base-cms/utils": "^1.25.0",
     "@base-cms/web-cli": "^1.27.3",
+    "@endeavor-business-media/package-directory": "^1.17.3",
+    "@endeavor-business-media/package-leaders": "^1.17.3",
+    "@endeavor-business-media/package-shared": "^1.18.1",
     "graphql": "^14.5.4",
-    "graphql-tag": "^2.10.1",
-    "newrelic": "^5.11.0",
-    "object-path": "^0.11.4"
+    "graphql-tag": "^2.10.1"
   }
 }

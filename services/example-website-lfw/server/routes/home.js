@@ -1,6 +1,6 @@
 const { withWebsiteSection } = require('@base-cms/marko-web/middleware');
+const queryFragment = require('@endeavor-business-media/package-shared/graphql/fragments/website-section-page');
 const home = require('../templates/index');
-const queryFragment = require('../api/fragments/website-section-page');
 
 module.exports = (app) => {
   app.get('/', withWebsiteSection({
