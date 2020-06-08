@@ -39,6 +39,10 @@
           :app-context-id="appContextId"
         />
       </div>
+
+      <h5 v-if="latestCommentsHeader && comments.length" :class="element('latest-comments')">
+        {{ latestCommentsHeader }}
+      </h5>
     </div>
     <div v-if="isLoading" :class="element('loading')">
       Loading comments...
@@ -120,6 +124,10 @@ export default {
     headerText: {
       type: String,
       default: 'Voice your opinion!',
+    },
+    latestCommentsHeader: {
+      type: String,
+      default: 'Latest Comments',
     },
     noCommentsMessage: {
       type: String,
