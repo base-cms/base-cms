@@ -131,9 +131,16 @@
       </div>
     </div>
     <pre v-if="error" class="alert alert-danger text-danger">An error occurred: {{ error }}</pre>
-    <button type="submit" class="btn btn-primary" :disabled="loading">
-      Submit
-    </button>
+    <vue-recaptcha
+      ref="recaptcha"
+      :sitekey="sitekey"
+      @onVerify="submit"
+      @onExpired="onExpired"
+    >
+      <button type="submit" class="btn btn-primary" :disabled="loading">
+        Submit
+      </button>
+    </vue-recaptcha>
   </form>
   <div v-else>
     Thanks for your inquiry! We'll reach out shortly.
@@ -141,18 +148,23 @@
 </template>
 
 <script>
+import VueRecaptcha from 'vue-recaptcha';
 import FormMixin from './form-mixin';
 import CountryField from './fields/country.vue';
 import FormLabel from './elements/label.vue';
 
 export default {
-  components: { CountryField, FormLabel },
+  components: { VueRecaptcha, CountryField, FormLabel },
   inject: ['EventBus'],
   mixins: [
     FormMixin,
   ],
   props: {
     formClass: {
+      type: String,
+      default: null,
+    },
+    sitekey: {
       type: String,
       default: null,
     },
@@ -169,7 +181,11 @@ export default {
     comments: '',
   }),
   methods: {
-    async submit() {
+    onExpired() {
+      this.error = 'Timed out validating your submission.';
+      this.loading = false;
+    },
+    async submit(token) {
       const {
         contentId,
         contentType,
@@ -195,6 +211,7 @@ export default {
         country,
         postalCode,
         comments,
+        token,
       };
 
       await this.$submit(payload);
