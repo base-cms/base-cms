@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/hooks",
-  "version": "1.25.0",
+  "version": "1.29.2",
   "description": "The BaseCMS hooks server using Express.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",

@@ -3,6 +3,7 @@ const {
   caprica,
   picon,
   gemenon,
+  tauron,
 } = require('./basedb')('test');
 const { log } = require('./output');
 
@@ -31,17 +32,20 @@ module.exports = {
     start('BaseDB Caprica', caprica.client.connect(), c => c.s.url),
     start('BaseDB Picon', picon.client.connect(), c => c.s.url),
     start('BaseDB Gemenon', gemenon.client.connect(), c => c.s.url),
+    start('BaseDB Tauron', tauron.client.connect(), c => c.s.url),
   ]),
   stop: () => Promise.all([
     stop('BaseDB Aerilon', aerilon.client.close()),
     stop('BaseDB Caprica', caprica.client.close()),
     stop('BaseDB Picon', picon.client.close()),
     stop('BaseDB Gemenon', gemenon.client.close()),
+    stop('BaseDB Tauron', tauron.client.close()),
   ]),
   ping: () => Promise.all([
     ping('BaseDB Aerilon', aerilon.client.command({ ping: 1 })),
     ping('BaseDB Caprica', caprica.client.command({ ping: 1 })),
     ping('BaseDB Picon', picon.client.command({ ping: 1 })),
     ping('BaseDB Gemenon', gemenon.client.command({ ping: 1 })),
+    ping('BaseDB Tauron', tauron.client.command({ ping: 1 })),
   ]),
 };

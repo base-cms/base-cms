@@ -24,7 +24,7 @@
       <p v-if="flagged" :class="element('flagged')">
         This comment has been reported.
       </p>
-      {{ body }}
+      <div v-html="bodyHtml" />
     </div>
   </div>
 </template>
@@ -100,6 +100,13 @@ export default {
      */
     hasActiveUser() {
       return this.activeUser && this.activeUser.email;
+    },
+
+    /**
+     *
+     */
+    bodyHtml() {
+      return this.body.replace(/\n/g, '<br>');
     },
   },
 
