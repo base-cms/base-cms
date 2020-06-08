@@ -106,7 +106,6 @@ export default {
      *
      */
     bodyHtml() {
-      console.log(this.id);
       return this.body.replace(/\n/g, '<br>');
     },
   },
