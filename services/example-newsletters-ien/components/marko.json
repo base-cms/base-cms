@@ -2,13 +2,16 @@
   "taglib-imports": [
     "./blocks/marko.json",
     "./elements/marko.json",
-    "./styles/marko.json"
+    "./tenants/marko.json"
   ],
   "<common-document>": {
     "template": "./document.marko",
     "<head>": {},
     "@newsletter": "object",
     "@date": "date"
+  },
+  "<common-static-styles>": {
+    "template": "./static-styles.marko"
   },
   "<common-table>": {
     "template": "./core-table.marko",

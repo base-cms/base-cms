@@ -1,0 +1,7 @@
+{
+  "<common-default-footer-block>": {
+    "template": "./index.marko",
+    "@bg-color": "string",
+    "@footer-text": "object"
+  }
+}

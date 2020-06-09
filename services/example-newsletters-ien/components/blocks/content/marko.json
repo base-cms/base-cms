@@ -1,0 +1,145 @@
+{
+  "<common-feed-full-block>": {
+    "template": "./feed-full.marko",
+    "@name": "string",
+    "@href": "string",
+    "@image-src": "string",
+    "@date": {
+      "type": "object",
+      "required": true
+    },
+    "@newsletter": {
+      "type": "object",
+      "required": true
+    },
+    "@section-id": {
+      "type": "number",
+      "required": true
+    },
+    "@limit": {
+      "type": "number",
+      "default-value": 0
+    },
+    "@skip": {
+      "type": "number",
+      "default-value": 0
+    },
+    "@title": "string",
+    "@content-link-style": "object",
+    "@title-style": "string",
+    "@teaser-style": "object",
+    "@primary-color": {
+      "type" : "string",
+      "default-value" : "#eb1b2c"
+    },
+    "@hr-below": "bool",
+    "@show-teaser": "bool"
+  },
+  "<common-featured-full-block>": {
+    "template": "./featured-full.marko",
+    "@name": "string",
+    "@href": "string",
+    "@image-src": "string",
+    "@date": {
+      "type": "object",
+      "required": true
+    },
+    "@newsletter": {
+      "type": "object",
+      "required": true
+    },
+    "@section-id": {
+      "type": "number",
+      "required": true
+    },
+    "@limit": {
+      "type": "number",
+      "default-value": 0
+    },
+    "@skip": {
+      "type": "number",
+      "default-value": 0
+    },
+    "@title": "string",
+    "@content-link-style": "object",
+    "@title-style": "string",
+    "@teaser-style": "object",
+    "@primary-color": {
+      "type" : "string",
+      "default-value" : "#eb1b2c"
+    },
+    "@hr-below": "bool",
+    "@show-body": "bool",
+    "@show-teaser": "bool"
+  },
+  "<common-featured-half-block>": {
+    "template": "./featured-half.marko",
+    "@name": "string",
+    "@href": "string",
+    "@image-src": "string",
+    "@date": {
+      "type": "object",
+      "required": true
+    },
+    "@newsletter": {
+      "type": "object",
+      "required": true
+    },
+    "@section-id": {
+      "type": "number",
+      "required": true
+    },
+    "@limit": {
+      "type": "number",
+      "default-value": 0
+    },
+    "@skip": {
+      "type": "number",
+      "default-value": 0
+    },
+    "@title": "string",
+    "@content-link-style": "object",
+    "@title-style": "string",
+    "@teaser-style": "object",
+    "@primary-color": {
+      "type" : "string",
+      "default-value" : "#eb1b2c"
+    },
+    "@align": "string"
+  },
+  "<common-promotion-half-block>": {
+    "template": "./promotion-half.marko",
+    "@name": "string",
+    "@href": "string",
+    "@image-src": "string",
+    "@date": {
+      "type": "object",
+      "required": true
+    },
+    "@newsletter": {
+      "type": "object",
+      "required": true
+    },
+    "@section-id": {
+      "type": "number",
+      "required": true
+    },
+    "@limit": {
+      "type": "number",
+      "default-value": 0
+    },
+    "@skip": {
+      "type": "number",
+      "default-value": 0
+    },
+    "@title": "string",
+    "@content-link-style": "object",
+    "@title-style": "string",
+    "@teaser-style": "object",
+    "@primary-color": {
+      "type" : "string",
+      "default-value" : "#eb1b2c"
+    },
+    "@align": "string"
+  }
+}

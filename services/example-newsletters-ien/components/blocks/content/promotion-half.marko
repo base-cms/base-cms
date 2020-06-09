@@ -1,0 +1,140 @@
+import contentList from "../../../graphql/fragments/content-list";
+import defaultValue from "@base-cms/marko-core/utils/default-value";
+
+$ const {
+  newsletter,
+  date,
+  sectionId,
+  title,
+  limit,
+  skip,
+  primaryColor,
+  align
+} = input;
+
+$ const titleStyle = defaultValue(input.titleStyle, {
+  "text-decoration": "none !important",
+  "font-size": "14px",
+  "font-family": "Arial, Helvetica, sans-serif",
+  "color": "#000000",
+  "text-align": "left",
+  "font-weight": "bold",
+});
+
+$ const teaserStyle = defaultValue(input.teaserStyle, {
+  "text-decoration": "none !important",
+  "font-size": "13px",
+  "font-family": "Arial, Helvetica, sans-serif",
+  "color": "#666666",
+  "font-weight": "normal",
+  "text-align": "left",
+  "margin-top": "5px !important",
+  "line-height": "1.2em",
+});
+
+$ const contentLinkStyle = defaultValue(input.contentLinkStyle, {
+  "text-decoration": "none",
+  "text-align": "left",
+  "text-decoration": "none !important",
+  "font-size": "16px",
+  "font-family": "Arial, Helvetica, sans-serif",
+  "color": primaryColor,
+  "font-weight": "bold"
+});
+
+$ const textAdCopyStyle = {
+  "font-family": "Arial, Helvetica, sans-serif",
+  "font-size": "12px",
+  "color": "#000000",
+  "text-align": "left",
+  "line-height": "18px",
+  "margin-top": "5px !important",
+};
+
+$ const textAdButtonStyle = "background:#3B579D; padding-top:10px; padding-left:10px; padding-right:10px; padding-bottom:10px;";
+$ const textAdButtonLinkStyle = {
+  "text-decoration": "none",
+  "text-align": "left",
+  "background": "#3B579D",
+  "color": "#ffffff",
+  "font-weight": "bold",
+  "font-size": "16px",
+  "margin-top": "10px",
+};
+
+<marko-web-query|{ nodes }| name="newsletter-scheduled-content" params={
+  date: date.valueOf(),
+  newsletterId: newsletter.id,
+  sectionId: sectionId,
+  limit: limit,
+  skip: skip,
+  queryFragment: contentList,
+}>
+  <common-table width="300" style="border-collapse:collapse;" align=align class="main" padding=0 spacing=0>
+    <if(title)>
+      <tr>
+        <td style=titleStyle>
+          ${title}
+        </td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+    </if>
+    <tr>
+      <td valign="top">
+        <for|node| of=nodes>
+          <common-table width="280" style="border-collapse:collapse;" align=align padding=10 spacing=0>
+            <tr>
+              <td bgcolor="#ecedee">
+                <marko-core-obj-text obj=node field="name">
+                  <@link href=node.siteContext.url target="_blank" attrs={ style: contentLinkStyle } />
+                </marko-core-obj-text>
+                <common-table
+                  style="margin:10px 10px 0 0;"
+                  align="left"
+                  class="left"
+                  padding=0
+                  spacing=0
+                >
+                  <tr>
+                    <td>
+                      <marko-core-obj-value|{ value: image }| obj=node field="primaryImage" as="object">
+                        <marko-newsletter-imgix
+                          src=image.src
+                          alt=image.alt
+                          options={ w: 300 }
+                          class="sponsored"
+                          attrs={ border: 0, width: 150 }
+                        >
+                          <@link href=node.siteContext.url target="_blank" />
+                        </marko-newsletter-imgix>
+                      </marko-core-obj-value>
+                    </td>
+                  </tr>
+                </common-table>
+
+                <marko-core-obj-text tag="div" obj=node field="body" html=true attrs={ style: textAdCopyStyle } />
+
+                <common-table align="right" padding=0 spacing=0>
+                  <tr>
+                    <td style=`${textAdButtonStyle}`>
+                      <marko-core-obj-text obj=node field="linkText" html=true >
+                        <@link href=node.siteContext.url target="_blank" attrs={ style: textAdButtonLinkStyle } />
+                      </marko-core-obj-text>
+                    </td>
+                  </tr>
+                </common-table>
+              </td>
+            </tr>
+          </common-table>
+          <common-table width="280" align="center" class="center" >
+            <tr>
+              <td>&nbsp;</td>
+            </tr>
+          </common-table>
+        </for>
+      </td>
+    </tr>
+  </common-table>
+</marko-web-query>

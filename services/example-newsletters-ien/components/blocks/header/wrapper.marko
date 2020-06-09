@@ -1,5 +1,14 @@
-$ const { separatorPosition, separatorType } = input;
+import defaultValue from "@base-cms/marko-core/utils/default-value";
 
+$ const { separatorPosition, separatorType, date } = input;
+$ const dateStyle = defaultValue(input.dateStyle, {
+  "text-decoration": "none !important",
+  "font-size": "12px",
+  "font-family": "Arial, Helvetica, sans-serif",
+  "color": "#ffffff",
+  "line-height": "12px",
+  "text-transform": "uppercase"
+});
 
 <if(separatorPosition === "above" || separatorPosition === "both")>
 
@@ -10,6 +19,37 @@ $ const { separatorPosition, separatorType } = input;
 <if(separatorPosition === "below" || separatorPosition === "both")>
 
 </if>
+
+<if(separatorType === "date")>
+  <common-table width="630" style="border-collapse:collapse;" align="center" class="main" padding=0 spacing=0>
+    <tr>
+      <td bgcolor="#000000" width="134" height="20" align="center" valign="middle">
+        <div style=dateStyle>
+          ${date.format("MMMM D, YYYY")}
+        </div>
+      </td>
+      <td>
+        <marko-newsletter-imgix
+          src="https://base.imgix.net/files/base/newsletter/header-slanted_left.png?h=20&w=166"
+          options={ w: 166, h: 20 }
+          alt=""
+          attrs={ border: 0, align: "left", width: 166, height: 20 }>
+        </marko-newsletter-imgix>
+        <marko-newsletter-imgix
+          src="https://base.imgix.net/files/base/newsletter/header-slanted_right.png?h=20&w=330"
+          options={ w: 330, h: 20 }
+          alt=""
+          class="mobileHide"
+          attrs={ border: 0, align: "left", width: 330, height: 20 }>
+        </marko-newsletter-imgix>
+      </td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+    </tr>
+  </common-table>
+</if>
+
 
 <if(input.clearFloats)>
   <common-table width="100%" align="center" class="main" style="border-collapse:collapse;">

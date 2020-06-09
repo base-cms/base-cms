@@ -1,0 +1,38 @@
+import buildGAMTargeting from "../../utils/build-gam-targeting";
+import emailX from "../../config/email-x";
+import GAM from "../../config/gam";
+
+$ const { req } = out.global;
+$ const gamEnabled = Object.hasOwnProperty.call(req.query, 'gam');
+
+$ const {
+  name,
+  newsletter,
+  date,
+  dateInfo,
+} = input;
+
+$ const { alias } = newsletter;
+
+$ let adUnit;
+$ if (gamEnabled) {
+  adUnit = GAM.getAdUnit({ name, alias, targeting: buildGAMTargeting({ newsletter, date, dateInfo }) });
+} else {
+  adUnit = emailX.getAdUnit({ name, alias });
+}
+
+<if(adUnit.path || adUnit.id)>
+  <if(gamEnabled)>
+    <marko-newsletters-gam-display>
+      <@ad-unit ...adUnit />
+      <@image class="scaleAd" />
+    </marko-newsletters-gam-display>
+  </if>
+  <else>
+    <marko-newsletters-email-x-display decoded-params=["email", "send"]>
+      <@ad-unit ...adUnit />
+      <@params date=date email="%%emailaddr%%" send="%%jobid%%" />
+      <@image class="scaleAd" />
+    </marko-newsletters-email-x-display>
+  </else>
+</if>
