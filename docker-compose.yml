@@ -363,8 +363,8 @@ services:
       PORT: 80
       EXPOSED_PORT: 11090
       LIVERELOAD_PORT: 21090
-      TENANT_KEY: indm_ien
-      GRAPHQL_URI: http://graphql-server-caprica
+      TENANT_KEY: indm_multi
+      GRAPHQL_URI: ${GRAPHQL_URI-https://caprica.graphql.base-cms.io}
       NEW_RELIC_ENABLED: 0
       NEW_RELIC_LICENSE_KEY: (unset)
       MARKO_NEWSLETTERS_PRETTY: 1
