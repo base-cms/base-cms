@@ -143,6 +143,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    displayViewAll: {
+      type: Boolean,
+      default: true,
+    },
   },
 
   data: () => ({
@@ -164,6 +168,7 @@ export default {
 
   computed: {
     viewAll() {
+      if (!this.displayViewAll) return false;
       return this.viewAllHref || `/${this.sectionAlias}`;
     },
     isExpanded() {
