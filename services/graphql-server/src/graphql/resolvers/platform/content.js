@@ -234,6 +234,9 @@ module.exports = {
           return `${site.get('origin')}${path}`;
         },
         canonicalUrl: async () => {
+          const canonicalUrl = get(content, 'mutations.Website.canonicalUrl');
+          // Return the canonical URL when explicitally set on content.
+          if (canonicalUrl) return canonicalUrl;
           const projection = { alias: 1, 'site.$id': 1 };
           const ref = BaseDB.get(content, 'mutations.Website.primarySection');
           const id = BaseDB.extractRefId(ref);
