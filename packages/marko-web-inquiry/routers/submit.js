@@ -43,7 +43,7 @@ module.exports = ({ queryFragment, notification, confirmation }) => asyncRoute(a
     const json = await recaptchaRes.json();
     if (!json.success) {
       error('reCAPTCHA failed!', json, { secret: RECAPTCHA_SECRET_KEY, response });
-      throw exception('Unable to validate your request because reCAPTCH failed!');
+      throw exception('Unable to validate your request because reCAPTCHA failed!');
     }
     return true;
   };
