@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/example-website-lfw",
-  "version": "1.29.6",
+  "version": "1.29.8",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
   "repository": "https://github.com/base-cms/base-cms/tree/master/services/example-website-lfw",
@@ -25,7 +25,7 @@
     "@base-cms/marko-web-identity-x": "^1.29.4",
     "@base-cms/marko-web-inquiry": "^1.27.3",
     "@base-cms/marko-web-leaders": "^1.29.5",
-    "@base-cms/marko-web-native-x": "^1.25.0",
+    "@base-cms/marko-web-native-x": "^1.29.8",
     "@base-cms/marko-web-photoswipe": "^1.29.5",
     "@base-cms/marko-web-radix": "^1.26.0",
     "@base-cms/marko-web-reveal-ad": "^1.26.3",
