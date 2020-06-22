@@ -11,11 +11,7 @@
     "test": "yarn lint"
   },
   "dependencies": {
-    "@base-cms/graphql-fragment-types": "^1.9.0",
-    "apollo-cache-inmemory": "^1.6.3",
-    "apollo-client": "^2.6.4",
-    "apollo-link-http": "^1.5.16",
-    "node-fetch": "^2.6.0"
+    "@base-cms/apollo-client": "^1.9.0"
   },
   "peerDependencies": {
     "graphql": "^14.0.0"
