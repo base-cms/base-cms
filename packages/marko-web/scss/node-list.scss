@@ -116,6 +116,7 @@ $marko-web-node-list-border-color:    rgba(0, 0, 0, .125) !default;
       &__node {
         display: flex;
         flex-grow: 1;
+        align-items: flex-start;
       }
     }
   }
