@@ -17,7 +17,7 @@ $ const queryParams = {
       <marko-web-page-container
         tag="section"
         ...input.pageInput
-        modifiers=["load-more", `page-${pageNumber}`, ...getAsArray(input, "page.modifiers")]
+        modifiers=["load-more", `page-${pageNumber}`, ...getAsArray(input, "pageInput.modifiers")]
       >
         <!-- Fire generic `load-more-in-view` event (other services can attach to this, e.g. GTM) -->
         <marko-web-browser-component name="TriggerInViewEvent" props={ eventName: "load-more-in-view", data: { page_number: pageNumber + 1 } } />
