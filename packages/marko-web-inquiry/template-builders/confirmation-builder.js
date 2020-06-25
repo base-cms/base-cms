@@ -14,6 +14,7 @@ module.exports = ({
   template,
   $global,
   content,
+  subject = 'Your inquiry was received.',
   email,
   bcc,
   from,
@@ -23,7 +24,6 @@ module.exports = ({
     from,
     bcc,
   };
-  const subject = 'Your inquiry was received.';
   const input = {
     $global,
     content,

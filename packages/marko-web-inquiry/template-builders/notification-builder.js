@@ -15,10 +15,10 @@ module.exports = ({
   template,
   $global,
   content,
+  subject = 'A new inquiry submission was received.',
   payload,
   addresses,
 }) => {
-  const subject = 'A new inquiry submission was received.';
   const input = {
     $global,
     content,
