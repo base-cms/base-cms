@@ -13,6 +13,8 @@ module.exports = ({ queryFragment, notification, confirmation }) => asyncRoute(a
     sendFrom: from,
     sendTo: to,
     directSend,
+    notificationSubject,
+    confirmationSubject,
   } = site.getAsObject('inquiry');
   const $global = buildMarkoGlobal(res);
   const { apollo, body: payload } = req;
@@ -38,6 +40,7 @@ module.exports = ({ queryFragment, notification, confirmation }) => asyncRoute(a
       template: notification,
       $global,
       content,
+      subject: notificationSubject,
       payload,
       addresses,
     })),
@@ -46,6 +49,7 @@ module.exports = ({ queryFragment, notification, confirmation }) => asyncRoute(a
       template: confirmation,
       $global,
       content,
+      subject: confirmationSubject,
       email: req.body.confirmationEmail,
       from,
       bcc,
