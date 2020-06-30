@@ -19,6 +19,12 @@
   },
   "<marko-web-gam-enable>": {
     "template": "./enable.marko",
+    "<lazy-load>": {
+      "@enabled": "boolean",
+      "@fetch-margin-percent": "number",
+      "@render-margin-percent": "number",
+      "@mobile-scaling": "number"
+    },
     "@options": "object",
     "@key-values": "object",
     "@include-path": {
