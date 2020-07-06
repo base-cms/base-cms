@@ -49,6 +49,8 @@ module.exports = ({ queryFragment, notification, confirmation }) => asyncRoute(a
   };
 
   await Promise.all([
+    // validate google reCaptcha
+    await validateRecaptcha(payload),
     // Store the submission
     storeInquiry({
       apollo,
@@ -56,7 +58,6 @@ module.exports = ({ queryFragment, notification, confirmation }) => asyncRoute(a
       payload,
       addresses,
     }),
-    validateRecaptcha(payload),
     // Notify the contacts of the submission
     send(notificationBuilder({
       template: notification,
