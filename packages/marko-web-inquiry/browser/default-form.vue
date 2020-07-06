@@ -1,5 +1,5 @@
 <template>
-  <form v-if="incomplete" :class="formClass" @submit.prevent="submit">
+  <form v-if="incomplete" :class="formClass" @submit.prevent="onSubmit">
     <input type="hidden" name="contentId" :value="contentId">
     <input type="hidden" name="contentType" :value="contentType">
     <div class="row">
@@ -132,15 +132,16 @@
     </div>
     <pre v-if="error" class="alert alert-danger text-danger">An error occurred: {{ error }}</pre>
     <vue-recaptcha
-      ref="recaptcha"
+      ref="invisibleRecaptcha"
+      size="invisible"
       :sitekey="sitekey"
-      @onVerify="submit"
-      @onExpired="onExpired"
-    >
-      <button type="submit" class="btn btn-primary" :disabled="loading">
-        Submit
-      </button>
-    </vue-recaptcha>
+      :load-recaptcha-script="true"
+      @verify="onVerify"
+      @expired="onExpired"
+    />
+    <button type="submit" class="btn btn-primary" :disabled="loading">
+      Submit
+    </button>
   </form>
   <div v-else>
     Thanks for your inquiry! We'll reach out shortly.
@@ -181,6 +182,12 @@ export default {
     comments: '',
   }),
   methods: {
+    onSubmit() {
+      this.$refs.invisibleRecaptcha.execute();
+    },
+    onVerify(response) {
+      this.submit(response);
+    },
     onExpired() {
       this.error = 'Timed out validating your submission.';
       this.loading = false;
