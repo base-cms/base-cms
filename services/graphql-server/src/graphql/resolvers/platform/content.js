@@ -816,6 +816,7 @@ module.exports = {
         requiresImage,
         sort,
         pagination,
+        withSite,
       } = input;
 
       const query = getPublishedCriteria({
@@ -824,7 +825,7 @@ module.exports = {
         excludeContentTypes,
       });
       const siteId = input.siteId || site.id();
-      if (siteId) query['mutations.Website.primarySite'] = siteId;
+      if (withSite && siteId) query['mutations.Website.primarySite'] = siteId;
 
       query.$or = [
         { company: companyId },
