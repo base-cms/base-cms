@@ -167,7 +167,7 @@ export default {
     },
     sitekey: {
       type: String,
-      default: null,
+      required: true,
     },
   },
   data: () => ({
