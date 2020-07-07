@@ -10,6 +10,8 @@ const date = v => (v instanceof Date ? v.valueOf() : v);
  * @param {number} params.companyId The company (content) ID.
  * @param {string[]} [params.includeContentTypes] An array of content types to include.
  * @param {boolean} [params.requiresImage] Whether the content must have an image.
+ * @param {boolean} [params.withSite] Whether to limit results to the current site context
+ * @param {string} [params.siteId] A website site identifier to limit results by primarySite
  * @param {string} [params.sortField] The field to use for sorting results
  * @param {string} [params.sortOrder] The direction to sort results
  * @param {number} [params.limit] The number of results to return.
@@ -32,6 +34,8 @@ module.exports = async (apolloClient, {
   includeContentTypes,
   excludeContentTypes,
   requiresImage,
+  withSite,
+  siteId,
 
   queryFragment,
   queryName,
@@ -43,6 +47,8 @@ module.exports = async (apolloClient, {
     excludeContentTypes,
     pagination,
     requiresImage,
+    withSite,
+    siteId,
     since: date(since),
   };
   if (field || order) input.sort = { field, order };
