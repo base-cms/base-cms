@@ -5,6 +5,7 @@
     @extend .btn-sm;
     @extend .btn-primary;
     margin-right: $marko-web-node-spacer;
+    margin-bottom: $marko-web-node-spacer;
 
     &:last-child {
       margin-right: 0;
