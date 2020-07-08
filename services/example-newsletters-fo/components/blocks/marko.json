@@ -1,0 +1,104 @@
+{
+  "<tenant-header-block>": {
+    "template": "./header.marko",
+    "@date": {
+      "type": "object",
+      "required": true
+    },
+    "@newsletter": {
+      "type": "object",
+      "required": true
+    },
+    "@image-path": "string"
+  },
+  "<common-leaderboard-primary-block>": {
+    "template": "./leaderboard-primary.marko",
+    "@name": "string",
+    "@date": "date"
+  },
+  "<common-sponsored-by-wrapper>": {
+    "template": "./sponsored-by-wrapper.marko",
+    "@date": {
+      "type": "object",
+      "required": true
+    },
+    "@newsletter": {
+      "type": "object",
+      "required": true
+    },
+    "@section-id": {
+      "type": "number",
+      "required": true
+    },
+    "@limit": {
+      "type": "number",
+      "default-value": 0
+    },
+    "@skip": {
+      "type": "number",
+      "default-value": 0
+    },
+    "@teaser-style": "object",
+    "@button-style": "string",
+    "@button-text-style": "object",
+    "@main-table-style": "string",
+    "@content-link-style": "object",
+    "@sponsored-by-style": "string"
+  },
+  "<common-sponsored-by-block>": {
+    "template": "./sponsored-by.marko",
+    "@alignment": {
+      "type": "string",
+      "default-value": "left"
+    },
+    "@button-style": "string",
+    "@button-text-style": "object",
+    "@content-link-style": "object",
+    "@node": "object",
+    "@teaser-style": "object",
+    "@sponsored-by-style": "string"
+  },
+  "<common-logo-header-block>": {
+    "template": "./logo-header.marko",
+    "@date": {
+      "type": "object",
+      "required": true
+    },
+    "@newsletter": {
+      "type": "object",
+      "required": true
+    },
+    "@header-style": "string",
+    "@logo-source": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "<common-publication-block>": {
+    "template": "./publication.marko",
+    "@date": {
+      "type": "object",
+      "required": true
+    },
+    "@newsletter": {
+      "type": "object",
+      "required": true
+    },
+    "@publication-id": "string",
+    "@publication-description": "string",
+    "@content-link-style": "object",
+    "@teaser-style": "object",
+    "@main-table-style": "string",
+    "@table-width": {
+      "type": "number",
+      "default-value": 700
+    },
+    "@img-width": {
+      "type": "number",
+      "default-value": 300
+    },
+    "@title": "string",
+    "@title-table-style": "string",
+    "@title-style": "string"
+  }
+}

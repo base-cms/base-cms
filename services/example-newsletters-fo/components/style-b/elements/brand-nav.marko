@@ -1,0 +1,22 @@
+import defaultValue from "@base-cms/marko-core/utils/default-value";
+import { getAsArray } from "@base-cms/object-path";
+import { asObject } from "@base-cms/utils";
+
+$ const { config } = out.global;
+$ const brandNav = config.getAsArray('brandNavLinks');
+
+$ const footerFontStyle = defaultValue(input.footerFontStyle, "color: #fff; text-decoration: none !important; text-align:left; font: 12px Arial, Helvetica, sans-serif;");
+
+<common-table align="left" width="345" padding=0 spacing=0>
+  <tr>
+    <td>
+      <div style=`${footerFontStyle}` class="center">
+        <for|brandNavLinks| of=brandNav>
+          <a style=`${footerFontStyle}` href=brandNavLinks.href target="_blank">
+            &nbsp; ${brandNavLinks.title} &nbsp;
+          </a>
+        </for>
+      </div>
+    </td>
+  </tr>
+</common-table>

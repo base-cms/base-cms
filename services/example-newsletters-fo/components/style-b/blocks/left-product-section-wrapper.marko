@@ -1,0 +1,70 @@
+import isLast from "@endeavor-business-media/common/utils/is-last";
+import contentList from "@endeavor-business-media/common/graphql/fragments/content-list";
+import defaultValue from "@base-cms/marko-core/utils/default-value";
+import getSponsoredByText from "@endeavor-business-media/common/utils/get-sponsored-by-text";
+import getAlignment from "@endeavor-business-media/common/utils/get-alignment";
+import getIsFullWidth from "@endeavor-business-media/common/utils/get-is-full-width";
+import showDivider from "@endeavor-business-media/common/utils/show-divider";
+
+$ const {
+  newsletter,
+  date,
+  sectionId,
+  title,
+  limit,
+  skip,
+  teaserStyle
+} = input;
+
+$ const titleStyle = defaultValue(input.titleStyle, "font: bold 16px/24px 'Helvetica Neue', Helvetica, sans-serif; margin: 0;");
+$ const titleTableStyle = defaultValue(input.titleTableStyle, titleStyle + "table-layout: fixed; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; color: #000; background-color: #ffffff;");
+$ const mainTableStyle = defaultValue(input.mainTableStyle, "border-collapse:collapse; font: bold 16px/24px 'Helvetica Neue', Helvetica, sans-serif; margin: 0; background-color: #ffffff; mso-table-lspace: 0pt; mso-table-rspace: 0pt;");
+$ const contentLinkStyle = defaultValue(input.contentLinkStyle, {
+  "color": "#0000EE",
+  "font": "bold 18px/27px 'Helvetica Neue', Helvetica, sans-serif"
+});
+
+<common-table width="400" style="border-collapse:collapse;" align="center" class="main left-product-section-wrapper" padding=0 spacing=0>
+  <tr>
+    <td>
+      <!-- Section Query Wrapper -->
+      <marko-web-query|{ nodes }| name="newsletter-scheduled-content" params={
+        date: date.valueOf(),
+        newsletterId: newsletter.id,
+        sectionId: sectionId,
+        limit: limit,
+        skip: skip,
+        queryFragment: contentList,
+      }>
+        <common-table width="380" style=mainTableStyle align="center" class="main" padding=0 spacing=0>
+          <if(title)>
+            <tr>
+              <td>
+                <common-table width="100%" style=titleTableStyle align="center" class="main" padding=0 spacing=0>
+                  <tr>
+                    <td>
+                      <h3 style=`${titleStyle}`>${title}</h3>
+                    </td>
+                  </tr>
+                </common-table>
+              </td>
+            </tr>
+          </if>
+          <tr>
+            <td valign="top">
+              <for|node, index| of=nodes>
+                <common-style-b-simple-card-block
+                  node=node
+                  alignment="center"
+                  table-width="380"
+                  content-link-style=contentLinkStyle
+                  teaser-style=teaserStyle
+                />
+              </for>
+            </td>
+          </tr>
+        </common-table>
+      </marko-web-query>
+    </td>
+  </tr>
+</common-table>

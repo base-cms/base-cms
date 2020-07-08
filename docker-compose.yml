@@ -485,6 +485,26 @@ services:
       - "11166:80"
       - "25166:25166"
 
+  example-newsletters-fo:
+    <<: *node
+    working_dir: /base-cms/services/example-newsletters-fo
+    command: ["/base-cms/node_modules/.bin/basecms-newsletters", "dev", "index.js"]
+    environment:
+      <<: *env
+      PORT: 80
+      EXPOSED_PORT: 11167
+      LIVERELOAD_PORT: 25167
+      TENANT_KEY: ebm_fleetowner
+      GRAPHQL_URI: http://graphql-server-gemenon
+      NEW_RELIC_ENABLED: 0
+      NEW_RELIC_LICENSE_KEY: (unset)
+      MARKO_NEWSLETTERS_PRETTY: 1
+    depends_on:
+      - graphql-server-gemenon
+    ports:
+      - "11167:80"
+      - "25167:25167"
+
   haproxy:
     image: haproxy:alpine
     ports: [ "${PORT-10010}:80" ]

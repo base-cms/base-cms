@@ -1,0 +1,103 @@
+import getAlignment from "@endeavor-business-media/common/utils/get-alignment";
+import isLast from "@endeavor-business-media/common/utils/is-last";
+import contentList from "@endeavor-business-media/common/graphql/fragments/content-list";
+import defaultValue from "@base-cms/marko-core/utils/default-value";
+import getSponsoredByText from "@endeavor-business-media/common/utils/get-sponsored-by-text";
+
+$ const {
+  newsletter,
+  date,
+  sectionId,
+  title,
+  limit,
+  skip,
+  node,
+  tableWidth,
+  imgWidth,
+  alignment
+} = input;
+$ const teaserStyle = defaultValue(input.teaserStyle, {
+  "font-size": "12px",
+  "line-height": "146%",
+  "margin": "0",
+  "padding-right": "5%",
+  "color": "#000000",
+  "font-family": "Arial, 'Helvetica Neue', Helvetica, sans-serif"
+})
+$ const titleTableStyle = defaultValue(input.titleTableStyle, "font-family: Garamond, serif; font-size: 13px; line-height: 21px; margin: 0; table-layout: fixed; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100% !important; color: ##C73E31; background-color: #ffffff; border-top: 4px solid ##C73E31;");
+$ const titleStyle = defaultValue(input.titleStyle, "font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif; font-size:15px; margin-top: 9px; margin-left: 20px; margin-bottom: 9px; font-weight: bold;");
+$ const mainTableStyle = defaultValue(input.mainTableStyle, "border-collapse:collapse; font-family: Garamond, serif; font-size: 13px; line-height: 21px; margin: 0; border-bottom: 2px solid #757575; border-top: 2px solid #757575; background-color: #ffffff; mso-table-lspace: 0pt; mso-table-rspace: 0pt;");
+$ const innerPadding = 20;
+$ const innerTableWidth = tableWidth - (innerPadding * 2);
+
+<common-table width="700" style="border-collapse:collapse;" align="center" class="main" padding=0 spacing=0>
+  <tr>
+    <td>
+      <!-- Section Query Wrapper -->
+      <marko-web-query|{ nodes }| name="newsletter-scheduled-content" params={
+        date: date.valueOf(),
+        newsletterId: newsletter.id,
+        sectionId: sectionId,
+        limit: limit,
+        skip: skip,
+        queryFragment: contentList,
+      }>
+        <common-table width="700" style=mainTableStyle align="left" class="main" padding=0 spacing=0>
+          <tr>
+            <td>
+              <common-table width="100%" style=titleTableStyle align="center" class="main" padding=0 spacing=0>
+                <tr>
+                  <td>
+                    <h3 style=`${titleStyle}`>${title}</h3>
+                  </td>
+                </tr>
+              </common-table>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" style="padding: 0 10px;" valign="top">
+              <for|node, index| of=nodes>
+                $ const alignment = getAlignment(index);
+
+                <common-table width=600 style="border-collapse:collapse;  mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding:0; margin:0;" align="center" class="main" padding=0 spacing=0>
+                  <tr>
+                    <td align="center" class="main">
+                      <common-table width=innerTableWidth style=`border-collapse:collapse;  mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding:0; margin:0;` align="center" class="main" padding=0 spacing=0>
+                        <tr>
+                          <td>
+                            <div style=" font-weight: normal; color: #6b6b6b; font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif; font-size: 11px;">
+                              $!{getSponsoredByText(node, '&nbsp;')}
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <marko-core-obj-value|{ value: image }| obj=node field="primaryImage" as="object">
+                              <marko-newsletter-imgix
+                                src=image.src
+                                alt=image.alt
+                                options={ w: imgWidth }
+                                class="sponsored"
+                                attrs={ border: 0, width: imgWidth }
+                              >
+                                <@link href=node.siteContext.url target="_blank" />
+                              </marko-newsletter-imgix>
+                            </marko-core-obj-value>
+                            <marko-core-obj-text tag=null obj=node field="body" html=true attrs={ style: teaserStyle } />
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>&nbsp;</td>
+                        </tr>
+                      </common-table>
+                    </td>
+                  </tr>
+                </common-table>
+              </for>
+            </td>
+          </tr>
+        </common-table>
+      </marko-web-query>
+    </td>
+  </tr>
+</common-table>

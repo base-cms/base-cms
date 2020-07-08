@@ -1,0 +1,83 @@
+import defaultValue from "@base-cms/marko-core/utils/default-value";
+import getSponsoredByText from "@endeavor-business-media/common/utils/get-sponsored-by-text";
+
+$ const {
+  node
+} = input;
+
+$ const imgWidth = "100px";
+$ const tableCellPadding = "padding-bottom: 10px;"
+$ const teaserStyle = defaultValue(input.teaserStyle, {
+  "color": "#000",
+  "font": "normal 14px/18px sans-serif",
+  "margin": "0",
+  "padding": "0"
+});
+$ const buttonStyle = defaultValue(input.buttonStyle, "background-color: transparent; padding: 5px 0;");
+$ const buttonTextStyle = defaultValue(input.buttonTextStyle, {
+  "color": "#000",
+  "font": "bold 16px/24px sans-serif",
+  "text-decoration": "underline"
+});
+$ const contentLinkStyle = defaultValue(input.contentLinkStyle, {
+  "font": "bold 18px/27px sans-serif",
+  "color": "#0000EE",
+  "text-decoration": "none"
+});
+$ const sponsoredByStyle = defaultValue(input.sponsoredByStyle, "font: bold 16px/32px sans-serif; color: #000; text-transform: uppercase; padding-right: 20px;");
+
+<common-table style="border-collapse:collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding:0; margin:0;" class="main sponsored-by" padding=0 spacing=0 width="100%">
+  <tr>
+    <td>
+      <common-table style="border-collapse:collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding:0; margin:0;" class="main sponsored-by__title" padding=0 spacing=0 width="100%">
+        <tr>
+          <td style=`${tableCellPadding}`>
+            <marko-core-obj-text obj=node field="name" attrs={ style: { "text-align": "left" } } >
+              <@link href=node.siteContext.url target="_blank" attrs={ style: contentLinkStyle } />
+            </marko-core-obj-text>
+          </td>
+        </tr>
+      </common-table>
+      <if(node.primaryImage || node.company)>
+        <common-table style="border-collapse:collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding:0; margin:0;" class="main sponsored-by__image" padding=0 spacing=0 width="100%">
+          <tr>
+            <td style=`${tableCellPadding}`>
+              <span style=`${sponsoredByStyle}` >
+                $!{getSponsoredByText(node, 'Sponsored By ')}
+              </span>
+              <span>
+                <if(node.primaryImage)>
+                  <common-primary-image-element node=node img-width=imgWidth />
+                </if>
+                <else>
+                  <marko-core-obj-text tag="span" obj=node field="company.name" >
+                    <@link href=node.siteContext.url target="_blank" />
+                  </marko-core-obj-text>
+                </else>
+              </span>
+            </td>
+          </tr>
+        </common-table>
+      </if>
+      <common-table style="border-collapse:collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding:0; margin:0;" class="main sponsored-by__content" padding=0 spacing=0 width="100%">
+        <tr>
+          <td style=`${tableCellPadding}`>
+            <marko-core-obj-text tag="span" obj=node field="body" html=true attrs={ style: teaserStyle } />
+          </td>
+        </tr>
+      </common-table>
+      <common-table style="border-collapse:collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding:0; margin:0;" class="main sponsored-by__content" padding=0 spacing=0 width="100%">
+        <tr>
+          <td>
+            <common-button-element
+              button-style=buttonStyle
+              button-text-style=buttonTextStyle
+              node=node
+              alignment="left"
+            />
+          </td>
+        </tr>
+      </common-table>
+    </td>
+  </tr>
+</common-table>

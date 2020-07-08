@@ -1,0 +1,68 @@
+import contentList from "@endeavor-business-media/common/graphql/fragments/content-list";
+import defaultValue from "@base-cms/marko-core/utils/default-value";
+
+$ const {
+  newsletter,
+  date,
+  sectionId,
+  limit,
+  skip,
+  teaserStyle
+} = input;
+$ const mainTableStyle = defaultValue(input.mainTableStyle, "border-collapse:collapse; font-family: Garamond, serif; font-size: 13px; line-height: 21px; margin: 0; border-bottom: 2px solid #d7d7d7; border-top: 2px solid #d7d7d7; background-color: #ffffff; mso-table-lspace: 0pt; mso-table-rspace: 0pt;");
+$ const imgWidth = 160;
+
+
+<common-table width="180" style="border-collapse:collapse; background-color: #ffffff;" align="center" class="main" padding=0 spacing=0>
+  <tr>
+    <td style="font-family: Arial, sans-serif; font-size: 13px; line-height: 20px; border-collapse: separate; padding: 0 15px 15px 15px; min-width: 100%; text-align: center;">
+
+      <!-- Section Query Wrapper -->
+      <marko-web-query|{ nodes }| name="newsletter-scheduled-content" params={
+        date: date.valueOf(),
+        newsletterId: newsletter.id,
+        sectionId: sectionId,
+        limit: limit,
+        queryFragment: contentList,
+      }>
+
+      <for|node| of=nodes>
+
+        <common-table width="180" style=`border-collapse:collapse;  mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding:0; margin:0;` align="right" class=`right` padding=0 spacing=0>
+          <tr>
+            <td>
+              <h3 style="margin:0;font-weight:normal;height:27px;margin:1px 0 5px 0px; font-family:Helvetica, Arial, sans-serif; font-size:11px; color:#999;text-align:left;">
+                Advertisement
+              </h3>
+            </td>
+          </tr>
+          <tr>
+            <td align="center">
+              <marko-core-obj-value|{ value: image }| obj=node field="primaryImage" as="object">
+                <marko-newsletter-imgix
+                  src=image.src
+                  alt=image.alt
+                  options={ w: imgWidth }
+                  class="main"
+                  attrs={ border: 0, width: imgWidth }
+                >
+                  <@link href=node.siteContext.url target="_blank" />
+                </marko-newsletter-imgix>
+              </marko-core-obj-value>
+              <marko-core-obj-text tag=null obj=node field="body" html=true attrs={ style: teaserStyle } />
+            </td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+          </tr>
+        </common-table>
+      </for>
+
+      </marko-web-query>
+
+    </td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+</common-table>

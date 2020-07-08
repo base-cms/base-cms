@@ -1,0 +1,16 @@
+import defaultValue from "@base-cms/marko-core/utils/default-value";
+
+$ const { node } = input;
+$ const imgWidth = defaultValue(input.imgWidth, "100%")
+
+<marko-core-obj-value|{ value: image }| obj=node field="primaryImage" as="object">
+  <marko-newsletter-imgix
+    src=image.src
+    alt=image.alt
+    options={ w: imgWidth }
+    class="main"
+    attrs={ border: 0, width: imgWidth }
+  >
+    <@link href=node.siteContext.url target="_blank" />
+  </marko-newsletter-imgix>
+</marko-core-obj-value>

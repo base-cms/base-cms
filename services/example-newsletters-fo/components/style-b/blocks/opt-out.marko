@@ -1,0 +1,58 @@
+import { getAsArray } from "@base-cms/object-path";
+import { asObject } from "@base-cms/utils";
+
+$ const { website, config } = out.global;
+$ const socialMediaProviders = config.getAsArray('socialMediaLinks');
+
+
+<common-table width="700" style="border-collapse:collapse;" align="center" class="main opt-out" padding=0 spacing=0 attrs={ style: { "background-color": "#ffffff" } } >
+  <tr>
+    <td style="background-color: #ffffff; text-align: center;">
+      <p class="connect_info" style="font-size: 14px; line-height: 146%; margin: 10px; padding: 0; color: #000000; -webkit-margin-after: 10px; -webkit-margin-before: 10px; -webkit-margin-end: 10px; -webkit-margin-start: 10px; font-weight: bold; font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif;">Connect With Us</p>
+      <div>
+        <for|socialLinks| of=socialMediaProviders>
+          <marko-newsletter-imgix
+            src=`/files/base/newsletter/connect/${socialLinks.provider}.png`
+            alt="social icon"
+            options={ w: 39 }
+            attrs={ border: 0, width: 39 }
+          >
+            <@link href=socialLinks.href title=socialLinks.title target="_blank" />
+          </marko-newsletter-imgix>
+          &nbsp;&nbsp;
+        </for>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td style="background-color: #ffffff; padding: 10px; font-family: Arial, Helvetica, sans-serif; font-size: 10px; line-height: 17px;">
+      <p style="margin:0px; margin-bottom:1em;">This email is being sent to
+        <a href="mailto:@{email name}@">@{email name}@</a>.
+      </p>
+      <p style="margin:0px; margin-bottom:1em;">
+        Please add ${config.get("optOut.safeSenders")} to your address book or safe sender list to receive our emails in your inbox.
+      </p>
+      <p style="margin:0px;margin-bottom:1em;">
+        <a href="@{confirmunsubscribelink}@">Unsubscribe</a>
+        | <a href=`${config.get("optOut.manageSubscriptions")}`>Manage Newsletter Subscriptions</a>
+        | <a href="@{forwardtoafriendlink}@">Forward to a Friend</a>
+        | <a href=`${website.get("origin")}/contact-us`>Customer Service Center</a>
+        | <a href=`${config.get("optOut.privacyPolicyUrl")}`>Read Privacy Policy</a>
+        <if (config.get("optOut.findJobsUrl")) >
+        | <a href=`${config.get("optOut.findJobsUrl")}`>Find Jobs</a>
+        </if>
+      </p>
+
+      <p style="margin:0px; margin-bottom:1em;">
+        If this email was forwarded to you and you are interested in subscribing, please <a style="text-decoration: underline !important;" href=`${config.get("optOut.signUp")}`>click here</a> to sign-up.
+      </p>
+
+      <p style="margin:0px;margin-bottom:1em;">
+        If you have trouble with any of these methods, you can reach us toll-free at ${config.get("optOut.phoneNumber")}.
+      </p>
+      <p>
+        $!{config.get("optOut.address")}
+      </p>
+    </td>
+  </tr>
+</common-table>

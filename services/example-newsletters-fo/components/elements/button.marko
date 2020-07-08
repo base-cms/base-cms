@@ -1,0 +1,22 @@
+import defaultValue from "@base-cms/marko-core/utils/default-value";
+import getButtonText from "@endeavor-business-media/common/utils/get-button-text";
+
+$ const { node, alignment } = input;
+$ const buttonStyle = defaultValue(input.buttonStyle, "font-family: Garamond, serif; font-size: 13px; line-height: 21px; border-spacing: 0; padding: 10px 15px; table-layout: fixed; background-color: #e4e4e4;");
+$ const buttonTextStyle = defaultValue(input.buttonTextStyle, {
+  "color": "#ffffff",
+  "font": "bold 14px/28px Helvetica, sans-serif",
+  "text-decoration": "none",
+  "text-transform": "uppercase"
+});
+$ const buttonValue = defaultValue(node.linkText, getButtonText(node.type));
+
+<common-table align=alignment padding=0 spacing=0>
+  <tr>
+    <td style=`${buttonStyle}`>
+      <marko-core-text value=buttonValue>
+        <@link href=node.siteContext.url target="_blank" attrs={ style: buttonTextStyle } />
+      </marko-core-text>
+      </td>
+    </tr>
+</common-table>

@@ -1,0 +1,23 @@
+{
+  "taglib-imports": [
+    "./elements/marko.json",
+    "./blocks/marko.json",
+    "./style-a/marko.json",
+    "./style-b/marko.json"
+  ],
+  "<common-endeavor-styles>": {
+    "template": "./endeavor-styles.marko"
+  },
+  "<common-table>": {
+    "template": "./core-table.marko",
+    "@border": "number",
+    "@width": "string",
+    "@class": "string",
+    "@spacing": "number",
+    "@padding": "number",
+    "@valign": "string",
+    "@align": "string",
+    "@style": "string",
+    "@attrs": "object"
+  }
+}

@@ -1,0 +1,89 @@
+import contentList from "@endeavor-business-media/common/graphql/fragments/content-list";
+import latestIssueFragment from "@endeavor-business-media/common/graphql/fragments/latest-issue";
+import defaultValue from "@base-cms/marko-core/utils/default-value";
+
+$ const { website, config } = out.global;
+$ const {
+  date,
+  newsletter,
+  publicationId,
+  teaserStyle,
+  tableWidth,
+  imgWidth,
+  title,
+  titleTableStyle,
+  titleStyle
+} = input;
+
+$ const contentLinkStyle = defaultValue(input.contentLinkStyle, {
+  "font": "700 16px/24px Arial, 'Helvetica Neue', Helvetica, sans-serif",
+  "color": "#000",
+});
+$ const mainTableStyle = defaultValue(input.mainTableStyle, "border-collapse:collapse; font: 300 16px/24px Arial, 'Helvetica Neue', Helvetica, sans-serif; margin: 0; mso-table-lspace: 0pt; mso-table-rspace: 0pt;");
+
+<common-table width="700" border="0" spacing=0 padding=0 align="center" style="border-top: 2px solid #eee; border-bottom: 2px solid #eee; padding: 20px 0;" class="main publication">
+  <tr>
+    <td style=`${mainTableStyle} padding: 20px;`>
+      <marko-web-query|{ node: latestIssue }| name="magazine-latest-issue" params={
+        publicationId: publicationId,
+        queryFragment: latestIssueFragment
+      }>
+        $ const publicationDescription = defaultValue(input.publicationDescription, latestIssue.publication.description);
+
+        <common-table width="100%" border="0" spacing=0 padding=0 align="center" style="border-collapse:collapse;" class="main">
+          <tr>
+            <td width=imgWidth align="center" valign="center">
+              <marko-core-obj-value|{ value: coverImage }| obj=latestIssue field="coverImage" as="object">
+                <marko-newsletter-imgix
+                  src=coverImage.src
+                  alt=coverImage.alt
+                  options={ w: imgWidth }
+                  class="main"
+                  attrs={ border: 0, width: imgWidth }
+                >
+                  <@link href=latestIssue.digitalEditionUrl  target="_blank" />
+                </marko-newsletter-imgix>
+              </marko-core-obj-value>
+            </td>
+            <td width=tableWidth valign="top" style="padding-left: 20px;">
+              <common-table width="100%" border="0" spacing=0 padding=0 align="center" style="border-collapse:collapse;">
+                <tr>
+                  <td> ${publicationDescription} </td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <td>
+                      <if(latestIssue.digitalEditionUrl)>
+                        <a href=latestIssue.digitalEditionUrl target="_blank" style=contentLinkStyle>
+                          ${config.get("brandAcronym")} Digital Edition
+                        </a>
+                      </if>
+                  </td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <td>
+                    <if(latestIssue.publication.subscribeUrl)>
+                      <a style=contentLinkStyle href=latestIssue.publication.subscribeUrl target="_blank" rel="noopener noreferrer">
+                        Subscribe to ${config.get("brandAcronym")}
+                      </a>
+                    </if>
+                    <else>
+                      <a style=contentLinkStyle href=`${website.get("origin")}/subscribe` target="_blank" rel="noopener noreferrer">
+                        <strong>SUBSCRIBE</strong>
+                      </a> for more leading edge content from <em>${website.get("name")}</em>!
+                    </else>
+                  </td>
+                </tr>
+              </common-table>
+            </td>
+          </tr>
+        </common-table>
+      </marko-web-query>
+    </td>
+  </tr>
+</common-table>

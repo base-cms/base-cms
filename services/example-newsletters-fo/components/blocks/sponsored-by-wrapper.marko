@@ -1,0 +1,62 @@
+import contentList from "@endeavor-business-media/common/graphql/fragments/content-list";
+import defaultValue from "@base-cms/marko-core/utils/default-value";
+import isLast from "@endeavor-business-media/common/utils/is-last";
+import isFirst from "@endeavor-business-media/common/utils/is-first";
+
+$ const {
+  date,
+  limit,
+  newsletter,
+  sectionId,
+  skip,
+  teaserStyle,
+  buttonStyle,
+  buttonTextStyle,
+  contentLinkStyle,
+  sponsoredByStyle
+} = input;
+
+$ const mainTableStyle = defaultValue(input.mainTableStyle, "border-collapse:collapse; font: normal 12px/18px sans-serif; margin: 0; background-color: #ffffff; mso-table-lspace: 0pt; mso-table-rspace: 0pt;");
+
+<common-table width="700" style="border-collapse:collapse;" align="center" class="main sponsored-by-wrapper" padding=0 spacing=0>
+  <tr>
+    <td>
+      <!-- Section Query Wrapper -->
+      <marko-web-query|{ nodes }| name="newsletter-scheduled-content" params={
+        date: date.valueOf(),
+        newsletterId: newsletter.id,
+        sectionId: sectionId,
+        limit: limit,
+        skip: skip,
+        queryFragment: contentList,
+      }>
+        <for|node, index| of=nodes>
+          <if(!isFirst(nodes, index))>
+            <common-table width="700" class="main" padding=10 spacing=0>
+              &nbsp;
+            </common-table>
+          </if>
+          <common-table width="700" style=`${mainTableStyle}` class="main" padding=0 spacing=0>
+            <tr>
+              <td valign="top">
+                  <common-sponsored-by-block
+                    node=node
+                    content-link-style=contentLinkStyle
+                    button-style=buttonStyle
+                    button-text-style=buttonTextStyle
+                    teaser-style=teaserStyle
+                    sponsored-by-style=sponsoredByStyle
+                  />
+              </td>
+            </tr>
+          </common-table>
+          <if(isLast(nodes, index))>
+            <common-table width="700" class="main" padding=10 spacing=0>
+              &nbsp;
+            </common-table>
+          </if>
+        </for>
+      </marko-web-query>
+    </td>
+  </tr>
+</common-table>

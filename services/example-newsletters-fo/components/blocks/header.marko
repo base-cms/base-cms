@@ -1,0 +1,28 @@
+$ const {
+  newsletter,
+  date,
+  imagePath
+} = input;
+
+<common-table width="700" style="border-collapse:collapse;" align="center" class="main" padding=0 spacing=0>
+  <tr>
+    <td>
+      <span>
+        <marko-newsletter-imgix
+          src=imagePath
+          alt=newsletter.name
+          options={ w: 700 }
+          attrs={ border: 0, width: 700 }
+        >
+        </marko-newsletter-imgix>
+      </span>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <span style="text-transform: uppercase; font-size: 12px; line-height: 146%; margin: 0; padding: 0; color: #6b6b6b; -webkit-margin-after: 0; -webkit-margin-before: 0; -webkit-margin-end: 0; -webkit-margin-start: 0; font-weight: 700; font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif;">
+        ${date.format("MMMM D, YYYY")}
+      </span>
+    </td>
+  </tr>
+</common-table>

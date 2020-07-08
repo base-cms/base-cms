@@ -1,0 +1,17 @@
+import defaultValue from "@base-cms/marko-core/utils/default-value";
+$ const year = new Date().getFullYear();
+$ const company = "Endeavor Business Media, LLC.";
+$ const copyrightText = "All rights reserved.";
+$ const copyrightFontStyle = defaultValue(input.copyrightFontStyle, "color: #fff; text-decoration: none !important; text-align:left; font: 12px Arial, Helvetica, sans-serif;");
+
+<common-table align="right" class="main" width="325" padding=0 spacing=0>
+  <tr>
+    <td>
+      <div style=`${copyrightFontStyle}` class="center">
+        <span style=`${copyrightFontStyle}`>
+          &copy; ${year} ${company} ${copyrightText}
+        </span>
+      </div>
+    </td>
+  </tr>
+</common-table>

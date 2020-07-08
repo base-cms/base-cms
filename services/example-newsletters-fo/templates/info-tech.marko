@@ -1,0 +1,166 @@
+$ const { newsletter, date } = data;
+$ const featuredTitleStyle = "font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif; font-size:15px; margin-top: 9px; margin-left: 20px; margin-bottom: 9px; font-weight: bold;";
+$ const featuredMainTableStyle = "border-collapse:collapse; font-family: Garamond, serif; font-size: 13px; line-height: 21px; margin: 0; background-color: #333333; mso-table-lspace: 0pt; mso-table-rspace: 0pt;";
+$ const featuredContentLinkStyle = {
+  "font-weight": "bold",
+  "color": "#fff",
+  "font-size": "19.5px",
+  "line-height": "20px",
+  "font-family": "Arial, 'Helvetica Neue', Helvetica, sans-serif",
+};
+$ const featuredTeaserStyle = {
+  "font-size": "12px",
+  "line-height": "146%",
+  "margin": "0",
+  "padding": "0",
+  "color": "#fff",
+  "font-family": "Arial, 'Helvetica Neue', Helvetica, sans-serif"
+};
+$ const featuredButtonStyle = "font-family: Garamond, serif; font-size: 13px; line-height: 21px; border-spacing: 0; padding: 10px 15px; table-layout: fixed; background-color: #fff;";
+$ const featuredButtonTextStyle = {
+  "color": "#333333",
+  "font-family": "Helvetica, Arial, sans-serif",
+  "font-size": "14px",
+  "font-weight": "bold",
+  "text-decoration": "none",
+  "text-transform": "uppercase"
+};
+$ const titleTableStyle = "font-family: Garamond, serif; font-size: 13px; line-height: 21px; margin: 0; table-layout: fixed; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100% !important; color: #00464f; background-color: #ffffff; border-bottom: 3px solid #d7d7d7; border-top: 4px solid #00464f;";
+$ const titleStyle = "font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif; font-size:15px; margin-top: 9px; margin-left: 20px; margin-bottom: 9px; font-weight: bold;";
+$ const mainTableStyle = "border-collapse:collapse; font-family: Garamond, serif; font-size: 13px; line-height: 21px; margin: 0; border-bottom: 2px solid #d7d7d7; border-top: 2px solid #d7d7d7; background-color: #ffffff; mso-table-lspace: 0pt; mso-table-rspace: 0pt;";
+$ const contentLinkStyle = {
+  "font-weight": "bold",
+  "color": "#0190ba",
+  "font-size": "19.5px",
+  "line-height": "20px",
+  "font-family": "Arial, 'Helvetica Neue', Helvetica, sans-serif",
+};
+$ const buttonStyle = "font-family: Garamond, serif; font-size: 13px; line-height: 21px; border-spacing: 0; padding: 10px 15px; table-layout: fixed; background-color: #0190ba;";
+$ const buttonTextStyle = {
+  "color": "#ffffff",
+  "font-family": "Helvetica, Arial, sans-serif",
+  "font-size": "14px",
+  "line-height": "21px",
+  "font-weight": "bold",
+  "text-decoration": "none",
+  "text-transform": "uppercase"
+};
+
+<marko-newsletter-root
+  title=newsletter.name
+  description=newsletter.description
+  date=date
+>
+  <@head>
+    <common-style-a-styles />
+  </@head>
+  <@body style="margin: 0px !important; padding: 0 !important; mso-line-height-rule: exactly; background-color: #efefef;">
+    <common-banner-element
+      name=newsletter.name
+      date=date
+    />
+    <tenant-header-block image-path="/files/base/ebm/fleetowner/image/static/newsletter/info_tech_header.jpg" date=date newsletter=newsletter />
+
+    <common-section-spacer-element />
+
+    <!-- #01 - Leaderboard - 1 Column -->
+    <common-style-a-leaderboard-block
+      section-id=81483
+      date=date
+      newsletter=newsletter
+      main-table-style=mainTableStyle
+    />
+
+    <!-- #02 - From The Editor - 1 Column -->
+    <common-style-a-special-edition-full-wrapper-block
+      section-id=81488
+      title="From The Editor"
+      date=date
+      newsletter=newsletter
+      title-table-style=titleTableStyle
+      title-style=titleStyle
+      main-table-style=mainTableStyle
+      content-link-style=contentLinkStyle
+      show-button=false
+    />
+
+    <!-- #03 - Featured - 1 Column - Big Image -->
+    <common-style-a-featured-section-wrapper-block
+      section-id=74489
+      title="Featured"
+      date=date
+      newsletter=newsletter
+      title-table-style=titleTableStyle
+      title-style=titleStyle
+      main-table-style=featuredMainTableStyle
+      content-link-style=featuredContentLinkStyle
+      teaser-style=featuredTeaserStyle
+      button-style=featuredButtonStyle
+      button-text-style=featuredButtonTextStyle
+    />
+
+    <!-- #04 - Leaderboard - 1 Column -->
+    <common-style-a-leaderboard-block
+      section-id=81493
+      date=date
+      newsletter=newsletter
+      main-table-style=mainTableStyle
+    />
+
+    <!-- #05 Latest News - 2 Column -->
+    <common-style-a-card-section-wrapper-block
+      section-id=74488
+      title="Latest News"
+      date=date
+      newsletter=newsletter
+      title-table-style=titleTableStyle
+      title-style=titleStyle
+      main-table-style=mainTableStyle
+      content-link-style=contentLinkStyle
+      button-style=buttonStyle
+      button-text-style=buttonTextStyle
+      fallback-label=false
+    />
+
+    <!-- #06 Latest News - No Images - 2 Column -->
+    <common-style-a-card-section-wrapper-block
+      section-id=81498
+      date=date
+      newsletter=newsletter
+      main-table-style=mainTableStyle
+      content-link-style=contentLinkStyle
+      button-style=buttonStyle
+      button-text-style=buttonTextStyle
+      fallback-label=false
+      displayImage=false
+    />
+
+    <!-- #07 Trending - 2 Column -->
+    <common-style-a-card-section-wrapper-block
+      section-id=81502
+      title="Trending"
+      date=date
+      newsletter=newsletter
+      title-table-style=titleTableStyle
+      title-style=titleStyle
+      main-table-style=mainTableStyle
+      content-link-style=contentLinkStyle
+      button-style=buttonStyle
+      button-text-style=buttonTextStyle
+      fallback-label=false
+    />
+
+    <!-- #08 - Leaderboard - 1 Column -->
+    <common-style-a-leaderboard-block
+      section-id=81507
+      date=date
+      newsletter=newsletter
+      main-table-style=mainTableStyle
+    />
+
+    <common-section-spacer-element />
+
+    <common-style-a-opt-out-block />
+
+  </@body>
+</marko-newsletter-root>

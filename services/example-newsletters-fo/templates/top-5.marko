@@ -1,0 +1,131 @@
+$ const { newsletter, date } = data;
+$ const titleTableStyle = "font-family: Garamond, serif; font-size: 13px; line-height: 21px; margin: 0; table-layout: fixed; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100% !important; color: #00464f; background-color: #ffffff; border-bottom: 3px solid #d7d7d7; border-top: 4px solid #00464f;";
+$ const titleStyle = "font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif; font-size:15px; margin-top: 9px; margin-left: 20px; margin-bottom: 9px; font-weight: bold;";
+$ const mainTableStyle = "border-collapse:collapse; font-family: Garamond, serif; font-size: 13px; line-height: 21px; margin: 0; border-bottom: 2px solid #d7d7d7; border-top: 2px solid #d7d7d7; background-color: #ffffff; mso-table-lspace: 0pt; mso-table-rspace: 0pt;";
+$ const contentLinkStyle = {
+  "font-weight": "bold",
+  "color": "#d00a2d",
+  "font-size": "19.5px",
+  "line-height": "20px",
+  "font-family": "Arial, 'Helvetica Neue', Helvetica, sans-serif",
+};
+$ const buttonStyle = "font-family: Garamond, serif; font-size: 13px; line-height: 21px; border-spacing: 0; padding: 10px 15px; table-layout: fixed; background-color: #d00a2d;";
+$ const buttonTextStyle = {
+  "color": "#ffffff",
+  "font-family": "Helvetica, Arial, sans-serif",
+  "font-size": "14px",
+  "line-height": "21px",
+  "font-weight": "bold",
+  "text-decoration": "none",
+  "text-transform": "uppercase"
+};
+
+$ const featuredTitleStyle = "font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif; font-size:15px; margin-top: 9px; margin-left: 20px; margin-bottom: 9px; font-weight: bold;";
+$ const featuredMainTableStyle = "border-collapse:collapse; font-family: Garamond, serif; font-size: 13px; line-height: 21px; margin: 0; background-color: #333333; mso-table-lspace: 0pt; mso-table-rspace: 0pt;";
+$ const featuredContentLinkStyle = {
+  "font-weight": "bold",
+  "color": "#ffffff",
+  "font-size": "19.5px",
+  "line-height": "20px",
+  "font-family": "Arial, 'Helvetica Neue', Helvetica, sans-serif",
+};
+$ const featuredTeaserStyle = {
+  "font-size": "12px",
+  "line-height": "146%",
+  "margin": "0",
+  "padding": "0",
+  "color": "#ffffff",
+  "font-family": "Arial, 'Helvetica Neue', Helvetica, sans-serif"
+};
+$ const featuredButtonStyle = "font-family: Garamond, serif; font-size: 13px; line-height: 21px; border-spacing: 0; padding: 10px 15px; table-layout: fixed; background-color: #ffffff;";
+$ const featuredButtonTextStyle = {
+  "color": "#333333",
+  "font-family": "Helvetica, Arial, sans-serif",
+  "font-size": "14px",
+  "font-weight": "bold",
+  "text-decoration": "none",
+  "text-transform": "uppercase"
+};
+
+<marko-newsletter-root
+  title=newsletter.name
+  description=newsletter.description
+  date=date
+>
+  <@head>
+    <common-style-a-styles />
+  </@head>
+  <@body style="margin: 0px !important; padding: 0 !important; mso-line-height-rule: exactly; background-color: #efefef;">
+    <common-banner-element
+      name=newsletter.name
+      date=date
+    />
+    <tenant-header-block image-path="/files/base/ebm/fleetowner/image/static/newsletter/top-5.jpg" date=date newsletter=newsletter />
+
+    <common-section-spacer-element />
+
+    <!-- #01 - Leaderboard - 1 Column -->
+    <common-style-a-leaderboard-block
+      section-id=81477
+      date=date
+      newsletter=newsletter
+      main-table-style=mainTableStyle
+    />
+
+    <!-- #02 - Top News Story - 1 Column - Big Image -->
+    <common-style-a-featured-section-wrapper-block
+      section-id=74531
+      date=date
+      newsletter=newsletter
+      main-table-style=featuredMainTableStyle
+      content-link-style=featuredContentLinkStyle
+      teaser-style=featuredTeaserStyle
+      button-style=featuredButtonStyle
+      button-text-style=featuredButtonTextStyle
+    />
+
+    <!-- #03 - Leaderboard - 1 Column -->
+    <common-style-a-leaderboard-block
+      section-id=81478
+      date=date
+      newsletter=newsletter
+      main-table-style=mainTableStyle
+    />
+
+    <!-- #04 - More News - 1 Column -->
+    <common-style-a-special-edition-full-wrapper-block
+      section-id=74530
+      date=date
+      newsletter=newsletter
+      main-table-style=mainTableStyle
+      content-link-style=contentLinkStyle
+      button-style=buttonStyle
+      button-text-style=buttonTextStyle
+    />
+
+    <!-- #05 - Leaderboard - 1 Column -->
+    <common-style-a-leaderboard-block
+      section-id=81479
+      date=date
+      newsletter=newsletter
+      main-table-style=mainTableStyle
+    />
+
+    <!-- #06 - Featured Media - 1 Column - Big Image -->
+    <common-style-a-featured-section-wrapper-block
+      section-id=81480
+      date=date
+      newsletter=newsletter
+      main-table-style=featuredMainTableStyle
+      content-link-style=featuredContentLinkStyle
+      teaser-style=featuredTeaserStyle
+      button-style=featuredButtonStyle
+      button-text-style=featuredButtonTextStyle
+    />
+
+    <common-section-spacer-element />
+
+    <common-style-a-opt-out-block />
+
+  </@body>
+</marko-newsletter-root>

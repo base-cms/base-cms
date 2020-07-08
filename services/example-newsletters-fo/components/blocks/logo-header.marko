@@ -1,0 +1,38 @@
+import defaultValue from "@base-cms/marko-core/utils/default-value";
+
+$ const {
+  newsletter,
+  date,
+  logoSource
+} = input;
+
+$ const headerStyle = defaultValue(input.headerStyle, "background-color: #515151; color: #fff;");
+$ const enlNameStyle = defaultValue(input.enlNameStyle, "font: 700 24px/36px 'Helvetica Neue', Helvetica, sans-serif; text-transform: uppercase;")
+
+<common-table width="100%" align="center" class="main enl-header" style=headerStyle padding=0 spacing=0>
+  <tr>
+    <td width="110" class="enl-header__date" align="center" valign="center">
+      <p style=headerStyle>
+        <span style="font-size: 18px; line-height: 24px;">
+          ${date.format("MMM")}
+        </span>
+        <br>
+        <span style="font-size: 30px; line-height: 45px;">
+          ${date.format("D")}
+        </span>
+      </p>
+    </td>
+    <td class="enl-header__name" align="center" valign="center" style=enlNameStyle>
+      <h1>${newsletter.name}</h1>
+    </td>
+    <td width="160" class="enl-header__logo" align="center" valign="center">
+      <marko-newsletter-imgix
+        src=logoSource
+        alt=newsletter.name
+        options={ w: 120 }
+        attrs={ border: 0, width: 120 }
+      >
+      </marko-newsletter-imgix>
+    </td>
+  </tr>
+</common-table>

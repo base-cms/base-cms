@@ -1,0 +1,50 @@
+{
+  "<common-view-online-element>": {
+    "template": "./view-online.marko",
+    "@name": "string"
+  },
+  "<common-stealth-link-element>": {
+    "template": "./stealth-link.marko",
+    "@name": "string"
+  },
+  "<common-section-spacer-element>": {
+    "template": "./section-spacer.marko"
+  },
+  "<common-hr-element>": {
+    "template": "./hr.marko",
+    "@hr-color": {
+      "type": "string",
+      "default-value": "#666"
+    },
+    "@hr-height": {
+      "type": "number",
+      "default-value": "0"
+    }
+  },
+  "<common-banner-element>": {
+    "template": "./banner.marko",
+    "@name": "string",
+    "@date": "date",
+    "@ad-unit": "object"
+  },
+  "<common-button-element>": {
+    "template": "./button.marko",
+    "@button-style": "string",
+    "@button-text-style": "object",
+    "@node": "object",
+    "@alignment": {
+      "type": "string",
+      "default-value": "center"
+    }
+  },
+  "<common-advertisement-element>": {
+    "template": "./advertisement.marko",
+    "@name": "string",
+    "@date": "date"
+  },
+  "<common-primary-image-element>": {
+    "template": "./primary-image.marko",
+    "@node": "object",
+    "@img-width": "string"
+  }
+}

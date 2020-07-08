@@ -1,0 +1,100 @@
+import defaultValue from "@base-cms/marko-core/utils/default-value";
+import getSponsoredByText from "@endeavor-business-media/common/utils/get-sponsored-by-text";
+import getButtonText from "@endeavor-business-media/common/utils/get-button-text";
+
+$ const {
+  node,
+  alignment,
+  tableWidth,
+  imgWidth,
+  fallbackLabel,
+  displayImage
+} = input;
+$ const teaserStyle = defaultValue(input.teaserStyle, {
+  "font-size": "12px",
+  "line-height": "146%",
+  "margin": "0",
+  "padding": "0",
+  "color": "#000000",
+  "font-family": "Arial, 'Helvetica Neue', Helvetica, sans-serif"
+});
+$ const contentLinkStyle = defaultValue(input.contentLinkStyle, {
+  "text-align": "left",
+  "text-decoration": "none !important",
+  "font-size": "14px",
+  "line-height": "24px",
+  "font-family": "Arial, Helvetica, sans-serif",
+  "color": "#00B39E",
+  "font-weight": "bold"
+});
+$ const buttonStyle = defaultValue(input.buttonStyle, "font-family: Garamond, serif; font-size: 13px; line-height: 21px; border-spacing: 0; padding: 10px 15px; table-layout: fixed; background-color: #00b398;");
+$ const buttonTextStyle = defaultValue(input.buttonTextStyle, {
+  "color": "#ffffff",
+  "font-family": "Helvetica, Arial, sans-serif",
+  "font-size": "14px",
+  "line-height": "21px",
+  "font-weight": "bold",
+  "text-decoration": "none",
+  "text-transform": "uppercase"
+});
+
+$ const innerPadding = 20;
+$ const innerTableWidth = tableWidth - (innerPadding * 2);
+
+<common-table width=tableWidth style="border-collapse:collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding:0; margin:0;" align=alignment class=`${alignment} main` padding=0 spacing=0>
+  <tr>
+    <td style=`padding: 0; padding-${alignment}: ${innerPadding}px; padding-bottom: ${innerPadding}px;`>
+      <common-table width=innerTableWidth style=`border-collapse:collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding:0; margin:0;` align=alignment class=`${alignment} main` padding=0 spacing=0>
+        <tr>
+          <td>
+            <div style=" font-weight: normal; color: #6b6b6b; font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif; font-size: 11px;">
+              <if(fallbackLabel == true)>
+                $!{getSponsoredByText(node, 'Advertisement')}
+              </if>
+              <else>
+                $!{getSponsoredByText(node, '&nbsp;')}
+              </else>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <if(displayImage)>
+              <marko-core-obj-value|{ value: image }| obj=node field="primaryImage" as="object">
+                <marko-newsletter-imgix
+                  src=image.src
+                  alt=image.alt
+                  options={ w: imgWidth }
+                  class="main"
+                  attrs={ border: 0, width: imgWidth }
+                >
+                  <@link href=node.siteContext.url target="_blank" />
+                </marko-newsletter-imgix>
+              </marko-core-obj-value>
+            </if>
+
+            <marko-core-obj-text obj=node field="name" attrs={ style: { "margin-top": "10px", "text-align": "left" } } >
+              <@link href=node.siteContext.url target="_blank" attrs={ style: contentLinkStyle } />
+            </marko-core-obj-text>
+            <div height="10">&nbsp;</div>
+            <marko-core-obj-text tag="span" obj=node field="teaser" html=true attrs={ style: teaserStyle } />
+            <common-table align="center" padding=0 spacing=0>
+              <tr>
+                <td>
+                  &nbsp;
+                </td>
+              </tr>
+              <tr>
+                <td style=`${buttonStyle}`>
+                  <marko-core-text value=getButtonText(node.type)>
+                    <@link href=node.siteContext.url target="_blank" attrs={ style: buttonTextStyle } />
+                  </marko-core-text>
+                  </td>
+                </tr>
+            </common-table>
+          </td>
+        </tr>
+      </common-table>
+    </td>
+  </tr>
+</common-table>

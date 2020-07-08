@@ -1,0 +1,85 @@
+import getAlignment from "@endeavor-business-media/common/utils/get-alignment";
+import isLast from "@endeavor-business-media/common/utils/is-last";
+import contentList from "@endeavor-business-media/common/graphql/fragments/content-list";
+import defaultValue from "@base-cms/marko-core/utils/default-value";
+
+$ const {
+  newsletter,
+  date,
+  sectionId,
+  title,
+  limit,
+  skip,
+  buttonStyle,
+  buttonTextStyle,
+  teaserStyle
+} = input;
+$ const titleTableStyle = defaultValue(input.titleTableStyle, "font-family: Garamond, serif; font-size: 13px; line-height: 21px; margin: 0; table-layout: fixed; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100% !important; color: ##C73E31; background-color: #ffffff; border-bottom: 3px solid #d7d7d7; border-top: 4px solid ##C73E31;");
+$ const titleStyle = defaultValue(input.titleStyle, "font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif; font-size:15px; margin-top: 9px; margin-left: 20px; margin-bottom: 9px; font-weight: bold;");
+$ const mainTableStyle = defaultValue(input.mainTableStyle, "border-collapse:collapse; font-family: Garamond, serif; font-size: 13px; line-height: 21px; margin: 0; border-bottom: 2px solid #d7d7d7; border-top: 2px solid #d7d7d7; background-color: #ffffff; mso-table-lspace: 0pt; mso-table-rspace: 0pt;");
+$ const contentLinkStyle = defaultValue(input.contentLinkStyle, {
+  "font-weight": "bold",
+  "color": "#C73E31",
+  "font-size": "19.5px",
+  "line-height": "20px",
+  "font-family": "Arial, 'Helvetica Neue', Helvetica, sans-serif",
+});
+
+<common-table width="700" style="border-collapse:collapse;" align="center" class="main" padding=0 spacing=0>
+  <tr>
+    <td>
+      <!-- Section Query Wrapper -->
+      <marko-web-query|{ nodes }| name="newsletter-scheduled-content" params={
+        date: date.valueOf(),
+        newsletterId: newsletter.id,
+        sectionId: sectionId,
+        limit: limit,
+        skip: skip,
+        queryFragment: contentList,
+      }>
+        <common-table width="700" style=mainTableStyle align="left" class="main" padding=0 spacing=0>
+          <tr>
+            <td>
+              <common-table width="100%" style=titleTableStyle align="center" class="main" padding=0 spacing=0>
+                <tr>
+                  <td>
+                    <h3 style=`${titleStyle}`>${title}</h3>
+                  </td>
+                </tr>
+              </common-table>
+            </td>
+          </tr>
+          <tr>
+            <td valign="top">
+              <for|node, index| of=nodes>
+                $ const alignment = getAlignment(index);
+                <if(node.type === "promotion")>
+                  <common-style-a-promotion-full-block node=node alignment=alignment teaser-style=teaserStyle />
+                </if>
+                <else>
+                  <common-style-a-simple-card-full-block
+                    node=node
+                    alignment=alignment
+                    content-link-style=contentLinkStyle
+                    button-style=buttonStyle
+                    button-text-style=buttonTextStyle
+                    teaser-style=teaserStyle
+                  />
+                </else>
+                <if(!isLast(nodes, index))>
+                  <common-table width="100%" style="border-collapse:collapse;" align="center" class="main" padding=0 spacing=0>
+                    <tr>
+                      <td valign="top">
+                        <hr style="margin:0;">
+                      </td>
+                    </tr>
+                  </common-table>
+                </if>
+              </for>
+            </td>
+          </tr>
+        </common-table>
+      </marko-web-query>
+    </td>
+  </tr>
+</common-table>

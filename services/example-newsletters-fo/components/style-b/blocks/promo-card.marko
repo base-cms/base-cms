@@ -1,0 +1,144 @@
+import defaultValue from "@base-cms/marko-core/utils/default-value";
+import getSponsoredByText from "@endeavor-business-media/common/utils/get-sponsored-by-text";
+
+$ const {
+  alignment,
+  imgWidth,
+  node,
+  tableWidth,
+} = input;
+
+$ const teaserStyle = defaultValue(input.teaserStyle, {
+  "color": "#000",
+  "font": "normal 14px/18px sans-serif",
+  "margin": "0",
+  "padding": "0"
+});
+$ const buttonStyle = defaultValue(input.buttonStyle, "background-color: #000; padding: 5px 20px;");
+$ const buttonTextStyle = defaultValue(input.buttonTextStyle, {
+  "color": "#fff",
+  "font": "bold 16px/24px sans-serif"
+});
+$ const contentLinkStyle = defaultValue(input.contentLinkStyle, {
+  "font": "bold 18px/27px sans-serif",
+  "color": "#0000EE",
+  "text-decoration": "none"
+});
+
+$ const innerPadding = 20;
+$ const innerTableWidth = tableWidth - (innerPadding * 2);
+
+<if(node.primaryImage)>
+  <common-table width="100%" style="border-collapse:collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding:0; margin:0;" class="main promo-card" padding=0 spacing=0>
+    <tr>
+      <td>
+        <common-table style="border-collapse:collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding:0; margin:0;" align="left" class="left main promo-card__image" padding=0 spacing=0>
+          <tr>
+            <td style=`padding-top: ${innerPadding}px; padding-right: 0; padding-bottom: ${innerPadding}px; padding-left: ${innerPadding}px;`>
+              <common-table width=innerTableWidth style=`border-collapse:collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding:0; margin:0;` align="left" class="left main" padding=0 spacing=0>
+                <tr>
+                  <td>
+                    <div style=" font-weight: normal; color: #6b6b6b; font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif; font-size: 11px;">
+                      $!{getSponsoredByText(node, '&nbsp;')}
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <marko-core-obj-value|{ value: image }| obj=node field="primaryImage" as="object">
+                      <marko-newsletter-imgix
+                        src=image.src
+                        alt=image.alt
+                        options={ w: imgWidth }
+                        class="main"
+                        attrs={ border: 0, width: imgWidth }
+                      >
+                        <@link href=node.siteContext.url target="_blank" />
+                      </marko-newsletter-imgix>
+                    </marko-core-obj-value>
+                  </td>
+                </tr>
+              </common-table>
+            </td>
+          </tr>
+        </common-table>
+
+        <common-table width=tableWidth style="border-collapse:collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding:0; margin:0;" align="right" class="main right promo-card__content" padding=0 spacing=0>
+          <tr>
+            <td style=`padding-top: ${innerPadding}px; padding-left: 0; padding-bottom: ${innerPadding}px; padding-right: ${innerPadding}px;`>
+              <common-table width=innerTableWidth style=`border-collapse:collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding:0; margin:0;` align="right" class="right" padding=0 spacing=0>
+                <tr>
+                  <td>
+                    <marko-core-obj-text obj=node field="name" attrs={ style: { "text-align": "left" } } >
+                      <@link href=node.siteContext.url target="_blank" attrs={ style: contentLinkStyle } />
+                    </marko-core-obj-text>
+                    <div height="10">&nbsp;</div>
+                    <marko-core-obj-text tag="span" obj=node field="teaser" html=true attrs={ style: teaserStyle } />
+                    <common-table align="center" padding=0 spacing=0>
+                      <tr>
+                        <td>
+                          &nbsp;
+                        </td>
+                      </tr>
+                      <tr>
+                        <td align="center">
+                          <common-button-element
+                            button-style=buttonStyle
+                            button-text-style=buttonTextStyle
+                            node=node
+                          />
+                        </td>
+                      </tr>
+                    </common-table>
+                  </td>
+                </tr>
+              </common-table>
+            </td>
+          </tr>
+        </common-table>
+      </td>
+    </tr>
+  </common-table>
+</if>
+<else>
+  <common-table width=700 style="border-collapse:collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding:0; margin:0;" class="main promo-card" padding=0 spacing=0>
+    <tr>
+      <td style=`padding: ${innerPadding}px;`>
+        <common-table width=660 style=`border-collapse:collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; padding:0; margin:0;` class="main" padding=0 spacing=0>
+          <tr>
+            <td>
+              <div style="font-weight: normal; color: #6b6b6b; font-family: Helvetica, 'Helvetica Neue', Arial, sans-serif; font-size: 11px;">
+                $!{getSponsoredByText(node, '')}
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <marko-core-obj-text obj=node field="name" attrs={ style: { "text-align": "left" } } >
+                <@link href=node.siteContext.url target="_blank" attrs={ style: contentLinkStyle } />
+              </marko-core-obj-text>
+              <div height="10">&nbsp;</div>
+              <marko-core-obj-text tag="span" obj=node field="teaser" html=true attrs={ style: teaserStyle } />
+              <common-table align="center" padding=0 spacing=0>
+                <tr>
+                  <td>
+                    &nbsp;
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center">
+                    <common-button-element
+                      button-style=buttonStyle
+                      button-text-style=buttonTextStyle
+                      node=node
+                    />
+                  </td>
+                </tr>
+              </common-table>
+            </td>
+          </tr>
+        </common-table>
+      </td>
+    </tr>
+  </common-table>
+</else>
