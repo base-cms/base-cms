@@ -48,9 +48,9 @@ module.exports = ({ queryFragment, notification, confirmation }) => asyncRoute(a
     return true;
   };
 
+  await validateRecaptcha(payload);
+
   await Promise.all([
-    // validate google reCaptcha
-    await validateRecaptcha(payload),
     // Store the submission
     storeInquiry({
       apollo,
