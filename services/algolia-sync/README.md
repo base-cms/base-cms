@@ -10,7 +10,7 @@ A developer can point their env SQS_URL to the failed queue and run it on dev. O
 ## CLI
 This service also supports running CLI commands to sync a site. This will iterate over all of the tenant's content and update it in Algolida. Example:
 
-      node src/index.js --tenant cygnus_ofcr --limit 10 --skip 5
+      nnode services/algolia-sync/src/index.js --tenant cygnus_ofcr --limit 10 --skip 5
 
 #### For More Algolia Information
 [https://www.algolia.com/doc/api-client/getting-started/install/javascript/?language=javascripthttp://](https://www.algolia.com/doc/api-client/getting-started/install/javascript/?language=javascripthttp://)
