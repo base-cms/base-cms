@@ -1,5 +1,5 @@
 <template>
-  <form v-if="incomplete" :class="formClass" @submit.prevent="submit">
+  <form v-if="incomplete" :class="formClass" @submit.prevent="onSubmit">
     <input type="hidden" name="contentId" :value="contentId">
     <input type="hidden" name="contentType" :value="contentType">
     <div class="row">
@@ -131,6 +131,14 @@
       </div>
     </div>
     <pre v-if="error" class="alert alert-danger text-danger">An error occurred: {{ error }}</pre>
+    <vue-recaptcha
+      ref="invisibleRecaptcha"
+      size="invisible"
+      :sitekey="sitekey"
+      :load-recaptcha-script="true"
+      @verify="onVerify"
+      @expired="onExpired"
+    />
     <button type="submit" class="btn btn-primary" :disabled="loading">
       Submit
     </button>
@@ -141,12 +149,13 @@
 </template>
 
 <script>
+import VueRecaptcha from 'vue-recaptcha';
 import FormMixin from './form-mixin';
 import CountryField from './fields/country.vue';
 import FormLabel from './elements/label.vue';
 
 export default {
-  components: { CountryField, FormLabel },
+  components: { VueRecaptcha, CountryField, FormLabel },
   inject: ['EventBus'],
   mixins: [
     FormMixin,
@@ -155,6 +164,10 @@ export default {
     formClass: {
       type: String,
       default: null,
+    },
+    sitekey: {
+      type: String,
+      required: true,
     },
   },
   data: () => ({
@@ -169,7 +182,17 @@ export default {
     comments: '',
   }),
   methods: {
-    async submit() {
+    onSubmit() {
+      this.$refs.invisibleRecaptcha.execute();
+    },
+    onVerify(response) {
+      this.submit(response);
+    },
+    onExpired() {
+      this.error = 'Timed out validating your submission.';
+      this.loading = false;
+    },
+    async submit(token) {
       const {
         contentId,
         contentType,
@@ -195,6 +218,7 @@ export default {
         country,
         postalCode,
         comments,
+        token,
       };
 
       await this.$submit(payload);
