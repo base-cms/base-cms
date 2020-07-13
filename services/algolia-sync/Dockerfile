@@ -5,5 +5,5 @@ WORKDIR /base-cms
 
 RUN yarn --production
 
-WORKDIR /base-cms/services/algolia
+WORKDIR /base-cms/services/algolia-sync
 ENTRYPOINT [ "node", "src/index.js" ]
