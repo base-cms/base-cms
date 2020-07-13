@@ -13,4 +13,4 @@ This service also supports running CLI commands to sync a site. This will iterat
       nnode services/algolia-sync/src/index.js --tenant cygnus_ofcr --limit 10 --skip 5
 
 #### For More Algolia Information
-[https://www.algolia.com/doc/api-client/getting-started/install/javascript/?language=javascripthttp://](https://www.algolia.com/doc/api-client/getting-started/install/javascript/?language=javascripthttp://)
+[https://www.algolia.com/doc/api-client/getting-started/install/javascript/?language=javascript](https://www.algolia.com/doc/api-client/getting-started/install/javascript/?language=javascript)
