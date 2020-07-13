@@ -9,7 +9,7 @@ const client = algoliasearch(process.env.ALGOLIA_APPID, process.env.ALGOLIA_API_
 
 const bar = new cliProgress.SingleBar({}, cliProgress.Presets.shades_classic);
 
-const query = () => (gql`
+const query = gql`
   query websiteScheduledContent($input: AllPublishedContentQueryInput!) {
     allPublishedContent(input: $input){
       pageInfo {
@@ -32,7 +32,7 @@ const query = () => (gql`
       }
     }
   }
-`);
+`;
 
 const total = () => (gql`
   query websiteScheduledContent($input: AllPublishedContentQueryInput!) {
