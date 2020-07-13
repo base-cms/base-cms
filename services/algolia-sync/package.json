@@ -7,7 +7,6 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "dev": "node src/index.js",
     "lint": "eslint --ext .js --max-warnings 5 ./",
     "test": "yarn lint"
   },
