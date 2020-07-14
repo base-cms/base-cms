@@ -1,23 +1,45 @@
-const minimist = require('minimist');
+const yargs = require('yargs');
 const receiveMessage = require('./components/aws-sqs/sqs');
 const siteSync = require('./components/algolia/site-sync');
 
 const { log } = console;
 
-const args = minimist(process.argv.slice(2), {
-  default: {
-    limit: 500,
-    skip: 0,
+yargs.command({
+  command: 'sync',
+  describe: 'Sync all content',
+  builder: {
+    tenant: {
+      describe: 'Account_Group',
+      demandOption: true,
+      type: 'string',
+    },
+    limit: {
+      describe: 'Limits the number to proccess',
+      demandOption: false,
+      type: 'number',
+      default: 500,
+    },
+    skip: {
+      describe: 'Number of content to skip',
+      demandOption: false,
+      type: 'number',
+      default: 0,
+    },
+  },
+
+  handler(argv) {
+    siteSync.setup(argv.tenant, argv.limit, argv.skip);
   },
 });
 
-const run = () => {
-  if (args.tenant) {
-    siteSync.setup(args.tenant, args.limit, args.skip);
-  } else {
+yargs.command({
+  command: 'watch',
+  describe: 'Watch for messages in SQS',
+
+  handler() {
     log('Waiting for message...');
     receiveMessage();
-  }
-};
+  },
+});
 
-run();
+yargs.parse();
