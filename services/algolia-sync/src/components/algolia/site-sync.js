@@ -23,7 +23,7 @@ const query = gql`
           published
           updated
           status
-          websiteSchedules { section { hierarchy {fullName} }}
+          websiteSchedules { section { hierarchy { fullName } }}
           primaryImage { name filePath fileName src isLogo }
           primarySite{ host }
           name
