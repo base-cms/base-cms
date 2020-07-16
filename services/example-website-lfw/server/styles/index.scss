@@ -18,6 +18,9 @@ $theme-site-header-breakpoints: (
   small-text-secondary: 1105px
 );
 
+$leaders-promotion-card-count: 3;
+$leaders-video-card-count: 2;
+
 @import "../../node_modules/@base-cms/marko-web-gam/scss/fixed-ad-bottom";
 @import "../../node_modules/@base-cms/marko-web-reveal-ad/scss/reveal-ad";
 @import "../../node_modules/@base-cms/marko-web-social-sharing/scss/buttons";
@@ -30,6 +33,9 @@ $pswp__root-z-index: $theme-site-header-z-index + 1 !default;
 
 $leaders-primary-color: $primary;
 @import "../../node_modules/@base-cms/marko-web-leaders/scss/leaders";
+
+@import "identity-x";
+@import "inquiry";
 
 .social-sharing {
   margin-bottom: 1rem;

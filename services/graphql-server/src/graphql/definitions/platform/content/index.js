@@ -29,6 +29,7 @@ extend type Query {
   allContent(input: AllContentQueryInput = {}): ContentConnection! @findMany(
     model: "platform.Content",
     criteria: "content",
+    queryBuilder: "allContent",
     withSite: false, # allow content to always load, regardless of site context.
   )
   allPublishedContent(input: AllPublishedContentQueryInput = {}): ContentConnection!
@@ -161,7 +162,7 @@ type ContentConnection @projectUsing(type: "Content") {
 type WebsiteScheduledContentConnection @projectUsing(type: "Content") {
   totalCount: Int!
   edges: [ContentEdge]!
-  section: WebsiteSection! @refOne(localField: "sectionId", loader: "websiteSection")
+  section: WebsiteSection @refOne(localField: "sectionId", loader: "websiteSection")
   pageInfo: PageInfo!
 }
 
@@ -275,12 +276,14 @@ input ContentSitemapNewsUrlsQueryInput {
 
 input AllPublishedContentQueryInput {
   siteId: ObjectID
+  after: Date
   since: Date
   sectionId: Int
   # @deprecated. Use \`AllPublishedContentQueryInput.includeContentTypes\` instead.
   contentTypes: [ContentType!] = []
   includeContentTypes: [ContentType!] = []
   excludeContentTypes: [ContentType!] = []
+  excludeContentIds: [Int!] = []
   requiresImage: Boolean = false
   sectionBubbling: Boolean = true
   sort: ContentSortInput = { field: published, order: desc }
@@ -291,6 +294,7 @@ input AllPublishedContentQueryInput {
 
 input PublishedContentCountsQueryInput {
   siteId: ObjectID
+  after: Date
   since: Date
   excludeContentTypes: [ContentType!] = []
   includeContentTypes: [ContentType!] = []
@@ -305,6 +309,7 @@ input AllAuthorContentQueryInput {
   requiresImage: Boolean = false
   sort: ContentSortInput = { field: published, order: desc }
   pagination: PaginationInput = {}
+  withSite: Boolean = true
 }
 
 input AllCompanyContentQueryInput {
@@ -316,6 +321,7 @@ input AllCompanyContentQueryInput {
   requiresImage: Boolean = false
   sort: ContentSortInput = { field: published, order: desc }
   pagination: PaginationInput = {}
+  withSite: Boolean = true
 }
 
 input ContentBeginningInput {
@@ -331,6 +337,8 @@ input ContentEndingInput {
 input AllContentQueryInput {
   siteId: ObjectID
   status: ModelStatus = active
+  "Content IDs to filter by. An empty value (default) returns all content."
+  ids: [Int!] = []
   sort: ContentSortInput = {}
   pagination: PaginationInput = {}
 }
@@ -351,7 +359,7 @@ input WebsiteExpiringContentQueryInput {
   before: Date
   after: Date
   sectionId: Int
-  optionId: Int
+  optionId: [Int] = []
   excludeContentIds: [Int!] = []
   excludeSectionIds: [Int!] = []
   excludeContentTypes: [ContentType!] = []
@@ -376,8 +384,8 @@ input WebsiteScheduledContentQueryInput {
   siteId: ObjectID
   sectionId: Int
   sectionAlias: String
-  optionId: Int
-  optionName: String
+  optionId: [Int] = []
+  optionName: [String] = []
   excludeContentIds: [Int!] = []
   excludeSectionIds: [Int!] = []
   excludeContentTypes: [ContentType!] = []
@@ -468,8 +476,8 @@ input ContentHasWebsiteScheduleInput {
   siteId: ObjectID
   sectionId: Int
   sectionAlias: String
-  optionId: Int
-  optionName: String
+  optionId: [Int] = []
+  optionName: [String] = []
   sectionBubbling: Boolean = true
 }
 

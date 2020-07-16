@@ -2,6 +2,7 @@ const Authenticate = () => import(/* webpackChunkName: "identity-x-authenticate"
 const Logout = () => import(/* webpackChunkName: "identity-x-logout" */ './logout.vue');
 const Login = () => import(/* webpackChunkName: "identity-x-login" */ './login.vue');
 const Profile = () => import(/* webpackChunkName: "identity-x-profile" */ './profile.vue');
+const CommentStream = () => import(/* webpackChunkName: "identity-x-comment-stream" */ './comments/stream.vue');
 
 export default (Browser, {
   CustomLoginComponent,
@@ -27,4 +28,5 @@ export default (Browser, {
   Browser.register('IdentityXProfile', ProfileComponent, {
     on: { action: (...args) => EventBus.$emit('identity-x-profile', ...args) },
   });
+  Browser.register('IdentityXCommentStream', CommentStream);
 };

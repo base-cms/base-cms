@@ -7,11 +7,18 @@ fragment ActiveUserFragment on AppUser {
   email
   givenName
   familyName
+  displayName
   organization
   organizationTitle
   countryCode
   regionCode
   postalCode
+  receiveEmail
+  regionalConsentAnswers {
+    id
+    given
+    date
+  }
 }
 
 `;

@@ -3,17 +3,22 @@ import { get } from "@base-cms/object-path";
 $ const { req } = out.global;
 $ const { identityX } = req;
 
-<marko-web-identity-x-context|{ user, isEnabled, application }|>
-  $ const props = {
-    activeUser: user,
-    requiredServerFields: identityX.config.getRequiredServerFields(),
-    requiredClientFields: identityX.config.getRequiredClientFields(),
-    callToAction: input.callToAction,
-    reloadPageOnSubmit: input.reloadPageOnSubmit,
-    endpoints: identityX.config.getEndpoints(),
-    consentPolicy: get(application, "organization.consentPolicy"),
-  };
-  <if(isEnabled)>
-    <marko-web-browser-component name="IdentityXProfile" props=props />
-  </if>
-</marko-web-identity-x-context>
+<if(Boolean(identityX))>
+  <marko-web-identity-x-context|{ user, isEnabled, application }|>
+    $ const props = {
+      activeUser: user,
+      requiredServerFields: identityX.config.getRequiredServerFields(),
+      requiredClientFields: identityX.config.getRequiredClientFields(),
+      callToAction: input.callToAction,
+      reloadPageOnSubmit: input.reloadPageOnSubmit,
+      endpoints: identityX.config.getEndpoints(),
+      consentPolicy: get(application, "organization.consentPolicy"),
+      emailConsentRequest: get(application, "organization.emailConsentRequest"),
+      appContextId: identityX.config.get("appContextId"),
+      regionalConsentPolicies: get(application, "organization.regionalConsentPolicies"),
+    };
+    <if(isEnabled)>
+      <marko-web-browser-component name="IdentityXProfile" props=props />
+    </if>
+  </marko-web-identity-x-context>
+</if>

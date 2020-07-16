@@ -10,7 +10,7 @@
       :disabled="disabled"
       :required="required"
       class="custom-select"
-      autocomplete="region"
+      autocomplete="address-level1"
     >
       <option disabled value="">
         Select state/region...

@@ -9,6 +9,7 @@ $ const { id, type, pageNode } = data;
 $ const displayPrimaryImage = ["whitepaper", "media-gallery", "contact"].includes(type) ? false : true;
 $ const displayPublishedDate = ["event", "webinar", "contact"].includes(type) ? false : true;
 $ const requiresRegistration = req.query["enable-gate"] === "true";
+$ const displayInquiry = ["company", "product"].includes(type);
 
 <marko-web-content-page-layout id=id type=type>
   <@head>
@@ -137,6 +138,15 @@ $ const requiresRegistration = req.query["enable-gate"] === "true";
                       target="_blank"
                     />
                   </if>
+                  <if(displayInquiry)>
+                    <marko-web-inquiry-form content=content />
+                  </if>
+                  <marko-web-identity-x-comment-stream
+                    identifier=id
+                    title=content.name
+                    description=content.teaser
+                    url=`${content.siteContext.canonicalUrl}`
+                  />
                 </else>
               </marko-web-identity-x-access>
             </default-theme-page-contents>

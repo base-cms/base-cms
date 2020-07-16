@@ -5,6 +5,7 @@ const taxonomyTypes = getDefaultTaxonomyTypes();
 
 const criterion = {
   assetImage: () => ({ type: 'Image' }),
+  brevityCollection: () => ({ type: 'Collection' }),
   configurationThemeIcarus: () => ({ type: 'Icarus' }),
   content: () => ({ type: { $in: contentTypes } }),
   taxonomy: () => ({ type: { $in: taxonomyTypes } }),

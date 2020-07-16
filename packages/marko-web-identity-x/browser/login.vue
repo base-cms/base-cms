@@ -84,6 +84,14 @@ export default {
       type: String,
       default: null,
     },
+    redirect: {
+      type: String,
+      default: null,
+    },
+    appContextId: {
+      type: String,
+      default: null,
+    },
   },
 
   /**
@@ -118,6 +126,8 @@ export default {
      *
      */
     redirectTo() {
+      const { redirect } = this;
+      if (redirect) return redirect;
       const { pathname, search, hash } = window.location;
       return `${pathname}${search}${hash}`;
     },
@@ -146,12 +156,14 @@ export default {
         email,
         redirectTo,
         authUrl,
+        appContextId,
       } = this;
       try {
         const res = await post('/login', {
           email,
           redirectTo,
           authUrl,
+          appContextId,
         });
         const data = await res.json();
         if (!res.ok) throw new FormError(data.message, res.status);

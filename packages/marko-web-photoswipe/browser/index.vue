@@ -74,6 +74,10 @@ export default {
       type: String,
       default: null,
     },
+    buttonSelector: {
+      type: String,
+      default: null,
+    },
     thumbnailImageIdAttr: {
       type: String,
       default: 'data-image-id',
@@ -86,6 +90,7 @@ export default {
   }),
 
   mounted() {
+    this.addButtonClickListener();
     this.addThumbnailListeners();
     this.openWhenHashPresent();
   },
@@ -100,6 +105,19 @@ export default {
       if (pid != null) {
         const index = pid - 1;
         if (this.items[index]) this.openPhotoswipe({ index });
+      }
+    },
+
+    addButtonClickListener() {
+      const { buttonSelector: selector } = this;
+      if (selector) {
+        const element = document.querySelector(selector);
+        if (element) {
+          element.addEventListener('click', (event) => {
+            event.preventDefault();
+            this.openPhotoswipe({ index: 0 });
+          });
+        }
       }
     },
 

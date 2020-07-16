@@ -1,5 +1,9 @@
+const { get } = require('@base-cms/object-path');
+
 module.exports = (ad = {}, { sectionName = 'Sponsored' } = {}) => {
   const { campaign, creative, image } = ad;
+  const startDate = get(campaign, 'criteria.start');
+  const { updatedAt } = campaign;
   return {
     id: campaign.id,
     name: creative.title,
@@ -7,7 +11,7 @@ module.exports = (ad = {}, { sectionName = 'Sponsored' } = {}) => {
     typeTitled: 'Text Ad',
     type: 'text-ad',
     teaser: creative.teaser,
-    published: campaign.createdAt,
+    published: updatedAt > startDate ? updatedAt : startDate,
     canonicalPath: ad.href, // @deprecated. Use siteContext.path instead
     siteContext: {
       path: ad.href,

@@ -7,6 +7,7 @@ module.exports = ({
   contentTypes = [],
   excludeContentTypes = [],
   since,
+  after,
 } = {}) => {
   const date = since || new Date();
   const types = isArray(contentTypes) && contentTypes.length
@@ -20,7 +21,10 @@ module.exports = ({
   const query = {
     status: 1,
     type,
-    published: { $lte: date },
+    published: {
+      $lte: date,
+      ...(after && { $gte: after }),
+    },
     $and: [
       {
         $or: [

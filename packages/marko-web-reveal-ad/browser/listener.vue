@@ -30,6 +30,10 @@ export default {
       type: Object,
       default: () => ({ backgroundColor: 'transparent' }),
     },
+    selectAllTargets: {
+      type: Boolean,
+      default: false,
+    },
   },
   data: () => ({
     observed: 0,
@@ -102,14 +106,24 @@ export default {
     },
     listener(event) {
       const payload = parseJson(event.data);
-      const element = document.querySelector(this.target);
-      if (['adImagePath', 'adTitle', 'backgroundImagePath', 'adClickUrl'].every(k => payload[k]) && element) {
-        this.payload = { ...this.defaults, ...payload };
-        this.displayBackground();
-        this.displayAd(element);
-        this.observeMutations();
-        window.removeEventListener('message', this.listener);
+      if (['adImagePath', 'adTitle', 'backgroundImagePath', 'adClickUrl'].every(k => payload[k])) {
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', () => this.execute(payload));
+        } else {
+          this.execute(payload);
+        }
       }
+    },
+    execute(payload) {
+      const elements = this.selectAllTargets
+        ? document.querySelectorAll(this.target) : [document.querySelector(this.target)];
+      this.payload = { ...this.defaults, ...payload };
+      this.displayBackground();
+      for (let i = 0; i < elements.length; i += 1) {
+        this.displayAd(elements[i]);
+      }
+      this.observeMutations();
+      window.removeEventListener('message', this.listener);
     },
   },
 };

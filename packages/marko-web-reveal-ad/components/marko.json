@@ -2,6 +2,7 @@
   "<marko-web-reveal-ad-listener>": {
     "template": "./listener.marko",
     "@target": "string",
-    "@defaults": "object"
+    "@defaults": "object",
+    "@select-all-targets": "boolean"
   }
 }

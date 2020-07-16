@@ -1,0 +1,43 @@
+import { getAsObject } from "@base-cms/object-path";
+import defaultValue from "@base-cms/marko-core/utils/default-value";
+
+$ const { site } = out.global;
+$ const inquiry = site.getAsObject("inquiry");
+
+$ const content = getAsObject(input, "content");
+$ const withHeader = defaultValue(input.withHeader, true);
+$ const withDescription = defaultValue(input.withDescription, true);
+
+$ const blockName = "inquiry-form";
+$ const { RECAPTCHA_SITE_KEY } = require('../env');
+
+<if(inquiry.enabled)>
+  <marko-web-block name=blockName modifiers=input.modifiers>
+    <if(withHeader)>
+      <marko-web-element name="header" block-name=blockName>
+        <if(input.header)>
+          <${input.header} inquiry=inquiry />
+        </if>
+        <else>
+          Request More Information
+        </else>
+      </marko-web-element>
+    </if>
+    <if(withDescription)>
+      <marko-web-element name="description" block-name=blockName>
+        <if(input.description)>
+          <${input.description} inquiry=inquiry />
+        </if>
+        <else>
+          Fill out the form below to request more information about <marko-web-content-name tag="span" block-name=blockName obj=content />
+        </else>
+      </marko-web-element>
+    </if>
+    <marko-web-browser-component name="InquiryForm" props={
+      formClass: `${blockName}__form`,
+      contentId: content.id,
+      contentType: content.type,
+      sitekey: RECAPTCHA_SITE_KEY
+    } />
+  </marko-web-block>
+</if>

@@ -9,7 +9,8 @@
     "template": "./images.marko",
     "<props>": {
       "@options": "object",
-      "@thumbnail-click-selectors": "string"
+      "@thumbnail-click-selectors": "string",
+      "@button-selector": "string"
     },
     "@images": "array",
     "@max-size": "number"

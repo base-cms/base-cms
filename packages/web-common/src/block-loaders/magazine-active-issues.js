@@ -9,6 +9,8 @@ const buildQuery = require('../gql/query-factories/block-magazine-active-issues'
 module.exports = async (apolloClient, {
   publicationId,
   excludeIssueIds,
+  requiresCoverImage,
+
   queryFragment,
   queryName,
   limit,
@@ -21,6 +23,7 @@ module.exports = async (apolloClient, {
   const input = {
     publicationId,
     excludeIssueIds,
+    requiresCoverImage,
     sort,
     pagination,
   };

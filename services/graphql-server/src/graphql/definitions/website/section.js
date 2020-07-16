@@ -158,6 +158,7 @@ input WebsiteSectionsQueryInput {
   excludeIds: [Int!] = []
   rootOnly: Boolean = false
   taxonomyIds: [Int!] = []
+  relatedSectionIds: [Int!] = []
   status: ModelStatus = active
   sort: WebsiteSectionSortInput = {}
   pagination: PaginationInput = {}

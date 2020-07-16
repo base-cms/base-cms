@@ -28,5 +28,35 @@
     "@modifiers": "string",
     "@attrs": "object",
     "@link": "expression"
+  },
+  "<marko-web-magazine-publication-renewal-url>": {
+    "template": "./renewal-url.marko",
+    "@block-name": "string",
+    "@obj": "object",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object",
+    "@link": "expression"
+  },
+  "<marko-web-magazine-publication-reprints-url>": {
+    "template": "./reprints-url.marko",
+    "@block-name": "string",
+    "@obj": "object",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object",
+    "@link": "expression"
+  },
+  "<marko-web-magazine-publication-einquiry-url>": {
+    "template": "./einquiry-url.marko",
+    "@block-name": "string",
+    "@obj": "object",
+    "@tag": "string",
+    "@class": "string",
+    "@modifiers": "string",
+    "@attrs": "object",
+    "@link": "expression"
   }
 }

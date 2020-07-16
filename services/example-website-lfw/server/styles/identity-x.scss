@@ -1,0 +1,96 @@
+.idx-comment-stream {
+  @include theme-card();
+  margin-top: map-get($spacers, block);
+  background-color: $marko-web-node-list-bg-color;
+
+  &__header {
+    @include theme-card-header();
+    @include border-top-radius($theme-item-list-border-radius);
+  }
+
+  &__header,
+  &__body {
+    padding: $marko-web-node-list-padding;
+  }
+
+  &__body {
+    padding-bottom: 0;
+  }
+
+  &__login-form {
+    margin-top: -1.75rem;
+    margin-bottom: map-get($spacers, block);
+  }
+
+  &__login-message {
+    font-weight: $font-weight-bold;
+  }
+
+  &__close-form-wrapper {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  &__close-form {
+    padding: .25rem;
+    margin-left: auto;
+    font-size: 1.75rem;
+    font-weight: $font-weight-bold;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    background-color: transparent;
+    border: 0;
+    opacity: .5;
+
+    &:hover,
+    &:focus {
+      opacity: .75;
+    }
+  }
+
+  &__loading,
+  &__error {
+    padding: $marko-web-node-list-padding;
+  }
+
+  &__create-post {
+    padding-bottom: $marko-web-node-list-padding;
+  }
+
+  &__no-posts {
+    @include marko-web-node-list-border($property: border-top);
+    padding: $marko-web-node-list-padding;
+  }
+
+  &__post {
+    @include marko-web-node-list-border($property: border-bottom);
+    padding: $marko-web-node-list-padding;
+    &:first-child {
+      @include marko-web-node-list-border($property: border-top);
+    }
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &__archived {
+    font-weight: $font-weight-bold;
+  }
+}
+
+.idx-comment-post {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: .375rem;
+    font-size: 14px;
+    color: rgba(0, 0, 0, .54);
+  }
+
+  &__flagged {
+    margin-bottom: .375rem;
+    font-weight: $font-weight-bold;
+  }
+}

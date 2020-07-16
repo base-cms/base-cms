@@ -12,6 +12,14 @@ const mutation = gql`
   ${userFragment}
 `;
 
+const consentAnswers = gql`
+  mutation SetAppUserRegionalConsent($input: SetAppUserRegionalConsentMutationInput!) {
+    setAppUserRegionalConsent(input: $input) {
+      id
+    }
+  }
+`;
+
 module.exports = asyncRoute(async (req, res) => {
   const { identityX, body } = req;
   const {
@@ -22,6 +30,8 @@ module.exports = asyncRoute(async (req, res) => {
     countryCode,
     regionCode,
     postalCode,
+    receiveEmail,
+    regionalConsentAnswers,
   } = body;
   const input = {
     givenName,
@@ -31,7 +41,16 @@ module.exports = asyncRoute(async (req, res) => {
     countryCode,
     regionCode,
     postalCode,
+    receiveEmail,
   };
+
+  const answers = regionalConsentAnswers
+    .map(answer => ({ policyId: answer.id, given: answer.given }));
+
+  if (answers.length) {
+    await identityX.client.mutate({ mutation: consentAnswers, variables: { input: { answers } } });
+  }
+
   const { data } = await identityX.client.mutate({ mutation, variables: { input } });
   res.json({ ok: true, user: data.updateOwnAppUser });
 });

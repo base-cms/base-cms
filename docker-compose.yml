@@ -363,7 +363,7 @@ services:
       PORT: 80
       EXPOSED_PORT: 11090
       LIVERELOAD_PORT: 21090
-      TENANT_KEY: indm_ien
+      TENANT_KEY: indm_multi
       GRAPHQL_URI: http://graphql-server-caprica
       NEW_RELIC_ENABLED: 0
       NEW_RELIC_LICENSE_KEY: (unset)
@@ -410,6 +410,8 @@ services:
       OEMBED_URI: http://oembed
       NEW_RELIC_ENABLED: 0
       NEW_RELIC_LICENSE_KEY: (unset)
+      SENDGRID_DEV_TO: ${SENDGRID_DEV_TO}
+      SENDGRID_API_KEY: ${SENDGRID_API_KEY-(unset)}
     depends_on:
       - graphql-server-aerilon
       - sitemaps-aerilon
@@ -534,6 +536,22 @@ services:
       - mongodb
     ports:
       - "10014:80"
+
+  omail-link-processor-caprica:
+    <<: *node
+    working_dir: /base-cms/services/omail-link-processor
+    entrypoint: ["/base-cms/node_modules/.bin/gulp"]
+    environment:
+      <<: *env
+      <<: *env-newrelic
+      GRAPHQL_URI: ${GRAPHQL_URI-http://graphql-server-caprica}
+      PORT: 80
+      EXPOSED_PORT: 10015
+    depends_on:
+      - graphql-server-caprica
+    ports:
+      - "10015:80"
+
 
 volumes:
   esdata: {}

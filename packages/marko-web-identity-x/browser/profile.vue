@@ -58,6 +58,29 @@
           </div>
         </div>
 
+        <div v-if="emailConsentRequest" class="row mt-3">
+          <div class="col-md-6">
+            <receive-email
+              v-model="user.receiveEmail"
+              :email-consent-request="emailConsentRequest"
+            />
+          </div>
+        </div>
+
+        <div v-if="regionalPolicyFields.length" class="row mt-3">
+          <div class="col-12">
+            <regional-policy
+              v-for="policy in regionalPolicyFields"
+              :id="policy.id"
+              :key="policy.id"
+              :message="policy.message"
+              :required="policy.required"
+              :value="getRegionalPolicyAnswerValue(policy.id)"
+              @input="setPolicyAnswer(policy.id, $event)"
+            />
+          </div>
+        </div>
+
         <small
           v-if="consentPolicy"
           class="text-muted mb-3"
@@ -80,7 +103,7 @@
   </div>
   <div v-else>
     <p>You must be logged-in to modify your user profile.</p>
-    <login :endpoints="endpoints" />
+    <login :endpoints="endpoints" :app-context-id="appContextId" />
   </div>
 </template>
 
@@ -96,6 +119,8 @@ import OrganizationTitle from './form/fields/organization-title.vue';
 import Country from './form/fields/country.vue';
 import Region from './form/fields/region.vue';
 import PostalCode from './form/fields/postal-code.vue';
+import ReceiveEmail from './form/fields/receive-email.vue';
+import RegionalPolicy from './form/fields/regional-policy.vue';
 import Login from './login.vue';
 
 import FeatureError from './errors/feature';
@@ -110,6 +135,8 @@ export default {
     Country,
     Region,
     PostalCode,
+    ReceiveEmail,
+    RegionalPolicy,
     Login,
   },
 
@@ -144,6 +171,18 @@ export default {
     consentPolicy: {
       type: String,
       default: null,
+    },
+    appContextId: {
+      type: String,
+      default: null,
+    },
+    emailConsentRequest: {
+      type: String,
+      default: null,
+    },
+    regionalConsentPolicies: {
+      type: Array,
+      default: () => [],
     },
   },
 
@@ -206,6 +245,15 @@ export default {
       if (this.isReloadingPage) return `${message} Reloading page...`;
       return message;
     },
+
+    regionalPolicyFields() {
+      const { regionalConsentPolicies, countryCode } = this;
+      if (!regionalConsentPolicies.length || !countryCode) return [];
+      return regionalConsentPolicies.filter((policy) => {
+        const countryCodes = policy.countries.map(country => country.id);
+        return countryCodes.includes(countryCode);
+      });
+    },
   },
 
   /**
@@ -239,6 +287,25 @@ export default {
      */
     isFieldRequired(name) {
       return this.requiredFields.includes(name);
+    },
+
+    getRegionalPolicyAnswer(policyId) {
+      return this.user.regionalConsentAnswers.find(a => a.id === policyId);
+    },
+
+    getRegionalPolicyAnswerValue(policyId) {
+      const answer = this.getRegionalPolicyAnswer(policyId);
+      if (answer) return answer.given;
+      return false;
+    },
+
+    setPolicyAnswer(policyId, given) {
+      const answer = this.getRegionalPolicyAnswer(policyId);
+      if (answer) {
+        answer.given = given;
+      } else {
+        this.user.regionalConsentAnswers.push({ id: policyId, given });
+      }
     },
 
     /**
