@@ -2,15 +2,15 @@ require('aws-sdk/clients/sqs');
 const AWS = require('aws-sdk/global');
 const algolia = require('../algolia/message-sync');
 const cfg = require('./config');
-require('dotenv').config();
+const { AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY } =require('../../env');
 
 AWS.config.update({ region: 'us-east-1' });
 // Create the SQS service object
 const sqs = new AWS.SQS(
   {
     apiVersion: '2012-11-05',
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    accessKeyId: AWS_ACCESS_KEY_ID,
+    secretAccessKey: AWS_SECRET_ACCESS_KEY,
   },
 );
 // Get's a message off the the queue

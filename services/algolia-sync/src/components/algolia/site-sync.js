@@ -3,9 +3,9 @@ const algoliasearch = require('algoliasearch');
 const cliProgress = require('cli-progress');
 const apollo = require('../graphql/query');
 const helpers = require('./helpers');
-require('dotenv').config();
+const { ALGOLIA_APPID, ALGOLIA_API_KEY } = require('../../env');
 
-const client = algoliasearch(process.env.ALGOLIA_APPID, process.env.ALGOLIA_API_KEY);
+const client = algoliasearch(ALGOLIA_APPID, ALGOLIA_API_KEY);
 
 const bar = new cliProgress.SingleBar({}, cliProgress.Presets.shades_classic);
 

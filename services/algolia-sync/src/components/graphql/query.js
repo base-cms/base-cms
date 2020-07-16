@@ -1,5 +1,5 @@
 const createClient = require('./create-client');
-require('dotenv').config();
+const { GRAPHQL_URI } = require('../../env');
 
 const queryFromBase = async (query, tenantKey, input) => {
   const context = {
@@ -10,7 +10,7 @@ const queryFromBase = async (query, tenantKey, input) => {
   };
 
   try {
-    const apollo = createClient(process.env.GRAPHQL_URI);
+    const apollo = createClient(GRAPHQL_URI);
     const variables = { input };
     const contents = await apollo.query({ query, variables, context });
     return contents.data;

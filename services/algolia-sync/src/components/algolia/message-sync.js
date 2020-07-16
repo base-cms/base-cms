@@ -2,9 +2,9 @@ const algoliasearch = require('algoliasearch');
 const gql = require('graphql-tag');
 const apollo = require('../graphql/query');
 const { buildSections, boostResult } = require('./helpers');
-require('dotenv').config();
+const { ALGOLIA_APPID, ALGOLIA_API_KEY } = require('../../env');
 
-const client = algoliasearch(process.env.ALGOLIA_APPID, process.env.ALGOLIA_API_KEY);
+const client = algoliasearch(ALGOLIA_APPID, ALGOLIA_API_KEY);
 
 const query = message => (gql`
   query {

@@ -5,7 +5,7 @@ When content is saved in Management it will push an object onto the AWS SQS queu
 ```sh
 # ./env
 GRAPHQL_URI="Graph endpoint"
-SQS_URI="SQS URL"
+ALGOLIA_SQS_URI="SQS URL"
 ALGOLIA_APPID="Algolia API key"
 ALGOLIA_API_KEY="Algolia API Secret"
 AWS_ACCESS_KEY_ID="AWS user"
