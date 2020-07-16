@@ -8,7 +8,7 @@ const client = algoliasearch(ALGOLIA_APPID, ALGOLIA_API_KEY);
 
 const query = message => (gql`
   query {
-      content(input:{id:${message.id}}) {
+      content(input:{ id: ${message.id} }) {
         id
         type
         created
