@@ -14,29 +14,36 @@ $ const { newsletters, staticTemplates } = data;
             <for|newsletter| of=newsletters>
               <div class="list-group-item">
                 <h5 class="card-title mb-2">${newsletter.name}</h5>
-                <p class="mb-1">${newsletter.site.name}</p>
-                <p>Alias: ${newsletter.alias}</p>
-                <h6 class="card-subtitle mb-1 text-muted">Templates:</h6>
+                <p class="mb-1">
+                  <span class="mb-1 text-semibold text-muted">Site: </span>
+                  ${newsletter.site.name}
+                </p>
+                <p>
+                  <span class="mb-1 text-semibold text-muted">Alias: </span>
+                  ${newsletter.alias}
+                </p>
+                <h6 class="card-subtitle mb-1 text-muted">Newsletters:</h6>
                 <if(newsletter.templates.length)>
                   <for|template| of=newsletter.templates>
                     <p class="mb-0">
-                      <small>
+                      ${template} <small>
                         [<a href=`/templates/${template}`>Today</a>]
                         [<select-day template=template />]
-                        [<deployments newsletter=newsletter.alias />]
+                        [<a href=`/deployments/${template}` class="deployments" newsletter=newsletter template=template >Deployments
+                        </a>]
                       </small>
                     </p>
                   </for>
                 </if>
                 <else>
-                  <p class="mb-0">none</p>
+                  <p class="mb-0">No templates found.</p>
                 </else>
               </div>
             </for>
           </if>
           <else>
             <div class="list-group-item text-muted">
-              No newsletters found
+              No newsletters found.
             </div>
           </else>
         </div>
@@ -59,7 +66,7 @@ $ const { newsletters, staticTemplates } = data;
           </if>
           <else>
             <div class="list-group-item text-muted">
-              No templates found
+              No templates found.
             </div>
           </else>
         </div>
