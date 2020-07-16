@@ -1,3 +1,5 @@
+const { isArray } = Array;
+
 module.exports = ({ query }, { input }) => {
   const q = { ...query };
 
@@ -13,7 +15,9 @@ module.exports = ({ query }, { input }) => {
 
   if (rootOnly) q['parent.$id'] = { $exists: false };
   if (taxonomyIds.length) q['relatedTaxonomy.$id'] = { $in: taxonomyIds };
-  if (relatedSectionIds.length) q.relatedSections = { $in: relatedSectionIds };
+  if (isArray(relatedSectionIds) && relatedSectionIds.length) {
+    q.relatedSections = { $in: relatedSectionIds };
+  }
   if (includeIds.length || excludeIds.length) {
     q._id = {
       ...(includeIds.length && { $in: includeIds }),
