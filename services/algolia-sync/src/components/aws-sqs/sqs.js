@@ -2,7 +2,7 @@ require('aws-sdk/clients/sqs');
 const AWS = require('aws-sdk/global');
 const algolia = require('../algolia/message-sync');
 const cfg = require('./config');
-const { AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY } =require('../../env');
+const { AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY } = require('../../env');
 
 AWS.config.update({ region: 'us-east-1' });
 // Create the SQS service object

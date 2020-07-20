@@ -5,7 +5,6 @@ const queryFromBase = async (query, tenantKey, input) => {
   const context = {
     headers: {
       'x-tenant-key': tenantKey,
-      'x-cdn-image-hostname': 'base.imgix.net',
     },
   };
 
