@@ -1,5 +1,5 @@
 const yargs = require('yargs');
-const checkForMessage = require('./components/aws-sqs/sqs');
+const recieveMessage = require('./components/aws-sqs/sqs');
 const siteSync = require('./components/algolia/site-sync');
 
 const { log } = console;
@@ -38,7 +38,7 @@ yargs.command({
 
   handler() {
     log('Waiting for message...');
-    checkForMessage();
+    recieveMessage();
   },
 });
 

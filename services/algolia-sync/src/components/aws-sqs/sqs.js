@@ -32,13 +32,4 @@ const receiveMessage = async () => new Promise(async (resolve, reject) => {
   }
 });
 
-// Check for messages loop
-const checkForMessage = async () => {
-  // eslint-disable-next-line no-constant-condition
-  while (true) {
-    // eslint-disable-next-line no-await-in-loop
-    await receiveMessage();
-  }
-};
-
-module.exports = checkForMessage;
+module.exports = receiveMessage;
