@@ -13,4 +13,5 @@ module.exports = cleanEnv(process.env, {
   ALGOLIA_API_KEY: nonemptystr({ desc: 'Algolia API Key' }),
   AWS_ACCESS_KEY_ID: nonemptystr({ desc: 'AWS Access Key' }),
   AWS_SECRET_ACCESS_KEY: nonemptystr({ desc: 'AWS Secret' }),
+  AWS_AWS_REGION: nonemptystr({ desc: 'AWS Region', default: 'us-east-1' }),
 });

@@ -10,6 +10,7 @@ ALGOLIA_APPID="Algolia API key"
 ALGOLIA_API_KEY="Algolia API Secret"
 AWS_ACCESS_KEY_ID="AWS user"
 AWS_SECRET_ACCESS_KEY="AWS Secret"
+AWS_AWS_REGION="AWS Region"
 ```
 
 ## How AWS SQS Works?
