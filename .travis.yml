@@ -111,6 +111,13 @@ jobs:
       script: scripts/deploy.js omail-link-processor
       install: skip
       env: [ENVIRONMENT=production RANCHER_CLUSTERID=c-gxsr7]
+
+    - stage: production
+      name: Algolia Sync
+      script: scripts/deploy.js GRAPHQL_URI
+      install: skip
+      env: [ENVIRONMENT=production RANCHER_CLUSTERID=c-gxsr7]
+
     # has yet to be configured
     # - stage: staging
     #   name: Omail Link Processor
