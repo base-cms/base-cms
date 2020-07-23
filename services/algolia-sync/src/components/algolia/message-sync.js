@@ -28,7 +28,7 @@ const query = message => (gql`
 `);
 
 const upsertToIndex = async (message) => {
-  log(`Proccessing: ${message.id}`)
+  log(`Proccessing: ${message.id}`);
   const c = await apollo.queryFromBase(query(message), message.tenant);
   try {
     if (c.websiteSchedules) {
@@ -45,7 +45,6 @@ const upsertToIndex = async (message) => {
   } catch (e) {
     throw (`Failed on: ${message.id}`, e);
   }
-
 };
 
 module.exports = { upsertToIndex };
