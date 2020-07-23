@@ -114,7 +114,7 @@ jobs:
 
     - stage: production
       name: Algolia Sync
-      script: scripts/deploy.js GRAPHQL_URI
+      script: scripts/deploy.js algolia-sync
       install: skip
       env: [ENVIRONMENT=production RANCHER_CLUSTERID=c-gxsr7]
 
