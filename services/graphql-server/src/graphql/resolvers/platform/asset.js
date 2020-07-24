@@ -19,7 +19,11 @@ module.exports = {
     src: async (image, { input = {} }, { site, basedb }) => {
       // Use site image host otherwise fallback to global default.
       const host = site.get('imageHost', defaults.imageHost);
+
+      // when not using a crop rectangle, return the image src the same way as before
       if (!input.useCropRectangle) return createSrcFor(host, image, input.options, { w: 320, auto: 'format' });
+
+      // otherwise, process the image width/height and create the crop rectangle
       const { width, height } = await getImageDimensions({ image, host, basedb });
       const rect = cropRectangle({
         width,
@@ -27,6 +31,8 @@ module.exports = {
         cropDimensions: image.cropDimensions,
       });
       const { fileName, filePath } = image;
+
+      // when a crop is detected, set the `rect` imgix property
       const opts = rect.isCropped() ? { ...input.options, rect } : input.options;
       return createSrcFor(host, { fileName, filePath }, opts, {});
     },
