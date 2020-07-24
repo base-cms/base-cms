@@ -24,6 +24,13 @@ class CropRectangle {
   }
 }
 
+/**
+ * Generates a crop rectangle for the given image width, height
+ * and crop dimensions.
+ *
+ * Uses the same scaling logic as Base Platform to properly calculate
+ * the crop area.
+ */
 module.exports = ({ width, height, cropDimensions }) => {
   if (!cropDimensions) {
     return new CropRectangle({
