@@ -38,6 +38,7 @@ module.exports = {
       const { cropDimensions } = image;
       return cropRectangle({ width, height, cropDimensions });
     },
+    primaryImageDisplay: image => image.primaryImageDisplay || 'center',
   },
 
   /**

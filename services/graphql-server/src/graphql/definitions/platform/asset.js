@@ -11,6 +11,13 @@ extend type Mutation {
   createAssetImageFromUrl(input: CreateAssetImageFromUrlMutationInput!): AssetImage! @requiresAuth
 }
 
+enum AssetImageDisplay {
+  left
+  right
+  center
+  none
+}
+
 type AssetImage {
   # from platform.model::Asset
   id: ObjectID! @projection(localField: "_id") @value(localField: "_id")
@@ -27,6 +34,8 @@ type AssetImage {
   cropDimensions: AssetImageCrop @projection
   isLogo: Boolean @projection
   body: String @projection
+
+  primaryImageDisplay: AssetImageDisplay! @projection
 
   # from platform.model::Asset\Image mutations
   approvedWebsite: Boolean @projection(localField: "mutations.Website.approved") @value(localField: "mutations.Website.approved")
