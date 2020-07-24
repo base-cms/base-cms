@@ -1,8 +1,14 @@
-const { createAltFor, createSrcFor, createCaptionFor } = require('@base-cms/image');
+const {
+  createAltFor,
+  createSrcFor,
+  createCaptionFor,
+  cropRectangle,
+} = require('@base-cms/image');
 const { Base4RestPayload } = require('@base-cms/base4-rest-api');
 const { ObjectID } = require('@base-cms/db').MongoDB;
 const validateRest = require('../../utils/validate-rest');
 const buildProjection = require('../../utils/build-projection');
+const getImageDimensions = require('../../utils/get-image-dimensions');
 const defaults = require('../../defaults');
 
 module.exports = {
@@ -10,13 +16,28 @@ module.exports = {
    *
    */
   AssetImage: {
-    src: (image, { input = {} }, { site }) => {
+    src: async (image, { input = {} }, { site, basedb }) => {
       // Use site image host otherwise fallback to global default.
-      const imageHost = site.get('imageHost', defaults.imageHost);
-      return createSrcFor(imageHost, image, input.options, { w: 320, auto: 'format' });
+      const host = site.get('imageHost', defaults.imageHost);
+      if (!input.useCropRectangle) return createSrcFor(host, image, input.options, { w: 320, auto: 'format' });
+      const { width, height } = await getImageDimensions({ image, host, basedb });
+      const rect = cropRectangle({
+        width,
+        height,
+        cropDimensions: image.cropDimensions,
+      });
+      const { fileName, filePath } = image;
+      const opts = rect.isCropped() ? { ...input.options, rect } : input.options;
+      return createSrcFor(host, { fileName, filePath }, opts, {});
     },
     alt: image => createAltFor(image),
     caption: image => createCaptionFor(image.caption),
+    cropRectangle: async (image, _, { site, basedb }) => {
+      const host = site.get('imageHost', defaults.imageHost);
+      const { width, height } = await getImageDimensions({ image, host, basedb });
+      const { cropDimensions } = image;
+      return cropRectangle({ width, height, cropDimensions });
+    },
   },
 
   /**

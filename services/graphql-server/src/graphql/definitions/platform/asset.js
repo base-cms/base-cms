@@ -33,8 +33,9 @@ type AssetImage {
   approvedMagazine: Boolean @projection(localField: "mutations.Magazine.approved") @value(localField: "mutations.Magazine.approved")
 
   # GraphQL specific fields
-  src(input: AssetImageSrcInput = {}): String! @projection(localField: "fileName", needs: ["filePath", "cropDimensions", "isLogo"])
+  src(input: AssetImageSrcInput = {}): String! @projection(localField: "fileName", needs: ["filePath", "cropDimensions", "isLogo", "source.width", "source.height"])
   alt: String! @projection(localField: "name", needs: ["caption", "fileName"])
+  cropRectangle: AssetImageCropRectangle! @projection(localField: "cropDimensions", needs: ["source.width", "source.height", "fileName", "filePath"])
 }
 
 type AssetImageConnection @projectUsing(type: "AssetImage") {
@@ -54,6 +55,13 @@ type AssetImageSource {
   width: Int
   height: Int
   processed: Boolean
+}
+
+type AssetImageCropRectangle {
+  x: Int!
+  y: Int!
+  width: Int!
+  height: Int!
 }
 
 type AssetImageCrop {
@@ -99,6 +107,7 @@ input AssetImageSortInput {
 
 input AssetImageSrcInput {
   options: JSON
+  useCropRectangle: Boolean = false
 }
 
 `;
