@@ -54,6 +54,7 @@ const params = [
   'bg', // Background Color
   'fill-color', // Fill Color
   'fill-mode', // Fill Mode
+  'fill', // Fill
 
   // Focal Point Crop
   'fp-debug', // Focal Point Debug
