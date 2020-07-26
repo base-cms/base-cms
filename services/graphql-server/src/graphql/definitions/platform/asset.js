@@ -11,6 +11,13 @@ extend type Mutation {
   createAssetImageFromUrl(input: CreateAssetImageFromUrlMutationInput!): AssetImage! @requiresAuth
 }
 
+enum AssetImageDisplay {
+  left
+  right
+  center
+  none
+}
+
 type AssetImage {
   # from platform.model::Asset
   id: ObjectID! @projection(localField: "_id") @value(localField: "_id")
@@ -28,13 +35,16 @@ type AssetImage {
   isLogo: Boolean @projection
   body: String @projection
 
+  primaryImageDisplay: AssetImageDisplay! @projection
+
   # from platform.model::Asset\Image mutations
   approvedWebsite: Boolean @projection(localField: "mutations.Website.approved") @value(localField: "mutations.Website.approved")
   approvedMagazine: Boolean @projection(localField: "mutations.Magazine.approved") @value(localField: "mutations.Magazine.approved")
 
   # GraphQL specific fields
-  src(input: AssetImageSrcInput = {}): String! @projection(localField: "fileName", needs: ["filePath", "cropDimensions", "isLogo"])
+  src(input: AssetImageSrcInput = {}): String! @projection(localField: "fileName", needs: ["filePath", "cropDimensions", "isLogo", "source.width", "source.height"])
   alt: String! @projection(localField: "name", needs: ["caption", "fileName"])
+  cropRectangle: AssetImageCropRectangle! @projection(localField: "cropDimensions", needs: ["source.width", "source.height", "fileName", "filePath"])
 }
 
 type AssetImageConnection @projectUsing(type: "AssetImage") {
@@ -54,6 +64,13 @@ type AssetImageSource {
   width: Int
   height: Int
   processed: Boolean
+}
+
+type AssetImageCropRectangle {
+  x: Int!
+  y: Int!
+  width: Int!
+  height: Int!
 }
 
 type AssetImageCrop {
@@ -99,6 +116,7 @@ input AssetImageSortInput {
 
 input AssetImageSrcInput {
   options: JSON
+  useCropRectangle: Boolean = false
 }
 
 `;
