@@ -12,6 +12,7 @@
     "test": "yarn lint"
   },
   "dependencies": {
+    "@base-cms/db": "^1.0.0",
     "@base-cms/env": "^1.0.0",
     "@base-cms/micro": "^1.25.0",
     "@newrelic/native-metrics": "^4.1.0",
