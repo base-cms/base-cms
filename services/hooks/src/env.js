@@ -15,5 +15,6 @@ module.exports = cleanEnv(process.env, {
   ENABLE_BASEDB_LOGGING: bool({ desc: 'Whether the BaseDB instance should log to the console.', default: false }),
   NEW_RELIC_ENABLED: bool({ desc: 'Whether New Relic is enabled.', default: true, devDefault: false }),
   NEW_RELIC_LICENSE_KEY: nonemptystr({ desc: 'The license key for New Relic.', devDefault: '(unset)' }),
+  LEONIS_DSN: nonemptystr({ desc: 'The Base Leonis MongoDB connection URL.' }),
   TAURON_DSN: nonemptystr({ desc: 'The Base Tauron MongoDB connection URL.' }),
 });
