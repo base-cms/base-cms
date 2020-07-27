@@ -1,3 +1,4 @@
+const { filterDsn } = require('@base-cms/db/utils');
 const {
   aerilon,
   caprica,
@@ -29,12 +30,12 @@ const ping = (name, promise) => promise.then(() => `${name} pinged successfully.
 
 module.exports = {
   start: () => Promise.all([
-    start('BaseDB Aerilon', aerilon.client.connect(), c => c.s.url),
-    start('BaseDB Caprica', caprica.client.connect(), c => c.s.url),
-    start('BaseDB Picon', picon.client.connect(), c => c.s.url),
-    start('BaseDB Gemenon', gemenon.client.connect(), c => c.s.url),
-    start('BaseDB Leonis', leonis.client.connect(), c => c.s.url),
-    start('BaseDB Tauron', tauron.client.connect(), c => c.s.url),
+    start('BaseDB Aerilon', aerilon.client.connect(), filterDsn),
+    start('BaseDB Caprica', caprica.client.connect(), filterDsn),
+    start('BaseDB Picon', picon.client.connect(), filterDsn),
+    start('BaseDB Gemenon', gemenon.client.connect(), filterDsn),
+    start('BaseDB Leonis', leonis.client.connect(), filterDsn),
+    start('BaseDB Tauron', tauron.client.connect(), filterDsn),
   ]),
   stop: () => Promise.all([
     stop('BaseDB Aerilon', aerilon.client.close()),
