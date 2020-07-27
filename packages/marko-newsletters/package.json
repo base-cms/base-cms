@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/marko-newsletters",
-  "version": "1.30.2",
+  "version": "1.32.0",
   "description": "Core Marko+Express components for BaseCMS newsletter templates",
   "author": "Jacob Bare <jacob@limit0.io>",
   "main": "index.js",
@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@base-cms/express-apollo": "^1.9.0",
-    "@base-cms/image": "^1.6.3",
+    "@base-cms/image": "^1.32.0",
     "@base-cms/object-path": "^1.25.0",
     "@base-cms/tenant-context": "^1.0.0",
     "@base-cms/utils": "^1.25.0",
