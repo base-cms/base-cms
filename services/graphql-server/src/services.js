@@ -1,3 +1,4 @@
+const { filterDsn } = require('@base-cms/db/utils');
 const basedb = require('./basedb')('test');
 const { log } = require('./output');
 const pkg = require('../package.json');
@@ -25,7 +26,7 @@ const ping = (name, promise) => promise.then(() => `${name} pinged successfully.
 
 module.exports = {
   start: () => Promise.all([
-    start('BaseDB', basedb.client.connect(), c => c.s.url),
+    start('BaseDB', basedb.client.connect(), filterDsn),
   ]),
   stop: () => Promise.all([
     stop('BaseDB', basedb.client.close()),
