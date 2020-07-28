@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@base-cms/async": "^1.0.0",
+    "@base-cms/object-path": "^1.0.0",
     "@base-cms/utils": "^1.25.0",
     "base64-url": "^2.3.2",
     "deepmerge": "^3.3.0",

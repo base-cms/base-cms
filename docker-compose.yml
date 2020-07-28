@@ -504,6 +504,8 @@ services:
       AERILON_DSN: ${AERILON_DSN-mongodb://mongodb:27017}
       PICON_DSN: ${PICON_DSN-mongodb://mongodb:27017}
       GEMENON_DSN: ${GEMENON_DSN-mongodb://mongodb:27017}
+      LEONIS_DSN: ${LEONIS_DSN-mongodb://mongodb:27017}
+      TAURON_DSN: ${TAURON_DSN-mongodb://mongodb:27017}
       ENABLE_BASEDB_LOGGING: ${ENABLE_BASEDB_LOGGING-false}
     depends_on:
       - mongodb

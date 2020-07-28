@@ -1,3 +1,4 @@
+const { filterDsn } = require('@base-cms/db/utils');
 const mongodb = require('mongodb');
 
 const { GOOGLE_DATA_MONGO_DSN } = require('./env');
@@ -9,7 +10,8 @@ let connection;
 const connect = async () => {
   if (!connection) {
     connection = await mongodb.connect(GOOGLE_DATA_MONGO_DSN, { useNewUrlParser: true });
-    log(`> MongoDB connected (${GOOGLE_DATA_MONGO_DSN})`);
+    const url = filterDsn(connection);
+    log(`> MongoDB connected (${url})`);
   }
   return connection;
 };
