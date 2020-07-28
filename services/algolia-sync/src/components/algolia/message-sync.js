@@ -43,7 +43,7 @@ const upsertToIndex = async (message) => {
       ...c.content,
     });
   } catch (e) {
-    throw (`Failed on: ${message.id}`, e);
+    throw new Error(`Failed on: ${message.id}`);
   }
 };
 
