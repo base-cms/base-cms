@@ -32,13 +32,13 @@ const upsertToIndex = async (message) => {
   const c = await apollo.queryFromBase(query(message), message.tenant);
   try {
     if (c.websiteSchedules) {
-      c.set(await buildSections(c));
+      c.set(buildSections(c));
     }
 
-    c.boost = await boostResult(c);
+    c.boost = boostResult(c);
 
     const index = client.initIndex(message.tenant);
-    index.saveObject({
+    await index.saveObject({
       objectID: c.content.id,
       ...c.content,
     });
