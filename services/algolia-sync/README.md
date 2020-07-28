@@ -11,6 +11,7 @@ ALGOLIA_API_KEY="Algolia API Secret"
 AWS_ACCESS_KEY_ID="AWS user"
 AWS_SECRET_ACCESS_KEY="AWS Secret"
 AWS_REGION="AWS Region"
+NEW_RELIC_LICENSE_KEY="Newrelic License Key"
 ```
 
 ## How AWS SQS Works?
