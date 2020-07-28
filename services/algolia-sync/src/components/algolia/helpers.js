@@ -1,8 +1,8 @@
 // Build out the sections and remove duplicates.
 // Example: toplevel > secondlevel > thirdlevel
-const buildSections = async (c) => {
+const buildSections = (c) => {
   // Get the values of the seconds
-  const sections = await c.websiteSchedules.map(s => (s.section.hierarchy.map(n => n.fullName)));
+  const sections = c.websiteSchedules.map(s => (s.section.hierarchy.map(n => n.fullName)));
   // flatten the array and remove duplicates.
   const sectionsNames = [...new Set([].concat(...sections))];
   // format and build out section structure
@@ -15,7 +15,7 @@ const buildSections = async (c) => {
 };
 
 // Slightly boost companies and maybe others later
-const boostResult = async (node) => {
+const boostResult = (node) => {
   if (node.type === 'company') {
     return 1;
   }
@@ -30,13 +30,13 @@ const buildObj = async (nodes, tenant) => Promise.all(nodes.map(async (node) => 
       indexName: tenant,
       body: {
         objectID: node.id,
-        sections: await buildSections(node),
+        sections: buildSections(node),
         ...node,
-        boost: await boostResult(node),
+        boost: boostResult(node),
       },
     };
   } catch (e) {
-    throw (e, node);
+    throw (e);
   }
 }));
 
