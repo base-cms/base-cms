@@ -14,4 +14,5 @@ module.exports = cleanEnv(process.env, {
   AWS_ACCESS_KEY_ID: nonemptystr({ desc: 'AWS Access Key' }),
   AWS_SECRET_ACCESS_KEY: nonemptystr({ desc: 'AWS Secret' }),
   AWS_REGION: nonemptystr({ desc: 'AWS Region', default: 'us-east-1' }),
+  NEW_RELIC_LICENSE_KEY: nonemptystr({ desc: 'Newrelic License key' }),
 });

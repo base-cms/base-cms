@@ -1,8 +1,14 @@
+const newrelic = require('newrelic');
 const yargs = require('yargs');
 const recieveMessage = require('./components/aws-sqs/sqs');
 const siteSync = require('./components/algolia/site-sync');
 
 const { log } = console;
+
+process.on('unhandledRejection', (e) => {
+  newrelic.noticeError(e);
+  throw e;
+});
 
 yargs.command({
   command: 'sync',
@@ -38,7 +44,7 @@ yargs.command({
 
   handler() {
     log('Waiting for message...');
-    recieveMessage();
+    newrelic.startBackgroundTransaction('recieveMessage', ['sync'], recieveMessage);
   },
 });
 

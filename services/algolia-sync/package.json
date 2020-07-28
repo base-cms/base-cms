@@ -23,6 +23,7 @@
     "forever": "^3.0.0",
     "graphql": "^14.6.0",
     "graphql-tag": "^2.10.1",
+    "newrelic": "^6.11.0",
     "node-fetch": "^2.6.0",
     "yargs": "^14.1.0"
   }
