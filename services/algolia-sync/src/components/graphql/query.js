@@ -8,14 +8,10 @@ const queryFromBase = async (query, tenantKey, input) => {
     },
   };
 
-  try {
-    const apollo = createClient(GRAPHQL_URI);
-    const variables = { input };
-    const contents = await apollo.query({ query, variables, context });
-    return contents.data;
-  } catch (e) {
-    throw (e);
-  }
+  const apollo = createClient(GRAPHQL_URI);
+  const variables = { input };
+  const contents = await apollo.query({ query, variables, context });
+  return contents.data;
 };
 
 module.exports = { queryFromBase };

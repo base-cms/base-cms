@@ -14,22 +14,12 @@ const sqs = new AWS.SQS(
   },
 );
 // Get's a message off the the queue
-const receiveMessage = async () => new Promise(async (resolve, reject) => {
-  try {
-    await sqs.receiveMessage(cfg.receive(), async (err, data) => {
-      if (err) {
-        throw (err);
-      } else if (data.Messages) {
-        await algolia.upsertToIndex(JSON.parse(data.Messages[0].Body));
-        await sqs.deleteMessage(cfg.delete(data), (error) => {
-          if (error) throw (error);
-        });
-      }
-      resolve();
-    });
-  } catch (e) {
-    reject(e);
+const receiveMessage = async () => {
+  const data = await sqs.receiveMessage(cfg.receive()).promise();
+  if (data.Messages) {
+    await algolia.upsertToIndex(JSON.parse(data.Messages[0].Body));
+    await sqs.deleteMessage(cfg.delete(data)).promise();
   }
-});
+};
 
 module.exports = receiveMessage;
