@@ -54,11 +54,11 @@ const upsertToIndex = async (tenant, limit, skip, totalContent) => {
 
   const data = await apollo.queryFromBase(query, tenant, input);
   const nodes = data.allPublishedContent.edges.map(content => content.node);
-  const algoliaData = await helpers.buildObj(nodes, tenant);
-  client.multipleBatch(algoliaData, (err) => { if (err) throw err; });
+  const algoliaData = helpers.buildObj(nodes, tenant);
+  await client.multipleBatch(algoliaData);
 
   if (skip < totalContent) {
-    upsertToIndex(tenant, limit, (skip + limit), totalContent);
+    await upsertToIndex(tenant, limit, (skip + limit), totalContent);
   } else {
     bar.stop();
   }
