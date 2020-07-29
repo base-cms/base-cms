@@ -23,21 +23,15 @@ const boostResult = (node) => {
 };
 
 // Formats the object for Algolia's bulk update
-const buildObj = async (nodes, tenant) => Promise.all(nodes.map(async (node) => {
-  try {
-    return {
-      action: 'updateObject',
-      indexName: tenant,
-      body: {
-        objectID: node.id,
-        sections: buildSections(node),
-        ...node,
-        boost: boostResult(node),
-      },
-    };
-  } catch (e) {
-    throw (e);
-  }
+const buildObj = (nodes, tenant) => nodes.map(node => ({
+  action: 'updateObject',
+  indexName: tenant,
+  body: {
+    objectID: node.id,
+    sections: buildSections(node),
+    ...node,
+    boost: boostResult(node),
+  },
 }));
 
 module.exports = {
