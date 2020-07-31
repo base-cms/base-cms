@@ -1,15 +1,11 @@
-const program = require('yargs');
+#!/usr/bin/env node
+
+const yargs = require('yargs');
 const log = require('fancy-log');
 const commands = require('./commands');
 
+log('Dependency tool starting...');
 process.on('unhandledRejection', (e) => { throw e; });
 
-log('Dependency tool starting...');
-program
-  .usage('Usage: $0 <command> [options]')
-  .help()
-  .demandCommand();
-
-commands(program);
-
-module.exports = () => program.argv;
+commands(yargs);
+yargs.demandCommand().help().parse();
