@@ -13,6 +13,10 @@ export default {
       type: String,
       required: true,
     },
+    url: {
+      type: String,
+      default: 'https://radix.as3.io',
+    },
   },
 
   data: () => ({
@@ -28,6 +32,7 @@ export default {
       const ident = this.parseIdentityValue();
       if (ident) {
         const res = await sendRequest({
+          url: this.url,
           appId: this.appId,
           method: 'GET',
           endpoint: `/app/auth?${this.encode(this.identityKey)}=${this.encode(ident)}`,

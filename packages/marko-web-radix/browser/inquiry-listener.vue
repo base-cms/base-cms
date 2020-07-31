@@ -13,6 +13,10 @@ export default {
       type: String,
       required: true,
     },
+    url: {
+      type: String,
+      default: 'https://radix.as3.io',
+    },
     standardFields: {
       type: Array,
       default: () => [
@@ -66,6 +70,7 @@ export default {
 
       if (model.identifier && model.type) {
         sendRequest({
+          url: this.url,
           appId: this.appId,
           method: 'POST',
           endpoint: '/app/submission/inquiry',

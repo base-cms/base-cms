@@ -1,6 +1,6 @@
-import url from './url';
 
 export default ({
+  url,
   appId,
   method,
   endpoint,
