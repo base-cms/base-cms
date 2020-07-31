@@ -13,5 +13,5 @@ const upgradeOptions = yargs => yargs
  */
 module.exports = (program) => {
   program
-    .command('upgrade [path]', 'Upgrade @base-cms dependencies in the specified folder/project', upgradeOptions, argv => require('./upgrade')(argv));
+    .command(['upgrade [path]', '$0'], 'Upgrade @base-cms dependencies in the specified folder/project', upgradeOptions, argv => require('./upgrade')(argv));
 };
