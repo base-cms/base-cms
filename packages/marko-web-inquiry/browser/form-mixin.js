@@ -46,6 +46,7 @@ export default {
       } finally {
         this.loading = false;
       }
+      if (this.error) throw this.error;
     },
   },
 
