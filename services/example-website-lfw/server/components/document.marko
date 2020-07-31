@@ -22,7 +22,7 @@ $ const radix = site.getAsObject("radix");
     <marko-web-reveal-ad-listener />
     <marko-web-gtm-track-load-more />
     <if(radix.enabled && radix.appId)>
-      <marko-web-radix-inquiry-listener app-id=radix.appId submission-field-ids=radix.submissionFieldIds />
+      <marko-web-radix-inquiry-listener app-id=radix.appId url=radix.url submission-field-ids=radix.submissionFieldIds />
     </if>
     <default-theme-site-header />
     <default-theme-site-menu />
@@ -33,7 +33,7 @@ $ const radix = site.getAsObject("radix");
     <${input.belowContainer} />
     <default-theme-site-footer />
     <if(radix.enabled && radix.appId)>
-      <marko-web-radix-identity-detector app-id=radix.appId />
+      <marko-web-radix-identity-detector app-id=radix.appId url=radix.url />
     </if>
   </@below-container>
 </marko-web-document>

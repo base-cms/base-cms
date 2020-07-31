@@ -5,6 +5,10 @@
       "type": "string",
       "required": true
     },
+    "@url": {
+      "type": "string",
+      "default-value": "https://radix.as3.io"
+    },
     "@standard-fields": "array",
     "@submission-field-ids": "array"
   },
@@ -13,6 +17,10 @@
     "@app-id": {
       "type": "string",
       "required": true
+    },
+    "@url": {
+      "type": "string",
+      "default-value": "https://radix.as3.io"
     }
   }
 }

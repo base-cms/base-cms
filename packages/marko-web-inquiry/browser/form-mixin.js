@@ -43,6 +43,7 @@ export default {
         if (data.ok) this.complete = true;
       } catch (e) {
         this.error = e.message;
+        throw e;
       } finally {
         this.loading = false;
       }

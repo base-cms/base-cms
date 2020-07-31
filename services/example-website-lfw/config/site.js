@@ -39,6 +39,7 @@ module.exports = {
     submissionFieldIds: [
       { name: 'comments', id: '57e55318bcf2d6f3c30e0833' }, // vspc value
     ],
+    url: 'https://radix.laserfocusworld.com',
   },
   inquiry: {
     enabled: true,
