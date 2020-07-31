@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/marko-web-inquiry",
-  "version": "1.32.0",
+  "version": "1.33.0",
   "author": "Jacob Bare <jacob@limit0.io>",
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/inquiry",
   "license": "MIT",

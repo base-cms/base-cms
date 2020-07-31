@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/google-data-api",
-  "version": "1.25.0",
+  "version": "1.33.0",
   "description": "The BaseCMS Google Data API service using micro.",
   "main": "src/index.js",
   "author": "Josh Worden <josh@limit0.io>",
@@ -12,7 +12,7 @@
     "test": "yarn lint"
   },
   "dependencies": {
-    "@base-cms/db": "^1.0.0",
+    "@base-cms/db": "^1.33.0",
     "@base-cms/env": "^1.0.0",
     "@base-cms/micro": "^1.25.0",
     "@newrelic/native-metrics": "^4.1.0",
