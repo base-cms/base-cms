@@ -412,6 +412,8 @@ services:
       NEW_RELIC_LICENSE_KEY: (unset)
       SENDGRID_DEV_TO: ${SENDGRID_DEV_TO}
       SENDGRID_API_KEY: ${SENDGRID_API_KEY-(unset)}
+      RECAPTCHA_SITE_KEY: ${RECAPTCHA_SITE_KEY-(unset)}
+      RECAPTCHA_SECRET_KEY: ${RECAPTCHA_SECRET_KEY-(unset)}
     depends_on:
       - graphql-server-aerilon
       - sitemaps-aerilon
