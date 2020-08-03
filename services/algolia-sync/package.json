@@ -1,13 +1,13 @@
 {
   "name": "@base-cms/algolia-sync",
-  "version": "1.33.0",
+  "version": "1.0.0",
   "main": "src/index.js",
   "author": "Jeremy Laird <jlaird@endeavorb2b.com>",
   "repository": "https://github.com/base-cms/base-cms/tree/master/services/algolia-sync",
   "license": "MIT",
   "private": true,
   "scripts": {
-    "watch": "./node_modules/forever/bin/forever --spinSleepTime 30000 --minUptime 500 src/index.js watch",
+    "watch": "./node_modules/.bin/forever --spinSleepTime 30000 --minUptime 500 src/index.js watch",
     "lint": "eslint --ext .js --max-warnings 5 ./",
     "test": "yarn lint"
   },
