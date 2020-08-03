@@ -18,9 +18,4 @@
     font-weight: $leaders-key-executive-font-weight;
   }
 
-  &__title {
-    &::before {
-      content: ", ";
-    }
-  }
 }
