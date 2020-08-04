@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/algolia-sync",
-  "version": "1.33.0",
+  "version": "1.33.2",
   "main": "src/index.js",
   "author": "Jeremy Laird <jlaird@endeavorb2b.com>",
   "repository": "https://github.com/base-cms/base-cms/tree/master/services/algolia-sync",
