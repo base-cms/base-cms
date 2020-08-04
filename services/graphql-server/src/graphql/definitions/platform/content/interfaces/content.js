@@ -23,6 +23,7 @@ interface Content @requiresProject(fields: ["type"]) {
   deck: String @projection(localField: "mutations.Magazine.deck") @value(localField: "mutations.Magazine.deck")
   company(input: ContentCompanyInput = {}): ContentCompany @projection @refOne(loader: "platformContent", criteria: "contentCompany")
   gating: ContentGating @projection(localField: "mutations.Website.gating") @value(localField: "mutations.Website.gating")
+  externalLinks(input: ContentExternalLinksInput = {}): [EntityStubExternalLink]! @projection
 
   # fields from platform.trait::StatusEnabled
   status: Int @projection

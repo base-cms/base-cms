@@ -223,6 +223,13 @@ module.exports = {
   Content: {
     __resolveType: resolveType,
 
+    externalLinks: (content, { input }) => {
+      const keys = getAsArray(input, 'keys');
+      const links = getAsArray(content, 'externalLinks');
+      if (keys.length) return links.filter(({ key }) => keys.includes(key));
+      return links;
+    },
+
     siteContext: async (content, _, ctx) => {
       const { site, load, basedb } = ctx;
       if (!site.exists()) throw new UserInputError('A website context must be set to generate `Content.siteContext` fields.');
@@ -532,12 +539,6 @@ module.exports = {
    *
    */
   ContentCompany: {
-    externalLinks: (content, { input }) => {
-      const keys = getAsArray(input, 'keys');
-      const links = getAsArray(content, 'externalLinks');
-      if (keys.length) return links.filter(({ key }) => keys.includes(key));
-      return links;
-    },
     youtube: ({ youtube = {} }) => youtube,
     youtubeVideos: async (content, { input }, { basedb }) => {
       const maxResults = get(input, 'pagination.limit', 10);

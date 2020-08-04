@@ -35,7 +35,6 @@ type ContentCompany implements Content & PrimaryCategory & Contactable & Address
 
   youtube: ContentCompanyYoutube! @projection
   youtubeVideos(input: ContentCompanyYoutubeVideosInput = {}): YoutubePlaylistConnection! @projection(needs: ["youtube"])
-  externalLinks(input: ContentCompanyExternalLinksInput = {}): [EntityStubExternalLink]! @projection
 
   # fields directly on platform.model::Content\Company from mutations
   featuredCategories(input: ContentCompanyFeaturedCategoriesInput = {}): TaxonomyConnection! @projection(localField: "mutations.Website.featuredCategories") @refMany(model: "platform.Taxonomy", localField: "mutations.Website.featuredCategories", criteria: "taxonomyCategory")
@@ -176,10 +175,6 @@ input ContentCompanySortInput {
 
 input ContentCompanyYoutubeVideosInput {
   pagination: PaginationInput = {}
-}
-
-input ContentCompanyExternalLinksInput {
-  keys: [String]
 }
 
 input UpdateContentCompanyPublicContactsMutationInput {
