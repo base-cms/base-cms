@@ -24,6 +24,9 @@ interface Content @requiresProject(fields: ["type"]) {
   company(input: ContentCompanyInput = {}): ContentCompany @projection @refOne(loader: "platformContent", criteria: "contentCompany")
   gating: ContentGating @projection(localField: "mutations.Website.gating") @value(localField: "mutations.Website.gating")
 
+  # This field name conflicts with ContentCompany.externalLinks, which has been deprecated. When a major version is released with BC breaks, rename this field.
+  externalUrls(input: ContentExternalLinksInput = {}): [EntityStubExternalLink]! @projection(localField: "externalLinks")
+
   # fields from platform.trait::StatusEnabled
   status: Int @projection
 

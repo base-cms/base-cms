@@ -138,6 +138,20 @@ const loadSitemapImages = ({ content, basedb }) => {
   return basedb.find('platform.Asset', query, { projection });
 };
 
+/**
+ * This resolver provides reusable logic for filtering and returning external links.
+ * The original `ContentCompany.externalLinks` field contains conflicting input types, which
+ * without input polymorphism, cannot be resolved without creating a new field.
+ * When a major version is released and BC breaking changes are introduced, the externalLinks
+ * field and input types should be used in favor of the deprecated ContentCompany versions.
+ */
+const externalLinksResolver = (content, { input }) => {
+  const keys = getAsArray(input, 'keys');
+  const links = getAsArray(content, 'externalLinks');
+  if (keys.length) return links.filter(({ key }) => keys.includes(key));
+  return links;
+};
+
 module.exports = {
   /**
    *
@@ -222,6 +236,8 @@ module.exports = {
    */
   Content: {
     __resolveType: resolveType,
+
+    externalUrls: externalLinksResolver,
 
     siteContext: async (content, _, ctx) => {
       const { site, load, basedb } = ctx;
@@ -532,12 +548,10 @@ module.exports = {
    *
    */
   ContentCompany: {
-    externalLinks: (content, { input }) => {
-      const keys = getAsArray(input, 'keys');
-      const links = getAsArray(content, 'externalLinks');
-      if (keys.length) return links.filter(({ key }) => keys.includes(key));
-      return links;
-    },
+    /**
+     * @deprecated use `Content.externalUrls` instead
+     */
+    externalLinks: externalLinksResolver,
     youtube: ({ youtube = {} }) => youtube,
     youtubeVideos: async (content, { input }, { basedb }) => {
       const maxResults = get(input, 'pagination.limit', 10);

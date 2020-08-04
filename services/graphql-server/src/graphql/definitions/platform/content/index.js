@@ -245,6 +245,10 @@ input ContentQueryInput {
   since: Date
 }
 
+input ContentExternalLinksInput {
+  keys: [String]
+}
+
 input ContentAliasQueryInput {
   siteId: ObjectID
   status: ModelStatus = active
