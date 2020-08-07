@@ -9,16 +9,33 @@ type EmailCampaignTestRecipient {
 }
 
 type GetCampaigns {
+  # fields from platform.model::Email (app/config/platform/models/modelspaces/email/campaign.yml)
   id: ObjectID! @projection(localField: "_id") @value(localField: "_id")
-  deploymentDate: Date
+  deploymentDate: Date! @projection
+  name: String @projection
+  scheduled: Date
+}
+
+enum EmailCampaignsSortField {
+  deploymentDate
+  name
+  scheduled
 }
 
 input GetCampaignsQueryInput {
   id: ObjectID!
+  status: ModelStatus = active
+  sort: EmailCampaignsSortInput = {}
+  pagination: PaginationInput = {}
+}
+
+input EmailCampaignsSortInput {
+  field: EmailCampaignsSortField = deploymentDate
+  order: SortOrder = desc
 }
 
 extend type Query {
-  getCampaigns(input: GetCampaignsQueryInput!): GetCampaigns!
+  getCampaigns(input: GetCampaignsQueryInput = {}): [GetCampaigns]!
 }
 
 `;
