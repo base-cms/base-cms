@@ -15,16 +15,6 @@ const clearSeconds = (date) => {
 };
 
 module.exports = {
-  Query: {
-    /**
-     *
-     */
-    getCampaigns: async (_, { input }, { basedb }) => {
-      const { id } = input;
-      const id2 = BaseDB.coerceID(id);
-      return basedb.find('email.Campaign', { 'product.$id': id2 }, { projection: { _id: 1 } });
-    },
-  },
   /**
    *
    */
