@@ -1,8 +1,8 @@
 const home = require('./home');
-const deployments = require('./deployments');
+const campaignsPage = require('./campaigns');
 
 module.exports = (router, { templates }) => {
   home(router, { templates });
 
-  deployments(router);
+  campaignsPage(router);
 };

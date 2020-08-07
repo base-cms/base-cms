@@ -1,21 +1,29 @@
 $ const { campaignList } = data;
 <!-- TODO: import template data -->
 $ const template = "equipment-weekly";
+
 <document>
   <@head>
     <page-title value="Campaigns" />
   </@head>
 
   <div class="row">
-    <div class="col-lg-6">
+    <div class="col">
+      <div class="mb-3">
+        <a href="/">Return to template list</a>
+      </div>
       <div class="card mb-3">
-        <div class="card-header">Newsletter Campaigns</div>
+        <div class="card-header">
+          <div>Newsletter Campaigns</div>
+        </div>
         <div class="list-group list-group-flush">
           <if(campaignList)>
             <for|campaign| of=campaignList>
+              $ const { deploymentDate, name } = campaign;
+              $ const date = new Date(deploymentDate).toDateString();
               <div class="list-group-item">
                 <h5 class="card-title mb-2">
-                  <a href=`/templates/${template}?date=${campaign.deploymentDate}`>${campaign.name}</a>
+                  <a href=`/templates/${template}?date=${deploymentDate}`>${date}</a>
                 </h5>
               </div>
             </for>

@@ -12,7 +12,6 @@ module.exports = {
         projection: {
           _id: 1,
           deploymentDate: 1,
-          fromName: 1,
           scheduled: 1,
         },
       });
