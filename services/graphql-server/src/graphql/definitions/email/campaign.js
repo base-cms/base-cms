@@ -11,8 +11,8 @@ type EmailCampaignTestRecipient {
 type GetCampaigns {
   # fields from platform.model::Email (app/config/platform/models/modelspaces/email/campaign.yml)
   id: ObjectID! @projection(localField: "_id") @value(localField: "_id")
-  deploymentDate: Date! @projection
-  name: String @projection
+  deploymentDate: Date!
+  fromName: String
   scheduled: Date
 }
 
