@@ -1,0 +1,30 @@
+$ const { campaignList } = data;
+<!-- TODO: import template data -->
+$ const template = "equipment-weekly";
+<document>
+  <@head>
+    <page-title value="Campaigns" />
+  </@head>
+
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="card mb-3">
+        <div class="card-header">Newsletter Campaigns</div>
+        <div class="list-group list-group-flush">
+          <if(campaignList)>
+            <for|campaign| of=campaignList>
+              <div class="list-group-item">
+                <h5 class="card-title mb-2">
+                  <a href=`/templates/${template}?date=${campaign.deploymentDate}`>${campaign.name}</a>
+                </h5>
+              </div>
+            </for>
+          </if>
+          <else>
+            <div class="list-group-item">No Campaign List Available</div>
+          </else>
+        </div>
+      </div>
+    </div>
+  </div>
+</document>

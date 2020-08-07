@@ -29,8 +29,7 @@ $ const { newsletters, staticTemplates } = data;
                       ${template} <small>
                         [<a href=`/templates/${template}`>Today</a>]
                         [<select-day template=template />]
-                        [<a href=`/deployments/${template}` class="deployments" newsletter=newsletter template=template >Deployments
-                        </a>]
+                        [<campaigns newsletter=newsletter template=template/>]
                       </small>
                     </p>
                   </for>
