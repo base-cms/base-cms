@@ -55,6 +55,12 @@ type EmailScheduleEdge {
   cursor: String!
 }
 
+type EmailCampaignTestRecipient {
+  firstName: String
+  lastName: String
+  email: String
+}
+
 input DeleteEmailScheduleMutationInput {
   id: ObjectID!
 }
