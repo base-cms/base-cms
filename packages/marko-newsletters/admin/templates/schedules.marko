@@ -1,10 +1,10 @@
-$ const { campaignList } = data;
+$ const { scheduleList } = data;
 <!-- TODO: import template data -->
 $ const template = "equipment-weekly";
 
 <document>
   <@head>
-    <page-title value="Campaigns" />
+    <page-title value="Schedules" />
   </@head>
 
   <div class="row">
@@ -14,12 +14,12 @@ $ const template = "equipment-weekly";
       </div>
       <div class="card mb-3">
         <div class="card-header">
-          <div>Newsletter Campaigns</div>
+          <div>Newsletter Schedules</div>
         </div>
         <div class="list-group list-group-flush">
-          <if(campaignList)>
-            <for|campaign| of=campaignList>
-              $ const { deploymentDate, name } = campaign;
+          <if(scheduleList)>
+            <for|schedule| of=scheduleList>
+              $ const { deploymentDate, name } = schedule;
               $ const date = new Date(deploymentDate).toDateString();
               <div class="list-group-item">
                 <h5 class="card-title mb-2">
@@ -29,7 +29,7 @@ $ const template = "equipment-weekly";
             </for>
           </if>
           <else>
-            <div class="list-group-item">No Campaign List Available</div>
+            <div class="list-group-item">No schedule List Available</div>
           </else>
         </div>
       </div>

@@ -1,8 +1,8 @@
 const home = require('./home');
-const campaignsPage = require('./campaigns');
+const schedulesPage = require('./schedules');
 
 module.exports = (router, { templates }) => {
   home(router, { templates });
 
-  campaignsPage(router);
+  schedulesPage(router);
 };
