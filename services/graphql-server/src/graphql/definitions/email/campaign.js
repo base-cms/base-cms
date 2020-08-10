@@ -2,12 +2,6 @@ const gql = require('graphql-tag');
 
 module.exports = gql`
 
-type EmailCampaignTestRecipient {
-  firstName: String
-  lastName: String
-  email: String
-}
-
 type GetCampaigns {
   # fields from platform.model::Email (app/config/platform/models/modelspaces/email/campaign.yml)
   id: ObjectID! @projection(localField: "_id") @value(localField: "_id")
