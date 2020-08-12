@@ -19,7 +19,8 @@ module.exports = ({ queryFragment, notification, confirmation }) => asyncRoute(a
     confirmationSubject,
   } = site.getAsObject('inquiry');
   const $global = buildMarkoGlobal(res);
-  const { apollo, body: payload } = req;
+  const { apollo, body } = req;
+  const { token, ...payload } = body;
   const content = await contentLoader(apollo, { id: req.params.id, queryFragment });
   const emails = getAsArray(content, 'inquiryEmails');
   const addresses = {
@@ -37,20 +38,20 @@ module.exports = ({ queryFragment, notification, confirmation }) => asyncRoute(a
     return err;
   };
 
-  const validateRecaptcha = async ({ token: response }) => {
+  const validateRecaptcha = async () => {
     const params = new URLSearchParams();
-    params.append('response', response);
+    params.append('response', token);
     params.append('secret', RECAPTCHA_SECRET_KEY);
     const recaptchaRes = await fetch('https://www.google.com/recaptcha/api/siteverify', { method: 'post', mode: 'no-cors', body: params });
     const json = await recaptchaRes.json();
     if (!json.success) {
-      error('reCAPTCHA failed!', json, { secret: RECAPTCHA_SECRET_KEY, response });
+      error('reCAPTCHA failed!', json, { secret: RECAPTCHA_SECRET_KEY, response: token });
       throw exception('Unable to validate your request because reCAPTCHA failed!');
     }
     return true;
   };
 
-  await validateRecaptcha(payload);
+  await validateRecaptcha();
 
   await Promise.all([
     // Store the submission
