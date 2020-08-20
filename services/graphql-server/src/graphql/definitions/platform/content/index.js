@@ -338,6 +338,11 @@ input ContentEndingInput {
   after: Date
 }
 
+input ContentCustomAttributeInput {
+  "The custom attribute field path."
+  path: String!
+}
+
 input AllContentQueryInput {
   siteId: ObjectID
   status: ModelStatus = active

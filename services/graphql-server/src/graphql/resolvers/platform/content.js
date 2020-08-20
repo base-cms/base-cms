@@ -406,6 +406,14 @@ module.exports = {
 
     metadata: content => content,
 
+    customAttribute: (content, { input }) => {
+      const { path } = input;
+      if (!path) return null;
+      const value = get(content, `customAttributes.${path}`);
+      if (!value) return null;
+      return `${value}`;
+    },
+
     /**
      * @deprecated use `siteContext.url` instead
      */

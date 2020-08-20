@@ -81,6 +81,9 @@ interface Content @requiresProject(fields: ["type"]) {
   websiteSchedules: [ContentWebsiteSchedule]! @projection(localField: "sectionQuery") @arrayValue(localField: "sectionQuery")
 
   hasWebsiteSchedule(input: ContentHasWebsiteScheduleInput!): Boolean! @projection(localField: "sectionQuery")
+
+  # Allows custom field values to be returned from the \`customAttributes\` model field. Currently all values are cast as strings.
+  customAttribute(input: ContentCustomAttributeInput!): String @projection(localField: "customAttributes")
 }
 
 `;
