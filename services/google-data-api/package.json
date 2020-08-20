@@ -15,10 +15,9 @@
     "@base-cms/db": "^1.33.0",
     "@base-cms/env": "^1.0.0",
     "@base-cms/micro": "^1.25.0",
-    "@newrelic/native-metrics": "^4.1.0",
     "micro": "^9.3.4",
     "mongodb": "^3.1.10",
-    "newrelic": "^5.11.0",
+    "newrelic": "^6.12.1",
     "node-fetch": "^2.6.0"
   },
   "devDependencies": {
