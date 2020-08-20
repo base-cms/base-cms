@@ -15,7 +15,7 @@ const query = message => (gql`
         type
         created
         published
-        unpublishedDate
+        unpublished
         updated
         status
         websiteSchedules { section { hierarchy {fullName} }}
@@ -39,8 +39,8 @@ const upsertToIndex = async (message) => {
     c.boost = boostResult(c);
 
     // Set unpublished date to 100 years in the future if it's null
-    if (c.unpublishedDate === null) {
-      c.unpublishedDate = 4753607469000;
+    if (c.unpublished) {
+      c.unpublished = 4753607469000;
     }
 
     const index = client.initIndex(message.tenant);

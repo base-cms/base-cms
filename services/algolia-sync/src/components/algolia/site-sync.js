@@ -21,7 +21,7 @@ const query = gql`
           type
           created
           published
-          unpublishedDate
+          unpublished
           updated
           status
           websiteSchedules { section { hierarchy { fullName } }}
