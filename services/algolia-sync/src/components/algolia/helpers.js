@@ -26,7 +26,7 @@ const boostResult = (node) => {
 const buildObj = (nodes, tenant) => nodes.map((node) => {
   const content = node;
   // Set unpublished date 100 years into the future.
-  if (content.unpublished) {
+  if (!content.unpublished) {
     content.unpublished = 4753607469000;
   }
   return {

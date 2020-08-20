@@ -39,7 +39,7 @@ const upsertToIndex = async (message) => {
     c.boost = boostResult(c);
 
     // Set unpublished date to 100 years in the future if it's null
-    if (c.unpublished) {
+    if (!c.unpublished) {
       c.unpublished = 4753607469000;
     }
 
