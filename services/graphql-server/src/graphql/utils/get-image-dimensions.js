@@ -10,16 +10,18 @@ module.exports = async ({
   host,
   basedb,
 }) => {
-  const { source, filePath, fileName } = image;
-  if (source && source.width && source.height) {
-    return { width: source.width, height: source.height };
-  }
-
+  const {
+    width,
+    height,
+    filePath,
+    fileName,
+  } = image;
+  if (width && height) return { width, height };
   const url = `https://${host}/${filePath}/${fileName}?fm=json`;
   const res = await fetch(url);
   if (!res.ok) throw new Error(res.statusText);
-  const { PixelWidth: width, PixelHeight: height } = await res.json();
-  const $set = { 'source.width': width, 'source.height': height };
+  const { PixelWidth, PixelHeight } = await res.json();
+  const $set = { width: PixelWidth, height: PixelHeight };
   await basedb.updateOne('platform.Asset', { _id: image._id }, { $set });
-  return { width, height };
+  return { width: PixelWidth, height: PixelHeight };
 };
