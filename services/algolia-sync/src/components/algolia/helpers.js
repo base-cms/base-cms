@@ -23,16 +23,23 @@ const boostResult = (node) => {
 };
 
 // Formats the object for Algolia's bulk update
-const buildObj = (nodes, tenant) => nodes.map(node => ({
-  action: 'updateObject',
-  indexName: tenant,
-  body: {
-    objectID: node.id,
-    sections: buildSections(node),
-    ...node,
-    boost: boostResult(node),
-  },
-}));
+const buildObj = (nodes, tenant) => nodes.map((node) => {
+  const content = node;
+  // Set unpublished date 100 years into the future.
+  if (content.unpublishedDate === null) {
+    content.unpublishedDate = 4753607469000;
+  }
+  return {
+    action: 'updateObject',
+    indexName: tenant,
+    body: {
+      objectID: content.id,
+      sections: buildSections(content),
+      ...content,
+      boost: boostResult(content),
+    },
+  };
+});
 
 module.exports = {
   buildObj,
