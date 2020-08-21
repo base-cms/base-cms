@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/canonical-path",
-  "version": "1.33.1",
+  "version": "1.34.0",
   "description": "Canonical path library for BaseCMS projects.",
   "main": "src/index.js",
   "author": "Josh Worden <josh@limit0.io>",
@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@base-cms/db": "^1.33.0",
-    "@base-cms/inflector": "^1.0.0",
+    "@base-cms/inflector": "^1.34.0",
     "@base-cms/object-path": "^1.25.0",
     "@base-cms/utils": "^1.25.0"
   },
