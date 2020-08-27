@@ -230,10 +230,11 @@ module.exports = {
       return links;
     },
 
-    siteContext: async (content, _, ctx) => {
+    siteContext: async (content, { input }, ctx) => {
+      const { enableLinkUrl } = input;
       const { site, load, basedb } = ctx;
       if (!site.exists()) throw new UserInputError('A website context must be set to generate `Content.siteContext` fields.');
-      const path = await canonicalPathFor(content, ctx);
+      const path = await canonicalPathFor(content, ctx, { enableLinkUrl });
       return {
         path: () => path,
         url: () => {
