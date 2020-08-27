@@ -55,8 +55,14 @@ const handleDynamicPage = async (content, context) => {
   return `/page/${path}`;
 };
 
-
-module.exports = async (content, context) => {
+/**
+ *
+ * @param {object} content The content object
+ * @param {object} context The canonical path context (including rules, etc)
+ * @param {object} [options]
+ * @param {boolean} [options.enableLinkUrl=true] Whether to use the `linkUrl` field, if present.
+ */
+module.exports = async (content, context, { enableLinkUrl = true } = {}) => {
   const { canonicalRules } = context;
   const { content: contentRules } = canonicalRules;
   const { parts, prefix } = contentRules;
@@ -65,7 +71,7 @@ module.exports = async (content, context) => {
   if (type === 'Page') return handleDynamicPage(content, context);
 
   const types = ['Promotion', 'TextAd'];
-  if (types.includes(type) && linkUrl) return linkUrl;
+  if (enableLinkUrl && types.includes(type) && linkUrl) return linkUrl;
 
   const values = await Promise.all(parts.map((key) => {
     const fn = pathResolvers[key];
