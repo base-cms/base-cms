@@ -262,6 +262,11 @@ input ContentHashQueryInput {
   hash: String!
 }
 
+input ContentSiteContextInput {
+  "Determines whether to use the \`content.linkUrl\` field for generating paths and URLs. If \`false\`, the \`linkUrl\` will be ignored."
+  enableLinkUrl: Boolean = true
+}
+
 input ContentSitemapUrlsQueryInput {
   siteId: ObjectID
   since: Date

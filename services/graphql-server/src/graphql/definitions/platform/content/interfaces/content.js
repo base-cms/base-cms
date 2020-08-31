@@ -70,7 +70,7 @@ interface Content @requiresProject(fields: ["type"]) {
   websiteUrl: String! @deprecated(reason: "Use \`siteContext.url\` instead.") @projection(localField: "_id", needs: ["type", "linkUrl", "mutations.Website.slug", "mutations.Website.primarySection", "mutations.Website.primaryCategory", "mutations.Website.alias"])
 
   # Fields that require site context
-  siteContext: ContentSiteContext! @projection(localField: "_id", needs: ["type", "linkUrl", "mutations.Website.slug", "mutations.Website.primarySection", "mutations.Website.primaryCategory", "mutations.Website.alias", "mutations.Website.canonicalUrl"])
+  siteContext(input: ContentSiteContextInput = {}): ContentSiteContext! @projection(localField: "_id", needs: ["type", "linkUrl", "mutations.Website.slug", "mutations.Website.primarySection", "mutations.Website.primaryCategory", "mutations.Website.alias", "mutations.Website.canonicalUrl"])
 
   # Determines if this content item should redirect to another location.
   redirectTo: String @projection(localField: "type", needs: ["linkUrl"])

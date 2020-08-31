@@ -11,14 +11,18 @@ module.exports = ({
   queryFragment,
   idResolver,
   redirectOnPathMismatch = true,
+  loaderQueryFragment,
+  redirectToFn,
+  pathFn,
 } = {}) => asyncRoute(async (req, res) => {
   const id = isFn(idResolver) ? await idResolver(req, res) : req.params.id;
   const { apollo, query } = req;
 
   const additionalInput = buildContentInput({ req });
-  const content = await loader(apollo, { id, additionalInput });
-  const { redirectTo } = content;
-  const path = get(content, 'siteContext.path');
+  const content = await loader(apollo, { id, additionalInput, queryFragment: loaderQueryFragment });
+  const redirectTo = isFn(redirectToFn) ? redirectToFn({ content }) : content.redirectTo;
+  const path = isFn(pathFn) ? pathFn({ content }) : get(content, 'siteContext.path');
+
   if (redirectTo) {
     return res.redirect(301, applyQueryParams({ path: redirectTo, query }));
   }
