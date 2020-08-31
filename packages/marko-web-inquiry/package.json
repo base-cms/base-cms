@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/marko-web-inquiry",
-  "version": "1.34.0",
+  "version": "1.35.0",
   "author": "Jacob Bare <jacob@limit0.io>",
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/inquiry",
   "license": "MIT",
@@ -11,7 +11,7 @@
   "dependencies": {
     "@base-cms/env": "^1.0.0",
     "@base-cms/marko-core": "^1.34.0",
-    "@base-cms/marko-web": "^1.34.0",
+    "@base-cms/marko-web": "^1.35.0",
     "@base-cms/object-path": "^1.25.0",
     "@base-cms/utils": "^1.25.0",
     "@base-cms/web-common": "^1.34.0",
