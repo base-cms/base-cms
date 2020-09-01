@@ -15,7 +15,7 @@
     "@base-cms/object-path": "^1.25.0",
     "@base-cms/utils": "^1.25.0",
     "@base-cms/web-common": "^1.34.0",
-    "marko": "^4.18.30",
+    "marko": "~4.20.0",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.26"
   },

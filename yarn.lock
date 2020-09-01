@@ -11021,10 +11021,10 @@ marked@^0.3.6:
   resolved "https://registry.yarnpkg.com/marked/-/marked-0.3.19.tgz#5d47f709c4c9fc3c216b6d46127280f40b39d790"
   integrity sha512-ea2eGWOqNxPcXv8dyERdSr/6FmzvWwzjMxpfGB/sbMccXoct+xY+YukPD+QTUZwyvK7BZwcr4m21WBOW41pAkg==
 
-marko@^4.18.30:
-  version "4.18.30"
-  resolved "https://registry.yarnpkg.com/marko/-/marko-4.18.30.tgz#2895be7edc86e45990ae25b068ec675cfe6cc3bc"
-  integrity sha512-rQZlR7gbqdmlOMoAhv9vYd8AmqTEZmz8rXhaiiY/osKbQhgB8hfExpjXp6gLbAOWqKuyGbaANHVQCKERAXtcrw==
+marko@~4.20.0:
+  version "4.20.2"
+  resolved "https://registry.yarnpkg.com/marko/-/marko-4.20.2.tgz#33f7135ec95a739b539c46546d43b12494ac5acb"
+  integrity sha512-3AlA/UqnPic8mbkv3NS2LcJVhNFmDdaBugGPRpuFkhzTyLkNqfBSpguCn0lxcTUb+5yQJCxNRyS06IuRGfAUrw==
   dependencies:
     app-module-path "^2.2.0"
     argly "^1.0.0"
@@ -11048,6 +11048,7 @@ marko@^4.18.30:
     raptor-regexp "^1.0.0"
     raptor-util "^3.2.0"
     resolve-from "^2.0.0"
+    self-closing-tags "^1.0.1"
     simple-sha1 "^2.1.0"
     strip-json-comments "^2.0.1"
     warp10 "^2.0.1"
@@ -14735,6 +14736,11 @@ select-hose@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/select-hose/-/select-hose-2.0.0.tgz#625d8658f865af43ec962bfc376a37359a4994ca"
   integrity sha1-Yl2GWPhlr0Psliv8N2o3NZpJlMo=
+
+self-closing-tags@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/self-closing-tags/-/self-closing-tags-1.0.1.tgz#6c5fa497994bb826b484216916371accee490a5d"
+  integrity sha512-7t6hNbYMxM+VHXTgJmxwgZgLGktuXtVVD5AivWzNTdJBM4DBjnDKDzkf2SrNjihaArpeJYNjxkELBu1evI4lQA==
 
 selfsigned@^1.10.7:
   version "1.10.7"
