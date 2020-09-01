@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/example-website-bzb",
-  "version": "1.36.1",
+  "version": "1.36.3",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
   "repository": "https://github.com/base-cms/base-cms/tree/master/services/example-website-bzb",
@@ -17,14 +17,14 @@
   },
   "dependencies": {
     "@base-cms/marko-core": "^1.36.1",
-    "@base-cms/marko-web": "^1.36.0",
+    "@base-cms/marko-web": "^1.36.3",
     "@base-cms/marko-web-gam": "^1.30.0",
     "@base-cms/marko-web-gtm": "^1.34.0",
     "@base-cms/marko-web-icons": "^1.29.6",
     "@base-cms/marko-web-theme-default": "^1.30.1",
     "@base-cms/object-path": "^1.25.0",
     "@base-cms/utils": "^1.25.0",
-    "@base-cms/web-cli": "^1.36.0",
+    "@base-cms/web-cli": "^1.36.3",
     "graphql": "^14.5.4",
     "graphql-tag": "^2.10.1"
   }

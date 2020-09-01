@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/algolia-sync",
-  "version": "1.34.0",
+  "version": "1.36.3",
   "main": "src/index.js",
   "author": "Jeremy Laird <jlaird@endeavorb2b.com>",
   "repository": "https://github.com/base-cms/base-cms/tree/master/services/algolia-sync",
@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@base-cms/env": "^1.0.0",
-    "@base-cms/graphql-fragment-types": "^1.9.0",
+    "@base-cms/graphql-fragment-types": "^1.36.3",
     "algoliasearch": "^4.0.0",
     "apollo-cache-inmemory": "^1.6.5",
     "apollo-client": "^2.6.8",
