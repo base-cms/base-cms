@@ -45,13 +45,15 @@ type EmailNewsletter {
   defaultSubjectLine: String @projection
 
   # fields directly on email.model::Product\Newsletter
-  # ToDo: headerLeft, headerRight image references
   parent(input: EmailNewsletterParentInput = {}): EmailNewsletter @projection @refOne(loader: "platformProducts", criteria: "emailNewsletter")
   sections(input: EmailNewsletterSectionsInput = {}): EmailSectionConnection! @projection(localField: "_id") @refMany(model: "email.Section", localField: "_id", foreignField: "deployment.$id")
   alias: String @projection
   usesDeploymentDates: Boolean @projection
   teaser: String @projection
+  headerleft: AssetImage @projection @refOne(loader: "platformAsset", criteria: "assetImage")
+  headerRight: AssetImage @projection @refOne(loader: "platformAsset", criteria: "assetImage")
   headerLink: String @projection
+  socialIcons: String @projection
   facebook: String @projection
   linkedin: String @projection
   twitter: String @projection
