@@ -45,11 +45,25 @@ type EmailNewsletter {
   defaultSubjectLine: String @projection
 
   # fields directly on email.model::Product\Newsletter
+  # ToDo: headerLeft, headerRight image references
   parent(input: EmailNewsletterParentInput = {}): EmailNewsletter @projection @refOne(loader: "platformProducts", criteria: "emailNewsletter")
   sections(input: EmailNewsletterSectionsInput = {}): EmailSectionConnection! @projection(localField: "_id") @refMany(model: "email.Section", localField: "_id", foreignField: "deployment.$id")
   alias: String @projection
   usesDeploymentDates: Boolean @projection
   teaser: String @projection
+  headerLink: String @projection
+  facebook: String @projection
+  linkedin: String @projection
+  twitter: String @projection
+  youtube: String @projection
+  instagram: String @projection
+  pinterest: String @projection
+  headerBgColor: String @projection
+  headerTextColor: String @projection
+  headerTemplate: String @projection
+  dateToggle: String @projection
+  footerColor: String @projection
+  footerTextColor: String @projection
 
   # GraphQL-only fields.
   site(input: EmailNewsletterSiteInput = {}): WebsiteSite @projection(localField: "siteId") @refOne(loader: "platformProduct", localField: "siteId", criteria: "websiteSite")
