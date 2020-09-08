@@ -15,7 +15,7 @@
     "@base-cms/object-path": "^1.25.0",
     "@base-cms/utils": "^1.25.0",
     "http-errors": "^1.7.3",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.1"
   },
   "publishConfig": {
     "access": "public"
