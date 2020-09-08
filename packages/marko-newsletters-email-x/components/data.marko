@@ -1,0 +1,24 @@
+import { warn } from "@base-cms/utils";
+import { getAsObject, getAsArray } from "@base-cms/object-path";
+import fetchData from "../utils/fetch-data";
+
+$ const { onError } = input;
+$ const adUnit = getAsObject(input, "adUnit");
+$ const params = getAsObject(input, "params");
+$ const decodedParams = getAsArray(input, "decodedParams");
+
+$ const { uri, id } = adUnit;
+$ const { email, date, send } = params;
+
+$ const promise = fetchData({
+  serveUri: uri,
+  adUnitId: id,
+  date,
+  email,
+  send,
+  decodedParams,
+});
+
+<marko-web-resolve|{ resolved }| promise=promise>
+  <${input.renderBody} response=resolved />
+</marko-web-resolve>

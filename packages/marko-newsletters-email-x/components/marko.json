@@ -19,5 +19,18 @@
     "@decoded-params":  "array",
     "@class": "string",
     "@attrs": "object"
+  },
+  "<marko-newsletters-email-x-data>": {
+    "template": "./data.marko",
+    "<ad-unit>": {
+      "@uri": "string",
+      "@id": "string"
+    },
+    "<params>": {
+      "@email": "string",
+      "@date": "date",
+      "@send": "string"
+    },
+    "@decoded-params":  "array"
   }
 }
