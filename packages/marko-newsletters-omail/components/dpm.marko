@@ -1,0 +1,6 @@
+$ const attrs = ["ln", "lc", "lcv", "lkw"].filter((k) => input[k]).map((k) => `${k}="${input[k]}"`);
+$ const comments = `<!--DPM: ${attrs.join(' ')} -->`;
+
+<if(attrs.length)>
+  $!{`<!--DPM: ${attrs.join(' ')} -->`}
+</if>
