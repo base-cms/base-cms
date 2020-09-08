@@ -1,5 +1,6 @@
 import contentList from "../graphql/fragments/content-list";
 import GAM from "../config/gam";
+import emailX from "../config/email-x";
 
 $ const { website } = out.global;
 $ const { newsletter, date, dateInfo } = data;
@@ -31,6 +32,32 @@ $ const targeting = {
           image-src="/files/base/indm/ien/image/2016/03/ientoday.56f0149e9136a.png"
           bg-color="#ffffff"
         />
+        <marko-newsletters-email-x-data|{ response }| decoded-params=["email", "send"]>
+          <@ad-unit ...emailX.getAdUnit({ name: "header", alias: "ien-today" }) />
+          <@params date=date email="%%emailaddr%%" send="%%jobid%%" />
+          <if(response)>
+            <!-- handle response in custom way -->
+            <!-- data contains the emailx api response -->
+            $ const { data, clickHref, imageSrc } = response;
+            $ const { ad, deployment } = data;
+            <!-- lets use the raw ad url directly (instead of redirecting) and instead append the emailx click url as a data attribute -->
+            <!-- we'll also ad some data attributes about the ad and deployment -->
+            <a
+              href=ad.url
+              data-advertiser-name=ad.advertiserName
+              data-lineitem-name=ad.lineitemName
+              data-ad-name=ad.name
+              data-href=clickHref
+              data-deployment-name=deployment.name
+            >
+              <!-- but we still need to render the normal ad image -->
+              <img src=imageSrc width=ad.width height=ad.height />
+            </a>
+          </if>
+          <else>
+            $ console.log('no ad found. do something else here... (if applicable)')
+          </else>
+        </marko-newsletters-email-x-data>
       </td>
     </tr>
   </common-table>
