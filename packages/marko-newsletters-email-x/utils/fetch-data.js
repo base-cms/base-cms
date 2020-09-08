@@ -32,13 +32,17 @@ module.exports = async ({
   if (!momentDate.isValid()) throw new Error(`The provided EmailX date '${date}' is invalid.`);
 
   const query = buildQuery({ momentDate, email, send });
-  const url = buildUrl({
-    action: 'data',
+
+  const buildParams = {
     uri: serveUri,
     id: adUnitId,
     query,
     decodedParams: asArray(decodedParams),
-  });
+  };
+
+  const url = buildUrl({ action: 'data', ...buildParams });
+  const clickHref = buildUrl({ action: 'click', ...buildParams });
+  const imageSrc = buildUrl({ action: 'image', ...buildParams });
 
   const res = await fetch(url, fetchOptions);
   const { status } = res;
@@ -48,5 +52,11 @@ module.exports = async ({
     error.res = res;
     throw error;
   }
-  return res.json();
+  const data = await res.json();
+  return {
+    fetchUrl: url,
+    clickHref,
+    imageSrc,
+    data,
+  };
 };
