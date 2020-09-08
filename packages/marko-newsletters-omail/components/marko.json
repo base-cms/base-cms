@@ -1,0 +1,9 @@
+{
+  "<marko-newsletters-omail-dpm>": {
+    "template": "./dpm.marko",
+    "@ln": "string",
+    "@lc": "string",
+    "@lcv": "string",
+    "@lkw": "string"
+  }
+}
