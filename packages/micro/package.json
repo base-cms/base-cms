@@ -19,7 +19,7 @@
   "dependencies": {
     "@base-cms/object-path": "^1.25.0",
     "@godaddy/terminus": "^4.2.0",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.1"
   },
   "publishConfig": {
     "access": "public"
