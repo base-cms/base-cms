@@ -55,7 +55,7 @@ type EmailNewsletter {
   site(input: EmailNewsletterSiteInput = {}): WebsiteSite @projection(localField: "siteId") @refOne(loader: "platformProduct", localField: "siteId", criteria: "websiteSite")
 
   "Loads all alpha configuration objects for this newsletter, if present."
-  alphaThemeConfigs(input: EmailNewsletterAlphaConfigInput = {}): EmailThemeAlphaConfigConnection @projection @refMany(
+  alphaThemeConfigs(input: EmailNewsletterAlphaConfigInput = {}): EmailThemeAlphaConfigConnection! @projection @refMany(
     model: "configuration.Email",
     criteria: "emailThemeAlphaConfig",
     localField: "_id",
