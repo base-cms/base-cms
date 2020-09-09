@@ -50,25 +50,17 @@ type EmailNewsletter {
   alias: String @projection
   usesDeploymentDates: Boolean @projection
   teaser: String @projection
-  headerleft: AssetImage @projection @refOne(loader: "platformAsset", criteria: "assetImage")
-  headerRight: AssetImage @projection @refOne(loader: "platformAsset", criteria: "assetImage")
-  headerLink: String @projection
-  socialIcons: String @projection
-  facebook: String @projection
-  linkedin: String @projection
-  twitter: String @projection
-  youtube: String @projection
-  instagram: String @projection
-  pinterest: String @projection
-  headerBgColor: String @projection
-  headerTextColor: String @projection
-  headerTemplate: String @projection
-  dateToggle: String @projection
-  footerColor: String @projection
-  footerTextColor: String @projection
 
   # GraphQL-only fields.
   site(input: EmailNewsletterSiteInput = {}): WebsiteSite @projection(localField: "siteId") @refOne(loader: "platformProduct", localField: "siteId", criteria: "websiteSite")
+
+  "Loads all alpha configuration objects for this newsletter, if present."
+  alphaThemeConfigs(input: EmailNewsletterAlphaConfigInput = {}): EmailThemeAlphaConfigConnection @projection @refMany(
+    model: "configuration.Email",
+    criteria: "emailThemeAlphaConfig",
+    localField: "_id",
+    foreignField: "newsletter"
+  )
 }
 
 type EmailNewsletterConnection @projectUsing(type: "EmailNewsletter") {
@@ -99,6 +91,11 @@ enum EmailNewsletterSortField {
   name
   fullName
   sequence
+}
+
+input EmailNewsletterAlphaConfigInput {
+  status: ModelStatus = active
+  sort: EmailThemeAlphaConfigSortInput = {}
 }
 
 input EmailNewsletterQueryInput {

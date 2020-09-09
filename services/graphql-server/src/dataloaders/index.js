@@ -27,4 +27,5 @@ module.exports = basedb => ({
   magazineIssue: createProjectLoader({ basedb, modelName: 'magazine.Issue' }),
   magazineSection: createProjectLoader({ basedb, modelName: 'magazine.Section' }),
   emailSection: createProjectLoader({ basedb, modelName: 'email.Section' }),
+  configEmail: createProjectLoader({ basedb, modelName: 'configuration.Email' }),
 });
