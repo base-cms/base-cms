@@ -8,6 +8,7 @@ const criterion = {
   brevityCollection: () => ({ type: 'Collection' }),
   configurationThemeIcarus: () => ({ type: 'Icarus' }),
   content: () => ({ type: { $in: contentTypes } }),
+  emailThemeAlphaConfig: () => ({ type: 'ThemeAlpha' }),
   taxonomy: () => ({ type: { $in: taxonomyTypes } }),
   emailNewsletter: () => ({ type: 'Newsletter' }),
   entityOrganization: () => ({ type: 'Organization' }),

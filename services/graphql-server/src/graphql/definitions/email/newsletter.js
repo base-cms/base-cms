@@ -53,6 +53,14 @@ type EmailNewsletter {
 
   # GraphQL-only fields.
   site(input: EmailNewsletterSiteInput = {}): WebsiteSite @projection(localField: "siteId") @refOne(loader: "platformProduct", localField: "siteId", criteria: "websiteSite")
+
+  "Loads all alpha configuration objects for this newsletter, if present."
+  alphaThemeConfigs(input: EmailNewsletterAlphaConfigInput = {}): EmailThemeAlphaConfigConnection! @projection @refMany(
+    model: "configuration.Email",
+    criteria: "emailThemeAlphaConfig",
+    localField: "_id",
+    foreignField: "newsletter"
+  )
 }
 
 type EmailNewsletterConnection @projectUsing(type: "EmailNewsletter") {
@@ -83,6 +91,11 @@ enum EmailNewsletterSortField {
   name
   fullName
   sequence
+}
+
+input EmailNewsletterAlphaConfigInput {
+  status: ModelStatus = active
+  sort: EmailThemeAlphaConfigSortInput = {}
 }
 
 input EmailNewsletterQueryInput {
