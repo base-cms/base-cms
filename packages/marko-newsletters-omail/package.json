@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/marko-newsletters-omail",
-  "version": "0.0.0",
+  "version": "1.37.0",
   "description": "Omail (Omeda) Marko components for BaseCMS newsletters.",
   "author": "Jacob Bare <jacob@parameter1.com>",
   "license": "MIT",

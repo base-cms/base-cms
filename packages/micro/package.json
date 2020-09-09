@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/micro",
-  "version": "1.25.0",
+  "version": "1.37.0",
   "description": "Service registration and client library for Micro(services).",
   "main": "src/index.js",
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/micro",
@@ -17,7 +17,7 @@
     "micro": "^9.3.0"
   },
   "dependencies": {
-    "@base-cms/object-path": "^1.25.0",
+    "@base-cms/object-path": "^1.37.0",
     "@godaddy/terminus": "^4.2.0",
     "node-fetch": "^2.6.1"
   },
