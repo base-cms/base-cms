@@ -30,7 +30,9 @@ const config = {
   // responses to be multiple megabytes in size!
   tracing: false,
   cacheControl: false,
-  extensions: NEW_RELIC_ENABLED ? [() => new ApolloNewrelicExtension()] : [],
+  extensions: [
+    ...(NEW_RELIC_ENABLED && [() => new ApolloNewrelicExtension()]),
+  ],
   engine: APOLLO_ENGINE_ENABLED ? { apiKey: APOLLO_ENGINE_API_KEY } : false,
   introspection: true,
   debug: GRAPHQL_DEBUG_ENABLED,
