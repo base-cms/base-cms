@@ -7,6 +7,7 @@ $ if (target === "_blank") rels.push("noopener");
 $ const rel = rels.length ? rels.join(" ") : null;
 
 <if(hasHref)>
+  <${input.before} />
   <a
     ...input.attrs
     href=href
@@ -17,6 +18,7 @@ $ const rel = rels.length ? rels.join(" ") : null;
   >
     <${input.renderBody} />
   </a>
+  <${input.after} />
 </if>
 <else>
   <${input.renderBody} />
