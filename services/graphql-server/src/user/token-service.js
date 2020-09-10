@@ -2,7 +2,7 @@ const { AuthenticationError } = require('apollo-server-express');
 const jwt = require('jsonwebtoken');
 const uuidv4 = require('uuid/v4');
 const uuidv5 = require('uuid/v5');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const { TOKEN_SECRET, TOKEN_NAMESPACE } = require('../env');
 
 class TokenService {
