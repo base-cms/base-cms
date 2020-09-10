@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/example-website-lfw",
-  "version": "1.37.0",
+  "version": "1.38.0",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
   "repository": "https://github.com/base-cms/base-cms/tree/master/services/example-website-lfw",
@@ -16,14 +16,14 @@
     "test": "yarn lint && yarn compile && yarn build"
   },
   "dependencies": {
-    "@base-cms/marko-core": "^1.37.0",
+    "@base-cms/marko-core": "^1.38.0",
     "@base-cms/marko-web": "^1.37.0",
     "@base-cms/marko-web-gam": "^1.37.0",
     "@base-cms/marko-web-gcse": "^1.37.0",
     "@base-cms/marko-web-gtm": "^1.37.0",
     "@base-cms/marko-web-icons": "^1.37.0",
     "@base-cms/marko-web-identity-x": "^1.37.0",
-    "@base-cms/marko-web-inquiry": "^1.37.0",
+    "@base-cms/marko-web-inquiry": "^1.38.0",
     "@base-cms/marko-web-leaders": "^1.37.0",
     "@base-cms/marko-web-native-x": "^1.37.0",
     "@base-cms/marko-web-photoswipe": "^1.37.0",
