@@ -18,7 +18,7 @@ const {
   APOLLO_ENGINE_ENABLED,
   APOLLO_ENGINE_API_KEY,
   NEW_RELIC_ENABLED,
-  GRAPHQL_DEBUG,
+  GRAPHQL_DEBUG_ENABLED,
   GRAPHQL_PLAYGROUND_ENABLED,
 } = require('../env');
 
@@ -33,7 +33,7 @@ const config = {
   extensions: NEW_RELIC_ENABLED ? [() => new ApolloNewrelicExtension()] : [],
   engine: APOLLO_ENGINE_ENABLED ? { apiKey: APOLLO_ENGINE_API_KEY } : false,
   introspection: true,
-  debug: GRAPHQL_DEBUG,
+  debug: GRAPHQL_DEBUG_ENABLED,
   playground: GRAPHQL_PLAYGROUND_ENABLED ? { endpoint: GRAPHQL_ENDPOINT } : false,
 };
 

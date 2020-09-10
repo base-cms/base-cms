@@ -17,7 +17,7 @@ module.exports = cleanEnv(process.env, {
   EXPOSED_PORT: port({ desc: 'The external port to run on.', default: 80 }),
   NEW_RELIC_ENABLED: bool({ desc: 'Whether New Relic is enabled.', default: true, devDefault: false }),
   NEW_RELIC_LICENSE_KEY: str({ desc: 'The license key for New Relic.', default: '' }),
-  GRAPHQL_DEBUG: bool({ desc: 'Whether the GraphQL server should use the debug flag', default: false }),
+  GRAPHQL_DEBUG_ENABLED: bool({ desc: 'Whether the GraphQL server should use the debug flag', default: false }),
   GRAPHQL_PLAYGROUND_ENABLED: bool({ desc: 'Whether the GraphQL server should allow the playground to be used.', default: false }),
   APOLLO_ENGINE_ENABLED: bool({ desc: 'Whether the Apollo Studio engine should be used', default: false }),
   APOLLO_ENGINE_API_KEY: str({ desc: 'The Apollo Studio Engine API key', default: '' }),
