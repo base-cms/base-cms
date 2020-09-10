@@ -524,7 +524,7 @@ services:
     environment:
       <<: *env
       <<: *env-newrelic
-      EMBEDLY_API_KEY: ${EMBEDLY_API_KEY}
+      EMBEDLY_API_KEY: ${EMBEDLY_API_KEY-}
     ports:
       - "10013:80"
 
