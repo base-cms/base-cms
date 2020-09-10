@@ -1,6 +1,8 @@
 {
   "<marko-core-link>": {
     "template": "./link.marko",
+    "<before>": {},
+    "<after>": {},
     "@href": "string",
     "@target": "string",
     "@title": "string",
@@ -20,6 +22,8 @@
   "<marko-core-text>": {
     "template": "./text.marko",
     "<link>": {
+      "<before>": {},
+      "<after>": {},
       "@href": "string",
       "@target": "string",
       "@title": "string",
@@ -36,6 +40,8 @@
   "<marko-core-date>": {
     "template": "./date.marko",
     "<link>": {
+      "<before>": {},
+      "<after>": {},
       "@href": "string",
       "@target": "string",
       "@title": "string",
@@ -67,6 +73,8 @@
   "<marko-core-obj-text>": {
     "template": "./obj-text.marko",
     "<link>": {
+      "<before>": {},
+      "<after>": {},
       "@href": "string",
       "@target": "string",
       "@title": "string",
@@ -84,6 +92,8 @@
   "<marko-core-obj-date>": {
     "template": "./obj-date.marko",
     "<link>": {
+      "<before>": {},
+      "<after>": {},
       "@href": "string",
       "@target": "string",
       "@title": "string",
