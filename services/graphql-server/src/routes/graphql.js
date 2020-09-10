@@ -14,12 +14,13 @@ const createLoaders = require('../dataloaders');
 const schema = require('../graphql/schema');
 const loadSiteContext = require('../site-context/load');
 const {
-  NODE_ENV,
   GRAPHQL_ENDPOINT,
-  ENGINE_API_KEY,
+  APOLLO_ENGINE_ENABLED,
+  APOLLO_ENGINE_API_KEY,
+  NEW_RELIC_ENABLED,
+  GRAPHQL_DEBUG,
+  GRAPHQL_PLAYGROUND_ENABLED,
 } = require('../env');
-
-const isProduction = NODE_ENV === 'production';
 
 const { keys } = Object;
 const router = Router();
@@ -29,12 +30,11 @@ const config = {
   // responses to be multiple megabytes in size!
   tracing: false,
   cacheControl: false,
-  extensions: isProduction ? [() => new ApolloNewrelicExtension()] : [],
-  engine: isProduction ? { apiKey: ENGINE_API_KEY } : false,
+  extensions: NEW_RELIC_ENABLED ? [() => new ApolloNewrelicExtension()] : [],
+  engine: APOLLO_ENGINE_ENABLED ? { apiKey: APOLLO_ENGINE_API_KEY } : false,
   introspection: true,
-  // Enable in dev
-  debug: !isProduction,
-  playground: !isProduction ? { endpoint: GRAPHQL_ENDPOINT } : false,
+  debug: GRAPHQL_DEBUG,
+  playground: GRAPHQL_PLAYGROUND_ENABLED ? { endpoint: GRAPHQL_ENDPOINT } : false,
 };
 
 const server = new ApolloServer({
