@@ -18,23 +18,24 @@ const {
   APOLLO_ENGINE_ENABLED,
   APOLLO_ENGINE_API_KEY,
   NEW_RELIC_ENABLED,
+  GRAPHQL_CACHE_CONTROL_ENABLED,
   GRAPHQL_DEBUG_ENABLED,
+  GRAPHQL_INTROSPECTION_ENABLED,
   GRAPHQL_PLAYGROUND_ENABLED,
+  GRAPHQL_TRACING_ENABLED,
 } = require('../env');
 
 const { keys } = Object;
 const router = Router();
 
 const config = {
-  // @todo Investigate why tracing and cacheControl are causing
-  // responses to be multiple megabytes in size!
-  tracing: false,
-  cacheControl: false,
+  tracing: GRAPHQL_TRACING_ENABLED,
+  cacheControl: GRAPHQL_CACHE_CONTROL_ENABLED,
   extensions: [
     ...(NEW_RELIC_ENABLED && [() => new ApolloNewrelicExtension()]),
   ],
   engine: APOLLO_ENGINE_ENABLED ? { apiKey: APOLLO_ENGINE_API_KEY } : false,
-  introspection: true,
+  introspection: GRAPHQL_INTROSPECTION_ENABLED,
   debug: GRAPHQL_DEBUG_ENABLED,
   playground: GRAPHQL_PLAYGROUND_ENABLED ? { endpoint: GRAPHQL_ENDPOINT } : false,
 };
