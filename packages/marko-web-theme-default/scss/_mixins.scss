@@ -175,6 +175,9 @@
     @include border-radius($theme-content-paragraph-image-border-radius);
     @include box-shadow($theme-content-paragraph-image-box-shadow);
   }
+  ul {
+    list-style-position: inside;
+  }
   p,
   ul,
   table,
