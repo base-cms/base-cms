@@ -19,6 +19,7 @@ const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
 module.exports = async ({
   rootDir,
   templatePath = 'templates', // Where templates will be resolved from.
+  newsletterQueryFragment, // An optional query fragment to use when loading the newsletter.
   customConfig,
   coreConfig,
   port = env.PORT || 5008,
@@ -48,7 +49,11 @@ module.exports = async ({
   const sitePackage = require(path.resolve(rootDir, 'package.json'));
 
   // Load newsletter marko templates.
-  const templates = await loadTemplates({ rootDir, templatePath });
+  const templates = await loadTemplates({
+    rootDir,
+    templatePath,
+    queryFragment: newsletterQueryFragment,
+  });
 
   const app = express({
     rootDir,
