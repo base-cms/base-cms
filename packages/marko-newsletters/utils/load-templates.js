@@ -4,7 +4,7 @@ const path = require('path');
 
 let promise;
 
-const load = async ({ rootDir, templatePath }) => {
+const load = async ({ rootDir, templatePath, queryFragment }) => {
   const templateDir = path.resolve(rootDir, templatePath);
   if (!fs.existsSync(templateDir)) throw new Error(`The template directory ${templateDir} does not exist.`);
 
@@ -22,12 +22,13 @@ const load = async ({ rootDir, templatePath }) => {
       alias,
       file,
       template,
+      queryFragment,
     });
   });
   return templates;
 };
 
-module.exports = ({ rootDir, templatePath }) => {
-  if (!promise) promise = load({ rootDir, templatePath });
+module.exports = ({ rootDir, templatePath, queryFragment }) => {
+  if (!promise) promise = load({ rootDir, templatePath, queryFragment });
   return promise;
 };

@@ -8,73 +8,51 @@ const moment = require('moment-timezone');
 const pretty = require('pretty');
 const cleanResponse = require('@base-cms/marko-core/middleware/clean-marko-response');
 const siteContextFragment = require('@base-cms/web-common/graphql/website-context-fragment');
+const { extractFragmentData } = require('@base-cms/web-common/utils');
 const websiteFactory = require('../utils/website-factory');
 
-const query = gql`
-
-query WithMarkoNewsletter($input: EmailNewsletterAliasQueryInput!) {
-  emailNewsletterAlias(input: $input) {
-    id
-    name
-    teaser
-    alias
-    description
-    status
-    site {
-      ...MarkoWebsiteContextFragment
-    }
-    alphaThemeConfigs {
-      edges {
-        node {
-          id
-          status
-          accentFontColor
-          headerLink
-          socialIcons
-          facebook
-          linkedin
-          twitter
-          youtube
-          instagram
-          pinterest
-          headerBgColor
-          headerTextColor
-          headerTemplate
-          dateToggle
-          footerColor
-          footerTextColor
-          manageSubscriptions
-          contactUs
-          advertise
-          headerLeft {
-            id
-            src
-          }
-          headerRight {
-            id
-            src
-          }
+const buildQuery = ({ queryFragment }) => {
+  const { spreadFragmentName, processedFragment } = extractFragmentData(queryFragment);
+  return gql`
+    query WithMarkoNewsletter($input: EmailNewsletterAliasQueryInput!) {
+      emailNewsletterAlias(input: $input) {
+        id
+        name
+        teaser
+        alias
+        description
+        status
+        site {
+          ...MarkoWebsiteContextFragment
         }
+        ${spreadFragmentName}
       }
     }
-  }
-}
 
-${siteContextFragment}
-
-`;
+    ${siteContextFragment}
+    ${processedFragment}
+  `;
+};
 
 module.exports = ({ templates }) => {
   const router = Router();
 
   router.use(cleanResponse());
 
-  templates.forEach(({ route, template, alias }) => {
+  templates.forEach(({
+    route,
+    template,
+    alias,
+    queryFragment,
+  }) => {
     router.get(route, asyncRoute(async (req, res) => {
       const { apollo } = res.locals;
       const input = { alias, status: 'any' };
 
-      const { data } = await apollo.query({ query, variables: { input } });
+      const { data } = await apollo.query({
+        query: buildQuery({ queryFragment }),
+        variables: { input },
+      });
       const { emailNewsletterAlias: newsletter } = data;
 
       // Load the current newsletter and associated website.
