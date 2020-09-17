@@ -42,6 +42,7 @@ type EmailThemeAlphaConfig {
   dateToggle: String @projection
   footerColor: String @projection
   footerTextColor: String @projection
+  subscribe: String @projection
   manageSubscriptions: String @projection
   contactUs: String @projection
   advertise: String @projection
