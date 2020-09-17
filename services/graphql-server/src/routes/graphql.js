@@ -14,27 +14,30 @@ const createLoaders = require('../dataloaders');
 const schema = require('../graphql/schema');
 const loadSiteContext = require('../site-context/load');
 const {
-  NODE_ENV,
   GRAPHQL_ENDPOINT,
-  ENGINE_API_KEY,
+  APOLLO_ENGINE_ENABLED,
+  APOLLO_ENGINE_API_KEY,
+  NEW_RELIC_ENABLED,
+  GRAPHQL_CACHE_CONTROL_ENABLED,
+  GRAPHQL_DEBUG_ENABLED,
+  GRAPHQL_INTROSPECTION_ENABLED,
+  GRAPHQL_PLAYGROUND_ENABLED,
+  GRAPHQL_TRACING_ENABLED,
 } = require('../env');
-
-const isProduction = NODE_ENV === 'production';
 
 const { keys } = Object;
 const router = Router();
 
 const config = {
-  // @todo Investigate why tracing and cacheControl are causing
-  // responses to be multiple megabytes in size!
-  tracing: false,
-  cacheControl: false,
-  extensions: isProduction ? [() => new ApolloNewrelicExtension()] : [],
-  engine: isProduction ? { apiKey: ENGINE_API_KEY } : false,
-  introspection: true,
-  // Enable in dev
-  debug: !isProduction,
-  playground: !isProduction ? { endpoint: GRAPHQL_ENDPOINT } : false,
+  tracing: GRAPHQL_TRACING_ENABLED,
+  cacheControl: GRAPHQL_CACHE_CONTROL_ENABLED,
+  extensions: [
+    ...(NEW_RELIC_ENABLED && [() => new ApolloNewrelicExtension()]),
+  ],
+  engine: APOLLO_ENGINE_ENABLED ? { apiKey: APOLLO_ENGINE_API_KEY } : false,
+  introspection: GRAPHQL_INTROSPECTION_ENABLED,
+  debug: GRAPHQL_DEBUG_ENABLED,
+  playground: GRAPHQL_PLAYGROUND_ENABLED ? { endpoint: GRAPHQL_ENDPOINT } : false,
 };
 
 const server = new ApolloServer({
