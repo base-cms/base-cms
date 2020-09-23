@@ -29,7 +29,8 @@
     "<params>": {
       "@email": "string",
       "@date": "date",
-      "@send": "string"
+      "@send": "string",
+      "@include-advertiser": "boolean"
     },
     "@decoded-params":  "array"
   }

@@ -22,6 +22,7 @@ module.exports = async ({
   date,
   email,
   send,
+  includeAdvertiser = false,
   decodedParams,
   fetchOptions,
 } = {}) => {
@@ -31,7 +32,12 @@ module.exports = async ({
   const momentDate = moment(date);
   if (!momentDate.isValid()) throw new Error(`The provided EmailX date '${date}' is invalid.`);
 
-  const query = buildQuery({ momentDate, email, send });
+  const query = buildQuery({
+    momentDate,
+    email,
+    send,
+    includeAdvertiser,
+  });
 
   const buildParams = {
     uri: serveUri,
