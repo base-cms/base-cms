@@ -47,6 +47,20 @@ $new-breakpoint-list: map-merge($theme-site-header-breakpoints, (desktop-grid-br
         margin-bottom: 0;
       }
     }
+    .ad-container {
+      &--max-width-728,
+      &--max-width-300 {
+        max-width: 100%;
+      }
+      @media (min-width: $desktop-grid-breakpoint) {
+        &--max-width-728 {
+          max-width: 728px;
+        }
+        &--max-width-300 {
+          max-width: 300px;
+        }
+      }
+    }
   }
 
   &__right-col {
