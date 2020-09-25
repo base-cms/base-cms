@@ -8,7 +8,12 @@ $ const params = getAsObject(input, "params");
 $ const decodedParams = getAsArray(input, "decodedParams");
 
 $ const { uri, id } = adUnit;
-$ const { email, date, send } = params;
+$ const {
+  email,
+  date,
+  send,
+  includeAdvertiser,
+} = params;
 
 $ const promise = fetchData({
   serveUri: uri,
@@ -16,6 +21,7 @@ $ const promise = fetchData({
   date,
   email,
   send,
+  includeAdvertiser,
   decodedParams,
 });
 
