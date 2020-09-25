@@ -1,3 +1,6 @@
+$desktop-grid-breakpoint: 1068px;
+$new-breakpoint-list: map-merge($theme-site-header-breakpoints, (desktop-grid-breakpoint: $desktop-grid-breakpoint));
+
 @mixin create-row() {
   display: flex;
   margin-right: -$grid-gutter-width / 2;
@@ -6,30 +9,36 @@
 
 .page-grid {
   @include create-row();
+  flex-direction: column;
+
+  @media (min-width: $desktop-grid-breakpoint) {
+    flex-direction: row;
+  }
 
   &__left-col {
     @include make-col-ready();
-    position: sticky;
-    @each $breakpoint, $width in sort-map-by-values($theme-site-header-breakpoints, desc) {
-      @media (max-width: $width) {
-        top: calc(#{calculate-navbar-height-for($breakpoint)} + #{$grid-gutter-width / 2});
-        height: calc(100vh - #{calculate-navbar-height-for($breakpoint)} - #{$grid-gutter-width / 2});
+    flex: 0 0 100%;
+    order: 1;
+
+    @each $breakpoint, $width in sort-map-by-values($new-breakpoint-list, asc) {
+      @if ($width >= $desktop-grid-breakpoint) {
+        @media (min-width: $width) {
+          top: calc(#{calculate-navbar-height-for($breakpoint)} + #{$grid-gutter-width / 2});
+          height: calc(100vh - #{calculate-navbar-height-for($breakpoint)} - #{$grid-gutter-width / 2});
+        }
       }
     }
 
-    flex: 0 0 330px;
-    max-width: 330px;
-    overflow: scroll;
-    opacity: 1;
-    transition-duration: 375ms;
-    transition-property: width, max-width, padding, opacity;
-    will-change: width, max-width, padding, opacity;
-    @media (max-width: 1068px) {
-      flex-basis: 0;
-      width: 0;
-      max-width: 0;
-      padding: 0;
-      opacity: 0;
+    @media (min-width: $desktop-grid-breakpoint) {
+      position: sticky;
+      flex: 0 0 330px;
+      order: 0;
+      max-width: 330px;
+      overflow: scroll;
+      opacity: 1;
+      transition-duration: 375ms;
+      transition-property: width, max-width, padding, opacity;
+      will-change: width, max-width, padding, opacity;
     }
 
     > * {
@@ -38,11 +47,30 @@
         margin-bottom: 0;
       }
     }
+    .ad-container {
+      &--max-width-728,
+      &--max-width-300 {
+        max-width: 100%;
+      }
+      @media (min-width: $desktop-grid-breakpoint) {
+        &--max-width-728 {
+          max-width: 728px;
+        }
+        &--max-width-300 {
+          max-width: 300px;
+        }
+      }
+    }
   }
 
   &__right-col {
     @include make-col-ready();
-    max-width: 870px;
+    order: 0;
+
+    @media (min-width: $desktop-grid-breakpoint) {
+      order: 1;
+      max-width: 870px;
+    }
   }
 
   &__top-row {
