@@ -160,6 +160,10 @@ export default {
         if (pattern.test(value)) {
           // Needs to be replaced with a component value.
           const prop = value.replace(pattern, '');
+
+          // Also need to replace in the href if they are used
+          this.href = this.href.replace(value, this[prop]);
+
           return { key, value: this[prop] };
         }
         // Return value as is
