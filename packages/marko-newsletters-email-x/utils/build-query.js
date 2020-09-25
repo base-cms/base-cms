@@ -20,6 +20,6 @@ module.exports = ({
     rand,
     email,
     send,
-    incAdv: includeAdvertiser || undefined,
+    ...(includeAdvertiser && { incAdv: true }),
   };
 };
