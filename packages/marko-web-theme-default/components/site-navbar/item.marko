@@ -9,12 +9,17 @@ $ const linkMods = (href) => {
   if (isActiveLink(req.path, href)) mods.push('active');
   return mods;
 };
+$ const containerMods = (href) => {
+  const mods = [...getAsArray(input, "modifiers")];
+  if (isActiveLink(req.path, href)) mods.push('active');
+  return mods;
+};
 
 <marko-web-element
   block-name=blockName
   name="item"
   tag=(input.tag || "li")
-  modifiers=input.modifiers
+  modifiers=containerMods(input.href)
 >
   $ const elementName = `${blockName}__link`;
   $ const classNames = [elementName, ...linkMods(input.href).map(mod => `${elementName}--${mod}`)];
