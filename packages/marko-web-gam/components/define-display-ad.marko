@@ -13,6 +13,7 @@ $ const {
   sizeMapping,
   withWrapper,
   collapseBeforeAdFetch,
+  requestOnMediaMatch,
 } = input;
 $ const id = input.id || generateId({ inc });
 
@@ -35,7 +36,6 @@ $ const slots = {
   },
 };
 $ calls.push(...buildSlots(slots));
-$ calls.push(`googletag.display('${id}');`);
 
 $ const attrs = {
   ...getAsObject(input.attrs),
@@ -50,6 +50,24 @@ $ const attrs = {
 
 $ const blockName = input.blockName || "ad-container";
 $ const classNames = [blockName, ...BEM.applyModifiers(blockName, input.modifiers), input.class];
+
+$ const debugMediaQuery = Boolean(defaultValue(input.debugMediaQuery, false));
+$ if (requestOnMediaMatch) calls.push(`
+  var hasRequested = false; var debugMediaQuery = ${debugMediaQuery};
+  var handler = function(media) {
+    if (hasRequested) return;
+    if (media.matches) {
+      googletag.display('${id}'); hasRequested = true;
+      if (debugMediaQuery) console.log('GAM ad request sent based on media query', '${id}', '${requestOnMediaMatch}');
+    } else {
+      if (debugMediaQuery) console.log('GAM ad request ineligble based on media query', '${id}', '${requestOnMediaMatch}');
+    }
+  };
+  var mql = window.matchMedia('${requestOnMediaMatch}');
+  mql.addEventListener('change', function(event) { handler(event); });
+  handler(mql);
+`);
+$ if (!requestOnMediaMatch) calls.push(`googletag.display('${id}');`);
 
 <if(path)>
   <div
