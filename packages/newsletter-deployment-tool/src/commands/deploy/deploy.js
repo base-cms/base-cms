@@ -3,7 +3,12 @@ const { existsSync } = require('fs');
 const { join } = require('path');
 const { spawnSync } = require('child_process');
 const https = require('https');
-const { DOCKER_PASSWORD, DOCKER_USERNAME, TRAVIS_TAG } = require('./env');
+const {
+  DOCKER_ORG,
+  DOCKER_PASSWORD,
+  DOCKER_USERNAME,
+  TRAVIS_TAG,
+} = require('./env');
 const failed = require('../notify/failed');
 
 const useLerna = existsSync(join(process.cwd(), 'lerna.json'));
@@ -58,7 +63,7 @@ module.exports = async (argv) => {
   // eslint-disable-next-line import/no-dynamic-require, global-require
   const pkg = require(tenantPath);
   const name = pkg.name.replace('@', '').replace('/', '-');
-  const image = `basecmsnewsletters/${name}`;
+  const image = `${DOCKER_ORG}/${name}`;
 
   if (version !== `v${pkg.version}`) {
     log(`Newsletter tenant ${name} is at version ${pkg.version}. Skipping deployment.`);
