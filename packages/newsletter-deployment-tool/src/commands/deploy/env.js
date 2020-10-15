@@ -11,6 +11,7 @@ const nonemptystr = makeValidator((v) => {
 });
 
 module.exports = cleanEnv(process.env, {
+  DOCKER_ORG: nonemptystr({ desc: 'The DockerHub organization.', default: 'basecmsnewsletters' }),
   DOCKER_PASSWORD: nonemptystr({ desc: 'The DockerHub credentials.' }),
   DOCKER_USERNAME: nonemptystr({ desc: 'The DockerHub credentials.' }),
   ENVIRONMENT: nonemptystr({ desc: 'The environment to deploy to.', choices: ['production', 'staging'] }),
