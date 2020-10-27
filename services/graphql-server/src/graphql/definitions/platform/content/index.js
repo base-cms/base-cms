@@ -409,6 +409,8 @@ input WebsiteScheduledContentQueryInput {
   sectionBubbling: Boolean = true
   pagination: PaginationInput = {}
   sort: ContentSortInput = { field: null }
+  after: Date
+  since: Date
 }
 
 input RelatedPublishedContentQueryInput {
