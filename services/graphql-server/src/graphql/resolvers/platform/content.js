@@ -984,6 +984,8 @@ module.exports = {
         requiresImage,
         sectionBubbling,
         pagination,
+        since,
+        after,
       } = input;
 
       if (sectionId && sectionAlias) throw new UserInputError('You cannot provide both sectionId and sectionAlias as input.');
@@ -1015,11 +1017,14 @@ module.exports = {
         sectionFilter = descendantIds.length ? { $in: descendantIds } : section._id;
       }
 
-      const now = new Date();
+      const now = since || new Date();
       const $elemMatch = {
         sectionId: sectionFilter,
         optionId: { $in: options.map(opt => opt._id) },
-        start: { $lte: now },
+        start: {
+          $lte: now,
+          ...(after && { $gte: after }),
+        },
         $and: [
           {
             $or: [
