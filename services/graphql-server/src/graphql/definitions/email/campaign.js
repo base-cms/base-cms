@@ -63,22 +63,12 @@ module.exports = gql`
     productId: ObjectID
     sort: EmailCampaignsSortInput = {}
     pagination: PaginationInput = {}
-    beginning: CampaignBeginningInput = {}
-    ending: CampaignEndingInput = {}
-  }
-
-  input CampaignBeginningInput {
-    before: Date
-    after: Date
-  }
-
-  input CampaignEndingInput {
-    before: Date
-    after: Date
+    scheduledAfter: Date
+    scheduledBefore: Date
   }
 
   input EmailCampaignsSortInput {
-    field: EmailCampaignsSortField = deploymentDate
+    field: EmailCampaignsSortField = scheduled
     order: SortOrder = desc
   }
 `;

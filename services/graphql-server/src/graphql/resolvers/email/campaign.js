@@ -13,19 +13,17 @@ module.exports = {
         sort,
         productId,
         pagination,
-        beginning,
-        ending,
+        scheduledAfter,
+        scheduledBefore,
       } = input;
       const query = {};
 
       if (productId) query['product.$id'] = productId;
 
-      if (beginning.before || beginning.after || ending.before || ending.after) {
+      if (scheduledAfter || scheduledBefore) {
         query.$and = [];
-        if (beginning.before) query.$and.push({ scheduled: { $lte: beginning.before } });
-        if (beginning.after) query.$and.push({ scheduled: { $gte: beginning.after } });
-        if (ending.before) query.$and.push({ scheduled: { $lte: ending.before } });
-        if (ending.after) query.$and.push({ scheduled: { $gte: ending.after } });
+        if (scheduledBefore) query.$and.push({ scheduled: { $lte: scheduledBefore } });
+        if (scheduledAfter) query.$and.push({ scheduled: { $gte: scheduledAfter } });
       }
 
       const projection = connectionProjection(info);
