@@ -4,7 +4,7 @@ module.exports = gql`
   extend type Query {
     emailCampaign(input: EmailCampaignQueryInput!): EmailCampaign
       @findOne(model: "email.Campaign", using: { id: "_id" })
-    emailCampaigns(input: EmailCampaignQuerysInput!): EmailCampaignConnection!
+    emailCampaigns(input: EmailCampaignsQuerysInput!): EmailCampaignConnection!
   }
 
   type EmailCampaignConnection @projectUsing(type: "EmailCampaign") {
@@ -25,7 +25,7 @@ module.exports = gql`
     created: Date @projection
     touched: Date @projection
     updated: Date @projection
-    createdBy: Date @projection
+    createdBy: User @projection @refOne(loader: "platformUser")
     deploymentDate: Date @projection
     scheduled: Date @projection
     htmlDate: Date @projection
@@ -57,7 +57,7 @@ module.exports = gql`
     status: ModelStatus = active
   }
 
-  input EmailCampaignsQueryInput {
+  input EmailCampaignsQuerysInput {
     id: ObjectID
     status: ModelStatus = active
     productId: ObjectID
