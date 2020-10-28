@@ -32,7 +32,7 @@ const config = {
   tracing: GRAPHQL_TRACING_ENABLED,
   cacheControl: GRAPHQL_CACHE_CONTROL_ENABLED,
   extensions: [
-    ...(NEW_RELIC_ENABLED ? [() => ApolloNewrelicExtension()] : []),
+    ...(NEW_RELIC_ENABLED ? [() => new ApolloNewrelicExtension()] : []),
   ],
   engine: APOLLO_ENGINE_ENABLED ? { apiKey: APOLLO_ENGINE_API_KEY } : false,
   introspection: GRAPHQL_INTROSPECTION_ENABLED,
