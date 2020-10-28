@@ -55,6 +55,7 @@ module.exports = gql`
   input EmailCampaignQueryInput {
     id: ObjectID
     status: ModelStatus = active
+    productId: ObjectID
   }
 
   input EmailCampaignsQuerysInput {
