@@ -32,7 +32,7 @@ module.exports = gql`
     externalId: String @projection
     fromName: String @projection
     html: String @projection
-    listId: Int @projection
+    listId: String @projection
     listStatus: String @projection
     locked: String @projection
     subjectLine: String @projection
