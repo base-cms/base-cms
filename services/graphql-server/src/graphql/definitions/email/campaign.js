@@ -37,7 +37,6 @@ module.exports = gql`
     locked: Boolean @projection
     subjectLine: String @projection
     listMessage: String @projection
-    tests: [EmailCampaignTestRecipient] @projection
   }
 
   type EmailCampaignTestRecipient {
