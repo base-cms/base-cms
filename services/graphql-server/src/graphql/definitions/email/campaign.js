@@ -34,7 +34,7 @@ module.exports = gql`
     html: String @projection
     listId: String @projection
     listStatus: String @projection
-    locked: String @projection
+    locked: Boolean @projection
     subjectLine: String @projection
     listMessage: String @projection
     tests: [EmailCampaignTestRecipient] @projection
