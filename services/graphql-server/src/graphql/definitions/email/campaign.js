@@ -58,7 +58,7 @@ input EmailCampaignQueryInput {
   productId: ObjectID
 }
 
-input EmailCampaignsQuerysInput {
+input EmailCampaignsQueryInput {
   id: ObjectID
   status: ModelStatus = active
   productId: ObjectID
