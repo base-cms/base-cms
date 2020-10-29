@@ -5,7 +5,7 @@ module.exports = gql`
 extend type Query {
   emailCampaign(input: EmailCampaignQueryInput!): EmailCampaign
     @findOne(model: "email.Campaign", using: { id: "_id" })
-  emailCampaigns(input: EmailCampaignsQuerysInput!): EmailCampaignConnection!
+  emailCampaigns(input: EmailCampaignsQueryInput!): EmailCampaignConnection!
 }
 
 type EmailCampaignConnection @projectUsing(type: "EmailCampaign") {
