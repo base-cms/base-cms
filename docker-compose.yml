@@ -98,6 +98,8 @@ services:
       BASE4_REST_PASSWORD: ${BASE4_REST_PASSWORD-}
       TOKEN_SECRET: ${TOKEN_SECRET-ThisValueIsNotSecretChangeIt}
       TOKEN_NAMESPACE: ${TOKEN_NAMESPACE-aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee}
+      CDN_ASSET_HOSTNAME: ${CDN_ASSET_HOSTNAME-cdn.baseplatform.io}
+      CDN_IMAGE_HOSTNAME: ${CDN_IMAGE_HOSTNAME-base.imgix.net}
       PORT: 80
       EXPOSED_PORT: 10002
     depends_on:
