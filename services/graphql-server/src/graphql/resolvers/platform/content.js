@@ -1312,6 +1312,60 @@ module.exports = {
     /**
      *
      */
+    createContentPromotion: async (_, { input }, { base4rest, basedb }, info) => {
+      validateRest(base4rest);
+      const type = 'platform/content/promotion';
+      const { primarySectionId, companyId, ...payload } = input.payload;
+      const section = await basedb.strictFindById('website.Section', primarySectionId, { projection: { site: 1 } });
+      const primarySiteId = BaseDB.extractRefId(section.site);
+      await basedb.strictFindById('platform.Product', primarySiteId, { projection: { _id: 1 } });
+      const keys = Object.keys(payload);
+      const body = new Base4RestPayload({ type });
+      if (companyId) body.setLink('company', { id: companyId, type: 'platform/content/company' });
+      body.setLink('primarySiteWebsite', { id: primarySiteId, type: 'website/product/site' });
+      body.setLink('primarySectionWebsite', { id: primarySectionId, type: 'website/section' });
+      keys.forEach(k => body.set(k, payload[k]));
+      const { data } = await base4rest.insertOne({ model: type, body });
+      const projection = buildProjection({ info, type: 'ContentPromotion' });
+      return basedb.findOne('platform.Content', { _id: data.id }, { projection });
+    },
+
+    /**
+     *
+     */
+    updateContentPromotion: async (_, { input }, { base4rest, basedb }, info) => {
+      validateRest(base4rest);
+      const type = 'platform/content/promotion';
+      const { id, payload } = input;
+      const body = new Base4RestPayload({ type });
+      Object.keys(payload).forEach(k => body.set(k, payload[k]));
+      body.set('id', id);
+      await base4rest.updateOne({ model: type, id, body });
+      const projection = buildProjection({ info, type: 'ContentPromotion' });
+      return basedb.findOne('platform.Content', { _id: id }, { projection });
+    },
+
+    /**
+     *
+     */
+    updateContentPromotionImages: async (_, { input }, { base4rest, basedb }, info) => {
+      validateRest(base4rest);
+      const type = 'platform/content/promotion';
+      const image = 'platform/asset/image';
+      const { id, payload } = input;
+      const { imageIds, primaryImageId } = payload;
+      const body = new Base4RestPayload({ type });
+      if (primaryImageId) body.setLink('primaryImage', { id: primaryImageId, type: image });
+      if (imageIds) body.setLinks('images', imageIds.map(imgId => ({ id: imgId, type: image })));
+      body.set('id', id);
+      await base4rest.updateOne({ model: type, id, body });
+      const projection = buildProjection({ info, type: 'ContentPromotion' });
+      return basedb.findOne('platform.Content', { _id: id }, { projection });
+    },
+
+    /**
+     *
+     */
     updateContentCompanyPublicContacts: async (_, { input }, { base4rest, basedb }, info) => {
       validateRest(base4rest);
       const type = 'platform/content/contact';
