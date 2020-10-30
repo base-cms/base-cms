@@ -1,9 +1,13 @@
 /* eslint-disable no-new */
 import Vue from 'vue';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import VueApollo from 'vue-apollo';
 
 import Leaders from './components/leaders.vue';
 import createProvider from '../apollo/create-provider';
+
+// eslint-disable-next-line no-unused-vars
+import css from './scss/leaders.scss';
 
 Vue.config.productionTip = false;
 Vue.use(VueApollo);
