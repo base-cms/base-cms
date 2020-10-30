@@ -31,4 +31,6 @@ module.exports = cleanEnv(process.env, {
   TOKEN_NAMESPACE: nonemptystr({ desc: 'The UUIDv4 namespace' }),
   TERMINUS_TIMEOUT: num({ desc: 'Number of milliseconds before forceful exiting', default: 1000 }),
   TERMINUS_SHUTDOWN_DELAY: num({ desc: 'Number of milliseconds before the HTTP server starts its shutdown', default: 10000 }),
+  CDN_IMAGE_HOSTNAME: nonemptystr({ desc: 'The default CDN hostname for image delivery', default: 'base.imgix.net' }),
+  CDN_ASSET_HOSTNAME: nonemptystr({ desc: 'The default CDN hostname for asset delivery', default: 'cdn.baseplatform.io' }),
 });
