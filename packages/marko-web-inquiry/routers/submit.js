@@ -51,6 +51,11 @@ module.exports = ({ queryFragment, notification, confirmation }) => asyncRoute(a
     return true;
   };
 
+  if (!payload || payload.email === '') {
+    error('Form validation failed!', payload);
+    throw exception('Invalid form submission');
+  }
+
   await validateRecaptcha();
 
   await Promise.all([
