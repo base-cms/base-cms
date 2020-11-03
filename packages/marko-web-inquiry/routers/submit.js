@@ -51,6 +51,15 @@ module.exports = ({ queryFragment, notification, confirmation }) => asyncRoute(a
     return true;
   };
 
+  const validatePayload = async () => {
+    if (!payload || !payload.email === '') {
+      error('Form validation failed!', payload);
+      throw exception('Invalid form submission');
+    }
+    return true;
+  };
+
+  await validatePayload();
   await validateRecaptcha();
 
   await Promise.all([
