@@ -19,6 +19,10 @@ export default {
       type: Object,
       default: () => ({}),
     },
+    detectEmbeds: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   data: () => ({
@@ -62,12 +66,22 @@ export default {
               // eslint-disable-next-line consistent-return
               $child.nextAll(childSelector).each(function handleBefore() {
                 if ($(this).text().length > 1) {
-                  $(this).before(cleaned);
+                  const $previous = $(this).prev();
+                  if (component.detectEmbeds && $previous.attr('data-embed-type')) {
+                    $(this).after(cleaned);
+                  } else {
+                    $(this).before(cleaned);
+                  }
                   return false;
                 }
               });
             } else {
-              $child.after(cleaned);
+              const $next = $(this).next();
+              if (component.detectEmbeds && $next.attr('data-embed-type')) {
+                $child.before(cleaned);
+              } else {
+                $child.after(cleaned);
+              }
             }
           }
           component.hasInjected[targetLength] = true;

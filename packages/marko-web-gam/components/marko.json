@@ -130,8 +130,11 @@
       "@block-name": {
         "type": "string",
         "default-value": "ad-container"
-      }
+      },
+      "@collapse-before-ad-fetch": "boolean",
+      "@with-wrapper": "boolean"
     },
+    "@detect-embeds": "boolean",
     "@selector": "string",
     "@child-selector": "string"
   }
