@@ -132,6 +132,7 @@
         "default-value": "ad-container"
       }
     },
+    "@detect-embeds": "boolean",
     "@selector": "string",
     "@child-selector": "string"
   }
