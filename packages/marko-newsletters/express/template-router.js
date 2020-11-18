@@ -96,7 +96,9 @@ module.exports = ({ templates }) => {
               limit: 1,
             },
           );
-          date = latestCampaign ? moment(latestCampaign.deploymentDate).tz(timezone) : moment(req.query.date).tz(timezone);
+          date = latestCampaign
+            ? moment(latestCampaign.deploymentDate).tz(timezone)
+            : moment(req.query.date).tz(timezone);
         } else {
           date = moment(req.query.date).tz(timezone);
         }

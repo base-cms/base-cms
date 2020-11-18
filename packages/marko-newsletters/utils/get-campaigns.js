@@ -16,7 +16,12 @@ query EmailCampaignList($input: EmailCampaignsQueryInput!) {
 }
 `;
 
-module.exports = async (apollo, { productId, scheduledBefore, scheduledAfter, limit }) => {
+module.exports = async (apollo, {
+  productId,
+  scheduledBefore,
+  scheduledAfter,
+  limit,
+}) => {
   const variables = {
     input: {
       productId,
