@@ -10,6 +10,7 @@ const cleanResponse = require('@base-cms/marko-core/middleware/clean-marko-respo
 const siteContextFragment = require('@base-cms/web-common/graphql/website-context-fragment');
 const { extractFragmentData } = require('@base-cms/web-common/utils');
 const websiteFactory = require('../utils/website-factory');
+const getCampaigns = require('../utils/get-campaigns');
 
 const buildQuery = ({ queryFragment }) => {
   const { spreadFragmentName, processedFragment } = extractFragmentData(queryFragment);
@@ -85,7 +86,20 @@ module.exports = ({ templates }) => {
       if (ts) {
         date = moment(ts).tz(timezone);
       } else if (req.query.date) {
-        date = moment(req.query.date).tz(timezone);
+        if (req.query.date === 'latest') {
+          const now = new Date();
+          const latestCampaign = await getCampaigns(
+            apollo,
+            {
+              productId: newsletter.id,
+              scheduledBefore: now.getTime(),
+              limit: 1,
+            },
+          );
+          date = latestCampaign ? moment(latestCampaign.deploymentDate).tz(timezone) : moment(req.query.date).tz(timezone);
+        } else {
+          date = moment(req.query.date).tz(timezone);
+        }
       }
       if (!date.isValid()) throw createError(400, 'The provided date parameter is invalid.');
 
