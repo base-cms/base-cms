@@ -12,18 +12,22 @@ module.exports = async (body, { imageHost, basedb }) => {
         name: 1,
         fileName: 1,
         filePath: 1,
+        cropDimensions: 1,
       },
     });
     if (!image) {
       tag.setValid(false);
       return tag;
     }
-    const size = tag.get('size', '640').replace('w', '');
+    // const defaultSize = ['left', 'right'].includes(tag.get('align')) ? '320' : '640';
+    // const size = tag.get('size', defaultSize).replace('w', '');
+    // @todo Adjust this. Hardcoding for now to allow for crisp images until proper w/h is handled.
+    const size = '1440';
 
     tag.set('alt', createAltFor(image));
     tag.set('src', createSrcFor(imageHost, image, {
       w: size,
-      h: size,
+      fit: 'max',
       auto: 'format',
     }));
     tag.set('caption', createCaptionFor(image.caption));
