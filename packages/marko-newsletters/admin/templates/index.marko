@@ -1,19 +1,12 @@
 import moment from "moment-timezone";
+
 $ const { newsletters, staticTemplates } = data;
-$ const format = "MMM Do, YYYY";
 
 <document>
   <@head>
     <page-title value="Newsletters" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
-    <style>
-    .deployment-list {
-      max-height: 5em;
-      overflow-y: scroll;
-    }
-  </style>
   </@head>
-  
   <div class="row">
     <div class="col-lg-6">
       <div class="card mb-3">
@@ -23,76 +16,46 @@ $ const format = "MMM Do, YYYY";
             <for|newsletter| of=newsletters>
               <div class="list-group-item">
                 <h5 class="card-title mb-2">${newsletter.name}</h5>
-                <div class="d-block mb-1">
-                  <h6 class="card-subtitle text-muted d-inline">Site: </h6>
-                  <p class="d-inline"><small>${newsletter.site.name}</small></p>
-                </div>
-                <div class="d-block mb-1">
-                  <h6 class="card-subtitle mb-1 text-muted  d-inline">Alias: </h6>
-                  <p class="d-inline"><small>${newsletter.alias}</small></p>
-                </div>
-                  <if(newsletter.templates.length)>
-                    <for|template| of=newsletter.templates>
-                      <if(!newsletter.campaigns || !newsletter.campaigns.length)>
-                        <div class="d-block mb-1">
-                          <h6 class="card-subtitle mb-1 text-muted d-inline">Templates: </h6>
-                          <p class="mb-0 d-inline"><small>${newsletter.alias}</small></p>
-                        </div>
-                        <div class="d-block mb-1">
-                          <h6 class="card-subtitle mb-1 text-muted d-inline">Deployments: </h6>
-                          <p class="mb-1 d-inline"><small>${template}</small></p>
-                        </div>
-                        <p class="mb-1">
-                          <small>
-                            [<a href=`/templates/${template}`>Todays</a>] 
-                            [<select-day template=template />]
-                          </small>
-                        </p>
-                      </if>
-                      <else>
-                        <div class="d-block mb-1">
-                          <h6 class="card-subtitle mb-1 text-muted d-inline">Deployments: </h6>
-                          <p class="mb-0 d-inline"><small>${newsletter.alias}</small></p>
-                        </div>
-                        <div class="d-block my-1 p-2 bg-light">
-                          <p class="mb-1">
-                            <small>
-                              [
-                                <a href=`/templates/${template}?date=${newsletter.campaigns[0].deploymentDate}`>
-                                  Lastest
-                                </a>
-                              ]
-                              [<a href=`/templates/${template}`>Todays</a>] 
-                              [<select-day template=template />]
-                            </small>
-                          </p>
-                          <p class="card-subtitle mb-1 text-bold">
-                            <small>
-                              Past Deployments:
-                            </small>
-                          </p>
-                          <div class="deployment-list m-1 p-1 bg-white">
-                            <small>        
-                              <for|c| of=newsletter.campaigns>
-                                  <a href= `/templates/${template}?date=${c.deploymentDate}`>
-                                    $ const campaignDate = moment(c.deploymentDate).format(format);
-                                    ${campaignDate}
+                <p class="mb-1">${newsletter.site.name}</p>
+                <p>Alias: ${newsletter.alias}</p>
+                <h6 class="card-subtitle mb-1 text-muted">Templates:</h6>
+                <if(newsletter.templates.length)>
+                  <for|template| of=newsletter.templates>
+                    <div style="max-height: 127px; overflow: scroll;">
+                      <table class="table table-sm table-striped mt-2 mb-0">
+                        <thead>
+                          <tr>
+                            <th>${template}</th>
+                            <th class="small">[<a href=`/templates/${template}`>today</a>]</th>
+                            <th class="small">[<select-day template=template />]</th>
+                            <th class="small">
+                              <if(newsletter.latestCampaign)>
+                                [<a href=`/templates/${template}?date=latest-campaign`>latest campaign</a>]
+                              </if>
+                            </th>
+                          </tr>
+                        </thead>
+                        <if(newsletter.campaigns.length)>
+                          <tbody>
+                            <for|campaign| of=newsletter.campaigns>
+                              <tr>
+                                <td colspan="4" class="small">
+                                  <a href=`/templates/${template}?date=${campaign.deploymentDate}`>
+                                    ${moment(campaign.deploymentDate).format("MMM Do, YYYY")}
                                   </a>
-                                  <br>
-                              </for>
-                            </small>
-                          </div>
-                        </div>
-                      </else>
-                    </for>
-                  </if>
-                  <else>
-                    <div class="d-block mb-1">
-                      <h6 class="card-subtitle mb-1 text-muted d-inline">Templates: </h6>
-                      <p class="mb-0 d-inline"><small>No templates mathing alias: ${newsletter.alias}</small></p>
+                                </td>
+                              </tr>
+                            </for>
+                          </tbody>
+                        </if>
+                      </table>
                     </div>
-                  </else>
-                </div>
+                  </for>
+                </if>
+                <else>
+                  <p class="mb-0">none</p>
+                </else>
+              </div>
             </for>
           </if>
           <else>
