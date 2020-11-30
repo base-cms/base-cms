@@ -168,11 +168,9 @@ export default {
         }
         // Return value as is
         return { key, value };
-      }).filter(({ key, value }) => {
-        // Do not double append URL to email body!
-        if (this.action === 'Email' && key === 'url') return false;
-        return value;
-      }).map(({ key, value }) => `${this.encode(key)}=${this.encode(value)}`);
+      }).filter(({ value }) => value).map(({ key, value }) => `${this.encode(key)}=${this.encode(value)}`);
+      // Return direct URLs without appending new parameters
+      if (this.type === 'direct') return this.href;
       const url = `${this.href}?${kvs.join('&')}`;
       return url;
     },
