@@ -97,7 +97,7 @@ module.exports = ({ templates }) => {
 
       // Get the latest campaign.
       const latestCampaign = getAsObject(newsletter, 'campaigns.edges.0.node');
-      if (req.query.date === 'latest' && latestCampaign.deploymentDate) {
+      if (req.query.date === 'latest-campaign' && latestCampaign.deploymentDate) {
         // use latest campaign date
         date = moment(latestCampaign.deploymentDate).tz(timezone);
       } else if (ts) {
