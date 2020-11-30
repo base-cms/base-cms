@@ -61,7 +61,7 @@ module.exports = ({ templates }) => {
 
       const { data } = await apollo.query({
         query: buildQuery({ queryFragment }),
-        variables: { input },
+        variables: { input, campaignsBefore: Date.now() },
       });
       const { emailNewsletterAlias: newsletter } = data;
 
