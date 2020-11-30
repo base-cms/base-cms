@@ -1,4 +1,5 @@
 const brevityCollectionIssues = require('./brevity-collection-issues');
+const emailNewsletterCampaigns = require('./email-newsletter-campaigns');
 const websiteSiteSections = require('./website-site-sections');
 
 /**
@@ -15,6 +16,7 @@ const websiteSiteSections = require('./website-site-sections');
  */
 const builders = {
   brevityCollectionIssues,
+  emailNewsletterCampaigns,
   websiteSiteSections,
 };
 

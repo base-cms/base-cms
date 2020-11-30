@@ -1,3 +1,5 @@
+import moment from "moment-timezone";
+
 $ const { newsletters, staticTemplates } = data;
 
 <document>
@@ -19,9 +21,35 @@ $ const { newsletters, staticTemplates } = data;
                 <h6 class="card-subtitle mb-1 text-muted">Templates:</h6>
                 <if(newsletter.templates.length)>
                   <for|template| of=newsletter.templates>
-                    <p class="mb-0">
-                      ${template} <small>[<a href=`/templates/${template}`>most recent</a>] [<select-day template=template />]</small>
-                    </p>
+                    <div style="max-height: 127px; overflow: scroll;">
+                      <table class="table table-sm table-striped mt-2 mb-0">
+                        <thead>
+                          <tr>
+                            <th>${template}</th>
+                            <th class="small">[<a href=`/templates/${template}`>today</a>]</th>
+                            <th class="small">[<select-day template=template />]</th>
+                            <th class="small">
+                              <if(newsletter.latestCampaign)>
+                                [<a href=`/templates/${template}?date=latest-campaign`>latest&nbsp;campaign</a>]
+                              </if>
+                            </th>
+                          </tr>
+                        </thead>
+                        <if(newsletter.campaigns.length)>
+                          <tbody>
+                            <for|campaign| of=newsletter.campaigns>
+                              <tr>
+                                <td colspan="4" class="small">
+                                  <a href=`/templates/${template}?date=${campaign.deploymentDate}`>
+                                    ${moment(campaign.deploymentDate).format("MMM Do, YYYY")}
+                                  </a>
+                                </td>
+                              </tr>
+                            </for>
+                          </tbody>
+                        </if>
+                      </table>
+                    </div>
                   </for>
                 </if>
                 <else>

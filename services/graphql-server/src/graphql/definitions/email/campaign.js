@@ -8,6 +8,13 @@ extend type Query {
   emailCampaigns(input: EmailCampaignsQueryInput!): EmailCampaignConnection!
 }
 
+enum EmailCampaignSortField {
+  id
+  status
+  deploymentDate
+  scheduled
+}
+
 type EmailCampaignConnection @projectUsing(type: "EmailCampaign") {
   totalCount: Int!
   edges: [EmailCampaignEdge]!
@@ -46,12 +53,6 @@ type EmailCampaignTestRecipient {
   email: String
 }
 
-enum EmailCampaignsSortField {
-  status
-  deploymentDate
-  scheduled
-}
-
 input EmailCampaignQueryInput {
   id: ObjectID
   status: ModelStatus = active
@@ -62,14 +63,14 @@ input EmailCampaignsQueryInput {
   id: ObjectID
   status: ModelStatus = active
   productId: ObjectID
-  sort: EmailCampaignsSortInput = {}
+  sort: EmailCampaignSortInput = {}
   pagination: PaginationInput = {}
   scheduledAfter: Date
   scheduledBefore: Date
 }
 
-input EmailCampaignsSortInput {
-  field: EmailCampaignsSortField = scheduled
+input EmailCampaignSortInput {
+  field: EmailCampaignSortField = scheduled
   order: SortOrder = desc
 }
 `;
