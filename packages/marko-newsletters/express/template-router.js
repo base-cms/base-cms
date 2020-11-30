@@ -9,13 +9,13 @@ const pretty = require('pretty');
 const cleanResponse = require('@base-cms/marko-core/middleware/clean-marko-response');
 const siteContextFragment = require('@base-cms/web-common/graphql/website-context-fragment');
 const { extractFragmentData } = require('@base-cms/web-common/utils');
+const { getAsObject } = require('@base-cms/object-path');
 const websiteFactory = require('../utils/website-factory');
-const getCampaigns = require('../utils/get-campaigns');
 
 const buildQuery = ({ queryFragment }) => {
   const { spreadFragmentName, processedFragment } = extractFragmentData(queryFragment);
   return gql`
-    query WithMarkoNewsletter($input: EmailNewsletterAliasQueryInput!) {
+    query WithMarkoNewsletter($input: EmailNewsletterAliasQueryInput!, $campaignsBefore: Date) {
       emailNewsletterAlias(input: $input) {
         id
         name
@@ -23,6 +23,15 @@ const buildQuery = ({ queryFragment }) => {
         alias
         description
         status
+        campaigns(input: { scheduledBefore: $campaignsBefore, pagination: { limit: 1 } }) {
+          edges {
+            node {
+              id
+              name
+              deploymentDate
+            }
+          }
+        }
         site {
           ...MarkoWebsiteContextFragment
         }
@@ -81,27 +90,22 @@ module.exports = ({ templates }) => {
         timezone = website.get('date.timezone');
       }
 
-      const ts = req.query.date ? parseInt(req.query.date, 10) : null;
+      // Set initial date of now
       let date = moment().tz(timezone);
-      if (ts) {
+      // Attempt to parse a timestamp from query string
+      const ts = req.query.date ? parseInt(req.query.date, 10) : null;
+
+      // Get the latest campaign.
+      const latestCampaign = getAsObject(newsletter, 'campaigns.edges.0.node');
+      if (req.query.date === 'latest' && latestCampaign.deploymentDate) {
+        // use latest campaign date
+        date = moment(latestCampaign.deploymentDate).tz(timezone);
+      } else if (ts) {
+        // use timestamp from query string
         date = moment(ts).tz(timezone);
       } else if (req.query.date) {
-        if (req.query.date === 'latest') {
-          const now = new Date();
-          const latestCampaign = await getCampaigns(
-            apollo,
-            {
-              productId: newsletter.id,
-              scheduledBefore: now.getTime(),
-              limit: 1,
-            },
-          );
-          date = latestCampaign
-            ? moment(latestCampaign.deploymentDate).tz(timezone)
-            : moment(req.query.date).tz(timezone);
-        } else {
-          date = moment(req.query.date).tz(timezone);
-        }
+        // attempt to parse the query string directly.
+        date = moment(req.query.date).tz(timezone);
       }
       if (!date.isValid()) throw createError(400, 'The provided date parameter is invalid.');
 
