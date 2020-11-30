@@ -46,6 +46,7 @@ module.exports = async (apollo, { templates }) => {
     const node = { ...edge.node };
     node.templates = templates.filter(t => t.alias === node.alias).map(t => t.key);
     node.campaigns = getAsArray(node, 'campaigns.edges').map(campaignEdge => ({ ...campaignEdge.node }));
+    [node.latestCampaign] = node.campaigns;
     return node;
   });
 
