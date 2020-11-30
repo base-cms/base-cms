@@ -53,6 +53,7 @@ type EmailNewsletter {
 
   # GraphQL-only fields.
   site(input: EmailNewsletterSiteInput = {}): WebsiteSite @projection(localField: "siteId") @refOne(loader: "platformProduct", localField: "siteId", criteria: "websiteSite")
+  campaigns(input: EmailNewsletterCampaignsInput = {}): EmailCampaignConnection @projection(localField: "_id") @refMany(model: "email.Campaign", localField: "_id", foreignField: "product.$id")
 
   "Loads all alpha configuration objects for this newsletter, if present."
   alphaThemeConfigs(input: EmailNewsletterAlphaConfigInput = {}): EmailThemeAlphaConfigConnection! @projection @refMany(
@@ -114,6 +115,12 @@ input EmailNewslettersQueryInput {
   siteId: ObjectID
   status: ModelStatus = active
   sort: EmailNewsletterSortInput = {}
+  pagination: PaginationInput = {}
+}
+
+input EmailNewsletterCampaignsInput {
+  status: ModelStatus = active
+  sort: EmailCampaignSortInput = {}
   pagination: PaginationInput = {}
 }
 
