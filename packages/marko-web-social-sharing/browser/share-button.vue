@@ -171,8 +171,7 @@ export default {
       }).filter(({ value }) => value).map(({ key, value }) => `${this.encode(key)}=${this.encode(value)}`);
       // Return direct URLs without appending new parameters
       if (this.type === 'direct') return this.href;
-      const url = `${this.href}?${kvs.join('&')}`;
-      return url;
+      return `${this.href}?${kvs.join('&')}`;
     },
 
     emitOpenEvent() {
