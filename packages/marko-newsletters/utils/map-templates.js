@@ -1,10 +1,9 @@
 const { getAsArray } = require('@base-cms/object-path');
 const gql = require('graphql-tag');
-const getCampaigns = require('./get-campaigns');
 
 const query = gql`
 
-query MarkoNewslettersList {
+query MarkoNewslettersList($campaignsBefore: Date, $campaignsAfter: Date) {
   emailNewsletters(input: { sort: { field: name, order: asc }, pagination: { limit: 200 } }) {
     edges {
       node {
@@ -16,6 +15,20 @@ query MarkoNewslettersList {
           id
           name
         }
+        campaigns(input: {
+          scheduledBefore: $campaignsBefore
+          scheduledAfter: $campaignsAfter
+          pagination: { limit: 100 }
+        }) {
+          edges {
+            node {
+              id
+              name
+              deploymentDate
+              scheduled
+            }
+          }
+        }
       }
     }
   }
@@ -24,22 +37,17 @@ query MarkoNewslettersList {
 `;
 
 module.exports = async (apollo, { templates }) => {
-  const { data } = await apollo.query({ query });
-  const newsletters = await Promise.all(getAsArray(data, 'emailNewsletters.edges').map(async (edge) => {
+  const campaignsBefore = Date.now();
+  const campaignsAfter = campaignsBefore - (365 * 24 * 60 * 60 * 1000); // less one year
+  const variables = { campaignsBefore, campaignsAfter };
+  const { data } = await apollo.query({ query, variables });
+
+  const newsletters = getAsArray(data, 'emailNewsletters.edges').map((edge) => {
     const node = { ...edge.node };
-    const now = new Date();
     node.templates = templates.filter(t => t.alias === node.alias).map(t => t.key);
-    node.campaigns = await getCampaigns(
-      apollo,
-      {
-        productId: node.id,
-        scheduledBefore: now.getTime(),
-        scheduledAfter: now.getTime() - (52 * 7 * 24 * 3600000),
-        limit: 365,
-      },
-    );
+    node.campaigns = getAsArray(node, 'campaigns.edges').map(campaignEdge => ({ ...campaignEdge.node }));
     return node;
-  }));
+  });
 
   const aliases = newsletters.map(n => n.alias);
   const staticTemplates = templates.filter(t => !aliases.includes(t.alias)).map(t => t.key);
