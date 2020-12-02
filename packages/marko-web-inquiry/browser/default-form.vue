@@ -130,6 +130,18 @@
         </div>
       </div>
     </div>
+    <div v-if="gdpr" class="row">
+      <div class="col-12 form-group">
+        <input
+          id="inquiry-form.gdprOptIn"
+          v-model="gdprOptIn"
+          type="checkbox"
+        >
+        <label for="inquiry-form.gdprOptIn" class="d-inline">
+          {{ gdprMessage }}
+        </label>
+      </div>
+    </div>
     <pre v-if="error" class="alert alert-danger text-danger">An error occurred: {{ error }}</pre>
     <vue-recaptcha
       ref="invisibleRecaptcha"
@@ -139,9 +151,14 @@
       @verify="onVerify"
       @expired="onExpired"
     />
-    <button type="submit" class="btn btn-primary" :disabled="loading">
+    <button type="submit" class="btn btn-primary form-group" :disabled="loading">
       Submit
     </button>
+    <div v-if="getPrivacyMessage" class="row">
+      <p class="col-12">
+        {{ privacyMessage }}
+      </p>
+    </div>
   </form>
   <div v-else>
     Thanks for your inquiry! We'll reach out shortly.
@@ -169,6 +186,14 @@ export default {
       type: String,
       required: true,
     },
+    gdprMessage: {
+      type: String,
+      default: null,
+    },
+    privacyMessage: {
+      type: String,
+      default: null,
+    },
   },
   data: () => ({
     firstName: '',
@@ -180,7 +205,24 @@ export default {
     country: '',
     postalCode: '',
     comments: '',
+    gdprOptIn: false,
   }),
+  computed: {
+    gdpr() {
+      const gdprCountries = ['AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR', 'HU', 'IS', 'IE', 'IT', 'LV', 'LI', 'LT', 'LU', 'MT', 'NL', 'NO', 'PL', 'PT', 'RO', 'SK', 'ES', 'SE', 'GB'];
+      if (this.country && this.gdprMessage) {
+        for (let i = 0; i < gdprCountries.length; i += 1) {
+          if (this.country === gdprCountries[i]) {
+            return true;
+          }
+        }
+      }
+      return false;
+    },
+    getPrivacyMessage() {
+      return this.privacyMessage;
+    },
+  },
   methods: {
     onSubmit() {
       this.$refs.invisibleRecaptcha.execute();
@@ -205,6 +247,7 @@ export default {
         country,
         postalCode,
         comments,
+        gdprOptIn,
       } = this;
 
       const payload = {
@@ -218,6 +261,7 @@ export default {
         country,
         postalCode,
         comments,
+        gdprOptIn,
         token,
       };
 
