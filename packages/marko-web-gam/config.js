@@ -40,7 +40,12 @@ class GAMConfiguration {
   } = {}) {
     if (!name || !alias || !path) throw new Error('Unable to create GAM ad unit: the name, alias, and path are required');
     const template = templateName ? this.templates[templateName] : {};
-    const adUnit = { ...template, ...options, path: this.createAdUnitPath(path) };
+    const adUnit = {
+      ...template,
+      ...options,
+      path: this.createAdUnitPath(path),
+      templateName,
+    };
     set(this.adUnits, `${alias}.${name}`, adUnit);
     return this;
   }
