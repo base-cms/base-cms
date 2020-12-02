@@ -48,7 +48,7 @@ const redirectOrError = ({
     } else {
       render(res, { statusCode, err, template });
     }
-  }).catch(async () => {
+  }).catch(() => {
     try {
       render(res, { statusCode, err, template });
     } catch (e) {
