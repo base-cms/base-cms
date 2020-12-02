@@ -40,6 +40,7 @@ const redirectOrError = ({
   redirectHandler,
   statusCode,
   template,
+  fatalErrorHandler,
 }) => {
   getRedirect(req, redirectHandler).then((redirect) => {
     if (redirect) {
@@ -52,16 +53,21 @@ const redirectOrError = ({
     try {
       render(res, { statusCode, err, template });
     } catch (e) {
-      error('Unable to render error template for', err);
+      fatalErrorHandler(err);
     }
   });
 };
 
-module.exports = (app, { template, redirectHandler }) => {
+module.exports = (app, { template, redirectHandler, onFatalError }) => {
   // Force Express to throw an error on 404s.
   app.use((req, res, next) => { // eslint-disable-line no-unused-vars
     throw createError(404, `No page found for '${req.path}'`);
   });
+
+  const fatalErrorHandler = (err) => {
+    error('Unable to render error template!', err);
+    if (typeof onFatalError === 'function') onFatalError(err);
+  };
 
   // Error handler.
   // @todo handle logging
@@ -74,6 +80,7 @@ module.exports = (app, { template, redirectHandler }) => {
       redirectHandler,
       statusCode,
       template,
+      fatalErrorHandler,
     };
 
     // Attempt to load aliased content (when applicable).
