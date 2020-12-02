@@ -6,6 +6,7 @@ const findContentAlias = require('./find-content-alias');
 const applyQueryParams = require('../utils/apply-query-params');
 
 const { isArray } = Array;
+const { error } = console;
 
 const renderError = (res, { statusCode, err, template }) => {
   res.status(statusCode);
@@ -39,6 +40,7 @@ const redirectOrError = ({
   redirectHandler,
   statusCode,
   template,
+  fatalErrorHandler,
 }) => {
   getRedirect(req, redirectHandler).then((redirect) => {
     if (redirect) {
@@ -47,14 +49,25 @@ const redirectOrError = ({
     } else {
       render(res, { statusCode, err, template });
     }
-  }).catch(() => render(res, { statusCode, err, template }));
+  }).catch(() => {
+    try {
+      render(res, { statusCode, err, template });
+    } catch (e) {
+      fatalErrorHandler(err);
+    }
+  });
 };
 
-module.exports = (app, { template, redirectHandler }) => {
+module.exports = (app, { template, redirectHandler, onFatalError }) => {
   // Force Express to throw an error on 404s.
   app.use((req, res, next) => { // eslint-disable-line no-unused-vars
     throw createError(404, `No page found for '${req.path}'`);
   });
+
+  const fatalErrorHandler = (err) => {
+    error('Unable to render error template!', err);
+    if (typeof onFatalError === 'function') onFatalError(err);
+  };
 
   // Error handler.
   // @todo handle logging
@@ -67,6 +80,7 @@ module.exports = (app, { template, redirectHandler }) => {
       redirectHandler,
       statusCode,
       template,
+      fatalErrorHandler,
     };
 
     // Attempt to load aliased content (when applicable).

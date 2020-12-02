@@ -33,6 +33,7 @@ module.exports = async ({
   fragments, // fragments to register globally
   embeddedMediaHandlers,
   onAsyncBlockError,
+  onFatalError,
   redirectHandler,
   sitemapsHeaders,
 
@@ -63,6 +64,7 @@ module.exports = async ({
     tenantKey,
     siteId,
     onAsyncBlockError,
+    onFatalError,
     document,
     components,
     fragments,
@@ -82,7 +84,11 @@ module.exports = async ({
   routes(app);
 
   // Apply error handlers.
-  errorHandlers(app, { template: errorTemplate, redirectHandler });
+  errorHandlers(app, {
+    template: errorTemplate,
+    redirectHandler,
+    onFatalError: onFatalError || onAsyncBlockError,
+  });
 
   const server = http.createServer(app);
 
