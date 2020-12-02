@@ -6,6 +6,7 @@ const findContentAlias = require('./find-content-alias');
 const applyQueryParams = require('../utils/apply-query-params');
 
 const { isArray } = Array;
+const { error } = console;
 
 const renderError = (res, { statusCode, err, template }) => {
   res.status(statusCode);
@@ -47,7 +48,13 @@ const redirectOrError = ({
     } else {
       render(res, { statusCode, err, template });
     }
-  }).catch(() => render(res, { statusCode, err, template }));
+  }).catch(async () => {
+    try {
+      render(res, { statusCode, err, template });
+    } catch (e) {
+      error('Unable to render error template for', err);
+    }
+  });
 };
 
 module.exports = (app, { template, redirectHandler }) => {
