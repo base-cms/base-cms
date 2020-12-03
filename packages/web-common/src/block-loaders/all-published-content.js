@@ -12,6 +12,7 @@ const date = v => (v instanceof Date ? v.valueOf() : v);
  * @param {date} params.endingAfter The date to include content by
  * @param {date} params.endingBefore The date to include content by
  * @param {number} params.sectionId The section ID.
+ * @param {number[]} [params.includeTaxonomyIds] An array of taxonomies to include.
  * @param {string[]} [params.contentTypes] An array of content types to include.
  * @param {boolean} [params.requiresImage] Whether the content must have an image.
  * @param {boolean} [params.sectionBubbling] Whether automatic section bubbling is applied.
@@ -41,6 +42,8 @@ module.exports = async (apolloClient, {
   includeContentTypes,
   excludeContentTypes,
 
+  includeTaxonomyIds,
+
   excludeContentIds,
 
   sectionId,
@@ -56,6 +59,7 @@ module.exports = async (apolloClient, {
     pagination,
     includeContentTypes: includeContentTypes || contentTypes,
     excludeContentTypes,
+    includeTaxonomyIds,
     excludeContentIds,
     requiresImage,
     sectionBubbling,
