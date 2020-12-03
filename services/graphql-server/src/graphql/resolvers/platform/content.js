@@ -627,6 +627,7 @@ module.exports = {
         includeContentTypes,
         excludeContentTypes,
         excludeContentIds,
+        includeTaxonomyIds,
         requiresImage,
         sectionBubbling,
         sort,
@@ -667,6 +668,9 @@ module.exports = {
       }
       if (sectionIds) {
         query['mutations.Website.primarySection.$id'] = sectionIds;
+      }
+      if (includeTaxonomyIds.length) {
+        query['taxonomy.$id'] = { $in: includeTaxonomyIds };
       }
 
       const projection = connectionProjection(info);
