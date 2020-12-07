@@ -130,7 +130,7 @@
         </div>
       </div>
     </div>
-    <div v-if="gdpr" class="row">
+    <div v-if="isGdprCountrySelected" class="row">
       <div class="col-12 form-group">
         <input
           id="inquiry-form.gdprOptIn"
@@ -154,7 +154,7 @@
     <button type="submit" class="btn btn-primary mb-3" :disabled="loading">
       Submit
     </button>
-    <div v-if="getPrivacyMessage" class="row">
+    <div v-if="privacyMessage" class="row">
       <p class="col-12">
         {{ privacyMessage }}
       </p>
@@ -216,18 +216,11 @@ export default {
     gdprOptIn: false,
   }),
   computed: {
-    gdpr() {
-      if (this.country && this.gdprMessage) {
-        for (let i = 0; i < gdprCountries.length; i += 1) {
-          if (this.country === gdprCountries[i]) {
-            return true;
-          }
-        }
+    isGdprCountrySelected() {
+      if (this.country && this.isGdprEnabled) {
+        return this.gdprCountryCodes.includes(this.country);
       }
       return false;
-    },
-    getPrivacyMessage() {
-      return this.privacyMessage;
     },
   },
   methods: {
