@@ -196,7 +196,7 @@ export default {
     },
     gdprMessage: {
       type: String,
-      default: null,
+      default: 'This website may use my contact information to communicate with me about other offerings that may be of interest.',
     },
     privacyMessage: {
       type: String,
