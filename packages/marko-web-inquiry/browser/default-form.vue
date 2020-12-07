@@ -190,6 +190,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    gdprCountryCodes: {
+      type: Array,
+      default: () => ['AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR', 'HU', 'IS', 'IE', 'IT', 'LV', 'LI', 'LT', 'LU', 'MT', 'NL', 'NO', 'PL', 'PT', 'RO', 'SK', 'ES', 'SE', 'GB'],
+    },
     gdprMessage: {
       type: String,
       default: null,
@@ -213,7 +217,6 @@ export default {
   }),
   computed: {
     gdpr() {
-      const gdprCountries = ['AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR', 'HU', 'IS', 'IE', 'IT', 'LV', 'LI', 'LT', 'LU', 'MT', 'NL', 'NO', 'PL', 'PT', 'RO', 'SK', 'ES', 'SE', 'GB'];
       if (this.country && this.gdprMessage) {
         for (let i = 0; i < gdprCountries.length; i += 1) {
           if (this.country === gdprCountries[i]) {

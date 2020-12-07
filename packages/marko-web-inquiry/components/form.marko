@@ -39,8 +39,9 @@ $ const { RECAPTCHA_SITE_KEY } = require('../env');
       contentType: content.type,
       sitekey: RECAPTCHA_SITE_KEY,
       gdprMessage: inquiry.gdprMessage,
-      privacyMessage: inquiry.privacyMessage
       isGdprEnabled: Boolean(inquiry.isGdprEnabled),
+      gdprCountryCodes: inquiry.gdprCountryCodes,
+      privacyMessage: inquiry.privacyMessage,
     } />
   </marko-web-block>
 </if>
