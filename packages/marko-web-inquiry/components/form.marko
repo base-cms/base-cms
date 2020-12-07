@@ -40,6 +40,7 @@ $ const { RECAPTCHA_SITE_KEY } = require('../env');
       sitekey: RECAPTCHA_SITE_KEY,
       gdprMessage: inquiry.gdprMessage,
       privacyMessage: inquiry.privacyMessage
+      isGdprEnabled: Boolean(inquiry.isGdprEnabled),
     } />
   </marko-web-block>
 </if>

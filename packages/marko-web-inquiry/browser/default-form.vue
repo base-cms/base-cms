@@ -186,6 +186,10 @@ export default {
       type: String,
       required: true,
     },
+    isGdprEnabled: {
+      type: Boolean,
+      default: false,
+    },
     gdprMessage: {
       type: String,
       default: null,
