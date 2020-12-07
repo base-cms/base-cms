@@ -151,7 +151,7 @@
       @verify="onVerify"
       @expired="onExpired"
     />
-    <button type="submit" class="btn btn-primary form-group" :disabled="loading">
+    <button type="submit" class="btn btn-primary mb-3" :disabled="loading">
       Submit
     </button>
     <div v-if="getPrivacyMessage" class="row">
