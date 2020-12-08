@@ -109,6 +109,9 @@ module.exports = ({ templates }) => {
       }
       if (!date.isValid()) throw createError(400, 'The provided date parameter is invalid.');
 
+      // finally, ensure the date is always the beginning of the day
+      date = moment(date).startOf('day');
+
       const templateData = {
         date,
         dateInfo: {
