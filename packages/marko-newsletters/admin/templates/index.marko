@@ -6,6 +6,12 @@ $ const { newsletters, staticTemplates } = data;
   <@head>
     <page-title value="Newsletters" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.9.7/dayjs.min.js" integrity="sha512-kZ+x2gdehn6OZMWZSp3Vt5R+v9hQTYEATQwaUfWquhxbvNVAy6IRtYs7asdyxKUTqG0I5ZqBqnzcBrpnHJCAGw==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.9.7/plugin/utc.min.js" integrity="sha512-m00bfmYnAl3plEBlQfeQUhw/U2uvmw29V2+jxSWpAjankMWS+zAsjezbKWDEJNXqWq9o9qQZSOiA2RKDpa4D5w==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.9.7/plugin/timezone.min.js" integrity="sha512-pslqxxHAYPCxaSeFSmXXxDkLejD5dbFVC66aiVq0z4v7VTJBU+wqcG1OpNh4p3MjS2D6NCwz/H2QmSc7dXxryg==" crossorigin="anonymous"></script>
+    <script>
+      dayjs.extend(dayjs_plugin_utc).extend(dayjs_plugin_timezone);
+    </script>
   </@head>
   <div class="row">
     <div class="col-lg-6">
@@ -16,8 +22,9 @@ $ const { newsletters, staticTemplates } = data;
             <for|newsletter| of=newsletters>
               <div class="list-group-item">
                 <h5 class="card-title mb-2">${newsletter.name}</h5>
-                <p class="mb-1">${newsletter.site.name}</p>
-                <p>Alias: ${newsletter.alias}</p>
+                <p class="mb-1 small">Site: ${newsletter.site.name}</p>
+                <p class="mb-1 small">Alias: ${newsletter.alias}</p>
+                <p class="small">Timezone: ${newsletter.site.date.timezone}</p>
                 <h6 class="card-subtitle mb-1 text-muted">Templates:</h6>
                 <if(newsletter.templates.length)>
                   <for|template| of=newsletter.templates>
@@ -27,7 +34,7 @@ $ const { newsletters, staticTemplates } = data;
                           <tr>
                             <th>${template}</th>
                             <th class="small">[<a href=`/templates/${template}`>today</a>]</th>
-                            <th class="small">[<select-day template=template />]</th>
+                            <th class="small">[<select-day template=template timezone=newsletter.site.date.timezone />]</th>
                             <th class="small">
                               <if(newsletter.latestCampaign)>
                                 [<a href=`/templates/${template}?date=latest-campaign`>latest&nbsp;campaign</a>]
@@ -103,7 +110,17 @@ $ const { newsletters, staticTemplates } = data;
         new Pikaday({
           field: element,
           onSelect: function(date) {
-            window.location.href = element.href + '?date=' + date.valueOf();
+            var timezone = element.dataset.timezone;
+            var d = date;
+            if (timezone) {
+              // get the converted timestamp
+              var timestamp = dayjs(date).tz(timezone).$d.valueOf();
+              // determine the difference between the incoming timestamp and the converted timestamp
+              var diff = date.valueOf() - timestamp;
+              // finally, reset the date accounting for the timestamp difference
+              var d = new Date(date.valueOf() + diff)
+            }
+            window.location.href = element.href + '?date=' + d.valueOf();
           },
         });
       });
