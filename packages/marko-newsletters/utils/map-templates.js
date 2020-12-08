@@ -14,6 +14,9 @@ query MarkoNewslettersList($campaignsBefore: Date, $campaignsAfter: Date) {
         site {
           id
           name
+          date {
+            timezone
+          }
         }
         campaigns(input: {
           scheduledBefore: $campaignsBefore
