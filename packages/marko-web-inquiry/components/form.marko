@@ -37,7 +37,11 @@ $ const { RECAPTCHA_SITE_KEY } = require('../env');
       formClass: `${blockName}__form`,
       contentId: content.id,
       contentType: content.type,
-      sitekey: RECAPTCHA_SITE_KEY
+      sitekey: RECAPTCHA_SITE_KEY,
+      gdprMessage: inquiry.gdprMessage,
+      isGdprEnabled: Boolean(inquiry.isGdprEnabled),
+      gdprCountryCodes: inquiry.gdprCountryCodes,
+      privacyMessage: inquiry.privacyMessage,
     } />
   </marko-web-block>
 </if>

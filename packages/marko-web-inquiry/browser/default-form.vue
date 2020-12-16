@@ -130,6 +130,18 @@
         </div>
       </div>
     </div>
+    <div v-if="isGdprCountrySelected" class="row">
+      <div class="col-12 form-group">
+        <input
+          id="inquiry-form.gdprOptIn"
+          v-model="gdprOptIn"
+          type="checkbox"
+        >
+        <label for="inquiry-form.gdprOptIn" class="d-inline">
+          {{ gdprMessage }}
+        </label>
+      </div>
+    </div>
     <pre v-if="error" class="alert alert-danger text-danger">An error occurred: {{ error }}</pre>
     <vue-recaptcha
       ref="invisibleRecaptcha"
@@ -139,9 +151,14 @@
       @verify="onVerify"
       @expired="onExpired"
     />
-    <button type="submit" class="btn btn-primary" :disabled="loading">
+    <button type="submit" class="btn btn-primary mb-3" :disabled="loading">
       Submit
     </button>
+    <div v-if="privacyMessage" class="row">
+      <p class="col-12">
+        {{ privacyMessage }}
+      </p>
+    </div>
   </form>
   <div v-else>
     Thanks for your inquiry! We'll reach out shortly.
@@ -169,6 +186,22 @@ export default {
       type: String,
       required: true,
     },
+    isGdprEnabled: {
+      type: Boolean,
+      default: false,
+    },
+    gdprCountryCodes: {
+      type: Array,
+      default: () => ['AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR', 'HU', 'IS', 'IE', 'IT', 'LV', 'LI', 'LT', 'LU', 'MT', 'NL', 'NO', 'PL', 'PT', 'RO', 'SK', 'ES', 'SE', 'GB'],
+    },
+    gdprMessage: {
+      type: String,
+      default: 'This website may use my contact information to communicate with me about other offerings that may be of interest.',
+    },
+    privacyMessage: {
+      type: String,
+      default: null,
+    },
   },
   data: () => ({
     firstName: '',
@@ -180,7 +213,16 @@ export default {
     country: '',
     postalCode: '',
     comments: '',
+    gdprOptIn: false,
   }),
+  computed: {
+    isGdprCountrySelected() {
+      if (this.country && this.isGdprEnabled) {
+        return this.gdprCountryCodes.includes(this.country);
+      }
+      return false;
+    },
+  },
   methods: {
     onSubmit() {
       this.$refs.invisibleRecaptcha.execute();
@@ -205,6 +247,7 @@ export default {
         country,
         postalCode,
         comments,
+        gdprOptIn,
       } = this;
 
       const payload = {
@@ -218,6 +261,7 @@ export default {
         country,
         postalCode,
         comments,
+        gdprOptIn,
         token,
       };
 
