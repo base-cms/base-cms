@@ -1,6 +1,23 @@
 <!-- eslint-disable vue/no-v-html-->
 <template>
   <span
+    v-if="oembedType === 'link'"
+    :id="id"
+    class="lazyload"
+    :data-embed-type="attrs.type"
+    :data-oembed-type="oembedType"
+    :data-oembed-provider="provider"
+    :data-expand="expand"
+  >
+    <iframe
+      :src="oembedUrl"
+      width="100%"
+      height="100%"
+      frameborder="0"
+    />
+  </span>
+  <span
+    v-else
     :id="id"
     class="lazyload"
     :data-embed-type="attrs.type"
@@ -36,6 +53,7 @@ export default {
     error: null,
     embed: null,
     oembedType: null,
+    oembedUrl: null,
     provider: null,
     observer: null,
   }),
@@ -92,10 +110,16 @@ export default {
       const href = `${this.mountPoint}?url=${encodeURIComponent(this.url)}`;
       try {
         const r = await fetch(href, { credentials: 'same-origin' });
-        const { html, type, provider_name: provider } = await r.json();
+        const {
+          html,
+          type,
+          provider_name: provider,
+          url,
+        } = await r.json();
         this.oembedType = type;
         this.provider = provider;
         this.embed = html;
+        this.oembedUrl = url;
       } catch (e) {
         // @todo Log this!
         this.error = e;
