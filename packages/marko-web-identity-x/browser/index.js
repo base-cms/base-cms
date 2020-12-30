@@ -9,11 +9,13 @@ export default (Browser, {
   CustomAuthenticateComponent,
   CustomLogoutComponent,
   CustomProfileComponent,
+  CustomCommentStreamComponent,
 } = {}) => {
   const LoginComponent = CustomLoginComponent || Login;
   const AuthenticateComponent = CustomAuthenticateComponent || Authenticate;
   const LogoutComponent = CustomLogoutComponent || Logout;
   const ProfileComponent = CustomProfileComponent || Profile;
+  const CommentStreamComponent = CustomCommentStreamComponent || CommentStream;
 
   const { EventBus } = Browser;
   Browser.register('IdentityXAuthenticate', AuthenticateComponent, {
@@ -28,5 +30,5 @@ export default (Browser, {
   Browser.register('IdentityXProfile', ProfileComponent, {
     on: { action: (...args) => EventBus.$emit('identity-x-profile', ...args) },
   });
-  Browser.register('IdentityXCommentStream', CommentStream);
+  Browser.register('IdentityXCommentStream', CommentStreamComponent);
 };
