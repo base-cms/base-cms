@@ -265,6 +265,7 @@ export default {
         token,
       };
 
+      if (!this.isGdprCountrySelected) delete payload.gdprOptIn;
       await this.$submit(payload);
       this.EventBus.$emit('inquiry-form-submit', { contentId, contentType, payload });
     },
