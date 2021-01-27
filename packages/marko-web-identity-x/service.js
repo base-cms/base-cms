@@ -41,7 +41,12 @@ class IdentityX {
     if (access.isLoggedIn && requiredFields.length) {
       // Check if the user requires additonal input.
       const { user, application } = await this.loadActiveContext();
+
       access.requiresUserInput = user ? requiredFields.some(key => isEmpty(user[key])) : false;
+      if (!access.requiresUserInput) {
+        // Check if user needs to answer any globally required custom fields.
+        access.requiresUserInput = user.customSelectFieldAnswers.some(({ hasAnswered, field }) => field.required && !hasAnswered);
+      }
 
       if (user && !access.requiresUserInput) {
         const { regionalConsentPolicies } = application.organization;
