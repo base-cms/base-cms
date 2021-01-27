@@ -93,13 +93,10 @@ export default {
 
   watch: {
     /**
-     * Emit the selected options when the checked array changes.
+     * Emit the selected option IDs when the checked array changes.
      */
     checked(ids) {
-      const selected = this.options
-        .filter(option => ids.includes(option.id))
-        .map(({ id, label }) => ({ id, label }));
-      this.$emit('change', selected);
+      this.$emit('change', ids);
     },
   },
 
