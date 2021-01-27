@@ -45,7 +45,8 @@ class IdentityX {
       access.requiresUserInput = user ? requiredFields.some(key => isEmpty(user[key])) : false;
       if (!access.requiresUserInput) {
         // Check if user needs to answer any globally required custom fields.
-        access.requiresUserInput = user.customSelectFieldAnswers.some(({ hasAnswered, field }) => field.required && !hasAnswered);
+        access.requiresUserInput = user.customSelectFieldAnswers
+          .some(({ hasAnswered, field }) => field.required && !hasAnswered);
       }
 
       if (user && !access.requiresUserInput) {
