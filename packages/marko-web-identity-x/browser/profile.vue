@@ -58,6 +58,21 @@
           </div>
         </div>
 
+        <div v-if="customSelectFieldAnswers.length" class="row">
+          <custom-select
+            v-for="fieldAnswer in customSelectFieldAnswers"
+            :id="fieldAnswer.field.id"
+            :key="fieldAnswer.id"
+            class="col-md-6"
+            :label="fieldAnswer.field.label"
+            :required="fieldAnswer.field.required"
+            :multiple="fieldAnswer.field.multiple"
+            :selected="fieldAnswer.answers"
+            :options="fieldAnswer.field.options"
+            @change="onCustomSelectChange(fieldAnswer.answers, $event)"
+          />
+        </div>
+
         <div v-if="emailConsentRequest" class="row mt-3">
           <div class="col-md-6">
             <receive-email
@@ -112,6 +127,7 @@ import post from './utils/post';
 import cookiesEnabled from './utils/cookies-enabled';
 import regionCountryCodes from './utils/region-country-codes';
 
+import CustomSelect from './form/fields/custom-select.vue';
 import GivenName from './form/fields/given-name.vue';
 import FamilyName from './form/fields/family-name.vue';
 import Organization from './form/fields/organization.vue';
@@ -126,8 +142,11 @@ import Login from './login.vue';
 import FeatureError from './errors/feature';
 import FormError from './errors/form';
 
+const { isArray } = Array;
+
 export default {
   components: {
+    CustomSelect,
     GivenName,
     FamilyName,
     Organization,
@@ -254,6 +273,14 @@ export default {
         return countryCodes.includes(countryCode);
       });
     },
+
+    /**
+     *
+     */
+    customSelectFieldAnswers() {
+      const { customSelectFieldAnswers } = this.user;
+      return isArray(customSelectFieldAnswers) ? customSelectFieldAnswers : [];
+    },
   },
 
   /**
@@ -306,6 +333,11 @@ export default {
       } else {
         this.user.regionalConsentAnswers.push({ id: policyId, given });
       }
+    },
+
+    onCustomSelectChange(answers, ids) {
+      answers.splice(0);
+      answers.push(...ids.map(id => ({ id })));
     },
 
     /**

@@ -92,6 +92,7 @@ export default {
     isRedirecting: false,
     isProfileComplete: true,
     activeUser: null,
+    requiresCustomFieldAnswers: false,
   }),
 
   /**
@@ -124,6 +125,7 @@ export default {
      *
      */
     showProfileForm() {
+      if (this.requiresCustomFieldAnswers) return true;
       return !this.hasRequiredFields || (this.isUserRedirect && !this.isProfileComplete);
     },
   },
@@ -161,6 +163,9 @@ export default {
         this.isProfileComplete = this.hasRequiredFields
           ? this.requiredFields.every(key => !isEmpty(this.activeUser[key]))
           : true;
+
+        this.requiresCustomFieldAnswers = this.activeUser.customSelectFieldAnswers
+          .some(({ hasAnswered, field }) => field.required && !hasAnswered);
 
         this.$emit('authenticate');
         if (!this.showProfileForm) this.redirect();

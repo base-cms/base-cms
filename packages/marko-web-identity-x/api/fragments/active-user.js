@@ -19,6 +19,26 @@ fragment ActiveUserFragment on AppUser {
     given
     date
   }
+  customSelectFieldAnswers(input: {
+    onlyActive: true
+    sort: { field: label, order: asc }
+  }) {
+    id
+    hasAnswered
+    answers {
+      id
+    }
+    field {
+      id
+      label
+      multiple
+      required
+      options {
+        id
+        label
+      }
+    }
+  }
 }
 
 `;
