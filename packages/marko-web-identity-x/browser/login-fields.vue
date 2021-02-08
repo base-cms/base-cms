@@ -28,6 +28,20 @@
         </div>
       </div>
 
+      <div v-if="regionalPolicyFields.length" class="row mt-3">
+        <div class="col-12">
+          <regional-policy
+            v-for="policy in regionalPolicyFields"
+            :id="policy.id"
+            :key="policy.id"
+            :message="policy.message"
+            :required="policy.required"
+            :value="getRegionalPolicyAnswerValue(policy.id)"
+            @input="setPolicyAnswer(policy.id, $event)"
+          />
+        </div>
+      </div>
+
       <small
         v-if="consentPolicy"
         class="text-muted mb-3"
@@ -53,6 +67,8 @@ import CountryCode from './form/fields/country.vue';
 import RegionCode from './form/fields/region.vue';
 import PostalCode from './form/fields/postal-code.vue';
 
+import RegionalPolicy from './form/fields/regional-policy.vue';
+
 import regionCountryCodes from './utils/region-country-codes';
 
 export default {
@@ -60,6 +76,7 @@ export default {
     CountryCode,
     RegionCode,
     PostalCode,
+    RegionalPolicy,
   },
 
   props: {
@@ -109,6 +126,14 @@ export default {
       type: Boolean,
       default: false,
     },
+
+    /**
+     * Regional consent policies to display, if any.
+     */
+    regionalConsentPolicies: {
+      type: Array,
+      default: () => [],
+    },
   },
 
   data: () => ({
@@ -118,7 +143,7 @@ export default {
       organization: Organization,
       organizationTitle: OrganizationTitle,
     },
-    values: {},
+    values: { regionalConsentAnswers: [] },
   }),
 
   computed: {
@@ -149,6 +174,40 @@ export default {
      */
     displayPostalCodeField() {
       return this.fields.includes('postalCode') && this.displayRegionField;
+    },
+
+    /**
+     *
+     */
+    regionalPolicyFields() {
+      const { regionalConsentPolicies } = this;
+      const { countryCode } = this.values;
+      if (!regionalConsentPolicies.length || !countryCode) return [];
+      return regionalConsentPolicies.filter((policy) => {
+        const countryCodes = policy.countries.map(country => country.id);
+        return countryCodes.includes(countryCode);
+      });
+    },
+  },
+
+  methods: {
+    getRegionalPolicyAnswer(policyId) {
+      return this.values.regionalConsentAnswers.find(a => a.id === policyId);
+    },
+
+    getRegionalPolicyAnswerValue(policyId) {
+      const answer = this.getRegionalPolicyAnswer(policyId);
+      if (answer) return answer.given;
+      return false;
+    },
+
+    setPolicyAnswer(policyId, given) {
+      const answer = this.getRegionalPolicyAnswer(policyId);
+      if (answer) {
+        answer.given = given;
+      } else {
+        this.values.regionalConsentAnswers.push({ id: policyId, given });
+      }
     },
   },
 };

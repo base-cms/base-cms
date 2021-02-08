@@ -26,6 +26,7 @@
       :fields="missingRequiredFields"
       :button-label="buttonLabels.submit"
       :consent-policy="consentPolicy"
+      :regional-consent-policies="regionalConsentPolicies"
       @submit="handleLoginFields"
     />
   </div>
@@ -117,6 +118,15 @@ export default {
      *
      */
     requiredFields: {
+      type: Array,
+      default: () => [],
+    },
+
+    /**
+     * Regional consent polices to display (if/when a user selects a country on login)
+     * if enabled.
+     */
+    regionalConsentPolicies: {
       type: Array,
       default: () => [],
     },
