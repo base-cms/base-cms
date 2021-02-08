@@ -1,6 +1,5 @@
 <template>
   <div v-if="hasActiveUser">
-    <!-- @todo determine when new fields should display -->
     <p>You are currently logged in as {{ activeUser.email }}.</p>
     <a
       :href="endpoints.logout"
@@ -22,6 +21,14 @@
       Please add noreply@identity-x.io to your whitelist and try registering again.
     </p>
   </div>
+  <div v-else-if="missingRequiredFields.length">
+    <login-fields
+      :fields="missingRequiredFields"
+      :button-label="buttonLabels.submit"
+      :consent-policy="consentPolicy"
+      @submit="handleLoginFields"
+    />
+  </div>
   <div v-else>
     <form @submit.prevent="handleSubmit">
       <fieldset :disabled="loading">
@@ -35,7 +42,7 @@
           type="submit"
           class="btn btn-primary"
         >
-          {{ buttonLabels.submit }}
+          {{ buttonLabels.continue }}
         </button>
       </fieldset>
       <p v-if="error" class="mt-3 text-danger">
@@ -47,6 +54,8 @@
 
 <script>
 import Email from './form/fields/email.vue';
+import LoginFields from './login-fields.vue';
+
 import cleanPath from './utils/clean-path';
 import post from './utils/post';
 import cookiesEnabled from './utils/cookies-enabled';
@@ -59,6 +68,7 @@ export default {
    */
   components: {
     Email,
+    LoginFields,
   },
 
   /**
@@ -76,6 +86,7 @@ export default {
     buttonLabels: {
       type: Object,
       default: () => ({
+        continue: 'Continue',
         submit: 'Login / Register',
         logout: 'Logout',
       }),
@@ -92,6 +103,23 @@ export default {
       type: String,
       default: null,
     },
+
+    /**
+     * User fields that are required before allowing a login.
+     * If the user is missing any of these fields, they will be prompted to complete
+     * them before the login link is sent.
+     *
+     * This is an array of user field keys, e.g.
+     * [
+     *   'countryCode',
+     *   'regionCode',
+     * ]
+     *
+     */
+    requiredFields: {
+      type: Array,
+      default: () => [],
+    },
   },
 
   /**
@@ -102,6 +130,7 @@ export default {
     complete: false,
     error: null,
     loading: false,
+    missingRequiredFields: [],
   }),
 
   /**
@@ -152,22 +181,19 @@ export default {
     async handleSubmit() {
       this.error = null;
       this.loading = true;
-      const {
-        email,
-        redirectTo,
-        authUrl,
-        appContextId,
-      } = this;
       try {
         const res = await post('/login', {
-          email,
-          redirectTo,
-          authUrl,
-          appContextId,
+          email: this.email,
+          redirectTo: this.redirectTo,
+          authUrl: this.authUrl,
+          appContextId: this.appContextId,
+          requiredFields: this.requiredFields,
         });
         const data = await res.json();
         if (!res.ok) throw new FormError(data.message, res.status);
-        if (data.ok) {
+        if (!data.hasRequiredFields) {
+          this.missingRequiredFields = data.requiredFields;
+        } else if (data.ok) {
           this.complete = true;
           this.$emit('submit');
         }
@@ -176,6 +202,13 @@ export default {
       } finally {
         this.loading = false;
       }
+    },
+
+    /**
+     *
+     */
+    handleLoginFields(values) {
+      console.log(values);
     },
   },
 };
