@@ -118,7 +118,13 @@
   </div>
   <div v-else>
     <p>You must be logged-in to modify your user profile.</p>
-    <login :endpoints="endpoints" :app-context-id="appContextId" />
+    <login
+      :endpoints="endpoints"
+      :app-context-id="appContextId"
+      :consent-policy="consentPolicy"
+      :regional-consent-policies="regionalConsentPolicies"
+      :required-fields="requiredLoginFields"
+    />
   </div>
 </template>
 
@@ -200,6 +206,10 @@ export default {
       default: null,
     },
     regionalConsentPolicies: {
+      type: Array,
+      default: () => [],
+    },
+    requiredLoginFields: {
       type: Array,
       default: () => [],
     },

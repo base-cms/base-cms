@@ -107,7 +107,7 @@ export default {
 
     /**
      * User fields that are required before allowing a login.
-     * If the user is missing any of these fields, they will be prompted to complete
+     * If an _unverified_ user is missing any of these fields, they will be prompted to complete
      * them before the login link is sent.
      *
      * This is an array of user field keys, e.g.

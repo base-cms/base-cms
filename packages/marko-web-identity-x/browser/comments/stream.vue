@@ -37,6 +37,8 @@
           :endpoints="endpoints"
           :consent-policy="consentPolicy"
           :app-context-id="appContextId"
+          :regional-consent-policies="regionalConsentPolicies"
+          :required-fields="requiredLoginFields"
         />
       </div>
 
@@ -148,6 +150,14 @@ export default {
     appContextId: {
       type: String,
       default: null,
+    },
+    regionalConsentPolicies: {
+      type: Array,
+      default: () => [],
+    },
+    requiredLoginFields: {
+      type: Array,
+      default: () => [],
     },
   },
 
