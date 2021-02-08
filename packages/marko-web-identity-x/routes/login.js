@@ -74,7 +74,6 @@ module.exports = asyncRoute(async (req, res) => {
   // this only applies when the user is _not_ verified
   const { verified } = appUser;
   if (!verified) {
-    // @todo determine when consent policies are needed...
     const hasRequiredFields = requiredFields.every(field => appUser[field]);
     if (!hasRequiredFields) return res.json({ hasRequiredFields, requiredFields });
   }
@@ -91,5 +90,5 @@ module.exports = asyncRoute(async (req, res) => {
       },
     },
   });
-  return res.json({ ok: true });
+  return res.json({ ok: true, hasRequiredFields: true, requiredFields: [] });
 });

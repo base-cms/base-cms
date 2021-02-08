@@ -27,8 +27,12 @@
       :button-label="buttonLabels.submit"
       :consent-policy="consentPolicy"
       :regional-consent-policies="regionalConsentPolicies"
+      :disabled="loading"
       @submit="handleLoginFields"
     />
+    <p v-if="error" class="mt-3 text-danger">
+      An error occurred: {{ error.message }}
+    </p>
   </div>
   <div v-else>
     <form @submit.prevent="handleSubmit">
@@ -189,9 +193,9 @@ export default {
      *
      */
     async handleSubmit() {
-      this.error = null;
-      this.loading = true;
       try {
+        this.error = null;
+        this.loading = true;
         const res = await post('/login', {
           email: this.email,
           redirectTo: this.redirectTo,
@@ -217,8 +221,22 @@ export default {
     /**
      *
      */
-    handleLoginFields(values) {
-      console.log(values);
+    async handleLoginFields(values) {
+      try {
+        this.error = null;
+        this.loading = true;
+        const res = await post('/login-fields', {
+          email: this.email,
+          values,
+        });
+        const data = await res.json();
+        if (!res.ok) throw new FormError(data.message, res.status);
+        await this.handleSubmit();
+      } catch (e) {
+        this.error = e;
+      } finally {
+        this.loading = false;
+      }
     },
   },
 };
