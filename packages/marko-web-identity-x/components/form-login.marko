@@ -9,7 +9,9 @@ $ const { identityX } = req;
       activeUser: user,
       endpoints: identityX.config.getEndpoints(),
       consentPolicy: get(application, "organization.consentPolicy"),
+      regionalConsentPolicies: get(application, "organization.regionalConsentPolicies"),
       appContextId: identityX.config.get("appContextId"),
+      requiredFields: identityX.config.getAsArray("requiredLoginFields")
     };
     <if(isEnabled)>
       <marko-web-browser-component name="IdentityXLogin" props=props />
