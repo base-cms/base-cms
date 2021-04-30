@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/marko-web-identity-x",
-  "version": "1.54.0",
+  "version": "1.54.1",
   "description": "Marko Wrapper for IdentityX",
   "repository": "https://github.com/base-cms/base-cms/tree/master/packages/marko-web-identity-x",
   "author": "Josh Worden <josh@limit0.io>",
