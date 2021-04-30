@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const TokenService = require('./token-service');
 
 const UserService = class UserService {

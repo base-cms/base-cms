@@ -30,6 +30,9 @@ x-node-defaults: &node
   environment:
     <<: *env
 
+x-node-alpine-defaults: &node-alpn
+  image: node:10.15-alpine
+
 services:
   commands:
     <<: *node
@@ -81,6 +84,7 @@ services:
 
   graphql-server:
     << : *node
+    << : *node-alpn
     working_dir: /base-cms/services/graphql-server
     entrypoint: ["/base-cms/node_modules/.bin/gulp"]
     environment:
@@ -110,6 +114,7 @@ services:
 
   graphql-server-aerilon:
     << : *node
+    << : *node-alpn
     working_dir: /base-cms/services/graphql-server
     entrypoint: ["/base-cms/node_modules/.bin/gulp"]
     environment:
@@ -133,6 +138,7 @@ services:
 
   graphql-server-caprica:
     << : *node
+    << : *node-alpn
     working_dir: /base-cms/services/graphql-server
     entrypoint: ["/base-cms/node_modules/.bin/gulp"]
     environment:
@@ -156,6 +162,7 @@ services:
 
   graphql-server-picon:
     << : *node
+    << : *node-alpn
     working_dir: /base-cms/services/graphql-server
     entrypoint: ["/base-cms/node_modules/.bin/gulp"]
     environment:
@@ -179,6 +186,7 @@ services:
 
   graphql-server-gemenon:
     << : *node
+    << : *node-alpn
     working_dir: /base-cms/services/graphql-server
     entrypoint: ["/base-cms/node_modules/.bin/gulp"]
     environment:
