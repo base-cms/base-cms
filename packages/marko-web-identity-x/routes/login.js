@@ -63,11 +63,17 @@ module.exports = asyncRoute(async (req, res) => {
   const { data } = await identityX.client.query({ query, variables });
   let { appUser } = data;
 
-
   if (!appUser) {
     // Create the user.
     const { data: newUser } = await identityX.client.mutate({ mutation: createUser, variables });
     appUser = newUser.createAppUser;
+  }
+
+  // Don't require regionCode if not supported based on country selection
+  if (appUser.countryCode) {
+    if (!['US', 'CA', 'MX'].includes(appUser.countryCode)) {
+      requiredFields = requiredFields.filter((item) => item !== 'regionCode');
+    }
   }
 
   // determine if the user is missing fields that are required before sending the login link
