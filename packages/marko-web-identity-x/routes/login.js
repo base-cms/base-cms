@@ -72,7 +72,7 @@ module.exports = asyncRoute(async (req, res) => {
   // Don't require regionCode if not supported based on country selection
   if (appUser.countryCode) {
     if (!['US', 'CA', 'MX'].includes(appUser.countryCode)) {
-      requiredFields = requiredFields.filter((item) => item !== 'regionCode');
+      requiredFields = requiredFields.filter(item => item !== 'regionCode');
     }
   }
 
