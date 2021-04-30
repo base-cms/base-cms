@@ -10,9 +10,9 @@
     <script>
       (function(w, f) {
         w.gql = {
-          uri: 'https://caprica.graphql-staging.base-cms.io',
-          tenant: 'pmmi_all',
-          siteIds: { pw: '5d88cedef175132c008b456b', aw: '5d88cecaf175132c008b4567' },
+          uri: 'https://tauron.graphql.base-staging.parameter1.com',
+          tenant: 'p1_sandbox',
+          siteId: '5ed294c6c13a4626008b4568',
         };
         var l = f + 'Queue'; w[l] = w[l] || [];
         w[f] = w[f] || function() { w[l].push(arguments); };
@@ -92,7 +92,7 @@
             ],
           },
           on: { action: (...args) => console.log('track', args) },
-          apollo: { uri: gql.uri, tenant: gql.tenant, siteId: gql.siteIds.pw },
+          apollo: { uri: gql.uri, tenant: gql.tenant, siteId: gql.siteId },
         });
 
         leaders('loadComponent', {
@@ -114,7 +114,7 @@
             ],
           },
           on: { action: (...args) => console.log('track', args) },
-          apollo: { uri: gql.uri, tenant: gql.tenant, siteId: gql.siteIds.pw },
+          apollo: { uri: gql.uri, tenant: gql.tenant, siteId: gql.siteId },
         });
       }
 
@@ -136,7 +136,7 @@
             ],
           },
           on: { action: (...args) => console.log('track', args) },
-          apollo: { uri: gql.uri, tenant: gql.tenant, siteId: gql.siteIds.pw },
+          apollo: { uri: gql.uri, tenant: gql.tenant, siteId: gql.siteId },
         });
       }
     </script>
