@@ -59,7 +59,7 @@
     "stylelint": "^10.1.0",
     "stylelint-config-twbs-bootstrap": "^0.4.0",
     "validate-npm-package-name": "^3.0.0",
-    "validator": "^11.0.0",
+    "validator": "^13.7.0",
     "vue-loader": "^15.8.3",
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.6.11",
