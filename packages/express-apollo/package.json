@@ -15,7 +15,7 @@
     "apollo-cache-inmemory": "^1.6.3",
     "apollo-client": "^2.6.4",
     "apollo-link-http": "^1.5.16",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^3.1.1"
   },
   "peerDependencies": {
     "graphql": "^14.0.0"
